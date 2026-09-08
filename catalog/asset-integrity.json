@@ -36305,7 +36305,7 @@
     },
     {
       "tree": "plugins",
-      "aggregate_sha256": "c5195c74d932cb152ba4c218948c871fbd4a3961d8f5cfe010c01a6092053ce3",
+      "aggregate_sha256": "23641d8f914094ed06f211d4fbb7ed32d94c5c81e94d4203164cf8e9ea1bf7a7",
       "files": [
         {
           "path": "plugins/cross-platform-agent-template/.codex-plugin/plugin.json",
@@ -36316,6 +36316,21 @@
           "path": "plugins/cross-platform-agent-template/.codexignore",
           "sha256": "724b08104c3b5c5dcb92ccbc783c37cd458d8fdfdb88e586bd27056024399799",
           "bytes": 95
+        },
+        {
+          "path": "plugins/cross-platform-agent-template/LICENSE",
+          "sha256": "c71d239df91726fc519c6eb72d318ec65820627232b2f796219e87dcf35d0ab4",
+          "bytes": 11357
+        },
+        {
+          "path": "plugins/cross-platform-agent-template/README.md",
+          "sha256": "351ee03dcfb342e9f339a6179ee23b743c75b7682b90294ea074eeffeef2d6cf",
+          "bytes": 982
+        },
+        {
+          "path": "plugins/cross-platform-agent-template/SECURITY.md",
+          "sha256": "27cd930489724436b39be0d4e0ad17f2f05a1ceadd392457ce4624a16bdd151f",
+          "bytes": 739
         },
         {
           "path": "plugins/vanguard-frontier-agentic/.codex-plugin/plugin.json",
@@ -46117,5 +46132,5 @@
       "bytes": 8340
     }
   ],
-  "aggregate_sha256": "24c66e292588ebdf6724f6af0438bf7a72f68dcfe35f12c1e4f404dfe8adbd7c"
+  "aggregate_sha256": "6dd1e775acde24b0d3ddf52c4a9780122cd381454a0d175381bae192a928825c"
 }
