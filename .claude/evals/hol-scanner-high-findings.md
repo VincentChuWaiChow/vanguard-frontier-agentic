@@ -15,6 +15,8 @@
 - [x] An exact repository-root scanner run reports zero critical/high findings.
 - [x] The asset-integrity repair workflow never checks out or executes a pull
   request head in a `pull_request_target` context.
+- [x] Manual dispatch requires only the Dependabot branch; the workflow resolves
+  the exact SHA and protects its push with a lease against concurrent updates.
 - [x] Workflow catalog generation contains no dynamic evaluation and remains
   deterministic.
 - [x] Redaction tests still prove GitHub and npm token-shaped values are removed,
@@ -58,8 +60,9 @@
 - Root scan with externally reported 2.0.1116: **PASS** — score 96/A,
   0 critical/high.
 - Privileged checkout removed: **PASS** — the repair workflow is manual,
-  validates an exact same-repository Dependabot branch tip, and creates its
-  write token only after regeneration.
+  validates and resolves the exact same-repository Dependabot branch tip,
+  protects the push with a lease, and creates its write token only after
+  regeneration. Operators provide one input instead of a branch/SHA pair.
 - Static workflow metadata parser preserved: **PASS** — catalog check and the
   complete repository validation suite passed.
 - Redaction behavior preserved: **PASS** — Rust unit, integration, property,

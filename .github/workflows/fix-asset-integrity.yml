@@ -7,10 +7,6 @@ on:
         description: Dependabot branch to repair (for example, dependabot/npm_and_yarn/foo-1.2.3)
         required: true
         type: string
-      target_sha:
-        description: Exact 40-character commit SHA currently at the branch tip
-        required: true
-        type: string
 
 permissions:
   contents: read
@@ -25,7 +21,8 @@ jobs:
     steps:
       # This workflow is intentionally manual. A privileged pull_request_target
       # job must never check out or otherwise materialize a pull request head.
-      # The operator supplies the exact same-repository Dependabot ref and SHA.
+      # The operator supplies only the same-repository Dependabot ref. The job
+      # resolves its exact tip and later uses that SHA as a push lease.
       - name: Check out trusted generator
         uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
         with:
@@ -35,9 +32,9 @@ jobs:
           ref: ${{ github.event.repository.default_branch }}
 
       - name: Validate and prepare Dependabot revision
+        id: target
         env:
           HEAD_REF: ${{ inputs.target_ref }}
-          HEAD_SHA: ${{ inputs.target_sha }}
         run: |
           case "$HEAD_REF" in
             dependabot/*) ;;
@@ -46,15 +43,12 @@ jobs:
               exit 1
               ;;
           esac
+          HEAD_SHA=$(git -C trusted ls-remote --exit-code origin "refs/heads/$HEAD_REF" | cut -f1)
           if ! printf '%s' "$HEAD_SHA" | grep -Eq '^[0-9a-f]{40}$'; then
-            echo "::error::target_sha must be an exact lowercase 40-character commit SHA."
+            echo "::error::Could not resolve target_ref to one exact commit SHA."
             exit 1
           fi
-          remote_sha=$(git -C trusted ls-remote --exit-code origin "refs/heads/$HEAD_REF" | cut -f1)
-          if [ "$remote_sha" != "$HEAD_SHA" ]; then
-            echo "::error::target_sha is not the current tip of target_ref."
-            exit 1
-          fi
+          echo "sha=$HEAD_SHA" >> "$GITHUB_OUTPUT"
           cp -a trusted pr
           git -C pr fetch --no-tags origin "$HEAD_SHA"
           git -C pr checkout --detach "$HEAD_SHA"
@@ -96,6 +90,7 @@ jobs:
           GIT_ASKPASS: ${{ runner.temp }}/git-askpass.sh
           GIT_TERMINAL_PROMPT: "0"
           HEAD_REF: ${{ inputs.target_ref }}
+          EXPECTED_SHA: ${{ steps.target.outputs.sha }}
           TARGET_REPOSITORY: ${{ github.repository }}
         run: |
           cat > "$GIT_ASKPASS" <<'EOF'
@@ -112,6 +107,9 @@ jobs:
           git diff --quiet catalog/asset-integrity.json || (
             git add catalog/asset-integrity.json &&
             git commit -m "chore(catalog): regenerate asset integrity" &&
-            git push "https://github.com/${TARGET_REPOSITORY}.git" "HEAD:refs/heads/${HEAD_REF}"
+            git push \
+              --force-with-lease="refs/heads/${HEAD_REF}:${EXPECTED_SHA}" \
+              "https://github.com/${TARGET_REPOSITORY}.git" \
+              "HEAD:refs/heads/${HEAD_REF}"
           )
           echo "Done"
