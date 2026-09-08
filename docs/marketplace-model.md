@@ -18,7 +18,7 @@ cataloged before they are published.
 
 The marketplace grows slowly with strong review. A small catalog of high-trust
 assets is better than a large catalog nobody should run. Every submitted agent
-or skill must pass all <!-- count:global:gates -->25<!-- /count --> validation gates before merging.
+or skill must pass all <!-- count:global:gates -->26<!-- /count --> validation gates before merging.
 
 ## Supported harness marketplaces
 
@@ -103,7 +103,7 @@ One repo → eight install surfaces
 
 ## Validation
 
-Marketplace manifests are validated by the <!-- count:global:gates -->25<!-- /count -->-gate `npm run validate` suite.
+Marketplace manifests are validated by the <!-- count:global:gates -->26<!-- /count -->-gate `npm run validate` suite.
 The four marketplace-specific gates are:
 
 | Gate | What it checks |
@@ -122,7 +122,7 @@ npm run manifest:write          # re-index catalog/agents.json
 npm run plugin-manifest:write   # .claude-plugin/plugin.json
 npm run cursor-plugin:write     # .cursor-plugin/plugin.json
 npm run kiro-powers:write       # powers/*/POWER.md (if provider configs changed)
-npm run validate                # all <!-- count:global:gates -->25<!-- /count --> gates
+npm run validate                # all <!-- count:global:gates -->26<!-- /count --> gates
 ```
 
 ## See also

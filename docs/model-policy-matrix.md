@@ -28,13 +28,15 @@ A model policy that pins a name the provider does not recognize does not fail at
 
 Codex validates effort at runtime against each model's advertised `supportedReasoningEfforts` (`model/list`); the registry narrows the harness-wide vocabulary per model family so the policy engine catches an unsupported pairing before it reaches the provider.
 
+The Codex `ReasoningEffort` enum also carries `Ultra` and `Persistent` variants, and `Ultra` appears on the ChatGPT web/desktop surface — per [learn.chatgpt.com/docs/models?surface=ide](https://learn.chatgpt.com/docs/models?surface=ide), where it delegates to subagents and "may require configuration to appear in the model picker." Both are deliberately excluded from this registry, which governs `codex.toml` — the CLI surface, whose documented effort list is Low \| Medium \| High \| Extra high \| Max. An enum variant existing is not evidence the configured surface accepts it, the same distinction the `ollama` and `openrouter` namespaces apply to their own routes below. UI labels also differ from wire values (the app shows "Light" for `low`, "Extra High" for `xhigh`), and the app's Speed control (Fast/Standard) is a separate axis from effort with no documented `codex.toml` key, so it is not projectable at all.
+
 ### Namespace table
 
 | Namespace | Shape / pattern | Membership | `model_provider` projected | Reasoning support | Examples |
 |---|---|---|---|---|---|
 | `openai` | `^(gpt-\|o[0-9])[a-z0-9.-]*$` | closed (enumerated below) | *(none — default provider)* | Per-model, see table below | `gpt-5.5`, `o3` |
-| `ollama` | `^[a-z0-9][a-z0-9._-]*:[a-z0-9][a-z0-9._-]*$` (explicit `name:tag`; a bare floating-`:latest` name is rejected by shape) | open (shape only) | `ollama` | None — pinning `reasoning_effort` fails check. Ollama documents the field on `/v1/chat/completions`, but this route is `wire_api responses` and `reasoning_effort` is absent from the fields Ollama lists for `/v1/responses` | `deepseek-r1:14b`, `qwen3:32b`, `glm-5.3:cloud`, `gpt-oss:120b`, `llama3.3:70b` |
-| `openrouter` | `^[a-z0-9][a-z0-9.-]*/[a-z0-9][a-z0-9._-]*(:(free\|extended\|nitro\|thinking))?$` (`author/model`, optional variant suffix) | open (shape only) | `openrouter` | None — pinning `reasoning_effort` fails check. OpenRouter documents the field on its chat-completions surface; its Responses route, which this namespace uses, is unverified | `anthropic/claude-sonnet-4.5`, `openai/gpt-4o`, `google/gemini-2.5-pro` |
+| `ollama` | `^[a-z0-9][a-z0-9._-]*:[a-z0-9][a-z0-9._-]*$` (explicit `name:tag`; a bare floating-`:latest` name is rejected by shape) | open (shape only) | `ollama` | None — pinning `reasoning_effort` fails check. Ollama documents the field on `/v1/chat/completions`, but this route is `wire_api responses` and `reasoning_effort` is absent from the fields Ollama lists for `/v1/responses` — unlike the `openrouter` namespace below, whose Responses route has been verified to accept an effort field | `deepseek-r1:14b`, `qwen3:32b`, `glm-5.3:cloud`, `gpt-oss:120b`, `llama3.3:70b` |
+| `openrouter` | `^[a-z0-9][a-z0-9.-]*/[a-z0-9][a-z0-9._-]*(:(free\|extended\|nitro\|thinking))?$` (`author/model`, optional variant suffix) | open (shape only) | `openrouter` | `minimal`, `low`, `medium`, `high` — verified on OpenRouter's Responses route (`POST /api/v1/responses`), narrower than the `none`/`xhigh`/`max` vocabulary documented on OpenRouter's chat-completions surface; that wider list does not apply to this namespace | `anthropic/claude-sonnet-4.5`, `openai/gpt-4o`, `google/gemini-2.5-pro` |
 
 Namespaces are matched in this order, so a value must clear the `openai` pattern before falling through to `ollama` or `openrouter`.
 
@@ -49,10 +51,10 @@ The `ollama` and `openrouter` routes require a matching `[model_providers.<id>]`
 | `gpt-5.6-sol` | none, low, medium, high, xhigh, max | no minimal |
 | `gpt-5.6-terra` | none, low, medium, high, xhigh, max | no minimal |
 | `gpt-5.6-luna` | none, low, medium, high, xhigh, max | no minimal |
-| `gpt-5.5` | none, minimal, low, medium, high, xhigh | |
+| `gpt-5.5` | none, minimal, low, medium, high, xhigh | still listed and visible in the Codex model map |
 | `gpt-5.5-pro` | none, minimal, low, medium, high, xhigh | |
-| `gpt-5.4` | none, minimal, low, medium, high, xhigh | |
-| `gpt-5.4-mini` | none, minimal, low, medium, high, xhigh | |
+| `gpt-5.4` | none, minimal, low, medium, high, xhigh | present but `visibility: hide` in the Codex model map — legacy, kept because the policy still pins it; not a lifecycle status, and no retirement date is documented |
+| `gpt-5.4-mini` | none, minimal, low, medium, high, xhigh | present but `visibility: hide` in the Codex model map — legacy |
 | `gpt-5.4-nano` | none, minimal, low, medium, high, xhigh | |
 | `gpt-5.3-codex` | none, minimal, low, medium, high, xhigh | |
 | `gpt-5.1-codex-mini` | none, minimal, low, medium, high, xhigh | |
@@ -69,7 +71,9 @@ The GPT-6 and GPT-5.6 families advertise a `max` reasoning effort on the OpenAI 
 
 `gpt-5` and `gpt-5-codex` are **not valid slugs** — do not add them from memory; they do not exist in the current OpenAI model map. Image, audio, and video model slugs are deliberately excluded from this registry — they are not valid agent models for this repo's harness files.
 
-Sources: Context7 `/openai/codex` `references/latest-model.md` (current model map); [developers.openai.com/codex](https://developers.openai.com/codex); [developers.openai.com/api/docs/models](https://developers.openai.com/api/docs/models) (GPT-6 + GPT-5.6 families, verified 2026-09-05).
+`codex-rs/models-manager/models.json` is the Codex *subscription picker*, not the API model set — `filter_by_auth` narrows it further to `supported_in_api` entries — so a slug's absence from that file is not evidence of retirement; the `o1`/`o3`/`o4-mini` and `gpt-4.1-*` entries above are retained in this registry for exactly that reason. Only the provider's own deprecations page moves an entry to `retiring`/`retired`. (`gpt-5.2` is visible in that map but stays unregistered here until its reasoning-effort list is verified.)
+
+Sources: Context7 `/openai/codex` `references/latest-model.md` (current model map); Context7 `/openai/codex` `codex-rs/models-manager/models.json` (Codex model map, verified 2026-09-08); [developers.openai.com/codex](https://developers.openai.com/codex); [developers.openai.com/api/docs/models](https://developers.openai.com/api/docs/models) (GPT-6 + GPT-5.6 families, verified 2026-09-05).
 
 ## Model lifecycle (retirement and fallback)
 
@@ -97,14 +101,23 @@ The `vfa-tui` Model Policy Builder reads `catalog/model-registry.json` directly 
 | Field | Config key | Vocabulary |
 |---|---|---|
 | Model | `model:` in subagent frontmatter | `sonnet` \| `opus` \| `haiku` \| `fable` \| `inherit`, or a pinned `claude-*` ID. The alias namespace is enumerated rather than shape-only, so `haiku` carries the same empty `reasoning_efforts` as the pinned Claude Haiku 4.5 ids instead of inheriting the full vocabulary |
-| Reasoning effort | `effort:` in subagent frontmatter | `low` \| `medium` \| `high` \| `xhigh` \| `max` (not supported for Claude Haiku 4.5 — see below) |
+| Reasoning effort | `effort:` in subagent frontmatter | `low` \| `medium` \| `high` \| `xhigh` \| `max` (harness-wide vocabulary; narrowed per model — see [Effort vocabulary and fallback](#effort-vocabulary-and-fallback)) |
 
 ### Namespace table
 
 | Namespace | Shape / pattern | Membership | Examples |
 |---|---|---|---|
-| `alias` | `^(sonnet\|opus\|haiku\|fable\|inherit)$` | open (version-floating aliases Claude Code resolves to a maintained default; always valid) | `sonnet`, `opus` |
+| `alias` | `^(sonnet\|opus\|haiku\|fable\|inherit)$` | closed (enumerated: the five aliases below). Matched *before* `anthropic`, so leaving it shape-only would let `haiku` inherit the full vocabulary and bypass the gate its pinned ids carry; closing it also rejects an unrecognized alias | `sonnet`, `opus`, `haiku` *(no effort)* |
 | `anthropic` | `^claude-[a-z0-9.-]+$` | closed (enumerated below) | `claude-sonnet-5` |
+
+### Naming convention: dateless IDs, dated snapshots, and aliases
+
+This is a standing rule for every pinned Anthropic ID registered here, not a one-off — per [platform.claude.com/docs/en/about-claude/models/model-ids-and-versions](https://platform.claude.com/docs/en/about-claude/models/model-ids-and-versions):
+
+- **From the 4.6 generation on, IDs are dateless *and* are themselves the pinned snapshot.** `claude-opus-5` and `claude-sonnet-4-6` are not aliases pointing at something else — there is no separate alias to prefer or register.
+- **Before 4.6, the canonical ID carries a snapshot date, and the API also exposes a shorter alias** pointing at the most recent dated snapshot. This registry registers **both** for every pre-4.6 model and prefers the readable alias (`claude-sonnet-4-5` over `claude-sonnet-4-5-20250929`) unless an exact snapshot is required.
+- `claude-opus-4-5` and `claude-sonnet-4-5` are the newest such aliases, added alongside their existing dated snapshots (`claude-opus-4-5-20251101`, `claude-sonnet-4-5-20250929`).
+- Do not invent an alias for a dateless ID, and do not drop a dated entry once its alias is registered.
 
 ### Verified Anthropic model IDs (`anthropic` namespace)
 
@@ -114,22 +127,30 @@ The `vfa-tui` Model Policy Builder reads `catalog/model-registry.json` directly 
 | `claude-opus-5` | low, medium, high, xhigh, max | current Opus lineup; default effort high |
 | `claude-opus-4-8` | low, medium, high, xhigh, max | |
 | `claude-opus-4-7` | low, medium, high, xhigh, max | |
-| `claude-opus-4-6` | low, medium, high, xhigh, max | |
-| `claude-opus-4-5-20251101` | low, medium, high, xhigh, max | dated snapshot ID |
+| `claude-opus-4-6` | low, medium, high, max | effort page lists max but not xhigh for Opus 4.6 |
+| `claude-opus-4-5` | low, medium, high | preferred readable form; pre-4.6 alias pointing at `claude-opus-4-5-20251101`. Supports effort but is absent from both the xhigh and max availability lists |
+| `claude-opus-4-5-20251101` | low, medium, high | dated snapshot the `claude-opus-4-5` alias resolves to; pin only when an exact snapshot is required |
 | `claude-sonnet-5` | low, medium, high, xhigh, max | |
-| `claude-sonnet-4-6` | low, medium, high, xhigh, max | |
-| `claude-sonnet-4-5-20250929` | low, medium, high, xhigh, max | dated snapshot ID |
-| `claude-haiku-4-5` | *(none)* | effort not supported |
+| `claude-sonnet-4-6` | low, medium, high, max | effort page lists max but not xhigh for Sonnet 4.6 |
+| `claude-sonnet-4-5` | *(none)* | preferred readable form; pre-4.6 alias pointing at `claude-sonnet-4-5-20250929`. Absent from the effort page supported-models list, so effort is not projectable |
+| `claude-sonnet-4-5-20250929` | *(none)* | dated snapshot the `claude-sonnet-4-5` alias resolves to; pin only when an exact snapshot is required |
+| `claude-haiku-4-5` | *(none)* | absent from the effort page supported-models list |
 | `claude-haiku-4-5-20251001` | *(none)* | dated snapshot ID; effort not supported |
 | `claude-fable-5` | low, medium, high, xhigh, max | |
 
 ### Effort vocabulary and fallback
 
-`effort` is a subagent frontmatter field (registry `reasoning_key: effort`) with harness vocabulary `low`, `medium`, `high`, `xhigh`, `max`. [code.claude.com/docs/en/sub-agents](https://code.claude.com/docs/en/sub-agents) states available levels depend on the model, and the [models overview](https://platform.claude.com/docs/en/about-claude/models/overview) lists Claude Haiku 4.5 as not supporting effort at all — so `claude-haiku-4-5`, `claude-haiku-4-5-20251001` and the floating `haiku` alias all carry an empty `reasoning_efforts` list in the registry and fail closed on any `effort` value. `auto` remains valid for them — it clears the managed field, which is how a rule moves onto such a model. Every other model in the `anthropic` namespace accepts the full harness vocabulary; Claude Code falls back gracefully to the highest supported level when a specific level isn't available.
+`effort` is a subagent frontmatter field (registry `reasoning_key: effort`) with harness vocabulary `low`, `medium`, `high`, `xhigh`, `max`. Per-model narrowing comes from the [effort page](https://platform.claude.com/docs/en/build-with-claude/effort)'s supported-models list plus its per-level availability sentences:
+
+- A model **absent** from the supported-models list carries an empty `reasoning_efforts` list and fails closed: `claude-haiku-4-5`, `claude-haiku-4-5-20251001`, `claude-sonnet-4-5`, `claude-sonnet-4-5-20250929`, and the floating `haiku` alias.
+- A listed model **missing from the xhigh or max availability sentence** carries the narrower list: `claude-opus-4-6` and `claude-sonnet-4-6` support `max` but not `xhigh`; `claude-opus-4-5` and `claude-opus-4-5-20251101` support neither `xhigh` nor `max`.
+- Every other model in the `anthropic` namespace accepts the full harness vocabulary.
+
+`auto` remains valid on every model — it clears the managed field, which is how a rule moves onto a model with a narrower or empty supported list. Claude Code falls back gracefully to the highest supported level when a specific level isn't available.
 
 An invalid `model` value is not caught at startup — it surfaces as an HTTP 404 at request time, which is exactly the class of failure this registry exists to prevent before it reaches the provider.
 
-Sources: [code.claude.com/docs/en/sub-agents](https://code.claude.com/docs/en/sub-agents), [code.claude.com/docs/en/model-config](https://code.claude.com/docs/en/model-config), [platform.claude.com/docs/en/about-claude/models/overview](https://platform.claude.com/docs/en/about-claude/models/overview), [platform.claude.com/docs/en/about-claude/model-deprecations](https://platform.claude.com/docs/en/about-claude/model-deprecations).
+Sources: [code.claude.com/docs/en/sub-agents](https://code.claude.com/docs/en/sub-agents), [code.claude.com/docs/en/model-config](https://code.claude.com/docs/en/model-config), [platform.claude.com/docs/en/about-claude/models/overview](https://platform.claude.com/docs/en/about-claude/models/overview), [platform.claude.com/docs/en/about-claude/model-deprecations](https://platform.claude.com/docs/en/about-claude/model-deprecations), [platform.claude.com/docs/en/build-with-claude/effort](https://platform.claude.com/docs/en/build-with-claude/effort), [platform.claude.com/docs/en/about-claude/models/model-ids-and-versions](https://platform.claude.com/docs/en/about-claude/models/model-ids-and-versions).
 
 ## cursor
 
@@ -145,7 +166,7 @@ Sources: [code.claude.com/docs/en/sub-agents](https://code.claude.com/docs/en/su
 | Namespace | Shape / pattern | Membership | Examples |
 |---|---|---|---|
 | `alias` | `^(auto\|inherit)$` | open (`auto` = Cursor picks; `inherit` = parent agent's model; always valid) | `auto`, `inherit` |
-| `named` | `^[a-z0-9][a-z0-9.-]*$` | closed (enumerated below) | `gpt-5.5`, `composer-2.5` |
+| `named` | `^[a-z0-9][a-z0-9.-]*(\[[a-z0-9.=,]+\])?$` | closed (enumerated below; membership is checked against the base id with any trailing parameter group stripped — see [Per-model parameter groups](#per-model-parameter-groups)) | `gpt-5.5`, `composer-2.5`, `claude-opus-5[effort=high,context=300k]` |
 
 ### Verified named models (`named` namespace)
 
@@ -158,6 +179,10 @@ Sources: [code.claude.com/docs/en/sub-agents](https://code.claude.com/docs/en/su
 | `composer-2` | |
 | `composer-2.5` | |
 
+### Per-model parameter groups
+
+A `named` model ID may carry Cursor's documented per-model parameter group in square brackets — e.g. `claude-opus-5[effort=high,context=300k]` — per [cursor.com/docs/subagents](https://cursor.com/docs/subagents). The documented keys are `fast`, `effort`, and `context`. The allowlist above enumerates **base** ids only: the parameter group is a per-rule modifier, so membership is checked against the id with the group stripped. The registry's `match` pattern deliberately shapes the group only (allowed characters, a single trailing bracket pair) rather than encoding `key=value` structure — a pattern that did would need nested quantifiers, which the registry's ReDoS guard rejects. The precise structure — valid `key=value` pairs, no duplicate keys, keys restricted to `fast`/`effort`/`context`, no empty group — is instead enforced semantically by `scripts/model-policy.mjs`, which rejects an unknown key, a malformed pair, a duplicate key, or an empty group with a clearer error than a regex miss would give.
+
 Cursor's model picker evolves quickly and availability is plan/admin-dependent; this list is deliberately narrow and should be extended only through the refresh workflow, not from memory. An unknown model name raises `ConfigurationError` in Cursor.
 
 Source: [cursor.com/docs/subagents](https://cursor.com/docs/subagents).
@@ -168,8 +193,8 @@ Source: [cursor.com/docs/subagents](https://cursor.com/docs/subagents).
 |---|---|---|
 | codex → OpenAI | HTTP 404, `error.code: "model_not_found"`, `error.type: "invalid_request_error"` | Codex validates effort against the model's advertised `supportedReasoningEfforts` at runtime; a mismatched pairing is rejected |
 | codex → Ollama | Request fails against the local Ollama server (no such model pulled) — not an OpenAI-shaped 404 | The field is documented for `/v1/chat/completions` but not for `/v1/responses`, which is the route this namespace configures; Codex would send it and the route would drop it silently, so the registry gives the namespace an empty `reasoning_efforts` list and fails closed |
-| codex → OpenRouter | HTTP 404 on an unrecognized slug | Same fail-closed treatment as Ollama, for the same reason: the documented effort field belongs to the chat-completions surface, and the Responses route this namespace configures is unverified |
-| claude-code | HTTP 404 at request time (not caught at subagent startup) | `effort` degrades gracefully to the highest level the resolved model supports on every model except Claude Haiku 4.5, which the registry gates to an empty `reasoning_efforts` list and fails closed at policy-check time |
+| codex → OpenRouter | HTTP 404 on an unrecognized slug | `minimal`/`low`/`medium`/`high` are verified on OpenRouter's Responses route; an effort value outside that set — or one an individual OpenRouter-routed model doesn't itself support — surfaces at OpenRouter rather than at check time, since this is an `open`-membership namespace |
+| claude-code | HTTP 404 at request time (not caught at subagent startup) | `effort` degrades gracefully to the highest level the resolved model supports, except where the registry narrows it: Claude Haiku 4.5 and Claude Sonnet 4.5 (and the `haiku` alias) carry an empty `reasoning_efforts` list and fail closed at policy-check time, and Opus 4.6 / Sonnet 4.6 / Opus 4.5 reject the levels absent from their availability lists |
 | cursor | `ConfigurationError` | N/A — no reasoning field is projected for Cursor |
 
 ## Enforcement boundaries
@@ -177,7 +202,7 @@ Source: [cursor.com/docs/subagents](https://cursor.com/docs/subagents).
 What `scripts/model-policy.mjs` guarantees, given this registry:
 
 - Every `model` value in `catalog/model-policy.json` matches a known namespace shape; values in `closed` namespaces are additionally checked against the enumerated `models` list.
-- Every `reasoning_effort` value is checked against the resolved model's actual supported vocabulary (harness vocabulary narrowed by namespace, narrowed again by per-model `reasoning_efforts` where the registry declares them) — a resolution-time model × reasoning compatibility check, so pinning `reasoning_effort` onto an Ollama- or OpenRouter-routed codex model is rejected before it is written anywhere.
+- Every `reasoning_effort` value is checked against the resolved model's actual supported vocabulary (harness vocabulary narrowed by namespace, narrowed again by per-model `reasoning_efforts` where the registry declares them) — a resolution-time model × reasoning compatibility check, so pinning an out-of-vocabulary `reasoning_effort` onto an Ollama-routed codex model (empty vocabulary) or an OpenRouter-routed one (outside `minimal`/`low`/`medium`/`high`) is rejected before it is written anywhere.
 - The codex `model_provider` line is derived automatically from the model's namespace: `openai`-namespace models project no line (default provider); `ollama`-namespace (`name:tag`) and `openrouter`-namespace (`author/model`) values project `model_provider = "ollama"` / `"openrouter"` respectively.
 
 What remains the operator's responsibility — the registry and engine cannot verify these:
