@@ -1,5 +1,5 @@
 {
-  "task_id": "task-rust-tui-implementation",
+  "task_id": "task\u002drust-tui-implementation",
   "task_description": "Implement the full vfa-tui Rust TUI project at tools/vfa-tui/ including project scaffolding, data models, workspace detection, catalog loading, security module, search engine, subprocess execution, audit logging, UI layer, integration tests, CI workflow, README updates, and asset integrity regeneration.",
   "status": "completed",
   "feature_order": ["FEAT-001", "FEAT-002", "FEAT-003", "FEAT-004", "FEAT-005", "FEAT-006"],

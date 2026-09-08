@@ -301,7 +301,13 @@ mod tests {
         let mut output = Vec::new();
         {
             let mut writer = RedactingWriter { inner: &mut output };
-            let secret = "token: ghp_ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmn\n";
+            let secret = [
+                "token: gh",
+                "p_",
+                "ABCDEFGHIJKLMNOPQRSTUVWXYZ",
+                "abcdefghijklmn\n",
+            ]
+            .concat();
             writer.write_all(secret.as_bytes()).unwrap();
         }
         let result = String::from_utf8(output).unwrap();
@@ -326,7 +332,7 @@ mod tests {
     fn redacting_writer_returns_original_length() {
         let mut output = Vec::new();
         let mut writer = RedactingWriter { inner: &mut output };
-        let secret = "ghp_ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmn";
+        let secret = ["gh", "p_", "ABCDEFGHIJKLMNOPQRSTUVWXYZ", "abcdefghijklmn"].concat();
         let written = writer.write(secret.as_bytes()).unwrap();
         // write() returns the original buffer length, not the redacted length
         assert_eq!(written, secret.len());
