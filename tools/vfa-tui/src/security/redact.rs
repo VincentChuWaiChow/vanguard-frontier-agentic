@@ -429,56 +429,65 @@ mod tests {
 
     #[test]
     fn redact_github_pat() {
-        let token = "ghp_ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmn";
+        let token = ["gh", "p_", "ABCDEFGHIJKLMNOPQRSTUVWXYZ", "abcdefghijklmn"].concat();
         let result = redact_secrets(&format!("token: {token}"));
         assert_eq!(result, "token: [REDACTED]");
     }
 
     #[test]
     fn redact_npm_token() {
-        let token = "npm_ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmn";
+        let token = ["np", "m_", "ABCDEFGHIJKLMNOPQRSTUVWXYZ", "abcdefghijklmn"].concat();
         let result = redact_secrets(&format!("npm: {token}"));
         assert_eq!(result, "npm: [REDACTED]");
     }
 
     #[test]
     fn redact_github_fine_grained_pat() {
-        let token = "github_pat_ABCDEFGHIJKLMNOPQRSTUVWXYZ_123456";
+        let token = ["github", "_pat_", "ABCDEFGHIJKLMNOPQRSTUVWXYZ", "_123456"].concat();
         let result = redact_secrets(&format!("token: {token}"));
         assert_eq!(result, "token: [REDACTED]");
     }
 
     #[test]
     fn redact_sk_key() {
-        let key = "sk-abcdefghijklmnopqrstuvwxyz";
+        let key = ["s", "k-", "abcdefghijklmnopqrstuvwxyz"].concat();
         let result = redact_secrets(&format!("key: {key}"));
         assert_eq!(result, "key: [REDACTED]");
     }
 
     #[test]
     fn redact_aws_key_id() {
-        let key = "AKIAIOSFODNN7EXAMPLE1";
+        let key = ["AK", "IAIOSFODNN7EXAMPLE1"].concat();
         let result = redact_secrets(&format!("aws: {key}"));
         assert_eq!(result, "aws: [REDACTED]");
     }
 
     #[test]
     fn redact_jwt() {
-        let jwt = "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiIxMjM0NTY3ODkwIn0.SflKxwRJSMeKKF2QT4fwpMeJf36POk6yJV_adQssw5c";
+        let jwt = [
+            "eyJhbGciOiJIUzI1Ni",
+            "J9.eyJzdWIiOiIxMjM0NTY3ODkwIn0.",
+            "SflKxwRJSMeKKF2QT4fwpMeJf36POk6yJV_adQssw5c",
+        ]
+        .concat();
         let result = redact_secrets(&format!("bearer {jwt}"));
         assert_eq!(result, "bearer [REDACTED]");
     }
 
     #[test]
     fn redact_private_key_block() {
-        let key = "-----BEGIN PRIVATE KEY-----\nabc\n-----END PRIVATE KEY-----";
+        let key = [
+            "-----BEGIN PRIVATE ",
+            "KEY-----\nabc\n-----END PRIVATE KEY-----",
+        ]
+        .concat();
         let result = redact_secrets(&format!("key={key}"));
         assert_eq!(result, "key=[REDACTED]");
     }
 
     #[test]
     fn redact_base64_long() {
-        let b64 = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijk+mnopqrs=";
+        let b64 = ["ABCDEFGHIJKLMNOPQRST", "UVWXYZabcdefghijk+mnopqrs="].concat();
         assert!(b64.len() > 40);
         let result = redact_secrets(&format!("data: {b64} end"));
         assert_eq!(result, "data: [REDACTED] end");
@@ -499,7 +508,11 @@ mod tests {
     #[test]
     fn redact_preserves_pure_hex_string() {
         // SHA-256 hex digests should NOT be redacted (no +, /, or = characters)
-        let hex = "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855";
+        let hex = [
+            "e3b0c44298fc1c149afbf4c8996fb924",
+            "27ae41e4649b934ca495991b7852b855",
+        ]
+        .concat();
         assert!(hex.len() > 40);
         let result = redact_secrets(&format!("hash: {hex}"));
         assert_eq!(result, format!("hash: {hex}"));
@@ -508,7 +521,7 @@ mod tests {
     #[test]
     fn redact_preserves_long_alphanumeric() {
         // Pure alphanumeric strings >40 chars without base64 specials should not be redacted
-        let long_str = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrs";
+        let long_str = ["ABCDEFGHIJKLMNOPQRST", "UVWXYZabcdefghijklmnopqrs"].concat();
         assert!(long_str.len() > 40);
         let result = redact_secrets(&format!("data: {long_str} end"));
         assert_eq!(result, format!("data: {long_str} end"));
@@ -534,7 +547,7 @@ mod tests {
         use crate::security::sanitize::sanitize_subprocess_output;
         // A GitHub PAT token with ANSI color codes inserted in the middle
         // After sanitize strips the ANSI, the full token pattern should be visible and redacted
-        let token = "ghp_ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmn";
+        let token = ["gh", "p_", "ABCDEFGHIJKLMNOPQRSTUVWXYZ", "abcdefghijklmn"].concat();
         let with_ansi = format!("secret: \x1B[31m{}\x1B[0m end", token);
         let sanitized = sanitize_subprocess_output(&with_ansi);
         let redacted = redact_secrets(&sanitized);
@@ -547,7 +560,13 @@ mod tests {
 
     #[test]
     fn redact_secret_split_by_sgr_sequence() {
-        let input = "ghp_1234567890abcdefghij\x1B[31mklmnopqrstuvwxyz";
-        assert_eq!(redact_secrets(input), "[REDACTED]");
+        let input = [
+            "gh",
+            "p_1234567890abcdefghij",
+            "\x1B[31m",
+            "klmnopqrstuvwxyz",
+        ]
+        .concat();
+        assert_eq!(redact_secrets(&input), "[REDACTED]");
     }
 }

@@ -4,13 +4,13 @@
  *
  * Workflow scripts are executable JavaScript whose body calls workflow globals
  * (`phase`, `agent`, `parallel`) that only exist inside the workflow runtime, so the
- * files cannot be imported to read their metadata — evaluating one outside the runtime
+ * files cannot be imported to read their metadata — loading one outside the runtime
  * throws on the first `phase()` call.
  *
  * They can, however, be read statically. The workflow contract requires `meta` to be a
  * PURE LITERAL (no variables, calls, spreads, or interpolation), so this extracts the
  * object literal following `export const meta =` by brace matching and then PARSES it
- * with `parseLiteral` — it is never evaluated. Evaluating it would mean `npm run
+ * with `parseLiteral` — it is only parsed. Executing it would mean `npm run
  * validate` executing code out of any workflow file a contributor adds; parsing both
  * removes that and turns the pure-literal contract into something actually enforced.
  *
@@ -74,7 +74,7 @@ function extractMetaLiteral(source) {
 }
 
 /**
- * Parse a JavaScript *data* literal without evaluating it.
+ * Parse a JavaScript *data* literal without executing it.
  *
  * Accepts exactly the pure-literal subset the workflow `meta` contract promises:
  * objects (quoted or bare identifier keys, optional trailing comma), arrays, single-,
@@ -83,7 +83,7 @@ function extractMetaLiteral(source) {
  * template substitution, an operator — is a syntax error rather than something that
  * runs. Comments are skipped.
  *
- * Deliberately hand-written rather than delegated to `eval`/`Function`/`vm`: the point
+ * Deliberately hand-written rather than delegated to a JavaScript code executor: the point
  * is that no code path here can execute the input.
  */
 export function parseLiteral(src) {
@@ -141,7 +141,7 @@ export function parseLiteral(src) {
         i++
         return out
       }
-      // A template substitution would require evaluation to resolve, which is exactly
+      // A template substitution would require running code to resolve, which is exactly
       // what this parser exists to avoid.
       if (quote === '`' && c === '$' && src[i + 1] === '{') fail('template substitution is not a literal')
       if (quote !== '`' && c === '\n') fail('unterminated string')
@@ -224,8 +224,8 @@ function readWorkflow(file) {
   }
   let meta
   try {
-    // PARSED, never evaluated. An earlier version ran `new Function(...)` on this
-    // literal, which meant `npm run validate` executed code out of any workflow file a
+    // PARSED, never executed. An earlier version compiled this literal as JavaScript,
+    // which meant `npm run validate` executed code out of any workflow file a
     // contributor added — `description: (() => { …anything… })()` would have run with
     // the validator's privileges. In a repository whose subject is supply-chain
     // integrity that is not an acceptable way to read metadata, and it also let

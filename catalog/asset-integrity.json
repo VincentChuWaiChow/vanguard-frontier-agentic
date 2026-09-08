@@ -35218,7 +35218,7 @@
     },
     {
       "tree": "scripts",
-      "aggregate_sha256": "c3d9f79e1ae6820ce4cf3ac55cdabd222670659915e308c8247e329d38d40475",
+      "aggregate_sha256": "6423fa25a8ccc7036e2b15de9fa5c574ebdce73ea08090e4866efbb03515d268",
       "files": [
         {
           "path": "scripts/apply-skill-allowed-tools.py",
@@ -35417,8 +35417,8 @@
         },
         {
           "path": "scripts/generate-workflow-catalog.mjs",
-          "sha256": "023c43c7792919b4c8f50cb486d8ce5b5d9e847563b7ff9a3ad09269d1f7f256",
-          "bytes": 11358
+          "sha256": "df8269c61e630e00f8886f372c308a9b8ad67961a1058441238879f530e1e3dc",
+          "bytes": 11350
         },
         {
           "path": "scripts/install-codex-home.mjs",
@@ -46132,5 +46132,5 @@
       "bytes": 8340
     }
   ],
-  "aggregate_sha256": "6dd1e775acde24b0d3ddf52c4a9780122cd381454a0d175381bae192a928825c"
+  "aggregate_sha256": "c3dbbf5356d6c1d45a2cb91b25b7feb7f7923c896d5f1a4bffe12febc075d474"
 }

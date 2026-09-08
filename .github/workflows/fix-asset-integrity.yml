@@ -2,29 +2,69 @@ name: Fix Asset Integrity
 
 on:
   workflow_dispatch:
-  pull_request_target:
-    types: [opened, synchronize, reopened]
+    inputs:
+      target_ref:
+        description: Dependabot branch to repair (for example, dependabot/npm_and_yarn/foo-1.2.3)
+        required: true
+        type: string
 
 permissions:
   contents: read
 
 concurrency:
-  group: fix-asset-integrity-${{ github.event.pull_request.number || github.ref }}
+  group: fix-asset-integrity-${{ inputs.target_ref }}
   cancel-in-progress: true
 
 jobs:
   fix:
-    if: >-
-      ${{
-        github.event_name == 'workflow_dispatch' ||
-        (
-          github.actor == 'dependabot[bot]' &&
-          github.event.pull_request.head.repo.full_name == github.repository &&
-          startsWith(github.event.pull_request.head.ref, 'dependabot/')
-        )
-      }}
     runs-on: ubuntu-latest
     steps:
+      # This workflow is intentionally manual. A privileged pull_request_target
+      # job must never check out or otherwise materialize a pull request head.
+      # The operator supplies only the same-repository Dependabot ref. The job
+      # resolves its exact tip and later uses that SHA as a push lease.
+      - name: Check out trusted generator
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          fetch-depth: 0
+          persist-credentials: false
+          path: trusted
+          ref: ${{ github.event.repository.default_branch }}
+
+      - name: Validate and prepare Dependabot revision
+        id: target
+        env:
+          HEAD_REF: ${{ inputs.target_ref }}
+        run: |
+          case "$HEAD_REF" in
+            dependabot/*) ;;
+            *)
+              echo "::error::target_ref must identify a dependabot/* branch."
+              exit 1
+              ;;
+          esac
+          HEAD_SHA=$(git -C trusted ls-remote --exit-code origin "refs/heads/$HEAD_REF" | cut -f1)
+          if ! printf '%s' "$HEAD_SHA" | grep -Eq '^[0-9a-f]{40}$'; then
+            echo "::error::Could not resolve target_ref to one exact commit SHA."
+            exit 1
+          fi
+          echo "sha=$HEAD_SHA" >> "$GITHUB_OUTPUT"
+          cp -a trusted pr
+          git -C pr fetch --no-tags origin "$HEAD_SHA"
+          git -C pr checkout --detach "$HEAD_SHA"
+
+      - name: Regenerate asset integrity
+        working-directory: pr
+        run: |
+          cp ../trusted/tests/validate-asset-integrity.py tests/validate-asset-integrity.py
+          python3 tests/validate-asset-integrity.py --write
+          git restore --source=HEAD -- tests/validate-asset-integrity.py
+          if ! git diff --quiet -- . ':(exclude)catalog/asset-integrity.json'; then
+            echo "::error::The integrity generator changed an unexpected file."
+            git diff -- . ':(exclude)catalog/asset-integrity.json'
+            exit 1
+          fi
+
       - name: Require GitHub App credentials
         env:
           APP_ID: ${{ vars.RELEASE_PLZ_APP_ID }}
@@ -41,47 +81,35 @@ jobs:
         with:
           app-id: ${{ vars.RELEASE_PLZ_APP_ID }}
           private-key: ${{ secrets.RELEASE_PLZ_APP_PRIVATE_KEY }}
-
-      # pull_request_target has write-capable credentials, so never execute the
-      # pull request's copy of the generator. Preserve the base branch version.
-      - name: Check out trusted generator
-        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
-        with:
-          persist-credentials: false
-          path: trusted
-
-      - name: Check out Dependabot branch
-        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
-        with:
-          fetch-depth: 0
-          persist-credentials: true
-          token: ${{ steps.app-token.outputs.token }}
-          repository: ${{ github.event.pull_request.head.repo.full_name || github.repository }}
-          ref: ${{ github.event.pull_request.head.ref || github.ref_name }}
-          path: pr
-
-      - name: Regenerate asset integrity
-        working-directory: pr
-        run: |
-          cp ../trusted/tests/validate-asset-integrity.py tests/validate-asset-integrity.py
-          python3 tests/validate-asset-integrity.py --write
-          git restore --source=HEAD -- tests/validate-asset-integrity.py
-          if ! git diff --quiet -- . ':(exclude)catalog/asset-integrity.json'; then
-            echo "::error::The integrity generator changed an unexpected file."
-            git diff -- . ':(exclude)catalog/asset-integrity.json'
-            exit 1
-          fi
+          permission-contents: write
 
       - name: Commit and push if changed
         working-directory: pr
         env:
-          HEAD_REF: ${{ github.event.pull_request.head.ref || github.ref_name }}
+          APP_TOKEN: ${{ steps.app-token.outputs.token }}
+          GIT_ASKPASS: ${{ runner.temp }}/git-askpass.sh
+          GIT_TERMINAL_PROMPT: "0"
+          HEAD_REF: ${{ inputs.target_ref }}
+          EXPECTED_SHA: ${{ steps.target.outputs.sha }}
+          TARGET_REPOSITORY: ${{ github.repository }}
         run: |
+          cat > "$GIT_ASKPASS" <<'EOF'
+          #!/bin/sh
+          case "$1" in
+            *Username*) printf '%s\n' 'x-access-token' ;;
+            *) printf '%s\n' "$APP_TOKEN" ;;
+          esac
+          EOF
+          chmod 700 "$GIT_ASKPASS"
+          trap 'rm -f "$GIT_ASKPASS"' EXIT
           git config user.email "action@github.com"
           git config user.name "GitHub Action"
           git diff --quiet catalog/asset-integrity.json || (
             git add catalog/asset-integrity.json &&
             git commit -m "chore(catalog): regenerate asset integrity" &&
-            git push origin "HEAD:${HEAD_REF}"
+            git push \
+              --force-with-lease="refs/heads/${HEAD_REF}:${EXPECTED_SHA}" \
+              "https://github.com/${TARGET_REPOSITORY}.git" \
+              "HEAD:refs/heads/${HEAD_REF}"
           )
           echo "Done"
