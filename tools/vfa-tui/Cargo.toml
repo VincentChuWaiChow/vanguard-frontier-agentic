@@ -1,6 +1,6 @@
 [package]
 name = "vfa-tui"
-version = "0.0.17"
+version = "0.0.18"
 edition = "2021"
 rust-version = "1.97"
 description = "Enterprise-grade terminal UI for the Vanguard Frontier Agentic marketplace catalog"
