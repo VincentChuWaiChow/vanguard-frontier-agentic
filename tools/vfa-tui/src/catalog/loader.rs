@@ -2,7 +2,7 @@ use std::path::Path;
 
 use crate::error::TuiError;
 use crate::models::{
-    Agent, AssetIntegrity, McpReference, ModelAssignments, RoleCatalog, Rule, Skill,
+    Agent, AssetIntegrity, McpReference, ModelAssignments, ModelRegistry, RoleCatalog, Rule, Skill,
     WorkflowCatalog,
 };
 use crate::security::sanitize::has_control_bytes;
@@ -329,6 +329,53 @@ pub fn load_model_assignments(workspace_root: &Path) -> (Option<ModelAssignments
     }
 }
 
+/// Load the verified model registry from catalog/model-registry.json.
+///
+/// A missing file is not an error — the picker degrades to free-text entry
+/// and the harness-level effort union, exactly as it behaved before the
+/// registry was wired in. A malformed file is reported and treated the same
+/// way, so a bad catalog can never wedge the builder.
+pub fn load_model_registry(workspace_root: &Path) -> (Option<ModelRegistry>, Vec<TuiError>) {
+    let file_path = workspace_root.join("catalog").join("model-registry.json");
+    let path = file_path.display().to_string();
+    let mut errors = Vec::new();
+
+    if !file_path.exists() {
+        return (None, errors);
+    }
+
+    let data = match read_catalog_file(&file_path) {
+        Ok(d) => d,
+        Err(e) => {
+            errors.push(e);
+            return (None, errors);
+        }
+    };
+
+    match serde_json::from_str::<ModelRegistry>(&data) {
+        Ok(registry) => {
+            if check_model_registry_tainted(&registry) {
+                errors.push(TuiError::TaintedEntry {
+                    path,
+                    offset: 0,
+                    field: "control bytes detected".to_string(),
+                });
+                (None, errors)
+            } else {
+                (Some(registry), errors)
+            }
+        }
+        Err(e) => {
+            errors.push(TuiError::CatalogParse {
+                path,
+                offset: e.column(),
+                detail: e.to_string(),
+            });
+            (None, errors)
+        }
+    }
+}
+
 /// Load the workflow catalog from catalog/workflows.json.
 ///
 /// A missing file is not an error — the workflow catalog is additive and a checkout
@@ -381,6 +428,12 @@ pub fn load_workflows(workspace_root: &Path) -> (Option<WorkflowCatalog>, Vec<Tu
 pub(crate) fn check_workflows_tainted(catalog: &WorkflowCatalog) -> bool {
     serde_json::to_value(catalog)
         .map(|value| value_has_control_bytes(&value))
+        .unwrap_or(true)
+}
+
+pub(crate) fn check_model_registry_tainted(registry: &ModelRegistry) -> bool {
+    serde_json::to_value(registry)
+        .map(|v| value_has_control_bytes(&v))
         .unwrap_or(true)
 }
 

@@ -7,6 +7,7 @@ pub mod harness;
 pub mod integrity;
 pub mod mcp_ref;
 pub mod model_policy;
+pub mod model_registry;
 pub mod notification;
 pub mod policy;
 pub mod provider;
@@ -42,6 +43,11 @@ pub use mcp_ref::{McpReference, McpType, PinStrategy, SignedRelease, TrustMatrix
 pub use model_policy::{
     HarnessCapability, ModelAssignment, ModelAssignments, ModelPolicyCommand, ModelScope,
     CAPABLE_HARNESSES, REASONING_EFFORTS,
+};
+#[allow(unused_imports)]
+pub use model_registry::{
+    Membership, ModelChoice, ModelRegistry, ModelStatus, RegistryHarness, RegistryModel,
+    RegistryNamespace,
 };
 #[allow(unused_imports)]
 pub use notification::{Notification, NotificationSeverity};

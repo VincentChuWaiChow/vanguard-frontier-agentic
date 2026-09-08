@@ -172,6 +172,7 @@ proptest! {
                 rules: Vec::new(),
                 integrity: None,
                 model_assignments: None,
+                model_registry: None,
             workflows: None,
                 load_errors: Vec::new(),
                 content_hashes: HashMap::new(),

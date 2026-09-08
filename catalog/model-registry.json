@@ -1,12 +1,12 @@
 {
   "manifest_version": 1,
   "description": "Verified model-name and reasoning-effort capability matrix per harness. scripts/model-policy.mjs fails closed on model names and reasoning efforts not covered here, so a policy can never project a value that would 404 (OpenAI: HTTP 404 invalid_request_error/model_not_found; OpenRouter: HTTP 404) or be silently dropped at request time. Namespaces are evaluated in order; first 'match' wins. Human-readable matrix: docs/model-policy-matrix.md. Refresh workflow: .claude/skills/model-registry-refresh/SKILL.md.",
-  "last_refreshed": "2026-07-10",
+  "last_refreshed": "2026-09-05",
   "harnesses": {
     "codex": {
       "reasoning_key": "model_reasoning_effort",
-      "reasoning_efforts": ["none", "minimal", "low", "medium", "high", "xhigh"],
-      "reasoning_note": "Codex validates effort at runtime against each model's advertised supportedReasoningEfforts (model/list); the registry narrows per model family below. o-series models predate none/minimal/xhigh.",
+      "reasoning_efforts": ["none", "minimal", "low", "medium", "high", "xhigh", "max"],
+      "reasoning_note": "Codex validates effort at runtime against each model's advertised supportedReasoningEfforts (model/list); the registry narrows per model family below. o-series models predate none/minimal/xhigh; \"max\" is advertised only by the gpt-6 and gpt-5.6 families. The Codex ReasoningEffort enum carries None|Minimal|Low|Medium|High|XHigh|Max|Ultra|Persistent plus a Custom(String) fallback, and the config schema types the key as a free-form non-empty string, so the harness itself does not reject a value — the narrowing here is what makes an unsupported pairing fail at check time instead of at the provider.",
       "namespaces": [
         {
           "id": "openai",
@@ -16,14 +16,16 @@
           "model_provider": null,
           "sources": [
             "Context7 /openai/codex references/latest-model.md (current model map)",
+            "Context7 /openai/codex codex-rs/core/config.schema.json + codex-rs/protocol/src/openai_models.rs (verified 2026-09-05)",
             "https://developers.openai.com/codex",
-            "https://developers.openai.com/api/docs/models (GPT-5.6 family, verified 2026-07-10)"
+            "https://developers.openai.com/api/docs/models (GPT-6 + GPT-5.6 families, verified 2026-09-05)"
           ],
           "models": [
-            { "id": "gpt-5.6", "reasoning_efforts": ["none", "low", "medium", "high", "xhigh"], "last_verified": "2026-07-10", "source": "https://developers.openai.com/api/docs/models", "note": "alias routing to gpt-5.6-sol; family drops minimal; API-advertised max excluded pending Codex CLI ReasoningEffort enum support (fail closed)" },
-            { "id": "gpt-5.6-sol", "reasoning_efforts": ["none", "low", "medium", "high", "xhigh"], "last_verified": "2026-07-10", "source": "https://developers.openai.com/api/docs/models", "note": "max excluded pending Codex CLI enum support" },
-            { "id": "gpt-5.6-terra", "reasoning_efforts": ["none", "low", "medium", "high", "xhigh"], "last_verified": "2026-07-10", "source": "https://developers.openai.com/api/docs/models", "note": "max excluded pending Codex CLI enum support" },
-            { "id": "gpt-5.6-luna", "reasoning_efforts": ["none", "low", "medium", "high", "xhigh"], "last_verified": "2026-07-10", "source": "https://developers.openai.com/api/docs/models", "note": "max excluded pending Codex CLI enum support" },
+            { "id": "gpt-6-astra", "reasoning_efforts": ["low", "medium", "high", "xhigh", "max"], "last_verified": "2026-09-05", "source": "https://developers.openai.com/api/docs/models", "note": "flagship end-to-end coding model; does not advertise \"none\"" },
+            { "id": "gpt-5.6", "reasoning_efforts": ["none", "low", "medium", "high", "xhigh", "max"], "last_verified": "2026-09-05", "source": "https://developers.openai.com/api/docs/models", "note": "alias routing to gpt-5.6-sol; family drops minimal" },
+            { "id": "gpt-5.6-sol", "reasoning_efforts": ["none", "low", "medium", "high", "xhigh", "max"], "last_verified": "2026-09-05", "source": "https://developers.openai.com/api/docs/models" },
+            { "id": "gpt-5.6-terra", "reasoning_efforts": ["none", "low", "medium", "high", "xhigh", "max"], "last_verified": "2026-09-05", "source": "https://developers.openai.com/api/docs/models" },
+            { "id": "gpt-5.6-luna", "reasoning_efforts": ["none", "low", "medium", "high", "xhigh", "max"], "last_verified": "2026-09-05", "source": "https://developers.openai.com/api/docs/models" },
             { "id": "gpt-5.5", "reasoning_efforts": ["none", "minimal", "low", "medium", "high", "xhigh"], "last_verified": "2026-07-09" },
             { "id": "gpt-5.5-pro", "reasoning_efforts": ["none", "minimal", "low", "medium", "high", "xhigh"], "last_verified": "2026-07-09" },
             { "id": "gpt-5.4", "reasoning_efforts": ["none", "minimal", "low", "medium", "high", "xhigh"], "last_verified": "2026-07-09" },
@@ -49,12 +51,27 @@
           "model_provider": "ollama",
           "requires_provider_table": true,
           "reasoning_efforts": [],
-          "reasoning_note": "Codex reasoning-effort passthrough to Ollama is not documented (Ollama-native reasoning uses the think parameter, which codex.toml cannot express); pinning reasoning_effort onto an Ollama-routed model fails check.",
+          "reasoning_note": "Fails closed, and the route is why. Ollama documents reasoning_effort (none|low|medium|high|max) on /v1/chat/completions, but this namespace routes through wire_api responses, and the supported request fields Ollama lists for /v1/responses are model, instructions, tools, stream, temperature, top_p, max_output_tokens, previous_response_id, conversation and truncation — reasoning_effort is absent. Codex would send the field and the route would drop it silently, which is the exact failure this registry exists to catch. That Codex applies model_reasoning_effort globally rather than per provider answers whether it is sent, not whether the route accepts it. Re-open this only on evidence about /v1/responses itself.",
           "sources": [
             "https://docs.ollama.com/api/openai-compatibility",
-            "Context7 /openai/codex model-provider-info (Ollama base_url/wire_api)"
+            "Context7 /openai/codex model-provider-info (Ollama base_url/wire_api)",
+            "https://ollama.com/library (tag lists per model page, verified 2026-09-05)",
+            "https://docs.ollama.com/api/openai-compatibility (per-endpoint supported request fields, verified 2026-09-05)"
           ],
-          "examples": ["llama3.3:70b", "qwen3:32b", "gpt-oss:120b", "deepseek-r1:14b"]
+          "examples": [
+            "deepseek-r1:8b",
+            "deepseek-r1:14b",
+            "deepseek-r1:32b",
+            "deepseek-r1:70b",
+            "qwen3:8b",
+            "qwen3:14b",
+            "qwen3:32b",
+            "qwen3:235b",
+            "glm-5.3:cloud",
+            "gpt-oss:20b",
+            "gpt-oss:120b",
+            "llama3.3:70b"
+          ]
         },
         {
           "id": "openrouter",
@@ -64,10 +81,10 @@
           "model_provider": "openrouter",
           "requires_provider_table": true,
           "reasoning_efforts": [],
-          "reasoning_note": "OpenRouter accepts reasoning_effort per model on its own API, but Codex CLI passthrough to custom providers is not documented; pinning reasoning_effort onto an OpenRouter-routed model fails check.",
+          "reasoning_note": "Fails closed for the same route reason as the ollama namespace. OpenRouter documents reasoning.effort / reasoning_effort with none|minimal|low|medium|high|xhigh|max on its chat-completions surface, but this namespace routes through wire_api responses and no equivalent field list has been verified for OpenRouter's Responses route. Absence of evidence about that route is not evidence the field is honoured, so the registry stays closed here until the Responses endpoint itself is checked.",
           "sources": [
             "https://openrouter.ai/docs/api/api-reference/models/get-a-model-by-its-slug",
-            "https://openrouter.ai/docs/guides/best-practices/reasoning-tokens"
+            "https://openrouter.ai/docs/guides/best-practices/reasoning-tokens (chat-completions surface; Responses route unverified)"
           ],
           "examples": ["anthropic/claude-sonnet-4.5", "openai/gpt-4o", "google/gemini-2.5-pro"]
         }
@@ -76,29 +93,41 @@
     "claude-code": {
       "reasoning_key": "effort",
       "reasoning_efforts": ["low", "medium", "high", "xhigh", "max"],
-      "reasoning_note": "Subagent frontmatter effort field; available levels depend on the model and Claude Code falls back gracefully to the highest supported level, so no per-model gating is required.",
+      "reasoning_note": "Subagent frontmatter effort field (low|medium|high|xhigh|max). https://code.claude.com/docs/en/sub-agents states available levels depend on the model, and the models overview lists Claude Haiku 4.5 as not supporting effort at all — so the haiku entries below carry an empty reasoning_efforts and fail closed. The remaining models accept the full vocabulary.",
       "namespaces": [
         {
           "id": "alias",
-          "description": "Version-floating aliases resolved by Claude Code to maintained defaults; always valid.",
+          "description": "Version-floating aliases resolved by Claude Code to maintained defaults. Enumerated rather than shape-only so that per-alias effort narrowing is expressible: the alias namespace is matched before the pinned anthropic namespace, so leaving it open would let model \"haiku\" inherit the full harness vocabulary and bypass the empty reasoning_efforts carried by the pinned Claude Haiku 4.5 ids.",
           "match": "^(sonnet|opus|haiku|fable|inherit)$",
-          "membership": "open",
-          "sources": ["https://code.claude.com/docs/en/sub-agents"]
+          "membership": "closed",
+          "sources": ["https://code.claude.com/docs/en/sub-agents", "https://platform.claude.com/docs/en/about-claude/models/overview"],
+          "models": [
+            { "id": "sonnet", "last_verified": "2026-09-05", "note": "floating alias for the maintained Sonnet default" },
+            { "id": "opus", "last_verified": "2026-09-05", "note": "floating alias for the maintained Opus default" },
+            { "id": "haiku", "reasoning_efforts": [], "last_verified": "2026-09-05", "source": "https://platform.claude.com/docs/en/about-claude/models/overview", "note": "resolves to Claude Haiku 4.5, which does not support effort; gated here so the alias matches the pinned ids" },
+            { "id": "fable", "last_verified": "2026-09-05", "note": "floating alias for the maintained Fable default" },
+            { "id": "inherit", "last_verified": "2026-09-05", "note": "uses the main conversation's model" }
+          ]
         },
         {
           "id": "anthropic",
           "description": "Pinned Anthropic model IDs (same values as the --model flag).",
           "match": "^claude-[a-z0-9.-]+$",
           "membership": "closed",
-          "sources": ["https://code.claude.com/docs/en/sub-agents", "https://code.claude.com/docs/en/model-config"],
+          "sources": ["https://code.claude.com/docs/en/sub-agents", "https://code.claude.com/docs/en/model-config", "https://platform.claude.com/docs/en/about-claude/models/overview", "https://platform.claude.com/docs/en/about-claude/model-deprecations"],
           "models": [
-            { "id": "claude-opus-4-8", "last_verified": "2026-07-09" },
-            { "id": "claude-opus-4-7", "last_verified": "2026-07-09" },
-            { "id": "claude-sonnet-5", "last_verified": "2026-07-09" },
-            { "id": "claude-sonnet-4-6", "last_verified": "2026-07-09" },
-            { "id": "claude-haiku-4-5", "last_verified": "2026-07-09" },
-            { "id": "claude-haiku-4-5-20251001", "last_verified": "2026-07-09", "note": "dated snapshot ID" },
-            { "id": "claude-fable-5", "last_verified": "2026-07-09" }
+            { "id": "claude-fable-5-1", "last_verified": "2026-09-05", "source": "https://platform.claude.com/docs/en/about-claude/models/overview", "note": "current Fable lineup; default effort high" },
+            { "id": "claude-opus-5", "last_verified": "2026-09-05", "source": "https://platform.claude.com/docs/en/about-claude/models/overview", "note": "current Opus lineup; default effort high" },
+            { "id": "claude-opus-4-8", "last_verified": "2026-09-05", "source": "https://platform.claude.com/docs/en/about-claude/model-deprecations" },
+            { "id": "claude-opus-4-7", "last_verified": "2026-09-05", "source": "https://platform.claude.com/docs/en/about-claude/model-deprecations" },
+            { "id": "claude-opus-4-6", "last_verified": "2026-09-05", "source": "https://platform.claude.com/docs/en/about-claude/model-deprecations" },
+            { "id": "claude-opus-4-5-20251101", "last_verified": "2026-09-05", "source": "https://platform.claude.com/docs/en/about-claude/model-deprecations", "note": "dated snapshot ID" },
+            { "id": "claude-sonnet-5", "last_verified": "2026-09-05", "source": "https://platform.claude.com/docs/en/about-claude/models/overview" },
+            { "id": "claude-sonnet-4-6", "last_verified": "2026-09-05", "source": "https://platform.claude.com/docs/en/about-claude/model-deprecations" },
+            { "id": "claude-sonnet-4-5-20250929", "last_verified": "2026-09-05", "source": "https://platform.claude.com/docs/en/about-claude/model-deprecations", "note": "dated snapshot ID" },
+            { "id": "claude-haiku-4-5", "reasoning_efforts": [], "last_verified": "2026-09-05", "source": "https://platform.claude.com/docs/en/about-claude/models/overview", "note": "models overview lists effort as not supported for Claude Haiku 4.5" },
+            { "id": "claude-haiku-4-5-20251001", "reasoning_efforts": [], "last_verified": "2026-09-05", "source": "https://platform.claude.com/docs/en/about-claude/models/overview", "note": "dated snapshot ID; effort not supported" },
+            { "id": "claude-fable-5", "last_verified": "2026-09-05", "source": "https://platform.claude.com/docs/en/about-claude/model-deprecations" }
           ]
         }
       ]
@@ -122,10 +151,12 @@
           "membership": "closed",
           "sources": ["https://cursor.com/docs/subagents", "https://cursor.com/docs/cli/reference/configuration"],
           "models": [
+            { "id": "gpt-5.6-sol", "last_verified": "2026-09-05", "source": "https://cursor.com/docs/subagents" },
             { "id": "gpt-5.5", "last_verified": "2026-07-09" },
             { "id": "gpt-5", "last_verified": "2026-07-09" },
+            { "id": "claude-opus-5", "last_verified": "2026-09-05", "source": "https://cursor.com/docs/subagents" },
             { "id": "composer-2", "last_verified": "2026-07-09" },
-            { "id": "composer-2.5", "last_verified": "2026-07-09" }
+            { "id": "composer-2.5", "last_verified": "2026-09-05", "source": "https://cursor.com/docs/subagents" }
           ]
         }
       ]

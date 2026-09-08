@@ -91,6 +91,7 @@ pub fn catalog_store_fixture() -> CatalogStore {
         rules: vec![],
         integrity: None,
         model_assignments: None,
+        model_registry: None,
         workflows: None,
         load_errors: vec![],
         content_hashes: HashMap::new(),

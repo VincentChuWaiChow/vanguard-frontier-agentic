@@ -5,7 +5,8 @@ use sha2::{Digest, Sha256};
 
 use crate::error::TuiError;
 use crate::models::{
-    Agent, AssetIntegrity, McpReference, ModelAssignments, Role, Rule, Skill, WorkflowCatalog,
+    Agent, AssetIntegrity, McpReference, ModelAssignments, ModelRegistry, Role, Rule, Skill,
+    WorkflowCatalog,
 };
 
 use super::loader;
@@ -59,6 +60,10 @@ pub struct CatalogStore {
     /// Resolved per-agent/per-harness model + reasoning assignments
     /// (catalog/model-assignments.json); absent on older checkouts.
     pub model_assignments: Option<ModelAssignments>,
+    /// Verified model / reasoning-effort matrix (catalog/model-registry.json).
+    /// Drives the Model Policy builder's pickers; `None` degrades them to
+    /// free-text entry rather than blocking the view.
+    pub model_registry: Option<ModelRegistry>,
     /// Workflows declared in `.claude/workflows/`, generated into
     /// `catalog/workflows.json`; absent on checkouts without any workflow.
     pub workflows: Option<WorkflowCatalog>,
@@ -114,6 +119,9 @@ impl CatalogStore {
         let (model_assignments, errs) = loader::load_model_assignments(workspace_root);
         load_errors.extend(errs);
 
+        let (model_registry, errs) = loader::load_model_registry(workspace_root);
+        load_errors.extend(errs);
+
         let (workflows, errs) = loader::load_workflows(workspace_root);
         load_errors.extend(errs);
 
@@ -139,6 +147,7 @@ impl CatalogStore {
             "install-roles.json",
             "asset-integrity.json",
             "model-assignments.json",
+            "model-registry.json",
             "workflows.json",
         ] {
             let path = catalog_dir.join(filename);
@@ -157,6 +166,7 @@ impl CatalogStore {
             rules,
             integrity,
             model_assignments,
+            model_registry,
             workflows,
             load_errors,
             content_hashes,
@@ -306,6 +316,36 @@ impl CatalogStore {
                     self.content_hashes.insert(abs_path, new_hash);
                     ReloadOutcome::Reloaded {
                         catalog: "asset-integrity".to_string(),
+                    }
+                }
+                Err(e) => ReloadOutcome::RetainedPrevious {
+                    error: format!(
+                        "parse error in {} at offset {}: {}",
+                        path.display(),
+                        e.column(),
+                        e
+                    ),
+                },
+            },
+            "model-registry.json" => match serde_json::from_str::<ModelRegistry>(&content) {
+                Ok(new_registry) => {
+                    // Mirror loader::load_model_registry: refuse a tainted
+                    // reload rather than adopting what startup would reject.
+                    if loader::check_model_registry_tainted(&new_registry) {
+                        ReloadOutcome::RetainedPrevious {
+                            error: TuiError::TaintedEntry {
+                                path: path.display().to_string(),
+                                offset: 0,
+                                field: "control bytes detected".to_string(),
+                            }
+                            .to_string(),
+                        }
+                    } else {
+                        self.model_registry = Some(new_registry);
+                        self.content_hashes.insert(abs_path, new_hash);
+                        ReloadOutcome::Reloaded {
+                            catalog: "model-registry".to_string(),
+                        }
                     }
                 }
                 Err(e) => ReloadOutcome::RetainedPrevious {
@@ -636,6 +676,7 @@ impl CatalogStore {
             rules,
             integrity: None,
             model_assignments: None,
+            model_registry: None,
             workflows: None,
             load_errors: Vec::new(),
             content_hashes: HashMap::new(),

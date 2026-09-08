@@ -131,13 +131,13 @@ Builder flow:
 
 - **Scope** — `Space`/`Enter` cycles kind (`All` → `Provider` → `Role` → `Agent`); type the ID
 - **Harness** — cycles `codex` → `claude-code` → `cursor`
-- **Model** — free text; `auto` clears the managed field, empty leaves it untouched
-- **Reasoning** — cycles `(unchanged)` / `auto` / `minimal` / `low` / `medium` / `high` (codex only)
+- **Model** — `Space`/`Enter` cycles the models `catalog/model-registry.json` verifies for the selected harness (closed-namespace allowlists first, then the advisory examples of open namespaces such as local Ollama tags), wrapping through a free-text slot; typing still accepts any value, since open namespaces are too large to enumerate. `auto` clears the managed field, empty leaves it untouched
+- **Reasoning** — cycles `(unchanged)` / `auto` / the efforts the registry verifies for the selected harness *and* model. The vocabulary narrows model-first: a model's own `reasoning_efforts` wins, else its namespace's, else the harness's. Harnesses with no reasoning field (`cursor`) collapse the cycle and say why; a model that supports no effort (for example `claude-haiku-4-5`) keeps `auto`, since clearing an inherited effort is what the engine asks for in that case
 - **Dry Run** — defaults to on; previews changes before writing
 - **Refresh Integrity** — defaults to on; runs `npm run asset-integrity:write` after a successful apply
 - `[ Continue ]` shows the exact command to be run, then the output view streams the subprocess
 
-Every value entered here is validated against the verified model registry (`catalog/model-registry.json`) before any file changes — an unknown model name or a reasoning effort the resolved model doesn't support is rejected up front, not discovered later as a provider-side failure. For `codex`, the builder accepts local Ollama models (`name:tag`) and OpenRouter models (`author/model`) in addition to OpenAI slugs, projecting the matching `model_provider` line automatically. See [`docs/model-policy-matrix.md`](../../docs/model-policy-matrix.md) for the full per-harness matrix.
+The builder reads that same registry to populate both pickers, so the values it offers are the values the script will accept. Everything entered here is still validated against the registry by `scripts/model-policy.mjs` before any file changes — an unknown model name or a reasoning effort the resolved model doesn't support is rejected up front, not discovered later as a provider-side failure. For `codex`, the builder accepts local Ollama models (`name:tag`) and OpenRouter models (`author/model`) in addition to OpenAI slugs, projecting the matching `model_provider` line automatically. See [`docs/model-policy-matrix.md`](../../docs/model-policy-matrix.md) for the full per-harness matrix.
 
 ## Workflows
 
