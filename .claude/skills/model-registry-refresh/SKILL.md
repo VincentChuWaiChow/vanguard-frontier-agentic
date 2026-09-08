@@ -63,6 +63,29 @@ The orchestrator, not a delegate, edits `catalog/model-registry.json`:
 
 - Add new models with `last_verified` (today's date) and a `source` where the schema allows it;
   update the relevant namespace's `sources` array if a new canonical URL was used.
+- **Prefer the readable alias over a dated snapshot ID.** Anthropic's convention
+  ([model-ids-and-versions](https://platform.claude.com/docs/en/about-claude/models/model-ids-and-versions)):
+  from the 4.6 generation on, IDs are dateless *and are themselves the pinned
+  snapshot* (`claude-opus-5`, `claude-sonnet-4-6`) — there is no alias to add.
+  Before 4.6, the canonical ID carries a snapshot date and the API also exposes
+  a shorter alias pointing at the most recent dated snapshot: register **both**,
+  and write the alias (`claude-sonnet-4-5`) as the entry an operator reaches
+  for, keeping the dated form (`claude-sonnet-4-5-20250929`) for when an exact
+  snapshot is required. Never invent an alias for a dateless ID, and never drop
+  the dated entry. Apply the same instinct to other providers: register the
+  form a human can recognize, not only the fully-qualified one.
+- **A capability is only real on the surface this registry governs.** The
+  registry validates `codex.toml`, subagent frontmatter and `.agent.md` — not
+  every API a provider ships. A field documented on one route, present in an
+  enum, or shown in a web UI is not evidence the configured surface accepts it.
+  Three concrete cases this rule came from: Ollama documents `reasoning_effort`
+  on `/v1/chat/completions` but omits it from `/v1/responses`, which is the
+  route the namespace configures (so it stays fail-closed); OpenRouter *does*
+  document it on its Responses route, but with a narrower four-value list than
+  its chat-completions surface (so the narrower list is what is registered);
+  and `ultra` is in the Codex `ReasoningEffort` enum and the ChatGPT desktop
+  picker, but the CLI effort list stops at Max (so it is excluded). Ask "which
+  surface, and does *that* one document it?" before widening any vocabulary.
 - Bump the registry-level `last_refreshed` date.
 - **Never remove a model still referenced by `catalog/model-policy.json`** without first
   migrating the policy rule(s) that reference it to a replacement model — check with

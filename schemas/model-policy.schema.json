@@ -45,7 +45,7 @@
           },
           "model": {
             "type": "string",
-            "pattern": "^[A-Za-z0-9][A-Za-z0-9._:/-]*$",
+            "pattern": "^[A-Za-z0-9][A-Za-z0-9._:/-]*(\\[[A-Za-z0-9.=,]+\\])?$",
             "description": "Model name for this harness, or 'auto' to clear the field. This pattern is shape only (union of every harness's charset, including codex's ':' for Ollama name:tag and '/' for OpenRouter author/model); registry membership per harness is enforced by scripts/model-policy.mjs check against catalog/model-registry.json."
           },
           "reasoning_effort": {

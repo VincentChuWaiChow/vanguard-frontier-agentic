@@ -13,7 +13,7 @@ use std::collections::HashMap;
 use serde::{Deserialize, Serialize};
 
 use crate::error::TuiError;
-use crate::security::validate::validate_argument;
+use crate::security::validate::{validate_argument, validate_model_argument};
 
 /// Which policy fields a harness's executable format can express.
 #[derive(Debug, Clone, Serialize, Deserialize)]
@@ -154,7 +154,9 @@ impl ModelPolicyCommand {
         }
         validate_argument(&self.harness)?;
         if let Some(model) = &self.model {
-            validate_argument(model)?;
+            // Cursor model values may carry a documented "[k=v,...]" parameter
+            // group, so the model field alone relaxes the bracket rule.
+            validate_model_argument(model)?;
         }
         if let Some(reasoning) = &self.reasoning {
             validate_argument(reasoning)?;

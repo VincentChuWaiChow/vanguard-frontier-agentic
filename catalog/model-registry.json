@@ -1,16 +1,16 @@
 {
   "manifest_version": 1,
   "description": "Verified model-name and reasoning-effort capability matrix per harness. scripts/model-policy.mjs fails closed on model names and reasoning efforts not covered here, so a policy can never project a value that would 404 (OpenAI: HTTP 404 invalid_request_error/model_not_found; OpenRouter: HTTP 404) or be silently dropped at request time. Namespaces are evaluated in order; first 'match' wins. Human-readable matrix: docs/model-policy-matrix.md. Refresh workflow: .claude/skills/model-registry-refresh/SKILL.md.",
-  "last_refreshed": "2026-09-05",
+  "last_refreshed": "2026-09-08",
   "harnesses": {
     "codex": {
       "reasoning_key": "model_reasoning_effort",
       "reasoning_efforts": ["none", "minimal", "low", "medium", "high", "xhigh", "max"],
-      "reasoning_note": "Codex validates effort at runtime against each model's advertised supportedReasoningEfforts (model/list); the registry narrows per model family below. o-series models predate none/minimal/xhigh; \"max\" is advertised only by the gpt-6 and gpt-5.6 families. The Codex ReasoningEffort enum carries None|Minimal|Low|Medium|High|XHigh|Max|Ultra|Persistent plus a Custom(String) fallback, and the config schema types the key as a free-form non-empty string, so the harness itself does not reject a value — the narrowing here is what makes an unsupported pairing fail at check time instead of at the provider.",
+      "reasoning_note": "Codex validates effort at runtime against each model's advertised supportedReasoningEfforts (model/list); the registry narrows per model family below. o-series models predate none/minimal/xhigh; \"max\" is advertised only by the gpt-6 and gpt-5.6 families. The Responses reasoning guide states the accepted set is \"model-dependent and can include none, minimal, low, medium, high, xhigh, and max\", with defaults also model-dependent (gpt-5.6 and gpt-5.5 default to medium) — which is why narrowing lives per model here rather than at the harness level. Note that guide's detailed table omits \"minimal\" while its own opening sentence lists it; that is not treated as removal, since absence from one table contradicted by the same page's prose is not evidence a value was withdrawn. The Codex ReasoningEffort enum carries None|Minimal|Low|Medium|High|XHigh|Max|Ultra|Persistent plus a Custom(String) fallback, and the config schema types the key as a free-form non-empty string, so the harness itself does not reject a value — the narrowing here is what makes an unsupported pairing fail at check time instead of at the provider. \"ultra\" and \"persistent\" are deliberately NOT in this vocabulary: https://learn.chatgpt.com/docs/models?surface=ide documents the CLI effort list as Low|Medium|High|Extra high|Max, and places Ultra on the web/desktop surface only (where it delegates to subagents and \"may require configuration to appear in the model picker\"). This registry governs codex.toml, which is the CLI — an enum variant existing is not evidence the configured surface accepts it, the same distinction that applies to the ollama and openrouter routes. Note also that UI labels differ from wire values (the app shows \"Light\" for low, \"Extra High\" for xhigh), and that the app's Speed control (Fast/Standard) is a separate axis from effort with no documented codex.toml key, so it is not projectable at all.",
       "namespaces": [
         {
           "id": "openai",
-          "description": "OpenAI first-party text/coding models served by Codex's default provider. Image, audio, and video model slugs are deliberately excluded — they are not valid agent models.",
+          "description": "OpenAI first-party text/coding models served by Codex's default provider. Image, audio, and video model slugs are deliberately excluded — they are not valid agent models. Note on evidence: codex-rs/models-manager/models.json is the Codex subscription picker, not the API model set (filter_by_auth narrows it further to supported_in_api entries), so a slug's absence from it is NOT evidence of retirement — the o-series and gpt-4.1-* entries below are kept for that reason. Only the provider's own deprecations page moves an entry to retiring/retired. gpt-5.2 is visible in that map but stays unregistered until its reasoning-effort list is verified.",
           "match": "^(gpt-|o[0-9])[a-z0-9.-]*$",
           "membership": "closed",
           "model_provider": null,
@@ -18,18 +18,20 @@
             "Context7 /openai/codex references/latest-model.md (current model map)",
             "Context7 /openai/codex codex-rs/core/config.schema.json + codex-rs/protocol/src/openai_models.rs (verified 2026-09-05)",
             "https://developers.openai.com/codex",
-            "https://developers.openai.com/api/docs/models (GPT-6 + GPT-5.6 families, verified 2026-09-05)"
+            "https://developers.openai.com/api/docs/models (GPT-6 + GPT-5.6 families, verified 2026-09-05)",
+            "https://developers.openai.com/api/docs/guides/reasoning?api-mode=responses (Responses reasoning.effort vocabulary and its model-dependence, verified 2026-09-08)",
+            "Context7 /openai/codex codex-rs/models-manager/models.json (Codex model map, verified 2026-09-08)"
           ],
           "models": [
-            { "id": "gpt-6-astra", "reasoning_efforts": ["low", "medium", "high", "xhigh", "max"], "last_verified": "2026-09-05", "source": "https://developers.openai.com/api/docs/models", "note": "flagship end-to-end coding model; does not advertise \"none\"" },
+            { "id": "gpt-6-astra", "reasoning_efforts": ["low", "medium", "high", "xhigh", "max"], "last_verified": "2026-09-05", "source": "https://developers.openai.com/api/docs/models", "note": "flagship end-to-end coding model; the reasoning guide states outright that GPT-6 Astra does not support \"none\" reasoning effort" },
             { "id": "gpt-5.6", "reasoning_efforts": ["none", "low", "medium", "high", "xhigh", "max"], "last_verified": "2026-09-05", "source": "https://developers.openai.com/api/docs/models", "note": "alias routing to gpt-5.6-sol; family drops minimal" },
             { "id": "gpt-5.6-sol", "reasoning_efforts": ["none", "low", "medium", "high", "xhigh", "max"], "last_verified": "2026-09-05", "source": "https://developers.openai.com/api/docs/models" },
             { "id": "gpt-5.6-terra", "reasoning_efforts": ["none", "low", "medium", "high", "xhigh", "max"], "last_verified": "2026-09-05", "source": "https://developers.openai.com/api/docs/models" },
             { "id": "gpt-5.6-luna", "reasoning_efforts": ["none", "low", "medium", "high", "xhigh", "max"], "last_verified": "2026-09-05", "source": "https://developers.openai.com/api/docs/models" },
-            { "id": "gpt-5.5", "reasoning_efforts": ["none", "minimal", "low", "medium", "high", "xhigh"], "last_verified": "2026-07-09" },
+            { "id": "gpt-5.5", "reasoning_efforts": ["none", "minimal", "low", "medium", "high", "xhigh"], "last_verified": "2026-09-08", "source": "Context7 /openai/codex codex-rs/models-manager/models.json (Codex model map, verified 2026-09-08)", "note": "still listed and visible in the Codex model map" },
             { "id": "gpt-5.5-pro", "reasoning_efforts": ["none", "minimal", "low", "medium", "high", "xhigh"], "last_verified": "2026-07-09" },
-            { "id": "gpt-5.4", "reasoning_efforts": ["none", "minimal", "low", "medium", "high", "xhigh"], "last_verified": "2026-07-09" },
-            { "id": "gpt-5.4-mini", "reasoning_efforts": ["none", "minimal", "low", "medium", "high", "xhigh"], "last_verified": "2026-07-09" },
+            { "id": "gpt-5.4", "reasoning_efforts": ["none", "minimal", "low", "medium", "high", "xhigh"], "last_verified": "2026-09-08", "source": "Context7 /openai/codex codex-rs/models-manager/models.json (Codex model map, verified 2026-09-08)", "note": "present but visibility:hide in the Codex model map — legacy, kept because the policy still pins it; not a lifecycle status, and no retirement date is documented" },
+            { "id": "gpt-5.4-mini", "reasoning_efforts": ["none", "minimal", "low", "medium", "high", "xhigh"], "last_verified": "2026-09-08", "source": "Context7 /openai/codex codex-rs/models-manager/models.json (Codex model map, verified 2026-09-08)", "note": "present but visibility:hide in the Codex model map — legacy" },
             { "id": "gpt-5.4-nano", "reasoning_efforts": ["none", "minimal", "low", "medium", "high", "xhigh"], "last_verified": "2026-07-09" },
             { "id": "gpt-5.3-codex", "reasoning_efforts": ["none", "minimal", "low", "medium", "high", "xhigh"], "last_verified": "2026-07-09" },
             { "id": "gpt-5.1-codex-mini", "reasoning_efforts": ["none", "minimal", "low", "medium", "high", "xhigh"], "last_verified": "2026-07-09" },
@@ -80,11 +82,12 @@
           "membership": "open",
           "model_provider": "openrouter",
           "requires_provider_table": true,
-          "reasoning_efforts": [],
-          "reasoning_note": "Fails closed for the same route reason as the ollama namespace. OpenRouter documents reasoning.effort / reasoning_effort with none|minimal|low|medium|high|xhigh|max on its chat-completions surface, but this namespace routes through wire_api responses and no equivalent field list has been verified for OpenRouter's Responses route. Absence of evidence about that route is not evidence the field is honoured, so the registry stays closed here until the Responses endpoint itself is checked.",
+          "reasoning_efforts": ["minimal", "low", "medium", "high"],
+          "reasoning_note": "Verified on the route this namespace actually uses: OpenRouter's Responses reference documents a reasoning object with an effort key on POST /api/v1/responses, and its table lists exactly minimal|low|medium|high (verified 2026-09-08). That is narrower than OpenRouter's chat-completions surface, which also documents none|xhigh|max — the wider list does not apply here and is deliberately not used. This is where the ollama namespace differs rather than matching: Ollama's /v1/responses supported-field list omits reasoning_effort altogether, so it stays fail-closed. Per-model support is narrower still and cannot be gated in an open namespace, so an unsupported pairing surfaces at OpenRouter rather than at check time.",
           "sources": [
             "https://openrouter.ai/docs/api/api-reference/models/get-a-model-by-its-slug",
-            "https://openrouter.ai/docs/guides/best-practices/reasoning-tokens (chat-completions surface; Responses route unverified)"
+            "https://openrouter.ai/docs/guides/best-practices/reasoning-tokens (chat-completions surface — wider vocabulary, not the route used here)",
+            "https://openrouter.ai/docs/api_reference/responses/reasoning (Responses route; the vocabulary this namespace enforces, verified 2026-09-08)"
           ],
           "examples": ["anthropic/claude-sonnet-4.5", "openai/gpt-4o", "google/gemini-2.5-pro"]
         }
@@ -93,7 +96,7 @@
     "claude-code": {
       "reasoning_key": "effort",
       "reasoning_efforts": ["low", "medium", "high", "xhigh", "max"],
-      "reasoning_note": "Subagent frontmatter effort field (low|medium|high|xhigh|max). https://code.claude.com/docs/en/sub-agents states available levels depend on the model, and the models overview lists Claude Haiku 4.5 as not supporting effort at all — so the haiku entries below carry an empty reasoning_efforts and fail closed. The remaining models accept the full vocabulary.",
+      "reasoning_note": "Subagent frontmatter effort field (low|medium|high|xhigh|max). Per-model narrowing comes from the effort page's supported-models list plus its per-level availability sentences (verified 2026-09-08): a model absent from that list carries an empty reasoning_efforts and fails closed (Claude Haiku 4.5 and Claude Sonnet 4.5); a listed model missing from the xhigh or max sentence carries the narrower list (Opus 4.6 and Sonnet 4.6 drop xhigh; Opus 4.5 drops both). Models on every list inherit the full harness vocabulary. The floating aliases resolve to current-lineup models and inherit accordingly, except haiku.",
       "namespaces": [
         {
           "id": "alias",
@@ -111,21 +114,23 @@
         },
         {
           "id": "anthropic",
-          "description": "Pinned Anthropic model IDs (same values as the --model flag).",
+          "description": "Pinned Anthropic model IDs (same values as the --model flag). Naming convention, per https://platform.claude.com/docs/en/about-claude/models/model-ids-and-versions: from the 4.6 generation on, IDs are dateless AND are themselves the pinned snapshot (claude-opus-5, claude-sonnet-4-6) — there is no separate alias to prefer. Before 4.6, the canonical ID carries a snapshot date and the API also exposes a shorter alias pointing at the most recent dated snapshot; register BOTH and prefer the readable alias (claude-sonnet-4-5 over claude-sonnet-4-5-20250929) unless an exact snapshot is required. Do not invent an alias for a dateless ID, and do not drop the dated entry.",
           "match": "^claude-[a-z0-9.-]+$",
           "membership": "closed",
-          "sources": ["https://code.claude.com/docs/en/sub-agents", "https://code.claude.com/docs/en/model-config", "https://platform.claude.com/docs/en/about-claude/models/overview", "https://platform.claude.com/docs/en/about-claude/model-deprecations"],
+          "sources": ["https://code.claude.com/docs/en/sub-agents", "https://code.claude.com/docs/en/model-config", "https://platform.claude.com/docs/en/about-claude/models/overview", "https://platform.claude.com/docs/en/about-claude/model-deprecations", "https://platform.claude.com/docs/en/build-with-claude/effort"],
           "models": [
             { "id": "claude-fable-5-1", "last_verified": "2026-09-05", "source": "https://platform.claude.com/docs/en/about-claude/models/overview", "note": "current Fable lineup; default effort high" },
             { "id": "claude-opus-5", "last_verified": "2026-09-05", "source": "https://platform.claude.com/docs/en/about-claude/models/overview", "note": "current Opus lineup; default effort high" },
             { "id": "claude-opus-4-8", "last_verified": "2026-09-05", "source": "https://platform.claude.com/docs/en/about-claude/model-deprecations" },
             { "id": "claude-opus-4-7", "last_verified": "2026-09-05", "source": "https://platform.claude.com/docs/en/about-claude/model-deprecations" },
-            { "id": "claude-opus-4-6", "last_verified": "2026-09-05", "source": "https://platform.claude.com/docs/en/about-claude/model-deprecations" },
-            { "id": "claude-opus-4-5-20251101", "last_verified": "2026-09-05", "source": "https://platform.claude.com/docs/en/about-claude/model-deprecations", "note": "dated snapshot ID" },
+            { "id": "claude-opus-4-6", "reasoning_efforts": ["low", "medium", "high", "max"], "last_verified": "2026-09-08", "source": "https://platform.claude.com/docs/en/build-with-claude/effort", "note": "effort page lists max but not xhigh for Opus 4.6" },
+            { "id": "claude-opus-4-5", "reasoning_efforts": ["low", "medium", "high"], "last_verified": "2026-09-08", "source": "https://platform.claude.com/docs/en/about-claude/models/model-ids-and-versions", "note": "preferred readable form; pre-4.6 alias pointing at claude-opus-4-5-20251101. Supports effort but is absent from both the xhigh and max availability lists" },
+            { "id": "claude-opus-4-5-20251101", "reasoning_efforts": ["low", "medium", "high"], "last_verified": "2026-09-08", "source": "https://platform.claude.com/docs/en/build-with-claude/effort", "note": "dated snapshot the claude-opus-4-5 alias resolves to; pin only when an exact snapshot is required" },
             { "id": "claude-sonnet-5", "last_verified": "2026-09-05", "source": "https://platform.claude.com/docs/en/about-claude/models/overview" },
-            { "id": "claude-sonnet-4-6", "last_verified": "2026-09-05", "source": "https://platform.claude.com/docs/en/about-claude/model-deprecations" },
-            { "id": "claude-sonnet-4-5-20250929", "last_verified": "2026-09-05", "source": "https://platform.claude.com/docs/en/about-claude/model-deprecations", "note": "dated snapshot ID" },
-            { "id": "claude-haiku-4-5", "reasoning_efforts": [], "last_verified": "2026-09-05", "source": "https://platform.claude.com/docs/en/about-claude/models/overview", "note": "models overview lists effort as not supported for Claude Haiku 4.5" },
+            { "id": "claude-sonnet-4-6", "reasoning_efforts": ["low", "medium", "high", "max"], "last_verified": "2026-09-08", "source": "https://platform.claude.com/docs/en/build-with-claude/effort", "note": "effort page lists max but not xhigh for Sonnet 4.6" },
+            { "id": "claude-sonnet-4-5", "reasoning_efforts": [], "last_verified": "2026-09-08", "source": "https://platform.claude.com/docs/en/about-claude/models/model-ids-and-versions", "note": "preferred readable form; pre-4.6 alias pointing at claude-sonnet-4-5-20250929. Absent from the effort page supported-models list, so effort is not projectable" },
+            { "id": "claude-sonnet-4-5-20250929", "reasoning_efforts": [], "last_verified": "2026-09-08", "source": "https://platform.claude.com/docs/en/build-with-claude/effort", "note": "dated snapshot the claude-sonnet-4-5 alias resolves to; pin only when an exact snapshot is required" },
+            { "id": "claude-haiku-4-5", "reasoning_efforts": [], "last_verified": "2026-09-05", "source": "https://platform.claude.com/docs/en/build-with-claude/effort", "note": "absent from the effort page supported-models list" },
             { "id": "claude-haiku-4-5-20251001", "reasoning_efforts": [], "last_verified": "2026-09-05", "source": "https://platform.claude.com/docs/en/about-claude/models/overview", "note": "dated snapshot ID; effort not supported" },
             { "id": "claude-fable-5", "last_verified": "2026-09-05", "source": "https://platform.claude.com/docs/en/about-claude/model-deprecations" }
           ]
@@ -146,8 +151,8 @@
         },
         {
           "id": "named",
-          "description": "Named models documented for Cursor subagent frontmatter. Cursor's picker evolves quickly and availability is plan/admin-dependent — verify with Cursor.models.list() and extend via the refresh workflow.",
-          "match": "^[a-z0-9][a-z0-9.-]*$",
+          "description": "Named models documented for Cursor subagent frontmatter. Cursor's picker evolves quickly and availability is plan/admin-dependent — verify with Cursor.models.list() and extend via the refresh workflow. A model id may carry Cursor's documented per-model parameter group in square brackets (cursor.com/docs/subagents), e.g. claude-opus-5[effort=high,context=300k]; the documented keys are fast, effort and context. The allowlist below enumerates BASE ids only — the parameter group is a per-rule modifier, so membership is checked against the id with the group stripped. This pattern deliberately shapes the group only (charset, single trailing pair of brackets) rather than encoding key=value structure: a nested-quantifier pattern is rejected by the registry ReDoS guard, and the precise structure — key=value pairs, no duplicates, keys restricted to the documented set — is enforced semantically by scripts/model-policy.mjs, which gives a clearer error than a regex miss would.",
+          "match": "^[a-z0-9][a-z0-9.-]*(\\[[a-z0-9.=,]+\\])?$",
           "membership": "closed",
           "sources": ["https://cursor.com/docs/subagents", "https://cursor.com/docs/cli/reference/configuration"],
           "models": [
