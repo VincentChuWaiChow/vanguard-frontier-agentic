@@ -5,6 +5,16 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [0.0.16](https://github.com/VincentChuWaiChow/vanguard-frontier-agentic/compare/vfa-tui-v0.0.15...vfa-tui-v0.0.16) - 2026-09-08
+
+### Added
+
+- *(model-policy)* refresh model registry and make the TUI pickers registry-backed
+
+### Fixed
+
+- *(model-policy)* close the Responses-route gap and the alias effort bypass
+
 ## [0.0.15](https://github.com/VincentChuWaiChow/vanguard-frontier-agentic/compare/vfa-tui-v0.0.14...vfa-tui-v0.0.15) - 2026-09-01
 
 ### Other
