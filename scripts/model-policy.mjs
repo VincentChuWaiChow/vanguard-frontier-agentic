@@ -114,7 +114,59 @@ const HARNESS_CAPABILITIES = {
  * harness falls back to SAFE_VALUE. Values are embedded only inside
  * double-quoted TOML strings / YAML frontmatter and passed as argv, never
  * through a shell, so this is a shape check, not a shell-safety check. */
-const MODEL_CHARSETS = { codex: /^[A-Za-z0-9][A-Za-z0-9._:/-]*$/ };
+const MODEL_CHARSETS = {
+  codex: /^[A-Za-z0-9][A-Za-z0-9._:/-]*$/,
+  // Cursor documents per-model parameters appended to the model id in square
+  // brackets (cursor.com/docs/subagents), e.g. claude-opus-5[effort=high].
+  // The extra characters are confined to this harness so every other model
+  // value keeps the tighter charset.
+  cursor: /^[A-Za-z0-9][A-Za-z0-9._-]*(\[[A-Za-z0-9.=,]+\])?$/,
+};
+
+/** Cursor per-model parameter keys documented for subagent frontmatter.
+ * Fail closed on anything else: an unknown key is silently ignored by Cursor,
+ * which is exactly the "looks applied but isn't" failure this registry exists
+ * to catch. */
+const CURSOR_MODEL_PARAMS = new Set(["fast", "effort", "context"]);
+
+/** A trailing "[k=v,...]" parameter group, the only bracketed form accepted. */
+const MODEL_PARAM_SUFFIX_RE = /\[[^[\]]*\]$/;
+
+/** The bare model id a value refers to, with any trailing parameter group
+ * removed. Registry allowlists enumerate base ids only — the parameters are a
+ * per-rule modifier, not a different model — so every closed-membership
+ * lookup goes through this. Values without a suffix are returned unchanged. */
+function modelBase(value) {
+  return typeof value === "string" ? value.replace(MODEL_PARAM_SUFFIX_RE, "") : value;
+}
+
+/** Validate a value's parameter group, if it has one. Returns an error string
+ * or null. */
+function modelParamsError(value) {
+  if (typeof value !== "string") return null;
+  const match = value.match(MODEL_PARAM_SUFFIX_RE);
+  if (!match) return null;
+  const body = match[0].slice(1, -1);
+  if (body.length === 0) return "empty parameter group \"[]\"";
+  const seen = new Set();
+  for (const pair of body.split(",")) {
+    // Exactly one separator: indexOf alone would accept "effort=high=low",
+    // silently treating "high=low" as the value and projecting a malformed
+    // model string.
+    const parts = pair.split("=");
+    if (parts.length !== 2) return `malformed parameter "${pair}" (expected key=value)`;
+    const [key, value] = parts;
+    if (key.length === 0 || value.length === 0) {
+      return `malformed parameter "${pair}" (expected key=value)`;
+    }
+    if (!CURSOR_MODEL_PARAMS.has(key)) {
+      return `unknown parameter "${key}" (documented: ${[...CURSOR_MODEL_PARAMS].join(", ")})`;
+    }
+    if (seen.has(key)) return `duplicate parameter "${key}"`;
+    seen.add(key);
+  }
+  return null;
+}
 
 const SAFE_VALUE = /^[A-Za-z0-9][A-Za-z0-9._-]*$/;
 const SCOPE_TIERS = ["all", "provider", "role", "agent"];
@@ -483,8 +535,9 @@ function classifyModel(harnessReg, value) {
 function effortsForModel(harnessReg, value) {
   const ns = classifyModel(harnessReg, value);
   if (!ns) return null;
-  if (ns.membership === "closed" && ns.models.has(value)) {
-    const entry = ns.models.get(value);
+  const base = modelBase(value);
+  if (ns.membership === "closed" && ns.models.has(base)) {
+    const entry = ns.models.get(base);
     if (entry.reasoning_efforts !== undefined) return entry.reasoning_efforts;
   }
   return ns.nsEfforts ?? harnessReg.efforts;
@@ -499,22 +552,27 @@ function effortsForModel(harnessReg, value) {
  * one, are returned unchanged with no warning — lifecycle tracking only
  * applies to the verified allowlist. Never consults the wall clock. */
 function resolveLifecycle(harnessReg, ns, value) {
-  if (!ns || ns.membership !== "closed" || !ns.models.has(value)) {
+  const base = modelBase(value);
+  const suffix = value.slice(base.length);
+  if (!ns || ns.membership !== "closed" || !ns.models.has(base)) {
     return { model: value, fallbackFrom: null, warning: null };
   }
-  const original = ns.models.get(value);
+  const original = ns.models.get(base);
   let current = original;
   while (current.status === "retired" && current.successor && ns.models.has(current.successor)) {
     current = ns.models.get(current.successor);
   }
-  if (current.id !== value) {
-    let warning = `model "${value}" was retired by the provider — projecting documented successor "${current.id}"; migrate the policy rule`;
+  if (current.id !== base) {
+    // Carry the parameter group onto the successor: the operator's intent for
+    // effort/context is independent of which snapshot serves the request.
+    const projected = `${current.id}${suffix}`;
+    let warning = `model "${value}" was retired by the provider — projecting documented successor "${projected}"; migrate the policy rule`;
     if (current.status === "retiring") {
       const chainedDatePart = current.retirement_date ? ` on ${current.retirement_date}` : "";
       warning += ` (note: "${current.id}" is itself scheduled for retirement${chainedDatePart} — successor: ${current.successor ?? "none announced"})`;
     }
     return {
-      model: current.id,
+      model: projected,
       fallbackFrom: value,
       warning,
     };
@@ -592,21 +650,26 @@ function validatePolicy(policy, agents, roles, registry) {
             errors.push(`${where}: no model registry entry for harness "${rule.harness}"`);
           } else {
             const ns = classifyModel(harnessReg, rule.model);
+            const paramsError = modelParamsError(rule.model);
             if (!ns) {
               const nsList = harnessReg.namespaces.map((n) => `${n.id}: ${n.re.source}`).join("; ");
               errors.push(
                 `${where}: model "${rule.model}" does not match any ${rule.harness} model namespace (${nsList}); see docs/model-policy-matrix.md`,
               );
-            } else if (ns.membership === "closed" && !ns.models.has(rule.model)) {
+            } else if (paramsError) {
+              errors.push(
+                `${where}: model "${rule.model}" has an invalid parameter group — ${paramsError}`,
+              );
+            } else if (ns.membership === "closed" && !ns.models.has(modelBase(rule.model))) {
               errors.push(
                 `${where}: model "${rule.model}" is not in the verified model registry for ${rule.harness} namespace "${ns.id}" (catalog/model-registry.json); verify it against official docs and add it via the model-registry-refresh workflow (.claude/skills/model-registry-refresh/SKILL.md)`,
               );
-            } else if (ns.membership === "closed" && ns.models.has(rule.model)) {
+            } else if (ns.membership === "closed" && ns.models.has(modelBase(rule.model))) {
               // Defense-in-depth: registry validation already requires a
               // successor whenever status is "retired", but a rule pinning
               // such a model with no successor to fall back to must still be
               // rejected here so it can never be applied.
-              const entry = ns.models.get(rule.model);
+              const entry = ns.models.get(modelBase(rule.model));
               if (entry.status === "retired" && !entry.successor) {
                 errors.push(
                   `${where}: model "${rule.model}" was retired with no documented successor — the rule must be migrated`,

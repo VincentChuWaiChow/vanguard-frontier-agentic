@@ -35081,7 +35081,7 @@
     },
     {
       "tree": "schemas",
-      "aggregate_sha256": "a52a4cd3c47823d81abdead97318ea9dbd1669768a7a682d7367e0a97c0f57d9",
+      "aggregate_sha256": "9de6666866d34f5189fa0c16414d325e451845f315bc257006d3f5dcaa93ad7b",
       "files": [
         {
           "path": "schemas/AGENTS.md",
@@ -35120,8 +35120,8 @@
         },
         {
           "path": "schemas/model-policy.schema.json",
-          "sha256": "b5761e28e9aeb277284c18e22d23669288d422a2873e26b50a2ffec3e79f181e",
-          "bytes": 2950
+          "sha256": "f27dd291f918a2b96932372a11f55c79d6a7ee2370902e657965de80e9c47198",
+          "bytes": 2974
         },
         {
           "path": "schemas/model-registry.schema.json",
@@ -35152,7 +35152,7 @@
     },
     {
       "tree": "catalog",
-      "aggregate_sha256": "3371b5a07364ef4a725202155756e22852345c99ee8e5ca2c95b94b66d052d2c",
+      "aggregate_sha256": "6423b1566126bfdb09a641ce2731501d3fd648fcdea16523e0d63499278ec471",
       "files": [
         {
           "path": "catalog/AGENTS.md",
@@ -35191,8 +35191,8 @@
         },
         {
           "path": "catalog/model-registry.json",
-          "sha256": "df662f574a13a61dcae09090b373c690c0761986b4679612f2bc09e70f8b78d9",
-          "bytes": 16136
+          "sha256": "226bd7006e980164bc20a6f1ebbfb72d60435251e9cc120e0bca8e07a6a08b77",
+          "bytes": 22265
         },
         {
           "path": "catalog/rules.json",
@@ -35218,7 +35218,7 @@
     },
     {
       "tree": "scripts",
-      "aggregate_sha256": "0a023ba54e7f28f3253083dfbc619f96a9725f0debc7cadf5ddbf465d29aa3d5",
+      "aggregate_sha256": "c3d9f79e1ae6820ce4cf3ac55cdabd222670659915e308c8247e329d38d40475",
       "files": [
         {
           "path": "scripts/apply-skill-allowed-tools.py",
@@ -35507,8 +35507,8 @@
         },
         {
           "path": "scripts/model-policy.mjs",
-          "sha256": "39b7375cb2c761f7c313a16bc8cca98c0c319ba538e2dae5e6d4ff7b90de6109",
-          "bytes": 57136
+          "sha256": "41c75f7a8dbd9f905f40c3c1773da86f81b27f5bef9d19f4394d2061ff9a9734",
+          "bytes": 60046
         },
         {
           "path": "scripts/netsuite_data/agents/netsuite-administrator-agent.json",
@@ -36420,7 +36420,7 @@
     },
     {
       "tree": "tests",
-      "aggregate_sha256": "94f89ad789c4f7b2c2ee60d853ebfafda72f8aa3c21306fdd3bbd9fba7bb08ad",
+      "aggregate_sha256": "e7a3027c9bf125f559c8da5a29eb7c17e796a67bfa589ee2b3c7bd3fa30e404f",
       "files": [
         {
           "path": "tests/AGENTS.md",
@@ -46028,6 +46028,11 @@
           "bytes": 2952
         },
         {
+          "path": "tests/validate-model-params.py",
+          "sha256": "572edd1896c90e86eb4d11f0e844904e95444ceb687b2c6f082151c708b17414",
+          "bytes": 6357
+        },
+        {
           "path": "tests/validate-multi-harness-marketplace.py",
           "sha256": "22b9ead28ef1f126f4ccd4e998a2b9c0ce7532bc433f89dfd0eba2b9d50ebbe0",
           "bytes": 7049
@@ -46118,8 +46123,8 @@
     },
     {
       "path": "package.json",
-      "sha256": "82e05bad8ae167e72422711eeea6f5e285e92e71d28fb4b549dd321a60fb6d80",
-      "bytes": 7069
+      "sha256": "9024672a2c147620a464ac69c0d573c875d72f2da726683ede35588cc3165057",
+      "bytes": 7173
     },
     {
       "path": ".releaserc.js",
@@ -46127,5 +46132,5 @@
       "bytes": 8340
     }
   ],
-  "aggregate_sha256": "1fb23143d6215b2d63234457af21b3f2cfafef6c494dda11186175a26e100095"
+  "aggregate_sha256": "6dd1e775acde24b0d3ddf52c4a9780122cd381454a0d175381bae192a928825c"
 }

@@ -45,6 +45,59 @@ pub fn validate_argument(arg: &str) -> Result<(), TuiError> {
     Ok(())
 }
 
+/// Validate a model value for the model-policy builder.
+///
+/// Same denylist as [`validate_argument`] except that `[` and `]` are allowed,
+/// because Cursor documents per-model parameters appended to the model id in
+/// square brackets (`claude-opus-5[effort=high,context=300k]`). The relaxation
+/// is deliberately confined to this one field rather than widened in
+/// [`SHELL_METACHARACTERS`], so scope ids and every other argument keep the
+/// stricter rule.
+///
+/// Brackets must form exactly one balanced group at the end of the value; a
+/// stray, nested or leading bracket is rejected. Semantic validation of the
+/// group's contents (documented keys, key=value shape, no duplicates) belongs
+/// to `scripts/model-policy.mjs` and is not duplicated here.
+pub fn validate_model_argument(arg: &str) -> Result<(), TuiError> {
+    let reject = |rule: &str| {
+        Err(TuiError::ValidationRejected {
+            value: arg.to_string(),
+            rule: rule.to_string(),
+        })
+    };
+    for c in arg.chars() {
+        if c == '[' || c == ']' {
+            continue;
+        }
+        if SHELL_METACHARACTERS.contains(&c) || crate::security::sanitize::is_disallowed_control(c)
+        {
+            return Err(TuiError::ValidationRejected {
+                value: arg.to_string(),
+                rule: format!("contains forbidden character {c:?}"),
+            });
+        }
+    }
+    let opens = arg.matches('[').count();
+    let closes = arg.matches(']').count();
+    if opens == 0 && closes == 0 {
+        return Ok(());
+    }
+    if opens != 1 || closes != 1 {
+        return reject("model parameters must be a single \"[...]\" group");
+    }
+    let open_at = arg.find('[').expect("one open bracket");
+    if !arg.ends_with(']') {
+        return reject("model parameter group must be at the end of the value");
+    }
+    if open_at == 0 {
+        return reject("model parameter group must follow a model id");
+    }
+    if arg.find(']').expect("one close bracket") < open_at {
+        return reject("model parameter group brackets are inverted");
+    }
+    Ok(())
+}
+
 /// Validate a workspace registry path string.
 ///
 /// Rejects paths that contain:
@@ -128,6 +181,41 @@ mod tests {
     #[test]
     fn validate_argument_accepts_safe() {
         assert!(validate_argument("hello-world_1.0/path").is_ok());
+    }
+
+    #[test]
+    fn validate_model_argument_accepts_cursor_parameter_group() {
+        assert!(validate_model_argument("composer-2.5").is_ok());
+        assert!(validate_model_argument("claude-opus-5[effort=high]").is_ok());
+        assert!(validate_model_argument("gpt-5.6-sol[effort=high,context=300k]").is_ok());
+        // The bracket relaxation must not leak into the general validator.
+        assert!(validate_argument("claude-opus-5[effort=high]").is_err());
+    }
+
+    #[test]
+    fn validate_model_argument_still_rejects_metacharacters() {
+        for bad in [
+            "claude-opus-5[effort=high]; rm -rf /",
+            "claude-opus-5[effort=$(id)]",
+            "claude-opus-5[effort=`id`]",
+            "claude-opus-5[effort=high]|tee",
+        ] {
+            assert!(validate_model_argument(bad).is_err(), "should reject {bad}");
+        }
+    }
+
+    #[test]
+    fn validate_model_argument_rejects_malformed_bracket_shapes() {
+        for bad in [
+            "claude-opus-5[effort=high",
+            "claude-opus-5effort=high]",
+            "[effort=high]",
+            "claude[a=1][b=2]",
+            "claude-opus-5[a=1]trailing",
+            "claude-opus-5]a=1[",
+        ] {
+            assert!(validate_model_argument(bad).is_err(), "should reject {bad}");
+        }
     }
 
     #[test]
