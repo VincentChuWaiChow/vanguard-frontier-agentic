@@ -21,12 +21,14 @@ without writing anything.
 from __future__ import annotations
 
 import json
+import re
 import subprocess
 import sys
 from pathlib import Path
 
 REPO = Path(__file__).resolve().parent.parent
 ENGINE = REPO / "scripts" / "model-policy.mjs"
+POLICY_SCHEMA = REPO / "schemas" / "model-policy.schema.json"
 
 # (model value, should_be_accepted, why)
 CASES: list[tuple[str, bool, str]] = [
@@ -41,6 +43,9 @@ CASES: list[tuple[str, bool, str]] = [
     ("claude-opus-5[effort=]", False, "empty value"),
     ("claude-opus-5[]", False, "empty parameter group"),
     ("claude-opus-5[effort=high,effort=low]", False, "duplicate key"),
+    ("claude-opus-5[effort=high=low]", False, "two separators in one pair"),
+    ("claude-opus-5[effort=high,context=300k=x]", False, "two separators in the second pair"),
+    ("claude-opus-5[=]", False, "separator with neither key nor value"),
     ("not-a-registered-model[effort=high]", False, "base id absent from the allowlist"),
     ("claude-opus-5[a=1][b=2]", False, "two groups"),
     ("claude-opus-5[effort=high]trailing", False, "group not at the end"),
@@ -76,6 +81,41 @@ def accepted(agent_id: str, model: str) -> tuple[bool, str]:
     return proc.returncode == 0, (proc.stdout + proc.stderr).strip()
 
 
+def schema_model_pattern() -> str:
+    """The `model` pattern the policy schema declares for a rule."""
+    schema = json.loads(POLICY_SCHEMA.read_text(encoding="utf-8"))
+    return schema["properties"]["rules"]["items"]["properties"]["model"]["pattern"]
+
+
+def check_schema_agrees(accepted_models: list[str]) -> list[str]:
+    """The script and the schema must agree on what a rule may contain.
+
+    A non-dry-run `set` writes the model value straight into
+    `catalog/model-policy.json`. If the script accepts a value the schema's
+    `model` pattern rejects, every policy using it is invalid under its own
+    declared contract and a schema-aware consumer will refuse it — a mismatch
+    the script's own validator can never surface, which is why it is asserted
+    here rather than left to the engine.
+    """
+    problems: list[str] = []
+    pattern = schema_model_pattern()
+    compiled = re.compile(pattern)
+    for model in accepted_models:
+        if not compiled.match(model):
+            problems.append(
+                f"schemas/model-policy.schema.json rejects {model!r}, which "
+                f"scripts/model-policy.mjs accepts (schema pattern: {pattern})"
+            )
+    # Values from other harnesses must keep working under the same pattern.
+    for model in ("qwen3:32b", "anthropic/claude-sonnet-4.5", "gpt-5.5", "auto", "inherit"):
+        if not compiled.match(model):
+            problems.append(
+                f"schemas/model-policy.schema.json rejects {model!r}, a value other "
+                f"harnesses rely on (schema pattern: {pattern})"
+            )
+    return problems
+
+
 def main() -> int:
     agent_id = pick_agent_id()
     failures: list[str] = []
@@ -102,13 +142,18 @@ def main() -> int:
             f"mention the parameter group; got: {msg!r}"
         )
 
+    failures.extend(check_schema_agrees([m for m, ok, _ in CASES if ok]))
+
     if failures:
         print("\nFAIL: model parameter-group validation drifted:", file=sys.stderr)
         for f in failures:
             print(f"  - {f}", file=sys.stderr)
         return 1
 
-    print(f"\nOK: {len(CASES)} model parameter-group cases behave as documented")
+    print(
+        f"\nOK: {len(CASES)} model parameter-group cases behave as documented, "
+        "and the policy schema accepts every value the script does"
+    )
     return 0
 
 

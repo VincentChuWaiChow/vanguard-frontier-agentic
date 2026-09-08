@@ -150,9 +150,15 @@ function modelParamsError(value) {
   if (body.length === 0) return "empty parameter group \"[]\"";
   const seen = new Set();
   for (const pair of body.split(",")) {
-    const eq = pair.indexOf("=");
-    if (eq <= 0 || eq === pair.length - 1) return `malformed parameter "${pair}" (expected key=value)`;
-    const key = pair.slice(0, eq);
+    // Exactly one separator: indexOf alone would accept "effort=high=low",
+    // silently treating "high=low" as the value and projecting a malformed
+    // model string.
+    const parts = pair.split("=");
+    if (parts.length !== 2) return `malformed parameter "${pair}" (expected key=value)`;
+    const [key, value] = parts;
+    if (key.length === 0 || value.length === 0) {
+      return `malformed parameter "${pair}" (expected key=value)`;
+    }
     if (!CURSOR_MODEL_PARAMS.has(key)) {
       return `unknown parameter "${key}" (documented: ${[...CURSOR_MODEL_PARAMS].join(", ")})`;
     }

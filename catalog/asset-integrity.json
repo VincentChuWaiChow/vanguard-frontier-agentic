@@ -35081,7 +35081,7 @@
     },
     {
       "tree": "schemas",
-      "aggregate_sha256": "a52a4cd3c47823d81abdead97318ea9dbd1669768a7a682d7367e0a97c0f57d9",
+      "aggregate_sha256": "9de6666866d34f5189fa0c16414d325e451845f315bc257006d3f5dcaa93ad7b",
       "files": [
         {
           "path": "schemas/AGENTS.md",
@@ -35120,8 +35120,8 @@
         },
         {
           "path": "schemas/model-policy.schema.json",
-          "sha256": "b5761e28e9aeb277284c18e22d23669288d422a2873e26b50a2ffec3e79f181e",
-          "bytes": 2950
+          "sha256": "f27dd291f918a2b96932372a11f55c79d6a7ee2370902e657965de80e9c47198",
+          "bytes": 2974
         },
         {
           "path": "schemas/model-registry.schema.json",
@@ -35218,7 +35218,7 @@
     },
     {
       "tree": "scripts",
-      "aggregate_sha256": "ad6bf4e8a688447973495901d0fdb02301a5ae53474498eb2d56e30f211f5464",
+      "aggregate_sha256": "c3d9f79e1ae6820ce4cf3ac55cdabd222670659915e308c8247e329d38d40475",
       "files": [
         {
           "path": "scripts/apply-skill-allowed-tools.py",
@@ -35507,8 +35507,8 @@
         },
         {
           "path": "scripts/model-policy.mjs",
-          "sha256": "38c786554bd0fd440f92ade1faef47611baab08c5ac8d4d9d185f4ba92c0500a",
-          "bytes": 59767
+          "sha256": "41c75f7a8dbd9f905f40c3c1773da86f81b27f5bef9d19f4394d2061ff9a9734",
+          "bytes": 60046
         },
         {
           "path": "scripts/netsuite_data/agents/netsuite-administrator-agent.json",
@@ -36405,7 +36405,7 @@
     },
     {
       "tree": "tests",
-      "aggregate_sha256": "407a7bebda5316168180bfcf09607e977e453ef67a8dce75348280c2b69f556a",
+      "aggregate_sha256": "e7a3027c9bf125f559c8da5a29eb7c17e796a67bfa589ee2b3c7bd3fa30e404f",
       "files": [
         {
           "path": "tests/AGENTS.md",
@@ -46014,8 +46014,8 @@
         },
         {
           "path": "tests/validate-model-params.py",
-          "sha256": "6d08fc504b41976a81603625065ce921884a967245a745c818570b01edbe4315",
-          "bytes": 4268
+          "sha256": "572edd1896c90e86eb4d11f0e844904e95444ceb687b2c6f082151c708b17414",
+          "bytes": 6357
         },
         {
           "path": "tests/validate-multi-harness-marketplace.py",
@@ -46117,5 +46117,5 @@
       "bytes": 8340
     }
   ],
-  "aggregate_sha256": "9cda5004517cc9f6a8e9a337c27feb886e3b641c631cfdb24c899e24d1f38350"
+  "aggregate_sha256": "24c66e292588ebdf6724f6af0438bf7a72f68dcfe35f12c1e4f404dfe8adbd7c"
 }
