@@ -1,13 +1,22 @@
 name: HOL Plugin Scanner
 
-# HOL AI Plugin Scanner — mandatory gate for listing on the Awesome Codex
-# Plugins marketplace (hashgraph-online/awesome-codex-plugins). Listing
-# requires score >= 80 with no critical or high findings, and the scanner
-# must run in the plugin repo's own GitHub Actions.
+# HOL AI Plugin Scanner — continuous self-check against the bar HOL applies
+# when listing on its plugin catalogs (hashgraph-online/awesome-ai-plugins,
+# hashgraph-online/awesome-codex-plugins). The scanner's passing criteria are
+# score >= 80 with no critical or high findings.
+#
+# Source-repository scanner CI is NOT itself a listing requirement: per
+# SCANNER_GUIDE.md (retrieved 2026-09-11) HOL scans listed projects
+# independently, projects without scanner CI remain eligible but take a 10%
+# trust-score reduction, and catalog scan results are advisory for admission.
+# We run it anyway so findings surface here, on the commit that caused them,
+# instead of on a catalog pull request.
 #
 # Two jobs:
-#   gate        — scans the submitted Codex plugin bundle; this is the
-#                 blocking listing gate.
+#   gate        — scans the submitted Codex plugin bundle and enforces the
+#                 >= 80 / no-high-critical bar. Blocking: this is the gate we
+#                 hold ourselves to, so a regression fails here rather than
+#                 being discovered during a catalog review.
 #   marketplace — scans the repo root so the marketplace metadata
 #                 (.agents/plugins/marketplace.json) and the second plugin
 #                 (cross-platform-agent-template) are validated for
@@ -20,6 +29,7 @@ name: HOL Plugin Scanner
 # that reads the action's score/max_severity outputs.
 #
 # Docs:
+#   https://github.com/hashgraph-online/awesome-ai-plugins/blob/main/SCANNER_GUIDE.md
 #   https://github.com/hashgraph-online/awesome-codex-plugins (SCANNER_GUIDE.md)
 #   https://github.com/hashgraph-online/ai-plugin-scanner-action
 
@@ -45,10 +55,16 @@ jobs:
       actions: read
     steps:
       - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          # The scanner only reads the tree; leaving the checkout token in
+          # .git/config would hand write-capable credentials to a third-party
+          # action for no benefit. Matches the HOL scanner guide's recommended
+          # workflow and this repo's other read-only jobs.
+          persist-credentials: false
 
       - name: HOL AI Plugin Scanner (report + upload SARIF)
         id: scan
-        uses: hashgraph-online/ai-plugin-scanner-action@b5ded48595ed489e35f2b92f7fb32e3b16960417 # v1.2.265
+        uses: hashgraph-online/ai-plugin-scanner-action@caba2e96aa8ad2feb6cf6fca52442b52e22e779f # v1.2.635
         with:
           plugin_dir: "plugins/vanguard-frontier-agentic"
           mode: scan
@@ -101,10 +117,14 @@ jobs:
       actions: read
     steps:
       - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          # Same rationale as the gate job above: read-only scan, so the
+          # checkout credential is dropped rather than persisted.
+          persist-credentials: false
 
       - name: HOL AI Plugin Scanner (marketplace root)
         id: scan
-        uses: hashgraph-online/ai-plugin-scanner-action@b5ded48595ed489e35f2b92f7fb32e3b16960417 # v1.2.265
+        uses: hashgraph-online/ai-plugin-scanner-action@caba2e96aa8ad2feb6cf6fca52442b52e22e779f # v1.2.635
         with:
           plugin_dir: "."
           mode: scan
