@@ -16,7 +16,7 @@ The `package.json` defines all build, validation, and generation commands.
 
 ### Validation Gates (run via `npm run validate`)
 
-These <!-- count:global:gates -->26<!-- /count --> `validate:*` gates run sequentially in CI and must all pass, in the order `npm run validate` invokes them (the table also lists `manifest:check`, which runs in the same sequence but is not a `validate:*` script):
+These <!-- count:global:gates -->27<!-- /count --> `validate:*` gates run sequentially in CI and must all pass, in the order `npm run validate` invokes them (the table also lists `manifest:check`, which runs in the same sequence but is not a `validate:*` script):
 
 | # | Script | Command | Purpose |
 |---|--------|---------|---------|

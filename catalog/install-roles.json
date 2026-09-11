@@ -1112,10 +1112,16 @@
     },
     "kubernetes-network-engineer": {
       "label": "Kubernetes Network Engineer",
-      "description": "Cluster network architecture and policy: CNI selection and dataplane (kube-proxy mode, IPAM, Pod and Service CIDR sizing, MTU, encapsulation, dual-stack), Service surface (EndpointSlices, internalTrafficPolicy, externalTrafficPolicy, topology-aware routing), Ingress to Gateway API migration, CoreDNS and NodeLocal DNSCache, multi-cluster topology (ClusterMesh, Submariner, MCS-API), egress topology and connectivity troubleshooting, plus Cilium NetworkPolicy and CiliumClusterwideNetworkPolicy review, CiliumEgressGatewayPolicy, Hubble flow observability, and Istio mesh in both sidecar and ambient modes including the L7-AuthorizationPolicy-without-waypoint trap.",
+      "description": "Cluster network architecture and policy: CNI and dataplane design, Service and Gateway API traffic, DNS, multi-cluster and egress topology, Cilium policy and observability, plus evidence-bounded Istio ambient, authorization, traffic resilience, Gateway API, upgrade, and dataplane review with separately guarded live mesh-policy changes.",
       "agents": [
         "cilium-network-policy-review-agent",
         "istio-ambient-mesh-review-agent",
+        "istio-authorization-policy-review-agent",
+        "istio-dataplane-diagnostics-agent",
+        "istio-gateway-api-review-agent",
+        "istio-maestro-agent",
+        "istio-traffic-resilience-review-agent",
+        "istio-upgrade-readiness-agent",
         "kubernetes-live-mesh-policy-guard-agent",
         "kubernetes-live-network-architecture-mutation-guard-agent",
         "kubernetes-live-network-policy-guard-agent",
@@ -1125,6 +1131,13 @@
       "skills": [
         "cilium-network-policy-review",
         "istio-ambient-mesh-review",
+        "istio-authorization-policy-review",
+        "istio-dataplane-diagnostics",
+        "istio-gateway-api-review",
+        "istio-live-policy-change",
+        "istio-review-routing",
+        "istio-traffic-resilience-review",
+        "istio-upgrade-readiness",
         "kubernetes-live-network-architecture-mutation-guard",
         "kubernetes-maestro",
         "kubernetes-network-architecture-review"

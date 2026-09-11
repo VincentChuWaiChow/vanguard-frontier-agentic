@@ -1,0 +1,17 @@
+{
+  "case_id": "UPGRADE-02B",
+  "skill_id": "istio-upgrade-readiness",
+  "prompt": "These synthetic versions are within a numeric relationship; are they currently supported and secure?",
+  "execution_context": {
+    "tier": "static-review",
+    "live_adapter_authorized": false,
+    "network_authorized": false,
+    "environment_note": "Synthetic fixture; no real cluster, current release support or actual observations are asserted. Evaluate the stated distinction and preserve all missing context."
+  },
+  "supplied_evidence": {
+    "control_plane": "1.20.0",
+    "data_plane": "1.19.0",
+    "release_support_evidence": null,
+    "security_advisory_review": null
+  }
+}

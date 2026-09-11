@@ -1,6 +1,6 @@
 # Agents
 
-Role definitions for repeatable review, architecture, operations, and bounded execution work. **<!-- count:global:agents -->729<!-- /count --> enterprise-grade, audit-ready agents** organized in a three-layer ecosystem: maestro routers, domain specialists, and cross-functional protocols.
+Role definitions for repeatable review, architecture, operations, and bounded execution work. **<!-- count:global:agents -->735<!-- /count --> enterprise-grade, audit-ready agents** organized in a three-layer ecosystem: maestro routers, domain specialists, and cross-functional protocols.
 
 ## Three-layer agentic architecture
 
@@ -65,7 +65,7 @@ Vanguard Frontier's cloud agent portfolios are organized by execution tier: advi
 | ☸️ Kubernetes | active | <!-- count:board:kubernetes:agents -->16<!-- /count --> | RBAC, workload identity, PSA, live-guards, maestro |
 | 🟩 Terraform | active | <!-- count:board:terraform:agents -->9<!-- /count --> | generic IaC review |
 | 💰 Multi-cloud | limited | <!-- count:board:multi-cloud:agents -->3<!-- /count --> | FinOps cross-cloud price advisor |
-| CNCF ecosystem | active | <!-- count:board:kyverno+argocd+istio+cilium+opentelemetry+prometheus+falco+sigstore+cert-manager+fluxcd+backstage:agents -->12<!-- /count --> | Kyverno, Argo CD, Istio, Cilium, OTEL, Prometheus, Falco, Sigstore, cert-manager, FluxCD, Backstage. Velero ships skills only — no agents — so it is not counted here |
+| CNCF ecosystem | active | <!-- count:board:kyverno+argocd+istio+cilium+opentelemetry+prometheus+falco+sigstore+cert-manager+fluxcd+backstage:agents -->18<!-- /count --> | Kyverno, Argo CD, Istio, Cilium, OTEL, Prometheus, Falco, Sigstore, cert-manager, FluxCD, Backstage. Velero ships skills only — no agents — so it is not counted here |
 
 ## Agent tiers
 

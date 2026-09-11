@@ -1,0 +1,5 @@
+interface:
+  display_name: Istio Authorization Policy Review
+  short_description: Review combined mesh access and authentication policies.
+  default_prompt: Use $istio-authorization-policy-review to review the supplied evidence
+    within its stated scope. Report unknowns and do not perform live operations.

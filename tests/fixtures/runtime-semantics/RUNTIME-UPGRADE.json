@@ -1,0 +1,34 @@
+{
+  "id": "RUNTIME-UPGRADE",
+  "title": "Pinned source/target transition and rollback",
+  "status": "not-run",
+  "required_authorization": "Separate explicit environment and experiment authorization; no automated provisioning is included",
+  "preconditions": [
+    "Explicit supported source/target binaries/images/CRDs",
+    "Disposable topology with no shared production resources"
+  ],
+  "procedure": [
+    "Verify component inventory and installation-specific dependency order",
+    "Test staged rollout and data-plane convergence",
+    "Test shared CRD/extension effects and separately approved rollback limits"
+  ],
+  "acceptance": [
+    "Numeric skew does not replace lifecycle/support and actual operation evidence"
+  ],
+  "capture": [
+    "Pinned versions/digests",
+    "Target identities and timestamps",
+    "Sanitized before/after objects",
+    "Positive and negative traffic results",
+    "Path/enforcement correlation",
+    "Residual risk and cleanup evidence"
+  ],
+  "stop_conditions": [
+    "Unexpected external destination",
+    "Unknown target identity",
+    "Unapproved scope change",
+    "Loss of observability",
+    "Unresolved critical acceptance failure"
+  ],
+  "cleanup": "Use only separately approved ownership-aware cleanup. Verify teardown without deleting unrelated resources."
+}

@@ -1,0 +1,5 @@
+interface:
+  display_name: Istio Review Routing
+  short_description: Route Istio reviews without hiding blockers or unknowns.
+  default_prompt: Use $istio-review-routing to review the supplied evidence within
+    its stated scope. Report unknowns and do not perform live operations.

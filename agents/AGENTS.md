@@ -1,6 +1,6 @@
 # AGENTS.md — Navigation Compass
 
-<!-- count:global:agents -->729<!-- /count --> agents across <!-- count:global:providers -->45<!-- /count --> providers. This file is the index; load provider files on demand.
+<!-- count:global:agents -->735<!-- /count --> agents across <!-- count:global:providers -->45<!-- /count --> providers. This file is the index; load provider files on demand.
 
 ## File structure
 
@@ -284,7 +284,7 @@ Live-guard agents refuse to proceed without: target confirmation (cluster/accoun
 
 ---
 
-## 🕸️ Istio — <!-- count:dir:istio:agents -->1<!-- /count --> agents → [`agents/istio/README.md`](istio/README.md)
+## 🕸️ Istio — <!-- count:dir:istio:agents -->7<!-- /count --> agents → [`agents/istio/README.md`](istio/README.md)
 
 | Agent | Tier | Load when |
 |---|---|---|

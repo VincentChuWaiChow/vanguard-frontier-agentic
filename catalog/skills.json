@@ -10285,22 +10285,227 @@
       "kiro",
       "other"
     ],
-    "summary": "Review Istio service mesh configuration across both sidecar mode and ambient mode (ztunnel + waypoint), with focus on the ambient L7 policy trap, PeerAuthentication mTLS posture, AuthorizationPolicy enforcement layer, and mesh-wide blast radius.",
+    "summary": "Review Istio ambient enrollment, ztunnel versus waypoint enforcement, mixed sidecar/ambient paths and migration boundaries from rendered manifests and supplied sanitized evidence. Use for missing waypoints, L7 policies on ztunnel, identity changes across waypoints, ingress bypass questions, namespace enrollment claims or sidecar-to-ambient transitions. Do not collect live evidence or mutate a cluster.",
     "source_type": "original",
     "official_docs": [
-      "https://istio.io/latest/docs/",
-      "https://istio.io/latest/docs/ambient/overview/",
       "https://istio.io/latest/docs/ambient/usage/l4-policy/",
       "https://istio.io/latest/docs/ambient/usage/waypoint/",
-      "https://istio.io/latest/docs/overview/dataplane-modes/",
       "https://istio.io/latest/docs/reference/config/security/peer_authentication/",
-      "https://istio.io/latest/docs/reference/config/security/authorization-policy/"
+      "https://istio.io/latest/docs/ambient/migrate/migrate-policies/",
+      "https://istio.io/latest/docs/ops/best-practices/security/"
     ],
-    "security_notes": "L7 AuthorizationPolicy rules in ambient mode are silently ignored when no waypoint is deployed — ztunnel only enforces L4. PeerAuthentication PERMISSIVE or DISABLE in production breaks mesh zero-trust. Mesh-wide root-namespace PeerAuthentication change has cluster-wide blast radius.",
-    "last_verified": "2026-05-01",
+    "security_notes": "Static review only. Resolve the actual traffic path and enforcement point before judging L7 behavior; never infer live state or collect cluster evidence.",
+    "last_verified": "2026-09-08",
     "path": "skills/istio/istio-ambient-mesh-review",
     "author": "github: VincentChuWaiChow",
-    "version": "0.1.0"
+    "version": "0.2.0",
+    "execution_tier": "static-review",
+    "lifecycle": "beta"
+  },
+  {
+    "id": "istio-authorization-policy-review",
+    "name": "Istio Authorization Policy Review",
+    "type": "skill",
+    "provider": "istio",
+    "harnesses": [
+      "codex",
+      "claude-code",
+      "cursor",
+      "gemini",
+      "kiro",
+      "other"
+    ],
+    "summary": "Review Istio AuthorizationPolicy, PeerAuthentication and RequestAuthentication together against intended access. Use for default-deny design, overlapping CUSTOM/DENY/ALLOW policies, empty rules, JWT requirements, wildcard principals, L7-on-TCP risks, policy targetRefs, trust identity or authorization regressions. Review supplied evidence only; separate policy semantics from observed enforcement and do not apply changes.",
+    "source_type": "original",
+    "official_docs": [
+      "https://istio.io/latest/docs/reference/config/security/authorization-policy/",
+      "https://istio.io/latest/docs/reference/config/security/request_authentication/",
+      "https://istio.io/latest/docs/reference/config/security/peer_authentication/",
+      "https://istio.io/latest/docs/ambient/usage/l4-policy/",
+      "https://istio.io/latest/docs/ops/best-practices/security/"
+    ],
+    "security_notes": "Static review only. Evaluate the complete applicable policy set and keep missing rules, an empty rules list, and an empty matching rule distinct.",
+    "last_verified": "2026-09-08",
+    "path": "skills/istio/istio-authorization-policy-review",
+    "version": "0.1.0",
+    "execution_tier": "static-review",
+    "lifecycle": "beta",
+    "author": "github: VincentChuWaiChow"
+  },
+  {
+    "id": "istio-dataplane-diagnostics",
+    "name": "Istio Dataplane Diagnostics",
+    "type": "skill",
+    "provider": "istio",
+    "harnesses": [
+      "codex",
+      "claude-code",
+      "cursor",
+      "gemini",
+      "kiro",
+      "other"
+    ],
+    "summary": "Diagnose Istio connectivity, 403/404/503 responses, TLS, DNS, route propagation, injection/enrollment, ztunnel or waypoint failures using supplied logs, status, manifests and metrics. Use for incidents and ambiguous proxy-versus-application failures. Produce a bounded hypothesis ledger and evidence requests, not speculative fixes. Do not collect live logs, execute into pods, enable debug logging or run network probes without a separate authorized operator.",
+    "source_type": "original",
+    "official_docs": [
+      "https://istio.io/latest/docs/ops/common-problems/network-issues/",
+      "https://istio.io/latest/docs/ops/diagnostic-tools/istioctl-analyze/",
+      "https://istio.io/latest/docs/ambient/usage/l4-policy/",
+      "https://gateway-api.sigs.k8s.io/docs/concepts/troubleshooting/",
+      "https://istio.io/latest/docs/ops/best-practices/security/"
+    ],
+    "security_notes": "Static review only. Do not collect live logs or run probes; file analysis is offline only when the authorized runner explicitly disables Kubernetes access.",
+    "last_verified": "2026-09-08",
+    "path": "skills/istio/istio-dataplane-diagnostics",
+    "version": "0.1.0",
+    "execution_tier": "static-review",
+    "lifecycle": "beta",
+    "author": "github: VincentChuWaiChow"
+  },
+  {
+    "id": "istio-gateway-api-review",
+    "name": "Istio Gateway API Review",
+    "type": "skill",
+    "provider": "istio",
+    "harnesses": [
+      "codex",
+      "claude-code",
+      "cursor",
+      "gemini",
+      "kiro",
+      "other"
+    ],
+    "summary": "Review Istio ingress or waypoint routing that uses Kubernetes Gateway API GatewayClass, Gateway, HTTPRoute, GRPCRoute and ReferenceGrant resources, and distinguish them from Istio networking Gateways. Use for unaccepted routes, stale conditions, cross-namespace backends/certificates, missing listeners, TLS/hostname mismatches or Service-attached mesh routes. Consume supplied manifests/status only; do not change Gateways or fetch Secrets.",
+    "source_type": "original",
+    "official_docs": [
+      "https://gateway-api.sigs.k8s.io/docs/concepts/troubleshooting/",
+      "https://gateway-api.sigs.k8s.io/reference/api-types/referencegrant/",
+      "https://gateway-api.sigs.k8s.io/guides/api-design/",
+      "https://istio.io/latest/docs/ambient/migrate/migrate-policies/",
+      "https://istio.io/latest/docs/ambient/usage/waypoint/"
+    ],
+    "security_notes": "Static review only. Do not fetch Secrets or infer current traffic behavior from a status condition without controller, parent, and generation evidence.",
+    "last_verified": "2026-09-08",
+    "path": "skills/istio/istio-gateway-api-review",
+    "version": "0.1.0",
+    "execution_tier": "static-review",
+    "lifecycle": "beta",
+    "author": "github: VincentChuWaiChow"
+  },
+  {
+    "id": "istio-live-policy-change",
+    "name": "Istio Live Policy Change",
+    "type": "skill",
+    "provider": "kubernetes",
+    "harnesses": [
+      "codex",
+      "claude-code",
+      "cursor",
+      "gemini",
+      "kiro",
+      "other"
+    ],
+    "summary": "Support the existing kubernetes-live-mesh-policy-guard-agent for an explicitly requested, independently approved Istio policy change. Use only after review and exact target/delta confirmation. Verify authorization, context, baseline, artifact hashes, permitted resources, rollback and post-change tests; stop on missing approval or drift. Without an authorized execution adapter, produce a handoff only. This skill does not grant Kubernetes access.",
+    "source_type": "original",
+    "official_docs": [
+      "https://raw.githubusercontent.com/VincentChuWaiChow/vanguard-frontier-agentic/master/CLAUDE.md",
+      "https://istio.io/latest/docs/reference/config/security/peer_authentication/",
+      "https://istio.io/latest/docs/reference/config/security/authorization-policy/",
+      "https://istio.io/latest/docs/ops/diagnostic-tools/istioctl-analyze/"
+    ],
+    "security_notes": "This companion does not grant Kubernetes access. It remains plan-only without an independently approved, digest-bound change and the existing authorized live guard.",
+    "last_verified": "2026-09-08",
+    "path": "skills/istio/istio-live-policy-change",
+    "version": "0.1.0",
+    "execution_tier": "mutating-runtime",
+    "lifecycle": "beta",
+    "author": "github: VincentChuWaiChow"
+  },
+  {
+    "id": "istio-review-routing",
+    "name": "Istio Review Routing",
+    "type": "skill",
+    "provider": "istio",
+    "harnesses": [
+      "codex",
+      "claude-code",
+      "cursor",
+      "gemini",
+      "kiro",
+      "other"
+    ],
+    "summary": "Coordinate an Istio review across ambient enrollment, authorization, traffic resilience, Gateway API, upgrades and diagnostics. Use for multi-domain requests or when review ownership is unclear. Select only necessary specialist companions, pass bounded sanitized evidence and reconcile conflicting findings. Return a handoff for all live changes; never auto-dispatch a live guard, manufacture approval or average away a blocker.",
+    "source_type": "original",
+    "official_docs": [
+      "https://raw.githubusercontent.com/VincentChuWaiChow/vanguard-frontier-agentic/master/CLAUDE.md"
+    ],
+    "security_notes": "Static routing only. Preserve blockers and unknowns, minimize disclosure between specialists, and never auto-dispatch the live mesh guard.",
+    "last_verified": "2026-09-08",
+    "path": "skills/istio/istio-review-routing",
+    "version": "0.1.0",
+    "execution_tier": "static-review",
+    "lifecycle": "beta",
+    "author": "github: VincentChuWaiChow"
+  },
+  {
+    "id": "istio-traffic-resilience-review",
+    "name": "Istio Traffic Resilience Review",
+    "type": "skill",
+    "provider": "istio",
+    "harnesses": [
+      "codex",
+      "claude-code",
+      "cursor",
+      "gemini",
+      "kiro",
+      "other"
+    ],
+    "summary": "Review Istio VirtualService and DestinationRule or supplied Gateway API traffic intent for routing, weights, timeouts, retries, outlier detection, circuit-breaking, mirroring and fault injection. Use for canaries, retry storms, unexplained routing, write-side-effect risks or resilience changes. Evaluate target version and mesh mode before applying a rule. Do not inject faults, mirror traffic, probe services or change live configuration.",
+    "source_type": "original",
+    "official_docs": [
+      "https://istio.io/latest/docs/reference/config/networking/virtual-service/",
+      "https://istio.io/latest/docs/tasks/traffic-management/mirroring/",
+      "https://istio.io/latest/docs/ambient/migrate/migrate-policies/",
+      "https://istio.io/latest/docs/ops/common-problems/network-issues/",
+      "https://istio.io/latest/docs/ambient/usage/waypoint/"
+    ],
+    "security_notes": "Static review only. Treat weights as relative proportions and never run fault injection, traffic mirroring, probes, or live configuration changes.",
+    "last_verified": "2026-09-08",
+    "path": "skills/istio/istio-traffic-resilience-review",
+    "version": "0.1.0",
+    "execution_tier": "static-review",
+    "lifecycle": "beta",
+    "author": "github: VincentChuWaiChow"
+  },
+  {
+    "id": "istio-upgrade-readiness",
+    "name": "Istio Upgrade Readiness",
+    "type": "skill",
+    "provider": "istio",
+    "harnesses": [
+      "codex",
+      "claude-code",
+      "cursor",
+      "gemini",
+      "kiro",
+      "other"
+    ],
+    "summary": "Assess an Istio source-to-target upgrade or downgrade using supplied inventory, installation configuration, release documentation and test evidence. Use for control/data-plane skew, canary revisions, Helm or istioctl transitions, CRD storage changes, extension compatibility, ambient components or rollback readiness. Produce a dependency plan and blockers; do not install, upgrade, restart, delete or assume the latest release.",
+    "source_type": "original",
+    "official_docs": [
+      "https://istio.io/latest/docs/releases/supported-releases/",
+      "https://istio.io/latest/docs/setup/upgrade/helm/",
+      "https://istio.io/latest/docs/setup/upgrade/in-place/",
+      "https://kubernetes.io/docs/tasks/extend-kubernetes/custom-resources/custom-resource-definition-versioning/",
+      "https://istio.io/latest/docs/ambient/migrate/migrate-policies/"
+    ],
+    "security_notes": "Static review only. Never assume latest-version support or execute an upgrade; require source-to-target, installation-method, skew, CRD, and rollback evidence.",
+    "last_verified": "2026-09-08",
+    "path": "skills/istio/istio-upgrade-readiness",
+    "version": "0.1.0",
+    "execution_tier": "static-review",
+    "lifecycle": "beta",
+    "author": "github: VincentChuWaiChow"
   },
   {
     "id": "java-application-server-exit",

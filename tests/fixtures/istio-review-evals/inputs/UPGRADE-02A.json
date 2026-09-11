@@ -1,0 +1,23 @@
+{
+  "case_id": "UPGRADE-02A",
+  "skill_id": "istio-upgrade-readiness",
+  "prompt": "Compare these two synthetic version pairs without certifying support.",
+  "execution_context": {
+    "tier": "static-review",
+    "live_adapter_authorized": false,
+    "network_authorized": false,
+    "environment_note": "Synthetic fixture; no real cluster, current release support or actual observations are asserted. Evaluate the stated distinction and preserve all missing context."
+  },
+  "supplied_evidence": {
+    "pairs": [
+      {
+        "control_plane": "1.30.3",
+        "data_plane": "1.29.5"
+      },
+      {
+        "control_plane": "1.29.5",
+        "data_plane": "1.30.3"
+      }
+    ]
+  }
+}

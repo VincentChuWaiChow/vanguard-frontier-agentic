@@ -1,0 +1,14 @@
+{
+  "case_id": "DIAG-02",
+  "skill_id": "istio-dataplane-diagnostics",
+  "prompt": "Our inventory returned Forbidden. Are there no AuthorizationPolicies?",
+  "execution_context": {
+    "tier": "static-review",
+    "live_adapter_authorized": false,
+    "network_authorized": false,
+    "environment_note": "Synthetic fixture; no real cluster, current release support or actual observations are asserted. Evaluate the stated distinction and preserve all missing context."
+  },
+  "supplied_evidence": {
+    "command_output": "Error from server (Forbidden): authorizationpolicies.security.istio.io is forbidden"
+  }
+}

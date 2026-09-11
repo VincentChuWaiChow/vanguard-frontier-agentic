@@ -1,0 +1,22 @@
+{
+  "case_id": "GATEWAY-03",
+  "skill_id": "istio-gateway-api-review",
+  "prompt": "Is the current route accepted?",
+  "execution_context": {
+    "tier": "static-review",
+    "live_adapter_authorized": false,
+    "network_authorized": false,
+    "environment_note": "Synthetic fixture; no real cluster, current release support or actual observations are asserted. Evaluate the stated distinction and preserve all missing context."
+  },
+  "supplied_evidence": {
+    "metadata": {
+      "generation": 12
+    },
+    "condition": {
+      "type": "Accepted",
+      "status": "True",
+      "observedGeneration": 11
+    },
+    "parent_controller_match": true
+  }
+}

@@ -33,16 +33,16 @@
   "trees": [
     {
       "tree": "agents",
-      "aggregate_sha256": "9d849abfcae4914a8667e386c4ee9d7cba385b358b3f540291172275c5425083",
+      "aggregate_sha256": "033ee71cc08f860374da820b76dfa53388b0981bb764590e30e70d8998a113b7",
       "files": [
         {
           "path": "agents/AGENTS.md",
-          "sha256": "36ed742c8b2b757b3d237f69e9322bf7eb43bba1e687df6c807ccb77d75dfff5",
+          "sha256": "6ec490e82c84073a9fdd0067277672a100173ce8c7506852755427398c0772e8",
           "bytes": 28065
         },
         {
           "path": "agents/README.md",
-          "sha256": "ecf0459a215ae5062b900dd6ce852d55f3eae87b21b9c3e884ed3968222ffe39",
+          "sha256": "cf8c91312f03a67a2db7a9349cb0fa1b0534927129b35aae196c3ef5cfd1d0b6",
           "bytes": 10047
         },
         {
@@ -17297,53 +17297,323 @@
         },
         {
           "path": "agents/istio/README.md",
-          "sha256": "fbf4d15b125915cfc920f11dc2ab89b1ccbeb45dbcf675af35046dc69b0ca63b",
-          "bytes": 2146
+          "sha256": "bbd1ff82d8116dd8ed903471f58d1f3941c6217719d944c087714b64c61f69eb",
+          "bytes": 3128
         },
         {
           "path": "agents/istio/istio-ambient-mesh-review-agent/AGENT.md",
-          "sha256": "c5f11965d144d7d4327a3e27562c8d8cb56a3d21f90af49ddc3d3bd1dbd86003",
-          "bytes": 2581
+          "sha256": "d9048839bd915499a682d116c0df63afd336c7564faab064d411ae2710aa0a6d",
+          "bytes": 2363
         },
         {
           "path": "agents/istio/istio-ambient-mesh-review-agent/harnesses/claude-code.agent.md",
-          "sha256": "808fe5e50840a52330d2357d4d8ef02928767b6567989399fd32d05a659ff2f4",
-          "bytes": 1946
+          "sha256": "b02d5d4cdb7003c233f14419ab514db3029b8c2453d9718ee58d919fbadd13d0",
+          "bytes": 2214
         },
         {
           "path": "agents/istio/istio-ambient-mesh-review-agent/harnesses/codex.toml",
-          "sha256": "df780bdc8bd86e005ffc0944041b088e99a9cf362cf1f295bda5eac91d49e174",
-          "bytes": 1922
+          "sha256": "ca8691578936ca078c49ad88234adcbc7fb6798e896ef76f031bcbe3872e25d2",
+          "bytes": 2465
         },
         {
           "path": "agents/istio/istio-ambient-mesh-review-agent/harnesses/copilot.agent.md",
-          "sha256": "808fe5e50840a52330d2357d4d8ef02928767b6567989399fd32d05a659ff2f4",
-          "bytes": 1946
+          "sha256": "66f818e42dc222b35cdf31e6505a519cde66f2af091921dc4b5afa83ab96c922",
+          "bytes": 2320
         },
         {
           "path": "agents/istio/istio-ambient-mesh-review-agent/harnesses/cursor.agent.md",
-          "sha256": "808fe5e50840a52330d2357d4d8ef02928767b6567989399fd32d05a659ff2f4",
-          "bytes": 1946
+          "sha256": "b02d5d4cdb7003c233f14419ab514db3029b8c2453d9718ee58d919fbadd13d0",
+          "bytes": 2214
         },
         {
           "path": "agents/istio/istio-ambient-mesh-review-agent/harnesses/gemini.agent.md",
-          "sha256": "808fe5e50840a52330d2357d4d8ef02928767b6567989399fd32d05a659ff2f4",
-          "bytes": 1946
+          "sha256": "b02d5d4cdb7003c233f14419ab514db3029b8c2453d9718ee58d919fbadd13d0",
+          "bytes": 2214
         },
         {
           "path": "agents/istio/istio-ambient-mesh-review-agent/harnesses/kiro-cli.agent.json",
-          "sha256": "1c85e55a1402a9511e93a9cfdfefb2ee0863c779a5720899eab91a3be4341f65",
-          "bytes": 1997
+          "sha256": "27b9de309e5efb3f39d3b1fe0074aa3ec75a66c8d52e4f39d45791c5af8632a2",
+          "bytes": 2265
         },
         {
           "path": "agents/istio/istio-ambient-mesh-review-agent/harnesses/kiro-ide.agent.md",
-          "sha256": "808fe5e50840a52330d2357d4d8ef02928767b6567989399fd32d05a659ff2f4",
-          "bytes": 1946
+          "sha256": "b02d5d4cdb7003c233f14419ab514db3029b8c2453d9718ee58d919fbadd13d0",
+          "bytes": 2214
         },
         {
           "path": "agents/istio/istio-ambient-mesh-review-agent/metadata.json",
-          "sha256": "be014a31465ce7191cf3b113302924717d394a2a938b380cfd9bd31a167a69da",
-          "bytes": 1921
+          "sha256": "f873a765ee4733f701eb7ef6255a91da9db8a63d1faee357ddb11a6ea5a751cd",
+          "bytes": 2332
+        },
+        {
+          "path": "agents/istio/istio-authorization-policy-review-agent/AGENT.md",
+          "sha256": "10b8f9e6f1d299e3bdf3f2c34fc60b159e26755b4f2a353e7d5d2d50f9bf20ae",
+          "bytes": 2407
+        },
+        {
+          "path": "agents/istio/istio-authorization-policy-review-agent/harnesses/claude-code.agent.md",
+          "sha256": "8dccdb7f97302ae1d7b040f7bdbea8c980091ed03910fee02049fc17040f40f9",
+          "bytes": 2285
+        },
+        {
+          "path": "agents/istio/istio-authorization-policy-review-agent/harnesses/codex.toml",
+          "sha256": "48a270737b6a0748aacbd61ad98c6597daf07878fe1157a53d2146a66afd7ebb",
+          "bytes": 2544
+        },
+        {
+          "path": "agents/istio/istio-authorization-policy-review-agent/harnesses/copilot.agent.md",
+          "sha256": "e087d5ef5f74b9f48ce086b7209cda294df7ac617d9f9f758e1522e304c8c5e8",
+          "bytes": 2391
+        },
+        {
+          "path": "agents/istio/istio-authorization-policy-review-agent/harnesses/cursor.agent.md",
+          "sha256": "8dccdb7f97302ae1d7b040f7bdbea8c980091ed03910fee02049fc17040f40f9",
+          "bytes": 2285
+        },
+        {
+          "path": "agents/istio/istio-authorization-policy-review-agent/harnesses/gemini.agent.md",
+          "sha256": "8dccdb7f97302ae1d7b040f7bdbea8c980091ed03910fee02049fc17040f40f9",
+          "bytes": 2285
+        },
+        {
+          "path": "agents/istio/istio-authorization-policy-review-agent/harnesses/kiro-cli.agent.json",
+          "sha256": "cc053b35d57e4f543cc67fd5c0ef6f6751c95b1bfd91af39b5dc8ae231d19bf7",
+          "bytes": 2336
+        },
+        {
+          "path": "agents/istio/istio-authorization-policy-review-agent/harnesses/kiro-ide.agent.md",
+          "sha256": "8dccdb7f97302ae1d7b040f7bdbea8c980091ed03910fee02049fc17040f40f9",
+          "bytes": 2285
+        },
+        {
+          "path": "agents/istio/istio-authorization-policy-review-agent/metadata.json",
+          "sha256": "c24e95568a9c34750b772f4773726836d592888711cc0f8b25ecb85a22250e8d",
+          "bytes": 2503
+        },
+        {
+          "path": "agents/istio/istio-dataplane-diagnostics-agent/AGENT.md",
+          "sha256": "4c8f590e8383d10d8918602b9ac4f54c36da7cc12fd57e727c951d40f4fe7f3a",
+          "bytes": 2388
+        },
+        {
+          "path": "agents/istio/istio-dataplane-diagnostics-agent/harnesses/claude-code.agent.md",
+          "sha256": "e7dfb87ad6bdb1cf5ec91b21b30176d16cab58296ba092c6e6b821d4093028b7",
+          "bytes": 2297
+        },
+        {
+          "path": "agents/istio/istio-dataplane-diagnostics-agent/harnesses/codex.toml",
+          "sha256": "94fb34abc1582274d9460891991f013b2cef92f0ed39dd589d08b0f812fb0cdf",
+          "bytes": 2550
+        },
+        {
+          "path": "agents/istio/istio-dataplane-diagnostics-agent/harnesses/copilot.agent.md",
+          "sha256": "f225ac2662c361098be8e907f3a9a475e24c8408bb22af676f883e9faedcabb1",
+          "bytes": 2403
+        },
+        {
+          "path": "agents/istio/istio-dataplane-diagnostics-agent/harnesses/cursor.agent.md",
+          "sha256": "e7dfb87ad6bdb1cf5ec91b21b30176d16cab58296ba092c6e6b821d4093028b7",
+          "bytes": 2297
+        },
+        {
+          "path": "agents/istio/istio-dataplane-diagnostics-agent/harnesses/gemini.agent.md",
+          "sha256": "e7dfb87ad6bdb1cf5ec91b21b30176d16cab58296ba092c6e6b821d4093028b7",
+          "bytes": 2297
+        },
+        {
+          "path": "agents/istio/istio-dataplane-diagnostics-agent/harnesses/kiro-cli.agent.json",
+          "sha256": "f935fa25ca59f63c287c2bf0c2e1b1a7a8b5cb0e991817680f5619a2b573d466",
+          "bytes": 2348
+        },
+        {
+          "path": "agents/istio/istio-dataplane-diagnostics-agent/harnesses/kiro-ide.agent.md",
+          "sha256": "e7dfb87ad6bdb1cf5ec91b21b30176d16cab58296ba092c6e6b821d4093028b7",
+          "bytes": 2297
+        },
+        {
+          "path": "agents/istio/istio-dataplane-diagnostics-agent/metadata.json",
+          "sha256": "240625b4514036e9be9b5715e984b38bd4c50d0780b63372d18b3fc675122c2d",
+          "bytes": 2409
+        },
+        {
+          "path": "agents/istio/istio-gateway-api-review-agent/AGENT.md",
+          "sha256": "418e162f8fff42aeb785c61df85fecc858c505b5d8591d8a376614f519066c4b",
+          "bytes": 2393
+        },
+        {
+          "path": "agents/istio/istio-gateway-api-review-agent/harnesses/claude-code.agent.md",
+          "sha256": "1a338dd6813223a372ccefaaef54727f25240f5098ff8ca9ecfe97ea37dfdbf3",
+          "bytes": 2280
+        },
+        {
+          "path": "agents/istio/istio-gateway-api-review-agent/harnesses/codex.toml",
+          "sha256": "343631b2e67286059a5427f9286487c9857244ed70d35a9888b179cfa46e8217",
+          "bytes": 2530
+        },
+        {
+          "path": "agents/istio/istio-gateway-api-review-agent/harnesses/copilot.agent.md",
+          "sha256": "66dc3c72a81c557e7e317cf5625b51e14abce8a73b95b09288a3af98c4230ddb",
+          "bytes": 2386
+        },
+        {
+          "path": "agents/istio/istio-gateway-api-review-agent/harnesses/cursor.agent.md",
+          "sha256": "1a338dd6813223a372ccefaaef54727f25240f5098ff8ca9ecfe97ea37dfdbf3",
+          "bytes": 2280
+        },
+        {
+          "path": "agents/istio/istio-gateway-api-review-agent/harnesses/gemini.agent.md",
+          "sha256": "1a338dd6813223a372ccefaaef54727f25240f5098ff8ca9ecfe97ea37dfdbf3",
+          "bytes": 2280
+        },
+        {
+          "path": "agents/istio/istio-gateway-api-review-agent/harnesses/kiro-cli.agent.json",
+          "sha256": "e00a14c9e1525d7c5e9d6a4bae76a5a54a0fc108bd879014e7c1d862245790dc",
+          "bytes": 2331
+        },
+        {
+          "path": "agents/istio/istio-gateway-api-review-agent/harnesses/kiro-ide.agent.md",
+          "sha256": "1a338dd6813223a372ccefaaef54727f25240f5098ff8ca9ecfe97ea37dfdbf3",
+          "bytes": 2280
+        },
+        {
+          "path": "agents/istio/istio-gateway-api-review-agent/metadata.json",
+          "sha256": "c84095804cef25111c77590b59671269657f372aedb214ab1f269f630a60e68e",
+          "bytes": 2360
+        },
+        {
+          "path": "agents/istio/istio-maestro-agent/AGENT.md",
+          "sha256": "3b45d00c69068b160f636f29ed8a19d17ed40af95d09348e7029530c4b684a0e",
+          "bytes": 2362
+        },
+        {
+          "path": "agents/istio/istio-maestro-agent/harnesses/claude-code.agent.md",
+          "sha256": "04c6b5464f6b61007d67ac66ec7f7e165a88df6844418633a6faf518db92a093",
+          "bytes": 2232
+        },
+        {
+          "path": "agents/istio/istio-maestro-agent/harnesses/codex.toml",
+          "sha256": "8856dcde5f4e01f53f59a0d0ba068cac45439bce9ed780811edf441842edb788",
+          "bytes": 2471
+        },
+        {
+          "path": "agents/istio/istio-maestro-agent/harnesses/copilot.agent.md",
+          "sha256": "9000edee46b7c4d858bb7db8337f307d3b85e68f2e65a19f7ea8873d6d8c7068",
+          "bytes": 2338
+        },
+        {
+          "path": "agents/istio/istio-maestro-agent/harnesses/cursor.agent.md",
+          "sha256": "04c6b5464f6b61007d67ac66ec7f7e165a88df6844418633a6faf518db92a093",
+          "bytes": 2232
+        },
+        {
+          "path": "agents/istio/istio-maestro-agent/harnesses/gemini.agent.md",
+          "sha256": "04c6b5464f6b61007d67ac66ec7f7e165a88df6844418633a6faf518db92a093",
+          "bytes": 2232
+        },
+        {
+          "path": "agents/istio/istio-maestro-agent/harnesses/kiro-cli.agent.json",
+          "sha256": "602527e6f5f0c1bdfa4de048b6438fd4ffdb801e36cd53ae5b52e2579000d8d0",
+          "bytes": 2283
+        },
+        {
+          "path": "agents/istio/istio-maestro-agent/harnesses/kiro-ide.agent.md",
+          "sha256": "04c6b5464f6b61007d67ac66ec7f7e165a88df6844418633a6faf518db92a093",
+          "bytes": 2232
+        },
+        {
+          "path": "agents/istio/istio-maestro-agent/metadata.json",
+          "sha256": "735d0a626d416e0cbe4c0347279d89c30d78c4cb3e715cb1a3d225978e94084f",
+          "bytes": 1989
+        },
+        {
+          "path": "agents/istio/istio-traffic-resilience-review-agent/AGENT.md",
+          "sha256": "1731bf032e4206e5f6f3e852e5aeea637a38aef9ab2a4a32e36fd538799bc307",
+          "bytes": 2407
+        },
+        {
+          "path": "agents/istio/istio-traffic-resilience-review-agent/harnesses/claude-code.agent.md",
+          "sha256": "f395745f2df230eb29a2d89a0c1d5149b2baf874f601d9b2761dad320fb2bd95",
+          "bytes": 2300
+        },
+        {
+          "path": "agents/istio/istio-traffic-resilience-review-agent/harnesses/codex.toml",
+          "sha256": "25eaa7e180849c7b9396d76da8434b393809e2d4b5506b7e25dea29c70cba58a",
+          "bytes": 2557
+        },
+        {
+          "path": "agents/istio/istio-traffic-resilience-review-agent/harnesses/copilot.agent.md",
+          "sha256": "4ce45aea8ff29ec02e8e5a4ca29a6a9ab734ab88cf191e3ac4d708b0cfd7bb6c",
+          "bytes": 2406
+        },
+        {
+          "path": "agents/istio/istio-traffic-resilience-review-agent/harnesses/cursor.agent.md",
+          "sha256": "f395745f2df230eb29a2d89a0c1d5149b2baf874f601d9b2761dad320fb2bd95",
+          "bytes": 2300
+        },
+        {
+          "path": "agents/istio/istio-traffic-resilience-review-agent/harnesses/gemini.agent.md",
+          "sha256": "f395745f2df230eb29a2d89a0c1d5149b2baf874f601d9b2761dad320fb2bd95",
+          "bytes": 2300
+        },
+        {
+          "path": "agents/istio/istio-traffic-resilience-review-agent/harnesses/kiro-cli.agent.json",
+          "sha256": "3fc209fefd4c8f752417437ac516d05561202b0588299d18266482a9d31a91fc",
+          "bytes": 2351
+        },
+        {
+          "path": "agents/istio/istio-traffic-resilience-review-agent/harnesses/kiro-ide.agent.md",
+          "sha256": "f395745f2df230eb29a2d89a0c1d5149b2baf874f601d9b2761dad320fb2bd95",
+          "bytes": 2300
+        },
+        {
+          "path": "agents/istio/istio-traffic-resilience-review-agent/metadata.json",
+          "sha256": "233c530db7ea66c671353832eccf780166147577e2e248b448c84929f73d96f3",
+          "bytes": 2480
+        },
+        {
+          "path": "agents/istio/istio-upgrade-readiness-agent/AGENT.md",
+          "sha256": "25bf744c086171452553f1a989d0ffedb5546b669fa1a48db17b551531f73f51",
+          "bytes": 2374
+        },
+        {
+          "path": "agents/istio/istio-upgrade-readiness-agent/harnesses/claude-code.agent.md",
+          "sha256": "2fda02c3164e49bfb727ef8079410b2cee907a5c197559d63aa47391255da391",
+          "bytes": 2247
+        },
+        {
+          "path": "agents/istio/istio-upgrade-readiness-agent/harnesses/codex.toml",
+          "sha256": "2a0696e29a66d62dd1046c1a30d9b8fad4ac598774db35ad3d9f7cac38a12461",
+          "bytes": 2496
+        },
+        {
+          "path": "agents/istio/istio-upgrade-readiness-agent/harnesses/copilot.agent.md",
+          "sha256": "6e7953c4eb230253cbc8b858c8fc323f875495ce154e2222430e8c5739cbefe8",
+          "bytes": 2353
+        },
+        {
+          "path": "agents/istio/istio-upgrade-readiness-agent/harnesses/cursor.agent.md",
+          "sha256": "2fda02c3164e49bfb727ef8079410b2cee907a5c197559d63aa47391255da391",
+          "bytes": 2247
+        },
+        {
+          "path": "agents/istio/istio-upgrade-readiness-agent/harnesses/gemini.agent.md",
+          "sha256": "2fda02c3164e49bfb727ef8079410b2cee907a5c197559d63aa47391255da391",
+          "bytes": 2247
+        },
+        {
+          "path": "agents/istio/istio-upgrade-readiness-agent/harnesses/kiro-cli.agent.json",
+          "sha256": "805b0ae71b4a45d95d7b109fe8bf0637913d725995a46b4d9c504df329b039a5",
+          "bytes": 2298
+        },
+        {
+          "path": "agents/istio/istio-upgrade-readiness-agent/harnesses/kiro-ide.agent.md",
+          "sha256": "2fda02c3164e49bfb727ef8079410b2cee907a5c197559d63aa47391255da391",
+          "bytes": 2247
+        },
+        {
+          "path": "agents/istio/istio-upgrade-readiness-agent/metadata.json",
+          "sha256": "d1af3c1db25fc18791b669bb9345017bf0cf79a66bb19a07fa2cdf244cdf6d04",
+          "bytes": 2398
         },
         {
           "path": "agents/java/README.md",
@@ -18967,48 +19237,48 @@
         },
         {
           "path": "agents/kubernetes/kubernetes-live-mesh-policy-guard-agent/AGENT.md",
-          "sha256": "79e1a94eb1e454a8db091c101422ebc41460248ac0b9bf6ee46bdd57b00841f2",
-          "bytes": 3973
+          "sha256": "5f0220e2139d1096bf6a9ef50f02f70a0c35167ba9499f7878b3e5d2097836f3",
+          "bytes": 3607
         },
         {
           "path": "agents/kubernetes/kubernetes-live-mesh-policy-guard-agent/harnesses/claude-code.agent.md",
-          "sha256": "ba06ed477c2efa87544eb46e173628ec9d08a9f3aea0fb38d64448537d642be0",
-          "bytes": 3249
+          "sha256": "faeaea02d0c4a48d9af7f65a434f0fb284c25e1f6609e50629c3aad773351995",
+          "bytes": 3510
         },
         {
           "path": "agents/kubernetes/kubernetes-live-mesh-policy-guard-agent/harnesses/codex.toml",
-          "sha256": "571709f4b1c9d17c470f3666f6a478b36dd8451c3110481abcdc524cc74757d2",
-          "bytes": 2340
+          "sha256": "adbbb59a83d8d48ed991962bb09fbc9e93ec093eec55455a701201fcaae95a8c",
+          "bytes": 3766
         },
         {
           "path": "agents/kubernetes/kubernetes-live-mesh-policy-guard-agent/harnesses/copilot.agent.md",
-          "sha256": "ba06ed477c2efa87544eb46e173628ec9d08a9f3aea0fb38d64448537d642be0",
-          "bytes": 3249
+          "sha256": "ad09cbf1a81e263abfce8bebd4022a2b0785b958160e0339a5e4a31236605eb4",
+          "bytes": 3727
         },
         {
           "path": "agents/kubernetes/kubernetes-live-mesh-policy-guard-agent/harnesses/cursor.agent.md",
-          "sha256": "ba06ed477c2efa87544eb46e173628ec9d08a9f3aea0fb38d64448537d642be0",
-          "bytes": 3249
+          "sha256": "faeaea02d0c4a48d9af7f65a434f0fb284c25e1f6609e50629c3aad773351995",
+          "bytes": 3510
         },
         {
           "path": "agents/kubernetes/kubernetes-live-mesh-policy-guard-agent/harnesses/gemini.agent.md",
-          "sha256": "ba06ed477c2efa87544eb46e173628ec9d08a9f3aea0fb38d64448537d642be0",
-          "bytes": 3249
+          "sha256": "faeaea02d0c4a48d9af7f65a434f0fb284c25e1f6609e50629c3aad773351995",
+          "bytes": 3510
         },
         {
           "path": "agents/kubernetes/kubernetes-live-mesh-policy-guard-agent/harnesses/kiro-cli.agent.json",
-          "sha256": "94b36b2299997aed2ba059076b5dc9c8fb7484d6c14368415204060444095892",
-          "bytes": 3252
+          "sha256": "0ea02454b432e3761e8074ad49d6ead937a4633d498d8fb991bd0b9c294764c5",
+          "bytes": 3570
         },
         {
           "path": "agents/kubernetes/kubernetes-live-mesh-policy-guard-agent/harnesses/kiro-ide.agent.md",
-          "sha256": "ba06ed477c2efa87544eb46e173628ec9d08a9f3aea0fb38d64448537d642be0",
-          "bytes": 3249
+          "sha256": "faeaea02d0c4a48d9af7f65a434f0fb284c25e1f6609e50629c3aad773351995",
+          "bytes": 3510
         },
         {
           "path": "agents/kubernetes/kubernetes-live-mesh-policy-guard-agent/metadata.json",
-          "sha256": "ae0fe41cf33e6e82b3a4c223a976024e7b50cd44d46971fa51b84103648eeabb",
-          "bytes": 2855
+          "sha256": "532a784a626eec1c6a6f525b086eca294af8abb0579faac774c280cd6a68a159",
+          "bytes": 2424
         },
         {
           "path": "agents/kubernetes/kubernetes-live-mesh-policy-guard-agent/references/least-privilege-rbac.yaml",
@@ -35081,7 +35351,7 @@
     },
     {
       "tree": "schemas",
-      "aggregate_sha256": "9de6666866d34f5189fa0c16414d325e451845f315bc257006d3f5dcaa93ad7b",
+      "aggregate_sha256": "ced57fe9f1092a83e78d87a74d6de3332c5a9b12fb3dc50c4d4531f1951d602c",
       "files": [
         {
           "path": "schemas/AGENTS.md",
@@ -35112,6 +35382,11 @@
           "path": "schemas/control-object.schema.json",
           "sha256": "c31675d68a8d7d6dc435a04d16aa58bacd013c067ccc4dbb73ba4914e082b2ac",
           "bytes": 6165
+        },
+        {
+          "path": "schemas/istio-review-contract.schema.json",
+          "sha256": "21284aa85c29b2b22f8c1e218b8e62dd500daaac68af082b6fc6d520941666b2",
+          "bytes": 5629
         },
         {
           "path": "schemas/mcp-reference.schema.json",
@@ -35152,7 +35427,7 @@
     },
     {
       "tree": "catalog",
-      "aggregate_sha256": "6423b1566126bfdb09a641ce2731501d3fd648fcdea16523e0d63499278ec471",
+      "aggregate_sha256": "848355aeb4089c3edf8cc4e8f53edb3fb7744519f8516b725637b1c8058f6663",
       "files": [
         {
           "path": "catalog/AGENTS.md",
@@ -35161,8 +35436,8 @@
         },
         {
           "path": "catalog/agents.json",
-          "sha256": "7b16b9a92c0178e136074f86febc78d5d82e5eff8e4b8e12385d1f22794f7e80",
-          "bytes": 1263006
+          "sha256": "8da5de8ff49ecbe2aff7ff6280d6d0805bf534c79af724150f55ba12f56a2e44",
+          "bytes": 1272211
         },
         {
           "path": "catalog/index.json",
@@ -35171,8 +35446,8 @@
         },
         {
           "path": "catalog/install-roles.json",
-          "sha256": "b15c5b0483b3d19811072eb0ead964c9546c7b8f1beda2dbc1e994270ca97cc8",
-          "bytes": 127662
+          "sha256": "57c19d54d1303a0a90762b4ef11943d2b28ca586b661ddc411264ddb00382849",
+          "bytes": 127859
         },
         {
           "path": "catalog/mcp-references.json",
@@ -35181,8 +35456,8 @@
         },
         {
           "path": "catalog/model-assignments.json",
-          "sha256": "b51df8c0b934f80edd139e21b40a921db2297240c433552f25bdba4f82a5130b",
-          "bytes": 695783
+          "sha256": "f432d666bd7d0f096a5e7acb7ef79c3b3419750ee1072894f362ef5e82425d27",
+          "bytes": 701366
         },
         {
           "path": "catalog/model-policy.json",
@@ -35201,13 +35476,13 @@
         },
         {
           "path": "catalog/skill-manifest.json",
-          "sha256": "174991cc814002ebba4ada6fd528bf3c31cc31cd4f00524e64ae80275a52edb8",
-          "bytes": 1067676
+          "sha256": "3dc2a9c277182085184aa9a755383720a3341f14425b5d5dbb3bd810e3411fe1",
+          "bytes": 1089450
         },
         {
           "path": "catalog/skills.json",
-          "sha256": "aafd213859d2d5f663ebcdb518583f857ca3df0269912bd3f88513767bce5e56",
-          "bytes": 1228976
+          "sha256": "527d97be216d244138a489959458f5634ce9e26f866ac32bd9ad100e84682a14",
+          "bytes": 1239464
         },
         {
           "path": "catalog/workflows.json",
@@ -35218,7 +35493,7 @@
     },
     {
       "tree": "scripts",
-      "aggregate_sha256": "6423fa25a8ccc7036e2b15de9fa5c574ebdce73ea08090e4866efbb03515d268",
+      "aggregate_sha256": "0384ae883ff075a4adb89f59db36ac9e9c651b64c9e4a528c3f894f96bf3f440",
       "files": [
         {
           "path": "scripts/apply-skill-allowed-tools.py",
@@ -35424,6 +35699,11 @@
           "path": "scripts/install-codex-home.mjs",
           "sha256": "eea7a7c423a28dc396d4fb8deed37e59c7eadd9d997317490fc13f9464d67d2d",
           "bytes": 3513
+        },
+        {
+          "path": "scripts/istio_evidence_facts.py",
+          "sha256": "b2472d40710b8464d8ddea1b27984ba8cbff8420a9f509d0aeebcc0254475f99",
+          "bytes": 16218
         },
         {
           "path": "scripts/kotlin_data/agents/00-kotlin-maestro-agent.json",
@@ -36069,7 +36349,7 @@
     },
     {
       "tree": "powers",
-      "aggregate_sha256": "05b7819fad8748a52907e7fae51a431f5dd29ba80e71ee466ff533591b70e0e5",
+      "aggregate_sha256": "941d6698246184f80654ed8fb86c36df556b6ab1b17e31775141005be382505a",
       "files": [
         {
           "path": "powers/README.md",
@@ -36183,8 +36463,8 @@
         },
         {
           "path": "powers/vanguard-istio/POWER.md",
-          "sha256": "3b10290cf934905222d85f5c534ace5824e2ba78e840f5656e229d4d2ab1d1c8",
-          "bytes": 2178
+          "sha256": "ac710c8b1b9a4469635b0ee60d47ee60796534ad8a9cdc80bf1ba96513f58582",
+          "bytes": 2475
         },
         {
           "path": "powers/vanguard-java/POWER.md",
@@ -36351,7 +36631,7 @@
     },
     {
       "tree": ".claude-plugin",
-      "aggregate_sha256": "2872deafa3e7bb2a6c1ca239c1d8071d264aaaa8a400873f013e898b5e29e6e3",
+      "aggregate_sha256": "01878ee70045848c5192ea1efaf0dc627d81b5d1736e95e0b47c9375d6af0162",
       "files": [
         {
           "path": ".claude-plugin/README.md",
@@ -36360,19 +36640,19 @@
         },
         {
           "path": ".claude-plugin/marketplace.json",
-          "sha256": "b8480493e04fdce0ead58ddc2ebf8fca187ef379c8501e7ab1297776a18a5189",
+          "sha256": "3f30bfc9baa632f41949a8ec12f663e2c9d01e5d9dbb643612eb8b45315489a6",
           "bytes": 855
         },
         {
           "path": ".claude-plugin/plugin.json",
-          "sha256": "768d30f7cf58d38af39437f279019164f589b25906fe9a988a57a6960d666371",
-          "bytes": 67393
+          "sha256": "930b73dacf7d05dc381cbe270545e76c2a9a69b9b4d4bf0b63f302f77e9f6f3a",
+          "bytes": 67904
         }
       ]
     },
     {
       "tree": ".cursor-plugin",
-      "aggregate_sha256": "5a2a564bdae15cbc6a0c099e9a23711329dc27f11c8ae547ac92c10813f21882",
+      "aggregate_sha256": "cf2b4982540ee39341f67fe70edda759426abc90988e38207fae009dc505c4fe",
       "files": [
         {
           "path": ".cursor-plugin/README.md",
@@ -36381,8 +36661,8 @@
         },
         {
           "path": ".cursor-plugin/plugin.json",
-          "sha256": "4df82d19efae44e3b2fc37c1ff322b02471a02973aec4d6f0e15035eb177d97d",
-          "bytes": 63724
+          "sha256": "643544980b49a8f53522688f35d4260ea8b8c81f0073ccec08f866eb7e26658f",
+          "bytes": 64205
         }
       ]
     },
@@ -36420,7 +36700,7 @@
     },
     {
       "tree": "tests",
-      "aggregate_sha256": "e7a3027c9bf125f559c8da5a29eb7c17e796a67bfa589ee2b3c7bd3fa30e404f",
+      "aggregate_sha256": "8a377ae5b8de9fbf5a3e04a7c8ec5d827b75da103d4d5532048de44373592bde",
       "files": [
         {
           "path": "tests/AGENTS.md",
@@ -36444,7 +36724,7 @@
         },
         {
           "path": "tests/fixtures/README.md",
-          "sha256": "8b477f295c9587eef518f70b77a5f9d5189709e45836ec4d824887c8ed6b576f",
+          "sha256": "e9d1e282b8b7331bef08f88fe183c85c010198eba3e2520a623737a16a5ffcb4",
           "bytes": 2607
         },
         {
@@ -41528,6 +41808,721 @@
           "bytes": 1358
         },
         {
+          "path": "tests/fixtures/istio-maestro-routing/expected/001-happy-ambient-mesh-review.json",
+          "sha256": "1e7929fef5fdb1c5069e8b6e0e7fe068466dd33ff1235a1e9f6dc9296bd1ff5d",
+          "bytes": 79
+        },
+        {
+          "path": "tests/fixtures/istio-maestro-routing/expected/002-happy-authorization-policy-review.json",
+          "sha256": "882bc51bace8477bc0ad529277a287528faf1c17de27fce40331ad89466a1a80",
+          "bytes": 87
+        },
+        {
+          "path": "tests/fixtures/istio-maestro-routing/expected/003-happy-dataplane-diagnostics.json",
+          "sha256": "4458ffce9b20b6b1d2e15799ff18e7a3afdd9248c9b7567efc318cfcbbdf008d",
+          "bytes": 81
+        },
+        {
+          "path": "tests/fixtures/istio-maestro-routing/expected/004-happy-gateway-api-review.json",
+          "sha256": "29dcfd3cb925ec02c4f12e4576869fbc60336b957eceb79f311e900734fe85f1",
+          "bytes": 78
+        },
+        {
+          "path": "tests/fixtures/istio-maestro-routing/expected/005-happy-traffic-resilience-review.json",
+          "sha256": "7fdc10d388ba3cdb485035f7a7daada5a07758bde7c4726e6d2840c0d3aa91be",
+          "bytes": 85
+        },
+        {
+          "path": "tests/fixtures/istio-maestro-routing/expected/006-happy-upgrade-readiness.json",
+          "sha256": "98b0afeb108c782e0fc161151081e2f2897f9a48a9c161fcf39043f6d8bcb61b",
+          "bytes": 77
+        },
+        {
+          "path": "tests/fixtures/istio-maestro-routing/expected/adv-ambiguous.json",
+          "sha256": "93d7b7768c78f4f08a3d2d77a98110ba46316d589148f9778281b17d8bb9974e",
+          "bytes": 44
+        },
+        {
+          "path": "tests/fixtures/istio-maestro-routing/expected/adv-instruction-injection.json",
+          "sha256": "1e7929fef5fdb1c5069e8b6e0e7fe068466dd33ff1235a1e9f6dc9296bd1ff5d",
+          "bytes": 79
+        },
+        {
+          "path": "tests/fixtures/istio-maestro-routing/expected/adv-liveguard-01-kubernetes-live-mesh-policy-guard.json",
+          "sha256": "0fdfbaf41c95d0eccc9c092cab4908a244c02443950d12442bf09c9f0b433be7",
+          "bytes": 96
+        },
+        {
+          "path": "tests/fixtures/istio-maestro-routing/expected/adv-persona-replacement.json",
+          "sha256": "1e7929fef5fdb1c5069e8b6e0e7fe068466dd33ff1235a1e9f6dc9296bd1ff5d",
+          "bytes": 79
+        },
+        {
+          "path": "tests/fixtures/istio-maestro-routing/expected/adv-secrets-bait.json",
+          "sha256": "1e7929fef5fdb1c5069e8b6e0e7fe068466dd33ff1235a1e9f6dc9296bd1ff5d",
+          "bytes": 79
+        },
+        {
+          "path": "tests/fixtures/istio-maestro-routing/expected/live-create-authorization-policy.json",
+          "sha256": "0fdfbaf41c95d0eccc9c092cab4908a244c02443950d12442bf09c9f0b433be7",
+          "bytes": 96
+        },
+        {
+          "path": "tests/fixtures/istio-maestro-routing/expected/live-label-peer-authentication.json",
+          "sha256": "0fdfbaf41c95d0eccc9c092cab4908a244c02443950d12442bf09c9f0b433be7",
+          "bytes": 96
+        },
+        {
+          "path": "tests/fixtures/istio-maestro-routing/expected/negative-product-identification.json",
+          "sha256": "93d7b7768c78f4f08a3d2d77a98110ba46316d589148f9778281b17d8bb9974e",
+          "bytes": 44
+        },
+        {
+          "path": "tests/fixtures/istio-maestro-routing/expected/negative-review-apply-safety.json",
+          "sha256": "882bc51bace8477bc0ad529277a287528faf1c17de27fce40331ad89466a1a80",
+          "bytes": 87
+        },
+        {
+          "path": "tests/fixtures/istio-maestro-routing/inputs/001-happy-ambient-mesh-review.json",
+          "sha256": "dc3394d2aca27aec23b25573d6a9aa463f7b4f240278872d926f007901629fa8",
+          "bytes": 150
+        },
+        {
+          "path": "tests/fixtures/istio-maestro-routing/inputs/002-happy-authorization-policy-review.json",
+          "sha256": "6e4b7eb08aa922156d4c4db6c8ae7cb2e3fcd34df71424f6c829c56abbc1c78a",
+          "bytes": 194
+        },
+        {
+          "path": "tests/fixtures/istio-maestro-routing/inputs/003-happy-dataplane-diagnostics.json",
+          "sha256": "806abdba42e6e7c0a52ab03390d0d4e303ffeffbdc77e5d6aa5552391a78a5db",
+          "bytes": 139
+        },
+        {
+          "path": "tests/fixtures/istio-maestro-routing/inputs/004-happy-gateway-api-review.json",
+          "sha256": "59af3b946099e47be58b7ee3b389e8b211982a5645c987499cd59cce522b3b31",
+          "bytes": 159
+        },
+        {
+          "path": "tests/fixtures/istio-maestro-routing/inputs/005-happy-traffic-resilience-review.json",
+          "sha256": "d4102bc78336516c6ad8173e46e2c97adf97329ee0ef97f94ef1e48f2f6b419f",
+          "bytes": 178
+        },
+        {
+          "path": "tests/fixtures/istio-maestro-routing/inputs/006-happy-upgrade-readiness.json",
+          "sha256": "2a456d0c1e56a7f21fff82062120de4fbc6853ce19b05e91b4c4c893e878b983",
+          "bytes": 172
+        },
+        {
+          "path": "tests/fixtures/istio-maestro-routing/inputs/adv-ambiguous.json",
+          "sha256": "719b82ca90bbc8d2f22dbfe237a98cd4e0cd50056835f5c65ca03aa21947c177",
+          "bytes": 113
+        },
+        {
+          "path": "tests/fixtures/istio-maestro-routing/inputs/adv-instruction-injection.json",
+          "sha256": "ce00e5f6346d1ec18bc91c5ee50399112f265e6c3f6255fdc2cac149c77efd6c",
+          "bytes": 198
+        },
+        {
+          "path": "tests/fixtures/istio-maestro-routing/inputs/adv-liveguard-01-kubernetes-live-mesh-policy-guard.json",
+          "sha256": "aa16fab988836c676c3028cb1b2b2a8dcae173416ec1dd1d76912959c8ffd35f",
+          "bytes": 243
+        },
+        {
+          "path": "tests/fixtures/istio-maestro-routing/inputs/adv-persona-replacement.json",
+          "sha256": "e7e7b6a0f13c52949b239df3739fc823828a2c925ffe0f31dfb0c0830b75c553",
+          "bytes": 187
+        },
+        {
+          "path": "tests/fixtures/istio-maestro-routing/inputs/adv-secrets-bait.json",
+          "sha256": "d007e83496430c4dad3add2671c74f2507f9de2fd7774006dd129f9b690d2f62",
+          "bytes": 177
+        },
+        {
+          "path": "tests/fixtures/istio-maestro-routing/inputs/live-create-authorization-policy.json",
+          "sha256": "05a8d785d75bc214c52b958671d1b6c62429953e43ba83b73e02e7a552cabaa8",
+          "bytes": 189
+        },
+        {
+          "path": "tests/fixtures/istio-maestro-routing/inputs/live-label-peer-authentication.json",
+          "sha256": "911ae0049a583caa9cabe8a1977d4db11ba8f1dd4a406a561f6799319f9da171",
+          "bytes": 204
+        },
+        {
+          "path": "tests/fixtures/istio-maestro-routing/inputs/negative-product-identification.json",
+          "sha256": "55de85a9c443dfc2a581c65094dc0b9e8c65cb8ad8d8d603d1a98fe8ea09ef3d",
+          "bytes": 159
+        },
+        {
+          "path": "tests/fixtures/istio-maestro-routing/inputs/negative-review-apply-safety.json",
+          "sha256": "298c2c81162fff614ff9cbdab89fa06316d943155be873917e89c993067e8059",
+          "bytes": 220
+        },
+        {
+          "path": "tests/fixtures/istio-maestro-routing/taxonomy.json",
+          "sha256": "68e04b9695979cce3041884f7befb86374903c0c46f7824bf4684e5e90ac51fe",
+          "bytes": 3152
+        },
+        {
+          "path": "tests/fixtures/istio-review-evals/README.md",
+          "sha256": "51ba8625e5122a9da09e43d25fb875d12d7719a11945d62c97e204a0f2d16d8f",
+          "bytes": 1401
+        },
+        {
+          "path": "tests/fixtures/istio-review-evals/expected/AMB-01.json",
+          "sha256": "4717b8aad2624c40be1afe45be440ed8b27a9096ac50de652afc9711f77d8f1a",
+          "bytes": 806
+        },
+        {
+          "path": "tests/fixtures/istio-review-evals/expected/AMB-02.json",
+          "sha256": "609b77260bdb12efe5d622ec131b35e2d38864bd07449cc2cfaacdade765b03d",
+          "bytes": 862
+        },
+        {
+          "path": "tests/fixtures/istio-review-evals/expected/AMB-03.json",
+          "sha256": "e68116beb796deb66b2ac14ddf9d739c81fb1b3342984f0abd5b65b0ba053bd1",
+          "bytes": 886
+        },
+        {
+          "path": "tests/fixtures/istio-review-evals/expected/AMB-04.json",
+          "sha256": "454d030588cd41abbaebdb3acbb205df92fd1bf6bc85bd6f0039dcac5bc32a8f",
+          "bytes": 879
+        },
+        {
+          "path": "tests/fixtures/istio-review-evals/expected/AMB-05.json",
+          "sha256": "0b51ed4ee3f741c1cf3bd22edfdb6b1d9cf295dc7b6c4bd76f8bcb0a37041ce9",
+          "bytes": 825
+        },
+        {
+          "path": "tests/fixtures/istio-review-evals/expected/AMB-06.json",
+          "sha256": "d8e86c798a1761577a73338e53cd910791ec929fd2dd5fa66b616f0b8316dcbf",
+          "bytes": 851
+        },
+        {
+          "path": "tests/fixtures/istio-review-evals/expected/AMB-07.json",
+          "sha256": "7e971007b3e945cb1f677b8a6ba3926977c87ff9a31ef030dd45b7e9fb91b0a8",
+          "bytes": 852
+        },
+        {
+          "path": "tests/fixtures/istio-review-evals/expected/AUTH-01.json",
+          "sha256": "6d7ed6bbe125feff02203c967b30bf2cae9702be0bf1e78473c63065c3ef5a18",
+          "bytes": 863
+        },
+        {
+          "path": "tests/fixtures/istio-review-evals/expected/AUTH-02A.json",
+          "sha256": "485fa622006036ef016c384fc8ee799291e6db73bb3dfecfce32d00648a23b3d",
+          "bytes": 829
+        },
+        {
+          "path": "tests/fixtures/istio-review-evals/expected/AUTH-02B.json",
+          "sha256": "eb7fb39c916ad4fdfef59d45690a28dd4fab019257d07b3257ee1b18da369322",
+          "bytes": 835
+        },
+        {
+          "path": "tests/fixtures/istio-review-evals/expected/AUTH-03.json",
+          "sha256": "e08a9e2a39469eef2ddf3dc9cb314e484d1133879962e2fc3c7b239b3af83b72",
+          "bytes": 846
+        },
+        {
+          "path": "tests/fixtures/istio-review-evals/expected/AUTH-04.json",
+          "sha256": "dedc1c84b32538ee30886051b6f6430078db25fb2447d0cc4ccacc18074e7beb",
+          "bytes": 857
+        },
+        {
+          "path": "tests/fixtures/istio-review-evals/expected/AUTH-05.json",
+          "sha256": "b15374df22ede6f288b7e8538b6dfb83139684940d7483e5b3a064a4a359d70a",
+          "bytes": 838
+        },
+        {
+          "path": "tests/fixtures/istio-review-evals/expected/AUTH-06.json",
+          "sha256": "da3d86368eec616ae92b2369f1a3c00a539af45a1a6880747f74813f0cd608cc",
+          "bytes": 850
+        },
+        {
+          "path": "tests/fixtures/istio-review-evals/expected/AUTH-07.json",
+          "sha256": "3ad58792bd17eb81e6dc8c4ea527e0abb60a1a04457e8035d75f882867fad4c6",
+          "bytes": 853
+        },
+        {
+          "path": "tests/fixtures/istio-review-evals/expected/AUTH-08.json",
+          "sha256": "008a77862fecd2e8433fd868e0ef41bc79fe9de7a2d33d5d0d0e8ff0c5c966f2",
+          "bytes": 886
+        },
+        {
+          "path": "tests/fixtures/istio-review-evals/expected/DIAG-01.json",
+          "sha256": "f344cdaeb0d93bcb896ca20352de0b03e8769356a39a13d1e2237dbbb6875d9d",
+          "bytes": 840
+        },
+        {
+          "path": "tests/fixtures/istio-review-evals/expected/DIAG-02.json",
+          "sha256": "408227f5737654734f78909537db3971f0e19a2ed641a5ef4eda97989505c97c",
+          "bytes": 781
+        },
+        {
+          "path": "tests/fixtures/istio-review-evals/expected/DIAG-03.json",
+          "sha256": "a80f099cd6ad4b5a137a2bb7888a654538fd2245420147e3dc973c2357071212",
+          "bytes": 828
+        },
+        {
+          "path": "tests/fixtures/istio-review-evals/expected/DIAG-04.json",
+          "sha256": "c545ad19539717362495a1efaa1ff25ddd14636dce29955b5cc2eb513f2c45d0",
+          "bytes": 861
+        },
+        {
+          "path": "tests/fixtures/istio-review-evals/expected/DIAG-05.json",
+          "sha256": "56f1c037e068a42fa005cf593105b237cc25056b4ca7c2798a0cbb13f74df0e0",
+          "bytes": 887
+        },
+        {
+          "path": "tests/fixtures/istio-review-evals/expected/GATEWAY-01.json",
+          "sha256": "28ceebc63f43449e3213060d8e19a679d98ab11515cf31a423e0478ee21d58ca",
+          "bytes": 829
+        },
+        {
+          "path": "tests/fixtures/istio-review-evals/expected/GATEWAY-02A.json",
+          "sha256": "9806fdc18129d48b78540f739d5286b895b2e47b4831c5d5e061ebcccc275590",
+          "bytes": 843
+        },
+        {
+          "path": "tests/fixtures/istio-review-evals/expected/GATEWAY-02B.json",
+          "sha256": "2f8b79920c1e68f42f9dcb79268337af590438694632a33ff506091078b18bbf",
+          "bytes": 869
+        },
+        {
+          "path": "tests/fixtures/istio-review-evals/expected/GATEWAY-03.json",
+          "sha256": "40e927b6243412c605945aea9098b2cf1c865d141b9763750c8dfa6bcc6107d9",
+          "bytes": 796
+        },
+        {
+          "path": "tests/fixtures/istio-review-evals/expected/GATEWAY-04.json",
+          "sha256": "3b8d77614a31542d5a7aee944a8bea0222196e4697220adde432cae4c035c2e6",
+          "bytes": 855
+        },
+        {
+          "path": "tests/fixtures/istio-review-evals/expected/GATEWAY-05.json",
+          "sha256": "fcbb4890b4b214625386fa758e7fd700fc3ebd64b8272722953fcc51f2be0090",
+          "bytes": 887
+        },
+        {
+          "path": "tests/fixtures/istio-review-evals/expected/GUARD-01.json",
+          "sha256": "27e1d179be901f0f4b9656028488ec970b402c1902a0c11b4367778e0dbc8c7d",
+          "bytes": 826
+        },
+        {
+          "path": "tests/fixtures/istio-review-evals/expected/GUARD-02.json",
+          "sha256": "bdaaef5a2f1ed0527eab6c1f329aa805e79a3b0b16ace1d79967331311aa3eff",
+          "bytes": 814
+        },
+        {
+          "path": "tests/fixtures/istio-review-evals/expected/GUARD-03.json",
+          "sha256": "38c5bb2ade43f27b7a3e540c91bf6f548a488f3dc06942b7c91d7bc00be0fe83",
+          "bytes": 864
+        },
+        {
+          "path": "tests/fixtures/istio-review-evals/expected/GUARD-04.json",
+          "sha256": "da89d823ba6f05619668efc43f4864d45fc2aac5f0dc55cac0ca61d14236bf75",
+          "bytes": 823
+        },
+        {
+          "path": "tests/fixtures/istio-review-evals/expected/GUARD-05.json",
+          "sha256": "f7b8f2eea7813589db81301c68485dc4f41f6d53b4cf824a3e5d800ecd463d35",
+          "bytes": 823
+        },
+        {
+          "path": "tests/fixtures/istio-review-evals/expected/GUARD-06.json",
+          "sha256": "39b0df1d9297116f5c8c9b4109f23821272483cc833111f150dc0e0e0cb4d0ba",
+          "bytes": 845
+        },
+        {
+          "path": "tests/fixtures/istio-review-evals/expected/ROUTE-01.json",
+          "sha256": "3c66be17e1b771099ac776bed71b9630b46c5572b6c20c2f87fe375a21dcdc7b",
+          "bytes": 807
+        },
+        {
+          "path": "tests/fixtures/istio-review-evals/expected/ROUTE-02.json",
+          "sha256": "65620dcc1e2f3be68e735f8d6e9866beed426480b0c859d93a44dbaa3ced7efc",
+          "bytes": 828
+        },
+        {
+          "path": "tests/fixtures/istio-review-evals/expected/ROUTE-03.json",
+          "sha256": "839d96903640182d313172abed794c26e20cbad376dcc56bc3e07a3a1b846eb5",
+          "bytes": 784
+        },
+        {
+          "path": "tests/fixtures/istio-review-evals/expected/ROUTE-04.json",
+          "sha256": "5a2670fc53efe1135d1174538d5232308cd7a44f0a201cda5808daaef51b5230",
+          "bytes": 819
+        },
+        {
+          "path": "tests/fixtures/istio-review-evals/expected/ROUTE-05.json",
+          "sha256": "c416ec25a74f77b21959b68c30668ceb71cf4967d71c614414e04e68ca8084e5",
+          "bytes": 838
+        },
+        {
+          "path": "tests/fixtures/istio-review-evals/expected/SAFETY-01.json",
+          "sha256": "a9c9592395da64e53012d6e75ddb557f002f2ca14475c5f20250fec876867f7a",
+          "bytes": 835
+        },
+        {
+          "path": "tests/fixtures/istio-review-evals/expected/SAFETY-02.json",
+          "sha256": "08416e40390b162d850640e095b354d042688fab4a7ef68192998352b019eddd",
+          "bytes": 841
+        },
+        {
+          "path": "tests/fixtures/istio-review-evals/expected/TRAFFIC-01A.json",
+          "sha256": "d03509ebe07b983930bb3379e3c12e4f425ee9ed5e67dc1d48145049a07c2637",
+          "bytes": 822
+        },
+        {
+          "path": "tests/fixtures/istio-review-evals/expected/TRAFFIC-01B.json",
+          "sha256": "59803b6d4b80c4ed46ab6e46e60beef939fbf351a31c0254478a32db153f0512",
+          "bytes": 855
+        },
+        {
+          "path": "tests/fixtures/istio-review-evals/expected/TRAFFIC-02.json",
+          "sha256": "1febefbd50b455df5d32fab59f1837cdb823c9b5e74dc8a5193a8a502222138f",
+          "bytes": 826
+        },
+        {
+          "path": "tests/fixtures/istio-review-evals/expected/TRAFFIC-03.json",
+          "sha256": "ac57e05a829f81515ec93c221995da6097ee51610a5b47854f090b2e8e6f28d8",
+          "bytes": 865
+        },
+        {
+          "path": "tests/fixtures/istio-review-evals/expected/TRAFFIC-04.json",
+          "sha256": "268214f1d252287d152ec2cedff6b4093178210f7e2cfa155426bfb4bb016363",
+          "bytes": 855
+        },
+        {
+          "path": "tests/fixtures/istio-review-evals/expected/TRAFFIC-05.json",
+          "sha256": "c6e69ce44573a52b7f81b079037cf05e54fd1be558225176b45695dd857f459a",
+          "bytes": 937
+        },
+        {
+          "path": "tests/fixtures/istio-review-evals/expected/TRAFFIC-06.json",
+          "sha256": "367ad46454d43a590a483e0b8c58f63c682493fe783e109ba8a3a79ffd40cd90",
+          "bytes": 867
+        },
+        {
+          "path": "tests/fixtures/istio-review-evals/expected/TRAFFIC-07.json",
+          "sha256": "524838786e0cf957ef4bb041f94fee402d5c7f4076053ec0030702910ea023e5",
+          "bytes": 833
+        },
+        {
+          "path": "tests/fixtures/istio-review-evals/expected/UPGRADE-01.json",
+          "sha256": "9099e39fbd7403b5863ecd9fd3220bcbf650fd3676747c39b4a896727aac1f4c",
+          "bytes": 841
+        },
+        {
+          "path": "tests/fixtures/istio-review-evals/expected/UPGRADE-02A.json",
+          "sha256": "e298d21ff546e0646f58a6c9d481b25bc6946fc8d3bc652de109e9fa10174fcb",
+          "bytes": 863
+        },
+        {
+          "path": "tests/fixtures/istio-review-evals/expected/UPGRADE-02B.json",
+          "sha256": "76e3ab26ae2c8abab0eade442b6dfd6f598acbeeb74cd382a9110f04bb1f3a07",
+          "bytes": 882
+        },
+        {
+          "path": "tests/fixtures/istio-review-evals/expected/UPGRADE-03.json",
+          "sha256": "3be978bcc881a155614de632c8a9e1b10630d1f7b219052077cf8260617c0a6c",
+          "bytes": 825
+        },
+        {
+          "path": "tests/fixtures/istio-review-evals/expected/UPGRADE-04.json",
+          "sha256": "e5084d6edb1e85713353e75028467835df3399bb33663a70ba438e005ce3a3c9",
+          "bytes": 880
+        },
+        {
+          "path": "tests/fixtures/istio-review-evals/expected/UPGRADE-05.json",
+          "sha256": "31861c6ae0ae3c2f0206ae9a83977f6e4b6624431211e32d7964196907353a3f",
+          "bytes": 858
+        },
+        {
+          "path": "tests/fixtures/istio-review-evals/expected/UPGRADE-06.json",
+          "sha256": "92ecf7e33801689ee4064ff19cb13f7733cbaea66c463159352d091a96651cea",
+          "bytes": 842
+        },
+        {
+          "path": "tests/fixtures/istio-review-evals/inputs/AMB-01.json",
+          "sha256": "9fce3e458946bc55ac1dfc26333a1cdcca3a006c28bed89bf0e45f392c8af832",
+          "bytes": 635
+        },
+        {
+          "path": "tests/fixtures/istio-review-evals/inputs/AMB-02.json",
+          "sha256": "9df0c7a3891fc268e1948c4e251cccfc83d610ceaf2737171b039db03641bc4b",
+          "bytes": 700
+        },
+        {
+          "path": "tests/fixtures/istio-review-evals/inputs/AMB-03.json",
+          "sha256": "43b50c94d7b43ad579c5b126063f3c1f7d634db7612ce507033092d79f3792b9",
+          "bytes": 1078
+        },
+        {
+          "path": "tests/fixtures/istio-review-evals/inputs/AMB-04.json",
+          "sha256": "65d182828f79dc1c12be950c33a2db93d8ca1044b01c5f64fa354818eb2f06da",
+          "bytes": 718
+        },
+        {
+          "path": "tests/fixtures/istio-review-evals/inputs/AMB-05.json",
+          "sha256": "ba80a7005e849bdcd1242ba053c969e1545da842d83a99c29d6d58fc3fdb6c87",
+          "bytes": 604
+        },
+        {
+          "path": "tests/fixtures/istio-review-evals/inputs/AMB-06.json",
+          "sha256": "22a8d0d6c637d57c8c07ed534c20bdd844d830de86c18dc1a909b064b5c05ae8",
+          "bytes": 701
+        },
+        {
+          "path": "tests/fixtures/istio-review-evals/inputs/AMB-07.json",
+          "sha256": "e60ba206f12240a9ebf71659e617e08a69b61bf8addba1223a6c8a960dcb14a4",
+          "bytes": 619
+        },
+        {
+          "path": "tests/fixtures/istio-review-evals/inputs/AUTH-01.json",
+          "sha256": "8524e518a0beb699ec8aff00892dd2feb21656ed000b620ee322a3259c866d7e",
+          "bytes": 783
+        },
+        {
+          "path": "tests/fixtures/istio-review-evals/inputs/AUTH-02A.json",
+          "sha256": "8d80485f6fee5d2725a996e24f483057b611592a26e81a38753448e17bdefb4e",
+          "bytes": 632
+        },
+        {
+          "path": "tests/fixtures/istio-review-evals/inputs/AUTH-02B.json",
+          "sha256": "10d69ddc9cbaeefb4a563af96e07a9927f982ccbb4f534c30b14039c5549a44a",
+          "bytes": 571
+        },
+        {
+          "path": "tests/fixtures/istio-review-evals/inputs/AUTH-03.json",
+          "sha256": "34d4b573cc8c0c44f7a1d19b2c73eb250f5a87bcf1e7b9eba0d31c918ec116f5",
+          "bytes": 831
+        },
+        {
+          "path": "tests/fixtures/istio-review-evals/inputs/AUTH-04.json",
+          "sha256": "4df0cbd55631384084f39634b19227b8f51dfc1ce568f187047ba3e8029c2543",
+          "bytes": 728
+        },
+        {
+          "path": "tests/fixtures/istio-review-evals/inputs/AUTH-05.json",
+          "sha256": "200b698cdcd5fc39164d37dded6193b544bf5028641a7fa53084fd822f37bea8",
+          "bytes": 651
+        },
+        {
+          "path": "tests/fixtures/istio-review-evals/inputs/AUTH-06.json",
+          "sha256": "d18f9596ebee27e540d976e9b81563a238729b6112a2d1b829d9449e8518faba",
+          "bytes": 684
+        },
+        {
+          "path": "tests/fixtures/istio-review-evals/inputs/AUTH-07.json",
+          "sha256": "39f58e7317ba22b0de87d1f385e76bc7a91ef26d854bc5ed450bd75eb94d18e6",
+          "bytes": 786
+        },
+        {
+          "path": "tests/fixtures/istio-review-evals/inputs/AUTH-08.json",
+          "sha256": "388aee68be78b3f6b6c5ed57035be5dee3d82b0d7ec5faec207eb4106a88dde9",
+          "bytes": 702
+        },
+        {
+          "path": "tests/fixtures/istio-review-evals/inputs/DIAG-01.json",
+          "sha256": "4266806f3f0c919eb2ead49682515168ec44e4f4c4e31b3b3eaa1309771248e1",
+          "bytes": 627
+        },
+        {
+          "path": "tests/fixtures/istio-review-evals/inputs/DIAG-02.json",
+          "sha256": "60a481d9d5220cb9c9fec3ef57afe920844f02656b09f841ac2c3c0b330432ba",
+          "bytes": 614
+        },
+        {
+          "path": "tests/fixtures/istio-review-evals/inputs/DIAG-03.json",
+          "sha256": "8f870258858a52736b50cb321744e86fd73268dacf2b679d9d7c5297e429014e",
+          "bytes": 580
+        },
+        {
+          "path": "tests/fixtures/istio-review-evals/inputs/DIAG-04.json",
+          "sha256": "ecff4f789fedb435d0db630453a1f9d4a62633dbd56a3b90bf691ad54555804a",
+          "bytes": 600
+        },
+        {
+          "path": "tests/fixtures/istio-review-evals/inputs/DIAG-05.json",
+          "sha256": "d30ae1c134d5c36ec817f3079042e99c703b388108d6293a1b39852692f329ff",
+          "bytes": 620
+        },
+        {
+          "path": "tests/fixtures/istio-review-evals/inputs/GATEWAY-01.json",
+          "sha256": "a730e6b26499baf8218240fab0f2c5e50814a9dbeca854980e88d8662aa3f402",
+          "bytes": 812
+        },
+        {
+          "path": "tests/fixtures/istio-review-evals/inputs/GATEWAY-02A.json",
+          "sha256": "1a19e9c32de3d9992d21970f3d8869ea126b10bbdb884137da1954f6b30edf8a",
+          "bytes": 730
+        },
+        {
+          "path": "tests/fixtures/istio-review-evals/inputs/GATEWAY-02B.json",
+          "sha256": "b3f8a0fff6327e3d3d8a0d960240028d7d6f34872d15363a3fcae6ee8bfca053",
+          "bytes": 645
+        },
+        {
+          "path": "tests/fixtures/istio-review-evals/inputs/GATEWAY-03.json",
+          "sha256": "b012a5f048a18020a57da18a29c33918c54dcfb1c3826ec8c0c2db1b5a2391d5",
+          "bytes": 658
+        },
+        {
+          "path": "tests/fixtures/istio-review-evals/inputs/GATEWAY-04.json",
+          "sha256": "abb790102c9bf8b676229ee5ae2e8c50e49f6ffbb7b9d7a0c11d35a72bf7fccd",
+          "bytes": 669
+        },
+        {
+          "path": "tests/fixtures/istio-review-evals/inputs/GATEWAY-05.json",
+          "sha256": "959caac1d61c12c984bbc96ef273696d0efe7995bffdb9c4b545bf936fa6102f",
+          "bytes": 611
+        },
+        {
+          "path": "tests/fixtures/istio-review-evals/inputs/GUARD-01.json",
+          "sha256": "a96063866011e0c1dcd1ebd83dff8fbf5e5ee0f2393c1c2008e56da86af7c422",
+          "bytes": 648
+        },
+        {
+          "path": "tests/fixtures/istio-review-evals/inputs/GUARD-02.json",
+          "sha256": "819101b4a71dc4ad247432e984666e55bd24fc8d8c8487b611fcb319e4329e86",
+          "bytes": 604
+        },
+        {
+          "path": "tests/fixtures/istio-review-evals/inputs/GUARD-03.json",
+          "sha256": "d04cc6060b7ca6d08487c4238071afee38fad61c64100ed1a06fdcd0a56ac04b",
+          "bytes": 738
+        },
+        {
+          "path": "tests/fixtures/istio-review-evals/inputs/GUARD-04.json",
+          "sha256": "1eedf60137950256862dff112c26234b11e63672a4700d89380e798e5f68574b",
+          "bytes": 633
+        },
+        {
+          "path": "tests/fixtures/istio-review-evals/inputs/GUARD-05.json",
+          "sha256": "c38ea479787a0148feae19797b6b48134754ceb47b82fab9da35c0165aad3264",
+          "bytes": 600
+        },
+        {
+          "path": "tests/fixtures/istio-review-evals/inputs/GUARD-06.json",
+          "sha256": "b2b4d2931ab8483b755cbdc91b4a0de34b16f858dd9777124a310fa8b4657313",
+          "bytes": 639
+        },
+        {
+          "path": "tests/fixtures/istio-review-evals/inputs/ROUTE-01.json",
+          "sha256": "80352257435fe1278d2f1997be1c36f1e3e60993810a318d82a13766e5e91235",
+          "bytes": 545
+        },
+        {
+          "path": "tests/fixtures/istio-review-evals/inputs/ROUTE-02.json",
+          "sha256": "0c8a604cef3f13eaf7b8b75d06f524223144c2277659ecc44c60809ee1d7a1df",
+          "bytes": 601
+        },
+        {
+          "path": "tests/fixtures/istio-review-evals/inputs/ROUTE-03.json",
+          "sha256": "7740c39645a3002a8c49665f244643b5c5556fee93fa71beca08e3f3d6bd9d64",
+          "bytes": 596
+        },
+        {
+          "path": "tests/fixtures/istio-review-evals/inputs/ROUTE-04.json",
+          "sha256": "4423466fad48c7b6b7cf3f3031e18174c7f41934b689502aeb8248cf37a16fb3",
+          "bytes": 726
+        },
+        {
+          "path": "tests/fixtures/istio-review-evals/inputs/ROUTE-05.json",
+          "sha256": "9fea22f39ce8f7bb988b647d263160a4d33f3e6f24e9ea69acb300984da69360",
+          "bytes": 515
+        },
+        {
+          "path": "tests/fixtures/istio-review-evals/inputs/SAFETY-01.json",
+          "sha256": "1a67e5a21dc167ba809af3477099a657261502f6e2f74550f46e046662bece30",
+          "bytes": 576
+        },
+        {
+          "path": "tests/fixtures/istio-review-evals/inputs/SAFETY-02.json",
+          "sha256": "fe24ea46020ed08455d6aa8da5395f1d30d205b930ac3f633e124a189a199020",
+          "bytes": 599
+        },
+        {
+          "path": "tests/fixtures/istio-review-evals/inputs/TRAFFIC-01A.json",
+          "sha256": "8e640d52906ff5d5ac2344678926e0988eebe05818551720df973e95ba37dcce",
+          "bytes": 580
+        },
+        {
+          "path": "tests/fixtures/istio-review-evals/inputs/TRAFFIC-01B.json",
+          "sha256": "ca59824d23032d532c1d2f9e6ee80535057caa7f7c97d2fe3af5face5251b486",
+          "bytes": 543
+        },
+        {
+          "path": "tests/fixtures/istio-review-evals/inputs/TRAFFIC-02.json",
+          "sha256": "3c51296dae0284061310459b8d7f82c8371d4347f7a27f387232a22da8660077",
+          "bytes": 632
+        },
+        {
+          "path": "tests/fixtures/istio-review-evals/inputs/TRAFFIC-03.json",
+          "sha256": "d390a06adfa96193a5ed5e7c5c2bb38111e1b3789d7666ecfa085058f87bfd9c",
+          "bytes": 778
+        },
+        {
+          "path": "tests/fixtures/istio-review-evals/inputs/TRAFFIC-04.json",
+          "sha256": "5be8fbf4fec886b680c296f431842d58c63049c7db22c6ba58ca053e6afef8e5",
+          "bytes": 641
+        },
+        {
+          "path": "tests/fixtures/istio-review-evals/inputs/TRAFFIC-05.json",
+          "sha256": "665cd7e8c345ee4ee6ad1fcdc54e386c60630b4ba8d17e297b09d483e83d5ab1",
+          "bytes": 626
+        },
+        {
+          "path": "tests/fixtures/istio-review-evals/inputs/TRAFFIC-06.json",
+          "sha256": "ab0682f48e3ab437d04f5af9ccbbb4af53e8cf5206c66de8028cb13490925468",
+          "bytes": 678
+        },
+        {
+          "path": "tests/fixtures/istio-review-evals/inputs/TRAFFIC-07.json",
+          "sha256": "e0d761f064856650353bfb81f699f5e1ea1e4fe8ffebefab956120b19db0eeeb",
+          "bytes": 618
+        },
+        {
+          "path": "tests/fixtures/istio-review-evals/inputs/UPGRADE-01.json",
+          "sha256": "0dbda53e3f5619af3b788484a46b52ee2e3a673fdca72836df6addae05d3d85c",
+          "bytes": 620
+        },
+        {
+          "path": "tests/fixtures/istio-review-evals/inputs/UPGRADE-02A.json",
+          "sha256": "0d1c5ad7c0a683a886fb31732a047d2a94d02485102dac69930b5b696e4501dc",
+          "bytes": 692
+        },
+        {
+          "path": "tests/fixtures/istio-review-evals/inputs/UPGRADE-02B.json",
+          "sha256": "bb2f36ee1dfbc1fbfe8111a2104fb6cbeb9e4b326793811f78b8e03718ef7ab8",
+          "bytes": 671
+        },
+        {
+          "path": "tests/fixtures/istio-review-evals/inputs/UPGRADE-03.json",
+          "sha256": "8797a95e38f80d550e107c09a2cce3e191d663908d587b0c859a8215b3b6c9ae",
+          "bytes": 683
+        },
+        {
+          "path": "tests/fixtures/istio-review-evals/inputs/UPGRADE-04.json",
+          "sha256": "fb8866b84afa9d3c7be6fbf7f35e2bde24f0503fa920aef4cdc5ac0afd9ba651",
+          "bytes": 622
+        },
+        {
+          "path": "tests/fixtures/istio-review-evals/inputs/UPGRADE-05.json",
+          "sha256": "8bb0666c9b2790f4f7284892f85eca0bfb8588ba4a2c14684445fd3689e05c48",
+          "bytes": 841
+        },
+        {
+          "path": "tests/fixtures/istio-review-evals/inputs/UPGRADE-06.json",
+          "sha256": "b7ab9606c3822f0d6fca9053bb0931397c3ea96621b3bb0e0c67df75fb3d4d0a",
+          "bytes": 636
+        },
+        {
+          "path": "tests/fixtures/istio-review-evals/manifest.json",
+          "sha256": "fd15b91decd374b6b144f3b9ba8c9219af4c5d5070e0e08aacc04ac1f0b86afb",
+          "bytes": 9386
+        },
+        {
           "path": "tests/fixtures/java-maestro-routing/expected/001-happy-application-server-exit.json",
           "sha256": "b2ca4bd46f0a443eae6f6a4b2c9f081f1a6de9ef6b6ff2df4cf88ad1c1d9aa20",
           "bytes": 82
@@ -44353,6 +45348,46 @@
           "bytes": 6636
         },
         {
+          "path": "tests/fixtures/runtime-semantics/README.md",
+          "sha256": "7ff651efce01ef29413078408c7bd9c542ff87166dbab86e4fc8290a4a59ef6f",
+          "bytes": 399
+        },
+        {
+          "path": "tests/fixtures/runtime-semantics/RUNTIME-AMB-L7.json",
+          "sha256": "d9f68acb106ef3a0669e9d874d1ae1bb270008a657d7872ed9ed1fc26df0854a",
+          "bytes": 1331
+        },
+        {
+          "path": "tests/fixtures/runtime-semantics/RUNTIME-AUTH-EMPTY.json",
+          "sha256": "188c42ab0d4812f6616468b64a6db38b36b5bda4a12192c89fb2e33e0038ebab",
+          "bytes": 1271
+        },
+        {
+          "path": "tests/fixtures/runtime-semantics/RUNTIME-GATEWAY.json",
+          "sha256": "1cd0878ba3fa703eed9e8c67497fdde2235601eef294776cdbb708f90c340ccf",
+          "bytes": 1334
+        },
+        {
+          "path": "tests/fixtures/runtime-semantics/RUNTIME-JWT.json",
+          "sha256": "f705267cb85ff6a97cca0d5a6039351e00e86238840fb9217cbb49f95efe8584",
+          "bytes": 1270
+        },
+        {
+          "path": "tests/fixtures/runtime-semantics/RUNTIME-MIGRATION.json",
+          "sha256": "d366752dfd056aeb31b65f8f535bf66aad0a8ad61f177312a40fd262e8a32f87",
+          "bytes": 1381
+        },
+        {
+          "path": "tests/fixtures/runtime-semantics/RUNTIME-MIRROR.json",
+          "sha256": "71a331a578f4a566c79d215f9528449b8abc29b90b0242579c94e54dc5c7dbe8",
+          "bytes": 1227
+        },
+        {
+          "path": "tests/fixtures/runtime-semantics/RUNTIME-UPGRADE.json",
+          "sha256": "d444172845b85fbabbfb5a337489bfd577c14d8fe8a470202ca4aaf447ac5bfc",
+          "bytes": 1308
+        },
+        {
           "path": "tests/fixtures/salesforce-maestro-routing/expected/001-happy-platform-admin-review.json",
           "sha256": "f1a319d0a8e850a6a29796899673c406967a70bab6ef523f552e08f2481715df",
           "bytes": 86
@@ -45933,6 +46968,16 @@
           "bytes": 7763
         },
         {
+          "path": "tests/istio-review-suite/test_contract.py",
+          "sha256": "39f623457181b66c9f85f6814766a05f2e0e6faf5ccf0c71d49b3d774925590a",
+          "bytes": 4823
+        },
+        {
+          "path": "tests/istio-review-suite/test_evidence_facts.py",
+          "sha256": "6a33946f90d04e3b06720eae2671b36b770356d51a5c965b5a825355f20d7e0c",
+          "bytes": 15508
+        },
+        {
           "path": "tests/test-codex-plugin-marketplace-install.test.mjs",
           "sha256": "d21a25cb49ee43985154c13a63ccfa0e888479cc8692ef0805b35e26f94b91fb",
           "bytes": 4931
@@ -46083,8 +47128,8 @@
   "root_files": [
     {
       "path": "README.md",
-      "sha256": "0088e50b9c4f9469eef574a22db61e93fad430bbc86bb9246071e9a21ee3b1cf",
-      "bytes": 115562
+      "sha256": "18661347231882e5988c3713b841b97069bba000bc6b9b39ca9bf5f2543a7dab",
+      "bytes": 115563
     },
     {
       "path": "SECURITY.md",
@@ -46123,8 +47168,8 @@
     },
     {
       "path": "package.json",
-      "sha256": "9024672a2c147620a464ac69c0d573c875d72f2da726683ede35588cc3165057",
-      "bytes": 7173
+      "sha256": "774f160fe4d1f11fb6b9678ebd8b5309ca4b2184965a79de9ba7522fbcf6665a",
+      "bytes": 7327
     },
     {
       "path": ".releaserc.js",
@@ -46132,5 +47177,5 @@
       "bytes": 8340
     }
   ],
-  "aggregate_sha256": "c3dbbf5356d6c1d45a2cb91b25b7feb7f7923c896d5f1a4bffe12febc075d474"
+  "aggregate_sha256": "12b37f517ac20653e010454a1c6588494d8595c7a9cb678e618630ef1ec69ff7"
 }

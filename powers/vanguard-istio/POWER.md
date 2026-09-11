@@ -1,13 +1,13 @@
 ---
 name: "vanguard-istio"
 displayName: "Vanguard Frontier — Istio"
-description: "Reviews istio ambient mesh configuration — ztunnel L4 vs waypoint L7 enforcement, AuthorizationPolicy scope,... Static review only; no live mutations."
+description: "Curated Istio agents for ambient mesh, authorization policy, dataplane diagnostics, gateway api. Routes via istio-maestro-agent to specialist agents based on task scope. Static review only; no live mutations."
 keywords: ["istio", "service-mesh", "ambient-mesh", "mtls"]
 author: "VincentChuWaiChow"
 ---
 # Vanguard Frontier — Istio
 
-Reviews istio ambient mesh configuration — ztunnel L4 vs waypoint L7 enforcement, AuthorizationPolicy scope,... Static review only; no live mutations.
+Curated Istio agents for ambient mesh, authorization policy, dataplane diagnostics, gateway api. Routes via istio-maestro-agent to specialist agents based on task scope. Static review only; no live mutations.
 
 ## When to engage this Power
 
@@ -15,9 +15,9 @@ Activate when the task references Istio services, resources, or operations. Do n
 
 ## Routing pattern
 
-- *(no maestro for this provider; reference agents directly under `agents/istio/`)*
+- **`istio-maestro-agent`** — classifies and routes the task to the right specialist
 
-Reference agents directly from agents/istio/ without maestro-based routing.
+Use the maestro as the entry point: classify the task, then dispatch to one specialist or a parallel team of specialists. Never have the maestro itself execute a live mutation.
 
 ## Live-guard agents (gate_mode only)
 
@@ -27,12 +27,13 @@ Live-guard agents enforce approval, target confirmation, evidence capture, and r
 
 ## Invariants
 
+- Route all tasks through istio-maestro-agent for proper classification and dispatch.
 - Static review only -- agents analyze configuration and provide findings without mutating live systems.
 - Service mesh policies affect traffic routing cluster-wide; review blast radius before changes.
 
 ## Where the agents live
 
-Agent specs and adapters are part of the [Vanguard Frontier Agentic](https://github.com/VincentChuWaiChow/vanguard-frontier-agentic) marketplace. For this provider, see `agents/istio/` in that repository. The single agent in this provider ships a Kiro adapter (`harnesses/kiro-ide.agent.md`, `kiro-cli.agent.json`).
+Agent specs and adapters are part of the [Vanguard Frontier Agentic](https://github.com/VincentChuWaiChow/vanguard-frontier-agentic) marketplace. For this provider, see `agents/istio/` in that repository. All 7 agents in this provider ship a Kiro adapter (`harnesses/kiro-ide.agent.md`, `kiro-cli.agent.json`).
 
 ## Companion install paths
 

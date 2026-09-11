@@ -1,0 +1,7 @@
+{
+  "name": "003-happy-dataplane-diagnostics",
+  "task": "Review our istio 503 403 404 configuration.",
+  "tags": [
+    "happy-path"
+  ]
+}

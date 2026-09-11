@@ -12,7 +12,7 @@
     {
       "name": "vanguard-frontier-agentic",
       "source": "./",
-      "description": "All 729 cloud, security, compliance, platform, accounting, and finance agents in one install. Includes maestros, advisory reviewers, and live-mutation guards across 45 providers.",
+      "description": "All 735 cloud, security, compliance, platform, accounting, and finance agents in one install. Includes maestros, advisory reviewers, and live-mutation guards across 45 providers.",
       "category": "cloud",
       "tags": [
         "agents",

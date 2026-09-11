@@ -1,0 +1,50 @@
+{
+  "id": "istio-gateway-api-review-agent",
+  "name": "Istio Gateway API Review",
+  "type": "agent",
+  "provider": "istio",
+  "harnesses": [
+    "codex",
+    "copilot",
+    "claude-code",
+    "cursor",
+    "gemini",
+    "kiro"
+  ],
+  "summary": "Agent for istio-gateway-api-review. Review Istio ingress or waypoint routing that uses Kubernetes Gateway API GatewayClass, Gateway, HTTPRoute, GRPCRoute and ReferenceGrant resources, and distinguish them from Istio networking Gateways. Use for unaccepted routes, stale conditions, cross-namespace backends/certificates, missing listeners, TLS/hostname mismatches or Service-attached mesh routes. Consume supplied manifests/status only; do not change Gateways or fetch Secrets.",
+  "source_type": "original",
+  "official_docs": [
+    "https://gateway-api.sigs.k8s.io/docs/concepts/troubleshooting/",
+    "https://gateway-api.sigs.k8s.io/reference/api-types/referencegrant/",
+    "https://gateway-api.sigs.k8s.io/guides/api-design/",
+    "https://istio.io/latest/docs/ambient/migrate/migrate-policies/",
+    "https://istio.io/latest/docs/ambient/usage/waypoint/"
+  ],
+  "security_notes": "Static review only. Do not fetch Secrets or infer current traffic behavior from a status condition without controller, parent, and generation evidence.",
+  "last_verified": "2026-09-08",
+  "path": "agents/istio/istio-gateway-api-review-agent",
+  "harness_variants": {
+    "codex": "agents/istio/istio-gateway-api-review-agent/harnesses/codex.toml",
+    "copilot": "agents/istio/istio-gateway-api-review-agent/harnesses/copilot.agent.md",
+    "claude-code": "agents/istio/istio-gateway-api-review-agent/harnesses/claude-code.agent.md",
+    "cursor": "agents/istio/istio-gateway-api-review-agent/harnesses/cursor.agent.md",
+    "gemini": "agents/istio/istio-gateway-api-review-agent/harnesses/gemini.agent.md",
+    "kiro-ide": "agents/istio/istio-gateway-api-review-agent/harnesses/kiro-ide.agent.md",
+    "kiro-cli": "agents/istio/istio-gateway-api-review-agent/harnesses/kiro-cli.agent.json"
+  },
+  "author": "github: VincentChuWaiChow",
+  "version": "0.1.0",
+  "companion_skills": [
+    "istio-gateway-api-review"
+  ],
+  "execution_tier": "static-review",
+  "lifecycle": "beta",
+  "routing_keywords": [
+    "Gateway API",
+    "HTTPRoute",
+    "GRPCRoute",
+    "ReferenceGrant",
+    "listener",
+    "observedGeneration"
+  ]
+}

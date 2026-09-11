@@ -1,0 +1,18 @@
+{
+  "case_id": "TRAFFIC-05",
+  "skill_id": "istio-traffic-resilience-review",
+  "prompt": "Will outlier ejection preserve required capacity?",
+  "execution_context": {
+    "tier": "static-review",
+    "live_adapter_authorized": false,
+    "network_authorized": false,
+    "environment_note": "Synthetic fixture; no real cluster, current release support or actual observations are asserted. Evaluate the stated distinction and preserve all missing context."
+  },
+  "supplied_evidence": {
+    "replicas": 3,
+    "required_capacity_units": 3,
+    "capacity_per_replica": 1,
+    "possible_ejected": 1,
+    "load_test": null
+  }
+}

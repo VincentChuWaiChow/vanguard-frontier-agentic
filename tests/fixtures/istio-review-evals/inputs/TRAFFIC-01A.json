@@ -1,0 +1,23 @@
+{
+  "case_id": "TRAFFIC-01A",
+  "skill_id": "istio-traffic-resilience-review",
+  "prompt": "Are weights 9:1 different from 90:10?",
+  "execution_context": {
+    "tier": "static-review",
+    "live_adapter_authorized": false,
+    "network_authorized": false,
+    "environment_note": "Synthetic fixture; no real cluster, current release support or actual observations are asserted. Evaluate the stated distinction and preserve all missing context."
+  },
+  "supplied_evidence": {
+    "pairs": [
+      [
+        9,
+        1
+      ],
+      [
+        90,
+        10
+      ]
+    ]
+  }
+}

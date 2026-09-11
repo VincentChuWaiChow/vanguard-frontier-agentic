@@ -1,0 +1,6 @@
+{
+  "route": [
+    "istio-upgrade-readiness-agent"
+  ],
+  "mode": "single"
+}

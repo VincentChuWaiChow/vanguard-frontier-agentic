@@ -1,0 +1,17 @@
+{
+  "case_id": "AMB-07",
+  "skill_id": "istio-ambient-mesh-review",
+  "prompt": "Carry this sidecar filter into ambient unchanged.",
+  "execution_context": {
+    "tier": "static-review",
+    "live_adapter_authorized": false,
+    "network_authorized": false,
+    "environment_note": "Synthetic fixture; no real cluster, current release support or actual observations are asserted. Evaluate the stated distinction and preserve all missing context."
+  },
+  "supplied_evidence": {
+    "kind": "EnvoyFilter",
+    "purpose": "request attribute rewriting",
+    "target": "sidecar",
+    "waypoint_support_evidence": null
+  }
+}

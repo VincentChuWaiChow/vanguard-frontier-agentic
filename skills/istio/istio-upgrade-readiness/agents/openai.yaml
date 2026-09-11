@@ -1,0 +1,5 @@
+interface:
+  display_name: Istio Upgrade Readiness
+  short_description: Review upgrade dependencies, compatibility and rollback.
+  default_prompt: Use $istio-upgrade-readiness to review the supplied evidence within
+    its stated scope. Report unknowns and do not perform live operations.

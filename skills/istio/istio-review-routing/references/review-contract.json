@@ -1,0 +1,265 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Portable Istio Review Adjunct",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version",
+    "skill_id",
+    "verdict",
+    "execution_tier",
+    "scope",
+    "claims",
+    "tests",
+    "limitations"
+  ],
+  "properties": {
+    "schema_version": {
+      "const": "1.0"
+    },
+    "skill_id": {
+      "enum": [
+        "istio-ambient-mesh-review",
+        "istio-authorization-policy-review",
+        "istio-traffic-resilience-review",
+        "istio-gateway-api-review",
+        "istio-upgrade-readiness",
+        "istio-dataplane-diagnostics",
+        "istio-review-routing",
+        "istio-live-policy-change"
+      ]
+    },
+    "verdict": {
+      "enum": [
+        "approved",
+        "blocked",
+        "needs-review"
+      ]
+    },
+    "execution_tier": {
+      "enum": [
+        "static-review",
+        "guarded-handoff",
+        "guarded-execution"
+      ]
+    },
+    "scope": {
+      "type": "object",
+      "required": [
+        "question",
+        "environment",
+        "evidence_boundary"
+      ],
+      "additionalProperties": false,
+      "properties": {
+        "question": {
+          "type": "string",
+          "minLength": 1
+        },
+        "environment": {
+          "type": "string",
+          "minLength": 1
+        },
+        "evidence_boundary": {
+          "type": "string",
+          "minLength": 1
+        }
+      }
+    },
+    "claims": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "id",
+          "classification",
+          "statement",
+          "evidence_refs",
+          "applicability",
+          "rule_id"
+        ],
+        "properties": {
+          "id": {
+            "type": "string",
+            "minLength": 1
+          },
+          "classification": {
+            "enum": [
+              "observed",
+              "derived",
+              "assumption",
+              "unknown"
+            ]
+          },
+          "statement": {
+            "type": "string",
+            "minLength": 1
+          },
+          "evidence_refs": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "minLength": 1
+            }
+          },
+          "applicability": {
+            "type": "string",
+            "minLength": 1
+          },
+          "rule_id": {
+            "type": "string",
+            "minLength": 1
+          }
+        },
+        "allOf": [
+          {
+            "if": {
+              "properties": {
+                "classification": {
+                  "enum": [
+                    "observed",
+                    "derived"
+                  ]
+                }
+              }
+            },
+            "then": {
+              "properties": {
+                "evidence_refs": {
+                  "minItems": 1
+                }
+              }
+            }
+          }
+        ]
+      }
+    },
+    "tests": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "id",
+          "state",
+          "expected",
+          "observed",
+          "evidence_refs"
+        ],
+        "properties": {
+          "id": {
+            "type": "string",
+            "minLength": 1
+          },
+          "state": {
+            "enum": [
+              "proposed",
+              "passed",
+              "failed",
+              "inconclusive",
+              "not-run"
+            ]
+          },
+          "expected": {
+            "type": "string",
+            "minLength": 1
+          },
+          "observed": {
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "evidence_refs": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "minLength": 1
+            }
+          }
+        },
+        "allOf": [
+          {
+            "if": {
+              "properties": {
+                "state": {
+                  "enum": [
+                    "passed",
+                    "failed"
+                  ]
+                }
+              }
+            },
+            "then": {
+              "properties": {
+                "observed": {
+                  "type": "string",
+                  "minLength": 1
+                },
+                "evidence_refs": {
+                  "minItems": 1
+                }
+              }
+            }
+          },
+          {
+            "if": {
+              "properties": {
+                "state": {
+                  "enum": [
+                    "proposed",
+                    "not-run"
+                  ]
+                }
+              }
+            },
+            "then": {
+              "properties": {
+                "observed": {
+                  "type": "null"
+                }
+              }
+            }
+          }
+        ]
+      }
+    },
+    "limitations": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "string",
+        "minLength": 1
+      }
+    }
+  },
+  "allOf": [
+    {
+      "if": {
+        "properties": {
+          "skill_id": {
+            "const": "istio-live-policy-change"
+          }
+        }
+      },
+      "then": {
+        "properties": {
+          "execution_tier": {
+            "enum": [
+              "guarded-handoff",
+              "guarded-execution"
+            ]
+          }
+        }
+      },
+      "else": {
+        "properties": {
+          "execution_tier": {
+            "const": "static-review"
+          }
+        }
+      }
+    }
+  ]
+}

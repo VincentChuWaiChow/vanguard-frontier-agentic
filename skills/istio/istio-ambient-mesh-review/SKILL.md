@@ -1,46 +1,45 @@
 ---
 name: istio-ambient-mesh-review
-description: Use this skill for Istio service mesh review across both sidecar mode and ambient mode (ztunnel L4 + optional waypoint L7). Covers PeerAuthentication, AuthorizationPolicy, RequestAuthentication, Gateway, VirtualService, DestinationRule, Sidecar, and waypoint placement. Trigger when the user asks whether an Istio policy is correct, whether mTLS is strict, whether L7 AuthorizationPolicy will actually be enforced in ambient mode, or whether a mesh-wide PeerAuthentication change is safe.
+description: Review Istio ambient enrollment, ztunnel versus waypoint enforcement,
+  mixed sidecar/ambient paths and migration boundaries from rendered manifests and
+  supplied sanitized evidence. Use for missing waypoints, L7 policies on ztunnel,
+  identity changes across waypoints, ingress bypass questions, namespace enrollment
+  claims or sidecar-to-ambient transitions. Do not collect live evidence or mutate
+  a cluster.
 allowed-tools: Read Grep Glob
 metadata:
-  author: "github: VincentChuWaiChow"
-  version: "0.1.0"
-  updated: "2026-05-05"
+  author: 'github: VincentChuWaiChow'
+  version: 0.2.0
   category: security
+  lifecycle: beta
+  execution_tier: static-review
 ---
-
 # Istio Ambient Mesh Review
+Establish workload enrollment and the actual ambient enforcement location.
+## Decision and boundary
+Is the intended workload enrolled, and where does each policy execute?
+Operate as static-review. Read supplied files only; never collect live evidence, probe, mutate, or inherit ambient credentials. Host-enforced tool permissions remain mandatory.
+## Required inputs
+Require intended behavior/access, rendered resources, exact environment/version/mode scope, and an evidence ledger with capture times and visibility limits. Continue bounded analysis when fields are missing, but mark affected conclusions `needs-review`.
+## Workflow
+1. Inventory namespaces, pods, Services, identities, injection/ambient labels, exclusions, CNI evidence and revisions; do not infer pod participation from a namespace label alone.
+2. Build source -> proxy/waypoint -> receiving enforcement point -> workload paths separately for Service, direct workload, ingress, sidecar, ambient and non-mesh traffic.
+3. Classify every relevant policy by actual target and mode before interpreting L4/L7 behavior. Separate fail-safe denial from a waypoint policy whose path is unestablished.
+4. Trace identities at each hop. Resolve waypoint enrollment and applicable workload-level anti-bypass controls without promising a universal bypass-prevention manifest.
+5. For migrations, compare access and availability before, during and after each stage; surface documented feature gaps and rollback limitations.
+6. Return evidence-backed path findings and paired test proposals. Handoff combined authorization semantics, routing, or upgrade decisions to their owners.
 
-## Purpose
+## Reference loading
+Read [evidence-boundary.md](references/evidence-boundary.md), [applicability.md](references/applicability.md), and [output-contract.md](references/output-contract.md) first. Load the following only for the active branch.
+| Reference | Load when |
+| --- | --- |
+| [enrollment-and-paths.md](references/enrollment-and-paths.md) | Workload enrollment or a missing/bypassed waypoint is in question. |
+| [enforcement-rules.md](references/enforcement-rules.md) | Classify L4/L7 attachment, identity, and peer authentication. |
+| [migration-boundaries.md](references/migration-boundaries.md) | Review a sidecar-to-ambient or mixed-mode transition. |
+| [negative-tests.md](references/negative-tests.md) | Define counterexamples and required observations. |
+| [official-sources.md](references/official-sources.md) | Verify a version-sensitive rule or source disagreement. |
+| [review-contract.json](references/review-contract.json) | Produce or validate a portable structured review. |
 
-Review Istio configuration against zero-trust correctness and the most common ambient-mode trap: **L7 `AuthorizationPolicy` rules silently ignored when no waypoint is deployed**. Ambient mode uses ztunnel for L4 zero-trust on every node, but L7 features (HTTP method, path, JWT claim matching, request header inspection) require an explicit waypoint proxy. Without one, the L7 rules in the policy are accepted but never enforced.
-
-## Lean operating rules
-
-- Prefer live cluster evidence (`kubectl get peerauthentication,authorizationpolicy,requestauthentication,gateway,virtualservice,destinationrule,sidecar -A -o yaml` plus `istioctl analyze` and `istioctl x ztunnel-config`) when the active client exposes it; otherwise fall back to official Istio documentation (istio.io) and sanitized YAML.
-- Separate confirmed facts from inference. If mesh mode (sidecar vs ambient), waypoint deployment, and namespace labels were not queried, say so.
-- **Ambient L7 policy without a waypoint is a critical finding** — the policy looks active, the API server accepts it, but ztunnel only enforces L4. The L7 fields are silently bypassed.
-- Treat `PeerAuthentication` with `mode: PERMISSIVE` or `mode: DISABLE` in production as a critical finding — mTLS is the foundation of mesh zero-trust.
-- Treat any mesh-wide (root namespace) `PeerAuthentication` change as a critical-blast-radius finding — the entire mesh is affected at once.
-- Challenge `AuthorizationPolicy` with `action: ALLOW` and broad `from` selectors — the default action when no policy is provisioned is ALLOW, so the only thing that creates zero-trust is a deny policy or an explicit ALLOW with bounded scope.
-- Challenge `RequestAuthentication` JWKs URL changes — JWT validation depends on this.
-- Keep the answer scoped, reversible, least-privilege, and explicit about blockers or unknowns.
-
-## References
-
-Load these only when needed:
-
-- [Evidence path and tooling](references/mcp-and-evidence.md) — use when choosing live cluster evidence, confirming mesh mode and waypoint deployment, or switching to documentation mode.
-- [Workflow and output contract](references/workflow-and-output.md) — use when executing the full review, applying ambient/sidecar stress checks, or formatting the final answer.
-- [Official sources](references/official-sources.md) — use when you need the detailed Istio documentation list, ambient mode internals, and grounded insights.
-
-## Response minimum
-
-Return, at minimum:
-
-- the scoped target (mesh-wide vs namespace-scoped vs workload-scoped) and evidence level,
-- the mesh mode (sidecar, ambient, mixed) and the waypoint deployment state for the workloads involved,
-- the mTLS posture (`STRICT` / `PERMISSIVE` / `DISABLE`) on PeerAuthentication,
-- the AuthorizationPolicy enforcement layer (L4 ztunnel-enforced vs L7 waypoint-enforced) and whether L7 rules will actually run,
-- the safest next actions and rollback plan,
-- the assumptions or blockers that prevent stronger conclusions.
+## Deliverable
+Workload enrollment matrix, path/enforcement map, and before/during/after migration findings.
+Separate observed evidence, derived conclusions, assumptions and unknowns. Include one counterexample for every consequential finding. Never describe unperformed tests as passing or a bounded review as production certification.

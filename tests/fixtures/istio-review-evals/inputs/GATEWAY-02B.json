@@ -1,0 +1,17 @@
+{
+  "case_id": "GATEWAY-02B",
+  "skill_id": "istio-gateway-api-review",
+  "prompt": "Does allowedRoutes authorize a cross-namespace backend reference too?",
+  "execution_context": {
+    "tier": "static-review",
+    "live_adapter_authorized": false,
+    "network_authorized": false,
+    "environment_note": "Synthetic fixture; no real cluster, current release support or actual observations are asserted. Evaluate the stated distinction and preserve all missing context."
+  },
+  "supplied_evidence": {
+    "route_namespace": "shop",
+    "backend_namespace": "payments",
+    "listener_allows_route": true,
+    "backend_ReferenceGrant": null
+  }
+}

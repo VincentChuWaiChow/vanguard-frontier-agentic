@@ -1,0 +1,20 @@
+{
+  "case_id": "AMB-01",
+  "skill_id": "istio-ambient-mesh-review",
+  "prompt": "Is every workload definitely in ambient?",
+  "execution_context": {
+    "tier": "static-review",
+    "live_adapter_authorized": false,
+    "network_authorized": false,
+    "environment_note": "Synthetic fixture; no real cluster, current release support or actual observations are asserted. Evaluate the stated distinction and preserve all missing context."
+  },
+  "supplied_evidence": {
+    "namespace": {
+      "name": "payments",
+      "labels": {
+        "istio.io/dataplane-mode": "ambient"
+      }
+    },
+    "workload_capture_evidence": null
+  }
+}

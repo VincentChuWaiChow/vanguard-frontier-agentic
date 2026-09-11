@@ -1,0 +1,6 @@
+{
+  "route": [
+    "istio-ambient-mesh-review-agent"
+  ],
+  "mode": "single"
+}

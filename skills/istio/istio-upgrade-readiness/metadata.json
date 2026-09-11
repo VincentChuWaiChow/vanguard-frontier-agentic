@@ -1,0 +1,30 @@
+{
+  "id": "istio-upgrade-readiness",
+  "name": "Istio Upgrade Readiness",
+  "type": "skill",
+  "provider": "istio",
+  "harnesses": [
+    "codex",
+    "claude-code",
+    "cursor",
+    "gemini",
+    "kiro",
+    "other"
+  ],
+  "summary": "Assess an Istio source-to-target upgrade or downgrade using supplied inventory, installation configuration, release documentation and test evidence. Use for control/data-plane skew, canary revisions, Helm or istioctl transitions, CRD storage changes, extension compatibility, ambient components or rollback readiness. Produce a dependency plan and blockers; do not install, upgrade, restart, delete or assume the latest release.",
+  "source_type": "original",
+  "official_docs": [
+    "https://istio.io/latest/docs/releases/supported-releases/",
+    "https://istio.io/latest/docs/setup/upgrade/helm/",
+    "https://istio.io/latest/docs/setup/upgrade/in-place/",
+    "https://kubernetes.io/docs/tasks/extend-kubernetes/custom-resources/custom-resource-definition-versioning/",
+    "https://istio.io/latest/docs/ambient/migrate/migrate-policies/"
+  ],
+  "security_notes": "Static review only. Never assume latest-version support or execute an upgrade; require source-to-target, installation-method, skew, CRD, and rollback evidence.",
+  "last_verified": "2026-09-08",
+  "path": "skills/istio/istio-upgrade-readiness",
+  "author": "github: VincentChuWaiChow",
+  "version": "0.1.0",
+  "lifecycle": "beta",
+  "execution_tier": "static-review"
+}

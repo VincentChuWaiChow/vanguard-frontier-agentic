@@ -1,0 +1,28 @@
+{
+  "case_id": "TRAFFIC-03",
+  "skill_id": "istio-traffic-resilience-review",
+  "prompt": "Translate DestinationRule subsets directly into these HTTPRoute destinations.",
+  "execution_context": {
+    "tier": "static-review",
+    "live_adapter_authorized": false,
+    "network_authorized": false,
+    "environment_note": "Synthetic fixture; no real cluster, current release support or actual observations are asserted. Evaluate the stated distinction and preserve all missing context."
+  },
+  "supplied_evidence": {
+    "source_subsets": [
+      "v1",
+      "v2"
+    ],
+    "HTTPRoute_backendRefs": [
+      {
+        "name": "checkout-v1",
+        "weight": 9
+      },
+      {
+        "name": "checkout-v2",
+        "weight": 1
+      }
+    ],
+    "Service_selectors": null
+  }
+}

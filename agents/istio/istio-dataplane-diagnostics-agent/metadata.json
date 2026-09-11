@@ -1,0 +1,50 @@
+{
+  "id": "istio-dataplane-diagnostics-agent",
+  "name": "Istio Dataplane Diagnostics",
+  "type": "agent",
+  "provider": "istio",
+  "harnesses": [
+    "codex",
+    "copilot",
+    "claude-code",
+    "cursor",
+    "gemini",
+    "kiro"
+  ],
+  "summary": "Agent for istio-dataplane-diagnostics. Diagnose Istio connectivity, 403/404/503 responses, TLS, DNS, route propagation, injection/enrollment, ztunnel or waypoint failures using supplied logs, status, manifests and metrics. Use for incidents and ambiguous proxy-versus-application failures. Produce a bounded hypothesis ledger and evidence requests, not speculative fixes. Do not collect live logs, execute into pods, enable debug logging or run network probes without a separate authorized operator.",
+  "source_type": "original",
+  "official_docs": [
+    "https://istio.io/latest/docs/ops/common-problems/network-issues/",
+    "https://istio.io/latest/docs/ops/diagnostic-tools/istioctl-analyze/",
+    "https://istio.io/latest/docs/ambient/usage/l4-policy/",
+    "https://gateway-api.sigs.k8s.io/docs/concepts/troubleshooting/",
+    "https://istio.io/latest/docs/ops/best-practices/security/"
+  ],
+  "security_notes": "Static review only. Do not collect live logs or run probes; file analysis is offline only when the authorized runner explicitly disables Kubernetes access.",
+  "last_verified": "2026-09-08",
+  "path": "agents/istio/istio-dataplane-diagnostics-agent",
+  "harness_variants": {
+    "codex": "agents/istio/istio-dataplane-diagnostics-agent/harnesses/codex.toml",
+    "copilot": "agents/istio/istio-dataplane-diagnostics-agent/harnesses/copilot.agent.md",
+    "claude-code": "agents/istio/istio-dataplane-diagnostics-agent/harnesses/claude-code.agent.md",
+    "cursor": "agents/istio/istio-dataplane-diagnostics-agent/harnesses/cursor.agent.md",
+    "gemini": "agents/istio/istio-dataplane-diagnostics-agent/harnesses/gemini.agent.md",
+    "kiro-ide": "agents/istio/istio-dataplane-diagnostics-agent/harnesses/kiro-ide.agent.md",
+    "kiro-cli": "agents/istio/istio-dataplane-diagnostics-agent/harnesses/kiro-cli.agent.json"
+  },
+  "author": "github: VincentChuWaiChow",
+  "version": "0.1.0",
+  "companion_skills": [
+    "istio-dataplane-diagnostics"
+  ],
+  "execution_tier": "static-review",
+  "lifecycle": "beta",
+  "routing_keywords": [
+    "503",
+    "403",
+    "404",
+    "istioctl analyze",
+    "proxy config",
+    "ztunnel logs"
+  ]
+}

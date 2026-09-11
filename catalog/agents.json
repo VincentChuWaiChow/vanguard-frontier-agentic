@@ -5741,6 +5741,67 @@
     ]
   },
   {
+    "id": "databricks-lakehouse-engineering-at-azure-agent",
+    "name": "Databricks Lakehouse Engineering at Azure",
+    "type": "agent",
+    "provider": "databricks",
+    "harnesses": [
+      "codex",
+      "copilot",
+      "claude-code",
+      "cursor",
+      "gemini",
+      "kiro"
+    ],
+    "summary": "Agent for databricks-lakehouse-engineering-at-azure. Review and guide medallion architecture design, Delta Lake pipelines, ADLS Gen2 access via Unity Catalog storage credentials and Access Connector managed identity, cluster access mode enforcement, AKV-backed secret scopes, VNet injection and Private Link isolation, and credential passthrough deprecation on Azure Databricks.",
+    "source_type": "original",
+    "official_docs": [
+      "https://docs.databricks.com/en/lakehouse/index.html",
+      "https://docs.databricks.com/en/connect/storage/azure-storage.html",
+      "https://learn.microsoft.com/en-us/azure/databricks/connect/storage/tutorial-azure-storage",
+      "https://docs.databricks.com/en/clusters/cluster-config-best-practices.html"
+    ],
+    "security_notes": "Use Databricks and Microsoft Learn documentation for documented platform behavior and sampled read-only workspace evidence for observed state. Never execute cluster create/edit, storage credential creation, or external location changes against a live workspace during review. Flag credential passthrough patterns (deprecated DBR 15.0+) and Standard cluster mode violations. Require explicit approval before any production infrastructure change.",
+    "last_verified": "2026-06-17",
+    "path": "agents/databricks/databricks-lakehouse-engineering-at-azure-agent",
+    "version": "0.1.0",
+    "execution_tier": "static-review",
+    "companion_skills": [
+      "databricks-lakehouse-engineering-at-azure"
+    ]
+  },
+  {
+    "id": "databricks-live-unity-catalog-grant-guard-at-azure-agent",
+    "name": "Databricks Live Unity Catalog Grant Guard at Azure",
+    "type": "agent",
+    "provider": "databricks",
+    "harnesses": [
+      "codex",
+      "copilot",
+      "claude-code",
+      "cursor",
+      "gemini",
+      "kiro"
+    ],
+    "summary": "Mutating-runtime live guard for Unity Catalog privilege management on Azure Databricks. Executes exactly ONE GRANT or REVOKE of a single privilege on a single Unity Catalog securable (schema, table, or volume) to a single principal — gated by explicit written human approval, dry-run preflight, prior-state capture, and named rollback. Phase B strictly-scoped controlled mutation; never ALL PRIVILEGES, never metastore/account admin, never catalog-wide grants.",
+    "source_type": "original",
+    "official_docs": [
+      "https://docs.databricks.com/en/data-governance/unity-catalog/manage-privileges/privileges.html",
+      "https://docs.databricks.com/en/data-governance/unity-catalog/manage-privileges/index.html",
+      "https://docs.databricks.com/en/sql/language-manual/sql-ref-syntax-ddl-grant.html",
+      "https://docs.databricks.com/en/admin/users-groups/service-principals.html",
+      "https://learn.microsoft.com/en-us/azure/databricks/data-governance/unity-catalog/"
+    ],
+    "security_notes": "Mutating-runtime Phase B. Executes exactly one GRANT or REVOKE per invocation on one Unity Catalog securable. Never auto-dispatched; requires explicit written human approval token referencing exact securable, privilege, principal, and blast radius. Run-as Entra-managed service principal holds MANAGE or IS OWNER on the single target securable only — not metastore admin or account admin. ALL PRIVILEGES, catalog-wide grants, and ownership transfers are explicitly denied.",
+    "last_verified": "2026-06-17",
+    "path": "agents/databricks/databricks-live-unity-catalog-grant-guard-at-azure-agent",
+    "version": "0.1.0",
+    "execution_tier": "mutating-runtime",
+    "companion_skills": [
+      "databricks-live-unity-catalog-grant-guard-at-azure"
+    ]
+  },
+  {
     "id": "databricks-maestro-agent",
     "name": "Databricks Maestro Agent",
     "type": "agent",
@@ -5980,6 +6041,36 @@
     ]
   },
   {
+    "id": "databricks-unity-catalog-governance-at-azure-agent",
+    "name": "Databricks Unity Catalog Governance at Azure",
+    "type": "agent",
+    "provider": "databricks",
+    "harnesses": [
+      "codex",
+      "copilot",
+      "claude-code",
+      "cursor",
+      "gemini",
+      "kiro"
+    ],
+    "summary": "Agent for databricks-unity-catalog-governance-at-azure. Review and design Unity Catalog three-level namespace governance, GRANT privilege model, Microsoft Entra ID identity federation, service principal posture, workspace-catalog binding, account/workspace/metastore admin separation, audit via system tables, and least-privilege schema-scoped grant patterns on Azure Databricks.",
+    "source_type": "original",
+    "official_docs": [
+      "https://docs.databricks.com/en/data-governance/unity-catalog/index.html",
+      "https://docs.databricks.com/en/data-governance/unity-catalog/manage-privileges/privileges.html",
+      "https://docs.databricks.com/en/admin/users-groups/service-principals.html",
+      "https://learn.microsoft.com/en-us/azure/databricks/data-governance/unity-catalog/"
+    ],
+    "security_notes": "Use Databricks and Microsoft Learn documentation for documented platform behavior and sampled read-only workspace evidence for observed state. Never execute GRANT, REVOKE, or DDL against a live workspace. Require explicit approval before production grant or admin role assignments. Challenge workspace-local identities, interactive-user run patterns, and broad catalog-level or ALL PRIVILEGES grants.",
+    "last_verified": "2026-06-17",
+    "path": "agents/databricks/databricks-unity-catalog-governance-at-azure-agent",
+    "version": "0.1.0",
+    "execution_tier": "static-review",
+    "companion_skills": [
+      "databricks-unity-catalog-governance-at-azure"
+    ]
+  },
+  {
     "id": "databricks-value-realization-agent",
     "name": "Databricks Value Realization Agent",
     "type": "agent",
@@ -6008,97 +6099,6 @@
     "execution_tier": "static-review",
     "companion_skills": [
       "databricks-value-realization"
-    ]
-  },
-  {
-    "id": "databricks-lakehouse-engineering-at-azure-agent",
-    "name": "Databricks Lakehouse Engineering at Azure",
-    "type": "agent",
-    "provider": "databricks",
-    "harnesses": [
-      "codex",
-      "copilot",
-      "claude-code",
-      "cursor",
-      "gemini",
-      "kiro"
-    ],
-    "summary": "Agent for databricks-lakehouse-engineering-at-azure. Review and guide medallion architecture design, Delta Lake pipelines, ADLS Gen2 access via Unity Catalog storage credentials and Access Connector managed identity, cluster access mode enforcement, AKV-backed secret scopes, VNet injection and Private Link isolation, and credential passthrough deprecation on Azure Databricks.",
-    "source_type": "original",
-    "official_docs": [
-      "https://docs.databricks.com/en/lakehouse/index.html",
-      "https://docs.databricks.com/en/connect/storage/azure-storage.html",
-      "https://learn.microsoft.com/en-us/azure/databricks/connect/storage/tutorial-azure-storage",
-      "https://docs.databricks.com/en/clusters/cluster-config-best-practices.html"
-    ],
-    "security_notes": "Use Databricks and Microsoft Learn documentation for documented platform behavior and sampled read-only workspace evidence for observed state. Never execute cluster create/edit, storage credential creation, or external location changes against a live workspace during review. Flag credential passthrough patterns (deprecated DBR 15.0+) and Standard cluster mode violations. Require explicit approval before any production infrastructure change.",
-    "last_verified": "2026-06-17",
-    "path": "agents/databricks/databricks-lakehouse-engineering-at-azure-agent",
-    "version": "0.1.0",
-    "execution_tier": "static-review",
-    "companion_skills": [
-      "databricks-lakehouse-engineering-at-azure"
-    ]
-  },
-  {
-    "id": "databricks-live-unity-catalog-grant-guard-at-azure-agent",
-    "name": "Databricks Live Unity Catalog Grant Guard at Azure",
-    "type": "agent",
-    "provider": "databricks",
-    "harnesses": [
-      "codex",
-      "copilot",
-      "claude-code",
-      "cursor",
-      "gemini",
-      "kiro"
-    ],
-    "summary": "Mutating-runtime live guard for Unity Catalog privilege management on Azure Databricks. Executes exactly ONE GRANT or REVOKE of a single privilege on a single Unity Catalog securable (schema, table, or volume) to a single principal — gated by explicit written human approval, dry-run preflight, prior-state capture, and named rollback. Phase B strictly-scoped controlled mutation; never ALL PRIVILEGES, never metastore/account admin, never catalog-wide grants.",
-    "source_type": "original",
-    "official_docs": [
-      "https://docs.databricks.com/en/data-governance/unity-catalog/manage-privileges/privileges.html",
-      "https://docs.databricks.com/en/data-governance/unity-catalog/manage-privileges/index.html",
-      "https://docs.databricks.com/en/sql/language-manual/sql-ref-syntax-ddl-grant.html",
-      "https://docs.databricks.com/en/admin/users-groups/service-principals.html",
-      "https://learn.microsoft.com/en-us/azure/databricks/data-governance/unity-catalog/"
-    ],
-    "security_notes": "Mutating-runtime Phase B. Executes exactly one GRANT or REVOKE per invocation on one Unity Catalog securable. Never auto-dispatched; requires explicit written human approval token referencing exact securable, privilege, principal, and blast radius. Run-as Entra-managed service principal holds MANAGE or IS OWNER on the single target securable only — not metastore admin or account admin. ALL PRIVILEGES, catalog-wide grants, and ownership transfers are explicitly denied.",
-    "last_verified": "2026-06-17",
-    "path": "agents/databricks/databricks-live-unity-catalog-grant-guard-at-azure-agent",
-    "version": "0.1.0",
-    "execution_tier": "mutating-runtime",
-    "companion_skills": [
-      "databricks-live-unity-catalog-grant-guard-at-azure"
-    ]
-  },
-  {
-    "id": "databricks-unity-catalog-governance-at-azure-agent",
-    "name": "Databricks Unity Catalog Governance at Azure",
-    "type": "agent",
-    "provider": "databricks",
-    "harnesses": [
-      "codex",
-      "copilot",
-      "claude-code",
-      "cursor",
-      "gemini",
-      "kiro"
-    ],
-    "summary": "Agent for databricks-unity-catalog-governance-at-azure. Review and design Unity Catalog three-level namespace governance, GRANT privilege model, Microsoft Entra ID identity federation, service principal posture, workspace-catalog binding, account/workspace/metastore admin separation, audit via system tables, and least-privilege schema-scoped grant patterns on Azure Databricks.",
-    "source_type": "original",
-    "official_docs": [
-      "https://docs.databricks.com/en/data-governance/unity-catalog/index.html",
-      "https://docs.databricks.com/en/data-governance/unity-catalog/manage-privileges/privileges.html",
-      "https://docs.databricks.com/en/admin/users-groups/service-principals.html",
-      "https://learn.microsoft.com/en-us/azure/databricks/data-governance/unity-catalog/"
-    ],
-    "security_notes": "Use Databricks and Microsoft Learn documentation for documented platform behavior and sampled read-only workspace evidence for observed state. Never execute GRANT, REVOKE, or DDL against a live workspace. Require explicit approval before production grant or admin role assignments. Challenge workspace-local identities, interactive-user run patterns, and broad catalog-level or ALL PRIVILEGES grants.",
-    "last_verified": "2026-06-17",
-    "path": "agents/databricks/databricks-unity-catalog-governance-at-azure-agent",
-    "version": "0.1.0",
-    "execution_tier": "static-review",
-    "companion_skills": [
-      "databricks-unity-catalog-governance-at-azure"
     ]
   },
   {
@@ -11158,7 +11158,7 @@
     "name": "Istio Ambient Mesh Review",
     "type": "agent",
     "provider": "istio",
-    "summary": "Agent for istio-ambient-mesh-review. Review Istio ambient mesh configuration — ztunnel L4 vs waypoint L7 enforcement, AuthorizationPolicy scope, PeerAuthentication mTLS mode, RequestAuthentication JWKs, and gateway configuration for service mesh security posture.",
+    "summary": "Agent for istio-ambient-mesh-review. Review Istio ambient enrollment, ztunnel versus waypoint enforcement, mixed sidecar/ambient paths and migration boundaries from rendered manifests and supplied sanitized evidence. Use for missing waypoints, L7 policies on ztunnel, identity changes across waypoints, ingress bypass questions, namespace enrollment claims or sidecar-to-ambient transitions. Do not collect live evidence or mutate a cluster.",
     "path": "agents/istio/istio-ambient-mesh-review-agent",
     "harnesses": [
       "codex",
@@ -11168,18 +11168,210 @@
       "gemini",
       "kiro"
     ],
-    "last_verified": "2026-05-01",
+    "last_verified": "2026-09-08",
     "official_docs": [
-      "https://istio.io/latest/docs/ambient/",
-      "https://istio.io/latest/docs/reference/config/security/authorization-policy/",
+      "https://istio.io/latest/docs/ambient/usage/l4-policy/",
+      "https://istio.io/latest/docs/ambient/usage/waypoint/",
       "https://istio.io/latest/docs/reference/config/security/peer_authentication/",
-      "https://istio.io/latest/docs/ops/diagnostic-tools/istioctl-analyze/",
-      "https://istio.io/latest/docs/tasks/security/authorization/"
+      "https://istio.io/latest/docs/ambient/migrate/migrate-policies/",
+      "https://istio.io/latest/docs/ops/best-practices/security/"
     ],
-    "security_notes": "L7 AuthorizationPolicy in ambient mode without a waypoint is silently bypassed — ztunnel only enforces L4. PERMISSIVE PeerAuthentication in a production namespace is a critical finding.",
+    "security_notes": "Static review only. Resolve the actual traffic path and enforcement point before judging L7 behavior; never infer live state or collect cluster evidence.",
     "source_type": "original",
+    "version": "0.2.0",
+    "companion_skills": [
+      "istio-ambient-mesh-review"
+    ],
+    "execution_tier": "static-review",
+    "lifecycle": "beta"
+  },
+  {
+    "id": "istio-authorization-policy-review-agent",
+    "name": "Istio Authorization Policy Review",
+    "type": "agent",
+    "provider": "istio",
+    "harnesses": [
+      "codex",
+      "copilot",
+      "claude-code",
+      "cursor",
+      "gemini",
+      "kiro"
+    ],
+    "summary": "Agent for istio-authorization-policy-review. Review Istio AuthorizationPolicy, PeerAuthentication and RequestAuthentication together against intended access. Use for default-deny design, overlapping CUSTOM/DENY/ALLOW policies, empty rules, JWT requirements, wildcard principals, L7-on-TCP risks, policy targetRefs, trust identity or authorization regressions. Review supplied evidence only; separate policy semantics from observed enforcement and do not apply changes.",
+    "source_type": "original",
+    "official_docs": [
+      "https://istio.io/latest/docs/reference/config/security/authorization-policy/",
+      "https://istio.io/latest/docs/reference/config/security/request_authentication/",
+      "https://istio.io/latest/docs/reference/config/security/peer_authentication/",
+      "https://istio.io/latest/docs/ambient/usage/l4-policy/",
+      "https://istio.io/latest/docs/ops/best-practices/security/"
+    ],
+    "security_notes": "Static review only. Evaluate the complete applicable policy set and keep missing rules, an empty rules list, and an empty matching rule distinct.",
+    "last_verified": "2026-09-08",
+    "path": "agents/istio/istio-authorization-policy-review-agent",
     "version": "0.1.0",
-    "companion_skills": null
+    "execution_tier": "static-review",
+    "lifecycle": "beta",
+    "companion_skills": [
+      "istio-authorization-policy-review"
+    ]
+  },
+  {
+    "id": "istio-dataplane-diagnostics-agent",
+    "name": "Istio Dataplane Diagnostics",
+    "type": "agent",
+    "provider": "istio",
+    "harnesses": [
+      "codex",
+      "copilot",
+      "claude-code",
+      "cursor",
+      "gemini",
+      "kiro"
+    ],
+    "summary": "Agent for istio-dataplane-diagnostics. Diagnose Istio connectivity, 403/404/503 responses, TLS, DNS, route propagation, injection/enrollment, ztunnel or waypoint failures using supplied logs, status, manifests and metrics. Use for incidents and ambiguous proxy-versus-application failures. Produce a bounded hypothesis ledger and evidence requests, not speculative fixes. Do not collect live logs, execute into pods, enable debug logging or run network probes without a separate authorized operator.",
+    "source_type": "original",
+    "official_docs": [
+      "https://istio.io/latest/docs/ops/common-problems/network-issues/",
+      "https://istio.io/latest/docs/ops/diagnostic-tools/istioctl-analyze/",
+      "https://istio.io/latest/docs/ambient/usage/l4-policy/",
+      "https://gateway-api.sigs.k8s.io/docs/concepts/troubleshooting/",
+      "https://istio.io/latest/docs/ops/best-practices/security/"
+    ],
+    "security_notes": "Static review only. Do not collect live logs or run probes; file analysis is offline only when the authorized runner explicitly disables Kubernetes access.",
+    "last_verified": "2026-09-08",
+    "path": "agents/istio/istio-dataplane-diagnostics-agent",
+    "version": "0.1.0",
+    "execution_tier": "static-review",
+    "lifecycle": "beta",
+    "companion_skills": [
+      "istio-dataplane-diagnostics"
+    ]
+  },
+  {
+    "id": "istio-gateway-api-review-agent",
+    "name": "Istio Gateway API Review",
+    "type": "agent",
+    "provider": "istio",
+    "harnesses": [
+      "codex",
+      "copilot",
+      "claude-code",
+      "cursor",
+      "gemini",
+      "kiro"
+    ],
+    "summary": "Agent for istio-gateway-api-review. Review Istio ingress or waypoint routing that uses Kubernetes Gateway API GatewayClass, Gateway, HTTPRoute, GRPCRoute and ReferenceGrant resources, and distinguish them from Istio networking Gateways. Use for unaccepted routes, stale conditions, cross-namespace backends/certificates, missing listeners, TLS/hostname mismatches or Service-attached mesh routes. Consume supplied manifests/status only; do not change Gateways or fetch Secrets.",
+    "source_type": "original",
+    "official_docs": [
+      "https://gateway-api.sigs.k8s.io/docs/concepts/troubleshooting/",
+      "https://gateway-api.sigs.k8s.io/reference/api-types/referencegrant/",
+      "https://gateway-api.sigs.k8s.io/guides/api-design/",
+      "https://istio.io/latest/docs/ambient/migrate/migrate-policies/",
+      "https://istio.io/latest/docs/ambient/usage/waypoint/"
+    ],
+    "security_notes": "Static review only. Do not fetch Secrets or infer current traffic behavior from a status condition without controller, parent, and generation evidence.",
+    "last_verified": "2026-09-08",
+    "path": "agents/istio/istio-gateway-api-review-agent",
+    "version": "0.1.0",
+    "execution_tier": "static-review",
+    "lifecycle": "beta",
+    "companion_skills": [
+      "istio-gateway-api-review"
+    ]
+  },
+  {
+    "id": "istio-maestro-agent",
+    "name": "Istio Review Routing",
+    "type": "agent",
+    "provider": "istio",
+    "harnesses": [
+      "codex",
+      "copilot",
+      "claude-code",
+      "cursor",
+      "gemini",
+      "kiro"
+    ],
+    "summary": "Agent for istio-review-routing. Coordinate an Istio review across ambient enrollment, authorization, traffic resilience, Gateway API, upgrades and diagnostics. Use for multi-domain requests or when review ownership is unclear. Select only necessary specialist companions, pass bounded sanitized evidence and reconcile conflicting findings. Return a handoff for all live changes; never auto-dispatch a live guard, manufacture approval or average away a blocker.",
+    "source_type": "original",
+    "official_docs": [
+      "https://raw.githubusercontent.com/VincentChuWaiChow/vanguard-frontier-agentic/master/CLAUDE.md"
+    ],
+    "security_notes": "Static routing only. Preserve blockers and unknowns, minimize disclosure between specialists, and never auto-dispatch the live mesh guard.",
+    "last_verified": "2026-09-08",
+    "path": "agents/istio/istio-maestro-agent",
+    "version": "0.1.0",
+    "execution_tier": "static-review",
+    "lifecycle": "beta",
+    "companion_skills": [
+      "istio-review-routing"
+    ]
+  },
+  {
+    "id": "istio-traffic-resilience-review-agent",
+    "name": "Istio Traffic Resilience Review",
+    "type": "agent",
+    "provider": "istio",
+    "harnesses": [
+      "codex",
+      "copilot",
+      "claude-code",
+      "cursor",
+      "gemini",
+      "kiro"
+    ],
+    "summary": "Agent for istio-traffic-resilience-review. Review Istio VirtualService and DestinationRule or supplied Gateway API traffic intent for routing, weights, timeouts, retries, outlier detection, circuit-breaking, mirroring and fault injection. Use for canaries, retry storms, unexplained routing, write-side-effect risks or resilience changes. Evaluate target version and mesh mode before applying a rule. Do not inject faults, mirror traffic, probe services or change live configuration.",
+    "source_type": "original",
+    "official_docs": [
+      "https://istio.io/latest/docs/reference/config/networking/virtual-service/",
+      "https://istio.io/latest/docs/tasks/traffic-management/mirroring/",
+      "https://istio.io/latest/docs/ambient/migrate/migrate-policies/",
+      "https://istio.io/latest/docs/ops/common-problems/network-issues/",
+      "https://istio.io/latest/docs/ambient/usage/waypoint/"
+    ],
+    "security_notes": "Static review only. Treat weights as relative proportions and never run fault injection, traffic mirroring, probes, or live configuration changes.",
+    "last_verified": "2026-09-08",
+    "path": "agents/istio/istio-traffic-resilience-review-agent",
+    "version": "0.1.0",
+    "execution_tier": "static-review",
+    "lifecycle": "beta",
+    "companion_skills": [
+      "istio-traffic-resilience-review"
+    ]
+  },
+  {
+    "id": "istio-upgrade-readiness-agent",
+    "name": "Istio Upgrade Readiness",
+    "type": "agent",
+    "provider": "istio",
+    "harnesses": [
+      "codex",
+      "copilot",
+      "claude-code",
+      "cursor",
+      "gemini",
+      "kiro"
+    ],
+    "summary": "Agent for istio-upgrade-readiness. Assess an Istio source-to-target upgrade or downgrade using supplied inventory, installation configuration, release documentation and test evidence. Use for control/data-plane skew, canary revisions, Helm or istioctl transitions, CRD storage changes, extension compatibility, ambient components or rollback readiness. Produce a dependency plan and blockers; do not install, upgrade, restart, delete or assume the latest release.",
+    "source_type": "original",
+    "official_docs": [
+      "https://istio.io/latest/docs/releases/supported-releases/",
+      "https://istio.io/latest/docs/setup/upgrade/helm/",
+      "https://istio.io/latest/docs/setup/upgrade/in-place/",
+      "https://kubernetes.io/docs/tasks/extend-kubernetes/custom-resources/custom-resource-definition-versioning/",
+      "https://istio.io/latest/docs/ambient/migrate/migrate-policies/"
+    ],
+    "security_notes": "Static review only. Never assume latest-version support or execute an upgrade; require source-to-target, installation-method, skew, CRD, and rollback evidence.",
+    "last_verified": "2026-09-08",
+    "path": "agents/istio/istio-upgrade-readiness-agent",
+    "version": "0.1.0",
+    "execution_tier": "static-review",
+    "lifecycle": "beta",
+    "companion_skills": [
+      "istio-upgrade-readiness"
+    ]
   },
   {
     "id": "java-application-server-exit-agent",
@@ -12263,7 +12455,7 @@
     "name": "Kubernetes Live Mesh Policy Guard",
     "type": "agent",
     "provider": "kubernetes",
-    "summary": "Agent for istio-ambient-mesh-review. Guard live kubectl apply/delete operations on Istio AuthorizationPolicy, PeerAuthentication, RequestAuthentication, Gateway, and VirtualService resources. Requires current mTLS posture assessment, waypoint enrollment check for L7 rules, and explicit approval before any write.",
+    "summary": "Agent for istio-live-policy-change. Support the existing kubernetes-live-mesh-policy-guard-agent for an explicitly requested, independently approved Istio policy change. Use only after review and exact target/delta confirmation. Verify authorization, context, baseline, artifact hashes, permitted resources, rollback and post-change tests; stop on missing approval or drift. Without an authorized execution adapter, produce a handoff only. This skill does not grant Kubernetes access.",
     "path": "agents/kubernetes/kubernetes-live-mesh-policy-guard-agent",
     "harnesses": [
       "codex",
@@ -12273,19 +12465,20 @@
       "gemini",
       "kiro"
     ],
-    "last_verified": "2026-05-08",
+    "last_verified": "2026-09-08",
     "official_docs": [
-      "https://istio.io/latest/docs/ambient/",
-      "https://istio.io/latest/docs/reference/config/security/authorization-policy/",
+      "https://raw.githubusercontent.com/VincentChuWaiChow/vanguard-frontier-agentic/master/CLAUDE.md",
       "https://istio.io/latest/docs/reference/config/security/peer_authentication/",
+      "https://istio.io/latest/docs/reference/config/security/authorization-policy/",
       "https://istio.io/latest/docs/ops/diagnostic-tools/istioctl-analyze/"
     ],
-    "security_notes": "Changing PeerAuthentication from STRICT to PERMISSIVE disables mTLS for all traffic to matched workloads. Deleting the only DENY AuthorizationPolicy removes the default-deny posture. L7 AuthorizationPolicy applied to ambient namespace without waypoint is silently bypassed. Per docs/least-privilege-rbac.md the agent now runs a pre-flight kubectl auth can-i matrix against a least-privilege ServiceAccount before any mutation; refuses if any must-not check returns yes (binding over-scoped) or if operator is cluster-admin / system:masters. References shipped: least-privilege-rbac.yaml (deny-by-default ClusterRole), rbac-pre-flight.md (positive + negative resourceName tests), refusal-list.md (universal one-way doors plus domain-specific HARD REFUSE list). Refuses to read or process credentials volunteered by the operator; uses only the in-pod ServiceAccount token at /var/run/secrets/kubernetes.io/serviceaccount/token.",
+    "security_notes": "Existing least-privilege Kubernetes mutation guard. Requires RBAC preflight, independently authenticated approval bound to target and hashes, current-state drift check, rollback, and post-change verification; tool access never grants authority.",
     "source_type": "original",
-    "version": "0.1.0",
+    "version": "0.2.0",
     "companion_skills": [
-      "istio-ambient-mesh-review"
-    ]
+      "istio-live-policy-change"
+    ],
+    "lifecycle": "beta"
   },
   {
     "id": "kubernetes-live-network-architecture-mutation-guard-agent",

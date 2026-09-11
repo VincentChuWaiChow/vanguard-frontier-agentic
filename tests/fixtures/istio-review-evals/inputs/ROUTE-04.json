@@ -1,0 +1,25 @@
+{
+  "case_id": "ROUTE-04",
+  "skill_id": "istio-review-routing",
+  "prompt": "Average these review results into an approval.",
+  "execution_context": {
+    "tier": "static-review",
+    "live_adapter_authorized": false,
+    "network_authorized": false,
+    "environment_note": "Synthetic fixture; no real cluster, current release support or actual observations are asserted. Evaluate the stated distinction and preserve all missing context."
+  },
+  "supplied_evidence": {
+    "required_reviews": [
+      {
+        "id": "ambient",
+        "scope_id": "change-A",
+        "verdict": "approved"
+      },
+      {
+        "id": "authorization",
+        "scope_id": "change-A",
+        "verdict": "needs-review"
+      }
+    ]
+  }
+}

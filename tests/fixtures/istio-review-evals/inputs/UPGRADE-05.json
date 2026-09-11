@@ -1,0 +1,33 @@
+{
+  "case_id": "UPGRADE-05",
+  "skill_id": "istio-upgrade-readiness",
+  "prompt": "Does the storage flag prove all persisted custom resources migrated?",
+  "execution_context": {
+    "tier": "static-review",
+    "live_adapter_authorized": false,
+    "network_authorized": false,
+    "environment_note": "Synthetic fixture; no real cluster, current release support or actual observations are asserted. Evaluate the stated distinction and preserve all missing context."
+  },
+  "supplied_evidence": {
+    "spec": {
+      "versions": [
+        {
+          "name": "v1",
+          "served": true,
+          "storage": true
+        },
+        {
+          "name": "v1beta1",
+          "served": false,
+          "storage": false
+        }
+      ]
+    },
+    "status": {
+      "storedVersions": [
+        "v1beta1",
+        "v1"
+      ]
+    }
+  }
+}

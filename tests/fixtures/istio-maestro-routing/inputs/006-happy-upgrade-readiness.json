@@ -1,0 +1,7 @@
+{
+  "name": "006-happy-upgrade-readiness",
+  "task": "Review our istio Istio upgrade control plane skew data plane skew configuration.",
+  "tags": [
+    "happy-path"
+  ]
+}

@@ -1,0 +1,7 @@
+{
+  "name": "001-happy-ambient-mesh-review",
+  "task": "Review our istio ambient ztunnel waypoint configuration.",
+  "tags": [
+    "happy-path"
+  ]
+}

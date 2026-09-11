@@ -1,0 +1,44 @@
+{
+  "id": "istio-maestro-agent",
+  "name": "Istio Review Routing",
+  "type": "agent",
+  "provider": "istio",
+  "harnesses": [
+    "codex",
+    "copilot",
+    "claude-code",
+    "cursor",
+    "gemini",
+    "kiro"
+  ],
+  "summary": "Agent for istio-review-routing. Coordinate an Istio review across ambient enrollment, authorization, traffic resilience, Gateway API, upgrades and diagnostics. Use for multi-domain requests or when review ownership is unclear. Select only necessary specialist companions, pass bounded sanitized evidence and reconcile conflicting findings. Return a handoff for all live changes; never auto-dispatch a live guard, manufacture approval or average away a blocker.",
+  "source_type": "original",
+  "official_docs": [
+    "https://raw.githubusercontent.com/VincentChuWaiChow/vanguard-frontier-agentic/master/CLAUDE.md"
+  ],
+  "security_notes": "Static routing only. Preserve blockers and unknowns, minimize disclosure between specialists, and never auto-dispatch the live mesh guard.",
+  "last_verified": "2026-09-08",
+  "path": "agents/istio/istio-maestro-agent",
+  "harness_variants": {
+    "codex": "agents/istio/istio-maestro-agent/harnesses/codex.toml",
+    "copilot": "agents/istio/istio-maestro-agent/harnesses/copilot.agent.md",
+    "claude-code": "agents/istio/istio-maestro-agent/harnesses/claude-code.agent.md",
+    "cursor": "agents/istio/istio-maestro-agent/harnesses/cursor.agent.md",
+    "gemini": "agents/istio/istio-maestro-agent/harnesses/gemini.agent.md",
+    "kiro-ide": "agents/istio/istio-maestro-agent/harnesses/kiro-ide.agent.md",
+    "kiro-cli": "agents/istio/istio-maestro-agent/harnesses/kiro-cli.agent.json"
+  },
+  "author": "github: VincentChuWaiChow",
+  "version": "0.1.0",
+  "companion_skills": [
+    "istio-review-routing"
+  ],
+  "execution_tier": "static-review",
+  "lifecycle": "beta",
+  "routing_keywords": [
+    "multi-domain Istio review",
+    "review routing",
+    "specialist coordination",
+    "conflicting findings"
+  ]
+}

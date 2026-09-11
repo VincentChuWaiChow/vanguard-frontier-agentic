@@ -1,0 +1,17 @@
+{
+  "case_id": "UPGRADE-06",
+  "skill_id": "istio-upgrade-readiness",
+  "prompt": "Is the upgrade fully isolated because we use a canary control-plane revision?",
+  "execution_context": {
+    "tier": "static-review",
+    "live_adapter_authorized": false,
+    "network_authorized": false,
+    "environment_note": "Synthetic fixture; no real cluster, current release support or actual observations are asserted. Evaluate the stated distinction and preserve all missing context."
+  },
+  "supplied_evidence": {
+    "strategy": "canary",
+    "shared_CRDs": true,
+    "extensions": "unreviewed",
+    "rollback": "switch revision label"
+  }
+}

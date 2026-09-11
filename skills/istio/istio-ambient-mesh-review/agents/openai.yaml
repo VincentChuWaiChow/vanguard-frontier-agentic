@@ -1,0 +1,5 @@
+interface:
+  display_name: Istio Ambient Mesh Review
+  short_description: Review ambient enrollment and actual enforcement paths.
+  default_prompt: Use $istio-ambient-mesh-review to review the supplied evidence within
+    its stated scope. Report unknowns and do not perform live operations.

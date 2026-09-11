@@ -1,0 +1,29 @@
+{
+  "id": "istio-live-policy-change",
+  "name": "Istio Live Policy Change",
+  "type": "skill",
+  "provider": "kubernetes",
+  "harnesses": [
+    "codex",
+    "claude-code",
+    "cursor",
+    "gemini",
+    "kiro",
+    "other"
+  ],
+  "summary": "Support the existing kubernetes-live-mesh-policy-guard-agent for an explicitly requested, independently approved Istio policy change. Use only after review and exact target/delta confirmation. Verify authorization, context, baseline, artifact hashes, permitted resources, rollback and post-change tests; stop on missing approval or drift. Without an authorized execution adapter, produce a handoff only. This skill does not grant Kubernetes access.",
+  "source_type": "original",
+  "official_docs": [
+    "https://raw.githubusercontent.com/VincentChuWaiChow/vanguard-frontier-agentic/master/CLAUDE.md",
+    "https://istio.io/latest/docs/reference/config/security/peer_authentication/",
+    "https://istio.io/latest/docs/reference/config/security/authorization-policy/",
+    "https://istio.io/latest/docs/ops/diagnostic-tools/istioctl-analyze/"
+  ],
+  "security_notes": "This companion does not grant Kubernetes access. It remains plan-only without an independently approved, digest-bound change and the existing authorized live guard.",
+  "last_verified": "2026-09-08",
+  "path": "skills/istio/istio-live-policy-change",
+  "author": "github: VincentChuWaiChow",
+  "version": "0.1.0",
+  "lifecycle": "beta",
+  "execution_tier": "mutating-runtime"
+}

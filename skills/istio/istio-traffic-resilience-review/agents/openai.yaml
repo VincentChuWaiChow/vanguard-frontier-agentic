@@ -1,0 +1,5 @@
+interface:
+  display_name: Istio Traffic Resilience Review
+  short_description: Review routing, retries, capacity and traffic side effects.
+  default_prompt: Use $istio-traffic-resilience-review to review the supplied evidence
+    within its stated scope. Report unknowns and do not perform live operations.

@@ -2,18 +2,18 @@
 # Do NOT edit manually — run: node scripts/generate-docs-data.mjs
 # This file is the single source of truth for all catalog counts in Jekyll docs.
 
-agents: 729
-skills: 754
+agents: 735
+skills: 761
 providers: 45
 mcp_references: 3
 rules: 1
 workflows: 1
 install_roles: 76
-validation_gates: 25
+validation_gates: 27
 agent_directories: 49
 skill_directories: 49
 maestro_scenarios: 357
-version: "3.10.0"
+version: "3.11.1"
 
 # Provider list (flat)
 provider_list:
@@ -100,7 +100,7 @@ provider_taxonomy:
       - name: "fluxcd"
         agents: 1
       - name: "istio"
-        agents: 1
+        agents: 7
       - name: "cilium"
         agents: 1
   - category: "Security & Supply Chain"

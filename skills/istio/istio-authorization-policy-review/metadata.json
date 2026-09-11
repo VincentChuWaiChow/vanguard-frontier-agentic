@@ -1,0 +1,30 @@
+{
+  "id": "istio-authorization-policy-review",
+  "name": "Istio Authorization Policy Review",
+  "type": "skill",
+  "provider": "istio",
+  "harnesses": [
+    "codex",
+    "claude-code",
+    "cursor",
+    "gemini",
+    "kiro",
+    "other"
+  ],
+  "summary": "Review Istio AuthorizationPolicy, PeerAuthentication and RequestAuthentication together against intended access. Use for default-deny design, overlapping CUSTOM/DENY/ALLOW policies, empty rules, JWT requirements, wildcard principals, L7-on-TCP risks, policy targetRefs, trust identity or authorization regressions. Review supplied evidence only; separate policy semantics from observed enforcement and do not apply changes.",
+  "source_type": "original",
+  "official_docs": [
+    "https://istio.io/latest/docs/reference/config/security/authorization-policy/",
+    "https://istio.io/latest/docs/reference/config/security/request_authentication/",
+    "https://istio.io/latest/docs/reference/config/security/peer_authentication/",
+    "https://istio.io/latest/docs/ambient/usage/l4-policy/",
+    "https://istio.io/latest/docs/ops/best-practices/security/"
+  ],
+  "security_notes": "Static review only. Evaluate the complete applicable policy set and keep missing rules, an empty rules list, and an empty matching rule distinct.",
+  "last_verified": "2026-09-08",
+  "path": "skills/istio/istio-authorization-policy-review",
+  "author": "github: VincentChuWaiChow",
+  "version": "0.1.0",
+  "lifecycle": "beta",
+  "execution_tier": "static-review"
+}

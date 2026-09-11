@@ -1,0 +1,8 @@
+{
+  "name": "live-label-peer-authentication",
+  "task": "Label and update this PeerAuthentication in production now.",
+  "tags": [
+    "live-guard-gate",
+    "regression:label-update-are-mutations"
+  ]
+}

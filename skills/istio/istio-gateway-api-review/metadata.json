@@ -1,0 +1,30 @@
+{
+  "id": "istio-gateway-api-review",
+  "name": "Istio Gateway API Review",
+  "type": "skill",
+  "provider": "istio",
+  "harnesses": [
+    "codex",
+    "claude-code",
+    "cursor",
+    "gemini",
+    "kiro",
+    "other"
+  ],
+  "summary": "Review Istio ingress or waypoint routing that uses Kubernetes Gateway API GatewayClass, Gateway, HTTPRoute, GRPCRoute and ReferenceGrant resources, and distinguish them from Istio networking Gateways. Use for unaccepted routes, stale conditions, cross-namespace backends/certificates, missing listeners, TLS/hostname mismatches or Service-attached mesh routes. Consume supplied manifests/status only; do not change Gateways or fetch Secrets.",
+  "source_type": "original",
+  "official_docs": [
+    "https://gateway-api.sigs.k8s.io/docs/concepts/troubleshooting/",
+    "https://gateway-api.sigs.k8s.io/reference/api-types/referencegrant/",
+    "https://gateway-api.sigs.k8s.io/guides/api-design/",
+    "https://istio.io/latest/docs/ambient/migrate/migrate-policies/",
+    "https://istio.io/latest/docs/ambient/usage/waypoint/"
+  ],
+  "security_notes": "Static review only. Do not fetch Secrets or infer current traffic behavior from a status condition without controller, parent, and generation evidence.",
+  "last_verified": "2026-09-08",
+  "path": "skills/istio/istio-gateway-api-review",
+  "author": "github: VincentChuWaiChow",
+  "version": "0.1.0",
+  "lifecycle": "beta",
+  "execution_tier": "static-review"
+}

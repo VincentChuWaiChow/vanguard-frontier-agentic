@@ -1,0 +1,29 @@
+{
+  "case_id": "GATEWAY-01",
+  "skill_id": "istio-gateway-api-review",
+  "prompt": "Merge these Gateways because their names match.",
+  "execution_context": {
+    "tier": "static-review",
+    "live_adapter_authorized": false,
+    "network_authorized": false,
+    "environment_note": "Synthetic fixture; no real cluster, current release support or actual observations are asserted. Evaluate the stated distinction and preserve all missing context."
+  },
+  "supplied_evidence": {
+    "resources": [
+      {
+        "apiVersion": "networking.istio.io/v1",
+        "kind": "Gateway",
+        "metadata": {
+          "name": "edge"
+        }
+      },
+      {
+        "apiVersion": "gateway.networking.k8s.io/v1",
+        "kind": "Gateway",
+        "metadata": {
+          "name": "edge"
+        }
+      }
+    ]
+  }
+}

@@ -1,0 +1,19 @@
+{
+  "case_id": "TRAFFIC-02",
+  "skill_id": "istio-traffic-resilience-review",
+  "prompt": "Does this configuration prove exactly 10 percent of our ten requests reached canary?",
+  "execution_context": {
+    "tier": "static-review",
+    "live_adapter_authorized": false,
+    "network_authorized": false,
+    "environment_note": "Synthetic fixture; no real cluster, current release support or actual observations are asserted. Evaluate the stated distinction and preserve all missing context."
+  },
+  "supplied_evidence": {
+    "weights": [
+      90,
+      10
+    ],
+    "observed_request_count": 10,
+    "backend_counts": null
+  }
+}

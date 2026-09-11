@@ -1,0 +1,6 @@
+{
+  "route": [
+    "istio-traffic-resilience-review-agent"
+  ],
+  "mode": "single"
+}
