@@ -45,6 +45,55 @@
           "model": "haiku"
         }
       ]
+    },
+    {
+      "id": "plugin-security-scan",
+      "name": "plugin-security-scan",
+      "path": ".claude/workflows/plugin-security-scan.js",
+      "description": "HOL plugin-scanner loop: deterministic autofix, orchestrator-tier per-rule triage, rationale-bearing suppression, adversarial re-scan, then the repo gate suite.",
+      "when_to_use": "When the HOL AI Plugin Scanner reports findings against this repo or its plugin bundles — a failing hol-plugin-scanner job, a catalog reviewer citing a score, or a pre-submission self-check. Also for auditing whether the existing .plugin-scanner.toml suppressions are still honest.",
+      "phases": [
+        {
+          "title": "Inventory",
+          "detail": "Resolve a runnable scanner + version and the vendor rule list; fail closed rather than guess",
+          "model": "haiku"
+        },
+        {
+          "title": "Baseline",
+          "detail": "Record score, grade and findings per target before touching anything",
+          "model": "haiku"
+        },
+        {
+          "title": "Autofix",
+          "detail": "Deterministic lint --fix on fixable rules, before any model judgment",
+          "model": "haiku"
+        },
+        {
+          "title": "Triage",
+          "detail": "Orchestrator-tier per-rule disposition — fix vs suppress vs accept stays here",
+          "model": ""
+        },
+        {
+          "title": "Remediate",
+          "detail": "Sonnet implements fixes and writes rationale-bearing suppressions",
+          "model": "sonnet"
+        },
+        {
+          "title": "Rescan",
+          "detail": "Barrier re-scan: the decisive probe that the disposition held",
+          "model": "haiku"
+        },
+        {
+          "title": "Refute",
+          "detail": "Adversarial audit of every suppression — silenced is not fixed",
+          "model": "sonnet"
+        },
+        {
+          "title": "Gate",
+          "detail": "Repo gate suite in documented order, asset-integrity last",
+          "model": "haiku"
+        }
+      ]
     }
   ]
 }
