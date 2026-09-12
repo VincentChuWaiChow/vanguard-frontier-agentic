@@ -1,0 +1,8 @@
+{
+  "name": "live-create-authorization-policy",
+  "task": "Create this AuthorizationPolicy in production now.",
+  "tags": [
+    "live-guard-gate",
+    "regression:create-is-mutation"
+  ]
+}

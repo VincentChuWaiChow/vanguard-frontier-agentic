@@ -11,16 +11,16 @@
     "gemini",
     "kiro"
   ],
-  "summary": "Agent for istio-ambient-mesh-review. Guard live kubectl apply/delete operations on Istio AuthorizationPolicy, PeerAuthentication, RequestAuthentication, Gateway, and VirtualService resources. Requires current mTLS posture assessment, waypoint enrollment check for L7 rules, and explicit approval before any write.",
+  "summary": "Agent for istio-live-policy-change. Support the existing kubernetes-live-mesh-policy-guard-agent for an explicitly requested, independently approved Istio policy change. Use only after review and exact target/delta confirmation. Verify authorization, context, baseline, artifact hashes, permitted resources, rollback and post-change tests; stop on missing approval or drift. Without an authorized execution adapter, produce a handoff only. This skill does not grant Kubernetes access.",
   "source_type": "original",
   "official_docs": [
-    "https://istio.io/latest/docs/ambient/",
-    "https://istio.io/latest/docs/reference/config/security/authorization-policy/",
+    "https://raw.githubusercontent.com/VincentChuWaiChow/vanguard-frontier-agentic/master/CLAUDE.md",
     "https://istio.io/latest/docs/reference/config/security/peer_authentication/",
+    "https://istio.io/latest/docs/reference/config/security/authorization-policy/",
     "https://istio.io/latest/docs/ops/diagnostic-tools/istioctl-analyze/"
   ],
-  "security_notes": "Changing PeerAuthentication from STRICT to PERMISSIVE disables mTLS for all traffic to matched workloads. Deleting the only DENY AuthorizationPolicy removes the default-deny posture. L7 AuthorizationPolicy applied to ambient namespace without waypoint is silently bypassed. Per docs/least-privilege-rbac.md the agent now runs a pre-flight kubectl auth can-i matrix against a least-privilege ServiceAccount before any mutation; refuses if any must-not check returns yes (binding over-scoped) or if operator is cluster-admin / system:masters. References shipped: least-privilege-rbac.yaml (deny-by-default ClusterRole), rbac-pre-flight.md (positive + negative resourceName tests), refusal-list.md (universal one-way doors plus domain-specific HARD REFUSE list). Refuses to read or process credentials volunteered by the operator; uses only the in-pod ServiceAccount token at /var/run/secrets/kubernetes.io/serviceaccount/token.",
-  "last_verified": "2026-05-08",
+  "security_notes": "Existing least-privilege Kubernetes mutation guard. Requires RBAC preflight, independently authenticated approval bound to target and hashes, current-state drift check, rollback, and post-change verification; tool access never grants authority.",
+  "last_verified": "2026-09-08",
   "path": "agents/kubernetes/kubernetes-live-mesh-policy-guard-agent",
   "harness_variants": {
     "codex": "agents/kubernetes/kubernetes-live-mesh-policy-guard-agent/harnesses/codex.toml",
@@ -32,8 +32,9 @@
     "kiro-cli": "agents/kubernetes/kubernetes-live-mesh-policy-guard-agent/harnesses/kiro-cli.agent.json"
   },
   "author": "github: VincentChuWaiChow",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "companion_skills": [
-    "istio-ambient-mesh-review"
-  ]
+    "istio-live-policy-change"
+  ],
+  "lifecycle": "beta"
 }

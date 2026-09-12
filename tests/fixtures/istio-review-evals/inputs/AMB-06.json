@@ -1,0 +1,19 @@
+{
+  "case_id": "AMB-06",
+  "skill_id": "istio-ambient-mesh-review",
+  "prompt": "Approve this label-only sidecar-to-ambient migration with uninterrupted L7 enforcement.",
+  "execution_context": {
+    "tier": "static-review",
+    "live_adapter_authorized": false,
+    "network_authorized": false,
+    "environment_note": "Synthetic fixture; no real cluster, current release support or actual observations are asserted. Evaluate the stated distinction and preserve all missing context."
+  },
+  "supplied_evidence": {
+    "requirement": "continuous L7 authorization",
+    "migration_steps": [
+      "remove injection label",
+      "enable ambient label"
+    ],
+    "transition_path_evidence": null
+  }
+}

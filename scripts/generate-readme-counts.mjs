@@ -39,7 +39,13 @@ function listFiles(dir) {
 // ---------------------------------------------------------------------------
 
 const skillFiles = listFiles(path.join(repoRoot, "skills"));
-const skillCount = skillFiles.filter((f) => f.endsWith("SKILL.md")).length;
+const skillEntryFiles = skillFiles.filter((f) => path.basename(f) === "SKILL.md");
+const skillCount = skillEntryFiles.length;
+const skillsPerDirectory = new Map();
+for (const f of skillEntryFiles) {
+  const directory = f.split(path.sep)[0];
+  skillsPerDirectory.set(directory, (skillsPerDirectory.get(directory) ?? 0) + 1);
+}
 
 const agentFiles = listFiles(path.join(repoRoot, "agents"));
 const agentMetaFiles = agentFiles.filter((f) => f.endsWith("metadata.json"));
@@ -207,6 +213,8 @@ let treeMissingDirs = [];
 
 /** Provider slugs referenced by a count:provider marker but absent from the catalog. */
 const unknownProviders = new Set();
+/** Skill-directory slugs referenced by a marker but absent from skills/. */
+const unknownSkillDirectories = new Set();
 
 function buildExpectedContent(original) {
   let content = original;
@@ -244,7 +252,8 @@ function buildExpectedContent(original) {
   // generators concurrently (`&` … `wait`), so two writers on one file would
   // race. Keeping README single-owner is what makes that safe; the two marker
   // regexes are disjoint, so the split is enforceable rather than conventional.
-  const providerRe = /<!-- count:provider:([a-z0-9-]+) -->\d+<!-- \/count -->/g;
+  const providerRe =
+    /<!--\s*count:provider:([a-z0-9-]+)\s*-->\d+<!--\s*\/count\s*-->/g;
   content = content.replace(providerRe, (match, slug) => {
     if (!agentsPerProvider.has(slug)) {
       // Fail closed. A typo'd or removed provider must not silently freeze at
@@ -253,6 +262,21 @@ function buildExpectedContent(original) {
       return match;
     }
     return `<!-- count:provider:${slug} -->${agentsPerProvider.get(slug)}<!-- /count -->`;
+  });
+
+  // 3b. Per-directory skill counts: <!-- count:skill-directory:SLUG -->N<!-- /count -->
+  //
+  // Skill domains in the README follow the on-disk skills/<domain>/ layout,
+  // not the metadata provider. This matters for cross-provider companions such
+  // as skills/istio/istio-live-policy-change, whose provider remains kubernetes.
+  const skillDirectoryRe =
+    /<!--\s*count:skill-directory:([a-z0-9-]+)\s*-->\d+<!--\s*\/count\s*-->/g;
+  content = content.replace(skillDirectoryRe, (match, slug) => {
+    if (!skillsPerDirectory.has(slug)) {
+      unknownSkillDirectories.add(slug);
+      return match;
+    }
+    return `<!-- count:skill-directory:${slug} -->${skillsPerDirectory.get(slug)}<!-- /count -->`;
   });
 
   // 4. Repository-tree block: rewrite the agent count on each directory line.
@@ -289,6 +313,22 @@ function buildExpectedContent(original) {
 // ---------------------------------------------------------------------------
 
 const original = fs.readFileSync(readmePath, "utf8");
+const requiredIstioMarkers = [
+  ["Istio agent provider", /<!--\s*count:provider:istio\s*-->\d+<!--\s*\/count\s*-->/g],
+  [
+    "Istio skill directory",
+    /<!--\s*count:skill-directory:istio\s*-->\d+<!--\s*\/count\s*-->/g,
+  ],
+];
+for (const [label, marker] of requiredIstioMarkers) {
+  const occurrences = original.match(marker)?.length ?? 0;
+  if (occurrences !== 1) {
+    process.stderr.write(
+      `ERROR: README.md must contain exactly one ${label} count marker; found ${occurrences}.\n`,
+    );
+    process.exit(1);
+  }
+}
 const expected = buildExpectedContent(original);
 
 // Fail closed on a count:provider marker naming a provider the catalog does not
@@ -317,6 +357,15 @@ if (unknownProviders.size > 0) {
     `ERROR: README.md references unknown provider(s) in count:provider markers: ` +
       `${[...unknownProviders].sort().join(", ")}\n` +
       `Valid providers: ${[...agentsPerProvider.keys()].sort().join(", ")}\n`,
+  );
+  process.exit(1);
+}
+
+if (unknownSkillDirectories.size > 0) {
+  process.stderr.write(
+    `ERROR: README.md references unknown skill director(y|ies) in count:skill-directory markers: ` +
+      `${[...unknownSkillDirectories].sort().join(", ")}\n` +
+      `Valid directories: ${[...skillsPerDirectory.keys()].sort().join(", ")}\n`,
   );
   process.exit(1);
 }

@@ -1,0 +1,6 @@
+{
+  "route": [
+    "kubernetes-live-network-architecture-mutation-guard-agent"
+  ],
+  "mode": "live-guard-gate"
+}

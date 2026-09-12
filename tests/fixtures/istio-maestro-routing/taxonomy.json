@@ -1,0 +1,129 @@
+{
+  "provider": "istio",
+  "domains": {
+    "ambient-mesh-review": {
+      "keywords": [
+        "ambient",
+        "ztunnel",
+        "waypoint",
+        "enrollment",
+        "sidecar migration",
+        "L7 policy",
+        "mesh",
+        "istio-ambient",
+        "mesh-review",
+        "sidecar-to"
+      ],
+      "agent": "istio-ambient-mesh-review-agent"
+    },
+    "authorization-policy-review": {
+      "keywords": [
+        "AuthorizationPolicy",
+        "PeerAuthentication",
+        "RequestAuthentication",
+        "default deny",
+        "JWT",
+        "principal",
+        "authorization",
+        "policy",
+        "istio-authorization",
+        "policy-review",
+        "Review Istio AuthorizationPolicy",
+        "default-deny"
+      ],
+      "agent": "istio-authorization-policy-review-agent"
+    },
+    "dataplane-diagnostics": {
+      "keywords": [
+        "503",
+        "403",
+        "404",
+        "istioctl analyze",
+        "proxy config",
+        "ztunnel logs",
+        "dataplane",
+        "diagnostics",
+        "istio-dataplane",
+        "Diagnose Istio",
+        "TLS",
+        "DNS",
+        "proxy-versus",
+        "Produce"
+      ],
+      "agent": "istio-dataplane-diagnostics-agent"
+    },
+    "gateway-api-review": {
+      "keywords": [
+        "HTTPRoute",
+        "GRPCRoute",
+        "ReferenceGrant",
+        "listener",
+        "observedGeneration",
+        "gateway",
+        "api",
+        "istio-gateway",
+        "api-review",
+        "Kubernetes Gateway API",
+        "GatewayClass"
+      ],
+      "agent": "istio-gateway-api-review-agent"
+    },
+    "traffic-resilience-review": {
+      "keywords": [
+        "VirtualService",
+        "DestinationRule",
+        "traffic weights",
+        "retry storm",
+        "outlier detection",
+        "traffic mirroring",
+        "traffic",
+        "resilience",
+        "istio-traffic",
+        "resilience-review",
+        "Review Istio VirtualService",
+        "circuit-breaking"
+      ],
+      "agent": "istio-traffic-resilience-review-agent"
+    },
+    "upgrade-readiness": {
+      "keywords": [
+        "Istio upgrade",
+        "control plane skew",
+        "data plane skew",
+        "canary revision",
+        "CRD migration",
+        "rollback readiness",
+        "upgrade",
+        "readiness",
+        "istio-upgrade",
+        "Assess",
+        "source-to",
+        "data-plane",
+        "Helm"
+      ],
+      "agent": "istio-upgrade-readiness-agent"
+    }
+  },
+  "live_guards": [
+    "kubernetes-live-mesh-policy-guard-agent",
+    "kubernetes-live-network-architecture-mutation-guard-agent"
+  ],
+  "gate_mode": "live-guard-gate",
+  "live_guard_intent": "(?=[\\s\\S]*\\b(?:prod|production|live|cluster|context|namespace)\\b)(?:(?:\\b(?:kubectl|oc)\\s+(?:apply|patch|delete|create|replace|edit|label|annotate|set)\\b)|(?:\\b(?:apply|patch|delete|create|update|replace|edit|label|annotate|set)\\b[\\s\\S]{0,200}\\b(?:AuthorizationPolic(?:y|ies)|PeerAuthentications?|RequestAuthentications?|VirtualServices?|DestinationRules?|(?:Istio\\s+)?Gateways?)(?:\\.(?:security|networking)\\.istio\\.io)?\\b)|(?:\\b(?:AuthorizationPolic(?:y|ies)|PeerAuthentications?|RequestAuthentications?|VirtualServices?|DestinationRules?|(?:Istio\\s+)?Gateways?)(?:\\.(?:security|networking)\\.istio\\.io)?\\b[\\s\\S]{0,200}\\b(?:apply|patch|delete|create|update|replace|edit|label|annotate|set)\\b)|(?:\\b(?:change|mutate)\\b[\\s\\S]{0,200}\\b(?:mesh policy|Istio policy)\\b))",
+  "parallel_threshold": 0.8,
+  "live_guard_keywords": {
+    "kubernetes-live-mesh-policy-guard-agent": [
+      "mesh policy",
+      "AuthorizationPolicy",
+      "PeerAuthentication",
+      "RequestAuthentication",
+      "VirtualService",
+      "DestinationRule"
+    ],
+    "kubernetes-live-network-architecture-mutation-guard-agent": [
+      "gateway.networking.k8s.io",
+      "Gateway API",
+      "Gateway"
+    ]
+  }
+}

@@ -1,0 +1,30 @@
+{
+  "id": "istio-traffic-resilience-review",
+  "name": "Istio Traffic Resilience Review",
+  "type": "skill",
+  "provider": "istio",
+  "harnesses": [
+    "codex",
+    "claude-code",
+    "cursor",
+    "gemini",
+    "kiro",
+    "other"
+  ],
+  "summary": "Review Istio VirtualService and DestinationRule or supplied Gateway API traffic intent for routing, weights, timeouts, retries, outlier detection, circuit-breaking, mirroring and fault injection. Use for canaries, retry storms, unexplained routing, write-side-effect risks or resilience changes. Evaluate target version and mesh mode before applying a rule. Do not inject faults, mirror traffic, probe services or change live configuration.",
+  "source_type": "original",
+  "official_docs": [
+    "https://istio.io/latest/docs/reference/config/networking/virtual-service/",
+    "https://istio.io/latest/docs/tasks/traffic-management/mirroring/",
+    "https://istio.io/latest/docs/ambient/migrate/migrate-policies/",
+    "https://istio.io/latest/docs/ops/common-problems/network-issues/",
+    "https://istio.io/latest/docs/ambient/usage/waypoint/"
+  ],
+  "security_notes": "Static review only. Treat weights as relative proportions and never run fault injection, traffic mirroring, probes, or live configuration changes.",
+  "last_verified": "2026-09-08",
+  "path": "skills/istio/istio-traffic-resilience-review",
+  "author": "github: VincentChuWaiChow",
+  "version": "0.1.0",
+  "lifecycle": "beta",
+  "execution_tier": "static-review"
+}

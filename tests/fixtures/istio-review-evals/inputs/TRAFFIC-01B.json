@@ -1,0 +1,17 @@
+{
+  "case_id": "TRAFFIC-01B",
+  "skill_id": "istio-traffic-resilience-review",
+  "prompt": "Our routes sum to 10. Is the remaining 90 percent dropped?",
+  "execution_context": {
+    "tier": "static-review",
+    "live_adapter_authorized": false,
+    "network_authorized": false,
+    "environment_note": "Synthetic fixture; no real cluster, current release support or actual observations are asserted. Evaluate the stated distinction and preserve all missing context."
+  },
+  "supplied_evidence": {
+    "weights": [
+      9,
+      1
+    ]
+  }
+}

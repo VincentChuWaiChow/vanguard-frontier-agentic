@@ -1,0 +1,5 @@
+interface:
+  display_name: Istio Gateway API Review
+  short_description: Review gateway attachment, references and status evidence.
+  default_prompt: Use $istio-gateway-api-review to review the supplied evidence within
+    its stated scope. Report unknowns and do not perform live operations.

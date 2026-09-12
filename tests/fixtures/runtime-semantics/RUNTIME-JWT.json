@@ -1,0 +1,34 @@
+{
+  "id": "RUNTIME-JWT",
+  "title": "Missing versus invalid JWT",
+  "status": "not-run",
+  "required_authorization": "Separate explicit environment and experiment authorization; no automated provisioning is included",
+  "preconditions": [
+    "Pinned issuer fixture with synthetic credentials only",
+    "Isolated workload with known policy set"
+  ],
+  "procedure": [
+    "Test no credential, invalid credential, valid wrong identity, valid permitted identity",
+    "Repeat after the separately reviewed authorization requirement is added"
+  ],
+  "acceptance": [
+    "Missing and invalid credentials are not conflated",
+    "Positive and negative authorization cases are both verified"
+  ],
+  "capture": [
+    "Pinned versions/digests",
+    "Target identities and timestamps",
+    "Sanitized before/after objects",
+    "Positive and negative traffic results",
+    "Path/enforcement correlation",
+    "Residual risk and cleanup evidence"
+  ],
+  "stop_conditions": [
+    "Unexpected external destination",
+    "Unknown target identity",
+    "Unapproved scope change",
+    "Loss of observability",
+    "Unresolved critical acceptance failure"
+  ],
+  "cleanup": "Use only separately approved ownership-aware cleanup. Verify teardown without deleting unrelated resources."
+}

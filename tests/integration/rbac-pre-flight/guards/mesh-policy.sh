@@ -22,6 +22,9 @@ run_guard_mesh_policy() {
   # Istio CRDs may not exist in vanilla kind
   assert_cannot_or_skip delete authorizationpolicies.security.istio.io --all-namespaces "--as=$SA"
   assert_cannot_or_skip delete peerauthentications.security.istio.io --all-namespaces "--as=$SA"
+  assert_cannot_or_skip delete requestauthentications.security.istio.io --all-namespaces "--as=$SA"
+  assert_cannot_or_skip delete virtualservices.networking.istio.io --all-namespaces "--as=$SA"
+  assert_cannot_or_skip delete destinationrules.networking.istio.io --all-namespaces "--as=$SA"
 
   # istio-system control plane — core resources always present even without Istio CRDs
   assert_cannot patch deployments -n istio-system "--as=$SA"
@@ -41,8 +44,12 @@ run_guard_mesh_policy() {
   assert_can_or_skip patch authorizationpolicies.security.istio.io --all-namespaces "--as=$SA"
   assert_can_or_skip create peerauthentications.security.istio.io --all-namespaces "--as=$SA"
   assert_can_or_skip patch peerauthentications.security.istio.io --all-namespaces "--as=$SA"
-  assert_can_or_skip list virtualservices.networking.istio.io --all-namespaces "--as=$SA"
-  assert_can_or_skip list peerauthentications.security.istio.io --all-namespaces "--as=$SA"
+  assert_can_or_skip create requestauthentications.security.istio.io --all-namespaces "--as=$SA"
+  assert_can_or_skip patch requestauthentications.security.istio.io --all-namespaces "--as=$SA"
+  assert_can_or_skip create virtualservices.networking.istio.io --all-namespaces "--as=$SA"
+  assert_can_or_skip patch virtualservices.networking.istio.io --all-namespaces "--as=$SA"
+  assert_can_or_skip create destinationrules.networking.istio.io --all-namespaces "--as=$SA"
+  assert_can_or_skip patch destinationrules.networking.istio.io --all-namespaces "--as=$SA"
 
   report_guard "mesh-policy"
 }

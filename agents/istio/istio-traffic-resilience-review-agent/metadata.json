@@ -1,0 +1,50 @@
+{
+  "id": "istio-traffic-resilience-review-agent",
+  "name": "Istio Traffic Resilience Review",
+  "type": "agent",
+  "provider": "istio",
+  "harnesses": [
+    "codex",
+    "copilot",
+    "claude-code",
+    "cursor",
+    "gemini",
+    "kiro"
+  ],
+  "summary": "Agent for istio-traffic-resilience-review. Review Istio VirtualService and DestinationRule or supplied Gateway API traffic intent for routing, weights, timeouts, retries, outlier detection, circuit-breaking, mirroring and fault injection. Use for canaries, retry storms, unexplained routing, write-side-effect risks or resilience changes. Evaluate target version and mesh mode before applying a rule. Do not inject faults, mirror traffic, probe services or change live configuration.",
+  "source_type": "original",
+  "official_docs": [
+    "https://istio.io/latest/docs/reference/config/networking/virtual-service/",
+    "https://istio.io/latest/docs/tasks/traffic-management/mirroring/",
+    "https://istio.io/latest/docs/ambient/migrate/migrate-policies/",
+    "https://istio.io/latest/docs/ops/common-problems/network-issues/",
+    "https://istio.io/latest/docs/ambient/usage/waypoint/"
+  ],
+  "security_notes": "Static review only. Treat weights as relative proportions and never run fault injection, traffic mirroring, probes, or live configuration changes.",
+  "last_verified": "2026-09-08",
+  "path": "agents/istio/istio-traffic-resilience-review-agent",
+  "harness_variants": {
+    "codex": "agents/istio/istio-traffic-resilience-review-agent/harnesses/codex.toml",
+    "copilot": "agents/istio/istio-traffic-resilience-review-agent/harnesses/copilot.agent.md",
+    "claude-code": "agents/istio/istio-traffic-resilience-review-agent/harnesses/claude-code.agent.md",
+    "cursor": "agents/istio/istio-traffic-resilience-review-agent/harnesses/cursor.agent.md",
+    "gemini": "agents/istio/istio-traffic-resilience-review-agent/harnesses/gemini.agent.md",
+    "kiro-ide": "agents/istio/istio-traffic-resilience-review-agent/harnesses/kiro-ide.agent.md",
+    "kiro-cli": "agents/istio/istio-traffic-resilience-review-agent/harnesses/kiro-cli.agent.json"
+  },
+  "author": "github: VincentChuWaiChow",
+  "version": "0.1.0",
+  "companion_skills": [
+    "istio-traffic-resilience-review"
+  ],
+  "execution_tier": "static-review",
+  "lifecycle": "beta",
+  "routing_keywords": [
+    "VirtualService",
+    "DestinationRule",
+    "traffic weights",
+    "retry storm",
+    "outlier detection",
+    "traffic mirroring"
+  ]
+}

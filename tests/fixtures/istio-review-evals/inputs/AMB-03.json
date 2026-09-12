@@ -1,0 +1,39 @@
+{
+  "case_id": "AMB-03",
+  "skill_id": "istio-ambient-mesh-review",
+  "prompt": "The namespace is ambient with ztunnel only; explain the risk of this supplied L7 selector policy.",
+  "execution_context": {
+    "tier": "static-review",
+    "live_adapter_authorized": false,
+    "network_authorized": false,
+    "environment_note": "Synthetic fixture; no real cluster, current release support or actual observations are asserted. Evaluate the stated distinction and preserve all missing context."
+  },
+  "supplied_evidence": {
+    "enforcement_point": "receiving ztunnel",
+    "policy": {
+      "apiVersion": "security.istio.io/v1",
+      "kind": "AuthorizationPolicy",
+      "spec": {
+        "selector": {
+          "matchLabels": {
+            "app": "checkout"
+          }
+        },
+        "action": "ALLOW",
+        "rules": [
+          {
+            "to": [
+              {
+                "operation": {
+                  "methods": [
+                    "GET"
+                  ]
+                }
+              }
+            ]
+          }
+        ]
+      }
+    }
+  }
+}

@@ -1,0 +1,16 @@
+{
+  "case_id": "DIAG-04",
+  "skill_id": "istio-dataplane-diagnostics",
+  "prompt": "Pods are Ready and manifests accepted. Is every proxy using the current policy?",
+  "execution_context": {
+    "tier": "static-review",
+    "live_adapter_authorized": false,
+    "network_authorized": false,
+    "environment_note": "Synthetic fixture; no real cluster, current release support or actual observations are asserted. Evaluate the stated distinction and preserve all missing context."
+  },
+  "supplied_evidence": {
+    "pods_ready": true,
+    "api_accepted": true,
+    "proxy_config_evidence": null
+  }
+}

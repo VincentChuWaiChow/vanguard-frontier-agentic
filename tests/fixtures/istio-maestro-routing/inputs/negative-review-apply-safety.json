@@ -1,0 +1,8 @@
+{
+  "name": "negative-review-apply-safety",
+  "task": "Review whether applying this Istio AuthorizationPolicy default deny policy would be safe.",
+  "tags": [
+    "negative-routing",
+    "regression:no-false-gate"
+  ]
+}

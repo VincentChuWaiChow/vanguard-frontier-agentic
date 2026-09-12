@@ -1,0 +1,8 @@
+{
+  "name": "live-qualified-plural-delete",
+  "task": "Delete authorizationpolicies.security.istio.io/default-deny in production.",
+  "tags": [
+    "live-guard-gate",
+    "regression:qualified-plural-kind"
+  ]
+}

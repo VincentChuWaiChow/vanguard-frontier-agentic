@@ -3,18 +3,25 @@
   "name": "Istio Ambient Mesh Review",
   "type": "agent",
   "provider": "istio",
-  "harnesses": ["codex", "copilot", "claude-code", "cursor", "gemini", "kiro"],
-  "summary": "Agent for istio-ambient-mesh-review. Review Istio ambient mesh configuration — ztunnel L4 vs waypoint L7 enforcement, AuthorizationPolicy scope, PeerAuthentication mTLS mode, RequestAuthentication JWKs, and gateway configuration for service mesh security posture.",
+  "harnesses": [
+    "codex",
+    "copilot",
+    "claude-code",
+    "cursor",
+    "gemini",
+    "kiro"
+  ],
+  "summary": "Agent for istio-ambient-mesh-review. Review Istio ambient enrollment, ztunnel versus waypoint enforcement, mixed sidecar/ambient paths and migration boundaries from rendered manifests and supplied sanitized evidence. Use for missing waypoints, L7 policies on ztunnel, identity changes across waypoints, ingress bypass questions, namespace enrollment claims or sidecar-to-ambient transitions. Do not collect live evidence or mutate a cluster.",
   "source_type": "original",
   "official_docs": [
-    "https://istio.io/latest/docs/ambient/",
-    "https://istio.io/latest/docs/reference/config/security/authorization-policy/",
+    "https://istio.io/latest/docs/ambient/usage/l4-policy/",
+    "https://istio.io/latest/docs/ambient/usage/waypoint/",
     "https://istio.io/latest/docs/reference/config/security/peer_authentication/",
-    "https://istio.io/latest/docs/ops/diagnostic-tools/istioctl-analyze/",
-    "https://istio.io/latest/docs/tasks/security/authorization/"
+    "https://istio.io/latest/docs/ambient/migrate/migrate-policies/",
+    "https://istio.io/latest/docs/ops/best-practices/security/"
   ],
-  "security_notes": "L7 AuthorizationPolicy in ambient mode without a waypoint is silently bypassed — ztunnel only enforces L4. PERMISSIVE PeerAuthentication in a production namespace is a critical finding.",
-  "last_verified": "2026-05-01",
+  "security_notes": "Static review only. Resolve the actual traffic path and enforcement point before judging L7 behavior; never infer live state or collect cluster evidence.",
+  "last_verified": "2026-09-08",
   "path": "agents/istio/istio-ambient-mesh-review-agent",
   "harness_variants": {
     "codex": "agents/istio/istio-ambient-mesh-review-agent/harnesses/codex.toml",
@@ -26,5 +33,18 @@
     "kiro-cli": "agents/istio/istio-ambient-mesh-review-agent/harnesses/kiro-cli.agent.json"
   },
   "author": "github: VincentChuWaiChow",
-  "version": "0.1.0"
+  "version": "0.2.0",
+  "companion_skills": [
+    "istio-ambient-mesh-review"
+  ],
+  "execution_tier": "static-review",
+  "lifecycle": "beta",
+  "routing_keywords": [
+    "ambient",
+    "ztunnel",
+    "waypoint",
+    "enrollment",
+    "sidecar migration",
+    "L7 policy"
+  ]
 }

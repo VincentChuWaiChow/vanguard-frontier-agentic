@@ -1,0 +1,50 @@
+{
+  "id": "istio-authorization-policy-review-agent",
+  "name": "Istio Authorization Policy Review",
+  "type": "agent",
+  "provider": "istio",
+  "harnesses": [
+    "codex",
+    "copilot",
+    "claude-code",
+    "cursor",
+    "gemini",
+    "kiro"
+  ],
+  "summary": "Agent for istio-authorization-policy-review. Review Istio AuthorizationPolicy, PeerAuthentication and RequestAuthentication together against intended access. Use for default-deny design, overlapping CUSTOM/DENY/ALLOW policies, empty rules, JWT requirements, wildcard principals, L7-on-TCP risks, policy targetRefs, trust identity or authorization regressions. Review supplied evidence only; separate policy semantics from observed enforcement and do not apply changes.",
+  "source_type": "original",
+  "official_docs": [
+    "https://istio.io/latest/docs/reference/config/security/authorization-policy/",
+    "https://istio.io/latest/docs/reference/config/security/request_authentication/",
+    "https://istio.io/latest/docs/reference/config/security/peer_authentication/",
+    "https://istio.io/latest/docs/ambient/usage/l4-policy/",
+    "https://istio.io/latest/docs/ops/best-practices/security/"
+  ],
+  "security_notes": "Static review only. Evaluate the complete applicable policy set and keep missing rules, an empty rules list, and an empty matching rule distinct.",
+  "last_verified": "2026-09-08",
+  "path": "agents/istio/istio-authorization-policy-review-agent",
+  "harness_variants": {
+    "codex": "agents/istio/istio-authorization-policy-review-agent/harnesses/codex.toml",
+    "copilot": "agents/istio/istio-authorization-policy-review-agent/harnesses/copilot.agent.md",
+    "claude-code": "agents/istio/istio-authorization-policy-review-agent/harnesses/claude-code.agent.md",
+    "cursor": "agents/istio/istio-authorization-policy-review-agent/harnesses/cursor.agent.md",
+    "gemini": "agents/istio/istio-authorization-policy-review-agent/harnesses/gemini.agent.md",
+    "kiro-ide": "agents/istio/istio-authorization-policy-review-agent/harnesses/kiro-ide.agent.md",
+    "kiro-cli": "agents/istio/istio-authorization-policy-review-agent/harnesses/kiro-cli.agent.json"
+  },
+  "author": "github: VincentChuWaiChow",
+  "version": "0.1.0",
+  "companion_skills": [
+    "istio-authorization-policy-review"
+  ],
+  "execution_tier": "static-review",
+  "lifecycle": "beta",
+  "routing_keywords": [
+    "AuthorizationPolicy",
+    "PeerAuthentication",
+    "RequestAuthentication",
+    "default deny",
+    "JWT",
+    "principal"
+  ]
+}

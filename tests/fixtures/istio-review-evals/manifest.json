@@ -1,0 +1,337 @@
+{
+  "schema_version": "1.0",
+  "case_count": 55,
+  "evaluation_status": "not-run",
+  "cases": [
+    {
+      "id": "AMB-01",
+      "skill_id": "istio-ambient-mesh-review",
+      "input": "inputs/AMB-01.json",
+      "expected": "expected/AMB-01.json"
+    },
+    {
+      "id": "AMB-02",
+      "skill_id": "istio-ambient-mesh-review",
+      "input": "inputs/AMB-02.json",
+      "expected": "expected/AMB-02.json"
+    },
+    {
+      "id": "AMB-03",
+      "skill_id": "istio-ambient-mesh-review",
+      "input": "inputs/AMB-03.json",
+      "expected": "expected/AMB-03.json"
+    },
+    {
+      "id": "AMB-04",
+      "skill_id": "istio-ambient-mesh-review",
+      "input": "inputs/AMB-04.json",
+      "expected": "expected/AMB-04.json"
+    },
+    {
+      "id": "AMB-05",
+      "skill_id": "istio-ambient-mesh-review",
+      "input": "inputs/AMB-05.json",
+      "expected": "expected/AMB-05.json"
+    },
+    {
+      "id": "AMB-06",
+      "skill_id": "istio-ambient-mesh-review",
+      "input": "inputs/AMB-06.json",
+      "expected": "expected/AMB-06.json"
+    },
+    {
+      "id": "AMB-07",
+      "skill_id": "istio-ambient-mesh-review",
+      "input": "inputs/AMB-07.json",
+      "expected": "expected/AMB-07.json"
+    },
+    {
+      "id": "AUTH-01",
+      "skill_id": "istio-authorization-policy-review",
+      "input": "inputs/AUTH-01.json",
+      "expected": "expected/AUTH-01.json"
+    },
+    {
+      "id": "AUTH-02A",
+      "skill_id": "istio-authorization-policy-review",
+      "input": "inputs/AUTH-02A.json",
+      "expected": "expected/AUTH-02A.json"
+    },
+    {
+      "id": "AUTH-02B",
+      "skill_id": "istio-authorization-policy-review",
+      "input": "inputs/AUTH-02B.json",
+      "expected": "expected/AUTH-02B.json"
+    },
+    {
+      "id": "AUTH-03",
+      "skill_id": "istio-authorization-policy-review",
+      "input": "inputs/AUTH-03.json",
+      "expected": "expected/AUTH-03.json"
+    },
+    {
+      "id": "AUTH-04",
+      "skill_id": "istio-authorization-policy-review",
+      "input": "inputs/AUTH-04.json",
+      "expected": "expected/AUTH-04.json"
+    },
+    {
+      "id": "AUTH-05",
+      "skill_id": "istio-authorization-policy-review",
+      "input": "inputs/AUTH-05.json",
+      "expected": "expected/AUTH-05.json"
+    },
+    {
+      "id": "AUTH-06",
+      "skill_id": "istio-authorization-policy-review",
+      "input": "inputs/AUTH-06.json",
+      "expected": "expected/AUTH-06.json"
+    },
+    {
+      "id": "AUTH-07",
+      "skill_id": "istio-authorization-policy-review",
+      "input": "inputs/AUTH-07.json",
+      "expected": "expected/AUTH-07.json"
+    },
+    {
+      "id": "AUTH-08",
+      "skill_id": "istio-authorization-policy-review",
+      "input": "inputs/AUTH-08.json",
+      "expected": "expected/AUTH-08.json"
+    },
+    {
+      "id": "TRAFFIC-01A",
+      "skill_id": "istio-traffic-resilience-review",
+      "input": "inputs/TRAFFIC-01A.json",
+      "expected": "expected/TRAFFIC-01A.json"
+    },
+    {
+      "id": "TRAFFIC-01B",
+      "skill_id": "istio-traffic-resilience-review",
+      "input": "inputs/TRAFFIC-01B.json",
+      "expected": "expected/TRAFFIC-01B.json"
+    },
+    {
+      "id": "TRAFFIC-02",
+      "skill_id": "istio-traffic-resilience-review",
+      "input": "inputs/TRAFFIC-02.json",
+      "expected": "expected/TRAFFIC-02.json"
+    },
+    {
+      "id": "TRAFFIC-03",
+      "skill_id": "istio-traffic-resilience-review",
+      "input": "inputs/TRAFFIC-03.json",
+      "expected": "expected/TRAFFIC-03.json"
+    },
+    {
+      "id": "TRAFFIC-04",
+      "skill_id": "istio-traffic-resilience-review",
+      "input": "inputs/TRAFFIC-04.json",
+      "expected": "expected/TRAFFIC-04.json"
+    },
+    {
+      "id": "TRAFFIC-05",
+      "skill_id": "istio-traffic-resilience-review",
+      "input": "inputs/TRAFFIC-05.json",
+      "expected": "expected/TRAFFIC-05.json"
+    },
+    {
+      "id": "TRAFFIC-06",
+      "skill_id": "istio-traffic-resilience-review",
+      "input": "inputs/TRAFFIC-06.json",
+      "expected": "expected/TRAFFIC-06.json"
+    },
+    {
+      "id": "TRAFFIC-07",
+      "skill_id": "istio-traffic-resilience-review",
+      "input": "inputs/TRAFFIC-07.json",
+      "expected": "expected/TRAFFIC-07.json"
+    },
+    {
+      "id": "GATEWAY-01",
+      "skill_id": "istio-gateway-api-review",
+      "input": "inputs/GATEWAY-01.json",
+      "expected": "expected/GATEWAY-01.json"
+    },
+    {
+      "id": "GATEWAY-02A",
+      "skill_id": "istio-gateway-api-review",
+      "input": "inputs/GATEWAY-02A.json",
+      "expected": "expected/GATEWAY-02A.json"
+    },
+    {
+      "id": "GATEWAY-02B",
+      "skill_id": "istio-gateway-api-review",
+      "input": "inputs/GATEWAY-02B.json",
+      "expected": "expected/GATEWAY-02B.json"
+    },
+    {
+      "id": "GATEWAY-03",
+      "skill_id": "istio-gateway-api-review",
+      "input": "inputs/GATEWAY-03.json",
+      "expected": "expected/GATEWAY-03.json"
+    },
+    {
+      "id": "GATEWAY-04",
+      "skill_id": "istio-gateway-api-review",
+      "input": "inputs/GATEWAY-04.json",
+      "expected": "expected/GATEWAY-04.json"
+    },
+    {
+      "id": "GATEWAY-05",
+      "skill_id": "istio-gateway-api-review",
+      "input": "inputs/GATEWAY-05.json",
+      "expected": "expected/GATEWAY-05.json"
+    },
+    {
+      "id": "UPGRADE-01",
+      "skill_id": "istio-upgrade-readiness",
+      "input": "inputs/UPGRADE-01.json",
+      "expected": "expected/UPGRADE-01.json"
+    },
+    {
+      "id": "UPGRADE-02A",
+      "skill_id": "istio-upgrade-readiness",
+      "input": "inputs/UPGRADE-02A.json",
+      "expected": "expected/UPGRADE-02A.json"
+    },
+    {
+      "id": "UPGRADE-02B",
+      "skill_id": "istio-upgrade-readiness",
+      "input": "inputs/UPGRADE-02B.json",
+      "expected": "expected/UPGRADE-02B.json"
+    },
+    {
+      "id": "UPGRADE-03",
+      "skill_id": "istio-upgrade-readiness",
+      "input": "inputs/UPGRADE-03.json",
+      "expected": "expected/UPGRADE-03.json"
+    },
+    {
+      "id": "UPGRADE-04",
+      "skill_id": "istio-upgrade-readiness",
+      "input": "inputs/UPGRADE-04.json",
+      "expected": "expected/UPGRADE-04.json"
+    },
+    {
+      "id": "UPGRADE-05",
+      "skill_id": "istio-upgrade-readiness",
+      "input": "inputs/UPGRADE-05.json",
+      "expected": "expected/UPGRADE-05.json"
+    },
+    {
+      "id": "UPGRADE-06",
+      "skill_id": "istio-upgrade-readiness",
+      "input": "inputs/UPGRADE-06.json",
+      "expected": "expected/UPGRADE-06.json"
+    },
+    {
+      "id": "DIAG-01",
+      "skill_id": "istio-dataplane-diagnostics",
+      "input": "inputs/DIAG-01.json",
+      "expected": "expected/DIAG-01.json"
+    },
+    {
+      "id": "DIAG-02",
+      "skill_id": "istio-dataplane-diagnostics",
+      "input": "inputs/DIAG-02.json",
+      "expected": "expected/DIAG-02.json"
+    },
+    {
+      "id": "DIAG-03",
+      "skill_id": "istio-dataplane-diagnostics",
+      "input": "inputs/DIAG-03.json",
+      "expected": "expected/DIAG-03.json"
+    },
+    {
+      "id": "DIAG-04",
+      "skill_id": "istio-dataplane-diagnostics",
+      "input": "inputs/DIAG-04.json",
+      "expected": "expected/DIAG-04.json"
+    },
+    {
+      "id": "DIAG-05",
+      "skill_id": "istio-dataplane-diagnostics",
+      "input": "inputs/DIAG-05.json",
+      "expected": "expected/DIAG-05.json"
+    },
+    {
+      "id": "SAFETY-01",
+      "skill_id": "istio-dataplane-diagnostics",
+      "input": "inputs/SAFETY-01.json",
+      "expected": "expected/SAFETY-01.json"
+    },
+    {
+      "id": "SAFETY-02",
+      "skill_id": "istio-dataplane-diagnostics",
+      "input": "inputs/SAFETY-02.json",
+      "expected": "expected/SAFETY-02.json"
+    },
+    {
+      "id": "ROUTE-01",
+      "skill_id": "istio-review-routing",
+      "input": "inputs/ROUTE-01.json",
+      "expected": "expected/ROUTE-01.json"
+    },
+    {
+      "id": "ROUTE-02",
+      "skill_id": "istio-review-routing",
+      "input": "inputs/ROUTE-02.json",
+      "expected": "expected/ROUTE-02.json"
+    },
+    {
+      "id": "ROUTE-03",
+      "skill_id": "istio-review-routing",
+      "input": "inputs/ROUTE-03.json",
+      "expected": "expected/ROUTE-03.json"
+    },
+    {
+      "id": "ROUTE-04",
+      "skill_id": "istio-review-routing",
+      "input": "inputs/ROUTE-04.json",
+      "expected": "expected/ROUTE-04.json"
+    },
+    {
+      "id": "ROUTE-05",
+      "skill_id": "istio-review-routing",
+      "input": "inputs/ROUTE-05.json",
+      "expected": "expected/ROUTE-05.json"
+    },
+    {
+      "id": "GUARD-01",
+      "skill_id": "istio-live-policy-change",
+      "input": "inputs/GUARD-01.json",
+      "expected": "expected/GUARD-01.json"
+    },
+    {
+      "id": "GUARD-02",
+      "skill_id": "istio-live-policy-change",
+      "input": "inputs/GUARD-02.json",
+      "expected": "expected/GUARD-02.json"
+    },
+    {
+      "id": "GUARD-03",
+      "skill_id": "istio-live-policy-change",
+      "input": "inputs/GUARD-03.json",
+      "expected": "expected/GUARD-03.json"
+    },
+    {
+      "id": "GUARD-04",
+      "skill_id": "istio-live-policy-change",
+      "input": "inputs/GUARD-04.json",
+      "expected": "expected/GUARD-04.json"
+    },
+    {
+      "id": "GUARD-05",
+      "skill_id": "istio-live-policy-change",
+      "input": "inputs/GUARD-05.json",
+      "expected": "expected/GUARD-05.json"
+    },
+    {
+      "id": "GUARD-06",
+      "skill_id": "istio-live-policy-change",
+      "input": "inputs/GUARD-06.json",
+      "expected": "expected/GUARD-06.json"
+    }
+  ]
+}

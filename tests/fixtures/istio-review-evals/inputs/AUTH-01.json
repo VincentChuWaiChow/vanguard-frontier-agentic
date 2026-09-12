@@ -1,0 +1,27 @@
+{
+  "case_id": "AUTH-01",
+  "skill_id": "istio-authorization-policy-review",
+  "prompt": "Does the empty ALLOW object force denial even with this other applicable ALLOW?",
+  "execution_context": {
+    "tier": "static-review",
+    "live_adapter_authorized": false,
+    "network_authorized": false,
+    "environment_note": "Synthetic fixture; no real cluster, current release support or actual observations are asserted. Evaluate the stated distinction and preserve all missing context."
+  },
+  "supplied_evidence": {
+    "target": "same sidecar workload",
+    "complete_applicable_policy_set": [
+      {
+        "action": "ALLOW",
+        "rules": []
+      },
+      {
+        "action": "ALLOW",
+        "rules": [
+          {}
+        ]
+      }
+    ],
+    "deny_and_custom": []
+  }
+}

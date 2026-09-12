@@ -11,20 +11,20 @@
     "kiro",
     "other"
   ],
-  "summary": "Review Istio service mesh configuration across both sidecar mode and ambient mode (ztunnel + waypoint), with focus on the ambient L7 policy trap, PeerAuthentication mTLS posture, AuthorizationPolicy enforcement layer, and mesh-wide blast radius.",
+  "summary": "Review Istio ambient enrollment, ztunnel versus waypoint enforcement, mixed sidecar/ambient paths and migration boundaries from rendered manifests and supplied sanitized evidence. Use for missing waypoints, L7 policies on ztunnel, identity changes across waypoints, ingress bypass questions, namespace enrollment claims or sidecar-to-ambient transitions. Do not collect live evidence or mutate a cluster.",
   "source_type": "original",
   "official_docs": [
-    "https://istio.io/latest/docs/",
-    "https://istio.io/latest/docs/ambient/overview/",
     "https://istio.io/latest/docs/ambient/usage/l4-policy/",
     "https://istio.io/latest/docs/ambient/usage/waypoint/",
-    "https://istio.io/latest/docs/overview/dataplane-modes/",
     "https://istio.io/latest/docs/reference/config/security/peer_authentication/",
-    "https://istio.io/latest/docs/reference/config/security/authorization-policy/"
+    "https://istio.io/latest/docs/ambient/migrate/migrate-policies/",
+    "https://istio.io/latest/docs/ops/best-practices/security/"
   ],
-  "security_notes": "L7 AuthorizationPolicy rules in ambient mode are silently ignored when no waypoint is deployed — ztunnel only enforces L4. PeerAuthentication PERMISSIVE or DISABLE in production breaks mesh zero-trust. Mesh-wide root-namespace PeerAuthentication change has cluster-wide blast radius.",
-  "last_verified": "2026-05-01",
+  "security_notes": "Static review only. Resolve the actual traffic path and enforcement point before judging L7 behavior; never infer live state or collect cluster evidence.",
+  "last_verified": "2026-09-08",
   "path": "skills/istio/istio-ambient-mesh-review",
   "author": "github: VincentChuWaiChow",
-  "version": "0.1.0"
+  "version": "0.2.0",
+  "lifecycle": "beta",
+  "execution_tier": "static-review"
 }

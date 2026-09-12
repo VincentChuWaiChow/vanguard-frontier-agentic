@@ -1,0 +1,6 @@
+{
+  "route": [
+    "istio-dataplane-diagnostics-agent"
+  ],
+  "mode": "single"
+}

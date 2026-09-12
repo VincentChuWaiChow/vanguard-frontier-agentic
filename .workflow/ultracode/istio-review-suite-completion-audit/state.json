@@ -1,0 +1,99 @@
+{
+  "title": "Istio review suite completion audit",
+  "slug": "istio-review-suite-completion-audit",
+  "created_at": "2026-09-11T00:00:00+04:00",
+  "updated_at": "2026-09-12T00:00:00+04:00",
+  "status": "blocked",
+  "mode": "delegated",
+  "baseline_ref": "d3b0693294fd410f6de9a15efc6c898ac2627228",
+  "risk_level": "high",
+  "eval_contract": {
+    "level": "full",
+    "path": "eval-contract.md",
+    "status": "ready"
+  },
+  "approval": {
+    "required": true,
+    "granted": null,
+    "notes": "Blocked after three consecutive goal turns without explicit permission to commit and push the verified corrective diff."
+  },
+  "delegation": {
+    "native_agent_available": true,
+    "native_agent_planned": true,
+    "native_agent_used": true,
+    "agent_count": 3,
+    "wave_count": 1,
+    "no_delegation_reason": "",
+    "notes": "One independent read-only review wave."
+  },
+  "packets": [
+    {
+      "id": "01-requirement-traceability",
+      "status": "complete",
+      "owner": "read-only-agent",
+      "write_scope": [],
+      "result_path": "results/01-requirement-traceability.md"
+    },
+    {
+      "id": "02-security-routing-refutation",
+      "status": "complete",
+      "owner": "read-only-agent",
+      "write_scope": [],
+      "result_path": "results/02-security-routing-refutation.md"
+    },
+    {
+      "id": "03-packaging-release-audit",
+      "status": "complete",
+      "owner": "read-only-agent",
+      "write_scope": [],
+      "result_path": "results/03-packaging-release-audit.md"
+    }
+  ],
+  "verification": {
+    "status": "checked",
+    "checks": [
+      {
+        "name": "Istio suite tests",
+        "command": "npm run validate:istio-review-suite",
+        "required": true,
+        "status": "passed",
+        "evidence": "83 tests passed"
+      },
+      {
+        "name": "Full validation",
+        "command": "npm run validate",
+        "required": true,
+        "status": "passed",
+        "evidence": "exit 0; all chained gates passed"
+      },
+      {
+        "name": "Spell lint",
+        "command": "npm run lint:spell",
+        "required": true,
+        "status": "passed",
+        "evidence": "exit 0"
+      },
+      {
+        "name": "Markdown lint",
+        "command": "npm run lint:md",
+        "required": true,
+        "status": "passed",
+        "evidence": "0 issues across 8344 files"
+      },
+      {
+        "name": "Actual LLM behavior evals",
+        "command": "release-policy evaluator",
+        "required": true,
+        "status": "skipped",
+        "evidence": "55 authored specifications explicitly remain not-run; evaluator/model matrix unavailable"
+      },
+      {
+        "name": "Versioned live semantic acceptance",
+        "command": "authorized live test environment",
+        "required": true,
+        "status": "skipped",
+        "evidence": "7 specifications explicitly remain not-run; live operations unauthorized"
+      }
+    ]
+  }
+}

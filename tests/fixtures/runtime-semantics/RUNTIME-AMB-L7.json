@@ -1,0 +1,35 @@
+{
+  "id": "RUNTIME-AMB-L7",
+  "title": "ztunnel L7 fail-safe denial",
+  "status": "not-run",
+  "required_authorization": "Separate explicit environment and experiment authorization; no automated provisioning is included",
+  "preconditions": [
+    "A disposable ambient workload without a waypoint",
+    "A known supported pinned release and isolated clients"
+  ],
+  "procedure": [
+    "Establish allowed baseline traffic and actual ztunnel path",
+    "Apply the reviewed L7 selector policy only with separate approval",
+    "Exercise allowed and prohibited request intentions",
+    "Correlate denial with policy/config and ztunnel path, not just timeout"
+  ],
+  "acceptance": [
+    "An L7-on-ztunnel fail-safe denial is not misreported as bypass"
+  ],
+  "capture": [
+    "Pinned versions/digests",
+    "Target identities and timestamps",
+    "Sanitized before/after objects",
+    "Positive and negative traffic results",
+    "Path/enforcement correlation",
+    "Residual risk and cleanup evidence"
+  ],
+  "stop_conditions": [
+    "Unexpected external destination",
+    "Unknown target identity",
+    "Unapproved scope change",
+    "Loss of observability",
+    "Unresolved critical acceptance failure"
+  ],
+  "cleanup": "Use only separately approved ownership-aware cleanup. Verify teardown without deleting unrelated resources."
+}

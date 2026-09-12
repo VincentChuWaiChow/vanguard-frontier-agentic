@@ -1,0 +1,35 @@
+{
+  "id": "RUNTIME-GATEWAY",
+  "title": "Status, cross-namespace edges and actual routing",
+  "status": "not-run",
+  "required_authorization": "Separate explicit environment and experiment authorization; no automated provisioning is included",
+  "preconditions": [
+    "Pinned Gateway API CRDs and controller",
+    "Isolated namespaces with explicit owners"
+  ],
+  "procedure": [
+    "Test listener attachment independently of cross-namespace backend grants",
+    "Capture conditions with parent/controller and observedGeneration",
+    "Correlate configured acceptance with actual backend traffic"
+  ],
+  "acceptance": [
+    "ReferenceGrant and allowedRoutes effects remain distinct",
+    "Stale/current status is not substituted for a request test"
+  ],
+  "capture": [
+    "Pinned versions/digests",
+    "Target identities and timestamps",
+    "Sanitized before/after objects",
+    "Positive and negative traffic results",
+    "Path/enforcement correlation",
+    "Residual risk and cleanup evidence"
+  ],
+  "stop_conditions": [
+    "Unexpected external destination",
+    "Unknown target identity",
+    "Unapproved scope change",
+    "Loss of observability",
+    "Unresolved critical acceptance failure"
+  ],
+  "cleanup": "Use only separately approved ownership-aware cleanup. Verify teardown without deleting unrelated resources."
+}

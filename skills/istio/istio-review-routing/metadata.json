@@ -1,0 +1,26 @@
+{
+  "id": "istio-review-routing",
+  "name": "Istio Review Routing",
+  "type": "skill",
+  "provider": "istio",
+  "harnesses": [
+    "codex",
+    "claude-code",
+    "cursor",
+    "gemini",
+    "kiro",
+    "other"
+  ],
+  "summary": "Coordinate an Istio review across ambient enrollment, authorization, traffic resilience, Gateway API, upgrades and diagnostics. Use for multi-domain requests or when review ownership is unclear. Select only necessary specialist companions, pass bounded sanitized evidence and reconcile conflicting findings. Return a handoff for all live changes; never auto-dispatch a live guard, manufacture approval or average away a blocker.",
+  "source_type": "original",
+  "official_docs": [
+    "https://raw.githubusercontent.com/VincentChuWaiChow/vanguard-frontier-agentic/master/CLAUDE.md"
+  ],
+  "security_notes": "Static routing only. Preserve blockers and unknowns, minimize disclosure between specialists, and never auto-dispatch the live mesh guard.",
+  "last_verified": "2026-09-08",
+  "path": "skills/istio/istio-review-routing",
+  "author": "github: VincentChuWaiChow",
+  "version": "0.1.0",
+  "lifecycle": "beta",
+  "execution_tier": "static-review"
+}

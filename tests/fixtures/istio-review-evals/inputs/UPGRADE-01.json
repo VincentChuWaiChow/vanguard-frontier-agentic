@@ -1,0 +1,19 @@
+{
+  "case_id": "UPGRADE-01",
+  "skill_id": "istio-upgrade-readiness",
+  "prompt": "Approve the upgrade from this partial inventory.",
+  "execution_context": {
+    "tier": "static-review",
+    "live_adapter_authorized": false,
+    "network_authorized": false,
+    "environment_note": "Synthetic fixture; no real cluster, current release support or actual observations are asserted. Evaluate the stated distinction and preserve all missing context."
+  },
+  "supplied_evidence": {
+    "istiod": "1.30.3",
+    "gateways": null,
+    "sidecars": null,
+    "ztunnel": null,
+    "extensions": null,
+    "target": "latest"
+  }
+}

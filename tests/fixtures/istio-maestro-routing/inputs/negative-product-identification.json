@@ -1,0 +1,8 @@
+{
+  "name": "negative-product-identification",
+  "task": "What is Istio?",
+  "tags": [
+    "negative-routing",
+    "regression:no-generic-product-route"
+  ]
+}

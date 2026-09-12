@@ -1,0 +1,6 @@
+{
+  "route": [
+    "istio-gateway-api-review-agent"
+  ],
+  "mode": "single"
+}

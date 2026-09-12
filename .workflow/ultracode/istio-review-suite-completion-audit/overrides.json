@@ -1,0 +1,82 @@
+{
+  "istio-ambient-mesh-review": {
+    "allowed-tools": "Read Grep Glob",
+    "metadata": {
+      "author": "github: VincentChuWaiChow",
+      "version": "0.2.0",
+      "category": "security",
+      "lifecycle": "beta",
+      "execution_tier": "static-review"
+    }
+  },
+  "istio-authorization-policy-review": {
+    "allowed-tools": "Read Grep Glob",
+    "metadata": {
+      "author": "github: VincentChuWaiChow",
+      "version": "0.1.0",
+      "category": "security",
+      "lifecycle": "beta",
+      "execution_tier": "static-review"
+    }
+  },
+  "istio-traffic-resilience-review": {
+    "allowed-tools": "Read Grep Glob",
+    "metadata": {
+      "author": "github: VincentChuWaiChow",
+      "version": "0.1.0",
+      "category": "resilience",
+      "lifecycle": "beta",
+      "execution_tier": "static-review"
+    }
+  },
+  "istio-gateway-api-review": {
+    "allowed-tools": "Read Grep Glob",
+    "metadata": {
+      "author": "github: VincentChuWaiChow",
+      "version": "0.1.0",
+      "category": "networking",
+      "lifecycle": "beta",
+      "execution_tier": "static-review"
+    }
+  },
+  "istio-upgrade-readiness": {
+    "allowed-tools": "Read Grep Glob",
+    "metadata": {
+      "author": "github: VincentChuWaiChow",
+      "version": "0.1.0",
+      "category": "delivery",
+      "lifecycle": "beta",
+      "execution_tier": "static-review"
+    }
+  },
+  "istio-dataplane-diagnostics": {
+    "allowed-tools": "Read Grep Glob",
+    "metadata": {
+      "author": "github: VincentChuWaiChow",
+      "version": "0.1.0",
+      "category": "observability",
+      "lifecycle": "beta",
+      "execution_tier": "static-review"
+    }
+  },
+  "istio-review-routing": {
+    "allowed-tools": "Read Grep Glob",
+    "metadata": {
+      "author": "github: VincentChuWaiChow",
+      "version": "0.1.0",
+      "category": "architecture",
+      "lifecycle": "beta",
+      "execution_tier": "static-review"
+    }
+  },
+  "istio-live-policy-change": {
+    "allowed-tools": "Read Grep Glob Bash",
+    "metadata": {
+      "author": "github: VincentChuWaiChow",
+      "version": "0.1.0",
+      "category": "security",
+      "lifecycle": "beta",
+      "execution_tier": "mutating-runtime"
+    }
+  }
+}

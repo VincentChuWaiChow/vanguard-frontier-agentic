@@ -1,0 +1,5 @@
+interface:
+  display_name: Istio Dataplane Diagnostics
+  short_description: Rank incident hypotheses using bounded supplied evidence.
+  default_prompt: Use $istio-dataplane-diagnostics to review the supplied evidence
+    within its stated scope. Report unknowns and do not perform live operations.

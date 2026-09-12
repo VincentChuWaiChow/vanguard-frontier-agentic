@@ -1,0 +1,33 @@
+{
+  "id": "RUNTIME-MIRROR",
+  "title": "Business-side-effect isolation",
+  "status": "not-run",
+  "required_authorization": "Separate explicit environment and experiment authorization; no automated provisioning is included",
+  "preconditions": [
+    "Synthetic booking/payment/email stubs with no external credentials or destinations"
+  ],
+  "procedure": [
+    "Confirm stub-only destinations and synthetic data",
+    "Observe a reviewed mirrored request reaching the destination",
+    "Record stub side effects and response-discard behavior"
+  ],
+  "acceptance": [
+    "Discarded response is not mistaken for suppressed request-side effects"
+  ],
+  "capture": [
+    "Pinned versions/digests",
+    "Target identities and timestamps",
+    "Sanitized before/after objects",
+    "Positive and negative traffic results",
+    "Path/enforcement correlation",
+    "Residual risk and cleanup evidence"
+  ],
+  "stop_conditions": [
+    "Unexpected external destination",
+    "Unknown target identity",
+    "Unapproved scope change",
+    "Loss of observability",
+    "Unresolved critical acceptance failure"
+  ],
+  "cleanup": "Use only separately approved ownership-aware cleanup. Verify teardown without deleting unrelated resources."
+}

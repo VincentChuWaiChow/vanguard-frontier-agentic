@@ -1,0 +1,7 @@
+interface:
+  display_name: Istio Live Policy Change
+  short_description: Bind the existing live guard to independently approved changes.
+  default_prompt: Use $istio-live-policy-change to review the supplied evidence within
+    its stated scope. Report unknowns and do not perform live operations.
+policy:
+  allow_implicit_invocation: false

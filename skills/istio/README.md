@@ -9,9 +9,17 @@ This folder contains Istio-focused skills curated for this marketplace.
 
 ## Local marketplace portfolio
 
-This folder contains **1** local Istio skill:
+The local portfolio separates six review decisions, routing, and guarded live
+execution:
 
 - `istio-ambient-mesh-review`
+- `istio-authorization-policy-review`
+- `istio-dataplane-diagnostics`
+- `istio-gateway-api-review`
+- `istio-review-routing`
+- `istio-traffic-resilience-review`
+- `istio-upgrade-readiness`
+- `istio-live-policy-change`
 
 ## Portfolio posture
 
@@ -19,9 +27,12 @@ Istio skills for evidence-backed service mesh review covering both **sidecar mod
 
 These skills are intentionally conservative:
 
-- prefer `kubectl get peerauthentication,authorizationpolicy,gateway,virtualservice,destinationrule,sidecar -A -o yaml` for live mesh state grounding before any review
-- treat **L7 `AuthorizationPolicy` rules in ambient mode without a waypoint** as a critical finding — the L7 fields are silently ignored when ztunnel handles the traffic alone
-- challenge `PeerAuthentication` with `mode: PERMISSIVE` or `DISABLE` in production — mTLS must be `STRICT`
+- review supplied, sanitized evidence by default; route separately authorized
+  collection or mutation through the appropriate guarded runtime agent
+- resolve the actual ambient traffic path and enforcement target before judging
+  L7 policy behavior; do not reduce every missing-waypoint case to silent bypass
+- treat `PeerAuthentication` `PERMISSIVE` as accepting both plaintext and mTLS,
+  then evaluate the effective policy and path rather than claiming it disables all mTLS
 - challenge mesh-wide `PeerAuthentication` changes — the blast radius is the whole mesh
 - use official Istio documentation (istio.io) for ambient architecture, ztunnel internals, waypoint placement, HBONE protocol, and `AuthorizationPolicy` semantic differences between sidecar and ambient modes
 

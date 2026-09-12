@@ -1,0 +1,20 @@
+{
+  "case_id": "AMB-05",
+  "skill_id": "istio-ambient-mesh-review",
+  "prompt": "Does PERMISSIVE turn every connection into plaintext?",
+  "execution_context": {
+    "tier": "static-review",
+    "live_adapter_authorized": false,
+    "network_authorized": false,
+    "environment_note": "Synthetic fixture; no real cluster, current release support or actual observations are asserted. Evaluate the stated distinction and preserve all missing context."
+  },
+  "supplied_evidence": {
+    "PeerAuthentication": {
+      "spec": {
+        "mtls": {
+          "mode": "PERMISSIVE"
+        }
+      }
+    }
+  }
+}

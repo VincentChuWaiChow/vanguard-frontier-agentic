@@ -1,0 +1,7 @@
+{
+  "name": "004-happy-gateway-api-review",
+  "task": "Review our istio HTTPRoute GRPCRoute ReferenceGrant configuration.",
+  "tags": [
+    "happy-path"
+  ]
+}

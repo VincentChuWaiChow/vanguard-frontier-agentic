@@ -1,0 +1,50 @@
+{
+  "id": "istio-upgrade-readiness-agent",
+  "name": "Istio Upgrade Readiness",
+  "type": "agent",
+  "provider": "istio",
+  "harnesses": [
+    "codex",
+    "copilot",
+    "claude-code",
+    "cursor",
+    "gemini",
+    "kiro"
+  ],
+  "summary": "Agent for istio-upgrade-readiness. Assess an Istio source-to-target upgrade or downgrade using supplied inventory, installation configuration, release documentation and test evidence. Use for control/data-plane skew, canary revisions, Helm or istioctl transitions, CRD storage changes, extension compatibility, ambient components or rollback readiness. Produce a dependency plan and blockers; do not install, upgrade, restart, delete or assume the latest release.",
+  "source_type": "original",
+  "official_docs": [
+    "https://istio.io/latest/docs/releases/supported-releases/",
+    "https://istio.io/latest/docs/setup/upgrade/helm/",
+    "https://istio.io/latest/docs/setup/upgrade/in-place/",
+    "https://kubernetes.io/docs/tasks/extend-kubernetes/custom-resources/custom-resource-definition-versioning/",
+    "https://istio.io/latest/docs/ambient/migrate/migrate-policies/"
+  ],
+  "security_notes": "Static review only. Never assume latest-version support or execute an upgrade; require source-to-target, installation-method, skew, CRD, and rollback evidence.",
+  "last_verified": "2026-09-08",
+  "path": "agents/istio/istio-upgrade-readiness-agent",
+  "harness_variants": {
+    "codex": "agents/istio/istio-upgrade-readiness-agent/harnesses/codex.toml",
+    "copilot": "agents/istio/istio-upgrade-readiness-agent/harnesses/copilot.agent.md",
+    "claude-code": "agents/istio/istio-upgrade-readiness-agent/harnesses/claude-code.agent.md",
+    "cursor": "agents/istio/istio-upgrade-readiness-agent/harnesses/cursor.agent.md",
+    "gemini": "agents/istio/istio-upgrade-readiness-agent/harnesses/gemini.agent.md",
+    "kiro-ide": "agents/istio/istio-upgrade-readiness-agent/harnesses/kiro-ide.agent.md",
+    "kiro-cli": "agents/istio/istio-upgrade-readiness-agent/harnesses/kiro-cli.agent.json"
+  },
+  "author": "github: VincentChuWaiChow",
+  "version": "0.1.0",
+  "companion_skills": [
+    "istio-upgrade-readiness"
+  ],
+  "execution_tier": "static-review",
+  "lifecycle": "beta",
+  "routing_keywords": [
+    "Istio upgrade",
+    "control plane skew",
+    "data plane skew",
+    "canary revision",
+    "CRD migration",
+    "rollback readiness"
+  ]
+}

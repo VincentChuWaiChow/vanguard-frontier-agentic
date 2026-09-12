@@ -1,0 +1,8 @@
+{
+  "name": "live-multiline-patch",
+  "task": "Patch this manifest\nAuthorizationPolicy/default-deny in production.",
+  "tags": [
+    "live-guard-gate",
+    "regression:multiline-intent"
+  ]
+}

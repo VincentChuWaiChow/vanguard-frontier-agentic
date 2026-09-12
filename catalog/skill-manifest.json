@@ -11343,32 +11343,536 @@
     {
       "id": "istio-ambient-mesh-review",
       "path": "skills/istio/istio-ambient-mesh-review",
-      "aggregate_sha256": "e8d9d11ee7c62b93f67c8b0cda82a012c0c84eb332f8ae38a7caf2cc352c7a36",
+      "aggregate_sha256": "a2c4014eeee3ad74841459087f1866fe767cfceaf7a1a522af7243964d9265fb",
       "files": [
         {
           "path": "skills/istio/istio-ambient-mesh-review/SKILL.md",
-          "sha256": "842d0a6dd442de981bcb4df382be64b89b289b01eed3153f8e6fd32f69cca821",
-          "bytes": 3718
+          "sha256": "377383766db65c916b5f5e13e4d6c04571b4faf32ea43af2a6e4099625815f02",
+          "bytes": 3629
+        },
+        {
+          "path": "skills/istio/istio-ambient-mesh-review/agents/openai.yaml",
+          "sha256": "6f23fe7732c4ad2a90435c08d17f32613a2adfcc00ae473b559f68ee1c746e4c",
+          "bytes": 292
         },
         {
           "path": "skills/istio/istio-ambient-mesh-review/metadata.json",
-          "sha256": "b53bdded9846583694f70ed3e964438e0a8d8b5f6673da4d3ff477ec045b159f",
-          "bytes": 1441
+          "sha256": "d545dbfe11b6f76f7ea57dc6420afa01263d1db314de328ae6bee30bd7f7d086",
+          "bytes": 1426
         },
         {
-          "path": "skills/istio/istio-ambient-mesh-review/references/mcp-and-evidence.md",
-          "sha256": "b0f33a82bc9cf2446651d0329b9db8327ba94bc049fecea946bf4c10cdcbdb04",
-          "bytes": 3487
+          "path": "skills/istio/istio-ambient-mesh-review/references/applicability.md",
+          "sha256": "fea02fb3ca39bd458d0cc2f6b244afd50de43704873509f34e9dd7a61f01c3af",
+          "bytes": 1189
+        },
+        {
+          "path": "skills/istio/istio-ambient-mesh-review/references/enforcement-rules.md",
+          "sha256": "bedb206a0599efab604178a460d416a5753138e2843924a46985fbc843c0d278",
+          "bytes": 1944
+        },
+        {
+          "path": "skills/istio/istio-ambient-mesh-review/references/enrollment-and-paths.md",
+          "sha256": "6d6278db77d5c499f2df61fa9a86868d2fc31eb2e4e0781a136103cbbdd0cba3",
+          "bytes": 2290
+        },
+        {
+          "path": "skills/istio/istio-ambient-mesh-review/references/evidence-boundary.md",
+          "sha256": "485c2b8796b6b46ac73a56625abc0ddfca08ab59144c62b0e40b8d379369bc82",
+          "bytes": 3793
+        },
+        {
+          "path": "skills/istio/istio-ambient-mesh-review/references/migration-boundaries.md",
+          "sha256": "3325002b134e483be6133e8fa669e72dc7f74e2f64c29bf65ab4257e5f8b8672",
+          "bytes": 1724
+        },
+        {
+          "path": "skills/istio/istio-ambient-mesh-review/references/negative-tests.md",
+          "sha256": "21b7e59a9669f6aa7d6bae111399d65f28292c4559b53adb2b98e2506f3daa11",
+          "bytes": 1159
         },
         {
           "path": "skills/istio/istio-ambient-mesh-review/references/official-sources.md",
-          "sha256": "af1b987f693570f08d4986b2c93a1a23e7849f04d2e27194b412f8eb06ed5639",
-          "bytes": 5311
+          "sha256": "88221489672cc79a8f756131ab86985c78ec2b1df9da9e7f9909c3bdb73a5930",
+          "bytes": 1092
         },
         {
-          "path": "skills/istio/istio-ambient-mesh-review/references/workflow-and-output.md",
-          "sha256": "23d6ed5394f9c6a26ad53d84b142dddf64f1f07ac8ece486601624698b7759ed",
-          "bytes": 8548
+          "path": "skills/istio/istio-ambient-mesh-review/references/output-contract.md",
+          "sha256": "37dc388f8392618af4cda42d6c54445526642184ff8f187e9ce903f065974868",
+          "bytes": 2106
+        },
+        {
+          "path": "skills/istio/istio-ambient-mesh-review/references/review-contract.json",
+          "sha256": "106aaaae3a6c83788ef0d8a52a7d6fe89ac30cc268bf198dc2b9b320413d3180",
+          "bytes": 5936
+        }
+      ]
+    },
+    {
+      "id": "istio-authorization-policy-review",
+      "path": "skills/istio/istio-authorization-policy-review",
+      "aggregate_sha256": "d89e8003c99a9fedd56747722975ef434a06b1efebbb6a91daf6581eadd4f1b8",
+      "files": [
+        {
+          "path": "skills/istio/istio-authorization-policy-review/SKILL.md",
+          "sha256": "95f692c50ec668329b54cbe897485c24329ffcc9a2fda4ff54c8c00d7efa3dc6",
+          "bytes": 3583
+        },
+        {
+          "path": "skills/istio/istio-authorization-policy-review/agents/openai.yaml",
+          "sha256": "6d18b2a219761b89d06bbfb113ffae3ea6ee9c019ea3b7cc617db74c407d1540",
+          "bytes": 309
+        },
+        {
+          "path": "skills/istio/istio-authorization-policy-review/metadata.json",
+          "sha256": "ff6e7b74affb17b1297fa3eb084b5bcf01d486d37323b0d033047fe315dcafb7",
+          "bytes": 1501
+        },
+        {
+          "path": "skills/istio/istio-authorization-policy-review/references/applicability.md",
+          "sha256": "fea02fb3ca39bd458d0cc2f6b244afd50de43704873509f34e9dd7a61f01c3af",
+          "bytes": 1189
+        },
+        {
+          "path": "skills/istio/istio-authorization-policy-review/references/authentication-and-identity.md",
+          "sha256": "b3e5ee04778e3b7e33e516d6cb4b53e70bbd6ea139da0042d5286132e1b13c62",
+          "bytes": 1763
+        },
+        {
+          "path": "skills/istio/istio-authorization-policy-review/references/evidence-boundary.md",
+          "sha256": "485c2b8796b6b46ac73a56625abc0ddfca08ab59144c62b0e40b8d379369bc82",
+          "bytes": 3793
+        },
+        {
+          "path": "skills/istio/istio-authorization-policy-review/references/negative-tests.md",
+          "sha256": "29316f1b3b77982158e3e45381a0244bd436b440e16d066e2649e69f0e9eef95",
+          "bytes": 948
+        },
+        {
+          "path": "skills/istio/istio-authorization-policy-review/references/official-sources.md",
+          "sha256": "45f59daccb7ab91e9279eb231bef1bab9df00028e6da7e98935998466f4a8128",
+          "bytes": 1107
+        },
+        {
+          "path": "skills/istio/istio-authorization-policy-review/references/output-contract.md",
+          "sha256": "37dc388f8392618af4cda42d6c54445526642184ff8f187e9ce903f065974868",
+          "bytes": 2106
+        },
+        {
+          "path": "skills/istio/istio-authorization-policy-review/references/policy-set-semantics.md",
+          "sha256": "eeb82173987cdd5f180697bef0b51cf373e0cd9495e0758e78f7da7a03e3dca5",
+          "bytes": 1901
+        },
+        {
+          "path": "skills/istio/istio-authorization-policy-review/references/protocol-and-normalization.md",
+          "sha256": "a2351c44906d310d7a9ad23257a43d363f24bf653c68a5df658781bac586ce20",
+          "bytes": 1455
+        },
+        {
+          "path": "skills/istio/istio-authorization-policy-review/references/review-contract.json",
+          "sha256": "106aaaae3a6c83788ef0d8a52a7d6fe89ac30cc268bf198dc2b9b320413d3180",
+          "bytes": 5936
+        }
+      ]
+    },
+    {
+      "id": "istio-dataplane-diagnostics",
+      "path": "skills/istio/istio-dataplane-diagnostics",
+      "aggregate_sha256": "ec91a149d103107bfd35cc1b2a9b9cb2c286e1ce7b4c5f68fdfedda7ae4cd2a8",
+      "files": [
+        {
+          "path": "skills/istio/istio-dataplane-diagnostics/SKILL.md",
+          "sha256": "a43d25b4f84930b84a87dacaa992fde53921aadfa09ec0a91b30c2eaf63bb135",
+          "bytes": 3686
+        },
+        {
+          "path": "skills/istio/istio-dataplane-diagnostics/agents/openai.yaml",
+          "sha256": "b5648cdf727f4a0ffdbc6c540b46254865befb733d6399363f43d37ea0026d41",
+          "bytes": 298
+        },
+        {
+          "path": "skills/istio/istio-dataplane-diagnostics/metadata.json",
+          "sha256": "2520262524c34390e707447f057ab7ca103bc3e10921858c17eac53f3cbc3c22",
+          "bytes": 1494
+        },
+        {
+          "path": "skills/istio/istio-dataplane-diagnostics/references/applicability.md",
+          "sha256": "fea02fb3ca39bd458d0cc2f6b244afd50de43704873509f34e9dd7a61f01c3af",
+          "bytes": 1189
+        },
+        {
+          "path": "skills/istio/istio-dataplane-diagnostics/references/collection-and-offline-analysis.md",
+          "sha256": "0a7275ce17ab574b7f1d19ba4db92fde56d1908655d9911a27a5c9df6c33435c",
+          "bytes": 1249
+        },
+        {
+          "path": "skills/istio/istio-dataplane-diagnostics/references/evidence-boundary.md",
+          "sha256": "485c2b8796b6b46ac73a56625abc0ddfca08ab59144c62b0e40b8d379369bc82",
+          "bytes": 3793
+        },
+        {
+          "path": "skills/istio/istio-dataplane-diagnostics/references/hypothesis-workflow.md",
+          "sha256": "18bb6c99f5c0a0f9a2018d134b5c3c9f7fa759cfc91bca2bc7c2f4332453e90d",
+          "bytes": 1456
+        },
+        {
+          "path": "skills/istio/istio-dataplane-diagnostics/references/negative-tests.md",
+          "sha256": "217fa23b391d82ad9bb0d8568cc935958a8d878e93e65fc47a983155a568ff6a",
+          "bytes": 749
+        },
+        {
+          "path": "skills/istio/istio-dataplane-diagnostics/references/official-sources.md",
+          "sha256": "42bb88ad2206d2817865df0cef5d6855cbb435c86d4b802271276827e29be197",
+          "bytes": 1088
+        },
+        {
+          "path": "skills/istio/istio-dataplane-diagnostics/references/output-contract.md",
+          "sha256": "37dc388f8392618af4cda42d6c54445526642184ff8f187e9ce903f065974868",
+          "bytes": 2106
+        },
+        {
+          "path": "skills/istio/istio-dataplane-diagnostics/references/review-contract.json",
+          "sha256": "106aaaae3a6c83788ef0d8a52a7d6fe89ac30cc268bf198dc2b9b320413d3180",
+          "bytes": 5936
+        },
+        {
+          "path": "skills/istio/istio-dataplane-diagnostics/references/signal-interpretation.md",
+          "sha256": "e0bfd2cdefc9c3c529b61740c8d71a0fe0064dfa00034f9ae521e5aa4b10e159",
+          "bytes": 1273
+        }
+      ]
+    },
+    {
+      "id": "istio-gateway-api-review",
+      "path": "skills/istio/istio-gateway-api-review",
+      "aggregate_sha256": "c5b43fd04e4dfbb26e74cd47cc1c64ef689e153b6fecdd76f93871610f102bc7",
+      "files": [
+        {
+          "path": "skills/istio/istio-gateway-api-review/SKILL.md",
+          "sha256": "d95bea534467faacb0078db8b34dfbcdef4ee2cb73f714c75afc22898eb198f4",
+          "bytes": 3632
+        },
+        {
+          "path": "skills/istio/istio-gateway-api-review/agents/openai.yaml",
+          "sha256": "fc2d6150019a9497c7798a17637b4d19e2a5661d538997a73cc387e9ba66211f",
+          "bytes": 293
+        },
+        {
+          "path": "skills/istio/istio-gateway-api-review/metadata.json",
+          "sha256": "115ee18e3331131f2e9dfd0625e45e3d1fb58f531661a7edb231736138cc4287",
+          "bytes": 1452
+        },
+        {
+          "path": "skills/istio/istio-gateway-api-review/references/applicability.md",
+          "sha256": "fea02fb3ca39bd458d0cc2f6b244afd50de43704873509f34e9dd7a61f01c3af",
+          "bytes": 1189
+        },
+        {
+          "path": "skills/istio/istio-gateway-api-review/references/attachment-graph.md",
+          "sha256": "97cf38a88dcdb3ac1a3b24009e25c23e539f63f8d6ed8a1cfbf0bd7dd10aaa66",
+          "bytes": 1563
+        },
+        {
+          "path": "skills/istio/istio-gateway-api-review/references/conditions-and-freshness.md",
+          "sha256": "ec8887f7f87cf71262dc59cf47205d07bf168b9a3c9efc721b4a4de003906610",
+          "bytes": 1146
+        },
+        {
+          "path": "skills/istio/istio-gateway-api-review/references/evidence-boundary.md",
+          "sha256": "485c2b8796b6b46ac73a56625abc0ddfca08ab59144c62b0e40b8d379369bc82",
+          "bytes": 3793
+        },
+        {
+          "path": "skills/istio/istio-gateway-api-review/references/negative-tests.md",
+          "sha256": "3089a5738470d6f16657921b1ddfc1bf5c163e6548ce2738e636e1d884746e11",
+          "bytes": 635
+        },
+        {
+          "path": "skills/istio/istio-gateway-api-review/references/official-sources.md",
+          "sha256": "7c886d7640b0929ecdd14062e2e781e6e3b80525ca19fc1352a4d96041e6dcc4",
+          "bytes": 1088
+        },
+        {
+          "path": "skills/istio/istio-gateway-api-review/references/output-contract.md",
+          "sha256": "37dc388f8392618af4cda42d6c54445526642184ff8f187e9ce903f065974868",
+          "bytes": 2106
+        },
+        {
+          "path": "skills/istio/istio-gateway-api-review/references/review-contract.json",
+          "sha256": "106aaaae3a6c83788ef0d8a52a7d6fe89ac30cc268bf198dc2b9b320413d3180",
+          "bytes": 5936
+        },
+        {
+          "path": "skills/istio/istio-gateway-api-review/references/tls-and-boundaries.md",
+          "sha256": "b85d916dbbf03f9d14b5c98817016347455da3bbb7c059f93a4001b7ca5d07ca",
+          "bytes": 1333
+        }
+      ]
+    },
+    {
+      "id": "istio-live-policy-change",
+      "path": "skills/istio/istio-live-policy-change",
+      "aggregate_sha256": "d6c7b5931240688362cbd17af09a55e67049d70e3af4f85ed8d91ec6c70db462",
+      "files": [
+        {
+          "path": "skills/istio/istio-live-policy-change/SKILL.md",
+          "sha256": "565b9ec7102edd774cf5c02b3314c149730c9ad7009330c7555c33ad42614856",
+          "bytes": 3774
+        },
+        {
+          "path": "skills/istio/istio-live-policy-change/agents/openai.yaml",
+          "sha256": "26f7b20ca334e3b29dad6deb752435c6969ee69731e50488a2eaba32eb3c6b26",
+          "bytes": 341
+        },
+        {
+          "path": "skills/istio/istio-live-policy-change/metadata.json",
+          "sha256": "125921be539f96d337c403ce67ae3076af50e5ac8cd00abdee94b6b3cd8d87fb",
+          "bytes": 1491
+        },
+        {
+          "path": "skills/istio/istio-live-policy-change/references/applicability.md",
+          "sha256": "fea02fb3ca39bd458d0cc2f6b244afd50de43704873509f34e9dd7a61f01c3af",
+          "bytes": 1189
+        },
+        {
+          "path": "skills/istio/istio-live-policy-change/references/approval-and-scope.md",
+          "sha256": "af25be476c0d8f237897e9b7edb01b8c1923a69bb3648a0912bc088aa7a99bca",
+          "bytes": 1560
+        },
+        {
+          "path": "skills/istio/istio-live-policy-change/references/evidence-boundary.md",
+          "sha256": "485c2b8796b6b46ac73a56625abc0ddfca08ab59144c62b0e40b8d379369bc82",
+          "bytes": 3793
+        },
+        {
+          "path": "skills/istio/istio-live-policy-change/references/execution-protocol.md",
+          "sha256": "92431fc20e9a5fecde579ff14e69f2b5868bef2cc0f83eaade3c2581d0159ee4",
+          "bytes": 1654
+        },
+        {
+          "path": "skills/istio/istio-live-policy-change/references/negative-tests.md",
+          "sha256": "ad34dd12545081d6f44e7c1fbc7dc740bcd812147cd9402492be05f008f705a3",
+          "bytes": 739
+        },
+        {
+          "path": "skills/istio/istio-live-policy-change/references/official-sources.md",
+          "sha256": "b2124a5af6acf9a34f3e0fcb4f8af6fc6cf0c7726a7640d5789aba13927609e8",
+          "bytes": 962
+        },
+        {
+          "path": "skills/istio/istio-live-policy-change/references/output-contract.md",
+          "sha256": "37dc388f8392618af4cda42d6c54445526642184ff8f187e9ce903f065974868",
+          "bytes": 2106
+        },
+        {
+          "path": "skills/istio/istio-live-policy-change/references/review-contract.json",
+          "sha256": "106aaaae3a6c83788ef0d8a52a7d6fe89ac30cc268bf198dc2b9b320413d3180",
+          "bytes": 5936
+        },
+        {
+          "path": "skills/istio/istio-live-policy-change/references/rollback-and-verification.md",
+          "sha256": "aa3ffc40777602f4c52aeacdeafa75ab44f6ce00f18d9608a45186391651e462",
+          "bytes": 1562
+        }
+      ]
+    },
+    {
+      "id": "istio-review-routing",
+      "path": "skills/istio/istio-review-routing",
+      "aggregate_sha256": "58153885f05186eba34bfed2d8c0c788de0a29741aa8b9c03c05bdeaef2526b7",
+      "files": [
+        {
+          "path": "skills/istio/istio-review-routing/SKILL.md",
+          "sha256": "e19f11304444574e5b80224201e7deaa588eec77650328d2767898220b4381e9",
+          "bytes": 3493
+        },
+        {
+          "path": "skills/istio/istio-review-routing/agents/openai.yaml",
+          "sha256": "bfd033fcb176e7a57db705eed03b90ccd5af94244eedc0924fcf73eee6b72595",
+          "bytes": 283
+        },
+        {
+          "path": "skills/istio/istio-review-routing/metadata.json",
+          "sha256": "c9429a4b26d530aa231fa406d289849fb41dcae9871cdfe83cc3b9dcc7e81df2",
+          "bytes": 1183
+        },
+        {
+          "path": "skills/istio/istio-review-routing/references/aggregation-and-conflicts.md",
+          "sha256": "ac5f9030aff8ad235c6bb8d997d28607745eb69db9d761433719fdd0087ad8bc",
+          "bytes": 1224
+        },
+        {
+          "path": "skills/istio/istio-review-routing/references/applicability.md",
+          "sha256": "fea02fb3ca39bd458d0cc2f6b244afd50de43704873509f34e9dd7a61f01c3af",
+          "bytes": 1189
+        },
+        {
+          "path": "skills/istio/istio-review-routing/references/evidence-boundary.md",
+          "sha256": "485c2b8796b6b46ac73a56625abc0ddfca08ab59144c62b0e40b8d379369bc82",
+          "bytes": 3793
+        },
+        {
+          "path": "skills/istio/istio-review-routing/references/live-handoff.md",
+          "sha256": "9da1e11f0e7123c6c781a9a60506b1ab5d3c4b5529434de8ff5ecaf8715329cb",
+          "bytes": 1030
+        },
+        {
+          "path": "skills/istio/istio-review-routing/references/negative-tests.md",
+          "sha256": "71db486626cc186d5991054bdf2deb8d05afe53c4f0b8add1e195638a2aa4da0",
+          "bytes": 727
+        },
+        {
+          "path": "skills/istio/istio-review-routing/references/official-sources.md",
+          "sha256": "1af0851121a96bd202d2c1055cdb5f6666353cbc5c61c21d72f048af9a44c9dd",
+          "bytes": 469
+        },
+        {
+          "path": "skills/istio/istio-review-routing/references/output-contract.md",
+          "sha256": "37dc388f8392618af4cda42d6c54445526642184ff8f187e9ce903f065974868",
+          "bytes": 2106
+        },
+        {
+          "path": "skills/istio/istio-review-routing/references/review-contract.json",
+          "sha256": "106aaaae3a6c83788ef0d8a52a7d6fe89ac30cc268bf198dc2b9b320413d3180",
+          "bytes": 5936
+        },
+        {
+          "path": "skills/istio/istio-review-routing/references/routing-table.md",
+          "sha256": "85454a2e427191989d72edffe8759822d680aa447e06f0c7baeac97e265ca11c",
+          "bytes": 1655
+        }
+      ]
+    },
+    {
+      "id": "istio-traffic-resilience-review",
+      "path": "skills/istio/istio-traffic-resilience-review",
+      "aggregate_sha256": "ea59e933c1bed7098d054f0da8cb97c2b6bb7e5c5b51a85916b6172b9c676a05",
+      "files": [
+        {
+          "path": "skills/istio/istio-traffic-resilience-review/SKILL.md",
+          "sha256": "a692b72ff3391120bd87e5815fe41042758bed46a1256abbf7bfa24bab17f169",
+          "bytes": 3600
+        },
+        {
+          "path": "skills/istio/istio-traffic-resilience-review/agents/openai.yaml",
+          "sha256": "85442d900c421440e4cd9bd330d7ac1df1bb867865265dc30e7d85abfb70f778",
+          "bytes": 308
+        },
+        {
+          "path": "skills/istio/istio-traffic-resilience-review/metadata.json",
+          "sha256": "970e0fa8c63365c22785965b007900a896ed69873431594ac11ba3835db646be",
+          "bytes": 1489
+        },
+        {
+          "path": "skills/istio/istio-traffic-resilience-review/references/applicability.md",
+          "sha256": "fea02fb3ca39bd458d0cc2f6b244afd50de43704873509f34e9dd7a61f01c3af",
+          "bytes": 1189
+        },
+        {
+          "path": "skills/istio/istio-traffic-resilience-review/references/evidence-boundary.md",
+          "sha256": "485c2b8796b6b46ac73a56625abc0ddfca08ab59144c62b0e40b8d379369bc82",
+          "bytes": 3793
+        },
+        {
+          "path": "skills/istio/istio-traffic-resilience-review/references/mirroring-and-faults.md",
+          "sha256": "ad7173c708b6eae40c074602d0d310eb81a2692bf4bdabdcad1e082527251def",
+          "bytes": 1365
+        },
+        {
+          "path": "skills/istio/istio-traffic-resilience-review/references/negative-tests.md",
+          "sha256": "b6a60b924d0bbd2b9291c2dc62f72b1c20eabb4c9b559995f28ed2c404ff7a6f",
+          "bytes": 762
+        },
+        {
+          "path": "skills/istio/istio-traffic-resilience-review/references/official-sources.md",
+          "sha256": "e92fcc71eca547a67225ecae145928cbcdce4d811b266ab35087eca265173996",
+          "bytes": 1100
+        },
+        {
+          "path": "skills/istio/istio-traffic-resilience-review/references/output-contract.md",
+          "sha256": "37dc388f8392618af4cda42d6c54445526642184ff8f187e9ce903f065974868",
+          "bytes": 2106
+        },
+        {
+          "path": "skills/istio/istio-traffic-resilience-review/references/review-contract.json",
+          "sha256": "106aaaae3a6c83788ef0d8a52a7d6fe89ac30cc268bf198dc2b9b320413d3180",
+          "bytes": 5936
+        },
+        {
+          "path": "skills/istio/istio-traffic-resilience-review/references/routing-and-weights.md",
+          "sha256": "408efb4b766a984f5728cdfa377b789cd32011e9acac63ef654e97e0410ca4bf",
+          "bytes": 1604
+        },
+        {
+          "path": "skills/istio/istio-traffic-resilience-review/references/timeouts-retries-and-capacity.md",
+          "sha256": "17a9370f76465a6ef97b1bbf99929908f3cf986c2751523b5d044105443f3fdb",
+          "bytes": 1906
+        }
+      ]
+    },
+    {
+      "id": "istio-upgrade-readiness",
+      "path": "skills/istio/istio-upgrade-readiness",
+      "aggregate_sha256": "c23488ed02877ca4e8856df0bc0a690c1a663237cafebe05d5f45d65bad528c0",
+      "files": [
+        {
+          "path": "skills/istio/istio-upgrade-readiness/SKILL.md",
+          "sha256": "970d8d827cfea4f4a1c1c7213ef892bda4fbbc30e93882aa14ce024d98d914b8",
+          "bytes": 3606
+        },
+        {
+          "path": "skills/istio/istio-upgrade-readiness/agents/openai.yaml",
+          "sha256": "6fc8f4464f6224ffc617896adad2c1246c2d25cc660d56a78329ce673bdaa7b2",
+          "bytes": 289
+        },
+        {
+          "path": "skills/istio/istio-upgrade-readiness/metadata.json",
+          "sha256": "e3c3e587dd17e7f8da6d135ef674e453a9742b0d7df6694efe1ebf9bd365a59a",
+          "bytes": 1476
+        },
+        {
+          "path": "skills/istio/istio-upgrade-readiness/references/applicability.md",
+          "sha256": "fea02fb3ca39bd458d0cc2f6b244afd50de43704873509f34e9dd7a61f01c3af",
+          "bytes": 1189
+        },
+        {
+          "path": "skills/istio/istio-upgrade-readiness/references/crds-extensions-and-rollback.md",
+          "sha256": "d6c6e4f37e15adf362076503565584537129bda34c4b395558f011f912aabadc",
+          "bytes": 1602
+        },
+        {
+          "path": "skills/istio/istio-upgrade-readiness/references/evidence-boundary.md",
+          "sha256": "485c2b8796b6b46ac73a56625abc0ddfca08ab59144c62b0e40b8d379369bc82",
+          "bytes": 3793
+        },
+        {
+          "path": "skills/istio/istio-upgrade-readiness/references/inventory-and-support.md",
+          "sha256": "c724e7d9508c8e5c7cf5a0fdf69c57091230569f48cc56c149d8bbd7e3dc3381",
+          "bytes": 1343
+        },
+        {
+          "path": "skills/istio/istio-upgrade-readiness/references/negative-tests.md",
+          "sha256": "6dc0c8adc84a6df221c3d89aa8974320c1ea7d295d1460cab8ecdafa98bd5c31",
+          "bytes": 794
+        },
+        {
+          "path": "skills/istio/istio-upgrade-readiness/references/official-sources.md",
+          "sha256": "c51a3b5f983d15fe50ddb59129a28c9a8c26646538a8ddedb77d0f4610063c03",
+          "bytes": 1113
+        },
+        {
+          "path": "skills/istio/istio-upgrade-readiness/references/output-contract.md",
+          "sha256": "37dc388f8392618af4cda42d6c54445526642184ff8f187e9ce903f065974868",
+          "bytes": 2106
+        },
+        {
+          "path": "skills/istio/istio-upgrade-readiness/references/review-contract.json",
+          "sha256": "106aaaae3a6c83788ef0d8a52a7d6fe89ac30cc268bf198dc2b9b320413d3180",
+          "bytes": 5936
+        },
+        {
+          "path": "skills/istio/istio-upgrade-readiness/references/skew-and-order.md",
+          "sha256": "bf21c9be55de15ad7b38c05c5134ae1c81e71b85be5f65b3e8cf5b3b016afc8a",
+          "bytes": 1538
         }
       ]
     },

@@ -1,0 +1,7 @@
+{
+  "name": "002-happy-authorization-policy-review",
+  "task": "Review our istio AuthorizationPolicy PeerAuthentication RequestAuthentication configuration.",
+  "tags": [
+    "happy-path"
+  ]
+}

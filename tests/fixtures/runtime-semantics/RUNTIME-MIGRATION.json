@@ -1,0 +1,35 @@
+{
+  "id": "RUNTIME-MIGRATION",
+  "title": "Before/during/after ambient authorization",
+  "status": "not-run",
+  "required_authorization": "Separate explicit environment and experiment authorization; no automated provisioning is included",
+  "preconditions": [
+    "Explicitly supported source/target modes and versions",
+    "An approved downtime/access-exposure budget or zero-gap procedure"
+  ],
+  "procedure": [
+    "Capture before-state access matrix and traffic path",
+    "Observe the separately approved transition without assuming continuity",
+    "Capture after-state access matrix and actual path",
+    "Stop when continuous-enforcement requirement is not demonstrably maintained"
+  ],
+  "acceptance": [
+    "Any transition gap is reported rather than hidden behind after-state success"
+  ],
+  "capture": [
+    "Pinned versions/digests",
+    "Target identities and timestamps",
+    "Sanitized before/after objects",
+    "Positive and negative traffic results",
+    "Path/enforcement correlation",
+    "Residual risk and cleanup evidence"
+  ],
+  "stop_conditions": [
+    "Unexpected external destination",
+    "Unknown target identity",
+    "Unapproved scope change",
+    "Loss of observability",
+    "Unresolved critical acceptance failure"
+  ],
+  "cleanup": "Use only separately approved ownership-aware cleanup. Verify teardown without deleting unrelated resources."
+}
