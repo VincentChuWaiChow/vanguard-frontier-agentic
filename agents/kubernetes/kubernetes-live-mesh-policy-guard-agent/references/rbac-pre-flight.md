@@ -63,6 +63,9 @@ kubectl auth can-i update namespaces/finalize --as=$SA
 # Delete on policies — rollback is via apply -f baseline, not delete
 kubectl auth can-i delete authorizationpolicies.security.istio.io --all-namespaces --as=$SA
 kubectl auth can-i delete peerauthentications.security.istio.io --all-namespaces --as=$SA
+kubectl auth can-i delete requestauthentications.security.istio.io --all-namespaces --as=$SA
+kubectl auth can-i delete virtualservices.networking.istio.io --all-namespaces --as=$SA
+kubectl auth can-i delete destinationrules.networking.istio.io --all-namespaces --as=$SA
 # istio-system control plane
 kubectl auth can-i patch deployments -n istio-system --as=$SA
 kubectl auth can-i patch configmaps -n istio-system --as=$SA
@@ -78,8 +81,12 @@ kubectl auth can-i create authorizationpolicies.security.istio.io --all-namespac
 kubectl auth can-i patch authorizationpolicies.security.istio.io --all-namespaces --as=$SA
 kubectl auth can-i create peerauthentications.security.istio.io --all-namespaces --as=$SA
 kubectl auth can-i patch peerauthentications.security.istio.io --all-namespaces --as=$SA
-kubectl auth can-i list virtualservices.networking.istio.io --all-namespaces --as=$SA
-kubectl auth can-i list peerauthentications.security.istio.io --all-namespaces --as=$SA
+kubectl auth can-i create requestauthentications.security.istio.io --all-namespaces --as=$SA
+kubectl auth can-i patch requestauthentications.security.istio.io --all-namespaces --as=$SA
+kubectl auth can-i create virtualservices.networking.istio.io --all-namespaces --as=$SA
+kubectl auth can-i patch virtualservices.networking.istio.io --all-namespaces --as=$SA
+kubectl auth can-i create destinationrules.networking.istio.io --all-namespaces --as=$SA
+kubectl auth can-i patch destinationrules.networking.istio.io --all-namespaces --as=$SA
 ```
 
 Every must-not row must print `no`. Every must-be row must print `yes`. Any deviation: refuse and tell the operator which line failed.

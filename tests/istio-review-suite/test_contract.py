@@ -3,6 +3,7 @@ import json
 from pathlib import Path
 import unittest
 import jsonschema
+import yaml
 
 ROOT = Path(__file__).resolve().parents[2]
 SKILLS = [
@@ -67,6 +68,24 @@ class NativeIntegrationTests(unittest.TestCase):
         self.assertEqual(len(matches),1)
         meta=json.loads((matches[0]/"metadata.json").read_text())
         self.assertEqual(meta["companion_skills"],["istio-live-policy-change"])
+    def test_live_guard_preflight_covers_every_writable_istio_resource(self):
+        guard=ROOT/"agents/kubernetes/kubernetes-live-mesh-policy-guard-agent"
+        docs=(guard/"references/rbac-pre-flight.md").read_text()
+        script=(ROOT/"tests/integration/rbac-pre-flight/guards/mesh-policy.sh").read_text()
+        manifests=yaml.safe_load_all((guard/"references/least-privilege-rbac.yaml").read_text())
+        role=next(item for item in manifests if item.get("kind")=="ClusterRole")
+        writable={
+            f"{resource}.{rule['apiGroups'][0]}"
+            for rule in role["rules"] if set(rule["verbs"]) & {"create", "patch"}
+            for resource in rule["resources"]
+        }
+        self.assertEqual(len(writable),5)
+        for resource in writable:
+            with self.subTest(resource=resource):
+                for source in (docs, script):
+                    self.assertIn(f"delete {resource}", source)
+                    self.assertIn(f"create {resource}", source)
+                    self.assertIn(f"patch {resource}", source)
     def test_semantic_eval_corpus_remains_unperformed(self):
         paths=list((ROOT/"tests/fixtures/istio-review-evals/expected").glob("*.json"))
         self.assertEqual(len(paths),55)
