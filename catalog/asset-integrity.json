@@ -35427,7 +35427,7 @@
     },
     {
       "tree": "catalog",
-      "aggregate_sha256": "848355aeb4089c3edf8cc4e8f53edb3fb7744519f8516b725637b1c8058f6663",
+      "aggregate_sha256": "e20ba5fd2d67965759422fa06d88590441b441766c9a0af63e5e7deb717724a8",
       "files": [
         {
           "path": "catalog/AGENTS.md",
@@ -35486,8 +35486,8 @@
         },
         {
           "path": "catalog/workflows.json",
-          "sha256": "33c89352cba0de0d83efca8612e87401248b37fee8eefdeea955ed3a5f43e5a5",
-          "bytes": 1995
+          "sha256": "227abcf7c4f38c763c001824d996390f48d78f780d2e2e5560b1bbbac089dde5",
+          "bytes": 4054
         }
       ]
     },
@@ -47237,5 +47237,5 @@
       "bytes": 8340
     }
   ],
-  "aggregate_sha256": "2bbd6f53c309dbeb2a0a6d493b21a6cbba25aa2b45d32f0df5d9e765967e9f7c"
+  "aggregate_sha256": "724a61d97da3696204b8fab7c072b6be6a27628fdc327da4786088e8781e1111"
 }
