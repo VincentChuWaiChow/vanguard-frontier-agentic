@@ -1,3 +1,27 @@
+## 🛡️ v3.12.1 — *Provenance · Policy · Portability*
+_Released 2026-09-12_
+
+> _Curated multi-cloud, zero-trust agent marketplace — `AWS` · `Azure` · `OCI` · `GCP` · `Terraform`._
+> Least privilege, live evidence, safe rollback paths.
+
+**Release type:** Maintenance & hardening.
+
+### 🐛 Bug Fixes
+
+* **vfa-tui:** gate Istio catalog compatibility ([`3068a0b`](https://github.com/VincentChuWaiChow/vanguard-frontier-agentic/commit/3068a0b909046570f7fa6c283d52e38e391c8d9e))
+
+---
+
+### 📥 Install
+```bash
+npm install @raishin/vanguard-frontier-agentic@3.12.1
+```
+
+### 🔐 Supply-chain provenance
+Every release ships a build attestation (SLSA provenance) and an SBOM. Verify the tag with `gh attestation verify` before installing.
+
+**Full changelog:** https://github.com/VincentChuWaiChow/vanguard-frontier-agentic/compare/v3.12.0...v3.12.1
+
 ## 🛡️ v3.12.0 — *Provenance · Policy · Portability*
 _Released 2026-09-12_
 

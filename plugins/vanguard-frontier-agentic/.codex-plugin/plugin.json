@@ -1,6 +1,6 @@
 {
   "name": "vanguard-frontier-agentic",
-  "version": "3.12.0",
+  "version": "3.12.1",
   "description": "Curated marketplace for cloud and zero-trust AI workflows. 331 agents, 286 skills, and rules across AWS, Azure, OCI, GCP, Alibaba Cloud, Huawei Cloud, Kubernetes, and Terraform.",
   "author": {
     "name": "VincentChuWaiChow",

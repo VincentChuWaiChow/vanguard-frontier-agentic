@@ -6,7 +6,7 @@
   },
   "metadata": {
     "description": "Cloud and zero-trust agentic workflow marketplace for skills, agents, rules, MCP references, and compliance-aware architecture.",
-    "version": "3.12.0"
+    "version": "3.12.1"
   },
   "plugins": [
     {
