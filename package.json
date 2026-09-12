@@ -85,13 +85,14 @@
     "test:gemini-bundling": "python3 tests/test-gemini-skill-bundling.py",
     "test:cursor-kiro-notices": "node tests/export-cursor-kiro-skill-notice.test.mjs",
     "test:fuzz": "node tests/fuzz-properties.test.mjs",
-    "validate": "npm run validate:catalog && npm run validate:aws && npm run manifest:check && npm run validate:allowed-tools && npm run validate:skill-coherence && npm run validate:skill-schema && npm run validate:agent-schema && npm run validate:model-policy && npm run validate:model-params && npm run validate:links && npm run validate:asset-integrity && npm run validate:mcp-trust-matrix && npm run validate:no-lifecycle-scripts && npm run validate:promotion-gatekeeper && npm run validate:install-coverage && npm run validate:maestro-routing && npm run validate:plugin-manifest && npm run validate:kiro-powers && npm run validate:multi-harness-marketplace && npm run validate:codex-marketplace && npm run validate:finops-fixtures && npm run validate:readme-counts && npm run validate:board-counts && npm run validate:qa-cluster && npm run validate:frontend-security-detection && npm run validate:agent-tool-tiers && npm run validate:istio-review-suite && npm run validate:workflow-catalog",
+    "validate": "npm run validate:catalog && npm run validate:aws && npm run manifest:check && npm run validate:allowed-tools && npm run validate:skill-coherence && npm run validate:skill-schema && npm run validate:agent-schema && npm run validate:model-policy && npm run validate:model-params && npm run validate:links && npm run validate:asset-integrity && npm run validate:mcp-trust-matrix && npm run validate:no-lifecycle-scripts && npm run validate:promotion-gatekeeper && npm run validate:install-coverage && npm run validate:maestro-routing && npm run validate:plugin-manifest && npm run validate:kiro-powers && npm run validate:multi-harness-marketplace && npm run validate:codex-marketplace && npm run validate:finops-fixtures && npm run validate:readme-counts && npm run validate:board-counts && npm run validate:qa-cluster && npm run validate:frontend-security-detection && npm run validate:agent-tool-tiers && npm run validate:istio-review-suite && npm run validate:workflow-catalog && npm run validate:release-notes",
     "release:sbom": "command -v syft >/dev/null 2>&1 && syft scan dir:. -o spdx-json=sbom.spdx.json || echo 'syft not installed; SBOM is generated in CI by anchore/sbom-action'",
     "lint:md": "npx --yes markdownlint-cli2 \"**/*.md\" \"#node_modules\" \"#.git\" \"#.code-review-graph\" \"#CHANGELOG.md\"",
     "lint:spell": "codespell",
     "lint:docs": "npm run lint:md && npm run lint:spell",
     "workflow-catalog:write": "node scripts/generate-workflow-catalog.mjs",
-    "validate:workflow-catalog": "node scripts/generate-workflow-catalog.mjs --check"
+    "validate:workflow-catalog": "node scripts/generate-workflow-catalog.mjs --check",
+    "validate:release-notes": "node tests/validate-release-notes.mjs"
   },
   "devDependencies": {
     "@semantic-release/changelog": "7.0.0",
@@ -101,7 +102,7 @@
     "@semantic-release/github": "12.0.9",
     "@semantic-release/npm": "^13.1.5",
     "@semantic-release/release-notes-generator": "14.1.1",
-    "conventional-changelog-conventionalcommits": "10.4.0",
+    "conventional-changelog-conventionalcommits": "9.3.1",
     "fast-check": "^4.7.0",
     "semantic-release": "25.0.9"
   },
