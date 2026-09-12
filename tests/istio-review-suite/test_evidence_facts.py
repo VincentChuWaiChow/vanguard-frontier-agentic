@@ -1,6 +1,5 @@
 """Actual offline helper tests. These do not execute an LLM or Istio."""
 import ast
-import copy
 import json
 import os
 from pathlib import Path

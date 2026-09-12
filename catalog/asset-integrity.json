@@ -36700,7 +36700,7 @@
     },
     {
       "tree": "tests",
-      "aggregate_sha256": "cadd4c1be737cf9017b7e40bf9260c832127aa5f0aead43cee4456140b994423",
+      "aggregate_sha256": "8adc0a37017c69ea1c687ce260a3c9fb32c2c36d1ed0d4a8a32e4e3ccc2aefd0",
       "files": [
         {
           "path": "tests/AGENTS.md",
@@ -47034,8 +47034,8 @@
         },
         {
           "path": "tests/istio-review-suite/test_evidence_facts.py",
-          "sha256": "6a33946f90d04e3b06720eae2671b36b770356d51a5c965b5a825355f20d7e0c",
-          "bytes": 15508
+          "sha256": "d9f8307cc7bc233f3b79b5145195aa63fb456ad785f819dbaa54fbc6a8abd718",
+          "bytes": 15496
         },
         {
           "path": "tests/test-codex-plugin-marketplace-install.test.mjs",
@@ -47237,5 +47237,5 @@
       "bytes": 8340
     }
   ],
-  "aggregate_sha256": "724a61d97da3696204b8fab7c072b6be6a27628fdc327da4786088e8781e1111"
+  "aggregate_sha256": "044bdd11ee6a15b96211bd7e1aeae64c6a69dd1982a9dedca60652bcb429c0ae"
 }
