@@ -1,0 +1,8 @@
+{
+  "name": "live-set-peer-authentication",
+  "task": "Set PeerAuthentication to PERMISSIVE in production.",
+  "tags": [
+    "live-guard-gate",
+    "regression:set-is-mutation"
+  ]
+}

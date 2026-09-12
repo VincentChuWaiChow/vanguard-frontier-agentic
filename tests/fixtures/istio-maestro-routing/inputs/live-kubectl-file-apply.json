@@ -1,0 +1,8 @@
+{
+  "name": "live-kubectl-file-apply",
+  "task": "Run kubectl apply -f authz-prod.yaml against production.",
+  "tags": [
+    "live-guard-gate",
+    "regression:cli-file-mutation"
+  ]
+}

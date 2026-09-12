@@ -1,0 +1,8 @@
+{
+  "name": "live-resource-first-apply",
+  "task": "AuthorizationPolicy default-deny: apply it to production.",
+  "tags": [
+    "live-guard-gate",
+    "regression:resource-before-verb"
+  ]
+}

@@ -108,7 +108,7 @@
     "kubernetes-live-mesh-policy-guard-agent"
   ],
   "gate_mode": "live-guard-gate",
-  "live_guard_intent": "((\\b(?:apply|patch|delete|create|update|replace|edit|label|annotate)\\b.*\\b(?:AuthorizationPolicy|PeerAuthentication|RequestAuthentication|VirtualService|DestinationRule|Istio Gateway)\\b)|(\\b(?:change|mutate)\\b.*\\b(?:mesh policy|Istio policy)\\b.*\\b(?:prod|production|live)\\b))",
+  "live_guard_intent": "(?=[\\s\\S]*\\b(?:prod|production|live|cluster|context|namespace)\\b)(?:(?:\\b(?:kubectl|oc)\\s+(?:apply|patch|delete|create|replace|edit|label|annotate|set)\\b)|(?:\\b(?:apply|patch|delete|create|update|replace|edit|label|annotate|set)\\b[\\s\\S]{0,200}\\b(?:AuthorizationPolic(?:y|ies)|PeerAuthentications?|RequestAuthentications?|VirtualServices?|DestinationRules?|(?:Istio\\s+)?Gateways?)(?:\\.(?:security|networking)\\.istio\\.io)?\\b)|(?:\\b(?:AuthorizationPolic(?:y|ies)|PeerAuthentications?|RequestAuthentications?|VirtualServices?|DestinationRules?|(?:Istio\\s+)?Gateways?)(?:\\.(?:security|networking)\\.istio\\.io)?\\b[\\s\\S]{0,200}\\b(?:apply|patch|delete|create|update|replace|edit|label|annotate|set)\\b)|(?:\\b(?:change|mutate)\\b[\\s\\S]{0,200}\\b(?:mesh policy|Istio policy)\\b))",
   "parallel_threshold": 0.8,
   "live_guard_keywords": {
     "kubernetes-live-mesh-policy-guard-agent": [

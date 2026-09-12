@@ -1,0 +1,8 @@
+{
+  "name": "live-istio-gateway-apply",
+  "task": "Apply Gateway/public in production.",
+  "tags": [
+    "live-guard-gate",
+    "regression:gateway-kind"
+  ]
+}
