@@ -117,6 +117,33 @@ fn agents_by_provider_returns_correct_subset() {
 }
 
 #[test]
+fn repository_catalog_exposes_istio_review_suite() {
+    let workspace_root = Path::new(env!("CARGO_MANIFEST_DIR"))
+        .parent()
+        .and_then(Path::parent)
+        .expect("vfa-tui must remain under tools/ in the repository");
+    let store = CatalogStore::load(workspace_root);
+
+    assert!(
+        store.load_errors.is_empty(),
+        "unexpected repository catalog load errors: {:?}",
+        store.load_errors
+    );
+
+    let istio_agents = store.agents_by_provider("istio");
+    assert!(
+        !istio_agents.is_empty(),
+        "Istio agents must be discoverable"
+    );
+    assert!(istio_agents
+        .iter()
+        .any(|agent| agent.id == "istio-maestro-agent"));
+    assert!(istio_agents
+        .iter()
+        .all(|agent| !agent.companion_skills.is_empty()));
+}
+
+#[test]
 fn agents_for_role_returns_correct_agents() {
     let store = CatalogStore::load(&fixtures_root());
 
