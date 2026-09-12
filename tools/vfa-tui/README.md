@@ -39,13 +39,13 @@ Each release also includes a `checksums.sha256` file and an SPDX 2.3 SBOM (`vfa-
 
 ## Overview
 
-`vfa-tui` provides a fast, keyboard-driven terminal interface for browsing the VFA catalog of 300+ security agents across 30+ providers. It supports fuzzy search, provider/harness filtering, role-based views, validation gate execution with real-time streaming output, export command building with dry-run preview, and structured audit logging.
+`vfa-tui` provides a fast, keyboard-driven terminal interface for browsing the generated VFA catalog. It reads providers, agents, and companion skills at runtime, so catalog additions such as the Istio review suite appear without compiled-in lists or counts. It supports fuzzy search, provider/harness filtering, role-based views, validation gate execution with real-time streaming output, export command building with dry-run preview, and structured audit logging.
 
 Key capabilities:
 
 - Browse agents, skills, roles, providers, MCP references, and rules interactively
 - Fuzzy search across all catalog entities (powered by nucleo-matcher)
-- Run any of the 17+ validation gates with streaming output
+- Run repository validation gates with streaming output
 - Build and preview export commands before execution
 - Manage per-harness model/reasoning-effort policy for providers, roles, and agents — batch assignment with dry-run preview and automatic integrity refresh
 - View asset integrity manifests with SHA-256 hashes
