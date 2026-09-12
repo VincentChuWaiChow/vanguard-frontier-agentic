@@ -90,7 +90,7 @@
         },
         {
           "title": "Gate",
-          "detail": "Repo gate suite in documented order, asset-integrity last",
+          "detail": "Repo gate suite, integrity manifest regenerated first so validate reads a settled tree",
           "model": "haiku"
         }
       ]

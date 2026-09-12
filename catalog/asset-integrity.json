@@ -35152,7 +35152,7 @@
     },
     {
       "tree": "catalog",
-      "aggregate_sha256": "1b9778e5c6c5271a5f907103ce5712d99c634727e3ecec76f2565357d36dfac6",
+      "aggregate_sha256": "7b196ae56a3cae0508e1c9d9ec1c21871e2c9c009001cd41aed66c6ea39de59b",
       "files": [
         {
           "path": "catalog/AGENTS.md",
@@ -35211,8 +35211,8 @@
         },
         {
           "path": "catalog/workflows.json",
-          "sha256": "a7ab27327ca918c9a6363d66a2b8b0ed0f31cf5483b77b871081fd0da2916a2d",
-          "bytes": 4025
+          "sha256": "227abcf7c4f38c763c001824d996390f48d78f780d2e2e5560b1bbbac089dde5",
+          "bytes": 4054
         }
       ]
     },
@@ -46132,5 +46132,5 @@
       "bytes": 8340
     }
   ],
-  "aggregate_sha256": "cba4c392aaccaad6f31821fac825f43f89920b5c041dfc11728b678110ad1f37"
+  "aggregate_sha256": "455cb8af4ba199b660dced21141d111cda3a76cfa6c0610529a10ba2d2d73a39"
 }

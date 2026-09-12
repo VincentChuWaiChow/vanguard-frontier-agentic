@@ -104,12 +104,19 @@ Autofix    deterministic `lint --fix` on the fixable rules, before any judgment
 Triage     orchestrator-tier disposition per finding, grounded in `lint --explain`
 Remediate  Sonnet implements fixes and writes rationale-bearing suppressions
 Rescan     barrier — the decisive probe that the disposition held
-Refute     an independent reader attacks every suppression
-Gate       the repo gate suite, asset-integrity first, raw failure output
+Refute     an independent reader attacks every suppression AND every autofix file
+Gate       the repo gate suite, integrity manifest regenerated first, raw output
 ```
 
 Baseline and Rescan fan out per target; every other phase is a barrier, because
 one rule firing on two targets is one decision, not two.
+
+`npm run asset-integrity:write` heads the gate list because it is a *generator*,
+not a check: CLAUDE.md's "last, on its own" ordering places it after every other
+generator, and `npm run validate` — whose `validate:asset-integrity` gate reads
+what it wrote — must come after it. Cargo's three gates are appended only when the
+run wrote something under `tools/vfa-tui/`, since CI path-filters its `Gate` job
+there and nothing else would cover the change.
 
 ### Invoking it
 
@@ -123,18 +130,33 @@ With no `args` it scans the Codex plugin bundle and the repo root against the
 | Field | Shape | Meaning |
 |---|---|---|
 | `task` | string | One line of context passed to the triage and writing phases. |
-| `targets` | (string \| object)[] | Scan targets as `{dir, config, blocking}` or a bare path. Max 6. Defaults to the two targets the CI workflow scans. |
-| `scanner` | string | Scanner invocation. Defaults to `pipx run plugin-scanner`; pass a bare binary if it is on `PATH`. |
+| `targets` | (string \| object)[] | Scan targets as `{dir, config, blocking}` or a bare path. Max 6. Entries that are not a non-empty string and carry no usable `dir` are dropped loudly. `blocking` defaults to true when omitted. Defaults to the two targets the CI workflow scans. |
+| `scanner` | string | Full scanner invocation. Overriding it **bypasses the version pin** and the run says so. |
+| `scannerVersion` | string | The pinned `plugin-scanner` PyPI version. Defaults to `3.0.160`. |
 | `profile` | string | `default` \| `public-marketplace` \| `strict-security`. Empty by default, matching what CI actually passes. |
 | `minScore` | number | The enforced score bar. Defaults to 80. |
 | `autofix` | `false` | Skips `lint --fix`, sending every finding to triage instead. |
-| `nonExecutablePaths` | string[] | Path fragments treated as suppressible. Widening this widens what may be silenced. |
-| `gates` | `false` \| string[] | `false` skips the gate phase. An array replaces the default gate commands. |
+| `nonExecutablePaths` | string[] | Whole path segments treated as suppressible. Empty and non-string entries are dropped. Widening this widens what may be silenced, and the run logs that it was widened. |
+| `gates` | `false` \| string[] | `false` disables the gate phase. An array — **including `[]`** — replaces the default gate commands; the integrity refresh is always prepended. |
+
+The scanner is pinned because an unpinned `pipx run plugin-scanner` resolves to
+whatever PyPI serves that minute: two runs a week apart could then produce
+different rules, severities and scores with no commit between them, and the report
+would blame the repo. Note this is the `plugin-scanner` **PyPI package** version,
+a different artifact from the `ai-plugin-scanner-action` SHA pinned in
+`hol-plugin-scanner.yml` — do not sync one to the other.
 
 As in `agentic-delegation`, anything beyond a cap is dropped **loudly** via
-`log()`, a missing target is reported as not covered rather than quietly omitted,
-and `gates: false` leaves `gatesGreen` false with every command listed in
-`missingGates`.
+`log()`, and a missing target is reported as not covered rather than quietly
+omitted. `gates: false` leaves `gatesGreen` false with every command listed in
+`missingGates` — the sequence is built unconditionally, so a disabled run reports
+its gates as *not run* rather than as *none required*.
+
+`blocking: false` is honored: such a target below the bar lands in `advisories`
+rather than `blockers`, mirroring the non-blocking marketplace job in
+`hol-plugin-scanner.yml`. Everything else fails closed — an unknown target label,
+an omitted `blocking` flag, an unrecognized severity string, a path that climbs
+out of the repo with `..`.
 
 ### Why suppression is treated as a hostile act
 
@@ -146,16 +168,28 @@ whole reason this workflow exists, and it shapes every phase:
   remediation;
 - the admission predicate is enforced in JavaScript, not requested in a prompt —
   a suppression is refused if it lands on an executable path, carries a blocking
-  severity, or has a rationale under 40 characters;
+  severity, or has a rationale under 40 characters or fewer than 6 distinct words;
+- **the predicate reads the scanner, not the triage.** Every disposition is
+  matched back to a residual finding by `(target, ruleId, filePath)`, and severity
+  and path come from that finding. `severity` and `filePath` are optional in the
+  triage schema, so trusting the disposition's own copy of them let a delegate
+  author the evidence used to police it: omit the path and the executable check
+  saw an empty string, understate the severity and the blocking check never fired.
+  A disposition matching no finding is *unbound* and blocks;
+- **coverage is checked.** Every residual finding needs a disposition; one left
+  out is reported as `No disposition for …` rather than read as handled;
 - a refused suppression becomes an `escalate`, never a deletion, so the finding
   stays in the report instead of vanishing;
 - the Refute phase reads `git diff` rather than the writer's claims, and its
   `silenced` verdict exists specifically for a suppression that covers a live
-  issue or a placeholder file added only to close a "file missing" rule.
+  issue or a placeholder file added only to close a "file missing" rule. It runs
+  whenever anything changed on disk — including an autofix-only run, since
+  `lint --fix` writes the stub README/SECURITY/LICENSE files that verdict targets.
 
 The path heuristic fails **toward** strictness: a finding with no file path at
 all is treated as executable, because guessing wrong in the other direction
-hides a real defect.
+hides a real defect. Matching is on whole path **segments**, not substrings —
+`docs/` must not also exempt `plugins/mydocs/loader.js`.
 
 ### The local-score trap
 
@@ -164,9 +198,13 @@ repository-owned scanner config and baselines to affect Action verdicts"* — an
 `hol-plugin-scanner.yml` passes `config: .plugin-scanner.toml` without it. So a
 local score bought with new suppressions is **not** evidence that CI will agree.
 
-The workflow refuses to let a run read as finished on that basis: if every score
-gain in a run came from suppression, that is appended to `blockers` in as many
-words, and `readyToCommit` stays false.
+The workflow refuses to let a run read as finished on that basis: if a target's
+score gain is attributable only to suppression, that is appended to `blockers` in
+as many words, and `readyToCommit` stays false. Attribution is **per target** —
+changes are mapped to targets through the disposition that ordered them, so one
+genuine code fix elsewhere in the run no longer clears the flag for a target whose
+entire gain was suppression. A score that rose with no attributable change at all
+is treated the same way, because it is equally unexplained.
 
 ### Known scanner constraints it encodes
 

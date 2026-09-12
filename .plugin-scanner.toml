@@ -10,8 +10,16 @@
 # Each entry below was confirmed against a specific code-scanning alert:
 #   - catalog/**            machine-generated indexes; asset-integrity.json holds
 #                           SHA256 hashes (high-entropy → false "hardcoded secret")
-#   - docs/**, .claude/**   documentation & harness workflow playbooks (incl.
-#                           red-team/acceptance docs that quote secret patterns)
+#   - docs/**               documentation (incl. red-team/acceptance docs that
+#                           quote secret patterns)
+#   - .claude/**/*.md       harness workflow playbooks and skill docs — same
+#                           reason as docs/**, and scoped to MARKDOWN ONLY.
+#                           .claude/** used to be excluded wholesale, which also
+#                           exempted .claude/workflows/*.js — executable pipeline
+#                           code that this file's own header says stays ACTIVE.
+#                           The workflows spawn delegates, build shell command
+#                           strings and read caller-supplied paths, so they are
+#                           precisely what secret- and injection-detection is for.
 #   - tests/**              maestro-routing fixtures, incl. credential "bait"
 #                           inputs (e.g. *-gandi-key-storage-bait.json) that exist
 #                           specifically to contain secret-shaped honeypot strings
@@ -46,7 +54,7 @@ ignore_paths = [
   "catalog/**",
   "docs/**",
   "tests/**",
-  ".claude/**",
+  ".claude/**/*.md",
   "CHANGELOG.md",
   "scripts/*_data/**",
   ".claude-plugin/plugin.json",

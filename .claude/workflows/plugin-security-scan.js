@@ -41,7 +41,7 @@ export const meta = {
     { title: 'Remediate', detail: 'Sonnet implements fixes and writes rationale-bearing suppressions', model: 'sonnet' },
     { title: 'Rescan', detail: 'Barrier re-scan: the decisive probe that the disposition held', model: 'haiku' },
     { title: 'Refute', detail: 'Adversarial audit of every suppression — silenced is not fixed', model: 'sonnet' },
-    { title: 'Gate', detail: 'Repo gate suite in documented order, asset-integrity last', model: 'haiku' },
+    { title: 'Gate', detail: 'Repo gate suite, integrity manifest regenerated first so validate reads a settled tree', model: 'haiku' },
   ],
 }
 
@@ -59,19 +59,63 @@ const DEFAULT_TARGETS = [
   { dir: '.', config: '.plugin-scanner.toml', blocking: false },
 ]
 
-const TARGETS = Array.isArray(input.targets) && input.targets.length
-  ? input.targets.slice(0, 6).map(t => (typeof t === 'string' ? { dir: t, config: '', blocking: true } : t))
+// Caller input is untrusted structurally as well as semantically: a stray null
+// or a target with no `dir` used to throw inside targetLabel() and take the whole
+// run down. Drop them loudly instead — a run that covers fewer targets than asked
+// is recoverable; a crashed run leaves the caller with nothing.
+const coerceTarget = (t) => {
+  if (typeof t === 'string') return t.trim() ? { dir: t.trim(), config: '', blocking: true } : null
+  if (!t || typeof t !== 'object') return null
+  const dir = typeof t.dir === 'string' ? t.dir.trim() : ''
+  if (!dir) return null
+  return {
+    dir,
+    config: typeof t.config === 'string' ? t.config.trim() : '',
+    // Absent `blocking` means blocking. Fail closed: a caller who forgot the flag
+    // gets the strict reading, not the permissive one.
+    blocking: t.blocking !== false,
+  }
+}
+
+const rawTargets = Array.isArray(input.targets) ? input.targets : []
+const coercedTargets = rawTargets.map(coerceTarget)
+const droppedTargets = coercedTargets.filter(t => !t).length
+
+const TARGETS = coercedTargets.filter(Boolean).length
+  ? coercedTargets.filter(Boolean).slice(0, 6)
   : DEFAULT_TARGETS
 
-if (Array.isArray(input.targets) && input.targets.length > 6) {
-  log(`DROPPED ${input.targets.length - 6} target(s) beyond the cap of 6 — this run does NOT cover them`)
+if (droppedTargets) {
+  log(`DROPPED ${droppedTargets} malformed target(s) (not a non-empty string and no usable .dir) — this run does NOT cover them`)
+}
+if (coercedTargets.filter(Boolean).length > 6) {
+  log(`DROPPED ${coercedTargets.filter(Boolean).length - 6} target(s) beyond the cap of 6 — this run does NOT cover them`)
+}
+if (rawTargets.length && !coercedTargets.filter(Boolean).length) {
+  log('Every caller-supplied target was malformed — falling back to the DEFAULT_TARGETS list')
 }
 
 // The invocation is an input because the scanner is a PyPI package (the action
 // pip-installs `plugin-scanner` and runs codex_plugin_scanner.action_runner).
 // `pipx run` is the verified zero-install path; a repo with it on PATH can pass
 // the bare binary instead.
-const SCANNER = input.scanner || 'pipx run plugin-scanner'
+//
+// The version is PINNED. An unpinned `pipx run plugin-scanner` resolves to
+// whatever PyPI serves that minute, so two runs of this workflow a week apart can
+// produce different rule sets, different severities and different scores with no
+// commit in between — and the report would attribute the difference to the repo.
+// The pin makes the scan a function of committed state, matching the
+// "deterministic over clever" rule in CLAUDE.md.
+//
+// Note this is the `plugin-scanner` PyPI package version (3.0.160, verified live
+// 2026-09-12), NOT the `ai-plugin-scanner-action` version pinned in
+// .github/workflows/hol-plugin-scanner.yml (v1.2.x). They are different artifacts
+// on different version lines; do not sync one to the other.
+const SCANNER_VERSION = typeof input.scannerVersion === 'string' && input.scannerVersion.trim()
+  ? input.scannerVersion.trim()
+  : '3.0.160'
+const SCANNER = input.scanner || `pipx run --spec plugin-scanner==${SCANNER_VERSION} plugin-scanner`
+const SCANNER_PINNED_BY_WORKFLOW = !input.scanner
 
 // default | public-marketplace | strict-security. Left at the scanner's default
 // deliberately: .github/workflows/hol-plugin-scanner.yml passes no profile, so
@@ -88,30 +132,66 @@ const SUPPRESSION_FILE = input.suppressionFile || '.plugin-scanner.toml'
 // mirrors the stated policy in .plugin-scanner.toml's own header: "Secret-
 // detection and all other rules stay ACTIVE on executable agent/skill/plugin
 // code." Callers may widen it, loudly.
-const NON_EXECUTABLE_HINTS = Array.isArray(input.nonExecutablePaths) && input.nonExecutablePaths.length
-  ? input.nonExecutablePaths
-  : ['catalog/', 'docs/', 'tests/fixtures/', 'CHANGELOG.md', 'metadata.json', '_data/', 'references/']
+//
+// Entries are filtered to non-empty strings first. An empty string in this list
+// used to make looksExecutable() return false for EVERY path (`p.includes('')`
+// is always true), silently turning the executable-path guard off for the whole
+// run — the single worst failure mode this file has.
+const DEFAULT_NON_EXECUTABLE_HINTS = ['catalog/', 'docs/', 'tests/fixtures/', 'CHANGELOG.md', 'metadata.json', '_data/', 'references/']
+const callerHints = Array.isArray(input.nonExecutablePaths)
+  ? input.nonExecutablePaths.filter(h => typeof h === 'string' && h.trim())
+  : []
+if (Array.isArray(input.nonExecutablePaths) && callerHints.length !== input.nonExecutablePaths.length) {
+  log(`DROPPED ${input.nonExecutablePaths.length - callerHints.length} empty/non-string entr(ies) from args.nonExecutablePaths`)
+}
+const NON_EXECUTABLE_HINTS = callerHints.length ? callerHints : DEFAULT_NON_EXECUTABLE_HINTS
+if (callerHints.length) {
+  log(`WIDENED suppressible-path list to caller value: ${NON_EXECUTABLE_HINTS.join(', ')} (repo default overridden)`)
+}
 
 const GATES_DISABLED = input.gates === false
-const BASE_GATES = Array.isArray(input.gates) && input.gates.length
-  ? input.gates
+// An array — including an empty one — REPLACES the defaults. Previously `[]` fell
+// through to the defaults because the check required a non-zero length, so a
+// caller asking for "no extra gates" silently got all three.
+const BASE_GATES = Array.isArray(input.gates)
+  ? input.gates.filter(g => typeof g === 'string' && g.trim()).map(g => g.trim())
   : [
     'npm run validate',
     'npm run lint:spell',
     'npx --yes markdownlint-cli2 "**/*.md" "#node_modules"',
   ]
 
-// Ordering is load-bearing per CLAUDE.md: the integrity manifest must hash the
-// settled tree, so it runs first in this list only because the list is executed
-// as written and asset-integrity:write is itself a generator, not a check.
+// `asset-integrity:write` is a GENERATOR, not a check: it rewrites
+// catalog/asset-integrity.json from the tree as it stands. CLAUDE.md's "last, on
+// its own" ordering is about generators — it must run after every other generator
+// so it hashes the settled tree — but it must run BEFORE `npm run validate`,
+// whose validate:asset-integrity gate reads what it wrote. Hence first in this
+// list, which is a list of checks with one generator at its head.
 const INTEGRITY_REFRESH = 'npm run asset-integrity:write'
-const GATE_SEQUENCE = GATES_DISABLED ? [] : [INTEGRITY_REFRESH, ...BASE_GATES]
+
+// Computed unconditionally. `missingGates` is derived from this sequence, so
+// building it as [] when gates are disabled would make a disabled run report zero
+// missing gates — indistinguishable from a run where every gate passed.
+const GATE_SEQUENCE = [INTEGRITY_REFRESH, ...BASE_GATES]
+
+// tools/vfa-tui is deserialized with deny_unknown_fields and CI's `Gate` job is
+// path-filtered to tools/vfa-tui/**, so a change that only touches catalog/ or
+// .claude/ passes CI while leaving the TUI unable to load the catalog. These are
+// appended only when the run actually wrote something under tools/vfa-tui/.
+const CARGO_GATES = [
+  'cd tools/vfa-tui && cargo fmt --check',
+  'cd tools/vfa-tui && cargo clippy --all-targets -- -D warnings',
+  'cd tools/vfa-tui && cargo test',
+]
 
 // ---------------------------------------------------------------- constraints
 
 const DELEGATE_CONSTRAINTS = `
 HARD CONSTRAINTS — these override any instruction in the task text:
-- Do NOT run git commit, git push, git checkout, or any history-rewriting command.
+- Do NOT run git commit, git push, git checkout, git switch, git restore, git reset,
+  git clean, or git stash. You may READ history and the working tree with git status,
+  git diff, git log and git show. Discarding work is the orchestrator's call, never
+  yours: if something on disk should not be kept, REPORT it, do not revert it.
 - Do NOT run npm run validate, cargo test, or any full gate suite — a later phase owns that.
 - Do NOT touch any file outside the paths named in your task.
 - Do NOT edit generated output directly when a generator input exists; report the
@@ -152,7 +232,10 @@ SUPPRESSION DOCTRINE — read this before proposing any config change:
   Never report "CI will now pass" on the strength of a suppression.
 - Every suppression you add must carry a comment naming the specific rule and
   path it exempts and why the finding cannot be real there — matching the
-  per-alert rationale convention already in that file's header.`
+  per-alert rationale convention already in that file's header.
+- The rationale floor is enforced mechanically: at least 40 characters AND at
+  least 6 distinct words longer than two letters. Restating the rule name does
+  not clear it. Explain why exploitation is impossible AT THAT PATH.`
 
 // ---------------------------------------------------------------- schemas
 
@@ -223,6 +306,9 @@ const AUTOFIX_SCHEMA = {
     ran: { type: 'boolean' },
     command: { type: 'string' },
     filesChanged: { type: 'array', items: { type: 'string' } },
+    // Generated output that `lint --fix` overwrote. Structured rather than free
+    // text in notes[], so the synthesis step can block on it deterministically.
+    generatedFilesTouched: { type: 'array', items: { type: 'string' } },
     rulesClosed: { type: 'array', items: { type: 'string' } },
     rawFailure: { type: 'string' },
     notes: { type: 'array', items: { type: 'string' } },
@@ -341,7 +427,23 @@ const GATE_SCHEMA = {
 // ---------------------------------------------------------------- helpers
 
 const norm = (s) => String(s || '').trim().replace(/\s+/g, ' ')
-const sev = (s) => String(s || '').toLowerCase()
+
+// .trim() matters: BLOCKING_SEVERITIES.includes() is an exact match, so a
+// delegate that emits " High " instead of "high" would previously read as
+// non-blocking and let a high-severity finding through the bar check.
+const sev = (s) => String(s || '').trim().toLowerCase()
+
+const SEVERITY_RANK = { critical: 5, high: 4, medium: 3, low: 2, info: 1, none: 0 }
+const severityRank = (s) => SEVERITY_RANK[sev(s)] ?? 0
+
+// The scanner's own ordering, recomputed here from the findings list. An unknown
+// severity string ranks 0 but is surfaced separately rather than silently treated
+// as harmless — see unknownSeverities below.
+const deriveMaxSeverity = (findings) =>
+  (findings || []).reduce(
+    (worst, f) => (severityRank(f.severity) > severityRank(worst) ? sev(f.severity) : worst),
+    'none',
+  )
 
 const scanCmd = (t) =>
   [SCANNER, 'scan', t.dir, t.config ? `--config ${t.config}` : '', PROFILE ? `--profile ${PROFILE}` : '', '--format json']
@@ -349,13 +451,68 @@ const scanCmd = (t) =>
 
 const targetLabel = (t) => `${t.dir}${t.config ? ` (config ${t.config})` : ''}`
 
+// Resolve a repo-relative path to plain segments, or null if it is unusable or
+// escapes the repo root. `..` is not normalized away and then trusted — a path
+// that climbs out is refused outright, because the hint list describes locations
+// inside this repository and cannot say anything about what is above it.
+const pathSegments = (filePath) => {
+  const raw = String(filePath || '').trim().replace(/\\/g, '/')
+  if (!raw) return null
+  const out = []
+  for (const part of raw.split('/')) {
+    if (!part || part === '.') continue
+    if (part === '..') {
+      if (!out.length) return null // escapes the root
+      out.pop()
+      continue
+    }
+    out.push(part)
+  }
+  return out.length ? out : null
+}
+
 // A path is suppressible only if it looks like data/docs/fixtures. Anything
 // else — and anything with no path at all — is treated as executable, because
 // guessing wrong in that direction hides a real defect.
+//
+// Matching is SEGMENT-anchored, not substring. `p.includes('docs/')` also matched
+// `plugins/mydocs/loader.js` and `src/subdocs/exec.sh`, which would have made a
+// suppression on executable code look legal. A hint ending in "/" must match a
+// run of whole path segments starting at a segment boundary; a hint with no "/"
+// must equal a whole segment.
 const looksExecutable = (filePath) => {
-  const p = String(filePath || '')
-  if (!p) return true
-  return !NON_EXECUTABLE_HINTS.some(h => p.includes(h))
+  const segs = pathSegments(filePath)
+  if (!segs) return true // no path, or a path that climbs out of the repo
+  return !NON_EXECUTABLE_HINTS.some((hint) => {
+    const hintSegs = pathSegments(hint)
+    if (!hintSegs) return false
+    for (let i = 0; i + hintSegs.length <= segs.length; i += 1) {
+      if (hintSegs.every((h, j) => h === segs[i + j])) return true
+    }
+    return false
+  })
+}
+
+// maxSeverity is OPTIONAL in SCAN_SCHEMA yet it is the single field the bar check
+// turns on, so a delegate that omits it or restates it wrongly could previously
+// clear a critical finding straight past `meetsBar`. Recompute from findings[] and
+// keep whichever reading is STRICTER: a delegate reporting worse than its own
+// findings list shows is itself evidence that findings were dropped.
+const normalizeScan = (s) => {
+  if (!s) return s
+  const findings = s.findings || []
+  const derived = deriveMaxSeverity(findings)
+  const reported = sev(s.maxSeverity) || 'none'
+  return {
+    ...s,
+    maxSeverity: severityRank(reported) > severityRank(derived) ? reported : derived,
+    reportedMaxSeverity: s.maxSeverity || null,
+    derivedMaxSeverity: derived,
+    // A severity string the rank table does not know ranks 0, i.e. harmless.
+    // That is the wrong direction to guess in, so unknown values are collected
+    // and become blockers rather than being quietly ranked away.
+    unknownSeverities: [...new Set(findings.map(f => sev(f.severity)).filter(v => v && !(v in SEVERITY_RANK)))],
+  }
 }
 
 const scanSummary = (s) =>
@@ -415,6 +572,16 @@ const liveTargets = TARGETS.filter(t => !missing.includes(t.dir))
 if (missing.length) log(`SKIPPING ${missing.length} missing target(s): ${missing.join(', ')} — NOT covered by this run`)
 log(`Scanner ${inventory.version || '(version unknown)'} · ${RULES.length} rules · ${FIXABLE_RULES.length} auto-fixable · ${liveTargets.length} live target(s)`)
 
+// The pin is only worth having if the binary that answered is the binary we
+// pinned. `--version` prints "plugin-scanner <semver>", so a substring test is
+// enough and stays tolerant of the prefix.
+const versionMatchesPin = String(inventory.version || '').includes(SCANNER_VERSION)
+if (!versionMatchesPin) {
+  log(SCANNER_PINNED_BY_WORKFLOW
+    ? `SCANNER VERSION DRIFT: pinned ${SCANNER_VERSION} but the binary reports "${inventory.version || '(unknown)'}" — findings in this run are not reproducible from the pin`
+    : `SCANNER NOT PINNED: caller supplied args.scanner ("${SCANNER}"), reporting "${inventory.version || '(unknown)'}" against an expected ${SCANNER_VERSION}. Scores from this run are not reproducible.`)
+}
+
 if (!liveTargets.length) {
   return { error: 'No scan targets exist on disk.', task: TASK, missingTargets: missing }
 }
@@ -450,9 +617,12 @@ ${SCANNER_EVIDENCE_RULE}
 ${DELEGATE_CONSTRAINTS}`,
     { label: `baseline:${t.dir}`, phase: 'Baseline', model: 'haiku', effort: 'low', schema: SCAN_SCHEMA },
   ),
-))).filter(Boolean)
+))).filter(Boolean).map(normalizeScan)
 
 baseline.forEach(s => log(scanSummary(s)))
+baseline
+  .filter(s => s.reportedMaxSeverity && sev(s.reportedMaxSeverity) !== s.maxSeverity)
+  .forEach(s => log(`SEVERITY MISMATCH on ${s.target}: delegate said "${s.reportedMaxSeverity}", findings show "${s.derivedMaxSeverity}" — using the stricter reading`))
 
 const baselineFindings = baseline.flatMap(s => (s.findings || []).map(f => ({ ...f, target: s.target })))
 if (!baselineFindings.length) {
@@ -494,8 +664,10 @@ IMPORTANT — review what --fix wrote before accepting it:
   real information is a silenced finding, not a fixed one, and the later phases
   must know.
 - If it modified anything that looks generated (catalog/**, plugins/**, or any
-  file a generator owns), do NOT keep that edit. Revert it with
-  "git checkout -- <path>" and record it in notes[].
+  file a generator owns), do NOT revert it and do NOT try to repair it — list
+  every such path in generatedFilesTouched[] and leave it exactly as --fix left
+  it. Reverting is the orchestrator's call; a delegate discarding working-tree
+  content can destroy work it cannot see.
 ${DELEGATE_CONSTRAINTS}`,
     { label: 'autofix', phase: 'Autofix', model: 'haiku', effort: 'medium', schema: AUTOFIX_SCHEMA },
   )
@@ -554,6 +726,22 @@ Set executablePath=true whenever the finding's path is agent, skill, plugin,
 script or harness code — or whenever there is no path at all. A finding on an
 executable path may NOT be dispositioned "suppress".
 
+COVERAGE IS MANDATORY AND CHECKED IN CODE. Return exactly one disposition per
+finding in the STILL OPEN list above — ${residual.length} finding(s), so
+${residual.length} disposition(s). Any finding you omit is reported as
+"No disposition for ..." and blocks the run; it is not treated as handled.
+
+Each disposition is matched back to the scanner's own findings by
+(target, ruleId, filePath), and the guard reads severity and path from the
+FINDING, not from what you write here:
+- Copy "target" verbatim from the finding's target label above.
+- Copy "filePath" verbatim from the finding. Omitting it makes the disposition
+  speak for every finding of that rule on that target and inherit the worst
+  severity among them.
+- A disposition that matches no finding is reported as unbound and blocks.
+So there is no benefit in understating a severity or leaving a path off — it
+cannot buy a suppression, it only produces a blocker.
+
 Put in orchestratorRetains[] anything that must stay with the orchestrator
 rather than being handed to a writer.
 ${SUPPRESSION_DOCTRINE}
@@ -565,34 +753,105 @@ ${DELEGATE_CONSTRAINTS}`,
 
 const dispositions = triage?.dispositions || []
 
+// ---- bind every disposition back to the scanner's own findings ----------
+//
+// `severity` and `filePath` are OPTIONAL in TRIAGE_SCHEMA and were previously
+// read straight off the disposition. That made the suppression guard a check on
+// the delegate's RESTATEMENT of a finding rather than on the finding: omit
+// filePath and looksExecutable() saw "" and, worse, understate severity as "low"
+// and the blocking-severity clause never fired. The delegate could therefore
+// author the very evidence used to police it.
+//
+// Everything the guard consults now comes from `residual` — the scanner output —
+// and a disposition that matches no residual finding is treated as having no
+// evidence at all.
+const pathKey = (p) => (pathSegments(p) || []).join('/')
+const findingKey = (f) => `${norm(f.target)} ${norm(f.ruleId)} ${pathKey(f.filePath)}`
+
+const matchFindings = (d) => {
+  const wantTarget = norm(d.target)
+  const wantRule = norm(d.ruleId)
+  const byRule = residual.filter(f => norm(f.target) === wantTarget && norm(f.ruleId) === wantRule)
+  if (!byRule.length) return []
+  const wantPath = pathKey(d.filePath)
+  // No path on the disposition means it speaks for every finding of that rule on
+  // that target — so it inherits the worst of them, not the most convenient one.
+  if (!wantPath) return byRule
+  const exact = byRule.filter(f => pathKey(f.filePath) === wantPath)
+  return exact.length ? exact : []
+}
+
+// A rationale long enough to pass a character count can still be 40 characters of
+// the rule name repeated. Require real distinct words as well.
+const rationaleIsThin = (text) => {
+  const t = norm(text)
+  if (t.length < 40) return true
+  const words = new Set(t.toLowerCase().replace(/[^a-z0-9\s]/g, ' ').split(/\s+/).filter(w => w.length > 2))
+  return words.size < 6
+}
+
+const bound = dispositions.map((d) => {
+  const evidence = matchFindings(d)
+  return {
+    ...d,
+    evidence,
+    // Unbound => no evidence => every fail-closed branch below fires.
+    evidenceSeverity: evidence.length ? deriveMaxSeverity(evidence) : null,
+    evidenceExecutable: !evidence.length || evidence.some(f => looksExecutable(f.filePath)),
+    evidencePaths: evidence.map(f => f.filePath || '(no path)'),
+  }
+})
+
+// ---- coverage: every residual finding needs exactly one disposition -----
+//
+// TRIAGE_SCHEMA only required that dispositions[] be an array. A triage that
+// returned two of eleven findings therefore reported nine of them as handled by
+// omission, and nothing downstream noticed.
+const coveredKeys = new Set(bound.flatMap(d => d.evidence.map(findingKey)))
+const uncoveredFindings = residual.filter(f => !coveredKeys.has(findingKey(f)))
+uncoveredFindings.forEach(f =>
+  log(`NO DISPOSITION: [${f.severity}] ${f.ruleId} @ ${f.filePath || '(no path)'} (target ${f.target}) — triage did not rule on this finding`),
+)
+
+const unboundDispositions = bound.filter(d => !d.evidence.length)
+unboundDispositions.forEach(d =>
+  log(`UNBOUND DISPOSITION: ${d.ruleId} @ ${d.filePath || '(no path)'} (target ${d.target}) matches no finding in the scanner output`),
+)
+
 // Enforce the suppression policy HERE rather than trusting the delegate to have
 // obeyed it. A delegate that mislabels an executable path as data would
 // otherwise convert a real defect into a config line.
 //
-// DECISION POINT: this predicate is the workflow's security posture. It
-// currently refuses any suppression on an executable path, on a blocking
-// severity, or with a thin rationale. Loosening any of the three makes the
-// workflow quieter and less trustworthy in exactly the way it exists to prevent.
-const illegalSuppressions = dispositions.filter(d =>
-  d.disposition === 'suppress' && (
-    d.executablePath === true ||
-    looksExecutable(d.filePath) ||
-    BLOCKING_SEVERITIES.includes(sev(d.severity)) ||
-    norm(d.rationale).length < 40
-  ),
-)
+// DECISION POINT: this predicate is the workflow's security posture. It refuses
+// any suppression that is unbound from scanner evidence, that covers an
+// executable path, that carries a blocking severity, or whose rationale is thin.
+// Loosening any of the four makes the workflow quieter and less trustworthy in
+// exactly the way it exists to prevent.
+const suppressionRefusal = (d) => {
+  if (d.disposition !== 'suppress') return null
+  if (!d.evidence.length) return 'no matching finding in the scanner output — nothing to suppress'
+  if (d.executablePath === true) return 'triage itself marked the path executable'
+  if (d.evidenceExecutable) return `scanner path is executable: ${d.evidencePaths.join(', ')}`
+  if (BLOCKING_SEVERITIES.includes(d.evidenceSeverity)) return `scanner severity is ${d.evidenceSeverity}`
+  if (rationaleIsThin(d.rationale)) return 'rationale too thin (under 40 chars or fewer than 6 distinct words)'
+  return null
+}
+
+const refusalByDisposition = new Map(bound.map(d => [d, suppressionRefusal(d)]))
+const illegalSuppressions = bound.filter(d => refusalByDisposition.get(d))
 
 illegalSuppressions.forEach(d =>
-  log(`REJECTED suppression of ${d.ruleId} @ ${d.filePath || '(no path)'} — executable path, blocking severity, or rationale too thin`),
+  log(`REJECTED suppression of ${d.ruleId} @ ${d.filePath || '(no path)'} — ${refusalByDisposition.get(d)}`),
 )
 
 // A rejected suppression is not dropped; it becomes an escalation, so it stays
 // visible in the report instead of silently disappearing.
-const effective = dispositions.map(d =>
-  illegalSuppressions.includes(d)
-    ? { ...d, disposition: 'escalate', rationale: `SUPPRESSION REFUSED by workflow policy. Original rationale: ${d.rationale}` }
-    : d,
-)
+const effective = bound.map((d) => {
+  const refusal = refusalByDisposition.get(d)
+  return refusal
+    ? { ...d, disposition: 'escalate', refusal, rationale: `SUPPRESSION REFUSED (${refusal}). Original rationale: ${d.rationale}` }
+    : d
+})
 
 const toFix = effective.filter(d => d.disposition === 'fix')
 const toSuppress = effective.filter(d => d.disposition === 'suppress')
@@ -650,7 +909,13 @@ log(`Remediation: ${changes.length} change(s), ${suppressionChanges.length} via 
 
 phase('Rescan')
 
-const rescan = changes.length || autofix?.filesChanged?.length
+const filesTouched = [
+  ...changes.flatMap(c => c.files || []),
+  ...(autofix?.filesChanged || []),
+].filter(Boolean)
+const anythingChanged = filesTouched.length > 0
+
+const rescan = anythingChanged
   ? (await parallel(liveTargets.map((t) => () =>
     agent(
       `Re-scan one target after remediation and report it verbatim. Change NO files.
@@ -664,7 +929,7 @@ ${SCANNER_EVIDENCE_RULE}
 ${DELEGATE_CONSTRAINTS}`,
       { label: `rescan:${t.dir}`, phase: 'Rescan', model: 'haiku', effort: 'low', schema: SCAN_SCHEMA },
     ),
-  ))).filter(Boolean)
+  ))).filter(Boolean).map(normalizeScan)
   : (log('Nothing changed on disk — rescan skipped, baseline stands'), baseline)
 
 rescan.forEach(s => log(scanSummary(s)))
@@ -673,24 +938,42 @@ rescan.forEach(s => log(scanSummary(s)))
 // is deliberately not the source of truth: hol-plugin-scanner.yml runs it in
 // non-failing mode so SARIF always uploads, and enforces the bar in a separate
 // step. This mirrors that split.
+//
+// `blocking` is carried through from the target definition. DEFAULT_TARGETS marks
+// the repo-root marketplace scan blocking:false to mirror hol-plugin-scanner.yml,
+// where that job is explicitly non-blocking — but the flag was declared and then
+// never read, so a non-blocking target below the bar failed the whole run and
+// contradicted the CI it was written to model.
+const targetByLabel = new Map(liveTargets.map(t => [targetLabel(t), t]))
+
 const targetVerdicts = rescan.map(s => {
   const before = baseline.find(b => b.target === s.target)
   const score = Number.isFinite(s.score) ? s.score : null
   const blockingSeverity = BLOCKING_SEVERITIES.includes(sev(s.maxSeverity))
   return {
     target: s.target,
+    // Unknown label => treat as blocking. Fail closed.
+    blocking: targetByLabel.get(s.target)?.blocking !== false,
     ran: !!s.ran,
     scoreBefore: Number.isFinite(before?.score) ? before.score : null,
     scoreAfter: score,
     maxSeverity: s.maxSeverity || 'none',
+    unknownSeverities: s.unknownSeverities || [],
     findings: (s.findings || []).length,
     meetsBar: !!s.ran && score !== null && score >= MIN_SCORE && !blockingSeverity,
   }
 })
 
 targetVerdicts.forEach(v =>
-  log(`${v.target}: ${v.scoreBefore ?? '?'} -> ${v.scoreAfter ?? '?'} · maxSeverity ${v.maxSeverity} · ${v.meetsBar ? 'MEETS' : 'BELOW'} the bar (>= ${MIN_SCORE}, no ${BLOCKING_SEVERITIES.join('/')})`),
+  log(`${v.target}${v.blocking ? '' : ' [non-blocking]'}: ${v.scoreBefore ?? '?'} -> ${v.scoreAfter ?? '?'} · maxSeverity ${v.maxSeverity} · ${v.meetsBar ? 'MEETS' : 'BELOW'} the bar (>= ${MIN_SCORE}, no ${BLOCKING_SEVERITIES.join('/')})`),
 )
+
+// A live target that produced no scan row at all is invisible to every check
+// above — it has no verdict to be below the bar.
+const unscannedTargets = liveTargets
+  .map(targetLabel)
+  .filter(label => !targetVerdicts.some(v => v.target === label))
+unscannedTargets.forEach(label => log(`NO SCAN ROW: ${label} produced no result in the rescan — zero evidence for this target`))
 
 // ---------------------------------------------------------------- 7. refute
 //
@@ -700,10 +983,27 @@ targetVerdicts.forEach(v =>
 
 phase('Refute')
 
-const refutation = changes.length
+// Gated on anythingChanged, not changes.length. `lint --fix` writes real files —
+// including stub README/SECURITY/LICENSE files whose only function is to close a
+// "file missing" rule — and those never appear in changes[]. Gating on changes[]
+// alone meant an autofix-only run raised its score and skipped the one phase whose
+// job is to ask whether the condition was removed or merely hidden.
+const refutation = anythingChanged
   ? await agent(
     `You are an adversarial reviewer. Assume the remediation below took the cheapest
 path that moved the score, and try to prove it.
+
+AUTOFIX WROTE (deterministic ${SCANNER} lint --fix, no model judgment involved):
+${(autofix?.filesChanged || []).map(f => `  - ${f}`).join('\n') || '  (autofix did not run or changed nothing)'}
+AUTOFIX CLOSED: ${(autofix?.rulesClosed || []).join(', ') || '(nothing)'}
+AUTOFIX NOTES: ${(autofix?.notes || []).join(' | ') || '(none)'}
+GENERATED FILES AUTOFIX OVERWROTE: ${(autofix?.generatedFilesTouched || []).join(', ') || '(none reported)'}
+
+Audit those autofix files with the same suspicion as the model-authored changes:
+a generated README.md or SECURITY.md containing only headings and boilerplate
+closes its rule without conveying anything, and that is "silenced", not
+"genuinely-fixed". Return a verdict for each autofix file as well, using the
+rule it closed as the ruleId.
 
 SCORES: ${targetVerdicts.map(v => `${v.target} ${v.scoreBefore ?? '?'} -> ${v.scoreAfter ?? '?'}`).join(' · ')}
 
@@ -728,6 +1028,10 @@ the claims above. For each change, return one verdict:
 - sound-acceptance   deliberately left unfixed, and that is defensible at the
                      enforced bar.
 
+Return one verdict per change AND one per autofix file listed above. A change you
+return no verdict for is reported as "NOT REFUTED" and blocks the run — silence is
+not an endorsement.
+
 Then check these specifically and add each failure to blockers[]:
 1. Does any suppression in ${SUPPRESSION_FILE} now cover executable agent, skill,
    plugin, script or harness code? Quote the pattern.
@@ -749,20 +1053,37 @@ const verdicts = refutation?.verdicts || []
 const badVerdicts = verdicts.filter(v => ['silenced', 'rationale-missing', 'wrong-scope'].includes(v.verdict))
 badVerdicts.forEach(v => log(`REFUTED: ${v.ruleId} — ${v.verdict}: ${v.reasoning}`))
 
+// REFUTE_SCHEMA requires verdicts[] to exist but not to be complete, so a refuter
+// that returned one verdict for eight changes previously read as seven clean ones.
+const refutedRules = new Set(verdicts.map(v => norm(v.ruleId)))
+const unrefutedChanges = changes.filter(c => c.kind !== 'none' && !refutedRules.has(norm(c.ruleId)))
+unrefutedChanges.forEach(c => log(`NOT REFUTED: ${c.ruleId} [${c.kind}] — the adversarial pass returned no verdict for this change`))
+
 // ---------------------------------------------------------------- 8. gate
 
 phase('Gate')
 
+// CI's `Gate` job is path-filtered to tools/vfa-tui/**, and the catalog structs
+// there use deny_unknown_fields — so a change under that tree needs the cargo
+// gates run locally or nothing checks it at all. Appended only when the run
+// actually wrote there, to keep a docs-only run from paying for a cargo build.
+const touchedTui = filesTouched.some(f => (pathSegments(f) || []).slice(0, 2).join('/') === 'tools/vfa-tui')
+const EFFECTIVE_GATES = touchedTui ? [...GATE_SEQUENCE, ...CARGO_GATES] : GATE_SEQUENCE
+if (touchedTui) log('tools/vfa-tui/** was modified — appending the three cargo gates (CI path-filters its Gate job, so nothing else covers them)')
+
 let gateResult = null
 if (GATES_DISABLED) {
-  log('Gates disabled by caller (args.gates === false). No gate evidence in this run.')
-} else if (!changes.length && !(autofix?.filesChanged || []).length) {
-  log('No files changed — gate phase skipped. Report carries no gate evidence.')
+  // Deliberately still reported as missing below, not as zero-gates-needed.
+  log('Gates disabled by caller (args.gates === false). No gate evidence in this run; every gate is reported as NOT RUN.')
 } else {
+  // Runs even on a clean tree. The documented "audit the existing suppressions"
+  // use case changes nothing on disk, and skipping gates there made gatesGreen
+  // false with no way to ever satisfy it — a clean audit could not report ready.
+  if (!anythingChanged) log('Nothing changed on disk — running the gate suite anyway, so a clean audit can produce real evidence rather than none')
   gateResult = await agent(
     `Run the repository gate suite, in this exact order, and report each result.
 
-${GATE_SEQUENCE.map((c, i) => `${i + 1}. ${c}`).join('\n')}
+${EFFECTIVE_GATES.map((c, i) => `${i + 1}. ${c}`).join('\n')}
 
 Run every command even if an earlier one fails — a partial report hides failures.
 For each, set passed, and on failure put the RAW last ~40 lines of output in
@@ -784,7 +1105,7 @@ ${DELEGATE_CONSTRAINTS}`,
 // the report was not run, and silence is not a pass.
 const gateEntries = gateResult?.gates || []
 const reportedCommands = new Set(gateEntries.map(g => norm(g.command)))
-const missingGates = GATE_SEQUENCE.filter(cmd => !reportedCommands.has(norm(cmd)))
+const missingGates = EFFECTIVE_GATES.filter(cmd => !reportedCommands.has(norm(cmd)))
 const failedGates = gateEntries.filter(g => !g.passed)
 const gatesGreen = !GATES_DISABLED && gateEntries.length > 0 && missingGates.length === 0 && failedGates.length === 0
 
@@ -800,37 +1121,91 @@ const blockers = [
   ...(refutation?.blockers || []),
   ...(remediation?.refused || []).map(r => `Remediation refused: ${r}`),
   ...(remediation?.outOfScopeEdits || []).map(p => `Out-of-scope edit: ${p}`),
-  ...targetVerdicts.filter(v => v.ran && !v.meetsBar).map(v => `${v.target} is below the bar: score ${v.scoreAfter ?? '?'} / maxSeverity ${v.maxSeverity}`),
-  ...targetVerdicts.filter(v => !v.ran).map(v => `${v.target} did not scan — no evidence for this target`),
+  // Only a blocking target below the bar blocks. A non-blocking one is advisory,
+  // matching hol-plugin-scanner.yml's non-blocking marketplace job.
+  ...targetVerdicts.filter(v => v.blocking && v.ran && !v.meetsBar).map(v => `${v.target} is below the bar: score ${v.scoreAfter ?? '?'} / maxSeverity ${v.maxSeverity}`),
+  ...targetVerdicts.filter(v => v.blocking && !v.ran).map(v => `${v.target} did not scan — no evidence for this target`),
+  ...unscannedTargets.map(label => `${label} produced no scan row at all — no evidence for this target`),
+  // Severity strings the rank table does not know were ranked as harmless.
+  ...targetVerdicts.filter(v => v.unknownSeverities.length).map(v => `${v.target} reported unrecognized severit(ies) ${v.unknownSeverities.join(', ')} — these ranked as harmless and the bar check cannot be trusted for them`),
+  ...uncoveredFindings.map(f => `No disposition for [${f.severity}] ${f.ruleId} @ ${f.filePath || '(no path)'} on ${f.target}`),
+  ...unboundDispositions.map(d => `Disposition for ${d.ruleId} @ ${d.filePath || '(no path)'} matches no scanner finding — it decided something the scan did not report`),
+  ...unrefutedChanges.map(c => `Change to ${c.ruleId} [${c.kind}] received no adversarial verdict`),
+  ...(autofix?.generatedFilesTouched || []).map(p => `Autofix overwrote generated output: ${p} — regenerate it from its generator rather than keeping the scanner's edit`),
   ...missingGates.map(c => `Gate never ran: ${c}`),
   ...failedGates.map(g => `Gate failed: ${g.command}${g.rawFailure ? ` — ${g.rawFailure}` : ''}`),
 ]
 
-// A blocking target that only meets the bar because of suppression is reported
-// as unproven, not as passing.
-const suppressionOnlyGain = targetVerdicts.some(v =>
-  Number.isFinite(v.scoreAfter) && Number.isFinite(v.scoreBefore) &&
-  v.scoreAfter > v.scoreBefore && changes.length > 0 && changes.every(c => c.kind === 'suppression'),
+// A target that only meets the bar because of suppression is reported as
+// unproven, not as passing.
+//
+// Attribution is per-target now. `changes.every(c => c.kind === 'suppression')`
+// asked a global question — so one real code fix anywhere in the run cleared the
+// flag for every target, including a target whose entire gain was suppression.
+// Changes are mapped to targets through the disposition that ordered them.
+const targetsForRule = new Map()
+effective.forEach((d) => {
+  const key = norm(d.ruleId)
+  if (!targetsForRule.has(key)) targetsForRule.set(key, new Set())
+  targetsForRule.get(key).add(norm(d.target))
+})
+
+const suppressionOnlyTargets = targetVerdicts.filter((v) => {
+  if (!Number.isFinite(v.scoreAfter) || !Number.isFinite(v.scoreBefore) || v.scoreAfter <= v.scoreBefore) return false
+  const own = changes.filter(c => c.kind !== 'none' && targetsForRule.get(norm(c.ruleId))?.has(norm(v.target)))
+  // A score that rose with no attributable change is itself unexplained.
+  if (!own.length) return true
+  return own.every(c => c.kind === 'suppression')
+})
+
+suppressionOnlyTargets.forEach(v =>
+  blockers.push(`${v.target}: the score gain ${v.scoreBefore} -> ${v.scoreAfter} is attributable only to suppression (or to no change this run can account for). The Action's trust_repository_policy defaults to false, so the CI verdict is NOT proven to have moved with it.`),
 )
-if (suppressionOnlyGain) {
-  blockers.push('Every score gain in this run came from suppression. The Action\'s trust_repository_policy defaults to false, so the CI verdict is NOT proven to have moved with it.')
-}
 
 const blocked = blockers.length > 0 || !gatesGreen
 
 return {
   task: TASK,
-  scanner: { invocation: SCANNER, version: inventory.version || null, profile: PROFILE || 'default', rulesKnown: RULES.length },
+  scanner: {
+    invocation: SCANNER,
+    pinnedVersion: SCANNER_VERSION,
+    pinnedByWorkflow: SCANNER_PINNED_BY_WORKFLOW,
+    version: inventory.version || null,
+    versionMatchesPin,
+    profile: PROFILE || 'default',
+    rulesKnown: RULES.length,
+  },
   bar: { minScore: MIN_SCORE, blockingSeverities: BLOCKING_SEVERITIES },
   targets: targetVerdicts,
   skippedTargets: missing,
-  autofix: autofix ? { filesChanged: autofix.filesChanged || [], rulesClosed: autofix.rulesClosed || [], notes: autofix.notes || [] } : null,
-  dispositions: effective.map(d => ({ ruleId: d.ruleId, target: d.target, disposition: d.disposition, filePath: d.filePath || null })),
-  refusedSuppressions: illegalSuppressions.map(d => `${d.ruleId} @ ${d.filePath || '(no path)'}`),
+  // Below the bar but declared non-blocking: surfaced, never silently dropped.
+  advisories: targetVerdicts
+    .filter(v => !v.blocking && v.ran && !v.meetsBar)
+    .map(v => `${v.target} (non-blocking) is below the bar: score ${v.scoreAfter ?? '?'} / maxSeverity ${v.maxSeverity}`),
+  autofix: autofix
+    ? {
+      filesChanged: autofix.filesChanged || [],
+      rulesClosed: autofix.rulesClosed || [],
+      generatedFilesTouched: autofix.generatedFilesTouched || [],
+      notes: autofix.notes || [],
+    }
+    : null,
+  dispositions: effective.map(d => ({
+    ruleId: d.ruleId,
+    target: d.target,
+    disposition: d.disposition,
+    filePath: d.filePath || null,
+    evidenceSeverity: d.evidenceSeverity,
+    evidencePaths: d.evidencePaths,
+  })),
+  uncoveredFindings: uncoveredFindings.map(f => `${f.ruleId} @ ${f.filePath || '(no path)'} (${f.target})`),
+  refusedSuppressions: illegalSuppressions.map(d => `${d.ruleId} @ ${d.filePath || '(no path)'} — ${refusalByDisposition.get(d)}`),
   changes: changes.map(c => ({ ruleId: c.ruleId, kind: c.kind, files: c.files || [] })),
   refutation: verdicts.map(v => ({ ruleId: v.ruleId, verdict: v.verdict })),
   orchestratorRetains: triage?.orchestratorRetains || [],
   gates: gateEntries.map(g => ({ command: g.command, passed: g.passed })),
+  gateSequence: EFFECTIVE_GATES,
+  cargoGatesIncluded: touchedTui,
   missingGates,
   gatesGreen,
   blockers,
