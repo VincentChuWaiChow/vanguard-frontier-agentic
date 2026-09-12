@@ -33,7 +33,7 @@
   "trees": [
     {
       "tree": "agents",
-      "aggregate_sha256": "7cfb6bf62c2c34c14e07164fefc996b7f2f18b4dca1f812ff1d092e9fb4e0a92",
+      "aggregate_sha256": "9761cd20bb86663fa6d2557f05eaca21b4d8609dff3202f3e6eea2c8c024ecf9",
       "files": [
         {
           "path": "agents/AGENTS.md",
@@ -17437,43 +17437,43 @@
         },
         {
           "path": "agents/istio/istio-gateway-api-review-agent/AGENT.md",
-          "sha256": "418e162f8fff42aeb785c61df85fecc858c505b5d8591d8a376614f519066c4b",
-          "bytes": 2393
+          "sha256": "ba9aecc48b47440e59d0661a69a451c4dff7891f35d668bc670c2ce86ac759a4",
+          "bytes": 2506
         },
         {
           "path": "agents/istio/istio-gateway-api-review-agent/harnesses/claude-code.agent.md",
-          "sha256": "1a338dd6813223a372ccefaaef54727f25240f5098ff8ca9ecfe97ea37dfdbf3",
-          "bytes": 2280
+          "sha256": "07c81a02be78c10cefec84164857696bc5c3a3ab900d94f0ca8d1de9bad9fa29",
+          "bytes": 2393
         },
         {
           "path": "agents/istio/istio-gateway-api-review-agent/harnesses/codex.toml",
-          "sha256": "343631b2e67286059a5427f9286487c9857244ed70d35a9888b179cfa46e8217",
-          "bytes": 2530
+          "sha256": "527373d61a2d51860848ff386be47ddb9965b862b5e41943dcc3686ba8e7be1b",
+          "bytes": 2643
         },
         {
           "path": "agents/istio/istio-gateway-api-review-agent/harnesses/copilot.agent.md",
-          "sha256": "66dc3c72a81c557e7e317cf5625b51e14abce8a73b95b09288a3af98c4230ddb",
-          "bytes": 2386
+          "sha256": "4b5c8e4c33f23d02e7af88a2c15698d558f4fac8025013edc181f6c1f8bd0821",
+          "bytes": 2499
         },
         {
           "path": "agents/istio/istio-gateway-api-review-agent/harnesses/cursor.agent.md",
-          "sha256": "1a338dd6813223a372ccefaaef54727f25240f5098ff8ca9ecfe97ea37dfdbf3",
-          "bytes": 2280
+          "sha256": "07c81a02be78c10cefec84164857696bc5c3a3ab900d94f0ca8d1de9bad9fa29",
+          "bytes": 2393
         },
         {
           "path": "agents/istio/istio-gateway-api-review-agent/harnesses/gemini.agent.md",
-          "sha256": "1a338dd6813223a372ccefaaef54727f25240f5098ff8ca9ecfe97ea37dfdbf3",
-          "bytes": 2280
+          "sha256": "07c81a02be78c10cefec84164857696bc5c3a3ab900d94f0ca8d1de9bad9fa29",
+          "bytes": 2393
         },
         {
           "path": "agents/istio/istio-gateway-api-review-agent/harnesses/kiro-cli.agent.json",
-          "sha256": "e00a14c9e1525d7c5e9d6a4bae76a5a54a0fc108bd879014e7c1d862245790dc",
-          "bytes": 2331
+          "sha256": "ce6b844316a4169f3423ecc7b86608fa213e96952b4e11ca6336d3b453c6c295",
+          "bytes": 2444
         },
         {
           "path": "agents/istio/istio-gateway-api-review-agent/harnesses/kiro-ide.agent.md",
-          "sha256": "1a338dd6813223a372ccefaaef54727f25240f5098ff8ca9ecfe97ea37dfdbf3",
-          "bytes": 2280
+          "sha256": "07c81a02be78c10cefec84164857696bc5c3a3ab900d94f0ca8d1de9bad9fa29",
+          "bytes": 2393
         },
         {
           "path": "agents/istio/istio-gateway-api-review-agent/metadata.json",
@@ -35351,7 +35351,7 @@
     },
     {
       "tree": "schemas",
-      "aggregate_sha256": "ced57fe9f1092a83e78d87a74d6de3332c5a9b12fb3dc50c4d4531f1951d602c",
+      "aggregate_sha256": "fb2e896d692a5ca10e543003b8c733bd1586ed0931065ea540401e0238c269df",
       "files": [
         {
           "path": "schemas/AGENTS.md",
@@ -35385,8 +35385,8 @@
         },
         {
           "path": "schemas/istio-review-contract.schema.json",
-          "sha256": "21284aa85c29b2b22f8c1e218b8e62dd500daaac68af082b6fc6d520941666b2",
-          "bytes": 5629
+          "sha256": "106aaaae3a6c83788ef0d8a52a7d6fe89ac30cc268bf198dc2b9b320413d3180",
+          "bytes": 5936
         },
         {
           "path": "schemas/mcp-reference.schema.json",
@@ -35427,7 +35427,7 @@
     },
     {
       "tree": "catalog",
-      "aggregate_sha256": "e20ba5fd2d67965759422fa06d88590441b441766c9a0af63e5e7deb717724a8",
+      "aggregate_sha256": "4ec05eace49224a001f9b785d0189af83e01c9bec7d5d14acc0188f19efa9be8",
       "files": [
         {
           "path": "catalog/AGENTS.md",
@@ -35476,7 +35476,7 @@
         },
         {
           "path": "catalog/skill-manifest.json",
-          "sha256": "3dc2a9c277182085184aa9a755383720a3341f14425b5d5dbb3bd810e3411fe1",
+          "sha256": "c92ca418633798a2a7940abd8d6b31981bdb0cf409be23090c749c609d4c5c7c",
           "bytes": 1089450
         },
         {
@@ -35493,7 +35493,7 @@
     },
     {
       "tree": "scripts",
-      "aggregate_sha256": "816bac5ada0050076e807bfd597c829f878914ea36c87daf860e58d1cebe4aeb",
+      "aggregate_sha256": "6b4851dff7a905b17a887e3fcc583725351cdf297cd4831eedb16515bfb492e1",
       "files": [
         {
           "path": "scripts/apply-skill-allowed-tools.py",
@@ -35702,8 +35702,8 @@
         },
         {
           "path": "scripts/istio_evidence_facts.py",
-          "sha256": "b2472d40710b8464d8ddea1b27984ba8cbff8420a9f509d0aeebcc0254475f99",
-          "bytes": 16218
+          "sha256": "1da976f9890f8d4f64e93e7ea24d578a85941097101619881daa9138583a0808",
+          "bytes": 16542
         },
         {
           "path": "scripts/kotlin_data/agents/00-kotlin-maestro-agent.json",
@@ -36700,7 +36700,7 @@
     },
     {
       "tree": "tests",
-      "aggregate_sha256": "8adc0a37017c69ea1c687ce260a3c9fb32c2c36d1ed0d4a8a32e4e3ccc2aefd0",
+      "aggregate_sha256": "1a9f77f13af78a68edad41cd609b0c7460d2996b8e8a09d9181698e19eca62de",
       "files": [
         {
           "path": "tests/AGENTS.md",
@@ -41869,8 +41869,8 @@
         },
         {
           "path": "tests/fixtures/istio-maestro-routing/expected/live-istio-gateway-apply.json",
-          "sha256": "0fdfbaf41c95d0eccc9c092cab4908a244c02443950d12442bf09c9f0b433be7",
-          "bytes": 96
+          "sha256": "40536d257990744d48681e87dc9274b0a5e163d42ca2157dda169b468db41c24",
+          "bytes": 114
         },
         {
           "path": "tests/fixtures/istio-maestro-routing/expected/live-kubectl-file-apply.json",
@@ -41974,8 +41974,8 @@
         },
         {
           "path": "tests/fixtures/istio-maestro-routing/inputs/live-istio-gateway-apply.json",
-          "sha256": "368f91128694fb5efcc04fd61e565dd4a62b422e3d9c1c554fc9228af2130d9d",
-          "bytes": 160
+          "sha256": "4307144c5eb3241faa6aecfc5edc9a5f5746f8d80989e4e001863d982686df21",
+          "bytes": 186
         },
         {
           "path": "tests/fixtures/istio-maestro-routing/inputs/live-kubectl-file-apply.json",
@@ -42019,8 +42019,8 @@
         },
         {
           "path": "tests/fixtures/istio-maestro-routing/taxonomy.json",
-          "sha256": "da892ed700809b674b71729fd294d5316841eb90543411e8d4154657caa54a8a",
-          "bytes": 3664
+          "sha256": "e0eb292cce532d2cab15ee3d2ed03c041d7ad9170209839e4ab9ace7033cc060",
+          "bytes": 3875
         },
         {
           "path": "tests/fixtures/istio-review-evals/README.md",
@@ -47029,13 +47029,13 @@
         },
         {
           "path": "tests/istio-review-suite/test_contract.py",
-          "sha256": "a96317beb6c6e6aac5f6c6dd05c693cd28563fc28f48d4c61c0c57819220ce43",
-          "bytes": 5896
+          "sha256": "76f7fe2ad12d059e73e1061d373946d4a7107efcb4dc831e048c19640417508c",
+          "bytes": 7236
         },
         {
           "path": "tests/istio-review-suite/test_evidence_facts.py",
-          "sha256": "d9f8307cc7bc233f3b79b5145195aa63fb456ad785f819dbaa54fbc6a8abd718",
-          "bytes": 15496
+          "sha256": "5de0e5d1e612ddef7a6820e4d266636d24ba6ade76161925234b80cf49c0fc07",
+          "bytes": 16126
         },
         {
           "path": "tests/test-codex-plugin-marketplace-install.test.mjs",
@@ -47237,5 +47237,5 @@
       "bytes": 8340
     }
   ],
-  "aggregate_sha256": "044bdd11ee6a15b96211bd7e1aeae64c6a69dd1982a9dedca60652bcb429c0ae"
+  "aggregate_sha256": "a17ea10de7fb9e6879ca15603c2b25b455da818156fdfae4e99cbfbf9b65c8ed"
 }

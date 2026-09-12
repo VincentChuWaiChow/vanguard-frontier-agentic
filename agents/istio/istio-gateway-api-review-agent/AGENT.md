@@ -48,4 +48,4 @@ Preserve VFA's existing evidence envelope after native integration. A review ver
 
 ## Handoff
 
-Delegate only the decisions outside this scope, with their evidence boundary intact. Route live mesh changes to `kubernetes-live-mesh-policy-guard-agent`; never create or auto-dispatch a competing live operator.
+Delegate only the decisions outside this scope, with their evidence boundary intact. Route live Kubernetes Gateway API changes to `kubernetes-live-network-architecture-mutation-guard-agent`; Istio networking Gateway mutations remain outside the authorized live scope. Never create or auto-dispatch a competing live operator.

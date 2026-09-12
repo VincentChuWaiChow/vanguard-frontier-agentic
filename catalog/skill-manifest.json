@@ -11343,7 +11343,7 @@
     {
       "id": "istio-ambient-mesh-review",
       "path": "skills/istio/istio-ambient-mesh-review",
-      "aggregate_sha256": "e793e7cdb50eb104a0cda56b26334a3b73762a535d8e44feace89e9f0c19f90b",
+      "aggregate_sha256": "a2c4014eeee3ad74841459087f1866fe767cfceaf7a1a522af7243964d9265fb",
       "files": [
         {
           "path": "skills/istio/istio-ambient-mesh-review/SKILL.md",
@@ -11402,15 +11402,15 @@
         },
         {
           "path": "skills/istio/istio-ambient-mesh-review/references/review-contract.json",
-          "sha256": "21284aa85c29b2b22f8c1e218b8e62dd500daaac68af082b6fc6d520941666b2",
-          "bytes": 5629
+          "sha256": "106aaaae3a6c83788ef0d8a52a7d6fe89ac30cc268bf198dc2b9b320413d3180",
+          "bytes": 5936
         }
       ]
     },
     {
       "id": "istio-authorization-policy-review",
       "path": "skills/istio/istio-authorization-policy-review",
-      "aggregate_sha256": "a972485ae88a37c691faa0a2bbe3ce6911adc9f4c70cf6b3797bc7c19b3f0492",
+      "aggregate_sha256": "d89e8003c99a9fedd56747722975ef434a06b1efebbb6a91daf6581eadd4f1b8",
       "files": [
         {
           "path": "skills/istio/istio-authorization-policy-review/SKILL.md",
@@ -11469,15 +11469,15 @@
         },
         {
           "path": "skills/istio/istio-authorization-policy-review/references/review-contract.json",
-          "sha256": "21284aa85c29b2b22f8c1e218b8e62dd500daaac68af082b6fc6d520941666b2",
-          "bytes": 5629
+          "sha256": "106aaaae3a6c83788ef0d8a52a7d6fe89ac30cc268bf198dc2b9b320413d3180",
+          "bytes": 5936
         }
       ]
     },
     {
       "id": "istio-dataplane-diagnostics",
       "path": "skills/istio/istio-dataplane-diagnostics",
-      "aggregate_sha256": "8f139c4f836cea68cf9d2ff10f487ce9f934b3456b9213eb001565b6492169a0",
+      "aggregate_sha256": "ec91a149d103107bfd35cc1b2a9b9cb2c286e1ce7b4c5f68fdfedda7ae4cd2a8",
       "files": [
         {
           "path": "skills/istio/istio-dataplane-diagnostics/SKILL.md",
@@ -11531,8 +11531,8 @@
         },
         {
           "path": "skills/istio/istio-dataplane-diagnostics/references/review-contract.json",
-          "sha256": "21284aa85c29b2b22f8c1e218b8e62dd500daaac68af082b6fc6d520941666b2",
-          "bytes": 5629
+          "sha256": "106aaaae3a6c83788ef0d8a52a7d6fe89ac30cc268bf198dc2b9b320413d3180",
+          "bytes": 5936
         },
         {
           "path": "skills/istio/istio-dataplane-diagnostics/references/signal-interpretation.md",
@@ -11544,7 +11544,7 @@
     {
       "id": "istio-gateway-api-review",
       "path": "skills/istio/istio-gateway-api-review",
-      "aggregate_sha256": "a9197fbba2052758a38a8474f1f83e7f8b04ea45d6dba135b3c2ca0287e548f5",
+      "aggregate_sha256": "c5b43fd04e4dfbb26e74cd47cc1c64ef689e153b6fecdd76f93871610f102bc7",
       "files": [
         {
           "path": "skills/istio/istio-gateway-api-review/SKILL.md",
@@ -11598,8 +11598,8 @@
         },
         {
           "path": "skills/istio/istio-gateway-api-review/references/review-contract.json",
-          "sha256": "21284aa85c29b2b22f8c1e218b8e62dd500daaac68af082b6fc6d520941666b2",
-          "bytes": 5629
+          "sha256": "106aaaae3a6c83788ef0d8a52a7d6fe89ac30cc268bf198dc2b9b320413d3180",
+          "bytes": 5936
         },
         {
           "path": "skills/istio/istio-gateway-api-review/references/tls-and-boundaries.md",
@@ -11611,7 +11611,7 @@
     {
       "id": "istio-live-policy-change",
       "path": "skills/istio/istio-live-policy-change",
-      "aggregate_sha256": "f1be3ba7b9664d5b8fdc966c1da903e98f452a7dd4f74b87dc3b5067cfa034db",
+      "aggregate_sha256": "d6c7b5931240688362cbd17af09a55e67049d70e3af4f85ed8d91ec6c70db462",
       "files": [
         {
           "path": "skills/istio/istio-live-policy-change/SKILL.md",
@@ -11620,8 +11620,8 @@
         },
         {
           "path": "skills/istio/istio-live-policy-change/agents/openai.yaml",
-          "sha256": "498db7b3464bd8119d24b9a92f4a743e2323a28cdc762f74b7094f4470874f79",
-          "bytes": 298
+          "sha256": "26f7b20ca334e3b29dad6deb752435c6969ee69731e50488a2eaba32eb3c6b26",
+          "bytes": 341
         },
         {
           "path": "skills/istio/istio-live-policy-change/metadata.json",
@@ -11665,8 +11665,8 @@
         },
         {
           "path": "skills/istio/istio-live-policy-change/references/review-contract.json",
-          "sha256": "21284aa85c29b2b22f8c1e218b8e62dd500daaac68af082b6fc6d520941666b2",
-          "bytes": 5629
+          "sha256": "106aaaae3a6c83788ef0d8a52a7d6fe89ac30cc268bf198dc2b9b320413d3180",
+          "bytes": 5936
         },
         {
           "path": "skills/istio/istio-live-policy-change/references/rollback-and-verification.md",
@@ -11678,7 +11678,7 @@
     {
       "id": "istio-review-routing",
       "path": "skills/istio/istio-review-routing",
-      "aggregate_sha256": "aa6c3564449b2117228dd3f50ec30b3daf10f05cd6fb0bca56cf5f459bd2d44d",
+      "aggregate_sha256": "58153885f05186eba34bfed2d8c0c788de0a29741aa8b9c03c05bdeaef2526b7",
       "files": [
         {
           "path": "skills/istio/istio-review-routing/SKILL.md",
@@ -11732,8 +11732,8 @@
         },
         {
           "path": "skills/istio/istio-review-routing/references/review-contract.json",
-          "sha256": "21284aa85c29b2b22f8c1e218b8e62dd500daaac68af082b6fc6d520941666b2",
-          "bytes": 5629
+          "sha256": "106aaaae3a6c83788ef0d8a52a7d6fe89ac30cc268bf198dc2b9b320413d3180",
+          "bytes": 5936
         },
         {
           "path": "skills/istio/istio-review-routing/references/routing-table.md",
@@ -11745,7 +11745,7 @@
     {
       "id": "istio-traffic-resilience-review",
       "path": "skills/istio/istio-traffic-resilience-review",
-      "aggregate_sha256": "60c987f9c3b42f3cd2de9e380050c2a2cbd71a7bdb516fb122714e667e6004a2",
+      "aggregate_sha256": "ea59e933c1bed7098d054f0da8cb97c2b6bb7e5c5b51a85916b6172b9c676a05",
       "files": [
         {
           "path": "skills/istio/istio-traffic-resilience-review/SKILL.md",
@@ -11794,8 +11794,8 @@
         },
         {
           "path": "skills/istio/istio-traffic-resilience-review/references/review-contract.json",
-          "sha256": "21284aa85c29b2b22f8c1e218b8e62dd500daaac68af082b6fc6d520941666b2",
-          "bytes": 5629
+          "sha256": "106aaaae3a6c83788ef0d8a52a7d6fe89ac30cc268bf198dc2b9b320413d3180",
+          "bytes": 5936
         },
         {
           "path": "skills/istio/istio-traffic-resilience-review/references/routing-and-weights.md",
@@ -11812,7 +11812,7 @@
     {
       "id": "istio-upgrade-readiness",
       "path": "skills/istio/istio-upgrade-readiness",
-      "aggregate_sha256": "20520f24bd9f5b397f13d594efeb7da17ca0512102d6fcb5c83fbca754ae99b2",
+      "aggregate_sha256": "c23488ed02877ca4e8856df0bc0a690c1a663237cafebe05d5f45d65bad528c0",
       "files": [
         {
           "path": "skills/istio/istio-upgrade-readiness/SKILL.md",
@@ -11866,8 +11866,8 @@
         },
         {
           "path": "skills/istio/istio-upgrade-readiness/references/review-contract.json",
-          "sha256": "21284aa85c29b2b22f8c1e218b8e62dd500daaac68af082b6fc6d520941666b2",
-          "bytes": 5629
+          "sha256": "106aaaae3a6c83788ef0d8a52a7d6fe89ac30cc268bf198dc2b9b320413d3180",
+          "bytes": 5936
         },
         {
           "path": "skills/istio/istio-upgrade-readiness/references/skew-and-order.md",

@@ -260,6 +260,25 @@
           }
         }
       }
+    },
+    {
+      "if": {
+        "properties": {
+          "verdict": {
+            "const": "approved"
+          }
+        },
+        "required": [
+          "verdict"
+        ]
+      },
+      "then": {
+        "properties": {
+          "tests": {
+            "minItems": 2
+          }
+        }
+      }
     }
   ]
 }

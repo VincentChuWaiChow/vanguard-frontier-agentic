@@ -1,9 +1,9 @@
 """Native Istio review-suite contract and integration tests."""
 import json
 from pathlib import Path
+import re
 import unittest
 import jsonschema
-import yaml
 
 ROOT = Path(__file__).resolve().parents[2]
 SKILLS = [
@@ -47,6 +47,11 @@ class ReviewContractTests(unittest.TestCase):
         data=review(); data["tests"][0]["state"]="passed"; self.rejects(data)
     def test_review_cannot_claim_execution_authority(self):
         data=review(); data["authorized"]=True; self.rejects(data)
+    def test_approved_review_requires_positive_and_negative_tests(self):
+        data=review(); data["verdict"]="approved"; data["tests"]=[]; self.rejects(data)
+        data["tests"]=[review()["tests"][0]]; self.rejects(data)
+        second=dict(data["tests"][0]); second["id"]="test-2"; data["tests"].append(second)
+        self.validator.validate(data)
 
 class NativeIntegrationTests(unittest.TestCase):
     def test_all_skill_agent_bindings_resolve(self):
@@ -72,12 +77,17 @@ class NativeIntegrationTests(unittest.TestCase):
         guard=ROOT/"agents/kubernetes/kubernetes-live-mesh-policy-guard-agent"
         docs=(guard/"references/rbac-pre-flight.md").read_text()
         script=(ROOT/"tests/integration/rbac-pre-flight/guards/mesh-policy.sh").read_text()
-        manifests=yaml.safe_load_all((guard/"references/least-privilege-rbac.yaml").read_text())
-        role=next(item for item in manifests if item.get("kind")=="ClusterRole")
+        rbac=(guard/"references/least-privilege-rbac.yaml").read_text()
+        rules=re.findall(
+            r'^  - apiGroups: (\[[^\n]+\])\n    resources: (\[[^\n]+\])\n    verbs: (\[[^\n]+\])$',
+            rbac,
+            re.MULTILINE,
+        )
         writable={
-            f"{resource}.{rule['apiGroups'][0]}"
-            for rule in role["rules"] if set(rule["verbs"]) & {"create", "patch"}
-            for resource in rule["resources"]
+            f"{resource}.{json.loads(api_groups)[0]}"
+            for api_groups,resources,verbs in rules
+            if set(json.loads(verbs)) & {"create", "patch"}
+            for resource in json.loads(resources)
         }
         self.assertEqual(len(writable),5)
         for resource in writable:
@@ -86,6 +96,16 @@ class NativeIntegrationTests(unittest.TestCase):
                     self.assertIn(f"delete {resource}", source)
                     self.assertIn(f"create {resource}", source)
                     self.assertIn(f"patch {resource}", source)
+    def test_gateway_mutations_use_the_network_architecture_guard(self):
+        agent=ROOT/"agents/istio/istio-gateway-api-review-agent/AGENT.md"
+        text=agent.read_text()
+        self.assertIn("kubernetes-live-network-architecture-mutation-guard-agent",text)
+        self.assertNotIn("kubernetes-live-mesh-policy-guard-agent",text)
+        rbac=(ROOT/"skills/kubernetes/kubernetes-live-network-architecture-mutation-guard/references/least-privilege-rbac.yaml").read_text()
+        self.assertRegex(rbac,r'(?s)apiGroups: \["gateway\.networking\.k8s\.io"\]\n    resources:.*?"gateways".*?verbs: \["create", "patch"\]')
+    def test_live_policy_skill_requires_explicit_invocation(self):
+        manifest=(ROOT/"skills/istio/istio-live-policy-change/agents/openai.yaml").read_text()
+        self.assertRegex(manifest,r'(?m)^policy:\n  allow_implicit_invocation: false$')
     def test_semantic_eval_corpus_remains_unperformed(self):
         paths=list((ROOT/"tests/fixtures/istio-review-evals/expected").glob("*.json"))
         self.assertEqual(len(paths),55)

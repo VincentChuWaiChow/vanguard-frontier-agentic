@@ -1,6 +1,6 @@
 {
   "name": "live-istio-gateway-apply",
-  "task": "Apply Gateway/public in production.",
+  "task": "Apply gateway.networking.k8s.io Gateway/public in production.",
   "tags": [
     "live-guard-gate",
     "regression:gateway-kind"

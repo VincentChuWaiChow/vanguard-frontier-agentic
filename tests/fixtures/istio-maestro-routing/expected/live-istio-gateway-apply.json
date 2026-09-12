@@ -1,6 +1,6 @@
 {
   "route": [
-    "kubernetes-live-mesh-policy-guard-agent"
+    "kubernetes-live-network-architecture-mutation-guard-agent"
   ],
   "mode": "live-guard-gate"
 }

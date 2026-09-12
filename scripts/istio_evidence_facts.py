@@ -267,6 +267,11 @@ def _binding(value: Any) -> dict[str, Any]:
             raise InputError(f"binding.{key} must be a lowercase SHA256 hex digest")
     clean["resources"] = sorted(_strings(value["resources"], "binding.resources"))
     clean["verbs"] = sorted(_strings(value["verbs"], "binding.verbs"))
+    resource_id = re.compile(r"^[a-z0-9.-]+/[A-Za-z][A-Za-z0-9]*/[a-z0-9.-]+/[a-z0-9]([-a-z0-9.]*[a-z0-9])?$")
+    if any(not resource_id.fullmatch(resource) for resource in clean["resources"]):
+        raise InputError(
+            "binding.resources must contain exact apiGroup/Kind/namespace/name resource IDs"
+        )
     if set(clean["verbs"])-{"apply", "patch", "delete"}:
         raise InputError("Unknown binding verb; expand authority only through a reviewed contract change")
     return clean

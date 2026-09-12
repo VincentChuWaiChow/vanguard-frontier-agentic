@@ -248,7 +248,7 @@ class ApprovalBindingTests(unittest.TestCase):
         for key in f.BINDING_KEYS:
             current = binding()
             if key in ("resources", "verbs"):
-                current[key] = ["patch"] if key == "verbs" else ["different/resource"]
+                current[key] = ["patch"] if key == "verbs" else ["security.istio.io/AuthorizationPolicy/shop/different"]
             elif key.endswith("sha256"):
                 current[key] = "d" * 64
             else:
@@ -286,6 +286,17 @@ class ApprovalBindingTests(unittest.TestCase):
     def test_unknown_verb(self):
         current = binding(); current["verbs"] = ["force-delete-all"]
         with self.assertRaises(f.InputError): self.check(current=current)
+
+    def test_wildcard_resource_is_rejected(self):
+        apr = approval(); apr["binding"]["resources"] = ["*"]
+        current = binding(); current["resources"] = ["*"]
+        with self.assertRaises(f.InputError): self.check(apr=apr, current=current)
+
+    def test_wildcard_resource_segment_is_rejected(self):
+        resource = "security.istio.io/AuthorizationPolicy/*/restrict"
+        apr = approval(); apr["binding"]["resources"] = [resource]
+        current = binding(); current["resources"] = [resource]
+        with self.assertRaises(f.InputError): self.check(apr=apr, current=current)
 
 
 class CliTests(unittest.TestCase):
