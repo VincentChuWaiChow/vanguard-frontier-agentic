@@ -10,6 +10,8 @@
  *   roles     = number of keys under .roles in catalog/install-roles.json
  *   rules     = length of JSON array in catalog/rules.json
  *   mcp       = length of JSON array in catalog/mcp-references.json
+ *   provider agents = metadata provider values under agents/
+ *   domain skills   = SKILL.md files under each skills/<domain>/ directory
  *
  * Run: node tests/validate-readme-counts.mjs
  */
@@ -45,19 +47,27 @@ function findFiles(dir, basename) {
 
 const skillFiles = findFiles(path.join(repoRoot, "skills"), "SKILL.md");
 const computedSkills = skillFiles.length;
+const skillsPerDirectory = new Map();
+for (const f of skillFiles) {
+  const directory = path.relative(path.join(repoRoot, "skills"), f).split(path.sep)[0];
+  skillsPerDirectory.set(directory, (skillsPerDirectory.get(directory) ?? 0) + 1);
+}
 
 const agentMetaFiles = findFiles(path.join(repoRoot, "agents"), "metadata.json");
 const computedAgents = agentMetaFiles.length;
 
 const providerSet = new Set();
+const agentsPerProvider = new Map();
 for (const f of agentMetaFiles) {
   try {
     const data = JSON.parse(fs.readFileSync(f, "utf8"));
     if (typeof data.provider === "string" && data.provider.length > 0) {
       providerSet.add(data.provider);
+      agentsPerProvider.set(data.provider, (agentsPerProvider.get(data.provider) ?? 0) + 1);
     }
-  } catch {
-    // malformed metadata — skip silently
+  } catch (error) {
+    process.stderr.write(`FAIL [readme-counts] malformed agent metadata ${f}: ${error.message}\n`);
+    process.exit(1);
   }
 }
 const computedProviders = providerSet.size;
@@ -126,6 +136,22 @@ const labelToKey = {
 
 const failures = [];
 
+const requiredIstioMarkers = [
+  ["Istio agent provider", /<!--\s*count:provider:istio\s*-->\d+<!--\s*\/count\s*-->/g],
+  [
+    "Istio skill directory",
+    /<!--\s*count:skill-directory:istio\s*-->\d+<!--\s*\/count\s*-->/g,
+  ],
+];
+for (const [label, marker] of requiredIstioMarkers) {
+  const occurrences = readme.match(marker)?.length ?? 0;
+  if (occurrences !== 1) {
+    failures.push(
+      `FAIL [readme-counts] README must contain exactly one ${label} count marker; found ${occurrences}`
+    );
+  }
+}
+
 // Parse table rows: | Label | Number |
 // Tolerate extra whitespace around cell content.
 const tableRowRe = /\|\s*([^|]+?)\s*\|\s*(\d+)\s*\|/g;
@@ -157,6 +183,36 @@ while ((spanMatch = spanRe.exec(readme)) !== null) {
   if (shownValue !== computedValue) {
     failures.push(
       `FAIL [readme-counts] ${key} (inline span): README shows ${shownValue}, computed ${computedValue}`
+    );
+  }
+}
+
+const providerSpanRe =
+  /<!--\s*count:provider:([a-z0-9-]+)\s*-->(\d+)<!--\s*\/count\s*-->/g;
+while ((spanMatch = providerSpanRe.exec(readme)) !== null) {
+  const slug = spanMatch[1];
+  const shownValue = parseInt(spanMatch[2], 10);
+  const computedValue = agentsPerProvider.get(slug);
+  if (computedValue === undefined) {
+    failures.push(`FAIL [readme-counts] unknown agent provider marker: ${slug}`);
+  } else if (shownValue !== computedValue) {
+    failures.push(
+      `FAIL [readme-counts] provider ${slug}: README shows ${shownValue}, computed ${computedValue}`
+    );
+  }
+}
+
+const skillDirectorySpanRe =
+  /<!--\s*count:skill-directory:([a-z0-9-]+)\s*-->(\d+)<!--\s*\/count\s*-->/g;
+while ((spanMatch = skillDirectorySpanRe.exec(readme)) !== null) {
+  const slug = spanMatch[1];
+  const shownValue = parseInt(spanMatch[2], 10);
+  const computedValue = skillsPerDirectory.get(slug);
+  if (computedValue === undefined) {
+    failures.push(`FAIL [readme-counts] unknown skill directory marker: ${slug}`);
+  } else if (shownValue !== computedValue) {
+    failures.push(
+      `FAIL [readme-counts] skill directory ${slug}: README shows ${shownValue}, computed ${computedValue}`
     );
   }
 }

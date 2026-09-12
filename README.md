@@ -438,7 +438,7 @@ vfa-tui                                      # installed via cargo or prebuilt b
 | ☸️ Kubernetes       |    10 | RBAC review, workload identity, PSA, live RBAC/admission/mesh/network/ArgoCD guards, maestro      |
 | 🛡️ Kyverno          |     1 | ClusterPolicy/Policy, PolicyException, failureAction, background scan                             |
 | 🔄 Argo CD          |     2 | AppProject blast-radius, sync impersonation, RollingSync, sync-window                             |
-| 🕸️ Istio            |     1 | Ambient mesh, ztunnel L4 vs waypoint L7, PeerAuthentication, mTLS posture                        |
+| 🕸️ Istio            | <!-- count:skill-directory:istio -->8<!-- /count --> | Ambient mesh, authorization, traffic resilience, Gateway API, upgrades, diagnostics, routing, guarded live policy changes |
 | 🐝 Cilium           |     1 | CiliumNetworkPolicy, ClusterMesh trust, 169.254.169.254 egress, WireGuard encryption              |
 | 📡 OpenTelemetry    |     1 | Collector pipeline, memory_limiter, receiver exposure, exporter cardinality, credential handling  |
 | 🟩 Terraform        |    10 | Engine-shared Terraform/OpenTofu board: maestro routing, plan blast radius, state reliability, estate reconciliation, supply-chain integrity, engine compatibility, policy evidence, execution governance, module contract, verification strategy |
@@ -543,7 +543,7 @@ Rule of thumb: if the asset teaches **how to do a repeatable task**, it is a ski
 | 💰 Contabo          |     6 | advisory, live instance + storage guards, maestro router                            |
 | 🛡️ Kyverno          |     1 | Admission policy review                                                             |
 | 🔄 Argo CD          |     2 | GitOps review, live sync guard                                                      |
-| 🕸️ Istio            |     1 | Ambient mesh review                                                                 |
+| 🕸️ Istio            | <!-- count:provider:istio -->7<!-- /count --> | Maestro plus ambient, authorization, traffic resilience, Gateway API, upgrade, and dataplane review |
 | 🐝 Cilium           |     1 | Network policy review                                                               |
 | 📡 OpenTelemetry    |     1 | Collector config review                                                             |
 | 💡 Backstage        |     1 | IDP scaffolder review                                                               |
