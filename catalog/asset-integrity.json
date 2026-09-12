@@ -33,7 +33,7 @@
   "trees": [
     {
       "tree": "agents",
-      "aggregate_sha256": "033ee71cc08f860374da820b76dfa53388b0981bb764590e30e70d8998a113b7",
+      "aggregate_sha256": "7cfb6bf62c2c34c14e07164fefc996b7f2f18b4dca1f812ff1d092e9fb4e0a92",
       "files": [
         {
           "path": "agents/AGENTS.md",
@@ -19287,8 +19287,8 @@
         },
         {
           "path": "agents/kubernetes/kubernetes-live-mesh-policy-guard-agent/references/rbac-pre-flight.md",
-          "sha256": "e2e37cc3f8c94fbdfb8eaac615bdf3c07c289f3c9b093ab1624ed79f0ee18c40",
-          "bytes": 5223
+          "sha256": "e413a792ac6b555c20754d22f3598f2a38145c2968cd339b0b6ac0a1cd1a0ae4",
+          "bytes": 5856
         },
         {
           "path": "agents/kubernetes/kubernetes-live-mesh-policy-guard-agent/references/refusal-list.md",
@@ -35493,7 +35493,7 @@
     },
     {
       "tree": "scripts",
-      "aggregate_sha256": "0384ae883ff075a4adb89f59db36ac9e9c651b64c9e4a528c3f894f96bf3f440",
+      "aggregate_sha256": "816bac5ada0050076e807bfd597c829f878914ea36c87daf860e58d1cebe4aeb",
       "files": [
         {
           "path": "scripts/apply-skill-allowed-tools.py",
@@ -35687,8 +35687,8 @@
         },
         {
           "path": "scripts/generate-readme-counts.mjs",
-          "sha256": "3daf3aedb6f03553121d5879114a51a3aadfa1da8bc717591c1cb33c77d33d7f",
-          "bytes": 14523
+          "sha256": "2e5169315e9a287b6c78fe96e28478e32a029f5b714435a484d81889487cb5ce",
+          "bytes": 16490
         },
         {
           "path": "scripts/generate-workflow-catalog.mjs",
@@ -36700,7 +36700,7 @@
     },
     {
       "tree": "tests",
-      "aggregate_sha256": "8a377ae5b8de9fbf5a3e04a7c8ec5d827b75da103d4d5532048de44373592bde",
+      "aggregate_sha256": "cadd4c1be737cf9017b7e40bf9260c832127aa5f0aead43cee4456140b994423",
       "files": [
         {
           "path": "tests/AGENTS.md",
@@ -41868,7 +41868,37 @@
           "bytes": 96
         },
         {
+          "path": "tests/fixtures/istio-maestro-routing/expected/live-istio-gateway-apply.json",
+          "sha256": "0fdfbaf41c95d0eccc9c092cab4908a244c02443950d12442bf09c9f0b433be7",
+          "bytes": 96
+        },
+        {
+          "path": "tests/fixtures/istio-maestro-routing/expected/live-kubectl-file-apply.json",
+          "sha256": "0fdfbaf41c95d0eccc9c092cab4908a244c02443950d12442bf09c9f0b433be7",
+          "bytes": 96
+        },
+        {
           "path": "tests/fixtures/istio-maestro-routing/expected/live-label-peer-authentication.json",
+          "sha256": "0fdfbaf41c95d0eccc9c092cab4908a244c02443950d12442bf09c9f0b433be7",
+          "bytes": 96
+        },
+        {
+          "path": "tests/fixtures/istio-maestro-routing/expected/live-multiline-patch.json",
+          "sha256": "0fdfbaf41c95d0eccc9c092cab4908a244c02443950d12442bf09c9f0b433be7",
+          "bytes": 96
+        },
+        {
+          "path": "tests/fixtures/istio-maestro-routing/expected/live-qualified-plural-delete.json",
+          "sha256": "0fdfbaf41c95d0eccc9c092cab4908a244c02443950d12442bf09c9f0b433be7",
+          "bytes": 96
+        },
+        {
+          "path": "tests/fixtures/istio-maestro-routing/expected/live-resource-first-apply.json",
+          "sha256": "0fdfbaf41c95d0eccc9c092cab4908a244c02443950d12442bf09c9f0b433be7",
+          "bytes": 96
+        },
+        {
+          "path": "tests/fixtures/istio-maestro-routing/expected/live-set-peer-authentication.json",
           "sha256": "0fdfbaf41c95d0eccc9c092cab4908a244c02443950d12442bf09c9f0b433be7",
           "bytes": 96
         },
@@ -41943,9 +41973,39 @@
           "bytes": 189
         },
         {
+          "path": "tests/fixtures/istio-maestro-routing/inputs/live-istio-gateway-apply.json",
+          "sha256": "368f91128694fb5efcc04fd61e565dd4a62b422e3d9c1c554fc9228af2130d9d",
+          "bytes": 160
+        },
+        {
+          "path": "tests/fixtures/istio-maestro-routing/inputs/live-kubectl-file-apply.json",
+          "sha256": "4aff70300151f8b8f52f52123cbce1b544aea8d351c0c0e07ab91023d70e0f2c",
+          "bytes": 185
+        },
+        {
           "path": "tests/fixtures/istio-maestro-routing/inputs/live-label-peer-authentication.json",
           "sha256": "911ae0049a583caa9cabe8a1977d4db11ba8f1dd4a406a561f6799319f9da171",
           "bytes": 204
+        },
+        {
+          "path": "tests/fixtures/istio-maestro-routing/inputs/live-multiline-patch.json",
+          "sha256": "8185ddb8aec340b754a85aca18584a8f84966b8f0bebb453484913115d5480b2",
+          "bytes": 193
+        },
+        {
+          "path": "tests/fixtures/istio-maestro-routing/inputs/live-qualified-plural-delete.json",
+          "sha256": "0529780754ffe12d87360faa54d87593d955e45cfbf9fabf440616ea7b226c16",
+          "bytes": 212
+        },
+        {
+          "path": "tests/fixtures/istio-maestro-routing/inputs/live-resource-first-apply.json",
+          "sha256": "f288c23f7e56ae4239d27efb20c18efd96bc22a229c93945db0ea9de1ca984d5",
+          "bytes": 191
+        },
+        {
+          "path": "tests/fixtures/istio-maestro-routing/inputs/live-set-peer-authentication.json",
+          "sha256": "8cb4114822790fc1d1ab72aac6776281eac4d2ab5cf5fc4656bb26930e5b6005",
+          "bytes": 183
         },
         {
           "path": "tests/fixtures/istio-maestro-routing/inputs/negative-product-identification.json",
@@ -41959,8 +42019,8 @@
         },
         {
           "path": "tests/fixtures/istio-maestro-routing/taxonomy.json",
-          "sha256": "68e04b9695979cce3041884f7befb86374903c0c46f7824bf4684e5e90ac51fe",
-          "bytes": 3152
+          "sha256": "da892ed700809b674b71729fd294d5316841eb90543411e8d4154657caa54a8a",
+          "bytes": 3664
         },
         {
           "path": "tests/fixtures/istio-review-evals/README.md",
@@ -46934,8 +46994,8 @@
         },
         {
           "path": "tests/integration/rbac-pre-flight/guards/mesh-policy.sh",
-          "sha256": "193bdfc8fb84c482d13a4d5c00f40db03aa84cbf7f26f36db311cc29ef982546",
-          "bytes": 2593
+          "sha256": "e573234f93a069830fb3b820b925cc21518a74220c38bd32711e799a3ed37e77",
+          "bytes": 3263
         },
         {
           "path": "tests/integration/rbac-pre-flight/guards/network-arch.sh",
@@ -46969,8 +47029,8 @@
         },
         {
           "path": "tests/istio-review-suite/test_contract.py",
-          "sha256": "39f623457181b66c9f85f6814766a05f2e0e6faf5ccf0c71d49b3d774925590a",
-          "bytes": 4823
+          "sha256": "a96317beb6c6e6aac5f6c6dd05c693cd28563fc28f48d4c61c0c57819220ce43",
+          "bytes": 5896
         },
         {
           "path": "tests/istio-review-suite/test_evidence_facts.py",
@@ -47099,8 +47159,8 @@
         },
         {
           "path": "tests/validate-readme-counts.mjs",
-          "sha256": "d7f06e9a0de4aef81a8f8011f57f4d78882d1d36091634a116ff770357e2cbd1",
-          "bytes": 6023
+          "sha256": "3185fd3092bcca1fb47b13106d380d5246e7ac75293cfd79fc28feff9e734248",
+          "bytes": 8324
         },
         {
           "path": "tests/validate-skill-allowed-tools.py",
@@ -47128,8 +47188,8 @@
   "root_files": [
     {
       "path": "README.md",
-      "sha256": "18661347231882e5988c3713b841b97069bba000bc6b9b39ca9bf5f2543a7dab",
-      "bytes": 115563
+      "sha256": "76d780e3287d7b2fa701b38bae6621a7b12b57984fc20fee0f04c7be14764b34",
+      "bytes": 115691
     },
     {
       "path": "SECURITY.md",
@@ -47177,5 +47237,5 @@
       "bytes": 8340
     }
   ],
-  "aggregate_sha256": "12b37f517ac20653e010454a1c6588494d8595c7a9cb678e618630ef1ec69ff7"
+  "aggregate_sha256": "2bbd6f53c309dbeb2a0a6d493b21a6cbba25aa2b45d32f0df5d9e765967e9f7c"
 }
