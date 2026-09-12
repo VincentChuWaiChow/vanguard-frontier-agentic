@@ -1,3 +1,325 @@
+## 🛡️ v3.12.0 — *Provenance · Policy · Portability*
+_Released 2026-09-12_
+
+> _Curated multi-cloud, zero-trust agent marketplace — `AWS` · `Azure` · `OCI` · `GCP` · `Terraform`._
+> Least privilege, live evidence, safe rollback paths.
+
+**Release type:** New capabilities — review the sections below before upgrading.
+
+### ✨ Features
+
+* **istio:** add evidence-bounded review suite ([`d3b0693`](https://github.com/VincentChuWaiChow/vanguard-frontier-agentic/commit/d3b0693294fd410f6de9a15efc6c898ac2627228))
+* **model-policy:** per-model effort narrowing, model aliases, and Cursor parameter groups ([`4425a8d`](https://github.com/VincentChuWaiChow/vanguard-frontier-agentic/commit/4425a8dd68e448e2aa03b0b907d4e5047a79dd18))
+Works the four follow-ups left open by the previous change, and corrects two
+entries it got wrong.
+
+Anthropic effort, per https://platform.claude.com/docs/en/build-with-claude/effort
+— that page enumerates supported models and per-level availability, which is
+stronger evidence than the models-overview line used before:
+
+- claude-sonnet-4-5 is absent from the supported-models list, so it now fails
+  closed like the haiku entries. The previous change gave it the full
+  vocabulary; that was wrong.
+- Opus 4.6 and Sonnet 4.6 accept max but not xhigh; Opus 4.5 accepts neither.
+  Narrowed accordingly rather than inheriting the harness vocabulary.
+- The haiku gating is confirmed by this third source and stands.
+
+Model naming, per model-ids-and-versions: from the 4.6 generation on, IDs are
+dateless AND are themselves the pinned snapshot, so there is no alias to add.
+Before 4.6 the canonical ID carries a date and the API also exposes a shorter
+alias. Register both and prefer the readable alias: claude-opus-4-5 and
+claude-sonnet-4-5 are added beside their dated snapshots. The rule is written
+into the namespace description and the model-registry-refresh skill so the next
+refresh follows it.
+
+codex/openrouter reasoning reopens on the route it actually uses: OpenRouter's
+Responses reference documents reasoning.effort with minimal|low|medium|high,
+narrower than its chat-completions surface, and that narrower list is what is
+registered. ollama stays fail-closed — its /v1/responses field list omits the
+field entirely. The previous change treated the two alike in both directions;
+they differ, and the evidence is per-route.
+
+ultra and persistent stay out of the codex vocabulary. They exist in the
+ReasoningEffort enum and ultra appears in the ChatGPT desktop picker, but
+learn.chatgpt.com documents the CLI list as Low|Medium|High|Extra high|Max and
+puts Ultra on web/desktop only. This registry governs codex.toml. Also recorded:
+UI labels differ from wire values (Light = low), and the Speed control is a
+separate axis with no config key.
+
+Cursor per-model parameter groups are now expressible —
+claude-opus-5[effort=high,context=300k]. Membership resolves against the base
+id with the group stripped, and the engine rejects an unknown key, a malformed
+pair, a duplicate key or an empty group. The namespace pattern shapes the group
+only: encoding key=value structure needs nested quantifiers, which the
+registry's own ReDoS guard rejects. The TUI gets a narrow
+validate_model_argument that permits brackets on the model field alone, leaving
+SHELL_METACHARACTERS strict for every other argument.
+
+OpenAI entries re-verified against codex-rs/models-manager/models.json: gpt-5.5
+still listed and visible, gpt-5.4 and gpt-5.4-mini present but visibility:hide
+(legacy, not a lifecycle status). Recorded that this file is the subscription
+picker and not the API model set, so a slug's absence from it is not evidence of
+retirement — which is why the o-series and gpt-4.1-* entries stay.
+
+New gate validate:model-params (14 cases) pins the accept/reject matrix for
+parameter groups; validate:model-policy only exercises the accepting path. The
+added gate changes the generated gate count, so the count markers are
+regenerated with it.
+
+Verified: 11 registry probes and the new gate's 14 cases behave as documented,
+including minimal accepted for openrouter but rejected for ollama, which
+exercises the per-namespace split. validate, lint:spell, markdownlint and
+cargo fmt/clippy/test (1088 tests, 3 new) all pass.
+
+Co-Authored-By: Claude Opus 5 <noreply@anthropic.com>
+Claude-Session:
+* **model-policy:** refresh model registry and make the TUI pickers registry-backed ([`c2af4e7`](https://github.com/VincentChuWaiChow/vanguard-frontier-agentic/commit/c2af4e759cabc0ba94044ed184b3825b02b56925))
+Re-verify catalog/model-registry.json against primary sources and replace the
+Model Policy Builder's free-text model field and hardcoded effort union with
+pickers derived from that registry.
+
+Registry (all values fetched from the provider's own docs on 2026-09-05):
+
+- codex/openai: add gpt-6-astra (low|medium|high|xhigh|max; no none). The
+  gpt-5.6 family gains max, and the "max excluded pending Codex CLI enum
+  support" notes are dropped — developers.openai.com/api/docs/models now
+  advertises max for both families. max is added to the codex harness
+  vocabulary so the model entries stay within it.
+- codex/ollama: reasoning goes from forbidden to none|low|medium|high|max,
+  mirroring the field list in Ollama's OpenAI-compatibility docs (no minimal,
+  no xhigh). Codex passthrough to a custom provider stays undocumented, so
+  this records intent the same way requires_provider_table already does.
+  Examples expand with tags read off ollama.com model pages: deepseek-r1,
+  qwen3, glm-5.3, gpt-oss, llama3.3.
+- claude-code/anthropic: add claude-opus-5 and claude-fable-5-1 (current
+  lineup) plus claude-opus-4-6, claude-opus-4-5-20251101 and
+  claude-sonnet-4-5-20250929. Both haiku entries now declare an empty
+  reasoning_efforts list — the models overview lists effort as unsupported
+  for Claude Haiku 4.5, so pinning one fails closed.
+- cursor/named: add gpt-5.6-sol and claude-opus-5.
+
+TUI:
+
+- New models/model_registry.rs reads the registry, loaded by the catalog store
+  with the same tainted-content and hot-reload handling as the assignments
+  index. It walks the declared structure only; it never evaluates a namespace
+  regex, so no policy logic is forked into Rust.
+- Model field: Space cycles the models verified for the selected harness,
+  wrapping through a free-text slot. Typing still accepts anything, since open
+  namespaces cannot be enumerated.
+- Reasoning field: the cycle is now built per (harness, model), narrowing
+  model-first, then namespace, then harness. This fixes a real bug — the field
+  was gated to codex even though HARNESS_CAPABILITIES gives claude-code
+  reasoning_effort: true, so the builder could not set an effort the engine
+  supports. A missing registry falls back to the previous behaviour.
+
+The test asserting the codex-only gate encoded that bug and is replaced by one
+asserting the corrected narrowing.
+
+Verified: 10 policy-engine probes (registry-listed and free-typed models,
+supported and unsupported efforts, bogus names) accept and reject as intended;
+npm run validate, lint:spell, markdownlint, and cargo fmt/clippy/test all pass.
+
+Co-Authored-By: Claude Opus 5 <noreply@anthropic.com>
+Claude-Session:
+* **readme:** compute Istio asset counts dynamically ([`4362408`](https://github.com/VincentChuWaiChow/vanguard-frontier-agentic/commit/4362408a2e9b471b9dd92f5cfa748dc91705320c))
+* **workflows:** add plugin-security-scan pipeline for the HOL scanner loop ([`8d6381e`](https://github.com/VincentChuWaiChow/vanguard-frontier-agentic/commit/8d6381e796031995699a79be4ba1d9a4360b124b))
+Second executable workflow alongside agentic-delegation.js. Runs the HOL AI
+Plugin Scanner as an eight-phase pipeline: Inventory, Baseline, Autofix,
+Triage, Remediate, Rescan, Refute, Gate.
+
+The problem it solves is that a scanner score moves the same direction
+whether you fix a defect or tell the scanner not to look at it, and the
+number cannot tell you which happened. So:
+
+- suppressions are counted separately from fixes and never reported as
+  remediation;
+- the admission predicate is enforced in JavaScript rather than requested
+  in a prompt — a suppression is refused if it lands on an executable path,
+  carries a critical/high severity, or has a rationale under 40 characters,
+  and a refused suppression becomes an `escalate` rather than a deletion;
+- the path heuristic fails toward strictness: a finding with no file path
+  is treated as executable;
+- if every score gain in a run came from suppression, that is appended to
+  `blockers` and `readyToCommit` stays false, because the action's
+  `trust_repository_policy` defaults to false and a locally-suppressed
+  finding is not proven to move the CI verdict.
+
+Scanner constraints are encoded from the live CLI rather than assumed:
+`--diff-base` is unimplemented upstream so delegates are forbidden from
+passing it, `verify` accepts no `--config`, the trailing `Policy profile
+"..." failed.` line is a policy verdict independent of the score, and
+`--online` / `MCP_SCANNER_*` stay off.
+
+Gate readiness is recomputed from the reported commands rather than trusting
+a delegate's `allGreen`, and the workflow never commits.
+
+Regenerates catalog/workflows.json (2 workflows) and the asset-integrity
+manifest.
+
+### 🐛 Bug Fixes
+
+* **ci:** harden asset integrity repair workflow ([`ceb843d`](https://github.com/VincentChuWaiChow/vanguard-frontier-agentic/commit/ceb843d90ff791c937855c82e24c9087e6292250))
+* **ci:** simplify asset integrity repair trigger ([`0382468`](https://github.com/VincentChuWaiChow/vanguard-frontier-agentic/commit/038246858c8f100b199715b747250162fd8e33b4))
+* **istio:** address review safety findings ([`19aadab`](https://github.com/VincentChuWaiChow/vanguard-frontier-agentic/commit/19aadab9c960eca5d148bcf2a00bacfdfc9bf0c7))
+* **istio:** gate all live mesh policy mutations ([`4459664`](https://github.com/VincentChuWaiChow/vanguard-frontier-agentic/commit/44596642847def21502c80c26839a047b448e78a))
+* **istio:** remove unused test import ([`4a4111c`](https://github.com/VincentChuWaiChow/vanguard-frontier-agentic/commit/4a4111c28c6be811bc5b6432a933df89e0c9b953))
+* **kubernetes:** align mesh guard RBAC preflight checks ([`15e06c3`](https://github.com/VincentChuWaiChow/vanguard-frontier-agentic/commit/15e06c31eb2cf31c88ac973a8300eee3cb6e3696))
+* **model-policy:** allow reasoning on OpenRouter routes and cite the Codex enum ([`644511e`](https://github.com/VincentChuWaiChow/vanguard-frontier-agentic/commit/644511e89b73fb5d171f4b5f554bcc0fbdb0dfca))
+Follow-up to the registry refresh, closing the two verification gaps it left
+open. Both turned on one question — does Codex forward model_reasoning_effort
+to a custom provider — which is now answered from the Codex source rather than
+assumed.
+
+Context7 /openai/codex shows model_reasoning_effort is a single
+Option<ReasoningEffort> on the config and model_provider_id is likewise
+global, so the key is not provider-conditional and is not stripped on a custom
+route. The previous "passthrough is undocumented, so fail closed" rationale
+does not survive that.
+
+- openrouter: reasoning goes from forbidden to the full seven-value harness
+  vocabulary, matching OpenRouter's own documented reasoning.effort enum
+  (none|minimal|low|medium|high|xhigh|max). This also removes an inconsistency
+  the previous commit introduced by enabling Ollama while leaving OpenRouter
+  closed on identical evidence.
+- ollama: the note now states the verified mechanism instead of speculating
+  about passthrough.
+- The codex vocabulary note records that ReasoningEffort carries a
+  Custom(String) fallback and config.schema.json types the key as a free-form
+  string, so the harness never rejects an effort itself — the registry's
+  per-model narrowing is what turns an unsupported pairing into a check-time
+  failure. This also confirms at code level the max support that the previous
+  commit took from the models API alone.
+
+Probes: openrouter+xhigh and openrouter+max accepted, ollama+max accepted,
+ollama+minimal rejected (absent from Ollama's vocabulary but valid for
+OpenRouter, exercising the per-namespace narrowing), effort "ultra" rejected.
+validate, lint:spell, markdownlint and the cargo gates all pass.
+
+Co-Authored-By: Claude Opus 5 <noreply@anthropic.com>
+Claude-Session:
+* **model-policy:** close the Responses-route gap and the alias effort bypass ([`d9f3d84`](https://github.com/VincentChuWaiChow/vanguard-frontier-agentic/commit/d9f3d848b8042f7dea8e9db2998e6a52f86a8e66))
+Addresses the six findings from the automated review on #172. Five were
+correct as written; the P1 reverses a decision from the previous commit.
+
+P1 — ollama and openrouter reasoning back to fail-closed. The evidence for
+opening them covered Ollama's /v1/chat/completions, but both namespaces route
+through wire_api responses. Ollama's documented request fields for
+/v1/responses are model, instructions, tools, stream, temperature, top_p,
+max_output_tokens, previous_response_id, conversation and truncation —
+reasoning_effort is absent, so Codex would send it and the route would drop it
+silently, which is the exact failure the registry exists to catch. That
+model_reasoning_effort is a global Codex config key answers whether it is sent,
+not whether the route accepts it; that was the wrong question. OpenRouter gets
+the same treatment rather than repeating the earlier asymmetry: its documented
+effort field belongs to the chat-completions surface and its Responses route is
+unverified. The verified Ollama tag examples are kept.
+
+Registry — the claude-code alias namespace becomes closed with per-alias
+entries so `haiku` carries the same empty reasoning_efforts as the pinned
+Claude Haiku 4.5 ids. It is matched before the anthropic namespace, so leaving
+it open let model "haiku" + effort "high" pass the very gate the pinned ids
+enforce. Closing it also fails an unrecognized alias rather than accepting it.
+
+TUI:
+- `auto` is now offered whenever the harness has a reasoning field, even when
+  the selected model accepts no effort. The engine rejects an inherited effort
+  on such a model with "set reasoning to auto", so collapsing the cycle made
+  its own remedy unreachable.
+- A retired model's efforts resolve through the successor chain, matching what
+  resolveAll projects and validates against; self-referential and dangling
+  successors terminate.
+- A harness change drops a picked model the new harness does not offer, instead
+  of carrying it over as free text into a command the script must reject.
+  Typed values are still preserved.
+- The builder's cached pickers rebuild after a catalog reload, so a changed or
+  deleted registry cannot leave stale choices on screen.
+
+Probes: ollama and openrouter effort pins rejected again; alias haiku + high
+rejected while opus and inherit + high accepted; unknown alias rejected; the
+qwen3:32b model change accepted once reasoning is set to auto, which is the
+flow the auto fix restores. 1085 cargo tests pass (5 new), and validate,
+lint:spell, markdownlint and the cargo gates are clean.
+
+Co-Authored-By: Claude Opus 5 <noreply@anthropic.com>
+Claude-Session:
+* **model-policy:** reject multi-separator parameter pairs and align the policy schema ([`bf3c223`](https://github.com/VincentChuWaiChow/vanguard-frontier-agentic/commit/bf3c223313132c2b77091248578a80deb3cd2a10))
+* **plugin:** document cross-platform agent template ([`62b2d76`](https://github.com/VincentChuWaiChow/vanguard-frontier-agentic/commit/62b2d763d3fed846088b4efc0300fb34850a4d6c))
+* **release:** restore changelog preset compatibility ([`c113356`](https://github.com/VincentChuWaiChow/vanguard-frontier-agentic/commit/c113356ef55b74f1bbe0acc7642d5d4e4e2b7488))
+* **security:** avoid credential-shaped test fixtures ([`b7e9be3`](https://github.com/VincentChuWaiChow/vanguard-frontier-agentic/commit/b7e9be31dd8c480d71689a21eef06fe86642534b))
+* **workflows:** bind plugin-security-scan dispositions to scanner evidence ([`4d821a7`](https://github.com/VincentChuWaiChow/vanguard-frontier-agentic/commit/4d821a76777d8157e41cac8e2d1de70627d68708))
+Addresses the Codex review on #183.
+
+Suppression admission previously read the delegate's own summary of a
+finding: `severity` and `filePath` are optional in the triage schema, so
+omitting the path made the executable check see an empty string and
+understating the severity made the blocking check never fire. Every
+disposition is now matched back to a residual finding by
+(target, ruleId, filePath), and severity/path are read from the finding.
+A disposition matching no finding is unbound and blocks; a finding with
+no disposition is reported rather than read as handled. `maxSeverity` is
+likewise derived from the findings instead of trusted.
+
+Also:
+- coerce `targets` entries (a null entry crashed the run) and honor
+  `blocking: false` as an advisory rather than a blocker
+- pin the `plugin-scanner` PyPI package to 3.0.160, with a drift check
+  (this is the package, not the ai-plugin-scanner-action SHA)
+- drop empty entries from `nonExecutablePaths` instead of disabling the
+  guard, and match whole path segments so `docs/` no longer exempts
+  `plugins/mydocs/loader.js`
+- build the gate sequence unconditionally so a disabled run reports its
+  gates as NOT RUN, run gates on clean audits, and append the cargo
+  gates when the run touched tools/vfa-tui
+- forbid delegates from discarding work with git checkout/restore/reset;
+  autofix reports overwritten generated files via generatedFilesTouched
+- narrow `.claude/**` to `.claude/**/*.md` in .plugin-scanner.toml so the
+  workflow no longer exempts itself; root scan holds at 92/A, 5 findings
+
+Co-Authored-By: Claude Opus 5 <noreply@anthropic.com>
+* **workflows:** clarify static metadata parsing ([`dfcb9ae`](https://github.com/VincentChuWaiChow/vanguard-frontier-agentic/commit/dfcb9aee840bf437414c4ff91433bbcb2cdc52bc))
+
+### 📚 Documentation
+
+* **model-policy:** cite the Responses reasoning guide for the codex effort vocabulary ([`9021027`](https://github.com/VincentChuWaiChow/vanguard-frontier-agentic/commit/9021027748a9615c1367433f83bf70271de7793d))
+The guide at developers.openai.com/api/docs/guides/reasoning?api-mode=responses
+is the authoritative source for reasoning.effort on the route Codex uses, and
+it corroborates the current registry rather than changing it:
+
+- It states outright that GPT-6 Astra does not support "none" reasoning effort,
+  which matches the gpt-6-astra entry's excluded value.
+- It never mentions "ultra", supporting that value's exclusion from the codex
+  vocabulary.
+- It states the accepted set is "model-dependent and can include none, minimal,
+  low, medium, high, xhigh, and max", with defaults also model-dependent
+  (gpt-5.6 and gpt-5.5 default to medium) — which is the documented basis for
+  narrowing per model rather than at the harness level.
+
+Deliberately NOT changed: the guide's detailed table omits "minimal" while its
+own opening sentence lists it among accepted values. gpt-5.5 keeps minimal.
+Absence from one table, contradicted by the same page's prose, is not evidence
+a value was withdrawn, and treating it as such would repeat the reasoning error
+this registry's notes already warn about.
+
+Registry and matrix doc record the citation and that caveat. Probes: gpt-6-astra
++ none still rejected, gpt-5.5 + minimal still accepted. validate, lint:spell
+and markdownlint pass.
+
+Co-Authored-By: Claude Opus 5 <noreply@anthropic.com>
+Claude-Session:
+
+---
+
+### 📥 Install
+```bash
+npm install @raishin/vanguard-frontier-agentic@3.12.0
+```
+
+### 🔐 Supply-chain provenance
+Every release ships a build attestation (SLSA provenance) and an SBOM. Verify the tag with `gh attestation verify` before installing.
+
+**Full changelog:** https://github.com/VincentChuWaiChow/vanguard-frontier-agentic/compare/v3.11.1...v3.12.0
+
 ## 🛡️ v3.11.1 — *Provenance · Policy · Portability*
 _Released 2026-08-29_
 
@@ -10487,7 +10809,7 @@ Collateral: regenerate asset-integrity.json, plugin manifests
 
 ## 🔴 v2.0.0 — *Zero-Trust Scope Enforcement* &mdash; 2026-05-16
 
-> _Provider-scoped exports are now strict and auditable. 729 agents · 754 skills · 45 providers · 76 roles_
+> _Provider-scoped exports are now strict and auditable. 735 agents · 761 skills · 45 providers · 76 roles_
 >
 > This release closes a class of privilege-escalation bugs in the export CLI and hardens the
 > entire provider-scope boundary from user input through to CI attestation.

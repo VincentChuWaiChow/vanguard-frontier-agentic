@@ -36585,7 +36585,7 @@
     },
     {
       "tree": "plugins",
-      "aggregate_sha256": "23641d8f914094ed06f211d4fbb7ed32d94c5c81e94d4203164cf8e9ea1bf7a7",
+      "aggregate_sha256": "66ef5bf50c0c5862ad38c3f9990f8a1730ad689a4d133138c2d185e81fb32bed",
       "files": [
         {
           "path": "plugins/cross-platform-agent-template/.codex-plugin/plugin.json",
@@ -36614,7 +36614,7 @@
         },
         {
           "path": "plugins/vanguard-frontier-agentic/.codex-plugin/plugin.json",
-          "sha256": "ae302dcc0790f32081bafa58f14643504c11befe7ced1052553fb00aa6603f6d",
+          "sha256": "01167792b1bff39680b6ad304cba0a31cc09401eb3318577f1d06c9445aae1f4",
           "bytes": 1926
         },
         {
@@ -36631,7 +36631,7 @@
     },
     {
       "tree": ".claude-plugin",
-      "aggregate_sha256": "01878ee70045848c5192ea1efaf0dc627d81b5d1736e95e0b47c9375d6af0162",
+      "aggregate_sha256": "9ae48826e4bb54f7e2ed4b65b226a3e22b79376a08656c482c72a26fd037130b",
       "files": [
         {
           "path": ".claude-plugin/README.md",
@@ -36640,19 +36640,19 @@
         },
         {
           "path": ".claude-plugin/marketplace.json",
-          "sha256": "3f30bfc9baa632f41949a8ec12f663e2c9d01e5d9dbb643612eb8b45315489a6",
+          "sha256": "b40b06f8ebef04d08a5e08ac14310a8598b73865203c3c302b15c2b850e6c77f",
           "bytes": 855
         },
         {
           "path": ".claude-plugin/plugin.json",
-          "sha256": "930b73dacf7d05dc381cbe270545e76c2a9a69b9b4d4bf0b63f302f77e9f6f3a",
+          "sha256": "0f4c5e663b7941dc94b1e0acda918f2f4b3bd57e1b14d5b8fd6e686bacc1a7f3",
           "bytes": 67904
         }
       ]
     },
     {
       "tree": ".cursor-plugin",
-      "aggregate_sha256": "cf2b4982540ee39341f67fe70edda759426abc90988e38207fae009dc505c4fe",
+      "aggregate_sha256": "0f982bc5c29e14fd6fd0b5f5beeaae2768af181732acbcfdffe747f2fd7b9fa8",
       "files": [
         {
           "path": ".cursor-plugin/README.md",
@@ -36661,14 +36661,14 @@
         },
         {
           "path": ".cursor-plugin/plugin.json",
-          "sha256": "643544980b49a8f53522688f35d4260ea8b8c81f0073ccec08f866eb7e26658f",
+          "sha256": "4963d250193f73fc24efb388c891b4e72bfb4cc984c18d226098de1e8038de1f",
           "bytes": 64205
         }
       ]
     },
     {
       "tree": ".github/plugin",
-      "aggregate_sha256": "8e7e2af6500b413066e3542023ea0f4d47eb96e088a9f1f99ee267cf3d96f0ce",
+      "aggregate_sha256": "0cfd3e11b3344df0e2856fbb4a44538dee90c51b9272326a6b12233a80129de5",
       "files": [
         {
           "path": ".github/plugin/README.md",
@@ -36677,7 +36677,7 @@
         },
         {
           "path": ".github/plugin/marketplace.json",
-          "sha256": "d708114db9d2fc11b7ae2f6d1c2972022a5d46b8ed5dcbc22ca489658dd77a9e",
+          "sha256": "6e3b3a755851d7b913dd6eb47e61635fa163b822d941f07ea7c015e3728ba080",
           "bytes": 791
         }
       ]
@@ -47198,7 +47198,7 @@
     },
     {
       "path": "SECURITY.md",
-      "sha256": "9245be8c9143849e4daf0682967135217c2ee439b139f42cb74913331bbbd6f9",
+      "sha256": "5d03ee38aeb8e9623854d3c80fd1bd0cf59bcd123ca09f2f01574b9caeffcac6",
       "bytes": 7111
     },
     {
@@ -47233,7 +47233,7 @@
     },
     {
       "path": "package.json",
-      "sha256": "5f8fd7ae21974e9d27e24e8fdf58f8ea997823fee5c68eb88061ce2110113977",
+      "sha256": "017c0074a78103757899102aad19faa8a77225d56971003f18c61e1429c3a6d3",
       "bytes": 7431
     },
     {
@@ -47242,5 +47242,5 @@
       "bytes": 8340
     }
   ],
-  "aggregate_sha256": "30556de282ecaf4deff42456e1a437317049c0274e2dad41c68b57af2e5a535c"
+  "aggregate_sha256": "e8300f19dc1d23be4f54c4e3328237664cc7a273a371affb3287b42c9e3c23c0"
 }
