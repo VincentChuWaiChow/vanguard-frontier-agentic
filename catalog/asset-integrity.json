@@ -36700,7 +36700,7 @@
     },
     {
       "tree": "tests",
-      "aggregate_sha256": "1a9f77f13af78a68edad41cd609b0c7460d2996b8e8a09d9181698e19eca62de",
+      "aggregate_sha256": "45273c023437e4ac1e8e4a8ff2ee59bec373e83025a6c6fbef5a902a4d55d657",
       "files": [
         {
           "path": "tests/AGENTS.md",
@@ -47163,6 +47163,11 @@
           "bytes": 8324
         },
         {
+          "path": "tests/validate-release-notes.mjs",
+          "sha256": "0b287df8091bb93b90d00574ef1f7f5c28e9fe7dd89d5479e5d31e5af0770a1d",
+          "bytes": 1140
+        },
+        {
           "path": "tests/validate-skill-allowed-tools.py",
           "sha256": "e493b5f0432a6ed74e064e66095d3519f8b16e2631111605910ae96d54fff037",
           "bytes": 4523
@@ -47228,8 +47233,8 @@
     },
     {
       "path": "package.json",
-      "sha256": "774f160fe4d1f11fb6b9678ebd8b5309ca4b2184965a79de9ba7522fbcf6665a",
-      "bytes": 7327
+      "sha256": "5f8fd7ae21974e9d27e24e8fdf58f8ea997823fee5c68eb88061ce2110113977",
+      "bytes": 7431
     },
     {
       "path": ".releaserc.js",
@@ -47237,5 +47242,5 @@
       "bytes": 8340
     }
   ],
-  "aggregate_sha256": "a17ea10de7fb9e6879ca15603c2b25b455da818156fdfae4e99cbfbf9b65c8ed"
+  "aggregate_sha256": "30556de282ecaf4deff42456e1a437317049c0274e2dad41c68b57af2e5a535c"
 }
