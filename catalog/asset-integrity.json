@@ -47233,8 +47233,8 @@
     },
     {
       "path": "package.json",
-      "sha256": "2ed2e159395af091da4a80aac76057ab6e7808633070fa4130004e91be1843d3",
-      "bytes": 7431
+      "sha256": "c0cafc45942382d4aa9da6a979f7a96b0b6cb364a5e4bc8945768a968ef1b7f7",
+      "bytes": 7432
     },
     {
       "path": ".releaserc.js",
@@ -47242,5 +47242,5 @@
       "bytes": 8340
     }
   ],
-  "aggregate_sha256": "48081c482982549fcd52d8b34047e959db5140d060267666e3a320f39c6ad23d"
+  "aggregate_sha256": "95e4a3ff580c005ac23be9a3cdcc8593b24cb9c8bba63a6560d190193d24bfb2"
 }
