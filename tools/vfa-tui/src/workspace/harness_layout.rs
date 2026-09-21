@@ -17,6 +17,16 @@ pub enum HarnessDir {
     Codex,
     /// `.opencode/` — OpenCode TOML/YAML agent definitions.
     Opencode,
+    /// `.github/` — Copilot CLI agent definitions (`agents/<id>.agent.md`).
+    ///
+    /// Unlike the other variants this directory exists in almost every
+    /// repository for unrelated reasons, so the top level will often match the
+    /// layout on a stray template file. That is harmless: layout only decides
+    /// whether a directory is walked, and confirming an asset still requires
+    /// two independent detection signals, which an issue template has neither of.
+    Copilot,
+    /// `.gemini/` — Gemini agent definitions (markdown files).
+    Gemini,
 }
 
 impl HarnessDir {
@@ -29,22 +39,26 @@ impl HarnessDir {
             HarnessDir::Kiro => ".kiro",
             HarnessDir::Codex => ".codex",
             HarnessDir::Opencode => ".opencode",
+            HarnessDir::Copilot => ".github",
+            HarnessDir::Gemini => ".gemini",
         }
     }
 
-    /// Iterate over all five known harness variants in declaration order.
-    pub fn all() -> [HarnessDir; 5] {
+    /// Iterate over every known harness variant in declaration order.
+    pub fn all() -> [HarnessDir; 7] {
         [
             HarnessDir::Claude,
             HarnessDir::Cursor,
             HarnessDir::Kiro,
             HarnessDir::Codex,
             HarnessDir::Opencode,
+            HarnessDir::Copilot,
+            HarnessDir::Gemini,
         ]
     }
 }
 
-/// Scans `workspace_root` for the five known harness directories and returns
+/// Scans `workspace_root` for every known harness directory and returns
 /// every one that is present as a `(HarnessDir, PathBuf)` pair.
 ///
 /// Only directories that actually exist on the filesystem are returned; the
@@ -85,6 +99,8 @@ pub enum LayoutMatch {
 /// | Kiro      | At least one `.md`, `.txt` or `.json` file.                       |
 /// | Codex     | A `plugin.json` file, or at least one `.toml` agent file.         |
 /// | Opencode  | At least one `.toml` or `.yaml`/`.yml` file (agent definitions).  |
+/// | Copilot   | At least one `.md` file (`<id>.agent.md` exports).                |
+/// | Gemini    | At least one `.md` file.                                          |
 ///
 /// Returns [`LayoutMatch::NoMatch`] for any I/O errors so callers can treat
 /// an unreadable directory as "skip with warning".
@@ -108,6 +124,10 @@ pub fn validate_harness_layout(dir: &HarnessDir, path: &Path) -> LayoutMatch {
             LayoutMatch::NoMatch => has_file_with_extensions(path, &[".toml"]),
         },
         HarnessDir::Opencode => has_file_with_extensions(path, &[".toml", ".yaml", ".yml"]),
+        // copilot exports write `.github/agents/<id>.agent.md`; gemini exports
+        // write `.gemini/agents/<id>.md`.
+        HarnessDir::Copilot => has_file_with_extensions(path, &[".md"]),
+        HarnessDir::Gemini => has_file_with_extensions(path, &[".md"]),
     }
 }
 
@@ -174,8 +194,10 @@ mod tests {
         );
     }
 
+    /// Count derived from `HarnessDir::all()` rather than frozen, so adding a
+    /// harness variant does not break this test.
     #[test]
-    fn detect_all_five_harness_dirs() {
+    fn detect_all_harness_dirs() {
         let tmp = TempDir::new().unwrap();
         for h in HarnessDir::all() {
             fs::create_dir(tmp.path().join(h.dir_name())).unwrap();
@@ -183,8 +205,8 @@ mod tests {
         let result = detect_harness_dirs(tmp.path());
         assert_eq!(
             result.len(),
-            5,
-            "expected 5 harness dirs, got {}",
+            HarnessDir::all().len(),
+            "expected every known harness dir, got {}",
             result.len()
         );
         let found: Vec<&HarnessDir> = result.iter().map(|(h, _)| h).collect();
@@ -193,6 +215,8 @@ mod tests {
         assert!(found.contains(&&HarnessDir::Kiro));
         assert!(found.contains(&&HarnessDir::Codex));
         assert!(found.contains(&&HarnessDir::Opencode));
+        assert!(found.contains(&&HarnessDir::Copilot));
+        assert!(found.contains(&&HarnessDir::Gemini));
     }
 
     #[test]
@@ -466,6 +490,50 @@ mod tests {
         );
     }
 
+    /// Regression: `vfa-export-agents --platform copilot` writes
+    /// `.github/agents/<id>.agent.md`, which had no HarnessDir variant at all,
+    /// so the scanner never looked at it.
+    #[test]
+    fn copilot_layout_matches_exported_agent_markdown() {
+        let tmp = TempDir::new().unwrap();
+        let dir = tmp.path().join(".github").join("agents");
+        fs::create_dir_all(&dir).unwrap();
+        fs::write(
+            dir.join("aws-iam-least-privilege-review-agent.agent.md"),
+            "---\nname: IAM\n---\n",
+        )
+        .unwrap();
+        assert_eq!(
+            validate_harness_layout(&HarnessDir::Copilot, &dir),
+            LayoutMatch::Matches
+        );
+    }
+
+    /// Regression: `vfa-export-agents --platform gemini` writes
+    /// `.gemini/agents/<id>.md`, likewise previously invisible.
+    #[test]
+    fn gemini_layout_matches_exported_markdown() {
+        let tmp = TempDir::new().unwrap();
+        let dir = tmp.path().join(".gemini").join("agents");
+        fs::create_dir_all(&dir).unwrap();
+        fs::write(
+            dir.join("aws-iam-least-privilege-review-agent.md"),
+            "---\nname: IAM\n---\n",
+        )
+        .unwrap();
+        assert_eq!(
+            validate_harness_layout(&HarnessDir::Gemini, &dir),
+            LayoutMatch::Matches
+        );
+    }
+
+    #[test]
+    fn all_variants_have_distinct_dir_names() {
+        let names: Vec<&str> = HarnessDir::all().iter().map(|h| h.dir_name()).collect();
+        let unique: std::collections::HashSet<&&str> = names.iter().collect();
+        assert_eq!(names.len(), unique.len(), "dir_name collision: {names:?}");
+    }
+
     #[test]
     fn codex_layout_no_match_empty_dir() {
         let tmp = TempDir::new().unwrap();
@@ -558,7 +626,29 @@ mod tests {
     }
 
     #[test]
-    fn harness_dir_all_returns_five_variants() {
-        assert_eq!(HarnessDir::all().len(), 5);
+    /// `all()` drives `detect_harness_dirs`, so a variant missing from it is
+    /// invisible to the scanner. Assert the membership rather than a count: a
+    /// bare length check passes just as happily when someone swaps one variant
+    /// for another.
+    fn harness_dir_all_lists_every_variant() {
+        let all = HarnessDir::all();
+        for expected in [
+            HarnessDir::Claude,
+            HarnessDir::Cursor,
+            HarnessDir::Kiro,
+            HarnessDir::Codex,
+            HarnessDir::Opencode,
+            HarnessDir::Copilot,
+            HarnessDir::Gemini,
+        ] {
+            assert!(
+                all.contains(&expected),
+                "HarnessDir::all() is missing {expected:?}"
+            );
+        }
+        assert!(
+            all.iter().all(|h| h.dir_name().starts_with('.')),
+            "every harness dir_name must be dot-prefixed"
+        );
     }
 }

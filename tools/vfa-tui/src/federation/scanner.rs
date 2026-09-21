@@ -149,7 +149,10 @@ impl CatalogIndex {
                 .to_string();
 
             // Register with several extensions so all harness types can match.
-            for ext in &[".md", ".json", ".toml", ".yaml", ".yml"] {
+            // `.agent.md` is the copilot export convention
+            // (`.github/agents/<id>.agent.md`); without it the basename never
+            // matched and copilot exports raised only one detection signal.
+            for ext in &[".md", ".agent.md", ".json", ".toml", ".yaml", ".yml"] {
                 let key = format!("{stem}{ext}");
                 basename_to_id.entry(key).or_insert_with(|| id.clone());
             }
@@ -301,6 +304,8 @@ impl WorkspaceScanner {
     /// | Kiro      | `*.md`, `*.json`               |
     /// | Codex     | `plugin.json`, `*.toml`        |
     /// | Opencode  | `*.toml`, `*.yaml`, `*.yml`    |
+    /// | Copilot   | `*.md`                         |
+    /// | Gemini    | `*.md`                         |
     ///
     /// Validates the layout before walking (Req 7.6); returns empty vec with a
     /// `warn!` if the layout does not match any known pattern.
@@ -553,6 +558,8 @@ impl WorkspaceScanner {
             HarnessDir::Opencode => {
                 name.ends_with(".toml") || name.ends_with(".yaml") || name.ends_with(".yml")
             }
+            HarnessDir::Copilot => name.ends_with(".md"),
+            HarnessDir::Gemini => name.ends_with(".md"),
         }
     }
 }
