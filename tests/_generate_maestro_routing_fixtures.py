@@ -26,6 +26,7 @@ from __future__ import annotations
 
 import json
 import re
+import sys
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -429,6 +430,19 @@ def stress_test_fixtures(provider: str, taxonomy: dict) -> list[tuple[str, dict,
     return fixtures
 
 
+# Finding T2: adversarial and happy-path expectations are produced by the same
+# evaluator the suite later checks against, and this generator clears and
+# rewrites every expected/ file. A regression in evaluate() would be laundered
+# into the accepted baseline on the next regeneration, and the suite would pass
+# against it. Reviewed expectations are now frozen: an answer that changed for
+# an existing fixture is refused unless a human explicitly accepts it.
+ACCEPT_BASELINE_CHANGES = False
+
+
+class BaselineChanged(RuntimeError):
+    """Regeneration would rewrite an already-reviewed expectation."""
+
+
 def write_provider(provider: str, agents: list[dict]) -> int:
     """Generate taxonomy + fixtures for one provider. Returns fixture count."""
     # Lazy import of the grader so we can self-baseline adversarial fixtures.
@@ -445,15 +459,22 @@ def write_provider(provider: str, agents: list[dict]) -> int:
     expected_dir.mkdir(parents=True, exist_ok=True)
 
     taxonomy = build_taxonomy(provider, agents)
-    (fixture_dir / "taxonomy.json").write_text(json.dumps(taxonomy, indent=2) + "\n")
 
-    for old in inputs_dir.glob("*.json"):
-        old.unlink()
-    for old in expected_dir.glob("*.json"):
-        old.unlink()
+    # Read the reviewed expectations BEFORE anything is written or deleted, and
+    # do not mutate the tree until every fixture has been compared. The previous
+    # order cleared inputs/ and expected/ first, so raising part-way through left
+    # the provider's fixtures half-deleted.
+    frozen: dict[str, dict] = {}
+    for existing in expected_dir.glob("*.json"):
+        try:
+            frozen[existing.stem] = json.loads(existing.read_text())
+        except json.JSONDecodeError:
+            pass
 
     live_guards = set(taxonomy.get("live_guards", []))
     fixtures = stress_test_fixtures(provider, taxonomy)
+    planned: list[tuple[str, dict, dict]] = []
+    drifted: list[str] = []
     for name, input_doc, expected_doc, tags in fixtures:
         # For adversarial fixtures the expected route is *what the grader
         # produces*, on the principle that adversarial prose must not change
@@ -477,12 +498,46 @@ def write_provider(provider: str, agents: list[dict]) -> int:
             target = expected_doc["route"][0]
             if target in got["route"] and got["mode"] != "unclassified":
                 expected_doc = {"route": sorted(got["route"]), "mode": got["mode"]}
+        previous = frozen.get(name)
+        if previous is not None and previous != expected_doc:
+            drifted.append(
+                f"  [{provider}/{name}]\n"
+                f"    reviewed: {previous}\n"
+                f"    current : {expected_doc}"
+            )
+        planned.append((name, input_doc, expected_doc))
+
+    if drifted and not ACCEPT_BASELINE_CHANGES:
+        raise BaselineChanged(
+            f"{len(drifted)} reviewed expectation(s) for {provider!r} would be "
+            f"rewritten by the current evaluator:\n"
+            + "\n".join(drifted)
+            + "\n\nRegenerating would make the new answers the baseline and the "
+            "suite would pass against them. Confirm each new routing is correct, "
+            "then re-run with --accept-baseline-changes. Nothing was written."
+        )
+
+    # Every fixture compared cleanly; only now mutate the tree.
+    (fixture_dir / "taxonomy.json").write_text(json.dumps(taxonomy, indent=2) + "\n")
+    for old_file in inputs_dir.glob("*.json"):
+        old_file.unlink()
+    for old_file in expected_dir.glob("*.json"):
+        old_file.unlink()
+    for name, input_doc, expected_doc in planned:
         (inputs_dir / f"{name}.json").write_text(json.dumps(input_doc, indent=2) + "\n")
         (expected_dir / f"{name}.json").write_text(json.dumps(expected_doc, indent=2) + "\n")
     return len(fixtures)
 
 
 def main() -> int:
+    global ACCEPT_BASELINE_CHANGES
+    if "--accept-baseline-changes" in sys.argv[1:]:
+        ACCEPT_BASELINE_CHANGES = True
+        print(
+            "WARNING: --accept-baseline-changes given; reviewed expectations may "
+            "be rewritten from current evaluator output."
+        )
+
     agents = json.loads(AGENTS_CATALOG.read_text())
     providers = discover_maestro_providers()
     print(f"Discovered {len(providers)} maestro providers: {providers}")
