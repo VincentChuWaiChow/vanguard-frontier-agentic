@@ -35427,7 +35427,7 @@
     },
     {
       "tree": "catalog",
-      "aggregate_sha256": "4ec05eace49224a001f9b785d0189af83e01c9bec7d5d14acc0188f19efa9be8",
+      "aggregate_sha256": "2568b6f5a3a3e102d662c9aff5fe1d4a2ed59d1cc5903f1178831e82b47f6785",
       "files": [
         {
           "path": "catalog/AGENTS.md",
@@ -35451,8 +35451,8 @@
         },
         {
           "path": "catalog/mcp-references.json",
-          "sha256": "6df8a6511d1d31c35144fa1196171c54321f9b23ea91945c9174e9c96edc89fb",
-          "bytes": 3476
+          "sha256": "874e80b522ca7f8d9a102b433590f5ec42e2670898f69dc561a91120a5a00b39",
+          "bytes": 4187
         },
         {
           "path": "catalog/model-assignments.json",
@@ -36700,7 +36700,7 @@
     },
     {
       "tree": "tests",
-      "aggregate_sha256": "bbf5e883cf84540bcb2d521e7ce4ae266a447d6eccaba92f79069dd662247d4f",
+      "aggregate_sha256": "f794dd393d840fd14da3ab08fdeb407ad8a6e471463c274149b6933306f1838d",
       "files": [
         {
           "path": "tests/AGENTS.md",
@@ -47129,8 +47129,8 @@
         },
         {
           "path": "tests/validate-mcp-trust-matrix.py",
-          "sha256": "6925ee1f24b6237321f080332d328652e5d336d3f4cd7b95409bc8da95c7a742",
-          "bytes": 2952
+          "sha256": "2dbc2fe82e1da56ddeda3d897dab7f2a792fd53a840dbd566ada63bd9cd6a949",
+          "bytes": 5532
         },
         {
           "path": "tests/validate-model-params.py",
@@ -47242,5 +47242,5 @@
       "bytes": 8340
     }
   ],
-  "aggregate_sha256": "324ae821f8a131721e106aa46c1a91570acb710bfbc179ab37a9c535bb274897"
+  "aggregate_sha256": "c83089779030621b3dd567cd10d185ae1fb536cf115075fa6a20a04a71c89b1c"
 }

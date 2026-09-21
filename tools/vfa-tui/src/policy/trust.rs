@@ -87,6 +87,10 @@ pub fn log_trust_overrides(
 #[derive(Debug, Clone)]
 struct TrustViolation {
     mcp_id: String,
+    /// The MCP declared no trust matrix, so its posture is unknown rather than
+    /// known-safe. Treated as a violation: a zero-trust boundary cannot be
+    /// satisfied by metadata that does not exist.
+    unknown_trust: bool,
     exceeded_mutation: bool,
     exceeded_egress: bool,
     exceeded_credentials: bool,
@@ -136,7 +140,8 @@ pub fn evaluate_trust(
         };
 
         let tv = check_mcp_against_boundary(mcp_ref, boundary, workspace_overrides);
-        if tv.exceeded_mutation || tv.exceeded_egress || tv.exceeded_credentials {
+        if tv.unknown_trust || tv.exceeded_mutation || tv.exceeded_egress || tv.exceeded_credentials
+        {
             let details = build_violation_details(&tv);
             violations.push(PolicyViolation {
                 rule: synthetic_rule.clone(),
@@ -175,7 +180,11 @@ pub fn check_trust_boundary_rule(
         .filter_map(|a| {
             let mcp_ref = catalog.mcp_refs.iter().find(|m| m.id == a.asset_id)?;
             let tv = check_mcp_against_boundary(mcp_ref, &boundary, workspace_overrides);
-            if tv.exceeded_mutation || tv.exceeded_egress || tv.exceeded_credentials {
+            if tv.unknown_trust
+                || tv.exceeded_mutation
+                || tv.exceeded_egress
+                || tv.exceeded_credentials
+            {
                 Some(format!(
                     "'{}': {}",
                     mcp_ref.id,
@@ -206,9 +215,12 @@ fn check_mcp_against_boundary(
     let tm = match &mcp.trust_matrix {
         Some(tm) => tm,
         None => {
-            // No trust matrix → treat as safe (unknown is not flagged)
+            // No trust matrix → UNKNOWN, not safe. Silently passing an MCP
+            // whose mutation/egress/credential posture was never declared let
+            // undeclared capability satisfy a zero-trust boundary.
             return TrustViolation {
                 mcp_id: mcp.id.clone(),
+                unknown_trust: true,
                 exceeded_mutation: false,
                 exceeded_egress: false,
                 exceeded_credentials: false,
@@ -232,6 +244,8 @@ fn check_mcp_against_boundary(
         );
         return TrustViolation {
             mcp_id: mcp.id.clone(),
+            // A matrix exists on this path, so the posture is known.
+            unknown_trust: false,
             exceeded_mutation: false,
             exceeded_egress: false,
             exceeded_credentials: false,
@@ -246,6 +260,7 @@ fn check_mcp_against_boundary(
 
     TrustViolation {
         mcp_id: mcp.id.clone(),
+        unknown_trust: false,
         exceeded_mutation: raw_mutation,
         exceeded_egress: raw_egress,
         exceeded_credentials: raw_credentials,
@@ -256,6 +271,9 @@ fn check_mcp_against_boundary(
 
 fn build_violation_details(tv: &TrustViolation) -> String {
     let mut parts = Vec::new();
+    if tv.unknown_trust {
+        parts.push("no trust_matrix declared (posture unknown)");
+    }
     if tv.exceeded_mutation {
         parts.push("mutation_capable exceeds boundary");
     }
@@ -351,6 +369,35 @@ mod tests {
             violations.is_empty(),
             "expected no violations, got {:?}",
             violations
+        );
+    }
+
+    /// Regression: an MCP in the catalog with no trust_matrix used to return
+    /// all-false from the boundary check, so undeclared capability satisfied a
+    /// zero-trust boundary. Every MCP in catalog/mcp-references.json was in
+    /// exactly that state, which made the whole trust gate decorative.
+    #[test]
+    fn undeclared_trust_matrix_is_a_violation_not_a_pass() {
+        let mut mcp = make_mcp("undeclared-server", false, false, false);
+        mcp.trust_matrix = None;
+        let store = store_with_mcp(mcp);
+        let installed = vec![make_installed("undeclared-server")];
+        // Strictest possible boundary: nothing is permitted.
+        let boundary = TrustBoundaryPolicy {
+            max_mutation: false,
+            max_egress: false,
+            max_credentials: false,
+        };
+        let violations = evaluate_trust(&installed, &store, &boundary, "prod", &[]);
+        assert_eq!(
+            violations.len(),
+            1,
+            "an undeclared trust posture must not pass a zero-trust boundary"
+        );
+        let details = format!("{:?}", violations[0]);
+        assert!(
+            details.contains("no trust_matrix declared"),
+            "violation should name the undeclared posture, got {details}"
         );
     }
 
