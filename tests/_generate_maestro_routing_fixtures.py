@@ -443,8 +443,11 @@ class BaselineChanged(RuntimeError):
     """Regeneration would rewrite an already-reviewed expectation."""
 
 
-def write_provider(provider: str, agents: list[dict]) -> int:
-    """Generate taxonomy + fixtures for one provider. Returns fixture count."""
+def plan_provider(
+    provider: str, agents: list[dict]
+) -> tuple[dict, list[tuple[str, dict, dict]]]:
+    """Build one provider's taxonomy and fixtures and compare them against the
+    reviewed baseline. Writes nothing; raises `BaselineChanged` on drift."""
     # Lazy import of the grader so we can self-baseline adversarial fixtures.
     import importlib.util
     grader_path = Path(__file__).resolve().parent / "validate-maestro-routing.py"
@@ -471,10 +474,23 @@ def write_provider(provider: str, agents: list[dict]) -> int:
         except json.JSONDecodeError:
             pass
 
+    # The generator synthesises the INPUT as well as the expectation, so a
+    # fixture name can survive while the question underneath it changes
+    # completely. Comparing answers alone reported that as an evaluator
+    # regression, which is misleading: two different questions may each have a
+    # correct and different answer.
+    frozen_inputs: dict[str, dict] = {}
+    for existing in inputs_dir.glob("*.json"):
+        try:
+            frozen_inputs[existing.stem] = json.loads(existing.read_text())
+        except json.JSONDecodeError:
+            pass
+
     live_guards = set(taxonomy.get("live_guards", []))
     fixtures = stress_test_fixtures(provider, taxonomy)
     planned: list[tuple[str, dict, dict]] = []
     drifted: list[str] = []
+    reworded: list[str] = []
     for name, input_doc, expected_doc, tags in fixtures:
         # For adversarial fixtures the expected route is *what the grader
         # produces*, on the principle that adversarial prose must not change
@@ -499,25 +515,76 @@ def write_provider(provider: str, agents: list[dict]) -> int:
             if target in got["route"] and got["mode"] != "unclassified":
                 expected_doc = {"route": sorted(got["route"]), "mode": got["mode"]}
         previous = frozen.get(name)
-        if previous is not None and previous != expected_doc:
-            drifted.append(
-                f"  [{provider}/{name}]\n"
-                f"    reviewed: {previous}\n"
-                f"    current : {expected_doc}"
+        previous_input = frozen_inputs.get(name)
+        answer_changed = previous is not None and previous != expected_doc
+        input_changed = previous_input is not None and previous_input.get(
+            "task"
+        ) != input_doc.get("task")
+
+        # Only an expectation change blocks. That is T2's concern: a wrong route
+        # becoming the accepted baseline. An input-only change is the normal
+        # consequence of a catalog edit for a generated provider — the task text
+        # is stitched from the taxonomy — so halting on it would make this script
+        # un-runnable after any catalog change. Hand-curated providers are
+        # protected by the `skip` set in main(), not by blocking here.
+        if answer_changed:
+            report = [f"  [{provider}/{name}]"]
+            if input_changed:
+                report.append(
+                    "    the INPUT also changed — this fixture is a different\n"
+                    "    question now, so the two answers may both be correct\n"
+                    f"      reviewed task: {previous_input.get('task', '')[:140]}\n"
+                    f"      current  task: {input_doc.get('task', '')[:140]}"
+                )
+            report.append(
+                "    the expectation changed\n"
+                f"      reviewed: {previous}\n"
+                f"      current : {expected_doc}"
+            )
+            drifted.append("\n".join(report))
+        elif input_changed:
+            reworded.append(
+                f"  [{provider}/{name}] task reworded (same expectation)\n"
+                f"      reviewed: {previous_input.get('task', '')[:120]}\n"
+                f"      current : {input_doc.get('task', '')[:120]}"
             )
         planned.append((name, input_doc, expected_doc))
 
     if drifted and not ACCEPT_BASELINE_CHANGES:
         raise BaselineChanged(
-            f"{len(drifted)} reviewed expectation(s) for {provider!r} would be "
-            f"rewritten by the current evaluator:\n"
-            + "\n".join(drifted)
-            + "\n\nRegenerating would make the new answers the baseline and the "
-            "suite would pass against them. Confirm each new routing is correct, "
-            "then re-run with --accept-baseline-changes. Nothing was written."
+            f"{len(drifted)} reviewed fixture(s) for {provider!r} would be "
+            f"rewritten:\n" + "\n".join(drifted) + "\n\n"
+            "Regenerating would make the new values the baseline and the suite "
+            "would pass against them. Where only the expectation moved, confirm "
+            "the new routing is correct. Where the INPUT moved, the fixtures are "
+            "hand-curated and the generator is about to replace them with "
+            "token-stitched equivalents — add the provider to the `skip` set in "
+            "main() instead. Re-run with --accept-baseline-changes only once you "
+            "are sure. Nothing was written."
         )
 
-    # Every fixture compared cleanly; only now mutate the tree.
+    if reworded:
+        print(
+            f"NOTE {provider}: {len(reworded)} fixture(s) had their task text "
+            f"regenerated while the expectation held:"
+        )
+        for line in reworded:
+            print(line)
+
+    return taxonomy, planned
+
+
+def commit_provider(
+    provider: str, taxonomy: dict, planned: list[tuple[str, dict, dict]]
+) -> int:
+    """Write one provider's planned fixtures. Call only after every provider
+    has planned cleanly — see `main`."""
+    fixture_dir = FIXTURES_ROOT / f"{provider}-maestro-routing"
+    inputs_dir = fixture_dir / "inputs"
+    expected_dir = fixture_dir / "expected"
+    inputs_dir.mkdir(parents=True, exist_ok=True)
+    expected_dir.mkdir(parents=True, exist_ok=True)
+
     (fixture_dir / "taxonomy.json").write_text(json.dumps(taxonomy, indent=2) + "\n")
     for old_file in inputs_dir.glob("*.json"):
         old_file.unlink()
@@ -526,7 +593,15 @@ def write_provider(provider: str, agents: list[dict]) -> int:
     for name, input_doc, expected_doc in planned:
         (inputs_dir / f"{name}.json").write_text(json.dumps(input_doc, indent=2) + "\n")
         (expected_dir / f"{name}.json").write_text(json.dumps(expected_doc, indent=2) + "\n")
-    return len(fixtures)
+    return len(planned)
+
+
+def write_provider(provider: str, agents: list[dict]) -> int:
+    """Plan and immediately commit one provider. Kept for single-provider use;
+    `main` plans every provider first so one failure cannot leave the tree
+    half-regenerated."""
+    taxonomy, planned = plan_provider(provider, agents)
+    return commit_provider(provider, taxonomy, planned)
 
 
 def main() -> int:
@@ -542,10 +617,26 @@ def main() -> int:
     providers = discover_maestro_providers()
     print(f"Discovered {len(providers)} maestro providers: {providers}")
 
-    # Skip nvidia: it has hand-curated, semantically tighter fixtures.
-    skip = {"nvidia"}
+    # Providers whose fixtures are hand-curated rather than generated, and which
+    # this generator must therefore not clobber. Their inputs carry specific,
+    # realistic adversarial prose and two-digit names (01-, 02-) instead of the
+    # generator's token-stitched tasks and 001-happy- naming.
+    #
+    # accounting and dotnet were added after a regeneration attempt showed the
+    # generator rewrites the INPUT as well as the expectation, so a "changed
+    # answer" there was really a different question reusing a filename:
+    # dotnet/adv-instruction-injection asks by hand about "sync-over-async
+    # blocking calls and async await usage in our C# service", and regeneration
+    # would have replaced it with "review our Aspire setup". Declaring
+    # routing_keywords on those agents does not recover it either — the domain
+    # names and the task text are both derived differently.
+    skip = {"nvidia", "accounting", "dotnet"}
 
-    total = 0
+    # Two phases. Planning every provider before writing any of them means a
+    # baseline conflict in the twentieth provider cannot leave the first
+    # nineteen half-regenerated — which is exactly what happened before this
+    # split, leaving 261 modified files behind on a failed run.
+    plans: list[tuple[str, dict, list[tuple[str, dict, dict]]]] = []
     for provider in providers:
         if provider in skip:
             print(f"SKIP {provider} (hand-curated)")
@@ -554,7 +645,12 @@ def main() -> int:
         if not prov_agents:
             print(f"SKIP {provider} (no agents in catalog)")
             continue
-        count = write_provider(provider, prov_agents)
+        taxonomy, planned = plan_provider(provider, prov_agents)
+        plans.append((provider, taxonomy, planned))
+
+    total = 0
+    for provider, taxonomy, planned in plans:
+        count = commit_provider(provider, taxonomy, planned)
         print(f"  {provider}: {count} fixtures (taxonomy + inputs/expected)")
         total += count
 

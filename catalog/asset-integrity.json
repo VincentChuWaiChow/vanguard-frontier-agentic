@@ -36700,7 +36700,7 @@
     },
     {
       "tree": "tests",
-      "aggregate_sha256": "78a283ea126333abedfdbbaf3f74f5245bc36cfda7a6c915ded764d3d8c67b51",
+      "aggregate_sha256": "50ae19b35c62f29ad3aa936bc51bc2fe7e41381c4dc98ba73f5bd973c50f2fe2",
       "files": [
         {
           "path": "tests/AGENTS.md",
@@ -36709,8 +36709,8 @@
         },
         {
           "path": "tests/_generate_maestro_routing_fixtures.py",
-          "sha256": "5f03bb84d1bba20e21e7bbeab64f72cd672391ad39acad323f6c94db82a3dadf",
-          "bytes": 26473
+          "sha256": "98e277a03ff6ee33418f1f6c3a811b6908225409d7b35782a3be5fd6ec284ec7",
+          "bytes": 31350
         },
         {
           "path": "tests/eval-qa-cluster.mjs",
@@ -47242,5 +47242,5 @@
       "bytes": 8340
     }
   ],
-  "aggregate_sha256": "f5c8329b08b025a278957ce87507eee22d1a2bdb26e91e3ca048adbb476e9f8b"
+  "aggregate_sha256": "35561a5a3124764d9fb767a742d78c3024c380ef022747d28051af43f012c45a"
 }
