@@ -235,19 +235,21 @@ jobs:
           node -e "const p=require('./package.json'); console.log(JSON.stringify({name:p.name,version:p.version,repository:p.repository,publishConfig:p.publishConfig}, null, 2));"
           echo "::endgroup::"
 
-      - name: Auto-fix stale asset integrity
+      - name: Verify asset integrity is current
         run: |
-          python3 tests/validate-asset-integrity.py --write
-          if ! git diff --quiet catalog/asset-integrity.json; then
-            git config user.email "action@github.com"
-            git config user.name "GitHub Action"
-            git add catalog/asset-integrity.json
-            git commit -m "chore: regenerate asset integrity [skip ci]"
-            git push
-            echo "Pushed regenerated asset-integrity.json"
-          else
-            echo "Asset integrity is current — no fix needed"
+          # This step used to regenerate the manifest, commit it with
+          # [skip ci] and push, all BEFORE the Validate step ran. That ordering
+          # meant the release absorbed unexplained drift into its own baseline
+          # and could never reject it, and the rewritten commit deliberately
+          # skipped CI. Integrity drift at release time means a generator was
+          # not run before merge, which is a release blocker rather than
+          # something to repair unattended on the release branch.
+          if ! python3 tests/validate-asset-integrity.py; then
+            echo "::error::catalog/asset-integrity.json is stale at release time."
+            echo "Run 'npm run asset-integrity:write' on the release commit, review the diff, and merge it before releasing."
+            exit 1
           fi
+          echo "Asset integrity is current."
 
       - name: Validate
         run: |

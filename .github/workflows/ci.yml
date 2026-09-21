@@ -22,35 +22,26 @@ jobs:
         with:
           python-version: "3.x"
 
-      - name: Validate catalog
-        run: python3 tests/validate-catalog.py
+      - uses: actions/setup-node@820762786026740c76f36085b0efc47a31fe5020 # v7.0.0
+        with:
+          node-version: "22"
 
-      - name: Check skill manifest
-        run: python3 tests/validate-skill-manifest.py
+      - name: Install Node dependencies
+        run: npm ci --no-audit --no-fund
 
-      - name: Check asset integrity manifest
-        run: python3 tests/validate-asset-integrity.py
+      - name: Install Python validator dependencies
+        # validate:promotion-gatekeeper imports jsonschema and fails without it.
+        run: python3 -m pip install --quiet jsonschema
 
-      - name: Validate MCP trust matrix
-        run: python3 tests/validate-mcp-trust-matrix.py
-
-      - name: Reject lifecycle scripts
-        run: python3 tests/validate-no-lifecycle-scripts.py
-
-      # Version-parity gates: catch any drift between package.json (the single
-      # source of truth) and the generated plugin manifests on every PR, so a
-      # stale manifest can never reach master unnoticed.
-      - name: Check Claude plugin manifest parity
-        run: python3 tests/validate-plugin-manifest.py
-
-      - name: Check Cursor + Copilot marketplace parity
-        run: python3 tests/validate-multi-harness-marketplace.py
-
-      - name: Check Codex marketplace parity
-        run: python3 tests/validate-codex-marketplace.py
-
-      - name: Validate links (offline)
-        run: python3 tests/validate-links.py --offline
+      # Run the aggregate validation contract rather than a hand-picked subset.
+      # CI previously invoked nine validators individually while `npm run
+      # validate` chains 29, so twenty gates — model policy, model params,
+      # agent tool tiers, install coverage, maestro routing, skill coherence,
+      # board/readme counts, release notes and more — never ran on a pull
+      # request. Keeping the job id `validate` preserves the status-check name
+      # that the branch ruleset requires.
+      - name: Validate (full aggregate)
+        run: npm run validate
 
   fuzz:
     name: Property-based fuzz tests

@@ -12,11 +12,21 @@ on:
     paths:
       - 'tools/vfa-tui/**'
       - '.github/workflows/vfa-tui-ci.yml'
+      # The TUI deserialises catalog/*.json with strict, closed enums (e.g.
+      # models::provider::Provider).  A catalog- or schema-only change can
+      # therefore break `cargo test` without touching tools/vfa-tui, so those
+      # paths must trigger this gate too.
+      - 'catalog/**'
+      - 'schemas/**'
   push:
-    branches: [develop]
+    # The default branch is master; this previously listened on develop, so the
+    # Rust gate never ran on a default-branch push.
+    branches: [master]
     paths:
       - 'tools/vfa-tui/**'
       - '.github/workflows/vfa-tui-ci.yml'
+      - 'catalog/**'
+      - 'schemas/**'
 
 permissions:
   contents: read

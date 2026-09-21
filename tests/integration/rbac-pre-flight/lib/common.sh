@@ -218,6 +218,17 @@ report_guard() {
   local status_color="$_GREEN"
   local status_word="PASS"
 
+  # A skipped check is an assertion that was never made.  This harness is the
+  # privilege-creep regression gate for the least-privilege RBAC manifests that
+  # ship with the Kubernetes live-guard agents, so "could not check" must never
+  # render as "PASS" — an unreachable cluster or a failing impersonation would
+  # otherwise report a clean bill of health over zero executed checks.
+  if [ "$GUARD_SKIP" -gt 0 ] || [ "$GUARD_PASS" -eq 0 ]; then
+    status_color="$_YELLOW"
+    status_word="INCOMPLETE"
+  fi
+
+  # A real failure outranks an incomplete run.
   if [ "$GUARD_FAIL" -gt 0 ]; then
     status_color="$_RED"
     status_word="FAIL"
@@ -232,7 +243,8 @@ report_guard() {
   (( TOTAL_FAIL += GUARD_FAIL )) || true
   (( TOTAL_SKIP += GUARD_SKIP )) || true
 
-  [ "$GUARD_FAIL" -eq 0 ]  # returns 1 when there are failures
+  # Non-zero unless every check in this guard actually ran and passed.
+  [ "$GUARD_FAIL" -eq 0 ] && [ "$GUARD_SKIP" -eq 0 ] && [ "$GUARD_PASS" -gt 0 ]
 }
 
 # ---------------------------------------------------------------------------
@@ -240,13 +252,26 @@ report_guard() {
 # ---------------------------------------------------------------------------
 report_total() {
   printf '\n%b========================================%b\n' "$_CYAN" "$_RESET"
-  if [ "$TOTAL_FAIL" -eq 0 ]; then
-    printf '%bALL GUARDS PASSED%b  (%d passed, %d skipped)\n' \
-      "$_GREEN" "$_RESET" "$TOTAL_PASS" "$TOTAL_SKIP"
-  else
+  if [ "$TOTAL_FAIL" -gt 0 ]; then
     printf '%bFAILURES DETECTED%b  (%d passed, %d failed, %d skipped)\n' \
       "$_RED" "$_RESET" "$TOTAL_PASS" "$TOTAL_FAIL" "$TOTAL_SKIP"
+    printf '%b========================================%b\n' "$_CYAN" "$_RESET"
+    return 1
   fi
+
+  # Exit 2 == INCOMPLETE: distinct from both PASS and FAIL so a caller can tell
+  # "the manifests are clean" from "the checks never ran".
+  if [ "$TOTAL_SKIP" -gt 0 ] || [ "$TOTAL_PASS" -eq 0 ]; then
+    printf '%bINCOMPLETE%b  (%d passed, %d failed, %d skipped)\n' \
+      "$_YELLOW" "$_RESET" "$TOTAL_PASS" "$TOTAL_FAIL" "$TOTAL_SKIP"
+    printf '  %d check(s) did not execute; this run proves nothing about\n' "$TOTAL_SKIP"
+    printf '  privilege creep in the shipped RBAC manifests.\n'
+    printf '%b========================================%b\n' "$_CYAN" "$_RESET"
+    return 2
+  fi
+
+  printf '%bALL GUARDS PASSED%b  (%d passed, %d skipped)\n' \
+    "$_GREEN" "$_RESET" "$TOTAL_PASS" "$TOTAL_SKIP"
   printf '%b========================================%b\n' "$_CYAN" "$_RESET"
-  [ "$TOTAL_FAIL" -eq 0 ]
+  return 0
 }

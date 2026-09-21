@@ -3,7 +3,7 @@
 import fs from "node:fs";
 import path from "node:path";
 import process from "node:process";
-import { fileURLToPath } from "node:url";
+import { fileURLToPath, pathToFileURL } from "node:url";
 import { parseArgs as utilParseArgs } from "node:util";
 
 const repoRoot = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "..");
@@ -37,6 +37,13 @@ const PLATFORM_CONFIG = {
     ],
   },
 };
+
+// Security-critical validation patterns. These are exported so the
+// property-based fuzz suite can exercise the *shipped* definitions instead of
+// redeclaring its own copies, which silently drift from production.
+export const AGENT_ID_PATTERN = /^[a-z0-9][a-z0-9-]*$/;
+
+export const HARNESS_PATH_TRAVERSAL = /[\\/]\.\.[\\/]|^\.\.[\\/]|[\\/]\.\.$|^\.\.$/;
 
 const PLATFORM_ALIASES = {
   claude: "claude-code",
@@ -257,7 +264,7 @@ function loadAgents() {
   return { agents, byId };
 }
 
-function normalizePlatform(platform) {
+export function normalizePlatform(platform) {
   const lowered = platform.toLowerCase();
   return Object.hasOwn(PLATFORM_ALIASES, lowered) ? PLATFORM_ALIASES[lowered] : lowered;
 }
@@ -272,7 +279,7 @@ function ensurePlatform(platform) {
   return normalized;
 }
 
-function assertWithin(parent, child, label) {
+export function assertWithin(parent, child, label) {
   const resolvedParent = path.resolve(parent);
   const resolvedChild = path.resolve(child);
   const sep = path.sep;
@@ -518,13 +525,13 @@ function buildDestinations(agent, platform) {
     if (!relativeSource) {
       throw new Error(`Agent ${agent.id} does not have a ${variantKey} harness variant.`);
     }
-    if (typeof relativeSource !== "string" || /[\\/]\.\.[\\/]|^\.\.[\\/]|[\\/]\.\.$|^\.\.$/.test(relativeSource) || path.isAbsolute(relativeSource)) {
+    if (typeof relativeSource !== "string" || HARNESS_PATH_TRAVERSAL.test(relativeSource) || path.isAbsolute(relativeSource)) {
       throw new Error(
         `Agent ${agent.id} ${variantKey} harness path '${relativeSource}' is invalid: ` +
         `must be a relative path within the repository, no '..' traversal, no absolute paths.`
       );
     }
-    if (!/^[a-z0-9][a-z0-9-]*$/.test(agent.id)) {
+    if (!AGENT_ID_PATTERN.test(agent.id)) {
       throw new Error(
         `Agent id '${agent.id}' fails schema pattern ^[a-z0-9][a-z0-9-]*$. ` +
         `Cannot derive a safe destination filename.`
@@ -576,7 +583,7 @@ function main() {
 
   // Validate --provider early so the standalone path and the role-filter path
   // share the same error surface.
-  if (args.provider && !/^[a-z0-9][a-z0-9-]*$/.test(args.provider)) {
+  if (args.provider && !AGENT_ID_PATTERN.test(args.provider)) {
     throw new Error(`Invalid --provider value '${args.provider}'. Must match /^[a-z0-9][a-z0-9-]*$/.`);
   }
   if (args.provider) {
@@ -753,9 +760,16 @@ function main() {
   }
 }
 
-try {
-  main();
-} catch (error) {
-  console.error(error.message);
-  process.exit(1);
+// Run the CLI only when this file is the entry point. Without this guard the
+// module could not be imported by tests without executing an export.
+const invokedDirectly =
+  process.argv[1] && import.meta.url === pathToFileURL(process.argv[1]).href;
+
+if (invokedDirectly) {
+  try {
+    main();
+  } catch (error) {
+    console.error(error.message);
+    process.exit(1);
+  }
 }

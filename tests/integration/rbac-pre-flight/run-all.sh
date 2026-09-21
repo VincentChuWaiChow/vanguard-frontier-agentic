@@ -220,10 +220,10 @@ run_guards() {
   apply_rbac_manifests
   run_guards
 
-  # report_total exits 1 if any failures
-  if report_total; then
-    exit 0
-  else
-    exit 1
-  fi
+  # Propagate report_total's verdict verbatim so callers can distinguish the
+  # three states: 0 = every check ran and passed, 1 = real failures,
+  # 2 = INCOMPLETE (checks were skipped, so nothing was proven).
+  rc=0
+  report_total || rc=$?
+  exit "$rc"
 } 2>&1 | tee "$LOG_FILE"

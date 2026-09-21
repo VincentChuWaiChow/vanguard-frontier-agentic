@@ -101,7 +101,7 @@ impl IndexManager {
         })?;
 
         // Read current version.  Absent key = fresh database (0).  A present
-        // but unparseable value is NOT "fresh": silently treating it as 0
+        // but unparsable value is NOT "fresh": silently treating it as 0
         // re-ran every migration against an unknown schema.  A version newer
         // than this build understands is rejected rather than operated on.
         let stored_version: Option<String> = match self.write_conn.query_row(
