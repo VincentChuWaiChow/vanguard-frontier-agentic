@@ -70,7 +70,7 @@ A timestamped log is always written to `/tmp/rbac-preflight-<timestamp>.log`.
 
 ## How CI works
 
-The GitHub Actions workflow is at `ci/kind-rbac-preflight.yaml`. It triggers
+The GitHub Actions workflow is at `.github/workflows/rbac-pre-flight.yml`. It triggers
 on any change to:
 
 - `agents/**/references/least-privilege-rbac.yaml`
@@ -155,6 +155,8 @@ tests/integration/rbac-pre-flight/
     argocd-sync.sh           — argocd-sync guard
     rbac-mutation.sh         — rbac-mutation guard
     velero-restore.sh        — velero-restore guard
-  ci/
-    kind-rbac-preflight.yaml — GitHub Actions workflow
 ```
+
+The GitHub Actions workflow lives at `.github/workflows/rbac-pre-flight.yml`.
+It used to sit in a `ci/` directory here, where GitHub never reads workflows, so
+it had never run.

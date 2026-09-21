@@ -36700,7 +36700,7 @@
     },
     {
       "tree": "tests",
-      "aggregate_sha256": "0288832655327387e31552347bf6a256c38a0721734c18946a0a53c9f7982c37",
+      "aggregate_sha256": "78a283ea126333abedfdbbaf3f74f5245bc36cfda7a6c915ded764d3d8c67b51",
       "files": [
         {
           "path": "tests/AGENTS.md",
@@ -46974,13 +46974,8 @@
         },
         {
           "path": "tests/integration/rbac-pre-flight/README.md",
-          "sha256": "0fec3721db245762f4c7b2a45aa47d1c28693cccb9d14996136ea1c7ea683950",
-          "bytes": 5500
-        },
-        {
-          "path": "tests/integration/rbac-pre-flight/ci/kind-rbac-preflight.yaml",
-          "sha256": "5d5099d55af1b7d1dcb7249c1130e14b51c265cf144e7ddb116d109db1bd80db",
-          "bytes": 1490
+          "sha256": "cf3d5c1f8ef0b41ed1284bd2b9d1513209c5680b7fa3c0584c8180d43a1b5762",
+          "bytes": 5625
         },
         {
           "path": "tests/integration/rbac-pre-flight/guards/admission-policy.sh",
@@ -47247,5 +47242,5 @@
       "bytes": 8340
     }
   ],
-  "aggregate_sha256": "9540648d12b224756855294c62d41b5127c9b2b80b9b7f9c9996bf4c4d44cdf5"
+  "aggregate_sha256": "f5c8329b08b025a278957ce87507eee22d1a2bdb26e91e3ca048adbb476e9f8b"
 }
