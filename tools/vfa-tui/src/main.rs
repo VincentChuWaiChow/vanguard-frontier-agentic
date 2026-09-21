@@ -152,9 +152,30 @@ async fn main() -> anyhow::Result<()> {
                     let _ = std::fs::create_dir_all(parent);
                 }
             }
-            if let Ok(mgr) = persistence::index::IndexManager::open(&cli.index_path) {
-                let _ =
-                    headless::reporter::record_headless_audit(&mgr, &cli.report_types(), exit_code);
+            // Audit persistence stays non-blocking (Req 14.7) but must not be
+            // silent: a failure here previously left no trace at all, so an
+            // operator could believe a run was recorded when nothing was.
+            match persistence::index::IndexManager::open(&cli.index_path) {
+                Ok(mgr) => {
+                    if let Err(e) = headless::reporter::record_headless_audit(
+                        &mgr,
+                        &cli.report_types(),
+                        exit_code,
+                    ) {
+                        eprintln!(
+                            "[vfa-tui] WARNING: report completed but the audit record was \
+                             not written to {}: {e}",
+                            cli.index_path
+                        );
+                    }
+                }
+                Err(e) => {
+                    eprintln!(
+                        "[vfa-tui] WARNING: report completed but the audit index at {} \
+                         could not be opened: {e}",
+                        cli.index_path
+                    );
+                }
             }
 
             std::process::exit(exit_code as i32);
@@ -285,6 +306,13 @@ fn run_export_audit(cli: &Cli, _workspace_root: &std::path::Path) {
             std::process::exit(2);
         }
     };
+
+    // Verify before export: an export that silently emits a broken chain is
+    // worse than no export, because the output looks like attested evidence.
+    if let Err(e) = logger.verify_chain() {
+        eprintln!("[vfa-tui] refusing to export: audit chain integrity check failed: {e}");
+        std::process::exit(2);
+    }
 
     match logger.export_audit(format, out_path) {
         Ok(()) => {

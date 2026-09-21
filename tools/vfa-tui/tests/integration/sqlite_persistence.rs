@@ -7,6 +7,16 @@ use vfa_tui::models::audit::AuditEventType;
 use vfa_tui::persistence::audit::AuditLogger;
 use vfa_tui::persistence::index::IndexManager;
 
+/// Latest schema version this build knows about, derived from the migration
+/// table so adding a migration never breaks these assertions.
+fn latest_schema_version() -> u32 {
+    vfa_tui::persistence::schema::MIGRATIONS
+        .iter()
+        .map(|(v, _)| *v)
+        .max()
+        .expect("at least one migration")
+}
+
 fn db_path(dir: &tempfile::TempDir) -> String {
     dir.path()
         .join("index.sqlite")
@@ -17,10 +27,14 @@ fn db_path(dir: &tempfile::TempDir) -> String {
 #[test]
 fn fresh_open_migrates_to_latest_version() {
     let mgr = IndexManager::open_in_memory().expect("open in-memory");
-    // Four migrations are defined (001, 002, 003, 004 coverage_cache).
-    assert_eq!(mgr.schema_version, 4, "fresh db should migrate to v4");
+    // Every migration in the table must have been applied.
+    assert_eq!(
+        mgr.schema_version,
+        latest_schema_version(),
+        "fresh db should migrate to the latest known version"
+    );
     // Re-running migrate() is idempotent.
-    assert_eq!(mgr.migrate().expect("re-migrate"), 4);
+    assert_eq!(mgr.migrate().expect("re-migrate"), latest_schema_version());
 }
 
 #[test]
@@ -31,7 +45,7 @@ fn audit_entries_survive_restart() {
     // Session 1: open, write two audit entries.
     {
         let mgr = IndexManager::open(&path).expect("open 1");
-        assert_eq!(mgr.schema_version, 4);
+        assert_eq!(mgr.schema_version, latest_schema_version());
         let mut logger = AuditLogger::new(&mgr, String::new());
         logger
             .log(
@@ -55,7 +69,11 @@ fn audit_entries_survive_restart() {
     // hash chain must verify.
     {
         let mgr = IndexManager::open(&path).expect("open 2");
-        assert_eq!(mgr.schema_version, 4, "version preserved across restart");
+        assert_eq!(
+            mgr.schema_version,
+            latest_schema_version(),
+            "version preserved across restart"
+        );
 
         let conn = mgr.read_connection().expect("read conn");
         let count: i64 = conn

@@ -26,6 +26,12 @@ use crate::persistence::index::IndexManager;
 ///
 /// Maintains `last_hash` so each call to [`AuditLogger::log`] automatically
 /// threads the chain without additional DB round-trips.
+/// Hash-recipe marker stored in `audit_log.hash_version`.
+///
+/// Rows predating schema version 5 carry `1` (operator not hashed); rows this
+/// build writes carry `2`, binding the operator into the chain.
+pub const HASH_VERSION_WITH_OPERATOR: i64 = 2;
+
 pub struct AuditLogger<'a> {
     mgr: &'a IndexManager,
     /// Hash of the most-recently appended entry, or `""` for the first entry.
@@ -78,12 +84,13 @@ impl<'a> AuditLogger<'a> {
         let timestamp = Utc::now().format("%Y-%m-%dT%H:%M:%S%.3fZ").to_string();
         let details_json = serde_json::to_string(&details).unwrap_or_else(|_| "{}".to_string());
 
-        let entry_hash = Self::compute_hash(
+        let entry_hash = Self::compute_hash_v2(
             &self.last_hash,
             &timestamp,
             &event_type,
             subject,
             &details_json,
+            operator,
         );
 
         let event_type_str = serde_json::to_string(&event_type)
@@ -94,8 +101,9 @@ impl<'a> AuditLogger<'a> {
         let conn = self.mgr.write_conn();
         conn.execute(
             "INSERT INTO audit_log \
-             (timestamp, event_type, subject, details, operator, entry_hash, prev_hash) \
-             VALUES (?1, ?2, ?3, ?4, ?5, ?6, ?7)",
+             (timestamp, event_type, subject, details, operator, entry_hash, prev_hash, \
+              hash_version) \
+             VALUES (?1, ?2, ?3, ?4, ?5, ?6, ?7, ?8)",
             rusqlite::params![
                 timestamp,
                 event_type_str,
@@ -104,6 +112,7 @@ impl<'a> AuditLogger<'a> {
                 operator,
                 entry_hash,
                 self.last_hash,
+                HASH_VERSION_WITH_OPERATOR,
             ],
         )?;
 
@@ -127,8 +136,12 @@ impl<'a> AuditLogger<'a> {
     // Hash chain
     // -----------------------------------------------------------------------
 
-    /// Compute `SHA256(prev_hash || timestamp || event_type_str || subject || details_json)`
-    /// and return the lowercase hex string.
+    /// Compute the **v1 (legacy)** entry hash:
+    /// `SHA256(prev_hash || timestamp || event_type_str || subject || details_json)`.
+    ///
+    /// This recipe leaves `operator` unauthenticated.  It is retained only so
+    /// rows written before schema version 5 keep verifying; new entries use
+    /// [`compute_hash_v2`](Self::compute_hash_v2).
     pub fn compute_hash(
         prev_hash: &str,
         timestamp: &str,
@@ -155,6 +168,40 @@ impl<'a> AuditLogger<'a> {
         })
     }
 
+    /// Compute the **v2** entry hash, binding the acting operator into the
+    /// chain: `SHA256(prev || timestamp || event_type || subject || details || operator)`.
+    ///
+    /// Without the trailing operator field the stored actor on an entry could be
+    /// rewritten without breaking the chain, so the chain could not attest *who*
+    /// performed a recorded action.
+    pub fn compute_hash_v2(
+        prev_hash: &str,
+        timestamp: &str,
+        event_type: &AuditEventType,
+        subject: &str,
+        details_json: &str,
+        operator: &str,
+    ) -> String {
+        let event_str = serde_json::to_string(event_type)
+            .unwrap_or_default()
+            .trim_matches('"')
+            .to_string();
+
+        let mut hasher = Sha256::new();
+        hasher.update(prev_hash.as_bytes());
+        hasher.update(timestamp.as_bytes());
+        hasher.update(event_str.as_bytes());
+        hasher.update(subject.as_bytes());
+        hasher.update(details_json.as_bytes());
+        hasher.update(operator.as_bytes());
+
+        let result = hasher.finalize();
+        result.iter().fold(String::new(), |mut s, b| {
+            let _ = write!(s, "{b:02x}");
+            s
+        })
+    }
+
     // -----------------------------------------------------------------------
     // Chain verification (Req 14.8)
     // -----------------------------------------------------------------------
@@ -167,7 +214,7 @@ impl<'a> AuditLogger<'a> {
         let conn = self.mgr.write_conn();
         let mut stmt = conn.prepare(
             "SELECT id, timestamp, event_type, subject, details, operator, \
-                    entry_hash, prev_hash \
+                    entry_hash, prev_hash, hash_version \
              FROM audit_log ORDER BY id ASC",
         )?;
 
@@ -183,6 +230,7 @@ impl<'a> AuditLogger<'a> {
                 row.get::<_, String>(5)?, // operator
                 row.get::<_, String>(6)?, // entry_hash
                 row.get::<_, String>(7)?, // prev_hash
+                row.get::<_, i64>(8)?,    // hash_version
             ))
         })?;
 
@@ -193,9 +241,10 @@ impl<'a> AuditLogger<'a> {
                 event_type_str,
                 subject,
                 details_json,
-                _operator,
+                operator,
                 stored_hash,
                 stored_prev,
+                hash_version,
             ) = row_result?;
 
             // prev_hash in the row must match what we expect.
@@ -207,13 +256,26 @@ impl<'a> AuditLogger<'a> {
             let event_type: AuditEventType = serde_json::from_str(&format!("\"{event_type_str}\""))
                 .map_err(|_| TuiError::AuditChainBroken { entry_id: id })?;
 
-            let recomputed = Self::compute_hash(
-                &expected_prev,
-                &timestamp,
-                &event_type,
-                &subject,
-                &details_json,
-            );
+            // Dispatch on the recipe that produced the row so pre-migration
+            // entries keep verifying while new ones authenticate the operator.
+            let recomputed = if hash_version >= HASH_VERSION_WITH_OPERATOR {
+                Self::compute_hash_v2(
+                    &expected_prev,
+                    &timestamp,
+                    &event_type,
+                    &subject,
+                    &details_json,
+                    &operator,
+                )
+            } else {
+                Self::compute_hash(
+                    &expected_prev,
+                    &timestamp,
+                    &event_type,
+                    &subject,
+                    &details_json,
+                )
+            };
 
             if recomputed != stored_hash {
                 return Err(TuiError::AuditChainBroken { entry_id: id });

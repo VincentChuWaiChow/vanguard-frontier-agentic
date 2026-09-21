@@ -37,6 +37,7 @@ fn make_cli(index_path: &str) -> Cli {
         workspace_filter: None,
         rebuild_index: false,
         quiet: true,
+        allow_empty_policy: false,
         validate_config: false,
         export_audit: None,
         web: false,
@@ -67,9 +68,14 @@ fn headless_report_creates_queryable_db() {
 
     // Open the DB and verify the tables are queryable (schema was migrated).
     let mgr = IndexManager::open(&db_str).expect("open index after headless run");
+    let latest = vfa_tui::persistence::schema::MIGRATIONS
+        .iter()
+        .map(|(v, _)| *v)
+        .max()
+        .expect("at least one migration");
     assert_eq!(
-        mgr.schema_version, 4,
-        "schema must be at v4 after migration"
+        mgr.schema_version, latest,
+        "schema must be migrated to the latest known version"
     );
 
     // coverage_cache table must be queryable (may be empty — no workspaces).

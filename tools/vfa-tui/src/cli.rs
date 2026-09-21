@@ -124,6 +124,14 @@ pub struct Cli {
     #[arg(long)]
     pub quiet: bool,
 
+    /// Permit a headless report to run with no policy rules loaded.
+    ///
+    /// Without this flag an empty policy set is an operational error: a run
+    /// that evaluated nothing must not report 100% compliance.  Exploratory
+    /// runs opt in explicitly so that enforcement stays fail-closed.
+    #[arg(long)]
+    pub allow_empty_policy: bool,
+
     /// Parse all configuration files, report errors, and exit without running.
     #[arg(long)]
     pub validate_config: bool,

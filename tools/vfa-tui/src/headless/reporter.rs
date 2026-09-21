@@ -145,8 +145,16 @@ impl HeadlessReporter {
         let registry = match WorkspaceRegistry::load(&registry_path) {
             Ok(LoadResult::Loaded(r)) => r,
             Ok(LoadResult::NotFound(r)) => {
+                // A missing registry is a documented operational error (exit 2;
+                // see the exit-code contract in `cli.rs`).  Reporting it as a
+                // clean run let a mistyped `--registry` path read as success to
+                // every exit-code-only consumer.
+                findings.push(FindingSeverity::Operational);
                 if !self.quiet {
-                    eprintln!("[vfa-tui] workspace registry not found at {}; proceeding with 0 workspaces", registry_path.display());
+                    eprintln!(
+                        "[vfa-tui] workspace registry not found at {}; 0 workspaces in scope",
+                        registry_path.display()
+                    );
                 }
                 r
             }
@@ -204,6 +212,28 @@ impl HeadlessReporter {
                 crate::policy::parser::PolicyConfig::default()
             }
         };
+
+        // A report that evaluated no rules must not present itself as
+        // compliant.  `compliance_score(0, 0)` is 100.0 by definition, so
+        // without this guard a missing or empty policy file produced exit 0
+        // and "100.0%".  The parser stays lenient by design (Req 11.5); the
+        // enforcement decision belongs to the reporting layer.
+        if policy_config.rules.is_empty() && !cli.allow_empty_policy {
+            findings.push(FindingSeverity::Operational);
+            if !self.quiet {
+                let why = if policy_config.no_policies_file {
+                    "no policy file found at"
+                } else {
+                    "no usable policy rules in"
+                };
+                eprintln!(
+                    "[vfa-tui] {} {}; refusing to report compliance for 0 evaluated rules \
+                     (pass --allow-empty-policy for an exploratory run)",
+                    why,
+                    policy_path.display()
+                );
+            }
+        }
 
         // Check for unknown required_role references in rules.
         for rule in &policy_config.rules {
@@ -534,7 +564,14 @@ impl HeadlessReporter {
                 canonical_hashes,
                 canonical_versions,
             ),
-            ReportType::Violations => report_violations(all_violations, violations_dashboard),
+            ReportType::Violations => report_violations(
+                all_violations,
+                violations_dashboard,
+                per_workspace_evals
+                    .iter()
+                    .map(|e| e.results.len())
+                    .sum::<usize>(),
+            ),
             ReportType::Drift => report_drift(all_installed, canonical_hashes, canonical_versions),
             ReportType::Stale => report_stale(all_installed, canonical_versions),
             ReportType::Gates => report_gates(workspace_root),
@@ -741,6 +778,7 @@ fn compute_aggregate_coverage_score(matrix: &crate::models::coverage::CoverageMa
 fn report_violations(
     all_violations: &[crate::models::policy::PolicyViolation],
     dashboard: &crate::policy::violations::ViolationsDashboard,
+    rules_evaluated: usize,
 ) -> (Value, Vec<FindingSeverity>) {
     use crate::models::policy::Severity;
 
@@ -779,7 +817,16 @@ fn report_violations(
     let mut ranked: Vec<Value> = dashboard
         .ranked_workspaces
         .iter()
-        .map(|(ws, score)| json!({ "workspace": ws, "compliance_score": score }))
+        .map(|(ws, score)| {
+            // A score computed over zero rules is vacuous, not a pass; emit
+            // null rather than a reassuring 100.0.
+            let score = if rules_evaluated == 0 {
+                Value::Null
+            } else {
+                json!(score)
+            };
+            json!({ "workspace": ws, "compliance_score": score })
+        })
         .collect();
     ranked.sort_by(|a, b| {
         let as_ = a["compliance_score"].as_f64().unwrap_or(100.0);
@@ -788,6 +835,9 @@ fn report_violations(
     });
 
     let value = json!({
+        // Publish the denominator so a consumer can tell "nothing violated"
+        // apart from "nothing was checked".
+        "rules_evaluated": rules_evaluated,
         "total_violations": all_violations.len(),
         "critical_count": all_violations.iter().filter(|v| v.rule.severity == Severity::Critical).count(),
         "warning_count": all_violations.iter().filter(|v| v.rule.severity == Severity::Warning).count(),
