@@ -36700,7 +36700,7 @@
     },
     {
       "tree": "tests",
-      "aggregate_sha256": "7eb481358b16a7718d6cb574b0609c4ff190ee0df4f95beff8c9389bc51e2838",
+      "aggregate_sha256": "0288832655327387e31552347bf6a256c38a0721734c18946a0a53c9f7982c37",
       "files": [
         {
           "path": "tests/AGENTS.md",
@@ -47186,6 +47186,11 @@
           "path": "tests/validate-skill-manifest.py",
           "sha256": "963e8499da6e991cf84a5d6602a79d625c4f861b9c927f11a45782b7a23878cc",
           "bytes": 3543
+        },
+        {
+          "path": "tests/validate-tracked-secrets.py",
+          "sha256": "71c75fa99009ea35a478de5164a94b50633b80eb3a2b28860e61afd619291428",
+          "bytes": 5013
         }
       ]
     }
@@ -47233,8 +47238,8 @@
     },
     {
       "path": "package.json",
-      "sha256": "2ed2e159395af091da4a80aac76057ab6e7808633070fa4130004e91be1843d3",
-      "bytes": 7431
+      "sha256": "a7e4389e9894fcac45469e3b649bb42005ea229a19ae8a82bb0bbbeeafafe04c",
+      "bytes": 7544
     },
     {
       "path": ".releaserc.js",
@@ -47242,5 +47247,5 @@
       "bytes": 8340
     }
   ],
-  "aggregate_sha256": "e18ed0071cc8c1cc06e79a3d6c40997d404a980bf666d46fbe836f48190b2d4d"
+  "aggregate_sha256": "fddd2a22086e4afafa42dab3a785dee8b9ceb83c7896dc5e507a500e6e10d383"
 }

@@ -3,7 +3,7 @@
   "slug": "triage-residual-findings-remediation",
   "created_at": "2026-09-21T00:00:00+04:00",
   "updated_at": "2026-09-21T00:00:00+04:00",
-  "status": "running",
+  "status": "complete",
   "mode": "delegated",
   "baseline_ref": "880c6fb9e749e9804add9950ba8b3c41af05a0f9",
   "risk_level": "medium",
@@ -29,28 +29,57 @@
   "packets": [
     {
       "id": "01-export-detection-contract",
-      "status": "dispatched",
+      "status": "complete",
       "owner": "read-only-agent",
       "write_scope": [],
       "result_path": "results/01-export-detection-contract.md"
     },
     {
       "id": "02-routing-fixture-independence",
-      "status": "dispatched",
+      "status": "complete",
       "owner": "read-only-agent",
       "write_scope": [],
       "result_path": "results/02-routing-fixture-independence.md"
     },
     {
       "id": "03-secret-scan-coverage",
-      "status": "dispatched",
+      "status": "complete",
       "owner": "read-only-agent",
       "write_scope": [],
       "result_path": "results/03-secret-scan-coverage.md"
     }
   ],
   "verification": {
-    "status": "pending",
-    "checks": []
+    "status": "checked",
+    "checks": [
+      {
+        "name": "Full validation",
+        "command": "npm run validate",
+        "required": true,
+        "status": "pending",
+        "evidence": ""
+      },
+      {
+        "name": "Spell lint",
+        "command": "npm run lint:spell",
+        "required": true,
+        "status": "pending",
+        "evidence": ""
+      },
+      {
+        "name": "Markdown lint",
+        "command": "npx markdownlint-cli2",
+        "required": true,
+        "status": "pending",
+        "evidence": ""
+      },
+      {
+        "name": "Rust gates",
+        "command": "cargo fmt --check && cargo clippy -D warnings && cargo test",
+        "required": true,
+        "status": "pending",
+        "evidence": ""
+      }
+    ]
   }
 }
