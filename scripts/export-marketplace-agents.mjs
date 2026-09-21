@@ -294,17 +294,57 @@ function ensurePlatform(platform) {
  * spec mentioned is omitted. Two exports of the same catalog produce identical
  * bytes, which keeps content hashing and drift detection meaningful.
  */
+/**
+ * Reserved key carrying export metadata in formats with no comment syntax.
+ *
+ * Mirrors `JSON_EXPORT_KEY` in tools/vfa-tui/src/federation/scanner.rs. The
+ * `x-` prefix marks it as an extension field rather than part of the harness's
+ * own schema, which is the usual hedge against a third-party parser that
+ * enforces a fixed key set.
+ */
+export const JSON_EXPORT_KEY = "x-vfa-export";
+
 export function exportMetadataLine(assetId, version) {
   const payload = version ? { id: assetId, version } : { id: assetId };
   return `# VFA-EXPORT: ${JSON.stringify(payload)}`;
 }
 
 /**
+ * Record export metadata in a JSON document under the reserved key.
+ *
+ * JSON has no comment syntax, so the `# VFA-EXPORT:` line the other formats use
+ * cannot appear here. The key is spliced in directly after the opening brace so
+ * every other byte of the file is preserved: these harness files are
+ * hand-authored and densely formatted, and re-serialising them would rewrite
+ * the whole document for one added field.
+ *
+ * Fails safe. If splicing produced anything that is not valid JSON the original
+ * content is returned unchanged, because a scanner signal is never worth
+ * corrupting an agent definition.
+ */
+function injectJsonExportMetadata(content, assetId, version) {
+  const trimmed = content.trimStart();
+  if (!trimmed.startsWith("{")) return content;
+
+  const payload = JSON.stringify(version ? { id: assetId, version } : { id: assetId });
+  const lead = content.slice(0, content.length - trimmed.length);
+  const body = trimmed.slice(1);
+  const separator = body.trimStart().startsWith("}") ? "" : ",";
+  const candidate = `${lead}{${JSON.stringify(JSON_EXPORT_KEY)}:${payload}${separator}${body}`;
+
+  try {
+    JSON.parse(candidate);
+  } catch {
+    return content;
+  }
+  return candidate;
+}
+
+/**
  * Insert the marker in a way each destination format actually tolerates.
  *
- * - `.json` is skipped: neither `#` nor `//` is legal JSON, and corrupting a
- *   kiro-cli agent file to satisfy a scanner would be a worse bug than the one
- *   being fixed.
+ * - `.json` carries the payload under the reserved `x-vfa-export` key, since
+ *   neither `#` nor `//` is legal JSON.
  * - Markdown carries YAML frontmatter, where a `#` line is a valid comment and
  *   renders as nothing. Prepending above the opening `---` would instead break
  *   frontmatter parsing for every harness that reads it.
@@ -313,8 +353,12 @@ export function exportMetadataLine(assetId, version) {
  * Idempotent: re-exporting over a previous export does not stack markers.
  */
 export function injectExportMetadata(content, destination, assetId, version) {
-  if (content.includes("VFA-EXPORT:")) return content;
-  if (destination.endsWith(".json")) return content;
+  if (content.includes("VFA-EXPORT:") || content.includes(JSON_EXPORT_KEY)) {
+    return content;
+  }
+  if (destination.endsWith(".json")) {
+    return injectJsonExportMetadata(content, assetId, version);
+  }
 
   const line = exportMetadataLine(assetId, version);
   if (destination.endsWith(".md")) {

@@ -81,8 +81,8 @@ pub enum LayoutMatch {
 /// | Harness   | Recognised layout signal                                           |
 /// |-----------|-------------------------------------------------------------------|
 /// | Claude    | At least one `.md` file (agent ID encoded in filename).           |
-/// | Cursor    | At least one `.json` file (config referencing agent paths).       |
-/// | Kiro      | At least one `.md` or `.txt` file (steering files).               |
+/// | Cursor    | At least one `.json` or `.md` file.                               |
+/// | Kiro      | At least one `.md`, `.txt` or `.json` file.                       |
 /// | Codex     | A `plugin.json` file, or at least one `.toml` agent file.         |
 /// | Opencode  | At least one `.toml` or `.yaml`/`.yml` file (agent definitions).  |
 ///
@@ -91,8 +91,14 @@ pub enum LayoutMatch {
 pub fn validate_harness_layout(dir: &HarnessDir, path: &Path) -> LayoutMatch {
     match dir {
         HarnessDir::Claude => has_file_with_extensions(path, &[".md"]),
-        HarnessDir::Cursor => has_file_with_extensions(path, &[".json"]),
-        HarnessDir::Kiro => has_file_with_extensions(path, &[".md", ".txt"]),
+        // cursor exports write `.cursor/agents/<id>.md`, not JSON, so a
+        // `.json`-only layout rejected a correct export.
+        HarnessDir::Cursor => has_file_with_extensions(path, &[".json", ".md"]),
+        // `.kiro/agents` receives both harnesses: kiro-ide writes `.md` and
+        // kiro-cli writes `.json`. Accepting only `.md`/`.txt` meant a
+        // kiro-cli-only export failed layout validation and its agents were
+        // reported as not installed.
+        HarnessDir::Kiro => has_file_with_extensions(path, &[".md", ".txt", ".json"]),
         // `vfa-export-agents --platform codex` writes `.codex/agents/<id>.toml`
         // and never a plugin.json, so requiring plugin.json alone meant a
         // correctly exported Codex workspace failed layout validation and its
@@ -285,12 +291,33 @@ mod tests {
         );
     }
 
+    /// Contract change: this previously asserted that a `.md` file must NOT
+    /// satisfy the Cursor layout, which contradicted the exporter — cursor
+    /// exports are `.cursor/agents/<id>.md`, so the rule rejected every correct
+    /// export. Markdown now satisfies it.
+    ///
+    /// The original intent, that a stray document should not be mistaken for an
+    /// installed asset, is preserved elsewhere and more strongly: layout is only
+    /// a cheap pre-filter for walking a directory, and confirmation still
+    /// requires two independent detection signals, which a readme has neither of.
     #[test]
-    fn cursor_layout_no_match_md_only() {
+    fn cursor_layout_matches_markdown_because_exports_are_markdown() {
         let tmp = TempDir::new().unwrap();
         let cursor_dir = tmp.path().join(".cursor");
         fs::create_dir(&cursor_dir).unwrap();
         fs::write(cursor_dir.join("readme.md"), "docs").unwrap();
+        assert_eq!(
+            validate_harness_layout(&HarnessDir::Cursor, &cursor_dir),
+            LayoutMatch::Matches
+        );
+    }
+
+    #[test]
+    fn cursor_layout_no_match_unrelated_extension() {
+        let tmp = TempDir::new().unwrap();
+        let cursor_dir = tmp.path().join(".cursor");
+        fs::create_dir(&cursor_dir).unwrap();
+        fs::write(cursor_dir.join("notes.txt"), "notes").unwrap();
         assert_eq!(
             validate_harness_layout(&HarnessDir::Cursor, &cursor_dir),
             LayoutMatch::NoMatch
@@ -325,12 +352,29 @@ mod tests {
         );
     }
 
+    /// Contract change: this previously asserted that a `.json` file must NOT
+    /// satisfy the Kiro layout. `.kiro/agents` receives both harnesses — kiro-ide
+    /// writes `.md` and kiro-cli writes `.json` — so the rule rejected every
+    /// correct kiro-cli export. JSON now satisfies it; confirmation still needs
+    /// two independent detection signals, which a bare config file lacks.
     #[test]
-    fn kiro_layout_no_match_json_only() {
+    fn kiro_layout_matches_json_because_kiro_cli_exports_json() {
         let tmp = TempDir::new().unwrap();
         let kiro_dir = tmp.path().join(".kiro");
         fs::create_dir(&kiro_dir).unwrap();
         fs::write(kiro_dir.join("config.json"), "{}").unwrap();
+        assert_eq!(
+            validate_harness_layout(&HarnessDir::Kiro, &kiro_dir),
+            LayoutMatch::Matches
+        );
+    }
+
+    #[test]
+    fn kiro_layout_no_match_unrelated_extension() {
+        let tmp = TempDir::new().unwrap();
+        let kiro_dir = tmp.path().join(".kiro");
+        fs::create_dir(&kiro_dir).unwrap();
+        fs::write(kiro_dir.join("notes.rst"), "notes").unwrap();
         assert_eq!(
             validate_harness_layout(&HarnessDir::Kiro, &kiro_dir),
             LayoutMatch::NoMatch
@@ -382,6 +426,42 @@ mod tests {
         .unwrap();
         assert_eq!(
             validate_harness_layout(&HarnessDir::Codex, &codex_agents),
+            LayoutMatch::Matches
+        );
+    }
+
+    /// Regression: `vfa-export-agents --platform kiro-cli` writes
+    /// `.kiro/agents/<id>.json`, which the `.md`/`.txt` layout rejected.
+    #[test]
+    fn kiro_layout_matches_exported_json_agents() {
+        let tmp = TempDir::new().unwrap();
+        let kiro_agents = tmp.path().join(".kiro").join("agents");
+        fs::create_dir_all(&kiro_agents).unwrap();
+        fs::write(
+            kiro_agents.join("aws-iam-least-privilege-review-agent.json"),
+            r#"{"x-vfa-export":{"id":"aws-iam-least-privilege-review-agent"},"name":"IAM"}"#,
+        )
+        .unwrap();
+        assert_eq!(
+            validate_harness_layout(&HarnessDir::Kiro, &kiro_agents),
+            LayoutMatch::Matches
+        );
+    }
+
+    /// Regression: `vfa-export-agents --platform cursor` writes
+    /// `.cursor/agents/<id>.md`, which the `.json`-only layout rejected.
+    #[test]
+    fn cursor_layout_matches_exported_md_agents() {
+        let tmp = TempDir::new().unwrap();
+        let cursor_agents = tmp.path().join(".cursor").join("agents");
+        fs::create_dir_all(&cursor_agents).unwrap();
+        fs::write(
+            cursor_agents.join("aws-iam-least-privilege-review-agent.md"),
+            "---\nname: IAM\n---\nbody\n",
+        )
+        .unwrap();
+        assert_eq!(
+            validate_harness_layout(&HarnessDir::Cursor, &cursor_agents),
             LayoutMatch::Matches
         );
     }
