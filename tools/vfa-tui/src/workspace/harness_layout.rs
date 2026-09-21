@@ -83,7 +83,7 @@ pub enum LayoutMatch {
 /// | Claude    | At least one `.md` file (agent ID encoded in filename).           |
 /// | Cursor    | At least one `.json` file (config referencing agent paths).       |
 /// | Kiro      | At least one `.md` or `.txt` file (steering files).               |
-/// | Codex     | A `plugin.json` file at the directory root.                       |
+/// | Codex     | A `plugin.json` file, or at least one `.toml` agent file.         |
 /// | Opencode  | At least one `.toml` or `.yaml`/`.yml` file (agent definitions).  |
 ///
 /// Returns [`LayoutMatch::NoMatch`] for any I/O errors so callers can treat
@@ -93,7 +93,14 @@ pub fn validate_harness_layout(dir: &HarnessDir, path: &Path) -> LayoutMatch {
         HarnessDir::Claude => has_file_with_extensions(path, &[".md"]),
         HarnessDir::Cursor => has_file_with_extensions(path, &[".json"]),
         HarnessDir::Kiro => has_file_with_extensions(path, &[".md", ".txt"]),
-        HarnessDir::Codex => has_exact_file(path, "plugin.json"),
+        // `vfa-export-agents --platform codex` writes `.codex/agents/<id>.toml`
+        // and never a plugin.json, so requiring plugin.json alone meant a
+        // correctly exported Codex workspace failed layout validation and its
+        // agents were reported as not installed. Accept either signal.
+        HarnessDir::Codex => match has_exact_file(path, "plugin.json") {
+            LayoutMatch::Matches => LayoutMatch::Matches,
+            LayoutMatch::NoMatch => has_file_with_extensions(path, &[".toml"]),
+        },
         HarnessDir::Opencode => has_file_with_extensions(path, &[".toml", ".yaml", ".yml"]),
     }
 }
@@ -356,6 +363,26 @@ mod tests {
         assert_eq!(
             validate_harness_layout(&HarnessDir::Codex, &codex_dir),
             LayoutMatch::NoMatch
+        );
+    }
+
+    /// Regression: `vfa-export-agents --platform codex` writes
+    /// `.codex/agents/<id>.toml` and no plugin.json. Requiring plugin.json
+    /// alone made a correctly exported Codex workspace fail layout validation,
+    /// so its agents were reported as not installed.
+    #[test]
+    fn codex_layout_matches_exported_toml_agents() {
+        let tmp = TempDir::new().unwrap();
+        let codex_agents = tmp.path().join(".codex").join("agents");
+        fs::create_dir_all(&codex_agents).unwrap();
+        fs::write(
+            codex_agents.join("aws-iam-least-privilege-review-agent.toml"),
+            "name = \"aws-iam-least-privilege-review-agent\"\n",
+        )
+        .unwrap();
+        assert_eq!(
+            validate_harness_layout(&HarnessDir::Codex, &codex_agents),
+            LayoutMatch::Matches
         );
     }
 
