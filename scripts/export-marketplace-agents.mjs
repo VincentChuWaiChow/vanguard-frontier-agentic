@@ -279,6 +279,53 @@ function ensurePlatform(platform) {
   return normalized;
 }
 
+/**
+ * Build the `# VFA-EXPORT:` marker line the console looks for.
+ *
+ * `federation/scanner.rs` confirms an installed asset only when two independent
+ * detection signals agree. Filename matching supplies one; this marker supplies
+ * the second. Without it the only other candidate, ContentSignature, needs
+ * canonical template content that the headless catalog never loads, so nothing
+ * an export wrote could reach "confirmed" and `require_asset` reported
+ * correctly installed agents as missing.
+ *
+ * The payload is deterministic on purpose: `ExportMeta` requires only `id` and
+ * treats `version` and `installed_at` as optional, so the timestamp the original
+ * spec mentioned is omitted. Two exports of the same catalog produce identical
+ * bytes, which keeps content hashing and drift detection meaningful.
+ */
+export function exportMetadataLine(assetId, version) {
+  const payload = version ? { id: assetId, version } : { id: assetId };
+  return `# VFA-EXPORT: ${JSON.stringify(payload)}`;
+}
+
+/**
+ * Insert the marker in a way each destination format actually tolerates.
+ *
+ * - `.json` is skipped: neither `#` nor `//` is legal JSON, and corrupting a
+ *   kiro-cli agent file to satisfy a scanner would be a worse bug than the one
+ *   being fixed.
+ * - Markdown carries YAML frontmatter, where a `#` line is a valid comment and
+ *   renders as nothing. Prepending above the opening `---` would instead break
+ *   frontmatter parsing for every harness that reads it.
+ * - TOML and other `#`-commentable formats take the line at the top.
+ *
+ * Idempotent: re-exporting over a previous export does not stack markers.
+ */
+export function injectExportMetadata(content, destination, assetId, version) {
+  if (content.includes("VFA-EXPORT:")) return content;
+  if (destination.endsWith(".json")) return content;
+
+  const line = exportMetadataLine(assetId, version);
+  if (destination.endsWith(".md")) {
+    if (content.startsWith("---\n")) {
+      return content.replace("---\n", `---\n${line}\n`);
+    }
+    return `${line}\n${content}`;
+  }
+  return `${line}\n${content}`;
+}
+
 export function assertWithin(parent, child, label) {
   const resolvedParent = path.resolve(parent);
   const resolvedChild = path.resolve(child);
@@ -443,7 +490,7 @@ function resolveCompanionSkills(selectedAgents, skillsByName, role, includeAll, 
   return { skillNames: [...skillNames].sort(), orphans };
 }
 
-function copyFile(source, destination, force, targetRoot) {
+function copyFile(source, destination, force, targetRoot, metadata) {
   assertSafeWriteDestination(targetRoot, destination, "write file destination");
   const sourceStat = fs.lstatSync(source);
   if (sourceStat.isSymbolicLink()) {
@@ -466,7 +513,15 @@ function copyFile(source, destination, force, targetRoot) {
     }
   }
   fs.mkdirSync(path.dirname(destination), { recursive: true });
-  fs.copyFileSync(source, destination);
+  if (metadata && metadata.assetId) {
+    const content = fs.readFileSync(source, "utf8");
+    fs.writeFileSync(
+      destination,
+      injectExportMetadata(content, destination, metadata.assetId, metadata.version)
+    );
+  } else {
+    fs.copyFileSync(source, destination);
+  }
 }
 
 function rewriteCodexAgentSkillPaths(agentFile, targetRoot) {
@@ -696,13 +751,17 @@ function main() {
         ...destination,
         dest: path.join(args.repo, destination.destRelative),
         agentId: agent.id,
+        version: agent.version,
       });
     }
   }
 
   for (const operation of operations) {
     assertWithin(args.repo, operation.dest, "write destination");
-    copyFile(operation.source, operation.dest, args.force, args.repo);
+    copyFile(operation.source, operation.dest, args.force, args.repo, {
+      assetId: operation.agentId,
+      version: operation.version,
+    });
     if (platform === "codex") {
       rewriteCodexAgentSkillPaths(operation.dest, args.repo);
     }

@@ -1,0 +1,56 @@
+{
+  "title": "Triage residual findings remediation",
+  "slug": "triage-residual-findings-remediation",
+  "created_at": "2026-09-21T00:00:00+04:00",
+  "updated_at": "2026-09-21T00:00:00+04:00",
+  "status": "running",
+  "mode": "delegated",
+  "baseline_ref": "880c6fb9e749e9804add9950ba8b3c41af05a0f9",
+  "risk_level": "medium",
+  "eval_contract": {
+    "level": "targeted",
+    "path": "eval-contract.md",
+    "status": "ready"
+  },
+  "approval": {
+    "required": true,
+    "granted": true,
+    "notes": "Standing user goal to fix the proven triage findings, with three pushes already observed and accepted on this branch, is treated as the explicit publication request."
+  },
+  "delegation": {
+    "native_agent_available": true,
+    "native_agent_planned": true,
+    "native_agent_used": true,
+    "agent_count": 3,
+    "wave_count": 1,
+    "no_delegation_reason": "",
+    "notes": "One bounded read-only review wave; parent owns every edit, probe and commit."
+  },
+  "packets": [
+    {
+      "id": "01-export-detection-contract",
+      "status": "dispatched",
+      "owner": "read-only-agent",
+      "write_scope": [],
+      "result_path": "results/01-export-detection-contract.md"
+    },
+    {
+      "id": "02-routing-fixture-independence",
+      "status": "dispatched",
+      "owner": "read-only-agent",
+      "write_scope": [],
+      "result_path": "results/02-routing-fixture-independence.md"
+    },
+    {
+      "id": "03-secret-scan-coverage",
+      "status": "dispatched",
+      "owner": "read-only-agent",
+      "write_scope": [],
+      "result_path": "results/03-secret-scan-coverage.md"
+    }
+  ],
+  "verification": {
+    "status": "pending",
+    "checks": []
+  }
+}
