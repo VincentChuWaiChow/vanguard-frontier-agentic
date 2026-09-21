@@ -56,29 +56,64 @@
         "name": "Full validation",
         "command": "npm run validate",
         "required": true,
-        "status": "pending",
-        "evidence": ""
+        "status": "passed",
+        "evidence": "exit 0; every chained gate passed, including the new validate:tracked-secrets"
       },
       {
         "name": "Spell lint",
         "command": "npm run lint:spell",
         "required": true,
-        "status": "pending",
-        "evidence": ""
+        "status": "passed",
+        "evidence": "exit 0"
       },
       {
         "name": "Markdown lint",
         "command": "npx markdownlint-cli2",
         "required": true,
-        "status": "pending",
-        "evidence": ""
+        "status": "passed",
+        "evidence": "exit 0"
       },
       {
         "name": "Rust gates",
-        "command": "cargo fmt --check && cargo clippy -D warnings && cargo test",
+        "command": "cargo fmt --check && cargo clippy --all-targets -- -D warnings && cargo test",
         "required": true,
-        "status": "pending",
-        "evidence": ""
+        "status": "passed",
+        "evidence": "fmt 0, clippy 0, 1091 tests passed across 5 suites"
+      },
+      {
+        "name": "Fuzz suite against shipped exporter",
+        "command": "node tests/fuzz-properties.test.mjs",
+        "required": true,
+        "status": "passed",
+        "evidence": "exit 0; imports production definitions"
+      },
+      {
+        "name": "Export to require_asset round trip",
+        "command": "vfa-export-agents then vfa-tui --report violations",
+        "required": true,
+        "status": "passed",
+        "evidence": "installed exit 0; empty workspace exit 1; marker stripped exit 1"
+      },
+      {
+        "name": "Secret gate canary",
+        "command": "python3 tests/validate-tracked-secrets.py",
+        "required": true,
+        "status": "passed",
+        "evidence": "baseline clean over 13,925 files; canary in docs/ fails; <FAKE> line passes"
+      },
+      {
+        "name": "kiro-cli .json export confirmation",
+        "command": "n/a",
+        "required": false,
+        "status": "skipped",
+        "evidence": "needs a sidecar manifest or scanner support for a JSON metadata key"
+      },
+      {
+        "name": "Advisory root scanner baseline",
+        "command": "hol-plugin-scanner marketplace job",
+        "required": false,
+        "status": "skipped",
+        "evidence": "cannot be measured locally; required before it could be made blocking"
       }
     ]
   }
