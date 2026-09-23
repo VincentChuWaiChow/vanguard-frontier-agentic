@@ -35351,7 +35351,7 @@
     },
     {
       "tree": "schemas",
-      "aggregate_sha256": "fb2e896d692a5ca10e543003b8c733bd1586ed0931065ea540401e0238c269df",
+      "aggregate_sha256": "e41dcbcf9dcd114dc75f0db4c17bfed1cec8868f4aa47c3a00cc5247ad00be44",
       "files": [
         {
           "path": "schemas/AGENTS.md",
@@ -35395,8 +35395,8 @@
         },
         {
           "path": "schemas/model-policy.schema.json",
-          "sha256": "f27dd291f918a2b96932372a11f55c79d6a7ee2370902e657965de80e9c47198",
-          "bytes": 2974
+          "sha256": "d8202c871f9aa3d603369840c27caf7b94e1cf512834aa5a93bbcfa264e3aabc",
+          "bytes": 3013
         },
         {
           "path": "schemas/model-registry.schema.json",
@@ -35427,7 +35427,7 @@
     },
     {
       "tree": "catalog",
-      "aggregate_sha256": "2568b6f5a3a3e102d662c9aff5fe1d4a2ed59d1cc5903f1178831e82b47f6785",
+      "aggregate_sha256": "13df93ec706c47d0427dd31680f255ed8085c631ae174b620351392b77237a70",
       "files": [
         {
           "path": "catalog/AGENTS.md",
@@ -35466,8 +35466,8 @@
         },
         {
           "path": "catalog/model-registry.json",
-          "sha256": "226bd7006e980164bc20a6f1ebbfb72d60435251e9cc120e0bca8e07a6a08b77",
-          "bytes": 22265
+          "sha256": "e4913234c766e62c9c5e943d8b3019e5de2fd48e6d5f7ee0824cb9c0123011de",
+          "bytes": 25280
         },
         {
           "path": "catalog/rules.json",
@@ -47252,5 +47252,5 @@
       "bytes": 9135
     }
   ],
-  "aggregate_sha256": "4a3a75208cec5264c753b6aecbb7d73ea6f432dc9a03e2835040011aa7ee362b"
+  "aggregate_sha256": "3ede37d8b7012a53550e2a83a39583ead6a7125f99aee5fe753593a95e4565aa"
 }

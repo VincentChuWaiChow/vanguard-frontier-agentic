@@ -83,9 +83,13 @@ The orchestrator, not a delegate, edits `catalog/model-registry.json`:
   route the namespace configures (so it stays fail-closed); OpenRouter *does*
   document it on its Responses route, but with a narrower four-value list than
   its chat-completions surface (so the narrower list is what is registered);
-  and `ultra` is in the Codex `ReasoningEffort` enum and the ChatGPT desktop
-  picker, but the CLI effort list stops at Max (so it is excluded). Ask "which
-  surface, and does *that* one document it?" before widening any vocabulary.
+  and `ultra` sat in the Codex `ReasoningEffort` enum and the ChatGPT desktop
+  picker while the CLI effort list stopped at Max, so it was excluded — until
+  the CLI docs and config reference listed it (2026-09-23), when it was
+  registered only on the models whose catalog entry advertises it, while
+  `persistent`, still enum-only, stayed out. Ask "which surface, and does
+  *that* one document it?" before widening any vocabulary, and ask again at
+  every refresh: the answer changes.
 - Bump the registry-level `last_refreshed` date.
 - **Never remove a model still referenced by `catalog/model-policy.json`** without first
   migrating the policy rule(s) that reference it to a replacement model — check with
