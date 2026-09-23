@@ -35,12 +35,19 @@
 # Built-in Kubernetes resources are NOT stubbed here -- a CRD cannot shadow a
 # built-in API group, and their absence really would mean a broken cluster.
 #
+# The group, plural, kind and scope of all 24 stubs were checked against the
+# upstream CRD manifests on each project's default branch (argo-cd, istio,
+# velero, cilium, kyverno, gateway-api) and match.
+#
 # The gateway.networking.k8s.io stubs carry `api-approved.kubernetes.io`.  Any
 # group under *.k8s.io is protected: apiextensions rejects a CRD in one without
-# that annotation ("protected groups must have approval annotation").  The URL
-# is the Gateway API's own approval, KEP PR 1111, the same value the upstream
-# CRDs carry -- it records which review approved the group, and is not a claim
-# that these stubs are the upstream schemas.
+# that annotation, and rejects a value that is neither a URL nor a reason
+# starting with "unapproved" (measured on v1.30.6).  It never checks what a URL
+# points to.  Upstream carries a per-release review URL, but these stubs are
+# not that reviewed schema, so they declare themselves unapproved instead of
+# borrowing an approval.  The CRD still establishes; only its
+# KubernetesAPIApprovalPolicyConformant condition reads False, which nothing
+# here consults.
 #
 # Keep in sync with the `*_or_skip` assertions in guards/; every resource the
 # guards name with a group suffix needs an entry.
@@ -470,7 +477,7 @@ kind: CustomResourceDefinition
 metadata:
   name: gateways.gateway.networking.k8s.io
   annotations:
-    api-approved.kubernetes.io: "https://github.com/kubernetes/enhancements/pull/1111"
+    api-approved.kubernetes.io: "unapproved, test stub for RBAC evaluation only"
 spec:
   group: gateway.networking.k8s.io
   scope: Namespaced
@@ -493,7 +500,7 @@ kind: CustomResourceDefinition
 metadata:
   name: httproutes.gateway.networking.k8s.io
   annotations:
-    api-approved.kubernetes.io: "https://github.com/kubernetes/enhancements/pull/1111"
+    api-approved.kubernetes.io: "unapproved, test stub for RBAC evaluation only"
 spec:
   group: gateway.networking.k8s.io
   scope: Namespaced
@@ -516,7 +523,7 @@ kind: CustomResourceDefinition
 metadata:
   name: grpcroutes.gateway.networking.k8s.io
   annotations:
-    api-approved.kubernetes.io: "https://github.com/kubernetes/enhancements/pull/1111"
+    api-approved.kubernetes.io: "unapproved, test stub for RBAC evaluation only"
 spec:
   group: gateway.networking.k8s.io
   scope: Namespaced
@@ -539,7 +546,7 @@ kind: CustomResourceDefinition
 metadata:
   name: referencegrants.gateway.networking.k8s.io
   annotations:
-    api-approved.kubernetes.io: "https://github.com/kubernetes/enhancements/pull/1111"
+    api-approved.kubernetes.io: "unapproved, test stub for RBAC evaluation only"
 spec:
   group: gateway.networking.k8s.io
   scope: Namespaced

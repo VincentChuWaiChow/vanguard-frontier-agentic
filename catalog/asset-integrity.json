@@ -36700,7 +36700,7 @@
     },
     {
       "tree": "tests",
-      "aggregate_sha256": "261f7566c65a403e69438addc6afd3e3275af8f945846ecab7747008c7c25a95",
+      "aggregate_sha256": "a72447a59b3a479eddc8492a921b403bc51fb57eae355f11d0b2d415ac8c09f5",
       "files": [
         {
           "path": "tests/AGENTS.md",
@@ -46979,8 +46979,8 @@
         },
         {
           "path": "tests/integration/rbac-pre-flight/fixtures/crds.yaml",
-          "sha256": "0c8aff3667855e4bcee44250531fbf723cd96c440e7edf482cad07d0ca156c78",
-          "bytes": 14243
+          "sha256": "03555179510ffa10e35dd19b800b5dc911266917e2af95bb5698acf8a46a57aa",
+          "bytes": 14607
         },
         {
           "path": "tests/integration/rbac-pre-flight/guards/admission-policy.sh",
@@ -47252,5 +47252,5 @@
       "bytes": 8340
     }
   ],
-  "aggregate_sha256": "4b149b3d661e5d625c89951e061937b0a42d811fde256a2d9a3a403e076da9fb"
+  "aggregate_sha256": "da1dd23a0192d2b29b6623cf2a9b775b69a7496e94f3573ce1583b608cb73c0a"
 }
