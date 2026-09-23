@@ -63,8 +63,16 @@ A timestamped log is always written to `/tmp/rbac-preflight-<timestamp>.log`.
 
 | Code | Meaning |
 |------|---------|
-| 0    | All assertions passed (SKIP rows do not count as failures) |
-| 1    | One or more assertions failed |
+| 0    | Every check ran and passed |
+| 1    | One or more assertions failed — a manifest is over- or under-scoped |
+| 2    | INCOMPLETE — some checks never ran, so nothing was proven |
+| 3    | HARNESS ERRORS — checks could not obtain a verdict from `kubectl` |
+
+A skipped check is an assertion that was never made. This suite is the
+privilege-creep gate for the shipped RBAC manifests, so "could not check"
+never renders as "passed": exit 2 and exit 3 are both non-zero, and they are
+kept apart so an expected environment limitation is never confused with a
+broken cluster.
 
 ---
 
@@ -79,35 +87,89 @@ on any change to:
 - `skills/**/references/rbac-pre-flight.md`
 - `tests/integration/rbac-pre-flight/**`
 
-The workflow runs `run-all.sh` in a matrix across four Kubernetes versions
-(1.28, 1.29, 1.30, 1.31) using `fail-fast: false` so all matrix legs
-complete even when one fails. On failure, the log file is uploaded as a
-GitHub Actions artifact.
+Two jobs run. `harness-self-test` runs `self-test.sh` with no cluster, in
+seconds. `rbac-pre-flight` runs `run-all.sh` in a matrix across four
+Kubernetes versions (1.28, 1.29, 1.30, 1.31) with `fail-fast: false` so every
+leg completes even when one fails. On failure the log is uploaded as an
+artifact.
+
+On 1.28 and 1.29 the cluster is created with `ValidatingAdmissionPolicy` and
+`admissionregistration.k8s.io/v1beta1` enabled. That API went GA in 1.30; on
+the two earlier legs it is beta and off by default, so without the patch
+`validatingadmissionpolicies` is absent from discovery and the admission-policy
+guard cannot assert anything about it. The patch is scoped to those versions
+because from 1.30 the gate is GA-locked.
 
 ---
 
-## Understanding SKIP rows
+## CRDs, and why SKIP rows are now rare
 
-Several domain-specific checks target CRDs that are not installed in a
-vanilla kind cluster:
+Several domain-specific checks target CRDs no vanilla cluster installs —
+Gateway API, Cilium, Istio, Kyverno, Argo CD, Velero. The suite installs
+minimal stand-ins for them from `fixtures/crds.yaml` before running, so those
+assertions execute for real.
 
-| CRD group | Example guard | Pre-install URL |
-|-----------|--------------|-----------------|
-| `gateway.networking.k8s.io` | network-arch | https://github.com/kubernetes-sigs/gateway-api/releases/download/v1.2.0/standard-install.yaml |
-| `cilium.io` | network-policy | https://docs.cilium.io/en/stable/installation/k8s-install-helm/ |
-| `security.istio.io`, `networking.istio.io` | mesh-policy | https://istio.io/latest/docs/setup/install/ |
-| `kyverno.io` | admission-policy | https://kyverno.io/docs/installation/ |
-| `argoproj.io` | argocd-sync | https://argo-cd.readthedocs.io/en/stable/getting_started/ |
-| `velero.io` | velero-restore | https://velero.io/docs/latest/basic-install/ |
+Stubs are enough because only discovery matters here, and they are necessary
+because without them `kubectl` answers the *wrong* question. `kubectl auth
+can-i` resolves its resource argument through discovery first; when the
+resource is missing it warns and falls back to the whole dotted argument as
+the resource name with an empty API group, so the access review asks about
+`{group: "", resource: "schedules.velero.io"}` — something no RBAC rule can
+match.
 
-SKIP rows are informational — the binding cannot be checked without the CRD
-present. To validate those rows, pre-apply the CRDs before running the suite:
+Measured against a live `kube-apiserver` v1.30.6, for a ServiceAccount
+explicitly granted `velero.io/schedules` `create`:
+
+| CRD present? | verdict | ground truth |
+|--------------|---------|--------------|
+| no  | `no`  | wrong |
+| yes | `yes` | correct |
+
+So an absent CRD is not merely an unavailable answer, it is a wrong one in
+both directions: every must-not check would pass vacuously and every
+must-be-able check would fail spuriously. Nothing in `fixtures/crds.yaml` is
+ever instantiated and no controller reconciles it; only `group`,
+`names.plural`, `names.kind` and `scope` are load-bearing.
+
+Keeping the stubs in-tree rather than fetching upstream bundles keeps the gate
+deterministic: no network at test time, no version drift, same behaviour on
+every Kubernetes version in the matrix.
+
+A SKIP therefore now means something genuinely unexpected, and it keeps the
+run INCOMPLETE rather than passing.
+
+---
+
+## Subresources
+
+Write subresource checks with `--subresource=`, never as `resource/subresource`:
 
 ```bash
-# Example: test Gateway API rows
-kubectl apply -f https://github.com/kubernetes-sigs/gateway-api/releases/download/v1.2.0/standard-install.yaml
-./run-all.sh --skip-cluster-create
+assert_cannot create pods --subresource=exec -n kube-system "--as=$SA"   # correct
+assert_cannot create pods/exec -n kube-system "--as=$SA"                 # WRONG
 ```
+
+`kubectl auth can-i create pods/exec` parses `pods/exec` as resource `pods`
+with the *name* `exec` — the access review goes out as
+`{"verb":"create","resource":"pods","name":"exec"}`. Measured on v1.30.6, a
+ServiceAccount explicitly granted `pods/exec` `create` still answers `no` to
+that form, and `yes` only to `--subresource=exec`. Every such check was
+therefore incapable of detecting the escalation it named.
+
+`resource/name` remains correct and intentional for the resourceName tests
+(`configmaps/coredns`, `namespaces/kube-system`). `self-test.sh` lints for the
+difference, flagging only names that are real subresources.
+
+---
+
+## Harness self-test
+
+`./self-test.sh` exercises the harness itself with a stub `kubectl` — no
+cluster, no network, no clock. It covers stream handling, skip-vs-error
+classification, exit codes, and the subresource lint, and runs as its own CI
+job in seconds.
+
+Run it after any change to `lib/common.sh` or the guards.
 
 ---
 
@@ -145,6 +207,9 @@ your kubeconfig principal has `impersonate` on `users`, `groups`, and
 tests/integration/rbac-pre-flight/
   README.md                  — this file
   run-all.sh                 — main entrypoint
+  self-test.sh               — tests the harness itself; needs no cluster
+  fixtures/
+    crds.yaml                — minimal stand-ins for third-party CRDs
   lib/
     common.sh                — assert_can / assert_cannot helpers
   guards/

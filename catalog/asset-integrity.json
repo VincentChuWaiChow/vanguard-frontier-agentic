@@ -35493,7 +35493,7 @@
     },
     {
       "tree": "scripts",
-      "aggregate_sha256": "0db79063531d44fbb79f7f07e516376f33f66ed044929d2a62f44b3e9f0909a0",
+      "aggregate_sha256": "e921f006b4c9eb536d619afac05f08dd9db05a724ec0918445de42d1331525fb",
       "files": [
         {
           "path": "scripts/apply-skill-allowed-tools.py",
@@ -35592,8 +35592,8 @@
         },
         {
           "path": "scripts/export-marketplace-agents.mjs",
-          "sha256": "901e7cbe3161e9180a0ea542919f1837081bb46914c90f428a308ea87e0a9825",
-          "bytes": 33471
+          "sha256": "86991295f48ede0053373492f930ea1d6cbceaaad7455d942ef8e6b0566e7a0d",
+          "bytes": 33412
         },
         {
           "path": "scripts/gen_azure_live_guards.py",
@@ -36700,7 +36700,7 @@
     },
     {
       "tree": "tests",
-      "aggregate_sha256": "50ae19b35c62f29ad3aa936bc51bc2fe7e41381c4dc98ba73f5bd973c50f2fe2",
+      "aggregate_sha256": "1eacf8aeb03e226da30a90ce812ea35be686ee370648fd83840750bdaba9a8b5",
       "files": [
         {
           "path": "tests/AGENTS.md",
@@ -36709,8 +36709,8 @@
         },
         {
           "path": "tests/_generate_maestro_routing_fixtures.py",
-          "sha256": "98e277a03ff6ee33418f1f6c3a811b6908225409d7b35782a3be5fd6ec284ec7",
-          "bytes": 31350
+          "sha256": "7f4f5d6ed53226ab7235053ae7a3a3af403a14222344367170a2027278f46749",
+          "bytes": 32690
         },
         {
           "path": "tests/eval-qa-cluster.mjs",
@@ -46974,8 +46974,13 @@
         },
         {
           "path": "tests/integration/rbac-pre-flight/README.md",
-          "sha256": "cf3d5c1f8ef0b41ed1284bd2b9d1513209c5680b7fa3c0584c8180d43a1b5762",
-          "bytes": 5625
+          "sha256": "18eb6f6adf1e37a381ad0bf810ee2edf656516b90a71587d719f6169414ab4c7",
+          "bytes": 8491
+        },
+        {
+          "path": "tests/integration/rbac-pre-flight/fixtures/crds.yaml",
+          "sha256": "0c8aff3667855e4bcee44250531fbf723cd96c440e7edf482cad07d0ca156c78",
+          "bytes": 14243
         },
         {
           "path": "tests/integration/rbac-pre-flight/guards/admission-policy.sh",
@@ -46994,8 +46999,8 @@
         },
         {
           "path": "tests/integration/rbac-pre-flight/guards/network-arch.sh",
-          "sha256": "d7b7cc351437f7701a62d5dca8b1f49fef4389db64ba175415234a33087bf5c2",
-          "bytes": 5681
+          "sha256": "443344dceac56c45f3691112e86e1699428cc3d315b8ccca55c842081f400984",
+          "bytes": 5861
         },
         {
           "path": "tests/integration/rbac-pre-flight/guards/network-policy.sh",
@@ -47014,13 +47019,18 @@
         },
         {
           "path": "tests/integration/rbac-pre-flight/lib/common.sh",
-          "sha256": "d1d8bbd41e5c6647fdd7f7cea549eab37af43f15bf9c2f11276a70fc8dac8b3b",
-          "bytes": 10923
+          "sha256": "aa027c5aa7c14bbe80705a96cd9f372fec9fece739c1c54b3c70df1ef537a340",
+          "bytes": 16194
         },
         {
           "path": "tests/integration/rbac-pre-flight/run-all.sh",
-          "sha256": "020c870cae334960b4a83e834bd555dbfd7c6e1d47a00df401e7e78937e17e61",
-          "bytes": 7919
+          "sha256": "ae719df3daddb4fbf618720e76fec72c1f415bd47ac5a278aaadf2834308dfda",
+          "bytes": 10376
+        },
+        {
+          "path": "tests/integration/rbac-pre-flight/self-test.sh",
+          "sha256": "121a5a55e11d64afbd8bf6f2a46bc208407d8252fa1a37ea689ce159e5535268",
+          "bytes": 8879
         },
         {
           "path": "tests/istio-review-suite/test_contract.py",
@@ -47184,8 +47194,8 @@
         },
         {
           "path": "tests/validate-tracked-secrets.py",
-          "sha256": "71c75fa99009ea35a478de5164a94b50633b80eb3a2b28860e61afd619291428",
-          "bytes": 5013
+          "sha256": "dea7742dbf33908acda79f8b86dc911e7c7e1abed5c2a49e109a43e3aa46feb6",
+          "bytes": 5317
         }
       ]
     }
@@ -47242,5 +47252,5 @@
       "bytes": 8340
     }
   ],
-  "aggregate_sha256": "35561a5a3124764d9fb767a742d78c3024c380ef022747d28051af43f012c45a"
+  "aggregate_sha256": "eb93942b1c8169e8b7300b1282fea084eae1ed3408482b6202c128efb9c40934"
 }

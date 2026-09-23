@@ -25,6 +25,23 @@ permissions:
   contents: read
 
 jobs:
+  # The harness's own logic, with no cluster: stream handling, skip-vs-error
+  # classification, exit codes, and the subresource-syntax lint.  Seconds
+  # rather than minutes, and it catches the class of bug that previously made
+  # 176 of 294 assertions silently stop running.
+  harness-self-test:
+    name: Harness self-test
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+
+      - name: Run harness self-test
+        run: |
+          chmod +x tests/integration/rbac-pre-flight/self-test.sh
+          tests/integration/rbac-pre-flight/self-test.sh
+
   rbac-pre-flight:
     name: RBAC Pre-flight (${{ matrix.k8s-version }})
     runs-on: ubuntu-latest

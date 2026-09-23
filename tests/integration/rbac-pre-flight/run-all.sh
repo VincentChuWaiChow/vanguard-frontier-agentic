@@ -15,8 +15,10 @@
 #   KIND_K8S_VERSION   kind node image tag (default: v1.30.6)
 #
 # Exit codes:
-#   0  all guards passed (skips do not count as failures)
-#   1  one or more assertions failed
+#   0  every check ran and passed
+#   1  one or more assertions failed (a manifest is over- or under-scoped)
+#   2  INCOMPLETE — some checks never ran, so nothing was proven
+#   3  HARNESS ERRORS — checks could not obtain a verdict from kubectl
 
 set -euo pipefail
 
@@ -78,14 +80,47 @@ create_cluster() {
   printf '%bCreating kind cluster %s (%s)...%b\n' \
     "$_CYAN" "$CLUSTER_NAME" "$KIND_IMAGE" "$_RESET"
 
+  # ValidatingAdmissionPolicy went GA in Kubernetes 1.30.  On 1.28 and 1.29 it
+  # is beta and, per the post-1.24 policy for beta APIs, both the feature gate
+  # and the API group are OFF by default -- so `validatingadmissionpolicies` is
+  # simply absent from discovery and the admission-policy guard cannot assert
+  # anything about it.
+  #
+  # Measured, not assumed.  Against a stock kube-apiserver with RBAC,
+  # /apis/admissionregistration.k8s.io/v1beta1 lists:
+  #
+  #   v1.28.15 default                     -> (nothing)
+  #   v1.28.15 + gate + runtime-config     -> validatingadmissionpolicies, ...
+  #   v1.29.10 default                     -> (nothing)
+  #   v1.29.10 + gate + runtime-config     -> validatingadmissionpolicies, ...
+  #
+  # Turning them on keeps all four matrix legs asserting the same thing.  The
+  # patch is scoped to those two versions: from 1.30 the gate is GA-locked and
+  # passing it earns a deprecation warning, and eventually a fatal error.
+  local extra_patches=""
+  case "${KIND_K8S_VERSION:-v1.30.6}" in
+    v1.28.*|v1.29.*)
+      extra_patches='
+kubeadmConfigPatches:
+  - |
+    kind: ClusterConfiguration
+    apiServer:
+      extraArgs:
+        feature-gates: "ValidatingAdmissionPolicy=true"
+        runtime-config: "admissionregistration.k8s.io/v1beta1=true"'
+      printf '%b(enabling beta ValidatingAdmissionPolicy for %s)%b\n' \
+        "$_YELLOW" "${KIND_K8S_VERSION}" "$_RESET"
+      ;;
+  esac
+
   kind create cluster \
     --name "$CLUSTER_NAME" \
     --image "$KIND_IMAGE" \
-    --config - <<'EOF'
+    --config - <<EOF
 kind: Cluster
 apiVersion: kind.x-k8s.io/v1alpha4
 nodes:
-  - role: control-plane
+  - role: control-plane${extra_patches}
 EOF
 
   printf '%bCluster ready.%b\n' "$_GREEN" "$_RESET"
@@ -116,12 +151,30 @@ trap cleanup EXIT
 # ---------------------------------------------------------------------------
 # Apply RBAC manifests
 # ---------------------------------------------------------------------------
+apply_crd_stubs() {
+  printf '\n%bInstalling stub CRDs...%b\n' "$_CYAN" "$_RESET"
+
+  # `kubectl auth can-i` resolves its resource argument through discovery
+  # first.  Without these, it asks the API server about {group: "", resource:
+  # "schedules.velero.io"} and answers "no" regardless of what the manifests
+  # grant -- measured against kube-apiserver v1.30.6.  See fixtures/crds.yaml.
+  kubectl apply -f "$SCRIPT_DIR/fixtures/crds.yaml"
+
+  # Discovery is cached and refreshed asynchronously; give the aggregated
+  # discovery document a chance to pick the new groups up before asserting.
+  kubectl wait --for=condition=Established --timeout=60s \
+    -f "$SCRIPT_DIR/fixtures/crds.yaml"
+
+  printf '%bStub CRDs established.%b\n' "$_GREEN" "$_RESET"
+}
+
 apply_rbac_manifests() {
   printf '\n%bApplying RBAC manifests...%b\n' "$_CYAN" "$_RESET"
 
-  # Ensure the vanguard-system namespace exists
-  kubectl create namespace vanguard-system --dry-run=client -o yaml \
-    | kubectl apply -f -
+  # Ensure the namespaces the guards impersonate into exist.
+  for ns in vanguard-system velero argocd istio-system kyverno; do
+    kubectl create namespace "$ns" --dry-run=client -o yaml | kubectl apply -f -
+  done
 
   local manifests=(
     "skills/kubernetes/kubernetes-live-network-architecture-mutation-guard/references/least-privilege-rbac.yaml"
@@ -217,6 +270,7 @@ run_guards() {
       "$_YELLOW" "$_RESET"
   fi
 
+  apply_crd_stubs
   apply_rbac_manifests
   run_guards
 

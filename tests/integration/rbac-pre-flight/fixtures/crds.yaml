@@ -1,0 +1,558 @@
+# tests/integration/rbac-pre-flight/fixtures/crds.yaml
+#
+# Minimal stand-ins for the third-party CRDs the guards assert against.
+#
+# Why these are needed, and why stubs are enough
+# ----------------------------------------------
+# `kubectl auth can-i` resolves its resource argument through discovery before
+# posting the SelfSubjectAccessReview.  When the resource is absent,
+# resourceFor() warns and falls back to
+# `GroupVersionResource{Resource: <the whole dotted argument>}` with an EMPTY
+# group (kubernetes/kubernetes
+# staging/src/k8s.io/kubectl/pkg/cmd/auth/cani.go, identical at v1.28.15 and
+# v1.31.2).  The review therefore asks about {group: "", resource:
+# "schedules.velero.io"}, which no RBAC rule can match, and kubectl answers
+# "no" whatever the manifests actually grant.
+#
+# Measured against a live kube-apiserver v1.30.6 with RBAC, for a service
+# account explicitly granted velero.io/schedules create:
+#
+#   CRD absent   -> "no"   + "the server doesn't have a resource type
+#                            'schedules' in group 'velero.io'" on stderr
+#   CRD present  -> "yes"
+#
+# So the absent-CRD verdict is not merely unavailable, it is wrong in both
+# directions: every must-not check would pass vacuously and every must-be-able
+# check would fail spuriously.
+#
+# Discovery is all that is required -- nothing here is ever instantiated, and
+# no controller reconciles it.  Only `group`, `names.plural`, `names.kind` and
+# `scope` are load-bearing; the schema is deliberately open.  Shipping stubs
+# in-tree rather than fetching upstream bundles keeps the gate deterministic:
+# no network at test time, no version drift, and the same behaviour on every
+# Kubernetes version in the matrix.
+#
+# Built-in Kubernetes resources are NOT stubbed here -- a CRD cannot shadow a
+# built-in API group, and their absence really would mean a broken cluster.
+#
+# The gateway.networking.k8s.io stubs carry `api-approved.kubernetes.io`.  Any
+# group under *.k8s.io is protected: apiextensions rejects a CRD in one without
+# that annotation ("protected groups must have approval annotation").  The URL
+# is the Gateway API's own approval, KEP PR 1111, the same value the upstream
+# CRDs carry -- it records which review approved the group, and is not a claim
+# that these stubs are the upstream schemas.
+#
+# Keep in sync with the `*_or_skip` assertions in guards/; every resource the
+# guards name with a group suffix needs an entry.
+---
+apiVersion: apiextensions.k8s.io/v1
+kind: CustomResourceDefinition
+metadata:
+  name: applications.argoproj.io
+spec:
+  group: argoproj.io
+  scope: Namespaced
+  names:
+    plural: applications
+    singular: application
+    kind: Application
+    listKind: ApplicationList
+  versions:
+    - name: v1
+      served: true
+      storage: true
+      schema:
+        openAPIV3Schema:
+          type: object
+          x-kubernetes-preserve-unknown-fields: true
+---
+apiVersion: apiextensions.k8s.io/v1
+kind: CustomResourceDefinition
+metadata:
+  name: applicationsets.argoproj.io
+spec:
+  group: argoproj.io
+  scope: Namespaced
+  names:
+    plural: applicationsets
+    singular: applicationset
+    kind: ApplicationSet
+    listKind: ApplicationSetList
+  versions:
+    - name: v1
+      served: true
+      storage: true
+      schema:
+        openAPIV3Schema:
+          type: object
+          x-kubernetes-preserve-unknown-fields: true
+---
+apiVersion: apiextensions.k8s.io/v1
+kind: CustomResourceDefinition
+metadata:
+  name: appprojects.argoproj.io
+spec:
+  group: argoproj.io
+  scope: Namespaced
+  names:
+    plural: appprojects
+    singular: appproject
+    kind: AppProject
+    listKind: AppProjectList
+  versions:
+    - name: v1
+      served: true
+      storage: true
+      schema:
+        openAPIV3Schema:
+          type: object
+          x-kubernetes-preserve-unknown-fields: true
+---
+apiVersion: apiextensions.k8s.io/v1
+kind: CustomResourceDefinition
+metadata:
+  name: authorizationpolicies.security.istio.io
+spec:
+  group: security.istio.io
+  scope: Namespaced
+  names:
+    plural: authorizationpolicies
+    singular: authorizationpolicy
+    kind: AuthorizationPolicy
+    listKind: AuthorizationPolicyList
+  versions:
+    - name: v1
+      served: true
+      storage: true
+      schema:
+        openAPIV3Schema:
+          type: object
+          x-kubernetes-preserve-unknown-fields: true
+---
+apiVersion: apiextensions.k8s.io/v1
+kind: CustomResourceDefinition
+metadata:
+  name: peerauthentications.security.istio.io
+spec:
+  group: security.istio.io
+  scope: Namespaced
+  names:
+    plural: peerauthentications
+    singular: peerauthentication
+    kind: PeerAuthentication
+    listKind: PeerAuthenticationList
+  versions:
+    - name: v1
+      served: true
+      storage: true
+      schema:
+        openAPIV3Schema:
+          type: object
+          x-kubernetes-preserve-unknown-fields: true
+---
+apiVersion: apiextensions.k8s.io/v1
+kind: CustomResourceDefinition
+metadata:
+  name: requestauthentications.security.istio.io
+spec:
+  group: security.istio.io
+  scope: Namespaced
+  names:
+    plural: requestauthentications
+    singular: requestauthentication
+    kind: RequestAuthentication
+    listKind: RequestAuthenticationList
+  versions:
+    - name: v1
+      served: true
+      storage: true
+      schema:
+        openAPIV3Schema:
+          type: object
+          x-kubernetes-preserve-unknown-fields: true
+---
+apiVersion: apiextensions.k8s.io/v1
+kind: CustomResourceDefinition
+metadata:
+  name: destinationrules.networking.istio.io
+spec:
+  group: networking.istio.io
+  scope: Namespaced
+  names:
+    plural: destinationrules
+    singular: destinationrule
+    kind: DestinationRule
+    listKind: DestinationRuleList
+  versions:
+    - name: v1
+      served: true
+      storage: true
+      schema:
+        openAPIV3Schema:
+          type: object
+          x-kubernetes-preserve-unknown-fields: true
+---
+apiVersion: apiextensions.k8s.io/v1
+kind: CustomResourceDefinition
+metadata:
+  name: gateways.networking.istio.io
+spec:
+  group: networking.istio.io
+  scope: Namespaced
+  names:
+    plural: gateways
+    singular: gateway
+    kind: Gateway
+    listKind: GatewayList
+  versions:
+    - name: v1
+      served: true
+      storage: true
+      schema:
+        openAPIV3Schema:
+          type: object
+          x-kubernetes-preserve-unknown-fields: true
+---
+apiVersion: apiextensions.k8s.io/v1
+kind: CustomResourceDefinition
+metadata:
+  name: virtualservices.networking.istio.io
+spec:
+  group: networking.istio.io
+  scope: Namespaced
+  names:
+    plural: virtualservices
+    singular: virtualservice
+    kind: VirtualService
+    listKind: VirtualServiceList
+  versions:
+    - name: v1
+      served: true
+      storage: true
+      schema:
+        openAPIV3Schema:
+          type: object
+          x-kubernetes-preserve-unknown-fields: true
+---
+apiVersion: apiextensions.k8s.io/v1
+kind: CustomResourceDefinition
+metadata:
+  name: backups.velero.io
+spec:
+  group: velero.io
+  scope: Namespaced
+  names:
+    plural: backups
+    singular: backup
+    kind: Backup
+    listKind: BackupList
+  versions:
+    - name: v1
+      served: true
+      storage: true
+      schema:
+        openAPIV3Schema:
+          type: object
+          x-kubernetes-preserve-unknown-fields: true
+---
+apiVersion: apiextensions.k8s.io/v1
+kind: CustomResourceDefinition
+metadata:
+  name: backupstoragelocations.velero.io
+spec:
+  group: velero.io
+  scope: Namespaced
+  names:
+    plural: backupstoragelocations
+    singular: backupstoragelocation
+    kind: BackupStorageLocation
+    listKind: BackupStorageLocationList
+  versions:
+    - name: v1
+      served: true
+      storage: true
+      schema:
+        openAPIV3Schema:
+          type: object
+          x-kubernetes-preserve-unknown-fields: true
+---
+apiVersion: apiextensions.k8s.io/v1
+kind: CustomResourceDefinition
+metadata:
+  name: restores.velero.io
+spec:
+  group: velero.io
+  scope: Namespaced
+  names:
+    plural: restores
+    singular: restore
+    kind: Restore
+    listKind: RestoreList
+  versions:
+    - name: v1
+      served: true
+      storage: true
+      schema:
+        openAPIV3Schema:
+          type: object
+          x-kubernetes-preserve-unknown-fields: true
+---
+apiVersion: apiextensions.k8s.io/v1
+kind: CustomResourceDefinition
+metadata:
+  name: schedules.velero.io
+spec:
+  group: velero.io
+  scope: Namespaced
+  names:
+    plural: schedules
+    singular: schedule
+    kind: Schedule
+    listKind: ScheduleList
+  versions:
+    - name: v1
+      served: true
+      storage: true
+      schema:
+        openAPIV3Schema:
+          type: object
+          x-kubernetes-preserve-unknown-fields: true
+---
+apiVersion: apiextensions.k8s.io/v1
+kind: CustomResourceDefinition
+metadata:
+  name: ciliumnetworkpolicies.cilium.io
+spec:
+  group: cilium.io
+  scope: Namespaced
+  names:
+    plural: ciliumnetworkpolicies
+    singular: ciliumnetworkpolicy
+    kind: CiliumNetworkPolicy
+    listKind: CiliumNetworkPolicyList
+  versions:
+    - name: v1
+      served: true
+      storage: true
+      schema:
+        openAPIV3Schema:
+          type: object
+          x-kubernetes-preserve-unknown-fields: true
+---
+apiVersion: apiextensions.k8s.io/v1
+kind: CustomResourceDefinition
+metadata:
+  name: ciliumendpoints.cilium.io
+spec:
+  group: cilium.io
+  scope: Namespaced
+  names:
+    plural: ciliumendpoints
+    singular: ciliumendpoint
+    kind: CiliumEndpoint
+    listKind: CiliumEndpointList
+  versions:
+    - name: v1
+      served: true
+      storage: true
+      schema:
+        openAPIV3Schema:
+          type: object
+          x-kubernetes-preserve-unknown-fields: true
+---
+apiVersion: apiextensions.k8s.io/v1
+kind: CustomResourceDefinition
+metadata:
+  name: ciliumclusterwidenetworkpolicies.cilium.io
+spec:
+  group: cilium.io
+  scope: Cluster
+  names:
+    plural: ciliumclusterwidenetworkpolicies
+    singular: ciliumclusterwidenetworkpolicy
+    kind: CiliumClusterwideNetworkPolicy
+    listKind: CiliumClusterwideNetworkPolicyList
+  versions:
+    - name: v1
+      served: true
+      storage: true
+      schema:
+        openAPIV3Schema:
+          type: object
+          x-kubernetes-preserve-unknown-fields: true
+---
+apiVersion: apiextensions.k8s.io/v1
+kind: CustomResourceDefinition
+metadata:
+  name: ciliumegressgatewaypolicies.cilium.io
+spec:
+  group: cilium.io
+  scope: Cluster
+  names:
+    plural: ciliumegressgatewaypolicies
+    singular: ciliumegressgatewaypolicy
+    kind: CiliumEgressGatewayPolicy
+    listKind: CiliumEgressGatewayPolicyList
+  versions:
+    - name: v1
+      served: true
+      storage: true
+      schema:
+        openAPIV3Schema:
+          type: object
+          x-kubernetes-preserve-unknown-fields: true
+---
+apiVersion: apiextensions.k8s.io/v1
+kind: CustomResourceDefinition
+metadata:
+  name: clusterpolicies.kyverno.io
+spec:
+  group: kyverno.io
+  scope: Cluster
+  names:
+    plural: clusterpolicies
+    singular: clusterpolicy
+    kind: ClusterPolicy
+    listKind: ClusterPolicyList
+  versions:
+    - name: v1
+      served: true
+      storage: true
+      schema:
+        openAPIV3Schema:
+          type: object
+          x-kubernetes-preserve-unknown-fields: true
+---
+apiVersion: apiextensions.k8s.io/v1
+kind: CustomResourceDefinition
+metadata:
+  name: policies.kyverno.io
+spec:
+  group: kyverno.io
+  scope: Namespaced
+  names:
+    plural: policies
+    singular: policy
+    kind: Policy
+    listKind: PolicyList
+  versions:
+    - name: v1
+      served: true
+      storage: true
+      schema:
+        openAPIV3Schema:
+          type: object
+          x-kubernetes-preserve-unknown-fields: true
+---
+apiVersion: apiextensions.k8s.io/v1
+kind: CustomResourceDefinition
+metadata:
+  name: policyexceptions.kyverno.io
+spec:
+  group: kyverno.io
+  scope: Namespaced
+  names:
+    plural: policyexceptions
+    singular: policyexception
+    kind: PolicyException
+    listKind: PolicyExceptionList
+  versions:
+    - name: v1
+      served: true
+      storage: true
+      schema:
+        openAPIV3Schema:
+          type: object
+          x-kubernetes-preserve-unknown-fields: true
+---
+apiVersion: apiextensions.k8s.io/v1
+kind: CustomResourceDefinition
+metadata:
+  name: gateways.gateway.networking.k8s.io
+  annotations:
+    api-approved.kubernetes.io: "https://github.com/kubernetes/enhancements/pull/1111"
+spec:
+  group: gateway.networking.k8s.io
+  scope: Namespaced
+  names:
+    plural: gateways
+    singular: gateway
+    kind: Gateway
+    listKind: GatewayList
+  versions:
+    - name: v1
+      served: true
+      storage: true
+      schema:
+        openAPIV3Schema:
+          type: object
+          x-kubernetes-preserve-unknown-fields: true
+---
+apiVersion: apiextensions.k8s.io/v1
+kind: CustomResourceDefinition
+metadata:
+  name: httproutes.gateway.networking.k8s.io
+  annotations:
+    api-approved.kubernetes.io: "https://github.com/kubernetes/enhancements/pull/1111"
+spec:
+  group: gateway.networking.k8s.io
+  scope: Namespaced
+  names:
+    plural: httproutes
+    singular: httproute
+    kind: HTTPRoute
+    listKind: HTTPRouteList
+  versions:
+    - name: v1
+      served: true
+      storage: true
+      schema:
+        openAPIV3Schema:
+          type: object
+          x-kubernetes-preserve-unknown-fields: true
+---
+apiVersion: apiextensions.k8s.io/v1
+kind: CustomResourceDefinition
+metadata:
+  name: grpcroutes.gateway.networking.k8s.io
+  annotations:
+    api-approved.kubernetes.io: "https://github.com/kubernetes/enhancements/pull/1111"
+spec:
+  group: gateway.networking.k8s.io
+  scope: Namespaced
+  names:
+    plural: grpcroutes
+    singular: grpcroute
+    kind: GRPCRoute
+    listKind: GRPCRouteList
+  versions:
+    - name: v1
+      served: true
+      storage: true
+      schema:
+        openAPIV3Schema:
+          type: object
+          x-kubernetes-preserve-unknown-fields: true
+---
+apiVersion: apiextensions.k8s.io/v1
+kind: CustomResourceDefinition
+metadata:
+  name: referencegrants.gateway.networking.k8s.io
+  annotations:
+    api-approved.kubernetes.io: "https://github.com/kubernetes/enhancements/pull/1111"
+spec:
+  group: gateway.networking.k8s.io
+  scope: Namespaced
+  names:
+    plural: referencegrants
+    singular: referencegrant
+    kind: ReferenceGrant
+    listKind: ReferenceGrantList
+  versions:
+    - name: v1
+      served: true
+      storage: true
+      schema:
+        openAPIV3Schema:
+          type: object
+          x-kubernetes-preserve-unknown-fields: true
