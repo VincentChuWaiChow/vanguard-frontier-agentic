@@ -444,6 +444,44 @@ class BaselineChanged(RuntimeError):
     """Regeneration would rewrite an already-reviewed expectation."""
 
 
+def routed_agents(provider: str) -> set[str]:
+    """Agents a provider's reviewed taxonomy routes, live guards included."""
+    path = FIXTURES_ROOT / f"{provider}-maestro-routing" / "taxonomy.json"
+    if not path.is_file():
+        return set()
+    taxonomy = json.loads(path.read_text())
+    return {conf["agent"] for conf in taxonomy.get("domains", {}).values()} | set(
+        taxonomy.get("live_guards", [])
+    )
+
+
+def claimed_elsewhere(provider: str, agents: list[dict]) -> dict[str, list[str]]:
+    """Catalog agents of `provider` that another maestro's reviewed taxonomy
+    routes and this provider's does not, mapped to the maestros routing them.
+
+    A catalog `provider` is only a proxy for the maestro that routes an agent:
+    finops-kubernetes-rightsizer-agent is catalogued under kubernetes but routed
+    by finops, and the python-live-* agents are catalogued under python but
+    routed by python-live. The maestro documents cannot settle it — many do not
+    name every agent they route, and several agents are legitimately routed by
+    two maestros — so the reviewed taxonomies are the record. An agent this
+    provider already routes is kept even if another maestro routes it too."""
+    own = routed_agents(provider)
+    others = {
+        d.name[: -len("-maestro-routing")]
+        for d in FIXTURES_ROOT.glob("*-maestro-routing")
+    } - {provider}
+    routed_by = {other: routed_agents(other) for other in sorted(others)}
+    claimed: dict[str, list[str]] = {}
+    for agent in agents:
+        if agent["id"] in own:
+            continue
+        owners = [other for other, ids in routed_by.items() if agent["id"] in ids]
+        if owners:
+            claimed[agent["id"]] = owners
+    return claimed
+
+
 def plan_provider(
     provider: str, agents: list[dict]
 ) -> tuple[dict, list[tuple[str, dict, dict]]]:
@@ -461,6 +499,13 @@ def plan_provider(
     expected_dir = fixture_dir / "expected"
     inputs_dir.mkdir(parents=True, exist_ok=True)
     expected_dir.mkdir(parents=True, exist_ok=True)
+
+    # Never introduce a route another maestro owns. Left in, such an agent
+    # becomes a new domain here and every later happy-path fixture renumbers,
+    # which the guards below accept as coverage gained — so this is the check
+    # that stops it, not the baseline freeze.
+    handed_off = claimed_elsewhere(provider, agents)
+    agents = [a for a in agents if a["id"] not in handed_off]
 
     taxonomy = build_taxonomy(provider, agents)
 
@@ -654,6 +699,14 @@ def plan_provider(
         )
         for old, new in renamed:
             print(f"  [{provider}] {old} -> {new}")
+    if handed_off:
+        print(
+            f"NOTE {provider}: {len(handed_off)} catalog agent(s) left out because "
+            f"another maestro's reviewed taxonomy routes them and this one's does "
+            f"not (add one to this taxonomy by hand to route it here too):"
+        )
+        for agent_id, owners in sorted(handed_off.items()):
+            print(f"  [{provider}] {agent_id} -> routed by {', '.join(owners)}")
 
     return taxonomy, planned
 
@@ -715,11 +768,11 @@ def main() -> int:
     # routing_keywords on those agents does not recover it either — the domain
     # names and the task text are both derived differently.
     #
-    # The rest were found by planning every provider without writing. Each
-    # would either lose reviewed coverage or, for kubernetes, gain a route its
-    # maestro does not have. In every case the cause is content this generator
-    # cannot derive from the catalog, not a regression: it mines agents by
-    # catalog `provider`, which is only a proxy for a maestro's routing table.
+    # The rest were found by planning every provider without writing: each
+    # would lose reviewed coverage. In every case the cause is content this
+    # generator cannot derive from the catalog, not a regression. (kubernetes
+    # was here too, for gaining a route the finops maestro owns; that is now
+    # enforced for every provider by claimed_elsewhere() in plan_provider.)
     skip = {
         "nvidia": "hand-curated fixtures",
         "accounting": "hand-curated fixtures",
@@ -739,9 +792,6 @@ def main() -> int:
         # adv-mutation-deploy/-publish, which no script produces, and a
         # live_guard_intent that differs from the generated one.
         "kotlin": "hand-curated fixtures",
-        # finops-kubernetes-rightsizer-agent is catalogued here but routed by
-        # the finops maestro; the kubernetes maestro never names it.
-        "kubernetes": "catalog provider includes an agent another maestro routes",
         # adv-live-guard-gate, which no script produces.
         "marketing": "hand-curated fixtures",
         # composer.lock, packagist, register_rest_route, php-fpm and 16 more

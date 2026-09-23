@@ -32,6 +32,13 @@ fixture that no longer routes to its answer. A fixture renumbered because an
 agent was inserted before it, with the same task and answer, is reported but
 not blocked.
 
+A catalog agent's `provider` does not always name the maestro that routes it
+(`finops-kubernetes-rightsizer-agent` is catalogued under kubernetes but routed
+by finops). The generator therefore leaves out any agent that another
+maestro's committed `taxonomy.json` routes and this provider's does not, and
+reports it. To route such an agent from a second maestro as well, add it to
+that maestro's taxonomy by hand.
+
 ## Stress-test categories
 
 Every provider's harness covers these scenario classes:
