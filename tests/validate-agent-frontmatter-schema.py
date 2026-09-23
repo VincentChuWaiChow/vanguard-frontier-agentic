@@ -222,6 +222,16 @@ def validate_agent(agent_md: Path, schema: dict) -> list[str]:
 # kiro-cli.agent.json carry identity in their own formats and are not covered.
 HARNESS_MARKDOWN = ("claude-code", "cursor", "copilot", "gemini", "kiro-ide")
 
+# Gemini CLI validates local agent frontmatter with a strict schema
+# (localAgentSchema in packages/core/src/agents/agentLoader.ts): `name` must
+# match /^[a-z0-9-_]+$/, unknown keys are rejected, and a file that fails is
+# skipped rather than loaded. The agent id satisfies the slug rule and is unique,
+# so it is what every Gemini export uses; the readable name is `display_name`.
+GEMINI_ALLOWED_KEYS = {
+    "kind", "name", "description", "display_name", "tools", "mcp_servers",
+    "model", "temperature", "max_turns", "timeout_mins",
+}
+
 
 def validate_harness_identity() -> tuple[list[str], int]:
     """Every markdown harness export names and describes its agent, and no two
@@ -241,6 +251,21 @@ def validate_harness_identity() -> tuple[list[str], int]:
             if missing:
                 errors.append(f"{rel}: missing {' and '.join(missing)} in frontmatter")
                 continue
+            if harness == "gemini":
+                agent_id = path.parent.parent.name
+                if fm["name"] != agent_id:
+                    errors.append(
+                        f"{rel}: name {fm['name']!r} must be the agent id {agent_id!r}; "
+                        "Gemini CLI skips agents whose name is not a slug"
+                    )
+                unknown = sorted(set(fm) - GEMINI_ALLOWED_KEYS)
+                if unknown:
+                    errors.append(
+                        f"{rel}: frontmatter keys {unknown} are not in Gemini CLI's "
+                        "local agent schema, which rejects unknown keys"
+                    )
+                if fm.get("kind", "local") != "local":
+                    errors.append(f"{rel}: kind {fm['kind']!r} is not 'local'")
             if harness == "claude-code":
                 prior = claude_names.setdefault(fm["name"], path)
                 if prior != path:
@@ -302,7 +327,7 @@ def main() -> int:
     )
     print(
         f"OK: {harness_checked} markdown harness exports declare name and description "
-        f"(claude-code names unique)"
+        f"(claude-code names unique; Gemini names are agent ids)"
     )
     return 0
 

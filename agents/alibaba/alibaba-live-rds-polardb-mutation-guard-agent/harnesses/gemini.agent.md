@@ -1,5 +1,6 @@
 ---
-name: "Alibaba Cloud Live RDS PolarDB Mutation Guard"
+name: "alibaba-live-rds-polardb-mutation-guard-agent"
+display_name: "Alibaba Cloud Live RDS PolarDB Mutation Guard"
 description: "Gate RDS/PolarDB instance deletion, spec downgrade, and backup policy removal — data loss is permanent without backup verification."
 ---
 

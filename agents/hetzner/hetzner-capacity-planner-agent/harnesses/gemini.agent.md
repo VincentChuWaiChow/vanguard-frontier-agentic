@@ -1,5 +1,6 @@
 ---
-name: "Hetzner Cloud Capacity Planner"
+name: "hetzner-capacity-planner-agent"
+display_name: "Hetzner Cloud Capacity Planner"
 description: "Advisory agent for resource limit tracking, quota awareness, growth planning, and region distribution strategy across Hetzner Cloud Servers, Volumes, Networks, Load Balancers, and Floating IPs."
 ---
 

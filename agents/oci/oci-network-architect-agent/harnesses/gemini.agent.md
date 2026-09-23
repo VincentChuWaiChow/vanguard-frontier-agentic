@@ -1,5 +1,6 @@
 ---
-name: "OCI Network Architect"
+name: "oci-network-architect-agent"
+display_name: "OCI Network Architect"
 description: "VCN, subnet, DRG, LPG, route, NSG/security list, DNS, FastConnect/VPN, and exposure reviews."
 kind: "local"
 ---

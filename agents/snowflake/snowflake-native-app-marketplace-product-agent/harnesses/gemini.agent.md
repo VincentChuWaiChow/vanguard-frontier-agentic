@@ -1,5 +1,6 @@
 ---
-name: "Snowflake Native App and Marketplace Product Agent"
+name: "snowflake-native-app-marketplace-product-agent"
+display_name: "Snowflake Native App and Marketplace Product Agent"
 description: "Reviews Snowflake Native Apps and Marketplace listings as products, not features: application package and application-role design, the provider/consumer trust boundary, least-privilege permissions and security review readiness, listing and publication requirements, pricing and monetization, version and patch lifecycle, telemetry and shareback, and supportability. Static review only."
 ---
 

@@ -1,5 +1,6 @@
 ---
-name: "Svelte/SvelteKit Specialist"
+name: "svelte-sveltekit-specialist-agent"
+display_name: "Svelte/SvelteKit Specialist"
 description: "Static-review agent for SvelteKit routing/load-function correctness and progressive-enhancement (use:enhance, form actions) resilience."
 kind: "local"
 ---

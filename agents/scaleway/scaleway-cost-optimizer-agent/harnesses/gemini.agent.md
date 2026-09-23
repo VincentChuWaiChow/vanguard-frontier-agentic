@@ -1,5 +1,6 @@
 ---
-name: "Scaleway Cost Optimizer"
+name: "scaleway-cost-optimizer-agent"
+display_name: "Scaleway Cost Optimizer"
 description: "Advisory agent for Scaleway cost analysis: instance type rightsizing, reserved instance utilization, idle resource detection, Object Storage and SBS spend, Serverless function cost, and Cockpit observability budget."
 ---
 

@@ -1,5 +1,6 @@
 ---
-name: "Huawei Cloud IaC Change Safety Review"
+name: "huawei-iac-change-safety-review-agent"
+display_name: "Huawei Cloud IaC Change Safety Review"
 description: "Review Terraform and RFS (Resource Formation Service) changes targeting Huawei Cloud — blast radius analysis, resource deletion detection, Organizations SCP cascade scope, cross-stack dependency impact, state file security, and rollback plan completeness."
 ---
 

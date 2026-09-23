@@ -1,5 +1,6 @@
 ---
-name: "PHP Application Security Agent"
+name: "php-application-security-agent"
+display_name: "PHP Application Security Agent"
 description: "Static-review agent for PHP application security: user-reachable unserialize() object injection, session fixation/hijacking (session_regenerate_id, use_strict_mode, cookie hardening), and unsafe file-upload handling, mapping each finding to an OWASP category and the exact php.net-documented mitigation."
 kind: "local"
 ---

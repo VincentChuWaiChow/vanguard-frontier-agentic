@@ -1,5 +1,6 @@
 ---
-name: "Huawei WAF Security Reviewer"
+name: "huawei-waf-security-review-agent"
+display_name: "Huawei WAF Security Reviewer"
 description: "Assess Huawei Cloud workload security posture via IAM SCP governance, VPC isolation, DEW key management, SecMaster SIEM/SOAR, and MLPS 2.0 technical controls."
 ---
 

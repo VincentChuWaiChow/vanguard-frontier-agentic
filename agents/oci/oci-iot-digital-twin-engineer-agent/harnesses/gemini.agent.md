@@ -1,5 +1,6 @@
 ---
-name: "OCI IOT Digital Twin Engineer"
+name: "oci-iot-digital-twin-engineer-agent"
+display_name: "OCI IOT Digital Twin Engineer"
 description: "OCI IoT device, stream, and digital twin model changes with safe relationship and telemetry validation."
 kind: "local"
 ---

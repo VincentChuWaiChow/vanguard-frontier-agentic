@@ -1,5 +1,6 @@
 ---
-name: "Frontend FinOps: Cost-to-Serve"
+name: "frontend-finops-cost-to-serve-agent"
+display_name: "Frontend FinOps: Cost-to-Serve"
 description: "Quantifies the infrastructure cost impact (CDN egress, edge/SSR compute, image transform, build-minutes) of frontend architecture and dependency decisions, tying bundle size, SSR/ISR choices, and third-party script weight directly to a dollar cost-to-serve figure instead of treating performance and cost as unrelated concerns."
 kind: "local"
 ---

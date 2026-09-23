@@ -1,5 +1,6 @@
 ---
-name: "Java Deserialization and Parser Security Agent"
+name: "java-deserialization-and-parser-security-agent"
+display_name: "Java Deserialization and Parser Security Agent"
 description: "Static review of untrusted-deserialization and parser RCE surface on the JVM — Java native ObjectInputStream gadget chains, SnakeYAML bare Constructor, Jackson polymorphic default typing without a validator, and XML external-entity (XXE) exposure. Reads source and sanitized configuration only."
 ---
 

@@ -1,5 +1,6 @@
 ---
-name: "Databricks Data Protection and Privacy Agent"
+name: "databricks-data-protection-privacy-agent"
+display_name: "Databricks Data Protection and Privacy Agent"
 description: "Static review of Databricks data protection, privacy, and governance design: row filters and column masks (UDF-based, cost implications), ABAC policies and their scoping, PII and data classification frameworks (AI-driven, backfill defaults), deletion and erasure mechanics (DELETE/MERGE vs VACUUM vs REORG PURGE), Delta Sharing recipient controls and cross-region egress cost, residency and Geo constraints, and customer-managed encryption keys (Enterprise-only). Reads table schemas, mask/filter definitions, classification results, sharing configurations, data residency settings, and audit logs only."
 ---
 

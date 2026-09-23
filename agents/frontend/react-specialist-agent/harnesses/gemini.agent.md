@@ -1,5 +1,6 @@
 ---
-name: "React Specialist"
+name: "react-specialist-agent"
+display_name: "React Specialist"
 description: "Static-review agent for React component architecture, hooks/effects correctness, and rendering-performance risk across component libraries and app code."
 kind: "local"
 ---

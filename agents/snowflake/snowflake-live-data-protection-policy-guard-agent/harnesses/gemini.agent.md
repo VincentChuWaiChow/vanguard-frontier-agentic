@@ -1,5 +1,6 @@
 ---
-name: "Snowflake Live Data Protection Policy Guard Agent"
+name: "snowflake-live-data-protection-policy-guard-agent"
+display_name: "Snowflake Live Data Protection Policy Guard Agent"
 description: "Approval-gated execution boundary for exactly one Snowflake data-protection policy attachment, detachment, or replacement — masking, row-access, or a supported governance policy — on one object or column. Requires a tested per-role-class visibility prediction before execution, including for service, BI, replication, and agent identities. Never auto-dispatched."
 ---
 

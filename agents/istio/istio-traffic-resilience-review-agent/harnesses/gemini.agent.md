@@ -1,5 +1,6 @@
 ---
-name: "Istio Traffic Resilience Review"
+name: "istio-traffic-resilience-review-agent"
+display_name: "Istio Traffic Resilience Review"
 description: "Review Istio VirtualService and DestinationRule or supplied Gateway API traffic intent for routing, weights, timeouts, retries, outlier detection, circuit-breaking, mirroring and fault injection. Use for canaries, retry storms, unexplained routing, write-side-effect risks or resilience changes. Evaluate target version and mesh mode before applying a rule. Do not inject faults, mirror traffic, probe services or change live configuration."
 ---
 

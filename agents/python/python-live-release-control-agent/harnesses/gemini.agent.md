@@ -1,5 +1,6 @@
 ---
-name: "Python Live Release Control Agent"
+name: "python-live-release-control-agent"
+display_name: "Python Live Release Control Agent"
 description: "Executes one bounded release, canary increment, rollback, or single-instance restart. Requires independent approval and just-in-time credentials."
 ---
 

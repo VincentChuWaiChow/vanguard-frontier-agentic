@@ -1,5 +1,6 @@
 ---
-name: "Kotlin Compose UI Quality and Accessibility Agent"
+name: "kotlin-compose-ui-quality-accessibility-agent"
+display_name: "Kotlin Compose UI Quality and Accessibility Agent"
 description: "Static review of Jetpack Compose UI correctness and accessibility: recomposition stability (@Stable/@Immutable, unstable parameters), correct side-effect API usage, remember/derivedStateOf scoping, state hoisting, and mandatory semantics/contentDescription and touch-target accessibility. Reads source only."
 ---
 

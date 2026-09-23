@@ -1,5 +1,6 @@
 ---
-name: "Contabo Security Hardening"
+name: "contabo-security-hardening-agent"
+display_name: "Contabo Security Hardening"
 description: "Advisory agent for Contabo security posture: SSH key management via secret IDs, default user policy review, firewall configuration, OAuth2 credential hygiene, and x-request-id traceability enforcement."
 ---
 

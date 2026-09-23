@@ -1,5 +1,6 @@
 ---
-name: "TypeScript Contracts & Type Safety"
+name: "typescript-contracts-agent"
+display_name: "TypeScript Contracts & Type Safety"
 description: "Static-review agent for TypeScript tsconfig strictness posture, exported type/interface contract soundness, and narrowing correctness across component libraries and application code."
 kind: "local"
 ---

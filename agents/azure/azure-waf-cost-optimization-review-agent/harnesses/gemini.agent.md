@@ -1,5 +1,6 @@
 ---
-name: "Azure WAF Cost Optimization Review"
+name: "azure-waf-cost-optimization-review-agent"
+display_name: "Azure WAF Cost Optimization Review"
 description: "Review Azure workload cost posture against Well-Architected cost principles, cost visibility, Advisor recommendations, commitments, rightsizing, tagging, and waste removal."
 ---
 

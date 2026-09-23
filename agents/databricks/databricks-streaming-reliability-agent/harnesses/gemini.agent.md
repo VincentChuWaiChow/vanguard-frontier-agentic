@@ -1,5 +1,6 @@
 ---
-name: "Databricks Streaming Reliability Agent"
+name: "databricks-streaming-reliability-agent"
+display_name: "Databricks Streaming Reliability Agent"
 description: "Static review of Structured Streaming correctness and recovery: checkpoint contents and compatibility across restarts, state-schema immutability enforcement, watermark semantics and late-data handling, trigger selection (AvailableNow vs Continuous vs ProcessingTime), exactly-once versus at-least-once sink guarantees, foreachBatch idempotency, RocksDB state store and changelog checkpointing, async checkpoint trade-offs, serverless streaming constraints, and restart/backfill safety. Reads query source, state schema, checkpoint configuration, and trigger definition only."
 ---
 

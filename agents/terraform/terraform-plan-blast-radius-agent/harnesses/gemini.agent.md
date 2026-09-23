@@ -1,5 +1,6 @@
 ---
-name: "Terraform Plan Blast Radius Agent"
+name: "terraform-plan-blast-radius-agent"
+display_name: "Terraform Plan Blast Radius Agent"
 description: "Read a Terraform or OpenTofu plan and answer why the engine decided to replace or destroy anything, what the ordering means for availability, and whether the plan under review is the plan that will actually be applied. Engine-level plan mechanics across every cloud; reads plan output, source, and sanitized variable files only."
 ---
 

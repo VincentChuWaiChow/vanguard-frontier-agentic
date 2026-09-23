@@ -1,5 +1,6 @@
 ---
-name: "Azure Landing Zone Architect"
+name: "azure-landing-zone-architect-agent"
+display_name: "Azure Landing Zone Architect"
 description: "Design or review Azure landing-zone architecture across management groups, subscriptions, governance, security, networking, and operations dependencies with explicit evidence handling."
 ---
 

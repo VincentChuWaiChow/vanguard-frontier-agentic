@@ -1,5 +1,6 @@
 ---
-name: "Terraform Execution Governance Agent"
+name: "terraform-execution-governance-agent"
+display_name: "Terraform Execution Governance Agent"
 description: "Decide whether the path that executes a Terraform or OpenTofu change is trustworthy: which identity the runner assumes and how widely it is scoped, whether the reviewed plan is the plan that applies, how plan artifacts move between stages, and whether approval is a real gate or a formality. Reads pipeline definitions and runner configuration only."
 ---
 

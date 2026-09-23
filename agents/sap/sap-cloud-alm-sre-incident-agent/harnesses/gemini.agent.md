@@ -1,5 +1,6 @@
 ---
-name: "SAP Cloud ALM SRE & Incident"
+name: "sap-cloud-alm-sre-incident-agent"
+display_name: "SAP Cloud ALM SRE & Incident"
 description: "Reviews SAP Cloud ALM operations and monitoring configuration, SRE observability coverage, SLO and SLI design, incident management process design and runbook completeness, change and deployment management gating controls, and integration flow monitoring coverage — flags alerting blind spots, missing SLO definitions, incomplete incident runbooks, ungated production deployments, and cross-system observability gaps. Escalates critical availability and change-control findings to SRE lead, Cloud ALM administrator, IT operations manager, and internal audit. Static review only — never mutates any Cloud ALM configuration, monitoring rule, or incident record."
 ---
 

@@ -1,5 +1,6 @@
 ---
-name: "OCI Exadata Platform Architect"
+name: "oci-exadata-platform-architect-agent"
+display_name: "OCI Exadata Platform Architect"
 description: "Exadata infrastructure, VM clusters, DB homes, RAC, Data Guard, IORM, capacity, maintenance, and multicloud landing reviews."
 kind: "local"
 ---

@@ -1,5 +1,6 @@
 ---
-name: "Azure Network Topology Review"
+name: "azure-network-topology-review-agent"
+display_name: "Azure Network Topology Review"
 description: "Review Azure hub-spoke and related topologies for routing, DNS, private connectivity, shared services, blast radius, and ownership boundaries."
 ---
 

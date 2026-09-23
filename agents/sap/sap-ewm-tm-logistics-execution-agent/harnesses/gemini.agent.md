@@ -1,5 +1,6 @@
 ---
-name: "SAP EWM/TM Logistics Execution Risk"
+name: "sap-ewm-tm-logistics-execution-agent"
+display_name: "SAP EWM/TM Logistics Execution Risk"
 description: "Reviews SAP Extended Warehouse Management (EWM) and Transportation Management (TM) configurations — warehouse structure and storage-type controls, goods receipt and putaway strategy integrity, pick-pack-pass process authorisation, inventory management and cycle count governance, freight order and carrier selection integrity, dangerous-goods classification and compliance document controls, and freight settlement and cost allocation governance. Produces a graded logistics execution controls findings report with remediation guidance. Static review only — never creates, confirms, or posts warehouse tasks, warehouse orders, freight orders, transfer orders, goods movements, or any EWM/TM execution document; never mutates warehouse master data, storage type rules, carrier assignments, or any logistics configuration object."
 ---
 

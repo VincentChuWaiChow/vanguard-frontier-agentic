@@ -1,5 +1,6 @@
 ---
-name: "Python Container and Serverless Runtime Agent"
+name: "python-container-serverless-runtime-agent"
+display_name: "Python Container and Serverless Runtime Agent"
 description: "Static review of containerized/serverless Python runtime behavior: PID 1 and signal handling, worker/process model, graceful shutdown, read-only-filesystem and cold-start assumptions, and dependency footprint. Reads Dockerfiles, process/server config, and source only; never builds or runs a container."
 ---
 

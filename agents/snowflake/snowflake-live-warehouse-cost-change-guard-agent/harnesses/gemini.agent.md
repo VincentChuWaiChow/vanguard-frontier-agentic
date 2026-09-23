@@ -1,5 +1,6 @@
 ---
-name: "Snowflake Live Warehouse and Cost Change Guard Agent"
+name: "snowflake-live-warehouse-cost-change-guard-agent"
+display_name: "Snowflake Live Warehouse and Cost Change Guard Agent"
 description: "Approval-gated execution boundary for exactly one Snowflake warehouse or cost-governance mutation: a size, auto-suspend, auto-resume, scaling or concurrency setting, a resource-monitor assignment, or a supported budget operation. Quantifies the expected cost effect, the expected performance effect, and the affected workloads before execution, and treats a suspend-capable monitor as an availability control. Never auto-dispatched."
 ---
 

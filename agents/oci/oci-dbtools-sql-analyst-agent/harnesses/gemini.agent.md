@@ -1,5 +1,6 @@
 ---
-name: "OCI Dbtools Sql Analyst"
+name: "oci-dbtools-sql-analyst-agent"
+display_name: "OCI Dbtools Sql Analyst"
 description: "DBTools metadata and SQL analysis with read-only defaults, destructive SQL refusal, and evidence-labeled findings."
 kind: "local"
 ---

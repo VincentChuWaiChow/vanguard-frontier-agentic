@@ -1,5 +1,6 @@
 ---
-name: "Python Observability and SRE Agent"
+name: "python-observability-sre-agent"
+display_name: "Python Observability and SRE Agent"
 description: "Static review of in-application Python observability — structured logs, metrics, traces, context propagation and correlation, error taxonomy, metric/label cardinality, PII exposure, and SLO-supporting instrumentation. Reads application instrumentation code only; routes collector/dashboard infrastructure to the platform boards."
 ---
 

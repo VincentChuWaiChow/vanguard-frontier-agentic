@@ -1,5 +1,6 @@
 ---
-name: "Huawei Cloud Change Impact Advisor"
+name: "huawei-change-impact-advisor-agent"
+display_name: "Huawei Cloud Change Impact Advisor"
 description: "Pre-change blast radius analysis for Huawei Cloud — Organizations SCP cascade scope, IAM agency dependency chain, VPC route table and VPC Peering impact, GaussDB instance class change disruption, CCE node pool resize safety, and Enterprise Project boundary clarity."
 ---
 

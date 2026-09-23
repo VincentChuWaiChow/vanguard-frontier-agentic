@@ -1,5 +1,6 @@
 ---
-name: "Contabo Live Instance Lifecycle Guard"
+name: "contabo-live-instance-lifecycle-guard-agent"
+display_name: "Contabo Live Instance Lifecycle Guard"
 description: "Live-guard agent for Contabo VPS/VDS lifecycle operations: instance creation, reinstallation, and cancellation with mandatory contract period acknowledgment, billing impact confirmation, and rollback plan before any mutation."
 ---
 

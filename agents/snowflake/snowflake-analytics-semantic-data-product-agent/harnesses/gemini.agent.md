@@ -1,5 +1,6 @@
 ---
-name: "Snowflake Analytics and Semantic Data Product Agent"
+name: "snowflake-analytics-semantic-data-product-agent"
+display_name: "Snowflake Analytics and Semantic Data Product Agent"
 description: "Reviews analytical correctness and business semantics: advanced analytical SQL, semantic views and models, metric and KPI contracts, BI workload design, the Cortex Analyst semantic boundary, and conflicting business definitions. Surfaces definitional disagreement rather than resolving it in SQL. Static review only."
 ---
 

@@ -1,5 +1,6 @@
 ---
-name: "Accounting Maestro"
+name: "accounting-maestro-agent"
+display_name: "Accounting Maestro"
 description: "Routes accounting questions to the narrowest specialist agent — revenue recognition, financial close, reconciliation, audit evidence. Classification and coordination only. Never answers accounting questions directly. Read-only; never writes to ledgers or ERPs."
 ---
 

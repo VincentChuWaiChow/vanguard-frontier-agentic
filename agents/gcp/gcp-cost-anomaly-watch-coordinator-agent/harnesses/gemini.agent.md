@@ -1,5 +1,6 @@
 ---
-name: "GCP Cost Anomaly Watch Coordinator"
+name: "gcp-cost-anomaly-watch-coordinator-agent"
+display_name: "GCP Cost Anomaly Watch Coordinator"
 description: "Detect and coordinate response to GCP cost anomalies — BigQuery on-demand query cost spikes ($5/TB scanned), Cloud Run scaling runaway, unattached Persistent Disks, idle GCE instances, budget alert → notification channel → remediation playbook."
 ---
 

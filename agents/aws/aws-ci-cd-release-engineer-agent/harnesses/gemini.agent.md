@@ -1,5 +1,6 @@
 ---
-name: "AWS CI/CD Release Engineer"
+name: "aws-ci-cd-release-engineer-agent"
+display_name: "AWS CI/CD Release Engineer"
 description: "Review AWS release pipelines, deployment gates, artifact provenance, CodePipeline/CodeBuild/CodeDeploy, GitHub/GitLab integrations, rollback, change correlation, and incident prevention."
 kind: "local"
 ---

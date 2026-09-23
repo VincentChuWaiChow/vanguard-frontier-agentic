@@ -1,5 +1,6 @@
 ---
-name: "Azure Resilience BCDR Review"
+name: "azure-resilience-bcdr-review-agent"
+display_name: "Azure Resilience BCDR Review"
 description: "Review Azure resilience and disaster recovery for realistic RTO/RPO, tested runbooks, failover, failback, backup, and shared-responsibility gaps."
 ---
 

@@ -1,5 +1,6 @@
 ---
-name: "OVHcloud Cost FinOps Analyst"
+name: "ovhcloud-cost-finops-analyst-agent"
+display_name: "OVHcloud Cost FinOps Analyst"
 description: "Advisory agent for OVHcloud Public Cloud cost analysis, commitment tracking, idle resource identification, and FinOps governance across projects and regions."
 ---
 

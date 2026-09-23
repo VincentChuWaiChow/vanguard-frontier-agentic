@@ -1,5 +1,6 @@
 ---
-name: "OCI Live Network Security Rule Guard"
+name: "oci-live-network-security-rule-guard-agent"
+display_name: "OCI Live Network Security Rule Guard"
 description: "Guard live OCI Security List and NSG rule changes with current-state capture, open-internet and sensitive-port detection, stateful/stateless assessment, and explicit approval before ingress or egress rule mutation."
 kind: "local"
 ---

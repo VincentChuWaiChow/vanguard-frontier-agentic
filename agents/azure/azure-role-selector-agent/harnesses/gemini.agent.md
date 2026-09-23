@@ -1,5 +1,6 @@
 ---
-name: "Azure Role Selector"
+name: "azure-role-selector-agent"
+display_name: "Azure Role Selector"
 description: "Select least-privilege Azure RBAC roles by matching required actions, built-in roles, scope boundaries, privileged administrator risk, and custom-role fallback evidence."
 ---
 

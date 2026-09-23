@@ -1,5 +1,6 @@
 ---
-name: "OVHcloud IAM Policy Review"
+name: "ovhcloud-iam-policy-review-agent"
+display_name: "OVHcloud IAM Policy Review"
 description: "Advisory agent for reviewing OVHcloud IAM policies, conditional access rules (IP, tag, expiration), identity groups, and URN-scoped permissions."
 ---
 

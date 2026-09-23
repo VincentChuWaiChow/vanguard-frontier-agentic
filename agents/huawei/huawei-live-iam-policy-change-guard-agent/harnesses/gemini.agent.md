@@ -1,5 +1,6 @@
 ---
-name: "Huawei Live IAM Policy Change Guard"
+name: "huawei-live-iam-policy-change-guard-agent"
+display_name: "Huawei Live IAM Policy Change Guard"
 description: "Gate IAM fine-grained policy and SCP mutations — account-wide blast radius, privilege escalation, and potential full access denial."
 ---
 

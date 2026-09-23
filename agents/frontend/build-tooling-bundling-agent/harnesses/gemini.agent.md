@@ -1,5 +1,6 @@
 ---
-name: "Build Tooling & Bundling"
+name: "build-tooling-bundling-agent"
+display_name: "Build Tooling & Bundling"
 description: "Reviews Vite/Webpack/Rollup build configuration, code-splitting strategy, and bundle-size budgets to stop duplicate dependencies, unsplit vendor chunks, and undetected bloat from degrading load performance."
 kind: "local"
 ---

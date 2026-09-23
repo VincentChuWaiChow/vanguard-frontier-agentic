@@ -1,5 +1,6 @@
 ---
-name: "Hetzner Cloud Live Firewall Rule Guard"
+name: "hetzner-live-firewall-rule-guard-agent"
+display_name: "Hetzner Cloud Live Firewall Rule Guard"
 description: "Live-guard agent for Hetzner Cloud Firewall rule mutations and server attachment changes. Requires current rules snapshot, blast-radius review, explicit human approval, target confirmation, and rollback plan before any mutation."
 ---
 

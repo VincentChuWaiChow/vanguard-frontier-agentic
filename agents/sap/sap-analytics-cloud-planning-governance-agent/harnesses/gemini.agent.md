@@ -1,5 +1,6 @@
 ---
-name: "SAP Analytics Cloud Planning & Reporting Governance"
+name: "sap-analytics-cloud-planning-governance-agent"
+display_name: "SAP Analytics Cloud Planning & Reporting Governance"
 description: "Reviews SAP Analytics Cloud story and model configurations, planning models and version management, live vs. import connection strategies, data access control assignments, and story publishing controls for governance gaps — flags stale import models, unversioned planning data, over-permissive DAC rules, and orphaned public dimension members. Static review only — never mutates anything."
 ---
 

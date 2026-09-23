@@ -1,5 +1,6 @@
 ---
-name: "IONOS Cloud Maestro"
+name: "ionos-maestro-agent"
+display_name: "IONOS Cloud Maestro"
 description: "Router agent that classifies IONOS Cloud tasks and delegates to the narrowest specialist for DCD topology, security compliance, Kubernetes, cost optimization, or database lifecycle operations."
 ---
 

@@ -1,5 +1,6 @@
 ---
-name: "SAP Manufacturing Execution Risk"
+name: "sap-manufacturing-execution-risk-agent"
+display_name: "SAP Manufacturing Execution Risk"
 description: "Reviews SAP S/4HANA Manufacturing (PP/DS, PP-PI, MES integration) configurations — production order type and routing controls, bill-of-materials change control and engineering change management governance, goods issue and backflush authorisation, production confirmation and variance management, quality inspection activation and usage decision authorisation, batch classification and shelf-life management, production cost settlement and WIP valuation controls, and SAP Digital Manufacturing (DM) and third-party MES integration monitoring. Produces a graded manufacturing execution controls findings report with remediation guidance. Static review only — never creates, releases, confirms, or settles production orders, process orders, or planned orders; never mutates BOM masters, routing masters, work centre masters, or any PP/DS configuration object."
 ---
 

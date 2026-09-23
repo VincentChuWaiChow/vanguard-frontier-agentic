@@ -1,5 +1,6 @@
 ---
-name: "SAP Security, IAM, GRC & SoD Reviewer"
+name: "sap-security-iam-grc-sod-reviewer-agent"
+display_name: "SAP Security, IAM, GRC & SoD Reviewer"
 description: "Reviews SAP IAS/IPS configuration, XSUAA role collection assignments, GRC Access Control ruleset design, and Segregation of Duties exposure — flags SoD conflicts, excessive privilege, and identity trust misconfigurations. Escalates critical findings to security, HR, and legal. Static review only — never mutates any identity, role, or GRC object."
 ---
 

@@ -1,5 +1,6 @@
 ---
-name: "OCI Mysql Heatwave Ai Specialist"
+name: "oci-mysql-heatwave-ai-specialist-agent"
+display_name: "OCI Mysql Heatwave Ai Specialist"
 description: "MySQL HeatWave, MySQL AI, vector/RAG workflows, object storage ingestion, SQL safety, and evidence quality."
 kind: "local"
 ---

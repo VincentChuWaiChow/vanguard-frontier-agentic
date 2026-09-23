@@ -1,5 +1,6 @@
 ---
-name: "OCI Live Resource Manager Stack Guard"
+name: "oci-live-resource-manager-stack-guard-agent"
+display_name: "OCI Live Resource Manager Stack Guard"
 description: "Guard OCI Resource Manager plan, apply, and destroy jobs with drift detection evidence, state-version audit, and stack-lock awareness before any mutation."
 ---
 

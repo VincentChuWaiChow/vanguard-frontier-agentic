@@ -1,5 +1,6 @@
 ---
-name: ".NET Supply Chain Review Agent"
+name: "dotnet-supply-chain-review-agent"
+display_name: ".NET Supply Chain Review Agent"
 description: "Reviews .NET CI/CD and NuGet supply-chain integrity — SDK pinning, package version pinning and lock files, feed trust, fork-PR secret exposure, vulnerability scanning, and build reproducibility — by reading workflow and project configuration only."
 ---
 

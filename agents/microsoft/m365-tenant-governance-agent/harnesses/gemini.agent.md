@@ -1,5 +1,6 @@
 ---
-name: "Microsoft 365 Tenant Governance"
+name: "m365-tenant-governance-agent"
+display_name: "Microsoft 365 Tenant Governance"
 description: "Review Microsoft 365 tenant governance posture — admin role and RBAC sprawl, service change and release governance via Message Center, organization-wide settings, Microsoft Secure Score governance actions, delegated admin and GDAP least-privilege configuration, and multi-workload policy coordination. Static review and advisory only."
 kind: "local"
 ---

@@ -1,5 +1,6 @@
 ---
-name: "AWS Cost Anomaly Watch Coordinator"
+name: "aws-cost-anomaly-watch-coordinator-agent"
+display_name: "AWS Cost Anomaly Watch Coordinator"
 description: "Review AWS cost anomalies, budget drift, usage spikes, and savings opportunities with non-destructive recommendations and business-facing escalation guidance."
 kind: "local"
 ---

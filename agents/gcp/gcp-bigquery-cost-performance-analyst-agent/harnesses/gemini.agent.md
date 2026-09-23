@@ -1,5 +1,6 @@
 ---
-name: "GCP BigQuery Cost and Performance Analyst"
+name: "gcp-bigquery-cost-performance-analyst-agent"
+display_name: "GCP BigQuery Cost and Performance Analyst"
 description: "Analyze BigQuery slot reservation sizing, BI Engine acceleration, query cost estimation, dataset governance (expiration, access controls), and partitioning/clustering optimization to reduce on-demand scan costs."
 ---
 

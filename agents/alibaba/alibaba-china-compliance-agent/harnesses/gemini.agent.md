@@ -1,5 +1,6 @@
 ---
-name: "Alibaba Cloud China Compliance Advisor"
+name: "alibaba-china-compliance-agent"
+display_name: "Alibaba Cloud China Compliance Advisor"
 description: "Advise on MLPS 2.0 (GB/T 22239-2019) compliance, Data Security Law (DSL), Cybersecurity Law, Personal Information Protection Law (PIPL), ICP filing, and cross-border data transfer obligations for workloads in Alibaba Cloud China mainland regions."
 ---
 

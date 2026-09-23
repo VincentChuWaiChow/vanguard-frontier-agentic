@@ -1,5 +1,6 @@
 ---
-name: "Snowflake Data Science and ML Agent"
+name: "snowflake-data-science-ml-agent"
+display_name: "Snowflake Data Science and ML Agent"
 description: "Reviews the ML lifecycle in Snowflake for reproducibility and governability: Snowpark ML, feature engineering and leakage, training reproducibility, the model registry and versioning, batch and continuous inference, drift and model observability, and ML data lineage. Treats a notebook with a good metric as an experiment, not a production system. Static review only."
 ---
 

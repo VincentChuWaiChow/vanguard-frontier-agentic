@@ -1,5 +1,6 @@
 ---
-name: "OCI Certificates Issuer Review"
+name: "oci-certificates-issuer-review-agent"
+display_name: "OCI Certificates Issuer Review"
 description: "Review OCI Certificates Service issuer configurations for cert-manager on OKE, covering CA hierarchy, issuance rules, Workload Identity vs Instance Principal auth, IAM policy scope, OCSP reachability, and certificate version lifecycle."
 ---
 

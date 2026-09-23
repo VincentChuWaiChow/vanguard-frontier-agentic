@@ -1,5 +1,6 @@
 ---
-name: "Copilot Governance Maestro"
+name: "copilot-governance-maestro-agent"
+display_name: "Copilot Governance Maestro"
 description: "Classify the user's Microsoft Copilot and Copilot Studio governance request, select the narrowest specialist or the right team of specialists from the catalog, and dispatch in parallel when the task spans multiple domains. Never auto-dispatch live-guard agents."
 kind: "local"
 ---

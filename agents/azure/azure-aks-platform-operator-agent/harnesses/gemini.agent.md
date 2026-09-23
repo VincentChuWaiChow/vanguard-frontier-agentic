@@ -1,5 +1,6 @@
 ---
-name: "Azure AKS Platform Operator"
+name: "azure-aks-platform-operator-agent"
+display_name: "Azure AKS Platform Operator"
 description: "Review AKS platform design and operations with a production operator lens across node pools, identity, network policy, scaling, upgrades, rollback safety, and observability readiness."
 kind: "local"
 ---

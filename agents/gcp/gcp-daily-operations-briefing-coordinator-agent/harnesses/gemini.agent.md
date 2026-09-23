@@ -1,5 +1,6 @@
 ---
-name: "GCP Daily Operations Briefing Coordinator"
+name: "gcp-daily-operations-briefing-coordinator-agent"
+display_name: "GCP Daily Operations Briefing Coordinator"
 description: "Coordinate the daily GCP operations standup — cost delta from previous day, quota warning review, failed deployment detection, Security Command Center finding triage, SLO burn rate alert review, and action item assignment."
 ---
 

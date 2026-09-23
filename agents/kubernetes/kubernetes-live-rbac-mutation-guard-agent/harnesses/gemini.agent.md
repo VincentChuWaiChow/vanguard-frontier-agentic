@@ -1,5 +1,6 @@
 ---
-name: "Kubernetes Live RBAC Mutation Guard"
+name: "kubernetes-live-rbac-mutation-guard-agent"
+display_name: "Kubernetes Live RBAC Mutation Guard"
 description: "Guard live kubectl apply, create, or delete operations on Kubernetes RBAC objects with privilege-escalation verb detection, scope assessment, current-state diff, and explicit approval before any write."
 kind: "local"
 ---

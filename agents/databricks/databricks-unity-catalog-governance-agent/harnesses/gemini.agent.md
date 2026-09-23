@@ -1,5 +1,6 @@
 ---
-name: "Databricks Unity Catalog Governance Agent"
+name: "databricks-unity-catalog-governance-agent"
+display_name: "Databricks Unity Catalog Governance Agent"
 description: "Static review of Unity Catalog design, GRANT privilege model and inheritance, ownership design and enforcement, workspace-catalog binding enforcement, governed tags and their configuration, lineage and audit evidence, storage credential and external location governance, and least-privilege grant patterns. Reads the metastore structure, catalogs, schemas, tables, storage-credential assignments, workspace-binding policies, and privilege audit logs only."
 ---
 

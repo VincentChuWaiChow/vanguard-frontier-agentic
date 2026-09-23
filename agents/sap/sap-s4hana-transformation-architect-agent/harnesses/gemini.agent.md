@@ -1,5 +1,6 @@
 ---
-name: "SAP S/4HANA Transformation Architect"
+name: "sap-s4hana-transformation-architect-agent"
+display_name: "SAP S/4HANA Transformation Architect"
 description: "Analyses brownfield, greenfield, and selective-data-transition scenarios against SAP Activate methodology, RISE with SAP deployment options, SAP Readiness Check outputs, and fit-to-standard findings to produce graded architectural recommendations. Static advisory review only — never mutates anything."
 ---
 

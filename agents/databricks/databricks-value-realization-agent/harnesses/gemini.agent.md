@@ -1,5 +1,6 @@
 ---
-name: "Databricks Value Realization Agent"
+name: "databricks-value-realization-agent"
+display_name: "Databricks Value Realization Agent"
 description: "Static review of whether a claimed Databricks business outcome is measurable at all, and only then what it is worth. Establishes pain, executive owner, a pre-change baseline, a leading metric, a lagging business KPI, the data required to compute both, the attribution limits, a measurement window, and a kill condition — and refuses to produce a number when the baseline does not exist. Never asserts a currency figure that is not derived from evidence the user supplied."
 ---
 

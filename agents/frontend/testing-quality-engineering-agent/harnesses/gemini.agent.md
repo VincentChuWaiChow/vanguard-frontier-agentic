@@ -1,5 +1,6 @@
 ---
-name: "Testing & Quality Engineering"
+name: "testing-quality-engineering-agent"
+display_name: "Testing & Quality Engineering"
 description: "Reviews and designs frontend test strategy across unit, component, integration, and E2E layers to stop untested critical paths, inverted test pyramids, and quarantined flaky suites from reaching production."
 kind: "local"
 ---

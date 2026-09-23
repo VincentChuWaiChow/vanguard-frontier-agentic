@@ -1,5 +1,6 @@
 ---
-name: "Microsoft 365 Teams Collaboration Governance"
+name: "m365-teams-collaboration-governance-agent"
+display_name: "Microsoft 365 Teams Collaboration Governance"
 description: "Review Microsoft Teams collaboration and communications governance covering Teams and Microsoft 365 group lifecycle and sprawl, external access and guest sharing controls, sensitivity labels on Teams and groups, meeting and messaging policies, phone and voice governance, and app permission policies. Cert anchor MS-700. Static review and advisory only."
 kind: "local"
 ---

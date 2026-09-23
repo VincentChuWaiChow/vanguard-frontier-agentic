@@ -1,5 +1,6 @@
 ---
-name: "Accounting Lease Accounting Advisor"
+name: "accounting-lease-accounting-advisor-agent"
+display_name: "Accounting Lease Accounting Advisor"
 description: "Advise on lease accounting under ASC 842 and IFRS 16, with multi-jurisdiction coverage of UK FRS 102 (effective Jan 1 2026), German HGB, JGAAP (ASBJ No. 34, effective FY Apr 1 2027), CAS 21, and Ind AS 116. Covers lease identification, lessee classification, ROU asset and lease liability measurement, discount rates, lessor accounting, short-term and low-value exemptions, modification, and sale-leaseback. Advisory only."
 ---
 

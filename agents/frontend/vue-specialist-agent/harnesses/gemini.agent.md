@@ -1,5 +1,6 @@
 ---
-name: "Vue Specialist"
+name: "vue-specialist-agent"
+display_name: "Vue Specialist"
 description: "Static-review agent for Vue 3 Composition API architecture and SSR security posture (script/style injection, hydration-safe state)."
 kind: "local"
 ---

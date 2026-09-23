@@ -1,5 +1,6 @@
 ---
-name: "Huawei Cloud Serverless Production Readiness"
+name: "huawei-serverless-production-readiness-agent"
+display_name: "Huawei Cloud Serverless Production Readiness"
 description: "Review FunctionGraph production readiness — VPC access configuration, concurrency limits and reserved instances, cold-start optimization, observability via LTS log output and AOM metrics, timeout configuration, dependency package size, custom vs managed runtimes, and ServiceStage application lifecycle."
 ---
 

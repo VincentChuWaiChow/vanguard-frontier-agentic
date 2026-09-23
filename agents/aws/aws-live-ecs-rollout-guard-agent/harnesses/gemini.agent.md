@@ -1,5 +1,6 @@
 ---
-name: "AWS Live ECS Rollout Guard"
+name: "aws-live-ecs-rollout-guard-agent"
+display_name: "AWS Live ECS Rollout Guard"
 description: "Guard live Amazon ECS and Fargate rollout actions with service targeting, deployment circuit breaker or alarm checks, rollback posture, and explicit approval before mutation."
 ---
 

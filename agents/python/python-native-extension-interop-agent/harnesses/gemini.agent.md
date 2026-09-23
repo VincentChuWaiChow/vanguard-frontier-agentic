@@ -1,5 +1,6 @@
 ---
-name: "Python Native Extension and Interop Agent"
+name: "python-native-extension-interop-agent"
+display_name: "Python Native Extension and Interop Agent"
 description: "Static review of Python native extensions and interop (CPython C API, Cython, PyO3/Rust): reference-ownership correctness, stable-ABI use, buffer-protocol safety, exception translation, and thread/GIL and free-threaded readiness. Reads extension source and build config only; never compiles or runs it."
 ---
 

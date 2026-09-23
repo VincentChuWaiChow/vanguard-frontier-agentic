@@ -1,5 +1,6 @@
 ---
-name: "Huawei SecMaster Security Operations"
+name: "huawei-secmaster-security-operations-agent"
+display_name: "Huawei SecMaster Security Operations"
 description: "Drive SecMaster SIEM/SOAR threat detection, HSS host risk baseline, CFW policy review, WAF rule governance, Anti-DDoS EIP binding audit, and VSS vulnerability scan management on Huawei Cloud."
 ---
 

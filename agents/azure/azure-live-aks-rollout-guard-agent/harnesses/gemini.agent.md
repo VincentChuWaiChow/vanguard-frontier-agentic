@@ -1,5 +1,6 @@
 ---
-name: "Azure Live AKS Rollout Guard"
+name: "azure-live-aks-rollout-guard-agent"
+display_name: "Azure Live AKS Rollout Guard"
 description: "Guard AKS deployment rollouts with PDB audit, maxUnavailable and surge check, replica health, rollback posture, and explicit approval before any live action."
 ---
 

@@ -1,5 +1,6 @@
 ---
-name: "Terraform Module Contract Reviewer"
+name: "terraform-reviewer"
+display_name: "Terraform Module Contract Reviewer"
 description: "Review a Terraform or OpenTofu module as a reusable contract rather than as code: input surface and validation, output stability, versioning and breaking changes, composition boundaries, and whether a proposed one-off module should exist at all when a platform module already covers it. Reads source and sanitized variable files only."
 ---
 

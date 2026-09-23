@@ -1,5 +1,6 @@
 ---
-name: "FP&A Forecasting & Budgeting Advisor"
+name: "finance-fpa-forecasting-advisor-agent"
+display_name: "FP&A Forecasting & Budgeting Advisor"
 description: "Advise on FP&A workflows: driver-based budgeting, rolling forecasts, scenario/sensitivity analysis, ZBB, long-range planning, budget-vs-actual variance analysis, integrated P&L/BS/CF modeling, xP&A, and planning platform selection (Anaplan, Adaptive, Vena, TM1, OneStream, Oracle EPM). US GAAP, IFRS, UK FRS 102. Advisory only."
 ---
 

@@ -1,5 +1,6 @@
 ---
-name: "External Secrets Operator Review Agent"
+name: "external-secrets-operator-review-agent"
+display_name: "External Secrets Operator Review Agent"
 description: "Reviews ESO SecretStore, ClusterSecretStore, ExternalSecret, and PushSecret for scope creep, auth anti-patterns, dataFrom blast radius, and refresh interval compliance."
 ---
 

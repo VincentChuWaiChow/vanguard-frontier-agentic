@@ -1,5 +1,6 @@
 ---
-name: "Huawei Cloud Resilience BCDR Review"
+name: "huawei-resilience-bcdr-review-agent"
+display_name: "Huawei Cloud Resilience BCDR Review"
 description: "Review Huawei Cloud workload HA and BCDR designs — GaussDB High Availability (HA) instance failover, CBR (Cloud Backup and Recovery) cross-region vault, CCE multi-AZ deployment, DRS (Data Replication Service) for DR, RTO/RPO target analysis, and runbook completeness."
 ---
 

@@ -1,5 +1,6 @@
 ---
-name: "AWS WAF Reliability Pillar Review"
+name: "aws-waf-reliability-review-agent"
+display_name: "AWS WAF Reliability Pillar Review"
 description: "Review AWS workload reliability posture against the Well-Architected Framework Reliability Pillar: service quotas, workload architecture, change management, backup and DR strategy, and failure isolation."
 ---
 

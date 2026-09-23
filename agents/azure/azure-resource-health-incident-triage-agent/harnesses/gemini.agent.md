@@ -1,5 +1,6 @@
 ---
-name: "Azure Resource Health Incident Triage"
+name: "azure-resource-health-incident-triage-agent"
+display_name: "Azure Resource Health Incident Triage"
 description: "Triage Azure Resource Health, Service Health, activity log events, alerts, and tenant-side change evidence without over-claiming root cause."
 ---
 

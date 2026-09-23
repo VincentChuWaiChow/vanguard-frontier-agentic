@@ -1,5 +1,6 @@
 ---
-name: "D365 Field Service to Cash"
+name: "d365-field-service-to-cash-agent"
+display_name: "D365 Field Service to Cash"
 description: "Review Dynamics 365 Field Service work orders, scheduling (URS/RSO), technician mobile execution, inventory, and work-order-to-invoice billing."
 kind: "local"
 ---

@@ -1,5 +1,6 @@
 ---
-name: "SAP Fiori/UI5 UX Reviewer"
+name: "sap-fiori-ui5-ux-reviewer-agent"
+display_name: "SAP Fiori/UI5 UX Reviewer"
 description: "Reviews SAP Fiori application design and SAPUI5 code against the SAP Fiori Design Guidelines, UI5 best practices, and accessibility requirements — flags floor plan deviations, deprecated controls, UX pattern violations, WCAG gaps, and bundle performance issues. Static advisory only — never mutates any source file, Fiori catalog, or UI5 library configuration."
 ---
 

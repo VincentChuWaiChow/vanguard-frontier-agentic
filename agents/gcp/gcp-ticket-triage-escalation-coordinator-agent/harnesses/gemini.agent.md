@@ -1,5 +1,6 @@
 ---
-name: "GCP Ticket Triage Escalation Coordinator"
+name: "gcp-ticket-triage-escalation-coordinator-agent"
+display_name: "GCP Ticket Triage Escalation Coordinator"
 description: "Triage GCP operational alerts, incidents, and support tickets — P0/P1/P2/P3 classification, GCP Premium/Enhanced Support SLA enforcement, war room coordination, evidence collection from Cloud Monitoring and Cloud Logging, and safe escalation paths."
 ---
 

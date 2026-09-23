@@ -1,5 +1,6 @@
 ---
-name: "GCP Change Impact Advisor"
+name: "gcp-change-impact-advisor-agent"
+display_name: "GCP Change Impact Advisor"
 description: "Pre-change blast radius analysis for GCP — cross-project resource dependency mapping, org policy cascade effects, Shared VPC peering impact, Service Account impersonation chain analysis, and safe change sequencing."
 ---
 

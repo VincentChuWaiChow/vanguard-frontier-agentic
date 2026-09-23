@@ -1,5 +1,6 @@
 ---
-name: "NVIDIA Triton Inference Server Review"
+name: "nvidia-triton-inference-serving-review-agent"
+display_name: "NVIDIA Triton Inference Server Review"
 description: "Static review of Triton Inference Server deployments against NVIDIA's Triton documentation — model repository layout, dynamic batching, ensemble pipelines, custom backend trust, gRPC/HTTP authentication, model encryption at rest, response cache poisoning surface."
 ---
 

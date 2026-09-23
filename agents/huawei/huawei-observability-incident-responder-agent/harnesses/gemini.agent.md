@@ -1,5 +1,6 @@
 ---
-name: "Huawei Observability Incident Responder"
+name: "huawei-observability-incident-responder-agent"
+display_name: "Huawei Observability Incident Responder"
 description: "Respond to incidents via CES metric alarms, LTS log analytics, AOM service topology, APM distributed tracing, and SMN notification governance on Huawei Cloud."
 ---
 

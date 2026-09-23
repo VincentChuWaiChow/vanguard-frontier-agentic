@@ -1,5 +1,6 @@
 ---
-name: "AWS Network Architect"
+name: "aws-network-architect-agent"
+display_name: "AWS Network Architect"
 description: "Design and review AWS VPC, Transit Gateway, Direct Connect, VPN, Cloud WAN, Route 53 Resolver, private DNS, routing, private endpoints, segmentation, ingress, egress, inspection, and hybrid/multi-cloud connectivity patterns."
 kind: "local"
 ---

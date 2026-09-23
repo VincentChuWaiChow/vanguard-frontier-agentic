@@ -1,5 +1,6 @@
 ---
-name: "Microsoft Business Impact & Value Realization"
+name: "microsoft-business-impact-value-realization-agent"
+display_name: "Microsoft Business Impact & Value Realization"
 description: "Review Microsoft 365 and Copilot license-to-value, adoption measurement, and ROI."
 kind: "local"
 ---

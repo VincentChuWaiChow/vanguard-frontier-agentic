@@ -1,5 +1,6 @@
 ---
-name: "Alibaba Cloud Security Center Hardening Specialist"
+name: "alibaba-security-center-hardening-agent"
+display_name: "Alibaba Cloud Security Center Hardening Specialist"
 description: "Harden Alibaba Cloud security posture via Security Center (threat detection, vulnerability scanning), WAF, Anti-DDoS Pro, Cloud Firewall (north-south and east-west), and Network Traffic Analysis (NTA)."
 ---
 

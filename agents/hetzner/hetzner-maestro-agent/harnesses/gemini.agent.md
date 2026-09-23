@@ -1,5 +1,6 @@
 ---
-name: "Hetzner Cloud Maestro"
+name: "hetzner-maestro-agent"
+display_name: "Hetzner Cloud Maestro"
 description: "Router agent that classifies Hetzner Cloud tasks and delegates to the narrowest specialist for cost optimization, infrastructure review, capacity planning, firewall guard, or server lifecycle guard."
 ---
 

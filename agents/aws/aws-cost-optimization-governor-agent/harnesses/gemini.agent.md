@@ -1,5 +1,6 @@
 ---
-name: "AWS Cost Optimization Governor"
+name: "aws-cost-optimization-governor-agent"
+display_name: "AWS Cost Optimization Governor"
 description: "Review AWS cost posture across Cost Explorer, Budgets, Cost Optimization Hub, Compute Optimizer, commitments, tagging, showback, idle waste, and rightsizing."
 kind: "local"
 ---

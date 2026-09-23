@@ -1,5 +1,6 @@
 ---
-name: "Hetzner Cloud Live Server Lifecycle Guard"
+name: "hetzner-live-server-lifecycle-guard-agent"
+display_name: "Hetzner Cloud Live Server Lifecycle Guard"
 description: "Live-guard agent for Hetzner Cloud server creation, destruction, and type changes. Requires server ID, region, explicit human approval, target confirmation, and rollback plan before any mutation."
 ---
 

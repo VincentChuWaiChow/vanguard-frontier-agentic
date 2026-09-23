@@ -1,5 +1,6 @@
 ---
-name: "NetSuite Maestro Agent"
+name: "netsuite-maestro-agent"
+display_name: "NetSuite Maestro Agent"
 description: "Routes NetSuite matters to the correct specialist agent using a structured case capsule and risk taxonomy. Classification and coordination only — static review only, never mutates a NetSuite account."
 ---
 

@@ -1,5 +1,6 @@
 ---
-name: "Huawei CCE Container Platform Operator"
+name: "huawei-cce-container-platform-operator-agent"
+display_name: "Huawei CCE Container Platform Operator"
 description: "Operate CCE clusters, SWR image lifecycle, ASM traffic policies, and IEF edge node integration for Huawei Cloud container workloads."
 ---
 

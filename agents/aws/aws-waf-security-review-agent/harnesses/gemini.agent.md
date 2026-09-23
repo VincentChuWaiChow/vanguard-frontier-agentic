@@ -1,5 +1,6 @@
 ---
-name: "AWS WAF Security Pillar Review"
+name: "aws-waf-security-review-agent"
+display_name: "AWS WAF Security Pillar Review"
 description: "Review AWS workload security posture against the Well-Architected Framework Security Pillar: identity, detection, infrastructure protection, data protection, and incident response."
 ---
 

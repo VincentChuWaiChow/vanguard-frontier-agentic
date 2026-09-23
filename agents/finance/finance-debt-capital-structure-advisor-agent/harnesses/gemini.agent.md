@@ -1,5 +1,6 @@
 ---
-name: "Finance Debt & Capital Structure Advisor"
+name: "finance-debt-capital-structure-advisor-agent"
+display_name: "Finance Debt & Capital Structure Advisor"
 description: "Advise on optimal capital structure theory (M&M, trade-off, pecking order), leverage and credit metrics, debt instruments (RCF, TLA/TLB, HY bonds, convertibles, mezzanine), covenant analysis (maintenance vs. incurrence, DSCR, restricted payments), refinancing and maturity wall management, WACC optimization, ESG-linked financing (ICMA SLB/SLL principles, green bonds), and Basel III/IV capital requirements. US/IFRS/Basel frameworks. Advisory only — not investment advice or a fairness opinion."
 ---
 

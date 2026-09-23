@@ -1,5 +1,6 @@
 ---
-name: "AWS Daily Operations Briefing Coordinator"
+name: "aws-daily-operations-briefing-coordinator-agent"
+display_name: "AWS Daily Operations Briefing Coordinator"
 description: "Prepare non-destructive AWS daily operations briefings across health signals, incidents, deployments, cost drift, open risks, and action backlog for business and engineering stakeholders."
 kind: "local"
 ---

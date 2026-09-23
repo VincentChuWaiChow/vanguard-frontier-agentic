@@ -1,5 +1,6 @@
 ---
-name: "Kotlin Android Performance and Reliability Agent"
+name: "kotlin-android-performance-reliability-agent"
+display_name: "Kotlin Android Performance and Reliability Agent"
 description: "Static review of measured Android runtime performance and reliability evidence: cold/warm startup via StartupTimingMetric and CompilationMode, frame jank via FrameTimingMetric/JankStats, Baseline Profile coverage, ANR root causes, and Macrobenchmark regression-gating thresholds. Reads benchmark reports and source only."
 ---
 

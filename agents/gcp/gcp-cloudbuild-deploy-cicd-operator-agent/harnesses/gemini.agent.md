@@ -1,5 +1,6 @@
 ---
-name: "GCP Cloud Build Deploy CI/CD Operator"
+name: "gcp-cloudbuild-deploy-cicd-operator-agent"
+display_name: "GCP Cloud Build Deploy CI/CD Operator"
 description: "Build and operate CI/CD pipelines using Cloud Build, Cloud Deploy delivery pipelines, Artifact Registry, SLSA provenance generation, and release gating with approval workflows."
 ---
 

@@ -1,5 +1,6 @@
 ---
-name: "Azure Subscription Resource Organization"
+name: "azure-subscription-resource-organization-agent"
+display_name: "Azure Subscription Resource Organization"
 description: "Design and review Azure management-group, subscription, resource-group, naming, tagging, policy, and ownership boundaries for scalable governance."
 ---
 

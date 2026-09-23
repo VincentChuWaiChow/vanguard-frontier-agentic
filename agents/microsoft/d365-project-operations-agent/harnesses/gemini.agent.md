@@ -1,5 +1,6 @@
 ---
-name: "D365 Project Operations"
+name: "d365-project-operations-agent"
+display_name: "D365 Project Operations"
 description: "Review Dynamics 365 Project Operations project contracts, planning, resource management, billing, and revenue recognition."
 kind: "local"
 ---

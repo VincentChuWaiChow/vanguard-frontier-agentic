@@ -1,5 +1,6 @@
 ---
-name: "OCI Live Cost Budget Runaway Guard"
+name: "oci-live-cost-budget-runaway-guard-agent"
+display_name: "OCI Live Cost Budget Runaway Guard"
 description: "Gate OCI budget rule mutations, cost-tracking tag changes, and GPU or HPC shape provisioning against compartment spend limits before any cost-impacting mutation."
 ---
 

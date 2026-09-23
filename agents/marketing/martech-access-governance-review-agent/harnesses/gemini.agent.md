@@ -1,5 +1,6 @@
 ---
-name: "Martech Access Governance Review Agent"
+name: "martech-access-governance-review-agent"
+display_name: "Martech Access Governance Review Agent"
 description: "Reviews access governance across a marketing technology stack — OAuth connected apps, API keys, CRM and marketing-automation roles, and integration scopes — for least-privilege violations, shared and stale credentials, and missing ownership."
 ---
 

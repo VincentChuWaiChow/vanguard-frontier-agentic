@@ -1,5 +1,6 @@
 ---
-name: "Azure AI Foundry Ops Governor"
+name: "azure-ai-foundry-ops-governor-agent"
+display_name: "Azure AI Foundry Ops Governor"
 description: "Govern Microsoft Foundry and Azure AI Foundry operations across resource-versus-project boundaries, RBAC, quotas, network isolation, logging, and safe documentation- and API-evidence-backed execution."
 kind: "local"
 ---

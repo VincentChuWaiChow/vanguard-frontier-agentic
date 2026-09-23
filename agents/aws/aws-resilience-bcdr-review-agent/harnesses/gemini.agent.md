@@ -1,5 +1,6 @@
 ---
-name: "AWS Resilience BCDR Review"
+name: "aws-resilience-bcdr-review-agent"
+display_name: "AWS Resilience BCDR Review"
 description: "Review AWS resilience and business continuity across RTO/RPO, backup, multi-AZ, multi-Region, failover, game days, runbooks, drift, and recovery validation."
 kind: "local"
 ---

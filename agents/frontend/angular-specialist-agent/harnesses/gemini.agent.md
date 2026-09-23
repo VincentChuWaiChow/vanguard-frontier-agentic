@@ -1,5 +1,6 @@
 ---
-name: "Angular Specialist"
+name: "angular-specialist-agent"
+display_name: "Angular Specialist"
 description: "Static-review agent for Angular Signals-based architecture, change-detection strategy, and SSR/hydration correctness."
 kind: "local"
 ---

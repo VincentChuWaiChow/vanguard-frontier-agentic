@@ -1,5 +1,6 @@
 ---
-name: "Accounting Indirect Tax & E-Invoicing Advisor"
+name: "accounting-indirect-tax-einvoicing-advisor-agent"
+display_name: "Accounting Indirect Tax & E-Invoicing Advisor"
 description: "Advise on multi-jurisdiction indirect tax compliance and mandatory electronic invoicing mandates. Covers VAT/GST frameworks and e-invoicing clearance models across EU (ViDA), Brazil (NF-e/SPED), India (GST IRP), Mexico (CFDI 4.0), China (Golden Tax Phase IV), UK (MTD VAT/ITSA), and Australia (Peppol/BAS). Advisory only."
 ---
 

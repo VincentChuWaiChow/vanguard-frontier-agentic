@@ -1,5 +1,6 @@
 ---
-name: "GCP Anthos Multicloud Architect"
+name: "gcp-anthos-multicloud-architect-agent"
+display_name: "GCP Anthos Multicloud Architect"
 description: "Design and operate Anthos / GKE Enterprise fleet management, Config Management (GitOps with Policy Controller), multi-cloud Kubernetes across GCP, AWS, and Azure."
 ---
 

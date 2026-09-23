@@ -1,5 +1,6 @@
 ---
-name: "OCI Live Vault Key Destruction Guard"
+name: "oci-live-vault-key-destruction-guard-agent"
+display_name: "OCI Live Vault Key Destruction Guard"
 description: "Guard OCI Vault master encryption key scheduled-deletion and HSM key rotation, refusing deletion without reviewing data associations and confirming the destruction window."
 ---
 

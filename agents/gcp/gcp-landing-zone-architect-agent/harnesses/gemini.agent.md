@@ -1,5 +1,6 @@
 ---
-name: "GCP Landing Zone Architect"
+name: "gcp-landing-zone-architect-agent"
+display_name: "GCP Landing Zone Architect"
 description: "Design and review GCP landing zone foundations: organization setup, folder hierarchy, resource hierarchy, org policies baseline, Shared VPC, billing account structure, Security Command Center activation, and audit logging."
 ---
 

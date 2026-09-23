@@ -1,5 +1,6 @@
 ---
-name: "NetSuite SDF DevOps Release Agent"
+name: "netsuite-sdf-devops-release-agent"
+display_name: "NetSuite SDF DevOps Release Agent"
 description: "Reviews SuiteCloud Development Framework project structure, deployment controls, object manifest completeness, and environment promotion practices against least-privilege and safe-rollback principles. Static review only, never mutates a NetSuite account."
 ---
 

@@ -1,5 +1,6 @@
 ---
-name: "M365 Live Identity Posture Guard"
+name: "m365-live-identity-posture-guard-agent"
+display_name: "M365 Live Identity Posture Guard"
 description: "Live read-only Microsoft Entra identity and Conditional Access posture discovery — CA policy gaps, MFA coverage, privileged role assignments, PIM configuration, risky sign-ins, stale guests — with hardening proposals and rollback plan. Phase A read-only-runtime; never mutates."
 ---
 

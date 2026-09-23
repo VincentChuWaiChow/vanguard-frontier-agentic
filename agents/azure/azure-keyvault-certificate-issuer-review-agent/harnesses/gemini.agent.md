@@ -1,5 +1,6 @@
 ---
-name: "Azure Key Vault Certificate Issuer Review"
+name: "azure-keyvault-certificate-issuer-review-agent"
+display_name: "Azure Key Vault Certificate Issuer Review"
 description: "Review Azure Key Vault certificate issuer configurations for certificate policy alignment, Managed Identity authorization scope, exportability posture, private endpoint connectivity, integrated CA credential scoping, renewal, and cert-manager overlap risks."
 ---
 

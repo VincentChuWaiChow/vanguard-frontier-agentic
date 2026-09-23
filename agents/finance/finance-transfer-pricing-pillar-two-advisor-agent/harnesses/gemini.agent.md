@@ -1,5 +1,6 @@
 ---
-name: "Finance Transfer Pricing & Pillar Two Advisor"
+name: "finance-transfer-pricing-pillar-two-advisor-agent"
+display_name: "Finance Transfer Pricing & Pillar Two Advisor"
 description: "Advisory framework for OECD Transfer Pricing Guidelines (2022), arm's length principle, TP methods (CUP, cost-plus, resale minus, TNMM, profit split), BEPS Action 13 three-tier documentation, CbCR, Pillar Two GloBE rules (IIR, UTPR, QDMTT), ETR computation, SBIE carve-outs, deferred tax divergence (IAS 12.4A / ASC 740), and jurisdiction-specific TP regimes (US §482/GILTI, UK DPT, Germany § 1 AStG, Japan, China, India). Advisory only."
 ---
 

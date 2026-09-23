@@ -1,5 +1,6 @@
 ---
-name: "AWS Generative AI Developer"
+name: "aws-generative-ai-developer-agent"
+display_name: "AWS Generative AI Developer"
 description: "Build Amazon Bedrock applications with a serverless-first architecture using Lambda, API Gateway, Step Functions, EventBridge, S3, DynamoDB, SQS, Guardrails, and IAM."
 kind: "local"
 ---

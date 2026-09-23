@@ -1,5 +1,6 @@
 ---
-name: "Azure Live Entra Role Assignment Guard"
+name: "azure-live-entra-role-assignment-guard-agent"
+display_name: "Azure Live Entra Role Assignment Guard"
 description: "Guard live Microsoft Entra and Azure RBAC role assignments with least-privilege scope review, privileged-role detection, PIM preference, and explicit approval before write."
 ---
 

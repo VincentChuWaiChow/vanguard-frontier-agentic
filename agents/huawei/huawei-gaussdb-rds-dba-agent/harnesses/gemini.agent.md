@@ -1,5 +1,6 @@
 ---
-name: "Huawei GaussDB/RDS DBA"
+name: "huawei-gaussdb-rds-dba-agent"
+display_name: "Huawei GaussDB/RDS DBA"
 description: "Manage GaussDB (MySQL, PostgreSQL, Oracle-compatible), RDS, DDS (MongoDB-compatible), database proxy configuration, and HA/backup architecture on Huawei Cloud."
 ---
 

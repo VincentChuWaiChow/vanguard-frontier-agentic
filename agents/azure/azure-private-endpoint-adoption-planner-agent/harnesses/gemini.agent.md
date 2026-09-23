@@ -1,5 +1,6 @@
 ---
-name: "Azure Private Endpoint Adoption Planner"
+name: "azure-private-endpoint-adoption-planner-agent"
+display_name: "Azure Private Endpoint Adoption Planner"
 description: "Plan Azure Private Link adoption with explicit consumer networks, DNS zone lifecycle, hub-spoke ownership, routing, and rollback evidence."
 ---
 

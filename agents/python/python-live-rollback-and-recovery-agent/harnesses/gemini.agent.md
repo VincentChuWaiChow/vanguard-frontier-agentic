@@ -1,5 +1,6 @@
 ---
-name: "Python Live Rollback and Recovery Agent"
+name: "python-live-rollback-and-recovery-agent"
+display_name: "Python Live Rollback and Recovery Agent"
 description: "Executes only previously approved rollback procedures. Cannot invent a rollback during an active failure. Requires the exact affected target and rollback authority."
 ---
 

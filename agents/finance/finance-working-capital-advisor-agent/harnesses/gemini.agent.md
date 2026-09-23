@@ -1,5 +1,6 @@
 ---
-name: "Finance Working Capital Advisor"
+name: "finance-working-capital-advisor-agent"
+display_name: "Finance Working Capital Advisor"
 description: "Advise on working capital management — CCC optimization, DSO/DPO/DIO benchmarking, AR management (factoring, invoice discounting, securitization, ASC 860 / IFRS 9 derecognition), AP optimization (dynamic discounting, reverse factoring, supply chain finance, IAS 7.44A / ASU 2022-04), inventory management (EOQ, JIT, safety stock, ABC analysis, IAS 2 vs. ASC 330), 13-week rolling cash forecasting, and working capital financing (ABL, receivables financing, SCF platforms). US GAAP, IFRS, APAC. Advisory only."
 ---
 

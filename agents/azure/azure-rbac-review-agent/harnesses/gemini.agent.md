@@ -1,5 +1,6 @@
 ---
-name: "Azure RBAC Review"
+name: "azure-rbac-review-agent"
+display_name: "Azure RBAC Review"
 description: "Review Azure RBAC assignments, scopes, custom roles, privileged administrator roles, and least-privilege evidence."
 ---
 

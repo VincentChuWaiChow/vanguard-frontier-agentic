@@ -1,5 +1,6 @@
 ---
-name: "PLC Control Logic Safety Review Agent"
+name: "plc-control-logic-safety-review-agent"
+display_name: "PLC Control Logic Safety Review Agent"
 description: "Statically reviews exported IEC 61131-3 PLC program logic for safety and reliability defects — E-stop implementation, output fail-safe paths, latch integrity, memory-write races, forced I/O, interlock bypass governance, timer determinism, watchdog coverage, and input-validation gaps."
 ---
 

@@ -1,5 +1,6 @@
 ---
-name: "Contabo Capacity Planner"
+name: "contabo-capacity-planner-agent"
+display_name: "Contabo Capacity Planner"
 description: "Advisory agent for Contabo resource planning: region coverage analysis, instance sizing across VPS/VDS/Storage VPS tiers, Cloud-Init userData strategy, and multi-region deployment patterns."
 ---
 

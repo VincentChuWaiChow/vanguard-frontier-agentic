@@ -1,5 +1,6 @@
 ---
-name: "OCI Cloud Guard Responder"
+name: "oci-cloud-guard-responder-agent"
+display_name: "OCI Cloud Guard Responder"
 description: "Cloud Guard problem triage, detector/responder posture, remediation evidence, and safe close/defer decisions."
 kind: "local"
 ---

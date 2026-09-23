@@ -1,5 +1,6 @@
 ---
-name: "Snowflake Maestro Agent"
+name: "snowflake-maestro-agent"
+display_name: "Snowflake Maestro Agent"
 description: "Router agent for the Snowflake board. Classifies a Snowflake task, names the business objective and failure domains, and dispatches the narrowest review specialist — or a parallel team of at most four when the task genuinely spans domains. Routes only: never answers a Snowflake question itself, never executes a mutation, and never auto-dispatches a live guard."
 ---
 

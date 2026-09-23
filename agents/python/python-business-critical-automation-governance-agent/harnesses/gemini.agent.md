@@ -1,5 +1,6 @@
 ---
-name: "Python Business-Critical Automation Governance Agent"
+name: "python-business-critical-automation-governance-agent"
+display_name: "Python Business-Critical Automation Governance Agent"
 description: "Static review of business-critical Python automation governance — unowned scripts, notebooks, bots, and schedulers whose failure creates financial, regulatory, or operational exposure — mapping ownership, controls, and a continue / harden / replatform / retire recommendation. Reads automation source, config, and process description only; makes no accounting/legal/regulatory conclusions."
 ---
 

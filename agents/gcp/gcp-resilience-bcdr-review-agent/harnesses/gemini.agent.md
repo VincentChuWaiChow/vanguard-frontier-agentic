@@ -1,5 +1,6 @@
 ---
-name: "GCP Resilience BCDR Review"
+name: "gcp-resilience-bcdr-review-agent"
+display_name: "GCP Resilience BCDR Review"
 description: "Review GCP workload HA and BCDR designs — multi-region architectures, Cloud SQL HA failover, Spanner global instances, GKE multi-cluster, RTO/RPO target analysis, and runbook completeness."
 ---
 

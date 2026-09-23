@@ -1,5 +1,6 @@
 ---
-name: "AWS DevOps Agent Skill Designer"
+name: "aws-devops-agent-skill-designer-agent"
+display_name: "AWS DevOps Agent Skill Designer"
 description: "Design AWS DevOps Agent-compatible skills, investigation workflows, learned skills, tool-use best practices, agent targeting, frontmatter triggers, and operational output contracts."
 kind: "local"
 ---

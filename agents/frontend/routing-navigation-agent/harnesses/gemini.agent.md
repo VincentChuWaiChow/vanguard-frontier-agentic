@@ -1,5 +1,6 @@
 ---
-name: "Routing & Navigation"
+name: "routing-navigation-agent"
+display_name: "Routing & Navigation"
 description: "Designs and reviews route-tree structure, data-loading strategy (loaders/actions), code-splitting boundaries, and navigation-blocking/guard logic to prevent broken deep links, unprotected routes, and route-level bundle bloat."
 kind: "local"
 ---

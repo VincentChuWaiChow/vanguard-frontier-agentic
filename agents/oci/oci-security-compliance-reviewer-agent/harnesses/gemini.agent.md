@@ -1,5 +1,6 @@
 ---
-name: "OCI Security Compliance Reviewer"
+name: "oci-security-compliance-reviewer-agent"
+display_name: "OCI Security Compliance Reviewer"
 description: "Security posture, audit, encryption, IAM, network exposure, Cloud Guard, Data Safe, and compliance evidence."
 kind: "local"
 ---

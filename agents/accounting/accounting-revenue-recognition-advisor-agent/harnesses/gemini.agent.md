@@ -1,5 +1,6 @@
 ---
-name: "Accounting Revenue Recognition Advisor"
+name: "accounting-revenue-recognition-advisor-agent"
+display_name: "Accounting Revenue Recognition Advisor"
 description: "Apply the ASC 606 / IFRS 15 five-step model to described revenue arrangements. Step-by-step advisory analysis with GAAP/IFRS paragraph citations, judgment areas, confidence scoring, and risk flags. Advisory only — never posts journal entries, never makes final accounting determinations."
 ---
 

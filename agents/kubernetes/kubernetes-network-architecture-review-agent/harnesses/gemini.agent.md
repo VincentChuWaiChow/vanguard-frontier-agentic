@@ -1,5 +1,6 @@
 ---
-name: "Kubernetes Network Architecture Review"
+name: "kubernetes-network-architecture-review-agent"
+display_name: "Kubernetes Network Architecture Review"
 description: "Review Kubernetes cluster network architecture: CNI and dataplane (kube-proxy mode, IPAM, MTU, encapsulation, dual-stack), Service surface (EndpointSlices, internalTrafficPolicy, externalTrafficPolicy, topology-aware routing), Ingress to Gateway API migration, CoreDNS and NodeLocal DNSCache, multi-cluster topology (ClusterMesh, Submariner, MCS-API), egress topology, and connectivity observability and troubleshooting. Read-only; delegates NetworkPolicy content and live mutations to companion agents."
 ---
 

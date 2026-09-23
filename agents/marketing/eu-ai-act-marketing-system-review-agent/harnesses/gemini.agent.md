@@ -1,5 +1,6 @@
 ---
-name: "EU AI Act Marketing System Review Agent"
+name: "eu-ai-act-marketing-system-review-agent"
+display_name: "EU AI Act Marketing System Review Agent"
 description: "Reviews a marketing AI system's description card against EU AI Act Regulation 2024/1689 risk-tier criteria — classifies the system, flags documentation obligations (Articles 11, 13, 14, 43), and identifies deployment-readiness gaps before the August 2, 2026 full-enforcement date."
 ---
 

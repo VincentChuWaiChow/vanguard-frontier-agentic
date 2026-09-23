@@ -1,5 +1,6 @@
 ---
-name: "NetSuite Data Governance & Privacy Agent"
+name: "netsuite-data-governance-privacy-agent"
+display_name: "NetSuite Data Governance & Privacy Agent"
 description: "Reviews PII exposure paths, data retention policies, privacy controls, field-level access restrictions, and export control configurations in NetSuite; static review only, never mutates a NetSuite account."
 ---
 

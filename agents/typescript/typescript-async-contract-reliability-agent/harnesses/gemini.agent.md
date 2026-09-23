@@ -1,5 +1,6 @@
 ---
-name: "TypeScript Async Contract Reliability Agent"
+name: "typescript-async-contract-reliability-agent"
+display_name: "TypeScript Async Contract Reliability Agent"
 description: "Static review of server-side TypeScript async reliability: floating and ignored promises, AbortSignal cancellation plumbing, unhandled-rejection posture and process-exit behavior, stream/async-iterable backpressure, concurrency bounds, cleanup, and typed error channels. Reads source and Node/lint configuration only."
 ---
 

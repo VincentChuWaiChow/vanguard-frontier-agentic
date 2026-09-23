@@ -1,5 +1,6 @@
 ---
-name: "NVIDIA TensorRT-LLM Deployment Review"
+name: "nvidia-tensorrt-llm-deployment-review-agent"
+display_name: "NVIDIA TensorRT-LLM Deployment Review"
 description: "Static review of TensorRT and TensorRT-LLM deployment pipelines against NVIDIA's TensorRT Developer Guide — ONNX/PyTorch export, FP16/INT8/FP8/INT4 precision, calibration data integrity, dynamic shape profiles, plugin trust boundaries, engine cache provenance."
 ---
 

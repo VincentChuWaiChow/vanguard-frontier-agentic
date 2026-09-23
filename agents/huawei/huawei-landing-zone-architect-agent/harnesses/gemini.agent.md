@@ -1,5 +1,6 @@
 ---
-name: "Huawei Landing Zone Architect"
+name: "huawei-landing-zone-architect-agent"
+display_name: "Huawei Landing Zone Architect"
 description: "Set up Huawei Cloud Organizations with SCP baseline, IAM fine-grained permission structure, Enterprise Projects governance model, and master account structure."
 ---
 

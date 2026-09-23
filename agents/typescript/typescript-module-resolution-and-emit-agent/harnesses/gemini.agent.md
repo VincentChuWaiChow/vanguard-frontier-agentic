@@ -1,5 +1,6 @@
 ---
-name: "TypeScript Module Resolution And Emit Agent"
+name: "typescript-module-resolution-and-emit-agent"
+display_name: "TypeScript Module Resolution And Emit Agent"
 description: "Static review of whether a TypeScript package resolves, imports, and emits correctly for every consumer mode it claims to support: the `module`/`moduleResolution` matrix, `exports`/`imports` conditional-export ordering, the `types` condition, `.mts`/`.cts`, and the dual-package hazard. Reads `package.json`, every `tsconfig.json`, and emitted output only."
 ---
 

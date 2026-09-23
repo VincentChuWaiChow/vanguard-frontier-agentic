@@ -1,5 +1,6 @@
 ---
-name: "Huawei Cost FinOps Analyst"
+name: "huawei-cost-finops-analyst-agent"
+display_name: "Huawei Cost FinOps Analyst"
 description: "Analyze CBC spend, optimize Reserved Instance and CUD coverage, manage Cost Center allocation, and set budget alert governance on Huawei Cloud."
 ---
 

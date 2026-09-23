@@ -1,5 +1,6 @@
 ---
-name: "NetSuite Sandbox and Non-Production Governance Agent"
+name: "netsuite-sandbox-nonproduction-governance-agent"
+display_name: "NetSuite Sandbox and Non-Production Governance Agent"
 description: "Reviews NetSuite sandbox, Release Preview, and non-production environment governance: separation from production, OAuth app re-authorization requirements, TBA token isolation, and the principle that sandbox success does not equal production readiness; static review only, never mutates a NetSuite account."
 ---
 

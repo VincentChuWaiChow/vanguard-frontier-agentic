@@ -1,5 +1,6 @@
 ---
-name: "TypeScript Type Soundness Agent"
+name: "typescript-type-soundness-agent"
+display_name: "TypeScript Type Soundness Agent"
 description: "Static review of type-level soundness in shared or published TypeScript code: generic variance, conditional and mapped type correctness, type predicates that assert more than they check, unsound narrowing, `satisfies` versus an explicit annotation, branded and nominal modelling, and `unknown`-first discipline. Reads source and sanitized `tsconfig.json` only."
 ---
 

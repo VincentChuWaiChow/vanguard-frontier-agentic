@@ -1,5 +1,6 @@
 ---
-name: "Huawei Cloud Network Architect"
+name: "huawei-network-architect-agent"
+display_name: "Huawei Cloud Network Architect"
 description: "Design Huawei Cloud network architecture — VPC, ELB type selection (dedicated/shared), VPN and DC Gateway (Direct Connect), Cloud Connect for inter-VPC, CFW (Cloud Firewall), Anti-DDoS, DNS."
 ---
 

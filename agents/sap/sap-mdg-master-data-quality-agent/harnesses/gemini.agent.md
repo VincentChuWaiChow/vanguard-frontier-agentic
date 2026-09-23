@@ -1,5 +1,6 @@
 ---
-name: "SAP MDG Master Data Quality"
+name: "sap-mdg-master-data-quality-agent"
+display_name: "SAP MDG Master Data Quality"
 description: "Reviews SAP Master Data Governance (MDG) configuration and data quality posture — data model design, BRFplus validation and derivation rules, governance workflow configuration, consolidation and mass processing settings, and data quality KPI coverage. Produces a graded findings report with remediation guidance. Static review only — never mutates master data records and never triggers governance workflows."
 ---
 

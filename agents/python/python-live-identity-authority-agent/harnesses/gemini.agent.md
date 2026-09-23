@@ -1,5 +1,6 @@
 ---
-name: "Python Live Identity and Authority Agent"
+name: "python-live-identity-authority-agent"
+display_name: "Python Live Identity and Authority Agent"
 description: "Confirms active identity, role, credential age, target scope, JIT status, and approval authority before any gated action. Read-only. Blocks shared identities, unidentified principals, standing administrative credentials, and requester-as-approver conflicts."
 ---
 

@@ -1,5 +1,6 @@
 ---
-name: "Alibaba Cloud Cost Anomaly Watch Coordinator"
+name: "alibaba-cost-anomaly-watch-coordinator-agent"
+display_name: "Alibaba Cloud Cost Anomaly Watch Coordinator"
 description: "Detect and coordinate response to Alibaba Cloud cost anomalies — MaxCompute CU vs on-demand billing mismatch, ECS spot instance interruption cascades, CDN traffic spike billing, OSS API request cost explosions, budget alert → DingTalk notification → remediation playbook."
 ---
 

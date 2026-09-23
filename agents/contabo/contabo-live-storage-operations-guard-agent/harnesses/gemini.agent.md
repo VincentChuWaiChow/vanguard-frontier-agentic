@@ -1,5 +1,6 @@
 ---
-name: "Contabo Live Storage Operations Guard"
+name: "contabo-live-storage-operations-guard-agent"
+display_name: "Contabo Live Storage Operations Guard"
 description: "Live-guard agent for Contabo Object Storage and S3-compatible bucket operations: inventory audit, access policy review, retention policy enforcement, and deletion with backup verification before any destructive mutation."
 ---
 

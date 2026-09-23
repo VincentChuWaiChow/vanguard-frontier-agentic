@@ -1,5 +1,6 @@
 ---
-name: "Alibaba Cloud MSE Microservice Engine Operator"
+name: "alibaba-mse-microservice-engine-agent"
+display_name: "Alibaba Cloud MSE Microservice Engine Operator"
 description: "Configure and operate Alibaba MSE (Microservice Engine) — Nacos (service discovery + config), Sentinel (rate limiting + circuit breaking), Seata (distributed transactions), and ARMS APM for microservices governance."
 ---
 

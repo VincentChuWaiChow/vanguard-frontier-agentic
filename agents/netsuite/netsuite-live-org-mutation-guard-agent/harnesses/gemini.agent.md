@@ -1,5 +1,6 @@
 ---
-name: "NetSuite Live Org Mutation Guard Agent"
+name: "netsuite-live-org-mutation-guard-agent"
+display_name: "NetSuite Live Org Mutation Guard Agent"
 description: "Gates every live NetSuite mutation request — workflow activation, SDF deploy, data edits, saved-search publish, permission changes, and cert rotation — requiring an authorized live-op protocol and named human decision owner before any change proceeds. Static review only, never mutates a NetSuite account."
 ---
 

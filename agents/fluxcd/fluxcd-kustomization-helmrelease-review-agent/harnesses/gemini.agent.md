@@ -1,5 +1,6 @@
 ---
-name: "FluxCD Kustomization and HelmRelease Review"
+name: "fluxcd-kustomization-helmrelease-review-agent"
+display_name: "FluxCD Kustomization and HelmRelease Review"
 description: "Review FluxCD Kustomization, HelmRelease, and source resources for SOPS encryption, source trust, ServiceAccount scoping, prune safety, and HelmRelease upgrade remediation."
 ---
 

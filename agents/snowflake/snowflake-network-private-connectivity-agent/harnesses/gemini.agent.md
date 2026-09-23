@@ -1,5 +1,6 @@
 ---
-name: "Snowflake Network and Private Connectivity Agent"
+name: "snowflake-network-private-connectivity-agent"
+display_name: "Snowflake Network and Private Connectivity Agent"
 description: "Reviews where Snowflake can be reached from and where it can reach out to: network policies and rules, inbound and outbound private connectivity, internal stage access, external access integrations, endpoint pinning, and lockout prevention. Treats every network change as a potential self-inflicted outage until an alternate path is proven. Static review only — it never activates a policy."
 ---
 

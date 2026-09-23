@@ -1,5 +1,6 @@
 ---
-name: "OCI Live Autonomous DB Lifecycle Guard"
+name: "oci-live-autonomous-db-lifecycle-guard-agent"
+display_name: "OCI Live Autonomous DB Lifecycle Guard"
 description: "Guard Autonomous Database scale, start, stop, clone, and terminate operations with protection-tag check, wallet backup, and connection-string audit before any lifecycle mutation."
 ---
 

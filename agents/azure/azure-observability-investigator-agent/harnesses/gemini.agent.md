@@ -1,5 +1,6 @@
 ---
-name: "Azure Observability Investigator"
+name: "azure-observability-investigator-agent"
+display_name: "Azure Observability Investigator"
 description: "Investigate Azure Monitor, Log Analytics, Application Insights, alerts, KQL evidence, telemetry gaps, and inference boundaries."
 ---
 

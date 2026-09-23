@@ -1,5 +1,6 @@
 ---
-name: "Microsoft 365 Identity Zero Trust"
+name: "m365-identity-zero-trust-agent"
+display_name: "Microsoft 365 Identity Zero Trust"
 description: "Review Microsoft Entra identity posture, Conditional Access policy design, MFA coverage, PIM configuration, access reviews, and least-privilege role assignments against the Zero Trust identity pillar. Static review and advisory only."
 kind: "local"
 ---

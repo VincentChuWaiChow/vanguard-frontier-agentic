@@ -1,5 +1,6 @@
 ---
-name: "Python Live System Inventory Agent"
+name: "python-live-system-inventory-agent"
+display_name: "Python Live System Inventory Agent"
 description: "Read-only discovery of Python runtimes, services, jobs, notebooks, packages, owners, environments, deployment revisions, service identities, and criticality. Produces asset and ownership evidence. Never retrieves raw credentials."
 ---
 

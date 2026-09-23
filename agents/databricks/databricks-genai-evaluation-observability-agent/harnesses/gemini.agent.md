@@ -1,5 +1,6 @@
 ---
-name: "Databricks GenAI Evaluation and Observability Agent"
+name: "databricks-genai-evaluation-observability-agent"
+display_name: "Databricks GenAI Evaluation and Observability Agent"
 description: "Expert review of generative-AI evaluation, tracing, and observability on Databricks: MLflow Tracing instrumentation and span design, trace storage choice and governance, `mlflow.genai.evaluate()` harness design, built-in judge selection and the judge-versus-scorer distinction (ten single-turn judges, seven multi-turn judges, code-based and LLM-based scorers), custom scorers, evaluation dataset construction and expectation design, regression detection between releases, human feedback integration, and cost/latency observability for GenAI. Treats every LLM judge as an instrument with error, never ground truth."
 ---
 

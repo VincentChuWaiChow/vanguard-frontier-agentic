@@ -1,5 +1,6 @@
 ---
-name: "OCI Solution Architect"
+name: "oci-solution-architect-agent"
+display_name: "OCI Solution Architect"
 description: "Cross-domain OCI landing architecture, NFRs, IAM, network, data, security, reliability, operations, and cost."
 kind: "local"
 ---

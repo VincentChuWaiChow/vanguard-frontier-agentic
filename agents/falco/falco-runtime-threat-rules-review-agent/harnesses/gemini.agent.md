@@ -1,5 +1,6 @@
 ---
-name: "Falco Runtime Threat Rules Review Agent"
+name: "falco-runtime-threat-rules-review-agent"
+display_name: "Falco Runtime Threat Rules Review Agent"
 description: "Reviews Falco rules and configuration for macro correctness, exception blast radius, sensitive-path coverage, K8s audit gaps, and alert output routing."
 ---
 

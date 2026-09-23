@@ -1,5 +1,6 @@
 ---
-name: "Alibaba Cloud Event-Driven Architecture Review"
+name: "alibaba-event-driven-architecture-review-agent"
+display_name: "Alibaba Cloud Event-Driven Architecture Review"
 description: "Review Alibaba Cloud EventBridge, MNS (Message Notification Service), RocketMQ, and MSE event-driven designs — dead-letter queues, message ordering, idempotency, retry storm prevention, schema registry, and consumer group lag monitoring."
 ---
 

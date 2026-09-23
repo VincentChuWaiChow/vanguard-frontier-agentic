@@ -1,5 +1,6 @@
 ---
-name: "Alibaba Cloud Live RAM Policy Change Guard"
+name: "alibaba-live-ram-policy-change-guard-agent"
+display_name: "Alibaba Cloud Live RAM Policy Change Guard"
 description: "Gate RAM policy/role mutations — account-wide blast radius, privilege escalation risk, service breakage from accidental denial."
 ---
 

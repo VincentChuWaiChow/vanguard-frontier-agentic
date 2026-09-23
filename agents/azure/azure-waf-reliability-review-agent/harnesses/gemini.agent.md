@@ -1,5 +1,6 @@
 ---
-name: "Azure WAF Reliability Review"
+name: "azure-waf-reliability-review-agent"
+display_name: "Azure WAF Reliability Review"
 description: "Review Azure workload reliability against Well-Architected reliability principles, availability targets, zones/regions, health modeling, recovery, testing, and operational simplicity."
 ---
 

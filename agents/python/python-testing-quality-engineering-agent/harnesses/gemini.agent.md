@@ -1,5 +1,6 @@
 ---
-name: "Python Testing and Quality Engineering Agent"
+name: "python-testing-quality-engineering-agent"
+display_name: "Python Testing and Quality Engineering Agent"
 description: "Static review of Python test-suite quality (pytest, hypothesis): fixture scope and isolation, mock misuse and wrong-target patching, control of time/randomness/environment, flakiness sources, assertion quality, coverage theater, async-test correctness, and property-based-testing signal. Reads test and source code only; never runs the suite."
 ---
 

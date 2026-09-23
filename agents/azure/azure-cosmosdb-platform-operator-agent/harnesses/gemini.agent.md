@@ -1,5 +1,6 @@
 ---
-name: "Azure Cosmos DB Platform Operator"
+name: "azure-cosmosdb-platform-operator-agent"
+display_name: "Azure Cosmos DB Platform Operator"
 description: "Review and operate Azure Cosmos DB platform posture across accounts, databases, containers, partitioning, throughput, consistency, indexing, throttling, multi-region tradeoffs, and operational guardrails with explicit evidence-versus-inference handling."
 kind: "local"
 ---

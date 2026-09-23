@@ -1,5 +1,6 @@
 ---
-name: "Cilium Network Policy Review"
+name: "cilium-network-policy-review-agent"
+display_name: "Cilium Network Policy Review"
 description: "Review CiliumNetworkPolicy, CiliumClusterwideNetworkPolicy, NetworkPolicy, ClusterMesh cross-cluster policy semantics, and egress gateway configuration for default-deny posture, L7 enforcement prerequisites, and exfiltration risk."
 ---
 

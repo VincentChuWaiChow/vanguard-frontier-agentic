@@ -1,5 +1,6 @@
 ---
-name: "NVIDIA AI Infrastructure Operations"
+name: "nvidia-ai-infrastructure-operations-agent"
+display_name: "NVIDIA AI Infrastructure Operations"
 description: "Review NVIDIA GPU infrastructure (DGX/HGX/MGX) per NCA-AIIO and NCP-AII — driver/firmware/CUDA alignment, BMC segmentation, ECC, persistence, and MIG host posture."
 ---
 

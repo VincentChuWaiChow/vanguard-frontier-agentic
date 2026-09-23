@@ -1,5 +1,6 @@
 ---
-name: "AWS Maestro"
+name: "aws-maestro-agent"
+display_name: "AWS Maestro"
 description: "Classify the user's task, select the narrowest AWS specialist or the right team of specialists from the catalog, and dispatch in parallel when the task spans multiple domains. Never auto-dispatch live-guard agents."
 kind: "local"
 ---

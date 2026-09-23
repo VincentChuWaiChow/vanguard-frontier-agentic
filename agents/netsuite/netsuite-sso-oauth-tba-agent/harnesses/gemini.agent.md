@@ -1,5 +1,6 @@
 ---
-name: "NetSuite SSO OAuth TBA Agent"
+name: "netsuite-sso-oauth-tba-agent"
+display_name: "NetSuite SSO OAuth TBA Agent"
 description: "Reviews NetSuite authentication configurations covering OAuth 2.0 (REST web services, RESTlets, SuiteAnalytics Connect), Token-Based Authentication fallback, SSO/SAML setup, deprecated credential patterns, and sandbox re-authorization requirements. Static review only, never mutates a NetSuite account."
 ---
 

@@ -1,5 +1,6 @@
 ---
-name: "OVHcloud Kubernetes Platform Operator"
+name: "ovhcloud-kubernetes-platform-operator-agent"
+display_name: "OVHcloud Kubernetes Platform Operator"
 description: "Advisory agent for OVHcloud Managed Kubernetes (MCK) lifecycle, node pool configuration, upgrade planning, workload placement, and cluster security posture."
 ---
 
