@@ -19,7 +19,8 @@ For each provider that owns a `*-maestro` skill, this script:
         - ambiguous (expect unclassified)
 
 The output is a *seed*. Hand-tune taxonomy keywords if a fixture misroutes.
-Re-running this script overwrites taxonomy.json and fixtures.
+Re-running this script overwrites taxonomy.json and fixtures, so once a
+provider has been hand-tuned, add it to the `skip` set in main().
 """
 
 from __future__ import annotations
@@ -526,6 +527,34 @@ def plan_provider(
             "task"
         ) != input_doc.get("task")
 
+        # A happy-path expectation records intent, not evaluator output: when the
+        # target is missing from the route, `expected_doc` stays the intended
+        # single route. So a reworded task can keep an identical expectation
+        # while no longer routing to it — azure/026 was reported as "same
+        # expectation" yet failed the validator once written. Check a reviewed
+        # fixture the way validate-maestro-routing.py does (route as a set,
+        # mode exactly) before calling it unchanged.
+        misrouted = None
+        if previous is not None and not answer_changed:
+            got_now = mod.evaluate(input_doc["task"], taxonomy)
+            if set(got_now["route"]) != set(expected_doc["route"]) or (
+                got_now["mode"] != expected_doc["mode"]
+            ):
+                misrouted = got_now
+        if misrouted is not None:
+            drifted.append(
+                f"  [{provider}/{name}]\n"
+                "    the reviewed answer held, but the regenerated task no longer\n"
+                "    routes to it, so the written fixture would fail validation\n"
+                f"      reviewed task: {(previous_input or {}).get('task', '')[:140]}\n"
+                f"      current  task: {input_doc.get('task', '')[:140]}\n"
+                f"      expected: {expected_doc}\n"
+                f"      routes to: {{'route': {sorted(misrouted['route'])}, "
+                f"'mode': {misrouted['mode']!r}}}"
+            )
+            planned.append((name, input_doc, expected_doc))
+            continue
+
         # Only an expectation change blocks. That is T2's concern: a wrong route
         # becoming the accepted baseline. An input-only change is the normal
         # consequence of a catalog edit for a generated provider — the task text
@@ -560,7 +589,30 @@ def plan_provider(
     # coverage would silently become the new green baseline. Compare the name
     # sets so a disappearance needs the same explicit acceptance as a changed
     # answer.
-    removed = sorted(set(frozen) - {name for name, _, _ in planned})
+    #
+    # A renumbering is not a disappearance. Happy-path names carry a positional
+    # index, so one new agent shifts every later name by one; treating that as
+    # deletion blocks every catalog addition and pushes the operator onto
+    # --accept-baseline-changes, which waives the freeze for ALL providers. A
+    # vanished name is paired with a new one only when both the task and the
+    # expectation are identical — the same question with the same answer.
+    def content_key(input_doc: dict, expected_doc: dict) -> str:
+        return json.dumps(
+            {"task": input_doc.get("task"), "expected": expected_doc}, sort_keys=True
+        )
+
+    unclaimed: dict[str, list[str]] = {}
+    for name, input_doc, expected_doc in planned:
+        if name not in frozen:
+            unclaimed.setdefault(content_key(input_doc, expected_doc), []).append(name)
+    removed: list[str] = []
+    renamed: list[tuple[str, str]] = []
+    for name in sorted(set(frozen) - {name for name, _, _ in planned}):
+        partners = unclaimed.get(content_key(frozen_inputs.get(name, {}), frozen[name]))
+        if name in frozen_inputs and partners:
+            renamed.append((name, partners.pop(0)))
+        else:
+            removed.append(name)
     if removed and not ACCEPT_BASELINE_CHANGES:
         raise BaselineChanged(
             f"{len(removed)} reviewed fixture(s) for {provider!r} would be DELETED, "
@@ -576,13 +628,16 @@ def plan_provider(
         raise BaselineChanged(
             f"{len(drifted)} reviewed fixture(s) for {provider!r} would be "
             f"rewritten:\n" + "\n".join(drifted) + "\n\n"
-            "Regenerating would make the new values the baseline and the suite "
-            "would pass against them. Where only the expectation moved, confirm "
-            "the new routing is correct. Where the INPUT moved, the fixtures are "
+            "Where the expectation changed, regenerating would make the new value "
+            "the baseline and the suite would pass against it — confirm the new "
+            "routing is correct. Where the INPUT moved, the fixtures are "
             "hand-curated and the generator is about to replace them with "
             "token-stitched equivalents — add the provider to the `skip` set in "
-            "main() instead. Re-run with --accept-baseline-changes only once you "
-            "are sure. Nothing was written."
+            "main() instead. Where the task no longer routes to its answer, the "
+            "taxonomy was hand-tuned and a rebuild loses that tuning; "
+            "--accept-baseline-changes would write a failing fixture, so skip the "
+            "provider. Re-run with --accept-baseline-changes only once you are "
+            "sure. Nothing was written."
         )
 
     if reworded:
@@ -592,6 +647,13 @@ def plan_provider(
         )
         for line in reworded:
             print(line)
+    if renamed:
+        print(
+            f"NOTE {provider}: {len(renamed)} fixture(s) renumbered with the same "
+            f"task and expectation:"
+        )
+        for old, new in renamed:
+            print(f"  [{provider}] {old} -> {new}")
 
     return taxonomy, planned
 
@@ -652,7 +714,51 @@ def main() -> int:
     # would have replaced it with "review our Aspire setup". Declaring
     # routing_keywords on those agents does not recover it either — the domain
     # names and the task text are both derived differently.
-    skip = {"nvidia", "accounting", "dotnet"}
+    #
+    # The rest were found by planning every provider without writing. Each
+    # would either lose reviewed coverage or, for kubernetes, gain a route its
+    # maestro does not have. In every case the cause is content this generator
+    # cannot derive from the catalog, not a regression: it mines agents by
+    # catalog `provider`, which is only a proxy for a maestro's routing table.
+    skip = {
+        "nvidia": "hand-curated fixtures",
+        "accounting": "hand-curated fixtures",
+        "dotnet": "hand-curated fixtures",
+        # A rebuild drops 41 taxonomy keywords (disaster-recovery, control-plane,
+        # ...) and 026-happy-waf-reliability-review then routes to four agents in
+        # parallel instead of its reviewed single agent.
+        "azure": "hand-tuned taxonomy",
+        # 01-variance-analysis ... 16-direct-answer-extraction, all hand-named.
+        "finance": "hand-curated fixtures",
+        # Routes to multi-cloud and kubernetes agents; no catalog agent has
+        # provider "finops", so a rebuild keeps only adv-ambiguous.
+        "finops": "maestro routes agents catalogued under other providers",
+        # Phrase keywords ("cost to serve", "hallucinated api") and 9 fixtures
+        # outside the generator's naming; 36 of 42 names would not survive.
+        "frontend": "hand-tuned taxonomy",
+        # adv-mutation-deploy/-publish, which no script produces, and a
+        # live_guard_intent that differs from the generated one.
+        "kotlin": "hand-curated fixtures",
+        # finops-kubernetes-rightsizer-agent is catalogued here but routed by
+        # the finops maestro; the kubernetes maestro never names it.
+        "kubernetes": "catalog provider includes an agent another maestro routes",
+        # adv-live-guard-gate, which no script produces.
+        "marketing": "hand-curated fixtures",
+        # composer.lock, packagist, register_rest_route, php-fpm and 16 more
+        # hand-added keywords; a rebuild drops "audit" and with it the reviewed
+        # parallel route for adv-secrets-bait. Also 6 hand-authored fixtures.
+        "php": "hand-tuned taxonomy",
+        # Written by scripts/gen_python_routing_fixtures.py.
+        "python": "owned by scripts/gen_python_routing_fixtures.py",
+        # 01-clean-core-debt ... all hand-named.
+        "sap": "hand-curated fixtures",
+        # 01-redteam-accountadmin-shortcut ... all hand-named.
+        "snowflake": "hand-curated fixtures",
+        # 009-happy-destroy-plan-review, 010-adv-verb-not-a-signal and
+        # adv-execution-intent-gate, which no script produces, and a
+        # live_guard_intent that differs from the generated one.
+        "terraform": "hand-curated fixtures",
+    }
 
     # Two phases. Planning every provider before writing any of them means a
     # baseline conflict in the twentieth provider cannot leave the first
@@ -661,7 +767,7 @@ def main() -> int:
     plans: list[tuple[str, dict, list[tuple[str, dict, dict]]]] = []
     for provider in providers:
         if provider in skip:
-            print(f"SKIP {provider} (hand-curated)")
+            print(f"SKIP {provider} ({skip[provider]})")
             continue
         prov_agents = [a for a in agents if a["provider"] == provider]
         if not prov_agents:
@@ -676,7 +782,7 @@ def main() -> int:
         print(f"  {provider}: {count} fixtures (taxonomy + inputs/expected)")
         total += count
 
-    print(f"\nTotal: {total} fixtures generated across {len(providers) - len(skip)} provider(s)")
+    print(f"\nTotal: {total} fixtures generated across {len(plans)} provider(s)")
     return 0
 
 

@@ -36700,7 +36700,7 @@
     },
     {
       "tree": "tests",
-      "aggregate_sha256": "1eacf8aeb03e226da30a90ce812ea35be686ee370648fd83840750bdaba9a8b5",
+      "aggregate_sha256": "261f7566c65a403e69438addc6afd3e3275af8f945846ecab7747008c7c25a95",
       "files": [
         {
           "path": "tests/AGENTS.md",
@@ -36709,8 +36709,8 @@
         },
         {
           "path": "tests/_generate_maestro_routing_fixtures.py",
-          "sha256": "7f4f5d6ed53226ab7235053ae7a3a3af403a14222344367170a2027278f46749",
-          "bytes": 32690
+          "sha256": "aa5e64f88e495bfa2fb8b39d0aaebebe7e0e8c363821d5cd7ea64a0b5384cab2",
+          "bytes": 38632
         },
         {
           "path": "tests/eval-qa-cluster.mjs",
@@ -36724,8 +36724,8 @@
         },
         {
           "path": "tests/fixtures/README.md",
-          "sha256": "e9d1e282b8b7331bef08f88fe183c85c010198eba3e2520a623737a16a5ffcb4",
-          "bytes": 2607
+          "sha256": "3130534b7fe05d4db5ad1e3cc0f566b685f3f3051d0c02d94ece213d84f60c7f",
+          "bytes": 3146
         },
         {
           "path": "tests/fixtures/accounting-maestro-routing/expected/01-revenue-recognition.json",
@@ -47252,5 +47252,5 @@
       "bytes": 8340
     }
   ],
-  "aggregate_sha256": "1fb36b7641864a055fff2708cc6528c8512ede086f71e9d5a00bbc0badc18fa0"
+  "aggregate_sha256": "4b149b3d661e5d625c89951e061937b0a42d811fde256a2d9a3a403e076da9fb"
 }

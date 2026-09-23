@@ -15,13 +15,22 @@ tests/fixtures/<provider>-maestro-routing/
 ```
 
 `tests/_generate_maestro_routing_fixtures.py` mines `catalog/agents.json`
-to produce a seed taxonomy and a baseline fixture set for every provider.
-Re-run it after adding agents:
+to produce a seed taxonomy and a baseline fixture set per provider. Re-run it
+after adding agents:
 
 ```
 npm run maestro-routing:write
 npm run validate:maestro-routing
 ```
+
+Not every provider is generated. Providers whose fixtures or taxonomy were
+hand-curated, hand-tuned, or written by another script are listed in the
+generator's `skip` set with the reason, and are maintained by hand. The
+generator refuses to write — and changes nothing — when regeneration would
+change a reviewed expectation, delete a reviewed fixture, or leave a reviewed
+fixture that no longer routes to its answer. A fixture renumbered because an
+agent was inserted before it, with the same task and answer, is reported but
+not blocked.
 
 ## Stress-test categories
 
