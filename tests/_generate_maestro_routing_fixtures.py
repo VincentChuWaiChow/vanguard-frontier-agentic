@@ -472,6 +472,9 @@ def plan_provider(
         try:
             frozen[existing.stem] = json.loads(existing.read_text())
         except json.JSONDecodeError:
+            # An unreadable expectation cannot be compared against, so it is
+            # left out of the baseline and simply regenerated. Failing here
+            # would make a corrupt file impossible to repair with this script.
             pass
 
     # The generator synthesises the INPUT as well as the expectation, so a
@@ -484,6 +487,8 @@ def plan_provider(
         try:
             frozen_inputs[existing.stem] = json.loads(existing.read_text())
         except json.JSONDecodeError:
+            # Same reasoning as the expectations above: an unparsable input is
+            # regenerated rather than blocking the run.
             pass
 
     live_guards = set(taxonomy.get("live_guards", []))
@@ -549,6 +554,23 @@ def plan_provider(
                 f"      current : {input_doc.get('task', '')[:120]}"
             )
         planned.append((name, input_doc, expected_doc))
+
+    # A fixture that is no longer generated never enters `planned`, so the loop
+    # above cannot see it — and the commit phase deletes every old file. Lost
+    # coverage would silently become the new green baseline. Compare the name
+    # sets so a disappearance needs the same explicit acceptance as a changed
+    # answer.
+    removed = sorted(set(frozen) - {name for name, _, _ in planned})
+    if removed and not ACCEPT_BASELINE_CHANGES:
+        raise BaselineChanged(
+            f"{len(removed)} reviewed fixture(s) for {provider!r} would be DELETED, "
+            f"because the generator no longer produces them:\n"
+            + "\n".join(f"  [{provider}/{name}]" for name in removed)
+            + "\n\nThat removes reviewed coverage. If an agent or domain was "
+            "deliberately retired this is expected — re-run with "
+            "--accept-baseline-changes. Otherwise the generator has regressed. "
+            "Nothing was written."
+        )
 
     if drifted and not ACCEPT_BASELINE_CHANGES:
         raise BaselineChanged(

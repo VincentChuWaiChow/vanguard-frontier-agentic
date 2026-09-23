@@ -294,57 +294,16 @@ function ensurePlatform(platform) {
  * spec mentioned is omitted. Two exports of the same catalog produce identical
  * bytes, which keeps content hashing and drift detection meaningful.
  */
-/**
- * Reserved key carrying export metadata in formats with no comment syntax.
- *
- * Mirrors `JSON_EXPORT_KEY` in tools/vfa-tui/src/federation/scanner.rs. The
- * `x-` prefix marks it as an extension field rather than part of the harness's
- * own schema, which is the usual hedge against a third-party parser that
- * enforces a fixed key set.
- */
-export const JSON_EXPORT_KEY = "x-vfa-export";
-
 export function exportMetadataLine(assetId, version) {
   const payload = version ? { id: assetId, version } : { id: assetId };
   return `# VFA-EXPORT: ${JSON.stringify(payload)}`;
 }
 
 /**
- * Record export metadata in a JSON document under the reserved key.
- *
- * JSON has no comment syntax, so the `# VFA-EXPORT:` line the other formats use
- * cannot appear here. The key is spliced in directly after the opening brace so
- * every other byte of the file is preserved: these harness files are
- * hand-authored and densely formatted, and re-serialising them would rewrite
- * the whole document for one added field.
- *
- * Fails safe. If splicing produced anything that is not valid JSON the original
- * content is returned unchanged, because a scanner signal is never worth
- * corrupting an agent definition.
- */
-function injectJsonExportMetadata(content, assetId, version) {
-  const trimmed = content.trimStart();
-  if (!trimmed.startsWith("{")) return content;
-
-  const payload = JSON.stringify(version ? { id: assetId, version } : { id: assetId });
-  const lead = content.slice(0, content.length - trimmed.length);
-  const body = trimmed.slice(1);
-  const separator = body.trimStart().startsWith("}") ? "" : ",";
-  const candidate = `${lead}{${JSON.stringify(JSON_EXPORT_KEY)}:${payload}${separator}${body}`;
-
-  try {
-    JSON.parse(candidate);
-  } catch {
-    return content;
-  }
-  return candidate;
-}
-
-/**
  * Insert the marker in a way each destination format actually tolerates.
  *
- * - `.json` carries the payload under the reserved `x-vfa-export` key, since
- *   neither `#` nor `//` is legal JSON.
+ * - `.json` is skipped: neither `#` nor `//` is legal JSON, and CLAUDE.md
+ *   forbids inventing metadata fields in executable agent files.
  * - Markdown carries YAML frontmatter, where a `#` line is a valid comment and
  *   renders as nothing. Prepending above the opening `---` would instead break
  *   frontmatter parsing for every harness that reads it.
@@ -353,12 +312,14 @@ function injectJsonExportMetadata(content, assetId, version) {
  * Idempotent: re-exporting over a previous export does not stack markers.
  */
 export function injectExportMetadata(content, destination, assetId, version) {
-  if (content.includes("VFA-EXPORT:") || content.includes(JSON_EXPORT_KEY)) {
-    return content;
-  }
-  if (destination.endsWith(".json")) {
-    return injectJsonExportMetadata(content, assetId, version);
-  }
+  if (content.includes("VFA-EXPORT:")) return content;
+  // `.json` is left untouched. CLAUDE.md's cross-platform rule forbids
+  // inventing unsupported metadata fields in executable agent files, and a
+  // kiro-cli agent document is executable. Confirming kiro-cli exports needs a
+  // sidecar manifest or an officially supported field, not a key this repo
+  // invented; until then those exports raise one detection signal and stay
+  // unconfirmed.
+  if (destination.endsWith(".json")) return content;
 
   const line = exportMetadataLine(assetId, version);
   if (destination.endsWith(".md")) {
@@ -540,31 +501,60 @@ function copyFile(source, destination, force, targetRoot, metadata) {
   if (sourceStat.isSymbolicLink()) {
     throw new Error(`Refusing to copy symbolic link as harness source: ${source}`);
   }
-  if (fs.existsSync(destination)) {
-    // Reject symlink destinations regardless of --force. A symlink at the
-    // destination would redirect the write outside the repo tree, bypassing
-    // assertWithin(). lstatSync does not follow the symlink — exactly what we
-    // want here to detect the link itself.
-    const destStat = fs.lstatSync(destination);
-    if (destStat.isSymbolicLink()) {
+  fs.mkdirSync(path.dirname(destination), { recursive: true });
+
+  const payload =
+    metadata && metadata.assetId
+      ? Buffer.from(
+          injectExportMetadata(
+            fs.readFileSync(source, "utf8"),
+            destination,
+            metadata.assetId,
+            metadata.version
+          ),
+          "utf8"
+        )
+      : fs.readFileSync(source);
+
+  // Decide the destination's fate in the open() itself rather than checking it
+  // first and writing afterwards. The previous shape — existsSync/lstatSync and
+  // then a write — left a window in which the path could be swapped for a
+  // symlink between the check and the write, which CodeQL flags as a file
+  // system race and which is genuinely exploitable on a shared checkout.
+  //
+  //   O_EXCL     makes "refuse to overwrite" a property of the syscall.
+  //   O_NOFOLLOW refuses a symlinked destination in the same syscall, so a
+  //              symlink can never redirect the write outside the target root
+  //              regardless of --force.
+  //
+  // O_NOFOLLOW does not exist on Windows; `|| 0` keeps the flag set valid
+  // there, where this degrades to the ordinary overwrite semantics.
+  const flags =
+    fs.constants.O_WRONLY |
+    fs.constants.O_CREAT |
+    (force ? fs.constants.O_TRUNC : fs.constants.O_EXCL) |
+    (fs.constants.O_NOFOLLOW || 0);
+
+  let fd;
+  try {
+    fd = fs.openSync(destination, flags);
+  } catch (error) {
+    if (error.code === "EEXIST") {
+      throw new Error(`Refusing to overwrite existing file without --force: ${destination}`);
+    }
+    if (error.code === "ELOOP") {
       throw new Error(
         `Refusing to write to symbolic link destination: ${destination}. ` +
         `Remove the symlink and retry.`
       );
     }
-    if (!force) {
-      throw new Error(`Refusing to overwrite existing file without --force: ${destination}`);
-    }
+    throw error;
   }
-  fs.mkdirSync(path.dirname(destination), { recursive: true });
-  if (metadata && metadata.assetId) {
-    const content = fs.readFileSync(source, "utf8");
-    fs.writeFileSync(
-      destination,
-      injectExportMetadata(content, destination, metadata.assetId, metadata.version)
-    );
-  } else {
-    fs.copyFileSync(source, destination);
+
+  try {
+    fs.writeFileSync(fd, payload);
+  } finally {
+    fs.closeSync(fd);
   }
 }
 
@@ -865,8 +855,18 @@ function main() {
 
 // Run the CLI only when this file is the entry point. Without this guard the
 // module could not be imported by tests without executing an export.
-const invokedDirectly =
-  process.argv[1] && import.meta.url === pathToFileURL(process.argv[1]).href;
+// npm installs the CLI as a symlink in node_modules/.bin, so process.argv[1] is
+// the link while import.meta.url is the real file. Comparing them raw made the
+// guard false for every packaged install, and `vfa-export-agents` silently
+// produced no output. Resolve the link before comparing.
+const invokedDirectly = (() => {
+  if (!process.argv[1]) return false;
+  try {
+    return import.meta.url === pathToFileURL(fs.realpathSync(process.argv[1])).href;
+  } catch {
+    return false;
+  }
+})();
 
 if (invokedDirectly) {
   try {

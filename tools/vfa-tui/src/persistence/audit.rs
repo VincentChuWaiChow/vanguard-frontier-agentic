@@ -292,11 +292,16 @@ impl<'a> AuditLogger<'a> {
     // -----------------------------------------------------------------------
 
     /// Export the audit log to `out_path` in `format` (`"json"` or `"csv"`).
+    ///
+    /// `hash_version` is exported alongside every row. Two hash recipes are in
+    /// circulation (v1 leaves `operator` unauthenticated, v2 binds it), so
+    /// without the marker an auditor holding only the export cannot know which
+    /// recipe to recompute and the artifact is not independently verifiable.
     pub fn export_audit(&self, format: &str, out_path: &Path) -> Result<(), TuiError> {
         let conn = self.mgr.write_conn();
         let mut stmt = conn.prepare(
             "SELECT id, timestamp, event_type, subject, details, operator, \
-                    entry_hash, prev_hash \
+                    entry_hash, prev_hash, hash_version \
              FROM audit_log ORDER BY id ASC",
         )?;
 
@@ -314,6 +319,7 @@ impl<'a> AuditLogger<'a> {
                             "operator":   row.get::<_, String>(5)?,
                             "entry_hash": row.get::<_, String>(6)?,
                             "prev_hash":  row.get::<_, String>(7)?,
+                            "hash_version": row.get::<_, i64>(8)?,
                         }))
                     })?
                     .filter_map(|r| r.ok())
@@ -332,7 +338,8 @@ impl<'a> AuditLogger<'a> {
 
             "csv" => {
                 let mut csv = String::from(
-                    "id,timestamp,event_type,subject,details,operator,entry_hash,prev_hash\n",
+                    "id,timestamp,event_type,subject,details,operator,entry_hash,prev_hash,\
+                     hash_version\n",
                 );
                 let rows: Vec<_> = stmt
                     .query_map([], |row| {
@@ -345,15 +352,16 @@ impl<'a> AuditLogger<'a> {
                             row.get::<_, String>(5)?,
                             row.get::<_, String>(6)?,
                             row.get::<_, String>(7)?,
+                            row.get::<_, i64>(8)?,
                         ))
                     })?
                     .filter_map(|r| r.ok())
                     .collect();
 
-                for (id, ts, et, subj, det, op, eh, ph) in rows {
+                for (id, ts, et, subj, det, op, eh, ph, hv) in rows {
                     let _ = writeln!(
                         csv,
-                        "{id},{ts},{et},{},{},{},{eh},{ph}",
+                        "{id},{ts},{et},{},{},{},{eh},{ph},{hv}",
                         escape_csv(&subj),
                         escape_csv(&det),
                         escape_csv(&op),
@@ -683,6 +691,113 @@ mod tests {
         assert!(content.starts_with("id,timestamp"), "CSV header missing");
         assert!(content.contains("drift_detected"), "CSV missing event_type");
         assert!(content.contains("ws-csv"), "CSV missing subject");
+    }
+
+    #[test]
+    fn export_json_carries_hash_version() {
+        // Positive probe: a row this build writes exports the v2 marker, so an
+        // auditor holding only the export knows which recipe to recompute.
+        let (mgr,) = fresh_logger();
+        let mut logger = AuditLogger::new(&mgr, String::new());
+        logger
+            .log(
+                AuditEventType::Promotion,
+                "asset-hv",
+                serde_json::json!({}),
+                "headless",
+            )
+            .expect("log");
+
+        let dir = tempfile::tempdir().expect("tempdir");
+        let out = dir.path().join("audit.json");
+        logger.export_audit("json", &out).expect("export json");
+
+        let parsed: serde_json::Value =
+            serde_json::from_str(&fs::read_to_string(&out).expect("read")).expect("parse");
+        assert_eq!(
+            parsed[0]["hash_version"],
+            serde_json::json!(HASH_VERSION_WITH_OPERATOR),
+            "export must publish the hash recipe marker"
+        );
+    }
+
+    #[test]
+    fn export_distinguishes_legacy_and_current_hash_versions() {
+        // Negative probe: a legacy (v1) row must NOT be exported as v2.  If the
+        // exporter hard-coded the current version the artifact would claim the
+        // operator was authenticated on a row where it was not.
+        let mgr = IndexManager::open_in_memory().expect("open_in_memory");
+        let mut logger = AuditLogger::new(&mgr, String::new());
+        logger
+            .log(
+                AuditEventType::PolicyEvaluation,
+                "ws-v2",
+                serde_json::json!({}),
+                "system",
+            )
+            .expect("log v2 row");
+
+        // Insert a row the way a pre-migration build would: hash_version 1.
+        mgr.write_conn()
+            .execute(
+                "INSERT INTO audit_log \
+                 (timestamp, event_type, subject, details, operator, entry_hash, prev_hash, \
+                  hash_version) \
+                 VALUES ('2025-01-01T00:00:00.000Z', 'policy_evaluation', 'ws-v1', '{}', \
+                         'legacy', 'legacy_hash', '', 1)",
+                [],
+            )
+            .expect("insert legacy row");
+
+        let dir = tempfile::tempdir().expect("tempdir");
+        let out = dir.path().join("audit.json");
+        logger.export_audit("json", &out).expect("export json");
+        let parsed: serde_json::Value =
+            serde_json::from_str(&fs::read_to_string(&out).expect("read")).expect("parse");
+
+        let by_subject = |subj: &str| -> i64 {
+            parsed
+                .as_array()
+                .expect("array")
+                .iter()
+                .find(|r| r["subject"] == subj)
+                .unwrap_or_else(|| panic!("row {subj} missing"))["hash_version"]
+                .as_i64()
+                .expect("hash_version is an integer")
+        };
+
+        assert_eq!(by_subject("ws-v2"), HASH_VERSION_WITH_OPERATOR);
+        assert_eq!(by_subject("ws-v1"), 1, "legacy row must not be relabelled");
+    }
+
+    #[test]
+    fn export_csv_carries_hash_version() {
+        let (mgr,) = fresh_logger();
+        let mut logger = AuditLogger::new(&mgr, String::new());
+        logger
+            .log(
+                AuditEventType::DriftDetected,
+                "ws-csv-hv",
+                serde_json::json!({}),
+                "system",
+            )
+            .expect("log");
+
+        let dir = tempfile::tempdir().expect("tempdir");
+        let out = dir.path().join("audit.csv");
+        logger.export_audit("csv", &out).expect("export csv");
+
+        let content = fs::read_to_string(&out).expect("read file");
+        let mut lines = content.lines();
+        assert_eq!(
+            lines.next().expect("header"),
+            "id,timestamp,event_type,subject,details,operator,entry_hash,prev_hash,hash_version"
+        );
+        let row = lines.next().expect("one data row");
+        assert!(
+            row.ends_with(&format!(",{HASH_VERSION_WITH_OPERATOR}")),
+            "CSV row must end with the hash version, got: {row}"
+        );
     }
 
     #[test]

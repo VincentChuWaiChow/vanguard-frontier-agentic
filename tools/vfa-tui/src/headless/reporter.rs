@@ -213,28 +213,6 @@ impl HeadlessReporter {
             }
         };
 
-        // A report that evaluated no rules must not present itself as
-        // compliant.  `compliance_score(0, 0)` is 100.0 by definition, so
-        // without this guard a missing or empty policy file produced exit 0
-        // and "100.0%".  The parser stays lenient by design (Req 11.5); the
-        // enforcement decision belongs to the reporting layer.
-        if policy_config.rules.is_empty() && !cli.allow_empty_policy {
-            findings.push(FindingSeverity::Operational);
-            if !self.quiet {
-                let why = if policy_config.no_policies_file {
-                    "no policy file found at"
-                } else {
-                    "no usable policy rules in"
-                };
-                eprintln!(
-                    "[vfa-tui] {} {}; refusing to report compliance for 0 evaluated rules \
-                     (pass --allow-empty-policy for an exploratory run)",
-                    why,
-                    policy_path.display()
-                );
-            }
-        }
-
         // Check for unknown required_role references in rules.
         for rule in &policy_config.rules {
             if let crate::models::policy::PolicyRuleType::RequireRole { role_id } = &rule.rule_type
@@ -341,6 +319,40 @@ impl HeadlessReporter {
                 PolicyEngine::evaluate(&policy_config, ws, installed, &catalog, &today)
             })
             .collect();
+
+        // A report that evaluated no rules must not present itself as compliant.
+        // `compliance_score(0, 0)` is 100.0 by definition, so without this guard
+        // a missing policy file, an empty policy, an empty workspace registry or
+        // a `--workspace-filter` matching nothing all produced exit 0 at
+        // "100.0%".
+        //
+        // This counts the rules actually EVALUATED rather than the rules present
+        // in the file. An earlier version checked the file, which still let a
+        // valid policy over zero in-scope workspaces report success — the same
+        // fail-open shape, one layer further in. The parser stays lenient by
+        // design (Req 11.5); the enforcement decision belongs here.
+        let rules_evaluated: usize = per_workspace_evals.iter().map(|e| e.results.len()).sum();
+        if rules_evaluated == 0 && !cli.allow_empty_policy {
+            findings.push(FindingSeverity::Operational);
+            if !self.quiet {
+                let why = if policy_config.no_policies_file {
+                    format!("no policy file found at {}", policy_path.display())
+                } else if policy_config.rules.is_empty() {
+                    format!("no usable policy rules in {}", policy_path.display())
+                } else {
+                    format!(
+                        "{} policy rule(s) loaded from {} but {} workspace(s) in scope",
+                        policy_config.rules.len(),
+                        policy_path.display(),
+                        workspaces.len()
+                    )
+                };
+                eprintln!(
+                    "[vfa-tui] {why}; refusing to report compliance over 0 evaluated rules \
+                     (pass --allow-empty-policy for an exploratory run)"
+                );
+            }
+        }
 
         // Collect all violations.
         let all_violations: Vec<crate::models::policy::PolicyViolation> = per_workspace_evals

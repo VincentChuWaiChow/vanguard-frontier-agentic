@@ -41,7 +41,11 @@ ROOT = Path(__file__).resolve().parents[1]
 # issuer, so a match is a credential rather than a word that looks like one.
 PATTERNS: list[tuple[str, re.Pattern[str]]] = [
     ("AWS access key id", re.compile(r"\bAKIA[0-9A-Z]{16}\b")),
-    ("GitHub token", re.compile(r"\bgh[pousr]_[A-Za-z0-9]{36,}\b")),
+    ("GitHub token (classic)", re.compile(r"\bgh[pousr]_[A-Za-z0-9]{36,}\b")),
+    # Fine-grained PATs are a current, ordinary GitHub credential format and do
+    # not share the classic prefixes: `github_pat_` then a base62 id, an
+    # underscore, and a base62 secret.
+    ("GitHub token (fine-grained)", re.compile(r"\bgithub_pat_[A-Za-z0-9]{20,}_[A-Za-z0-9]{50,}\b")),
     ("Google API key", re.compile(r"\bAIza[0-9A-Za-z_\-]{35}\b")),
     ("Slack token", re.compile(r"\bxox[abprs]-[A-Za-z0-9-]{10,}")),
     ("Stripe live secret key", re.compile(r"\bsk_live_[0-9a-zA-Z]{20,}\b")),

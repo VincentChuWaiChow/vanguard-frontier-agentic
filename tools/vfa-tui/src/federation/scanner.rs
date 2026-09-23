@@ -57,14 +57,6 @@ pub enum DetectionMethod {
 // ExportMeta — parsed VFA-EXPORT header
 // ---------------------------------------------------------------------------
 
-/// Reserved object key carrying export metadata in formats that have no
-/// comment syntax.
-///
-/// JSON cannot hold a `#` or `//` line, so an exported `.json` agent file
-/// records the same payload under this key. The `x-` prefix marks it as an
-/// extension field rather than part of the harness's own schema.
-pub const JSON_EXPORT_KEY: &str = "x-vfa-export";
-
 /// Parsed content of a `# VFA-EXPORT: {json}` metadata line.
 #[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
 pub struct ExportMeta {
@@ -208,8 +200,8 @@ impl WorkspaceScanner {
     /// trimmed form starts with `# VFA-EXPORT:` (case-sensitive).  The JSON
     /// payload after the colon is parsed with `serde_json`.
     ///
-    /// Falls back to the reserved `x-vfa-export` key for JSON documents, which
-    /// have no comment syntax.
+    /// JSON documents carry no comment syntax and therefore no marker: see the
+    /// note in `scripts/export-marketplace-agents.mjs`.
     ///
     /// Returns `None` for any malformed or missing line without panicking.
     pub fn parse_export_metadata(content: &str) -> Option<ExportMeta> {
@@ -230,24 +222,7 @@ impl WorkspaceScanner {
             }
         }
 
-        // No comment line. A JSON document cannot carry one, so fall back to
-        // the reserved key before giving up.
-        Self::parse_json_export_metadata(content)
-    }
-
-    /// Read export metadata from a JSON document's reserved key.
-    ///
-    /// Without this the kiro-cli `.json` export could never produce a second
-    /// detection signal, so a correctly installed kiro-cli agent stayed
-    /// unconfirmed no matter what the exporter wrote.
-    fn parse_json_export_metadata(content: &str) -> Option<ExportMeta> {
-        let trimmed = content.trim_start();
-        if !trimmed.starts_with('{') {
-            return None;
-        }
-        let value: serde_json::Value = serde_json::from_str(trimmed).ok()?;
-        let meta = value.get(JSON_EXPORT_KEY)?;
-        serde_json::from_value::<ExportMeta>(meta.clone()).ok()
+        None
     }
 
     // -----------------------------------------------------------------------
@@ -617,35 +592,6 @@ mod tests {
         assert_eq!(meta.id, "agents/aws/cdk-agent");
         assert_eq!(meta.version.as_deref(), Some("1.2.0"));
         assert_eq!(meta.installed_at.as_deref(), Some("2024-01-01"));
-    }
-
-    /// JSON has no comment syntax, so an exported `.json` agent file records the
-    /// payload under the reserved key instead. Without this the kiro-cli export
-    /// could never raise a second detection signal.
-    #[test]
-    fn parse_export_metadata_from_json_reserved_key() {
-        let doc = r#"{"x-vfa-export":{"id":"aws-iam-agent","version":"0.1.0"},"name":"IAM","prompt":"..."}"#;
-        let meta = WorkspaceScanner::parse_export_metadata(doc).expect("should parse");
-        assert_eq!(meta.id, "aws-iam-agent");
-        assert_eq!(meta.version.as_deref(), Some("0.1.0"));
-    }
-
-    #[test]
-    fn parse_export_metadata_json_without_reserved_key_is_none() {
-        let doc = r#"{"name":"IAM","description":"d","prompt":"p"}"#;
-        assert!(WorkspaceScanner::parse_export_metadata(doc).is_none());
-    }
-
-    #[test]
-    fn parse_export_metadata_malformed_json_is_none() {
-        assert!(WorkspaceScanner::parse_export_metadata("{not valid json").is_none());
-    }
-
-    #[test]
-    fn parse_export_metadata_json_with_wrong_shape_is_none() {
-        // Reserved key present but not an ExportMeta (no `id`).
-        let doc = r#"{"x-vfa-export":{"version":"0.1.0"},"name":"IAM"}"#;
-        assert!(WorkspaceScanner::parse_export_metadata(doc).is_none());
     }
 
     #[test]
