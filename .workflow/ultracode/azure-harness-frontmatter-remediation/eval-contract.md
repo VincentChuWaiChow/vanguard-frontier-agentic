@@ -8,8 +8,11 @@ Targeted, with one runtime probe in a real harness.
 
 The run may close only when all of the following hold.
 
-- Every one of the 80 files carries a `name` and a `description`, and the 16
-  canonical `AGENT.md` files carry the same values.
+- Every one of the 80 files carries a `name` and a `description`. The canonical
+  `AGENT.md` files are left as they are: all 735 carry only `metadata`, so the
+  harness exports are where an agent's identity lives. (An earlier draft of this
+  contract said the 16 `AGENT.md` files would gain the values too; packet 02 and
+  a repository-wide count showed that would break the convention.)
 - Each value is derived from committed data by the rule the healthy agents
   already follow, shown byte-for-byte on healthy controls. No value is written
   from judgment.
