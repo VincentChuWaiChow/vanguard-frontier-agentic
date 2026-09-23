@@ -35493,7 +35493,7 @@
     },
     {
       "tree": "scripts",
-      "aggregate_sha256": "e921f006b4c9eb536d619afac05f08dd9db05a724ec0918445de42d1331525fb",
+      "aggregate_sha256": "adc6422122b0d234dd171a8e5068da854a29df837dbc7c1bc53e7b6a5196c02b",
       "files": [
         {
           "path": "scripts/apply-skill-allowed-tools.py",
@@ -35592,8 +35592,8 @@
         },
         {
           "path": "scripts/export-marketplace-agents.mjs",
-          "sha256": "86991295f48ede0053373492f930ea1d6cbceaaad7455d942ef8e6b0566e7a0d",
-          "bytes": 33412
+          "sha256": "443b6fe97f320bd80dd399a6aaadebad60c3f1ebaf97b27e5e752b9603cc6e86",
+          "bytes": 34227
         },
         {
           "path": "scripts/gen_azure_live_guards.py",
@@ -47252,5 +47252,5 @@
       "bytes": 8340
     }
   ],
-  "aggregate_sha256": "eb93942b1c8169e8b7300b1282fea084eae1ed3408482b6202c128efb9c40934"
+  "aggregate_sha256": "1fb36b7641864a055fff2708cc6528c8512ede086f71e9d5a00bbc0badc18fa0"
 }

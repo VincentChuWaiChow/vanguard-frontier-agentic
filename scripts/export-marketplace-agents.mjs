@@ -497,24 +497,43 @@ function resolveCompanionSkills(selectedAgents, skillsByName, role, includeAll, 
 
 function copyFile(source, destination, force, targetRoot, metadata) {
   assertSafeWriteDestination(targetRoot, destination, "write file destination");
-  const sourceStat = fs.lstatSync(source);
-  if (sourceStat.isSymbolicLink()) {
-    throw new Error(`Refusing to copy symbolic link as harness source: ${source}`);
-  }
   fs.mkdirSync(path.dirname(destination), { recursive: true });
+
+  // Read the source through one descriptor opened with O_NOFOLLOW, for the same
+  // reason the destination is opened with it below: an lstatSync() that rejects
+  // symlinks followed by a separate readFileSync() leaves a window in which the
+  // path can be swapped for a symlink between the check and the read. Making
+  // "not a symlink" a property of the open() closes it, so the bytes we copy are
+  // provably the ones we vetted.
+  //
+  // O_NOFOLLOW does not exist on Windows; `|| 0` keeps the flag set valid there,
+  // where this degrades to the previous semantics.
+  let sourceBuffer;
+  let sourceFd;
+  try {
+    sourceFd = fs.openSync(source, fs.constants.O_RDONLY | (fs.constants.O_NOFOLLOW || 0));
+    sourceBuffer = fs.readFileSync(sourceFd);
+  } catch (error) {
+    if (error.code === "ELOOP") {
+      throw new Error(`Refusing to copy symbolic link as harness source: ${source}`);
+    }
+    throw error;
+  } finally {
+    if (sourceFd !== undefined) fs.closeSync(sourceFd);
+  }
 
   const payload =
     metadata && metadata.assetId
       ? Buffer.from(
           injectExportMetadata(
-            fs.readFileSync(source, "utf8"),
+            sourceBuffer.toString("utf8"),
             destination,
             metadata.assetId,
             metadata.version
           ),
           "utf8"
         )
-      : fs.readFileSync(source);
+      : sourceBuffer;
 
   // Decide the destination's fate in the open() itself rather than checking it
   // first and writing afterwards. The previous shape — existsSync/lstatSync and
