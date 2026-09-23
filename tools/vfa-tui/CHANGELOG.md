@@ -5,6 +5,12 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [0.0.21](https://github.com/VincentChuWaiChow/vanguard-frontier-agentic/compare/vfa-tui-v0.0.20...vfa-tui-v0.0.21) - 2026-09-21
+
+### Other
+
+- update Cargo.lock dependencies
+
 ## [0.0.20](https://github.com/VincentChuWaiChow/vanguard-frontier-agentic/compare/vfa-tui-v0.0.19...vfa-tui-v0.0.20) - 2026-09-14
 
 ### Other
