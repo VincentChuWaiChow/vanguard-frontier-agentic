@@ -33,7 +33,7 @@
   "trees": [
     {
       "tree": "agents",
-      "aggregate_sha256": "9761cd20bb86663fa6d2557f05eaca21b4d8609dff3202f3e6eea2c8c024ecf9",
+      "aggregate_sha256": "f262413771e091e15e1b97f7ab5c9a633847b2d207df30551cc6de7dfce907b8",
       "files": [
         {
           "path": "agents/AGENTS.md",
@@ -6482,8 +6482,8 @@
         },
         {
           "path": "agents/azure/azure-live-pim-jit-activation-guard-agent/harnesses/claude-code.agent.md",
-          "sha256": "c9b25e1c7e6e3c1c2b1fe80a884672e8609525e2f91cec1415dc2ab39d0d4c1e",
-          "bytes": 2704
+          "sha256": "4780f560511ded4b309a99507848c02a62bb2d24731c3e1f79aa2d3486c838c1",
+          "bytes": 2820
         },
         {
           "path": "agents/azure/azure-live-pim-jit-activation-guard-agent/harnesses/codex.toml",
@@ -6492,18 +6492,18 @@
         },
         {
           "path": "agents/azure/azure-live-pim-jit-activation-guard-agent/harnesses/copilot.agent.md",
-          "sha256": "c9b25e1c7e6e3c1c2b1fe80a884672e8609525e2f91cec1415dc2ab39d0d4c1e",
-          "bytes": 2704
+          "sha256": "4780f560511ded4b309a99507848c02a62bb2d24731c3e1f79aa2d3486c838c1",
+          "bytes": 2820
         },
         {
           "path": "agents/azure/azure-live-pim-jit-activation-guard-agent/harnesses/cursor.agent.md",
-          "sha256": "c9b25e1c7e6e3c1c2b1fe80a884672e8609525e2f91cec1415dc2ab39d0d4c1e",
-          "bytes": 2704
+          "sha256": "4780f560511ded4b309a99507848c02a62bb2d24731c3e1f79aa2d3486c838c1",
+          "bytes": 2820
         },
         {
           "path": "agents/azure/azure-live-pim-jit-activation-guard-agent/harnesses/gemini.agent.md",
-          "sha256": "c9b25e1c7e6e3c1c2b1fe80a884672e8609525e2f91cec1415dc2ab39d0d4c1e",
-          "bytes": 2704
+          "sha256": "4780f560511ded4b309a99507848c02a62bb2d24731c3e1f79aa2d3486c838c1",
+          "bytes": 2820
         },
         {
           "path": "agents/azure/azure-live-pim-jit-activation-guard-agent/harnesses/kiro-cli.agent.json",
@@ -6512,8 +6512,8 @@
         },
         {
           "path": "agents/azure/azure-live-pim-jit-activation-guard-agent/harnesses/kiro-ide.agent.md",
-          "sha256": "c9b25e1c7e6e3c1c2b1fe80a884672e8609525e2f91cec1415dc2ab39d0d4c1e",
-          "bytes": 2704
+          "sha256": "4780f560511ded4b309a99507848c02a62bb2d24731c3e1f79aa2d3486c838c1",
+          "bytes": 2820
         },
         {
           "path": "agents/azure/azure-live-pim-jit-activation-guard-agent/metadata.json",
@@ -6552,8 +6552,8 @@
         },
         {
           "path": "agents/azure/azure-maestro-agent/harnesses/claude-code.agent.md",
-          "sha256": "45d6cb5011ec4d3a5f8053595f9e16d72963c378c77e3247167e735fdd173c98",
-          "bytes": 2497
+          "sha256": "a4461ec58127237a918c47a3dda1aaf648b6ee7c9655e563a399c2c6d3a659f8",
+          "bytes": 2574
         },
         {
           "path": "agents/azure/azure-maestro-agent/harnesses/codex.toml",
@@ -6562,18 +6562,18 @@
         },
         {
           "path": "agents/azure/azure-maestro-agent/harnesses/copilot.agent.md",
-          "sha256": "45d6cb5011ec4d3a5f8053595f9e16d72963c378c77e3247167e735fdd173c98",
-          "bytes": 2497
+          "sha256": "a4461ec58127237a918c47a3dda1aaf648b6ee7c9655e563a399c2c6d3a659f8",
+          "bytes": 2574
         },
         {
           "path": "agents/azure/azure-maestro-agent/harnesses/cursor.agent.md",
-          "sha256": "45d6cb5011ec4d3a5f8053595f9e16d72963c378c77e3247167e735fdd173c98",
-          "bytes": 2497
+          "sha256": "a4461ec58127237a918c47a3dda1aaf648b6ee7c9655e563a399c2c6d3a659f8",
+          "bytes": 2574
         },
         {
           "path": "agents/azure/azure-maestro-agent/harnesses/gemini.agent.md",
-          "sha256": "45d6cb5011ec4d3a5f8053595f9e16d72963c378c77e3247167e735fdd173c98",
-          "bytes": 2497
+          "sha256": "a4461ec58127237a918c47a3dda1aaf648b6ee7c9655e563a399c2c6d3a659f8",
+          "bytes": 2574
         },
         {
           "path": "agents/azure/azure-maestro-agent/harnesses/kiro-cli.agent.json",
@@ -6582,8 +6582,8 @@
         },
         {
           "path": "agents/azure/azure-maestro-agent/harnesses/kiro-ide.agent.md",
-          "sha256": "45d6cb5011ec4d3a5f8053595f9e16d72963c378c77e3247167e735fdd173c98",
-          "bytes": 2497
+          "sha256": "a4461ec58127237a918c47a3dda1aaf648b6ee7c9655e563a399c2c6d3a659f8",
+          "bytes": 2574
         },
         {
           "path": "agents/azure/azure-maestro-agent/metadata.json",
@@ -6622,8 +6622,8 @@
         },
         {
           "path": "agents/azure/azure-migrate-landing-zone-cutover-agent/harnesses/claude-code.agent.md",
-          "sha256": "0dc86ff2b1b3f015c82dc00b29ee9c44a811d80817bc2e0535b0e49b95b263f6",
-          "bytes": 2699
+          "sha256": "5ddac5513621f1f4420d83a098e257a4d9acc04262edad1f29bc59b701f7ba26",
+          "bytes": 2816
         },
         {
           "path": "agents/azure/azure-migrate-landing-zone-cutover-agent/harnesses/codex.toml",
@@ -6632,18 +6632,18 @@
         },
         {
           "path": "agents/azure/azure-migrate-landing-zone-cutover-agent/harnesses/copilot.agent.md",
-          "sha256": "0dc86ff2b1b3f015c82dc00b29ee9c44a811d80817bc2e0535b0e49b95b263f6",
-          "bytes": 2699
+          "sha256": "5ddac5513621f1f4420d83a098e257a4d9acc04262edad1f29bc59b701f7ba26",
+          "bytes": 2816
         },
         {
           "path": "agents/azure/azure-migrate-landing-zone-cutover-agent/harnesses/cursor.agent.md",
-          "sha256": "0dc86ff2b1b3f015c82dc00b29ee9c44a811d80817bc2e0535b0e49b95b263f6",
-          "bytes": 2699
+          "sha256": "5ddac5513621f1f4420d83a098e257a4d9acc04262edad1f29bc59b701f7ba26",
+          "bytes": 2816
         },
         {
           "path": "agents/azure/azure-migrate-landing-zone-cutover-agent/harnesses/gemini.agent.md",
-          "sha256": "0dc86ff2b1b3f015c82dc00b29ee9c44a811d80817bc2e0535b0e49b95b263f6",
-          "bytes": 2699
+          "sha256": "5ddac5513621f1f4420d83a098e257a4d9acc04262edad1f29bc59b701f7ba26",
+          "bytes": 2816
         },
         {
           "path": "agents/azure/azure-migrate-landing-zone-cutover-agent/harnesses/kiro-cli.agent.json",
@@ -6652,8 +6652,8 @@
         },
         {
           "path": "agents/azure/azure-migrate-landing-zone-cutover-agent/harnesses/kiro-ide.agent.md",
-          "sha256": "0dc86ff2b1b3f015c82dc00b29ee9c44a811d80817bc2e0535b0e49b95b263f6",
-          "bytes": 2699
+          "sha256": "5ddac5513621f1f4420d83a098e257a4d9acc04262edad1f29bc59b701f7ba26",
+          "bytes": 2816
         },
         {
           "path": "agents/azure/azure-migrate-landing-zone-cutover-agent/metadata.json",
@@ -6692,8 +6692,8 @@
         },
         {
           "path": "agents/azure/azure-network-topology-review-agent/harnesses/claude-code.agent.md",
-          "sha256": "12bbde7fce79e0feba0c15b1f192d08e830d647a445a5763c18ce1a4dfb68a49",
-          "bytes": 2649
+          "sha256": "ecf7d0cd3a62cb4ca8bab52ae278651f1e2e9030abea5b20bd0005ca2a4bbb8f",
+          "bytes": 2754
         },
         {
           "path": "agents/azure/azure-network-topology-review-agent/harnesses/codex.toml",
@@ -6702,18 +6702,18 @@
         },
         {
           "path": "agents/azure/azure-network-topology-review-agent/harnesses/copilot.agent.md",
-          "sha256": "12bbde7fce79e0feba0c15b1f192d08e830d647a445a5763c18ce1a4dfb68a49",
-          "bytes": 2649
+          "sha256": "ecf7d0cd3a62cb4ca8bab52ae278651f1e2e9030abea5b20bd0005ca2a4bbb8f",
+          "bytes": 2754
         },
         {
           "path": "agents/azure/azure-network-topology-review-agent/harnesses/cursor.agent.md",
-          "sha256": "12bbde7fce79e0feba0c15b1f192d08e830d647a445a5763c18ce1a4dfb68a49",
-          "bytes": 2649
+          "sha256": "ecf7d0cd3a62cb4ca8bab52ae278651f1e2e9030abea5b20bd0005ca2a4bbb8f",
+          "bytes": 2754
         },
         {
           "path": "agents/azure/azure-network-topology-review-agent/harnesses/gemini.agent.md",
-          "sha256": "12bbde7fce79e0feba0c15b1f192d08e830d647a445a5763c18ce1a4dfb68a49",
-          "bytes": 2649
+          "sha256": "ecf7d0cd3a62cb4ca8bab52ae278651f1e2e9030abea5b20bd0005ca2a4bbb8f",
+          "bytes": 2754
         },
         {
           "path": "agents/azure/azure-network-topology-review-agent/harnesses/kiro-cli.agent.json",
@@ -6722,8 +6722,8 @@
         },
         {
           "path": "agents/azure/azure-network-topology-review-agent/harnesses/kiro-ide.agent.md",
-          "sha256": "12bbde7fce79e0feba0c15b1f192d08e830d647a445a5763c18ce1a4dfb68a49",
-          "bytes": 2649
+          "sha256": "ecf7d0cd3a62cb4ca8bab52ae278651f1e2e9030abea5b20bd0005ca2a4bbb8f",
+          "bytes": 2754
         },
         {
           "path": "agents/azure/azure-network-topology-review-agent/metadata.json",
@@ -6762,8 +6762,8 @@
         },
         {
           "path": "agents/azure/azure-observability-investigator-agent/harnesses/claude-code.agent.md",
-          "sha256": "44b0e0f8d2fb91c12904a73c7004d8dfe8f6c7f0922046a53dbf8983b7c91bac",
-          "bytes": 2671
+          "sha256": "9d5b5bb634801fe0ce4c18d566804ea388de9fff871766798b3ef5b569d24079",
+          "bytes": 2764
         },
         {
           "path": "agents/azure/azure-observability-investigator-agent/harnesses/codex.toml",
@@ -6772,18 +6772,18 @@
         },
         {
           "path": "agents/azure/azure-observability-investigator-agent/harnesses/copilot.agent.md",
-          "sha256": "44b0e0f8d2fb91c12904a73c7004d8dfe8f6c7f0922046a53dbf8983b7c91bac",
-          "bytes": 2671
+          "sha256": "9d5b5bb634801fe0ce4c18d566804ea388de9fff871766798b3ef5b569d24079",
+          "bytes": 2764
         },
         {
           "path": "agents/azure/azure-observability-investigator-agent/harnesses/cursor.agent.md",
-          "sha256": "44b0e0f8d2fb91c12904a73c7004d8dfe8f6c7f0922046a53dbf8983b7c91bac",
-          "bytes": 2671
+          "sha256": "9d5b5bb634801fe0ce4c18d566804ea388de9fff871766798b3ef5b569d24079",
+          "bytes": 2764
         },
         {
           "path": "agents/azure/azure-observability-investigator-agent/harnesses/gemini.agent.md",
-          "sha256": "44b0e0f8d2fb91c12904a73c7004d8dfe8f6c7f0922046a53dbf8983b7c91bac",
-          "bytes": 2671
+          "sha256": "9d5b5bb634801fe0ce4c18d566804ea388de9fff871766798b3ef5b569d24079",
+          "bytes": 2764
         },
         {
           "path": "agents/azure/azure-observability-investigator-agent/harnesses/kiro-cli.agent.json",
@@ -6792,8 +6792,8 @@
         },
         {
           "path": "agents/azure/azure-observability-investigator-agent/harnesses/kiro-ide.agent.md",
-          "sha256": "44b0e0f8d2fb91c12904a73c7004d8dfe8f6c7f0922046a53dbf8983b7c91bac",
-          "bytes": 2671
+          "sha256": "9d5b5bb634801fe0ce4c18d566804ea388de9fff871766798b3ef5b569d24079",
+          "bytes": 2764
         },
         {
           "path": "agents/azure/azure-observability-investigator-agent/metadata.json",
@@ -6832,8 +6832,8 @@
         },
         {
           "path": "agents/azure/azure-platform-automation-devops-agent/harnesses/claude-code.agent.md",
-          "sha256": "4a7a4302733e142f3bdbb0969129d20af58259e49a73b18370d377e01b9c8b1c",
-          "bytes": 2737
+          "sha256": "2a6d7d2028b308adaf46fcc4769c1357de30d567e947a066ce7517b5dca594eb",
+          "bytes": 2871
         },
         {
           "path": "agents/azure/azure-platform-automation-devops-agent/harnesses/codex.toml",
@@ -6842,18 +6842,18 @@
         },
         {
           "path": "agents/azure/azure-platform-automation-devops-agent/harnesses/copilot.agent.md",
-          "sha256": "4a7a4302733e142f3bdbb0969129d20af58259e49a73b18370d377e01b9c8b1c",
-          "bytes": 2737
+          "sha256": "2a6d7d2028b308adaf46fcc4769c1357de30d567e947a066ce7517b5dca594eb",
+          "bytes": 2871
         },
         {
           "path": "agents/azure/azure-platform-automation-devops-agent/harnesses/cursor.agent.md",
-          "sha256": "4a7a4302733e142f3bdbb0969129d20af58259e49a73b18370d377e01b9c8b1c",
-          "bytes": 2737
+          "sha256": "2a6d7d2028b308adaf46fcc4769c1357de30d567e947a066ce7517b5dca594eb",
+          "bytes": 2871
         },
         {
           "path": "agents/azure/azure-platform-automation-devops-agent/harnesses/gemini.agent.md",
-          "sha256": "4a7a4302733e142f3bdbb0969129d20af58259e49a73b18370d377e01b9c8b1c",
-          "bytes": 2737
+          "sha256": "2a6d7d2028b308adaf46fcc4769c1357de30d567e947a066ce7517b5dca594eb",
+          "bytes": 2871
         },
         {
           "path": "agents/azure/azure-platform-automation-devops-agent/harnesses/kiro-cli.agent.json",
@@ -6862,8 +6862,8 @@
         },
         {
           "path": "agents/azure/azure-platform-automation-devops-agent/harnesses/kiro-ide.agent.md",
-          "sha256": "4a7a4302733e142f3bdbb0969129d20af58259e49a73b18370d377e01b9c8b1c",
-          "bytes": 2737
+          "sha256": "2a6d7d2028b308adaf46fcc4769c1357de30d567e947a066ce7517b5dca594eb",
+          "bytes": 2871
         },
         {
           "path": "agents/azure/azure-platform-automation-devops-agent/metadata.json",
@@ -6902,8 +6902,8 @@
         },
         {
           "path": "agents/azure/azure-private-endpoint-adoption-planner-agent/harnesses/claude-code.agent.md",
-          "sha256": "5bb4e434a424d2bddb32a0cc7c07d1419df23e9ef5cc0aafcda79c03460ed0d9",
-          "bytes": 2733
+          "sha256": "8285111760685193d4ecf6cda97d445ab501e391cea241ace867b21dadc11b83",
+          "bytes": 2844
         },
         {
           "path": "agents/azure/azure-private-endpoint-adoption-planner-agent/harnesses/codex.toml",
@@ -6912,18 +6912,18 @@
         },
         {
           "path": "agents/azure/azure-private-endpoint-adoption-planner-agent/harnesses/copilot.agent.md",
-          "sha256": "5bb4e434a424d2bddb32a0cc7c07d1419df23e9ef5cc0aafcda79c03460ed0d9",
-          "bytes": 2733
+          "sha256": "8285111760685193d4ecf6cda97d445ab501e391cea241ace867b21dadc11b83",
+          "bytes": 2844
         },
         {
           "path": "agents/azure/azure-private-endpoint-adoption-planner-agent/harnesses/cursor.agent.md",
-          "sha256": "5bb4e434a424d2bddb32a0cc7c07d1419df23e9ef5cc0aafcda79c03460ed0d9",
-          "bytes": 2733
+          "sha256": "8285111760685193d4ecf6cda97d445ab501e391cea241ace867b21dadc11b83",
+          "bytes": 2844
         },
         {
           "path": "agents/azure/azure-private-endpoint-adoption-planner-agent/harnesses/gemini.agent.md",
-          "sha256": "5bb4e434a424d2bddb32a0cc7c07d1419df23e9ef5cc0aafcda79c03460ed0d9",
-          "bytes": 2733
+          "sha256": "8285111760685193d4ecf6cda97d445ab501e391cea241ace867b21dadc11b83",
+          "bytes": 2844
         },
         {
           "path": "agents/azure/azure-private-endpoint-adoption-planner-agent/harnesses/kiro-cli.agent.json",
@@ -6932,8 +6932,8 @@
         },
         {
           "path": "agents/azure/azure-private-endpoint-adoption-planner-agent/harnesses/kiro-ide.agent.md",
-          "sha256": "5bb4e434a424d2bddb32a0cc7c07d1419df23e9ef5cc0aafcda79c03460ed0d9",
-          "bytes": 2733
+          "sha256": "8285111760685193d4ecf6cda97d445ab501e391cea241ace867b21dadc11b83",
+          "bytes": 2844
         },
         {
           "path": "agents/azure/azure-private-endpoint-adoption-planner-agent/metadata.json",
@@ -6972,8 +6972,8 @@
         },
         {
           "path": "agents/azure/azure-rbac-review-agent/harnesses/claude-code.agent.md",
-          "sha256": "bf813d8777f2907487c70e60e2e46bc4daedbad52e086cafe552fda79ee69c71",
-          "bytes": 2534
+          "sha256": "0c27ad1f4616ff8415ae08296bf0664722b61e224273bebda8e42022e8315a71",
+          "bytes": 2599
         },
         {
           "path": "agents/azure/azure-rbac-review-agent/harnesses/codex.toml",
@@ -6982,18 +6982,18 @@
         },
         {
           "path": "agents/azure/azure-rbac-review-agent/harnesses/copilot.agent.md",
-          "sha256": "bf813d8777f2907487c70e60e2e46bc4daedbad52e086cafe552fda79ee69c71",
-          "bytes": 2534
+          "sha256": "0c27ad1f4616ff8415ae08296bf0664722b61e224273bebda8e42022e8315a71",
+          "bytes": 2599
         },
         {
           "path": "agents/azure/azure-rbac-review-agent/harnesses/cursor.agent.md",
-          "sha256": "bf813d8777f2907487c70e60e2e46bc4daedbad52e086cafe552fda79ee69c71",
-          "bytes": 2534
+          "sha256": "0c27ad1f4616ff8415ae08296bf0664722b61e224273bebda8e42022e8315a71",
+          "bytes": 2599
         },
         {
           "path": "agents/azure/azure-rbac-review-agent/harnesses/gemini.agent.md",
-          "sha256": "bf813d8777f2907487c70e60e2e46bc4daedbad52e086cafe552fda79ee69c71",
-          "bytes": 2534
+          "sha256": "0c27ad1f4616ff8415ae08296bf0664722b61e224273bebda8e42022e8315a71",
+          "bytes": 2599
         },
         {
           "path": "agents/azure/azure-rbac-review-agent/harnesses/kiro-cli.agent.json",
@@ -7002,8 +7002,8 @@
         },
         {
           "path": "agents/azure/azure-rbac-review-agent/harnesses/kiro-ide.agent.md",
-          "sha256": "bf813d8777f2907487c70e60e2e46bc4daedbad52e086cafe552fda79ee69c71",
-          "bytes": 2534
+          "sha256": "0c27ad1f4616ff8415ae08296bf0664722b61e224273bebda8e42022e8315a71",
+          "bytes": 2599
         },
         {
           "path": "agents/azure/azure-rbac-review-agent/metadata.json",
@@ -7042,8 +7042,8 @@
         },
         {
           "path": "agents/azure/azure-resilience-bcdr-review-agent/harnesses/claude-code.agent.md",
-          "sha256": "71f195d7695b8702c66de6c3330f4d42721c70db4ac4ea5a7663fb1f2860b8ea",
-          "bytes": 2667
+          "sha256": "476601f553cb7b06914b94fcb93055686eac6c598fc698a6c447900638b1c68e",
+          "bytes": 2774
         },
         {
           "path": "agents/azure/azure-resilience-bcdr-review-agent/harnesses/codex.toml",
@@ -7052,18 +7052,18 @@
         },
         {
           "path": "agents/azure/azure-resilience-bcdr-review-agent/harnesses/copilot.agent.md",
-          "sha256": "71f195d7695b8702c66de6c3330f4d42721c70db4ac4ea5a7663fb1f2860b8ea",
-          "bytes": 2667
+          "sha256": "476601f553cb7b06914b94fcb93055686eac6c598fc698a6c447900638b1c68e",
+          "bytes": 2774
         },
         {
           "path": "agents/azure/azure-resilience-bcdr-review-agent/harnesses/cursor.agent.md",
-          "sha256": "71f195d7695b8702c66de6c3330f4d42721c70db4ac4ea5a7663fb1f2860b8ea",
-          "bytes": 2667
+          "sha256": "476601f553cb7b06914b94fcb93055686eac6c598fc698a6c447900638b1c68e",
+          "bytes": 2774
         },
         {
           "path": "agents/azure/azure-resilience-bcdr-review-agent/harnesses/gemini.agent.md",
-          "sha256": "71f195d7695b8702c66de6c3330f4d42721c70db4ac4ea5a7663fb1f2860b8ea",
-          "bytes": 2667
+          "sha256": "476601f553cb7b06914b94fcb93055686eac6c598fc698a6c447900638b1c68e",
+          "bytes": 2774
         },
         {
           "path": "agents/azure/azure-resilience-bcdr-review-agent/harnesses/kiro-cli.agent.json",
@@ -7072,8 +7072,8 @@
         },
         {
           "path": "agents/azure/azure-resilience-bcdr-review-agent/harnesses/kiro-ide.agent.md",
-          "sha256": "71f195d7695b8702c66de6c3330f4d42721c70db4ac4ea5a7663fb1f2860b8ea",
-          "bytes": 2667
+          "sha256": "476601f553cb7b06914b94fcb93055686eac6c598fc698a6c447900638b1c68e",
+          "bytes": 2774
         },
         {
           "path": "agents/azure/azure-resilience-bcdr-review-agent/metadata.json",
@@ -7112,8 +7112,8 @@
         },
         {
           "path": "agents/azure/azure-resource-health-incident-triage-agent/harnesses/claude-code.agent.md",
-          "sha256": "afea3729dac71fc1a0c3daaf019c9ee1d23cfe8f28c0092b47ecf2395c25163f",
-          "bytes": 2724
+          "sha256": "bc682a883b9817406e3d24e281a9c385b0ec15d99a10edd19b0e98518e8ca511",
+          "bytes": 2835
         },
         {
           "path": "agents/azure/azure-resource-health-incident-triage-agent/harnesses/codex.toml",
@@ -7122,18 +7122,18 @@
         },
         {
           "path": "agents/azure/azure-resource-health-incident-triage-agent/harnesses/copilot.agent.md",
-          "sha256": "afea3729dac71fc1a0c3daaf019c9ee1d23cfe8f28c0092b47ecf2395c25163f",
-          "bytes": 2724
+          "sha256": "bc682a883b9817406e3d24e281a9c385b0ec15d99a10edd19b0e98518e8ca511",
+          "bytes": 2835
         },
         {
           "path": "agents/azure/azure-resource-health-incident-triage-agent/harnesses/cursor.agent.md",
-          "sha256": "afea3729dac71fc1a0c3daaf019c9ee1d23cfe8f28c0092b47ecf2395c25163f",
-          "bytes": 2724
+          "sha256": "bc682a883b9817406e3d24e281a9c385b0ec15d99a10edd19b0e98518e8ca511",
+          "bytes": 2835
         },
         {
           "path": "agents/azure/azure-resource-health-incident-triage-agent/harnesses/gemini.agent.md",
-          "sha256": "afea3729dac71fc1a0c3daaf019c9ee1d23cfe8f28c0092b47ecf2395c25163f",
-          "bytes": 2724
+          "sha256": "bc682a883b9817406e3d24e281a9c385b0ec15d99a10edd19b0e98518e8ca511",
+          "bytes": 2835
         },
         {
           "path": "agents/azure/azure-resource-health-incident-triage-agent/harnesses/kiro-cli.agent.json",
@@ -7142,8 +7142,8 @@
         },
         {
           "path": "agents/azure/azure-resource-health-incident-triage-agent/harnesses/kiro-ide.agent.md",
-          "sha256": "afea3729dac71fc1a0c3daaf019c9ee1d23cfe8f28c0092b47ecf2395c25163f",
-          "bytes": 2724
+          "sha256": "bc682a883b9817406e3d24e281a9c385b0ec15d99a10edd19b0e98518e8ca511",
+          "bytes": 2835
         },
         {
           "path": "agents/azure/azure-resource-health-incident-triage-agent/metadata.json",
@@ -7182,8 +7182,8 @@
         },
         {
           "path": "agents/azure/azure-role-selector-agent/harnesses/claude-code.agent.md",
-          "sha256": "606f9d029df713f3b1276fd4be082338117c2f49f41a8d40b5a715ced1d3fe67",
-          "bytes": 2762
+          "sha256": "16ee55c8dc6ee44f77dfd5b6cabaa2353a1cf6d00cc71b3af0ad597d88a86fcf",
+          "bytes": 2884
         },
         {
           "path": "agents/azure/azure-role-selector-agent/harnesses/codex.toml",
@@ -7192,18 +7192,18 @@
         },
         {
           "path": "agents/azure/azure-role-selector-agent/harnesses/copilot.agent.md",
-          "sha256": "606f9d029df713f3b1276fd4be082338117c2f49f41a8d40b5a715ced1d3fe67",
-          "bytes": 2762
+          "sha256": "16ee55c8dc6ee44f77dfd5b6cabaa2353a1cf6d00cc71b3af0ad597d88a86fcf",
+          "bytes": 2884
         },
         {
           "path": "agents/azure/azure-role-selector-agent/harnesses/cursor.agent.md",
-          "sha256": "606f9d029df713f3b1276fd4be082338117c2f49f41a8d40b5a715ced1d3fe67",
-          "bytes": 2762
+          "sha256": "16ee55c8dc6ee44f77dfd5b6cabaa2353a1cf6d00cc71b3af0ad597d88a86fcf",
+          "bytes": 2884
         },
         {
           "path": "agents/azure/azure-role-selector-agent/harnesses/gemini.agent.md",
-          "sha256": "606f9d029df713f3b1276fd4be082338117c2f49f41a8d40b5a715ced1d3fe67",
-          "bytes": 2762
+          "sha256": "16ee55c8dc6ee44f77dfd5b6cabaa2353a1cf6d00cc71b3af0ad597d88a86fcf",
+          "bytes": 2884
         },
         {
           "path": "agents/azure/azure-role-selector-agent/harnesses/kiro-cli.agent.json",
@@ -7212,8 +7212,8 @@
         },
         {
           "path": "agents/azure/azure-role-selector-agent/harnesses/kiro-ide.agent.md",
-          "sha256": "606f9d029df713f3b1276fd4be082338117c2f49f41a8d40b5a715ced1d3fe67",
-          "bytes": 2762
+          "sha256": "16ee55c8dc6ee44f77dfd5b6cabaa2353a1cf6d00cc71b3af0ad597d88a86fcf",
+          "bytes": 2884
         },
         {
           "path": "agents/azure/azure-role-selector-agent/metadata.json",
@@ -7252,8 +7252,8 @@
         },
         {
           "path": "agents/azure/azure-security-posture-hardening-agent/harnesses/claude-code.agent.md",
-          "sha256": "b06387dde600a0f36c97bb42e1a55f6bd6adc4283b41c61fccd1eea04ddf055e",
-          "bytes": 2848
+          "sha256": "bf9341d71b62fbbacd639817e803b1d4c905f35c71a51cbaf35a7447bfafbde6",
+          "bytes": 2972
         },
         {
           "path": "agents/azure/azure-security-posture-hardening-agent/harnesses/codex.toml",
@@ -7262,18 +7262,18 @@
         },
         {
           "path": "agents/azure/azure-security-posture-hardening-agent/harnesses/copilot.agent.md",
-          "sha256": "b06387dde600a0f36c97bb42e1a55f6bd6adc4283b41c61fccd1eea04ddf055e",
-          "bytes": 2848
+          "sha256": "bf9341d71b62fbbacd639817e803b1d4c905f35c71a51cbaf35a7447bfafbde6",
+          "bytes": 2972
         },
         {
           "path": "agents/azure/azure-security-posture-hardening-agent/harnesses/cursor.agent.md",
-          "sha256": "b06387dde600a0f36c97bb42e1a55f6bd6adc4283b41c61fccd1eea04ddf055e",
-          "bytes": 2848
+          "sha256": "bf9341d71b62fbbacd639817e803b1d4c905f35c71a51cbaf35a7447bfafbde6",
+          "bytes": 2972
         },
         {
           "path": "agents/azure/azure-security-posture-hardening-agent/harnesses/gemini.agent.md",
-          "sha256": "b06387dde600a0f36c97bb42e1a55f6bd6adc4283b41c61fccd1eea04ddf055e",
-          "bytes": 2848
+          "sha256": "bf9341d71b62fbbacd639817e803b1d4c905f35c71a51cbaf35a7447bfafbde6",
+          "bytes": 2972
         },
         {
           "path": "agents/azure/azure-security-posture-hardening-agent/harnesses/kiro-cli.agent.json",
@@ -7282,8 +7282,8 @@
         },
         {
           "path": "agents/azure/azure-security-posture-hardening-agent/harnesses/kiro-ide.agent.md",
-          "sha256": "b06387dde600a0f36c97bb42e1a55f6bd6adc4283b41c61fccd1eea04ddf055e",
-          "bytes": 2848
+          "sha256": "bf9341d71b62fbbacd639817e803b1d4c905f35c71a51cbaf35a7447bfafbde6",
+          "bytes": 2972
         },
         {
           "path": "agents/azure/azure-security-posture-hardening-agent/metadata.json",
@@ -7322,8 +7322,8 @@
         },
         {
           "path": "agents/azure/azure-subscription-resource-organization-agent/harnesses/claude-code.agent.md",
-          "sha256": "62a605cb1c8b83ef039cd1e4d459fb0d2619a65e411430e82a32a1ffa29fa21d",
-          "bytes": 2834
+          "sha256": "858b4000ddafbe99c2015bb2b9c61f4b4b88e69103a9ecc1d1fafbef3956ba7e",
+          "bytes": 2954
         },
         {
           "path": "agents/azure/azure-subscription-resource-organization-agent/harnesses/codex.toml",
@@ -7332,18 +7332,18 @@
         },
         {
           "path": "agents/azure/azure-subscription-resource-organization-agent/harnesses/copilot.agent.md",
-          "sha256": "62a605cb1c8b83ef039cd1e4d459fb0d2619a65e411430e82a32a1ffa29fa21d",
-          "bytes": 2834
+          "sha256": "858b4000ddafbe99c2015bb2b9c61f4b4b88e69103a9ecc1d1fafbef3956ba7e",
+          "bytes": 2954
         },
         {
           "path": "agents/azure/azure-subscription-resource-organization-agent/harnesses/cursor.agent.md",
-          "sha256": "62a605cb1c8b83ef039cd1e4d459fb0d2619a65e411430e82a32a1ffa29fa21d",
-          "bytes": 2834
+          "sha256": "858b4000ddafbe99c2015bb2b9c61f4b4b88e69103a9ecc1d1fafbef3956ba7e",
+          "bytes": 2954
         },
         {
           "path": "agents/azure/azure-subscription-resource-organization-agent/harnesses/gemini.agent.md",
-          "sha256": "62a605cb1c8b83ef039cd1e4d459fb0d2619a65e411430e82a32a1ffa29fa21d",
-          "bytes": 2834
+          "sha256": "858b4000ddafbe99c2015bb2b9c61f4b4b88e69103a9ecc1d1fafbef3956ba7e",
+          "bytes": 2954
         },
         {
           "path": "agents/azure/azure-subscription-resource-organization-agent/harnesses/kiro-cli.agent.json",
@@ -7352,8 +7352,8 @@
         },
         {
           "path": "agents/azure/azure-subscription-resource-organization-agent/harnesses/kiro-ide.agent.md",
-          "sha256": "62a605cb1c8b83ef039cd1e4d459fb0d2619a65e411430e82a32a1ffa29fa21d",
-          "bytes": 2834
+          "sha256": "858b4000ddafbe99c2015bb2b9c61f4b4b88e69103a9ecc1d1fafbef3956ba7e",
+          "bytes": 2954
         },
         {
           "path": "agents/azure/azure-subscription-resource-organization-agent/metadata.json",
@@ -7392,8 +7392,8 @@
         },
         {
           "path": "agents/azure/azure-waf-cost-optimization-review-agent/harnesses/claude-code.agent.md",
-          "sha256": "f74b52e1cb8a94d47414cef14901d24ba4bccbd873ae71b6b9ab392d0edbb200",
-          "bytes": 2898
+          "sha256": "f1e3229c543fff34286d3a1c810a94bd4043dbbe0761413a17bfd8c97c60cb0f",
+          "bytes": 3038
         },
         {
           "path": "agents/azure/azure-waf-cost-optimization-review-agent/harnesses/codex.toml",
@@ -7402,18 +7402,18 @@
         },
         {
           "path": "agents/azure/azure-waf-cost-optimization-review-agent/harnesses/copilot.agent.md",
-          "sha256": "f74b52e1cb8a94d47414cef14901d24ba4bccbd873ae71b6b9ab392d0edbb200",
-          "bytes": 2898
+          "sha256": "f1e3229c543fff34286d3a1c810a94bd4043dbbe0761413a17bfd8c97c60cb0f",
+          "bytes": 3038
         },
         {
           "path": "agents/azure/azure-waf-cost-optimization-review-agent/harnesses/cursor.agent.md",
-          "sha256": "f74b52e1cb8a94d47414cef14901d24ba4bccbd873ae71b6b9ab392d0edbb200",
-          "bytes": 2898
+          "sha256": "f1e3229c543fff34286d3a1c810a94bd4043dbbe0761413a17bfd8c97c60cb0f",
+          "bytes": 3038
         },
         {
           "path": "agents/azure/azure-waf-cost-optimization-review-agent/harnesses/gemini.agent.md",
-          "sha256": "f74b52e1cb8a94d47414cef14901d24ba4bccbd873ae71b6b9ab392d0edbb200",
-          "bytes": 2898
+          "sha256": "f1e3229c543fff34286d3a1c810a94bd4043dbbe0761413a17bfd8c97c60cb0f",
+          "bytes": 3038
         },
         {
           "path": "agents/azure/azure-waf-cost-optimization-review-agent/harnesses/kiro-cli.agent.json",
@@ -7422,8 +7422,8 @@
         },
         {
           "path": "agents/azure/azure-waf-cost-optimization-review-agent/harnesses/kiro-ide.agent.md",
-          "sha256": "f74b52e1cb8a94d47414cef14901d24ba4bccbd873ae71b6b9ab392d0edbb200",
-          "bytes": 2898
+          "sha256": "f1e3229c543fff34286d3a1c810a94bd4043dbbe0761413a17bfd8c97c60cb0f",
+          "bytes": 3038
         },
         {
           "path": "agents/azure/azure-waf-cost-optimization-review-agent/metadata.json",
@@ -7462,8 +7462,8 @@
         },
         {
           "path": "agents/azure/azure-waf-reliability-review-agent/harnesses/claude-code.agent.md",
-          "sha256": "e1b7766ca898e82a6795033cc082dfa4e9c9b0c7aab11c2ffb25f22b81f8354e",
-          "bytes": 2858
+          "sha256": "0894b3fedfdcf887f652ec8108a7bcab5046245c744f2011506e5e5298b5dc73",
+          "bytes": 3003
         },
         {
           "path": "agents/azure/azure-waf-reliability-review-agent/harnesses/codex.toml",
@@ -7472,18 +7472,18 @@
         },
         {
           "path": "agents/azure/azure-waf-reliability-review-agent/harnesses/copilot.agent.md",
-          "sha256": "e1b7766ca898e82a6795033cc082dfa4e9c9b0c7aab11c2ffb25f22b81f8354e",
-          "bytes": 2858
+          "sha256": "0894b3fedfdcf887f652ec8108a7bcab5046245c744f2011506e5e5298b5dc73",
+          "bytes": 3003
         },
         {
           "path": "agents/azure/azure-waf-reliability-review-agent/harnesses/cursor.agent.md",
-          "sha256": "e1b7766ca898e82a6795033cc082dfa4e9c9b0c7aab11c2ffb25f22b81f8354e",
-          "bytes": 2858
+          "sha256": "0894b3fedfdcf887f652ec8108a7bcab5046245c744f2011506e5e5298b5dc73",
+          "bytes": 3003
         },
         {
           "path": "agents/azure/azure-waf-reliability-review-agent/harnesses/gemini.agent.md",
-          "sha256": "e1b7766ca898e82a6795033cc082dfa4e9c9b0c7aab11c2ffb25f22b81f8354e",
-          "bytes": 2858
+          "sha256": "0894b3fedfdcf887f652ec8108a7bcab5046245c744f2011506e5e5298b5dc73",
+          "bytes": 3003
         },
         {
           "path": "agents/azure/azure-waf-reliability-review-agent/harnesses/kiro-cli.agent.json",
@@ -7492,8 +7492,8 @@
         },
         {
           "path": "agents/azure/azure-waf-reliability-review-agent/harnesses/kiro-ide.agent.md",
-          "sha256": "e1b7766ca898e82a6795033cc082dfa4e9c9b0c7aab11c2ffb25f22b81f8354e",
-          "bytes": 2858
+          "sha256": "0894b3fedfdcf887f652ec8108a7bcab5046245c744f2011506e5e5298b5dc73",
+          "bytes": 3003
         },
         {
           "path": "agents/azure/azure-waf-reliability-review-agent/metadata.json",
@@ -7532,8 +7532,8 @@
         },
         {
           "path": "agents/azure/azure-waf-security-review-agent/harnesses/claude-code.agent.md",
-          "sha256": "9eaac4ef1fb56380fdcb1545f5dcbfb2f3576d8dcc8673fa32b19b00d251c7bb",
-          "bytes": 2807
+          "sha256": "1184b088ae026105f2663f4e8b48ba261cdf083fca657ae01daf0850d2134f4e",
+          "bytes": 2946
         },
         {
           "path": "agents/azure/azure-waf-security-review-agent/harnesses/codex.toml",
@@ -7542,18 +7542,18 @@
         },
         {
           "path": "agents/azure/azure-waf-security-review-agent/harnesses/copilot.agent.md",
-          "sha256": "9eaac4ef1fb56380fdcb1545f5dcbfb2f3576d8dcc8673fa32b19b00d251c7bb",
-          "bytes": 2807
+          "sha256": "1184b088ae026105f2663f4e8b48ba261cdf083fca657ae01daf0850d2134f4e",
+          "bytes": 2946
         },
         {
           "path": "agents/azure/azure-waf-security-review-agent/harnesses/cursor.agent.md",
-          "sha256": "9eaac4ef1fb56380fdcb1545f5dcbfb2f3576d8dcc8673fa32b19b00d251c7bb",
-          "bytes": 2807
+          "sha256": "1184b088ae026105f2663f4e8b48ba261cdf083fca657ae01daf0850d2134f4e",
+          "bytes": 2946
         },
         {
           "path": "agents/azure/azure-waf-security-review-agent/harnesses/gemini.agent.md",
-          "sha256": "9eaac4ef1fb56380fdcb1545f5dcbfb2f3576d8dcc8673fa32b19b00d251c7bb",
-          "bytes": 2807
+          "sha256": "1184b088ae026105f2663f4e8b48ba261cdf083fca657ae01daf0850d2134f4e",
+          "bytes": 2946
         },
         {
           "path": "agents/azure/azure-waf-security-review-agent/harnesses/kiro-cli.agent.json",
@@ -7562,8 +7562,8 @@
         },
         {
           "path": "agents/azure/azure-waf-security-review-agent/harnesses/kiro-ide.agent.md",
-          "sha256": "9eaac4ef1fb56380fdcb1545f5dcbfb2f3576d8dcc8673fa32b19b00d251c7bb",
-          "bytes": 2807
+          "sha256": "1184b088ae026105f2663f4e8b48ba261cdf083fca657ae01daf0850d2134f4e",
+          "bytes": 2946
         },
         {
           "path": "agents/azure/azure-waf-security-review-agent/metadata.json",
@@ -36700,7 +36700,7 @@
     },
     {
       "tree": "tests",
-      "aggregate_sha256": "08049359dd505ad8779273deab7edc271071eac7f8ed51e98713249ed052e1b3",
+      "aggregate_sha256": "4e5c4035f7887ff7f64a938e4e9db169039129e3a66825cb8fd3fba889c8e0f9",
       "files": [
         {
           "path": "tests/AGENTS.md",
@@ -47069,8 +47069,8 @@
         },
         {
           "path": "tests/validate-agent-frontmatter-schema.py",
-          "sha256": "38cf1ce03e49b9ff043b9b1f08c74d8efe0ea1f600eb11f9b492c8113f0fe106",
-          "bytes": 9932
+          "sha256": "f0cc84f7ea13e86219e924d62eab5a4505cd498c8c44141b192bedfbbd044ac9",
+          "bytes": 12453
         },
         {
           "path": "tests/validate-agent-tool-tiers.py",
@@ -47252,5 +47252,5 @@
       "bytes": 9135
     }
   ],
-  "aggregate_sha256": "69e62ac56d7b9e09f7d616ea184e5daaef89c20069bd766d0fb987bc992b7d81"
+  "aggregate_sha256": "4a3a75208cec5264c753b6aecbb7d73ea6f432dc9a03e2835040011aa7ee362b"
 }

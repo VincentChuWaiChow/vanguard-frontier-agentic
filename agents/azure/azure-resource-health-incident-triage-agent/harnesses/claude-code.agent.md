@@ -1,8 +1,6 @@
 ---
-metadata:
-  author: "github: VincentChuWaiChow"
-  version: "0.2.1"
-  updated: "2026-06-05"
+name: "Azure Resource Health Incident Triage"
+description: "Triage Azure Resource Health, Service Health, activity log events, alerts, and tenant-side change evidence without over-claiming root cause."
 ---
 
 # Azure Resource Health Incident Triage

@@ -13,6 +13,13 @@ Required fields (empirical from current 141-file corpus):
 Optional but typed when present: name, description, model, allowed-tools,
 tools, color. additionalProperties is permitted so harness-specific fields
 do not break validation.
+
+Also checks the markdown harness exports (harnesses/<harness>.agent.md). AGENT.md
+carries only `metadata`, so these exports are where an agent gets its identity,
+and every one must declare a non-empty `name` and `description`. Without a name,
+Claude Code names a plugin agent after its file, and every export here is called
+claude-code.agent.md, so nameless agents collapse into one and the rest are
+dropped as duplicates. For the same reason claude-code names must be unique.
 """
 
 from __future__ import annotations
@@ -211,6 +218,39 @@ def validate_agent(agent_md: Path, schema: dict) -> list[str]:
     return errors
 
 
+# The markdown exports each harness loads as an agent definition. codex.toml and
+# kiro-cli.agent.json carry identity in their own formats and are not covered.
+HARNESS_MARKDOWN = ("claude-code", "cursor", "copilot", "gemini", "kiro-ide")
+
+
+def validate_harness_identity() -> tuple[list[str], int]:
+    """Every markdown harness export names and describes its agent, and no two
+    claude-code exports share a name. Returns (errors, files checked)."""
+    errors: list[str] = []
+    checked = 0
+    claude_names: dict[str, Path] = {}
+    for harness in HARNESS_MARKDOWN:
+        for path in sorted(AGENTS_DIR.glob(f"*/*/harnesses/{harness}.agent.md")):
+            checked += 1
+            rel = path.relative_to(ROOT)
+            fm = parse_frontmatter_raw(path.read_text(encoding="utf-8"))
+            missing = [
+                key for key in ("name", "description")
+                if not (isinstance(fm, dict) and isinstance(fm.get(key), str) and fm[key].strip())
+            ]
+            if missing:
+                errors.append(f"{rel}: missing {' and '.join(missing)} in frontmatter")
+                continue
+            if harness == "claude-code":
+                prior = claude_names.setdefault(fm["name"], path)
+                if prior != path:
+                    errors.append(
+                        f"{rel}: name {fm['name']!r} is already used by "
+                        f"{prior.relative_to(ROOT)}; Claude Code would drop one"
+                    )
+    return errors, checked
+
+
 # ──────────────────────────────────────────────────────────────────────────────
 # Entry point
 # ──────────────────────────────────────────────────────────────────────────────
@@ -234,6 +274,8 @@ def main() -> int:
         if errors:
             failed.append((agent_md, errors))
 
+    harness_errors, harness_checked = validate_harness_identity()
+
     if failed:
         print(
             f"FAIL: {len(failed)} agent(s) failed AGENT.md frontmatter schema validation "
@@ -244,10 +286,23 @@ def main() -> int:
             print(f"\n  {path}", file=sys.stderr)
             for e in errs:
                 print(f"    {e}", file=sys.stderr)
+    if harness_errors:
+        print(
+            f"FAIL: {len(harness_errors)} harness export(s) lack a usable agent "
+            f"identity (out of {harness_checked} checked):",
+            file=sys.stderr,
+        )
+        for e in harness_errors:
+            print(f"  {e}", file=sys.stderr)
+    if failed or harness_errors:
         return 1
 
     print(
         f"OK: all {len(agent_files)} agents passed AGENT.md frontmatter schema validation"
+    )
+    print(
+        f"OK: {harness_checked} markdown harness exports declare name and description "
+        f"(claude-code names unique)"
     )
     return 0
 
