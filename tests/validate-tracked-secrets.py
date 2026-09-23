@@ -17,9 +17,11 @@ high-precision, vendor-prefixed patterns that do not fire on prose.
 
 Two escape hatches, both narrow and both deliberate:
 
-  * A line carrying the `<FAKE>` marker is ignored. The repository already uses
-    this convention for credential bait in routing fixtures, and
+  * A match wrapped in a `<FAKE>...<FAKE>` pair is ignored. The repository
+    already uses this convention for credential bait in routing fixtures, and
     `validate-maestro-routing.py` enforces that secrets-bait tasks carry it.
+    Only the wrapped value is exempt: a marker elsewhere on the line, such as a
+    trailing `# <FAKE>` comment, exempts nothing.
   * `ALLOWLIST` names individual paths, each with a reason. Entries are paths,
     never directories, so adding a whole content class is not possible by
     accident.
@@ -40,7 +42,10 @@ ROOT = Path(__file__).resolve().parents[1]
 # Vendor-prefixed, fixed-shape credentials. Every pattern here identifies its
 # issuer, so a match is a credential rather than a word that looks like one.
 PATTERNS: list[tuple[str, re.Pattern[str]]] = [
-    ("AWS access key id", re.compile(r"\bAKIA[0-9A-Z]{16}\b")),
+    # AKIA is a long-term key; ASIA is an STS temporary key, which is equally a
+    # credential while it is valid. tests/validate-catalog.py already treats both
+    # as secrets.
+    ("AWS access key id", re.compile(r"\b(?:AKIA|ASIA)[0-9A-Z]{16}\b")),
     ("GitHub token (classic)", re.compile(r"\bgh[pousr]_[A-Za-z0-9]{36,}\b")),
     # Fine-grained PATs are a current, ordinary GitHub credential format and do
     # not share the classic prefixes: `github_pat_` then a base62 id, an
@@ -55,8 +60,26 @@ PATTERNS: list[tuple[str, re.Pattern[str]]] = [
     ("Generic bearer JWT", re.compile(r"\beyJ[A-Za-z0-9_\-]{10,}\.eyJ[A-Za-z0-9_\-]{10,}\.")),
 ]
 
-# Line-level opt-out already used by routing fixtures for credential bait.
+# Opt-out already used by routing fixtures for credential bait. It exempts only a
+# match that sits inside a `<FAKE>...<FAKE>` pair on its line.
 FAKE_MARKER = "<FAKE>"
+
+
+def fake_spans(line: str) -> list[tuple[int, int]]:
+    """Return the (start, end) spans enclosed by consecutive `<FAKE>` pairs."""
+    positions = []
+    start = line.find(FAKE_MARKER)
+    while start != -1:
+        positions.append(start)
+        start = line.find(FAKE_MARKER, start + len(FAKE_MARKER))
+    return [
+        (positions[i] + len(FAKE_MARKER), positions[i + 1])
+        for i in range(0, len(positions) - 1, 2)
+    ]
+
+
+def is_fake(match: re.Match[str], spans: list[tuple[int, int]]) -> bool:
+    return any(lo <= match.start() and match.end() <= hi for lo, hi in spans)
 
 # Per-path exemptions. Paths only -- never directories -- each with a reason.
 ALLOWLIST: dict[str, str] = {
@@ -93,10 +116,12 @@ def main() -> int:
         scanned += 1
 
         for lineno, line in enumerate(text.splitlines(), start=1):
+            spans = fake_spans(line) if FAKE_MARKER in line else []
             for label, pattern in PATTERNS:
-                if not pattern.search(line):
+                matches = list(pattern.finditer(line))
+                if not matches:
                     continue
-                if FAKE_MARKER in line:
+                if all(is_fake(m, spans) for m in matches):
                     skipped_fake += 1
                     continue
                 # Report the location and the kind only. The value itself is
@@ -108,8 +133,8 @@ def main() -> int:
         for f in findings:
             print(f"  - {f}", file=sys.stderr)
         print(
-            f"\n{len(findings)} finding(s). If a match is deliberate bait, mark the line "
-            f"with {FAKE_MARKER}; if a file is a genuine exception, add it to ALLOWLIST "
+            f"\n{len(findings)} finding(s). If a match is deliberate bait, wrap the value "
+            f"itself as {FAKE_MARKER}value{FAKE_MARKER}; if a file is a genuine exception, add it to ALLOWLIST "
             f"with a reason. Never silence a real credential -- rotate it.",
             file=sys.stderr,
         )

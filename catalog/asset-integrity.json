@@ -36700,7 +36700,7 @@
     },
     {
       "tree": "tests",
-      "aggregate_sha256": "6a0219f29734cb163c7e451e47b349a744e18efbe5511892c33d276996414c28",
+      "aggregate_sha256": "f95bbe08c4c8ba2a8015d284802ba1a62ad6c66fc0d623713055f0838829bb22",
       "files": [
         {
           "path": "tests/AGENTS.md",
@@ -47194,8 +47194,8 @@
         },
         {
           "path": "tests/validate-tracked-secrets.py",
-          "sha256": "dea7742dbf33908acda79f8b86dc911e7c7e1abed5c2a49e109a43e3aa46feb6",
-          "bytes": 5317
+          "sha256": "67694b0b9b7ecce99fb1fe43edced0350ac3bee3b6e2056ac9cb2e93e544afd1",
+          "bytes": 6457
         }
       ]
     }
@@ -47252,5 +47252,5 @@
       "bytes": 9135
     }
   ],
-  "aggregate_sha256": "9296efc8300408f0c26a72be2c189c98be67661024bf3d10f09da44859c5daa9"
+  "aggregate_sha256": "9e78ac34556ae87643a84917c2b980d404c165441798e00ee15a86d7c5768cd9"
 }
