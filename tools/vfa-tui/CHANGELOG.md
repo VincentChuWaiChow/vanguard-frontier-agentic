@@ -5,6 +5,23 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [0.0.22](https://github.com/VincentChuWaiChow/vanguard-frontier-agentic/compare/vfa-tui-v0.0.21...vfa-tui-v0.0.22) - 2026-09-23
+
+### Added
+
+- *(model-registry)* register GPT-6 Sol, GPT-6 Luna, Claude Opus 5.5 and the ultra effort
+- *(scanner)* detect Copilot and Gemini exports
+
+### Fixed
+
+- *(audit)* length-prefix every field in the v2 audit hash
+- *(review)* close the eight findings from the Codex review of PR #194
+- *(scanner)* align harness detection with what the exporter actually writes
+- *(trust)* make MCP trust-boundary enforcement non-vacuous
+- *(vfa-tui)* recognise exported Codex agents in harness layout validation
+- *(gates)* close the proven fail-open findings from the 2026-09 triage passes
+- *(vfa-tui)* fail closed on unevaluated policy and bind operator to audit chain
+
 ## [0.0.21](https://github.com/VincentChuWaiChow/vanguard-frontier-agentic/compare/vfa-tui-v0.0.20...vfa-tui-v0.0.21) - 2026-09-21
 
 ### Other
