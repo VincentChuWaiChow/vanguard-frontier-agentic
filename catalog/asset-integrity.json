@@ -35493,7 +35493,7 @@
     },
     {
       "tree": "scripts",
-      "aggregate_sha256": "38b97ed1aa4567aeff543eab6da906de82608a698d73198d38bb1c0637cffb88",
+      "aggregate_sha256": "684bfbff50759c54ba45df68e0a2db9b182db801d53c089625717e8ce62494f6",
       "files": [
         {
           "path": "scripts/apply-skill-allowed-tools.py",
@@ -35592,8 +35592,8 @@
         },
         {
           "path": "scripts/export-marketplace-agents.mjs",
-          "sha256": "443b6fe97f320bd80dd399a6aaadebad60c3f1ebaf97b27e5e752b9603cc6e86",
-          "bytes": 34227
+          "sha256": "08b3de59805055f1f7e8843399ea1d3fd6a177150dc720082b35f54050ad4364",
+          "bytes": 36390
         },
         {
           "path": "scripts/gen_azure_live_guards.py",
@@ -35697,8 +35697,8 @@
         },
         {
           "path": "scripts/install-codex-home.mjs",
-          "sha256": "7b08989147e4919d6fbdfffd45295d496edf5aa590466609461c26418e8b27db",
-          "bytes": 4389
+          "sha256": "ded9ef7494fc73a116a852d3f5ab337001f450057cac6e518c1d9e21c8eee999",
+          "bytes": 4857
         },
         {
           "path": "scripts/istio_evidence_facts.py",
@@ -47252,5 +47252,5 @@
       "bytes": 9135
     }
   ],
-  "aggregate_sha256": "9e78ac34556ae87643a84917c2b980d404c165441798e00ee15a86d7c5768cd9"
+  "aggregate_sha256": "687f4bb9849edff8d08667aefeaa9849324d6b76ca8d2d29a5617de30cd4ba76"
 }

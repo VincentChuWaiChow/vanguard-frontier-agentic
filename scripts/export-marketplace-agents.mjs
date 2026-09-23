@@ -254,6 +254,9 @@ function loadAgents() {
       name: metadata.name,
       provider: metadata.provider,
       summary: metadata.summary,
+      // Carried into the `# VFA-EXPORT:` marker so the console can report the
+      // installed version; without it every marker held only the id.
+      version: metadata.version,
       harness_variants: metadata.harness_variants ?? {},
       companion_skills: Array.isArray(metadata.companion_skills) ? metadata.companion_skills : undefined,
       metadataPath,
@@ -443,6 +446,51 @@ function copySkillTree(sourceDir, destDir, force, targetRoot) {
     fs.mkdirSync(path.dirname(dst), { recursive: true });
     fs.copyFileSync(src, dst);
   }
+}
+
+function pathExists(p) {
+  try {
+    fs.lstatSync(p);
+    return true;
+  } catch {
+    return false;
+  }
+}
+
+// The files copySkillTree would write for one skill, mirroring its walk.
+function skillTreeDestinations(sourceDir, destDir, out = []) {
+  for (const entry of fs.readdirSync(sourceDir, { withFileTypes: true })) {
+    const src = path.join(sourceDir, entry.name);
+    const dst = path.join(destDir, entry.name);
+    if (entry.isSymbolicLink()) {
+      throw new Error(`Refusing to copy symbolic link in skill tree: ${src}`);
+    }
+    if (entry.isDirectory()) skillTreeDestinations(src, dst, out);
+    else if (entry.isFile()) out.push(dst);
+  }
+  return out;
+}
+
+/**
+ * Every destination this run would write that already exists.
+ *
+ * Without --force, copyFile and copySkillTree refuse an existing destination,
+ * but they do so one file at a time inside the copy loop, so a collision on a
+ * late file left every earlier file already written: a partial install. The
+ * run checks all destinations first and writes nothing if any collide. The
+ * per-file refusal stays in place, so a file created between this check and
+ * the write is still refused.
+ */
+function findCollisions(operations, skillPlan, skillsDestRoot, repo) {
+  const targets = operations.map((operation) => operation.dest);
+  if (skillPlan) {
+    for (const skillName of skillPlan.skillNames) {
+      const sourceDir = skillPlan.skillsByName.get(skillName)?.dir;
+      if (!sourceDir) continue;
+      skillTreeDestinations(sourceDir, path.join(repo, skillsDestRoot, skillName), targets);
+    }
+  }
+  return targets.filter(pathExists);
 }
 
 function resolveCompanionSkills(selectedAgents, skillsByName, role, includeAll, selectedProvider) {
@@ -768,35 +816,6 @@ function main() {
     throw new Error("No agents selected. Use --agents, --role, --provider, or --all.");
   }
 
-  if (args.dryRun) {
-    for (const agent of selectedAgents) {
-      console.log(`export agent: ${agent.id} [provider=${agent.provider}]`);
-    }
-    const skillsDestRoot = SKILLS_PLATFORM_CONFIG[platform];
-    let dryRunSkillCount = 0;
-    if (!args.noSkills && skillsDestRoot) {
-      const skillsByName = loadSkills();
-      const includeAllSkills = args.all && !args.provider;
-      const { skillNames } = resolveCompanionSkills(
-        selectedAgents,
-        skillsByName,
-        selectedRole,
-        includeAllSkills,
-        args.provider ?? null
-      );
-      for (const skillName of skillNames) {
-        console.log(`export skill: ${skillName}`);
-        dryRunSkillCount += 1;
-      }
-    }
-    process.stderr.write(
-      `[vfa] --dry-run: ${selectedAgents.length} agent(s)` +
-      (dryRunSkillCount > 0 ? `, ${dryRunSkillCount} skill(s)` : "") +
-      ` planned, no files written.\n`
-    );
-    return;
-  }
-
   const operations = [];
   for (const agent of selectedAgents) {
     for (const destination of buildDestinations(agent, platform)) {
@@ -807,6 +826,58 @@ function main() {
         version: agent.version,
       });
     }
+  }
+
+  const skillsDestRoot = SKILLS_PLATFORM_CONFIG[platform];
+  let skillPlan = null;
+  if (!args.noSkills && skillsDestRoot) {
+    const skillsByName = loadSkills();
+    // includeAll bundles every skill in the catalog. When --provider is set,
+    // selectedAgents is already scoped to that provider — bundling every
+    // skill would mix in hundreds of unrelated provider skills, violating
+    // the documented "provider install" contract. Scope skills to the
+    // selected agents' companion_skills in that case.
+    const includeAllSkills = args.all && !args.provider;
+    skillPlan = {
+      skillsByName,
+      ...resolveCompanionSkills(
+        selectedAgents,
+        skillsByName,
+        selectedRole,
+        includeAllSkills,
+        args.provider ?? null
+      ),
+    };
+  }
+
+  if (!args.force) {
+    const collisions = findCollisions(operations, skillPlan, skillsDestRoot, args.repo);
+    if (collisions.length > 0) {
+      const shown = collisions.slice(0, 10).map((p) => `  ${path.relative(args.repo, p)}`);
+      if (collisions.length > shown.length) {
+        shown.push(`  ... and ${collisions.length - shown.length} more`);
+      }
+      throw new Error(
+        `Refusing to install: ${collisions.length} destination(s) already exist and ` +
+        `--force was not given. Nothing was written.\n${shown.join("\n")}`
+      );
+    }
+  }
+
+  if (args.dryRun) {
+    for (const agent of selectedAgents) {
+      console.log(`export agent: ${agent.id} [provider=${agent.provider}]`);
+    }
+    const dryRunSkillCount = skillPlan ? skillPlan.skillNames.length : 0;
+    for (const skillName of skillPlan ? skillPlan.skillNames : []) {
+      console.log(`export skill: ${skillName}`);
+    }
+    process.stderr.write(
+      `[vfa] --dry-run: ${selectedAgents.length} agent(s)` +
+      (dryRunSkillCount > 0 ? `, ${dryRunSkillCount} skill(s)` : "") +
+      ` planned, no files written.\n`
+    );
+    return;
   }
 
   for (const operation of operations) {
@@ -823,7 +894,6 @@ function main() {
     );
   }
 
-  const skillsDestRoot = SKILLS_PLATFORM_CONFIG[platform];
   if (args.noSkills) {
     process.stderr.write(`[vfa] --no-skills: companion skills not bundled.\n`);
   } else if (!skillsDestRoot) {
@@ -837,20 +907,7 @@ function main() {
       );
     }
   } else {
-    const skillsByName = loadSkills();
-    // includeAll bundles every skill in the catalog. When --provider is set,
-    // selectedAgents is already scoped to that provider — bundling every
-    // skill would mix in hundreds of unrelated provider skills, violating
-    // the documented "provider install" contract. Scope skills to the
-    // selected agents' companion_skills in that case.
-    const includeAllSkills = args.all && !args.provider;
-    const { skillNames, orphans } = resolveCompanionSkills(
-      selectedAgents,
-      skillsByName,
-      selectedRole,
-      includeAllSkills,
-      args.provider ?? null
-    );
+    const { skillsByName, skillNames, orphans } = skillPlan;
     let bundled = 0;
     for (const skillName of skillNames) {
       const sourceDir = skillsByName.get(skillName)?.dir;

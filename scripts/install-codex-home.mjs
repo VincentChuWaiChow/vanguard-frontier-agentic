@@ -80,6 +80,19 @@ function run(label, command, commandArgs, options = {}) {
   }
 }
 
+const exportArgs = ["--platform", "codex", "--all", "--repo", opts.repo];
+if (opts.force) exportArgs.push("--force");
+
+// Without --force, find out whether the export would collide before changing
+// anything. The exporter's --dry-run checks every agent and skill destination
+// and fails if any already exists, so a refused install leaves both the
+// marketplace and the Codex home untouched rather than half-updated.
+if (!opts.force && !opts.dryRun) {
+  run("preflight", process.execPath, [exporter, ...exportArgs, "--dry-run"], {
+    stdio: ["ignore", "ignore", "inherit"],
+  });
+}
+
 if (!opts.skipMarketplace) {
   const marketplaceName = opts.marketplace
     .split("/").pop()
@@ -102,8 +115,6 @@ if (!opts.skipMarketplace) {
   }
 }
 
-const exportArgs = ["--platform", "codex", "--all", "--repo", opts.repo];
-if (opts.force) exportArgs.push("--force");
 if (opts.dryRun) exportArgs.push("--dry-run");
 run("export-agents-and-skills", process.execPath, [exporter, ...exportArgs]);
 
