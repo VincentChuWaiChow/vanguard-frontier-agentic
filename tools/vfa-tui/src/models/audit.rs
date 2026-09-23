@@ -4,8 +4,9 @@ use serde::{Deserialize, Serialize};
 
 /// A single append-only entry in the audit log.
 ///
-/// Entries form a SHA-256 hash chain for tamper detection:
-/// `entry_hash = SHA256(prev_hash + timestamp + event_type + subject + details)`.
+/// Entries form a SHA-256 hash chain for tamper detection. The recipe for each
+/// row is recorded in `audit_log.hash_version`; see
+/// `AuditLogger::compute_hash` (v1) and `AuditLogger::compute_hash_v2` (v2).
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct AuditEntry {
     /// Auto-increment primary key from SQLite.
@@ -20,7 +21,8 @@ pub struct AuditEntry {
     pub details: serde_json::Value,
     /// Who initiated the action: `"system"`, `"headless"`, or a user identifier.
     pub operator: String,
-    /// SHA-256 of `prev_hash || timestamp || event_type || subject || details`.
+    /// SHA-256 chain link over this row's fields and `prev_hash`, computed by the
+    /// recipe named in `audit_log.hash_version`.
     pub entry_hash: String,
     /// Hash of the immediately preceding entry (empty string for the first entry).
     pub prev_hash: String,

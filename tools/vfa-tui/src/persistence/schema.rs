@@ -159,7 +159,8 @@ CREATE INDEX IF NOT EXISTS idx_coverage_cache_name
 /// Rows written before this migration hashed
 /// `prev || timestamp || event_type || subject || details`, leaving `operator`
 /// stored but unauthenticated: the actor on an entry could be changed without
-/// breaking the chain.  New rows hash the operator too.  `hash_version` records
+/// breaking the chain.  New rows hash the operator too, with every field
+/// length-prefixed so bytes cannot move across a field boundary.  `hash_version` records
 /// which recipe produced a row so existing chains keep verifying.
 pub const MIGRATION_005_AUDIT_HASH_VERSION: &str = "\
 ALTER TABLE audit_log ADD COLUMN hash_version INTEGER NOT NULL DEFAULT 1;

@@ -4,8 +4,10 @@
 //! - Append-only SQLite table (14.1, 14.2)
 //! - JSON / CSV export (14.4)
 //! - Console + schema version in meta (14.6)
-//! - SHA-256 hash chain (14.8): entry_hash = SHA256(prev_hash || timestamp ||
-//!   event_type || subject || details_json)
+//! - SHA-256 hash chain (14.8): each entry hashes the previous entry's hash
+//!   with its own fields. Rows record their recipe in `hash_version`: v1
+//!   (legacy) concatenates the fields without the operator; v2 length-prefixes
+//!   every field and includes the operator.
 
 use std::fmt::Write as FmtWrite;
 use std::fs;
@@ -169,11 +171,17 @@ impl<'a> AuditLogger<'a> {
     }
 
     /// Compute the **v2** entry hash, binding the acting operator into the
-    /// chain: `SHA256(prev || timestamp || event_type || subject || details || operator)`.
+    /// chain. Each of `prev`, `timestamp`, `event_type`, `subject`, `details`
+    /// and `operator` is fed to SHA-256 as an 8-byte big-endian length followed
+    /// by its bytes.
     ///
-    /// Without the trailing operator field the stored actor on an entry could be
+    /// Without the operator field the stored actor on an entry could be
     /// rewritten without breaking the chain, so the chain could not attest *who*
-    /// performed a recorded action.
+    /// performed a recorded action. Without the length prefixes, bytes could
+    /// move across a field boundary: `details = "1", operator = "23"` and
+    /// `details = "12", operator = "3"` would hash identically, so an edit to
+    /// the database could change both the details and the actor of a row
+    /// without breaking the chain.
     pub fn compute_hash_v2(
         prev_hash: &str,
         timestamp: &str,
@@ -188,12 +196,17 @@ impl<'a> AuditLogger<'a> {
             .to_string();
 
         let mut hasher = Sha256::new();
-        hasher.update(prev_hash.as_bytes());
-        hasher.update(timestamp.as_bytes());
-        hasher.update(event_str.as_bytes());
-        hasher.update(subject.as_bytes());
-        hasher.update(details_json.as_bytes());
-        hasher.update(operator.as_bytes());
+        for field in [
+            prev_hash,
+            timestamp,
+            event_str.as_str(),
+            subject,
+            details_json,
+            operator,
+        ] {
+            hasher.update((field.len() as u64).to_be_bytes());
+            hasher.update(field.as_bytes());
+        }
 
         let result = hasher.finalize();
         result.iter().fold(String::new(), |mut s, b| {
@@ -632,6 +645,65 @@ mod tests {
             "{}",
         );
         assert_eq!(h1, h2, "same inputs must yield same hash");
+    }
+
+    #[test]
+    fn compute_hash_v2_frames_each_field() {
+        // Unframed concatenation fed both of these the same bytes.
+        let a = AuditLogger::compute_hash_v2("p", "ts", &AuditEventType::Promotion, "s", "1", "23");
+        let b = AuditLogger::compute_hash_v2("p", "ts", &AuditEventType::Promotion, "s", "12", "3");
+        assert_ne!(
+            a, b,
+            "a byte moved from operator to details must change the hash"
+        );
+    }
+
+    #[test]
+    fn verify_chain_rejects_bytes_moved_between_details_and_operator() {
+        let mgr = IndexManager::open_in_memory().expect("open_in_memory");
+        let mut logger = AuditLogger::new(&mgr, String::new());
+        let first = logger
+            .log(
+                AuditEventType::Promotion,
+                "ws-0",
+                serde_json::json!({}),
+                "system",
+            )
+            .expect("log first entry");
+
+        // The hash an honest row with details "1" and operator "23" would carry,
+        // attached to a forged row whose details and operator have traded a byte.
+        let ts = "2025-01-01T00:00:01.000Z";
+        let honest_hash = AuditLogger::compute_hash_v2(
+            &first.entry_hash,
+            ts,
+            &AuditEventType::Promotion,
+            "ws-1",
+            "1",
+            "23",
+        );
+        mgr.write_conn()
+            .execute(
+                "INSERT INTO audit_log \
+                 (timestamp, event_type, subject, details, operator, entry_hash, prev_hash, \
+                  hash_version) \
+                 VALUES (?1, 'promotion', 'ws-1', '12', '3', ?2, ?3, ?4)",
+                rusqlite::params![
+                    ts,
+                    honest_hash,
+                    first.entry_hash,
+                    HASH_VERSION_WITH_OPERATOR
+                ],
+            )
+            .expect("insert forged row");
+
+        match logger
+            .verify_chain()
+            .expect_err("a byte moved across the field boundary must break the chain")
+        {
+            TuiError::AuditChainBroken { entry_id } => assert_eq!(entry_id, 2),
+            other => panic!("expected AuditChainBroken, got {other:?}"),
+        }
     }
 
     #[test]
