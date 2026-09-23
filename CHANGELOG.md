@@ -1,3 +1,899 @@
+## 🛡️ v3.13.0 — *Provenance · Policy · Portability*
+_Released 2026-09-23_
+
+> _Curated multi-cloud, zero-trust agent marketplace — `AWS` · `Azure` · `OCI` · `GCP` · `Terraform`._
+> Least privilege, live evidence, safe rollback paths.
+
+**Release type:** New capabilities — review the sections below before upgrading.
+
+### ✨ Features
+
+* **gates:** block credential-shaped strings across all tracked content ([`a057d04`](https://github.com/VincentChuWaiChow/vanguard-frontier-agentic/commit/a057d04680e6302890ab4c597f4b00da70cec589))
+  Addresses findings SEC1 and SEC2, and records the Ultracode run that closed the
+  residual triage items.
+
+  The HOL plugin scanner runs twice. The blocking listing gate is scoped to
+  plugins/vanguard-frontier-agentic, which holds three tracked files. The
+  repository-root scan is explicitly advisory (min_score 0, fail_on_severity none,
+  with a comment saying it is informational) and additionally suppresses about
+  6,500 tracked files through .plugin-scanner.toml, including 2,575 reference
+  documents, 2,097 test fixtures and 1,502 metadata files. There is no gitleaks,
+  trufflehog, detect-secrets, pre-commit config or active git hook anywhere in the
+  repository. A credential committed almost anywhere would not have failed a build.
+
+  Rather than widening the external scanner's exclusions — each was added against
+  a confirmed false positive, and several cover fixtures that deliberately contain
+  credential bait — this adds an owned gate that scans every tracked text file
+  with nine vendor-prefixed patterns. Each pattern identifies its issuer, so a
+  match is a credential rather than a word that resembles one. Findings report
+  path, line and kind, and never echo the matched value into CI logs.
+
+  Two narrow escape hatches: a `<FAKE>` line marker, reusing the convention the
+  routing fixtures already use and that validate-maestro-routing.py enforces for
+  secrets-bait tasks, and a per-path allowlist that cannot name a directory, so a
+  whole content class cannot be exempted by accident. The gate reads committed
+  files only and never consults the clock, network or environment.
+
+  Probed both ways:
+
+    clean baseline                     -> 13,925 files, 0 findings, 0 false positives
+    canary planted in docs/            -> exit 1, path + line + kind reported
+    same line marked <FAKE>            -> exit 0, counted as ignored
+
+  docs/ was chosen for the canary precisely because the external scanner excludes
+  it. The repo-wide gate count marker was regenerated with board-counts:write.
+
+  Known limit, recorded rather than papered over: vendor-prefixed patterns will
+  not catch a high-entropy credential carrying no recognisable issuer prefix. This
+  shrinks the uncovered surface from effectively everything to that residue; it
+  does not make the repository secret-proof. Making the advisory root scan
+  blocking still needs a baseline run that cannot be measured from here.
+
+  .workflow/ultracode/triage-residual-findings-remediation/ records the run:
+  plan, orchestration, evaluation contract, three read-only packets with their
+  results, the integration ledger of what was accepted and rejected, and the
+  final report.
+* **model-registry:** register GPT-6 Sol, GPT-6 Luna, Claude Opus 5.5 and the ultra effort ([`7e5efac`](https://github.com/VincentChuWaiChow/vanguard-frontier-agentic/commit/7e5efacaed003e277d81dc42fe1206fb74629e8e))
+  Refresh the verified model registry against primary sources (2026-09-23).
+
+  - codex/openai: add gpt-6-sol and gpt-6-luna from Codex's models.json.
+    Add the `ultra` reasoning effort, but only to the models whose catalog
+    entry advertises it: gpt-6-astra, gpt-6-sol, gpt-5.6-sol and
+    gpt-5.6-terra. GPT-6 Luna stops at max. The Codex CLI models page and
+    config reference now list ultra for the CLI surface, which is the
+    surface this registry governs. `persistent` is still enum-only and
+    stays out.
+  - claude-code/anthropic: add claude-opus-5-5 (released 2026-09-22,
+    default effort medium). claude-opus-5 is now marked legacy but still
+    available.
+  - Deliberately unregistered: the invite-only Mythos models, the
+    authorized-use cyber models and codex-auto-review.
+  - The model-policy schema and the TUI union constant gain `ultra`, and
+    model-policy-matrix.md mirrors the registry. The refresh skill records
+    why ultra's status changed.
+
+  model-policy:check stays in sync (73 rules, 2203 assignments). Probes:
+  gpt-6-sol+ultra projects `model_reasoning_effort = "ultra"`; luna+ultra,
+  gpt-5.6+ultra, persistent and the unregistered models are rejected.
+* **scanner:** detect Copilot and Gemini exports ([`359c789`](https://github.com/VincentChuWaiChow/vanguard-frontier-agentic/commit/359c789b415ce0913f31c09efae8e53a038acd12))
+  Finishes N1 across every platform the exporter targets. Copilot
+  (`.github/agents/<id>.agent.md`) and Gemini (`.gemini/agents/<id>.md`) had no
+  HarnessDir variant at all, so `detect_harness_dirs` never returned those
+  directories and nothing installed there was ever visible to the console.
+
+  Adds both variants with their directory names, layout rules and walk filters,
+  and widens `HarnessDir::all()` from five to seven.
+
+  Copilot needed one more fix. Its exports are named `<id>.agent.md`, a double
+  extension, while `CatalogIndex` registered only `<id>.md`, so the basename never
+  matched and the filename signal could not fire. With the marker supplying the
+  only other signal, a correctly installed copilot agent stayed one short of
+  confirmation. `.agent.md` is now registered alongside the other extensions,
+  which was caught by running the round trip rather than by reading the code.
+
+  `.github` is unusual among these directories: it exists in nearly every
+  repository for unrelated reasons, so its top level will often satisfy the layout
+  check on a stray template file. That is harmless — layout only decides whether a
+  directory is walked, and confirmation still requires two independent signals,
+  which an issue template has neither of.
+
+  Two tests froze counts rather than asserting behaviour: one required exactly
+  five detected directories, the other that `all()` had length five. Both now
+  derive from `HarnessDir::all()`, and the second asserts membership of every
+  named variant instead of a length — a bare count passes just as happily when
+  someone swaps one variant for another. Added a check that dir_names are
+  distinct and dot-prefixed.
+
+  Verified export -> discover -> require_asset for all seven platforms:
+
+    claude-code, codex, cursor, kiro-cli, kiro-ide, copilot, gemini  -> pass
+    empty workspace                                                  -> fails
+    marker stripped from the exported file                           -> fails
+
+### 🐛 Bug Fixes
+
+* **agents:** give 16 Azure agents a name and description in every harness ([`c6c4cb7`](https://github.com/VincentChuWaiChow/vanguard-frontier-agentic/commit/c6c4cb7fd4f0fbce0ac03a8dd70700aa5b3b1522))
+  Sixteen Azure agents, including the Azure router azure-maestro-agent, shipped
+  harness exports that were verbatim copies of AGENT.md, whose frontmatter holds
+  only `metadata`. With no `name`, Claude Code names a plugin agent after its
+  file; every export here is claude-code.agent.md, so the sixteen collapsed into
+  one agent and fifteen were dropped as duplicates. With no `description`, none
+  could be picked by automatic delegation. The Cursor, Copilot, Gemini and Kiro
+  IDE exports had the same gap: 80 files in all, and no other provider.
+
+  Each of the 80 files now carries `name` from metadata.json and `description`
+  from its `summary`, the rule the healthy Azure agents follow. The copied
+  `metadata` block is dropped, as no healthy export carries it. Bodies are
+  byte-identical. The rewrite ran as a script that refuses on any value needing
+  escaping or any file whose `# ` heading disagrees with metadata.json; none did.
+  No tool grants or other capability keys were added: there is no source for
+  them, and inventing tool grants is a security decision.
+
+  validate:agent-schema read AGENT.md only, where both fields are optional, so
+  nothing could catch this. It now requires a non-empty `name` and
+  `description` in every markdown harness export, and unique claude-code names.
+
+  Probed:
+    gate on the unfixed tree      -> exit 1 on exactly these 80 files, nothing else
+    gate on the fixed tree        -> exit 0 across 3,669 exports
+    planted duplicate name        -> exit 1, names both files
+    real Claude Code install      -> 735 agents load, 0 duplicate-name warnings
+                                     (before: 1 warning, which a controlled probe
+                                     showed is logged once per name and hid 15
+                                     dropped agents)
+
+  Open, and deliberately not changed here: Gemini CLI's local-subagent
+  documentation requires slug-form names, while every Gemini export in the
+  repository uses display names. That is repository-wide and pre-existing.
+* **agents:** give every Gemini agent export a slug name so Gemini CLI loads it ([`e2d6786`](https://github.com/VincentChuWaiChow/vanguard-frontier-agentic/commit/e2d6786ad5034432227c5ffd211e4ece1a34c9bb))
+  Gemini CLI validates local agent frontmatter with a strict schema:
+  `name` must match /^[a-z0-9-_]+$/, and a file that fails is skipped,
+  leaving only an entry in the loader's error list. Every generator wrote
+  the display name ("Azure Maestro") into `name`, so 714 of the 733 Gemini
+  exports never loaded. Only the 19 Salesforce exports, which already used
+  the agent id, did.
+
+  - The ten generators that write gemini.agent.md now emit
+    `name: <agent id>` and `display_name: <readable name>`. `display_name`
+    is in Gemini CLI's schema and becomes the agent's displayName.
+    md_harness() is unchanged, so every other harness keeps its display
+    name.
+  - The 714 committed exports were rewritten to the same shape: `name`
+    replaced and `display_name` added, with no other line changed.
+  - validate:agent-schema now requires each Gemini export to use its
+    agent id as `name`, use only keys in Gemini CLI's local agent schema,
+    and leave `kind` omitted or `local`.
+* **audit:** length-prefix every field in the v2 audit hash ([`754bd85`](https://github.com/VincentChuWaiChow/vanguard-frontier-agentic/commit/754bd85c217502b5f51d7cb55d8dfedf7f2b940a))
+  Codex review of 3528eb76 (P1). The v2 recipe, added on this branch to
+  bind the operator into the chain, concatenated its fields with no
+  delimiters or length prefixes. Bytes could therefore move across a field
+* **exporter:** emit the VFA-EXPORT marker so installed assets can be confirmed ([`685b4e1`](https://github.com/VincentChuWaiChow/vanguard-frontier-agentic/commit/685b4e17d75f48d3d1d593d996c2e41e560d2139))
+  Closes the remainder of finding N1 for every text format that can carry a
+  comment. The Codex layout half landed in bc29fb06.
+
+  The console confirms an installed asset only when two independent detection
+  signals agree (federation/scanner.rs:103-107, `unique.len() >= 2`). In headless
+  mode only one could ever fire:
+
+    - ContentSignature needs canonical template content, and the headless catalog
+      is built with `None` for every entry (headless/reporter.rs:264-275), so
+      `id_to_template` is always empty.
+    - MetadataComment needs a `# VFA-EXPORT: {json}` line. The specification at
+      .kiro/specs/rust-tui-v2/requirements.md:135 says the export CLI injects one;
+      the exporter copied bytes verbatim and the string appeared nowhere outside
+      the Rust scanner and the specs.
+
+  That left Filename alone, so nothing an export wrote could reach "confirmed"
+  and `require_asset` reported correctly installed agents as missing.
+
+  The exporter now emits the marker, per destination format:
+
+    - .md / .agent.md: inside the YAML frontmatter, where `#` is a valid comment
+      and renders as nothing. Prepending above the opening `---` would break
+      frontmatter parsing for every harness that reads it.
+    - .toml: at the top of the file.
+    - .json (kiro-cli): skipped. Neither `#` nor `//` is legal JSON, and
+      corrupting an agent file to satisfy a scanner would be a worse bug than the
+      one being fixed. Confirming kiro-cli exports needs either a sidecar
+      manifest or scanner support for a JSON metadata key, and is left open.
+
+  The payload is deterministic. `ExportMeta` requires only `id` and treats
+  `version` and `installed_at` as optional, so the timestamp the original spec
+  mentioned is omitted: two exports of the same catalog produce identical bytes,
+  which keeps content hashing and drift detection meaningful. Injection is
+  idempotent, so re-exporting over a previous export does not stack markers.
+
+  Verified end to end, export -> discover -> require_asset, with controls that
+  show the two-signal rule was not weakened:
+
+    exported workspace, marker present  -> exit 0, 0 violations
+    empty workspace                     -> exit 1, "is not installed"
+    marker stripped from exported file  -> exit 1, "is not installed"
+
+  The third control matters most: the pass depends on evidence the export
+  actually wrote, not on a loosened confirmation threshold. Frontmatter still
+  parses as YAML and the Codex file still parses as TOML after injection.
+* **exporter:** read the source through one O_NOFOLLOW descriptor ([`21f6d9e`](https://github.com/VincentChuWaiChow/vanguard-frontier-agentic/commit/21f6d9e02a442bf8665e457703e7d5323496c34d))
+  CodeQL flagged the source side of `copyFile` as a file system race, and it was
+  right. The destination side was hardened earlier in this branch, but the source
+  kept the same check-then-use shape it warned about:
+
+    const sourceStat = fs.lstatSync(source);        // check: not a symlink
+    if (sourceStat.isSymbolicLink()) throw ...
+    ...
+    fs.readFileSync(source);                        // use: reopens by path
+
+  Between those two calls the path can be swapped for a symlink, so the bytes
+  copied need not be the bytes vetted — on a shared checkout that is an arbitrary
+  file read into an exported agent.
+
+  The source is now opened once with O_RDONLY | O_NOFOLLOW and read from that
+  descriptor, making "not a symlink" a property of the syscall rather than of a
+  prior check. ELOOP is mapped to the existing symbolic-link error so the message
+  does not regress. O_NOFOLLOW is absent on Windows; `|| 0` keeps the flag set
+  valid there.
+* **exporter:** record agent versions and refuse collisions before writing ([`9d970af`](https://github.com/VincentChuWaiChow/vanguard-frontier-agentic/commit/9d970af035b5ff77de77b953f996013bc8a2a248))
+  Codex review of 3528eb76, two P2 findings.
+
+  - loadAgents() never copied metadata.version, so every VFA-EXPORT
+    marker held only the id. The scanner then left installed_version
+    unset, and the headless version and stale reports left the asset out.
+    Markers now carry the version, for example
+    {"id":"azure-maestro-agent","version":"0.1.1"}.
+  - Without --force, the exporter refused an existing destination one file
+    at a time inside the copy loop, so a late collision left every earlier
+    file written. Measured with the previous exporter: one colliding skill
+    file left 4,738 files written before the refusal. The exporter now
+    checks every agent and skill destination first and writes nothing if
+    any collide. The per-file O_EXCL refusal is kept, so a file created
+    after the check is still refused. --dry-run runs the same check.
+  - install-codex-home runs that check before `codex plugin marketplace
+    add/upgrade`. A refused install now leaves both the marketplace and the
+    Codex home untouched. Probed with a stub codex binary: a collision
+    exits 1 with 0 codex calls and no files written, and a clean home
+    installs with 2 codex calls.
+
+  --force still overwrites, and a clean install writes the same 4,738
+  files. The fuzz suite and the export coverage and bundling tests pass.
+* **fixtures:** freeze reviewed routing expectations against evaluator drift ([`1a41144`](https://github.com/VincentChuWaiChow/vanguard-frontier-agentic/commit/1a4114447953919bf62700ad59e07e7e92bf72a7))
+  Addresses finding T2. `tests/_generate_maestro_routing_fixtures.py` produced
+  adversarial and happy-path expectations by calling the same `evaluate()` the
+  suite later checks against, then cleared and rewrote every `expected/` file. A
+  regression in the evaluator would therefore be written out as the new baseline,
+  and `validate:maestro-routing` would pass against it: the suite proved agreement
+  with the current implementation rather than the intended routing.
+
+  Reviewed expectations are now frozen. Existing `expected/` files are read first,
+  each regenerated answer is compared against the reviewed one, and an answer that
+  changed for a fixture that already exists aborts the run naming both values.
+  `--accept-baseline-changes` performs the update once a human has confirmed the
+  new routing is correct.
+
+  The comparison also moved ahead of every write. The previous order cleared
+  `inputs/` and `expected/` before generating, so raising part-way through left a
+  provider's fixtures half-deleted — reproduced twice while testing this change,
+  each time requiring `git checkout` plus `git clean` to recover. Generation is now
+  all-or-nothing per provider: nothing is unlinked until every fixture has been
+  compared.
+
+  Verified against a temporary copy, with the repository tree untouched:
+
+    regenerate an in-sync provider  -> no-op, 50 fixtures, expected/ unchanged
+    reviewed answer now differs     -> refused, tree untouched, no partial write
+    --accept-baseline-changes       -> update applied
+
+  The invariants that were already independent of the evaluator are unchanged and
+  still carry the suite: agent ids must exist in the catalog, domains must declare
+  keywords, keywords must not be date-shaped, live guards must exist, secrets-bait
+  tasks must mark credentials `<FAKE>`, and live-guard agents must never appear
+  outside a gate mode.
+
+  Unresolved and reported rather than changed: the committed `accounting` and
+  `dotnet` fixtures predate the current naming scheme, so a full regeneration
+  would restructure them, and `dotnet/adv-instruction-injection` resolves to a
+  different agent under a freshly built taxonomy than the reviewed file records.
+  Deciding which routing is correct is domain judgment, not a mechanical fix.
+* **fixtures:** make the routing generator runnable without clobbering reviewed work ([`0974853`](https://github.com/VincentChuWaiChow/vanguard-frontier-agentic/commit/0974853cd04bfff43c4763ec2ca470554d5e8f73))
+  The generator could not complete on this branch. Planning every provider
+  without writing showed 11 of 26 non-skipped providers blocked, most by the
+  deletion guard added earlier in this PR: finance, sap and snowflake are wholly
+  hand-named; php, frontend and azure carry hand-tuned taxonomies; kotlin,
+  marketing and terraform carry fixtures no script produces; python is written
+  by scripts/gen_python_routing_fixtures.py; finops routes agents catalogued
+  under other providers. Each is now in the skip set with the evidence recorded
+  next to it, and the SKIP line prints the reason.
+
+  kubernetes is skipped for a different reason, and the guards cannot catch it:
+  finops-kubernetes-rightsizer-agent is catalogued under kubernetes but routed
+  by the finops maestro. A rebuild would add a route the kubernetes maestro does
+  not have. The skip entry is the only protection.
+
+  The php/adv-secrets-bait "narrowing" reported earlier was not a routing
+  change. The committed php taxonomy gives composer-supply-chain-agent the
+  keyword "audit" (for `composer audit`); the rebuild drops it along with 19
+  other hand-added keywords. Under the committed taxonomy the reviewed parallel
+  route still holds, and the credential sentence changes routing in neither
+  taxonomy. No owner decision was needed; php should never have been generated.
+
+  Two guard fixes:
+
+  - A reviewed fixture whose regenerated task no longer routes to its reviewed
+    answer now blocks. Happy-path expectations record intent, so azure/026 was
+    reported as "same expectation" yet failed validate:maestro-routing once
+    written. The check mirrors the validator: route as a set, mode exactly.
+  - A fixture renumbered because an agent was inserted before it, with an
+    identical task and expectation, is reported rather than treated as deleted.
+    Otherwise every catalog addition forces --accept-baseline-changes, which
+    waives the freeze for every provider at once.
+
+  Probed on a disposable copy: full run exits 0 across 14 providers, touches no
+  expected/ file, and the tree it writes passes validation (840 scenarios).
+  Unskipping azure or php blocks with nothing written; a planted answer change
+  blocks; unskipping kubernetes reports 6 renumbered fixtures and writes.
+* **fixtures:** skip hand-curated providers and make drift reporting honest ([`65e6f0d`](https://github.com/VincentChuWaiChow/vanguard-frontier-agentic/commit/65e6f0da893f6ea110f49a71e76bdf7368c740ff))
+  Two follow-ups to the T2 baseline freeze, plus a hazard the investigation
+  exposed.
+
+  1. accounting and dotnet join nvidia in the generator's skip set.
+
+  Investigating the reported dotnet drift showed the comparison was invalid. The
+  generator synthesises the INPUT as well as the expectation, so a fixture name
+  can survive while the question underneath it changes completely:
+
+    reviewed: "...review the sync-over-async blocking calls and async await
+               usage in our C# service."
+    current : "...review our Aspire setup."
+
+  Both routings are correct for their own question. Neither is a regression.
+
+  These fixtures are hand-curated in exactly the sense the generator already
+  recognises for nvidia — two-digit names and specific, realistic adversarial
+  prose, rather than token-stitched tasks and 001-happy- naming. Regenerating
+  would replace better tests with worse ones.
+
+  A hypothesis that did not survive testing, recorded so nobody repeats it:
+  persisting the hand-curated vocabulary onto the agents as `routing_keywords`
+  does NOT make these fixtures reproducible. Tried on a disposable copy — 0 of 9
+  domains matched, because the domain names and the task text are both derived
+  differently. The mechanism exists and is honoured first, but it cannot recover
+  a hand-authored corpus.
+
+  2. The freeze now distinguishes an input change from an expectation change.
+
+  Reporting "the evaluator produces a different route" when the question itself
+  changed is misleading. Only an expectation change blocks, which is T2's actual
+* **fixtures:** stop the routing generator adding a route another maestro owns ([`2da6d8a`](https://github.com/VincentChuWaiChow/vanguard-frontier-agentic/commit/2da6d8a226f790015bde645a36cc3cbf30d406b0))
+  kubernetes was protected only by its skip entry: the generator mines agents by
+  catalog `provider`, and finops-kubernetes-rightsizer-agent is catalogued under
+  kubernetes but routed by the finops maestro. Nothing else stopped it; with the
+  renumbering fix, a rebuild would have added the route and passed.
+
+  Two candidate signals were measured first and rejected:
+
+  - "the agent's own maestro names it": 14 maestros' documents omit agents their
+    reviewed fixtures route (oci 32, microsoft 35, sap 38), and kubernetes's own
+    omits three of its own agents. As a rule it would reject most of the repo.
+  - "another maestro names it": fires on 7 legitimately shared agents, e.g. the
+    terraform maestro hands off to every cloud's iac-change-safety-review agent.
+
+  The reviewed taxonomy.json files are the only reliable record of which maestro
+  routes what. plan_provider now leaves out any catalog agent that another
+  maestro's reviewed taxonomy routes and this provider's does not, and prints a
+  NOTE naming the owner. A provider's own routing wins, so an agent routed by
+  two maestros on purpose is untouched.
+
+  Across all 29 maestro providers the rule fires on exactly the misattributed
+* **gates:** close the proven fail-open findings from the 2026-09 triage passes ([`7eb92a5`](https://github.com/VincentChuWaiChow/vanguard-frontier-agentic/commit/7eb92a5fdbab35ca464f40db3f5046ce372a7f13))
+  Every change below was reproduced before and after, with controls.
+
+  R1 — CI ran nine validators individually while `npm run validate` chains 29,
+  so twenty gates never ran on any pull request and no workflow invoked the
+  aggregate at all. The `validate` job now runs `npm run validate` (job id kept,
+  so the required status-check name is unchanged).
+
+  That aggregate did not pass: `validate:release-notes` failed because
+  conventional-changelog-conventionalcommits@10.4.0 needs
+  conventional-changelog-writer@9+, while @semantic-release/release-notes-generator
+  (14.1.1, the latest, required by semantic-release@25) pins writer@^8. There is
+  no upgrade path to writer@9 in this major, so the preset moves to 9.3.1, the
+  newest writer@8-compatible release. `npm run validate` is now green end to end.
+
+  R3 — the checked-in ruleset required a status check named `fuzz`, but the job
+  declares `name: Property-based fuzz tests`, which is what GitHub reports; the
+  check-runs API for the audited commit confirms no check named `fuzz` exists.
+  Had the ruleset been installed, every pull request would have blocked forever.
+  Corrected, and the two unenforced gates that do run on every PR — the Codex
+  plugin listing gate and provider-scope — were added. The Rust `Gate` was
+  deliberately NOT added: it is path-filtered, and a skipped workflow leaves its
+  check Pending, which blocks merges.
+
+  R2 — the release regenerated the integrity manifest, committed it with
+  [skip ci] and pushed, all before the Validate step, so it absorbed unexplained
+  drift into its own baseline and could never reject it. Drift at release time
+  now fails the release with remediation instructions.
+
+  vfa-tui-ci — the Rust gate is path-filtered to tools/vfa-tui/**, but the TUI
+  deserialises catalog JSON with closed enums, so a catalog- or schema-only
+  change can break `cargo test` without triggering it. catalog/** and schemas/**
+  now trigger it. Its push trigger also listened on `develop` while the default
+  branch is `master`, so it never ran on a default-branch push.
+
+  T3 — the RBAC pre-flight harness counted a kubectl error as a skip and derived
+  PASS solely from the failure count, so an unreachable cluster reported
+  "ALL GUARDS PASSED (0 passed, 294 skipped)" and exited 0. This harness is the
+  privilege-creep regression gate for the least-privilege RBAC manifests shipped
+  with the Kubernetes live-guard agents, so a skipped check is an assertion that
+  was never made. Skips and zero-coverage now report INCOMPLETE and exit 2,
+  distinct from FAIL (1), and run-all.sh propagates the code instead of
+  collapsing it.
+    errors everywhere -> INCOMPLETE, exit 2   (was ALL GUARDS PASSED, exit 0)
+    all "yes"         -> FAILURES, exit 1     (50 passed, 244 failed)
+
+  T1 — the fuzz suite redeclared its own copies of the exporter's security
+  helpers, so disabling production containment left it green. Two copies had
+  already drifted: normalizePlatform took a second parameter production does not
+  have, and AGENT_ID_PATTERN / HARNESS_PATH_TRAVERSAL had no production
+  counterpart at all (the real patterns were duplicated inline in three places).
+  The patterns are now named constants used at all three sites and exported
+  alongside assertWithin and normalizePlatform; the CLI sits behind a
+  main-module guard so the module can be imported; and the suite imports the
+  shipped definitions. Neutering production assertWithin now fails the suite.
+
+  I1 — the home installer defaulted to force:true, overwriting customised agents
+  and skills in $HOME with no backup or rollback. Overwriting is now opt-in via
+  --force; a collision refuses and leaves existing bytes untouched.
+
+  I2 — --dry-run covered only the exporter stage, so a "preview" still ran
+  `codex plugin marketplace add/upgrade` against real state. A preview now
+  invokes nothing and prints what it would do.
+
+  I3 — path containment in the model-policy engine was lexical only, so a planted
+  leaf symlink or a symlinked ancestor directory under agents/ redirected `apply`
+  outside the repository. Containment now resolves real paths, refuses to write
+  through a symlink, and verifies the nearest existing ancestor stays inside the
+  real repo root. Both vectors were reproduced on a disposable copy and now fail
+  closed with "escapes the repository" while the outside sentinels stay intact.
+
+  CLAUDE.md stated the toolchain pin as 1.96 while Cargo.toml requires 1.97.
+* **model-registry:** correct the claim that Codex validates effort against each model's list ([`3528eb7`](https://github.com/VincentChuWaiChow/vanguard-frontier-agentic/commit/3528eb7637b2eb73478bf7fdc7d45c4845c5b971))
+  The registry's Codex reasoning note and the matrix doc said Codex
+  validates a configured effort at runtime against the model's advertised
+  supported levels and rejects a mismatch. Codex's source says otherwise
+  (Context7 /openai/codex). resolve_reasoning_effort sends every
+  configured value unchanged. Only ultra (sent as the model's
+  multi-agent effort, else max) and persistent (sent as
+  Custom("disabled")) are rewritten. The advertised list only fills the
+  TUI effort picker and remaps the effort when a session switches model.
+  An unsupported pairing therefore fails, if at all, at the API.
+
+  - Rewrite the first sentence of the Codex reasoning_note to match, and
+    add the Context7 source. The rest of the note already said the harness
+    does not reject a value.
+  - Keep `none` on gpt-5.6-sol and gpt-5.6-terra. The API models page
+    documents it, and the API is what judges it. Their notes now say the
+    Codex catalog does not list it.
+  - In model-policy-matrix.md, correct the same sentence and the codex →
+    OpenAI failure-mode cell, which no longer claims an error shape that
+    has not been verified.
+
+  No effort vocabulary changed; model-policy:check stays in sync
+  (73 rules, 2203 assignments).
+* **rbac-preflight:** make the privilege-creep gate actually assert ([`f465d5d`](https://github.com/VincentChuWaiChow/vanguard-frontier-agentic/commit/f465d5d228a04b198aaab244141fa2df9f1f5035))
+  The suite reported INCOMPLETE with 176 of 294 assertions skipped, attributing
+  every one of them to uninstalled CRDs. Neither half of that was true.
+
+  1. The verdict was being thrown away.
+
+  `_run_can_i` captured `kubectl auth can-i` with `2>&1`. kubectl writes the
+  verdict to stdout and every diagnostic to stderr, and the diagnostics come
+  first, so a cluster-scoped resource arrived as
+
+    "Warning: resource 'clusterrolebindings' is not namespace scoped in group
+     'rbac.authorization.k8s.io'\n\nno"
+
+  which matches neither yes* nor no*, and a perfectly good "no" was filed as a
+  kubectl error. Confirmed in kubernetes/kubernetes
+  staging/src/k8s.io/kubectl/pkg/cmd/auth/cani.go -- identical at v1.28.15 and
+  v1.31.2, both ends of the matrix -- and reproduced against a live apiserver.
+
+  2. Skips were labelled by call site, never checked.
+
+  `assert_can_or_skip` printed "CRD not found -- install CRDs to test" for any
+  failure whatsoever, so an unreachable cluster or a refused impersonation read
+  as an expected environment limitation. Classification now comes from kubectl's
+  own stderr, a new ERROR counter keeps harness faults apart from environment
+  limits, and kubectl's words are always printed. report_total gains exit 3.
+
+  3. An absent CRD produces a WRONG answer, not an absent one.
+
+  resourceFor() warns and falls back to the whole dotted argument as the resource
+  with an empty group, so the access review asks about
+  {group: "", resource: "schedules.velero.io"} -- unmatched by any RBAC rule.
+  Measured on kube-apiserver v1.30.6 against an SA explicitly granted
+  velero.io/schedules create:
+
+    CRD absent  -> "no"   (wrong)
+    CRD present -> "yes"  (correct)
+
+  So the verdict is wrong in both directions: every must-not check would pass
+  vacuously and every must-be-able check would fail spuriously. It is now
+  discarded, and fixtures/crds.yaml ships 24 minimal stand-ins so the assertions
+  run for real. Only group/plural/kind/scope are load-bearing; nothing is ever
+  instantiated. In-tree rather than fetched upstream keeps the gate
+  deterministic. The gateway.networking.k8s.io stubs carry
+  api-approved.kubernetes.io because apiextensions rejects protected *.k8s.io
+  groups without it.
+
+  4. Nine assertions could not detect the escalation they named.
+
+  `can-i create pods/exec` parses pods/exec as resource=pods, name=exec; the
+  review goes out as {"verb":"create","resource":"pods","name":"exec"}. Measured
+  on v1.30.6: an SA explicitly granted pods/exec create still answers "no" to
+  that form and "yes" only to --subresource=exec. pods/exec, pods/portforward,
+  pods/proxy, pods/binding, pods/eviction, nodes/proxy (x2),
+  serviceaccounts/token and namespaces/finalize were all in that state. The
+  resourceName tests (configmaps/coredns, namespaces/kube-system) are correct as
+  written and left alone. customresourcedefinitions/finalize named a subresource
+  that does not exist -- per live discovery a CRD has only /status -- and is now
+  an update on the object itself, the real finalizer-stripping path.
+
+  5. Two assertions could never run on half the matrix.
+
+  ValidatingAdmissionPolicy is GA from 1.30; on 1.28 and 1.29 both the gate and
+  the API group are off by default. Measured on stock kube-apiserver:
+
+    v1.28.15 / v1.29.10 default                 -> not served
+    v1.28.15 / v1.29.10 + gate + runtime-config -> served
+
+  The kind config now enables it, scoped to those two versions because from 1.30
+  the gate is GA-locked.
+
+  Result, against a live kube-apiserver v1.30.6 with RBAC and impersonation:
+
+    before: 118 passed, 176 skipped, exit 2 (INCOMPLETE)
+    after : 294 passed,   0 skipped, exit 0
+
+  Nothing in the shipped RBAC manifests changed; all 294 assertions pass. The
+  one apparent finding along the way (nodes/proxy reading over-scoped) was the
+  test's bug, not the manifest's -- proved by the request body.
+
+  self-test.sh is new: it drives the harness through a stub kubectl with no
+  cluster, network or clock, covering stream handling, skip-vs-error
+  classification, exit codes and a lint for the subresource syntax. Verified in
+  both directions -- reintroducing the 2>&1 capture fails 5 cases, reintroducing
+  one bad assertion fails the lint. It runs as its own CI job in seconds,
+  because the 176 vanished assertions were invisible for want of any test of the
+  harness itself.
+* **rbac-preflight:** stop the Gateway API stubs claiming an approval they lack ([`10a358d`](https://github.com/VincentChuWaiChow/vanguard-frontier-agentic/commit/10a358dd3d965a3cd59af8318bbf1b9253fcdf03))
+  The fixture header said the stubs' api-approved.kubernetes.io value, KEP PR
+  1111, was the Gateway API's own approval and the value the upstream CRDs
+  carry. Both parts were wrong. kubernetes/enhancements#1111 is the KEP that
+  created the approval policy; the apiserver links to it in its own rejection
+  message. Upstream carries a per-release review URL instead (pull/4530 on
+  main, pull/3328 at v1.2.0).
+
+  Measured on a v1.30.6 apiserver: the annotation must be a URL or a reason
+  starting with "unapproved"; anything else is rejected, and what a URL points
+  to is never checked (https://example.invalid/ was accepted as conformant).
+  These stubs are not the reviewed upstream schema, so they now declare
+  themselves unapproved. They still establish; only their
+  KubernetesAPIApprovalPolicyConformant condition reads False, which nothing in
+  the suite consults.
+
+  Also closes the open caveat on the stubs' scope values. The group, plural,
+  kind and scope of all 24 were parsed from the upstream CRD manifests (argo-cd,
+  istio, velero, cilium, kyverno, gateway-api default branches) and all match.
+
+  Full suite re-run against that apiserver with the new values: 24/24 CRDs
+  Established, 294 passed, 0 skipped, 0 errored, exit 0.
+* **review:** close the eight findings from the Codex review of PR #194 ([`d29bb22`](https://github.com/VincentChuWaiChow/vanguard-frontier-agentic/commit/d29bb22a1982c1c9169ad7bfbe6814e822926d92))
+  Each of these was raised against the fail-open fixes already on this branch.
+
+  headless reporter — the empty-policy guard sat before evaluation and tested
+  `policy_config.rules.is_empty()`, which is rules present in the file, not rules
+  actually evaluated. A policy full of rules against an empty workspace registry
+  still evaluated nothing and still scored 100.0%. The guard now runs after
+  evaluation on the real count, the report publishes `rules_evaluated`, and the
+  score is emitted as null when that count is zero.
+
+  audit export — rows carry `hash_version` but the export dropped it. Two hash
+  recipes are in circulation (v1 leaves the operator unauthenticated, v2 binds
+  it), so an auditor holding only the artifact could not know which to recompute
+  and the export was not independently verifiable. Both JSON and CSV now carry
+  it. Tests cover a v2 row and, as the negative case, a legacy v1 row that must
+  not be relabelled.
+
+  federation scanner / exporter — the `x-vfa-export` reserved JSON key invented a
+  metadata field inside executable agent files, which CLAUDE.md's cross-platform
+  rule forbids. Removed from both sides; `.json` destinations are now left
+  untouched rather than annotated.
+
+  exporter write path — the destination is opened with O_EXCL (refuse to
+  overwrite) or O_TRUNC under --force, plus O_NOFOLLOW so a symlinked
+  destination is refused by the same syscall rather than between a check and a
+  write. The main-module guard resolves through realpath so an npm bin symlink
+  still runs it.
+
+  maestro fixture generator — a fixture that is no longer generated never
+  entered `planned`, and the commit phase deletes every old file, so lost
+  coverage would have become the new green baseline. Removals are now frozen
+  and reported. The two bare `except json.JSONDecodeError: pass` clauses are
+* **scanner:** align harness detection with what the exporter actually writes ([`618da08`](https://github.com/VincentChuWaiChow/vanguard-frontier-agentic/commit/618da086c37635cd828b4c57cb99951db7b03318))
+  Completes finding N1 for every harness the exporter targets. The earlier
+  commits fixed the Codex layout rule and emitted the VFA-EXPORT marker for
+  `.toml` and `.md`; verifying kiro-cli exposed that the producer and consumer
+  disagreed in four more places, and that my previous "closed for .toml" claim
+  was only verified for `.md`.
+
+  Comparing PLATFORM_CONFIG in scripts/export-marketplace-agents.mjs against the
+  scanner's rules, only claude-code and kiro-ide actually agreed:
+
+    codex     writes .codex/agents/<id>.toml   scanner scanned plugin.json only
+    kiro-cli  writes .kiro/agents/<id>.json    scanner scanned *.md only
+    cursor    writes .cursor/agents/<id>.md    scanner required *.json layout
+
+  Each mismatch filtered a correctly exported agent out before any detection
+  strategy ran, so `require_asset` reported it missing.
+
+  Changes:
+
+    - The walk filter now matches the exporter: Codex accepts `*.toml` beside
+      plugin.json, Kiro accepts `*.json` beside `*.md` (both harnesses share
+      `.kiro/agents`), and Cursor accepts `*.md` beside `*.json`.
+    - Layout validation accepts the same, for Kiro and Cursor.
+    - JSON has no comment syntax, so a `.json` export records the payload under a
+      reserved `x-vfa-export` key. `parse_export_metadata` falls back to it, and
+      the exporter splices it in after the opening brace so every other byte is
+      preserved — these harness files are hand-authored and densely formatted, and
+      re-serialising would rewrite the document for one field. The splice is
+      validated with JSON.parse and returns the original unchanged if it did not
+      produce valid JSON: a scanner signal is never worth corrupting an agent
+      definition.
+
+  Recon confirmed nothing in the repository constrains those files: no schema
+  governs harness JSON, the two validators that reference them check presence
+  only, and no Rust struct deserializes them (`deny_unknown_fields` applies to
+  catalog entries). The `x-` prefix hedges against a third-party Kiro parser that
+  might enforce a fixed key set.
+
+  Two existing tests asserted the old, wrong contract — that `.md` must not
+  satisfy the Cursor layout and `.json` must not satisfy Kiro's. Both were
+  rewritten to the corrected contract rather than deleted, each paired with a
+  negative case that still holds. Their original intent, that a stray document is
+  not an installed asset, is preserved more strongly downstream: layout is a cheap
+  pre-filter for walking a directory, and confirmation still requires two
+  independent signals, which a readme has neither of.
+
+  Verified export -> discover -> require_asset for all five harnesses, with
+  controls:
+
+    claude-code, codex, cursor, kiro-cli, kiro-ide  -> pass
+    empty workspace                                 -> fails
+    marker stripped from the exported file          -> fails, per harness
+
+  Still open: copilot (`.github/agents`) and gemini (`.gemini/agents`) have no
+  HarnessDir variant at all, so their exports are invisible to the scanner. That
+  needs new enum variants and layout rules rather than a filter change.
+* **secrets-gate:** catch temporary AWS keys and scope the <FAKE> exemption ([`3a6267d`](https://github.com/VincentChuWaiChow/vanguard-frontier-agentic/commit/3a6267d402540e3d450d8ed240927d901eaa5fdc))
+  Codex review of 3528eb76 (two P1 findings).
+
+  - The AWS pattern matched only AKIA long-term key ids. It now also
+    matches ASIA, the STS temporary-key prefix, which
+    tests/validate-catalog.py already treats as a secret.
+  - Any line containing <FAKE> anywhere was skipped, so a real key
+    followed by a "# <FAKE>" comment passed a blocking gate. A match is
+    now exempt only when it sits inside a <FAKE>...<FAKE> pair, which is
+    the form the routing fixtures already use. Every match on the line is
+    checked, so one wrapped bait value cannot excuse a bare key beside it.
+
+  Probes with canaries in tracked content:
+  - ASIA key: exit 1.
+  - Key with a trailing "# <FAKE>": exit 1 (was 0).
+  - Key wrapped in <FAKE>...<FAKE>: exit 0.
+  - One wrapped key and one bare key on the same line: exit 1.
+  The clean tree stays at 0 findings.
+* **trust:** make MCP trust-boundary enforcement non-vacuous ([`880c6fb`](https://github.com/VincentChuWaiChow/vanguard-frontier-agentic/commit/880c6fb9e749e9804add9950ba8b3c41af05a0f9))
+  Finding P1, escalated from the audit's CONDITIONAL rating after tracing the
+  data path end to end.
+
+  The audit reported that an MCP with no trust matrix is treated as safe, but
+  could not demonstrate a production path carrying such metadata. There is one,
+  and it covers the entire shipped catalog:
+
+    - mcp/official/*.metadata.json DO declare trust_matrix, and
+      validate:mcp-trust-matrix checks them, which is why it passed.
+    - catalog/mcp-references.json is hand-maintained, not generated, and carried
+      no trust_matrix on any of its 3 entries.
+    - The console reads only the catalog index, deserialising trust_matrix as
+      Option<TrustMatrix> with #[serde(default)].
+    - check_mcp_against_boundary() returned all-false for None.
+
+  So every MCP in the catalog presented an undeclared posture to the trust gate
+  and passed it, regardless of the mutation/egress/credential capability its
+  source metadata declared. The enforcement path was decorative.
+
+  Fixes, root cause first:
+
+    - catalog/mcp-references.json now carries the trust_matrix for all three
+      references, copied verbatim from the mcp/ source metadata.
+    - validate:mcp-trust-matrix now enforces source/catalog parity, so the index
+      cannot silently lose or contradict the field again. Both failure modes are
+      covered: a missing catalog trust_matrix, and a catalog matrix that
+      disagrees with source (e.g. flipping mutation_capable to false).
+    - An undeclared posture is now UNKNOWN rather than safe. TrustViolation
+      carries unknown_trust, both call sites (evaluate_trust and
+      check_trust_boundary_rule) treat it as violating, and the engine's
+      TrustBoundary rule no longer drops matrix-less MCPs via `?`. A regression
+      test pins this: the old behaviour let an undeclared MCP satisfy the
+      strictest possible boundary, and no existing test covered it.
+
+  Deliberately unchanged: evaluate_trust still skips installed assets absent
+  from catalog.mcp_refs. That loop walks every installed asset, so a non-match
+  means "this is an agent or skill, not an MCP reference" rather than "unknown
+  trust"; flagging it would false-positive on every installed agent.
+* **vfa-tui:** fail closed on unevaluated policy and bind operator to audit chain ([`682edec`](https://github.com/VincentChuWaiChow/vanguard-frontier-agentic/commit/682edec465623ccc292a789873daaf12d0c9523e))
+  Addresses findings P2, A1, A2 and A3 from the 2026-09-20/21 triage passes,
+  each reproduced against a locally built binary before and after the change.
+
+  P2 — headless reports could report success without evaluating anything:
+    * A missing workspace registry returned exit 0. The documented contract in
+      cli.rs (and FindingSeverity::Operational's own doc comment) says exit 2 for
+      a missing registry, so a mistyped --registry read as a clean run.
+    * A missing or empty policy file produced exit 0 and "100.0% compliance",
+      because compliance_score(0, 0) is 100.0 by definition. Zero evaluated rules
+      is now an operational error; genuinely exploratory runs opt in explicitly
+      with --allow-empty-policy.
+    * The violations report now publishes rules_evaluated and emits a null score
+      rather than a vacuous 100.0, so a consumer can tell "nothing violated" from
+      "nothing was checked".
+
+    Probes (registry with one workspace, one critical require_asset rule):
+      valid config, asset absent   -> exit 1, score 0.0   (unchanged)
+      policy path missing          -> exit 2              (was exit 0 @ 100.0%)
+      registry path missing        -> exit 2              (was exit 0)
+      missing + --allow-empty-policy -> exit 0            (explicit opt-in)
+      malformed registry TOML      -> exit 2              (unchanged)
+
+  A1 — headless audit persistence stays non-blocking (Req 14.7) but no longer
+  fails silently: failing to open the index or write the record now prints an
+  explicit warning instead of discarding the error.
+
+  A2 — the operator was stored on each audit row but left out of the entry hash,
+  so the chain could not attest who performed an action, and export never checked
+  the chain at all. New rows hash the operator (recipe v2, recorded per row in a
+  new hash_version column added by migration 005) while pre-migration rows keep
+  verifying under the v1 recipe. Audit export now verifies the chain first and
+  refuses rather than emitting a broken chain as if it were attested evidence.
+
+  A3 — an unparseable schema_version was silently treated as 0 ("fresh"), which
+  re-ran every migration against an unknown schema, and a version newer than this
+  build understands was accepted. Both are now rejected with a clear error.
+
+  Schema-version assertions across the test suite were derived from MIGRATIONS
+  rather than frozen at 4, so future migrations do not break them.
+* **vfa-tui:** recognise exported Codex agents in harness layout validation ([`bc29fb0`](https://github.com/VincentChuWaiChow/vanguard-frontier-agentic/commit/bc29fb062de8d16aaac740e73913423de67c832c))
+  Partial fix for finding N1. `vfa-export-agents --platform codex` writes
+  `.codex/agents/<id>.toml` and never a plugin.json, but the Codex layout
+  validator required plugin.json at the directory root, so a correctly exported
+  Codex workspace failed layout validation and its agents were reported as not
+  installed. Codex now matches on either signal; the plugin.json path and both
+  negative cases keep their existing behaviour, covered by a regression test.
+
+  This does NOT fully close N1. Confirmed root cause of the remainder:
+  `.kiro/specs/rust-tui-v2/requirements.md:135` specifies that the export CLI
+  injects a `# VFA-EXPORT: {"id": ..., "version": ..., "installed_at": ...}`
+  header at the top of every installed file, and the scanner's two-signal
+  confirmation (federation/scanner.rs:103-106) was built against that contract.
+  The exporter never implements it — it copies files verbatim with
+  fs.copyFileSync, and the string VFA-EXPORT appears nowhere outside the Rust
+  scanner and the specs. In headless mode the content-signature signal is also
+  unavailable, because the catalog index is built with no template content
+  (headless/reporter.rs), so at most one signal can ever fire and no exported
+  asset can reach "confirmed" for any harness.
+
+  Emitting that header is deliberately not patched here: the exporter writes
+  .toml, .md and .json variants, and the scanner accepts only `#` and `//`
+  comment prefixes, so a blanket header would produce invalid JSON for the
+  kiro-cli `.json` export and a stray heading in Markdown. Closing N1 properly
+  needs the versioned per-harness installation contract the audit calls for
+  (sidecar manifest, or per-format metadata placement plus scanner support),
+  not an improvised header injection.
+
+### 📚 Documentation
+
+* **fixtures:** generate the routing scenario count instead of typing it ([`cddb98c`](https://github.com/VincentChuWaiChow/vanguard-frontier-agentic/commit/cddb98c14263ef18868011ed2fd53301913ebb99))
+  tests/fixtures/README.md stated "357 scenarios validated" (the validator
+  reports 840) and "13th npm run validate gate" (validate:maestro-routing is
+  17th of 29). Both were typed by hand in a file validate:board-counts already
+  owns, against CLAUDE.md's rule that counts are generated.
+
+  generate-board-counts.mjs gains a `scenarios` global key that counts exactly
+  what validate-maestro-routing.py counts: inputs/*.json in every
+  *-maestro-routing directory that has a taxonomy.json. The ordinal is replaced
+  with the existing `gates` key, since an ordinal drifts every time a gate is
+  added ahead of it. CLAUDE.md's list of global keys is updated to match.
+* **vfa-tui:** document dynamic Istio discovery ([`364dd70`](https://github.com/VincentChuWaiChow/vanguard-frontier-agentic/commit/364dd7068a4fa2390f3ecb323d7c9ed00c5f8131))
+* **workflow:** open the Ultracode run for Gemini agent name slugs ([`c816669`](https://github.com/VincentChuWaiChow/vanguard-frontier-agentic/commit/c8166696136b4f2e52b02d3a7433f6a5552c48b6))
+  Gemini CLI's local-subagent documentation requires `name` to be a slug of
+  lowercase letters, numbers, hyphens and underscores. 714 of the 733 Gemini
+  exports use display names; the other 19 already use the agent id, which is the
+  in-repository precedent. This records the plan, orchestration, evaluation
+  contract and the two read-only packets; the fix follows separately.
+* **workflow:** open the Ultracode run for nameless Azure harness agents ([`5ec0fc2`](https://github.com/VincentChuWaiChow/vanguard-frontier-agentic/commit/5ec0fc2f7f4e455412860fe608ffdd0c94f5c116))
+  A real Claude Code install of the v3.13.0 release candidate loaded all 735
+  agent files but logged a duplicate agent name,
+  'vanguard-frontier-agentic:claude-code.agent'. Sixteen Azure agents carry
+  metadata-only frontmatter with no name or description, in AGENT.md and in all
+  five markdown harness variants (80 files), so Claude Code names each after its
+  file and they collapse into one. Nothing gates it: the frontmatter validator
+  reads AGENT.md only, where both fields are optional.
+
+  This records the run's plan, orchestration, evaluation contract and the three
+  read-only packets. The fix and its gate follow in separate commits.
+* **workflow:** record the Azure harness frontmatter Ultracode run ([`1785e63`](https://github.com/VincentChuWaiChow/vanguard-frontier-agentic/commit/1785e6331e9434bc7e5b15ae4b6307ac4284c299))
+  Results of the three read-only packets, the integration ledger, the final
+  report and run state. Result 03 records two errors the parent corrected: the
+  kebab-case rule quoted for plugin agent names applies to the plugin's own name,
+  and the Gemini page fetched covered remote agents rather than local ones. The
+  evaluation contract is corrected too: AGENT.md stays metadata-only, as it is for
+  all 735 agents.
+* **workflow:** record the Gemini agent name slug Ultracode run ([`084e1e3`](https://github.com/VincentChuWaiChow/vanguard-frontier-agentic/commit/084e1e361eb8aa26358bcd4060529e3d52aaeaa6))
+  Add the two packet results, the integration ledger, the final report
+  and the run state. The record includes the parent's corrections to the
+
+### 📦 Build & Dependencies
+
+* **release:** keep conventional-changelog-conventionalcommits on 10.x ([`1780e79`](https://github.com/VincentChuWaiChow/vanguard-frontier-agentic/commit/1780e7945121d470d7dda58baf64a0d8f89a88de))
+  The preset was pinned back to 9.3.1 earlier in this PR. That was the wrong
+  fix. Preset 10 refuses to render through conventional-changelog-writer 8,
+  by design:
+
+    conventional-changelog-conventionalcommits requires
+    conventional-changelog-writer@9 or newer ... Your changelog tooling loaded
+    an older writer which cannot render this preset.
+
+  The stable plugins semantic-release 25 ships (release-notes-generator 14.1.1,
+  commit-analyzer 13.0.1) declare writer ^8 and parser ^6, and still do in
+  semantic-release 26.0.0-beta.1. Upstream's preset-10 line exists only as
+  release-notes-generator 15.0.0-beta.3 and commit-analyzer 14.0.0-beta.4.
+  Diffing the published tarballs shows those betas carry no code change: rng
+  15.0.0-beta.3 is byte-identical to 14.1.1, and analyzer 14.0.0-beta.4
+  differs from 13.0.1 by one doc comment. The majors are dependency bumps
+  (writer ^9, parser ^7, filter ^6, angular ^9).
+
+  So the stable plugin code stays, and scoped npm overrides give it the
+  dependency set its own next major publishes. That also avoids a trap in the
+  beta route: semantic-release resolves plugins from its own directory first
+  (lib/plugins/utils.js), so a top-level beta would have been shadowed by a
+  nested stable copy in the real release while this gate passed.
+
+  Writer 9 takes render functions, not Handlebars strings, so .releaserc.js's
+  header, commit and footer partials are ported, and transform returns a patch
+  (writer 9 hands it a read-only commit). Against a golden render from the
+  9.3.1 setup covering minor and patch releases, breaking notes, hidden types,
+  scopes and the session-URL scrub, two things differ, both upstream behaviour:
+  commit bodies are indented under their bullet instead of breaking out of the
+  list, and breaking-change notes are sorted by text instead of commit order.
+
+  validate:release-notes now loads each plugin the way semantic-release does,
+  fails fast naming the writer or parser copy that would be loaded, and checks
+  12 commit-analysis cases. The analyzer decides the version bump and had no
+  coverage. Baselined on 9.3.1 first; all 12 hold unchanged on 10.4.0.
+  Negative probes: overrides removed -> names writer@8.4.0 and parser@6.4.0;
+  analyzer preset removed -> "feat(api)!" no longer yields major.
+
+---
+
+### 📥 Install
+```bash
+npm install @raishin/vanguard-frontier-agentic@3.13.0
+```
+
+### 🔐 Supply-chain provenance
+Every release ships a build attestation (SLSA provenance) and an SBOM. Verify the tag with `gh attestation verify` before installing.
+
+**Full changelog:** https://github.com/VincentChuWaiChow/vanguard-frontier-agentic/compare/v3.12.1...v3.13.0
+
 ## 🛡️ v3.12.1 — *Provenance · Policy · Portability*
 _Released 2026-09-12_
 
