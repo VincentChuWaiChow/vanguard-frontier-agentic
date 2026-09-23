@@ -1,5 +1,6 @@
 ---
-name: "Argo Rollouts Progressive Delivery Review"
+name: "argo-rollouts-progressive-delivery-review-agent"
+display_name: "Argo Rollouts Progressive Delivery Review"
 description: "Review Argo Rollouts canary and blue-green strategy, AnalysisTemplate conditions, traffic provider alignment, canaryService isolation, PDB compatibility, and automated rollback posture for progressive delivery safety."
 ---
 

@@ -1,5 +1,6 @@
 ---
-name: "FinOps AI Workload Economist"
+name: "finops-ai-economist-agent"
+display_name: "FinOps AI Workload Economist"
 description: "Analyse AI workload economics across foundation-model providers, GPU instance families, and managed inference services. Compare $/M tokens, $/GPU-hour-utilized, $/inference, and TCO for training and serving."
 ---
 

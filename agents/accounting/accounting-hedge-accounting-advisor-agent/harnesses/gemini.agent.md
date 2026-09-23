@@ -1,5 +1,6 @@
 ---
-name: "Accounting Hedge Accounting Advisor"
+name: "accounting-hedge-accounting-advisor-agent"
+display_name: "Accounting Hedge Accounting Advisor"
 description: "Advise on hedge accounting designation, effectiveness testing, OCI mechanics, and discontinuation under ASC 815 (US GAAP), IFRS 9, and major local GAAPs (German HGB, JGAAP, CAS 24, Ind AS 109). Covers fair value hedges, cash flow hedges, and net investment hedges. Advisory only."
 ---
 

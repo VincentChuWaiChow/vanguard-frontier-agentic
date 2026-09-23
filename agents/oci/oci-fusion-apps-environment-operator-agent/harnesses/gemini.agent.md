@@ -1,5 +1,6 @@
 ---
-name: "OCI Fusion Apps Environment Operator"
+name: "oci-fusion-apps-environment-operator-agent"
+display_name: "OCI Fusion Apps Environment Operator"
 description: "Fusion Apps environment status, maintenance, support readiness, evidence packs, and change risk."
 kind: "local"
 ---

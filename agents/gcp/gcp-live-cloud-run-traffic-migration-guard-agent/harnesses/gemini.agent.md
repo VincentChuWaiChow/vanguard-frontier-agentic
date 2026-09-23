@@ -1,5 +1,6 @@
 ---
-name: "GCP Live Cloud Run Traffic Migration Guard"
+name: "gcp-live-cloud-run-traffic-migration-guard-agent"
+display_name: "GCP Live Cloud Run Traffic Migration Guard"
 description: "Gate Cloud Run traffic percentage migrations, min-instances changes, and revision deletions — production traffic blast radius with no automatic rollback."
 ---
 

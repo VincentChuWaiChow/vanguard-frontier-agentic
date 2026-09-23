@@ -1,5 +1,6 @@
 ---
-name: "AWS ECS Fargate Platform Operator"
+name: "aws-ecs-fargate-platform-operator-agent"
+display_name: "AWS ECS Fargate Platform Operator"
 description: "Review Amazon ECS and Fargate services across task roles, execution roles, deployment circuit breakers, blue/green, load balancing, autoscaling, logging, networking, and rollback."
 kind: "local"
 ---

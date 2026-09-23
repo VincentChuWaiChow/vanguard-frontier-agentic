@@ -1,5 +1,6 @@
 ---
-name: "Frontend Observability & RUM"
+name: "frontend-observability-rum-agent"
+display_name: "Frontend Observability & RUM"
 description: "Read-only-runtime agent that reviews and designs Real User Monitoring instrumentation (Core Web Vitals, OpenTelemetry Web traces, error tracking) with explicit sampling, cardinality, and PII-in-telemetry controls tied to field performance budgets."
 kind: "local"
 ---

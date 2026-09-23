@@ -1,5 +1,6 @@
 ---
-name: "AWS Landing Zone Governor"
+name: "aws-landing-zone-governor-agent"
+display_name: "AWS Landing Zone Governor"
 description: "Review AWS multi-account landing zones, Control Tower posture, Organizations structure, OUs, guardrails, logging, audit accounts, and account vending decisions."
 kind: "local"
 ---

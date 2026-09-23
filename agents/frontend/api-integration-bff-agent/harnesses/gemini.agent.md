@@ -1,5 +1,6 @@
 ---
-name: "API Integration & BFF Boundary"
+name: "api-integration-bff-agent"
+display_name: "API Integration & BFF Boundary"
 description: "Designs and reviews the contract, ownership, and trust boundary between frontend clients and backend/BFF layers to prevent over-fetching, leaked backend implementation details, and unenforced authorization at the edge."
 kind: "local"
 ---

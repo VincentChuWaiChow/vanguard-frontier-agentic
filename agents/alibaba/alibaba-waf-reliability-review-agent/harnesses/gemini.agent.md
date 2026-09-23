@@ -1,5 +1,6 @@
 ---
-name: "Alibaba Cloud WAF Reliability Review Specialist"
+name: "alibaba-waf-reliability-review-agent"
+display_name: "Alibaba Cloud WAF Reliability Review Specialist"
 description: "Assess Alibaba Cloud workload reliability: multi-AZ ECS topology, SLB/ALB/NLB load balancing, Auto Scaling health policies, RDS/PolarDB HA failover, backup and cross-region DR, and Cloud Monitor/ARMS observability coverage."
 ---
 

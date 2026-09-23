@@ -154,6 +154,18 @@ CREATE INDEX IF NOT EXISTS idx_coverage_cache_name
     ON coverage_cache(workspace_name);
 ";
 
+/// Migration 5 — bind the operator into the audit hash chain.
+///
+/// Rows written before this migration hashed
+/// `prev || timestamp || event_type || subject || details`, leaving `operator`
+/// stored but unauthenticated: the actor on an entry could be changed without
+/// breaking the chain.  New rows hash the operator too, with every field
+/// length-prefixed so bytes cannot move across a field boundary.  `hash_version` records
+/// which recipe produced a row so existing chains keep verifying.
+pub const MIGRATION_005_AUDIT_HASH_VERSION: &str = "\
+ALTER TABLE audit_log ADD COLUMN hash_version INTEGER NOT NULL DEFAULT 1;
+";
+
 /// All migrations in ascending order.
 ///
 /// Each entry is `(target_schema_version, sql)`. The migration runner applies
@@ -163,6 +175,7 @@ pub const MIGRATIONS: &[(u32, &str)] = &[
     (2, MIGRATION_002_AUDIT_LOG),
     (3, MIGRATION_003_GATE_HISTORY),
     (4, MIGRATION_004_COVERAGE_CACHE),
+    (5, MIGRATION_005_AUDIT_HASH_VERSION),
 ];
 
 #[cfg(test)]

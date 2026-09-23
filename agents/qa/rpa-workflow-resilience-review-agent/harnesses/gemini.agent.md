@@ -1,5 +1,6 @@
 ---
-name: "RPA Workflow Resilience Review Agent"
+name: "rpa-workflow-resilience-review-agent"
+display_name: "RPA Workflow Resilience Review Agent"
 description: "Reviews exported RPA workflow definitions (UiPath XAML, Automation Anywhere, Power Automate Desktop, Blue Prism) for resilience and security defects that cause unattended bots to fail silently in production."
 ---
 

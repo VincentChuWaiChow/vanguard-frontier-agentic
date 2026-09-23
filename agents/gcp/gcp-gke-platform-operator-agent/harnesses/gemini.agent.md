@@ -1,5 +1,6 @@
 ---
-name: "GCP GKE Platform Operator"
+name: "gcp-gke-platform-operator-agent"
+display_name: "GCP GKE Platform Operator"
 description: "Operate GKE clusters (Standard and Autopilot), manage node pools, configure Workload Identity, enforce Binary Authorization, plan node pool upgrades, and review cluster security posture."
 ---
 

@@ -1,5 +1,6 @@
 ---
-name: "Terraform Supply Chain Integrity Agent"
+name: "terraform-supply-chain-integrity-agent"
+display_name: "Terraform Supply Chain Integrity Agent"
 description: "Decide whether a Terraform or OpenTofu dependency may be trusted and whether the trust is actually enforced: provider source addresses and registry namespaces, `.terraform.lock.hcl` hash coverage across platforms, mirrors and network-restricted installation, and module source provenance. Reads dependency declarations, lock files, and CLI configuration only."
 ---
 

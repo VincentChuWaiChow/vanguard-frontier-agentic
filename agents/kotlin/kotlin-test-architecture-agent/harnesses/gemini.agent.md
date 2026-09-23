@@ -1,5 +1,6 @@
 ---
-name: "Kotlin Test Architecture Agent"
+name: "kotlin-test-architecture-agent"
+display_name: "Kotlin Test Architecture Agent"
 description: "Static review of Kotlin coroutine/Flow/Compose/Android/KMP test architecture and determinism: runTest virtual-time usage, test-dispatcher choice and advance discipline, Dispatchers.setMain/resetMain hygiene, Turbine Flow testing, and Compose/Robolectric-vs-instrumented boundary choice. Reads test source and build config only."
 ---
 

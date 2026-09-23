@@ -1,5 +1,6 @@
 ---
-name: "Kyverno Policy Review"
+name: "kyverno-policy-review-agent"
+display_name: "Kyverno Policy Review"
 description: "Review Kyverno ClusterPolicy and Policy resources for failureAction, background scanning, PolicyException audit, mutate/generate rules, and Kyverno-vs-native ValidatingAdmissionPolicy decision."
 ---
 

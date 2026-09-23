@@ -1,5 +1,6 @@
 ---
-name: "LLM AI Pipeline Test Review Agent"
+name: "llm-ai-pipeline-test-review-agent"
+display_name: "LLM AI Pipeline Test Review Agent"
 description: "Reviews an LLM or AI pipeline's evaluation setup for test-quality defects — missing hallucination, relevancy, faithfulness, bias, toxicity, and tool-correctness metrics; absent golden datasets; unthresholded or single-shot evals; and no regression gate across model versions. Static review only."
 ---
 

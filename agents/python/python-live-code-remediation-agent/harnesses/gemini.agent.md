@@ -1,5 +1,6 @@
 ---
-name: "Python Live Code Remediation Agent"
+name: "python-live-code-remediation-agent"
+display_name: "Python Live Code Remediation Agent"
 description: "Creates a branch and pull request and runs approved isolated validation for a code/dependency remediation. Cannot merge, deploy, or weaken policy."
 ---
 

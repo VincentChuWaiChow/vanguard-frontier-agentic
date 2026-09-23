@@ -1,5 +1,6 @@
 ---
-name: "GCP Firebase Developer"
+name: "gcp-firebase-developer-agent"
+display_name: "GCP Firebase Developer"
 description: "Build, configure, and operate Firebase-powered web and mobile applications across Firestore, Auth, Hosting, Cloud Functions, Storage, App Check, and more."
 ---
 

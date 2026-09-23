@@ -1,5 +1,6 @@
 ---
-name: "Alibaba Cloud OSS Data Perimeter Governor"
+name: "alibaba-oss-data-perimeter-governor-agent"
+display_name: "Alibaba Cloud OSS Data Perimeter Governor"
 description: "Govern Alibaba Cloud OSS data perimeters — bucket ACL and policy conflict resolution, Block Public Access configuration, cross-account access via RAM role, VPC endpoint binding for private access, WORM (Object Lock), and MLPS 2.0 data residency compliance."
 ---
 

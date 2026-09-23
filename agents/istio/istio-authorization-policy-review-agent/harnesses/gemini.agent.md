@@ -1,5 +1,6 @@
 ---
-name: "Istio Authorization Policy Review"
+name: "istio-authorization-policy-review-agent"
+display_name: "Istio Authorization Policy Review"
 description: "Review Istio AuthorizationPolicy, PeerAuthentication and RequestAuthentication together against intended access. Use for default-deny design, overlapping CUSTOM/DENY/ALLOW policies, empty rules, JWT requirements, wildcard principals, L7-on-TCP risks, policy targetRefs, trust identity or authorization regressions. Review supplied evidence only; separate policy semantics from observed enforcement and do not apply changes."
 ---
 

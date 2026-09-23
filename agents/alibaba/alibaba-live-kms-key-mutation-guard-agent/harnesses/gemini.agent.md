@@ -1,5 +1,6 @@
 ---
-name: "Alibaba Cloud Live KMS Key Mutation Guard"
+name: "alibaba-live-kms-key-mutation-guard-agent"
+display_name: "Alibaba Cloud Live KMS Key Mutation Guard"
 description: "Gate KMS key deletion and disable operations — all data encrypted with a deleted CMK becomes permanently and irrecoverably inaccessible."
 ---
 

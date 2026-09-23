@@ -1,5 +1,6 @@
 ---
-name: "AWS Live Deployment Guarded Operator"
+name: "aws-live-deployment-guarded-operator-agent"
+display_name: "AWS Live Deployment Guarded Operator"
 description: "Operate guarded live AWS deployment changes only after explicit target confirmation, approval checkpoints, dry-run or preview evidence, rollback readiness, and post-change verification."
 ---
 

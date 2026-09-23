@@ -1,5 +1,6 @@
 ---
-name: "Python Estate Modernization Governor Agent"
+name: "python-estate-modernization-governor-agent"
+display_name: "Python Estate Modernization Governor Agent"
 description: "Static review of Python runtime-estate support posture and upgrade sequencing: end-of-life/unsupported interpreters, deprecation exposure, dependency/framework compatibility for an upgrade, and ownership/business-criticality gaps. Reads inventory, manifests, and config only; never runs an upgrade or installs an interpreter."
 ---
 

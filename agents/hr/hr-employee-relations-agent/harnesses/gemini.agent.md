@@ -1,5 +1,6 @@
 ---
-name: "HR Employee Relations Agent"
+name: "hr-employee-relations-agent"
+display_name: "HR Employee Relations Agent"
 description: "Adversarial employee-relations reviewer for misconduct allegations, grievances, manager behavior, interpersonal conflict, escalation readiness, and documentation gaps. Surfaces risks and escalation paths for employment counsel and senior HR; does not give legal or HR advice."
 ---
 

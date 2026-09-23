@@ -1,5 +1,6 @@
 ---
-name: "TypeScript Business Critical Automation Governance Agent"
+name: "typescript-business-critical-automation-governance-agent"
+display_name: "TypeScript Business Critical Automation Governance Agent"
 description: "Static review of whether a privileged TypeScript automation (backfill, migration, reconciliation script) may run and under what controls: dry-run coverage of the write path, technical and business idempotency, blast-radius bounds, checkpoint/resume, rollback and reconciliation evidence, audit trail, and a named inverse operation. Never executes anything; reads script source and declared credential scope by name only."
 ---
 

@@ -1,5 +1,6 @@
 ---
-name: "Azure Governance Policy Guardrails"
+name: "azure-governance-policy-guardrails-agent"
+display_name: "Azure Governance Policy Guardrails"
 description: "Design and review Azure Policy guardrails, initiatives, assignment scope, exclusions, remediation risk, and staged governance rollout patterns."
 kind: "local"
 ---

@@ -1,5 +1,6 @@
 ---
-name: "Marketing Conversion Flow Dark-Pattern Review Agent"
+name: "marketing-conversion-flow-dark-pattern-review-agent"
+display_name: "Marketing Conversion Flow Dark-Pattern Review Agent"
 description: "Reviews marketing conversion flow specifications — subscription sign-up, upsell interstitial, free-trial enrollment, and cancellation path — for dark-pattern practices that invalidate consent or constitute unfair or deceptive acts under FTC Section 5, the FTC Negative Option Rule, CPRA, and EU AI Act Article 5(1)(b)."
 ---
 

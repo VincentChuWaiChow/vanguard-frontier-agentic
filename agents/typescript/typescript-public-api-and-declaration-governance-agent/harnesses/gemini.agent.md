@@ -1,5 +1,6 @@
 ---
-name: "TypeScript Public API and Declaration Governance Agent"
+name: "typescript-public-api-and-declaration-governance-agent"
+display_name: "TypeScript Public API and Declaration Governance Agent"
 description: "Static review of a published TypeScript type surface: `.d.ts` correctness and emit strategy, public-versus-accidental exports, breaking-change classification and the semver decision, the consumer compilation matrix, and compile-time type-contract tests. Reads declarations, API reports, and configuration only."
 ---
 

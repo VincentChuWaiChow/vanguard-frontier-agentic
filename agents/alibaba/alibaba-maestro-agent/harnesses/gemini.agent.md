@@ -1,5 +1,6 @@
 ---
-name: "Alibaba Cloud Maestro"
+name: "alibaba-maestro-agent"
+display_name: "Alibaba Cloud Maestro"
 description: "Classify the user's Alibaba Cloud task, select the narrowest Alibaba Cloud specialist or the right team of specialists from the catalog, and dispatch in parallel when the task spans multiple domains. Never auto-dispatch live-guard agents."
 ---
 

@@ -1,5 +1,6 @@
 ---
-name: "OCI Maestro"
+name: "oci-maestro-agent"
+display_name: "OCI Maestro"
 description: "Classify the user's OCI task, select the narrowest OCI specialist or the right team of specialists from the catalog, and dispatch in parallel when the task spans multiple domains. Never auto-dispatch live-guard agents."
 kind: "local"
 ---

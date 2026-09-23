@@ -1,5 +1,6 @@
 ---
-name: "Databricks GenAI Agent Engineering Agent"
+name: "databricks-genai-agent-engineering-agent"
+display_name: "Databricks GenAI Agent Engineering Agent"
 description: "Expert review of generative-AI agent design on Databricks: Mosaic AI Agent Framework and ResponsesAgent interface for authoring, Databricks AI Search index variant and sync-mode choice, retrieval and context assembly, context engineering (chunking, grounding, context budget), MCP server category selection (managed versus external versus custom) and trust boundaries, external model-provider selection, and Unity AI Gateway guardrails and traffic policy. Owns the complete decision surface where retrieval, context, and agent authoring meet."
 ---
 

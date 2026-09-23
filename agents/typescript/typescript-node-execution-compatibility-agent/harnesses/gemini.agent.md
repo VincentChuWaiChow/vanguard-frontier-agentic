@@ -1,5 +1,6 @@
 ---
-name: "TypeScript Node Execution Compatibility Agent"
+name: "typescript-node-execution-compatibility-agent"
+display_name: "TypeScript Node Execution Compatibility Agent"
 description: "Static review of whether TypeScript code actually runs on the target Node version and is type-checked somewhere: type-stripping limits and their runtime consequences, proof of a separate `tsc --noEmit` gate, runtime-unsupported syntax, import-extension requirements, and Node version/API gating. Reads source, the run command, CI configuration, and every `tsconfig.json` only."
 ---
 

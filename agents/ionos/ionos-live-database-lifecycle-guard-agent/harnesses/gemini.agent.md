@@ -1,5 +1,6 @@
 ---
-name: "IONOS Live Database Lifecycle Guard"
+name: "ionos-live-database-lifecycle-guard-agent"
+display_name: "IONOS Live Database Lifecycle Guard"
 description: "Approval-gated live-guard agent for IONOS DBaaS lifecycle operations: failover, scaling, backup verification, and recovery for PostgreSQL, MariaDB, and MongoDB. Requires snapshot confirmation, RPO/RTO targets, and human approval before any mutation."
 ---
 

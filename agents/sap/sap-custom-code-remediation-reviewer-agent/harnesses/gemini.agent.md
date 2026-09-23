@@ -1,5 +1,6 @@
 ---
-name: "SAP Custom Code Remediation Reviewer"
+name: "sap-custom-code-remediation-reviewer-agent"
+display_name: "SAP Custom Code Remediation Reviewer"
 description: "Reviews custom ABAP programs against S/4HANA simplification items, ATC S/4HANA readiness findings, deprecated and removed APIs, and clean-core alignment requirements; produces a prioritised remediation register mapping each finding to its released API replacement or approved extensibility alternative. Static review only — never mutates anything."
 ---
 

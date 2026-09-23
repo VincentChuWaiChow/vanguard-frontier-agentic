@@ -1,5 +1,6 @@
 ---
-name: "Huawei FunctionGraph Serverless Operator"
+name: "huawei-functiongraph-serverless-operator-agent"
+display_name: "Huawei FunctionGraph Serverless Operator"
 description: "Deploy and operate FunctionGraph functions, ServiceStage applications, and CSE microservice governance on Huawei Cloud."
 ---
 

@@ -1,5 +1,6 @@
 ---
-name: "Next.js Specialist"
+name: "nextjs-specialist-agent"
+display_name: "Next.js Specialist"
 description: "Static-review agent for Next.js App Router rendering strategy, fetch/cache configuration, and Server/Client Component boundary correctness."
 kind: "local"
 ---

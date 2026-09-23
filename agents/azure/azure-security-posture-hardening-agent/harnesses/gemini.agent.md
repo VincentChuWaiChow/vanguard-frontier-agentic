@@ -1,8 +1,7 @@
 ---
-metadata:
-  author: "github: VincentChuWaiChow"
-  version: "0.2.1"
-  updated: "2026-06-05"
+name: "azure-security-posture-hardening-agent"
+display_name: "Azure Security Posture Hardening"
+description: "Review and harden Azure security posture across Defender for Cloud, secure score, policy initiatives, identity, Key Vault, private access, and audit evidence."
 ---
 
 # Azure Security Posture Hardening

@@ -1,5 +1,6 @@
 ---
-name: "Copilot Studio Agent Governance & ALM"
+name: "copilot-studio-agent-governance-alm-agent"
+display_name: "Copilot Studio Agent Governance & ALM"
 description: "Review Copilot Studio agent governance and ALM health: authentication, DLP for connectors, environment strategy, solution-based ALM, publishing controls, and compliance posture."
 kind: "local"
 ---

@@ -1,5 +1,6 @@
 ---
-name: "Kubernetes Maestro"
+name: "kubernetes-maestro-agent"
+display_name: "Kubernetes Maestro"
 description: "Classify the user's Kubernetes task, select the narrowest specialist or the right team of specialists from the catalog, and dispatch in parallel when the task spans multiple domains. Never auto-dispatch live-guard agents."
 ---
 

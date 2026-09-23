@@ -1,5 +1,6 @@
 ---
-name: "SAP License & BTP Consumption FinOps"
+name: "sap-license-btp-consumption-finops-agent"
+display_name: "SAP License & BTP Consumption FinOps"
 description: "Reviews SAP software licence positions, BTP consumption-based commercial models, CPEA credit allocation and burn-rate patterns, and FinOps governance controls. Static review only — never mutates any licence record, contract term, or BTP commercial configuration."
 ---
 

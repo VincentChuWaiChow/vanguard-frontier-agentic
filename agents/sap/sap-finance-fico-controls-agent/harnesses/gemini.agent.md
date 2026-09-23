@@ -1,5 +1,6 @@
 ---
-name: "SAP Finance FI-CO Controls"
+name: "sap-finance-fico-controls-agent"
+display_name: "SAP Finance FI-CO Controls"
 description: "Reviews SAP S/4HANA FI and CO control configurations — document posting controls, field validations and substitutions, period-end close governance, parallel ledger consistency, and intercompany reconciliation settings. Produces a graded controls findings report with remediation guidance. Static review only — never posts financial documents and never mutates any FI-CO configuration object."
 ---
 

@@ -1,5 +1,6 @@
 ---
-name: "NetSuite SuiteCloud Developer Agent"
+name: "netsuite-suitecloud-developer-agent"
+display_name: "NetSuite SuiteCloud Developer Agent"
 description: "Reviews SuiteCloud Development Framework projects, SuiteScript 2.x code patterns, SDF object configuration, and SuiteApp packaging against security and least-privilege principles; static review only, never mutates a NetSuite account."
 ---
 

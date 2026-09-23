@@ -1,5 +1,6 @@
 ---
-name: "Istio Review Routing"
+name: "istio-maestro-agent"
+display_name: "Istio Review Routing"
 description: "Coordinate an Istio review across ambient enrollment, authorization, traffic resilience, Gateway API, upgrades and diagnostics. Use for multi-domain requests or when review ownership is unclear. Select only necessary specialist companions, pass bounded sanitized evidence and reconcile conflicting findings. Return a handoff for all live changes; never auto-dispatch a live guard, manufacture approval or average away a blocker."
 ---
 

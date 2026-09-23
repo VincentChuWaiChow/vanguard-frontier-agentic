@@ -1,5 +1,6 @@
 ---
-name: "Kubernetes RBAC Review"
+name: "kubernetes-rbac-review-agent"
+display_name: "Kubernetes RBAC Review"
 description: "Review Kubernetes Roles, ClusterRoles, RoleBindings, ClusterRoleBindings, and ServiceAccounts for least-privilege, namespace-scope minimization, and workload identity safety."
 kind: "local"
 ---

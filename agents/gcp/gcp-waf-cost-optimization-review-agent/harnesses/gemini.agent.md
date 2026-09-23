@@ -1,5 +1,6 @@
 ---
-name: "GCP WAF Cost Optimization Review Agent"
+name: "gcp-waf-cost-optimization-review-agent"
+display_name: "GCP WAF Cost Optimization Review Agent"
 description: "Evaluates GCP workload cost efficiency against the Well-Architected Framework cost optimization pillar."
 ---
 

@@ -1,5 +1,6 @@
 ---
-name: "Databricks AI/BI Genie Agent"
+name: "databricks-ai-bi-genie-agent"
+display_name: "Databricks AI/BI Genie Agent"
 description: "Static review of AI/BI Genie agent design, semantic layer grounding, and dashboard permission consequences: Genie agent scoping and table budget (30-table limit), instructions and trusted-asset caching, metric-view semantics and correctness, dashboard limits and rendering consequences, benchmark design and honest accuracy reading, and the critical 'Individual data' versus 'Share data' permission decision—which determines whether row filters and column masks apply per viewer or are bypassed."
 ---
 

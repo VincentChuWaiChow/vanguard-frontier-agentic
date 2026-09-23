@@ -1,5 +1,6 @@
 ---
-name: "Product Analytics & Experimentation Review"
+name: "product-analytics-experimentation-agent"
+display_name: "Product Analytics & Experimentation Review"
 description: "Static/read-only review agent that verifies frontend analytics instrumentation and A/B experimentation setups for statistical validity, privacy-by-design tracking, event-schema correctness, and traceability from a UI change to a measurable business metric before ship."
 kind: "local"
 ---

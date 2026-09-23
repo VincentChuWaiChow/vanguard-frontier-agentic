@@ -1,5 +1,6 @@
 ---
-name: "NVIDIA Agentic AI Platform Review"
+name: "nvidia-agentic-ai-platform-review-agent"
+display_name: "NVIDIA Agentic AI Platform Review"
 description: "Review agentic-AI platforms on the NVIDIA stack per NCP-AAI — NeMo Agent Toolkit, signed tool definitions, tool-call sandbox and approval gates, agent memory partitioning, audit logging."
 ---
 

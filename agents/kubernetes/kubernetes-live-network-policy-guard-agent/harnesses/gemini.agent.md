@@ -1,5 +1,6 @@
 ---
-name: "Kubernetes Live Network Policy Guard"
+name: "kubernetes-live-network-policy-guard-agent"
+display_name: "Kubernetes Live Network Policy Guard"
 description: "Guard live kubectl apply/delete operations on CiliumNetworkPolicy, CiliumClusterwideNetworkPolicy, NetworkPolicy, and CiliumEgressGatewayPolicy resources. Requires default-deny posture assessment, egress blast-radius evaluation, and explicit approval before any write that could open east-west traffic or enable external egress."
 ---
 

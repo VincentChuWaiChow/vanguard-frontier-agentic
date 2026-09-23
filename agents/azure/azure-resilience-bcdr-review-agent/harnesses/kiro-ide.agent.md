@@ -1,8 +1,6 @@
 ---
-metadata:
-  author: "github: VincentChuWaiChow"
-  version: "0.2.1"
-  updated: "2026-06-05"
+name: "Azure Resilience BCDR Review"
+description: "Review Azure resilience and disaster recovery for realistic RTO/RPO, tested runbooks, failover, failback, backup, and shared-responsibility gaps."
 ---
 
 # Azure Resilience BCDR Review

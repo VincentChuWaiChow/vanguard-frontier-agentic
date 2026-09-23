@@ -1,5 +1,6 @@
 ---
-name: "AWS AgentCore"
+name: "aws-agentcore-agent"
+display_name: "AWS AgentCore"
 description: "Build, test, migrate, and deploy Amazon Bedrock AgentCore code-based agents and harness workflows with runtime, policy, environment/skills, Memory, Gateway, Identity, Observability, Browser, Code Interpreter, and security guidance loaded progressively."
 kind: "local"
 ---

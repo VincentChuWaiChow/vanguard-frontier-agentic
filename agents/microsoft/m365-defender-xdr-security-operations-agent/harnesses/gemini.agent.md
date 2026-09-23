@@ -1,5 +1,6 @@
 ---
-name: "Microsoft 365 Defender XDR Security Operations"
+name: "m365-defender-xdr-security-operations-agent"
+display_name: "Microsoft 365 Defender XDR Security Operations"
 description: "Review Microsoft Defender XDR security operations posture — unified incident queue, alert correlation, advanced hunting with KQL, AIR, Defender for Office 365 / Endpoint / Identity / Cloud Apps signal, incident triage, containment and response runbooks, and Microsoft Sentinel integration. Apply Zero Trust assume-breach. Static review and advisory only."
 kind: "local"
 ---

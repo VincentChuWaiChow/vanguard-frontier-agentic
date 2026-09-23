@@ -1,5 +1,6 @@
 ---
-name: "Istio Ambient Mesh Review"
+name: "istio-ambient-mesh-review-agent"
+display_name: "Istio Ambient Mesh Review"
 description: "Review Istio ambient enrollment, ztunnel versus waypoint enforcement, mixed sidecar/ambient paths and migration boundaries from rendered manifests and supplied sanitized evidence. Use for missing waypoints, L7 policies on ztunnel, identity changes across waypoints, ingress bypass questions, namespace enrollment claims or sidecar-to-ambient transitions. Do not collect live evidence or mutate a cluster."
 ---
 

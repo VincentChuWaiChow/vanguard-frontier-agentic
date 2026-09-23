@@ -1,5 +1,6 @@
 ---
-name: "GCP Security Posture Hardening"
+name: "gcp-security-posture-hardening-agent"
+display_name: "GCP Security Posture Hardening"
 description: "Review GCP security posture via Security Command Center findings, CIS GCP Benchmark gaps, org policy enforcement baseline, Assured Workloads controls, and CSPM recommendations."
 ---
 

@@ -1,5 +1,6 @@
 ---
-name: "Scaleway Maestro"
+name: "scaleway-maestro-agent"
+display_name: "Scaleway Maestro"
 description: "Router agent that classifies Scaleway tasks and delegates to the narrowest specialist for IAM, cost, Kapsule, networking, or live-guard operations."
 ---
 

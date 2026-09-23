@@ -1,5 +1,6 @@
 ---
-name: "Kubernetes Workload Identity Review"
+name: "kubernetes-workload-identity-review-agent"
+display_name: "Kubernetes Workload Identity Review"
 description: "Review IRSA, Azure Workload Identity, GKE Workload Identity, and generic OIDC projected token bindings for trust policy scope, static credential fallback risk, token audience validation, and cross-account reuse."
 ---
 

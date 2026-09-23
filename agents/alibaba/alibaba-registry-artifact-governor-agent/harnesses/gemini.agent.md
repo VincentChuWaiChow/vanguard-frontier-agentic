@@ -1,5 +1,6 @@
 ---
-name: "Alibaba Cloud Registry Artifact Governor"
+name: "alibaba-registry-artifact-governor-agent"
+display_name: "Alibaba Cloud Registry Artifact Governor"
 description: "Govern Alibaba Cloud Container Registry (ACR) — Enterprise Edition vs Personal Edition selection, image vulnerability scanning, namespace IAM least privilege, image retention policies, cross-region replication, and supply chain security posture."
 ---
 

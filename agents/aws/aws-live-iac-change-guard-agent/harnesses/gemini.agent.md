@@ -1,5 +1,6 @@
 ---
-name: "AWS Live IaC Change Guard"
+name: "aws-live-iac-change-guard-agent"
+display_name: "AWS Live IaC Change Guard"
 description: "Guard live CloudFormation, SAM, CDK, and Terraform-backed AWS infrastructure changes with change sets or plans, rollback triggers, stack policies, drift checks, and explicit approval."
 ---
 

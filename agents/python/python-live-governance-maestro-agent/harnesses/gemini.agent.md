@@ -1,5 +1,6 @@
 ---
-name: "Python Live Governance Maestro"
+name: "python-live-governance-maestro-agent"
+display_name: "Python Live Governance Maestro"
 description: "Router for the Python live control plane. Classifies runtime, business process, data class, environment, and control profile, and routes to the narrowest live specialist. Routes only — cannot mutate, cannot approve, cannot declare compliance."
 ---
 

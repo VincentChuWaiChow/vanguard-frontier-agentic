@@ -1,5 +1,6 @@
 ---
-name: "Azure Live App Service Slot Swap Guard"
+name: "azure-live-app-service-slot-swap-guard-agent"
+display_name: "Azure Live App Service Slot Swap Guard"
 description: "Guard App Service slot swaps by auditing sticky settings, warmup readiness, swap-with-preview evidence, and rollback posture before final swap commit."
 ---
 

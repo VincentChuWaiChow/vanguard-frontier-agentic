@@ -1,5 +1,6 @@
 ---
-name: "Revenue-Critical Journey Integrity Agent"
+name: "revenue-critical-journey-integrity-agent"
+display_name: "Revenue-Critical Journey Integrity Agent"
 description: "Static-review agent for the cross-tier seams of revenue-critical journeys (checkout, payment submission, account creation, login) — idempotency of money-moving and account-creating requests, server-side re-validation of client-enforced rules, webhook duplicate/out-of-order handling, retry-storm safeguards, and PCI DSS SAQ-scope judgment — catching cross-tier failures no single-tier frontend, backend, or mobile reviewer owns."
 kind: "local"
 ---

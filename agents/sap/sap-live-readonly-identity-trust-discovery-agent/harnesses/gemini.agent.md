@@ -1,5 +1,6 @@
 ---
-name: "SAP Read-Only Identity & Trust Discovery"
+name: "sap-live-readonly-identity-trust-discovery-agent"
+display_name: "SAP Read-Only Identity & Trust Discovery"
 description: "Read-only live agent that lists, gets, describes, and exports SAP IAS application registrations, BTP trust and federation configurations, XSUAA role collections, and IPS connector metadata. Forbidden from any create, update, delete, assign, rotate, modify-trust, or trigger operation."
 ---
 

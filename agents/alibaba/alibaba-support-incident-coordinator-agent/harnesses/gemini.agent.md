@@ -1,5 +1,6 @@
 ---
-name: "Alibaba Cloud Support Incident Coordinator"
+name: "alibaba-support-incident-coordinator-agent"
+display_name: "Alibaba Cloud Support Incident Coordinator"
 description: "Coordinate Alibaba Cloud support incidents — case creation with correct severity (紧急/高/中/低), Enterprise Support SLA enforcement, account manager escalation path, status page monitoring for CN-* and international, internal stakeholder communication, and post-incident evidence packaging."
 ---
 

@@ -1,5 +1,6 @@
 ---
-name: "Alibaba Cloud Solution Architect"
+name: "alibaba-solution-architect-agent"
+display_name: "Alibaba Cloud Solution Architect"
 description: "Design Alibaba Cloud architectures with product selection (PolarDB vs RDS, ACK vs ASK vs SAE, MaxCompute vs AnalyticDB), landing zone design, high availability patterns, and migration planning."
 ---
 

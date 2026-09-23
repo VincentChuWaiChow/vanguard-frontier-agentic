@@ -1,5 +1,6 @@
 ---
-name: "GCP IaC Change Safety Review"
+name: "gcp-iac-change-safety-review-agent"
+display_name: "GCP IaC Change Safety Review"
 description: "Review Terraform and Deployment Manager changes targeting GCP — blast radius analysis, destroy-operation detection, cross-project impact, state file conflicts, org policy drift, and rollback plan completeness."
 ---
 

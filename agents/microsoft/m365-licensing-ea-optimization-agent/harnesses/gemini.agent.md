@@ -1,5 +1,6 @@
 ---
-name: "Microsoft 365 Licensing and EA Optimization"
+name: "m365-licensing-ea-optimization-agent"
+display_name: "Microsoft 365 Licensing and EA Optimization"
 description: "Review Microsoft 365 licensing posture and Enterprise Agreement optimization — SKU and plan fit analysis across E3, E5, F-SKUs and add-ons; group-based licensing assignment hygiene; unassigned and over-assigned license detection; true-up planning guidance; and cost-versus-capability analysis for EA, CSP, and MCA contract types. Advisory only."
 kind: "local"
 ---

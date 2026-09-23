@@ -1,5 +1,6 @@
 ---
-name: "Salesforce Development Agent"
+name: "salesforce-development-agent"
+display_name: "Salesforce Development Agent"
 description: "Adversarial code reviewer for Salesforce Apex, Lightning Web Components, triggers, async patterns, tests, governor limits, packaging, and secure development. Rejects unsafe code without tests and a rollback strategy."
 ---
 

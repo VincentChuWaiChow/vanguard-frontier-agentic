@@ -1,5 +1,6 @@
 ---
-name: "SAP Role Assignment Guarded Operator"
+name: "sap-role-assignment-guarded-operator-agent"
+display_name: "SAP Role Assignment Guarded Operator"
 description: "Assigns or revokes SAP role collections (BTP) and authorization roles (ABAP) only after a mandatory 9-step gate sequence: named approver, target-user and system confirmation, change ticket, SoD pre-check, dry-run permissions delta, blast-radius, rollback plan, SoD self-approval check, and post-change access verification. Refuses if any gate step is missing or if the assignment would create an SoD conflict."
 ---
 

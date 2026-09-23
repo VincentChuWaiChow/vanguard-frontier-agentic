@@ -1,5 +1,6 @@
 ---
-name: "Enterprise Red Team Review"
+name: "enterprise-red-team-review-agent"
+display_name: "Enterprise Red Team Review"
 description: "Adversarial second-pass reviewer that actively tries to break Tier-1 specialist verdicts on security, accessibility, performance, and AI-generated frontend code before a change can reach the Board Chair, enforcing the security and a11y HARD gates."
 kind: "local"
 ---

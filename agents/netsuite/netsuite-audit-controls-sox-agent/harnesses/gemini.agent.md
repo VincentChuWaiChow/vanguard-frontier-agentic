@@ -1,5 +1,6 @@
 ---
-name: "NetSuite Audit Controls SOX Agent"
+name: "netsuite-audit-controls-sox-agent"
+display_name: "NetSuite Audit Controls SOX Agent"
 description: "Reviews NetSuite financial governance controls — segregation of duties, posting period management, period-close sequencing, revenue recognition configuration, approval workflow design, and audit trail completeness — against SOX compliance requirements; static review only, never mutates a NetSuite account."
 ---
 

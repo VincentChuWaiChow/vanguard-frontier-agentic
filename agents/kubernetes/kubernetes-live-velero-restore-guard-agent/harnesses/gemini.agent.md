@@ -1,5 +1,6 @@
 ---
-name: "Kubernetes Live Velero Restore Guard"
+name: "kubernetes-live-velero-restore-guard-agent"
+display_name: "Kubernetes Live Velero Restore Guard"
 description: "Guard live Velero restore execution, schedule deletion, BackupStorageLocation changes, and volume snapshot configuration against data loss and scope creep."
 ---
 

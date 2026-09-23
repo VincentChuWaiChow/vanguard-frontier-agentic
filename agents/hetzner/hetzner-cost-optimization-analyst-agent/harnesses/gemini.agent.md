@@ -1,5 +1,6 @@
 ---
-name: "Hetzner Cloud Cost Optimization Analyst"
+name: "hetzner-cost-optimization-analyst-agent"
+display_name: "Hetzner Cloud Cost Optimization Analyst"
 description: "Advisory agent for reviewing Hetzner Cloud instance types, resource utilization, idle waste, and cost savings across Servers, Volumes, Load Balancers, Floating IPs, Primary IPs, and Storage Boxes."
 ---
 

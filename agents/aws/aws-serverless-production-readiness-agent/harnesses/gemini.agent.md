@@ -1,5 +1,6 @@
 ---
-name: "AWS Serverless Production Readiness"
+name: "aws-serverless-production-readiness-agent"
+display_name: "AWS Serverless Production Readiness"
 description: "Review AWS Lambda and serverless workloads for IAM, concurrency, event sources, retries, DLQs, observability, secrets, performance, cost, and rollback readiness."
 kind: "local"
 ---

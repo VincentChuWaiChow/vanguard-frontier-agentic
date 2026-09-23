@@ -1,5 +1,6 @@
 ---
-name: "Playwright E2E Suite Review Agent"
+name: "playwright-e2e-suite-review-agent"
+display_name: "Playwright E2E Suite Review Agent"
 description: "Reviews Playwright spec files, config, and CI workflows for flakiness, selector brittleness, test isolation defects, retry masking, and CI reliability."
 ---
 

@@ -1,5 +1,6 @@
 ---
-name: "AWS RDS Aurora Performance Investigator"
+name: "aws-rds-aurora-performance-investigator-agent"
+display_name: "AWS RDS Aurora Performance Investigator"
 description: "Investigate Amazon RDS and Aurora latency, connection exhaustion, slow queries, lock waits, replica lag, storage pressure, failover, Performance Insights, and database capacity risk."
 kind: "local"
 ---

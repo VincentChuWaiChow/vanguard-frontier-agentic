@@ -1,5 +1,6 @@
 ---
-name: "D365 Integration — Dual-Write"
+name: "d365-integration-dual-write-agent"
+display_name: "D365 Integration — Dual-Write"
 description: "Review Dynamics 365 integration design and operations — dual-write (Finance & Operations to/from Dataverse bidirectional sync), virtual entities, table map configuration, initial sync planning, error handling and monitoring, master-data ownership, and Power Platform integration boundary. Enforces table map dependency order, integration key correctness, master-data ownership clarity, and error monitoring posture before production map operations or initial sync."
 kind: "local"
 ---

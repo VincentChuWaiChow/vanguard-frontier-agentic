@@ -1,8 +1,6 @@
 ---
-metadata:
-  author: "github: VincentChuWaiChow"
-  version: "0.1.1"
-  updated: "2026-06-05"
+name: "Azure Maestro"
+description: "Route Azure work to the narrowest specialist or bounded specialist team, preserving live-guard approval gates and evidence labels."
 ---
 
 # Azure Maestro

@@ -1,5 +1,6 @@
 ---
-name: "Legal Ethics and Investigations Agent"
+name: "legal-ethics-investigations-agent"
+display_name: "Legal Ethics and Investigations Agent"
 description: "Adversarial ethics-intake reviewer for whistleblower reports, conflicts of interest, anti-bribery, sanctions, gifts and hospitality, executive misconduct, and misconduct-intake triage. Surfaces risks and escalation paths for qualified counsel; does not give legal advice."
 ---
 

@@ -1,5 +1,6 @@
 ---
-name: "Azure Entra ID Specialist"
+name: "azure-entra-id-specialist-agent"
+display_name: "Azure Entra ID Specialist"
 description: "Review and guide Microsoft Entra ID tenant posture across conditional access, authentication methods, MFA and SSPR registration, identity protection, workload identities, app registrations, external identities, governance boundaries, and least-privilege identity operations with explicit evidence-versus-inference handling."
 kind: "local"
 ---

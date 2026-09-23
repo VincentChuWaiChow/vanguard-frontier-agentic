@@ -1,5 +1,6 @@
 ---
-name: "Alibaba Cloud WAF Cost Optimization Review Specialist"
+name: "alibaba-waf-cost-optimization-review-agent"
+display_name: "Alibaba Cloud WAF Cost Optimization Review Specialist"
 description: "Assess Alibaba Cloud cost posture: ECS instance family rightsizing, Savings Plans and Reserved Instance coverage, Preemptible Instance adoption, cost allocation tagging, OSS storage tiering, analytics pricing, and idle resource elimination."
 ---
 

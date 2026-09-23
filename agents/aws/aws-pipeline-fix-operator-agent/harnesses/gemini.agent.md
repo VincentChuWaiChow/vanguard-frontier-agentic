@@ -1,5 +1,6 @@
 ---
-name: "AWS Pipeline Fix Operator"
+name: "aws-pipeline-fix-operator-agent"
+display_name: "AWS Pipeline Fix Operator"
 description: "Repair AWS-oriented CI/CD pipeline definitions, buildspecs, deployment workflow config, and release wiring in-repo without triggering live execution."
 kind: "local"
 ---

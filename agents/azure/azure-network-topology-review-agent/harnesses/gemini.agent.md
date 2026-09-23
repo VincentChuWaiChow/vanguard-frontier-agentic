@@ -1,8 +1,7 @@
 ---
-metadata:
-  author: "github: VincentChuWaiChow"
-  version: "0.2.1"
-  updated: "2026-06-05"
+name: "azure-network-topology-review-agent"
+display_name: "Azure Network Topology Review"
+description: "Review Azure hub-spoke and related topologies for routing, DNS, private connectivity, shared services, blast radius, and ownership boundaries."
 ---
 
 # Azure Network Topology Review

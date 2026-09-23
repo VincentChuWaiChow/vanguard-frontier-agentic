@@ -1,5 +1,6 @@
 ---
-name: "Python Free-Threading and Parallelism Agent"
+name: "python-free-threading-parallelism-agent"
+display_name: "Python Free-Threading and Parallelism Agent"
 description: "Static review of Python free-threaded (no-GIL) adoption: invalidated GIL thread-safety assumptions, shared-state races, C-extension compatibility, and synchronization needs — producing an evidence-based adopt / pilot / defer verdict. Reads source, build config, and extension manifests only; never builds or runs the free-threaded interpreter."
 ---
 

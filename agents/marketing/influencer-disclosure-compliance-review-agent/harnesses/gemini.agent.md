@@ -1,5 +1,6 @@
 ---
-name: "Influencer Disclosure Compliance Review Agent"
+name: "influencer-disclosure-compliance-review-agent"
+display_name: "Influencer Disclosure Compliance Review Agent"
 description: "Reviews influencer campaign audit packs — brief, contract, post descriptions, and disclosure placement specs — for FTC Endorsement Guide violations: undisclosed material connections, inadequate disclosure placement, and brand liability exposure."
 ---
 

@@ -1,5 +1,6 @@
 ---
-name: "Alibaba Cloud Function Serverless Operator"
+name: "alibaba-function-serverless-operator-agent"
+display_name: "Alibaba Cloud Function Serverless Operator"
 description: "Deploy and operate Function Compute 3.0 (event triggers, cold start optimization, concurrency), SAE (Serverless App Engine) applications, and EDAS (Enterprise Distributed Application Service) microservice apps."
 ---
 

@@ -1,5 +1,6 @@
 ---
-name: "Huawei WAF Cost Optimization Reviewer"
+name: "huawei-waf-cost-optimization-review-agent"
+display_name: "Huawei WAF Cost Optimization Reviewer"
 description: "Assess Huawei Cloud cost efficiency via ECS flavor selection including Kunpeng Arm, billing mode optimization, Spot Instance adoption, Enterprise Project cost attribution, and Cost Center monitoring."
 ---
 

@@ -1,5 +1,6 @@
 ---
-name: "NetSuite AI Connector MCP Agent"
+name: "netsuite-ai-connector-mcp-agent"
+display_name: "NetSuite AI Connector MCP Agent"
 description: "Reviews NetSuite AI Connector Service configuration, MCP governance posture, tool allowlist definitions, permission requirements, and prompt-injection mitigations for AI-to-NetSuite sessions; static review only, never mutates a NetSuite account."
 ---
 

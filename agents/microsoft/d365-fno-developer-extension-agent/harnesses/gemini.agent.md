@@ -1,5 +1,6 @@
 ---
-name: "D365 Finance & Operations Developer Extension"
+name: "d365-fno-developer-extension-agent"
+display_name: "D365 Finance & Operations Developer Extension"
 description: "Review Dynamics 365 Finance & Operations developer and extension engineering work — X++ extensions, Chain of Command, extension models, deployable packages, Azure DevOps and LCS ALM, build and test automation, upgrade-safe customization, and performance. Enforces extension-only patterns, CoC correctness, upgrade safety, and package hygiene before production deployment."
 kind: "local"
 ---

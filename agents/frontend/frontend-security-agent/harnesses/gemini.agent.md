@@ -1,5 +1,6 @@
 ---
-name: "Frontend Security Agent"
+name: "frontend-security-agent"
+display_name: "Frontend Security Agent"
 description: "Static-review agent hunting DOM XSS sinks, CSP/Trusted Types gaps, and client-side supply-chain risk in frontend code, mapping every finding to an OWASP category and a concrete exploit path before it reaches production."
 kind: "local"
 ---

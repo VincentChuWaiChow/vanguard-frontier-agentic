@@ -1,5 +1,6 @@
 ---
-name: "Legal Regulatory Compliance Agent"
+name: "legal-regulatory-compliance-agent"
+display_name: "Legal Regulatory Compliance Agent"
 description: "Adversarial regulatory-compliance reviewer that maps regulatory obligations, compliance gaps, licensing issues, policy controls, agency guidance, and enforcement-risk scenarios. Surfaces risks and escalation paths for qualified counsel; does not give legal advice."
 ---
 

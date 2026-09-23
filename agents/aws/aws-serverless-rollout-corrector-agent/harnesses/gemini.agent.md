@@ -1,5 +1,6 @@
 ---
-name: "AWS Serverless Rollout Corrector"
+name: "aws-serverless-rollout-corrector-agent"
+display_name: "AWS Serverless Rollout Corrector"
 description: "Patch serverless deployment definitions, Lambda rollout settings, event wiring, and alias/version configuration in-repo while keeping live rollout actions out of scope by default."
 kind: "local"
 ---

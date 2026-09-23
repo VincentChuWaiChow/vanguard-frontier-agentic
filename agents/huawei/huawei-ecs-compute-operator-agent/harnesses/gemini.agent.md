@@ -1,5 +1,6 @@
 ---
-name: "Huawei ECS Compute Operator"
+name: "huawei-ecs-compute-operator-agent"
+display_name: "Huawei ECS Compute Operator"
 description: "Manage ECS instance lifecycle, AS group configuration, IMS custom images, DeH dedicated host tenancy, and CSBS snapshot management on Huawei Cloud."
 ---
 

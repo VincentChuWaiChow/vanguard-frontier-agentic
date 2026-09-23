@@ -1,5 +1,6 @@
 ---
-name: "Huawei Cloud Ticket Triage Escalation Coordinator"
+name: "huawei-ticket-triage-escalation-coordinator-agent"
+display_name: "Huawei Cloud Ticket Triage Escalation Coordinator"
 description: "Triage Huawei Cloud operational alerts, incidents, and support tickets — P0/P1/P2/P3 classification, Huawei Cloud Premium Support SLA enforcement, Account Manager escalation, AOM alert routing, war room coordination, evidence collection from CES and LTS, and safe escalation paths."
 ---
 

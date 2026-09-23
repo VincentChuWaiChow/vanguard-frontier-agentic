@@ -1,5 +1,6 @@
 ---
-name: "Java JPA/Hibernate Performance Agent"
+name: "java-jpa-hibernate-performance-agent"
+display_name: "Java JPA/Hibernate Performance Agent"
 description: "Static review of JPA/Hibernate data access for fetch-strategy correctness and reliability — N+1 exposure, JOIN FETCH vs @EntityGraph vs @BatchSize vs DTO projection, LazyInitializationException and open-in-view misuse, pagination-with-fetch cartesian products, and JDBC connection-pool (HikariCP) sizing. Reads source and mapping only."
 ---
 

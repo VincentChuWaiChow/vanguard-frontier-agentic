@@ -15,13 +15,29 @@ tests/fixtures/<provider>-maestro-routing/
 ```
 
 `tests/_generate_maestro_routing_fixtures.py` mines `catalog/agents.json`
-to produce a seed taxonomy and a baseline fixture set for every provider.
-Re-run it after adding agents:
+to produce a seed taxonomy and a baseline fixture set per provider. Re-run it
+after adding agents:
 
 ```
 npm run maestro-routing:write
 npm run validate:maestro-routing
 ```
+
+Not every provider is generated. Providers whose fixtures or taxonomy were
+hand-curated, hand-tuned, or written by another script are listed in the
+generator's `skip` set with the reason, and are maintained by hand. The
+generator refuses to write — and changes nothing — when regeneration would
+change a reviewed expectation, delete a reviewed fixture, or leave a reviewed
+fixture that no longer routes to its answer. A fixture renumbered because an
+agent was inserted before it, with the same task and answer, is reported but
+not blocked.
+
+A catalog agent's `provider` does not always name the maestro that routes it
+(`finops-kubernetes-rightsizer-agent` is catalogued under kubernetes but routed
+by finops). The generator therefore leaves out any agent that another
+maestro's committed `taxonomy.json` routes and this provider's does not, and
+reports it. To route such an agent from a second maestro as well, add it to
+that maestro's taxonomy by hand.
 
 ## Stress-test categories
 
@@ -49,5 +65,5 @@ The grader provides three structural guarantees:
 ## Numbers (current)
 
 - <!-- count:global:maestros -->35<!-- /count --> maestros covered, one routing fixture directory each
-- 357 scenarios validated
-- 13th `npm run validate` gate
+- <!-- count:global:scenarios -->840<!-- /count --> scenarios validated
+- enforced by `validate:maestro-routing`, one of the <!-- count:global:gates -->29<!-- /count --> `npm run validate` gates

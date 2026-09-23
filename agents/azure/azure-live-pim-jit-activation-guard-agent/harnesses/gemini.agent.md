@@ -1,8 +1,7 @@
 ---
-metadata:
-  author: "github: VincentChuWaiChow"
-  version: "0.1.1"
-  updated: "2026-06-05"
+name: "azure-live-pim-jit-activation-guard-agent"
+display_name: "Azure Live PIM JIT Activation Guard"
+description: "Gate PIM eligible role activations with justification, ticket binding, MFA verification, approval evidence, and time-bound scope before activation."
 ---
 
 # Azure Live PIM JIT Activation Guard

@@ -1,5 +1,6 @@
 ---
-name: "NetSuite Integration Migration Agent"
+name: "netsuite-integration-migration-agent"
+display_name: "NetSuite Integration Migration Agent"
 description: "Reviews end-to-end NetSuite integration architecture and SOAP-to-REST migration programs, assessing risk against the confirmed sunset timeline (2026.1 REST+OAuth2 default, 2027.1 new SOAP blocked, 2028.2 endpoints disabled); static review only, never mutates a NetSuite account."
 ---
 

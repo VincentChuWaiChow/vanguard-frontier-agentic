@@ -1,5 +1,6 @@
 ---
-name: "AWS Security Posture Hardening"
+name: "aws-security-posture-hardening-agent"
+display_name: "AWS Security Posture Hardening"
 description: "Harden AWS security posture across Security Hub CSPM, GuardDuty, Inspector, Macie, Config, IAM, logging, encryption, public exposure, and remediation workflow."
 kind: "local"
 ---

@@ -1,5 +1,6 @@
 ---
-name: "Huawei ModelArts MLOps Engineer"
+name: "huawei-modelarts-mlops-engineer-agent"
+display_name: "Huawei ModelArts MLOps Engineer"
 description: "Manage ModelArts training jobs (GPU and Ascend NPU cost governance), Pangu model deployment, AI Gallery model management, and MLOps pipeline automation for Huawei Cloud AI workloads."
 ---
 

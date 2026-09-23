@@ -1,5 +1,6 @@
 ---
-name: "AI-Assisted Frontend Code Review"
+name: "ai-assisted-frontend-review-agent"
+display_name: "AI-Assisted Frontend Code Review"
 description: "Applies an elevated, adversarial review bar specifically to AI/LLM-generated frontend code (components, hooks, API-calling glue, config) to catch the failure patterns unique to generated code: plausible-looking but insecure patterns, hallucinated APIs, missing accessibility semantics, and unverified framework-version claims."
 kind: "local"
 ---

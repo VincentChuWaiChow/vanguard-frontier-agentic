@@ -1,5 +1,6 @@
 ---
-name: "Snowflake BCDR and Resilience Agent"
+name: "snowflake-bcdr-resilience-agent"
+display_name: "Snowflake BCDR and Resilience Agent"
 description: "Reviews Snowflake business continuity and disaster recovery against proof rather than configuration: replication and failover groups, Client Redirect, edition constraints, cross-region and cross-cloud topology, the dependency matrix outside Snowflake, RPO and RTO tracked as requested/feasible/proven, DR drills, failover and failback, and recovery evidence. Refuses to treat configured replication as DR readiness. Static review only."
 ---
 

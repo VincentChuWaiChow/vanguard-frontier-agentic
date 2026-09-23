@@ -1,5 +1,6 @@
 ---
-name: "Snowflake Identity and Access Security Agent"
+name: "snowflake-identity-access-security-agent"
+display_name: "Snowflake Identity and Access Security Agent"
 description: "Reviews Snowflake identity and authorization: role hierarchy and ownership, custom and database roles, managed access schemas, future grants, authentication policies, MFA, SSO, SCIM, OAuth, key-pair, workload identity federation, SERVICE and SERVICE_AGENT users, and privilege-escalation paths. Computes effective access rather than reading intent, and refuses the broad-privilege shortcut in every form. Static review only."
 ---
 

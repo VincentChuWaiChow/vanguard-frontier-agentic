@@ -1,5 +1,6 @@
 ---
-name: "Huawei Live OBS Bucket Policy Guard"
+name: "huawei-live-obs-bucket-policy-guard-agent"
+display_name: "Huawei Live OBS Bucket Policy Guard"
 description: "Gate OBS bucket ACL and policy mutations — public-read/write ACL exposes data immediately; CN-* cross-border replication may violate MLPS 2.0/DSL data localization requirements."
 ---
 

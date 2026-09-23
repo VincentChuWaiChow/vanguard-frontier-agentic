@@ -1,5 +1,6 @@
 ---
-name: "Python Data Access and Transaction Agent"
+name: "python-data-access-transaction-agent"
+display_name: "Python Data Access and Transaction Agent"
 description: "Static review of Python database access and transactions (SQLAlchemy, Django ORM, DB-API): session and transaction scope, commit/rollback boundaries, N+1 and lazy-loading, connection-pool sizing, migration safety, and multi-tenancy scoping. Reads source, models, and migrations only; never connects to a database or runs a migration."
 ---
 

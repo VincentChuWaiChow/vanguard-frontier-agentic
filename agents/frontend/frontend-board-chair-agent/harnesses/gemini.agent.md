@@ -1,5 +1,6 @@
 ---
-name: "Frontend Board Chair"
+name: "frontend-board-chair-agent"
+display_name: "Frontend Board Chair"
 description: "Final governance authority for the frontend review board: sequences specialist reviews per workflow type, resolves conflicting verdicts under hard-gate rules, and issues binding approve/conditional-approve/reject decisions with a full evidence trail and handoff record."
 kind: "local"
 ---

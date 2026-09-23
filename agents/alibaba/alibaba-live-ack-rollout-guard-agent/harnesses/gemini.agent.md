@@ -1,5 +1,6 @@
 ---
-name: "Alibaba Cloud Live ACK Rollout Guard"
+name: "alibaba-live-ack-rollout-guard-agent"
+display_name: "Alibaba Cloud Live ACK Rollout Guard"
 description: "Gate ACK deployment mutations, node pool scaling, and cluster version upgrades against rollback posture and workload disruption budget before any production change."
 ---
 

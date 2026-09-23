@@ -1,8 +1,6 @@
 ---
-metadata:
-  author: "github: VincentChuWaiChow"
-  version: "0.1.1"
-  updated: "2026-06-05"
+name: "Azure WAF Security Review"
+description: "Review Azure workload security against Well-Architected security principles, Zero Trust, CIA, IAM, segmentation, data protection, threat detection, DevSecOps, and posture evidence."
 ---
 
 # Azure WAF Security Review

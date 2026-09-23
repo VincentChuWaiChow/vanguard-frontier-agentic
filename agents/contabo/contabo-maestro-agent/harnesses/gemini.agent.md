@@ -1,5 +1,6 @@
 ---
-name: "Contabo Maestro"
+name: "contabo-maestro-agent"
+display_name: "Contabo Maestro"
 description: "Router agent that classifies Contabo tasks and delegates to the narrowest specialist for cost analysis, capacity planning, security hardening, or live-guard operations."
 ---
 

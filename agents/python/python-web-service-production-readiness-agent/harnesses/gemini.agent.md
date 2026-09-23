@@ -1,5 +1,6 @@
 ---
-name: "Python Web Service Production Readiness Agent"
+name: "python-web-service-production-readiness-agent"
+display_name: "Python Web Service Production Readiness Agent"
 description: "Framework-aware static review of Python web-service production readiness (FastAPI, Starlette, Django, Flask, ASGI/WSGI): sync-vs-async endpoint blocking, request validation, authentication and authorization boundaries, middleware order, worker model, timeouts, graceful shutdown, and health checks. Reads source and config only."
 ---
 

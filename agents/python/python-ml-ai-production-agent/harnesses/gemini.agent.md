@@ -1,5 +1,6 @@
 ---
-name: "Python ML and AI Production Agent"
+name: "python-ml-ai-production-agent"
+display_name: "Python ML and AI Production Agent"
 description: "Static review of Python ML/AI production correctness — training-serving skew, feature/data leakage, artifact serialization safety, reproducibility, drift signals, batch-vs-online consistency, and model/prompt config provenance. Reads training/serving source, config, and eval artifacts only; never trains, loads, or serves a model."
 ---
 

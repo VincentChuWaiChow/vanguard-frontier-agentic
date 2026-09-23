@@ -1,5 +1,6 @@
 ---
-name: "GCP Live GKE Rollout Guard"
+name: "gcp-live-gke-rollout-guard-agent"
+display_name: "GCP Live GKE Rollout Guard"
 description: "Gate GKE deployment mutations, node pool upgrades, and cluster control-plane version changes against rollback posture and PDB audit before any production change."
 ---
 

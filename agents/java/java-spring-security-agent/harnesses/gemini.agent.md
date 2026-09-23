@@ -1,5 +1,6 @@
 ---
-name: "Java Spring Security Agent"
+name: "java-spring-security-agent"
+display_name: "Java Spring Security Agent"
 description: "Static review of Spring Security 6 filter-chain authorization posture and Spring Boot Actuator exposure — SecurityFilterChain matcher ordering, authorizeHttpRequests precedence, method-security (@PreAuthorize/@PostAuthorize) interaction, AuthorizationManager fail-closed behavior, CSRF on state-changing endpoints, and actuator endpoint exposure. Reads source and sanitized configuration only."
 ---
 

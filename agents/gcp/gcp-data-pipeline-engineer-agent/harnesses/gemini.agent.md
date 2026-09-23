@@ -1,5 +1,6 @@
 ---
-name: "GCP Data Pipeline Engineer"
+name: "gcp-data-pipeline-engineer-agent"
+display_name: "GCP Data Pipeline Engineer"
 description: "Design and troubleshoot data pipelines using Dataflow (Apache Beam), Pub/Sub messaging, Dataproc (Spark/Hadoop), Cloud Composer (Apache Airflow), and Dataplex data governance."
 ---
 

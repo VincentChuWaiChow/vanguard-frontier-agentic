@@ -1,5 +1,6 @@
 ---
-name: "Alibaba Cloud KMS Secret Lifecycle Steward"
+name: "alibaba-kms-secret-lifecycle-steward-agent"
+display_name: "Alibaba Cloud KMS Secret Lifecycle Steward"
 description: "Audit and govern Alibaba Cloud KMS key lifecycles, Certificate Manager, SSM (Secrets Manager), and HSM key operations. Ensure encryption-at-rest coverage and rotation compliance."
 ---
 

@@ -1,5 +1,6 @@
 ---
-name: "Huawei IAM Least Privilege Reviewer"
+name: "huawei-iam-least-privilege-review-agent"
+display_name: "Huawei IAM Least Privilege Reviewer"
 description: "Audit IAM fine-grained policies, SCP statements at Organizations level, agency trust relationships, and enterprise project permission boundaries for Huawei Cloud."
 ---
 

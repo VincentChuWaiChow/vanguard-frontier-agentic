@@ -1,5 +1,6 @@
 ---
-name: "AI Advertising Targeting Fairness Review Agent"
+name: "ai-advertising-targeting-fairness-review-agent"
+display_name: "AI Advertising Targeting Fairness Review Agent"
 description: "Reviews ad-platform audience targeting configurations and declared AI feature usage for protected-class discrimination risk under Fair Housing Act, ECOA, and EU AI Act Article 5 — proxy segments, algorithmic disparate impact, and missing Special Ad Category declarations."
 ---
 

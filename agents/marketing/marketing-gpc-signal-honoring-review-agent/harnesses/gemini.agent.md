@@ -1,5 +1,6 @@
 ---
-name: "Marketing GPC Signal Honoring Review Agent"
+name: "marketing-gpc-signal-honoring-review-agent"
+display_name: "Marketing GPC Signal Honoring Review Agent"
 description: "Reviews the technical signal path by which a Global Privacy Control opt-out travels through the CMP and tag stack to confirm ad tags, server-side conversion APIs, and CAPI forwarding actually cease firing on opt-out."
 ---
 

@@ -1,5 +1,6 @@
 ---
-name: "Power Automate Automation Risk Review"
+name: "power-automate-automation-risk-review-agent"
+display_name: "Power Automate Automation Risk Review"
 description: "Review Power Automate cloud flow ownership, sharing, connector/DLP exposure, error handling, and monitoring risk."
 kind: "local"
 ---

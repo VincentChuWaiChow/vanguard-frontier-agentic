@@ -1,5 +1,6 @@
 ---
-name: "SAP Supply Chain IBP Resilience"
+name: "sap-supply-chain-ibp-resilience-agent"
+display_name: "SAP Supply Chain IBP Resilience"
 description: "Reviews SAP Integrated Business Planning (IBP) and S/4HANA supply-chain configurations for resilience risks — demand-sensing model inadequacies, supply network model gaps, inventory policy misalignment, supply planning constraint coverage failures, response and supply simulation shortcomings, exception alert configuration gaps, and IBP-to-S/4HANA integration health. Produces a graded resilience findings report with remediation guidance. Static review only — never modifies planning models, master data, or any IBP or S/4HANA supply-chain configuration object."
 ---
 

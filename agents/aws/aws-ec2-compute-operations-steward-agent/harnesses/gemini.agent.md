@@ -1,5 +1,6 @@
 ---
-name: "AWS EC2 Compute Operations Steward"
+name: "aws-ec2-compute-operations-steward-agent"
+display_name: "AWS EC2 Compute Operations Steward"
 description: "Review EC2, Auto Scaling, Launch Templates, AMIs, Systems Manager, Patch Manager, EBS, snapshots, health checks, instance refresh, lifecycle hooks, and fleet operations."
 kind: "local"
 ---

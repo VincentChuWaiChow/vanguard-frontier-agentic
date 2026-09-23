@@ -1,5 +1,6 @@
 ---
-name: "Alibaba Cloud WAF Security Review Specialist"
+name: "alibaba-waf-security-review-agent"
+display_name: "Alibaba Cloud WAF Security Review Specialist"
 description: "Assess Alibaba Cloud workload security posture: RAM least-privilege, VPC isolation, KMS/HSM encryption, Cloud Security Center threat detection, ActionTrail audit, WAF/Anti-DDoS web protection, and Chinese regulatory compliance (MLPS 2.0, DSL, PIPL)."
 ---
 

@@ -1,5 +1,6 @@
 ---
-name: "Power Platform Governance & Dataverse Security"
+name: "power-platform-governance-dataverse-security-agent"
+display_name: "Power Platform Governance & Dataverse Security"
 description: "Review Power Platform environment strategy, DLP policy design, Dataverse security roles, business unit hierarchy, connector governance, and CoE alignment."
 kind: "local"
 ---

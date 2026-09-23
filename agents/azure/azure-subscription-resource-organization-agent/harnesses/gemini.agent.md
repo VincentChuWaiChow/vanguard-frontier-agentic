@@ -1,8 +1,7 @@
 ---
-metadata:
-  author: "github: VincentChuWaiChow"
-  version: "0.2.1"
-  updated: "2026-06-05"
+name: "azure-subscription-resource-organization-agent"
+display_name: "Azure Subscription Resource Organization"
+description: "Design and review Azure management-group, subscription, resource-group, naming, tagging, policy, and ownership boundaries for scalable governance."
 ---
 
 # Azure Subscription Resource Organization

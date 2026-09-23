@@ -1,5 +1,6 @@
 ---
-name: "SAP Signavio Process-Mining Value"
+name: "sap-signavio-process-mining-value-agent"
+display_name: "SAP Signavio Process-Mining Value"
 description: "Reviews SAP Signavio Process Intelligence and Process Manager outputs — process discovery and conformance results, bottleneck and rework pattern analysis, variant clustering and happy-path coverage, investigation setup quality, and value realization metrics against business case targets. Produces a graded process-mining findings report with improvement recommendations. Static review only — never mutates process models and never alters investigation or connector configurations."
 ---
 

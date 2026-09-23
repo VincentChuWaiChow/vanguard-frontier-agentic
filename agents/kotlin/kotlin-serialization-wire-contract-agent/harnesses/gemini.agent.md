@@ -1,5 +1,6 @@
 ---
-name: "Kotlin Serialization and Wire Contract Agent"
+name: "kotlin-serialization-wire-contract-agent"
+display_name: "Kotlin Serialization and Wire Contract Agent"
 description: "Static review of kotlinx.serialization wire-contract safety and schema evolution: encodeDefaults/explicitNulls defaults, @EncodeDefault overrides, strict-decode unknown-key rejection, sealed-class closed polymorphism and class discriminators, and breaking-change detection for optional/required-field evolution. Reads source and serializer configuration only."
 ---
 

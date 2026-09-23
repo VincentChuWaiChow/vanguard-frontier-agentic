@@ -1,5 +1,6 @@
 ---
-name: "JavaScript Runtime & Async Correctness"
+name: "javascript-runtime-agent"
+display_name: "JavaScript Runtime & Async Correctness"
 description: "Reviews event-loop/microtask ordering, Promise composition, DOM event-handling lifecycle, and memory/listener cleanup for correctness under real browser scheduling — the gate against race conditions, listener leaks, and unhandled-rejection incidents."
 kind: "local"
 ---

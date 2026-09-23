@@ -1,5 +1,6 @@
 ---
-name: "Azure Cost Estimation Review"
+name: "azure-cost-estimation-review-agent"
+display_name: "Azure Cost Estimation Review"
 description: "Review Azure cost estimates for pricing-calculator assumptions, SKU and region realism, production versus nonproduction sizing, omission risk, and explicit uncertainty labeling."
 kind: "local"
 ---

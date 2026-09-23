@@ -1,5 +1,6 @@
 ---
-name: "CSS Architecture & Design Systems"
+name: "css-architecture-agent"
+display_name: "CSS Architecture & Design Systems"
 description: "Reviews CSS specificity, cascade-layer strategy, custom-property/design-token architecture, and responsive/container-query patterns for maintainability and design-system consistency, preventing specificity wars and token drift across large component libraries."
 kind: "local"
 ---

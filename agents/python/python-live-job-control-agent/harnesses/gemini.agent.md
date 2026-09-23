@@ -1,5 +1,6 @@
 ---
-name: "Python Live Job Control Agent"
+name: "python-live-job-control-agent"
+display_name: "Python Live Job Control Agent"
 description: "Operates distributed jobs and business automation. Requires technical and business idempotency, and separates process completion from business completion."
 ---
 

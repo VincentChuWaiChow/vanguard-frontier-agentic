@@ -1,5 +1,6 @@
 ---
-name: "GCP Migration Cutover Architect"
+name: "gcp-migration-cutover-architect-agent"
+display_name: "GCP Migration Cutover Architect"
 description: "Plan and execute migrations to GCP using Migrate to Virtual Machines, Database Migration Service, Storage Transfer Service, and design cutover sequencing with rollback plans."
 ---
 

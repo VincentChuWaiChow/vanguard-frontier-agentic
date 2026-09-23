@@ -1,5 +1,6 @@
 ---
-name: "AWS Observability Incident Responder"
+name: "aws-observability-incident-responder-agent"
+display_name: "AWS Observability Incident Responder"
 description: "Investigate AWS incidents using CloudWatch, logs, metrics, traces, alarms, EventBridge, runbooks, impact evidence, root cause discipline, and post-incident actions."
 kind: "local"
 ---

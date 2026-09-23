@@ -1,5 +1,6 @@
 ---
-name: "OCI Observability Incident Responder"
+name: "oci-observability-incident-responder-agent"
+display_name: "OCI Observability Incident Responder"
 description: "Monitoring, alarms, metrics, logging, events, noisy alert triage, and incident evidence."
 kind: "local"
 ---

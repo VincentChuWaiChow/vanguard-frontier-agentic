@@ -1,5 +1,6 @@
 ---
-name: "SAP Audit Evidence Packager"
+name: "sap-audit-evidence-packager-agent"
+display_name: "SAP Audit Evidence Packager"
 description: "Structures, validates, and packages SAP audit evidence artefacts — transport logs, change documents, access review exports, SoD mitigation records, and GRC control test results — into organised, auditor-ready packages aligned to SOX ITGC, ISO 27001, and GDPR. Static advisory only — never includes secrets or PII, never generates or fabricates evidence, never mutates any SAP system."
 ---
 

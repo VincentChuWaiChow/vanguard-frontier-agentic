@@ -100,18 +100,53 @@ impl IndexManager {
             }
         })?;
 
-        // Read current version (0 = fresh database).
-        let current_version: u32 = self
-            .write_conn
-            .query_row(
-                "SELECT value FROM schema_meta WHERE key = 'schema_version'",
-                [],
-                |row| {
-                    let s: String = row.get(0)?;
-                    Ok(s.parse::<u32>().unwrap_or(0))
-                },
-            )
-            .unwrap_or(0);
+        // Read current version.  Absent key = fresh database (0).  A present
+        // but unparsable value is NOT "fresh": silently treating it as 0
+        // re-ran every migration against an unknown schema.  A version newer
+        // than this build understands is rejected rather than operated on.
+        let stored_version: Option<String> = match self.write_conn.query_row(
+            "SELECT value FROM schema_meta WHERE key = 'schema_version'",
+            [],
+            |row| row.get::<_, String>(0),
+        ) {
+            Ok(s) => Some(s),
+            Err(rusqlite::Error::QueryReturnedNoRows) => None,
+            Err(e) => {
+                return Err(TuiError::PersistenceMigration {
+                    from: 0,
+                    to: 0,
+                    detail: format!("could not read schema_version: {e}"),
+                })
+            }
+        };
+
+        let current_version: u32 = match stored_version {
+            None => 0,
+            Some(raw) => raw
+                .trim()
+                .parse::<u32>()
+                .map_err(|_| TuiError::PersistenceMigration {
+                    from: 0,
+                    to: 0,
+                    detail: format!(
+                        "unreadable schema_version {raw:?}; refusing to migrate a \
+                             database with an unrecognised schema marker"
+                    ),
+                })?,
+        };
+
+        let latest_known = MIGRATIONS.iter().map(|(v, _)| *v).max().unwrap_or(0);
+        if current_version > latest_known {
+            return Err(TuiError::PersistenceMigration {
+                from: current_version,
+                to: latest_known,
+                detail: format!(
+                    "database schema version {current_version} is newer than the latest \
+                     version this build supports ({latest_known}); upgrade vfa-tui rather \
+                     than operating on a forward-versioned database"
+                ),
+            });
+        }
 
         let mut version = current_version;
 
@@ -298,10 +333,24 @@ impl IndexManager {
 mod tests {
     use super::*;
 
+    /// Latest schema version this build knows about, derived from the
+    /// migration table so adding a migration never breaks these assertions.
+    fn latest_migration_version() -> u32 {
+        MIGRATIONS
+            .iter()
+            .map(|(v, _)| *v)
+            .max()
+            .expect("at least one migration")
+    }
+
     #[test]
     fn open_in_memory_migrates_to_latest() {
         let mgr = IndexManager::open_in_memory().expect("open_in_memory");
-        assert_eq!(mgr.schema_version, 4, "should migrate to version 4");
+        assert_eq!(
+            mgr.schema_version,
+            latest_migration_version(),
+            "should migrate to the latest known schema version"
+        );
     }
 
     #[test]
@@ -381,7 +430,7 @@ mod tests {
         let mgr = IndexManager::open_in_memory().expect("open_in_memory");
         // Calling migrate() again should return the same version without error.
         let v2 = mgr.migrate().expect("second migrate");
-        assert_eq!(v2, 4);
+        assert_eq!(v2, latest_migration_version());
     }
 
     #[test]
@@ -391,7 +440,7 @@ mod tests {
         let path_str = path.to_str().expect("path utf8");
 
         let mgr = IndexManager::open(path_str).expect("open file db");
-        assert_eq!(mgr.schema_version, 4);
+        assert_eq!(mgr.schema_version, latest_migration_version());
 
         // Read connection should be openable.
         let rconn = mgr.read_connection().expect("read connection");
@@ -402,7 +451,7 @@ mod tests {
                 |row| row.get(0),
             )
             .expect("query schema_version");
-        assert_eq!(v, "4");
+        assert_eq!(v, latest_migration_version().to_string());
     }
 
     #[test]

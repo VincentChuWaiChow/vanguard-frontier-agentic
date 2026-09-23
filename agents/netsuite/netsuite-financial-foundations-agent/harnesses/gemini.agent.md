@@ -1,5 +1,6 @@
 ---
-name: "NetSuite Financial Foundations Agent"
+name: "netsuite-financial-foundations-agent"
+display_name: "NetSuite Financial Foundations Agent"
 description: "Reviews NetSuite Accounts Payable, Accounts Receivable, and accounting configuration — vendor records, customer invoicing, payment terms, bank account setup, chart of accounts structure, and period-end reconciliation procedures — aligned to Financial User and Accounting Professional standards; static review only, never mutates a NetSuite account."
 ---
 

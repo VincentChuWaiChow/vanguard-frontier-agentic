@@ -1,5 +1,6 @@
 ---
-name: "Marketing Email List Retention Review Agent"
+name: "marketing-email-list-retention-review-agent"
+display_name: "Marketing Email List Retention Review Agent"
 description: "Reviews marketing email list segment metadata, consent-record completeness, suppression-list coverage, and data-retention schedules for GDPR, CASL, and CCPA deletion-right compliance."
 ---
 

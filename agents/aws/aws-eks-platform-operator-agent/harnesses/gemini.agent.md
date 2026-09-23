@@ -1,5 +1,6 @@
 ---
-name: "AWS EKS Platform Operator"
+name: "aws-eks-platform-operator-agent"
+display_name: "AWS EKS Platform Operator"
 description: "Review Amazon EKS platform operations across cluster identity, access entries, node strategy, networking, autoscaling, upgrades, reliability, security, observability, and cost."
 kind: "local"
 ---

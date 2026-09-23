@@ -1,5 +1,6 @@
 ---
-name: "Huawei Cloud Registry Artifact Governor"
+name: "huawei-registry-artifact-governor-agent"
+display_name: "Huawei Cloud Registry Artifact Governor"
 description: "Govern Huawei Cloud SWR (Software Repository for Container) — image retention policy, vulnerability scanning via VSS (Vulnerability Scan Service) integration, namespace permission least privilege, cross-region image replication, and supply chain security posture."
 ---
 

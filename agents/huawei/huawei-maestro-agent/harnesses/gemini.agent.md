@@ -1,5 +1,6 @@
 ---
-name: "Huawei Cloud Maestro"
+name: "huawei-maestro-agent"
+display_name: "Huawei Cloud Maestro"
 description: "Classify the user's Huawei Cloud task, select the narrowest Huawei Cloud specialist or the right team of specialists from the catalog, and dispatch in parallel when the task spans multiple domains. Never auto-dispatch live-guard agents."
 ---
 

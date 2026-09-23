@@ -1,5 +1,6 @@
 ---
-name: "GCP Support Incident Coordinator"
+name: "gcp-support-incident-coordinator-agent"
+display_name: "GCP Support Incident Coordinator"
 description: "Coordinate GCP support incidents — case creation with correct severity, Premium/Enhanced Support SLA enforcement, TAM escalation path, status page monitoring, internal stakeholder communication, and post-incident evidence packaging."
 ---
 

@@ -1,5 +1,6 @@
 ---
-name: "Alibaba Cloud ECS Compute Operator"
+name: "alibaba-ecs-compute-operator-agent"
+display_name: "Alibaba Cloud ECS Compute Operator"
 description: "Manage ECS instance lifecycle, Auto Scaling group configuration and health, ECI serverless container instances, Cloud Assistant O&M command execution, and Deployment Set placement rules."
 ---
 

@@ -1,5 +1,6 @@
 ---
-name: "GCP IAM Least Privilege Review"
+name: "gcp-iam-least-privilege-review-agent"
+display_name: "GCP IAM Least Privilege Review"
 description: "Audit GCP IAM bindings across the resource hierarchy (org/folder/project), identify overprivileged Service Accounts, review Workload Identity Federation configurations, evaluate org policy conditions, and recommend least-privilege remediation."
 ---
 

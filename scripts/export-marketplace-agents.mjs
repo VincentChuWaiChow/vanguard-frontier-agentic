@@ -3,7 +3,7 @@
 import fs from "node:fs";
 import path from "node:path";
 import process from "node:process";
-import { fileURLToPath } from "node:url";
+import { fileURLToPath, pathToFileURL } from "node:url";
 import { parseArgs as utilParseArgs } from "node:util";
 
 const repoRoot = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "..");
@@ -37,6 +37,13 @@ const PLATFORM_CONFIG = {
     ],
   },
 };
+
+// Security-critical validation patterns. These are exported so the
+// property-based fuzz suite can exercise the *shipped* definitions instead of
+// redeclaring its own copies, which silently drift from production.
+export const AGENT_ID_PATTERN = /^[a-z0-9][a-z0-9-]*$/;
+
+export const HARNESS_PATH_TRAVERSAL = /[\\/]\.\.[\\/]|^\.\.[\\/]|[\\/]\.\.$|^\.\.$/;
 
 const PLATFORM_ALIASES = {
   claude: "claude-code",
@@ -247,6 +254,9 @@ function loadAgents() {
       name: metadata.name,
       provider: metadata.provider,
       summary: metadata.summary,
+      // Carried into the `# VFA-EXPORT:` marker so the console can report the
+      // installed version; without it every marker held only the id.
+      version: metadata.version,
       harness_variants: metadata.harness_variants ?? {},
       companion_skills: Array.isArray(metadata.companion_skills) ? metadata.companion_skills : undefined,
       metadataPath,
@@ -257,7 +267,7 @@ function loadAgents() {
   return { agents, byId };
 }
 
-function normalizePlatform(platform) {
+export function normalizePlatform(platform) {
   const lowered = platform.toLowerCase();
   return Object.hasOwn(PLATFORM_ALIASES, lowered) ? PLATFORM_ALIASES[lowered] : lowered;
 }
@@ -272,7 +282,59 @@ function ensurePlatform(platform) {
   return normalized;
 }
 
-function assertWithin(parent, child, label) {
+/**
+ * Build the `# VFA-EXPORT:` marker line the console looks for.
+ *
+ * `federation/scanner.rs` confirms an installed asset only when two independent
+ * detection signals agree. Filename matching supplies one; this marker supplies
+ * the second. Without it the only other candidate, ContentSignature, needs
+ * canonical template content that the headless catalog never loads, so nothing
+ * an export wrote could reach "confirmed" and `require_asset` reported
+ * correctly installed agents as missing.
+ *
+ * The payload is deterministic on purpose: `ExportMeta` requires only `id` and
+ * treats `version` and `installed_at` as optional, so the timestamp the original
+ * spec mentioned is omitted. Two exports of the same catalog produce identical
+ * bytes, which keeps content hashing and drift detection meaningful.
+ */
+export function exportMetadataLine(assetId, version) {
+  const payload = version ? { id: assetId, version } : { id: assetId };
+  return `# VFA-EXPORT: ${JSON.stringify(payload)}`;
+}
+
+/**
+ * Insert the marker in a way each destination format actually tolerates.
+ *
+ * - `.json` is skipped: neither `#` nor `//` is legal JSON, and CLAUDE.md
+ *   forbids inventing metadata fields in executable agent files.
+ * - Markdown carries YAML frontmatter, where a `#` line is a valid comment and
+ *   renders as nothing. Prepending above the opening `---` would instead break
+ *   frontmatter parsing for every harness that reads it.
+ * - TOML and other `#`-commentable formats take the line at the top.
+ *
+ * Idempotent: re-exporting over a previous export does not stack markers.
+ */
+export function injectExportMetadata(content, destination, assetId, version) {
+  if (content.includes("VFA-EXPORT:")) return content;
+  // `.json` is left untouched. CLAUDE.md's cross-platform rule forbids
+  // inventing unsupported metadata fields in executable agent files, and a
+  // kiro-cli agent document is executable. Confirming kiro-cli exports needs a
+  // sidecar manifest or an officially supported field, not a key this repo
+  // invented; until then those exports raise one detection signal and stay
+  // unconfirmed.
+  if (destination.endsWith(".json")) return content;
+
+  const line = exportMetadataLine(assetId, version);
+  if (destination.endsWith(".md")) {
+    if (content.startsWith("---\n")) {
+      return content.replace("---\n", `---\n${line}\n`);
+    }
+    return `${line}\n${content}`;
+  }
+  return `${line}\n${content}`;
+}
+
+export function assertWithin(parent, child, label) {
   const resolvedParent = path.resolve(parent);
   const resolvedChild = path.resolve(child);
   const sep = path.sep;
@@ -386,6 +448,51 @@ function copySkillTree(sourceDir, destDir, force, targetRoot) {
   }
 }
 
+function pathExists(p) {
+  try {
+    fs.lstatSync(p);
+    return true;
+  } catch {
+    return false;
+  }
+}
+
+// The files copySkillTree would write for one skill, mirroring its walk.
+function skillTreeDestinations(sourceDir, destDir, out = []) {
+  for (const entry of fs.readdirSync(sourceDir, { withFileTypes: true })) {
+    const src = path.join(sourceDir, entry.name);
+    const dst = path.join(destDir, entry.name);
+    if (entry.isSymbolicLink()) {
+      throw new Error(`Refusing to copy symbolic link in skill tree: ${src}`);
+    }
+    if (entry.isDirectory()) skillTreeDestinations(src, dst, out);
+    else if (entry.isFile()) out.push(dst);
+  }
+  return out;
+}
+
+/**
+ * Every destination this run would write that already exists.
+ *
+ * Without --force, copyFile and copySkillTree refuse an existing destination,
+ * but they do so one file at a time inside the copy loop, so a collision on a
+ * late file left every earlier file already written: a partial install. The
+ * run checks all destinations first and writes nothing if any collide. The
+ * per-file refusal stays in place, so a file created between this check and
+ * the write is still refused.
+ */
+function findCollisions(operations, skillPlan, skillsDestRoot, repo) {
+  const targets = operations.map((operation) => operation.dest);
+  if (skillPlan) {
+    for (const skillName of skillPlan.skillNames) {
+      const sourceDir = skillPlan.skillsByName.get(skillName)?.dir;
+      if (!sourceDir) continue;
+      skillTreeDestinations(sourceDir, path.join(repo, skillsDestRoot, skillName), targets);
+    }
+  }
+  return targets.filter(pathExists);
+}
+
 function resolveCompanionSkills(selectedAgents, skillsByName, role, includeAll, selectedProvider) {
   const skillNames = new Set();
   if (includeAll) {
@@ -436,30 +543,86 @@ function resolveCompanionSkills(selectedAgents, skillsByName, role, includeAll, 
   return { skillNames: [...skillNames].sort(), orphans };
 }
 
-function copyFile(source, destination, force, targetRoot) {
+function copyFile(source, destination, force, targetRoot, metadata) {
   assertSafeWriteDestination(targetRoot, destination, "write file destination");
-  const sourceStat = fs.lstatSync(source);
-  if (sourceStat.isSymbolicLink()) {
-    throw new Error(`Refusing to copy symbolic link as harness source: ${source}`);
+  fs.mkdirSync(path.dirname(destination), { recursive: true });
+
+  // Read the source through one descriptor opened with O_NOFOLLOW, for the same
+  // reason the destination is opened with it below: an lstatSync() that rejects
+  // symlinks followed by a separate readFileSync() leaves a window in which the
+  // path can be swapped for a symlink between the check and the read. Making
+  // "not a symlink" a property of the open() closes it, so the bytes we copy are
+  // provably the ones we vetted.
+  //
+  // O_NOFOLLOW does not exist on Windows; `|| 0` keeps the flag set valid there,
+  // where this degrades to the previous semantics.
+  let sourceBuffer;
+  let sourceFd;
+  try {
+    sourceFd = fs.openSync(source, fs.constants.O_RDONLY | (fs.constants.O_NOFOLLOW || 0));
+    sourceBuffer = fs.readFileSync(sourceFd);
+  } catch (error) {
+    if (error.code === "ELOOP") {
+      throw new Error(`Refusing to copy symbolic link as harness source: ${source}`);
+    }
+    throw error;
+  } finally {
+    if (sourceFd !== undefined) fs.closeSync(sourceFd);
   }
-  if (fs.existsSync(destination)) {
-    // Reject symlink destinations regardless of --force. A symlink at the
-    // destination would redirect the write outside the repo tree, bypassing
-    // assertWithin(). lstatSync does not follow the symlink — exactly what we
-    // want here to detect the link itself.
-    const destStat = fs.lstatSync(destination);
-    if (destStat.isSymbolicLink()) {
+
+  const payload =
+    metadata && metadata.assetId
+      ? Buffer.from(
+          injectExportMetadata(
+            sourceBuffer.toString("utf8"),
+            destination,
+            metadata.assetId,
+            metadata.version
+          ),
+          "utf8"
+        )
+      : sourceBuffer;
+
+  // Decide the destination's fate in the open() itself rather than checking it
+  // first and writing afterwards. The previous shape — existsSync/lstatSync and
+  // then a write — left a window in which the path could be swapped for a
+  // symlink between the check and the write, which CodeQL flags as a file
+  // system race and which is genuinely exploitable on a shared checkout.
+  //
+  //   O_EXCL     makes "refuse to overwrite" a property of the syscall.
+  //   O_NOFOLLOW refuses a symlinked destination in the same syscall, so a
+  //              symlink can never redirect the write outside the target root
+  //              regardless of --force.
+  //
+  // O_NOFOLLOW does not exist on Windows; `|| 0` keeps the flag set valid
+  // there, where this degrades to the ordinary overwrite semantics.
+  const flags =
+    fs.constants.O_WRONLY |
+    fs.constants.O_CREAT |
+    (force ? fs.constants.O_TRUNC : fs.constants.O_EXCL) |
+    (fs.constants.O_NOFOLLOW || 0);
+
+  let fd;
+  try {
+    fd = fs.openSync(destination, flags);
+  } catch (error) {
+    if (error.code === "EEXIST") {
+      throw new Error(`Refusing to overwrite existing file without --force: ${destination}`);
+    }
+    if (error.code === "ELOOP") {
       throw new Error(
         `Refusing to write to symbolic link destination: ${destination}. ` +
         `Remove the symlink and retry.`
       );
     }
-    if (!force) {
-      throw new Error(`Refusing to overwrite existing file without --force: ${destination}`);
-    }
+    throw error;
   }
-  fs.mkdirSync(path.dirname(destination), { recursive: true });
-  fs.copyFileSync(source, destination);
+
+  try {
+    fs.writeFileSync(fd, payload);
+  } finally {
+    fs.closeSync(fd);
+  }
 }
 
 function rewriteCodexAgentSkillPaths(agentFile, targetRoot) {
@@ -518,13 +681,13 @@ function buildDestinations(agent, platform) {
     if (!relativeSource) {
       throw new Error(`Agent ${agent.id} does not have a ${variantKey} harness variant.`);
     }
-    if (typeof relativeSource !== "string" || /[\\/]\.\.[\\/]|^\.\.[\\/]|[\\/]\.\.$|^\.\.$/.test(relativeSource) || path.isAbsolute(relativeSource)) {
+    if (typeof relativeSource !== "string" || HARNESS_PATH_TRAVERSAL.test(relativeSource) || path.isAbsolute(relativeSource)) {
       throw new Error(
         `Agent ${agent.id} ${variantKey} harness path '${relativeSource}' is invalid: ` +
         `must be a relative path within the repository, no '..' traversal, no absolute paths.`
       );
     }
-    if (!/^[a-z0-9][a-z0-9-]*$/.test(agent.id)) {
+    if (!AGENT_ID_PATTERN.test(agent.id)) {
       throw new Error(
         `Agent id '${agent.id}' fails schema pattern ^[a-z0-9][a-z0-9-]*$. ` +
         `Cannot derive a safe destination filename.`
@@ -576,7 +739,7 @@ function main() {
 
   // Validate --provider early so the standalone path and the role-filter path
   // share the same error surface.
-  if (args.provider && !/^[a-z0-9][a-z0-9-]*$/.test(args.provider)) {
+  if (args.provider && !AGENT_ID_PATTERN.test(args.provider)) {
     throw new Error(`Invalid --provider value '${args.provider}'. Must match /^[a-z0-9][a-z0-9-]*$/.`);
   }
   if (args.provider) {
@@ -653,26 +816,61 @@ function main() {
     throw new Error("No agents selected. Use --agents, --role, --provider, or --all.");
   }
 
-  if (args.dryRun) {
-    for (const agent of selectedAgents) {
-      console.log(`export agent: ${agent.id} [provider=${agent.provider}]`);
+  const operations = [];
+  for (const agent of selectedAgents) {
+    for (const destination of buildDestinations(agent, platform)) {
+      operations.push({
+        ...destination,
+        dest: path.join(args.repo, destination.destRelative),
+        agentId: agent.id,
+        version: agent.version,
+      });
     }
-    const skillsDestRoot = SKILLS_PLATFORM_CONFIG[platform];
-    let dryRunSkillCount = 0;
-    if (!args.noSkills && skillsDestRoot) {
-      const skillsByName = loadSkills();
-      const includeAllSkills = args.all && !args.provider;
-      const { skillNames } = resolveCompanionSkills(
+  }
+
+  const skillsDestRoot = SKILLS_PLATFORM_CONFIG[platform];
+  let skillPlan = null;
+  if (!args.noSkills && skillsDestRoot) {
+    const skillsByName = loadSkills();
+    // includeAll bundles every skill in the catalog. When --provider is set,
+    // selectedAgents is already scoped to that provider — bundling every
+    // skill would mix in hundreds of unrelated provider skills, violating
+    // the documented "provider install" contract. Scope skills to the
+    // selected agents' companion_skills in that case.
+    const includeAllSkills = args.all && !args.provider;
+    skillPlan = {
+      skillsByName,
+      ...resolveCompanionSkills(
         selectedAgents,
         skillsByName,
         selectedRole,
         includeAllSkills,
         args.provider ?? null
-      );
-      for (const skillName of skillNames) {
-        console.log(`export skill: ${skillName}`);
-        dryRunSkillCount += 1;
+      ),
+    };
+  }
+
+  if (!args.force) {
+    const collisions = findCollisions(operations, skillPlan, skillsDestRoot, args.repo);
+    if (collisions.length > 0) {
+      const shown = collisions.slice(0, 10).map((p) => `  ${path.relative(args.repo, p)}`);
+      if (collisions.length > shown.length) {
+        shown.push(`  ... and ${collisions.length - shown.length} more`);
       }
+      throw new Error(
+        `Refusing to install: ${collisions.length} destination(s) already exist and ` +
+        `--force was not given. Nothing was written.\n${shown.join("\n")}`
+      );
+    }
+  }
+
+  if (args.dryRun) {
+    for (const agent of selectedAgents) {
+      console.log(`export agent: ${agent.id} [provider=${agent.provider}]`);
+    }
+    const dryRunSkillCount = skillPlan ? skillPlan.skillNames.length : 0;
+    for (const skillName of skillPlan ? skillPlan.skillNames : []) {
+      console.log(`export skill: ${skillName}`);
     }
     process.stderr.write(
       `[vfa] --dry-run: ${selectedAgents.length} agent(s)` +
@@ -682,20 +880,12 @@ function main() {
     return;
   }
 
-  const operations = [];
-  for (const agent of selectedAgents) {
-    for (const destination of buildDestinations(agent, platform)) {
-      operations.push({
-        ...destination,
-        dest: path.join(args.repo, destination.destRelative),
-        agentId: agent.id,
-      });
-    }
-  }
-
   for (const operation of operations) {
     assertWithin(args.repo, operation.dest, "write destination");
-    copyFile(operation.source, operation.dest, args.force, args.repo);
+    copyFile(operation.source, operation.dest, args.force, args.repo, {
+      assetId: operation.agentId,
+      version: operation.version,
+    });
     if (platform === "codex") {
       rewriteCodexAgentSkillPaths(operation.dest, args.repo);
     }
@@ -704,7 +894,6 @@ function main() {
     );
   }
 
-  const skillsDestRoot = SKILLS_PLATFORM_CONFIG[platform];
   if (args.noSkills) {
     process.stderr.write(`[vfa] --no-skills: companion skills not bundled.\n`);
   } else if (!skillsDestRoot) {
@@ -718,20 +907,7 @@ function main() {
       );
     }
   } else {
-    const skillsByName = loadSkills();
-    // includeAll bundles every skill in the catalog. When --provider is set,
-    // selectedAgents is already scoped to that provider — bundling every
-    // skill would mix in hundreds of unrelated provider skills, violating
-    // the documented "provider install" contract. Scope skills to the
-    // selected agents' companion_skills in that case.
-    const includeAllSkills = args.all && !args.provider;
-    const { skillNames, orphans } = resolveCompanionSkills(
-      selectedAgents,
-      skillsByName,
-      selectedRole,
-      includeAllSkills,
-      args.provider ?? null
-    );
+    const { skillsByName, skillNames, orphans } = skillPlan;
     let bundled = 0;
     for (const skillName of skillNames) {
       const sourceDir = skillsByName.get(skillName)?.dir;
@@ -753,9 +929,26 @@ function main() {
   }
 }
 
-try {
-  main();
-} catch (error) {
-  console.error(error.message);
-  process.exit(1);
+// Run the CLI only when this file is the entry point. Without this guard the
+// module could not be imported by tests without executing an export.
+// npm installs the CLI as a symlink in node_modules/.bin, so process.argv[1] is
+// the link while import.meta.url is the real file. Comparing them raw made the
+// guard false for every packaged install, and `vfa-export-agents` silently
+// produced no output. Resolve the link before comparing.
+const invokedDirectly = (() => {
+  if (!process.argv[1]) return false;
+  try {
+    return import.meta.url === pathToFileURL(fs.realpathSync(process.argv[1])).href;
+  } catch {
+    return false;
+  }
+})();
+
+if (invokedDirectly) {
+  try {
+    main();
+  } catch (error) {
+    console.error(error.message);
+    process.exit(1);
+  }
 }

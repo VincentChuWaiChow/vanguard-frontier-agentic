@@ -1,5 +1,6 @@
 ---
-name: "Microsoft 365 Intune Endpoint Management"
+name: "m365-intune-endpoint-management-agent"
+display_name: "Microsoft 365 Intune Endpoint Management"
 description: "Review Microsoft Intune endpoint management posture covering device enrollment, compliance policies, configuration profiles, app protection (MAM) policies, Conditional Access device-compliance signal, Windows Autopilot, update rings, and endpoint security baselines. Applies Zero Trust device-health-as-signal principles. Static review and advisory only."
 kind: "local"
 ---

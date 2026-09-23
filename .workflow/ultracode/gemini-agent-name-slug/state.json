@@ -1,0 +1,120 @@
+{
+  "title": "Gemini agent name slugs",
+  "slug": "gemini-agent-name-slug",
+  "created_at": "2026-09-23T10:00:00+00:00",
+  "updated_at": "2026-09-23T10:35:00+00:00",
+  "status": "complete",
+  "mode": "delegated",
+  "baseline_ref": "1785e6331e9434bc7e5b15ae4b6307ac4284c299",
+  "risk_level": "medium",
+  "eval_contract": {
+    "level": "targeted",
+    "path": "eval-contract.md",
+    "status": "ready"
+  },
+  "approval": {
+    "required": true,
+    "granted": true,
+    "notes": "The user asked for the Gemini agent name issue to be worked in PR #194; that is the publication request."
+  },
+  "delegation": {
+    "native_agent_available": true,
+    "native_agent_planned": true,
+    "native_agent_used": true,
+    "agent_count": 2,
+    "wave_count": 1,
+    "no_delegation_reason": "",
+    "notes": "One read-only Haiku wave. The parent chose the naming rule, edited the generators, ran the export rewrite as a refusing script, owned the gate change, the probes and the commit. Result 02 missed six of ten writers; the parent found them by search. Result 01 cited main; the parent confirmed it against the published 0.60.0 package."
+  },
+  "packets": [
+    {
+      "id": "01-gemini-cli-name-contract",
+      "status": "complete",
+      "owner": "read-only-agent",
+      "write_scope": [],
+      "result_path": "results/01-gemini-cli-name-contract.md"
+    },
+    {
+      "id": "02-repository-writers-and-checks",
+      "status": "complete",
+      "owner": "read-only-agent",
+      "write_scope": [],
+      "result_path": "results/02-repository-writers-and-checks.md"
+    }
+  ],
+  "verification": {
+    "status": "checked",
+    "checks": [
+      {
+        "name": "Gemini CLI runtime load, before",
+        "command": "@google/gemini-cli-core 0.60.0 loadAgentsFromDirectory on a vfa-export-agents --platform gemini --all export of the baseline",
+        "required": true,
+        "status": "passed",
+        "evidence": "loaded=19 errors=714; every error is 'Name must be a valid slug'"
+      },
+      {
+        "name": "Gemini CLI runtime load, after",
+        "command": "@google/gemini-cli-core 0.60.0 loadAgentsFromDirectory on a vfa-export-agents --platform gemini --all export of the fixed tree",
+        "required": true,
+        "status": "passed",
+        "evidence": "loaded=733 errors=0 unique-names=733; azure-maestro-agent displayName 'Azure Maestro'"
+      },
+      {
+        "name": "Gate negative probe (unfixed tree)",
+        "command": "python3 tests/validate-agent-frontmatter-schema.py",
+        "required": true,
+        "status": "passed",
+        "evidence": "exit 1 on exactly 714 files, all gemini.agent.md; no other error across 3669 exports"
+      },
+      {
+        "name": "Gate positive probe (fixed tree)",
+        "command": "python3 tests/validate-agent-frontmatter-schema.py",
+        "required": true,
+        "status": "passed",
+        "evidence": "exit 0; 3669 markdown harness exports, Gemini names are agent ids"
+      },
+      {
+        "name": "Planted violations",
+        "command": "display-name name, unknown key color, kind remote, one at a time",
+        "required": true,
+        "status": "passed",
+        "evidence": "each exits 1 and names the file"
+      },
+      {
+        "name": "Export line audit",
+        "command": "git diff -U0 -- agents, classified by key",
+        "required": true,
+        "status": "passed",
+        "evidence": "714 files; exactly 714 -name, 714 +name, 714 +display_name; no other line changed"
+      },
+      {
+        "name": "Generator re-runs",
+        "command": "each of the 10 writers on a disposable copy",
+        "required": true,
+        "status": "passed",
+        "evidence": "9 byte-identical; gen_azure_live_guards.py has identical pre-existing drift before and after (108 files), 0 identity-line differences"
+      },
+      {
+        "name": "Full validation",
+        "command": "npm run validate",
+        "required": true,
+        "status": "passed",
+        "evidence": "exit 0"
+      },
+      {
+        "name": "Spell lint",
+        "command": "npm run lint:spell",
+        "required": true,
+        "status": "passed",
+        "evidence": "exit 0"
+      },
+      {
+        "name": "Markdown lint",
+        "command": "npx markdownlint-cli2",
+        "required": true,
+        "status": "passed",
+        "evidence": "exit 0; 0 issues"
+      }
+    ]
+  }
+}

@@ -1,5 +1,6 @@
 ---
-name: "Python Live Runtime Control Agent"
+name: "python-live-runtime-control-agent"
+display_name: "Python Live Runtime Control Agent"
 description: "Reads live interpreter, process, worker, task, thread, memory, and health state and performs allowlisted diagnostics. Cannot change application state."
 ---
 

@@ -1,5 +1,6 @@
 ---
-name: "SAP Read-Only Landscape Discovery"
+name: "sap-live-readonly-landscape-discovery-agent"
+display_name: "SAP Read-Only Landscape Discovery"
 description: "Read-only live agent that lists, gets, describes, and exports BTP subaccounts, entitlements, destinations, integration flows, and role collections. Forbidden from any create, update, delete, deploy, assign, rotate, import, or trigger operation."
 ---
 

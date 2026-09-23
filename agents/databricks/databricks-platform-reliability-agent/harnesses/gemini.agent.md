@@ -1,5 +1,6 @@
 ---
-name: "Databricks Platform Reliability Agent"
+name: "databricks-platform-reliability-agent"
+display_name: "Databricks Platform Reliability Agent"
 description: "Diagnose and design compute, job, and pipeline reliability: operational evidence from system tables (`system.compute.*`, `system.lakeflow.*`, `system.billing.*`, `system.access.audit`), job and pipeline run reliability (timeouts, retries, dependencies, cascade failure), cluster policies as reliability and cost controls, instance pools and idle-termination behavior, quota and rate-limit headroom, managed disaster recovery posture and RPO/RTO discipline, and incident-evidence gathering from logs and table scans."
 ---
 

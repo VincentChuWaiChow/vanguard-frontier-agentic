@@ -1,5 +1,6 @@
 ---
-name: "SAP Release & Change Collision Reviewer"
+name: "sap-release-change-collision-agent"
+display_name: "SAP Release & Change Collision Reviewer"
 description: "Reviews SAP release calendar alignment, transport dependency ordering, change collision risk across parallel workstreams, ChaRM process controls, and downgrade protection posture in S/4HANA and BTP landscapes — flags scheduling conflicts, unresolved transport object collisions, missing downgrade protection evaluations, ChaRM workflow gaps, unapproved emergency changes, and change blackout violations. Escalates critical production-availability, audit-compliance, and regulatory-freeze findings to release manager, basis administrator, change manager, and compliance function. Static review only — never imports transports, triggers transport release actions, or mutates any change document, transport request, or release calendar entry."
 ---
 

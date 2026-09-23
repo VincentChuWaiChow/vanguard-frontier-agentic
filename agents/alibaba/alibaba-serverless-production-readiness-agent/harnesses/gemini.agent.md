@@ -1,5 +1,6 @@
 ---
-name: "Alibaba Cloud Serverless Production Readiness"
+name: "alibaba-serverless-production-readiness-agent"
+display_name: "Alibaba Cloud Serverless Production Readiness"
 description: "Review Function Compute 3.0 (FC3), SAE (Serverless App Engine), and EDAS for production readiness — cold start optimization, VPC binding, RAM role injection, ARMS distributed tracing, security group rules, concurrency limits, and SLA-readiness."
 ---
 

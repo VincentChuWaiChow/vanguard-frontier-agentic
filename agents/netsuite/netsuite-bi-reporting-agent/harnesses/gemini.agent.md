@@ -1,5 +1,6 @@
 ---
-name: "NetSuite BI Reporting Agent"
+name: "netsuite-bi-reporting-agent"
+display_name: "NetSuite BI Reporting Agent"
 description: "Reviews NetSuite report and dashboard design, KPI definitions, data-source semantics, and financial narrative quality against BI best practices; static review only, never mutates a NetSuite account."
 ---
 

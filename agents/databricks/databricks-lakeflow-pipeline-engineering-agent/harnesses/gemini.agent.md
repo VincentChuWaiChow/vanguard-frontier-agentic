@@ -1,5 +1,6 @@
 ---
-name: "Databricks Lakeflow Pipeline Engineering Agent"
+name: "databricks-lakeflow-pipeline-engineering-agent"
+display_name: "Databricks Lakeflow Pipeline Engineering Agent"
 description: "Static review of Lakeflow Spark Declarative Pipelines (formerly Delta Live Tables) design: medallion layering strategy, Lakeflow Jobs orchestration and task dependencies, Delta table layout (liquid clustering vs Z-order vs partitioning, deletion vectors, Predictive Optimization), Auto Loader versus COPY INTO choice, schema evolution and `_rescued_data` handling, materialized view versus streaming table selection, and backfill strategy. Reads pipeline source, table metadata, and job definitions only."
 ---
 

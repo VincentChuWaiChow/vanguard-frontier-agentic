@@ -1,5 +1,6 @@
 ---
-name: "Databricks FinOps Cost Agent"
+name: "databricks-finops-cost-agent"
+display_name: "Databricks FinOps Cost Agent"
 description: "Static review of Databricks cost and billing: evidence from system.billing.usage and system.billing.list_prices, cost attribution via custom tags with coverage confidence reporting (tagged vs untagged spend), DBU uptime semantics and per-workload charging, serverless versus classic cost comparison validity, budgets and their non-enforcing nature, compute policies and idle/auto-stop settings as cost controls, instance-pool cost floors, and identifying expensive workloads. Joins and coverage gaps are reported explicitly, never papered over."
 ---
 

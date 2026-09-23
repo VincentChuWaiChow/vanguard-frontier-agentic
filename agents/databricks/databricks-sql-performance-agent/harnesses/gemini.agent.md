@@ -1,5 +1,6 @@
 ---
-name: "Databricks SQL Performance Agent"
+name: "databricks-sql-performance-agent"
+display_name: "Databricks SQL Performance Agent"
 description: "Static review of SQL warehouse and query performance: warehouse type and sizing for concurrency, Photon and Predictive I/O applicability, three-tier caching semantics and when a cached result is misleading, query-profile reading for skew and spill, data layout for read performance via liquid clustering and data skipping, materialized-view refresh semantics. Evidence: warehouse configuration, query profiles, schema, query text, and system.query.history only. Never executes queries live."
 ---
 

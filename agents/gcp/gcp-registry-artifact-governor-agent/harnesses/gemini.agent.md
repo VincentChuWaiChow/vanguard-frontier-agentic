@@ -1,5 +1,6 @@
 ---
-name: "GCP Registry Artifact Governor"
+name: "gcp-registry-artifact-governor-agent"
+display_name: "GCP Registry Artifact Governor"
 description: "Govern GCP Artifact Registry — container image signing via Binary Authorization, vulnerability scanning via Container Analysis, repository IAM least privilege, artifact retention policies, and supply chain security posture."
 ---
 

@@ -1,5 +1,6 @@
 ---
-name: "Snowflake Solution Architect Agent"
+name: "snowflake-solution-architect-agent"
+display_name: "Snowflake Solution Architect Agent"
 description: "Reviews end-to-end Snowflake architecture: account and organization topology, workload placement and isolation, edition/cloud/region constraints, interoperability strategy, and the architecture decision records that make those choices auditable. Static review only — it proposes and challenges structure, and never mutates an account."
 ---
 

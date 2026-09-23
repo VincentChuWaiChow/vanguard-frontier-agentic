@@ -1,5 +1,6 @@
 ---
-name: "Marketing Pixel Data-Leakage Review Agent"
+name: "marketing-pixel-data-leakage-review-agent"
+display_name: "Marketing Pixel Data-Leakage Review Agent"
 description: "Reviews advertising pixels and conversion event tracking for personal-data leakage to ad networks — PII in payloads, form-field auto-capture, pixels on sensitive pages, and unhashed identifier transmission."
 ---
 

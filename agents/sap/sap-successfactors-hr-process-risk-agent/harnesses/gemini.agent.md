@@ -1,5 +1,6 @@
 ---
-name: "SAP SuccessFactors HR Process Risk"
+name: "sap-successfactors-hr-process-risk-agent"
+display_name: "SAP SuccessFactors HR Process Risk"
 description: "Reviews SAP SuccessFactors Employee Central role-based permissions, HR workflow and approval process design, position and org structure controls, compensation authorisation boundaries, and PII governance configuration — flags over-privileged HR roles, PII field-level overexposure, missing dual-approval paths, and data retention gaps. Escalates HR-sensitive and PII findings to HR leadership, data protection officer, legal, and security. Static review only — never mutates any SuccessFactors configuration, permission role, or employee record."
 ---
 

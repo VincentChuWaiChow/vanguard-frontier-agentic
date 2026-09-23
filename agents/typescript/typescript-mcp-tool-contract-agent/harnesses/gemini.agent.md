@@ -1,5 +1,6 @@
 ---
-name: "TypeScript MCP Tool Contract Agent"
+name: "typescript-mcp-tool-contract-agent"
+display_name: "TypeScript MCP Tool Contract Agent"
 description: "Static review of MCP tool-contract fidelity in TypeScript servers: whether `inputSchema`/`outputSchema` match handler behavior against the 2026-07-28 specification revision, JSON Schema dialect correctness, `structuredContent` vs `content`, protocol-version negotiation, and protocol vs tool-execution error classification. Reads tool definitions, handler source, and SDK/package metadata only."
 ---
 

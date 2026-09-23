@@ -859,6 +859,13 @@ def md_harness(a: dict) -> str:
     return f"---\nname: {y(a['name'])}\ndescription: {y(a['summary'])}\n---\n\n{agent_body(a)}\n"
 
 
+# Gemini CLI requires `name` to be a slug (/^[a-z0-9-_]+$/ in
+# packages/core/src/agents/agentLoader.ts) and skips any agent file that fails
+# it, so the agent id goes there and the readable name moves to `display_name`.
+def gemini_harness(a: dict) -> str:
+    return f"---\nname: {y(a['id'])}\ndisplay_name: {y(a['name'])}\ndescription: {y(a['summary'])}\n---\n\n{agent_body(a)}\n"
+
+
 def copilot_md(a: dict) -> str:
     # No execution tool for any tier on this board — including the live guards, which
     # emit an approved statement for a human to run rather than running it themselves.
@@ -1136,7 +1143,7 @@ def build() -> None:
         write(os.path.join(hdir, "copilot.agent.md"), copilot_md(a))
         write(os.path.join(hdir, "claude-code.agent.md"), md_harness(a))
         write(os.path.join(hdir, "cursor.agent.md"), md_harness(a))
-        write(os.path.join(hdir, "gemini.agent.md"), md_harness(a))
+        write(os.path.join(hdir, "gemini.agent.md"), gemini_harness(a))
         write(os.path.join(hdir, "kiro-ide.agent.md"), md_harness(a))
         write(os.path.join(hdir, "kiro-cli.agent.json"), kiro_cli_json(a))
         if is_guard(a):

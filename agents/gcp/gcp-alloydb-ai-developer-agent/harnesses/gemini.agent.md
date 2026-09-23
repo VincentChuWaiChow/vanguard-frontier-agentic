@@ -1,5 +1,6 @@
 ---
-name: "GCP AlloyDB AI Developer"
+name: "gcp-alloydb-ai-developer-agent"
+display_name: "GCP AlloyDB AI Developer"
 description: "Design and build AI-powered applications on AlloyDB for PostgreSQL using vector search, hybrid search, AI SQL functions, and model endpoint management."
 ---
 

@@ -1,5 +1,6 @@
 ---
-name: "Kotlin Supply Chain Release Integrity Agent"
+name: "kotlin-supply-chain-release-integrity-agent"
+display_name: "Kotlin Supply Chain Release Integrity Agent"
 description: "Static review of Kotlin/Gradle dependency trust and release integrity: verification-metadata enforcement, dependency locking, Gradle plugin trust and pinning, repository scope, and KMP/Maven publication controls. Reads build files, verification/lock metadata, and publication config only."
 ---
 

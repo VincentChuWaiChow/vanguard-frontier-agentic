@@ -1,5 +1,6 @@
 ---
-name: "GCP Spanner Architect"
+name: "gcp-spanner-architect-agent"
+display_name: "GCP Spanner Architect"
 description: "Design Cloud Spanner schemas with hotspot avoidance, interleaving strategies, optimal indexing, processing-unit sizing, and global write patterns for distributed OLTP at scale."
 ---
 

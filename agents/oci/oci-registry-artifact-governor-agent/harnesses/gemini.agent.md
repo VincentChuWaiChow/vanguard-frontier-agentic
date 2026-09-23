@@ -1,5 +1,6 @@
 ---
-name: "OCI Registry Artifact Governor"
+name: "oci-registry-artifact-governor-agent"
+display_name: "OCI Registry Artifact Governor"
 description: "OCIR repositories, image access, retention, signatures/artifacts, cleanup safety, and least-privilege pulls/pushes."
 kind: "local"
 ---

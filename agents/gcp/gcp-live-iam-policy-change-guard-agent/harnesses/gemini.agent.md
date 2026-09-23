@@ -1,5 +1,6 @@
 ---
-name: "GCP Live IAM Policy Change Guard"
+name: "gcp-live-iam-policy-change-guard-agent"
+display_name: "GCP Live IAM Policy Change Guard"
 description: "Gate IAM binding mutations, org policy changes, and Service Account key creation — org-wide blast radius, cannot be undone without a full audit trail."
 ---
 

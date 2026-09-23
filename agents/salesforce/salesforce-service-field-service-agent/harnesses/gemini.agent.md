@@ -1,5 +1,6 @@
 ---
-name: "Salesforce Service Field Service Agent"
+name: "salesforce-service-field-service-agent"
+display_name: "Salesforce Service Field Service Agent"
 description: "Adversarial service-operations reviewer for Salesforce Service Cloud and Field Service — cases, entitlements, omni-channel, knowledge, service console, SLAs, Field Service, dispatch, work orders, and service analytics. Flags SLA blind spots and customer-impacting failures."
 ---
 

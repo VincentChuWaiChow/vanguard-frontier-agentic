@@ -1,5 +1,6 @@
 ---
-name: "Java Concurrency and Virtual Thread Agent"
+name: "java-concurrency-and-virtual-thread-agent"
+display_name: "Java Concurrency and Virtual Thread Agent"
 description: "Static review of virtual-thread adoption correctness at scale: pooling/capping anti-patterns, a VT migration that strips a downstream resource bound without re-imposing a Semaphore, JDK-version-gated carrier pinning (JEP 444 vs JEP 491), ThreadLocal cost at scale, StructuredTaskScope preview status, and classic executor/visibility hygiene. Reads source and sanitized configuration only."
 ---
 

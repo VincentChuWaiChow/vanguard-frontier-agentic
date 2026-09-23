@@ -1,5 +1,6 @@
 ---
-name: "Power Platform Maestro"
+name: "power-platform-maestro-agent"
+display_name: "Power Platform Maestro"
 description: "Classify the user's task, select the narrowest Power Platform specialist or the right team of specialists from the catalog, and dispatch in parallel when the task spans multiple domains. Never auto-dispatch live-guard agents."
 kind: "local"
 ---

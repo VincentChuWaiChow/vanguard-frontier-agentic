@@ -1,5 +1,6 @@
 ---
-name: "OCI Live IAM Policy Compartment Guard"
+name: "oci-live-iam-policy-compartment-guard-agent"
+display_name: "OCI Live IAM Policy Compartment Guard"
 description: "Guard OCI IAM policy changes and dynamic group mutations using verb-hierarchy audit and tag-condition review before write."
 ---
 
