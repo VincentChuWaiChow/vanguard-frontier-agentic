@@ -35493,7 +35493,7 @@
     },
     {
       "tree": "scripts",
-      "aggregate_sha256": "adc6422122b0d234dd171a8e5068da854a29df837dbc7c1bc53e7b6a5196c02b",
+      "aggregate_sha256": "7c8f023da206bedf0a60e3df24e4edb9617d16efabe552edc55c1212c4f94b29",
       "files": [
         {
           "path": "scripts/apply-skill-allowed-tools.py",
@@ -35657,8 +35657,8 @@
         },
         {
           "path": "scripts/generate-board-counts.mjs",
-          "sha256": "19078a3b6738ce94efc7529466bdce3fd2c9a18ce12b7e77ce5b5f79e1196c55",
-          "bytes": 12689
+          "sha256": "ee632f94d40af4aa18f93523730e3c83954dede918d3deb437123fda69021d86",
+          "bytes": 13338
         },
         {
           "path": "scripts/generate-changelog-counts.mjs",
@@ -36700,7 +36700,7 @@
     },
     {
       "tree": "tests",
-      "aggregate_sha256": "6adbc7d2ca67582fea6e8f311a94cab55a8de026b1b77f215163dd00767a4278",
+      "aggregate_sha256": "08049359dd505ad8779273deab7edc271071eac7f8ed51e98713249ed052e1b3",
       "files": [
         {
           "path": "tests/AGENTS.md",
@@ -36724,8 +36724,8 @@
         },
         {
           "path": "tests/fixtures/README.md",
-          "sha256": "e7023b2ded19e51593adbb500a2a65548b0c75ba9e3eb676c82759997deb8165",
-          "bytes": 3560
+          "sha256": "f008b7b8415c4bd887146e2e203e097daf2adce833a7c8e5bf07d43e251ff203",
+          "bytes": 3698
         },
         {
           "path": "tests/fixtures/accounting-maestro-routing/expected/01-revenue-recognition.json",
@@ -47228,8 +47228,8 @@
     },
     {
       "path": "CLAUDE.md",
-      "sha256": "4ae4ea5c49f5e9de2729e72b5e123a61adb6547e926e3d16284fe380efe2c0c9",
-      "bytes": 22576
+      "sha256": "684236145d6048b11dae2958042002f6f284c571321f933675fc026742450e0e",
+      "bytes": 22587
     },
     {
       "path": "AGENTS.md",
@@ -47252,5 +47252,5 @@
       "bytes": 9135
     }
   ],
-  "aggregate_sha256": "8d9734803e200526648df20e8c835e1a86d982f1d2baff145545c9ce22e1c7a1"
+  "aggregate_sha256": "69e62ac56d7b9e09f7d616ea184e5daaef89c20069bd766d0fb987bc992b7d81"
 }
