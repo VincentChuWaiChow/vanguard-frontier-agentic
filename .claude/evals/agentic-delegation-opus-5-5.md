@@ -81,3 +81,68 @@ problem twice, then switch back.
   configurations, which can inflate baseline scores. The delta, not the
   absolute baseline score, is the signal.
 - Trials run on the same model that authored the skill.
+
+## Results (2026-09-25)
+
+Two iterations, each 3 prompts x 2 configurations x 3 trials, all trials on the same
+model. Iteration 2 is the authoritative run. Iteration 1 leaked two answers to the
+baseline. The prompt said "running on Claude Opus 5.5 at its default effort", which gave
+away `medium`, and the `plan.json` schema listed `fable-5.1` as a model value. Iteration 2
+removed both hints (the model field became free text, normalized by the grader), added
+R5, and tested the skill after the gate-order fix below.
+
+```text
+EVAL REPORT: agentic-delegation (iteration 2)
+=============================================
+Capability evals (new skill; pass@3 / pass^3 per task, trial pass rate)
+  C1 code edits on opus-5.5          PASS 2/2 / 2/2   6/6   (baseline 5/6)
+  C2 reading delegated to haiku/son  PASS 2/2 / 2/2   6/6   (baseline 6/6)
+  C3 model named on every subagent   PASS 2/2 / 2/2   6/6   (baseline 6/6)
+  C4 no effort on haiku              PASS 3/3 / 3/3   9/9   (baseline 9/9)
+  C5 default effort medium           PASS 2/2 / 2/2   6/6   (baseline 0/6)
+  C6 stuck task escalates to Fable   PASS 1/1 / 1/1   3/3   (baseline 0/3)
+  C7 returns to Opus 5.5 at medium   PASS 1/1 / 1/1   3/3   (baseline 0/3)
+  C8 switch at a break, cache reason PASS 1/1 / 0/1   2/3   (baseline 0/3)
+  C9 plan mode for multi-file work   PASS 1/1 / 1/1   3/3   (baseline 3/3)
+Regression evals (pass^3)
+  R1 R2 R3 R4 R5                     1.00 each        (baseline 1.00 each)
+Metrics
+  Trial pass rate: new 98% +/- 5%, baseline 78% +/- 16%, delta +0.21
+  Time per trial: new 295 s, baseline 285 s; tokens ~104k both
+  Discrimination: 5 of 9 capability assertions fail on the baseline at least once
+  (target: at least half)
+Status: capability pass@3 >= 0.90 on all nine; regression pass^3 = 1.00
+```
+
+Iteration 1 (leaky prompts): new 100% +/- 0%, baseline 84% +/- 16%, delta +0.16. The two
+leaks show in the baseline's scores: C5 went from 4/6 in iteration 1 to 0/6 in
+iteration 2, and C6 from 3/3 to 0/3.
+
+What the evidence supports:
+
+- The skill changes four behaviors reliably: start at `medium`, not `high`; escalate a
+  repeated identical failure to Fable 5.1, not up the effort ladder to `max`; come back to
+  Opus 5.5 at `medium` afterwards; and keep code edits off Sonnet.
+- C8 is the soft spot. In one of three trials the plan put the model switch at a break
+  but justified it by per-model effort calibration, not by cache cost.
+- C2, C3, C4, C9 and R1 to R5 do not discriminate: the baseline passes them too. They are
+  kept as regression guards, not counted as evidence that the skill helps.
+- The trials found a real defect in both versions. The Gate-run template refreshed asset
+  integrity after `npm run validate`, but `validate` checks integrity itself. Every trial
+  that noticed followed `CLAUDE.md`'s order instead, which is why R5 scored 1.00 even
+  before the fix. The skill now matches `CLAUDE.md`.
+
+Grader corrections made during the run, each with a negative probe: R5 originally could
+not order two commands inside one step. It now compares (step, offset). The Sonnet grader
+for C7/C8 was blind to the configuration, and its quotes were spot-checked by grep; one
+absence claim ("cache never appears") was wrong in wording but right in verdict (the only
+hit was a build cache).
+
+Remaining threats to validity: skills authored and trialled on the same model; the new
+skill's description was visible in every trial's available-skills list; in iteration 2
+`git log` showed the commit that introduced the new doctrine. The last two bias the
+baseline toward the new behavior, so the measured delta is conservative.
+
+Artifacts (session scratchpad, not committed): `evals.json`, per-trial `plan.md` /
+`plan.json` / `grading.json` / `timing.json`, `benchmark.json` per iteration, and the
+static review viewer.
