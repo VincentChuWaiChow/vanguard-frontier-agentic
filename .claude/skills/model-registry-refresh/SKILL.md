@@ -128,5 +128,5 @@ not verification — read the diff and run the gates yourself before accepting.
   registry diff the orchestrator already made. Never edits `catalog/model-registry.json` itself.
 - **Orchestrator** — owns `catalog/model-registry.json` edits, schema/gate verification, and the
   commit. This is the same split `.claude/skills/agentic-delegation/SKILL.md` codifies more
-  generally: cheap parallel research to Haiku, bulk writing to Sonnet, judgment and commits stay
-  with the orchestrator.
+  generally: cheap parallel research to Haiku or Sonnet, prose writing to Sonnet, and code edits,
+  judgment, and commits with the Opus 5.5 orchestrator.

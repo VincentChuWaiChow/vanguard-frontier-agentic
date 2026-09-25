@@ -47203,8 +47203,8 @@
   "root_files": [
     {
       "path": "README.md",
-      "sha256": "76d780e3287d7b2fa701b38bae6621a7b12b57984fc20fee0f04c7be14764b34",
-      "bytes": 115691
+      "sha256": "4646bb60c54624a6aed7c003ef2f99e5385e5a2f5e7bec95a6183ad7c0ae3184",
+      "bytes": 115722
     },
     {
       "path": "SECURITY.md",
@@ -47228,8 +47228,8 @@
     },
     {
       "path": "CLAUDE.md",
-      "sha256": "684236145d6048b11dae2958042002f6f284c571321f933675fc026742450e0e",
-      "bytes": 22587
+      "sha256": "7a7bf7e8f162d1f713dfd059804b01133fe34945cafa58aa2ad5c56e2ca6d3e0",
+      "bytes": 22907
     },
     {
       "path": "AGENTS.md",
@@ -47252,5 +47252,5 @@
       "bytes": 9135
     }
   ],
-  "aggregate_sha256": "bfc8de3df5105f8a9a07b5ffeb02638ecad114ceb682e458225fbad9f763c803"
+  "aggregate_sha256": "886eb1b79a007c9370ae5a012e3117229180370d833a45729f5724089eb2796f"
 }
