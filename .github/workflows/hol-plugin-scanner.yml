@@ -28,6 +28,20 @@ name: HOL Plugin Scanner
 # otherwise skip. The pass/fail decision is enforced by a separate step
 # that reads the action's score/max_severity outputs.
 #
+# Code scanning keys each configuration on the SARIF tool name plus the
+# category. The scanner wheel pinned by this action emits tool.driver.name
+# "plugin-scanner" (verified at plugin-scanner 3.0.190); the 2.0.10 scanner
+# behind this repo's first uploads (June 2026) emitted
+# "codex-plugin-scanner". A rename like that does not break these jobs — it
+# orphans the old tool's configurations, which then show "Code Scanning
+# results may be out of date" on the tool status page while their alerts
+# "stay open indefinitely". Fix by deleting the stale configurations there
+# (Security -> Code scanning -> Tool status -> <old tool> -> select the
+# configuration -> ... -> Delete configuration), not by editing this workflow.
+# Docs (retrieved 2026-09-25):
+#   https://docs.github.com/en/code-security/how-tos/find-and-fix-code-vulnerabilities/manage-your-configuration/use-the-tools-status-page-for-code-scanning
+#   https://docs.github.com/en/code-security/reference/code-scanning/troubleshoot-analysis-errors/results-different-than-expected
+#
 # Docs:
 #   https://github.com/hashgraph-online/awesome-ai-plugins/blob/main/SCANNER_GUIDE.md
 #   https://github.com/hashgraph-online/awesome-codex-plugins (SCANNER_GUIDE.md)

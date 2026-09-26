@@ -19,7 +19,7 @@ Each phase names a model tier, and the tier is the point.
 | Resolve sources | Haiku | Mechanical lookup, no judgment |
 | Recon | Haiku | Read-only, one narrow question per agent |
 | Spec | Session model, no override | Architecture never delegates downward |
-| Implement | Sonnet | Bulk writing against an exact spec |
+| Implement | Opus (Sonnet for Markdown-only specs) | Code stays on the daily driver; prose-only specs go to a Sonnet writer |
 | Verify | Sonnet | Must be adversarial, so it cannot be the cheapest tier |
 | Gate | Haiku | Runs commands and reports raw output |
 

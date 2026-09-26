@@ -6,7 +6,7 @@
       "id": "agentic-delegation",
       "name": "agentic-delegation",
       "path": ".claude/workflows/agentic-delegation.js",
-      "description": "Context7-grounded delegation: Haiku recon, orchestrator-tier spec, Sonnet implementation, adversarial claim verification, then the repo gate suite.",
+      "description": "Context7-grounded delegation: Haiku recon, orchestrator-tier spec, Opus implementation (Sonnet for prose-only specs), adversarial claim verification, then the repo gate suite.",
       "when_to_use": "Multi-step work in this repo that decomposes into cheap parallel recon plus a small amount of genuine judgment — especially anything that encodes external technical facts (model names, API behaviour, version-specific semantics) that must be grounded in primary sources before they ship.",
       "phases": [
         {
@@ -26,8 +26,8 @@
         },
         {
           "title": "Implement",
-          "detail": "Sonnet writes against an exact spec",
-          "model": "sonnet"
+          "detail": "Opus writes code against an exact spec; prose-only specs go to Sonnet",
+          "model": "opus"
         },
         {
           "title": "Regenerate",

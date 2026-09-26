@@ -35427,7 +35427,7 @@
     },
     {
       "tree": "catalog",
-      "aggregate_sha256": "668b2c3c7038a86394d55ded2274359b180befcd6ffcc8bff8154126826f4d50",
+      "aggregate_sha256": "3ff112abd87956b12535da70573acf11c021f2a020e24fda0b7c695add3f44c8",
       "files": [
         {
           "path": "catalog/AGENTS.md",
@@ -35486,8 +35486,8 @@
         },
         {
           "path": "catalog/workflows.json",
-          "sha256": "227abcf7c4f38c763c001824d996390f48d78f780d2e2e5560b1bbbac089dde5",
-          "bytes": 4054
+          "sha256": "1e353c6419b76e01ba9b375146752f4a0ea24b642fa88e8b27400e2f36743f3a",
+          "bytes": 4114
         }
       ]
     },
@@ -47203,8 +47203,8 @@
   "root_files": [
     {
       "path": "README.md",
-      "sha256": "76d780e3287d7b2fa701b38bae6621a7b12b57984fc20fee0f04c7be14764b34",
-      "bytes": 115691
+      "sha256": "4646bb60c54624a6aed7c003ef2f99e5385e5a2f5e7bec95a6183ad7c0ae3184",
+      "bytes": 115722
     },
     {
       "path": "SECURITY.md",
@@ -47228,8 +47228,8 @@
     },
     {
       "path": "CLAUDE.md",
-      "sha256": "684236145d6048b11dae2958042002f6f284c571321f933675fc026742450e0e",
-      "bytes": 22587
+      "sha256": "7a7bf7e8f162d1f713dfd059804b01133fe34945cafa58aa2ad5c56e2ca6d3e0",
+      "bytes": 22907
     },
     {
       "path": "AGENTS.md",
@@ -47252,5 +47252,5 @@
       "bytes": 9135
     }
   ],
-  "aggregate_sha256": "d20450b39c29270d9196f4ab3600bcdba9bd5109c022b88b24f156635593839f"
+  "aggregate_sha256": "886eb1b79a007c9370ae5a012e3117229180370d833a45729f5724089eb2796f"
 }

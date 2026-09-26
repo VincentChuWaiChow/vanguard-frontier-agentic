@@ -1,125 +1,170 @@
 ---
 name: agentic-delegation
-description: "Delegate exploration sweeps to Haiku subagents and bulk writing to Sonnet subagents while the orchestrator keeps architecture, security-sensitive edits, and commits; use at the start of any multi-step task in this repo to minimize token spend by delegating to cheaper models."
+description: "Plan who does each step of a task in this repo, on which model, at which effort: Haiku or Sonnet subagents for search, recon, and log-reading; code edits on Opus 5.5; start at medium effort and escalate on evidence (high, then xhigh, then Fable 5.1 for one stuck task); the orchestrator keeps design, security-sensitive edits, verification, and the commit. Use at the start of any task that spans more than one file or needs research or CI-log triage, whenever a fix keeps failing at the current effort, and whenever you are about to spawn a subagent or pick a model or effort level — even if nobody says 'delegate'."
 allowed-tools: ["Agent", "TaskCreate", "TaskUpdate"]
 ---
 
 # Agentic Delegation
 
-## Doctrine
+The orchestrator's context window is the scarcest resource in a session. Every file dump,
+log tail, and grep result read directly is context that can no longer hold the plan, the
+spec, or the diff under review. Delegation exists to keep that window for judgment.
 
-Most tasks in this repo decompose into cheap, parallelizable work plus a small amount of
-work that genuinely needs the orchestrator's judgment. Default to delegating the former.
-Before doing multi-step work yourself, ask: can a cheaper model do this step just as well?
+Opus 5.5 is the daily driver: it is the orchestrator, and it makes the code edits. Reading
+work goes to cheaper models.
 
-## a) Exploration and reconnaissance → Haiku
+## Route each step by the kind of work
 
-- Use the `Explore` agent type with `model: haiku` for read-only reconnaissance: locating
-  files, grepping for symbols, mapping call sites, summarizing existing structure.
-- Scope each Explore task tightly — one question, one area of the tree. Do not send an
-  Explore agent an open-ended "understand the whole system" ask; split it into targeted
-  sweeps instead.
-- Require file:line citations in every finding. A report without exact paths and line
-  numbers is not actionable — re-run it with a tighter prompt rather than accepting it.
+| Work | Who does it | Model | Effort |
+| --- | --- | --- | --- |
+| Search, recon, mapping call sites, "where does X live" | subagent (`Explore`) | `haiku`; `sonnet` when interpreting what it finds takes judgment | none on Haiku |
+| Reading CI or gate logs, running the gate suite | subagent | `haiku` or `sonnet` | none on Haiku |
+| Bulk prose: docs pages, guides, templates, against an exact spec | subagent | `sonnet` | session level |
+| Code edits: scripts, tests, generators, gates, workflow code, Rust | orchestrator, or `opus` subagents for independent parallel edits | Opus 5.5 | session level |
+| Architecture, schema shapes, security-sensitive and load-bearing edits | orchestrator only | Opus 5.5 | session level |
+| Verification of delegate output, and the commit | orchestrator only | Opus 5.5 | session level |
+| One task that `high` has failed twice in the same way | orchestrator, after switching model | Fable 5.1 | then switch back |
 
-## b) Bulk writing → Sonnet
+Search and log-reading are summarization jobs: a cheaper model reads a lot and returns a
+little, and that is exactly the trade you want. Code edits are the opposite. They are where a
+subtle mistake costs a CI cycle and a reviewer's trust, and a spec rarely captures every
+invariant the surrounding code depends on. Keep them on the model that holds the whole plan.
 
-- Route bulk writing — docs, guides, boilerplate, test scaffolding, repetitive multi-file
-  edits — to Sonnet subagents.
-- Give each writing task a precise spec: exact file paths to create or edit, the content
-  shape expected, and which repo conventions to mirror (frontmatter shape, heading
-  structure, existing tone).
-- Hard-constrain every writing delegate:
-  - **Files it may touch** — list them explicitly; nothing outside that list.
-  - **Linters/gates it must pass** — e.g. `npx markdownlint-cli2`, `codespell`, or the
-    schema/validation gate relevant to the files it is touching.
-  - **No commits** — delegates write files; only the orchestrator commits.
+Docs prose is the judgment call in this table. It is not code, so a Sonnet writer with an
+exact file-scoped spec is still the default. Anything that encodes facts (model names,
+command flags, API shapes) gets verified by the orchestrator before acceptance, whoever wrote it.
 
-## Orchestrator requirements
+## Name the model on every delegate call
 
-- **Haiku must never be the orchestrator.** It explores and runs gates; it does not plan,
-  decompose, or accept work.
-- **When Sonnet is the orchestrator, run it at high reasoning effort at minimum** — use the
-  harness's maximum-thinking mode where available. Planning and delegation quality degrade
-  below that, and a weak plan wastes every delegate downstream.
-- The model split in this skill is unchanged by who orchestrates: even a Sonnet orchestrator
-  routes bulk writing to Sonnet subagents — the benefit is keeping the orchestrator's context
-  clean for judgment, not just the per-token price.
+Pass `model` explicitly each time you spawn a subagent. Since Claude Code v2.1.198 the
+built-in `Explore` agent inherits the main conversation's model instead of always running on
+Haiku, so an `Explore` call without `model: "haiku"` runs the reconnaissance on Opus 5.5. That
+defeats the point of delegating it. The per-invocation `model` parameter wins over the
+subagent's frontmatter, over `CLAUDE_CODE_SUBAGENT_MODEL`, and over the session model. An
+`opus` alias from an Opus 5.5 session resolves to Opus 5.5 itself, which is what you want for
+parallel code-edit delegates.
 
-## c) What the orchestrator keeps
+## Effort: start at medium, escalate on evidence
 
-Never delegate:
+Opus 5.5 defaults to `medium`, and well-scoped daily work belongs there. Raise effort only
+when the work shows it needs more, and in this order:
 
-- Architecture and design decisions (schema shapes, scope boundaries, precedence rules).
-- Security-sensitive code (auth, secrets handling, trust-boundary logic).
-- Surgical edits to load-bearing logic (validation gates, schemas, catalog generators).
+1. **Give the model a way to check its work first.** A test, gate, or script with a clear
+   endpoint (`npm run validate`, `cargo test`, a one-line negative probe) often catches at
+   `medium` what you would otherwise need `high` to find. Add the check before touching the
+   effort dial.
+2. **`medium` stalls → `high`.** More thinking per turn catches what `medium` misses.
+3. **`high` still cannot get there → `xhigh`.** Use this when each attempt makes progress but
+   falls short.
+4. **`high` hits the same problem twice → Fable 5.1 for that task.** An identical repeated
+   failure means more thinking on the same model is not the fix. Switch that specific task to
+   Fable 5.1, solve it, then switch back to Opus 5.5 at `medium`. Do not leave the session
+   running on the escalated setting.
+5. **`max` is for one hard task, never a standing default.** Claude Code applies `max` to the
+   current session only unless it is forced through `CLAUDE_CODE_EFFORT_LEVEL`. The docs
+   warn it can show diminishing returns and is prone to overthinking. Turn it on for the task,
+   then lower it again.
+
+Change effort or model at a break, such as after a commit or between tasks. Changing effort
+invalidates the messages cache, and caches are model-scoped, so the next turn after a switch
+pays full price for the whole conversation. Switching in the middle of a debugging loop pays
+that cost at the worst time.
+
+Effort for delegates:
+
+- **Haiku 4.5 does not support effort.** Do not assign a Haiku delegate an effort level; it
+  means nothing there.
+- **Effort is calibrated per model.** `high` on Sonnet is not `high` on Opus. Choose the
+  delegate's model first, then its effort.
+- **Delegates inherit the session's effort** unless their subagent definition sets `effort:`
+  or the Workflow `agent()` call passes one. A recon or gate-run delegate rarely needs more
+  than the session level.
+
+## Keep the session lean
+
+- Use plan mode (`/plan`, or Shift+Tab) for changes that span multiple files. The plan is
+  reviewed before any edit touches disk, which is cheaper than unwinding a wrong edit.
+- `/clear` between unrelated tasks, so the old task's context does not ride along.
+- `/compact` at a natural break, with a note on what to keep, for example
+  `/compact keep the spec, the failing test names, and the open review threads`.
+- When a cost or model choice is in doubt, run one real task on each option and compare
+  what `/usage` reports. Your own numbers beat anyone's benchmark, including this skill's
+  table.
+
+## What the orchestrator keeps
+
+These stay with the orchestrator because each needs the whole picture, and a delegate sees
+only its slice:
+
+- Architecture and design decisions: schema shapes, scope boundaries, precedence rules.
+- Security-sensitive code: auth, secrets handling, trust-boundary logic.
+- Surgical edits to load-bearing logic: validation gates, schemas, catalog generators.
 - Final verification and the commit itself.
 
-## d) Every delegate gets
+Haiku never orchestrates; it explores and runs gates. If Sonnet orchestrates instead of Opus
+5.5, run it at `high` effort at minimum. Planning quality degrades below that, and a weak
+plan wastes every delegate downstream.
 
-- Exact file paths — absolute, not "somewhere in docs/".
-- Acceptance criteria — what "done" looks like, stated concretely and checkably.
-- An explicit "do NOT" list — files not to touch, commands not to run (no
-  `npm run validate`, no `cargo test`, no `git commit` inside a delegate unless
-  explicitly asked to run them for verification).
+## Every delegate gets
 
-## e) Verify before accepting
+A delegate knows only what its prompt says. Hand over:
 
-- Run the repo's own gates on delegate output before treating it as done: `npm run
-  validate`, `cargo test` (for `tools/vfa-tui`), `npx markdownlint-cli2`, `codespell`.
-- A delegate's self-report is not verification — read the diff, run the gate, then accept.
+- **The model**, named explicitly (see above).
+- **Exact file paths**, absolute rather than "somewhere in docs/".
+- **Acceptance criteria**, stated concretely enough to check.
+- **Citations as the price of a finding.** Recon and log-reading delegates return
+  `file:line` or a URL for every claim. A report without them is not actionable; re-run it
+  with a tighter prompt rather than accepting it.
+- **A "do NOT" list**: files not to touch and commands not to run. By default that means no
+  `npm run validate`, no `cargo test`, and never `git commit`. Delegates write files; only
+  the orchestrator commits.
+
+## Verify before accepting
+
+A delegate's self-report is a lead, not evidence. Read the diff in full, then run the gates
+relevant to the touched files (`npm run validate`, `cargo test` for `tools/vfa-tui`,
+`npx markdownlint-cli2`, `npm run lint:spell`). Treat a green gate as necessary, not sufficient. Also
+run one positive probe (the thing now works) and one negative probe (bad input now fails with
+the right message).
 
 ## Workflow templates
 
-Three reusable orchestration shapes cover most multi-step tasks in this repo. Reach for one of
-these before inventing a bespoke delegation plan.
+Three shapes cover most multi-step tasks here. Reach for one before inventing a bespoke plan.
+For large work, `.claude/workflows/agentic-delegation.js` runs the same doctrine as an
+executable `Workflow` (see `.claude/workflows/README.md`).
 
-### a) Recon sweep
+### Recon sweep
 
-Parallel Haiku `Explore` agents, one question each, citations required.
+Parallel `Explore` agents on `model: "haiku"`, one narrow question each, one area of the tree
+each, all launched in the same message so they run concurrently. Every finding carries a
+`file:line` citation. Use this when you do not yet know where something lives. It is
+read-only: no edits, no commits. If a sweep comes back thin or off-target, tighten the prompt
+and re-run it.
 
-- Split the open-ended question into narrow, independent sub-questions — one per agent, one
-  area of the tree each.
-- Launch all Explore agents in the same message so they run in parallel, not sequentially.
-- Require file:line citations in every finding, same as section (a) above.
-- **When to use** — you don't yet know where something lives, or need a map of an unfamiliar
-  area before deciding what to change.
-- **Hard constraints** — read-only; Explore agents may not `Edit`/`Write`. No commits. If a
-  sweep comes back thin or off-target, re-run it with a tighter prompt rather than accepting a
-  vague report.
+### Spec-driven change
 
-### b) Spec-driven implementation
+The orchestrator writes the spec first: exact paths, the shape of the change, the conventions
+to mirror, and checkable acceptance criteria.
 
-Orchestrator writes an exact file-scoped spec, Sonnet implements, orchestrator reviews the diff
-and runs decisive verification before accepting.
+- **Code:** the orchestrator implements on Opus 5.5. When several edits are independent,
+  split them across `opus` subagents, one spec each, with disjoint file lists.
+- **Prose:** hand the spec verbatim to a `sonnet` subagent. A one-line summary of a spec
+  produces a one-line-quality result.
 
-- Orchestrator writes the spec first: exact file paths, the content/code shape expected, which
-  repo conventions to mirror, and acceptance criteria stated concretely.
-- Delegate the spec verbatim to a Sonnet subagent — do not compress it to a one-line ask; a
-  vague handoff produces a vague implementation.
-- Orchestrator reads the resulting diff in full before running any gate — do not skip straight
-  to "did the gate pass."
-- Run the gate(s) relevant to the touched files (schema validation, `npm run validate`,
-  `cargo test`, linters) and treat a pass as necessary, not sufficient, for acceptance.
-- **When to use** — the shape of the change is fully known up front (new file, defined edit to
-  an existing one) and doesn't require architectural judgment mid-implementation.
-- **Hard constraints** — files it may touch: exactly the list in the spec, nothing else. No
-  commits — the orchestrator commits after review.
+Either way, the orchestrator reads the whole diff before running any gate, then verifies as
+above. Delegates touch exactly the files their spec lists and never commit.
 
-### c) Gate run
+### Gate run
 
-Haiku runs the full repo gate suite and reports pass/fail with raw failure output.
+A `haiku` subagent, with no effort level, runs the suite and reports pass or fail with raw
+failure output verbatim, not a paraphrase like "some tests failed". The orchestrator needs the
+actual error to decide the next move.
 
-- Delegate to Haiku: `cargo fmt --check`, `cargo clippy -- -D warnings`, `cargo test` (for
-  `tools/vfa-tui`), `npm run validate`, `codespell`, `npx markdownlint-cli2`, then
-  `npm run asset-integrity:write` **last**, only after every other gate is green.
-  Regenerating integrity before other generators finish stales the manifest — see
-  the ordering caveat in `CLAUDE.md`/`AGENTS.md`.
-- Require raw failure output verbatim in the report — not a paraphrase like "some tests
-  failed." The orchestrator needs the actual error to decide the next move.
-- **When to use** — verifying a change is ready before the orchestrator reviews/commits, or a
-  periodic health check with no code changes attached.
-- **Hard constraints** — this is a read/verify pass: the only file it may write is
-  `catalog/asset-integrity.json` via `asset-integrity:write`, and only after all other gates
-  pass. No other edits. No commits — report results back to the orchestrator, who decides
-  whether to fix, re-run, or commit.
+Order matters because `npm run validate` includes the asset-integrity check. The orchestrator
+runs the generators its change needs first. The gate run then refreshes the manifest with
+`npm run asset-integrity:write`, on its own, as the last write. Only then does it run the
+checks: `npm run validate`, `npm run lint:spell`, and `npx markdownlint-cli2`, plus
+`cargo fmt --check`, `cargo clippy --all-targets -- -D warnings`, and `cargo test` when
+`tools/vfa-tui` changed. Run it the other way round and `validate` fails on the stale
+manifest before the refresh ever happens. The only file a gate run may write is
+`catalog/asset-integrity.json`, and it never commits.
