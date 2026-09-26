@@ -1,3 +1,84 @@
+## 🛡️ v3.14.0 — *Provenance · Policy · Portability*
+_Released 2026-09-26_
+
+> _Curated multi-cloud, zero-trust agent marketplace — `AWS` · `Azure` · `OCI` · `GCP` · `Terraform`._
+> Least privilege, live evidence, safe rollback paths.
+
+**Release type:** New capabilities — review the sections below before upgrading.
+
+### ✨ Features
+
+* **delegation:** Opus 5.5 effort ladder and model routing in agentic-delegation ([`af5b40a`](https://github.com/VincentChuWaiChow/vanguard-frontier-agentic/commit/af5b40a0cf5ede901341ad27d9de5caa74fcc50b))
+  Rewrite the skill to the skill-creator standard (trigger-rich description,
+  reasons instead of bare rules) around verified Opus 5.5 guidance:
+
+  - Code edits stay on Opus 5.5; search, recon and log-reading go to Haiku
+    or Sonnet; prose writers stay on Sonnet with an exact spec.
+  - Name the model on every delegate call: built-in Explore inherits the
+    session model since Claude Code v2.1.198, so an unnamed recon call
+    silently runs on Opus.
+  - Effort starts at medium (Opus 5.5's default) and escalates on evidence:
+    a check with a clear endpoint first, then high, then xhigh, and Fable 5.1
+    for one task that high failed twice in the same way, then back.
+  - max is session-only by design; switch effort or model at a break
+    because either invalidates the prompt cache; Haiku 4.5 takes no effort.
+  - Gate-run template now refreshes asset integrity before npm run validate,
+    matching CLAUDE.md's Definition of done (the old order failed validate).
+
+  Every encoded fact cites code.claude.com / platform.claude.com pages read
+  2026-09-25 or catalog/model-registry.json; the eval definition written
+  before the change lists them.
+* **workflows:** route agentic-delegation code specs to Opus, drop effort on Haiku ([`905d222`](https://github.com/VincentChuWaiChow/vanguard-frontier-agentic/commit/905d222783c42c8d04e88c05205fb8eb1f1f2628))
+  The Implement phase sent every spec, code or prose, to Sonnet at high.
+  Route by the spec's own file list instead: Markdown-only specs keep the
+  Sonnet writer at high, anything else runs on Opus at the session effort.
+  The rule is a pure function of the spec, so routing stays deterministic.
+
+  Remove effort from the five Haiku calls: Claude Haiku 4.5 is absent from
+  the effort-capable model list (code.claude.com/docs/en/model-config), so
+  those levels claimed a setting the model never applies.
+
+  Regenerate catalog/workflows.json and refresh asset integrity.
+
+### 📚 Documentation
+
+* **delegation:** sync every restatement of the doctrine to the Opus 5.5 routing ([`a3c9ee6`](https://github.com/VincentChuWaiChow/vanguard-frontier-agentic/commit/a3c9ee606ba9031ebb7dbe6f3d346a33eccefbfd))
+  CLAUDE.md, README.md, ROADMAP.md, docs/agentic-delegation.md,
+  docs/agentic-delegation-workflow.md, .claude/workflows/README.md and the
+  pr-babysit and model-registry-refresh skills still described the old split
+  (Sonnet writers for code, Haiku recon without a named model).
+
+  They now say what the skill and workflow do: Haiku or Sonnet for search,
+  recon and log reading with the model named on every call, Sonnet for prose,
+  code edits on Opus 5.5 (Implement routes Markdown-only specs to Sonnet),
+  Opus 5.5 at its default medium effort escalating on evidence. ROADMAP's
+  blanket 'run at high effort or above' is narrowed to a Sonnet orchestrator,
+  matching CLAUDE.md's rule, since Opus 5.5 defaults to medium.
+
+  Refresh asset integrity for the hashed root files.
+* **evals:** record the agentic-delegation eval results ([`d74a8db`](https://github.com/VincentChuWaiChow/vanguard-frontier-agentic/commit/d74a8dba83faa11ee1b66daceacabda9b4e94b61))
+  Two iterations of 3 prompts x new/old skill x 3 trials, graded by code
+  where the property is structural and by a blind Sonnet grader for the two
+  judgment assertions. Iteration 2 (prompt and schema leaks removed) scores
+  the new skill 98% against 78% for the previous version (+0.21); capability
+  pass@3 >= 0.90 on all nine assertions and regression pass^3 = 1.00.
+
+  The report states what does not discriminate (C2, C3, C4, C9, R1-R5), the
+  soft spot (C8 at 2/3), the grader fixes made during the run, and the
+  remaining threats to validity.
+
+---
+
+### 📥 Install
+```bash
+npm install @raishin/vanguard-frontier-agentic@3.14.0
+```
+
+### 🔐 Supply-chain provenance
+Every release ships a build attestation (SLSA provenance) and an SBOM. Verify the tag with `gh attestation verify` before installing.
+
+**Full changelog:** https://github.com/VincentChuWaiChow/vanguard-frontier-agentic/compare/v3.13.0...v3.14.0
+
 ## 🛡️ v3.13.0 — *Provenance · Policy · Portability*
 _Released 2026-09-23_
 
