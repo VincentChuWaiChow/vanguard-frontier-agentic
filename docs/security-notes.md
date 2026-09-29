@@ -50,6 +50,95 @@ Dependabot alert dismissed" or "why does workflow X need write scope Y".
 - Re-open the alert (or let Dependabot re-detect on next scan) and
   confirm closure.
 
+**Update (2026-09-29):** exit criterion met. Commit `5fd4ce18`
+refreshed the bundled `npm` to 11.20.0, whose
+`node_modules/npm/node_modules/ip-address` is `10.5.0` (>= `10.1.1`).
+This advisory no longer matches; the two newer `ip-address` advisories
+below do.
+
+### Triage pass 2026-09-29
+
+Source: `npm audit` against `package-lock.json` at `4c9e74dc`
+(the `v3.14.0` release commit), with each advisory's affected and fixed
+ranges checked against OSV (`https://api.osv.dev/v1/vulns/<GHSA>`). The
+Security tab itself (Dependabot, CodeQL, and Scorecard alert lists) was
+not readable from the session that did this pass, so alert numbers are
+not recorded here. Match alerts by GHSA ID.
+
+| Advisory | Package | Lockfile path | Fixed in | Status |
+|---|---|---|---|---|
+| GHSA-3wwx-pv8p-q78v | `undici` 7.29.0 | `node_modules/undici` (via `@semantic-release/github`) | 7.29.1 | **Fixed**: lock now resolves 7.30.0 |
+| GHSA-3wwx-pv8p-q78v | `undici` 6.28.0 | `node_modules/@actions/http-client/node_modules/undici` | 6.28.1 | **Fixed**: lock now resolves 6.29.0 |
+| GHSA-3wwx-pv8p-q78v | `undici` 6.28.0 | `node_modules/npm/node_modules/undici` (bundled) | 6.28.1 | Dismiss: vulnerable code not used |
+| GHSA-rpw4-54j3-4h4q | `ip-address` 10.5.0 | `node_modules/npm/node_modules/ip-address` (bundled) | 10.5.1 | Dismiss: vulnerable code not used |
+| GHSA-2vr4-cq9g-pvrc | `ip-address` 10.5.0 | `node_modules/npm/node_modules/ip-address` (bundled) | 10.5.1 | Dismiss: vulnerable code not used |
+
+All five are Moderate and dev-only. They are reached only through the
+release toolchain (`semantic-release` and its plugins) and are never in
+the published tarball.
+
+**Fixed entries.** `npm audit fix --package-lock-only` moved both
+non-bundled `undici` copies inside their existing semver ranges
+(`^7.0.0` from `@semantic-release/github`, `^6.23.0` from
+`@actions/http-client`). No `package.json` range changed. Both new
+versions support the Node versions CI uses (22 in `ci.yml`, 24 in
+`release.yml`). `undici` 7.30.0 needs `>=20.18.1` and 6.29.0 needs
+`>=18.17`. After `npm ci`, `@semantic-release/github` and
+`@actions/http-client` still load, and `semantic-release --dry-run`
+loads every configured plugin.
+
+**Bundled entries: why they stay open upstream.**
+
+1. **Not patchable from this repo.** Both copies ship inside the `npm`
+   CLI tarball (`inBundle: true`), reached through
+   `@semantic-release/npm` -> `npm@^11.6.2`. Root `overrides` do not
+   reach bundled packages. The npm docs say published packages "may
+   dictate their resolutions by pinning dependencies or using
+   `bundleDependencies`" (npm/cli
+   `docs/lib/content/configuring-npm/package-json.md`, `overrides`
+   section, via Context7 `/npm/cli`). The newest `npm` 11.x (11.20.0,
+   published 2026-09-22) still bundles `ip-address` 10.5.0 and
+   `undici` 6.28.0, and this lock already pins it, so no in-range
+   update exists yet. `npm audit` reports "fix available via
+   `npm audit fix`" for these two nodes, but running it changes
+   nothing, because of the bundling.
+2. **`ip-address`: vulnerable classifiers are never called.** Both
+   advisories concern IPv6 classification: `Address6.isLinkLocal()`
+   accepting only `fe80::/64`, and no classifier recognizing NAT64
+   `64:ff9b:1::/48`. Inside the npm bundle, the only importer is `socks`
+   (`socks/build/common/helpers.js`, `socks/build/client/socksclient.js`).
+   It only constructs `Address4`/`Address6` values and calls
+   `fromByteArray(...).canonicalForm()`. Nothing in the bundle outside
+   `ip-address` itself calls `isLinkLocal`, `isLoopback`, `getScope`,
+   or any other classifier. The only textual match is `isPrivate` in
+   `@npmcli/package-json/lib/sort.js`, which is the `package.json`
+   `private` field and unrelated. No code in this repo makes a
+   trust-boundary decision with these classifiers.
+3. **`undici` (bundled): no WebSocket client.** The advisory is a DoS
+   in WebSocket `permessage-deflate` decompression. The only importer
+   in the npm bundle is `node-gyp/lib/download.js`, which imports
+   `Agent`, `EnvHttpProxyAgent`, `RetryAgent`, and `fetch`, and no
+   `WebSocket`. `node-gyp` only runs for native-addon builds. No entry
+   in `package-lock.json` sets `hasInstallScript` or `gypfile`, and
+   `tests/validate-no-lifecycle-scripts.py` rejects install-time
+   scripts in this package's own `package.json`.
+
+**Exit criteria (bundled entries):** when an `npm` release inside
+`^11.6.2` bundles `ip-address >= 10.5.1` and `undici >= 6.28.1`,
+refresh the npm subtree the way commit `5fd4ce18` did (drop it from
+the lock, then `npm install`). Then confirm `npm audit` reports 0 and
+that Dependabot auto-closes the alerts.
+
+**Rust (`tools/vfa-tui/Cargo.lock`).** `cargo audit` reported 0
+vulnerabilities and one informational `unsound` warning,
+RUSTSEC-2026-0253. It covers `lru` 0.18.0 (via `ratatui-core`):
+`LruCache::pop()` is not panic-safe and can cause use-after-free, but
+only with `catch_unwind` and key types whose `Drop` panics. Patched in
+`>= 0.18.2`. **Fixed**: `cargo update -p lru` moved it to 0.18.5 inside
+`ratatui-core`'s existing requirement. After the update, `cargo audit`
+is clean, and `cargo fmt --check`, `cargo clippy --all-targets -- -D
+warnings`, and `cargo test` pass.
+
 ## Workflow token-permission hardening
 
 The OpenSSF Scorecard `Token-Permissions` check requires a top-level
