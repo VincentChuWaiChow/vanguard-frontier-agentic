@@ -1,3 +1,87 @@
+## 🛡️ v3.15.0 — *Provenance · Policy · Portability*
+_Released 2026-10-06_
+
+> _Curated multi-cloud, zero-trust agent marketplace — `AWS` · `Azure` · `OCI` · `GCP` · `Terraform`._
+> Least privilege, live evidence, safe rollback paths.
+
+**Release type:** New capabilities — review the sections below before upgrading.
+
+### ✨ Features
+
+* **model-policy:** retire gpt-5.5 for codex and migrate pinned rules to gpt-6-sol ([`5416b77`](https://github.com/VincentChuWaiChow/vanguard-frontier-agentic/commit/5416b77dba71bcb50597bcc21b8c09c5d0022180))
+  OpenAI retires GPT-5.5 from ChatGPT, ChatGPT Work and Codex on all
+  plans on 2026-10-14 and directs ChatGPT sign-in users to replace it in
+  custom agents with gpt-6-sol (learn.chatgpt.com/docs/models?surface=cli,
+  verified 2026-10-06).
+
+  - registry: mark codex gpt-5.5 retiring 2026-10-14, successor
+    gpt-6-sol. The entry is kept: the OpenAI API still serves it, and it
+    is the documented successor of gpt-5-2025-08-07.
+  - policy: move the nine codex rules that pinned gpt-5.5 (providers
+    dotnet, generic, hr, java, legal, netsuite, salesforce; agents
+    nextjs-specialist-agent, svelte-sveltekit-specialist-agent) to
+    gpt-6-sol and reproject the affected codex.toml files.
+  - docs: operator-guide example and matrix rows no longer present
+    gpt-5.5 as a current choice.
+* **model-registry:** add gpt-6.1-sol, claude-sonnet-5-5 and Cursor model IDs; record new deprecations ([`9021067`](https://github.com/VincentChuWaiChow/vanguard-frontier-agentic/commit/902106721c2125a1ff98995ea2a7696f01728b70))
+  Refresh verified 2026-10-06 against primary sources:
+
+  - codex: register gpt-6.1-sol (low..max per the API models page, plus
+    ultra per the Codex model catalog; no none/minimal per the reasoning
+    guide). Mark gpt-5.3-codex and gpt-5.4-nano retiring 2027-04-01 with
+    successors gpt-6-sol / gpt-6-luna (OpenAI deprecations, 2026-10-01).
+    Note gpt-5.5 leaving ChatGPT sign-in Codex on 2026-10-14 (API
+    unaffected, so no lifecycle status).
+  - claude-code: register claude-sonnet-5-5 (all five effort levels).
+    Mark claude-sonnet-4-5 and claude-sonnet-4-5-20250929 retiring
+    2026-11-30 -> claude-sonnet-5-5. Record per-provider resolution of
+    the sonnet alias.
+  - cursor: register the Model IDs stated on cursor.com/docs/models
+    per-model pages (claude-sonnet-5-5, claude-opus-5-5, claude-fable-5-1,
+    gpt-5.6-terra, gpt-5.6-luna, gemini-3.1-pro, gemini-3.8-flash,
+    grok-4.7, grok-4.6, muse-spark-1.3).
+  - openrouter: refresh examples.
+
+  "Gemini 4" appears in no Google, OpenRouter or Cursor source, so
+  nothing is registered for it. Claude Mythos 5/5.1 stay unregistered:
+  listed active on the deprecations page but absent from the models
+  overview and Claude Code docs.
+
+### 📚 Documentation
+
+* **security:** add the 2026-09-29 advisory wave and correct undici reachability ([`0c90c11`](https://github.com/VincentChuWaiChow/vanguard-frontier-agentic/commit/0c90c1118c709f086ecd80e61a8bcc5e9d43653f))
+  Seven more advisories were published on 2026-09-29 against packages
+  bundled inside the npm CLI: undici (GHSA-rfgv-xxqx-mfg5 high,
+  GHSA-r53p-7pc4-xj5r low), brace-expansion (GHSA-qhr7-859c-m2p7 and
+  GHSA-6j4f-fj2g-mc7p high, GHSA-q2hr-2g5m-vwhr moderate) and ip-address
+  (GHSA-j6r3-76f7-8jcv, GHSA-h3mg-xc3c-68pw moderate).
+
+  None is fixable from this repo: npm 11.20.0 and 12.1.0 bundle the same
+  vulnerable versions, and root overrides cannot reach bundled packages.
+  Record reachability per advisory from the installed code, and correct
+  the earlier claim that bundled undici is unreachable: node-gyp imports
+  RetryAgent, so the retry-interceptor advisory has a code path. It is
+  never run because no locked package needs a native build.
+* **security:** record the 2026-09-29 dependency triage pass ([`ddfafa5`](https://github.com/VincentChuWaiChow/vanguard-frontier-agentic/commit/ddfafa5250bbf9dd68d1fc7cce0bd89a2609f905))
+  Add the undici, ip-address and lru advisories with lockfile paths, fixed
+  versions (checked against OSV), and status. Document why the two bundled
+  npm-CLI copies are dismissable: socks never calls the ip-address
+  classifiers and node-gyp imports no undici WebSocket. Record the exit
+  criterion for those, and mark the original ip-address Dependabot #1 exit
+  criterion as met (bundled ip-address is 10.5.0 since 5fd4ce18).
+
+---
+
+### 📥 Install
+```bash
+npm install @raishin/vanguard-frontier-agentic@3.15.0
+```
+
+### 🔐 Supply-chain provenance
+Every release ships a build attestation (SLSA provenance) and an SBOM. Verify the tag with `gh attestation verify` before installing.
+
+**Full changelog:** https://github.com/VincentChuWaiChow/vanguard-frontier-agentic/compare/v3.14.0...v3.15.0
+
 ## 🛡️ v3.14.0 — *Provenance · Policy · Portability*
 _Released 2026-09-26_
 
