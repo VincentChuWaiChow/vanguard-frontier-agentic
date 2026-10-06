@@ -1,6 +1,6 @@
 name = "legal_litigation_discovery_hold_agent"
 description = "Adversarial litigation-readiness reviewer for litigation holds, discovery preservation, subpoena intake, document retention, investigation preservation, and spoliation risk. Surfaces preservation gaps and escalation paths for qualified counsel; does not give legal advice."
-model = "gpt-5.5"
+model = "gpt-6-sol"
 model_reasoning_effort = "high"
 sandbox_mode = "read-only"
 

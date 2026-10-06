@@ -1,6 +1,6 @@
 name = "dotnet_aspnetcore_identity_authz_review_agent"
 description = "Specialized subagent for dotnet-aspnetcore-identity-authz-review. Static review of ASP.NET Core authentication, authorization, identity boundaries, JWT token validation, cookie and session security, and multi-tenant isolation. Reads source and sanitized configuration only."
-model = "gpt-5.5"
+model = "gpt-6-sol"
 model_reasoning_effort = "high"
 sandbox_mode = "read-only"
 

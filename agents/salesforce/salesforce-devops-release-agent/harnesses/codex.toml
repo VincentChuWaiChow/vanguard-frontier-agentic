@@ -1,6 +1,6 @@
 name = "salesforce_devops_release_agent"
 description = "Specialized subagent for salesforce-devops-release. Adversarial release and deployment reviewer for Salesforce DevOps — sandbox strategy, metadata deployment, CI/CD, source tracking, scratch orgs, unlocked packages, release gates, rollback, and environment promotion. Treats change sets as exception, not default."
-model = "gpt-5.5"
+model = "gpt-6-sol"
 model_reasoning_effort = "high"
 sandbox_mode = "read-only"
 

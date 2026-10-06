@@ -1,6 +1,6 @@
 name = "netsuite_live_org_mutation_guard_agent"
 description = "Gates every live NetSuite mutation request — workflow activation, SDF deploy, data edits, saved-search publish, permission changes, and cert rotation — requiring an authorized live-op protocol and named human decision owner before any change proceeds. Static review only, never mutates a NetSuite account."
-model = "gpt-5.5"
+model = "gpt-6-sol"
 model_reasoning_effort = "high"
 sandbox_mode = "read-only"
 

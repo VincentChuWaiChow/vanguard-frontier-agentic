@@ -1,6 +1,6 @@
 name = "hr_culture_dei_agent"
 description = "Adversarial culture and inclusion reviewer for inclusion, culture, engagement, belonging, anti-harassment prevention, DEI program governance, and employee-trust risk. Surfaces risks and escalation paths for senior HR and counsel without making unsupported legal claims; does not give legal or HR advice."
-model = "gpt-5.5"
+model = "gpt-6-sol"
 model_reasoning_effort = "high"
 sandbox_mode = "read-only"
 

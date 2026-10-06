@@ -1,6 +1,6 @@
 name = "salesforce_session_governance_agent"
 description = "Reviews Salesforce session security settings, High Assurance session requirements, OAuth session policies, Connected App controls, and session hijacking risks from long-lived tokens."
-model = "gpt-5.5"
+model = "gpt-6-sol"
 model_reasoning_effort = "high"
 sandbox_mode = "read-only"
 

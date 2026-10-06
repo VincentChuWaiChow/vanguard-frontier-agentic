@@ -1,6 +1,6 @@
 name = "llm_ai_pipeline_test_review_agent"
 description = "Specialized subagent for llm-ai-pipeline-test-review. Reviews an LLM or AI pipeline's evaluation setup for test-quality defects — missing hallucination, relevancy, faithfulness, bias, toxicity, and tool-correctness metrics; absent golden datasets; unthresholded or single-shot evals; and no regression gate across model versions. Static review only."
-model = "gpt-5.5"
+model = "gpt-6-sol"
 model_reasoning_effort = "high"
 sandbox_mode = "read-only"
 

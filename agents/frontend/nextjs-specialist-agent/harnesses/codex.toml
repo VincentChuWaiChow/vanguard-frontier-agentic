@@ -1,6 +1,6 @@
 name = "nextjs_specialist_agent"
 description = "Specialized subagent for nextjs-specialist. Static review of Next.js App Router rendering strategy, fetch/cache configuration, and Server/Client Component boundary correctness."
-model = "gpt-5.5"
+model = "gpt-6-sol"
 model_reasoning_effort = "high"
 sandbox_mode = "read-only"
 

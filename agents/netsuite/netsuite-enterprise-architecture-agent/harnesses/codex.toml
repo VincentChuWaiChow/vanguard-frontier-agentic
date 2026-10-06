@@ -1,6 +1,6 @@
 name = "netsuite_enterprise_architecture_agent"
 description = "Reviews NetSuite enterprise architecture: SuiteCloud platform design, customization strategy, integration topology, OneWorld multi-subsidiary layout, SDF project structure, and technology-stack decisions for Fortune-50-scale deployments. Static review only, never mutates a NetSuite account."
-model = "gpt-5.5"
+model = "gpt-6-sol"
 model_reasoning_effort = "high"
 sandbox_mode = "read-only"
 

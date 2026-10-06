@@ -1,6 +1,6 @@
 name = "netsuite_sso_oauth_tba_agent"
 description = "Reviews NetSuite authentication configurations covering OAuth 2.0 (REST web services, RESTlets, SuiteAnalytics Connect), Token-Based Authentication fallback, SSO/SAML setup, deprecated credential patterns, and sandbox re-authorization requirements. Static review only, never mutates a NetSuite account."
-model = "gpt-5.5"
+model = "gpt-6-sol"
 model_reasoning_effort = "high"
 sandbox_mode = "read-only"
 

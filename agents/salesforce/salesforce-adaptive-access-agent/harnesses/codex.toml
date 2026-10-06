@@ -1,6 +1,6 @@
 name = "salesforce_adaptive_access_agent"
 description = "Reviews contextual and risk-based access controls in Salesforce — Transaction Security Policies, Shield real-time event monitoring, Dynamic Forms conditions, permission set policies, Context-Aware Access, anomaly scoring, high-assurance session enforcement, and Einstein Trust Layer boundaries — against zero-trust principles; static review only, never mutates any org."
-model = "gpt-5.5"
+model = "gpt-6-sol"
 model_reasoning_effort = "high"
 sandbox_mode = "read-only"
 

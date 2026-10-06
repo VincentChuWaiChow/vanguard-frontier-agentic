@@ -1,6 +1,6 @@
 name = "hr_maestro_agent"
 description = "Routes HR matters to the right HR specialist agent and coordinates cross-functional review with Legal, Compliance, Privacy, Security, Finance, Payroll, and leadership using the Legal-HR routing protocol, case capsule, and risk taxonomy. Classification and coordination only — does not give HR or legal advice or make final HR decisions."
-model = "gpt-5.5"
+model = "gpt-6-sol"
 model_reasoning_effort = "high"
 sandbox_mode = "read-only"
 

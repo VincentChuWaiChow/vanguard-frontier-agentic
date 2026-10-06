@@ -1,6 +1,6 @@
 name = "test_flakiness_triage_agent"
 description = "Specialized subagent for test-flakiness-triage. Triages flaky tests across any framework into root-cause categories, assigns a quarantine or fix path per test, and audits CI retry configuration and quarantine policy."
-model = "gpt-5.5"
+model = "gpt-6-sol"
 model_reasoning_effort = "high"
 sandbox_mode = "read-only"
 

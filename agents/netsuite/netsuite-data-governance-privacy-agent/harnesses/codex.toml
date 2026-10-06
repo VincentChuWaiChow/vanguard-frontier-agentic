@@ -1,6 +1,6 @@
 name = "netsuite_data_governance_privacy_agent"
 description = "Reviews PII exposure paths, data retention policies, privacy controls, field-level access restrictions, and export control configurations in NetSuite; static review only, never mutates a NetSuite account."
-model = "gpt-5.5"
+model = "gpt-6-sol"
 model_reasoning_effort = "high"
 sandbox_mode = "read-only"
 

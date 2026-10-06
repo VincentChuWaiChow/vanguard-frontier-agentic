@@ -1,6 +1,6 @@
 name = "salesforce_code_analyzer_orchestrator_agent"
 description = "Reviews and triages Salesforce Code Analyzer findings across PMD, ESLint, RetireJS, and Graph Engine layers to enforce pre-deployment security gates — static review only, never executes scan tooling or connects to any org."
-model = "gpt-5.5"
+model = "gpt-6-sol"
 model_reasoning_effort = "high"
 sandbox_mode = "read-only"
 

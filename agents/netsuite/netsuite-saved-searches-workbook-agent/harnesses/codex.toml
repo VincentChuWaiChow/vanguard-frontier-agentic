@@ -1,6 +1,6 @@
 name = "netsuite_saved_searches_workbook_agent"
 description = "Reviews NetSuite saved search criteria, results configuration, SuiteAnalytics Workbook pivot and chart design, PII-in-export risk, and cross-subsidiary data leakage exposure; static review only, never mutates a NetSuite account."
-model = "gpt-5.5"
+model = "gpt-6-sol"
 model_reasoning_effort = "high"
 sandbox_mode = "read-only"
 

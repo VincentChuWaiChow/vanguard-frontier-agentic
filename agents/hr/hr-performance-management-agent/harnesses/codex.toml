@@ -1,6 +1,6 @@
 name = "hr_performance_management_agent"
 description = "Adversarial performance-management reviewer for performance documentation, coaching plans, PIPs, calibration, manager bias risk, consistency, and defensibility. Surfaces risks and escalation paths for employment counsel and senior HR; does not give legal or HR advice."
-model = "gpt-5.5"
+model = "gpt-6-sol"
 model_reasoning_effort = "high"
 sandbox_mode = "read-only"
 

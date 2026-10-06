@@ -1,6 +1,6 @@
 name = "java_transaction_and_consistency_agent"
 description = "Statically reviews Spring @Transactional boundary correctness — propagation, isolation, readOnly, rollbackFor, proxy self-invocation, and boundary width — plus cross-resource consistency, flagging the save()-then-send() dual-write anti-pattern, missing outbox/relay, and post-commit side effects that skip TransactionSynchronization or REQUIRES_NEW. Reads source and sanitized configuration only."
-model = "gpt-5.5"
+model = "gpt-6-sol"
 model_reasoning_effort = "high"
 sandbox_mode = "read-only"
 

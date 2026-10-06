@@ -1,6 +1,6 @@
 name = "netsuite_evidence_release_drift_agent"
 description = "Owns evidence labelling and biannual NetSuite release-drift tracking across the entire agent portfolio, flagging stale claims against the SOAP removal timeline (2026.1/2027.1/2028.2) and authentication deprecations. Static review only, never mutates a NetSuite account."
-model = "gpt-5.5"
+model = "gpt-6-sol"
 model_reasoning_effort = "high"
 sandbox_mode = "read-only"
 

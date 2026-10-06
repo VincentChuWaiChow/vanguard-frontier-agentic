@@ -1,6 +1,6 @@
 name = "salesforce_slack_collaboration_agent"
 description = "Adversarial static reviewer for Slack integration, Slack administration, workflow collaboration, channel governance, retention, eDiscovery implications, and productivity patterns — flags collaboration sprawl and unmanaged data leakage."
-model = "gpt-5.5"
+model = "gpt-6-sol"
 model_reasoning_effort = "high"
 sandbox_mode = "read-only"
 

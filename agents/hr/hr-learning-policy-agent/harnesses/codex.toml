@@ -1,6 +1,6 @@
 name = "hr_learning_policy_agent"
 description = "Adversarial HR learning and policy reviewer for policy training, manager enablement, compliance training, employee guidance materials, policy comprehension, and training-completion controls. Surfaces risks and escalation paths for senior HR and counsel; does not give legal or HR advice."
-model = "gpt-5.5"
+model = "gpt-6-sol"
 model_reasoning_effort = "high"
 sandbox_mode = "read-only"
 

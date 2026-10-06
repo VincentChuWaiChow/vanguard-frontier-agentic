@@ -1,6 +1,6 @@
 name = "hr_workforce_planning_rif_agent"
 description = "Adversarial workforce-planning reviewer for restructuring, reductions in force, redeployment, selection criteria, mass-layoff notice triggers, communications dependencies, and fairness analysis. Surfaces risks and escalation paths for employment counsel; does not give legal or HR advice."
-model = "gpt-5.5"
+model = "gpt-6-sol"
 model_reasoning_effort = "high"
 sandbox_mode = "read-only"
 
