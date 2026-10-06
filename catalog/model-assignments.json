@@ -1,7 +1,7 @@
 {
   "manifest_version": 1,
   "generated_by": "scripts/model-policy.mjs",
-  "policy_sha256": "f0bb60f01274367784838688a3a3a9bc23fd5cfeb32d501b3d5e261e55351ec3",
+  "policy_sha256": "c1784b39cdae313001369bb4e48d6360a04573c641a9a617f4dbcb28d41c0113",
   "capabilities": {
     "codex": {
       "model": true,
@@ -5048,7 +5048,7 @@
     {
       "agent_id": "ci-test-pipeline-review-agent",
       "harness": "codex",
-      "model": "gpt-5.5",
+      "model": "gpt-6-sol",
       "model_provider": null,
       "model_fallback_from": null,
       "model_warning": null,
@@ -6665,7 +6665,7 @@
     {
       "agent_id": "dotnet-aspire-cloud-native-review-agent",
       "harness": "codex",
-      "model": "gpt-5.5",
+      "model": "gpt-6-sol",
       "model_provider": null,
       "model_fallback_from": null,
       "model_warning": null,
@@ -6698,7 +6698,7 @@
     {
       "agent_id": "dotnet-aspnetcore-api-review-agent",
       "harness": "codex",
-      "model": "gpt-5.5",
+      "model": "gpt-6-sol",
       "model_provider": null,
       "model_fallback_from": null,
       "model_warning": null,
@@ -6731,7 +6731,7 @@
     {
       "agent_id": "dotnet-aspnetcore-identity-authz-review-agent",
       "harness": "codex",
-      "model": "gpt-5.5",
+      "model": "gpt-6-sol",
       "model_provider": null,
       "model_fallback_from": null,
       "model_warning": null,
@@ -6764,7 +6764,7 @@
     {
       "agent_id": "dotnet-csharp-runtime-review-agent",
       "harness": "codex",
-      "model": "gpt-5.5",
+      "model": "gpt-6-sol",
       "model_provider": null,
       "model_fallback_from": null,
       "model_warning": null,
@@ -6797,7 +6797,7 @@
     {
       "agent_id": "dotnet-efcore-data-access-review-agent",
       "harness": "codex",
-      "model": "gpt-5.5",
+      "model": "gpt-6-sol",
       "model_provider": null,
       "model_fallback_from": null,
       "model_warning": null,
@@ -6830,7 +6830,7 @@
     {
       "agent_id": "dotnet-maestro-agent",
       "harness": "codex",
-      "model": "gpt-5.5",
+      "model": "gpt-6-sol",
       "model_provider": null,
       "model_fallback_from": null,
       "model_warning": null,
@@ -6863,7 +6863,7 @@
     {
       "agent_id": "dotnet-observability-otel-review-agent",
       "harness": "codex",
-      "model": "gpt-5.5",
+      "model": "gpt-6-sol",
       "model_provider": null,
       "model_fallback_from": null,
       "model_warning": null,
@@ -6896,7 +6896,7 @@
     {
       "agent_id": "dotnet-performance-aot-review-agent",
       "harness": "codex",
-      "model": "gpt-5.5",
+      "model": "gpt-6-sol",
       "model_provider": null,
       "model_fallback_from": null,
       "model_warning": null,
@@ -6929,7 +6929,7 @@
     {
       "agent_id": "dotnet-supply-chain-review-agent",
       "harness": "codex",
-      "model": "gpt-5.5",
+      "model": "gpt-6-sol",
       "model_provider": null,
       "model_fallback_from": null,
       "model_warning": null,
@@ -6962,7 +6962,7 @@
     {
       "agent_id": "dotnet-testing-quality-review-agent",
       "harness": "codex",
-      "model": "gpt-5.5",
+      "model": "gpt-6-sol",
       "model_provider": null,
       "model_fallback_from": null,
       "model_warning": null,
@@ -9602,7 +9602,7 @@
     {
       "agent_id": "helm-chart-quality-review-agent",
       "harness": "codex",
-      "model": "gpt-5.5",
+      "model": "gpt-6-sol",
       "model_provider": null,
       "model_fallback_from": null,
       "model_warning": null,
@@ -9833,7 +9833,7 @@
     {
       "agent_id": "hr-analytics-people-data-agent",
       "harness": "codex",
-      "model": "gpt-5.5",
+      "model": "gpt-6-sol",
       "model_provider": null,
       "model_fallback_from": null,
       "model_warning": null,
@@ -9866,7 +9866,7 @@
     {
       "agent_id": "hr-benefits-payroll-agent",
       "harness": "codex",
-      "model": "gpt-5.5",
+      "model": "gpt-6-sol",
       "model_provider": null,
       "model_fallback_from": null,
       "model_warning": null,
@@ -9899,7 +9899,7 @@
     {
       "agent_id": "hr-compensation-equity-agent",
       "harness": "codex",
-      "model": "gpt-5.5",
+      "model": "gpt-6-sol",
       "model_provider": null,
       "model_fallback_from": null,
       "model_warning": null,
@@ -9932,7 +9932,7 @@
     {
       "agent_id": "hr-culture-dei-agent",
       "harness": "codex",
-      "model": "gpt-5.5",
+      "model": "gpt-6-sol",
       "model_provider": null,
       "model_fallback_from": null,
       "model_warning": null,
@@ -9965,7 +9965,7 @@
     {
       "agent_id": "hr-employee-relations-agent",
       "harness": "codex",
-      "model": "gpt-5.5",
+      "model": "gpt-6-sol",
       "model_provider": null,
       "model_fallback_from": null,
       "model_warning": null,
@@ -9998,7 +9998,7 @@
     {
       "agent_id": "hr-hris-process-controls-agent",
       "harness": "codex",
-      "model": "gpt-5.5",
+      "model": "gpt-6-sol",
       "model_provider": null,
       "model_fallback_from": null,
       "model_warning": null,
@@ -10031,7 +10031,7 @@
     {
       "agent_id": "hr-learning-policy-agent",
       "harness": "codex",
-      "model": "gpt-5.5",
+      "model": "gpt-6-sol",
       "model_provider": null,
       "model_fallback_from": null,
       "model_warning": null,
@@ -10064,7 +10064,7 @@
     {
       "agent_id": "hr-leave-accommodation-agent",
       "harness": "codex",
-      "model": "gpt-5.5",
+      "model": "gpt-6-sol",
       "model_provider": null,
       "model_fallback_from": null,
       "model_warning": null,
@@ -10097,7 +10097,7 @@
     {
       "agent_id": "hr-maestro-agent",
       "harness": "codex",
-      "model": "gpt-5.5",
+      "model": "gpt-6-sol",
       "model_provider": null,
       "model_fallback_from": null,
       "model_warning": null,
@@ -10130,7 +10130,7 @@
     {
       "agent_id": "hr-performance-management-agent",
       "harness": "codex",
-      "model": "gpt-5.5",
+      "model": "gpt-6-sol",
       "model_provider": null,
       "model_fallback_from": null,
       "model_warning": null,
@@ -10163,7 +10163,7 @@
     {
       "agent_id": "hr-recruiting-selection-agent",
       "harness": "codex",
-      "model": "gpt-5.5",
+      "model": "gpt-6-sol",
       "model_provider": null,
       "model_fallback_from": null,
       "model_warning": null,
@@ -10196,7 +10196,7 @@
     {
       "agent_id": "hr-risk-triage-review-agent",
       "harness": "codex",
-      "model": "gpt-5.5",
+      "model": "gpt-6-sol",
       "model_provider": null,
       "model_fallback_from": null,
       "model_warning": null,
@@ -10229,7 +10229,7 @@
     {
       "agent_id": "hr-termination-readiness-agent",
       "harness": "codex",
-      "model": "gpt-5.5",
+      "model": "gpt-6-sol",
       "model_provider": null,
       "model_fallback_from": null,
       "model_warning": null,
@@ -10262,7 +10262,7 @@
     {
       "agent_id": "hr-workforce-planning-rif-agent",
       "harness": "codex",
-      "model": "gpt-5.5",
+      "model": "gpt-6-sol",
       "model_provider": null,
       "model_fallback_from": null,
       "model_warning": null,
@@ -10295,7 +10295,7 @@
     {
       "agent_id": "hr-workplace-investigations-agent",
       "harness": "codex",
-      "model": "gpt-5.5",
+      "model": "gpt-6-sol",
       "model_provider": null,
       "model_fallback_from": null,
       "model_warning": null,
@@ -12275,7 +12275,7 @@
     {
       "agent_id": "java-application-server-exit-agent",
       "harness": "codex",
-      "model": "gpt-5.5",
+      "model": "gpt-6-sol",
       "model_provider": null,
       "model_fallback_from": null,
       "model_warning": null,
@@ -12308,7 +12308,7 @@
     {
       "agent_id": "java-concurrency-and-virtual-thread-agent",
       "harness": "codex",
-      "model": "gpt-5.5",
+      "model": "gpt-6-sol",
       "model_provider": null,
       "model_fallback_from": null,
       "model_warning": null,
@@ -12341,7 +12341,7 @@
     {
       "agent_id": "java-container-and-kubernetes-readiness-agent",
       "harness": "codex",
-      "model": "gpt-5.5",
+      "model": "gpt-6-sol",
       "model_provider": null,
       "model_fallback_from": null,
       "model_warning": null,
@@ -12374,7 +12374,7 @@
     {
       "agent_id": "java-database-migration-safety-agent",
       "harness": "codex",
-      "model": "gpt-5.5",
+      "model": "gpt-6-sol",
       "model_provider": null,
       "model_fallback_from": null,
       "model_warning": null,
@@ -12407,7 +12407,7 @@
     {
       "agent_id": "java-deserialization-and-parser-security-agent",
       "harness": "codex",
-      "model": "gpt-5.5",
+      "model": "gpt-6-sol",
       "model_provider": null,
       "model_fallback_from": null,
       "model_warning": null,
@@ -12440,7 +12440,7 @@
     {
       "agent_id": "java-framework-production-readiness-agent",
       "harness": "codex",
-      "model": "gpt-5.5",
+      "model": "gpt-6-sol",
       "model_provider": null,
       "model_fallback_from": null,
       "model_warning": null,
@@ -12473,7 +12473,7 @@
     {
       "agent_id": "java-jdk-lifecycle-and-upgrade-agent",
       "harness": "codex",
-      "model": "gpt-5.5",
+      "model": "gpt-6-sol",
       "model_provider": null,
       "model_fallback_from": null,
       "model_warning": null,
@@ -12506,7 +12506,7 @@
     {
       "agent_id": "java-jpa-hibernate-performance-agent",
       "harness": "codex",
-      "model": "gpt-5.5",
+      "model": "gpt-6-sol",
       "model_provider": null,
       "model_fallback_from": null,
       "model_warning": null,
@@ -12539,7 +12539,7 @@
     {
       "agent_id": "java-jvm-performance-and-gc-agent",
       "harness": "codex",
-      "model": "gpt-5.5",
+      "model": "gpt-6-sol",
       "model_provider": null,
       "model_fallback_from": null,
       "model_warning": null,
@@ -12572,7 +12572,7 @@
     {
       "agent_id": "java-kafka-reliability-agent",
       "harness": "codex",
-      "model": "gpt-5.5",
+      "model": "gpt-6-sol",
       "model_provider": null,
       "model_fallback_from": null,
       "model_warning": null,
@@ -12605,7 +12605,7 @@
     {
       "agent_id": "java-maestro-agent",
       "harness": "codex",
-      "model": "gpt-5.5",
+      "model": "gpt-6-sol",
       "model_provider": null,
       "model_fallback_from": null,
       "model_warning": null,
@@ -12638,7 +12638,7 @@
     {
       "agent_id": "java-resilience-pattern-agent",
       "harness": "codex",
-      "model": "gpt-5.5",
+      "model": "gpt-6-sol",
       "model_provider": null,
       "model_fallback_from": null,
       "model_warning": null,
@@ -12671,7 +12671,7 @@
     {
       "agent_id": "java-spring-security-agent",
       "harness": "codex",
-      "model": "gpt-5.5",
+      "model": "gpt-6-sol",
       "model_provider": null,
       "model_fallback_from": null,
       "model_warning": null,
@@ -12704,7 +12704,7 @@
     {
       "agent_id": "java-test-architecture-agent",
       "harness": "codex",
-      "model": "gpt-5.5",
+      "model": "gpt-6-sol",
       "model_provider": null,
       "model_fallback_from": null,
       "model_warning": null,
@@ -12737,7 +12737,7 @@
     {
       "agent_id": "java-transaction-and-consistency-agent",
       "harness": "codex",
-      "model": "gpt-5.5",
+      "model": "gpt-6-sol",
       "model_provider": null,
       "model_fallback_from": null,
       "model_warning": null,
@@ -13628,7 +13628,7 @@
     {
       "agent_id": "kubernetes-manifest-quality-review-agent",
       "harness": "codex",
-      "model": "gpt-5.5",
+      "model": "gpt-6-sol",
       "model_provider": null,
       "model_fallback_from": null,
       "model_warning": null,
@@ -13859,7 +13859,7 @@
     {
       "agent_id": "legal-contract-review-agent",
       "harness": "codex",
-      "model": "gpt-5.5",
+      "model": "gpt-6-sol",
       "model_provider": null,
       "model_fallback_from": null,
       "model_warning": null,
@@ -13892,7 +13892,7 @@
     {
       "agent_id": "legal-counsel-review-agent",
       "harness": "codex",
-      "model": "gpt-5.5",
+      "model": "gpt-6-sol",
       "model_provider": null,
       "model_fallback_from": null,
       "model_warning": null,
@@ -13925,7 +13925,7 @@
     {
       "agent_id": "legal-employment-law-risk-agent",
       "harness": "codex",
-      "model": "gpt-5.5",
+      "model": "gpt-6-sol",
       "model_provider": null,
       "model_fallback_from": null,
       "model_warning": null,
@@ -13958,7 +13958,7 @@
     {
       "agent_id": "legal-ethics-investigations-agent",
       "harness": "codex",
-      "model": "gpt-5.5",
+      "model": "gpt-6-sol",
       "model_provider": null,
       "model_fallback_from": null,
       "model_warning": null,
@@ -13991,7 +13991,7 @@
     {
       "agent_id": "legal-ip-open-source-agent",
       "harness": "codex",
-      "model": "gpt-5.5",
+      "model": "gpt-6-sol",
       "model_provider": null,
       "model_fallback_from": null,
       "model_warning": null,
@@ -14024,7 +14024,7 @@
     {
       "agent_id": "legal-knowledge-management-agent",
       "harness": "codex",
-      "model": "gpt-5.5",
+      "model": "gpt-6-sol",
       "model_provider": null,
       "model_fallback_from": null,
       "model_warning": null,
@@ -14057,7 +14057,7 @@
     {
       "agent_id": "legal-litigation-discovery-hold-agent",
       "harness": "codex",
-      "model": "gpt-5.5",
+      "model": "gpt-6-sol",
       "model_provider": null,
       "model_fallback_from": null,
       "model_warning": null,
@@ -14090,7 +14090,7 @@
     {
       "agent_id": "legal-maestro-agent",
       "harness": "codex",
-      "model": "gpt-5.5",
+      "model": "gpt-6-sol",
       "model_provider": null,
       "model_fallback_from": null,
       "model_warning": null,
@@ -14123,7 +14123,7 @@
     {
       "agent_id": "legal-policy-governance-agent",
       "harness": "codex",
-      "model": "gpt-5.5",
+      "model": "gpt-6-sol",
       "model_provider": null,
       "model_fallback_from": null,
       "model_warning": null,
@@ -14156,7 +14156,7 @@
     {
       "agent_id": "legal-privacy-data-protection-agent",
       "harness": "codex",
-      "model": "gpt-5.5",
+      "model": "gpt-6-sol",
       "model_provider": null,
       "model_fallback_from": null,
       "model_warning": null,
@@ -14189,7 +14189,7 @@
     {
       "agent_id": "legal-public-disclosure-agent",
       "harness": "codex",
-      "model": "gpt-5.5",
+      "model": "gpt-6-sol",
       "model_provider": null,
       "model_fallback_from": null,
       "model_warning": null,
@@ -14222,7 +14222,7 @@
     {
       "agent_id": "legal-regulatory-compliance-agent",
       "harness": "codex",
-      "model": "gpt-5.5",
+      "model": "gpt-6-sol",
       "model_provider": null,
       "model_fallback_from": null,
       "model_warning": null,
@@ -14255,7 +14255,7 @@
     {
       "agent_id": "legal-vendor-procurement-risk-agent",
       "harness": "codex",
-      "model": "gpt-5.5",
+      "model": "gpt-6-sol",
       "model_provider": null,
       "model_fallback_from": null,
       "model_warning": null,
@@ -14288,7 +14288,7 @@
     {
       "agent_id": "llm-ai-pipeline-test-review-agent",
       "harness": "codex",
-      "model": "gpt-5.5",
+      "model": "gpt-6-sol",
       "model_provider": null,
       "model_fallback_from": null,
       "model_warning": null,
@@ -15113,7 +15113,7 @@
     {
       "agent_id": "netsuite-administrator-agent",
       "harness": "codex",
-      "model": "gpt-5.5",
+      "model": "gpt-6-sol",
       "model_provider": null,
       "model_fallback_from": null,
       "model_warning": null,
@@ -15146,7 +15146,7 @@
     {
       "agent_id": "netsuite-ai-connector-mcp-agent",
       "harness": "codex",
-      "model": "gpt-5.5",
+      "model": "gpt-6-sol",
       "model_provider": null,
       "model_fallback_from": null,
       "model_warning": null,
@@ -15179,7 +15179,7 @@
     {
       "agent_id": "netsuite-ai-foundations-agent",
       "harness": "codex",
-      "model": "gpt-5.5",
+      "model": "gpt-6-sol",
       "model_provider": null,
       "model_fallback_from": null,
       "model_warning": null,
@@ -15212,7 +15212,7 @@
     {
       "agent_id": "netsuite-application-developer-agent",
       "harness": "codex",
-      "model": "gpt-5.5",
+      "model": "gpt-6-sol",
       "model_provider": null,
       "model_fallback_from": null,
       "model_warning": null,
@@ -15245,7 +15245,7 @@
     {
       "agent_id": "netsuite-audit-controls-sox-agent",
       "harness": "codex",
-      "model": "gpt-5.5",
+      "model": "gpt-6-sol",
       "model_provider": null,
       "model_fallback_from": null,
       "model_warning": null,
@@ -15278,7 +15278,7 @@
     {
       "agent_id": "netsuite-bi-reporting-agent",
       "harness": "codex",
-      "model": "gpt-5.5",
+      "model": "gpt-6-sol",
       "model_provider": null,
       "model_fallback_from": null,
       "model_warning": null,
@@ -15311,7 +15311,7 @@
     {
       "agent_id": "netsuite-data-governance-privacy-agent",
       "harness": "codex",
-      "model": "gpt-5.5",
+      "model": "gpt-6-sol",
       "model_provider": null,
       "model_fallback_from": null,
       "model_warning": null,
@@ -15344,7 +15344,7 @@
     {
       "agent_id": "netsuite-enterprise-architecture-agent",
       "harness": "codex",
-      "model": "gpt-5.5",
+      "model": "gpt-6-sol",
       "model_provider": null,
       "model_fallback_from": null,
       "model_warning": null,
@@ -15377,7 +15377,7 @@
     {
       "agent_id": "netsuite-erp-consultant-agent",
       "harness": "codex",
-      "model": "gpt-5.5",
+      "model": "gpt-6-sol",
       "model_provider": null,
       "model_fallback_from": null,
       "model_warning": null,
@@ -15410,7 +15410,7 @@
     {
       "agent_id": "netsuite-evidence-release-drift-agent",
       "harness": "codex",
-      "model": "gpt-5.5",
+      "model": "gpt-6-sol",
       "model_provider": null,
       "model_fallback_from": null,
       "model_warning": null,
@@ -15443,7 +15443,7 @@
     {
       "agent_id": "netsuite-financial-foundations-agent",
       "harness": "codex",
-      "model": "gpt-5.5",
+      "model": "gpt-6-sol",
       "model_provider": null,
       "model_fallback_from": null,
       "model_warning": null,
@@ -15476,7 +15476,7 @@
     {
       "agent_id": "netsuite-identity-access-role-permission-agent",
       "harness": "codex",
-      "model": "gpt-5.5",
+      "model": "gpt-6-sol",
       "model_provider": null,
       "model_fallback_from": null,
       "model_warning": null,
@@ -15509,7 +15509,7 @@
     {
       "agent_id": "netsuite-integration-migration-agent",
       "harness": "codex",
-      "model": "gpt-5.5",
+      "model": "gpt-6-sol",
       "model_provider": null,
       "model_fallback_from": null,
       "model_warning": null,
@@ -15542,7 +15542,7 @@
     {
       "agent_id": "netsuite-live-org-mutation-guard-agent",
       "harness": "codex",
-      "model": "gpt-5.5",
+      "model": "gpt-6-sol",
       "model_provider": null,
       "model_fallback_from": null,
       "model_warning": null,
@@ -15575,7 +15575,7 @@
     {
       "agent_id": "netsuite-maestro-agent",
       "harness": "codex",
-      "model": "gpt-5.5",
+      "model": "gpt-6-sol",
       "model_provider": null,
       "model_fallback_from": null,
       "model_warning": null,
@@ -15608,7 +15608,7 @@
     {
       "agent_id": "netsuite-oneworld-multisubsidiary-agent",
       "harness": "codex",
-      "model": "gpt-5.5",
+      "model": "gpt-6-sol",
       "model_provider": null,
       "model_fallback_from": null,
       "model_warning": null,
@@ -15641,7 +15641,7 @@
     {
       "agent_id": "netsuite-sandbox-nonproduction-governance-agent",
       "harness": "codex",
-      "model": "gpt-5.5",
+      "model": "gpt-6-sol",
       "model_provider": null,
       "model_fallback_from": null,
       "model_warning": null,
@@ -15674,7 +15674,7 @@
     {
       "agent_id": "netsuite-saved-searches-workbook-agent",
       "harness": "codex",
-      "model": "gpt-5.5",
+      "model": "gpt-6-sol",
       "model_provider": null,
       "model_fallback_from": null,
       "model_warning": null,
@@ -15707,7 +15707,7 @@
     {
       "agent_id": "netsuite-sdf-devops-release-agent",
       "harness": "codex",
-      "model": "gpt-5.5",
+      "model": "gpt-6-sol",
       "model_provider": null,
       "model_fallback_from": null,
       "model_warning": null,
@@ -15740,7 +15740,7 @@
     {
       "agent_id": "netsuite-sso-oauth-tba-agent",
       "harness": "codex",
-      "model": "gpt-5.5",
+      "model": "gpt-6-sol",
       "model_provider": null,
       "model_fallback_from": null,
       "model_warning": null,
@@ -15773,7 +15773,7 @@
     {
       "agent_id": "netsuite-suitecloud-developer-agent",
       "harness": "codex",
-      "model": "gpt-5.5",
+      "model": "gpt-6-sol",
       "model_provider": null,
       "model_fallback_from": null,
       "model_warning": null,
@@ -15806,7 +15806,7 @@
     {
       "agent_id": "netsuite-suiteflow-automation-agent",
       "harness": "codex",
-      "model": "gpt-5.5",
+      "model": "gpt-6-sol",
       "model_provider": null,
       "model_fallback_from": null,
       "model_warning": null,
@@ -15839,7 +15839,7 @@
     {
       "agent_id": "netsuite-suitefoundation-agent",
       "harness": "codex",
-      "model": "gpt-5.5",
+      "model": "gpt-6-sol",
       "model_provider": null,
       "model_fallback_from": null,
       "model_warning": null,
@@ -15872,7 +15872,7 @@
     {
       "agent_id": "netsuite-suitescript-secure-code-review-agent",
       "harness": "codex",
-      "model": "gpt-5.5",
+      "model": "gpt-6-sol",
       "model_provider": null,
       "model_fallback_from": null,
       "model_warning": null,
@@ -15905,7 +15905,7 @@
     {
       "agent_id": "netsuite-web-services-integration-agent",
       "harness": "codex",
-      "model": "gpt-5.5",
+      "model": "gpt-6-sol",
       "model_provider": null,
       "model_fallback_from": null,
       "model_warning": null,
@@ -15938,7 +15938,7 @@
     {
       "agent_id": "nextjs-specialist-agent",
       "harness": "codex",
-      "model": "gpt-5.5",
+      "model": "gpt-6-sol",
       "model_provider": null,
       "model_fallback_from": null,
       "model_warning": null,
@@ -18028,7 +18028,7 @@
     {
       "agent_id": "playwright-e2e-suite-review-agent",
       "harness": "codex",
-      "model": "gpt-5.5",
+      "model": "gpt-6-sol",
       "model_provider": null,
       "model_fallback_from": null,
       "model_warning": null,
@@ -18061,7 +18061,7 @@
     {
       "agent_id": "plc-control-logic-safety-review-agent",
       "harness": "codex",
-      "model": "gpt-5.5",
+      "model": "gpt-6-sol",
       "model_provider": null,
       "model_fallback_from": null,
       "model_warning": null,
@@ -19546,7 +19546,7 @@
     {
       "agent_id": "revenue-critical-journey-integrity-agent",
       "harness": "codex",
-      "model": "gpt-5.5",
+      "model": "gpt-6-sol",
       "model_provider": null,
       "model_fallback_from": null,
       "model_warning": null,
@@ -19612,7 +19612,7 @@
     {
       "agent_id": "rpa-workflow-resilience-review-agent",
       "harness": "codex",
-      "model": "gpt-5.5",
+      "model": "gpt-6-sol",
       "model_provider": null,
       "model_fallback_from": null,
       "model_warning": null,
@@ -19645,7 +19645,7 @@
     {
       "agent_id": "salesforce-adaptive-access-agent",
       "harness": "codex",
-      "model": "gpt-5.5",
+      "model": "gpt-6-sol",
       "model_provider": null,
       "model_fallback_from": null,
       "model_warning": null,
@@ -19678,7 +19678,7 @@
     {
       "agent_id": "salesforce-agentforce-ai-agent",
       "harness": "codex",
-      "model": "gpt-5.5",
+      "model": "gpt-6-sol",
       "model_provider": null,
       "model_fallback_from": null,
       "model_warning": null,
@@ -19711,7 +19711,7 @@
     {
       "agent_id": "salesforce-analytics-tableau-agent",
       "harness": "codex",
-      "model": "gpt-5.5",
+      "model": "gpt-6-sol",
       "model_provider": null,
       "model_fallback_from": null,
       "model_warning": null,
@@ -19744,7 +19744,7 @@
     {
       "agent_id": "salesforce-app-builder-automation-agent",
       "harness": "codex",
-      "model": "gpt-5.5",
+      "model": "gpt-6-sol",
       "model_provider": null,
       "model_fallback_from": null,
       "model_warning": null,
@@ -19777,7 +19777,7 @@
     {
       "agent_id": "salesforce-business-analyst-agent",
       "harness": "codex",
-      "model": "gpt-5.5",
+      "model": "gpt-6-sol",
       "model_provider": null,
       "model_fallback_from": null,
       "model_warning": null,
@@ -19810,7 +19810,7 @@
     {
       "agent_id": "salesforce-certificate-lifecycle-agent",
       "harness": "codex",
-      "model": "gpt-5.5",
+      "model": "gpt-6-sol",
       "model_provider": null,
       "model_fallback_from": null,
       "model_warning": null,
@@ -19843,7 +19843,7 @@
     {
       "agent_id": "salesforce-change-impact-analyst-agent",
       "harness": "codex",
-      "model": "gpt-5.5",
+      "model": "gpt-6-sol",
       "model_provider": null,
       "model_fallback_from": null,
       "model_warning": null,
@@ -19876,7 +19876,7 @@
     {
       "agent_id": "salesforce-code-analyzer-orchestrator-agent",
       "harness": "codex",
-      "model": "gpt-5.5",
+      "model": "gpt-6-sol",
       "model_provider": null,
       "model_fallback_from": null,
       "model_warning": null,
@@ -19909,7 +19909,7 @@
     {
       "agent_id": "salesforce-compliance-privacy-agent",
       "harness": "codex",
-      "model": "gpt-5.5",
+      "model": "gpt-6-sol",
       "model_provider": null,
       "model_fallback_from": null,
       "model_warning": null,
@@ -19942,7 +19942,7 @@
     {
       "agent_id": "salesforce-continuous-verification-agent",
       "harness": "codex",
-      "model": "gpt-5.5",
+      "model": "gpt-6-sol",
       "model_provider": null,
       "model_fallback_from": null,
       "model_warning": null,
@@ -19975,7 +19975,7 @@
     {
       "agent_id": "salesforce-data-architecture-agent",
       "harness": "codex",
-      "model": "gpt-5.5",
+      "model": "gpt-6-sol",
       "model_provider": null,
       "model_fallback_from": null,
       "model_warning": null,
@@ -20008,7 +20008,7 @@
     {
       "agent_id": "salesforce-development-agent",
       "harness": "codex",
-      "model": "gpt-5.5",
+      "model": "gpt-6-sol",
       "model_provider": null,
       "model_fallback_from": null,
       "model_warning": null,
@@ -20041,7 +20041,7 @@
     {
       "agent_id": "salesforce-devops-release-agent",
       "harness": "codex",
-      "model": "gpt-5.5",
+      "model": "gpt-6-sol",
       "model_provider": null,
       "model_fallback_from": null,
       "model_warning": null,
@@ -20074,7 +20074,7 @@
     {
       "agent_id": "salesforce-enterprise-architect-agent",
       "harness": "codex",
-      "model": "gpt-5.5",
+      "model": "gpt-6-sol",
       "model_provider": null,
       "model_fallback_from": null,
       "model_warning": null,
@@ -20107,7 +20107,7 @@
     {
       "agent_id": "salesforce-experience-cloud-agent",
       "harness": "codex",
-      "model": "gpt-5.5",
+      "model": "gpt-6-sol",
       "model_provider": null,
       "model_fallback_from": null,
       "model_warning": null,
@@ -20140,7 +20140,7 @@
     {
       "agent_id": "salesforce-hyperforce-security-agent",
       "harness": "codex",
-      "model": "gpt-5.5",
+      "model": "gpt-6-sol",
       "model_provider": null,
       "model_fallback_from": null,
       "model_warning": null,
@@ -20173,7 +20173,7 @@
     {
       "agent_id": "salesforce-industry-cloud-agent",
       "harness": "codex",
-      "model": "gpt-5.5",
+      "model": "gpt-6-sol",
       "model_provider": null,
       "model_fallback_from": null,
       "model_warning": null,
@@ -20206,7 +20206,7 @@
     {
       "agent_id": "salesforce-integration-mulesoft-agent",
       "harness": "codex",
-      "model": "gpt-5.5",
+      "model": "gpt-6-sol",
       "model_provider": null,
       "model_fallback_from": null,
       "model_warning": null,
@@ -20239,7 +20239,7 @@
     {
       "agent_id": "salesforce-live-guard-agent",
       "harness": "codex",
-      "model": "gpt-5.5",
+      "model": "gpt-6-sol",
       "model_provider": null,
       "model_fallback_from": null,
       "model_warning": null,
@@ -20272,7 +20272,7 @@
     {
       "agent_id": "salesforce-maestro-agent",
       "harness": "codex",
-      "model": "gpt-5.5",
+      "model": "gpt-6-sol",
       "model_provider": null,
       "model_fallback_from": null,
       "model_warning": null,
@@ -20305,7 +20305,7 @@
     {
       "agent_id": "salesforce-marketing-cloud-agent",
       "harness": "codex",
-      "model": "gpt-5.5",
+      "model": "gpt-6-sol",
       "model_provider": null,
       "model_fallback_from": null,
       "model_warning": null,
@@ -20338,7 +20338,7 @@
     {
       "agent_id": "salesforce-network-policy-architect-agent",
       "harness": "codex",
-      "model": "gpt-5.5",
+      "model": "gpt-6-sol",
       "model_provider": null,
       "model_fallback_from": null,
       "model_warning": null,
@@ -20371,7 +20371,7 @@
     {
       "agent_id": "salesforce-platform-admin-review-agent",
       "harness": "codex",
-      "model": "gpt-5.5",
+      "model": "gpt-6-sol",
       "model_provider": null,
       "model_fallback_from": null,
       "model_warning": null,
@@ -20404,7 +20404,7 @@
     {
       "agent_id": "salesforce-sales-cloud-revenue-agent",
       "harness": "codex",
-      "model": "gpt-5.5",
+      "model": "gpt-6-sol",
       "model_provider": null,
       "model_fallback_from": null,
       "model_warning": null,
@@ -20437,7 +20437,7 @@
     {
       "agent_id": "salesforce-sandbox-governance-agent",
       "harness": "codex",
-      "model": "gpt-5.5",
+      "model": "gpt-6-sol",
       "model_provider": null,
       "model_fallback_from": null,
       "model_warning": null,
@@ -20470,7 +20470,7 @@
     {
       "agent_id": "salesforce-sandbox-isolation-agent",
       "harness": "codex",
-      "model": "gpt-5.5",
+      "model": "gpt-6-sol",
       "model_provider": null,
       "model_fallback_from": null,
       "model_warning": null,
@@ -20503,7 +20503,7 @@
     {
       "agent_id": "salesforce-security-identity-access-agent",
       "harness": "codex",
-      "model": "gpt-5.5",
+      "model": "gpt-6-sol",
       "model_provider": null,
       "model_fallback_from": null,
       "model_warning": null,
@@ -20536,7 +20536,7 @@
     {
       "agent_id": "salesforce-service-field-service-agent",
       "harness": "codex",
-      "model": "gpt-5.5",
+      "model": "gpt-6-sol",
       "model_provider": null,
       "model_fallback_from": null,
       "model_warning": null,
@@ -20569,7 +20569,7 @@
     {
       "agent_id": "salesforce-session-governance-agent",
       "harness": "codex",
-      "model": "gpt-5.5",
+      "model": "gpt-6-sol",
       "model_provider": null,
       "model_fallback_from": null,
       "model_warning": null,
@@ -20602,7 +20602,7 @@
     {
       "agent_id": "salesforce-slack-collaboration-agent",
       "harness": "codex",
-      "model": "gpt-5.5",
+      "model": "gpt-6-sol",
       "model_provider": null,
       "model_fallback_from": null,
       "model_warning": null,
@@ -23176,7 +23176,7 @@
     {
       "agent_id": "svelte-sveltekit-specialist-agent",
       "harness": "codex",
-      "model": "gpt-5.5",
+      "model": "gpt-6-sol",
       "model_provider": null,
       "model_fallback_from": null,
       "model_warning": null,
@@ -23506,7 +23506,7 @@
     {
       "agent_id": "test-coverage-quality-review-agent",
       "harness": "codex",
-      "model": "gpt-5.5",
+      "model": "gpt-6-sol",
       "model_provider": null,
       "model_fallback_from": null,
       "model_warning": null,
@@ -23539,7 +23539,7 @@
     {
       "agent_id": "test-flakiness-triage-agent",
       "harness": "codex",
-      "model": "gpt-5.5",
+      "model": "gpt-6-sol",
       "model_provider": null,
       "model_fallback_from": null,
       "model_warning": null,

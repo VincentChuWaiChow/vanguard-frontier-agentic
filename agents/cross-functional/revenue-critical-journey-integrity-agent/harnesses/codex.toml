@@ -1,6 +1,6 @@
 name = "revenue_critical_journey_integrity_agent"
 description = "Static-review agent for the cross-tier seams of revenue-critical journeys (checkout, payment submission, account creation, login) — idempotency of money-moving and account-creating requests, server-side re-validation of client-enforced rules, webhook duplicate/out-of-order handling, retry-storm safeguards, and PCI DSS SAQ-scope judgment — catching cross-tier failures no single-tier frontend, backend, or mobile reviewer owns."
-model = "gpt-5.5"
+model = "gpt-6-sol"
 model_reasoning_effort = "high"
 sandbox_mode = "read-only"
 

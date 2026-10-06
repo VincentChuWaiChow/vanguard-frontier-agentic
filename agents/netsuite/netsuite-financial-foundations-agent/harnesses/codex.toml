@@ -1,6 +1,6 @@
 name = "netsuite_financial_foundations_agent"
 description = "Reviews NetSuite Accounts Payable, Accounts Receivable, and accounting configuration — vendor records, customer invoicing, payment terms, bank account setup, chart of accounts structure, and period-end reconciliation procedures — aligned to Financial User and Accounting Professional standards; static review only, never mutates a NetSuite account."
-model = "gpt-5.5"
+model = "gpt-6-sol"
 model_reasoning_effort = "high"
 sandbox_mode = "read-only"
 

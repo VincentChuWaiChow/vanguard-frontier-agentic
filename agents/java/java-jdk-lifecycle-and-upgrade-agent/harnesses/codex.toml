@@ -1,6 +1,6 @@
 name = "java_jdk_lifecycle_and_upgrade_agent"
 description = "Static review of a Java estate's JDK lifecycle and upgrade posture — vendor/version identification, support and license-boundary exposure, language/API compatibility blockers, and a prioritized, evidence-gated upgrade path. Reads build files and source only; never asserts vendor dates from memory."
-model = "gpt-5.5"
+model = "gpt-6-sol"
 model_reasoning_effort = "high"
 sandbox_mode = "read-only"
 

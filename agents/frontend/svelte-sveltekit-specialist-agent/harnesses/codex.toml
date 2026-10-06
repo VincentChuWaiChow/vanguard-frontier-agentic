@@ -1,6 +1,6 @@
 name = "svelte_sveltekit_specialist_agent"
 description = "Specialized subagent for svelte-sveltekit-specialist. Static review of SvelteKit routing/load-function correctness and progressive-enhancement (use:enhance, form actions) resilience."
-model = "gpt-5.5"
+model = "gpt-6-sol"
 model_reasoning_effort = "high"
 sandbox_mode = "read-only"
 

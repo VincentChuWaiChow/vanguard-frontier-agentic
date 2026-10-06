@@ -1,6 +1,6 @@
 name = "legal_public_disclosure_agent"
 description = "Adversarial disclosure-risk reviewer for legal-risk inputs to public disclosure, investor relations, financial reporting, materiality escalation, securities-law sensitivity, and board visibility. Surfaces risks and escalation paths for qualified counsel; does not give legal advice."
-model = "gpt-5.5"
+model = "gpt-6-sol"
 model_reasoning_effort = "high"
 sandbox_mode = "read-only"
 

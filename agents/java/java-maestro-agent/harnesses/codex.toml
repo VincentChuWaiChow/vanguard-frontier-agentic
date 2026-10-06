@@ -1,6 +1,6 @@
 name = "java_maestro_agent"
 description = "Router agent for the Java board. Classifies a Java/JVM task and dispatches the narrowest static-review specialist, or a parallel team of up to four for multi-domain tasks. Routes only — never answers Java questions itself."
-model = "gpt-5.5"
+model = "gpt-6-sol"
 model_reasoning_effort = "high"
 sandbox_mode = "read-only"
 

@@ -33,7 +33,7 @@
   "trees": [
     {
       "tree": "agents",
-      "aggregate_sha256": "0d558c1b9812dbf378c99bc84cb7b6d8f8c4b8970ddddaf929811b4d1851646e",
+      "aggregate_sha256": "b18daab44df22465c0a27dd605930c61bd68f0e26885fa1e4133c9be37423223",
       "files": [
         {
           "path": "agents/AGENTS.md",
@@ -8032,8 +8032,8 @@
         },
         {
           "path": "agents/cross-functional/revenue-critical-journey-integrity-agent/harnesses/codex.toml",
-          "sha256": "b3393188448c6828e517caec6ad1e845be50b4617ba00014be714af3ef8f7d67",
-          "bytes": 4481
+          "sha256": "2f93a299266a0c9f2aecbbbd58592fd6e5448b6d537240c5ebfc1bb430cb015d",
+          "bytes": 4483
         },
         {
           "path": "agents/cross-functional/revenue-critical-journey-integrity-agent/harnesses/copilot.agent.md",
@@ -9007,8 +9007,8 @@
         },
         {
           "path": "agents/dotnet/dotnet-aspire-cloud-native-review-agent/harnesses/codex.toml",
-          "sha256": "3d798c6d6436b0bbc785f8899d36d9972eb22f79b0bf1a93f79a95913a6131d0",
-          "bytes": 3371
+          "sha256": "7a62cf86062985e3b33578b4ce8018169d6a0ed2ea940fac8c32127f23fe2723",
+          "bytes": 3373
         },
         {
           "path": "agents/dotnet/dotnet-aspire-cloud-native-review-agent/harnesses/copilot.agent.md",
@@ -9052,8 +9052,8 @@
         },
         {
           "path": "agents/dotnet/dotnet-aspnetcore-api-review-agent/harnesses/codex.toml",
-          "sha256": "bc4362e1129b3e0429364910f2bb8406d889f32802a24cf3bb3dbf0b313395e7",
-          "bytes": 3077
+          "sha256": "7ccc653dd3cfaacb5797c6588eb0141914f9ac05571e7531c9de6c6eff5808ac",
+          "bytes": 3079
         },
         {
           "path": "agents/dotnet/dotnet-aspnetcore-api-review-agent/harnesses/copilot.agent.md",
@@ -9097,8 +9097,8 @@
         },
         {
           "path": "agents/dotnet/dotnet-aspnetcore-identity-authz-review-agent/harnesses/codex.toml",
-          "sha256": "5d4c1afa1d3cadf53319a796ff0bd356b791e83dddac55bbcb384e9eb748c90c",
-          "bytes": 3544
+          "sha256": "3b0138d16cbcdd855a178c998faa27ec0ccbeb6b5b3a1577fbe6c474f828e64d",
+          "bytes": 3546
         },
         {
           "path": "agents/dotnet/dotnet-aspnetcore-identity-authz-review-agent/harnesses/copilot.agent.md",
@@ -9142,8 +9142,8 @@
         },
         {
           "path": "agents/dotnet/dotnet-csharp-runtime-review-agent/harnesses/codex.toml",
-          "sha256": "039a297dcf9651d246b6c1b471498f74ae91a87308757113361fe6b61a75534a",
-          "bytes": 3151
+          "sha256": "8c2830ff24b6497b8efe011a3b18a008c24e36155e51c0ea840e98f9ca7e52f9",
+          "bytes": 3153
         },
         {
           "path": "agents/dotnet/dotnet-csharp-runtime-review-agent/harnesses/copilot.agent.md",
@@ -9187,8 +9187,8 @@
         },
         {
           "path": "agents/dotnet/dotnet-efcore-data-access-review-agent/harnesses/codex.toml",
-          "sha256": "ac6714ae6d44670bc2c4c9fbd7dca19a8b5df2c92c028a13162ff7a8e1c3c82e",
-          "bytes": 3424
+          "sha256": "5fdb961cbc2010d9c6ad6a4967954f964a7e726201de3cc28fbcac1a942697d2",
+          "bytes": 3426
         },
         {
           "path": "agents/dotnet/dotnet-efcore-data-access-review-agent/harnesses/copilot.agent.md",
@@ -9232,8 +9232,8 @@
         },
         {
           "path": "agents/dotnet/dotnet-maestro-agent/harnesses/codex.toml",
-          "sha256": "a8dfb3604dabe4e928f820b04beebcc807505a4adba4d5b35cc8bb1d775c19eb",
-          "bytes": 2434
+          "sha256": "703255aed837e6db6a323de2ca9c59d461d92dfa583e30b67a958eff8e3b578c",
+          "bytes": 2436
         },
         {
           "path": "agents/dotnet/dotnet-maestro-agent/harnesses/copilot.agent.md",
@@ -9277,8 +9277,8 @@
         },
         {
           "path": "agents/dotnet/dotnet-observability-otel-review-agent/harnesses/codex.toml",
-          "sha256": "441dece6ccdb05409fa0626c4e3ebdf860725dfdc0f7b4374ea5ffb36f41fa0a",
-          "bytes": 3161
+          "sha256": "12a309eec0d96fffed98a34cbccdb5a5ab9ebb5ad196bbc70421f2352eb385ae",
+          "bytes": 3163
         },
         {
           "path": "agents/dotnet/dotnet-observability-otel-review-agent/harnesses/copilot.agent.md",
@@ -9322,8 +9322,8 @@
         },
         {
           "path": "agents/dotnet/dotnet-performance-aot-review-agent/harnesses/codex.toml",
-          "sha256": "773e098b9dc4d259b1d774dbcce2f3d6946147b82c44ba3812097d257ffbf399",
-          "bytes": 3381
+          "sha256": "5a495991dbb83662df7e658da779578a63d037bdc1d2061c46f164f4ba3fd1ff",
+          "bytes": 3383
         },
         {
           "path": "agents/dotnet/dotnet-performance-aot-review-agent/harnesses/copilot.agent.md",
@@ -9367,8 +9367,8 @@
         },
         {
           "path": "agents/dotnet/dotnet-supply-chain-review-agent/harnesses/codex.toml",
-          "sha256": "638cba085a6921b3220dcd25853202eca6f63852c17b1167461b59fcf1fed59b",
-          "bytes": 3265
+          "sha256": "5d4cb04795ce6dcb666c0067111923e7d150242d528dd41c32c58f84bcc052ae",
+          "bytes": 3267
         },
         {
           "path": "agents/dotnet/dotnet-supply-chain-review-agent/harnesses/copilot.agent.md",
@@ -9412,8 +9412,8 @@
         },
         {
           "path": "agents/dotnet/dotnet-testing-quality-review-agent/harnesses/codex.toml",
-          "sha256": "1f031da7b9b6a02e017109b8fc973da56cd8ca9a7be307503a34acd243783033",
-          "bytes": 3165
+          "sha256": "ab34f21a3b937817bf14d3445019ece5e858a5cd791321d2dff2d19bfbfeb6b7",
+          "bytes": 3167
         },
         {
           "path": "agents/dotnet/dotnet-testing-quality-review-agent/harnesses/copilot.agent.md",
@@ -11092,8 +11092,8 @@
         },
         {
           "path": "agents/frontend/nextjs-specialist-agent/harnesses/codex.toml",
-          "sha256": "b9540b7d6a5f1be9bbaecbfa37711445da238f719c7ed188e49df2df59fc58b0",
-          "bytes": 4233
+          "sha256": "1151befa6a5bb16e98853748088fe194f5bc14366018480663393fb49887e63f",
+          "bytes": 4235
         },
         {
           "path": "agents/frontend/nextjs-specialist-agent/harnesses/copilot.agent.md",
@@ -11452,8 +11452,8 @@
         },
         {
           "path": "agents/frontend/svelte-sveltekit-specialist-agent/harnesses/codex.toml",
-          "sha256": "902b3600ec64fb776f3abf9d982b2b325f23f5ca6946745c584f6f297e3badc5",
-          "bytes": 4347
+          "sha256": "5ecb4578dbf7e7a35d394756a0bf584f79dfd7e101025fd1895805483442540f",
+          "bytes": 4349
         },
         {
           "path": "agents/frontend/svelte-sveltekit-specialist-agent/harnesses/copilot.agent.md",
@@ -14382,8 +14382,8 @@
         },
         {
           "path": "agents/hr/hr-analytics-people-data-agent/harnesses/codex.toml",
-          "sha256": "3c2c803c2784ec00b3fe52284977007c73cdde7de4eee66d1694a5d4dba4e2da",
-          "bytes": 3870
+          "sha256": "340e30dcf572cf4b09d3fd4c4cb7997de67654b53fbf36400a0e5f807705a0b4",
+          "bytes": 3872
         },
         {
           "path": "agents/hr/hr-analytics-people-data-agent/harnesses/copilot.agent.md",
@@ -14427,8 +14427,8 @@
         },
         {
           "path": "agents/hr/hr-benefits-payroll-agent/harnesses/codex.toml",
-          "sha256": "95a045fa469c434e5233b1f8f156c4851a27572f7dce9aa2b42f7d384f857244",
-          "bytes": 3934
+          "sha256": "df6d58222a42e925f9592c929d273317ccdcd655a68c99e6b762064cd7c28718",
+          "bytes": 3936
         },
         {
           "path": "agents/hr/hr-benefits-payroll-agent/harnesses/copilot.agent.md",
@@ -14472,8 +14472,8 @@
         },
         {
           "path": "agents/hr/hr-compensation-equity-agent/harnesses/codex.toml",
-          "sha256": "e84eb933c396794fe60a1c91ad0815d8801a29813620ef1039b76d26292c67c5",
-          "bytes": 3859
+          "sha256": "ded5bcc4a8fd356c32712cc7f04ee65119fe58f1f2cb02d7c8df4d238c51c3a6",
+          "bytes": 3861
         },
         {
           "path": "agents/hr/hr-compensation-equity-agent/harnesses/copilot.agent.md",
@@ -14517,8 +14517,8 @@
         },
         {
           "path": "agents/hr/hr-culture-dei-agent/harnesses/codex.toml",
-          "sha256": "0ecfe6a0341356cb79fb74201a144aa70940456c8541d8e999d7683c0a1f513a",
-          "bytes": 3947
+          "sha256": "3bbb406c7b7cd0ba2e49ef6ac130a061fe0225a4caadffa05d202642c2d4e257",
+          "bytes": 3949
         },
         {
           "path": "agents/hr/hr-culture-dei-agent/harnesses/copilot.agent.md",
@@ -14562,8 +14562,8 @@
         },
         {
           "path": "agents/hr/hr-employee-relations-agent/harnesses/codex.toml",
-          "sha256": "2d6bf40d414ad43cac038c8fe66846bdde8dbe6418dbc3d08a54712201d91979",
-          "bytes": 3769
+          "sha256": "0094a50b3ab8ac193b2e35da83beb5a85e7e751e7e1c523c2081439ca27c99b5",
+          "bytes": 3771
         },
         {
           "path": "agents/hr/hr-employee-relations-agent/harnesses/copilot.agent.md",
@@ -14607,8 +14607,8 @@
         },
         {
           "path": "agents/hr/hr-hris-process-controls-agent/harnesses/codex.toml",
-          "sha256": "085918be920786d392bcea13ceca17fa66021b3775bd76dcbe7b7c5c146c8307",
-          "bytes": 3884
+          "sha256": "b0938c9e155f86439dbf9f1fd66cce1c72fa37a9c121fa024d95bb21b8ecc593",
+          "bytes": 3886
         },
         {
           "path": "agents/hr/hr-hris-process-controls-agent/harnesses/copilot.agent.md",
@@ -14652,8 +14652,8 @@
         },
         {
           "path": "agents/hr/hr-learning-policy-agent/harnesses/codex.toml",
-          "sha256": "c3e5f1971b7292ba7d5233c14a8d16e3374581512e9320bb53843811593d7095",
-          "bytes": 3935
+          "sha256": "b51eb8e8e5b200e924d1d7d018c164f96156243fd60eea92cc39d82d7f71366f",
+          "bytes": 3937
         },
         {
           "path": "agents/hr/hr-learning-policy-agent/harnesses/copilot.agent.md",
@@ -14697,8 +14697,8 @@
         },
         {
           "path": "agents/hr/hr-leave-accommodation-agent/harnesses/codex.toml",
-          "sha256": "3d35d48bf363c5c1295ea93067a375981d3e5c6a8f82a61404ea489626831e9b",
-          "bytes": 4024
+          "sha256": "bc2d1f960ca72f341c3c6b4e2dba13be8c1cdc5a0a101e78cc5c8cc8f5e1ae6f",
+          "bytes": 4026
         },
         {
           "path": "agents/hr/hr-leave-accommodation-agent/harnesses/copilot.agent.md",
@@ -14742,8 +14742,8 @@
         },
         {
           "path": "agents/hr/hr-maestro-agent/harnesses/codex.toml",
-          "sha256": "141a0deb4c6b944886d8fab8bbda424b43511a7c8ded8b88f4d1077983ffe838",
-          "bytes": 3240
+          "sha256": "ba3716b8690136874bc153e2a1b3256f4f4e0a9121d9ed02e0ea392ccaf63419",
+          "bytes": 3242
         },
         {
           "path": "agents/hr/hr-maestro-agent/harnesses/copilot.agent.md",
@@ -14787,8 +14787,8 @@
         },
         {
           "path": "agents/hr/hr-performance-management-agent/harnesses/codex.toml",
-          "sha256": "67f2b015906d047aa96394997b6741eb00e992d65e47f693d221b111583d9644",
-          "bytes": 4007
+          "sha256": "5000849f4323e9ec038bd2fa69278288205888b6456953df529891723cd8418c",
+          "bytes": 4009
         },
         {
           "path": "agents/hr/hr-performance-management-agent/harnesses/copilot.agent.md",
@@ -14832,8 +14832,8 @@
         },
         {
           "path": "agents/hr/hr-recruiting-selection-agent/harnesses/codex.toml",
-          "sha256": "c7edd98ce8da72c9d3bd24e3d8d9585e723bb3b709a564b3707d725091dc0473",
-          "bytes": 3835
+          "sha256": "52ba5f3afac0a2c8df0d65e78d9800cd46a71390fc46d7fc17eb1610b3ec1c2d",
+          "bytes": 3837
         },
         {
           "path": "agents/hr/hr-recruiting-selection-agent/harnesses/copilot.agent.md",
@@ -14877,8 +14877,8 @@
         },
         {
           "path": "agents/hr/hr-risk-triage-review-agent/harnesses/codex.toml",
-          "sha256": "8c10ef470ca808e1f740add9ff2c012acd639323a2c3ce06f778ee6560389910",
-          "bytes": 3878
+          "sha256": "f07eaf2714bb5c3ab50a6af36eaa466b1d8ff05095babf8d91c48a4589e475dd",
+          "bytes": 3880
         },
         {
           "path": "agents/hr/hr-risk-triage-review-agent/harnesses/copilot.agent.md",
@@ -14922,8 +14922,8 @@
         },
         {
           "path": "agents/hr/hr-termination-readiness-agent/harnesses/codex.toml",
-          "sha256": "c3f7478901398e30bcb710f28eebf8cc9773200d09ff607c5bd4a8274b42a41f",
-          "bytes": 4041
+          "sha256": "dba8c894d3b3619284efd8964cc644628f61d5250f9f8684e710fc49f5c6d3fa",
+          "bytes": 4043
         },
         {
           "path": "agents/hr/hr-termination-readiness-agent/harnesses/copilot.agent.md",
@@ -14967,8 +14967,8 @@
         },
         {
           "path": "agents/hr/hr-workforce-planning-rif-agent/harnesses/codex.toml",
-          "sha256": "0f2aa138feede29170e94abf35c6e6de0d0a615ec5ac48894629b7d2d5f4e6bd",
-          "bytes": 4022
+          "sha256": "7a57fd97835d2c263fbc238d6c4e9f71d3723ef20523c447a7648d243366d5e9",
+          "bytes": 4024
         },
         {
           "path": "agents/hr/hr-workforce-planning-rif-agent/harnesses/copilot.agent.md",
@@ -15012,8 +15012,8 @@
         },
         {
           "path": "agents/hr/hr-workplace-investigations-agent/harnesses/codex.toml",
-          "sha256": "e3a9352fa01d56fbd9ec8c76aa57e8516d65e4d5e0661a5825b48837a4342e8b",
-          "bytes": 4010
+          "sha256": "f42dab0f2fb628fdd3a25a3afb2b5dd6c1d0d16bfc2e4a0334392652fb7e92dc",
+          "bytes": 4012
         },
         {
           "path": "agents/hr/hr-workplace-investigations-agent/harnesses/copilot.agent.md",
@@ -17632,8 +17632,8 @@
         },
         {
           "path": "agents/java/java-application-server-exit-agent/harnesses/codex.toml",
-          "sha256": "856ea9813fc254735745a365ac4c2447405a0f3a11d6ea03ec52569163f8e95c",
-          "bytes": 6615
+          "sha256": "c8089693a8513a8488b0cb05a08abe54ff409aaf84a01b9bb51efb79be43399e",
+          "bytes": 6617
         },
         {
           "path": "agents/java/java-application-server-exit-agent/harnesses/copilot.agent.md",
@@ -17677,8 +17677,8 @@
         },
         {
           "path": "agents/java/java-concurrency-and-virtual-thread-agent/harnesses/codex.toml",
-          "sha256": "f314a595cf6dec334a9c3598d9206637b44243479835e8b11d4a1394e51f529b",
-          "bytes": 8284
+          "sha256": "b7ffdc23ccea1da410cbef12e979d764cce5cfbcf14eee5cc7e44ab505cf3afe",
+          "bytes": 8286
         },
         {
           "path": "agents/java/java-concurrency-and-virtual-thread-agent/harnesses/copilot.agent.md",
@@ -17722,8 +17722,8 @@
         },
         {
           "path": "agents/java/java-container-and-kubernetes-readiness-agent/harnesses/codex.toml",
-          "sha256": "d90ce197f9bc8e208b43909a137b28ee46d8f61340b7e62eb228bbe32fae1252",
-          "bytes": 8423
+          "sha256": "85b601e62d4bbfd1d8f3142507fdf6f23d7c7f928a7c3b44ea4f2fe683a6a3dd",
+          "bytes": 8425
         },
         {
           "path": "agents/java/java-container-and-kubernetes-readiness-agent/harnesses/copilot.agent.md",
@@ -17767,8 +17767,8 @@
         },
         {
           "path": "agents/java/java-database-migration-safety-agent/harnesses/codex.toml",
-          "sha256": "157d7a6394affaeefa03cb231664f0f6607d33560f3c3b5702a5597a93cd7955",
-          "bytes": 8743
+          "sha256": "db67c5f7cceef43f292b245d666f85d164a92e33bd2be488d28f3c757d0a991a",
+          "bytes": 8745
         },
         {
           "path": "agents/java/java-database-migration-safety-agent/harnesses/copilot.agent.md",
@@ -17812,8 +17812,8 @@
         },
         {
           "path": "agents/java/java-deserialization-and-parser-security-agent/harnesses/codex.toml",
-          "sha256": "b2c7214aa9ec5f3b065ab7325f54d3cd2daba58f00ffed43410eb9ffea80608c",
-          "bytes": 5042
+          "sha256": "4d2bddd2ce6319ef5362ec1585948a7dd279fc0b7db8ed298f53b36fe1fb593b",
+          "bytes": 5044
         },
         {
           "path": "agents/java/java-deserialization-and-parser-security-agent/harnesses/copilot.agent.md",
@@ -17857,8 +17857,8 @@
         },
         {
           "path": "agents/java/java-framework-production-readiness-agent/harnesses/codex.toml",
-          "sha256": "385fa1abf6e362275a57bbffe78e1081c2f355bfcc86259d448c6f21121f99d6",
-          "bytes": 9465
+          "sha256": "7e66c1770c2dfe800109bc32456c8d02da3c21d633a8b6c0e42ba46f5ac5976f",
+          "bytes": 9467
         },
         {
           "path": "agents/java/java-framework-production-readiness-agent/harnesses/copilot.agent.md",
@@ -17902,8 +17902,8 @@
         },
         {
           "path": "agents/java/java-jdk-lifecycle-and-upgrade-agent/harnesses/codex.toml",
-          "sha256": "ba281b475bcad629782a412bccdffc2a8bd3f81519bb6c10bef3c60817594fb2",
-          "bytes": 4636
+          "sha256": "63513509674385fdac46e8ae3d54155de4e3a4960b68afeabed5bce937d5aeaf",
+          "bytes": 4638
         },
         {
           "path": "agents/java/java-jdk-lifecycle-and-upgrade-agent/harnesses/copilot.agent.md",
@@ -17947,8 +17947,8 @@
         },
         {
           "path": "agents/java/java-jpa-hibernate-performance-agent/harnesses/codex.toml",
-          "sha256": "ef7fc4b0ac675b31657eb4b7e55f2aef897ade58a663ee874b51354bb41ecb01",
-          "bytes": 4861
+          "sha256": "b28dbcaed5a4b6f4db6a4247b9c07ddc141ce356c463cd413b4a90df6e51d49b",
+          "bytes": 4863
         },
         {
           "path": "agents/java/java-jpa-hibernate-performance-agent/harnesses/copilot.agent.md",
@@ -17992,8 +17992,8 @@
         },
         {
           "path": "agents/java/java-jvm-performance-and-gc-agent/harnesses/codex.toml",
-          "sha256": "96923a22b38f7be50684373e839847bd33d85281de7740f6e94622790fda7aa0",
-          "bytes": 8147
+          "sha256": "496d04faff1d59b944a983bdd28f32b5ce729688649c408ea9da31554b975eb3",
+          "bytes": 8149
         },
         {
           "path": "agents/java/java-jvm-performance-and-gc-agent/harnesses/copilot.agent.md",
@@ -18037,8 +18037,8 @@
         },
         {
           "path": "agents/java/java-kafka-reliability-agent/harnesses/codex.toml",
-          "sha256": "b1ad0c8bbe77cf751da009c3ff4b5ef8bf2e77548650e1c91845b42669d94f10",
-          "bytes": 9003
+          "sha256": "995b81f9df098caa46981c2037f11f1dcf69d32a87bddea0ec553e72044a9160",
+          "bytes": 9005
         },
         {
           "path": "agents/java/java-kafka-reliability-agent/harnesses/copilot.agent.md",
@@ -18082,8 +18082,8 @@
         },
         {
           "path": "agents/java/java-maestro-agent/harnesses/codex.toml",
-          "sha256": "b891a987c4c3ee0678119eae2ed004e12b2ca36cbb45ecef9429f301ceaba9a5",
-          "bytes": 3690
+          "sha256": "949ac19822a7bef0cdecb578f246d8a15792463ffc184659468dea50f62b31f8",
+          "bytes": 3692
         },
         {
           "path": "agents/java/java-maestro-agent/harnesses/copilot.agent.md",
@@ -18127,8 +18127,8 @@
         },
         {
           "path": "agents/java/java-resilience-pattern-agent/harnesses/codex.toml",
-          "sha256": "eab620000ed007c500f6541a361457b4ab96ffbc1529fba36ebc04628cfe6dfb",
-          "bytes": 7125
+          "sha256": "559ec8af05f48ca6a2a1e2b9e0141e87b4fd8b580b9eb81e51594371ebc84c1d",
+          "bytes": 7127
         },
         {
           "path": "agents/java/java-resilience-pattern-agent/harnesses/copilot.agent.md",
@@ -18172,8 +18172,8 @@
         },
         {
           "path": "agents/java/java-spring-security-agent/harnesses/codex.toml",
-          "sha256": "281cacfa5d5c9a154e23900ad31419bc917d600ce8e64233829c6961c110ecbe",
-          "bytes": 8907
+          "sha256": "8b4e99bb34ce5c9e9878b03f93678bc0970244745bcff80d707af31ce398c88e",
+          "bytes": 8909
         },
         {
           "path": "agents/java/java-spring-security-agent/harnesses/copilot.agent.md",
@@ -18217,8 +18217,8 @@
         },
         {
           "path": "agents/java/java-test-architecture-agent/harnesses/codex.toml",
-          "sha256": "dc381e72d71e5f188c1fdb5add5b8b79e595faf81c0b2a74d1ac3b2d3d5e7616",
-          "bytes": 9230
+          "sha256": "9db26fa3a6dc60a331a851a9d47158d085122f958250a5684da7556e35018dac",
+          "bytes": 9232
         },
         {
           "path": "agents/java/java-test-architecture-agent/harnesses/copilot.agent.md",
@@ -18262,8 +18262,8 @@
         },
         {
           "path": "agents/java/java-transaction-and-consistency-agent/harnesses/codex.toml",
-          "sha256": "2cb1f2a926aae35df34d6af1c3af91b206f5fdd4053d003d547cfdd8c771da08",
-          "bytes": 8461
+          "sha256": "055f079d8efe7f6559491f567669063e61fa4d48ec136f41a141fc4eb8f8e85f",
+          "bytes": 8463
         },
         {
           "path": "agents/java/java-transaction-and-consistency-agent/harnesses/copilot.agent.md",
@@ -19857,8 +19857,8 @@
         },
         {
           "path": "agents/legal/legal-contract-review-agent/harnesses/codex.toml",
-          "sha256": "b881314bcbdb7c6a950a9971da028bfc3df0cf93539af6de887e6980228a05b5",
-          "bytes": 4015
+          "sha256": "9059fcf49bfe92cd7f347b8be3d26676faa9c56f78f8566ee0c3f27822400aa0",
+          "bytes": 4017
         },
         {
           "path": "agents/legal/legal-contract-review-agent/harnesses/copilot.agent.md",
@@ -19902,8 +19902,8 @@
         },
         {
           "path": "agents/legal/legal-counsel-review-agent/harnesses/codex.toml",
-          "sha256": "f5ab6fc00d0806e50ac38e5f7a1e551da4222ff415fc31545db16a94aa9472c4",
-          "bytes": 2996
+          "sha256": "56a26dde10579db883edabd8f1e0d58b50ad831e457f43b67c2368e42ec84987",
+          "bytes": 2998
         },
         {
           "path": "agents/legal/legal-counsel-review-agent/harnesses/copilot.agent.md",
@@ -19947,8 +19947,8 @@
         },
         {
           "path": "agents/legal/legal-employment-law-risk-agent/harnesses/codex.toml",
-          "sha256": "05d9e97532e718db57ad8540ac7d1ba1736f4fa1a323d1cc1db6f375c649e928",
-          "bytes": 3976
+          "sha256": "d7ef15248e71e9aee3381b9737bd216dae394ba5b795e9de3f6bfc11ffbcd31b",
+          "bytes": 3978
         },
         {
           "path": "agents/legal/legal-employment-law-risk-agent/harnesses/copilot.agent.md",
@@ -19992,8 +19992,8 @@
         },
         {
           "path": "agents/legal/legal-ethics-investigations-agent/harnesses/codex.toml",
-          "sha256": "d66bc866b79e2d7fb48b043fa8fd9a5a4c660a5294cd14b10e898642aa82f870",
-          "bytes": 3550
+          "sha256": "bfb1db6f44b9939f16512cafa20fc7d2a56bc3ffc31ed1ab978b2a77ec4400e9",
+          "bytes": 3552
         },
         {
           "path": "agents/legal/legal-ethics-investigations-agent/harnesses/copilot.agent.md",
@@ -20037,8 +20037,8 @@
         },
         {
           "path": "agents/legal/legal-ip-open-source-agent/harnesses/codex.toml",
-          "sha256": "07d3af5a7e49c9ba758b38f6e16aa823aab600abf08d58484e235a0bc403b824",
-          "bytes": 3908
+          "sha256": "a5833e8f108e55575e57e6a57d0d4dc14722e60f329bfe2d5d9e65e1c48a5f12",
+          "bytes": 3910
         },
         {
           "path": "agents/legal/legal-ip-open-source-agent/harnesses/copilot.agent.md",
@@ -20082,8 +20082,8 @@
         },
         {
           "path": "agents/legal/legal-knowledge-management-agent/harnesses/codex.toml",
-          "sha256": "19f29131d45b517d9cbb58e184970555d1f18a86477eb2aa82b8163601fd474a",
-          "bytes": 3413
+          "sha256": "d3845fbe3faf5309dc907b13ede0decc7d8ee069ecb61fc1cb13f03df3f4caa1",
+          "bytes": 3415
         },
         {
           "path": "agents/legal/legal-knowledge-management-agent/harnesses/copilot.agent.md",
@@ -20127,8 +20127,8 @@
         },
         {
           "path": "agents/legal/legal-litigation-discovery-hold-agent/harnesses/codex.toml",
-          "sha256": "ad6b5b65e17b3ea400f1e3af7520e69c7df02f7a0dfdc07f4a254aa8b1b12cee",
-          "bytes": 3959
+          "sha256": "6cff35d8118280bafb5d5d29748659595518cc4bae71208e6a9edde08bcad390",
+          "bytes": 3961
         },
         {
           "path": "agents/legal/legal-litigation-discovery-hold-agent/harnesses/copilot.agent.md",
@@ -20172,8 +20172,8 @@
         },
         {
           "path": "agents/legal/legal-maestro-agent/harnesses/codex.toml",
-          "sha256": "8ef0dcaaf6b2854a1a8297698ae76c0bebfc5fc6ff7edcab9804e69736b84e7f",
-          "bytes": 2879
+          "sha256": "c24ec05fd62d9bb073dd266fe4f0ad3d94143b39f80d72882d113569043528e5",
+          "bytes": 2881
         },
         {
           "path": "agents/legal/legal-maestro-agent/harnesses/copilot.agent.md",
@@ -20217,8 +20217,8 @@
         },
         {
           "path": "agents/legal/legal-policy-governance-agent/harnesses/codex.toml",
-          "sha256": "a5d0302b59b12e8ae1334142ae5d30d83de0cb31ba4ca00cde1a2232acc9321f",
-          "bytes": 3440
+          "sha256": "cb8427c1f68898759ebbbaa8acbf941efc1bbefe5655b490c4a7467e70ccf60f",
+          "bytes": 3442
         },
         {
           "path": "agents/legal/legal-policy-governance-agent/harnesses/copilot.agent.md",
@@ -20262,8 +20262,8 @@
         },
         {
           "path": "agents/legal/legal-privacy-data-protection-agent/harnesses/codex.toml",
-          "sha256": "c88647c9c956639be4c7dc7de7748dce3eaf82bf6f16ac3e1171535af71f2f0f",
-          "bytes": 4030
+          "sha256": "21523af3c17b0dcbe0a87b38fb59307b8d7389eaf8f7d0c144682eb96ae42ee9",
+          "bytes": 4032
         },
         {
           "path": "agents/legal/legal-privacy-data-protection-agent/harnesses/copilot.agent.md",
@@ -20307,8 +20307,8 @@
         },
         {
           "path": "agents/legal/legal-public-disclosure-agent/harnesses/codex.toml",
-          "sha256": "e2a2dabdb2a8619b9f7b6d81931382173eeb69b1a42efe4bb7d9eb9a2f331c47",
-          "bytes": 3452
+          "sha256": "6b332036e3854044e5f4162f120f5f1c4bdb918ab2b8dfaceca8c7b7fbcbc748",
+          "bytes": 3454
         },
         {
           "path": "agents/legal/legal-public-disclosure-agent/harnesses/copilot.agent.md",
@@ -20352,8 +20352,8 @@
         },
         {
           "path": "agents/legal/legal-regulatory-compliance-agent/harnesses/codex.toml",
-          "sha256": "9fb781bcae32c6ed2c3410c0436c550686c317e441116031bd6dcc4570a6c717",
-          "bytes": 3903
+          "sha256": "874f0d969acfc41738357fd2683a71edbd6d7ba4d1aa9d984bb1db979a8ffdcb",
+          "bytes": 3905
         },
         {
           "path": "agents/legal/legal-regulatory-compliance-agent/harnesses/copilot.agent.md",
@@ -20397,8 +20397,8 @@
         },
         {
           "path": "agents/legal/legal-vendor-procurement-risk-agent/harnesses/codex.toml",
-          "sha256": "01f94134db26cf844fe942f66f45f22854c310449036ba9be3b7f667198780e1",
-          "bytes": 3476
+          "sha256": "615e9160626fc88597eeb74ef4248004ae9112c4699c55a3993d5fc72d99fd4f",
+          "bytes": 3478
         },
         {
           "path": "agents/legal/legal-vendor-procurement-risk-agent/harnesses/copilot.agent.md",
@@ -22972,8 +22972,8 @@
         },
         {
           "path": "agents/netsuite/netsuite-administrator-agent/harnesses/codex.toml",
-          "sha256": "d77a0b624e96e64abf0187a0777e6e9fafc5bbf2243110d19cfd9824c29a7e42",
-          "bytes": 3338
+          "sha256": "5e621da073c013647d69981834d2b7a8fdfcaeea1764269e68641de1ac5bb23c",
+          "bytes": 3340
         },
         {
           "path": "agents/netsuite/netsuite-administrator-agent/harnesses/copilot.agent.md",
@@ -23022,8 +23022,8 @@
         },
         {
           "path": "agents/netsuite/netsuite-ai-connector-mcp-agent/harnesses/codex.toml",
-          "sha256": "6bca6b11a4d82694699e4a78856bac5f76e1dfcf37806c6f2c3a8353d06adf82",
-          "bytes": 3008
+          "sha256": "b134587358690b4a5ea761e22a6b3cf615bdcedb2c89af525996fe69081cf355",
+          "bytes": 3010
         },
         {
           "path": "agents/netsuite/netsuite-ai-connector-mcp-agent/harnesses/copilot.agent.md",
@@ -23072,8 +23072,8 @@
         },
         {
           "path": "agents/netsuite/netsuite-ai-foundations-agent/harnesses/codex.toml",
-          "sha256": "e3e799fc7cdfeae53d4bcd005b9469d0911f7aa0760257e687b6c07a86d7ae27",
-          "bytes": 3087
+          "sha256": "29022a5d8da059f4687f5ba9b5487ac22992d93e665e430a59961438f3ad3e78",
+          "bytes": 3089
         },
         {
           "path": "agents/netsuite/netsuite-ai-foundations-agent/harnesses/copilot.agent.md",
@@ -23122,8 +23122,8 @@
         },
         {
           "path": "agents/netsuite/netsuite-application-developer-agent/harnesses/codex.toml",
-          "sha256": "6f5e77c7cb4a08ea9248533eac01553a21cfb6719554604b0fca9b7144c56ae8",
-          "bytes": 2590
+          "sha256": "2beebe931e4fb76e5a4669f3ffade1bcd65183e65380e2788cc9375589077d2d",
+          "bytes": 2592
         },
         {
           "path": "agents/netsuite/netsuite-application-developer-agent/harnesses/copilot.agent.md",
@@ -23172,8 +23172,8 @@
         },
         {
           "path": "agents/netsuite/netsuite-audit-controls-sox-agent/harnesses/codex.toml",
-          "sha256": "ac36f10af30c0aa4fff1ed41d79437f531e656843d6b8a2b3daa84da2b84dd36",
-          "bytes": 3019
+          "sha256": "9dc94777c805513aee45a376df837e496584f94b7248fea6afc2cf562544598c",
+          "bytes": 3021
         },
         {
           "path": "agents/netsuite/netsuite-audit-controls-sox-agent/harnesses/copilot.agent.md",
@@ -23222,8 +23222,8 @@
         },
         {
           "path": "agents/netsuite/netsuite-bi-reporting-agent/harnesses/codex.toml",
-          "sha256": "7b2f0b49499bf38284a7680d7bae6c5b64c086ffdea103917634c7121c624a8e",
-          "bytes": 2300
+          "sha256": "46549a365d24f5c2c6ead1cef398888cddc385aa1125bf141781c939cc45e1ff",
+          "bytes": 2302
         },
         {
           "path": "agents/netsuite/netsuite-bi-reporting-agent/harnesses/copilot.agent.md",
@@ -23272,8 +23272,8 @@
         },
         {
           "path": "agents/netsuite/netsuite-data-governance-privacy-agent/harnesses/codex.toml",
-          "sha256": "d0ae03c8a69041ac643b2a9e333ab0b2a9a0981a90db5708a9f5be22e9d609f1",
-          "bytes": 2652
+          "sha256": "b94a9f2ada56c47c4c4e6439afadc529fdac374735013ec8fb49e625884ede6f",
+          "bytes": 2654
         },
         {
           "path": "agents/netsuite/netsuite-data-governance-privacy-agent/harnesses/copilot.agent.md",
@@ -23322,8 +23322,8 @@
         },
         {
           "path": "agents/netsuite/netsuite-enterprise-architecture-agent/harnesses/codex.toml",
-          "sha256": "1cb405b88c82ff50095fa00af093324547398842e09bf3bf66c00b0624f45ae6",
-          "bytes": 3104
+          "sha256": "bd53eff703be10424ab9e0ecabff5f5d178afbb0636506f976e62175888b13e6",
+          "bytes": 3106
         },
         {
           "path": "agents/netsuite/netsuite-enterprise-architecture-agent/harnesses/copilot.agent.md",
@@ -23372,8 +23372,8 @@
         },
         {
           "path": "agents/netsuite/netsuite-erp-consultant-agent/harnesses/codex.toml",
-          "sha256": "3ac81a7003aaa92e2020fa7029817bc4d20acd6b55dd6a2efa49a1e754968ddc",
-          "bytes": 2900
+          "sha256": "ecf8dc63e000b50ecd6894182ea1150140bce37b71193e2c411e4fcf5a813a13",
+          "bytes": 2902
         },
         {
           "path": "agents/netsuite/netsuite-erp-consultant-agent/harnesses/copilot.agent.md",
@@ -23422,8 +23422,8 @@
         },
         {
           "path": "agents/netsuite/netsuite-evidence-release-drift-agent/harnesses/codex.toml",
-          "sha256": "2d07c9a909c31aad55cd9f3922a591c943b043f6efb5c7558c7f719ae8629ace",
-          "bytes": 3002
+          "sha256": "db5d27d367d28a7df29e8e313cb6866ad9ca975f0ff130f84d7a3466d67e682f",
+          "bytes": 3004
         },
         {
           "path": "agents/netsuite/netsuite-evidence-release-drift-agent/harnesses/copilot.agent.md",
@@ -23472,8 +23472,8 @@
         },
         {
           "path": "agents/netsuite/netsuite-financial-foundations-agent/harnesses/codex.toml",
-          "sha256": "67e945e5979ccea86e59e025e552e90c19f1641849b70bd60fa3b5d5197a9457",
-          "bytes": 3015
+          "sha256": "b4577fab5d7344768e5e2954c1c25ac75e1bf94affd6139d717a5af1297924c4",
+          "bytes": 3017
         },
         {
           "path": "agents/netsuite/netsuite-financial-foundations-agent/harnesses/copilot.agent.md",
@@ -23522,8 +23522,8 @@
         },
         {
           "path": "agents/netsuite/netsuite-identity-access-role-permission-agent/harnesses/codex.toml",
-          "sha256": "2535a64daa2ad1b2a815928450bc8cc225a275f354b72c1a22503ce00d38595c",
-          "bytes": 2895
+          "sha256": "32370707944b45103b7fc9a580e23b49599e5e5d3b4a952b72afc9fca3d9e643",
+          "bytes": 2897
         },
         {
           "path": "agents/netsuite/netsuite-identity-access-role-permission-agent/harnesses/copilot.agent.md",
@@ -23572,8 +23572,8 @@
         },
         {
           "path": "agents/netsuite/netsuite-integration-migration-agent/harnesses/codex.toml",
-          "sha256": "688e48c1bcf59721e75fe2a99edcfafce418b3c23e13ce933c4bdcf1da6a756f",
-          "bytes": 2888
+          "sha256": "c2973079e50c503b025f9f5c1c25b18aa92e3bc209879c5b33bde0fa828f0e0f",
+          "bytes": 2890
         },
         {
           "path": "agents/netsuite/netsuite-integration-migration-agent/harnesses/copilot.agent.md",
@@ -23622,8 +23622,8 @@
         },
         {
           "path": "agents/netsuite/netsuite-live-org-mutation-guard-agent/harnesses/codex.toml",
-          "sha256": "f2aa4a88402f1e36d91081b8e44a46c6920f2e31f7b81b04fe05ba948113e68a",
-          "bytes": 3111
+          "sha256": "a272075424f0f721f64f3a5eeec1a87f9f489fc0e2af1bfd8d3ae5c7325e6e49",
+          "bytes": 3113
         },
         {
           "path": "agents/netsuite/netsuite-live-org-mutation-guard-agent/harnesses/copilot.agent.md",
@@ -23677,8 +23677,8 @@
         },
         {
           "path": "agents/netsuite/netsuite-maestro-agent/harnesses/codex.toml",
-          "sha256": "0e31dc5d1f99fce27346a08c416a32fe8706827cf160efad871a72f5e7ec5ad8",
-          "bytes": 2238
+          "sha256": "0aad11677d7c5919c9feb52091d3df5be349142540a45068308b0ba9a799a876",
+          "bytes": 2240
         },
         {
           "path": "agents/netsuite/netsuite-maestro-agent/harnesses/copilot.agent.md",
@@ -23727,8 +23727,8 @@
         },
         {
           "path": "agents/netsuite/netsuite-oneworld-multisubsidiary-agent/harnesses/codex.toml",
-          "sha256": "2ab446ace13f3c84fb6910b878c0df81807f4aeaf53dc6e856a1b05f3bb7c575",
-          "bytes": 2864
+          "sha256": "9019e45b753441daa1c3fd0a9133c82d769cb9b9782034ece366a22d997342b4",
+          "bytes": 2866
         },
         {
           "path": "agents/netsuite/netsuite-oneworld-multisubsidiary-agent/harnesses/copilot.agent.md",
@@ -23777,8 +23777,8 @@
         },
         {
           "path": "agents/netsuite/netsuite-sandbox-nonproduction-governance-agent/harnesses/codex.toml",
-          "sha256": "87e79aa54a9e843f97fd5777908658fbb6a998ace4cc308475b77570a1bbbc66",
-          "bytes": 3044
+          "sha256": "7625e1276d5f4fe95992af1ac1cea96f0bafae48e45a699e69e3e232410791fc",
+          "bytes": 3046
         },
         {
           "path": "agents/netsuite/netsuite-sandbox-nonproduction-governance-agent/harnesses/copilot.agent.md",
@@ -23827,8 +23827,8 @@
         },
         {
           "path": "agents/netsuite/netsuite-saved-searches-workbook-agent/harnesses/codex.toml",
-          "sha256": "ad556a02b84bd3dd02607b1c6bde1374a3099071ce04a58f5d86214d504f55da",
-          "bytes": 2543
+          "sha256": "43e6e225b5019adaa5fb54107353df389760dc4b9ebd6719f24ebecc59542529",
+          "bytes": 2545
         },
         {
           "path": "agents/netsuite/netsuite-saved-searches-workbook-agent/harnesses/copilot.agent.md",
@@ -23877,8 +23877,8 @@
         },
         {
           "path": "agents/netsuite/netsuite-sdf-devops-release-agent/harnesses/codex.toml",
-          "sha256": "791bcd47a21de74cd8987fdcc5b5465372ca721a614844126941efb233fb1ad6",
-          "bytes": 2812
+          "sha256": "7ebd893be7dc3f941a99f79d9a68d35bd8499af7888f34ff28a7bd5e191d5553",
+          "bytes": 2814
         },
         {
           "path": "agents/netsuite/netsuite-sdf-devops-release-agent/harnesses/copilot.agent.md",
@@ -23927,8 +23927,8 @@
         },
         {
           "path": "agents/netsuite/netsuite-sso-oauth-tba-agent/harnesses/codex.toml",
-          "sha256": "895a34274a7ff76778d690bc6163d6aa35c2a069d1756072b307963d599461fb",
-          "bytes": 2910
+          "sha256": "508f3f7699192ae922e57b0cde7ea38ee1d49fe683e1b45d7c10fcdd09cbc76b",
+          "bytes": 2912
         },
         {
           "path": "agents/netsuite/netsuite-sso-oauth-tba-agent/harnesses/copilot.agent.md",
@@ -23977,8 +23977,8 @@
         },
         {
           "path": "agents/netsuite/netsuite-suitecloud-developer-agent/harnesses/codex.toml",
-          "sha256": "e04b9e534c4cf0258734feb9a410abb789ef662922f33d815efe6c3163d7171f",
-          "bytes": 2714
+          "sha256": "27e7c861753856824ebbf36879bdce331df52c6abad30111e14ef564b95ff352",
+          "bytes": 2716
         },
         {
           "path": "agents/netsuite/netsuite-suitecloud-developer-agent/harnesses/copilot.agent.md",
@@ -24027,8 +24027,8 @@
         },
         {
           "path": "agents/netsuite/netsuite-suiteflow-automation-agent/harnesses/codex.toml",
-          "sha256": "dca8183ee63763291945b9d8013b30ad54ebd4ae01387d123915237dd97b25b0",
-          "bytes": 3428
+          "sha256": "1259de7fe4d2371dae8f7b15b83a3b037d84078f8cc908a45f3e7d1777b447b9",
+          "bytes": 3430
         },
         {
           "path": "agents/netsuite/netsuite-suiteflow-automation-agent/harnesses/copilot.agent.md",
@@ -24077,8 +24077,8 @@
         },
         {
           "path": "agents/netsuite/netsuite-suitefoundation-agent/harnesses/codex.toml",
-          "sha256": "6dc78097a0e6d3c38e853a1046563207f1c35375a7fee82b994f189484552a69",
-          "bytes": 2856
+          "sha256": "af87c97db7bc4764caafd4228a1660a0f02f81c196fbe22b5134638cfc35bbd6",
+          "bytes": 2858
         },
         {
           "path": "agents/netsuite/netsuite-suitefoundation-agent/harnesses/copilot.agent.md",
@@ -24127,8 +24127,8 @@
         },
         {
           "path": "agents/netsuite/netsuite-suitescript-secure-code-review-agent/harnesses/codex.toml",
-          "sha256": "88f7777a67c8d487afe7e1650d1647de755d54969b8205a3ec5e96c0568c4505",
-          "bytes": 3395
+          "sha256": "0e972414fb61eeb26fc6b3449deddda537abdea4d7a219139622a31fc30099b1",
+          "bytes": 3397
         },
         {
           "path": "agents/netsuite/netsuite-suitescript-secure-code-review-agent/harnesses/copilot.agent.md",
@@ -24177,8 +24177,8 @@
         },
         {
           "path": "agents/netsuite/netsuite-web-services-integration-agent/harnesses/codex.toml",
-          "sha256": "e2f3f29762c43064e3160c72c8ddecfbd023e0b19cdffd6a08500ab8c653996d",
-          "bytes": 2677
+          "sha256": "22aac0f69477e728cc35c56063da096b6f4852479a50af443fb79bd56e3b43df",
+          "bytes": 2679
         },
         {
           "path": "agents/netsuite/netsuite-web-services-integration-agent/harnesses/copilot.agent.md",
@@ -28787,8 +28787,8 @@
         },
         {
           "path": "agents/qa/ci-test-pipeline-review-agent/harnesses/codex.toml",
-          "sha256": "7d71b97c303f28b470e4f620a8aa1ad7c827fa11d0632ba0ca09c5af72c2e326",
-          "bytes": 2172
+          "sha256": "19a956ae0dca44d9425a358d2cf315acdfd656671d04c966aabcfc5e799a0113",
+          "bytes": 2174
         },
         {
           "path": "agents/qa/ci-test-pipeline-review-agent/harnesses/copilot.agent.md",
@@ -28832,8 +28832,8 @@
         },
         {
           "path": "agents/qa/helm-chart-quality-review-agent/harnesses/codex.toml",
-          "sha256": "4e5f8ba611086875f65d65f11a470dee87e232335906d49a8597065b85d51f23",
-          "bytes": 3018
+          "sha256": "39356031a01d4f919b1ecc69a188bb7bb315220c5f38785e699ac6db732fcba3",
+          "bytes": 3020
         },
         {
           "path": "agents/qa/helm-chart-quality-review-agent/harnesses/copilot.agent.md",
@@ -28877,8 +28877,8 @@
         },
         {
           "path": "agents/qa/kubernetes-manifest-quality-review-agent/harnesses/codex.toml",
-          "sha256": "e9672bdcbf1bf90b9ffb1eb597148b8c60f97d47c10f7a5c32b8c133dcca8c1a",
-          "bytes": 2755
+          "sha256": "4f0e0e063f1f2a3130d9af4c0e23db25e95e1bf5d8203db428588b185c68338a",
+          "bytes": 2757
         },
         {
           "path": "agents/qa/kubernetes-manifest-quality-review-agent/harnesses/copilot.agent.md",
@@ -28922,8 +28922,8 @@
         },
         {
           "path": "agents/qa/llm-ai-pipeline-test-review-agent/harnesses/codex.toml",
-          "sha256": "53f71ffc0d447bc43460b47aa24346b0e967e9dc961d0ddb63872bdb394b5efa",
-          "bytes": 2673
+          "sha256": "d3d9f5f2e4263b1e85281b1425ffd40fd2a103e8fb8d0fc77542c652a7504578",
+          "bytes": 2675
         },
         {
           "path": "agents/qa/llm-ai-pipeline-test-review-agent/harnesses/copilot.agent.md",
@@ -28987,8 +28987,8 @@
         },
         {
           "path": "agents/qa/playwright-e2e-suite-review-agent/harnesses/codex.toml",
-          "sha256": "c88530c28d02bcca340a9b84927bf7ff200954307df80566f651909f998800eb",
-          "bytes": 2348
+          "sha256": "c15abdf3c4ff140e2bf0b01c6a022cf1b2d2d13386958e0ee24ee63dbeed7bf5",
+          "bytes": 2350
         },
         {
           "path": "agents/qa/playwright-e2e-suite-review-agent/harnesses/copilot.agent.md",
@@ -29032,8 +29032,8 @@
         },
         {
           "path": "agents/qa/plc-control-logic-safety-review-agent/harnesses/codex.toml",
-          "sha256": "820df60a1ba7c5014b99f3b77373e676ca122f24d1176357d2c62c931db2bc3a",
-          "bytes": 2963
+          "sha256": "a7611b1640c4649258eaaea8fbe55707129f28c0f08d414164ce9f41b7003182",
+          "bytes": 2965
         },
         {
           "path": "agents/qa/plc-control-logic-safety-review-agent/harnesses/copilot.agent.md",
@@ -29077,8 +29077,8 @@
         },
         {
           "path": "agents/qa/rpa-workflow-resilience-review-agent/harnesses/codex.toml",
-          "sha256": "985b1c03c781b502e74db99361da2aefac9149e23587bf356c5e4809223701bf",
-          "bytes": 2970
+          "sha256": "eaac2d7f6c9663769683050383b9119061d0de251a2f5f09f866332605ac4e14",
+          "bytes": 2972
         },
         {
           "path": "agents/qa/rpa-workflow-resilience-review-agent/harnesses/copilot.agent.md",
@@ -29122,8 +29122,8 @@
         },
         {
           "path": "agents/qa/test-coverage-quality-review-agent/harnesses/codex.toml",
-          "sha256": "a095a5612c57340b8475021711f7a76929078a270cb5cd0ac1cd39b6420edbc2",
-          "bytes": 2060
+          "sha256": "de418db5e84efcea50ba6e5c2e2a74bd098679ef3d61842e8fbc13d743dfae39",
+          "bytes": 2062
         },
         {
           "path": "agents/qa/test-coverage-quality-review-agent/harnesses/copilot.agent.md",
@@ -29167,8 +29167,8 @@
         },
         {
           "path": "agents/qa/test-flakiness-triage-agent/harnesses/codex.toml",
-          "sha256": "3bb3bd2aa9307a96a9ad08747255e4f7ba351e02809fc8341cee0558606fbc9b",
-          "bytes": 2107
+          "sha256": "892bec0831308265ec5923db0bc992275f734b13d94d58ded2401c9c8a79e1b5",
+          "bytes": 2109
         },
         {
           "path": "agents/qa/test-flakiness-triage-agent/harnesses/copilot.agent.md",
@@ -29227,8 +29227,8 @@
         },
         {
           "path": "agents/salesforce/salesforce-adaptive-access-agent/harnesses/codex.toml",
-          "sha256": "603cea37a058493a0041c23f51e576abec189a226b680bbc04749e9f5b64bfb6",
-          "bytes": 2012
+          "sha256": "8f1bfbb472db7851841d8cc8bbc401fe9c68490e571a7d93bfd54005449d2a71",
+          "bytes": 2014
         },
         {
           "path": "agents/salesforce/salesforce-adaptive-access-agent/harnesses/copilot.agent.md",
@@ -29277,8 +29277,8 @@
         },
         {
           "path": "agents/salesforce/salesforce-agentforce-ai-agent/harnesses/codex.toml",
-          "sha256": "7226a107d13c0689c5668032f6b8b5740ca2a516aad2c81931c2520ce5261583",
-          "bytes": 2754
+          "sha256": "9db1ffa0f5868b603f4faed761a8361cc8e0799df09c9aef85f73c4d518e8db2",
+          "bytes": 2756
         },
         {
           "path": "agents/salesforce/salesforce-agentforce-ai-agent/harnesses/copilot.agent.md",
@@ -29327,8 +29327,8 @@
         },
         {
           "path": "agents/salesforce/salesforce-analytics-tableau-agent/harnesses/codex.toml",
-          "sha256": "4401a6b3f2c35b97c7f5808c21079a7f9feaa62e1eb469bab0dda5bff14410ea",
-          "bytes": 2641
+          "sha256": "24ab9a250ceb69c0bcdb98ee8ae55f9bd4466885bf88150ecdc7c617892a120d",
+          "bytes": 2643
         },
         {
           "path": "agents/salesforce/salesforce-analytics-tableau-agent/harnesses/copilot.agent.md",
@@ -29377,8 +29377,8 @@
         },
         {
           "path": "agents/salesforce/salesforce-app-builder-automation-agent/harnesses/codex.toml",
-          "sha256": "80ee701a0f30c12df394ff883043f62560327892f06990e7e50f3a1458cc9b3c",
-          "bytes": 2638
+          "sha256": "4b64ce2ea0792784cb283586cebad6bef5652649bc56c94ed78883ca634f718b",
+          "bytes": 2640
         },
         {
           "path": "agents/salesforce/salesforce-app-builder-automation-agent/harnesses/copilot.agent.md",
@@ -29427,8 +29427,8 @@
         },
         {
           "path": "agents/salesforce/salesforce-business-analyst-agent/harnesses/codex.toml",
-          "sha256": "ca5cb4872cd4efa3c7416800b5a391493b50d6a1455aa6658f26ac1552fe654c",
-          "bytes": 2637
+          "sha256": "716280c589414fd802de3269114e304a0deed23baeb68beb2d49f32e9df8045b",
+          "bytes": 2639
         },
         {
           "path": "agents/salesforce/salesforce-business-analyst-agent/harnesses/copilot.agent.md",
@@ -29477,8 +29477,8 @@
         },
         {
           "path": "agents/salesforce/salesforce-certificate-lifecycle-agent/harnesses/codex.toml",
-          "sha256": "29ce42650b53b2127393daaf069f88a5f92318ff6645481d8e2a324a6005c4da",
-          "bytes": 1773
+          "sha256": "7730c8136c88af0213122e310bd999992c89585fd20542539b72112e9a8f5bd4",
+          "bytes": 1775
         },
         {
           "path": "agents/salesforce/salesforce-certificate-lifecycle-agent/harnesses/copilot.agent.md",
@@ -29527,8 +29527,8 @@
         },
         {
           "path": "agents/salesforce/salesforce-change-impact-analyst-agent/harnesses/codex.toml",
-          "sha256": "ab1c5c7fe93cdbc1758d89b9a7aef49692db3c05d7b853e89c427d6f60c137aa",
-          "bytes": 1801
+          "sha256": "3249fc908ad2cf45176557fc79b0e9baef949ad030c8d412031fefb3fca21263",
+          "bytes": 1803
         },
         {
           "path": "agents/salesforce/salesforce-change-impact-analyst-agent/harnesses/copilot.agent.md",
@@ -29577,8 +29577,8 @@
         },
         {
           "path": "agents/salesforce/salesforce-code-analyzer-orchestrator-agent/harnesses/codex.toml",
-          "sha256": "3468576ab9c6fdd1f5a8b0d56f719c78bc281accf4b818a3299b5d53b8e01100",
-          "bytes": 1585
+          "sha256": "0d4d20be5273fc5b570a9dd131141029b7288f6d757371e2836cfd16ec12c7d1",
+          "bytes": 1587
         },
         {
           "path": "agents/salesforce/salesforce-code-analyzer-orchestrator-agent/harnesses/copilot.agent.md",
@@ -29627,8 +29627,8 @@
         },
         {
           "path": "agents/salesforce/salesforce-compliance-privacy-agent/harnesses/codex.toml",
-          "sha256": "d888562504ca4d662d0d1d8e3a0203f8393539b09f747fa7bc7a12272ffd29b4",
-          "bytes": 2926
+          "sha256": "a24887811687c8af752d109d4ba836857f559c68b4e91f1bf1906031c60f2709",
+          "bytes": 2928
         },
         {
           "path": "agents/salesforce/salesforce-compliance-privacy-agent/harnesses/copilot.agent.md",
@@ -29677,8 +29677,8 @@
         },
         {
           "path": "agents/salesforce/salesforce-continuous-verification-agent/harnesses/codex.toml",
-          "sha256": "8fe8020cb0b742a1b036e7f1542d32de9edde0406749ac72c0c6f56dacb2db85",
-          "bytes": 1691
+          "sha256": "3a9b8a9efc108197c2fa919acb155fc3a29caee3b333e96fff612b21aade627a",
+          "bytes": 1693
         },
         {
           "path": "agents/salesforce/salesforce-continuous-verification-agent/harnesses/copilot.agent.md",
@@ -29727,8 +29727,8 @@
         },
         {
           "path": "agents/salesforce/salesforce-data-architecture-agent/harnesses/codex.toml",
-          "sha256": "71e4fb41d496cab91f4013f35be10f6241f41509d0830313fca9ec3d315241cc",
-          "bytes": 2713
+          "sha256": "7e4157c8cc5b9a56c7149bba61f4b250146a716f81768106731690a657d914ac",
+          "bytes": 2715
         },
         {
           "path": "agents/salesforce/salesforce-data-architecture-agent/harnesses/copilot.agent.md",
@@ -29777,8 +29777,8 @@
         },
         {
           "path": "agents/salesforce/salesforce-development-agent/harnesses/codex.toml",
-          "sha256": "e13e252b0e0861fe4cd5600c928d9ddebb1753d07edfe21e4f49c2dd1f256954",
-          "bytes": 2622
+          "sha256": "dda9766cf68f72c7a820e6055fdb7b4a702c21c6513b55d0ca54683f39a156d5",
+          "bytes": 2624
         },
         {
           "path": "agents/salesforce/salesforce-development-agent/harnesses/copilot.agent.md",
@@ -29827,8 +29827,8 @@
         },
         {
           "path": "agents/salesforce/salesforce-devops-release-agent/harnesses/codex.toml",
-          "sha256": "06132f6f259dc449c78739c610821caa1f6b701befa6d41189786679d6de8245",
-          "bytes": 2626
+          "sha256": "c5033e8dd202eb029484cd8a9b0194bc2211648979b5838032dd43400d5e5c61",
+          "bytes": 2628
         },
         {
           "path": "agents/salesforce/salesforce-devops-release-agent/harnesses/copilot.agent.md",
@@ -29877,8 +29877,8 @@
         },
         {
           "path": "agents/salesforce/salesforce-enterprise-architect-agent/harnesses/codex.toml",
-          "sha256": "70a99a7af0e81df6f2ce960ff219bd2ed68165a25454130e07bcc78b8c30d14e",
-          "bytes": 2778
+          "sha256": "7674af91e80c69b013fcef8387145f1811b25b4125931b8f290af4b143b881ef",
+          "bytes": 2780
         },
         {
           "path": "agents/salesforce/salesforce-enterprise-architect-agent/harnesses/copilot.agent.md",
@@ -29927,8 +29927,8 @@
         },
         {
           "path": "agents/salesforce/salesforce-experience-cloud-agent/harnesses/codex.toml",
-          "sha256": "bd6f92a8d7297e09700c51c57310d181a567f24ad7a9782b48e0c89b4df3d1b2",
-          "bytes": 2902
+          "sha256": "27b70ba019e109b5049444b726073e016e6705bd6677565df82d64c6f6a2cb78",
+          "bytes": 2904
         },
         {
           "path": "agents/salesforce/salesforce-experience-cloud-agent/harnesses/copilot.agent.md",
@@ -29977,8 +29977,8 @@
         },
         {
           "path": "agents/salesforce/salesforce-hyperforce-security-agent/harnesses/codex.toml",
-          "sha256": "f4d9180e9fb7caf7806b95577b250f4ec81ff8e9ccf0eda260dd281126f3e86d",
-          "bytes": 1300
+          "sha256": "fd69801cc2c29b6707d0e034d5174ce733a8aba3ec71dd429ccc02133c73da3a",
+          "bytes": 1302
         },
         {
           "path": "agents/salesforce/salesforce-hyperforce-security-agent/harnesses/copilot.agent.md",
@@ -30027,8 +30027,8 @@
         },
         {
           "path": "agents/salesforce/salesforce-industry-cloud-agent/harnesses/codex.toml",
-          "sha256": "b8ea7a9ae781b7ef412083961056e562d514e21f7f147096bc306a1e4b9b8ca7",
-          "bytes": 3028
+          "sha256": "cc6135fb23dfbbcb12f5b2521592278604720e6288ee54099907f03d1b05caa6",
+          "bytes": 3030
         },
         {
           "path": "agents/salesforce/salesforce-industry-cloud-agent/harnesses/copilot.agent.md",
@@ -30077,8 +30077,8 @@
         },
         {
           "path": "agents/salesforce/salesforce-integration-mulesoft-agent/harnesses/codex.toml",
-          "sha256": "16ecd5d7b277acd2c3775b0301836c7c492ffcb1440941de7f33e0c3b1d3df5e",
-          "bytes": 2665
+          "sha256": "321151e810468b841a13e9b548c33bb9ce97bfe7157298cd84ceb591ff9566b5",
+          "bytes": 2667
         },
         {
           "path": "agents/salesforce/salesforce-integration-mulesoft-agent/harnesses/copilot.agent.md",
@@ -30127,8 +30127,8 @@
         },
         {
           "path": "agents/salesforce/salesforce-live-guard-agent/harnesses/codex.toml",
-          "sha256": "d31c87b61d4a7becc3b62b58238689b828343c3c4b915be8da1bccb6c611bbef",
-          "bytes": 3683
+          "sha256": "9c9bc50e920dfb7db3b868f488f7ee93619f732a2af10189e40acdbb69d27861",
+          "bytes": 3685
         },
         {
           "path": "agents/salesforce/salesforce-live-guard-agent/harnesses/copilot.agent.md",
@@ -30182,8 +30182,8 @@
         },
         {
           "path": "agents/salesforce/salesforce-maestro-agent/harnesses/codex.toml",
-          "sha256": "be76529211f7e2270b3139ce0c123a524b8680b2e88559217fb2f18cf1632243",
-          "bytes": 3400
+          "sha256": "3b0737da459a1c9bed80fb02154ac3fdce0c9407f38cfd07d836b30530fce93d",
+          "bytes": 3402
         },
         {
           "path": "agents/salesforce/salesforce-maestro-agent/harnesses/copilot.agent.md",
@@ -30232,8 +30232,8 @@
         },
         {
           "path": "agents/salesforce/salesforce-marketing-cloud-agent/harnesses/codex.toml",
-          "sha256": "e0b315aecd586e2b70cc609bc869bc0a349cac6070a667fc6e0c3126324cd243",
-          "bytes": 2605
+          "sha256": "044ab28ac834571b039a721c5a08ad296938a63d617b8969cb107260b483a087",
+          "bytes": 2607
         },
         {
           "path": "agents/salesforce/salesforce-marketing-cloud-agent/harnesses/copilot.agent.md",
@@ -30282,8 +30282,8 @@
         },
         {
           "path": "agents/salesforce/salesforce-network-policy-architect-agent/harnesses/codex.toml",
-          "sha256": "056cb03033b91291b5ce709e2de15038d608ef1202c9d6a15a3744c10f9783cb",
-          "bytes": 1295
+          "sha256": "530b2dcc405c44c00154791b165c6c4f14a1e67cb9ea7faa1483131173c31b61",
+          "bytes": 1297
         },
         {
           "path": "agents/salesforce/salesforce-network-policy-architect-agent/harnesses/copilot.agent.md",
@@ -30332,8 +30332,8 @@
         },
         {
           "path": "agents/salesforce/salesforce-platform-admin-review-agent/harnesses/codex.toml",
-          "sha256": "827d69bf988001dcef05bda47f7e87dc10d5427368fa27546e5d4be5afbd9b2b",
-          "bytes": 2810
+          "sha256": "1e6bb2af8f38399613784fa4f8040e38000881c9ca7a77f1e0fab044fd5db566",
+          "bytes": 2812
         },
         {
           "path": "agents/salesforce/salesforce-platform-admin-review-agent/harnesses/copilot.agent.md",
@@ -30382,8 +30382,8 @@
         },
         {
           "path": "agents/salesforce/salesforce-sales-cloud-revenue-agent/harnesses/codex.toml",
-          "sha256": "6da8199a762a787468b2d3ee818d667f3e58bacd26781cacbebd960c9ebd757b",
-          "bytes": 2704
+          "sha256": "4d76cb31c97c9a2f000e3d726eb8b83b7b556b3752bb72a4f4485bc443a9b622",
+          "bytes": 2706
         },
         {
           "path": "agents/salesforce/salesforce-sales-cloud-revenue-agent/harnesses/copilot.agent.md",
@@ -30432,8 +30432,8 @@
         },
         {
           "path": "agents/salesforce/salesforce-sandbox-governance-agent/harnesses/codex.toml",
-          "sha256": "0eeab266a8dabc90ccd48b136213cbabdc4ef69fe7912bf2e183289d413f3e30",
-          "bytes": 1683
+          "sha256": "d3f7f5e2dbc1b6fc756c5d52ff05bb727177dd37f583aeaae3506bd758294308",
+          "bytes": 1685
         },
         {
           "path": "agents/salesforce/salesforce-sandbox-governance-agent/harnesses/copilot.agent.md",
@@ -30482,8 +30482,8 @@
         },
         {
           "path": "agents/salesforce/salesforce-sandbox-isolation-agent/harnesses/codex.toml",
-          "sha256": "dde14d0c2e785f378230d92f3d52d477f73000e3f56136a071c14a474e9d5020",
-          "bytes": 1300
+          "sha256": "78d2fc23a8650d7d423bbe297e8b78c4bee70008165cf602d7a3ee164f13f448",
+          "bytes": 1302
         },
         {
           "path": "agents/salesforce/salesforce-sandbox-isolation-agent/harnesses/copilot.agent.md",
@@ -30532,8 +30532,8 @@
         },
         {
           "path": "agents/salesforce/salesforce-security-identity-access-agent/harnesses/codex.toml",
-          "sha256": "5fa2cb80162dc414c01f254e762db49d1bcb0ec4a98a7c96ee66f84cb9951a6e",
-          "bytes": 2851
+          "sha256": "80549253df0c2134e188d175d76b2c35671751bb0d088acd18f022de42ff7da3",
+          "bytes": 2853
         },
         {
           "path": "agents/salesforce/salesforce-security-identity-access-agent/harnesses/copilot.agent.md",
@@ -30582,8 +30582,8 @@
         },
         {
           "path": "agents/salesforce/salesforce-service-field-service-agent/harnesses/codex.toml",
-          "sha256": "934f9da1849ee7d0291fd35f07e2d37702ad4d72e8c6e9497ef754b61b02fc70",
-          "bytes": 2837
+          "sha256": "2bfc6de006e6fbd4da685321d0fc3ff0bc94bc6582353e62bc852fb48a7a04f7",
+          "bytes": 2839
         },
         {
           "path": "agents/salesforce/salesforce-service-field-service-agent/harnesses/copilot.agent.md",
@@ -30632,8 +30632,8 @@
         },
         {
           "path": "agents/salesforce/salesforce-session-governance-agent/harnesses/codex.toml",
-          "sha256": "9a6b69c6d2a5b087904bb237e2a8911a3f7a21c3987de7e319e294a75993ecc6",
-          "bytes": 1377
+          "sha256": "1bd8e6f8caaacc50951053e4eb5c6472e076ef42faccc2ad13221c70a946e33e",
+          "bytes": 1379
         },
         {
           "path": "agents/salesforce/salesforce-session-governance-agent/harnesses/copilot.agent.md",
@@ -30682,8 +30682,8 @@
         },
         {
           "path": "agents/salesforce/salesforce-slack-collaboration-agent/harnesses/codex.toml",
-          "sha256": "b26c178fe40b7ed7c83c6cab6752abbd08dd92b5fa1bc45aeb462a2537bc6fd2",
-          "bytes": 2601
+          "sha256": "b0ff320ba5df3018557f6d41a607980c59d3a2d792be5ca4434f6f1566e9d1f2",
+          "bytes": 2603
         },
         {
           "path": "agents/salesforce/salesforce-slack-collaboration-agent/harnesses/copilot.agent.md",
@@ -35427,7 +35427,7 @@
     },
     {
       "tree": "catalog",
-      "aggregate_sha256": "3ff112abd87956b12535da70573acf11c021f2a020e24fda0b7c695add3f44c8",
+      "aggregate_sha256": "1607bf644aaacbc0b34be33f33d0d91ce4b1fb83ba3b382dd2e78c61ee2d40e0",
       "files": [
         {
           "path": "catalog/AGENTS.md",
@@ -35456,18 +35456,18 @@
         },
         {
           "path": "catalog/model-assignments.json",
-          "sha256": "f432d666bd7d0f096a5e7acb7ef79c3b3419750ee1072894f362ef5e82425d27",
-          "bytes": 701366
+          "sha256": "27eb4f0c59c479f2262a6960c52e4f13742096765baa165a806d3e2140b17a30",
+          "bytes": 701606
         },
         {
           "path": "catalog/model-policy.json",
-          "sha256": "f0bb60f01274367784838688a3a3a9bc23fd5cfeb32d501b3d5e261e55351ec3",
-          "bytes": 9350
+          "sha256": "c1784b39cdae313001369bb4e48d6360a04573c641a9a617f4dbcb28d41c0113",
+          "bytes": 9368
         },
         {
           "path": "catalog/model-registry.json",
-          "sha256": "8321b90a52e145850989d6656aac726b44cda56dabd2f0a3c38ce07bbfac58d3",
-          "bytes": 26253
+          "sha256": "6e62d9e31e159cf79194da09c7be3705fdfecf1e8e0ccb0a508e0723cb86d975",
+          "bytes": 31395
         },
         {
           "path": "catalog/rules.json",
@@ -47252,5 +47252,5 @@
       "bytes": 9135
     }
   ],
-  "aggregate_sha256": "5a486d33527439d1496be0aef9069f81dc858cde8dd655a337135b3dd28baa8c"
+  "aggregate_sha256": "106a6fdc55986f2cdfb3d03eae4cd48a88f5f8b164d8a5eb2c6c438e47b93fa7"
 }

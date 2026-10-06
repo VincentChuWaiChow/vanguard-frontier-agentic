@@ -1,6 +1,6 @@
 name = "java_test_architecture_agent"
 description = "Static review of JVM test suite architecture and non-flakiness — JUnit 5 lifecycle/isolation, Testcontainers discipline (singleton reuse vs per-test, Wait strategies vs sleep), ArchUnit rules with FreezingArchRule, and test-quality smells via AssertJ/Mockito. Absorbs JVM flaky-test triage. Reads source and sanitized config only."
-model = "gpt-5.5"
+model = "gpt-6-sol"
 model_reasoning_effort = "high"
 sandbox_mode = "read-only"
 

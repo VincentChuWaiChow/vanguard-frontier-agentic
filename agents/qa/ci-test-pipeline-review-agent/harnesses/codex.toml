@@ -1,6 +1,6 @@
 name = "ci_test_pipeline_review_agent"
 description = "Specialized subagent for ci-test-pipeline-review. Reviews how a CI pipeline runs tests — gating, sharding, parallelism, fail-fast, artifact retention, quarantine wiring, and secret exposure — to verify the suite actually blocks bad merges."
-model = "gpt-5.5"
+model = "gpt-6-sol"
 model_reasoning_effort = "high"
 sandbox_mode = "read-only"
 

@@ -1,6 +1,6 @@
 name = "hr_hris_process_controls_agent"
 description = "Adversarial HRIS controls reviewer for HRIS workflow controls, access permissions, approval chains, audit logs, data-quality controls, separation of duties, and system-change risk. Surfaces risks and escalation paths for HR systems and security owners; does not give legal or HR advice."
-model = "gpt-5.5"
+model = "gpt-6-sol"
 model_reasoning_effort = "high"
 sandbox_mode = "read-only"
 

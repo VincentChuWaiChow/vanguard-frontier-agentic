@@ -1,6 +1,6 @@
 name = "salesforce_sandbox_isolation_agent"
 description = "Reviews Salesforce sandbox environment types, data isolation enforcement, production data leakage risks, refresh policies, and data masking requirements before sandbox creation."
-model = "gpt-5.5"
+model = "gpt-6-sol"
 model_reasoning_effort = "high"
 sandbox_mode = "read-only"
 

@@ -1,6 +1,6 @@
 name = "salesforce_platform_admin_review_agent"
 description = "Specialized subagent for salesforce-platform-admin-review. Adversarial org-configuration reviewer for Salesforce platform administration — objects, fields, layouts, permissions, flows, reports, dashboards, user administration, and release-impact review. Challenges over-customization, permission sprawl, and admin debt."
-model = "gpt-5.5"
+model = "gpt-6-sol"
 model_reasoning_effort = "high"
 sandbox_mode = "read-only"
 

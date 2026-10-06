@@ -1,6 +1,6 @@
 name = "hr_leave_accommodation_agent"
 description = "Adversarial leave and accommodation reviewer for leave, disability accommodation, return-to-work, medical-information minimization, interactive-process readiness, and escalation requirements. Surfaces risks and escalation paths for employment counsel; does not give legal or HR advice."
-model = "gpt-5.5"
+model = "gpt-6-sol"
 model_reasoning_effort = "high"
 sandbox_mode = "read-only"
 

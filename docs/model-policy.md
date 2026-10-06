@@ -54,7 +54,7 @@ npm run model-policy:apply      # project the policy into harness files + the as
 node scripts/model-policy.mjs set \
   --scope provider=frontend \
   --harness codex \
-  --model gpt-5.5 \
+  --model gpt-6-sol \
   --dry-run
 ```
 

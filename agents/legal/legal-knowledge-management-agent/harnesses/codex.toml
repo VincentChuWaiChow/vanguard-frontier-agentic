@@ -1,6 +1,6 @@
 name = "legal_knowledge_management_agent"
 description = "Adversarial legal-knowledge reviewer that maintains playbooks, clause libraries, escalation matrices, matter taxonomies, risk precedents, and templates without creating binding legal advice. Surfaces gaps and escalation paths for qualified counsel; does not give legal advice."
-model = "gpt-5.5"
+model = "gpt-6-sol"
 model_reasoning_effort = "high"
 sandbox_mode = "read-only"
 

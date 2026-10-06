@@ -23,20 +23,20 @@ A model policy that pins a name the provider does not recognize does not fail at
 | Field | Config key | Vocabulary |
 |---|---|---|
 | Model | `model` in `codex.toml` | namespace-dependent (see below) |
-| Reasoning effort | `model_reasoning_effort` in `codex.toml` | `none` \| `minimal` \| `low` \| `medium` \| `high` \| `xhigh` \| `max` \| `ultra` (harness-wide vocabulary; narrowed per model/namespace — `max` is advertised only by the gpt-6 and gpt-5.6 families, and `ultra` only by `gpt-6-astra`, `gpt-6-sol`, `gpt-5.6-sol`, and `gpt-5.6-terra`) |
+| Reasoning effort | `model_reasoning_effort` in `codex.toml` | `none` \| `minimal` \| `low` \| `medium` \| `high` \| `xhigh` \| `max` \| `ultra` (harness-wide vocabulary; narrowed per model/namespace — `max` is advertised only by the gpt-6, gpt-6.1 and gpt-5.6 families, and `ultra` only by `gpt-6-astra`, `gpt-6.1-sol`, `gpt-6-sol`, `gpt-5.6-sol`, and `gpt-5.6-terra`) |
 | Provider route | `model_provider` in `codex.toml` | derived automatically from the model's namespace — never set by hand |
 
 Codex does not check a configured effort against the model's advertised `supported_reasoning_levels`: `resolve_reasoning_effort` (`codex-rs/protocol/src/openai_models/reasoning_effort.rs`) sends every value unchanged except `ultra`, which is sent as the model's `multi_agent_reasoning_effort` or else `max`, and `persistent`, which is sent as `Custom("disabled")`. The advertised list only fills the TUI effort picker and remaps the effort when a session switches model. An unsupported pairing therefore fails, if at all, at the provider, so the registry narrows the harness-wide vocabulary per model family to make the policy engine catch it at check time instead. OpenAI's [Responses reasoning guide](https://developers.openai.com/api/docs/guides/reasoning?api-mode=responses) states the accepted set is "model-dependent and can include `none`, `minimal`, `low`, `medium`, `high`, `xhigh`, and `max`", with defaults likewise model-dependent (GPT-5.6 and GPT-5.5 default to `medium`) — which is why the narrowing below is per model rather than harness-wide, and it confirms outright that GPT-6 Astra does not accept `none`. That guide's detailed table omits `minimal` while its own opening sentence lists it; this registry does not treat that as a withdrawal, since absence from one table contradicted by the same page's prose is not evidence a value was removed.
 
-The Codex `ReasoningEffort` enum carries `Ultra` and `Persistent` variants alongside the harness vocabulary above. `ultra` joined that vocabulary on 2026-09-23: it had been excluded because [learn.chatgpt.com/docs/models](https://learn.chatgpt.com/docs/models) documented the CLI effort list as `Low` \| `Medium` \| `High` \| `Extra high` \| `Max` and placed `Ultra` on the web/desktop surface only, but that page now lists "Ultra — Maximum reasoning with automatic task delegation" for the CLI surface, and the [config reference](https://learn.chatgpt.com/docs/config-file/config-reference) documents `model_reasoning_effort` as `low`, `medium`, `high`, `xhigh`, `max`, or `ultra` ("Available levels depend on the model and client"). `ultra` is registered only on the models whose entry in `codex-rs/models-manager/models.json` advertises it — `gpt-6-astra`, `gpt-6-sol`, `gpt-5.6-sol`, and `gpt-5.6-terra` — and the docs state GPT-6 Luna stops at `Max`, which this registry agrees with. `Persistent` stays excluded: it is an enum variant only, absent from the config reference and advertised by no model. This registry governs `codex.toml` — the CLI surface — and an enum variant existing is not evidence the configured surface accepts it, the same distinction the `ollama` and `openrouter` namespaces apply to their own routes below. UI labels also differ from wire values (the app shows "Light" for `low`, "Extra High" for `xhigh`), and the app's Speed control (Fast/Standard) is a separate axis from effort with no documented `codex.toml` key, so it is not projectable at all.
+The Codex `ReasoningEffort` enum carries `Ultra` and `Persistent` variants alongside the harness vocabulary above. `ultra` joined that vocabulary on 2026-09-23: it had been excluded because [learn.chatgpt.com/docs/models](https://learn.chatgpt.com/docs/models) documented the CLI effort list as `Low` \| `Medium` \| `High` \| `Extra high` \| `Max` and placed `Ultra` on the web/desktop surface only, but that page now lists "Ultra — Maximum reasoning with automatic task delegation" for the CLI surface, and the [config reference](https://learn.chatgpt.com/docs/config-file/config-reference) documents `model_reasoning_effort` as `low`, `medium`, `high`, `xhigh`, `max`, or `ultra` ("Available levels depend on the model and client"). `ultra` is registered only on the models whose entry in `codex-rs/models-manager/models.json` advertises it — `gpt-6-astra`, `gpt-6.1-sol`, `gpt-6-sol`, `gpt-5.6-sol`, and `gpt-5.6-terra` — and the docs state GPT-6 Luna stops at `Max`, which this registry agrees with. `Persistent` stays excluded: it is an enum variant only, absent from the config reference and advertised by no model. This registry governs `codex.toml` — the CLI surface — and an enum variant existing is not evidence the configured surface accepts it, the same distinction the `ollama` and `openrouter` namespaces apply to their own routes below. UI labels also differ from wire values (the app shows "Light" for `low`, "Extra High" for `xhigh`), and the app's Speed control (Fast/Standard) is a separate axis from effort with no documented `codex.toml` key, so it is not projectable at all.
 
 ### Namespace table
 
 | Namespace | Shape / pattern | Membership | `model_provider` projected | Reasoning support | Examples |
 |---|---|---|---|---|---|
-| `openai` | `^(gpt-\|o[0-9])[a-z0-9.-]*$` | closed (enumerated below) | *(none — default provider)* | Per-model, see table below | `gpt-5.5`, `o3` |
+| `openai` | `^(gpt-\|o[0-9])[a-z0-9.-]*$` | closed (enumerated below) | *(none — default provider)* | Per-model, see table below | `gpt-6-sol`, `o3` |
 | `ollama` | `^[a-z0-9][a-z0-9._-]*:[a-z0-9][a-z0-9._-]*$` (explicit `name:tag`; a bare floating-`:latest` name is rejected by shape) | open (shape only) | `ollama` | None — pinning `reasoning_effort` fails check. Ollama documents the field on `/v1/chat/completions`, but this route is `wire_api responses` and `reasoning_effort` is absent from the fields Ollama lists for `/v1/responses` — unlike the `openrouter` namespace below, whose Responses route has been verified to accept an effort field | `deepseek-r1:14b`, `qwen3:32b`, `glm-5.3:cloud`, `gpt-oss:120b`, `llama3.3:70b` |
-| `openrouter` | `^[a-z0-9][a-z0-9.-]*/[a-z0-9][a-z0-9._-]*(:(free\|extended\|nitro\|thinking))?$` (`author/model`, optional variant suffix) | open (shape only) | `openrouter` | `minimal`, `low`, `medium`, `high` — verified on OpenRouter's Responses route (`POST /api/v1/responses`), narrower than the `none`/`xhigh`/`max` vocabulary documented on OpenRouter's chat-completions surface; that wider list does not apply to this namespace | `anthropic/claude-sonnet-4.5`, `openai/gpt-4o`, `google/gemini-2.5-pro` |
+| `openrouter` | `^[a-z0-9][a-z0-9.-]*/[a-z0-9][a-z0-9._-]*(:(free\|extended\|nitro\|thinking))?$` (`author/model`, optional variant suffix) | open (shape only) | `openrouter` | `minimal`, `low`, `medium`, `high` — verified on OpenRouter's Responses route (`POST /api/v1/responses`), narrower than the `none`/`xhigh`/`max` vocabulary documented on OpenRouter's chat-completions surface; that wider list does not apply to this namespace | `openai/gpt-6.1-sol`, `anthropic/claude-sonnet-5.5`, `google/gemini-3.8-flash`, `anthropic/claude-sonnet-4.5`, `openai/gpt-4o`, `google/gemini-2.5-pro` |
 
 Namespaces are matched in this order, so a value must clear the `openai` pattern before falling through to `ollama` or `openrouter`.
 
@@ -47,18 +47,19 @@ The `ollama` and `openrouter` routes require a matching `[model_providers.<id>]`
 | Model | Supported reasoning efforts | Notes |
 |---|---|---|
 | `gpt-6-astra` | low, medium, high, xhigh, max, ultra | flagship end-to-end coding model; does not advertise none; ultra is advertised in the Codex model catalog |
+| `gpt-6.1-sol` | low, medium, high, xhigh, max, ultra | GPT-6.1 Sol; the API models page lists low, medium, high, xhigh, max and the reasoning guide states it does not support none or minimal; ultra is advertised in the Codex model catalog. Default effort is documented inconsistently (the API reasoning guide says medium, the Codex catalog `default_reasoning_level` is low), so pin an effort rather than relying on the default; requires Codex CLI 0.153.0 or later |
 | `gpt-6-sol` | low, medium, high, xhigh, max, ultra | flagship coding and agentic model per the API models page; listed in the Codex picker, default medium; requires Codex CLI 0.155.0 or later |
 | `gpt-6-luna` | low, medium, high, xhigh, max | efficient high-volume model per the API models page; the Codex docs state it supports efforts up to Max but not Ultra; requires Codex CLI 0.155.0 or later |
 | `gpt-5.6` | none, low, medium, high, xhigh, max | alias for gpt-5.6-sol; no minimal |
 | `gpt-5.6-sol` | none, low, medium, high, xhigh, max, ultra | no minimal; ultra is advertised in the Codex model catalog. The Codex catalog does not list `none` for this model, but Codex sends a configured effort unchanged, so the API decides whether it is accepted. |
 | `gpt-5.6-terra` | none, low, medium, high, xhigh, max, ultra | no minimal; ultra is advertised in the Codex model catalog. The Codex catalog does not list `none` for this model, but Codex sends a configured effort unchanged, so the API decides whether it is accepted. |
 | `gpt-5.6-luna` | none, low, medium, high, xhigh, max | no minimal |
-| `gpt-5.5` | none, minimal, low, medium, high, xhigh | still listed and visible in the Codex model map |
+| `gpt-5.5` | none, minimal, low, medium, high, xhigh | retiring 2026-10-14 → gpt-6-sol. Retires from ChatGPT, ChatGPT Work and Codex on all plans; OpenAI directs ChatGPT sign-in users to replace it in custom agents with `gpt-6-sol` (`gpt-6-luna` on Free/Go). The OpenAI API is unaffected, so API-key Codex users can still call it; the entry stays registered, including as the documented successor of `gpt-5-2025-08-07`. The repo policy no longer pins it |
 | `gpt-5.5-pro` | none, minimal, low, medium, high, xhigh | |
 | `gpt-5.4` | none, minimal, low, medium, high, xhigh | present but `visibility: hide` in the Codex model map — legacy, kept because the policy still pins it; not a lifecycle status, and no retirement date is documented |
 | `gpt-5.4-mini` | none, minimal, low, medium, high, xhigh | present but `visibility: hide` in the Codex model map — legacy |
-| `gpt-5.4-nano` | none, minimal, low, medium, high, xhigh | |
-| `gpt-5.3-codex` | none, minimal, low, medium, high, xhigh | |
+| `gpt-5.4-nano` | none, minimal, low, medium, high, xhigh | retiring 2027-04-01 → gpt-6-luna |
+| `gpt-5.3-codex` | none, minimal, low, medium, high, xhigh | retiring 2027-04-01 → gpt-6-sol |
 | `gpt-5.1-codex-mini` | none, minimal, low, medium, high, xhigh | |
 | `gpt-4.1-mini` | *(none)* | non-reasoning text model |
 | `gpt-4.1-nano` | *(none)* | non-reasoning text model |
@@ -69,7 +70,7 @@ The `ollama` and `openrouter` routes require a matching `[model_providers.<id>]`
 | `gpt-5-mini-2025-08-07` | minimal, low, medium, high | retiring 2026-12-11 → gpt-5.4-mini |
 | `gpt-5-nano-2025-08-07` | minimal, low, medium, high | retiring 2026-12-11 → gpt-5.4-nano |
 
-The GPT-6 and GPT-5.6 families advertise a `max` reasoning effort on the OpenAI models API, so `max` is now part of the codex harness vocabulary and appears in the rows for those models. Earlier revisions of this table withheld `max` pending confirmation that the Codex CLI's `ReasoningEffort` enum accepted it; the enum in `codex-rs/protocol/src/openai_models.rs` carries `None`, `Minimal`, `Low`, `Medium`, `High`, `XHigh`, `Max`, `Ultra`, `Persistent` and a `Custom(String)` fallback, and `config.schema.json` types the key as a free-form non-empty string, so that exclusion is lifted. Note the consequence: the harness itself will not reject an effort value, which is precisely why the per-model narrowing in this table is what turns an unsupported pairing into a check-time failure rather than a provider-side one. `gpt-6-astra` is the exception within that group: it does not advertise `none`, so that value is omitted from its row. `ultra` is narrower still: it is advertised only by `gpt-6-astra`, `gpt-6-sol`, `gpt-5.6-sol`, and `gpt-5.6-terra` — `gpt-6-luna` and the rest of the gpt-5.6 family (`gpt-5.6`, `gpt-5.6-luna`) stop at `max`.
+The GPT-6, GPT-6.1 and GPT-5.6 families advertise a `max` reasoning effort on the OpenAI models API, so `max` is now part of the codex harness vocabulary and appears in the rows for those models. Earlier revisions of this table withheld `max` pending confirmation that the Codex CLI's `ReasoningEffort` enum accepted it; the enum in `codex-rs/protocol/src/openai_models.rs` carries `None`, `Minimal`, `Low`, `Medium`, `High`, `XHigh`, `Max`, `Ultra`, `Persistent` and a `Custom(String)` fallback, and `config.schema.json` types the key as a free-form non-empty string, so that exclusion is lifted. Note the consequence: the harness itself will not reject an effort value, which is precisely why the per-model narrowing in this table is what turns an unsupported pairing into a check-time failure rather than a provider-side one. `gpt-6-astra` and `gpt-6.1-sol` are the exceptions within that group: they do not advertise `none` (or `minimal`), so those values are omitted from their rows. `ultra` is narrower still: it is advertised only by `gpt-6-astra`, `gpt-6.1-sol`, `gpt-6-sol`, `gpt-5.6-sol`, and `gpt-5.6-terra` — `gpt-6-luna` and the rest of the gpt-5.6 family (`gpt-5.6`, `gpt-5.6-luna`) stop at `max`.
 
 `gpt-5` and `gpt-5-codex` are **not valid slugs** — do not add them from memory; they do not exist in the current OpenAI model map. Image, audio, and video model slugs are deliberately excluded from this registry — they are not valid agent models for this repo's harness files.
 
@@ -77,7 +78,7 @@ The cybersecurity models (`gpt-5.6-cyber`, `gpt-daybreak-red-latest`, `gpt-daybr
 
 `codex-rs/models-manager/models.json` is the Codex *subscription picker*, not the API model set — `filter_by_auth` narrows it further to `supported_in_api` entries — so a slug's absence from that file is not evidence of retirement; the `o1`/`o3`/`o4-mini` and `gpt-4.1-*` entries above are retained in this registry for exactly that reason. Only the provider's own deprecations page moves an entry to `retiring`/`retired`. (`gpt-5.2` is visible in that map but stays unregistered here until its reasoning-effort list is verified.)
 
-Sources: Context7 `/openai/codex` `references/latest-model.md` (current model map); Context7 `/openai/codex` `codex-rs/models-manager/models.json` (Codex model map, verified 2026-09-08); [developers.openai.com/codex](https://developers.openai.com/codex); [developers.openai.com/api/docs/models](https://developers.openai.com/api/docs/models) (GPT-6 + GPT-5.6 families, verified 2026-09-05); [raw.githubusercontent.com/openai/codex/main/codex-rs/models-manager/models.json](https://raw.githubusercontent.com/openai/codex/main/codex-rs/models-manager/models.json) (gpt-6-sol, gpt-6-luna and per-model ultra support, verified 2026-09-23); [learn.chatgpt.com/docs/config-file/config-reference](https://learn.chatgpt.com/docs/config-file/config-reference) (model_reasoning_effort values including ultra, verified 2026-09-23); [learn.chatgpt.com/docs/models?surface=cli](https://learn.chatgpt.com/docs/models?surface=cli) (CLI effort list including Ultra; GPT-6 Luna stops at Max, verified 2026-09-23).
+Sources: Context7 `/openai/codex` `references/latest-model.md` (current model map); Context7 `/openai/codex` `codex-rs/models-manager/models.json` (Codex model map, verified 2026-09-08); [developers.openai.com/codex](https://developers.openai.com/codex); [developers.openai.com/api/docs/models](https://developers.openai.com/api/docs/models) (GPT-6 + GPT-5.6 families, verified 2026-09-05); [raw.githubusercontent.com/openai/codex/main/codex-rs/models-manager/models.json](https://raw.githubusercontent.com/openai/codex/main/codex-rs/models-manager/models.json) (gpt-6-sol, gpt-6-luna and per-model ultra support, verified 2026-09-23); [learn.chatgpt.com/docs/config-file/config-reference](https://learn.chatgpt.com/docs/config-file/config-reference) (model_reasoning_effort values including ultra, verified 2026-09-23); [learn.chatgpt.com/docs/models?surface=cli](https://learn.chatgpt.com/docs/models?surface=cli) (CLI effort list including Ultra; GPT-6 Luna stops at Max, verified 2026-09-23); [developers.openai.com/api/docs/models](https://developers.openai.com/api/docs/models) (GPT-6.1 Sol model ID and reasoning list, verified 2026-10-06); [developers.openai.com/api/docs/deprecations](https://developers.openai.com/api/docs/deprecations) (2026-10-01 GPT-5.3-Codex, GPT-5.1, GPT-5.4-Nano deprecation, verified 2026-10-06); [learn.chatgpt.com/docs/models?surface=cli](https://learn.chatgpt.com/docs/models?surface=cli) (GPT-5.5 leaves ChatGPT sign-in Codex on 2026-10-14, API unaffected; verified 2026-10-06).
 
 ## Model lifecycle (retirement and fallback)
 
@@ -112,7 +113,9 @@ The `vfa-tui` Model Policy Builder reads `catalog/model-registry.json` directly 
 | Namespace | Shape / pattern | Membership | Examples |
 |---|---|---|---|
 | `alias` | `^(sonnet\|opus\|haiku\|fable\|inherit)$` | closed (enumerated: the five aliases below). Matched *before* `anthropic`, so leaving it shape-only would let `haiku` inherit the full vocabulary and bypass the gate its pinned ids carry; closing it also rejects an unrecognized alias | `sonnet`, `opus`, `haiku` *(no effort)* |
-| `anthropic` | `^claude-[a-z0-9.-]+$` | closed (enumerated below) | `claude-sonnet-5` |
+| `anthropic` | `^claude-[a-z0-9.-]+$` | closed (enumerated below) | `claude-sonnet-5-5`, `claude-sonnet-5` |
+
+The `sonnet` alias resolves per provider: Sonnet 5.5 on the Anthropic API, Sonnet 4.6 on Claude Platform on AWS, and Sonnet 4.5 on Amazon Bedrock, Google Cloud and Microsoft Foundry. It inherits the full effort vocabulary, which matches the Anthropic API resolution only: on a provider where it resolves to Sonnet 4.5, an effort value is unsupported.
 
 ### Naming convention: dateless IDs, dated snapshots, and aliases
 
@@ -135,10 +138,11 @@ This is a standing rule for every pinned Anthropic ID registered here, not a one
 | `claude-opus-4-6` | low, medium, high, max | effort page lists max but not xhigh for Opus 4.6 |
 | `claude-opus-4-5` | low, medium, high | preferred readable form; pre-4.6 alias pointing at `claude-opus-4-5-20251101`. Supports effort but is absent from both the xhigh and max availability lists |
 | `claude-opus-4-5-20251101` | low, medium, high | dated snapshot the `claude-opus-4-5` alias resolves to; pin only when an exact snapshot is required |
+| `claude-sonnet-5-5` | low, medium, high, xhigh, max | current Sonnet lineup; the dateless ID is its own pinned snapshot; on both the xhigh and max lists ("supports all five effort levels, and high is the default"); requires Claude Code v2.1.284 or later |
 | `claude-sonnet-5` | low, medium, high, xhigh, max | |
 | `claude-sonnet-4-6` | low, medium, high, max | effort page lists max but not xhigh for Sonnet 4.6 |
-| `claude-sonnet-4-5` | *(none)* | preferred readable form; pre-4.6 alias pointing at `claude-sonnet-4-5-20250929`. Absent from the effort page supported-models list, so effort is not projectable |
-| `claude-sonnet-4-5-20250929` | *(none)* | dated snapshot the `claude-sonnet-4-5` alias resolves to; pin only when an exact snapshot is required |
+| `claude-sonnet-4-5` | *(none)* | retiring 2026-11-30 → claude-sonnet-5-5; preferred readable form; pre-4.6 alias pointing at `claude-sonnet-4-5-20250929`, so it retires with that snapshot (deprecated 2026-09-30). Absent from the effort page supported-models list, so effort is not projectable |
+| `claude-sonnet-4-5-20250929` | *(none)* | retiring 2026-11-30 → claude-sonnet-5-5; deprecated 2026-09-30; dated snapshot the `claude-sonnet-4-5` alias resolves to; pin only when an exact snapshot is required. Effort is not supported |
 | `claude-haiku-4-5` | *(none)* | absent from the effort page supported-models list |
 | `claude-haiku-4-5-20251001` | *(none)* | dated snapshot ID; effort not supported |
 | `claude-fable-5` | low, medium, high, xhigh, max | |
@@ -157,7 +161,7 @@ This is a standing rule for every pinned Anthropic ID registered here, not a one
 
 An invalid `model` value is not caught at startup — it surfaces as an HTTP 404 at request time, which is exactly the class of failure this registry exists to prevent before it reaches the provider.
 
-Sources: [code.claude.com/docs/en/sub-agents](https://code.claude.com/docs/en/sub-agents), [code.claude.com/docs/en/model-config](https://code.claude.com/docs/en/model-config), [platform.claude.com/docs/en/about-claude/models/overview](https://platform.claude.com/docs/en/about-claude/models/overview), [platform.claude.com/docs/en/about-claude/model-deprecations](https://platform.claude.com/docs/en/about-claude/model-deprecations), [platform.claude.com/docs/en/build-with-claude/effort](https://platform.claude.com/docs/en/build-with-claude/effort), [platform.claude.com/docs/en/about-claude/models/model-ids-and-versions](https://platform.claude.com/docs/en/about-claude/models/model-ids-and-versions).
+Sources: [code.claude.com/docs/en/sub-agents](https://code.claude.com/docs/en/sub-agents), [code.claude.com/docs/en/model-config](https://code.claude.com/docs/en/model-config) (per-provider alias resolution, verified 2026-10-06), [platform.claude.com/docs/en/about-claude/models/overview](https://platform.claude.com/docs/en/about-claude/models/overview), [platform.claude.com/docs/en/about-claude/model-deprecations](https://platform.claude.com/docs/en/about-claude/model-deprecations), [platform.claude.com/docs/en/build-with-claude/effort](https://platform.claude.com/docs/en/build-with-claude/effort), [platform.claude.com/docs/en/about-claude/models/model-ids-and-versions](https://platform.claude.com/docs/en/about-claude/models/model-ids-and-versions).
 
 ## cursor
 
@@ -180,9 +184,19 @@ Sources: [code.claude.com/docs/en/sub-agents](https://code.claude.com/docs/en/su
 | Model | Note |
 |---|---|
 | `gpt-5.6-sol` | |
+| `gpt-5.6-terra` | |
+| `gpt-5.6-luna` | |
 | `gpt-5.5` | |
 | `gpt-5` | |
+| `claude-sonnet-5-5` | |
+| `claude-opus-5-5` | |
+| `claude-fable-5-1` | |
 | `claude-opus-5` | |
+| `gemini-3.1-pro` | |
+| `gemini-3.8-flash` | |
+| `grok-4.7` | |
+| `grok-4.6` | |
+| `muse-spark-1.3` | |
 | `composer-2` | |
 | `composer-2.5` | |
 
@@ -190,9 +204,9 @@ Sources: [code.claude.com/docs/en/sub-agents](https://code.claude.com/docs/en/su
 
 A `named` model ID may carry Cursor's documented per-model parameter group in square brackets — e.g. `claude-opus-5[effort=high,context=300k]` — per [cursor.com/docs/subagents](https://cursor.com/docs/subagents). The documented keys are `fast`, `effort`, and `context`. The allowlist above enumerates **base** ids only: the parameter group is a per-rule modifier, so membership is checked against the id with the group stripped. The registry's `match` pattern deliberately shapes the group only (allowed characters, a single trailing bracket pair) rather than encoding `key=value` structure — a pattern that did would need nested quantifiers, which the registry's ReDoS guard rejects. The precise structure — `key=value` pairs with exactly one separator each and both halves non-empty, no duplicate keys, keys restricted to `fast`/`effort`/`context`, no empty group — is instead enforced semantically by `scripts/model-policy.mjs`, which rejects an unknown key, a malformed pair, a duplicate key, or an empty group with a clearer error than a regex miss would give. `schemas/model-policy.schema.json` accepts the same trailing group in its `model` pattern, since a non-dry-run `set` writes the value straight into `catalog/model-policy.json`; the `validate:model-params` gate asserts the script and the schema agree, so the two cannot drift apart.
 
-Cursor's model picker evolves quickly and availability is plan/admin-dependent; this list is deliberately narrow and should be extended only through the refresh workflow, not from memory. An unknown model name raises `ConfigurationError` in Cursor. Cursor documents Opus 5.5 only as `claude-opus-5-5-fast` on [cursor.com/docs/models-and-pricing](https://cursor.com/docs/models-and-pricing), with no statement that it is valid in a subagent `model:` field, so it stays unregistered here until verified.
+Cursor's model picker evolves quickly and availability is plan/admin-dependent; this list is deliberately narrow and should be extended only through the refresh workflow, not from memory. An unknown model name raises `ConfigurationError` in Cursor. Entries verified 2026-10-06 take the "Model ID" stated on each per-model page under [cursor.com/docs/models](https://cursor.com/docs/models), which the subagents page names as the reference for available IDs; Cursor writes these hyphenated for Anthropic models (`claude-sonnet-5-5`, not `claude-sonnet-5.5`). The subagents page itself names only `composer-2` and `gpt-5.6-sol`, so confirm a model with `Cursor.models.list()` before relying on it.
 
-Source: [cursor.com/docs/subagents](https://cursor.com/docs/subagents).
+Sources: [cursor.com/docs/subagents](https://cursor.com/docs/subagents), [cursor.com/docs/models](https://cursor.com/docs/models) (per-model pages give the Model ID, verified 2026-10-06).
 
 ## Failure modes
 

@@ -15,42 +15,42 @@
     {
       "scope": "provider:dotnet",
       "harness": "codex",
-      "model": "gpt-5.5"
+      "model": "gpt-6-sol"
     },
     {
       "scope": "provider:generic",
       "harness": "codex",
-      "model": "gpt-5.5"
+      "model": "gpt-6-sol"
     },
     {
       "scope": "provider:hr",
       "harness": "codex",
-      "model": "gpt-5.5"
+      "model": "gpt-6-sol"
     },
     {
       "scope": "provider:java",
       "harness": "codex",
-      "model": "gpt-5.5"
+      "model": "gpt-6-sol"
     },
     {
       "scope": "provider:legal",
       "harness": "codex",
-      "model": "gpt-5.5"
+      "model": "gpt-6-sol"
     },
     {
       "scope": "provider:netsuite",
       "harness": "codex",
-      "model": "gpt-5.5"
+      "model": "gpt-6-sol"
     },
     {
       "scope": "provider:salesforce",
       "harness": "codex",
-      "model": "gpt-5.5"
+      "model": "gpt-6-sol"
     },
     {
       "scope": "agent:nextjs-specialist-agent",
       "harness": "codex",
-      "model": "gpt-5.5"
+      "model": "gpt-6-sol"
     },
     {
       "scope": "agent:oci-cloud-guard-responder-agent",
@@ -145,7 +145,7 @@
     {
       "scope": "agent:svelte-sveltekit-specialist-agent",
       "harness": "codex",
-      "model": "gpt-5.5"
+      "model": "gpt-6-sol"
     },
     {
       "scope": "provider:aws",

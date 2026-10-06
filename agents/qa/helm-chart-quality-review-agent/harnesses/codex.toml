@@ -1,6 +1,6 @@
 name = "helm_chart_quality_review_agent"
 description = "Specialized subagent for helm-chart-quality-review. Reviews Helm chart source for quality, security, and testability defects — linting gaps, insecure securityContext, missing resource limits, absent health probes, RBAC over-permission, hardcoded secrets, and missing helm test coverage — statically, without installing or contacting a cluster."
-model = "gpt-5.5"
+model = "gpt-6-sol"
 model_reasoning_effort = "high"
 sandbox_mode = "read-only"
 

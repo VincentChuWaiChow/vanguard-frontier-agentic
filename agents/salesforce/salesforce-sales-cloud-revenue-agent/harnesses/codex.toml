@@ -1,6 +1,6 @@
 name = "salesforce_sales_cloud_revenue_agent"
 description = "Specialized subagent for salesforce-sales-cloud-revenue. Adversarial revenue-process reviewer for Salesforce Sales Cloud — lead-to-cash, opportunity lifecycle, forecasting, territories, products, pricing, CPQ, Revenue Cloud, quoting, approvals, and pipeline integrity. Flags revenue leakage, shadow processes, and forecast manipulation risk."
-model = "gpt-5.5"
+model = "gpt-6-sol"
 model_reasoning_effort = "high"
 sandbox_mode = "read-only"
 

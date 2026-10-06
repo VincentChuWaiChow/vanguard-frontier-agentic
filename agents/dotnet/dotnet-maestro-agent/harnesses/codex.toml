@@ -1,6 +1,6 @@
 name = "dotnet_maestro_agent"
 description = "Router agent for the .NET board. Classifies a .NET task and dispatches the narrowest specialist agent, or a parallel team of up to four for multi-domain tasks. Routes only — never answers .NET questions itself."
-model = "gpt-5.5"
+model = "gpt-6-sol"
 model_reasoning_effort = "high"
 sandbox_mode = "read-only"
 

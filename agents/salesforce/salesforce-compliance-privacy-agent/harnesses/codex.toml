@@ -1,6 +1,6 @@
 name = "salesforce_compliance_privacy_agent"
 description = "Adversarial static reviewer for privacy, consent, retention, audit controls, regulated data, and SOX/GDPR/HIPAA/PCI considerations within Salesforce — covers Salesforce Shield, Event Monitoring, Field Audit Trail, and Shield Platform Encryption; escalates legal interpretation to counsel."
-model = "gpt-5.5"
+model = "gpt-6-sol"
 model_reasoning_effort = "high"
 sandbox_mode = "read-only"
 
