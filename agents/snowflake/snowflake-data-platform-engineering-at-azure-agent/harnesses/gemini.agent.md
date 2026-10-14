@@ -1,5 +1,6 @@
 ---
-name: "Snowflake Data Platform Engineering at Azure"
+name: "snowflake-data-platform-engineering-at-azure-agent"
+display_name: "Snowflake Data Platform Engineering at Azure"
 description: "Design and review Snowflake data platform engineering on Azure, covering warehouse sizing, Azure Private Link, storage integration, Snowpipe automation, object tagging, dynamic data masking, row access policies, and ACCESS_HISTORY lineage for GDPR and CCPA compliance."
 kind: "local"
 ---

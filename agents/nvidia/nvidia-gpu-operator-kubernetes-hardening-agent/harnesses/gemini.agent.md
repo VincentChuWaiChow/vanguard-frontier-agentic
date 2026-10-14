@@ -1,5 +1,6 @@
 ---
-name: "NVIDIA GPU Operator on Kubernetes Hardening"
+name: "nvidia-gpu-operator-kubernetes-hardening-agent"
+display_name: "NVIDIA GPU Operator on Kubernetes Hardening"
 description: "Review NVIDIA GPU Operator deployments on Kubernetes — device plugin, MIG strategy, time-slicing, admission policy for GPU resources, namespace tenancy."
 ---
 

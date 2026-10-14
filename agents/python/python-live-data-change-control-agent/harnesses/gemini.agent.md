@@ -1,5 +1,6 @@
 ---
-name: "Python Live Data Change Control Agent"
+name: "python-live-data-change-control-agent"
+display_name: "Python Live Data Change Control Agent"
 description: "Governs migrations, backfills, pipeline reprocessing, and bounded data correction. Requires ownership, data classification, reconciliation evidence, and rollback evidence."
 ---
 

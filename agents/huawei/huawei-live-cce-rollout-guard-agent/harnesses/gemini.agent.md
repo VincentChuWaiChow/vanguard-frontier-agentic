@@ -1,5 +1,6 @@
 ---
-name: "Huawei Live CCE Rollout Guard"
+name: "huawei-live-cce-rollout-guard-agent"
+display_name: "Huawei Live CCE Rollout Guard"
 description: "Gate CCE deployment mutations, node pool upgrades, and cluster version changes against rollback posture and workload disruption budget before any production change."
 ---
 

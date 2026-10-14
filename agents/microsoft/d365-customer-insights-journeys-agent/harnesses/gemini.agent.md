@@ -1,5 +1,6 @@
 ---
-name: "D365 Customer Insights — Data & Journeys"
+name: "d365-customer-insights-journeys-agent"
+display_name: "D365 Customer Insights — Data & Journeys"
 description: "Review Dynamics 365 Customer Insights — Data (CDP: unification, segments, measures) and Customer Insights — Journeys (real-time marketing journeys, triggers, consent/compliance, channel orchestration), enforcing unified profile completeness, segment quality, consent model correctness, journey logic review, and compliance posture before production journey publish or bulk outreach."
 kind: "local"
 ---

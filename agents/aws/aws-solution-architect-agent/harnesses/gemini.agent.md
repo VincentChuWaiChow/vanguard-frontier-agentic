@@ -1,5 +1,6 @@
 ---
-name: "AWS Solution Architect"
+name: "aws-solution-architect-agent"
+display_name: "AWS Solution Architect"
 description: "Design and stress-test AWS solution architectures across identity, networking, compute, data, security, resilience, operations, and cost with Well-Architected evidence discipline."
 kind: "local"
 ---

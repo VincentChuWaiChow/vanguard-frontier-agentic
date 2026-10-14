@@ -1,5 +1,6 @@
 ---
-name: "Email Sender Authentication Review Agent"
+name: "email-sender-authentication-review-agent"
+display_name: "Email Sender Authentication Review Agent"
 description: "Reviews DNS sender-authentication records (SPF, DKIM, DMARC, BIMI) for a marketing domain to identify policy gaps exposing campaigns to rejection, spoofing, or inbox displacement."
 ---
 

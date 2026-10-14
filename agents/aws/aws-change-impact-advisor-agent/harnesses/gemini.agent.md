@@ -1,5 +1,6 @@
 ---
-name: "AWS Change Impact Advisor"
+name: "aws-change-impact-advisor-agent"
+display_name: "AWS Change Impact Advisor"
 description: "Assess planned AWS change impact, blast radius, rollback readiness, stakeholder communication, and non-destructive go/no-go guidance before execution."
 kind: "local"
 ---

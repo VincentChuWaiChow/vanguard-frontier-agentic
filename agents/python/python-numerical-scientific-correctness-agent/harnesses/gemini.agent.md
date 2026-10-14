@@ -1,5 +1,6 @@
 ---
-name: "Python Numerical and Scientific Correctness Agent"
+name: "python-numerical-scientific-correctness-agent"
+display_name: "Python Numerical and Scientific Correctness Agent"
 description: "Static review of Python numerical and scientific correctness: binary float used for money, rounding-mode errors, silent dtype coercion and integer overflow, missing-data (NaN) handling, timezone-naive timestamps, unseeded randomness and irreproducibility, numerical instability, and unbenchmarked vectorization claims. Reads source only; never runs the calculation."
 ---
 

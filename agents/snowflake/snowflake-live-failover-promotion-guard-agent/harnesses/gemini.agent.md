@@ -1,5 +1,6 @@
 ---
-name: "Snowflake Live Failover Promotion Guard Agent"
+name: "snowflake-live-failover-promotion-guard-agent"
+display_name: "Snowflake Live Failover Promotion Guard Agent"
 description: "The highest-blast-radius execution boundary on this board: one promotion of one failover group to primary. Requires a declared incident or drill, a named accountable owner, replication freshness with a quantified data-loss window, dependency readiness, a client redirection plan, and a failback strategy — all in writing, before the statement is composed. Urgency raises this gate rather than lowering it. Never auto-dispatched."
 ---
 

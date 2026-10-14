@@ -1,5 +1,6 @@
 ---
-name: "Frontend Platform Architect"
+name: "frontend-platform-architect-agent"
+display_name: "Frontend Platform Architect"
 description: "Owns cross-cutting frontend architecture decisions — module boundaries, build/runtime topology, shared-platform contracts, and technology-adoption gates — preventing uncoordinated architectural drift across teams and codebases."
 kind: "local"
 ---

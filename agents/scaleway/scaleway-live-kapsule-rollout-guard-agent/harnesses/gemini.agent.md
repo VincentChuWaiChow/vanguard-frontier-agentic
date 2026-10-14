@@ -1,5 +1,6 @@
 ---
-name: "Scaleway Live Kapsule Rollout Guard"
+name: "scaleway-live-kapsule-rollout-guard-agent"
+display_name: "Scaleway Live Kapsule Rollout Guard"
 description: "Approval-gated live-guard agent for Scaleway Kapsule cluster and node pool mutations. Enforces PDB audit, cluster health evidence, and a documented rollback plan before any control-plane or node pool change proceeds."
 ---
 

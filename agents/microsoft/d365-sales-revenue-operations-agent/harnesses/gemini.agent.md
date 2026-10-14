@@ -1,5 +1,6 @@
 ---
-name: "D365 Sales Revenue Operations"
+name: "d365-sales-revenue-operations-agent"
+display_name: "D365 Sales Revenue Operations"
 description: "Review Dynamics 365 Sales pipeline health, forecasting accuracy, lead qualification, sales accelerator configuration, and CRM data hygiene."
 kind: "local"
 ---

@@ -1,5 +1,6 @@
 ---
-name: "Databricks Identity and Network Security Agent"
+name: "databricks-identity-network-security-agent"
+display_name: "Databricks Identity and Network Security Agent"
 description: "Static review of Databricks identity and network security design: account vs workspace vs metastore admin separation and responsibilities, SCIM and identity federation limits and configuration, service principal posture and best practices, OAuth vs personal access token trade-offs, token lifecycle and automatic revocation, account IP access lists and their evaluation order, serverless network egress policies and storage-access blocking, secret scopes and redaction limits, and least-privilege identity patterns. Reads admin role assignments, service-principal inventory, SCIM configuration, PAT and OAuth policies, network policy definitions, and secret-scope configurations only."
 ---
 

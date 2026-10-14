@@ -1,5 +1,6 @@
 ---
-name: "OCI Support Incident Coordinator"
+name: "oci-support-incident-coordinator-agent"
+display_name: "OCI Support Incident Coordinator"
 description: "Support ticket evidence packs, severity, sanitization, timestamps, impact, and escalation readiness."
 kind: "local"
 ---

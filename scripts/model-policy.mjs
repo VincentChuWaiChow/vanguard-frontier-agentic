@@ -70,7 +70,7 @@
  *   npm run asset-integrity:write
  */
 
-import { readFileSync, writeFileSync } from "node:fs";
+import { lstatSync, readFileSync, realpathSync, writeFileSync } from "node:fs";
 import { createHash } from "node:crypto";
 import { dirname, isAbsolute, join, relative } from "node:path";
 import { fileURLToPath } from "node:url";
@@ -195,13 +195,55 @@ const SAFE_TOKEN = /^[a-z0-9][a-z0-9._-]*$/;
  * lives under `agents/`, so scoping the guard there is both correct and tight —
  * it blocks `.git/`, root files, and traversal in one check. Stricter than the
  * `path_is_inside_repo` sibling validators (which this hereby supersedes for
- * the codex/read-write path); lexical only, no symlink resolution. */
+ * the codex/read-write path).
+ *
+ * The lexical checks alone were not enough: a planted leaf symlink, or a
+ * symlinked ancestor directory under `agents/`, is lexically inside the repo
+ * but resolves outside it, so `apply` would write through it to an arbitrary
+ * file the operator can write. After the lexical guard we therefore resolve
+ * real paths and require the target to stay inside the real repo root, and we
+ * refuse to write through a symlink at all — matching
+ * tests/validate-asset-integrity.py, which rejects symlinks in the trust
+ * surface. */
 function resolveInsideRepo(relPath) {
   if (typeof relPath !== "string" || relPath.length === 0) return null;
   const abs = join(repoRoot, relPath);
   const rel = relative(repoRoot, abs);
   if (rel === "" || rel.startsWith("..") || isAbsolute(rel)) return null;
   if (rel.split(/[\\/]/)[0] !== "agents") return null;
+
+  // Never write through a symlink, even one pointing back inside the repo.
+  try {
+    if (lstatSync(abs).isSymbolicLink()) return null;
+  } catch {
+    // Target does not exist yet — the ancestor walk below still applies.
+  }
+
+  // Resolve the nearest existing ancestor and require it to remain inside the
+  // real repo root, which catches a symlinked parent directory.
+  let realRoot;
+  try {
+    realRoot = realpathSync(repoRoot);
+  } catch {
+    return null;
+  }
+
+  let probe = dirname(abs);
+  for (;;) {
+    try {
+      const realProbe = realpathSync(probe);
+      const realRel = relative(realRoot, realProbe);
+      if (realRel !== "" && (realRel.startsWith("..") || isAbsolute(realRel))) {
+        return null;
+      }
+      break;
+    } catch {
+      const parent = dirname(probe);
+      if (parent === probe) return null;
+      probe = parent;
+    }
+  }
+
   return abs;
 }
 

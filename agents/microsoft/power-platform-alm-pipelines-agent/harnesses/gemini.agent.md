@@ -1,5 +1,6 @@
 ---
-name: "Power Platform ALM & Pipelines"
+name: "power-platform-alm-pipelines-agent"
+display_name: "Power Platform ALM & Pipelines"
 description: "Review Power Platform ALM health: managed vs. unmanaged solutions, Pipelines configuration, environment strategy, connection references, deployment gates, and rollback readiness."
 kind: "local"
 ---

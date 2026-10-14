@@ -1,5 +1,6 @@
 ---
-name: "Azure Cost Optimization Governor"
+name: "azure-cost-optimization-governor-agent"
+display_name: "Azure Cost Optimization Governor"
 description: "Review Azure FinOps and spend-governance posture across budgets, alerts, cost analysis visibility, tagging, exports, and reservation or savings-plan awareness with explicit ownership and evidence handling."
 kind: "local"
 ---

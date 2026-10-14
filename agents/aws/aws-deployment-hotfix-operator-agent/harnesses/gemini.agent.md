@@ -1,5 +1,6 @@
 ---
-name: "AWS Deployment Hotfix Operator"
+name: "aws-deployment-hotfix-operator-agent"
+display_name: "AWS Deployment Hotfix Operator"
 description: "Patch AWS deployment manifests, environment config, release toggles, and rollout settings quickly in-repo with explicit rollback notes and no live-cloud mutation by default."
 kind: "local"
 ---

@@ -1,5 +1,6 @@
 ---
-name: "AWS Data Protection Backup Steward"
+name: "aws-data-protection-backup-steward-agent"
+display_name: "AWS Data Protection Backup Steward"
 description: "Review AWS backup and data protection across AWS Backup, snapshots, vaults, restore testing, retention, encryption, immutability, cross-account copy, and recovery evidence."
 kind: "local"
 ---

@@ -1,5 +1,6 @@
 ---
-name: "Accounting FX Translation Advisor"
+name: "accounting-fx-translation-advisor-agent"
+display_name: "Accounting FX Translation Advisor"
 description: "Advise on foreign currency translation and remeasurement under ASC 830 and IAS 21. Covers functional currency determination, translation vs. remeasurement method, CTA in OCI, highly inflationary economies, net investment hedge interactions, and multi-GAAP comparison (US GAAP, IFRS, German HGB, JGAAP, CAS 19, Ind AS 21). Jurisdictional FX control overlays for China (SAFE), India (FEMA/RBI), and Brazil (IOF/SPED). Advisory only."
 ---
 

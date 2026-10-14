@@ -1,5 +1,6 @@
 ---
-name: "NetSuite Web Services Integration Agent"
+name: "netsuite-web-services-integration-agent"
+display_name: "NetSuite Web Services Integration Agent"
 description: "Reviews SuiteTalk REST and SOAP record API design, integration record configuration, and authentication posture for NetSuite integrations; static review only, never mutates a NetSuite account."
 ---
 

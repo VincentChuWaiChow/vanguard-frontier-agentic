@@ -1,5 +1,6 @@
 ---
-name: "Kotlin Library API and ABI Governance Agent"
+name: "kotlin-library-api-abi-governance-agent"
+display_name: "Kotlin Library API and ABI Governance Agent"
 description: "Static review of Kotlin library public-API evolution and binary/source compatibility for libraries consumed by both Kotlin and Java: binary-compatibility-validator .api snapshots and apiCheck gating, Explicit API mode, @JvmOverloads/@JvmStatic/@JvmName surface shaping, and ABI-sensitive data-class and inline-function changes. Reads source and build config only."
 ---
 

@@ -1,5 +1,6 @@
 ---
-name: "GCP Live KMS Key Destruction Guard"
+name: "gcp-live-kms-key-destruction-guard-agent"
+display_name: "GCP Live KMS Key Destruction Guard"
 description: "Gate Cloud KMS key version destruction and key ring deletion — CMEK-encrypted data becomes permanently and irrecoverably inaccessible once a key version is destroyed."
 ---
 

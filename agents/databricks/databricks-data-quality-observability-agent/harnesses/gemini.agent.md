@@ -1,5 +1,6 @@
 ---
-name: "Databricks Data Quality and Observability Agent"
+name: "databricks-data-quality-observability-agent"
+display_name: "Databricks Data Quality and Observability Agent"
 description: "Static review of Lakeflow pipeline data quality and observability: expectations and violation-mode choice (warn/drop/fail), table constraints (NOT NULL, CHECK, informational foreign/unique/PK), Lakehouse Monitoring profile and drift metrics, freshness and staleness detection, pipeline event-log interrogation for lineage and data-quality results, quality SLA definition and alerting, and quality evidence for downstream consumers. Reads pipeline definitions, expectations code, table schema, event logs, and monitor configuration only."
 ---
 

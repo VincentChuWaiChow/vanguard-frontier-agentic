@@ -1,5 +1,6 @@
 ---
-name: "Finance Capital Allocation Advisor"
+name: "finance-capital-allocation-advisor-agent"
+display_name: "Finance Capital Allocation Advisor"
 description: "Advise on corporate capital allocation and investment appraisal — NPV, IRR, MIRR, payback, PI; WACC (CAPM, after-tax cost of debt, capital structure weights); hurdle rates; M&A valuation (DCF, comparables, precedent transactions, accretion/dilution, synergies); capital return policy (dividends vs. buybacks vs. reinvestment); sensitivity/scenario analysis; ROIC vs. WACC value creation. Educational framework — not investment advice and not a fairness opinion."
 ---
 

@@ -1,5 +1,6 @@
 ---
-name: "OCI Recovery Service Operator"
+name: "oci-recovery-service-operator-agent"
+display_name: "OCI Recovery Service Operator"
 description: "Recovery Service protected database health, recovery windows, backup protection policy, and restore readiness."
 kind: "local"
 ---

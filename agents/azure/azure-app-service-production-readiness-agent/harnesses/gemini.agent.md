@@ -1,5 +1,6 @@
 ---
-name: "Azure App Service Production Readiness"
+name: "azure-app-service-production-readiness-agent"
+display_name: "Azure App Service Production Readiness"
 description: "Review Azure App Service and Web Apps for production readiness across plan fit, slots, networking, private ingress, identities, secrets, scaling, diagnostics, resilience, backup, rollback, and operator ownership with explicit evidence-versus-inference handling."
 kind: "local"
 ---

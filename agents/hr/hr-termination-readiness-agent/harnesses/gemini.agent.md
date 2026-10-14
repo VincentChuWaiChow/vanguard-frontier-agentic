@@ -1,5 +1,6 @@
 ---
-name: "HR Termination Readiness Agent"
+name: "hr-termination-readiness-agent"
+display_name: "HR Termination Readiness Agent"
 description: "Adversarial termination-readiness reviewer for documentation sufficiency, consistency, retaliation risk, final-pay dependencies, access-removal coordination, and legal escalation triggers. Surfaces risks and escalation paths for employment counsel; does not give legal or HR advice."
 ---
 

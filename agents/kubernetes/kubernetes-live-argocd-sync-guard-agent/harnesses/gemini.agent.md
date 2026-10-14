@@ -1,5 +1,6 @@
 ---
-name: "Kubernetes Live Argo CD Sync Guard"
+name: "kubernetes-live-argocd-sync-guard-agent"
+display_name: "Kubernetes Live Argo CD Sync Guard"
 description: "Guard live argocd CLI or kubectl operations on Argo CD Application, AppProject, and ApplicationSet resources, and sync-window modifications. Requires AppProject blast-radius assessment, sync identity review, and explicit approval before any production sync, AppProject mutation, or sync-window deletion."
 ---
 

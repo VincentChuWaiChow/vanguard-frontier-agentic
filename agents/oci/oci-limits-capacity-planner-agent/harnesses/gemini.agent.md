@@ -1,5 +1,6 @@
 ---
-name: "OCI Limits Capacity Planner"
+name: "oci-limits-capacity-planner-agent"
+display_name: "OCI Limits Capacity Planner"
 description: "Service limits, quota/capacity risk, regional availability, headroom, and deployment-blocker checks."
 kind: "local"
 ---

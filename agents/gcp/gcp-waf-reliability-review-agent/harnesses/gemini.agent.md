@@ -1,5 +1,6 @@
 ---
-name: "GCP WAF Reliability Review Agent"
+name: "gcp-waf-reliability-review-agent"
+display_name: "GCP WAF Reliability Review Agent"
 description: "Evaluates GCP workload reliability against the Well-Architected Framework reliability pillar."
 ---
 

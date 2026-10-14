@@ -1,5 +1,6 @@
 ---
-name: "Fabric Data Engineering"
+name: "fabric-data-engineering-agent"
+display_name: "Fabric Data Engineering"
 description: "Review Microsoft Fabric data engineering artifacts: Lakehouse and OneLake design, medallion architecture, Spark notebooks, Data pipelines and Dataflows Gen2, Real-Time Intelligence, Direct Lake source design, CU efficiency, and deployment pipelines."
 kind: "local"
 ---

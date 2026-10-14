@@ -1,5 +1,6 @@
 ---
-name: "NetSuite OneWorld Multi-Subsidiary Agent"
+name: "netsuite-oneworld-multisubsidiary-agent"
+display_name: "NetSuite OneWorld Multi-Subsidiary Agent"
 description: "Reviews NetSuite OneWorld subsidiary structures, intercompany boundaries, currency and tax-jurisdiction configurations, legal-entity mappings, and cross-subsidiary visibility restrictions; static review only, never mutates a NetSuite account."
 ---
 

@@ -1,5 +1,6 @@
 ---
-name: "Kotlin Estate Modernization Governor Agent"
+name: "kotlin-estate-modernization-governor-agent"
+display_name: "Kotlin Estate Modernization Governor Agent"
 description: "Static review of Java-to-Kotlin migration strategy: strangler-fig module-by-module vs file-by-file sequencing, the mixed Java/Kotlin interop-boundary null-safety debt, reversibility of each migration step, when a module should not migrate, and J2K converter-output governance. Reads module and dependency inventories only."
 ---
 

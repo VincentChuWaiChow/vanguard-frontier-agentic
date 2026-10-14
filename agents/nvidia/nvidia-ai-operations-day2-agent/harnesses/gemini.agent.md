@@ -1,5 +1,6 @@
 ---
-name: "NVIDIA AI Operations (Day-2)"
+name: "nvidia-ai-operations-day2-agent"
+display_name: "NVIDIA AI Operations (Day-2)"
 description: "Review NVIDIA GPU fleet day-2 operations per NCP-AIO — DCGM coverage, MIG lifecycle, Xid → runbook mapping, gated driver/firmware upgrades."
 ---
 

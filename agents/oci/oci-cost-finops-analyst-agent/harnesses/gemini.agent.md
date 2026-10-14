@@ -1,5 +1,6 @@
 ---
-name: "OCI Cost Finops Analyst"
+name: "oci-cost-finops-analyst-agent"
+display_name: "OCI Cost Finops Analyst"
 description: "OCI usage, pricing, waste, service/compartment attribution, commitment checks, and savings caveats."
 kind: "local"
 ---

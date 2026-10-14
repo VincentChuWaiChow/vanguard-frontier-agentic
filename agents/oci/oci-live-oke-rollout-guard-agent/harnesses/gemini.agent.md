@@ -1,5 +1,6 @@
 ---
-name: "OCI Live OKE Rollout Guard"
+name: "oci-live-oke-rollout-guard-agent"
+display_name: "OCI Live OKE Rollout Guard"
 description: "Guard OKE deployment rollouts through DevOps Service pipeline approval stages with blue-green and canary evidence, and kubectl rollout pause or undo gate."
 ---
 

@@ -1,5 +1,6 @@
 ---
-name: "Azure Live ARM Deployment Stack Guard"
+name: "azure-live-arm-deployment-stack-guard-agent"
+display_name: "Azure Live ARM Deployment Stack Guard"
 description: "Guard ARM, Bicep, and Deployment Stack changes with what-if evidence, deny settings review, unmanaged-resource impact, and explicit approval before execute."
 ---
 

@@ -1,5 +1,6 @@
 ---
-name: "Huawei Live GaussDB Mutation Guard"
+name: "huawei-live-gaussdb-mutation-guard-agent"
+display_name: "Huawei Live GaussDB Mutation Guard"
 description: "Gate GaussDB/RDS instance deletion, spec downgrade, and backup policy changes — database deletion without verified backup is permanently destructive."
 ---
 

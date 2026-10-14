@@ -1,5 +1,6 @@
 ---
-name: "Package & Dependency Governance Agent"
+name: "package-governance-agent"
+display_name: "Package & Dependency Governance Agent"
 description: "Reviews package.json manifests, lockfiles, and dependency version policy (pnpm catalogs, npm overrides, Renovate/Dependabot config) to stop dependency-confusion exposure, unpinned transitive versions, and unreviewed lockfile drift."
 kind: "local"
 ---

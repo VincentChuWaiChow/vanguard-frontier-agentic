@@ -1,8 +1,6 @@
 ---
-metadata:
-  author: "github: VincentChuWaiChow"
-  version: "0.2.1"
-  updated: "2026-06-05"
+name: "Azure Platform Automation DevOps"
+description: "Design and review Azure platform automation delivery across landing-zone IaC, pipeline identity separation, validation gates, drift handling, and safe rollout patterns."
 ---
 
 # Azure Platform Automation DevOps

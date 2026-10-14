@@ -1,5 +1,6 @@
 ---
-name: "TypeScript Package Publication Integrity Agent"
+name: "typescript-package-publication-integrity-agent"
+display_name: "TypeScript Package Publication Integrity Agent"
 description: "Static review of npm package publication integrity: publish identity and authority (trusted publishing/OIDC versus long-lived tokens), provenance attestation, the release-automation trust path, tarball contents, and registry/scope configuration. Reads the publish workflow and sanitized package configuration only."
 ---
 

@@ -1,5 +1,6 @@
 ---
-name: "WordPress Security Agent"
+name: "wordpress-security-agent"
+display_name: "WordPress Security Agent"
 description: "Static-review agent for WordPress plugin and theme security: missing REST register_rest_route permission_callback (required since WordPress 5.5), unescaped dynamic-block render_callback output, and input-validation, output-escaping, and nonce gaps — the plugin-dominated attack surface behind most WordPress CVEs."
 kind: "local"
 ---

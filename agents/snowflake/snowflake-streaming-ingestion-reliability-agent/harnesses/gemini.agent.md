@@ -1,5 +1,6 @@
 ---
-name: "Snowflake Streaming Ingestion Reliability Agent"
+name: "snowflake-streaming-ingestion-reliability-agent"
+display_name: "Snowflake Streaming Ingestion Reliability Agent"
 description: "Reviews Snowflake continuous ingestion for silent failure: Snowpipe, Snowpipe Streaming high-performance versus classic architecture and its migration, channel and offset semantics, backpressure and retry, schema validation, the Kafka connector, Openflow-based connectors, and ingestion observability. Verifies current lifecycle guidance before recommending any streaming architecture. Static review only."
 ---
 

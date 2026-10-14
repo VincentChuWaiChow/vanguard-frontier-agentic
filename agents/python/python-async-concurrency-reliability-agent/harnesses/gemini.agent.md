@@ -1,5 +1,6 @@
 ---
-name: "Python Async and Concurrency Reliability Agent"
+name: "python-async-concurrency-reliability-agent"
+display_name: "Python Async and Concurrency Reliability Agent"
 description: "Static review of Python asyncio reliability: blocking calls that stall the event loop, cancellation correctness, missing timeouts on external awaits, task lifecycle and structured concurrency, backpressure on unbounded fan-out, and context propagation across executor and thread boundaries. Reads source only; never runs code or measures timing."
 ---
 

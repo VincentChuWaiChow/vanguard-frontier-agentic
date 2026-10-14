@@ -1,5 +1,6 @@
 ---
-name: "Alibaba Cloud RAM IAM Review Specialist"
+name: "alibaba-ram-iam-review-agent"
+display_name: "Alibaba Cloud RAM IAM Review Specialist"
 description: "Audit RAM users, groups, roles, and policies; review STS token lifecycle; assess Resource Directory permission boundaries; review Control Policy statements for gaps or over-privilege."
 ---
 

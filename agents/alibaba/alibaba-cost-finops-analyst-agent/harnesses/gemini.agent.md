@@ -1,5 +1,6 @@
 ---
-name: "Alibaba Cloud Cost FinOps Analyst"
+name: "alibaba-cost-finops-analyst-agent"
+display_name: "Alibaba Cloud Cost FinOps Analyst"
 description: "Analyze Alibaba Cloud spend, optimize Savings Plans and Reserved Instance coverage, design resource tagging strategy, investigate budget drift, and right-size over-provisioned resources."
 ---
 

@@ -1,5 +1,6 @@
 ---
-name: "Alibaba Cloud Network Architect"
+name: "alibaba-network-architect-agent"
+display_name: "Alibaba Cloud Network Architect"
 description: "Design VPC topology, CEN (Cloud Enterprise Network) for inter-region connectivity, Express Connect for on-prem hybrid, LB type selection (CLB/SLB/ALB/NLB), and Smart Access Gateway for branch connectivity."
 ---
 

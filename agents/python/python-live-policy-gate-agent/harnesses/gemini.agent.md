@@ -1,5 +1,6 @@
 ---
-name: "Python Live Policy Gate Agent"
+name: "python-live-policy-gate-agent"
+display_name: "Python Live Policy Gate Agent"
 description: "Evaluates machine-readable policies and control applicability against an action and its recorded inputs. Cannot create exceptions or approvals."
 ---
 

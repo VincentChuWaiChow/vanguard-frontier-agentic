@@ -1,5 +1,6 @@
 ---
-name: "Alibaba Cloud MaxCompute DataWorks Analyst"
+name: "alibaba-maxcompute-dataworks-analyst-agent"
+display_name: "Alibaba Cloud MaxCompute DataWorks Analyst"
 description: "Manage MaxCompute CU package governance, DataWorks scheduling health and job dependencies, Quick BI reporting, PAI ML platform integration, and query cost optimization for big data workloads."
 ---
 

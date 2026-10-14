@@ -1,6 +1,6 @@
 name = "java_jvm_performance_and_gc_agent"
 description = "Static review of proposed JVM GC/performance changes for evidence — collector selection (G1/ZGC/Generational ZGC/Shenandoah/Parallel), allocation pressure, heap-sizing flags, and OOM/leak triage from user-supplied GC logs, JFR, and heap-dump analysis output. Refuses GC-switch recommendations without pause-time evidence. Reads source and sanitized configuration only."
-model = "gpt-5.5"
+model = "gpt-6-sol"
 model_reasoning_effort = "high"
 sandbox_mode = "read-only"
 

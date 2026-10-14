@@ -1,5 +1,6 @@
 ---
-name: "Salesforce Data Architecture Agent"
+name: "salesforce-data-architecture-agent"
+display_name: "Salesforce Data Architecture Agent"
 description: "Adversarial data-model and data-management reviewer for Salesforce — master data, system of record, data quality, deduplication, archival, retention, backup, large data volumes, and data classification. Treats Data 360 and Data Cloud naming as drift-prone and requires verification."
 ---
 

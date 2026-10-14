@@ -1,6 +1,6 @@
 name = "netsuite_sdf_devops_release_agent"
 description = "Reviews SuiteCloud Development Framework project structure, deployment controls, object manifest completeness, and environment promotion practices against least-privilege and safe-rollback principles. Static review only, never mutates a NetSuite account."
-model = "gpt-5.5"
+model = "gpt-6-sol"
 model_reasoning_effort = "high"
 sandbox_mode = "read-only"
 

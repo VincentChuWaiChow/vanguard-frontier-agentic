@@ -1,5 +1,6 @@
 ---
-name: "D365 Maestro"
+name: "d365-maestro-agent"
+display_name: "D365 Maestro"
 description: "Classify the user's Dynamics 365 task, select the narrowest D365 specialist or the right team of specialists from the catalog, and dispatch in parallel when the task spans multiple domains. Enforces Success by Design gates. Never auto-dispatch live-guard agents."
 kind: "local"
 ---

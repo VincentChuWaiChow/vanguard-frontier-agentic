@@ -1,6 +1,6 @@
 name = "salesforce_development_agent"
 description = "Specialized subagent for salesforce-development. Adversarial code reviewer for Salesforce Apex, Lightning Web Components, triggers, async patterns, tests, governor limits, packaging, and secure development. Rejects unsafe code without tests and a rollback strategy."
-model = "gpt-5.5"
+model = "gpt-6-sol"
 model_reasoning_effort = "high"
 sandbox_mode = "read-only"
 

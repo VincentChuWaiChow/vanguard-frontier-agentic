@@ -1,5 +1,6 @@
 ---
-name: "Huawei Cloud Event-Driven Architecture Review"
+name: "huawei-event-driven-architecture-review-agent"
+display_name: "Huawei Cloud Event-Driven Architecture Review"
 description: "Review Huawei Cloud DMS (Distributed Message Service) for Kafka, ROMA Connect, FunctionGraph event triggers, and SMN (Simple Message Notification) designs — dead-letter configuration, message ordering, idempotency, consumer group lag monitoring, and retry storm prevention."
 ---
 

@@ -1,8 +1,7 @@
 ---
-metadata:
-  author: "github: VincentChuWaiChow"
-  version: "0.2.1"
-  updated: "2026-06-05"
+name: "azure-observability-investigator-agent"
+display_name: "Azure Observability Investigator"
+description: "Investigate Azure Monitor, Log Analytics, Application Insights, alerts, KQL evidence, telemetry gaps, and inference boundaries."
 ---
 
 # Azure Observability Investigator

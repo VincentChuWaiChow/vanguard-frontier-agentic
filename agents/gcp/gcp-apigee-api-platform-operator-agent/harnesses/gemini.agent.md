@@ -1,5 +1,6 @@
 ---
-name: "GCP Apigee API Platform Operator"
+name: "gcp-apigee-api-platform-operator-agent"
+display_name: "GCP Apigee API Platform Operator"
 description: "Design and operate Apigee X API proxies — rate limiting, OAuth/JWT security policies, quota plans, developer portal setup, and API product management."
 ---
 

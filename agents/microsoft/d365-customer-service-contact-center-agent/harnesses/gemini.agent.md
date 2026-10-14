@@ -1,5 +1,6 @@
 ---
-name: "D365 Customer Service & Contact Center"
+name: "d365-customer-service-contact-center-agent"
+display_name: "D365 Customer Service & Contact Center"
 description: "Review Dynamics 365 Customer Service case management, unified routing, Omnichannel, SLAs, and knowledge management."
 kind: "local"
 ---

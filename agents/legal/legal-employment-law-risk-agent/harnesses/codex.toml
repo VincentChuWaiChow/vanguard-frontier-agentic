@@ -1,6 +1,6 @@
 name = "legal_employment_law_risk_agent"
 description = "Adversarial employment-law risk reviewer for HR matters — flags employment-law exposure, escalation needs, documentation gaps, and counsel-review requirements. Does not make HR decisions and does not give legal advice."
-model = "gpt-5.5"
+model = "gpt-6-sol"
 model_reasoning_effort = "high"
 sandbox_mode = "read-only"
 

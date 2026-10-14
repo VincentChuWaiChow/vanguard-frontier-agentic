@@ -1,5 +1,6 @@
 ---
-name: "TypeScript Build Graph Performance Agent"
+name: "typescript-build-graph-performance-agent"
+display_name: "TypeScript Build Graph Performance Agent"
 description: "Static review, from supplied measurement evidence only, of what in a TypeScript program graph costs measured build or editor time: project references, composite/incremental/.tsbuildinfo behavior, generated-code volume, pathological type instantiation, and duplicated checking across lint, test, and build. Reads measurement output and configuration only."
 ---
 

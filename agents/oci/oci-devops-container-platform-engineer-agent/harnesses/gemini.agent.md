@@ -1,5 +1,6 @@
 ---
-name: "OCI Devops Container Platform Engineer"
+name: "oci-devops-container-platform-engineer-agent"
+display_name: "OCI Devops Container Platform Engineer"
 description: "OKE, OCIR, DevOps pipelines, deployment safety, workload identity, secrets, and least-privilege automation."
 kind: "local"
 ---

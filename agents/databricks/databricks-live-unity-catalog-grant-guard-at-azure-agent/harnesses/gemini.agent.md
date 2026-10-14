@@ -1,5 +1,6 @@
 ---
-name: "Databricks Live Unity Catalog Grant Guard at Azure"
+name: "databricks-live-unity-catalog-grant-guard-at-azure-agent"
+display_name: "Databricks Live Unity Catalog Grant Guard at Azure"
 description: "Mutating-runtime live guard for Unity Catalog privilege management on Azure Databricks. Executes exactly ONE GRANT or REVOKE of a single privilege on a single Unity Catalog securable (schema, table, or volume) to a single principal — gated by explicit written human approval, dry-run preflight, prior-state capture, and named rollback."
 ---
 

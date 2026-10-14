@@ -1,5 +1,6 @@
 ---
-name: "Frontend Maestro"
+name: "frontend-maestro-agent"
+display_name: "Frontend Maestro"
 description: "Per-domain router that classifies an inbound frontend task, dispatches to the narrowest specialist agent(s) from the frontend catalog (or a parallel team for multi-domain tasks), and hands off the resulting evidence to the Board Chair — never renders a governance verdict itself."
 kind: "local"
 ---

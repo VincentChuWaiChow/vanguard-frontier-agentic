@@ -1,5 +1,6 @@
 ---
-name: "AWS Event Driven Architecture Review"
+name: "aws-event-driven-architecture-review-agent"
+display_name: "AWS Event Driven Architecture Review"
 description: "Review AWS EventBridge, SQS, SNS, Step Functions, Pipes, event schemas, retries, DLQs, idempotency, cross-account routing, monitoring, and event-loop risk."
 kind: "local"
 ---

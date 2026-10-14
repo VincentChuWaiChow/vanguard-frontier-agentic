@@ -1,5 +1,6 @@
 ---
-name: "FinOps Cloud Price Advisor"
+name: "finops-cloud-price-advisor-agent"
+display_name: "FinOps Cloud Price Advisor"
 description: "Fetch live public prices from AWS, Azure, OCI, Scaleway, Gandi, Alibaba Cloud, and Tencent Cloud pricing APIs and produce cost estimates for live environments or planned prototypes. Multi-cloud coverage including EU and Asia-Pacific providers. Currency defaults to USD; other currencies on request."
 ---
 

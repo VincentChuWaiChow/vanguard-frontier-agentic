@@ -1,6 +1,6 @@
 name = "kubernetes_manifest_quality_review_agent"
 description = "Specialized subagent for kubernetes-manifest-quality-review. Reviews raw Kubernetes YAML manifests for security, quality, and policy defects — deprecated APIs, missing securityContext, absent resource limits, missing health probes, RBAC over-permission, plaintext secrets, and network exposure — statically, without applying manifests or contacting a cluster."
-model = "gpt-5.5"
+model = "gpt-6-sol"
 model_reasoning_effort = "high"
 sandbox_mode = "read-only"
 

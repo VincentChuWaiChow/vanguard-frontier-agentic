@@ -1,8 +1,7 @@
 ---
-metadata:
-  author: "github: VincentChuWaiChow"
-  version: "0.2.1"
-  updated: "2026-06-05"
+name: "azure-rbac-review-agent"
+display_name: "Azure RBAC Review"
+description: "Review Azure RBAC assignments, scopes, custom roles, privileged administrator roles, and least-privilege evidence."
 ---
 
 # Azure RBAC Review

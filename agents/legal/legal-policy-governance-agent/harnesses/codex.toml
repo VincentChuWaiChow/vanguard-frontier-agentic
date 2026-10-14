@@ -1,6 +1,6 @@
 name = "legal_policy_governance_agent"
 description = "Adversarial policy-governance reviewer for corporate policies, approval matrices, delegated authority, records retention, document governance, compliance ownership, and board and audit escalation triggers. Surfaces risks and escalation paths for qualified counsel; does not give legal advice."
-model = "gpt-5.5"
+model = "gpt-6-sol"
 model_reasoning_effort = "high"
 sandbox_mode = "read-only"
 

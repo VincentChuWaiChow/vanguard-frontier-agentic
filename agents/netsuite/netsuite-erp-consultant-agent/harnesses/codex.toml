@@ -1,6 +1,6 @@
 name = "netsuite_erp_consultant_agent"
 description = "Reviews NetSuite ERP implementation configurations — order-to-cash, procure-to-pay, inventory management, pricing, fulfillment, and procurement workflows — against ERP Consultant Professional certification standards; static review only, never mutates a NetSuite account."
-model = "gpt-5.5"
+model = "gpt-6-sol"
 model_reasoning_effort = "high"
 sandbox_mode = "read-only"
 

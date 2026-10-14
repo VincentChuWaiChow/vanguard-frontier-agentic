@@ -1,5 +1,6 @@
 ---
-name: "NVIDIA Generative AI Platform Review"
+name: "nvidia-generative-ai-platform-review-agent"
+display_name: "NVIDIA Generative AI Platform Review"
 description: "Review NVIDIA generative-AI platforms per NCA-GENL / NCA-GENM / NCP-GENL — NeMo pipelines, NIM image verification, NeMo Guardrails, model card and weights provenance, eval coverage."
 ---
 

@@ -1,8 +1,7 @@
 ---
-metadata:
-  author: "github: VincentChuWaiChow"
-  version: "0.1.1"
-  updated: "2026-06-05"
+name: "azure-waf-cost-optimization-review-agent"
+display_name: "Azure WAF Cost Optimization Review"
+description: "Review Azure workload cost posture against Well-Architected cost principles, cost visibility, Advisor recommendations, commitments, rightsizing, tagging, and waste removal."
 ---
 
 # Azure WAF Cost Optimization Review

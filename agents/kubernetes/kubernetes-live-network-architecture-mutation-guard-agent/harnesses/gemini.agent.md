@@ -1,5 +1,6 @@
 ---
-name: "Kubernetes Live Network Architecture Mutation Guard"
+name: "kubernetes-live-network-architecture-mutation-guard-agent"
+display_name: "Kubernetes Live Network Architecture Mutation Guard"
 description: "Guard live kubectl apply/patch/create operations on networking architecture surface (Service spec, CoreDNS Corefile, NodeLocal DNSCache install, Gateway API resources, ClusterMesh peer Secrets). HARD REFUSE one-way doors (CNI replacement, kube-proxy mode swap, MTU change, Pod/Service CIDR resize, namespace deletion, kube-system DaemonSet writes). Pre-flight kubectl auth can-i matrix against a least-privilege ServiceAccount before any write. Read-only without an explicit pre-flight PASS."
 ---
 

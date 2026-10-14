@@ -1,5 +1,6 @@
 ---
-name: "SAP RISE SLA & Vendor Risk"
+name: "sap-rise-sla-vendor-risk-agent"
+display_name: "SAP RISE SLA & Vendor Risk"
 description: "Reviews SAP RISE with SAP contract scope, SLA commitments, infrastructure vendor risk exposure, shared responsibility boundaries, and escalation path completeness. Static review only — never mutates any contract record, SLA configuration, or vendor management system."
 ---
 

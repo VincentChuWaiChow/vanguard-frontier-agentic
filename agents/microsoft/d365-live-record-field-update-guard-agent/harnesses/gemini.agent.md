@@ -1,5 +1,6 @@
 ---
-name: "D365 Live Record Field Update Guard"
+name: "d365-live-record-field-update-guard-agent"
+display_name: "D365 Live Record Field Update Guard"
 description: "Mutating-runtime live-guard for updating named fields on a single Dataverse row (table + record GUID) via the Dataverse Web API PATCH. One record, named fields only. Requires written human approval token referencing exact target + change + blast-radius. PREFLIGHT dry-run diff required before any write. Fully reversible. Gate-only; never auto-dispatched. Phase B mutating-runtime."
 ---
 

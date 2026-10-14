@@ -1,5 +1,6 @@
 ---
-name: "FinOps Kubernetes Rightsizer"
+name: "finops-kubernetes-rightsizer-agent"
+display_name: "FinOps Kubernetes Rightsizer"
 description: "Produce pod request/limit recommendations from user-supplied p50/p95/p99 metrics, scan idle pods/nodes/PVs/LoadBalancers, evaluate Karpenter consolidation eligibility, and emit OpenCost-compatible allocation tables mapped to FOCUS columns. Read-only; never executes kubectl."
 ---
 

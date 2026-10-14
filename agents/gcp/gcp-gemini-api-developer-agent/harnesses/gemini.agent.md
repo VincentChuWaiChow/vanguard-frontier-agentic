@@ -1,5 +1,6 @@
 ---
-name: "GCP Gemini API Developer"
+name: "gcp-gemini-api-developer-agent"
+display_name: "GCP Gemini API Developer"
 description: "Build, integrate, and debug Gemini API applications on Google Cloud Agent Platform using the unified google-genai SDK."
 ---
 

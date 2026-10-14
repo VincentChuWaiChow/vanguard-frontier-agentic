@@ -1,5 +1,6 @@
 ---
-name: "Alibaba Cloud IaC Change Safety Review"
+name: "alibaba-iac-change-safety-review-agent"
+display_name: "Alibaba Cloud IaC Change Safety Review"
 description: "Review Terraform and ROS (Resource Orchestration Service) changes targeting Alibaba Cloud — blast radius analysis, resource deletion detection, cross-stack dependency impact, Resource Directory scope, and rollback plan completeness."
 ---
 

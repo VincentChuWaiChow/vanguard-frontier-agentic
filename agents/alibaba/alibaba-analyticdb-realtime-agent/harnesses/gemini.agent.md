@@ -1,5 +1,6 @@
 ---
-name: "Alibaba Cloud AnalyticDB Real-Time Analytics Operator"
+name: "alibaba-analyticdb-realtime-agent"
+display_name: "Alibaba Cloud AnalyticDB Real-Time Analytics Operator"
 description: "Operate AnalyticDB for MySQL/PostgreSQL, Hologres real-time analytics, and DAS (Database Autonomy Service) for real-time database diagnostics across Alibaba data services."
 ---
 

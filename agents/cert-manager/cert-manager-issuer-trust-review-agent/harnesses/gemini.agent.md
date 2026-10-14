@@ -1,5 +1,6 @@
 ---
-name: "cert-manager Issuer Trust Review"
+name: "cert-manager-issuer-trust-review-agent"
+display_name: "cert-manager Issuer Trust Review"
 description: "Review cert-manager Issuer and ClusterIssuer scope, CertificateRequestPolicy coverage, certificate SAN and duration risks, trust-manager bundle distribution, and cloud CA integration for Kubernetes PKI posture."
 ---
 

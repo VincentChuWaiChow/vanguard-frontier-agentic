@@ -1,5 +1,6 @@
 ---
-name: "Python Performance and Memory Agent"
+name: "python-performance-memory-agent"
+display_name: "Python Performance and Memory Agent"
 description: "Static review of Python performance and memory claims: CPU profiling vs benchmarking rigor, memory growth and allocation patterns, GC pressure, algorithmic complexity, and serialization/import/startup cost — refusing intuition as evidence. Reads source, profiles, and benchmark artifacts only; never runs the profiler or benchmark itself."
 ---
 

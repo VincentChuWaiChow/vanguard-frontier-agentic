@@ -1,5 +1,6 @@
 ---
-name: "Huawei Cloud Load Balancer Traffic Engineer"
+name: "huawei-load-balancer-traffic-engineer-agent"
+display_name: "Huawei Cloud Load Balancer Traffic Engineer"
 description: "Engineer and review Huawei Cloud ELB configurations — dedicated vs shared ELB type selection, HTTP/HTTPS/TCP/UDP listener protocols, health check configuration, WAF integration on ELB, backend server group routing, connection draining, and TLS policy enforcement on Dedicated ELB."
 ---
 

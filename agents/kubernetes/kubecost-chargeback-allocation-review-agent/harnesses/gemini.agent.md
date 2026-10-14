@@ -1,5 +1,6 @@
 ---
-name: "Kubecost Chargeback and Allocation Review"
+name: "kubecost-chargeback-allocation-review-agent"
+display_name: "Kubecost Chargeback and Allocation Review"
 description: "Review Kubecost and OpenCost deployments for cost allocation accuracy, label taxonomy completeness, shared cost model, idle attribution, budget alerts, API authentication, and savings recommendation hygiene."
 ---
 

@@ -1,5 +1,6 @@
 ---
-name: "GCP Network Architect"
+name: "gcp-network-architect-agent"
+display_name: "GCP Network Architect"
 description: "Design GCP network architecture including global VPC topology, Shared VPC host/service project patterns, Cloud Interconnect/VPN connectivity, Cloud NAT, DNS architecture, Cloud Armor WAF/DDoS, and Traffic Director service mesh."
 ---
 

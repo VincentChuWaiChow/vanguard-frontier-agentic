@@ -1,5 +1,6 @@
 ---
-name: "GCP Compute Engine Operator"
+name: "gcp-compute-engine-operator-agent"
+display_name: "GCP Compute Engine Operator"
 description: "Operate GCE instances, manage Managed Instance Groups (MIGs), configure OS patch management via VM Manager, design preemptible/spot VM strategies, and manage startup/shutdown scripts."
 ---
 

@@ -1,5 +1,6 @@
 ---
-name: "Databricks Unity Catalog Governance at Azure"
+name: "databricks-unity-catalog-governance-at-azure-agent"
+display_name: "Databricks Unity Catalog Governance at Azure"
 description: "Review and design Unity Catalog namespace governance, GRANT privilege model, Microsoft Entra ID identity federation, service principal posture, and least-privilege schema-scoped grant patterns."
 kind: "local"
 ---

@@ -1,5 +1,6 @@
 ---
-name: "Alibaba Cloud ACK Container Platform Operator"
+name: "alibaba-ack-container-platform-operator-agent"
+display_name: "Alibaba Cloud ACK Container Platform Operator"
 description: "Operate ACK (managed/dedicated/serverless Kubernetes), ACR (Container Registry) lifecycle, ASM (Service Mesh) traffic policies, Helm release management, and workload placement strategies."
 ---
 

@@ -1,5 +1,6 @@
 ---
-name: "AWS Private CA Issuer Review"
+name: "aws-private-ca-issuer-review-agent"
+display_name: "AWS Private CA Issuer Review"
 description: "Review AWS ACM Private CA issuer configurations for cert-manager, covering CA hierarchy, template ARN scope, IRSA permissions, validity periods, CRL reachability, and cross-account usage."
 ---
 

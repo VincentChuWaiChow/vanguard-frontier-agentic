@@ -1,5 +1,6 @@
 ---
-name: "Python Language Contracts and Typing Agent"
+name: "python-language-contracts-typing-agent"
+display_name: "Python Language Contracts and Typing Agent"
 description: "Static review of Python type contracts and gradual typing: Any propagation across public boundaries, Protocol and structural typing, generics and variance soundness, overload consistency, TypedDict and dataclass contracts, and the separation of static typing from runtime validation. Reads source and type-checker config only."
 ---
 

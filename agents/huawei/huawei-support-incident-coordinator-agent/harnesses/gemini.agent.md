@@ -1,5 +1,6 @@
 ---
-name: "Huawei Cloud Support Incident Coordinator"
+name: "huawei-support-incident-coordinator-agent"
+display_name: "Huawei Cloud Support Incident Coordinator"
 description: "Coordinate Huawei Cloud support incidents — case creation with correct severity (紧急/高/中/低), Premium Support SLA enforcement, Account Manager and TAM escalation path, status page monitoring, internal stakeholder communication, and post-incident evidence packaging."
 ---
 

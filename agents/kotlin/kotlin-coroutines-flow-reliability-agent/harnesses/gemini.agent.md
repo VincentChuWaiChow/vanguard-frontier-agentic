@@ -1,5 +1,6 @@
 ---
-name: "Kotlin Coroutines and Flow Reliability Agent"
+name: "kotlin-coroutines-flow-reliability-agent"
+display_name: "Kotlin Coroutines and Flow Reliability Agent"
 description: "Static review of Kotlin coroutine and Flow reliability: structured concurrency and cancellation cooperation, dispatcher selection and blocking calls, cold Flow vs hot StateFlow/SharedFlow semantics, backpressure, and context propagation across suspension — including the coroutine-aware persistence and telemetry/MDC/security-context hazards. Reads source only."
 ---
 

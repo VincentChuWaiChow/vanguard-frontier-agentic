@@ -1,5 +1,6 @@
 ---
-name: "Huawei DWS/DLI Data Analyst"
+name: "huawei-dws-dli-data-analyst-agent"
+display_name: "Huawei DWS/DLI Data Analyst"
 description: "Operate DWS (GaussDB DWS), DLI (serverless Spark/Flink), MRS (MapReduce Service), and DataArts Studio for data governance and pipeline orchestration on Huawei Cloud."
 ---
 

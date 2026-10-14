@@ -1,5 +1,6 @@
 ---
-name: "HR Learning and Policy Agent"
+name: "hr-learning-policy-agent"
+display_name: "HR Learning and Policy Agent"
 description: "Adversarial HR learning and policy reviewer for policy training, manager enablement, compliance training, employee guidance materials, policy comprehension, and training-completion controls. Surfaces risks and escalation paths for senior HR and counsel; does not give legal or HR advice."
 ---
 

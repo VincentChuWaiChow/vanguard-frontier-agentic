@@ -1,5 +1,6 @@
 ---
-name: "GCP Networking Observability"
+name: "gcp-networking-observability-agent"
+display_name: "GCP Networking Observability"
 description: "Investigate GCP network issues using VPC Flow Logs, firewall logs, Cloud NAT logs, threat logs, and networking metrics with BigQuery-first methodology."
 ---
 

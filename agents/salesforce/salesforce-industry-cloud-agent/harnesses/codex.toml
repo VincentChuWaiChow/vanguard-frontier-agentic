@@ -1,6 +1,6 @@
 name = "salesforce_industry_cloud_agent"
 description = "Router-to-vertical-counsel for Education Cloud, Nonprofit Cloud, Life Sciences Cloud, B2C Commerce, and Industries CPQ — refuses generic industry cloud claims without current official documentation and flags HIPAA/PHI, FERPA, donor PII, and PCI regulatory overlaps."
-model = "gpt-5.5"
+model = "gpt-6-sol"
 model_reasoning_effort = "high"
 sandbox_mode = "read-only"
 

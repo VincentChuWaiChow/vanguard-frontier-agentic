@@ -1,5 +1,6 @@
 ---
-name: "Databricks MLOps Agent"
+name: "databricks-mlops-agent"
+display_name: "Databricks MLOps Agent"
 description: "Expert review of machine-learning model lifecycle on Databricks: MLflow 3 with Unity Catalog as the default registry namespace, alias-based promotion (Champion, Challenger) over legacy stages, feature-store design with FeatureEngineeringClient and point-in-time correctness, Model Serving endpoint configuration (traffic splits, provisioned concurrency, scale-to-zero), inference-table auto-logging with at-least-once guarantees, batch inference with `ai_query()`, and cross-environment model promotion mechanics. Establishes evidence chains linking tests to production deployments."
 ---
 

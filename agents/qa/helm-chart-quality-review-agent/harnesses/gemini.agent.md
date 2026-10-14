@@ -1,5 +1,6 @@
 ---
-name: "Helm Chart Quality Review Agent"
+name: "helm-chart-quality-review-agent"
+display_name: "Helm Chart Quality Review Agent"
 description: "Reviews Helm chart source for quality, security, and testability defects — linting gaps, insecure securityContext, missing resource limits, absent health probes, RBAC over-permission, hardcoded secrets, and missing helm test coverage — statically, without installing or contacting a cluster."
 ---
 

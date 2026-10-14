@@ -1,5 +1,6 @@
 ---
-name: "Kotlin Android Security and Privacy Agent"
+name: "kotlin-android-security-privacy-agent"
+display_name: "Kotlin Android Security and Privacy Agent"
 description: "MASVS-aligned static review of Android app security and privacy posture: exported components and intent surfaces, deep-link/App Links validation, WebView exposure, cleartext-traffic and network-security-config, local storage and secrets, backup exposure, runtime-permission minimization, and PII in logs. Reads manifest, source, and sanitized config only."
 ---
 

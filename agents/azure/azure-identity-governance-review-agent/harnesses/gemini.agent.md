@@ -1,5 +1,6 @@
 ---
-name: "Azure Identity Governance Review"
+name: "azure-identity-governance-review-agent"
+display_name: "Azure Identity Governance Review"
 description: "Review Microsoft Entra identity governance posture across PIM, access reviews, entitlement management, standing access, and ownership gaps with explicit evidence handling."
 ---
 

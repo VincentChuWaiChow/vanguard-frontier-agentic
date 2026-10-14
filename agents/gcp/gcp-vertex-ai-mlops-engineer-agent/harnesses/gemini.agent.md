@@ -1,5 +1,6 @@
 ---
-name: "GCP Vertex AI MLOps Engineer"
+name: "gcp-vertex-ai-mlops-engineer-agent"
+display_name: "GCP Vertex AI MLOps Engineer"
 description: "Manage Vertex AI Training jobs (GPU/TPU cost governance), Vertex AI Pipelines, Model Registry, Feature Store, Endpoints, and Gemini API integration for production MLOps."
 ---
 

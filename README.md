@@ -1047,7 +1047,7 @@ runs the gates itself.
 Two artifacts implement this:
 
 - 📜 [`.claude/skills/agentic-delegation/SKILL.md`](.claude/skills/agentic-delegation/SKILL.md) — the doctrine, followed by hand.
-- ⚙️ [`.claude/workflows/agentic-delegation.js`](.claude/workflows/agentic-delegation.js) — the same rules as a runnable seven-phase workflow: central Context7 resolution → parallel Haiku recon → orchestrator-tier spec → Sonnet implementation → generator regeneration → an **adversarial** Sonnet verification that re-reads the files → a Haiku gate run that returns raw failure output verbatim.
+- ⚙️ [`.claude/workflows/agentic-delegation.js`](.claude/workflows/agentic-delegation.js) — the same rules as a runnable seven-phase workflow: central Context7 resolution → parallel Haiku recon → orchestrator-tier spec → Opus implementation (Sonnet for Markdown-only specs) → generator regeneration → an **adversarial** Sonnet verification that re-reads the files → a Haiku gate run that returns raw failure output verbatim.
 
 The workflow is deterministic — no wall clock, no randomness — so a run is reproducible and CI
 cannot change colour without a commit. Context7 library IDs resolve once and are injected

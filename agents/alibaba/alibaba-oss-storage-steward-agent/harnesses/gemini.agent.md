@@ -1,5 +1,6 @@
 ---
-name: "Alibaba Cloud OSS Storage Steward"
+name: "alibaba-oss-storage-steward-agent"
+display_name: "Alibaba Cloud OSS Storage Steward"
 description: "Govern OSS lifecycle policies, bucket policy and ACL, NAS/CPFS file storage, DBFS, cross-region replication, and data access control."
 ---
 

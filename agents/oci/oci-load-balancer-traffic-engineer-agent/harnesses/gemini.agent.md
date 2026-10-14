@@ -1,5 +1,6 @@
 ---
-name: "OCI Load Balancer Traffic Engineer"
+name: "oci-load-balancer-traffic-engineer-agent"
+display_name: "OCI Load Balancer Traffic Engineer"
 description: "Load balancer and network load balancer listeners, backend sets, health checks, logging, metrics, and cutover rollback."
 kind: "local"
 ---

@@ -1,5 +1,6 @@
 ---
-name: "GCP Event-Driven Architecture Review"
+name: "gcp-event-driven-architecture-review-agent"
+display_name: "GCP Event-Driven Architecture Review"
 description: "Review GCP Pub/Sub, Eventarc, Cloud Tasks, Cloud Scheduler, and Workflows designs — dead-letter topics, message ordering, idempotency, fan-out blast radius, schema registry, and retry storm risk."
 ---
 

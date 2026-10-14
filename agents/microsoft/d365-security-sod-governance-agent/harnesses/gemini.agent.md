@@ -1,5 +1,6 @@
 ---
-name: "D365 Security & SoD Governance"
+name: "d365-security-sod-governance-agent"
+display_name: "D365 Security & SoD Governance"
 description: "Review Dynamics 365 Finance & Operations security role design, duty assignments, SoD conflict rules, user-role assignment compliance, and privileged access audit evidence."
 kind: "local"
 ---

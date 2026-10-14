@@ -1,6 +1,6 @@
 name = "netsuite_ai_foundations_agent"
 description = "Reviews NetSuite AI feature enablement, AI Connector configuration posture, and AI governance controls — bill matching, anomaly detection, text enhancements, and MCP tool permissions — aligned to the AI Foundations Associate certification; static review only, never mutates a NetSuite account."
-model = "gpt-5.5"
+model = "gpt-6-sol"
 model_reasoning_effort = "high"
 sandbox_mode = "read-only"
 

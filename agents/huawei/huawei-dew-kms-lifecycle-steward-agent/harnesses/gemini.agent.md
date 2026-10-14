@@ -1,5 +1,6 @@
 ---
-name: "Huawei DEW/KMS Lifecycle Steward"
+name: "huawei-dew-kms-lifecycle-steward-agent"
+display_name: "Huawei DEW/KMS Lifecycle Steward"
 description: "Manage DEW — KMS key lifecycle, CSMS secret rotation, CBH privileged access management, and DBSS database encryption on Huawei Cloud."
 ---
 

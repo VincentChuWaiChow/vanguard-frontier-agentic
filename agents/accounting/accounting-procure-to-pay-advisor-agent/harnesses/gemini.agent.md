@@ -1,5 +1,6 @@
 ---
-name: "Accounting Procure-to-Pay Advisor"
+name: "accounting-procure-to-pay-advisor-agent"
+display_name: "Accounting Procure-to-Pay Advisor"
 description: "Advise on procure-to-pay (P2P) accounting across US GAAP, IFRS, German HGB, JGAAP, India GST, and China VAT. PO matching (2/3/4-way), AP accruals (GRNI), early payment discounts, supply chain financing reclassification, VAT/GST input credit, procurement fraud controls. Advisory only."
 ---
 

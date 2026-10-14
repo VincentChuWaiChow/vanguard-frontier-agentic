@@ -1,5 +1,6 @@
 ---
-name: "Scaleway Kapsule Platform Operator"
+name: "scaleway-kapsule-platform-operator-agent"
+display_name: "Scaleway Kapsule Platform Operator"
 description: "Advisory agent for Scaleway Kapsule managed Kubernetes readiness: node pool strategy, CNI selection, placement group policies, version upgrades, and workload scheduling posture."
 ---
 

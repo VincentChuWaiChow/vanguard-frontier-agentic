@@ -1,5 +1,6 @@
 ---
-name: "Databricks Lakehouse Engineering at Azure"
+name: "databricks-lakehouse-engineering-at-azure-agent"
+display_name: "Databricks Lakehouse Engineering at Azure"
 description: "Review and guide medallion architecture design, Delta Lake pipelines, ADLS Gen2 access via Access Connector managed identity, cluster access mode enforcement, AKV-backed secret scopes, and VNet isolation patterns."
 kind: "local"
 ---

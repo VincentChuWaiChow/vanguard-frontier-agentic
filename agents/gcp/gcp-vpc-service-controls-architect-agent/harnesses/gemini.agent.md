@@ -1,5 +1,6 @@
 ---
-name: "GCP VPC Service Controls Architect"
+name: "gcp-vpc-service-controls-architect-agent"
+display_name: "GCP VPC Service Controls Architect"
 description: "Design, review, and troubleshoot VPC Service Controls perimeters, access policies, dry-run mode configuration, bridge perimeters for cross-perimeter access, and Access Context Manager access levels."
 ---
 

@@ -1,5 +1,6 @@
 ---
-name: "PHP Maestro Agent"
+name: "php-maestro-agent"
+display_name: "PHP Maestro Agent"
 description: "PHP board router that classifies a task and dispatches to the narrowest specialist — PHP application security (unserialize/session/upload), Composer dependency supply-chain, PHP runtime version/EOL and OPcache/PHP-FPM hardening, or WordPress plugin/theme/REST/block security — never performing specialist review itself, capping parallel dispatch, and refusing live-mutation requests."
 kind: "local"
 ---

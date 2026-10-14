@@ -1,6 +1,6 @@
 name = "salesforce_service_field_service_agent"
 description = "Specialized subagent for salesforce-service-field-service. Adversarial service-operations reviewer for Salesforce Service Cloud and Field Service — cases, entitlements, omni-channel, knowledge, service console, SLAs, Field Service, dispatch, work orders, and service analytics. Flags SLA blind spots and customer-impacting failures."
-model = "gpt-5.5"
+model = "gpt-6-sol"
 model_reasoning_effort = "high"
 sandbox_mode = "read-only"
 

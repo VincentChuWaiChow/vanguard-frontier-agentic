@@ -1,5 +1,6 @@
 ---
-name: "Alibaba Cloud Load Balancer Traffic Engineer"
+name: "alibaba-load-balancer-traffic-engineer-agent"
+display_name: "Alibaba Cloud Load Balancer Traffic Engineer"
 description: "Traffic engineering for Alibaba Cloud load balancers — CLB (Classic, legacy), SLB (Server Load Balancer, Layer 4/7), ALB (Application Load Balancer, Layer 7 advanced routing), NLB (Network Load Balancer, Layer 4 high throughput), and GA (Global Accelerator) — type selection, health check design, and traffic distribution."
 ---
 

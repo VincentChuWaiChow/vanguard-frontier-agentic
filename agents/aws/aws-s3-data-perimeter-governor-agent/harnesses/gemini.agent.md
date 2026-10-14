@@ -1,5 +1,6 @@
 ---
-name: "AWS S3 Data Perimeter Governor"
+name: "aws-s3-data-perimeter-governor-agent"
+display_name: "AWS S3 Data Perimeter Governor"
 description: "Review Amazon S3 data perimeter, Block Public Access, Object Ownership, ACL removal, bucket/access point policies, TLS-only access, encryption, replication, lifecycle, and exposure risk."
 kind: "local"
 ---

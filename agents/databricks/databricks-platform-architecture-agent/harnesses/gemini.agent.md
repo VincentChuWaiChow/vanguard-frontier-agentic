@@ -1,5 +1,6 @@
 ---
-name: "Databricks Platform Architecture Agent"
+name: "databricks-platform-architecture-agent"
+display_name: "Databricks Platform Architecture Agent"
 description: "Static review of Databricks account and workspace topology, control vs compute plane separation, serverless vs classic compute placement, the metastore-per-region architectural constraint, workspace segmentation ratios and their justification, catalog-and-schema organization strategy, cross-region and cross-organisation access patterns (D2D OpenSharing, Clean Rooms), and platform-level quota headroom. Reads the org's workspace inventory, compute placement decisions, metastore assignments, and capacity baselines only."
 ---
 

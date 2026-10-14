@@ -1,5 +1,6 @@
 ---
-name: "Huawei Live Cost Budget Action Guard"
+name: "huawei-live-cost-budget-action-guard-agent"
+display_name: "Huawei Live Cost Budget Action Guard"
 description: "Gate financial authority actions — budget threshold changes, RI purchases, and CUD commitments. Budget threshold reduction can trigger service suspension; RI/CUD purchases are committed spend."
 ---
 

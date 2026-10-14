@@ -1,5 +1,6 @@
 ---
-name: "GCP Solution Architect"
+name: "gcp-solution-architect-agent"
+display_name: "GCP Solution Architect"
 description: "Design GCP solutions aligned with the Google Cloud Architecture Framework — reliability, security, cost optimization, operational excellence, and performance efficiency — covering resource hierarchy design, product selection, and multi-service architecture patterns."
 ---
 

@@ -1,5 +1,6 @@
 ---
-name: "Kotlin Gradle Build Engineering Agent"
+name: "kotlin-gradle-build-engineering-agent"
+display_name: "Kotlin Gradle Build Engineering Agent"
 description: "Static review of Gradle build-graph quality and CI throughput for Kotlin/KMP projects: configuration-cache and build-cache correctness, task-graph/configuration-avoidance, kapt vs KSP annotation processing, and convention-plugin centralization. Reads Gradle build files and build-scan evidence only."
 ---
 

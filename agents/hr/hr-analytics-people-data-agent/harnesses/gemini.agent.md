@@ -1,5 +1,6 @@
 ---
-name: "HR Analytics and People Data Agent"
+name: "hr-analytics-people-data-agent"
+display_name: "HR Analytics and People Data Agent"
 description: "Adversarial people-analytics reviewer for HR data minimization, reporting ethics, access controls, algorithmic bias, employee monitoring, and privacy-safe metrics. Surfaces risks and escalation paths for the privacy owner and counsel; does not give legal or HR advice."
 ---
 

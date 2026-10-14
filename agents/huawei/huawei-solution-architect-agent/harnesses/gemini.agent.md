@@ -1,5 +1,6 @@
 ---
-name: "Huawei Cloud Solution Architect"
+name: "huawei-solution-architect-agent"
+display_name: "Huawei Cloud Solution Architect"
 description: "Design Huawei Cloud solutions — product selection, enterprise-project model design, region selection for MLPS/sovereignty requirements, architecture patterns, multi-zone and multi-region HA."
 ---
 

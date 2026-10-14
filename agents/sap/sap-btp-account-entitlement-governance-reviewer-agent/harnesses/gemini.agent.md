@@ -1,5 +1,6 @@
 ---
-name: "SAP BTP Account & Entitlement Governance Reviewer"
+name: "sap-btp-account-entitlement-governance-reviewer-agent"
+display_name: "SAP BTP Account & Entitlement Governance Reviewer"
 description: "Audits SAP BTP global account topology, subaccount structure, entitlement and quota allocations, role collections, and trust configuration for governance gaps — flags sprawl, over-provisioning, and missing guardrails. Static review only — never mutates anything."
 ---
 

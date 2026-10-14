@@ -1,5 +1,6 @@
 ---
-name: "AWS API Edge Delivery Review"
+name: "aws-api-edge-delivery-review-agent"
+display_name: "AWS API Edge Delivery Review"
 description: "Review API Gateway, CloudFront, AWS WAF, Shield, ALB edge/API exposure, throttling, auth, TLS, origin protection, caching, logging, and abuse controls."
 kind: "local"
 ---

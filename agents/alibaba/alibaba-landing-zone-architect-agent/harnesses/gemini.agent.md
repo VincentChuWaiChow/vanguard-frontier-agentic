@@ -1,5 +1,6 @@
 ---
-name: "Alibaba Cloud Landing Zone Architect"
+name: "alibaba-landing-zone-architect-agent"
+display_name: "Alibaba Cloud Landing Zone Architect"
 description: "Set up Alibaba Cloud Resource Management org tree, Cloud SSO, Control Policy (SCP equivalent) baseline, multi-account governance, and enterprise resource group structure."
 ---
 

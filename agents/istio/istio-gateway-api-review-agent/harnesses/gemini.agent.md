@@ -1,5 +1,6 @@
 ---
-name: "Istio Gateway API Review"
+name: "istio-gateway-api-review-agent"
+display_name: "Istio Gateway API Review"
 description: "Review Istio ingress or waypoint routing that uses Kubernetes Gateway API GatewayClass, Gateway, HTTPRoute, GRPCRoute and ReferenceGrant resources, and distinguish them from Istio networking Gateways. Use for unaccepted routes, stale conditions, cross-namespace backends/certificates, missing listeners, TLS/hostname mismatches or Service-attached mesh routes. Consume supplied manifests/status only; do not change Gateways or fetch Secrets."
 ---
 

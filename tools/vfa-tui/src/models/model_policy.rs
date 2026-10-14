@@ -90,7 +90,7 @@ pub const CAPABLE_HARNESSES: &[&str] = &["codex", "claude-code", "cursor"];
 /// per-harness/per-model subset lives in catalog/model-registry.json and is
 /// enforced by scripts/model-policy.mjs, not here.
 pub const REASONING_EFFORTS: &[&str] = &[
-    "auto", "none", "minimal", "low", "medium", "high", "xhigh", "max",
+    "auto", "none", "minimal", "low", "medium", "high", "xhigh", "max", "ultra",
 ];
 
 /// Targeting scope for a model-policy batch operation.

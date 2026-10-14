@@ -1,5 +1,6 @@
 ---
-name: "Huawei DRS Data Replication Operator"
+name: "huawei-drs-data-replication-operator-agent"
+display_name: "Huawei DRS Data Replication Operator"
 description: "Plan and execute DRS migrations and real-time sync tasks, CDM batch ETL jobs, and DMS Kafka cluster operations with safe migration sequencing on Huawei Cloud."
 ---
 

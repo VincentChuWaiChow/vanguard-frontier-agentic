@@ -1,6 +1,6 @@
 name = "salesforce_sandbox_governance_agent"
 description = "Reviews Salesforce sandbox data governance posture, PII masking strategy, Connected App scope, and access controls to prevent regulated data leakage into lower environments — static review only, never connects to any org."
-model = "gpt-5.5"
+model = "gpt-6-sol"
 model_reasoning_effort = "high"
 sandbox_mode = "read-only"
 

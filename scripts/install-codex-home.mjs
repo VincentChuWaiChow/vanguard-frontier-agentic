@@ -18,14 +18,17 @@ const args = process.argv.slice(2);
 const opts = {
   marketplace: "VincentChuWaiChow/vanguard-frontier-agentic",
   repo: os.homedir(),
-  force: true,
+  // Default to refusing overwrites. This wrapper writes into the user's home
+  // directory, where a collision is someone's customised agent or skill; the
+  // exporter has no backup or rollback, so clobbering must be opt-in.
+  force: false,
   skipMarketplace: false,
   dryRun: false,
 };
 
 function usage(exitCode = 0) {
   const out = exitCode === 0 ? console.log : console.error;
-  out(`Usage: node scripts/install-codex-home.mjs [options]\n\nOptions:\n  --marketplace <source>   Codex marketplace source (default: VincentChuWaiChow/vanguard-frontier-agentic)\n  --repo <path>            Target home/repo path whose .codex folder receives agents/skills (default: $HOME)\n  --dry-run                Do not write agents/skills; pass --dry-run to exporter\n  --skip-marketplace       Skip codex plugin marketplace add/upgrade\n  --no-force               Do not pass --force to exporter\n  -h, --help               Show this help\n`);
+  out(`Usage: node scripts/install-codex-home.mjs [options]\n\nOptions:\n  --marketplace <source>   Codex marketplace source (default: VincentChuWaiChow/vanguard-frontier-agentic)\n  --repo <path>            Target home/repo path whose .codex folder receives agents/skills (default: $HOME)\n  --dry-run                Preview only: no marketplace mutation and no agent/skill writes\n  --skip-marketplace       Skip codex plugin marketplace add/upgrade\n  --force                  Overwrite existing agent/skill files (default: refuse on collision)\n  --no-force               Explicitly keep the refuse-on-collision default\n  -h, --help               Show this help\n`);
   process.exit(exitCode);
 }
 
@@ -43,6 +46,7 @@ for (let i = 0; i < args.length; i++) {
   }
   else if (arg === "--dry-run") opts.dryRun = true;
   else if (arg === "--skip-marketplace") opts.skipMarketplace = true;
+  else if (arg === "--force") opts.force = true;
   else if (arg === "--no-force") opts.force = false;
   else {
     console.error(`Unknown option: ${arg}`);
@@ -76,19 +80,41 @@ function run(label, command, commandArgs, options = {}) {
   }
 }
 
+const exportArgs = ["--platform", "codex", "--all", "--repo", opts.repo];
+if (opts.force) exportArgs.push("--force");
+
+// Without --force, find out whether the export would collide before changing
+// anything. The exporter's --dry-run checks every agent and skill destination
+// and fails if any already exists, so a refused install leaves both the
+// marketplace and the Codex home untouched rather than half-updated.
+if (!opts.force && !opts.dryRun) {
+  run("preflight", process.execPath, [exporter, ...exportArgs, "--dry-run"], {
+    stdio: ["ignore", "ignore", "inherit"],
+  });
+}
+
 if (!opts.skipMarketplace) {
-  run("marketplace-add", "codex", ["plugin", "marketplace", "add", opts.marketplace]);
   const marketplaceName = opts.marketplace
     .split("/").pop()
     ?.replace(/\.git$/, "")
     ?.replace(/@.+$/, "");
-  if (marketplaceName) {
-    run("marketplace-upgrade", "codex", ["plugin", "marketplace", "upgrade", marketplaceName]);
+
+  if (opts.dryRun) {
+    // --dry-run previously covered only the exporter stage, so a "preview"
+    // still ran `codex plugin marketplace add/upgrade` and mutated real
+    // marketplace state. A preview must not change anything.
+    console.error(`[dry-run] would run: codex plugin marketplace add ${opts.marketplace}`);
+    if (marketplaceName) {
+      console.error(`[dry-run] would run: codex plugin marketplace upgrade ${marketplaceName}`);
+    }
+  } else {
+    run("marketplace-add", "codex", ["plugin", "marketplace", "add", opts.marketplace]);
+    if (marketplaceName) {
+      run("marketplace-upgrade", "codex", ["plugin", "marketplace", "upgrade", marketplaceName]);
+    }
   }
 }
 
-const exportArgs = ["--platform", "codex", "--all", "--repo", opts.repo];
-if (opts.force) exportArgs.push("--force");
 if (opts.dryRun) exportArgs.push("--dry-run");
 run("export-agents-and-skills", process.execPath, [exporter, ...exportArgs]);
 

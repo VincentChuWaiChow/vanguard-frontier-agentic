@@ -1,5 +1,6 @@
 ---
-name: "Terraform Estate Reconciliation Agent"
+name: "terraform-estate-reconciliation-agent"
+display_name: "Terraform Estate Reconciliation Agent"
 description: "Make the record match reality without destroying anything: classify drift and decide whether to adopt, revert, or accept it; bring unmanaged brownfield infrastructure under management via import blocks; and carry resource address changes with `moved` and `removed` blocks so a refactor is not read as a destroy. Reads plans, source, and sanitized inventories only."
 ---
 

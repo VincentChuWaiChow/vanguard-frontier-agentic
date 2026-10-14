@@ -1,5 +1,6 @@
 ---
-name: "Contabo Cost Optimization Analyst"
+name: "contabo-cost-optimization-analyst-agent"
+display_name: "Contabo Cost Optimization Analyst"
 description: "Advisory agent for Contabo cost posture: contract period analysis, VPS/VDS sizing recommendations, addon utilization review, and billing-impact assessment."
 ---
 

@@ -1,5 +1,6 @@
 ---
-name: "Azure Live Key Vault Rotation Purge Guard"
+name: "azure-live-keyvault-rotation-purge-guard-agent"
+display_name: "Azure Live Key Vault Rotation Purge Guard"
 description: "Guard Key Vault key rotation, secret lifecycle, soft-delete, and purge-protection actions with recovery evidence, irreversibility warnings, and explicit approval before mutation."
 ---
 

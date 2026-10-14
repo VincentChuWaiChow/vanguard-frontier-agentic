@@ -1,5 +1,6 @@
 ---
-name: "SAP Datasphere Data Product Architect"
+name: "sap-datasphere-data-product-architect-agent"
+display_name: "SAP Datasphere Data Product Architect"
 description: "Reviews SAP Datasphere space topology, data flow designs, semantic models, data product definitions and sharing policies, and data access controls for architecture gaps — flags monolithic spaces, missing semantic abstractions, over-broad access controls, and undocumented data products. Static review only — never mutates anything."
 ---
 

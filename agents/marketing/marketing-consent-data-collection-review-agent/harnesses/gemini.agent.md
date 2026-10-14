@@ -1,5 +1,6 @@
 ---
-name: "Marketing Consent and Data-Collection Review Agent"
+name: "marketing-consent-data-collection-review-agent"
+display_name: "Marketing Consent and Data-Collection Review Agent"
 description: "Reviews a marketing site's consent layer — CMP banner config, tag-manager containers, Consent Mode wiring, and cookie policy — for GDPR/ePrivacy/CCPA correctness, dark patterns, and undisclosed trackers."
 ---
 

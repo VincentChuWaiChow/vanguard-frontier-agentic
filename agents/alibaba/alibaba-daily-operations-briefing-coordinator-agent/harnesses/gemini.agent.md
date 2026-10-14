@@ -1,5 +1,6 @@
 ---
-name: "Alibaba Cloud Daily Operations Briefing Coordinator"
+name: "alibaba-daily-operations-briefing-coordinator-agent"
+display_name: "Alibaba Cloud Daily Operations Briefing Coordinator"
 description: "Coordinate the daily Alibaba Cloud operations standup — cost delta from Cost Manager, ActionTrail anomaly review, ACK pod failure triage, quota utilization warnings, Security Center finding review, and action item assignment."
 ---
 

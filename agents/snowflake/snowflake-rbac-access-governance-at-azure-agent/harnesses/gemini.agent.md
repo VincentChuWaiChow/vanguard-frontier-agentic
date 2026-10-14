@@ -1,5 +1,6 @@
 ---
-name: "Snowflake RBAC Access Governance at Azure"
+name: "snowflake-rbac-access-governance-at-azure-agent"
+display_name: "Snowflake RBAC Access Governance at Azure"
 description: "Review Snowflake RBAC role hierarchies, privilege grants, managed-access schemas, network policies, MFA enforcement, and Entra ID External OAuth/SAML/SCIM integration for least-privilege and separation-of-duties compliance on Azure-hosted Snowflake accounts."
 kind: "local"
 ---

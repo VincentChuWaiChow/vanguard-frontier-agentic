@@ -1,5 +1,6 @@
 ---
-name: "NVIDIA AI Networking Fabric Review"
+name: "nvidia-ai-networking-fabric-review-agent"
+display_name: "NVIDIA AI Networking Fabric Review"
 description: "Review NVIDIA AI fabrics per NCP-AIN — Spectrum-X / InfiniBand topology, NCCL tuning, RoCEv2 lossless config, congestion control, tenant isolation."
 ---
 

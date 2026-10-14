@@ -1,5 +1,6 @@
 ---
-name: "NVIDIA NGC and NIM Supply Chain Governor"
+name: "nvidia-ngc-nim-supply-chain-governor-agent"
+display_name: "NVIDIA NGC and NIM Supply Chain Governor"
 description: "Review NGC and NIM supply chain posture — NGC API key scope and rotation, NIM cosign verification, model card and weights provenance, air-gap mirror digest pinning, AI Enterprise entitlement."
 ---
 

@@ -1,5 +1,6 @@
 ---
-name: "Python Live Control Evidence Agent"
+name: "python-live-control-evidence-agent"
+display_name: "Python Live Control Evidence Agent"
 description: "Collects, hashes, and stores control evidence in an approved destination and maps it to controls. Cannot approve or execute."
 ---
 

@@ -244,7 +244,15 @@ impl PolicyEngine {
                     .iter()
                     .filter(|mcp| installed_ids.contains(mcp.id.as_str()))
                     .filter_map(|mcp| {
-                        let tm = mcp.trust_matrix.as_ref()?;
+                        // No matrix means the posture was never declared, not
+                        // that it is within the boundary. `?` here silently
+                        // dropped such MCPs from evaluation entirely.
+                        let Some(tm) = mcp.trust_matrix.as_ref() else {
+                            return Some(format!(
+                                "{}: no trust_matrix declared (posture unknown)",
+                                mcp.id
+                            ));
+                        };
                         let mut problems = Vec::new();
                         if !max_mutation && tm.mutation_capable {
                             problems.push("mutation_capable");

@@ -1,5 +1,6 @@
 ---
-name: "Alibaba Cloud Resilience BCDR Review"
+name: "alibaba-resilience-bcdr-review-agent"
+display_name: "Alibaba Cloud Resilience BCDR Review"
 description: "Review Alibaba Cloud workload HA and BCDR designs — RDS High-Availability Edition failover, PolarDB Global Database Network, ACK multi-zone, ECS disaster recovery cross-region, RTO/RPO target analysis, and HBR (Hybrid Backup Recovery) coverage."
 ---
 

@@ -1,5 +1,6 @@
 ---
-name: "Hetzner Cloud Infrastructure Reviewer"
+name: "hetzner-infrastructure-reviewer-agent"
+display_name: "Hetzner Cloud Infrastructure Reviewer"
 description: "Advisory agent for reviewing Hetzner Cloud firewall rules, Load Balancer configuration, Network design, public IP exposure, and infrastructure architecture for safety and least-privilege posture."
 ---
 

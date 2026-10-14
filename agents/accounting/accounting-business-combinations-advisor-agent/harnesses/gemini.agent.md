@@ -1,5 +1,6 @@
 ---
-name: "Accounting Business Combinations Advisor"
+name: "accounting-business-combinations-advisor-agent"
+display_name: "Accounting Business Combinations Advisor"
 description: "Advise on business combinations accounting under ASC 805 and IFRS 3. Covers acquirer identification, PPA, identifiable intangibles, goodwill (full vs. partial), NCI, deferred tax in PPA, post-combination accounting, measurement period adjustments, common control transactions, and multi-jurisdiction rules. Advisory only."
 ---
 

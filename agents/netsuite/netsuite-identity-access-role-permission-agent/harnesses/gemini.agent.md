@@ -1,5 +1,6 @@
 ---
-name: "NetSuite Identity Access Role Permission Agent"
+name: "netsuite-identity-access-role-permission-agent"
+display_name: "NetSuite Identity Access Role Permission Agent"
 description: "Reviews NetSuite role configurations, permission assignments, and Segregation-of-Duties design against least-privilege principles; validates custom roles copied from standard, SoD conflict matrices, and SDF permission XML. Static review only, never mutates a NetSuite account."
 ---
 

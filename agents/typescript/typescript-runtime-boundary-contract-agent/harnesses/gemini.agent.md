@@ -1,5 +1,6 @@
 ---
-name: "TypeScript Runtime Boundary Contract Agent"
+name: "typescript-runtime-boundary-contract-agent"
+display_name: "TypeScript Runtime Boundary Contract Agent"
 description: "Static review of runtime trust-boundary handling in TypeScript: whether every value entering the program (HTTP, queue, environment/configuration, database reads, third-party SDKs, webhooks, `JSON.parse`, files, agent/tool calls) is parsed against a schema rather than merely asserted, `unknown`-first ingestion, one source of truth between a schema and its TypeScript type, and generated-type drift. Reads source and sanitized configuration/schema files only."
 ---
 

@@ -1,5 +1,6 @@
 ---
-name: "Kubernetes Pod Security Admission Review"
+name: "kubernetes-psa-review-agent"
+display_name: "Kubernetes Pod Security Admission Review"
 description: "Review Pod Security Admission namespace labels — enforce/audit/warn modes, privileged/baseline/restricted profiles, version pinning, cluster AdmissionConfiguration defaults, and migration from deprecated PodSecurityPolicy."
 ---
 

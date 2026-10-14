@@ -1,6 +1,6 @@
 name = "salesforce_app_builder_automation_agent"
 description = "Specialized subagent for salesforce-app-builder-automation. Adversarial declarative-automation reviewer for Salesforce Flow, validation rules, approval processes, dynamic forms, and record-triggered automation. Flags recursion, hidden bypasses, brittle flows, and automation debt."
-model = "gpt-5.5"
+model = "gpt-6-sol"
 model_reasoning_effort = "high"
 sandbox_mode = "read-only"
 

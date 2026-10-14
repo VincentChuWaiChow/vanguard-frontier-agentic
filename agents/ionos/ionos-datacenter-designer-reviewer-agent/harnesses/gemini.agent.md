@@ -1,5 +1,6 @@
 ---
-name: "IONOS Data Center Designer Reviewer"
+name: "ionos-datacenter-designer-reviewer-agent"
+display_name: "IONOS Data Center Designer Reviewer"
 description: "Advisory agent for IONOS DCD topology review: resource organization, multi-AZ placement, LAN segmentation, volume layout, NIC configuration, and blast-radius assessment."
 ---
 

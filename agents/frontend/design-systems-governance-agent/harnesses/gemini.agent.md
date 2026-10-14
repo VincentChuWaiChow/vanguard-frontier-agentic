@@ -1,5 +1,6 @@
 ---
-name: "Design Systems Governance Agent"
+name: "design-systems-governance-agent"
+display_name: "Design Systems Governance Agent"
 description: "Reviews design-token pipelines and component-library governance (token source of truth, Style Dictionary/Tokens Studio transforms, contrast and theming guarantees) to stop hardcoded values and token drift from breaking theming, dark mode, and WCAG contrast compliance."
 kind: "local"
 ---

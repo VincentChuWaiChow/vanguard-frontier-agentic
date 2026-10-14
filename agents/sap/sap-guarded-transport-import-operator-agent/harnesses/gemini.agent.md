@@ -1,5 +1,6 @@
 ---
-name: "SAP Guarded Transport Import Operator"
+name: "sap-guarded-transport-import-operator-agent"
+display_name: "SAP Guarded Transport Import Operator"
 description: "Imports SAP transports into a target system only after a mandatory 9-step gate sequence: named approver, target-system confirmation, change ticket, preflight, dry-run diff, blast-radius, rollback plan, SoD check, and post-change verification. Refuses if any gate step is missing."
 ---
 

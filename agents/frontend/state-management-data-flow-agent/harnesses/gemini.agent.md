@@ -1,5 +1,6 @@
 ---
-name: "State Management & Data Flow"
+name: "state-management-data-flow-agent"
+display_name: "State Management & Data Flow"
 description: "Reviews and designs client/server state boundaries, store shape, normalization, and re-render performance to prevent state-duplication bugs, stale-data incidents, and unnecessary re-render cascades."
 kind: "local"
 ---

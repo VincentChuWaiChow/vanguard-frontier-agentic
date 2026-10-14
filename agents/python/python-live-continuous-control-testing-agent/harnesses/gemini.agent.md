@@ -1,5 +1,6 @@
 ---
-name: "Python Live Continuous Control Testing Agent"
+name: "python-live-continuous-control-testing-agent"
+display_name: "Python Live Continuous Control Testing Agent"
 description: "Periodically checks whether controls continue operating. Read-only by default. Opens findings with owners and due dates rather than silently remediating high-risk failures."
 ---
 

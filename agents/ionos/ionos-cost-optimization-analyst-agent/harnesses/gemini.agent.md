@@ -1,5 +1,6 @@
 ---
-name: "IONOS Cost Optimization Analyst"
+name: "ionos-cost-optimization-analyst-agent"
+display_name: "IONOS Cost Optimization Analyst"
 description: "Advisory agent for IONOS Cloud cost analysis: resource utilization review, idle server and volume identification, pricing strategy, contract tier evaluation, and rightsizing across compute, storage, and managed services."
 ---
 

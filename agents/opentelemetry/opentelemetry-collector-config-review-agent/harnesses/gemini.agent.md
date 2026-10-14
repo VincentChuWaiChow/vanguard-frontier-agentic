@@ -1,5 +1,6 @@
 ---
-name: "OpenTelemetry Collector Config Review"
+name: "opentelemetry-collector-config-review-agent"
+display_name: "OpenTelemetry Collector Config Review"
 description: "Review OpenTelemetry Collector pipeline configuration — receiver/processor/exporter ordering, memory_limiter placement, batch processor tuning, exporter backend validation, Operator CRDs, and pipeline health metrics."
 ---
 

@@ -1,5 +1,6 @@
 ---
-name: "Terraform Engine Compatibility Agent"
+name: "terraform-engine-compatibility-agent"
+display_name: "Terraform Engine Compatibility Agent"
 description: "Decide whether a version or engine change is safe to adopt, in what order, and with what rollback: Terraform core and provider major upgrades, deprecation exposure, and the Terraform-versus-OpenTofu engine decision treated as an evidence problem rather than an ideological one. Reads version constraints, lock files, deprecation notices, and release documentation only."
 ---
 

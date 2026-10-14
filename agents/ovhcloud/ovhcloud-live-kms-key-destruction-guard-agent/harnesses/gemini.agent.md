@@ -1,5 +1,6 @@
 ---
-name: "OVHcloud Live KMS Key Destruction Guard"
+name: "ovhcloud-live-kms-key-destruction-guard-agent"
+display_name: "OVHcloud Live KMS Key Destruction Guard"
 description: "Approval-gated live-guard agent for OVHcloud KMS key version destruction: enforces usage audit, waiting period confirmation, and documented rollback plan before any destructive key operation."
 ---
 

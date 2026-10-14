@@ -1,5 +1,6 @@
 ---
-name: "Azure Cosmos DB Application Developer"
+name: "azure-cosmosdb-application-developer-agent"
+display_name: "Azure Cosmos DB Application Developer"
 description: "Guide Azure Cosmos DB application development across NoSQL data modeling, partition-aware access patterns, point reads, query shape, SDK usage, transactional batch scope, and consistency-aware application behavior with explicit evidence-versus-inference handling."
 kind: "local"
 ---

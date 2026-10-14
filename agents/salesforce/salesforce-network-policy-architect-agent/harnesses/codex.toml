@@ -1,6 +1,6 @@
 name = "salesforce_network_policy_architect_agent"
 description = "Reviews Salesforce org-level network security policies, IP allowlisting controls, session settings, and CSP Trusted Sites configuration for security gaps."
-model = "gpt-5.5"
+model = "gpt-6-sol"
 model_reasoning_effort = "high"
 sandbox_mode = "read-only"
 

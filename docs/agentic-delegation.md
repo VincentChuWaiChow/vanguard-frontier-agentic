@@ -28,14 +28,18 @@ page is the public description of what they do.
 
 | Work | Delegate to | Why |
 |---|---|---|
-| Read-only reconnaissance — locating files, mapping call sites, summarizing structure | Haiku | Cheap, parallel, and mechanical. Findings are checkable because citations are mandatory |
-| Bulk writing — docs, boilerplate, repetitive multi-file edits against an exact spec | Sonnet | The shape of the change is already decided; what remains is faithful execution |
+| Read-only reconnaissance — locating files, mapping call sites, summarizing structure | Haiku (Sonnet when interpreting the findings takes judgment) | Cheap, parallel, and mechanical. Findings are checkable because citations are mandatory |
+| Reading CI and gate logs, running the gate suite | Haiku | Deterministic commands; the value is raw output, not interpretation. Haiku takes no effort level |
+| Bulk prose — docs, guides, templates against an exact spec | Sonnet | The shape of the change is already decided; what remains is faithful execution |
+| Code edits — scripts, tests, generators, gates, workflow code, Rust | Opus 5.5 (the orchestrator, or `opus` subagents for independent parallel edits) | A subtle mistake here costs a CI cycle; it stays on the model that holds the whole plan |
 | Verifying an external claim against primary documentation | Sonnet, with Context7 | Requires judging whether a retrieved snippet actually supports a claim |
-| Running the gate suite | Haiku | Deterministic commands; the value is raw output, not interpretation |
 
 Haiku **never orchestrates**. It explores and it runs gates; it does not plan, decompose, or
-accept work. When Sonnet orchestrates, it runs at high reasoning effort at minimum — a weak
-plan wastes every delegate downstream, so the planning step is the wrong place to economise.
+accept work. Opus 5.5 is the default orchestrator and runs at its default `medium` effort,
+escalating on evidence (the skill holds the ladder: a check with a clear endpoint first,
+then `high`, `xhigh`, and Fable 5.1 for one task that `high` failed twice in the same way).
+When Sonnet orchestrates instead, it runs at high reasoning effort at minimum — a weak plan
+wastes every delegate downstream.
 
 ### What never gets delegated
 
@@ -64,7 +68,7 @@ the model tier it runs at — the tier is the point, not an implementation detai
 | Resolve sources | Haiku | Mechanical Context7 lookup, no judgment |
 | Recon | Haiku | Read-only, one narrow question per agent, citations mandatory |
 | Spec | Session model, no override | Architecture never delegates downward |
-| Implement | Sonnet | Bulk writing against an exact file-scoped spec |
+| Implement | Opus (Sonnet for Markdown-only specs) | Code stays on the daily driver; a spec whose every file is Markdown is prose and goes to a Sonnet writer |
 | Regenerate | Haiku | Settles generated output before anything verifies it |
 | Verify | Sonnet | Adversarial, so it cannot be the cheapest tier |
 | Gate | Haiku | Runs commands and reports raw output verbatim |

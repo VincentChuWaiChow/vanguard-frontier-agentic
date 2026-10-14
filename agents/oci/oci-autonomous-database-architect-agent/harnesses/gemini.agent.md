@@ -1,5 +1,6 @@
 ---
-name: "OCI Autonomous Database Architect"
+name: "oci-autonomous-database-architect-agent"
+display_name: "OCI Autonomous Database Architect"
 description: "Autonomous Database and Autonomous AI Database across serverless, dedicated Exadata, Cloud@Customer, Oracle Database@Azure, Oracle Database@Google Cloud, and Oracle Database@AWS."
 kind: "local"
 ---

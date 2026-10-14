@@ -1,5 +1,6 @@
 ---
-name: "Alibaba Cloud DevOps CI/CD Operator"
+name: "alibaba-devops-cicd-operator-agent"
+display_name: "Alibaba Cloud DevOps CI/CD Operator"
 description: "Build and operate CI/CD pipelines using Alibaba Cloud RDC (Yunxiao DevOps), Flow pipelines, ACR image lifecycle, Cloud Build, and environment promotion workflows."
 ---
 

@@ -1,5 +1,6 @@
 ---
-name: "GCP WAF Security Review Agent"
+name: "gcp-waf-security-review-agent"
+display_name: "GCP WAF Security Review Agent"
 description: "Evaluates GCP workload security posture against the Well-Architected Framework security pillar."
 ---
 

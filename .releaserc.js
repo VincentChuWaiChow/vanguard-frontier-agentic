@@ -72,42 +72,58 @@ module.exports = {
             { type: "style", hidden: true },
           ],
         },
+        // conventional-changelog-writer@9 (required by the conventionalcommits
+        // preset from v10) takes render functions, not Handlebars strings. The
+        // preset's main template joins header, note groups, commit groups and
+        // footer with blank lines, and its list() adds the "* " bullet and
+        // indents a commit's body lines beneath it — so none of these partials
+        // carries its own bullet or surrounding blank lines.
         writerOpts: {
           // Enterprise-style header: versioned title + release-type banner.
           // The conventionalcommits preset renders the "⚠ BREAKING CHANGES"
           // block immediately after this, so a major release leads with the
           // migration-critical information.
-          headerPartial:
-            "## 🛡️ v{{version}} — *Provenance · Policy · Portability*\n" +
-            "{{#if date}}_Released {{date}}_{{/if}}\n\n" +
+          headerPartial: (context) =>
+            `## 🛡️ v${context.version} — *Provenance · Policy · Portability*\n` +
+            `${context.date ? `_Released ${context.date}_` : ""}\n\n` +
             "> _Curated multi-cloud, zero-trust agent marketplace — `AWS` · `Azure` · `OCI` · `GCP` · `Terraform`._\n" +
             "> Least privilege, live evidence, safe rollback paths.\n\n" +
-            "{{#if isPatch}}**Release type:** Maintenance & hardening.{{else}}**Release type:** New capabilities — review the sections below before upgrading.{{/if}}\n",
+            (context.isPatch
+              ? "**Release type:** Maintenance & hardening."
+              : "**Release type:** New capabilities — review the sections below before upgrading."),
           // Deterministic commit line with a linked short hash.
-          commitPartial:
-            "* {{#if scope}}**{{scope}}:** {{/if}}{{subject}}" +
-            "{{#if shortHash}} ([`{{shortHash}}`]" +
-            "{{#if @root.host}}({{@root.host}}/{{@root.owner}}/{{@root.repository}}/commit/{{hash}}){{else}}(#){{/if}}){{/if}}\n" +
-            "{{#if body}}\n{{body}}\n{{/if}}\n",
+          commitPartial: (context, commit) =>
+            `${commit.scope ? `**${commit.scope}:** ` : ""}${commit.subject || ""}` +
+            (commit.shortHash
+              ? ` ([\`${commit.shortHash}\`](${
+                  context.host
+                    ? `${context.host}/${context.owner}/${context.repository}/commit/${commit.hash}`
+                    : "#"
+                }))`
+              : "") +
+            (commit.body ? `\n${commit.body}` : ""),
           // Enterprise footer: install path, supply-chain provenance, and a
           // deterministic full-changelog compare link.
-          footerPartial:
-            "\n---\n\n" +
+          footerPartial: (context) =>
+            "---\n\n" +
             "### 📥 Install\n" +
-            "```bash\nnpm install @raishin/vanguard-frontier-agentic@{{version}}\n```\n\n" +
+            `\`\`\`bash\nnpm install @raishin/vanguard-frontier-agentic@${context.version}\n\`\`\`\n\n` +
             "### 🔐 Supply-chain provenance\n" +
             "Every release ships a build attestation (SLSA provenance) and an SBOM. " +
-            "Verify the tag with `gh attestation verify` before installing.\n\n" +
-            "{{#if previousTag}}**Full changelog:** " +
-            "{{host}}/{{owner}}/{{repository}}/compare/{{previousTag}}...{{currentTag}}\n{{/if}}",
+            "Verify the tag with `gh attestation verify` before installing." +
+            (context.previousTag
+              ? "\n\n**Full changelog:** " +
+                `${context.host}/${context.owner}/${context.repository}/compare/${context.previousTag}...${context.currentTag}`
+              : ""),
           // Deterministic section ordering (note groups / breaking changes
           // render first regardless).
           commitGroupsSort(a, b) {
             return SECTION_ORDER.indexOf(a.title) - SECTION_ORDER.indexOf(b.title);
           },
           commitsSort: ["scope", "subject"],
-          // conventional-changelog-writer v8 freezes the commit object, so we
-          // build a fresh object. We also assume the preset's transform
+          // conventional-changelog-writer v9 passes a read-only commit and
+          // merges the returned object over it as a patch, so we return only
+          // the fields we change. We also assume the preset's transform
           // duties: map type -> section, drop hidden types (unless they carry
           // a breaking-change note), set the short hash, and title the note
           // group. Returning a falsy value drops the commit from the notes.
@@ -121,7 +137,6 @@ module.exports = {
             const section = RELEASE_SECTIONS[commit.type];
             if (!section && notes.length === 0) return false;
             return {
-              ...commit,
               notes,
               type: section || "🔧 Other Changes",
               shortHash:

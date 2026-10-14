@@ -1,5 +1,6 @@
 ---
-name: "Microsoft Maestro"
+name: "microsoft-maestro-agent"
+display_name: "Microsoft Maestro"
 description: "Classify the user's Microsoft task, route to the right sub-maestro or specialist from the catalog, and dispatch in parallel when the task spans multiple domains. Refuses Azure IaaS tasks and deflects to azure-maestro. Never auto-dispatch live-guard agents."
 kind: "local"
 ---

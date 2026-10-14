@@ -1,5 +1,6 @@
 ---
-name: "Prometheus Alerting and Cardinality Review Agent"
+name: "prometheus-alerting-cardinality-review-agent"
+display_name: "Prometheus Alerting and Cardinality Review Agent"
 description: "Reviews Prometheus and AlertManager configuration for cardinality explosion, alert correctness, scrape security, routing safety, and retention adequacy."
 ---
 

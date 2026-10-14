@@ -1,6 +1,6 @@
 name = "legal_privacy_data_protection_agent"
 description = "Adversarial privacy and data-protection reviewer for data retention, cross-border transfer, DPIA/PIA readiness, privacy notices, vendor DPAs, and employee-data processing. Surfaces risks and escalation paths for qualified counsel and privacy owners; does not give legal advice."
-model = "gpt-5.5"
+model = "gpt-6-sol"
 model_reasoning_effort = "high"
 sandbox_mode = "read-only"
 

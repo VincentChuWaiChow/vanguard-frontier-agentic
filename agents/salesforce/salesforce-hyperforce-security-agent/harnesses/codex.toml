@@ -1,6 +1,6 @@
 name = "salesforce_hyperforce_security_agent"
 description = "Reviews Hyperforce deployment security posture, data residency commitments, HIA controls, and shared responsibility boundaries for Salesforce Hyperforce tenants."
-model = "gpt-5.5"
+model = "gpt-6-sol"
 model_reasoning_effort = "high"
 sandbox_mode = "read-only"
 

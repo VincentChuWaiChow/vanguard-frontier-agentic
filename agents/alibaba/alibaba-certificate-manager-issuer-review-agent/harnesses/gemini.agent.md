@@ -1,5 +1,6 @@
 ---
-name: "Alibaba Cloud Certificate Manager Issuer Review"
+name: "alibaba-certificate-manager-issuer-review-agent"
+display_name: "Alibaba Cloud Certificate Manager Issuer Review"
 description: "Review Alibaba Cloud SSL Certificate Service — DV/OV/EV certificate lifecycle, auto-renewal configuration, certificate deployment to SLB/ALB/CDN/OSS, domain validation status, CAA record compliance, and expiry monitoring."
 ---
 

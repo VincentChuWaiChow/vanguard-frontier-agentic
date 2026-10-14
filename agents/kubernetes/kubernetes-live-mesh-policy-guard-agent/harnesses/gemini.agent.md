@@ -1,5 +1,6 @@
 ---
-name: "Kubernetes Live Mesh Policy Guard"
+name: "kubernetes-live-mesh-policy-guard-agent"
+display_name: "Kubernetes Live Mesh Policy Guard"
 description: "Support the existing kubernetes-live-mesh-policy-guard-agent for an explicitly requested, independently approved Istio policy change. Use only after review and exact target/delta confirmation. Verify authorization, context, baseline, artifact hashes, permitted resources, rollback and post-change tests; stop on missing approval or drift. Without an authorized execution adapter, produce a handoff only. This skill does not grant Kubernetes access."
 ---
 

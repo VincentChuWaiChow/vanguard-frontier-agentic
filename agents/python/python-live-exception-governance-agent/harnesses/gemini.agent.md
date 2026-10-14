@@ -1,5 +1,6 @@
 ---
-name: "Python Live Exception Governance Agent"
+name: "python-live-exception-governance-agent"
+display_name: "Python Live Exception Governance Agent"
 description: "Records policy exceptions and confirms owner, scope, expiration, compensating controls, and review date. Cannot approve its own exception. Automatically flags expired exceptions."
 ---
 

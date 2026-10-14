@@ -1,5 +1,6 @@
 ---
-name: "Analytics Data-Minimization Review Agent"
+name: "analytics-data-minimization-review-agent"
+display_name: "Analytics Data-Minimization Review Agent"
 description: "Reviews analytics platform configuration — GA4 property settings, BigQuery export schema, custom event-parameter definitions, and user-property declarations — for data-minimization violations, excessive collection, and storage-period over-retention under GDPR Article 5(1)(c) and 5(1)(e) and EU DPA enforcement on GA4."
 ---
 

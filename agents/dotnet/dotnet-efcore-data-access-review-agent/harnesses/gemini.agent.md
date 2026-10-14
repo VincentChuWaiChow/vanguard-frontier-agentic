@@ -1,5 +1,6 @@
 ---
-name: ".NET EF Core Data Access Review Agent"
+name: "dotnet-efcore-data-access-review-agent"
+display_name: ".NET EF Core Data Access Review Agent"
 description: "Statically reviews EF Core data access — DbContext lifetime, N+1 queries, unbounded result sets, raw SQL injection surface, optimistic concurrency tokens, migration discipline, multi-tenant query filters, and connection resiliency. Reads source only."
 ---
 

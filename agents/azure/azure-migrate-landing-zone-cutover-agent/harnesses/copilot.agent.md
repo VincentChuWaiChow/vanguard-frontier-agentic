@@ -1,8 +1,6 @@
 ---
-metadata:
-  author: "github: VincentChuWaiChow"
-  version: "0.2.1"
-  updated: "2026-06-05"
+name: "Azure Migrate Landing Zone Cutover"
+description: "Stress-test Azure migration cutovers against assessment quality, landing-zone readiness, dependency sequencing, rollback, and post-cutover ownership."
 ---
 
 # Azure Migrate Landing Zone Cutover

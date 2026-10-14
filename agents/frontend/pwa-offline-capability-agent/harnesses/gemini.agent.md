@@ -1,5 +1,6 @@
 ---
-name: "PWA & Offline Capability"
+name: "pwa-offline-capability-agent"
+display_name: "PWA & Offline Capability"
 description: "Static/read-only review agent that validates service-worker caching behavior, web app manifest installability, and offline-fallback coverage against real install/offline criteria, not manifest-schema checklists alone."
 kind: "local"
 ---

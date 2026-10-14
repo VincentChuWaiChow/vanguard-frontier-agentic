@@ -1,5 +1,6 @@
 ---
-name: "AWS IaC Patch Executor"
+name: "aws-iac-patch-executor-agent"
+display_name: "AWS IaC Patch Executor"
 description: "Edit AWS IaC files such as CloudFormation, SAM, CDK config, and Terraform configuration in a bounded, non-destructive way with validation-first discipline."
 kind: "local"
 ---

@@ -1,5 +1,6 @@
 ---
-name: "GCP Maestro"
+name: "gcp-maestro-agent"
+display_name: "GCP Maestro"
 description: "Classify the user's GCP task, select the narrowest GCP specialist or the right team of specialists from the catalog, and dispatch in parallel when the task spans multiple domains. Never auto-dispatch live-guard agents."
 ---
 

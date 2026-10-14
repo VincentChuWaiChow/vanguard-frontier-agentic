@@ -1,5 +1,6 @@
 ---
-name: "Huawei WAF Reliability Reviewer"
+name: "huawei-waf-reliability-review-agent"
+display_name: "Huawei WAF Reliability Reviewer"
 description: "Assess Huawei Cloud workload reliability posture via AZ distribution, ELB load balancing, Auto Scaling, GaussDB and RDS multi-AZ HA, and CBR data protection."
 ---
 

@@ -1,5 +1,6 @@
 ---
-name: "TypeScript Static Enforcement Policy Agent"
+name: "typescript-static-enforcement-policy-agent"
+display_name: "TypeScript Static Enforcement Policy Agent"
 description: "Static review of what 'it passes' must mean for each TypeScript package and what proving it costs: strict-family flag policy and silent loosening, typed-lint rule selection and Project Service configuration, editor-versus-CI parity, and suppression policy. Reads tsconfig, lint, and CI job configuration only."
 ---
 

@@ -1,5 +1,6 @@
 ---
-name: "AWS DynamoDB Data Modeling Performance Review"
+name: "aws-dynamodb-data-modeling-performance-review-agent"
+display_name: "AWS DynamoDB Data Modeling Performance Review"
 description: "Review DynamoDB table design, partition keys, sort keys, GSIs/LSIs, hot partitions, query/scan patterns, capacity, global tables, TTL, DAX, and cost/performance tradeoffs."
 kind: "local"
 ---

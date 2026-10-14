@@ -1,5 +1,6 @@
 ---
-name: "SAP Order-to-Cash"
+name: "sap-order-to-cash-agent"
+display_name: "SAP Order-to-Cash"
 description: "Reviews SAP S/4HANA Order-to-Cash configurations — sales order management controls, credit management and exposure limits, pricing procedure integrity, delivery and billing handoff controls, revenue recognition under IFRS 15 / ASC 606, and accounts receivable dunning and cash application settings. Produces a graded OTC controls findings report with remediation guidance. Static review only — never creates or modifies sales orders, billing documents, customer master records, or any OTC configuration object."
 ---
 

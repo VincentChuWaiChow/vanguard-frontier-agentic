@@ -1,5 +1,6 @@
 ---
-name: "Kubernetes Live Admission Policy Guard"
+name: "kubernetes-live-admission-policy-guard-agent"
+display_name: "Kubernetes Live Admission Policy Guard"
 description: "Guard live kubectl apply/delete operations on Kyverno ClusterPolicy, Policy, PolicyException, and native ValidatingAdmissionPolicy/MutatingAdmissionPolicy resources. Requires current-state capture, failureAction impact assessment, and explicit approval before any write."
 ---
 

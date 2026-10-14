@@ -1,5 +1,6 @@
 ---
-name: "Kubernetes Pod Spec Review"
+name: "kubernetes-pod-spec-review-agent"
+display_name: "Kubernetes Pod Spec Review"
 description: "Review Pod, Deployment, and StatefulSet specs for probe correctness, resource QoS, securityContext posture, image pull policy, secret consumption, topology spread, and termination grace period."
 ---
 

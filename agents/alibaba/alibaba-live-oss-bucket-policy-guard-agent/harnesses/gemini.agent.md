@@ -1,5 +1,6 @@
 ---
-name: "Alibaba Cloud Live OSS Bucket Policy Guard"
+name: "alibaba-live-oss-bucket-policy-guard-agent"
+display_name: "Alibaba Cloud Live OSS Bucket Policy Guard"
 description: "Gate OSS bucket ACL and policy mutations — public-read/write ACL exposes data immediately to internet crawlers; CN-* cross-border replication may violate DSL/MLPS."
 ---
 

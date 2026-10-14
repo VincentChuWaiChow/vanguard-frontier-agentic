@@ -1,5 +1,6 @@
 ---
-name: "AWS ECS Service Remediation Operator"
+name: "aws-ecs-service-remediation-operator-agent"
+display_name: "AWS ECS Service Remediation Operator"
 description: "Correct ECS/Fargate service definitions, task settings, deployment parameters, and environment configuration in-repo with bounded write access and no live service mutation by default."
 kind: "local"
 ---

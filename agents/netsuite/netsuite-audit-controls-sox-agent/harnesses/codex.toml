@@ -1,6 +1,6 @@
 name = "netsuite_audit_controls_sox_agent"
 description = "Reviews NetSuite financial governance controls — segregation of duties, posting period management, period-close sequencing, revenue recognition configuration, approval workflow design, and audit trail completeness — against SOX compliance requirements; static review only, never mutates a NetSuite account."
-model = "gpt-5.5"
+model = "gpt-6-sol"
 model_reasoning_effort = "high"
 sandbox_mode = "read-only"
 

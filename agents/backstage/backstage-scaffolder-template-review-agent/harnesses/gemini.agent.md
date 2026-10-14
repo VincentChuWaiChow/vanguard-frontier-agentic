@@ -1,5 +1,6 @@
 ---
-name: "Backstage Scaffolder Template Review"
+name: "backstage-scaffolder-template-review-agent"
+display_name: "Backstage Scaffolder Template Review"
 description: "Review Backstage Scaffolder software templates for action blast-radius, input parameter injection, RBAC gate coverage, integration secret scope, catalog entity poisoning, and output exposure."
 ---
 

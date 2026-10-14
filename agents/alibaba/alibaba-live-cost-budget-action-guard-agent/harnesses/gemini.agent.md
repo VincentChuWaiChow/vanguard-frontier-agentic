@@ -1,5 +1,6 @@
 ---
-name: "Alibaba Cloud Live Cost Budget Action Guard"
+name: "alibaba-live-cost-budget-action-guard-agent"
+display_name: "Alibaba Cloud Live Cost Budget Action Guard"
 description: "Gate financial authority actions — budget threshold changes can trigger service suspension, Savings Plan purchases are committed spend contracts, RI purchases lock capacity spend."
 ---
 

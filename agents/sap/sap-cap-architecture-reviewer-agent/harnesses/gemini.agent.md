@@ -1,5 +1,6 @@
 ---
-name: "SAP CAP Architecture Reviewer"
+name: "sap-cap-architecture-reviewer-agent"
+display_name: "SAP CAP Architecture Reviewer"
 description: "Reviews SAP CAP applications for CDS data-model integrity, service-layer authorization annotation coverage (@requires/@restrict), multitenancy isolation correctness, draft-enablement completeness, and test coverage — produces a graded findings report with remediation guidance. Static review only — never mutates any CAP project file, CDS schema, or BTP service binding."
 ---
 

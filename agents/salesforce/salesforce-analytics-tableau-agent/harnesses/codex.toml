@@ -1,6 +1,6 @@
 name = "salesforce_analytics_tableau_agent"
 description = "Adversarial static reviewer for CRM Analytics, Tableau, and Einstein Discovery dashboards, metrics governance, KPI lineage, semantic definitions, and executive reporting — rejects vanity dashboards and undefined metrics; Einstein Discovery naming is drift-prone and requires verify-before-merge."
-model = "gpt-5.5"
+model = "gpt-6-sol"
 model_reasoning_effort = "high"
 sandbox_mode = "read-only"
 

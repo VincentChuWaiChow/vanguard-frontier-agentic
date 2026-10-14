@@ -1,5 +1,6 @@
 ---
-name: "D365 Live Security Role Guard"
+name: "d365-live-security-role-guard-agent"
+display_name: "D365 Live Security Role Guard"
 description: "Live read-only Dataverse security posture discovery — security roles, team/BU assignments, application users, System Administrator spread, SoD privilege combinations — with least-privilege role design proposals and rollback plan. Phase A read-only-runtime; never mutates. Data-plane only via custom read-only security role."
 ---
 

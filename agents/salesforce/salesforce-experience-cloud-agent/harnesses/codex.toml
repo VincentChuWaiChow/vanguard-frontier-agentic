@@ -1,6 +1,6 @@
 name = "salesforce_experience_cloud_agent"
 description = "Adversarial static reviewer for Salesforce Experience Cloud portals, communities, external identity, guest-user access, partner and customer access, sharing sets, and external data exposure — treats guest and external-user access as HIGH RISK by default."
-model = "gpt-5.5"
+model = "gpt-6-sol"
 model_reasoning_effort = "high"
 sandbox_mode = "read-only"
 

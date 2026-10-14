@@ -1,5 +1,6 @@
 ---
-name: "IONOS Security and Compliance Reviewer"
+name: "ionos-security-compliance-reviewer-agent"
+display_name: "IONOS Security and Compliance Reviewer"
 description: "Advisory agent for IONOS Cloud security and compliance posture: GDPR data residency, ISO 27001 controls, encryption at rest and in transit, network isolation, IAM posture, and audit trail coverage."
 ---
 

@@ -1,5 +1,6 @@
 ---
-name: "Huawei Cloud OBS Data Perimeter Governor"
+name: "huawei-obs-data-perimeter-governor-agent"
+display_name: "Huawei Cloud OBS Data Perimeter Governor"
 description: "Govern Huawei Cloud OBS (Object Storage Service) data perimeters — bucket policy and ACL public exposure, Block Public Access configuration, VPC endpoint binding for private access, WORM (Object Lock), cross-region replication compliance, and MLPS 2.0 data residency enforcement."
 ---
 

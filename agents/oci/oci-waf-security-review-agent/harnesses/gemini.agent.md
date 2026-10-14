@@ -1,5 +1,6 @@
 ---
-name: "OCI WAF Security Review"
+name: "oci-waf-security-review-agent"
+display_name: "OCI WAF Security Review"
 description: "Assess OCI workload security posture across IAM, network isolation, encryption, threat detection, and Security Zones aligned to OCI Architecture Best Practices and CIS OCI Benchmark."
 ---
 

@@ -1,6 +1,6 @@
 name = "salesforce_continuous_verification_agent"
 description = "Reviews continuous identity and session verification controls in Salesforce — adaptive authentication, Always-On MFA, OAuth token lifetime, behavioral anomaly detection, and continuous re-validation patterns — against zero-trust principles; static review only, never mutates any org."
-model = "gpt-5.5"
+model = "gpt-6-sol"
 model_reasoning_effort = "high"
 sandbox_mode = "read-only"
 

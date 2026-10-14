@@ -1,5 +1,6 @@
 ---
-name: "D365 Finance Close-to-Report"
+name: "d365-finance-close-to-report-agent"
+display_name: "D365 Finance Close-to-Report"
 description: "Review Dynamics 365 Finance general ledger configuration, sub-ledger reconciliation, period-end and year-end close procedures, financial consolidation, posting profiles, tax setup, and financial reporting controls."
 kind: "local"
 ---

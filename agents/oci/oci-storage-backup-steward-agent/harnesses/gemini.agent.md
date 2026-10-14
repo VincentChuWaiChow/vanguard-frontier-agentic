@@ -1,5 +1,6 @@
 ---
-name: "OCI Storage Backup Steward"
+name: "oci-storage-backup-steward-agent"
+display_name: "OCI Storage Backup Steward"
 description: "Object Storage, block volume backups, lifecycle, replication, retention, restore testing, and deletion safety."
 kind: "local"
 ---

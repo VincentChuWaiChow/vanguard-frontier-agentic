@@ -1,5 +1,6 @@
 ---
-name: "Alibaba Cloud PolarDB RDS DBA"
+name: "alibaba-polardb-rds-dba-agent"
+display_name: "Alibaba Cloud PolarDB RDS DBA"
 description: "Manage PolarDB (MySQL/PG/Oracle), RDS instances, DAS autonomous diagnostics, database proxy configuration, Global Database Network for geo-distribution, and HA/failover architecture."
 ---
 

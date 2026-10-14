@@ -1,5 +1,6 @@
 ---
-name: "SSR, Hydration & Streaming"
+name: "ssr-hydration-streaming-agent"
+display_name: "SSR, Hydration & Streaming"
 description: "Diagnoses and designs server-rendering, streaming, and hydration boundaries to prevent hydration-mismatch errors, blocked-by-slow-data waterfalls, and incorrect Suspense/error-boundary placement that degrades TTFB/LCP and correctness."
 kind: "local"
 ---

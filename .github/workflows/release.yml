@@ -67,7 +67,7 @@ jobs:
           fetch-depth: 0
           persist-credentials: true
 
-      - uses: actions/setup-node@820762786026740c76f36085b0efc47a31fe5020 # v7.0.0
+      - uses: actions/setup-node@949feb2413d6458794dcd2491c4babbbce0c15c1 # v7.1.0
         with:
           # Node 24 bundles npm 10.x. npm >= 11.5.1 is required for native
           # OIDC trusted-publisher token exchange. setup-node's registry-url
@@ -235,19 +235,21 @@ jobs:
           node -e "const p=require('./package.json'); console.log(JSON.stringify({name:p.name,version:p.version,repository:p.repository,publishConfig:p.publishConfig}, null, 2));"
           echo "::endgroup::"
 
-      - name: Auto-fix stale asset integrity
+      - name: Verify asset integrity is current
         run: |
-          python3 tests/validate-asset-integrity.py --write
-          if ! git diff --quiet catalog/asset-integrity.json; then
-            git config user.email "action@github.com"
-            git config user.name "GitHub Action"
-            git add catalog/asset-integrity.json
-            git commit -m "chore: regenerate asset integrity [skip ci]"
-            git push
-            echo "Pushed regenerated asset-integrity.json"
-          else
-            echo "Asset integrity is current — no fix needed"
+          # This step used to regenerate the manifest, commit it with
+          # [skip ci] and push, all BEFORE the Validate step ran. That ordering
+          # meant the release absorbed unexplained drift into its own baseline
+          # and could never reject it, and the rewritten commit deliberately
+          # skipped CI. Integrity drift at release time means a generator was
+          # not run before merge, which is a release blocker rather than
+          # something to repair unattended on the release branch.
+          if ! python3 tests/validate-asset-integrity.py; then
+            echo "::error::catalog/asset-integrity.json is stale at release time."
+            echo "Run 'npm run asset-integrity:write' on the release commit, review the diff, and merge it before releasing."
+            exit 1
           fi
+          echo "Asset integrity is current."
 
       - name: Validate
         run: |
@@ -262,7 +264,7 @@ jobs:
         run: npm ci
 
       - name: Generate SBOM (pre-release source SBOM)
-        uses: anchore/sbom-action@3ad7283483fc7af8ff2b4ea19663c2d5ca935e26 # v0.24.2
+        uses: anchore/sbom-action@66cbf4bc1f1c0d2edc94016e65bc221b6bb0ad6c # v0.24.3
         with:
           path: .
           format: spdx-json

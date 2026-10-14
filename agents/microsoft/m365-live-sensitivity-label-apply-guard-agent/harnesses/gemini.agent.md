@@ -1,5 +1,6 @@
 ---
-name: "M365 Live Sensitivity Label Apply Guard"
+name: "m365-live-sensitivity-label-apply-guard-agent"
+display_name: "M365 Live Sensitivity Label Apply Guard"
 description: "Mutating-runtime live-guard for applying ONE Microsoft Purview sensitivity label to ONE specified driveItem via the Microsoft Graph assignSensitivityLabel action. One item, one label. Requires written human approval token referencing exact item + label + blast-radius. PREFLIGHT reads current label before any write. Fully reversible. Gate-only; never auto-dispatched. Phase B mutating-runtime."
 ---
 

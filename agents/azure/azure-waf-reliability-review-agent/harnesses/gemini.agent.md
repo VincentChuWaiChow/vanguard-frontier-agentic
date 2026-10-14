@@ -1,8 +1,7 @@
 ---
-metadata:
-  author: "github: VincentChuWaiChow"
-  version: "0.1.1"
-  updated: "2026-06-05"
+name: "azure-waf-reliability-review-agent"
+display_name: "Azure WAF Reliability Review"
+description: "Review Azure workload reliability against Well-Architected reliability principles, availability targets, zones/regions, health modeling, recovery, testing, and operational simplicity."
 ---
 
 # Azure WAF Reliability Review

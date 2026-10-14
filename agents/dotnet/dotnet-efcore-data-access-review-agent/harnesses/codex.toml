@@ -1,6 +1,6 @@
 name = "dotnet_efcore_data_access_review_agent"
 description = "Specialized subagent for dotnet-efcore-data-access-review. Statically reviews EF Core data access — DbContext lifetime, N+1 queries, unbounded result sets, raw SQL injection surface, optimistic concurrency tokens, migration discipline, multi-tenant query filters, and connection resiliency. Reads source only."
-model = "gpt-5.5"
+model = "gpt-6-sol"
 model_reasoning_effort = "high"
 sandbox_mode = "read-only"
 

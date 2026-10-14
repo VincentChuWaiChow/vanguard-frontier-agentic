@@ -1,6 +1,6 @@
 name = "salesforce_integration_mulesoft_agent"
 description = "Specialized subagent for salesforce-integration-mulesoft. Adversarial integration reviewer for Salesforce APIs, MuleSoft, event-driven architecture, CDC, Platform Events, external services, middleware, error handling, idempotency, and integration observability. Challenges point-to-point spaghetti integration."
-model = "gpt-5.5"
+model = "gpt-6-sol"
 model_reasoning_effort = "high"
 sandbox_mode = "read-only"
 

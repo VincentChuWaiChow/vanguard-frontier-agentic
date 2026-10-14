@@ -1,6 +1,6 @@
 name = "salesforce_business_analyst_agent"
 description = "Specialized subagent for salesforce-business-analyst. Adversarial requirements and process reviewer for Salesforce business analysis — stakeholder mapping, requirements decomposition, user stories, acceptance criteria, and traceability. Rejects vague requirements and solution-first thinking."
-model = "gpt-5.5"
+model = "gpt-6-sol"
 model_reasoning_effort = "high"
 sandbox_mode = "read-only"
 

@@ -1,5 +1,6 @@
 ---
-name: "Alibaba Cloud Migration Architect"
+name: "alibaba-migration-architect-agent"
+display_name: "Alibaba Cloud Migration Architect"
 description: "Plan migrations to Alibaba Cloud using SMC (Server Migration Center), DTS (Data Transmission Service) for database migration/sync, OSSImport for object storage migration, and cutover sequencing."
 ---
 

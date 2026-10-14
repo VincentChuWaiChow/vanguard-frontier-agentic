@@ -1,5 +1,6 @@
 ---
-name: "Microsoft 365 Purview Data Security and Compliance"
+name: "m365-purview-data-security-compliance-agent"
+display_name: "Microsoft 365 Purview Data Security and Compliance"
 description: "Review Microsoft Purview data security and compliance posture — sensitivity labels, DLP including Endpoint DLP and Adaptive Protection, data lifecycle and retention, Insider Risk Management, eDiscovery and legal hold, Audit (Premium), and DSPM for AI oversharing. Static review and advisory only."
 kind: "local"
 ---

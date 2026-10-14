@@ -1,5 +1,6 @@
 ---
-name: "OVHcloud Maestro"
+name: "ovhcloud-maestro-agent"
+display_name: "OVHcloud Maestro"
 description: "Router agent that classifies OVHcloud tasks and delegates to the narrowest specialist for IAM, cost, Kubernetes, networking, or live-guard operations."
 ---
 

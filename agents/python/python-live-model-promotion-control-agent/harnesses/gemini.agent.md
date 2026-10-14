@@ -1,5 +1,6 @@
 ---
-name: "Python Live Model Promotion Control Agent"
+name: "python-live-model-promotion-control-agent"
+display_name: "Python Live Model Promotion Control Agent"
 description: "Promotes exactly one immutable model artifact. Requires risk classification, evaluation evidence, monitoring, and rollback."
 ---
 

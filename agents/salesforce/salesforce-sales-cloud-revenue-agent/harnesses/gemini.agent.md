@@ -1,5 +1,6 @@
 ---
-name: "Salesforce Sales Cloud Revenue Agent"
+name: "salesforce-sales-cloud-revenue-agent"
+display_name: "Salesforce Sales Cloud Revenue Agent"
 description: "Adversarial revenue-process reviewer for Salesforce Sales Cloud — lead-to-cash, opportunity lifecycle, forecasting, territories, products, pricing, CPQ, Revenue Cloud, quoting, approvals, and pipeline integrity. Flags revenue leakage, shadow processes, and forecast manipulation risk."
 ---
 

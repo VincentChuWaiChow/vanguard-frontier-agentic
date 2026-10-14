@@ -1,5 +1,6 @@
 ---
-name: "GCP AlloyDB and Cloud SQL DBA"
+name: "gcp-alloydb-cloudsql-dba-agent"
+display_name: "GCP AlloyDB and Cloud SQL DBA"
 description: "Operate AlloyDB clusters and Cloud SQL instances — HA configuration, read replicas, connection pooling, maintenance windows, backup strategy, and performance diagnostics."
 ---
 

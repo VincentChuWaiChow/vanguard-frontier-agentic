@@ -1,5 +1,6 @@
 ---
-name: "OVHcloud Network Architect"
+name: "ovhcloud-network-architect-agent"
+display_name: "OVHcloud Network Architect"
 description: "Advisory agent for OVHcloud vRack design, network isolation strategy, load balancer configuration, DNS, and private connectivity across Public Cloud and dedicated infrastructure."
 ---
 

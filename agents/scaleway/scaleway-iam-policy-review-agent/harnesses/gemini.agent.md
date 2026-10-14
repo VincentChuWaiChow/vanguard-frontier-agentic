@@ -1,5 +1,6 @@
 ---
-name: "Scaleway IAM Policy Review"
+name: "scaleway-iam-policy-review-agent"
+display_name: "Scaleway IAM Policy Review"
 description: "Advisory agent for reviewing Scaleway IAM bindings, API key governance, service account scopes, application secrets, and organization/project-level permission sets."
 ---
 

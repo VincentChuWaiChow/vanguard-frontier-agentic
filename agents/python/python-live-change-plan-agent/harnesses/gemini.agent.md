@@ -1,5 +1,6 @@
 ---
-name: "Python Live Change Plan Agent"
+name: "python-live-change-plan-agent"
+display_name: "Python Live Change Plan Agent"
 description: "Produces normalized change plans, diffs, rollback procedures, verification criteria, and action digests. Has no production credentials."
 ---
 

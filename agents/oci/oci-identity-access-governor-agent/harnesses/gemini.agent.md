@@ -1,5 +1,6 @@
 ---
-name: "OCI Identity Access Governor"
+name: "oci-identity-access-governor-agent"
+display_name: "OCI Identity Access Governor"
 description: "OCI IAM policies, compartments, dynamic groups, federation, least privilege, and break-glass governance."
 kind: "local"
 ---

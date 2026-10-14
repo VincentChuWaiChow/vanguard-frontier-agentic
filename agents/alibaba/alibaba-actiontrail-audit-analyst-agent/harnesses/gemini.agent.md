@@ -1,5 +1,6 @@
 ---
-name: "Alibaba Cloud ActionTrail Audit Analyst"
+name: "alibaba-actiontrail-audit-analyst-agent"
+display_name: "Alibaba Cloud ActionTrail Audit Analyst"
 description: "Query ActionTrail events for governance audit, build SLS-based compliance evidence reports, and detect anomalous API access patterns."
 ---
 

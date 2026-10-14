@@ -1403,7 +1403,8 @@ def build():
 
         write(os.path.join(hdir, "claude-code.agent.md"), f"---\nname: \"{ag['name']}\"\ndescription: \"{ag['summary']}\"\n---\n\n{body}\n")
         write(os.path.join(hdir, "cursor.agent.md"), f"---\nname: \"{ag['name']}\"\ndescription: \"{ag['summary']}\"\n---\n\n{body}\n")
-        write(os.path.join(hdir, "gemini.agent.md"), f"---\nname: \"{ag['name']}\"\ndescription: \"{ag['summary']}\"\n---\n\n{body}\n")
+        # Gemini CLI requires a slug `name`; see gemini_harness in gen_python_agents.py.
+        write(os.path.join(hdir, "gemini.agent.md"), f"---\nname: \"{aid}-agent\"\ndisplay_name: \"{ag['name']}\"\ndescription: \"{ag['summary']}\"\n---\n\n{body}\n")
         write(os.path.join(hdir, "kiro-ide.agent.md"), f"---\nname: \"{ag['name']}\"\ndescription: \"{ag['summary']}\"\n---\n\n{body}\n")
         write(os.path.join(hdir, "copilot.agent.md"), HARNESS_TEMPLATE_COPILOT.format(name=ag["name"], summary=ag["summary"], body=body))
         write(os.path.join(hdir, "codex.toml"), codex_toml(ag))

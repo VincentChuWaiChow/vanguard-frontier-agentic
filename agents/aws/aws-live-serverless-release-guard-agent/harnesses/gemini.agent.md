@@ -1,5 +1,6 @@
 ---
-name: "AWS Live Serverless Release Guard"
+name: "aws-live-serverless-release-guard-agent"
+display_name: "AWS Live Serverless Release Guard"
 description: "Guard live Lambda and serverless release actions with alias targeting, canary or linear rollout discipline, alarms, rollback hooks, and explicit production approval."
 ---
 

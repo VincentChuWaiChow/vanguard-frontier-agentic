@@ -1,5 +1,6 @@
 ---
-name: "OCI WAF Reliability Review"
+name: "oci-waf-reliability-review-agent"
+display_name: "OCI WAF Reliability Review"
 description: "Assess OCI workload reliability posture across AD/FD redundancy, load balancing, database HA, backup and replication, and DR orchestration with OCI Full Stack Disaster Recovery."
 ---
 

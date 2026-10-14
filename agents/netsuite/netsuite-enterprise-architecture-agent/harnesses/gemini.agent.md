@@ -1,5 +1,6 @@
 ---
-name: "NetSuite Enterprise Architecture Agent"
+name: "netsuite-enterprise-architecture-agent"
+display_name: "NetSuite Enterprise Architecture Agent"
 description: "Reviews NetSuite enterprise architecture: SuiteCloud platform design, customization strategy, integration topology, OneWorld multi-subsidiary layout, SDF project structure, and technology-stack decisions for Fortune-50-scale deployments. Static review only, never mutates a NetSuite account."
 ---
 

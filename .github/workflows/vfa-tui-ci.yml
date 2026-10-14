@@ -1,6 +1,6 @@
 name: vfa-tui CI
 
-# Pre-release GATE for the vfa-tui crate. Runs on PRs and on develop pushes.
+# Pre-release GATE for the vfa-tui crate. Runs on PRs and on master and develop pushes.
 # Proves the crate is releasable — formatting, lints, tests, license/advisory
 # scans, and a publish dry-run — WITHOUT publishing anything (no registry token,
 # no upload). Real stable releases happen only on master via vfa-tui-release.yml
@@ -12,11 +12,23 @@ on:
     paths:
       - 'tools/vfa-tui/**'
       - '.github/workflows/vfa-tui-ci.yml'
+      # The TUI deserialises catalog/*.json with strict, closed enums (e.g.
+      # models::provider::Provider).  A catalog- or schema-only change can
+      # therefore break `cargo test` without touching tools/vfa-tui, so those
+      # paths must trigger this gate too.
+      - 'catalog/**'
+      - 'schemas/**'
   push:
-    branches: [develop]
+    # Both release branches: master (stable) and develop (alpha, per
+    # .releaserc.js). This once listened on develop alone, so the gate never ran
+    # on a default-branch push; dropping develop instead would let a push there
+    # reach the alpha channel ungated.
+    branches: [master, develop]
     paths:
       - 'tools/vfa-tui/**'
       - '.github/workflows/vfa-tui-ci.yml'
+      - 'catalog/**'
+      - 'schemas/**'
 
 permissions:
   contents: read

@@ -1,5 +1,6 @@
 ---
-name: "Visual Regression Engineering Agent"
+name: "visual-regression-agent"
+display_name: "Visual Regression Engineering Agent"
 description: "Reviews pixel-diff and DOM-snapshot visual regression pipelines (Playwright screenshot assertions, Chromatic/Storybook test-runner) to stop unintended UI drift from shipping past a too-loose or missing visual gate."
 kind: "local"
 ---

@@ -1,6 +1,6 @@
 name = "salesforce_data_architecture_agent"
 description = "Specialized subagent for salesforce-data-architecture. Adversarial data-model and data-management reviewer for Salesforce — master data, system of record, data quality, deduplication, archival, retention, backup, large data volumes, and data classification. Treats Data 360 and Data Cloud naming as drift-prone and requires verification."
-model = "gpt-5.5"
+model = "gpt-6-sol"
 model_reasoning_effort = "high"
 sandbox_mode = "read-only"
 

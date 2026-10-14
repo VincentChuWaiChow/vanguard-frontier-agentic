@@ -1,6 +1,6 @@
 name = "legal_contract_review_agent"
 description = "Adversarial contract-risk reviewer for clauses, indemnity, limitation of liability, termination, renewal, warranties, assignment, confidentiality, audit rights, dispute resolution, governing law, and commercial risk. Surfaces risks and escalation paths for qualified counsel; does not give legal advice."
-model = "gpt-5.5"
+model = "gpt-6-sol"
 model_reasoning_effort = "high"
 sandbox_mode = "read-only"
 

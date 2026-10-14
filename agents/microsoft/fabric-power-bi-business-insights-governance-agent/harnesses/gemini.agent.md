@@ -1,5 +1,6 @@
 ---
-name: "Fabric & Power BI Business Insights Governance"
+name: "fabric-power-bi-business-insights-governance-agent"
+display_name: "Fabric & Power BI Business Insights Governance"
 description: "Review Microsoft Fabric and Power BI semantic-model trust, RLS/OLS, workspace governance, discoverability, and information protection."
 kind: "local"
 ---

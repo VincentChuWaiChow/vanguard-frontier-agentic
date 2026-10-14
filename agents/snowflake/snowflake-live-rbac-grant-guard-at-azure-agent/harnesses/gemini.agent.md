@@ -1,5 +1,6 @@
 ---
-name: "Snowflake Live RBAC Grant Guard at Azure"
+name: "snowflake-live-rbac-grant-guard-at-azure-agent"
+display_name: "Snowflake Live RBAC Grant Guard at Azure"
 description: "Mutating-runtime live guard for Snowflake RBAC privilege management on Azure. Executes exactly ONE GRANT or REVOKE of a single privilege on a single securable to a single custom role — gated by explicit written human approval, dry-run preflight (SHOW GRANTS prior state), and a named rollback owner."
 ---
 

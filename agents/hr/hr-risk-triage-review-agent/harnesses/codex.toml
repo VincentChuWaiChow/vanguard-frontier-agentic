@@ -1,6 +1,6 @@
 name = "hr_risk_triage_review_agent"
 description = "Specialized subagent for hr-risk-triage-review. Adversarial HR and employment-risk triage reviewer for terminations, discipline, accommodations, wage/hour, discrimination, harassment, retaliation, layoffs, and HR policy exceptions — surfaces risks, evidence gaps, and escalation paths for employment counsel. Does not give legal or HR advice."
-model = "gpt-5.5"
+model = "gpt-6-sol"
 model_reasoning_effort = "high"
 sandbox_mode = "read-only"
 

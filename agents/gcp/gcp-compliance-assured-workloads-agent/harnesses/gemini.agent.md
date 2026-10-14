@@ -1,5 +1,6 @@
 ---
-name: "GCP Compliance Assured Workloads"
+name: "gcp-compliance-assured-workloads-agent"
+display_name: "GCP Compliance Assured Workloads"
 description: "Configure Assured Workloads for regulated workloads (FedRAMP High/Moderate, HIPAA, PCI-DSS, ITAR, IL4/IL5), audit controls implementation, and gather compliance evidence using Security Command Center and Asset Inventory."
 ---
 

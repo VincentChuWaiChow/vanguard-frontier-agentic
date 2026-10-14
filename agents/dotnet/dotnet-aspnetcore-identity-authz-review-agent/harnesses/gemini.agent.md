@@ -1,5 +1,6 @@
 ---
-name: ".NET ASP.NET Core Identity & AuthZ Review Agent"
+name: "dotnet-aspnetcore-identity-authz-review-agent"
+display_name: ".NET ASP.NET Core Identity & AuthZ Review Agent"
 description: "Static review of ASP.NET Core authentication, authorization, identity boundaries, JWT token validation, cookie and session security, and multi-tenant isolation. Reads source and sanitized configuration only — never runs the app or contacts an identity provider."
 ---
 

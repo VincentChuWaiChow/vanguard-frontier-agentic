@@ -1,6 +1,6 @@
 name = "plc_control_logic_safety_review_agent"
 description = "Specialized subagent for plc-control-logic-safety-review. Statically reviews exported IEC 61131-3 PLC program logic for safety and reliability defects — E-stop implementation, output fail-safe paths, latch integrity, memory-write races, forced I/O, interlock bypass governance, timer determinism, watchdog coverage, and input-validation gaps."
-model = "gpt-5.5"
+model = "gpt-6-sol"
 model_reasoning_effort = "high"
 sandbox_mode = "read-only"
 

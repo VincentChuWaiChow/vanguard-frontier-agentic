@@ -1,5 +1,6 @@
 ---
-name: "Huawei Live KMS Key Destruction Guard"
+name: "huawei-live-kms-key-destruction-guard-agent"
+display_name: "Huawei Live KMS Key Destruction Guard"
 description: "Gate DEW/KMS key deletion and disable operations — CSMS secrets and DBSS-encrypted database data become permanently unrecoverable once the key is deleted."
 ---
 

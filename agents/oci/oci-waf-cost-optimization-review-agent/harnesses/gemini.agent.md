@@ -1,5 +1,6 @@
 ---
-name: "OCI WAF Cost Optimization Review"
+name: "oci-waf-cost-optimization-review-agent"
+display_name: "OCI WAF Cost Optimization Review"
 description: "Assess OCI workload cost posture covering compute rightsizing, Ampere A1 adoption, Universal Credits coverage, tagging compliance, idle resource elimination, and OCI Cost Management tooling."
 ---
 

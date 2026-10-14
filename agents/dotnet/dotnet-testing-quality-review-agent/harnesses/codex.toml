@@ -1,6 +1,6 @@
 name = "dotnet_testing_quality_review_agent"
 description = "Specialized subagent for dotnet-testing-quality-review. Statically reviews .NET test suites — assertion-free and tautological tests, over-mocking, coverage theater, weak isolation, flaky patterns, and missing negative or security tests across xUnit, NUnit, and MSTest."
-model = "gpt-5.5"
+model = "gpt-6-sol"
 model_reasoning_effort = "high"
 sandbox_mode = "read-only"
 

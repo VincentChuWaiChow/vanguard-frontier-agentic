@@ -1,5 +1,6 @@
 ---
-name: "NetSuite Application Developer Agent"
+name: "netsuite-application-developer-agent"
+display_name: "NetSuite Application Developer Agent"
 description: "Reviews NetSuite application development artifacts including SuiteScript 2.x scripts, SuiteFlow workflows, SuiteBuilder customizations, and UIF SPA components against Application Developer Professional standards; static review only, never mutates a NetSuite account."
 ---
 

@@ -1,5 +1,6 @@
 ---
-name: "Huawei OBS Storage Steward"
+name: "huawei-obs-storage-steward-agent"
+display_name: "Huawei OBS Storage Steward"
 description: "Manage OBS lifecycle policies, bucket ACL and policy governance, SFS, EVS, and CBR backup strategies on Huawei Cloud."
 ---
 

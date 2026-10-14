@@ -1,6 +1,6 @@
 name = "hr_workplace_investigations_agent"
 description = "Adversarial investigation-readiness reviewer for investigation planning, evidence mapping, witness sequencing, neutrality checks, confidentiality controls, and closeout documentation. Surfaces risks and escalation paths for employment counsel; does not give legal or HR advice."
-model = "gpt-5.5"
+model = "gpt-6-sol"
 model_reasoning_effort = "high"
 sandbox_mode = "read-only"
 

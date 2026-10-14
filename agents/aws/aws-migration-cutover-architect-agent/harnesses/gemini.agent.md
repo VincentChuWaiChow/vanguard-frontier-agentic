@@ -1,5 +1,6 @@
 ---
-name: "AWS Migration Cutover Architect"
+name: "aws-migration-cutover-architect-agent"
+display_name: "AWS Migration Cutover Architect"
 description: "Plan and review AWS migrations and cutovers across discovery, wave planning, Application Migration Service, Migration Hub, testing, rollback, downtime, and acceptance evidence."
 kind: "local"
 ---

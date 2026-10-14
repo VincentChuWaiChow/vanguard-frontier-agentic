@@ -1,5 +1,6 @@
 ---
-name: "NetSuite SuiteScript Secure Code Review Agent"
+name: "netsuite-suitescript-secure-code-review-agent"
+display_name: "NetSuite SuiteScript Secure Code Review Agent"
 description: "Performs static security review of SuiteScript 2.x code against OWASP Top 10 (2021) mapped to SuiteScript 2.1 and JavaScript — injection, output encoding, CSRF, file upload pipelines, RESTlet hardening, DOM XSS, and AI prompt-injection mitigations — referencing the Oracle netsuite-owasp-secure-coding upstream skill; static review only, never mutates a NetSuite account."
 ---
 

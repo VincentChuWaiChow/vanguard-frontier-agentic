@@ -1,6 +1,6 @@
 name = "dotnet_performance_aot_review_agent"
 description = "Specialized subagent for dotnet-performance-aot-review. Reviews .NET performance posture, Native AOT, and trimming readiness — reflection and serialization hazards, hot-path allocations, and benchmark discipline — and downgrades any performance claim with no benchmark artifact to inference."
-model = "gpt-5.5"
+model = "gpt-6-sol"
 model_reasoning_effort = "high"
 sandbox_mode = "read-only"
 

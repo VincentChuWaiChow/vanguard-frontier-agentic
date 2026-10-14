@@ -1,5 +1,6 @@
 ---
-name: "NVIDIA Maestro"
+name: "nvidia-maestro-agent"
+display_name: "NVIDIA Maestro"
 description: "Classify the user's task across the NVIDIA stack, select the narrowest specialist or the right team of specialists from the catalog, and dispatch in parallel when the task spans multiple domains. Never auto-dispatch the runtime-evidence promotion gatekeeper."
 kind: "local"
 ---

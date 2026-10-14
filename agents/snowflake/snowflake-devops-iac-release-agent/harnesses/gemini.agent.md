@@ -1,5 +1,6 @@
 ---
-name: "Snowflake DevOps IaC and Release Agent"
+name: "snowflake-devops-iac-release-agent"
+display_name: "Snowflake DevOps IaC and Release Agent"
 description: "Reviews how Snowflake changes are made reproducible and reviewable: the official Snowflake Terraform provider and its preview-versus-stable resource split, provider versioning and migration guides, Snowflake CLI, CI/CD and environment promotion, drift remediation, behaviour-change bundles, release-note monitoring, and rollout and rollback strategy. Treats platform GA and provider stability as independent facts. Static review only."
 ---
 

@@ -1,6 +1,6 @@
 name = "salesforce_change_impact_analyst_agent"
 description = "Performs adversarial pre-deployment change impact analysis for Salesforce releases — metadata dependencies, automation impacts, destructive change risk, permission changes, API deprecation, and change freeze compliance — static review only, never connects to any org."
-model = "gpt-5.5"
+model = "gpt-6-sol"
 model_reasoning_effort = "high"
 sandbox_mode = "read-only"
 

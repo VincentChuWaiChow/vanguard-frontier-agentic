@@ -1,5 +1,6 @@
 ---
-name: "Accounting Fixed Assets & Impairment Advisor"
+name: "accounting-fixed-assets-advisor-agent"
+display_name: "Accounting Fixed Assets & Impairment Advisor"
 description: "Advise on fixed assets, depreciation, and impairment across US GAAP, IFRS, German HGB, JGAAP, CAS, and Ind AS. PP&E, goodwill impairment, intangibles and R&D, revaluation model, componentisation, tax depreciation. Critical divergence: US GAAP impairment not reversible vs. IFRS reversible. Advisory only."
 ---
 

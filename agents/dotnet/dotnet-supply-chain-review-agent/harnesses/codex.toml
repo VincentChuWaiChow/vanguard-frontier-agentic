@@ -1,6 +1,6 @@
 name = "dotnet_supply_chain_review_agent"
 description = "Specialized subagent for dotnet-supply-chain-review. Reviews .NET CI/CD and NuGet supply-chain integrity — SDK pinning, package version pinning and lock files, feed trust, fork-PR secret exposure, vulnerability scanning, and build reproducibility — by reading workflow and project configuration only."
-model = "gpt-5.5"
+model = "gpt-6-sol"
 model_reasoning_effort = "high"
 sandbox_mode = "read-only"
 

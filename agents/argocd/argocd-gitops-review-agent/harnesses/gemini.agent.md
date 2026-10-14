@@ -1,5 +1,6 @@
 ---
-name: "Argo CD GitOps Review"
+name: "argocd-gitops-review-agent"
+display_name: "Argo CD GitOps Review"
 description: "Review Argo CD Application, AppProject, ApplicationSet, sync-window, RBAC (argocd-rbac-cm), and sync impersonation configuration for blast-radius containment, least-privilege sync identity, and safe rollout posture."
 ---
 

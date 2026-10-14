@@ -1,5 +1,6 @@
 ---
-name: "Python Data Pipeline Reliability Agent"
+name: "python-data-pipeline-reliability-agent"
+display_name: "Python Data Pipeline Reliability Agent"
 description: "Static review of Python data-pipeline reliability (Airflow, Dagster, Prefect, PySpark): task idempotency and safe backfills, partitioning, schema evolution and data contracts, checkpointing, late/duplicate data, and data-quality gates. Reads DAG/pipeline source and config only; never runs a pipeline or backfill."
 ---
 

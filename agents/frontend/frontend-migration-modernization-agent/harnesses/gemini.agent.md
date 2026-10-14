@@ -1,5 +1,6 @@
 ---
-name: "Frontend Migration & Modernization"
+name: "frontend-migration-modernization-agent"
+display_name: "Frontend Migration & Modernization"
 description: "Plans and de-risks large-scale frontend migrations (legacy jQuery/AngularJS/Backbone to React/Vue/Svelte, monolith-to-microfrontend, CRA/Webpack to Vite, framework major-version upgrades) with strangler-fig sequencing, rollback gates, and measurable business-risk reduction instead of rewrite-for-its-own-sake."
 kind: "local"
 ---

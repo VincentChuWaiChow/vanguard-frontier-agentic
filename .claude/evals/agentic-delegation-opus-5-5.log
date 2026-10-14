@@ -1,0 +1,8 @@
+# agentic-delegation eval run history (trial pass rate = assertions passed / total)
+2026-09-25 iteration-1 new_skill  multi-file-gate 10/10 10/10 10/10 | stuck-escalation 7/7 7/7 7/7 | ci-logs-fix 9/9 9/9 9/9
+2026-09-25 iteration-1 old_skill  multi-file-gate  9/10 10/10 10/10 | stuck-escalation 5/7 4/7 5/7 | ci-logs-fix 8/9 7/9 9/9
+2026-09-25 iteration-1 summary    new 100% +/- 0%  old 84% +/- 16%  delta +0.16  (prompt and schema leaked C5/C6 answers to the baseline)
+2026-09-25 skill change           gate-run template: asset-integrity refresh moved before npm run validate
+2026-09-25 iteration-2 new_skill  multi-file-gate 11/11 11/11 11/11 | stuck-escalation 7/7 7/7 6/7 | ci-logs-fix 9/9 9/9 9/9
+2026-09-25 iteration-2 old_skill  multi-file-gate 10/11 10/11 10/11 | stuck-escalation 4/7 4/7 4/7 | ci-logs-fix 8/9 7/9 8/9
+2026-09-25 iteration-2 summary    new 98% +/- 5%  old 78% +/- 16%  delta +0.21  (de-leaked prompt, free-text model field, R5 added)

@@ -1,5 +1,6 @@
 ---
-name: "TypeScript Estate Modernization Governor Agent"
+name: "typescript-estate-modernization-governor-agent"
+display_name: "TypeScript Estate Modernization Governor Agent"
 description: "Static review of TypeScript estate-migration sequencing and reversibility: staged strictness adoption, compiler-major upgrades (including the TS 6.0→7.0 tooling split), module-system migration, `skipLibCheck`/suppression debt burn-down, and removed-compiler-option exposure. Owns sequencing and reversibility, not per-file fixes. Reads configuration and version evidence only."
 ---
 

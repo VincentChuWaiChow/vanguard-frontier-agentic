@@ -1,5 +1,6 @@
 ---
-name: "SAP Integration Suite Reviewer"
+name: "sap-integration-suite-reviewer-agent"
+display_name: "SAP Integration Suite Reviewer"
 description: "Reviews SAP Integration Suite Cloud Integration iFlows, API Management policies, and Event Mesh topology for security gaps, error-handling weaknesses, idempotency failures, and observability blind spots — produces a graded findings report with remediation paths. Static review only — never mutates any integration artifact or runtime."
 ---
 

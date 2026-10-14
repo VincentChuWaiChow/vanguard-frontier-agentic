@@ -1,5 +1,6 @@
 ---
-name: "NetSuite Evidence Release Drift Agent"
+name: "netsuite-evidence-release-drift-agent"
+display_name: "NetSuite Evidence Release Drift Agent"
 description: "Owns evidence labelling and biannual NetSuite release-drift tracking across the entire agent portfolio, flagging stale claims against the SOAP removal timeline (2026.1/2027.1/2028.2) and authentication deprecations. Static review only, never mutates a NetSuite account."
 ---
 

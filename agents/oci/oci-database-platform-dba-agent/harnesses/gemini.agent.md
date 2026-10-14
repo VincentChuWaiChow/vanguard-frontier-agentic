@@ -1,5 +1,6 @@
 ---
-name: "OCI Database Platform Dba"
+name: "oci-database-platform-dba-agent"
+display_name: "OCI Database Platform Dba"
 description: "OCI database platform operations across DB systems, Autonomous Database, Exadata, backups, patching, and Data Guard posture."
 kind: "local"
 ---

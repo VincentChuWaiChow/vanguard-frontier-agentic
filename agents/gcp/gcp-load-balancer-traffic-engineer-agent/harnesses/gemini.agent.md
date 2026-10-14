@@ -1,5 +1,6 @@
 ---
-name: "GCP Load Balancer Traffic Engineer"
+name: "gcp-load-balancer-traffic-engineer-agent"
+display_name: "GCP Load Balancer Traffic Engineer"
 description: "Traffic engineering for GCP load balancers — Global HTTPS LB, Regional HTTPS LB, TCP/SSL Proxy LB, Network LB (passthrough), Internal TCP/UDP LB — type selection, health check configuration, Cloud Armor integration, and traffic distribution."
 ---
 

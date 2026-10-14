@@ -1,5 +1,6 @@
 ---
-name: "OCI Compute Instance Agent Operator"
+name: "oci-compute-instance-agent-operator-agent"
+display_name: "OCI Compute Instance Agent Operator"
 description: "Instance Agent plugins, command execution safety, run-command evidence, and read-only diagnostics before mutation."
 kind: "local"
 ---

@@ -1,5 +1,6 @@
 ---
-name: "M365 Maestro"
+name: "m365-maestro-agent"
+display_name: "M365 Maestro"
 description: "Classify the user's Microsoft 365 task, select the narrowest M365 specialist or the right team of specialists from the catalog, and dispatch in parallel when the task spans multiple domains. Never auto-dispatch live-guard agents."
 kind: "local"
 ---

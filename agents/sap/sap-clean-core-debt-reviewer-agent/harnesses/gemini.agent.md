@@ -1,5 +1,6 @@
 ---
-name: "SAP Clean-Core Debt Reviewer"
+name: "sap-clean-core-debt-reviewer-agent"
+display_name: "SAP Clean-Core Debt Reviewer"
 description: "Reviews SAP custom code and modification debt against Clean Core principles, produces a graded findings report, and maps each violation to a remediation path using released APIs, RAP/ABAP Cloud, side-by-side extensibility, or SAP Build. Static review only — never mutates anything."
 ---
 

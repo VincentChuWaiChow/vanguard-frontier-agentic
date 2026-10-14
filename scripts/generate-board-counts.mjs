@@ -45,7 +45,7 @@
  * read-only-runtime, or untiered. Subtracting would under-count the specialists
  * on every board whose router is not static-review.
  *
- * Global keys: agents, skills, providers, roles, gates, maestros, rules, mcp.
+ * Global keys: agents, skills, providers, roles, gates, maestros, scenarios, rules, mcp.
  *
  * Unknown providers and unknown keys are hard errors: a typo in a marker must
  * fail the gate rather than silently keep a stale number.
@@ -189,6 +189,21 @@ const maestroCount = fs.existsSync(fixturesDir)
   ? fs.readdirSync(fixturesDir).filter((d) => d.endsWith("-maestro-routing")).length
   : 0;
 
+// Scenarios = what validate-maestro-routing.py counts: every inputs/*.json in a
+// *-maestro-routing directory that has a taxonomy.json (it skips the rest).
+const scenarioCount = fs.existsSync(fixturesDir)
+  ? fs
+      .readdirSync(fixturesDir)
+      .filter((d) => d.endsWith("-maestro-routing"))
+      .filter((d) => fs.existsSync(path.join(fixturesDir, d, "taxonomy.json")))
+      .map((d) => path.join(fixturesDir, d, "inputs"))
+      .filter((dir) => fs.existsSync(dir))
+      .reduce(
+        (sum, dir) => sum + fs.readdirSync(dir).filter((f) => f.endsWith(".json")).length,
+        0,
+      )
+  : 0;
+
 const globals = {
   agents: agentMeta.length,
   skills: skillMeta.length,
@@ -196,6 +211,7 @@ const globals = {
   roles: jsonLen("catalog/install-roles.json", (d) => d.roles ?? d),
   gates: gateCount,
   maestros: maestroCount,
+  scenarios: scenarioCount,
   rules: jsonLen("catalog/rules.json"),
   mcp: jsonLen("catalog/mcp-references.json"),
 };

@@ -1,5 +1,6 @@
 ---
-name: "Accounting Tax Provision Advisor"
+name: "accounting-tax-provision-advisor-agent"
+display_name: "Accounting Tax Provision Advisor"
 description: "Advise on corporate income tax provision under ASC 740 (US GAAP) and IAS 12 (IFRS). Covers current vs. deferred tax, temporary and permanent differences, valuation allowances, uncertain tax positions (FIN 48 two-step vs. IFRIC 23), Pillar Two (IAS 12.4A exception vs. ASC 740 no-exception), ETR reconciliation, and local GAAP variants (HGB, JGAAP, CAS 18, Ind AS 12). Advisory only."
 ---
 

@@ -1,5 +1,6 @@
 ---
-name: "Web Platform Foundation"
+name: "web-platform-foundation-agent"
+display_name: "Web Platform Foundation"
 description: "Cross-cutting review authority for HTML/CSS/JS/TS platform-layer decisions that don't fit a single narrow specialist — new-project scaffolding choices, framework-vs-platform tradeoffs, and browser-support baselines that gate every other frontend agent in this catalog."
 kind: "local"
 ---

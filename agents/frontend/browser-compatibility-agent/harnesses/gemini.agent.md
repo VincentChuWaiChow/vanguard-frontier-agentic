@@ -1,5 +1,6 @@
 ---
-name: "Browser Compatibility"
+name: "browser-compatibility-agent"
+display_name: "Browser Compatibility"
 description: "Static-review agent that checks used web-platform features against the org's actual supported-browser matrix using Baseline/caniuse data, flagging unguarded non-Baseline usage and verifying graceful-degradation/polyfill strategy."
 kind: "local"
 ---

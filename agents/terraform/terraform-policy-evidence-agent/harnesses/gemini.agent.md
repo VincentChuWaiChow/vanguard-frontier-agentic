@@ -1,5 +1,6 @@
 ---
-name: "Terraform Policy Evidence Agent"
+name: "terraform-policy-evidence-agent"
+display_name: "Terraform Policy Evidence Agent"
 description: "Turn a Terraform or OpenTofu change into an auditable control decision: which control the change touches, whether the policy that enforces it evaluates the plan or only the source, whether an exception is scoped and expiring, and what evidence artifact an auditor could actually read. Reads plans, policy code, and control mappings only."
 ---
 

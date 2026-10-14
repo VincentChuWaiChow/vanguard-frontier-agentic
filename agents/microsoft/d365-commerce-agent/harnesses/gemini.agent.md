@@ -1,5 +1,6 @@
 ---
-name: "D365 Commerce"
+name: "d365-commerce-agent"
+display_name: "D365 Commerce"
 description: "Review Dynamics 365 Commerce omnichannel retail: Store Commerce POS, channels, pricing, discounts, Commerce Scale Unit, and assortments."
 kind: "local"
 ---

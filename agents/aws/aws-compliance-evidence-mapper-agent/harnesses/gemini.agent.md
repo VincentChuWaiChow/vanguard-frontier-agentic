@@ -1,5 +1,6 @@
 ---
-name: "AWS Compliance Evidence Mapper"
+name: "aws-compliance-evidence-mapper-agent"
+display_name: "AWS Compliance Evidence Mapper"
 description: "Map AWS controls, Security Hub findings, AWS Config conformance packs, Audit Manager assessments, evidence folders, manual evidence, and report gaps for audit readiness."
 kind: "local"
 ---

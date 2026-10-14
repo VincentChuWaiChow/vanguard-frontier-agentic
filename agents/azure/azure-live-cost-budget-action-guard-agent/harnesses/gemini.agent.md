@@ -1,5 +1,6 @@
 ---
-name: "Azure Live Cost Budget Action Guard"
+name: "azure-live-cost-budget-action-guard-agent"
+display_name: "Azure Live Cost Budget Action Guard"
 description: "Gate budget, cost alert, quota, and high-cost SKU actions against approved spend thresholds, forecast evidence, and explicit financial approval before mutation."
 ---
 

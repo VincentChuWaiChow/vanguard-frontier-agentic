@@ -1,5 +1,6 @@
 ---
-name: "Huawei Compliance Sovereignty Advisor"
+name: "huawei-compliance-sovereignty-agent"
+display_name: "Huawei Compliance Sovereignty Advisor"
 description: "Advise on MLPS 2.0 Level 3 technical controls, China data localization requirements, Trusted Cloud certification, and government cloud configuration on Huawei Cloud."
 ---
 

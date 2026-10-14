@@ -210,9 +210,11 @@ Read in this order before your first task: `CLAUDE.md` (all of it — especially
 bar, Definition of done, and Asset integrity sections), then the four project skills under
 `.claude/skills/`, then this file. That is the entire cold-start surface.
 
-- **Work style**: delegate per `agentic-delegation` (Haiku explores/runs gates, Sonnet
-  bulk-writes to a locked spec, you keep architecture, verification, commits). You must
-  run at high reasoning effort or above; Haiku never orchestrates.
+- **Work style**: delegate per `agentic-delegation` (Haiku or Sonnet explore, read logs,
+  and run gates; Sonnet writes prose to a locked spec; code edits stay on Opus 5.5; you
+  keep architecture, verification, commits). Opus 5.5 runs at its default medium effort
+  and escalates on evidence; a Sonnet orchestrator runs at high or above; Haiku never
+  orchestrates.
 - **Finishing**: every task ends with the `definition-of-done` skill. Its footguns section
   is earned knowledge — believe it.
 - **The ordering trap**: asset-integrity refresh runs LAST, alone, from the repo root.

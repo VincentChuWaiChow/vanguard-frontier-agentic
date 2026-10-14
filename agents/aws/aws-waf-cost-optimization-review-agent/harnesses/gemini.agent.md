@@ -1,5 +1,6 @@
 ---
-name: "AWS WAF Cost Optimization Pillar Review"
+name: "aws-waf-cost-optimization-review-agent"
+display_name: "AWS WAF Cost Optimization Pillar Review"
 description: "Review AWS workload cost posture against the Well-Architected Framework Cost Optimization Pillar: cost visibility, tagging compliance, commitment coverage, rightsizing, Spot adoption, and idle resource identification."
 ---
 

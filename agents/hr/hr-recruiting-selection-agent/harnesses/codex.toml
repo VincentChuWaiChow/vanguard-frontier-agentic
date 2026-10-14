@@ -1,6 +1,6 @@
 name = "hr_recruiting_selection_agent"
 description = "Adversarial recruiting and selection reviewer for recruiting workflows, job descriptions, selection criteria, interview structure, candidate communications, assessment fairness, and adverse-impact risk. Surfaces risks and escalation paths for employment counsel; does not give legal or HR advice."
-model = "gpt-5.5"
+model = "gpt-6-sol"
 model_reasoning_effort = "high"
 sandbox_mode = "read-only"
 

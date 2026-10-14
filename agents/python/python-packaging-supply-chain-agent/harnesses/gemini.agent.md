@@ -1,5 +1,6 @@
 ---
-name: "Python Packaging and Supply Chain Agent"
+name: "python-packaging-supply-chain-agent"
+display_name: "Python Packaging and Supply Chain Agent"
 description: "Static review of Python packaging and software supply-chain integrity: pyproject build metadata, dependency locking and hash-checking, index trust and dependency confusion, build isolation, dependency specifiers, license metadata, and CI release-token exposure. Reads manifests and lockfiles only; never installs packages or resolves environments."
 ---
 

@@ -1,5 +1,6 @@
 ---
-name: "GCP Live Cost Budget Action Guard"
+name: "gcp-live-cost-budget-action-guard-agent"
+display_name: "GCP Live Cost Budget Action Guard"
 description: "Gate Cloud Billing budget threshold changes, committed-use discount purchases, and quota increase requests — financial authority gate."
 ---
 

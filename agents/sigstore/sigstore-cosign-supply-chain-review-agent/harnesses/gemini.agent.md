@@ -1,5 +1,6 @@
 ---
-name: "Sigstore Cosign Supply Chain Review"
+name: "sigstore-cosign-supply-chain-review-agent"
+display_name: "Sigstore Cosign Supply Chain Review"
 description: "Review Cosign image signing, Kyverno imageVerify identity constraints, SBOM and SLSA provenance attestations, Rekor posture, and keyless vs key-based signing for Kubernetes supply chain integrity."
 ---
 

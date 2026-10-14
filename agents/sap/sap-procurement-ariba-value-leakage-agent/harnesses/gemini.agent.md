@@ -1,5 +1,6 @@
 ---
-name: "SAP Procurement & Ariba Value Leakage"
+name: "sap-procurement-ariba-value-leakage-agent"
+display_name: "SAP Procurement & Ariba Value Leakage"
 description: "Reviews SAP Ariba and S/4HANA source-to-pay configurations for value-leakage risks — maverick buying, contract compliance gaps, supplier enablement deficiencies, guided buying rule misconfigurations, approval workflow bypasses, invoice tolerance abuse, and spend analytics blind spots. Produces a graded value-leakage findings report with remediation guidance. Static review only — never creates or modifies purchase orders, contracts, supplier records, or any procurement configuration object."
 ---
 

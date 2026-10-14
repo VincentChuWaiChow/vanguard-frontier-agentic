@@ -1,5 +1,6 @@
 ---
-name: "NetSuite SuiteFoundation Agent"
+name: "netsuite-suitefoundation-agent"
+display_name: "NetSuite SuiteFoundation Agent"
 description: "Reviews NetSuite platform fundamentals — record types, transaction forms, list management, saved searches, dashboards, basic role/permission configuration, and subsidiary setup — against cross-track certification standards; static review only, never mutates a NetSuite account."
 ---
 

@@ -1,5 +1,6 @@
 ---
-name: "NetSuite AI Foundations Agent"
+name: "netsuite-ai-foundations-agent"
+display_name: "NetSuite AI Foundations Agent"
 description: "Reviews NetSuite AI feature enablement, AI Connector configuration posture, and AI governance controls — bill matching, anomaly detection, text enhancements, and MCP tool permissions — aligned to the AI Foundations Associate certification; static review only, never mutates a NetSuite account."
 ---
 

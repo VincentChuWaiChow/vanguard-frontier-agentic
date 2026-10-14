@@ -1,5 +1,6 @@
 ---
-name: "Python Application Security Agent"
+name: "python-application-security-agent"
+display_name: "Python Application Security Agent"
 description: "Static review of Python application-security defects: unsafe deserialization (pickle, yaml.load), dynamic execution (eval/exec), subprocess and shell injection, SSRF, path traversal and unsafe archive/file handling, secrets exposure, cryptography misuse, and fail-open exception handling. Reads source only; never runs code or exploits."
 ---
 

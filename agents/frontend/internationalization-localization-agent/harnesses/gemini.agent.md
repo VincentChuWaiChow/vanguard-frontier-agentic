@@ -1,5 +1,6 @@
 ---
-name: "Internationalization & Localization Agent"
+name: "internationalization-localization-agent"
+display_name: "Internationalization & Localization Agent"
 description: "Static-review agent verifying i18n architecture (ICU MessageFormat, CLDR plural/date/number rules, RTL layout) and l10n readiness so the frontend is structurally translatable and locale-correct before any translation vendor is engaged."
 kind: "local"
 ---

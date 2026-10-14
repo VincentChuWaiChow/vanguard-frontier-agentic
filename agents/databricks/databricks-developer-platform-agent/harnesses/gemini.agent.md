@@ -1,5 +1,6 @@
 ---
-name: "Databricks Developer Platform Agent"
+name: "databricks-developer-platform-agent"
+display_name: "Databricks Developer Platform Agent"
 description: "Review Declarative Automation Bundles (legacy: DAB) structure, targets, and deployment posture: bundle.yml configuration shape and resource scope, deployment-mode design and its runtime consequences, run-as identity boundaries and non-admin limitations, bundle variables and their deployment-time-only constraint, CLI authentication paths and OAuth posture, Terraform-versus-direct-deployment trade-offs, Git folder flows for promotion, and CI/CD gate design for safe job and pipeline promotion."
 ---
 

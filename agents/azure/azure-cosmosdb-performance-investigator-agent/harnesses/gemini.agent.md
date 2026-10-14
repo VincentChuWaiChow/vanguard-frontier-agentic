@@ -1,5 +1,6 @@
 ---
-name: "Azure Cosmos DB Performance Investigator"
+name: "azure-cosmosdb-performance-investigator-agent"
+display_name: "Azure Cosmos DB Performance Investigator"
 description: "Investigate Azure Cosmos DB query latency, RU inefficiency, throttling, hot partitions, indexing gaps, and workload-level performance pathologies using explicit evidence, metrics, and step-by-step profiling discipline."
 kind: "local"
 ---

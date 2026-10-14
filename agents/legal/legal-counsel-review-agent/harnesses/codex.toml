@@ -1,6 +1,6 @@
 name = "legal_counsel_review_agent"
 description = "Specialized subagent for legal-counsel-review. Adversarial legal-risk reviewer for contracts, privacy, regulatory, litigation, compliance, and policy-exception questions — surfaces risks, evidence gaps, decision options, and escalation paths for qualified counsel. Does not give legal advice."
-model = "gpt-5.5"
+model = "gpt-6-sol"
 model_reasoning_effort = "high"
 sandbox_mode = "read-only"
 

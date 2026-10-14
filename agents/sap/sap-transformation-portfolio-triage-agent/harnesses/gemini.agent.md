@@ -1,5 +1,6 @@
 ---
-name: "SAP Transformation Portfolio Triage"
+name: "sap-transformation-portfolio-triage-agent"
+display_name: "SAP Transformation Portfolio Triage"
 description: "Classifies and prioritises SAP transformation programmes — scope readiness, dependency mapping, wave-plan coherence, release sequencing risk, and cutover complexity. Static review only — never mutates any programme record, plan artefact, or roadmap configuration."
 ---
 

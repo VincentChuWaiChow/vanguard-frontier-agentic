@@ -50,8 +50,8 @@
           },
           "reasoning_effort": {
             "type": "string",
-            "enum": ["auto", "none", "minimal", "low", "medium", "high", "xhigh", "max"],
-            "description": "Reasoning effort for harnesses that support it (codex, claude-code today). This is the union vocabulary across harnesses; the per-harness subset (codex: none|minimal|low|medium|high|xhigh; claude-code: low|medium|high|xhigh|max; cursor: no reasoning_effort field — unsupported, not even 'none') is enforced by scripts/model-policy.mjs check against catalog/model-registry.json. 'auto' clears the field."
+            "enum": ["auto", "none", "minimal", "low", "medium", "high", "xhigh", "max", "ultra"],
+            "description": "Reasoning effort for harnesses that support it (codex, claude-code today). This is the union vocabulary across harnesses; the per-harness subset (codex: none|minimal|low|medium|high|xhigh|max|ultra, narrowed per model; claude-code: low|medium|high|xhigh|max; cursor: no reasoning_effort field — unsupported, not even 'none') is enforced by scripts/model-policy.mjs check against catalog/model-registry.json. 'auto' clears the field."
           }
         }
       }

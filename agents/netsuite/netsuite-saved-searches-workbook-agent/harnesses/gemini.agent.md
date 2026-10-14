@@ -1,5 +1,6 @@
 ---
-name: "NetSuite Saved Searches Workbook Agent"
+name: "netsuite-saved-searches-workbook-agent"
+display_name: "NetSuite Saved Searches Workbook Agent"
 description: "Reviews NetSuite saved search criteria, results configuration, SuiteAnalytics Workbook pivot and chart design, PII-in-export risk, and cross-subsidiary data leakage exposure; static review only, never mutates a NetSuite account."
 ---
 

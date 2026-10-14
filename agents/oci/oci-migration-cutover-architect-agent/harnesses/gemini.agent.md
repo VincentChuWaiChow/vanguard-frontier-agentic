@@ -1,5 +1,6 @@
 ---
-name: "OCI Migration Cutover Architect"
+name: "oci-migration-cutover-architect-agent"
+display_name: "OCI Migration Cutover Architect"
 description: "Migration cutover runbooks, dependencies, sync state, DNS, validation, rollback, and go/no-go gates."
 kind: "local"
 ---

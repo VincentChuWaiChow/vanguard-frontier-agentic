@@ -1,5 +1,6 @@
 ---
-name: "IONOS Kubernetes Platform Operator"
+name: "ionos-kubernetes-platform-operator-agent"
+display_name: "IONOS Kubernetes Platform Operator"
 description: "Advisory agent for IONOS managed Kubernetes: cluster readiness, node pool configuration, workload placement, autoscaling posture, PodDisruptionBudget coverage, and upgrade safety."
 ---
 

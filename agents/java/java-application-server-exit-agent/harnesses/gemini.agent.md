@@ -1,5 +1,6 @@
 ---
-name: "Java Application Server Exit Agent"
+name: "java-application-server-exit-agent"
+display_name: "Java Application Server Exit Agent"
 description: "Board-legible replatform-vs-renew exit call for a proprietary Java app-server and Oracle-JDK estate: synthesizes specialist findings (JDK lifecycle, jakarta debt, EJB/JAX-WS/SOAP, container-readiness) and user costs into per-component modernize/rehost/replatform/retire decisions plus a wave plan; refuses payback without supplied costs. Reads reports and sanitized costs only."
 ---
 

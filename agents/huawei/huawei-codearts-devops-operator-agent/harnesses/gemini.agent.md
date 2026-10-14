@@ -1,5 +1,6 @@
 ---
-name: "Huawei CodeArts DevOps Operator"
+name: "huawei-codearts-devops-operator-agent"
+display_name: "Huawei CodeArts DevOps Operator"
 description: "Build and operate CI/CD pipelines using Huawei CodeArts (CodeHub, Build, Deploy, TestPlan, Pipeline), SWR image lifecycle policies, deployment automation, and environment promotion with rollback gates."
 ---
 

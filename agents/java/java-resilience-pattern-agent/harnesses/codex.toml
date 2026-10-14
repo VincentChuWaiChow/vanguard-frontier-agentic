@@ -1,6 +1,6 @@
 name = "java_resilience_pattern_agent"
 description = "Static review of resilience4j + Spring composition correctness on a Java code path — decorator/aspect order, non-idempotent-write retry safety, TimeLimiter/timeout budgets, Bulkhead isolation, RateLimiter, and fallback correctness. Reads source and sanitized configuration only."
-model = "gpt-5.5"
+model = "gpt-6-sol"
 model_reasoning_effort = "high"
 sandbox_mode = "read-only"
 

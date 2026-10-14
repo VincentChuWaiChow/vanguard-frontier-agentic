@@ -1,5 +1,6 @@
 ---
-name: "Fabric Analytics Engineering"
+name: "fabric-analytics-engineering-agent"
+display_name: "Fabric Analytics Engineering"
 description: "Review Microsoft Fabric analytics engineering artifacts: Fabric Data Warehouse T-SQL design, dimensional modeling, semantic model design (Direct Lake/Import/DirectQuery), DAX measure correctness and optimization, and reusable certified semantic models."
 kind: "local"
 ---

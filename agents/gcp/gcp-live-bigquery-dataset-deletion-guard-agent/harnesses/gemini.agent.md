@@ -1,5 +1,6 @@
 ---
-name: "GCP Live BigQuery Dataset Deletion Guard"
+name: "gcp-live-bigquery-dataset-deletion-guard-agent"
+display_name: "GCP Live BigQuery Dataset Deletion Guard"
 description: "Gate BigQuery dataset deletion, table truncation, and authorized view changes — irreversible data loss and downstream pipeline breakage."
 ---
 

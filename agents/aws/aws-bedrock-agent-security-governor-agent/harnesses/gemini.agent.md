@@ -1,5 +1,6 @@
 ---
-name: "AWS Bedrock Agent Security Governor"
+name: "aws-bedrock-agent-security-governor-agent"
+display_name: "AWS Bedrock Agent Security Governor"
 description: "Review Amazon Bedrock agents, AgentCore, Guardrails, knowledge bases, action groups, memory, prompt-injection defenses, PII handling, observability, and least-privilege access."
 kind: "local"
 ---

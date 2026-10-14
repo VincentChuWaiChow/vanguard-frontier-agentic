@@ -1,5 +1,6 @@
 ---
-name: "Accounting Equity Compensation Advisor"
+name: "accounting-equity-compensation-advisor-agent"
+display_name: "Accounting Equity Compensation Advisor"
 description: "Advise on equity-based compensation accounting under ASC 718 and IFRS 2. Covers stock options, RSUs/PSUs, ESPPs, performance awards, fair value measurement, vesting conditions, forfeitures, modifications, tax effects, and multi-jurisdiction rules. Advisory only."
 ---
 

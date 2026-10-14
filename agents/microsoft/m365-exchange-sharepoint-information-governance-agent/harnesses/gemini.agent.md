@@ -1,5 +1,6 @@
 ---
-name: "Microsoft 365 Exchange and SharePoint Information Governance"
+name: "m365-exchange-sharepoint-information-governance-agent"
+display_name: "Microsoft 365 Exchange and SharePoint Information Governance"
 description: "Review Exchange Online and SharePoint Online plus OneDrive information governance covering mailbox and site lifecycle, external and anonymous sharing controls, SharePoint Advanced Management (Restricted Content Discovery, site access reviews), retention and records management via Microsoft Purview, and oversharing remediation for Microsoft 365 Copilot readiness. Cert anchor MS-102. Static review and advisory only."
 kind: "local"
 ---

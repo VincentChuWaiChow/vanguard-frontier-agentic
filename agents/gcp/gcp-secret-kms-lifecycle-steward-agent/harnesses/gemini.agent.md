@@ -1,5 +1,6 @@
 ---
-name: "GCP Secret and KMS Lifecycle Steward"
+name: "gcp-secret-kms-lifecycle-steward-agent"
+display_name: "GCP Secret and KMS Lifecycle Steward"
 description: "Audit and govern Cloud KMS key lifecycles, Secret Manager secrets, CMEK configurations across GCP services (Cloud SQL, BigQuery, GCS, Compute), key rotation schedules, and envelope encryption patterns."
 ---
 

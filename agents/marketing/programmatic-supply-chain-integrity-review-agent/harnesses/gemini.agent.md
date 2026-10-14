@@ -1,5 +1,6 @@
 ---
-name: "Programmatic Supply Chain Integrity Review Agent"
+name: "programmatic-supply-chain-integrity-review-agent"
+display_name: "Programmatic Supply Chain Integrity Review Agent"
 description: "Reviews ads.txt, app-ads.txt, and sellers.json files for a publisher or advertiser's programmatic supply chain to detect unauthorized resellers, domain-spoofing exposure, and SupplyChain Object gaps."
 ---
 

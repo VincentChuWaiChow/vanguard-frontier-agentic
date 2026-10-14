@@ -1,12 +1,12 @@
 export const meta = {
   name: 'agentic-delegation',
-  description: 'Context7-grounded delegation: Haiku recon, orchestrator-tier spec, Sonnet implementation, adversarial claim verification, then the repo gate suite.',
+  description: 'Context7-grounded delegation: Haiku recon, orchestrator-tier spec, Opus implementation (Sonnet for prose-only specs), adversarial claim verification, then the repo gate suite.',
   whenToUse: 'Multi-step work in this repo that decomposes into cheap parallel recon plus a small amount of genuine judgment — especially anything that encodes external technical facts (model names, API behaviour, version-specific semantics) that must be grounded in primary sources before they ship.',
   phases: [
     { title: 'Resolve sources', detail: 'Resolve Context7 library IDs once, centrally', model: 'haiku' },
     { title: 'Recon', detail: 'Parallel Haiku sweeps, one narrow question each, citations required', model: 'haiku' },
     { title: 'Spec', detail: 'Orchestrator-tier file-scoped specs — architecture stays here' },
-    { title: 'Implement', detail: 'Sonnet writes against an exact spec', model: 'sonnet' },
+    { title: 'Implement', detail: 'Opus writes code against an exact spec; prose-only specs go to Sonnet', model: 'opus' },
     { title: 'Regenerate', detail: 'Settle generated output before verification, when generators are declared', model: 'haiku' },
     { title: 'Verify', detail: 'Adversarial Context7-grounded check of every factual claim written', model: 'sonnet' },
     { title: 'Gate', detail: 'Repo gate suite in documented order, asset-integrity last', model: 'haiku' },
@@ -229,6 +229,10 @@ const GATE_SCHEMA = {
 phase('Resolve sources')
 log(`Resolving Context7 library IDs for: ${LIBRARIES.join(', ')}`)
 
+// Haiku calls in this script pass no `effort`. Claude Haiku 4.5 does not support
+// effort (https://code.claude.com/docs/en/model-config lists the models that do),
+// so a level there would claim a setting the model never applies.
+
 const sources = await agent(
   `Resolve Context7-compatible library IDs for these libraries: ${LIBRARIES.join(', ')}.
 
@@ -240,7 +244,7 @@ site over a third-party wrapper.
 Return one entry per requested library. Set usable=false with a note if no good match
 exists; do not invent an ID.
 ${DELEGATE_CONSTRAINTS}`,
-  { label: 'resolve:context7', phase: 'Resolve sources', model: 'haiku', effort: 'low', schema: SOURCES_SCHEMA },
+  { label: 'resolve:context7', phase: 'Resolve sources', model: 'haiku', schema: SOURCES_SCHEMA },
 )
 
 const libs = (sources?.libraries || []).filter(l => l.usable)
@@ -273,7 +277,7 @@ whole system — split it instead.
 Return them as findings[].claim (one question per entry), citation "derived",
 evidence "inference".
 ${DELEGATE_CONSTRAINTS}`,
-    { label: 'derive:questions', phase: 'Recon', model: 'haiku', effort: 'medium', schema: FINDINGS_SCHEMA },
+    { label: 'derive:questions', phase: 'Recon', model: 'haiku', schema: FINDINGS_SCHEMA },
   )
   questions = (derived?.findings || []).map(f => f.claim).slice(0, 6)
   log(`Derived ${questions.length} recon questions`)
@@ -305,7 +309,7 @@ ${CITATION_RULE}
 Also report gaps[]: anything you could not establish, stated as a question rather
 than a guess. A named gap is more useful than a confident invention.
 ${DELEGATE_CONSTRAINTS}`,
-    { label: `recon:${i + 1}`, phase: 'Recon', model: 'haiku', effort: 'medium', schema: FINDINGS_SCHEMA },
+    { label: `recon:${i + 1}`, phase: 'Recon', model: 'haiku', schema: FINDINGS_SCHEMA },
   ),
 ))).filter(Boolean)
 
@@ -326,7 +330,7 @@ phase('Spec')
 
 const plan = await agent(
   `You are the orchestrator. Turn this reconnaissance into exact, file-scoped
-implementation specs that a Sonnet delegate can execute without further judgment.
+implementation specs that a delegate can execute without further judgment.
 
 TASK: ${TASK}
 
@@ -382,6 +386,16 @@ phase('Verify')
 // verification must read the settled tree. Without generators the pipeline is correct
 // and each spec verifies as soon as it is written. Both shapes below run the same two
 // stage functions, so the stages stay identical either way.
+//
+// Doctrine (a): code edits stay on the Opus daily driver; only a prose spec — every
+// file it may touch is Markdown — goes to a Sonnet writer. The route is decided from
+// the spec's own file list, so it is deterministic and never itself a model call.
+// Opus runs at the session's effort; the Sonnet writer keeps its pinned `high`.
+const isProseOnly = (spec) => spec.files.every(f => /\.md$/i.test(f))
+const implementOpts = (spec) => isProseOnly(spec)
+  ? { label: `impl:${spec.id}`, phase: 'Implement', model: 'sonnet', effort: 'high' }
+  : { label: `impl:${spec.id}`, phase: 'Implement', model: 'opus' }
+
 const implementStage = (spec) =>
   agent(
     `Implement this spec exactly. Write the files; do not commit them.
@@ -403,7 +417,7 @@ ${DELEGATE_CONSTRAINTS}
 
 Report what you wrote, path by path, and name anything in the spec you could NOT
 satisfy rather than silently narrowing it.`,
-    { label: `impl:${spec.id}`, phase: 'Implement', model: 'sonnet', effort: 'high' },
+    implementOpts(spec),
   )
 
 const verifyStage = (implReport, spec) =>
@@ -479,7 +493,7 @@ HARD CONSTRAINTS:
   that it is required and stop; the orchestrator runs it under a scoped restore.
 - Do NOT hand-edit any generated file; if output looks wrong, report it.
 - Do NOT run the gate suite and do NOT commit anything.`,
-    { label: 'regenerate', phase: 'Regenerate', model: 'haiku', effort: 'low' },
+    { label: 'regenerate', phase: 'Regenerate', model: 'haiku' },
   )
   results = await parallel(
     specs.map((s2, idx) => () => verifyStage(implReports[idx], s2)),
@@ -570,7 +584,7 @@ HARD CONSTRAINTS:
 - The ONLY file you may write is catalog/asset-integrity.json, via the command above.
 - Do NOT edit any other file, and do NOT commit anything.
 - Do NOT attempt to fix a failing gate — report it and stop.`,
-  { label: 'gate:suite', phase: 'Gate', model: 'haiku', effort: 'low', schema: GATE_SCHEMA },
+  { label: 'gate:suite', phase: 'Gate', model: 'haiku', schema: GATE_SCHEMA },
 )
 })()
 

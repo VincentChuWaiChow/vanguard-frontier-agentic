@@ -1,5 +1,6 @@
 ---
-name: "OCI Compute Platform Operator"
+name: "oci-compute-platform-operator-agent"
+display_name: "OCI Compute Platform Operator"
 description: "Compute instance reachability, lifecycle, boot/volume, VNIC, image, shape, and safe recovery decisions."
 kind: "local"
 ---

@@ -1,5 +1,6 @@
 ---
-name: "OCI Multi Cloud Architect"
+name: "oci-multi-cloud-architect-agent"
+display_name: "OCI Multi Cloud Architect"
 description: "OCI-to-AWS/Azure/GCP connectivity, routing, DNS, identity, observability, egress, and failure-mode reviews."
 kind: "local"
 ---

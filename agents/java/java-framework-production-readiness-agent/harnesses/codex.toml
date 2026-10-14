@@ -1,6 +1,6 @@
 name = "java_framework_production_readiness_agent"
 description = "Static review issuing a single ship / do-not-ship production-readiness verdict for a Spring Boot, Quarkus, or Micronaut service against a framework-specific checklist (config, health/liveness/readiness, graceful shutdown, jakarta namespace + JDK floor, build-time DI/AOT safety, config validation, BOM alignment). Reads source and sanitized configuration only."
-model = "gpt-5.5"
+model = "gpt-6-sol"
 model_reasoning_effort = "high"
 sandbox_mode = "read-only"
 

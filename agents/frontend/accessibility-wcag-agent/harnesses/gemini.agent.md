@@ -1,5 +1,6 @@
 ---
-name: "Accessibility (WCAG 2.2) Agent"
+name: "accessibility-wcag-agent"
+display_name: "Accessibility (WCAG 2.2) Agent"
 description: "Static-review agent auditing frontend markup, components, and design-system primitives against WCAG 2.2 A/AA success criteria and ARIA APG patterns, distinguishing automated-detectable failures from manual-judgment checks and quantifying legal/conversion risk."
 kind: "local"
 ---

@@ -1,5 +1,6 @@
 ---
-name: "AWS KMS Secrets Lifecycle Steward"
+name: "aws-kms-secrets-lifecycle-steward-agent"
+display_name: "AWS KMS Secrets Lifecycle Steward"
 description: "Review AWS KMS keys, key policies, grants, rotation, multi-Region keys, Secrets Manager, secret rotation, replication, caching, endpoint conditions, and break-glass access."
 kind: "local"
 ---

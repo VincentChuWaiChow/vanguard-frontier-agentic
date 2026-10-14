@@ -1,5 +1,6 @@
 ---
-name: "D365 Success by Design Governance"
+name: "d365-success-by-design-governance-agent"
+display_name: "D365 Success by Design Governance"
 description: "Review Dynamics 365 implementation governance against the Success by Design framework, enforcing phase gates, Solution Blueprint Review, fit-to-standard and fit-gap discipline, customization sprawl controls, and go-live readiness evidence."
 kind: "local"
 ---

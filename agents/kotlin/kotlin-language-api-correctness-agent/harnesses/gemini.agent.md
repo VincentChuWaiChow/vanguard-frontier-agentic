@@ -1,5 +1,6 @@
 ---
-name: "Kotlin Language and API Correctness Agent"
+name: "kotlin-language-api-correctness-agent"
+display_name: "Kotlin Language and API Correctness Agent"
 description: "Static review of Kotlin language-level correctness: nullability and Java-interop platform types, inline functions with reified generics past JVM erasure, @JvmInline value-class boxing, statically-dispatched extension functions vs member precedence, and lateinit use-before-init hazards. Reads source only."
 ---
 

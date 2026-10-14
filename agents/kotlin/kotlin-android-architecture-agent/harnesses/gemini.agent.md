@@ -1,5 +1,6 @@
 ---
-name: "Kotlin Android Architecture Agent"
+name: "kotlin-android-architecture-agent"
+display_name: "Kotlin Android Architecture Agent"
 description: "Static review of Android app architecture correctness: ViewModel lifecycle and scoping across configuration changes, SavedStateHandle persistence across process death, lifecycle-aware Flow collection, and unidirectional data flow with a single source of truth. Reads source only."
 ---
 

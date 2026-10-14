@@ -1,5 +1,6 @@
 ---
-name: "GCP Cost and FinOps Analyst"
+name: "gcp-cost-finops-analyst-agent"
+display_name: "GCP Cost and FinOps Analyst"
 description: "Analyze GCP spend via Billing exports, optimize committed-use and sustained-use discounts, design cost attribution (labels/tags), investigate budget alert drift, and recommend rightsizing for Compute, GKE, and BigQuery."
 ---
 

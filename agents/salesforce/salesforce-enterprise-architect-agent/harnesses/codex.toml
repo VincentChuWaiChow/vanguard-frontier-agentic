@@ -1,6 +1,6 @@
 name = "salesforce_enterprise_architect_agent"
 description = "Adversarial end-to-end architectural challenger for multi-cloud Salesforce strategy, technical debt, target-state design, design authority, and cross-agent conflict resolution — acts as final architectural challenger, not rubber stamp."
-model = "gpt-5.5"
+model = "gpt-6-sol"
 model_reasoning_effort = "high"
 sandbox_mode = "read-only"
 

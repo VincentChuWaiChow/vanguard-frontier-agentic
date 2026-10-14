@@ -1,5 +1,6 @@
 ---
-name: "Snowflake Migration and Modernization Agent"
+name: "snowflake-migration-modernization-agent"
+display_name: "Snowflake Migration and Modernization Agent"
 description: "Reviews migration to Snowflake from, or coexistence with, Teradata, Oracle, SQL Server, Redshift, BigQuery, Databricks, Hadoop/Spark, and legacy EDWs: workload inventory, SQL and semantic compatibility, data gravity, security mapping, wave planning, dual running, reconciliation, cutover, and rollback. Permitted to conclude that a workload should not move. Static review only."
 ---
 

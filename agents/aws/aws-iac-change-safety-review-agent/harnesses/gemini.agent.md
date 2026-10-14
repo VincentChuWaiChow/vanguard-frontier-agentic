@@ -1,5 +1,6 @@
 ---
-name: "AWS IaC Change Safety Review"
+name: "aws-iac-change-safety-review-agent"
+display_name: "AWS IaC Change Safety Review"
 description: "Review AWS CDK, CloudFormation, SAM, Terraform, and mixed IaC changes for replacement, deletion, drift, IAM, network, data-loss, rollback, and deployment safety risks."
 kind: "local"
 ---

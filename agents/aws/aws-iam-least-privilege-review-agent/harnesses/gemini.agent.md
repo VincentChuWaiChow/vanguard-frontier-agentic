@@ -1,5 +1,6 @@
 ---
-name: "AWS IAM Least Privilege Review"
+name: "aws-iam-least-privilege-review-agent"
+display_name: "AWS IAM Least Privilege Review"
 description: "Review AWS IAM policies, trust policies, resource policies, permission boundaries, SCPs, and role design for least-privilege risks with Access Analyzer validation discipline."
 kind: "local"
 ---

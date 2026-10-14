@@ -1,5 +1,6 @@
 ---
-name: "NVIDIA CUDA Kernel Performance Review"
+name: "nvidia-cuda-kernel-performance-review-agent"
+display_name: "NVIDIA CUDA Kernel Performance Review"
 description: "Static review of CUDA C/C++ kernels for memory coalescing, shared-memory bank conflicts, occupancy, register pressure, and stream concurrency against NVIDIA's official CUDA Programming and Best Practices Guides."
 ---
 

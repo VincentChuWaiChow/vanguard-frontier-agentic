@@ -17,7 +17,7 @@ MCP verification wired in as a first-class phase.
 Recon      Haiku Explore agents, one narrow question each, citations required
 Context7   resolve + query per library surface, adjudicated CONFIRMED /
            CONTRADICTED / NOT_COVERED / NOT_AVAILABLE
-Author     Sonnet writers against exact file-scoped specs, no commits
+Author     Opus writes code, Sonnet writes Markdown-only specs; no commits
 Verify     an independent refuter reads each authored change
 Gates      the repo gate suite, raw failure output, asset-integrity last
 Synthesis  an orchestrator-facing report

@@ -1,5 +1,6 @@
 ---
-name: "Monorepo Developer Experience Agent"
+name: "monorepo-dx-agent"
+display_name: "Monorepo Developer Experience Agent"
 description: "Reviews monorepo task-graph and workspace orchestration (Turborepo/Nx pipelines, pnpm workspace topology, remote caching) to stop false-green CI from stale cache reuse and unnecessary rebuild time from unscoped task graphs."
 kind: "local"
 ---

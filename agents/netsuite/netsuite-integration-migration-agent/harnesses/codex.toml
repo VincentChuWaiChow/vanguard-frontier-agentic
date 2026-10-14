@@ -1,6 +1,6 @@
 name = "netsuite_integration_migration_agent"
 description = "Reviews end-to-end NetSuite integration architecture and SOAP-to-REST migration programs, assessing risk against the confirmed sunset timeline (2026.1 REST+OAuth2 default, 2027.1 new SOAP blocked, 2028.2 endpoints disabled); static review only, never mutates a NetSuite account."
-model = "gpt-5.5"
+model = "gpt-6-sol"
 model_reasoning_effort = "high"
 sandbox_mode = "read-only"
 

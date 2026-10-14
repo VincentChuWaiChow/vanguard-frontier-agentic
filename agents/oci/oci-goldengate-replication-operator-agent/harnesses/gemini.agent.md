@@ -1,5 +1,6 @@
 ---
-name: "OCI Goldengate Replication Operator"
+name: "oci-goldengate-replication-operator-agent"
+display_name: "OCI Goldengate Replication Operator"
 description: "GoldenGate extract/replicat lag, cutover readiness, replication topology, and rollback criteria."
 kind: "local"
 ---

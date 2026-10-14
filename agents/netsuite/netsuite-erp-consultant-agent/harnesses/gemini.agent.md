@@ -1,5 +1,6 @@
 ---
-name: "NetSuite ERP Consultant Agent"
+name: "netsuite-erp-consultant-agent"
+display_name: "NetSuite ERP Consultant Agent"
 description: "Reviews NetSuite ERP implementation configurations — order-to-cash, procure-to-pay, inventory management, pricing, fulfillment, and procurement workflows — against ERP Consultant Professional certification standards; static review only, never mutates a NetSuite account."
 ---
 

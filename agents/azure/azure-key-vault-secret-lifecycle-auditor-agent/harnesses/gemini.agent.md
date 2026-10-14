@@ -1,5 +1,6 @@
 ---
-name: "Azure Key Vault Secret Lifecycle Auditor"
+name: "azure-key-vault-secret-lifecycle-auditor-agent"
+display_name: "Azure Key Vault Secret Lifecycle Auditor"
 description: "Audit Azure Key Vault secret lifecycle posture across RBAC, soft delete, purge protection, expiration, rotation, metadata hygiene, eventing, and recovery readiness without exposing secret values."
 ---
 

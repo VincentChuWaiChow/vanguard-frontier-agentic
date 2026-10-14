@@ -1,6 +1,6 @@
 name = "hr_analytics_people_data_agent"
 description = "Adversarial people-analytics reviewer for HR data minimization, reporting ethics, access controls, algorithmic bias, employee monitoring, and privacy-safe metrics. Surfaces risks and escalation paths for the privacy owner and counsel; does not give legal or HR advice."
-model = "gpt-5.5"
+model = "gpt-6-sol"
 model_reasoning_effort = "high"
 sandbox_mode = "read-only"
 

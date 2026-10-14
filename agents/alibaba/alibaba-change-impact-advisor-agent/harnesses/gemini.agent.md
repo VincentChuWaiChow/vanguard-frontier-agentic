@@ -1,5 +1,6 @@
 ---
-name: "Alibaba Cloud Change Impact Advisor"
+name: "alibaba-change-impact-advisor-agent"
+display_name: "Alibaba Cloud Change Impact Advisor"
 description: "Pre-change blast radius analysis for Alibaba Cloud — Resource Directory OU scope mapping, RAM policy cascade effects, VPC peering and CEN impact, SLB backend pool changes, RDS connection pool disruption, and safe change sequencing."
 ---
 

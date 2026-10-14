@@ -141,7 +141,10 @@ impl CatalogIndex {
                 .to_string();
 
             // Register with several extensions so all harness types can match.
-            for ext in &[".md", ".json", ".toml", ".yaml", ".yml"] {
+            // `.agent.md` is the copilot export convention
+            // (`.github/agents/<id>.agent.md`); without it the basename never
+            // matched and copilot exports raised only one detection signal.
+            for ext in &[".md", ".agent.md", ".json", ".toml", ".yaml", ".yml"] {
                 let key = format!("{stem}{ext}");
                 basename_to_id.entry(key).or_insert_with(|| id.clone());
             }
@@ -197,6 +200,9 @@ impl WorkspaceScanner {
     /// trimmed form starts with `# VFA-EXPORT:` (case-sensitive).  The JSON
     /// payload after the colon is parsed with `serde_json`.
     ///
+    /// JSON documents carry no comment syntax and therefore no marker: see the
+    /// note in `scripts/export-marketplace-agents.mjs`.
+    ///
     /// Returns `None` for any malformed or missing line without panicking.
     pub fn parse_export_metadata(content: &str) -> Option<ExportMeta> {
         const PREFIX: &str = "VFA-EXPORT:";
@@ -215,6 +221,7 @@ impl WorkspaceScanner {
                 return serde_json::from_str::<ExportMeta>(json_payload).ok();
             }
         }
+
         None
     }
 
@@ -268,10 +275,12 @@ impl WorkspaceScanner {
     /// | Harness   | Extensions scanned             |
     /// |-----------|-------------------------------|
     /// | Claude    | `*.md`                         |
-    /// | Cursor    | `*.json`                       |
-    /// | Kiro      | `*.md`                         |
-    /// | Codex     | `plugin.json` only             |
+    /// | Cursor    | `*.md`, `*.json`               |
+    /// | Kiro      | `*.md`, `*.json`               |
+    /// | Codex     | `plugin.json`, `*.toml`        |
     /// | Opencode  | `*.toml`, `*.yaml`, `*.yml`    |
+    /// | Copilot   | `*.md`                         |
+    /// | Gemini    | `*.md`                         |
     ///
     /// Validates the layout before walking (Req 7.6); returns empty vec with a
     /// `warn!` if the layout does not match any known pattern.
@@ -509,14 +518,23 @@ impl WorkspaceScanner {
             Some(n) => n,
             None => return false,
         };
+        // These filters must match what `vfa-export-agents` actually writes
+        // (PLATFORM_CONFIG in scripts/export-marketplace-agents.mjs). Three of
+        // them did not, so a correctly exported agent was filtered out before
+        // any detection strategy ran: codex writes `.codex/agents/<id>.toml`
+        // and never a plugin.json, kiro-cli writes `.kiro/agents/<id>.json`
+        // beside kiro-ide's `.md`, and cursor writes `.cursor/agents/<id>.md`
+        // rather than JSON.
         match harness {
             HarnessDir::Claude => name.ends_with(".md"),
-            HarnessDir::Cursor => name.ends_with(".json"),
-            HarnessDir::Kiro => name.ends_with(".md"),
-            HarnessDir::Codex => name == "plugin.json",
+            HarnessDir::Cursor => name.ends_with(".md") || name.ends_with(".json"),
+            HarnessDir::Kiro => name.ends_with(".md") || name.ends_with(".json"),
+            HarnessDir::Codex => name == "plugin.json" || name.ends_with(".toml"),
             HarnessDir::Opencode => {
                 name.ends_with(".toml") || name.ends_with(".yaml") || name.ends_with(".yml")
             }
+            HarnessDir::Copilot => name.ends_with(".md"),
+            HarnessDir::Gemini => name.ends_with(".md"),
         }
     }
 }

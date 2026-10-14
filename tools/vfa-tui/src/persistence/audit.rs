@@ -4,8 +4,10 @@
 //! - Append-only SQLite table (14.1, 14.2)
 //! - JSON / CSV export (14.4)
 //! - Console + schema version in meta (14.6)
-//! - SHA-256 hash chain (14.8): entry_hash = SHA256(prev_hash || timestamp ||
-//!   event_type || subject || details_json)
+//! - SHA-256 hash chain (14.8): each entry hashes the previous entry's hash
+//!   with its own fields. Rows record their recipe in `hash_version`: v1
+//!   (legacy) concatenates the fields without the operator; v2 length-prefixes
+//!   every field and includes the operator.
 
 use std::fmt::Write as FmtWrite;
 use std::fs;
@@ -26,6 +28,12 @@ use crate::persistence::index::IndexManager;
 ///
 /// Maintains `last_hash` so each call to [`AuditLogger::log`] automatically
 /// threads the chain without additional DB round-trips.
+/// Hash-recipe marker stored in `audit_log.hash_version`.
+///
+/// Rows predating schema version 5 carry `1` (operator not hashed); rows this
+/// build writes carry `2`, binding the operator into the chain.
+pub const HASH_VERSION_WITH_OPERATOR: i64 = 2;
+
 pub struct AuditLogger<'a> {
     mgr: &'a IndexManager,
     /// Hash of the most-recently appended entry, or `""` for the first entry.
@@ -78,12 +86,13 @@ impl<'a> AuditLogger<'a> {
         let timestamp = Utc::now().format("%Y-%m-%dT%H:%M:%S%.3fZ").to_string();
         let details_json = serde_json::to_string(&details).unwrap_or_else(|_| "{}".to_string());
 
-        let entry_hash = Self::compute_hash(
+        let entry_hash = Self::compute_hash_v2(
             &self.last_hash,
             &timestamp,
             &event_type,
             subject,
             &details_json,
+            operator,
         );
 
         let event_type_str = serde_json::to_string(&event_type)
@@ -94,8 +103,9 @@ impl<'a> AuditLogger<'a> {
         let conn = self.mgr.write_conn();
         conn.execute(
             "INSERT INTO audit_log \
-             (timestamp, event_type, subject, details, operator, entry_hash, prev_hash) \
-             VALUES (?1, ?2, ?3, ?4, ?5, ?6, ?7)",
+             (timestamp, event_type, subject, details, operator, entry_hash, prev_hash, \
+              hash_version) \
+             VALUES (?1, ?2, ?3, ?4, ?5, ?6, ?7, ?8)",
             rusqlite::params![
                 timestamp,
                 event_type_str,
@@ -104,6 +114,7 @@ impl<'a> AuditLogger<'a> {
                 operator,
                 entry_hash,
                 self.last_hash,
+                HASH_VERSION_WITH_OPERATOR,
             ],
         )?;
 
@@ -127,8 +138,12 @@ impl<'a> AuditLogger<'a> {
     // Hash chain
     // -----------------------------------------------------------------------
 
-    /// Compute `SHA256(prev_hash || timestamp || event_type_str || subject || details_json)`
-    /// and return the lowercase hex string.
+    /// Compute the **v1 (legacy)** entry hash:
+    /// `SHA256(prev_hash || timestamp || event_type_str || subject || details_json)`.
+    ///
+    /// This recipe leaves `operator` unauthenticated.  It is retained only so
+    /// rows written before schema version 5 keep verifying; new entries use
+    /// [`compute_hash_v2`](Self::compute_hash_v2).
     pub fn compute_hash(
         prev_hash: &str,
         timestamp: &str,
@@ -155,6 +170,51 @@ impl<'a> AuditLogger<'a> {
         })
     }
 
+    /// Compute the **v2** entry hash, binding the acting operator into the
+    /// chain. Each of `prev`, `timestamp`, `event_type`, `subject`, `details`
+    /// and `operator` is fed to SHA-256 as an 8-byte big-endian length followed
+    /// by its bytes.
+    ///
+    /// Without the operator field the stored actor on an entry could be
+    /// rewritten without breaking the chain, so the chain could not attest *who*
+    /// performed a recorded action. Without the length prefixes, bytes could
+    /// move across a field boundary: `details = "1", operator = "23"` and
+    /// `details = "12", operator = "3"` would hash identically, so an edit to
+    /// the database could change both the details and the actor of a row
+    /// without breaking the chain.
+    pub fn compute_hash_v2(
+        prev_hash: &str,
+        timestamp: &str,
+        event_type: &AuditEventType,
+        subject: &str,
+        details_json: &str,
+        operator: &str,
+    ) -> String {
+        let event_str = serde_json::to_string(event_type)
+            .unwrap_or_default()
+            .trim_matches('"')
+            .to_string();
+
+        let mut hasher = Sha256::new();
+        for field in [
+            prev_hash,
+            timestamp,
+            event_str.as_str(),
+            subject,
+            details_json,
+            operator,
+        ] {
+            hasher.update((field.len() as u64).to_be_bytes());
+            hasher.update(field.as_bytes());
+        }
+
+        let result = hasher.finalize();
+        result.iter().fold(String::new(), |mut s, b| {
+            let _ = write!(s, "{b:02x}");
+            s
+        })
+    }
+
     // -----------------------------------------------------------------------
     // Chain verification (Req 14.8)
     // -----------------------------------------------------------------------
@@ -167,7 +227,7 @@ impl<'a> AuditLogger<'a> {
         let conn = self.mgr.write_conn();
         let mut stmt = conn.prepare(
             "SELECT id, timestamp, event_type, subject, details, operator, \
-                    entry_hash, prev_hash \
+                    entry_hash, prev_hash, hash_version \
              FROM audit_log ORDER BY id ASC",
         )?;
 
@@ -183,6 +243,7 @@ impl<'a> AuditLogger<'a> {
                 row.get::<_, String>(5)?, // operator
                 row.get::<_, String>(6)?, // entry_hash
                 row.get::<_, String>(7)?, // prev_hash
+                row.get::<_, i64>(8)?,    // hash_version
             ))
         })?;
 
@@ -193,9 +254,10 @@ impl<'a> AuditLogger<'a> {
                 event_type_str,
                 subject,
                 details_json,
-                _operator,
+                operator,
                 stored_hash,
                 stored_prev,
+                hash_version,
             ) = row_result?;
 
             // prev_hash in the row must match what we expect.
@@ -207,13 +269,26 @@ impl<'a> AuditLogger<'a> {
             let event_type: AuditEventType = serde_json::from_str(&format!("\"{event_type_str}\""))
                 .map_err(|_| TuiError::AuditChainBroken { entry_id: id })?;
 
-            let recomputed = Self::compute_hash(
-                &expected_prev,
-                &timestamp,
-                &event_type,
-                &subject,
-                &details_json,
-            );
+            // Dispatch on the recipe that produced the row so pre-migration
+            // entries keep verifying while new ones authenticate the operator.
+            let recomputed = if hash_version >= HASH_VERSION_WITH_OPERATOR {
+                Self::compute_hash_v2(
+                    &expected_prev,
+                    &timestamp,
+                    &event_type,
+                    &subject,
+                    &details_json,
+                    &operator,
+                )
+            } else {
+                Self::compute_hash(
+                    &expected_prev,
+                    &timestamp,
+                    &event_type,
+                    &subject,
+                    &details_json,
+                )
+            };
 
             if recomputed != stored_hash {
                 return Err(TuiError::AuditChainBroken { entry_id: id });
@@ -230,11 +305,16 @@ impl<'a> AuditLogger<'a> {
     // -----------------------------------------------------------------------
 
     /// Export the audit log to `out_path` in `format` (`"json"` or `"csv"`).
+    ///
+    /// `hash_version` is exported alongside every row. Two hash recipes are in
+    /// circulation (v1 leaves `operator` unauthenticated, v2 binds it), so
+    /// without the marker an auditor holding only the export cannot know which
+    /// recipe to recompute and the artifact is not independently verifiable.
     pub fn export_audit(&self, format: &str, out_path: &Path) -> Result<(), TuiError> {
         let conn = self.mgr.write_conn();
         let mut stmt = conn.prepare(
             "SELECT id, timestamp, event_type, subject, details, operator, \
-                    entry_hash, prev_hash \
+                    entry_hash, prev_hash, hash_version \
              FROM audit_log ORDER BY id ASC",
         )?;
 
@@ -252,6 +332,7 @@ impl<'a> AuditLogger<'a> {
                             "operator":   row.get::<_, String>(5)?,
                             "entry_hash": row.get::<_, String>(6)?,
                             "prev_hash":  row.get::<_, String>(7)?,
+                            "hash_version": row.get::<_, i64>(8)?,
                         }))
                     })?
                     .filter_map(|r| r.ok())
@@ -270,7 +351,8 @@ impl<'a> AuditLogger<'a> {
 
             "csv" => {
                 let mut csv = String::from(
-                    "id,timestamp,event_type,subject,details,operator,entry_hash,prev_hash\n",
+                    "id,timestamp,event_type,subject,details,operator,entry_hash,prev_hash,\
+                     hash_version\n",
                 );
                 let rows: Vec<_> = stmt
                     .query_map([], |row| {
@@ -283,15 +365,16 @@ impl<'a> AuditLogger<'a> {
                             row.get::<_, String>(5)?,
                             row.get::<_, String>(6)?,
                             row.get::<_, String>(7)?,
+                            row.get::<_, i64>(8)?,
                         ))
                     })?
                     .filter_map(|r| r.ok())
                     .collect();
 
-                for (id, ts, et, subj, det, op, eh, ph) in rows {
+                for (id, ts, et, subj, det, op, eh, ph, hv) in rows {
                     let _ = writeln!(
                         csv,
-                        "{id},{ts},{et},{},{},{},{eh},{ph}",
+                        "{id},{ts},{et},{},{},{},{eh},{ph},{hv}",
                         escape_csv(&subj),
                         escape_csv(&det),
                         escape_csv(&op),
@@ -565,6 +648,65 @@ mod tests {
     }
 
     #[test]
+    fn compute_hash_v2_frames_each_field() {
+        // Unframed concatenation fed both of these the same bytes.
+        let a = AuditLogger::compute_hash_v2("p", "ts", &AuditEventType::Promotion, "s", "1", "23");
+        let b = AuditLogger::compute_hash_v2("p", "ts", &AuditEventType::Promotion, "s", "12", "3");
+        assert_ne!(
+            a, b,
+            "a byte moved from operator to details must change the hash"
+        );
+    }
+
+    #[test]
+    fn verify_chain_rejects_bytes_moved_between_details_and_operator() {
+        let mgr = IndexManager::open_in_memory().expect("open_in_memory");
+        let mut logger = AuditLogger::new(&mgr, String::new());
+        let first = logger
+            .log(
+                AuditEventType::Promotion,
+                "ws-0",
+                serde_json::json!({}),
+                "system",
+            )
+            .expect("log first entry");
+
+        // The hash an honest row with details "1" and operator "23" would carry,
+        // attached to a forged row whose details and operator have traded a byte.
+        let ts = "2025-01-01T00:00:01.000Z";
+        let honest_hash = AuditLogger::compute_hash_v2(
+            &first.entry_hash,
+            ts,
+            &AuditEventType::Promotion,
+            "ws-1",
+            "1",
+            "23",
+        );
+        mgr.write_conn()
+            .execute(
+                "INSERT INTO audit_log \
+                 (timestamp, event_type, subject, details, operator, entry_hash, prev_hash, \
+                  hash_version) \
+                 VALUES (?1, 'promotion', 'ws-1', '12', '3', ?2, ?3, ?4)",
+                rusqlite::params![
+                    ts,
+                    honest_hash,
+                    first.entry_hash,
+                    HASH_VERSION_WITH_OPERATOR
+                ],
+            )
+            .expect("insert forged row");
+
+        match logger
+            .verify_chain()
+            .expect_err("a byte moved across the field boundary must break the chain")
+        {
+            TuiError::AuditChainBroken { entry_id } => assert_eq!(entry_id, 2),
+            other => panic!("expected AuditChainBroken, got {other:?}"),
+        }
+    }
+
+    #[test]
     fn compute_hash_changes_with_prev_hash() {
         let h1 = AuditLogger::compute_hash("prev1", "ts", &AuditEventType::Promotion, "s", "{}");
         let h2 = AuditLogger::compute_hash("prev2", "ts", &AuditEventType::Promotion, "s", "{}");
@@ -621,6 +763,113 @@ mod tests {
         assert!(content.starts_with("id,timestamp"), "CSV header missing");
         assert!(content.contains("drift_detected"), "CSV missing event_type");
         assert!(content.contains("ws-csv"), "CSV missing subject");
+    }
+
+    #[test]
+    fn export_json_carries_hash_version() {
+        // Positive probe: a row this build writes exports the v2 marker, so an
+        // auditor holding only the export knows which recipe to recompute.
+        let (mgr,) = fresh_logger();
+        let mut logger = AuditLogger::new(&mgr, String::new());
+        logger
+            .log(
+                AuditEventType::Promotion,
+                "asset-hv",
+                serde_json::json!({}),
+                "headless",
+            )
+            .expect("log");
+
+        let dir = tempfile::tempdir().expect("tempdir");
+        let out = dir.path().join("audit.json");
+        logger.export_audit("json", &out).expect("export json");
+
+        let parsed: serde_json::Value =
+            serde_json::from_str(&fs::read_to_string(&out).expect("read")).expect("parse");
+        assert_eq!(
+            parsed[0]["hash_version"],
+            serde_json::json!(HASH_VERSION_WITH_OPERATOR),
+            "export must publish the hash recipe marker"
+        );
+    }
+
+    #[test]
+    fn export_distinguishes_legacy_and_current_hash_versions() {
+        // Negative probe: a legacy (v1) row must NOT be exported as v2.  If the
+        // exporter hard-coded the current version the artifact would claim the
+        // operator was authenticated on a row where it was not.
+        let mgr = IndexManager::open_in_memory().expect("open_in_memory");
+        let mut logger = AuditLogger::new(&mgr, String::new());
+        logger
+            .log(
+                AuditEventType::PolicyEvaluation,
+                "ws-v2",
+                serde_json::json!({}),
+                "system",
+            )
+            .expect("log v2 row");
+
+        // Insert a row the way a pre-migration build would: hash_version 1.
+        mgr.write_conn()
+            .execute(
+                "INSERT INTO audit_log \
+                 (timestamp, event_type, subject, details, operator, entry_hash, prev_hash, \
+                  hash_version) \
+                 VALUES ('2025-01-01T00:00:00.000Z', 'policy_evaluation', 'ws-v1', '{}', \
+                         'legacy', 'legacy_hash', '', 1)",
+                [],
+            )
+            .expect("insert legacy row");
+
+        let dir = tempfile::tempdir().expect("tempdir");
+        let out = dir.path().join("audit.json");
+        logger.export_audit("json", &out).expect("export json");
+        let parsed: serde_json::Value =
+            serde_json::from_str(&fs::read_to_string(&out).expect("read")).expect("parse");
+
+        let by_subject = |subj: &str| -> i64 {
+            parsed
+                .as_array()
+                .expect("array")
+                .iter()
+                .find(|r| r["subject"] == subj)
+                .unwrap_or_else(|| panic!("row {subj} missing"))["hash_version"]
+                .as_i64()
+                .expect("hash_version is an integer")
+        };
+
+        assert_eq!(by_subject("ws-v2"), HASH_VERSION_WITH_OPERATOR);
+        assert_eq!(by_subject("ws-v1"), 1, "legacy row must not be relabelled");
+    }
+
+    #[test]
+    fn export_csv_carries_hash_version() {
+        let (mgr,) = fresh_logger();
+        let mut logger = AuditLogger::new(&mgr, String::new());
+        logger
+            .log(
+                AuditEventType::DriftDetected,
+                "ws-csv-hv",
+                serde_json::json!({}),
+                "system",
+            )
+            .expect("log");
+
+        let dir = tempfile::tempdir().expect("tempdir");
+        let out = dir.path().join("audit.csv");
+        logger.export_audit("csv", &out).expect("export csv");
+
+        let content = fs::read_to_string(&out).expect("read file");
+        let mut lines = content.lines();
+        assert_eq!(
+            lines.next().expect("header"),
+            "id,timestamp,event_type,subject,details,operator,entry_hash,prev_hash,hash_version"
+        );
+        let row = lines.next().expect("one data row");
+        assert!(
+            row.ends_with(&format!(",{HASH_VERSION_WITH_OPERATOR}")),
+            "CSV row must end with the hash version, got: {row}"
+        );
     }
 
     #[test]

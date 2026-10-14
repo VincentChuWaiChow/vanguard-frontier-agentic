@@ -42,9 +42,9 @@ run_guard_network_arch() {
   assert_cannot delete nodes "--as=$SA"
   assert_cannot patch nodes "--as=$SA"
   assert_cannot update nodes "--as=$SA"
-  assert_cannot create pods/eviction "--as=$SA"
-  assert_cannot get nodes/proxy "--as=$SA"
-  assert_cannot create nodes/proxy "--as=$SA"
+  assert_cannot create pods --subresource=eviction "--as=$SA"
+  assert_cannot get nodes --subresource=proxy "--as=$SA"
+  assert_cannot create nodes --subresource=proxy "--as=$SA"
 
   # Lease objects
   assert_cannot patch leases.coordination.k8s.io -n kube-node-lease "--as=$SA"
@@ -59,8 +59,8 @@ run_guard_network_arch() {
   assert_cannot delete apiservices.apiregistration.k8s.io "--as=$SA"
 
   # Pod subresources
-  assert_cannot create pods/proxy --all-namespaces "--as=$SA"
-  assert_cannot create pods/binding --all-namespaces "--as=$SA"
+  assert_cannot create pods --subresource=proxy --all-namespaces "--as=$SA"
+  assert_cannot create pods --subresource=binding --all-namespaces "--as=$SA"
 
   # CSR / token minting
   assert_cannot create certificatesigningrequests.certificates.k8s.io "--as=$SA"
@@ -83,8 +83,9 @@ run_guard_network_arch() {
   assert_cannot patch ingressclasses.networking.k8s.io "--as=$SA"
   assert_cannot patch storageclasses.storage.k8s.io "--as=$SA"
 
-  # Finalizer-stripping paths
-  assert_cannot update customresourcedefinitions/finalize "--as=$SA"
+  # Finalizer-stripping paths.  A CRD has no `finalize` subresource (only
+  # `status`); stripping its finalizers is an update to the object itself.
+  assert_cannot update customresourcedefinitions "--as=$SA"
 
   # resourceName negative tests — same configmap name in wrong namespace
   assert_cannot patch configmaps/coredns -n default "--as=$SA"

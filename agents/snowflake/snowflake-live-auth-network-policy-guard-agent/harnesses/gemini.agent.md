@@ -1,5 +1,6 @@
 ---
-name: "Snowflake Live Auth and Network Policy Guard Agent"
+name: "snowflake-live-auth-network-policy-guard-agent"
+display_name: "Snowflake Live Auth and Network Policy Guard Agent"
 description: "Approval-gated execution boundary for exactly one Snowflake authentication-policy or network-policy change. Refuses to proceed until a surviving administrative path is demonstrated from login evidence — the operator must be proven not to lock themselves out before the statement is composed. Never auto-dispatched."
 ---
 

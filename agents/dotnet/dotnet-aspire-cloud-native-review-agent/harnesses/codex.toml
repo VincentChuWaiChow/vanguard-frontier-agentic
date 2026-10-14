@@ -1,6 +1,6 @@
 name = "dotnet_aspire_cloud_native_review_agent"
 description = "Specialized subagent for dotnet-aspire-cloud-native-review. Static review of .NET Aspire AppHost and service-defaults projects for cloud-native readiness — health checks, service dependency wiring, resiliency policies, configuration and secret hygiene, and the boundary to a real deployment platform. Reads source and sanitized configuration only."
-model = "gpt-5.5"
+model = "gpt-6-sol"
 model_reasoning_effort = "high"
 sandbox_mode = "read-only"
 

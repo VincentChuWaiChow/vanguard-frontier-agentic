@@ -1,5 +1,6 @@
 ---
-name: "Huawei Cloud Daily Operations Briefing Coordinator"
+name: "huawei-daily-operations-briefing-coordinator-agent"
+display_name: "Huawei Cloud Daily Operations Briefing Coordinator"
 description: "Coordinate the daily Huawei Cloud operations standup — CBC cost delta by Enterprise Project, AOM anomaly alert review, CCE pod failure triage, CES quota utilization warnings, LTS log error spike detection, SecMaster security finding triage, and action item assignment."
 ---
 

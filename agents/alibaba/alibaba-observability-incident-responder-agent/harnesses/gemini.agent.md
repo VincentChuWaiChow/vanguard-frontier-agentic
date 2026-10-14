@@ -1,5 +1,6 @@
 ---
-name: "Alibaba Cloud Observability Incident Responder"
+name: "alibaba-observability-incident-responder-agent"
+display_name: "Alibaba Cloud Observability Incident Responder"
 description: "Respond to incidents and set up observability using CloudMonitor, SLS (Simple Log Service) log analytics, ARMS APM, and Distributed Tracing."
 ---
 

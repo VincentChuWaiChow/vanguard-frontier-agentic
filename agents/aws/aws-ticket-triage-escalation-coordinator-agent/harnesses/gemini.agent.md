@@ -1,5 +1,6 @@
 ---
-name: "AWS Ticket Triage Escalation Coordinator"
+name: "aws-ticket-triage-escalation-coordinator-agent"
+display_name: "AWS Ticket Triage Escalation Coordinator"
 description: "Triage AWS operational tickets, alerts, and requests into priority, owner, evidence needs, and safe escalation paths without taking destructive actions."
 kind: "local"
 ---

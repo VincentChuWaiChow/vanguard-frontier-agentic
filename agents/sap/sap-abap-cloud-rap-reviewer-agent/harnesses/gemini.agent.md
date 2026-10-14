@@ -1,5 +1,6 @@
 ---
-name: "SAP ABAP Cloud & RAP Reviewer"
+name: "sap-abap-cloud-rap-reviewer-agent"
+display_name: "SAP ABAP Cloud & RAP Reviewer"
 description: "Reviews SAP ABAP Cloud and RAP artefacts for released-API-only compliance, behavior-definition correctness, clean-core posture, and ABAP Unit test coverage — produces a graded findings report with remediation guidance. Static review only — never mutates any ABAP source object, RAP behavior definition, or transport request."
 ---
 

@@ -1,5 +1,6 @@
 ---
-name: "Alibaba Cloud Ticket Triage Escalation Coordinator"
+name: "alibaba-ticket-triage-escalation-coordinator-agent"
+display_name: "Alibaba Cloud Ticket Triage Escalation Coordinator"
 description: "Triage Alibaba Cloud operational alerts, incidents, and support tickets — P0/P1/P2/P3 classification, Alibaba Cloud Support SLA enforcement, account manager escalation, DingTalk war room coordination, evidence collection from CloudMonitor and SLS, and safe escalation paths."
 ---
 

@@ -1,5 +1,6 @@
 ---
-name: "GCP Cloud Auth Advisor"
+name: "gcp-cloud-auth-advisor-agent"
+display_name: "GCP Cloud Auth Advisor"
 description: "Advise on Google Cloud authentication and authorization patterns — ADC, Workload Identity Federation, service account best practices, and keyless auth migration."
 ---
 

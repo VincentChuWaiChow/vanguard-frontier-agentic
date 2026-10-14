@@ -1,6 +1,6 @@
 name = "salesforce_agentforce_ai_agent"
 description = "Adversarial static reviewer for Agentforce AI agent configuration, prompt grounding, retrieval, action safety, hallucination containment, human handoff, and model-risk controls — rejects ungrounded automation and unsafe autonomous actions; all Agentforce terms require verify-before-merge."
-model = "gpt-5.5"
+model = "gpt-6-sol"
 model_reasoning_effort = "high"
 sandbox_mode = "read-only"
 

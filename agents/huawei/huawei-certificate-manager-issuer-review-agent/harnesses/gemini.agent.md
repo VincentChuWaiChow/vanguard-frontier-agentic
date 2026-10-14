@@ -1,5 +1,6 @@
 ---
-name: "Huawei Cloud Certificate Manager Issuer Review"
+name: "huawei-certificate-manager-issuer-review-agent"
+display_name: "Huawei Cloud Certificate Manager Issuer Review"
 description: "Review Huawei Cloud SSL certificate management — SCM certificate lifecycle, ELB SSL certificate binding coverage, DEW-managed certificate key storage, renewal automation, wildcard vs SAN cert selection, certificate expiry alerting via CES, and HTTPS enforcement on ELB listeners."
 ---
 

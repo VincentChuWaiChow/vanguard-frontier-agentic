@@ -1,5 +1,6 @@
 ---
-name: "Snowflake Platform Administrator Agent"
+name: "snowflake-platform-administrator-agent"
+display_name: "Snowflake Platform Administrator Agent"
 description: "Reviews the running Snowflake estate: organization and account administration, warehouse and object lifecycle, account parameters, ownership posture, configuration drift, usage monitoring, and operational readiness. Turns tribal administrative knowledge into repeatable, evidenced procedure. Static review only — it never executes an administrative statement."
 ---
 

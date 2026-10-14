@@ -1,5 +1,6 @@
 ---
-name: "HR Leave and Accommodation Agent"
+name: "hr-leave-accommodation-agent"
+display_name: "HR Leave and Accommodation Agent"
 description: "Adversarial leave and accommodation reviewer for leave, disability accommodation, return-to-work, medical-information minimization, interactive-process readiness, and escalation requirements. Surfaces risks and escalation paths for employment counsel; does not give legal or HR advice."
 ---
 

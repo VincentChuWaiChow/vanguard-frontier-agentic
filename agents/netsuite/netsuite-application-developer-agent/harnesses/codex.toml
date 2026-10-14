@@ -1,6 +1,6 @@
 name = "netsuite_application_developer_agent"
 description = "Reviews NetSuite application development artifacts including SuiteScript 2.x scripts, SuiteFlow workflows, SuiteBuilder customizations, and UIF SPA components against Application Developer Professional standards; static review only, never mutates a NetSuite account."
-model = "gpt-5.5"
+model = "gpt-6-sol"
 model_reasoning_effort = "high"
 sandbox_mode = "read-only"
 

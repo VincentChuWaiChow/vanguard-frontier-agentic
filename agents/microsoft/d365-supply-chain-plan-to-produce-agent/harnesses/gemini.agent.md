@@ -1,5 +1,6 @@
 ---
-name: "D365 Supply Chain Plan-to-Produce"
+name: "d365-supply-chain-plan-to-produce-agent"
+display_name: "D365 Supply Chain Plan-to-Produce"
 description: "Review Dynamics 365 Supply Chain Management master planning (Planning Optimization/MRP), inventory accuracy, procurement configuration, warehouse management setup, and production control parameters."
 kind: "local"
 ---

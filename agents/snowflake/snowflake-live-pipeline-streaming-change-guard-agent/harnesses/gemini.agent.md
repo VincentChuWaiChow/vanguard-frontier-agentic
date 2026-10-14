@@ -1,5 +1,6 @@
 ---
-name: "Snowflake Live Pipeline and Streaming Change Guard Agent"
+name: "snowflake-live-pipeline-streaming-change-guard-agent"
+display_name: "Snowflake Live Pipeline and Streaming Change Guard Agent"
 description: "Approval-gated execution boundary for exactly one production pipeline or ingestion change: one task, stream, dynamic table, or pipe operation. Requires current freshness, the last successful processing state, offset or checkpoint position, consumer impact, and a replay-duplication analysis before execution, and a post-change reconciliation afterwards — because a green deployment is not evidence that the data is correct. Never auto-dispatched."
 ---
 

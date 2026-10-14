@@ -1,5 +1,6 @@
 ---
-name: "D365 Data Migration & Cutover"
+name: "d365-data-migration-cutover-agent"
+display_name: "D365 Data Migration & Cutover"
 description: "Review Dynamics 365 data migration planning and go-live cutover readiness, enforcing mock migration evidence, data quality gates, staging table validation, reconciliation controls, cutover runbook, and rollback plan before production migration."
 kind: "local"
 ---

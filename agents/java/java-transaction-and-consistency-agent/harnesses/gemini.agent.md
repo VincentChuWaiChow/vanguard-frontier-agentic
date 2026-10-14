@@ -1,5 +1,6 @@
 ---
-name: "Java Transaction and Consistency Agent"
+name: "java-transaction-and-consistency-agent"
+display_name: "Java Transaction and Consistency Agent"
 description: "Statically reviews Spring @Transactional boundary correctness — propagation, isolation, readOnly, rollbackFor, proxy self-invocation, and boundary width — plus cross-resource consistency, flagging the save()-then-send() dual-write anti-pattern, missing outbox/relay, and post-commit side effects that skip TransactionSynchronization or REQUIRES_NEW. Reads source and sanitized configuration only."
 ---
 

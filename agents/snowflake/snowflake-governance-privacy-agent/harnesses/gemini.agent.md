@@ -1,5 +1,6 @@
 ---
-name: "Snowflake Governance and Privacy Agent"
+name: "snowflake-governance-privacy-agent"
+display_name: "Snowflake Governance and Privacy Agent"
 description: "Designs and reviews the data controls themselves: Horizon Catalog, sensitive-data classification, tags and propagation, masking, row-access, aggregation, projection and join policies, lineage, and data quality monitoring. Refuses the equations that make governance theatre — tagged is not protected, classified is not compliant, a policy existing is not a policy behaving. Static review only."
 ---
 

@@ -1,6 +1,6 @@
 name = "salesforce_live_guard_agent"
 description = "Advisory checklist agent invoked only when live Salesforce org access is involved — refusal-by-default if any of ten required preconditions is missing; emits a structured refusal or precondition checklist only; never executes, deploys, or mutates any org."
-model = "gpt-5.5"
+model = "gpt-6-sol"
 model_reasoning_effort = "high"
 sandbox_mode = "read-only"
 

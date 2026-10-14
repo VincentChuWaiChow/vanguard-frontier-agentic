@@ -1,5 +1,6 @@
 ---
-name: "Huawei IEF Edge Computing Operator"
+name: "huawei-ief-edge-computing-operator-agent"
+display_name: "Huawei IEF Edge Computing Operator"
 description: "Manage IEF edge node lifecycle, edge application deployment, IoT device twin management, and cloud-edge-device unified control plane operations on Huawei Cloud."
 ---
 

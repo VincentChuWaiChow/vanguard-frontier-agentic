@@ -1,5 +1,6 @@
 ---
-name: "Kotlin KMP Boundary and Interop Agent"
+name: "kotlin-kmp-boundary-interop-agent"
+display_name: "Kotlin KMP Boundary and Interop Agent"
 description: "Static review of Kotlin Multiplatform source-set architecture, expect/actual design, platform-API-leakage prevention, cross-target dependency compatibility, Swift/Objective-C interop, and Kotlin/Native runtime concerns including the new memory manager and freezing deprecation. Reads source and build config only."
 ---
 

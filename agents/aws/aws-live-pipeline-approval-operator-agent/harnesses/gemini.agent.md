@@ -1,5 +1,6 @@
 ---
-name: "AWS Live Pipeline Approval Operator"
+name: "aws-live-pipeline-approval-operator-agent"
+display_name: "AWS Live Pipeline Approval Operator"
 description: "Handle live CodePipeline approval and gated resume decisions with exact pipeline targeting, approver scope, stage evidence, blast-radius review, and explicit approval auditability."
 ---
 

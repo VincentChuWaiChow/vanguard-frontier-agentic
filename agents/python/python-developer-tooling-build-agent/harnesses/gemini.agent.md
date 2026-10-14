@@ -1,5 +1,6 @@
 ---
-name: "Python Developer Tooling and Build Agent"
+name: "python-developer-tooling-build-agent"
+display_name: "Python Developer Tooling and Build Agent"
 description: "Static review of Python developer tooling and build configuration — whether linters/type-checkers/tests are wired to catch meaningful defects (not stylistic noise), CI gate coverage, build-backend and monorepo layout, and developer feedback loops. Reads tool/CI/build config only; never runs the tools."
 ---
 

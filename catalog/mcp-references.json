@@ -4,7 +4,14 @@
     "name": "AWS Official MCP Servers",
     "type": "mcp-reference",
     "provider": "aws",
-    "harnesses": ["codex", "claude-code", "cursor", "gemini", "kiro", "other"],
+    "harnesses": [
+      "codex",
+      "claude-code",
+      "cursor",
+      "gemini",
+      "kiro",
+      "other"
+    ],
     "summary": "Reference entry for the official AWS Labs MCP server suite.",
     "source_type": "reference-only",
     "official_docs": [
@@ -18,14 +25,28 @@
     "vendor": "AWS Labs",
     "auth_model": "AWS credentials through the selected server/client environment, commonly profile or environment-based credentials.",
     "install_example": "Follow the server-specific install commands in the official AWS Labs MCP repository or documentation.",
-    "unofficial_warning": "Official AWS Labs project; individual server maturity and deprecation status still varies."
+    "unofficial_warning": "Official AWS Labs project; individual server maturity and deprecation status still varies.",
+    "trust_matrix": {
+      "mutation_capable": true,
+      "requires_egress": true,
+      "requires_credentials": true,
+      "signed_release": "unknown",
+      "pin_strategy": "version"
+    }
   },
   {
     "id": "azure-official-mcp-server",
     "name": "Azure MCP Server",
     "type": "mcp-reference",
     "provider": "azure",
-    "harnesses": ["codex", "claude-code", "cursor", "gemini", "kiro", "other"],
+    "harnesses": [
+      "codex",
+      "claude-code",
+      "cursor",
+      "gemini",
+      "kiro",
+      "other"
+    ],
     "summary": "Reference entry for Microsoft's Azure MCP Server.",
     "source_type": "reference-only",
     "official_docs": [
@@ -39,14 +60,28 @@
     "vendor": "Microsoft",
     "auth_model": "Microsoft Entra ID through Azure Identity patterns, Azure CLI, managed identity, or supported client authentication.",
     "install_example": "Follow Microsoft Learn's Azure MCP Server setup instructions for the target client.",
-    "unofficial_warning": "Official Microsoft project; verify version-specific setup in Microsoft Learn before use."
+    "unofficial_warning": "Official Microsoft project; verify version-specific setup in Microsoft Learn before use.",
+    "trust_matrix": {
+      "mutation_capable": true,
+      "requires_egress": true,
+      "requires_credentials": true,
+      "signed_release": "unknown",
+      "pin_strategy": "version"
+    }
   },
   {
     "id": "oracle-official-mcp-servers",
     "name": "Oracle MCP Servers",
     "type": "mcp-reference",
     "provider": "oracle",
-    "harnesses": ["codex", "claude-code", "cursor", "gemini", "kiro", "other"],
+    "harnesses": [
+      "codex",
+      "claude-code",
+      "cursor",
+      "gemini",
+      "kiro",
+      "other"
+    ],
     "summary": "Reference entry for Oracle's official MCP server offerings and repository.",
     "source_type": "reference-only",
     "official_docs": [
@@ -60,6 +95,13 @@
     "vendor": "Oracle",
     "auth_model": "Varies by server; commonly database credentials, OCI configuration, or product-specific authentication.",
     "install_example": "Start from Oracle's MCP landing page and the oracle/mcp repository for server-specific setup.",
-    "unofficial_warning": "Official Oracle resources; server capabilities and authentication vary by Oracle product."
+    "unofficial_warning": "Official Oracle resources; server capabilities and authentication vary by Oracle product.",
+    "trust_matrix": {
+      "mutation_capable": true,
+      "requires_egress": true,
+      "requires_credentials": true,
+      "signed_release": "unknown",
+      "pin_strategy": "version"
+    }
   }
 ]

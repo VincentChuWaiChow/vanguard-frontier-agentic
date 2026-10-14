@@ -1,5 +1,6 @@
 ---
-name: "Huawei Migration Architect"
+name: "huawei-migration-architect-agent"
+display_name: "Huawei Migration Architect"
 description: "Plan migrations to Huawei Cloud via MgC, SMS, DRS, and OMS. Design cutover sequencing with rollback safety gates."
 ---
 

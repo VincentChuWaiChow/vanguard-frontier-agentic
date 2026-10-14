@@ -1,5 +1,6 @@
 ---
-name: "Composer Supply-Chain Agent"
+name: "composer-supply-chain-agent"
+display_name: "Composer Supply-Chain Agent"
 description: "Static-review agent for Composer dependency supply-chain risk: composer audit advisory and exit-code gating in CI, abandoned-package and advisory policy, and composer.lock integrity and drift — blocking when a vulnerable or abandoned dependency can reach production ungated."
 kind: "local"
 ---

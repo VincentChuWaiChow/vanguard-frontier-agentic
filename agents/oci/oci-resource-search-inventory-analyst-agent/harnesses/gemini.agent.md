@@ -1,5 +1,6 @@
 ---
-name: "OCI Resource Search Inventory Analyst"
+name: "oci-resource-search-inventory-analyst-agent"
+display_name: "OCI Resource Search Inventory Analyst"
 description: "Tenancy inventory, resource search, tag/owner gaps, compartment scope, and evidence-labeled asset maps."
 kind: "local"
 ---

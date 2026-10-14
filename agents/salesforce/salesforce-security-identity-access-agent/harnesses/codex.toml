@@ -1,6 +1,6 @@
 name = "salesforce_security_identity_access_agent"
 description = "Specialized subagent for salesforce-security-identity-access. Adversarial security reviewer for Salesforce identity and access management — profiles, permission sets, permission set groups, roles, sharing, OWD, SSO, MFA, connected apps, OAuth scopes, session policies, and privileged access. Enforces least privilege and flags toxic permission combinations."
-model = "gpt-5.5"
+model = "gpt-6-sol"
 model_reasoning_effort = "high"
 sandbox_mode = "read-only"
 

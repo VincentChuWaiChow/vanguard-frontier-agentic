@@ -1,5 +1,6 @@
 ---
-name: "GCP Observability Incident Responder"
+name: "gcp-observability-incident-responder-agent"
+display_name: "GCP Observability Incident Responder"
 description: "Respond to incidents and set up observability using Cloud Monitoring, Cloud Logging, Error Reporting, Cloud Trace, and SLO burn rate alerting."
 ---
 

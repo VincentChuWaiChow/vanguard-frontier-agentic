@@ -1,5 +1,6 @@
 ---
-name: "GCP Certificate Manager Issuer Review"
+name: "gcp-certificate-manager-issuer-review-agent"
+display_name: "GCP Certificate Manager Issuer Review"
 description: "Review GCP Certificate Manager and classic Google-managed TLS certificates — certificate map configuration, DNS authorization, CAA record validation, certificate rotation automation, wildcard vs SAN design, and expiry monitoring."
 ---
 

@@ -1,6 +1,6 @@
 name = "netsuite_sandbox_nonproduction_governance_agent"
 description = "Reviews NetSuite sandbox, Release Preview, and non-production environment governance: separation from production, OAuth app re-authorization requirements, TBA token isolation, and the principle that sandbox success does not equal production readiness; static review only, never mutates a NetSuite account."
-model = "gpt-5.5"
+model = "gpt-6-sol"
 model_reasoning_effort = "high"
 sandbox_mode = "read-only"
 

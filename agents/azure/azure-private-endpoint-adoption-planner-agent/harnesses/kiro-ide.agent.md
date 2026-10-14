@@ -1,8 +1,6 @@
 ---
-metadata:
-  author: "github: VincentChuWaiChow"
-  version: "0.2.1"
-  updated: "2026-06-05"
+name: "Azure Private Endpoint Adoption Planner"
+description: "Plan Azure Private Link adoption with explicit consumer networks, DNS zone lifecycle, hub-spoke ownership, routing, and rollback evidence."
 ---
 
 # Azure Private Endpoint Adoption Planner

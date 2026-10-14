@@ -1,5 +1,6 @@
 ---
-name: "HTML Semantics & Accessibility"
+name: "html-semantics-agent"
+display_name: "HTML Semantics & Accessibility"
 description: "Static-review agent for markup structure, landmark/heading hierarchy, native-element usage, and ARIA application against WHATWG HTML and WAI-ARIA APG."
 kind: "local"
 ---

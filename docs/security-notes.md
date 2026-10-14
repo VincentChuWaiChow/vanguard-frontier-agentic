@@ -50,6 +50,135 @@ Dependabot alert dismissed" or "why does workflow X need write scope Y".
 - Re-open the alert (or let Dependabot re-detect on next scan) and
   confirm closure.
 
+**Update (2026-09-29):** exit criterion met. Commit `5fd4ce18`
+refreshed the bundled `npm` to 11.20.0, whose
+`node_modules/npm/node_modules/ip-address` is `10.5.0` (>= `10.1.1`).
+This advisory no longer matches; the two newer `ip-address` advisories
+below do.
+
+### Triage pass 2026-09-29/30
+
+Source: `npm audit` against `package-lock.json`, first at `4c9e74dc`
+(the `v3.14.0` release commit) on 2026-09-29, then re-run on 2026-09-30
+after seven more advisories were published on 2026-09-29. Each
+advisory's severity and fixed versions were checked against OSV
+(`https://api.osv.dev/v1/vulns/<GHSA>`). The Security tab itself
+(Dependabot, CodeQL, and Scorecard alert lists) was not readable from
+the session that did this pass, so alert numbers are not recorded here.
+Match alerts by GHSA ID.
+
+**Correction (2026-09-30):** the first version of this pass said the
+bundled `undici` was unreachable because `node-gyp` imports no
+`WebSocket`. That still holds for the two WebSocket advisories. It does
+not hold for GHSA-r53p-7pc4-xj5r, which is in the retry interceptor:
+`node-gyp/lib/download.js` imports `RetryAgent`. That path is reachable
+in principle and is not run by this repo's pipelines (reason 4 below).
+
+#### Fixed in this repo
+
+| Advisory | Package | Lockfile path | Fixed in | Now |
+|---|---|---|---|---|
+| GHSA-3wwx-pv8p-q78v | `undici` 7.29.0 | `node_modules/undici` (via `@semantic-release/github`) | 7.29.1 | 7.30.0 |
+| GHSA-3wwx-pv8p-q78v | `undici` 6.28.0 | `node_modules/@actions/http-client/node_modules/undici` | 6.28.1 | 6.29.0 |
+
+The resolved versions also clear the two `undici` advisories published
+on 2026-09-29 (all three are fixed in 6.28.1 / 7.29.1).
+`npm audit fix --package-lock-only` moved both copies inside their
+existing semver ranges (`^7.0.0` from `@semantic-release/github`,
+`^6.23.0` from `@actions/http-client`). No `package.json` range changed.
+Both versions support the Node versions CI uses (22 in `ci.yml`, 24 in
+`release.yml`). `undici` 7.30.0 needs `>=20.18.1` and 6.29.0 needs
+`>=18.17`. After `npm ci`, `@semantic-release/github` and
+`@actions/http-client` still load, and `semantic-release --dry-run`
+loads every configured plugin.
+
+#### Bundled inside the `npm` CLI: not fixable here, dismiss with reason
+
+All paths are under `node_modules/npm/node_modules/` and marked
+`inBundle: true`.
+
+| Advisory | Severity | Package | Fixed in | Reachable in our pipelines? |
+|---|---|---|---|---|
+| GHSA-rfgv-xxqx-mfg5 | High | `undici` 6.28.0 | 6.28.1 | No: WebSocket client not imported (reason 3) |
+| GHSA-3wwx-pv8p-q78v | Moderate | `undici` 6.28.0 | 6.28.1 | No: WebSocket client not imported (reason 3) |
+| GHSA-r53p-7pc4-xj5r | Low | `undici` 6.28.0 | 6.28.1 | Code path exists (`RetryAgent`), never run (reason 4) |
+| GHSA-qhr7-859c-m2p7 | High | `brace-expansion` 5.0.9 | 5.0.11 | Only on our own trusted globs (reason 5) |
+| GHSA-6j4f-fj2g-mc7p | High | `brace-expansion` 5.0.9 | 5.0.10 | Only on our own trusted globs (reason 5) |
+| GHSA-q2hr-2g5m-vwhr | Moderate | `brace-expansion` 5.0.9 | 5.0.12 | Only on our own trusted globs (reason 5) |
+| GHSA-rpw4-54j3-4h4q | Moderate | `ip-address` 10.5.0 | 10.5.1 | No: classifier never called (reason 2) |
+| GHSA-2vr4-cq9g-pvrc | Moderate | `ip-address` 10.5.0 | 10.5.1 | No: classifier never called (reason 2) |
+| GHSA-j6r3-76f7-8jcv | Moderate | `ip-address` 10.5.0 | 10.7.1 | No: `isInSubnet` never called (reason 2) |
+| GHSA-h3mg-xc3c-68pw | Moderate | `ip-address` 10.5.0 | 10.7.1 | Only with a SOCKS proxy configured; none is (reason 6) |
+
+All of these are dev-only. They are reached only through the release
+toolchain (`@semantic-release/npm` -> `npm`) and are never in the
+published tarball.
+
+1. **Not patchable from this repo.** Root `overrides` do not reach
+   bundled packages. The npm docs say published packages "may dictate
+   their resolutions by pinning dependencies or using
+   `bundleDependencies`" (npm/cli
+   `docs/lib/content/configuring-npm/package-json.md`, `overrides`
+   section, via Context7 `/npm/cli`). Overriding `npm` itself does not
+   help either. The newest 11.x (11.20.0, which this lock already pins)
+   and the newest 12.x (12.1.0), both published 2026-09-22, bundle the
+   same `ip-address` 10.5.0, `undici` 6.28.0, and `brace-expansion`
+   5.0.9. `npm audit` reports "fix available via `npm audit fix`" for
+   these nodes, but running it changes nothing, because of the
+   bundling.
+2. **`ip-address`: affected methods are never called.** Inside the npm
+   bundle the only importer is `socks` (`socks/build/common/helpers.js`,
+   `socks/build/client/socksclient.js`). It only constructs
+   `Address4`/`Address6` values and calls `toArray()`, `canonicalForm()`,
+   and `fromByteArray()`. Nothing in the bundle outside `ip-address`
+   calls `isLinkLocal`, `getScope`, any other classifier, `isInSubnet`,
+   or `isHostInSubnet`. The only textual match, `isPrivate` in
+   `@npmcli/package-json/lib/sort.js`, is the `package.json` `private`
+   field and is unrelated. No code in this repo makes a trust-boundary
+   decision with these methods.
+3. **`undici` WebSocket advisories: no WebSocket client.** The only
+   importer in the npm bundle is `node-gyp/lib/download.js`, which
+   imports `Agent`, `EnvHttpProxyAgent`, `RetryAgent`, and `fetch`, and
+   no `WebSocket`.
+4. **`undici` retry interceptor: never run.** `RetryAgent` is imported,
+   but `node-gyp` only runs for native-addon builds. No entry in
+   `package-lock.json` sets `hasInstallScript` or `gypfile`, and
+   `tests/validate-no-lifecycle-scripts.py` rejects install-time scripts
+   in this package's own `package.json`. This advisory is Low severity.
+5. **`brace-expansion`: trusted input only.** The only importer in the
+   bundle is `minimatch`, which `npm publish` uses to expand the
+   `files` globs in our own `package.json` (a static list of literal
+   paths; there is no `.npmignore`). The worst case is a crafted glob
+   committed to `master` stalling our own release job. Changing
+   `master` already takes a ruleset-protected, reviewed merge, and a
+   stalled job gives an attacker nothing they couldn't do with that
+   access directly.
+6. **`ip-address` long-input advisory: needs a SOCKS proxy.**
+   `socks/build/common/helpers.js` `ipToBuffer()` calls
+   `new Address6(ip)` only after `net.isIPv6(ip)` passes. Node accepts
+   an IPv6 address with an arbitrarily long zone ID
+   (`fe80::1%<100k chars>` returns `true`), so a long string can reach
+   the parser. That code runs only when npm is configured with a SOCKS
+   proxy. Neither `release.yml` nor a repo `.npmrc` configures one.
+
+**Exit criteria (bundled entries):** when an `npm` release inside
+`^11.6.2` bundles `undici >= 6.28.1`, `brace-expansion >= 5.0.12`, and
+`ip-address >= 10.7.1`, refresh the npm subtree the way commit
+`5fd4ce18` did (drop it from the lock, then `npm install`). Then confirm
+`npm audit` reports 0 and that Dependabot auto-closes the alerts.
+
+#### Rust
+
+**Rust (`tools/vfa-tui/Cargo.lock`).** `cargo audit` reported 0
+vulnerabilities and one informational `unsound` warning,
+RUSTSEC-2026-0253. It covers `lru` 0.18.0 (via `ratatui-core`):
+`LruCache::pop()` is not panic-safe and can cause use-after-free, but
+only with `catch_unwind` and key types whose `Drop` panics. Patched in
+`>= 0.18.2`. **Fixed**: `cargo update -p lru` moved it to 0.18.5 inside
+`ratatui-core`'s existing requirement. After the update, `cargo audit`
+is clean, and `cargo fmt --check`, `cargo clippy --all-targets -- -D
+warnings`, and `cargo test` pass.
+
 ## Workflow token-permission hardening
 
 The OpenSSF Scorecard `Token-Permissions` check requires a top-level

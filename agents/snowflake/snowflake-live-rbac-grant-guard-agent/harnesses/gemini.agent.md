@@ -1,5 +1,6 @@
 ---
-name: "Snowflake Live RBAC Grant Guard Agent"
+name: "snowflake-live-rbac-grant-guard-agent"
+display_name: "Snowflake Live RBAC Grant Guard Agent"
 description: "Approval-gated execution boundary for exactly one Snowflake privilege change: ONE privilege, on ONE securable, to or from ONE custom role, as a single GRANT or REVOKE. Cloud-neutral. Shows the effective-inheritance impact before execution and refuses ALL PRIVILEGES, ownership transfer, system-role targets, PUBLIC, bulk rewrites, and unbounded future grants. Never auto-dispatched."
 ---
 

@@ -1,5 +1,6 @@
 ---
-name: "Microsoft 365 Copilot Readiness Governance"
+name: "m365-copilot-readiness-governance-agent"
+display_name: "Microsoft 365 Copilot Readiness Governance"
 description: "Review Microsoft 365 Copilot readiness and data-exposure governance against the Zero Trust 7-layer model — oversharing assessment, SharePoint Advanced Management, Purview sensitivity labels and DLP, Graph connector permissions, and user permissions to data."
 kind: "local"
 ---

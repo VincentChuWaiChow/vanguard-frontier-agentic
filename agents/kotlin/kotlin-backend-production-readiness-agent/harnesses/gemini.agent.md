@@ -1,5 +1,6 @@
 ---
-name: "Kotlin Backend Production Readiness Agent"
+name: "kotlin-backend-production-readiness-agent"
+display_name: "Kotlin Backend Production Readiness Agent"
 description: "Static review of production readiness for Ktor servers and the Kotlin-on-Spring coroutine surface: server lifecycle/monitoring events, Netty/CIO graceful-shutdown configuration, StatusPages typed error mapping, resource cleanup on shutdown, and correctly routing the coroutine-context-loss hazard behind suspend WebFlux handlers. Reads source and sanitized config only."
 ---
 

@@ -1,5 +1,6 @@
 ---
-name: "GCP Resource Inventory Analyst"
+name: "gcp-resource-inventory-analyst-agent"
+display_name: "GCP Resource Inventory Analyst"
 description: "Query Asset Inventory API for resource discovery, audit resource label/tag coverage, detect stale or orphaned resources, review change history, and build inventory reports across projects and folders."
 ---
 

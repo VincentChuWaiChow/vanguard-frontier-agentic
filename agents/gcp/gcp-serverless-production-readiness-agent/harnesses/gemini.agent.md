@@ -1,5 +1,6 @@
 ---
-name: "GCP Serverless Production Readiness"
+name: "gcp-serverless-production-readiness-agent"
+display_name: "GCP Serverless Production Readiness"
 description: "Review Cloud Run and Cloud Functions gen2 for production readiness — min-instances cold start, memory and CPU allocation, VPC connector configuration, Secret Manager injection, CMEK encryption, concurrency limits, and traffic splitting safety."
 ---
 

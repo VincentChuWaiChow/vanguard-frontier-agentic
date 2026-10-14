@@ -1,5 +1,6 @@
 ---
-name: "PHP Runtime Upgrade Readiness Agent"
+name: "php-runtime-upgrade-readiness-agent"
+display_name: "PHP Runtime Upgrade Readiness Agent"
 description: "Static-review agent for PHP runtime upgrade readiness: flags EOL and security-only PHP versions against php.net's published four-year support lifecycle, and reviews OPcache (validate_timestamps) and PHP-FPM (pm.max_children, pm.max_requests) production hardening — treating an EOL runtime as a blocking finding."
 kind: "local"
 ---

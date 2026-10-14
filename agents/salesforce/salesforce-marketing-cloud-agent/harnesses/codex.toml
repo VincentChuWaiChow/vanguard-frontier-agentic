@@ -1,6 +1,6 @@
 name = "salesforce_marketing_cloud_agent"
 description = "Adversarial static reviewer for Marketing Cloud Engagement and Account Engagement journeys, segmentation, deliverability, consent, preference centers, and campaign governance — explicitly refuses review when product is undeclared (MCE vs MCAE) and flags privacy, consent, and deliverability risks."
-model = "gpt-5.5"
+model = "gpt-6-sol"
 model_reasoning_effort = "high"
 sandbox_mode = "read-only"
 

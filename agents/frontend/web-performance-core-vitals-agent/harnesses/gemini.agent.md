@@ -1,5 +1,6 @@
 ---
-name: "Web Performance & Core Web Vitals"
+name: "web-performance-core-vitals-agent"
+display_name: "Web Performance & Core Web Vitals"
 description: "Static/read-only review agent that triages Core Web Vitals (LCP, INP, CLS) using both lab and field evidence, ties every verdict to a numeric budget and business metric, and refuses lab-only sign-off."
 kind: "local"
 ---

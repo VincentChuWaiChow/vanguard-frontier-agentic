@@ -25,36 +25,16 @@ import { checkToolUse, compileGuardPatterns } from "../mods/blast-radius-guard/l
 import { buildRecord, lastSequence } from "../mods/audit-trail/lib/core.mjs";
 import { canonicalJson } from "../mods/audit-trail/lib/common.mjs";
 import { loadMods, parseToml, renderAll } from "../scripts/generate-mods.mjs";
+import {
+  AGENT_ID_PATTERN,
+  HARNESS_PATH_TRAVERSAL,
+  assertWithin,
+  normalizePlatform,
+} from "../scripts/export-marketplace-agents.mjs";
 
 // ── Security-critical implementations under test ─────────────────────────────
-// Reproduced verbatim from scripts/export-marketplace-agents.mjs.
-
-function assertWithin(parent, child, label) {
-  const resolvedParent = path.resolve(parent);
-  const resolvedChild = path.resolve(child);
-  const sep = path.sep;
-  const parentWithSep = resolvedParent.endsWith(sep)
-    ? resolvedParent
-    : resolvedParent + sep;
-  if (
-    resolvedChild !== resolvedParent &&
-    !resolvedChild.startsWith(parentWithSep)
-  ) {
-    throw new Error(
-      `Refusing to ${label}: path '${resolvedChild}' escapes '${resolvedParent}'.`
-    );
-  }
-}
-
-const AGENT_ID_PATTERN = /^[a-z0-9][a-z0-9-]*$/;
-
-const HARNESS_PATH_TRAVERSAL =
-  /[\\/]\.\.[\\/]|^\.\.[\\/]|[\\/]\.\.$|^\.\.$/;
-
-function normalizePlatform(platform, aliases) {
-  const lowered = platform.toLowerCase();
-  return Object.hasOwn(aliases, lowered) ? aliases[lowered] : lowered;
-}
+// Imported directly from scripts/export-marketplace-agents.mjs (not
+// reproduced) so a production regression can't leave these tests green.
 
 const ALIASES = {
   claude: "claude-code",
@@ -205,7 +185,7 @@ console.log("PASS  harness path: clean relative paths never flagged");
 
 fc.assert(
   fc.property(fc.string({ maxLength: 50 }), (platform) => {
-    const result = normalizePlatform(platform, ALIASES);
+    const result = normalizePlatform(platform);
     assert.equal(typeof result, "string");
     assert.equal(result, result.toLowerCase());
   }),
@@ -214,8 +194,8 @@ fc.assert(
 console.log("PASS  normalizePlatform: never throws, always returns lowercase string");
 
 for (const [alias, canonical] of Object.entries(ALIASES)) {
-  assert.equal(normalizePlatform(alias, ALIASES), canonical);
-  assert.equal(normalizePlatform(alias.toUpperCase(), ALIASES), canonical);
+  assert.equal(normalizePlatform(alias), canonical);
+  assert.equal(normalizePlatform(alias.toUpperCase()), canonical);
 }
 console.log("PASS  normalizePlatform: known aliases resolve to canonical form");
 

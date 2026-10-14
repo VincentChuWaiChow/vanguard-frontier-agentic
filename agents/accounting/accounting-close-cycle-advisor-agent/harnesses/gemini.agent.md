@@ -1,5 +1,6 @@
 ---
-name: "Accounting Close Cycle Advisor"
+name: "accounting-close-cycle-advisor-agent"
+display_name: "Accounting Close Cycle Advisor"
 description: "Advise on month-end, quarter-end, and year-end financial close workflows across US GAAP, IFRS, UK FRS 102, German HGB, JGAAP, CAS, and Ind AS. Multi-jurisdiction filing deadlines, R2R process, reconciliation, intercompany elimination, FX translation, and deferred tax. Advisory only."
 ---
 

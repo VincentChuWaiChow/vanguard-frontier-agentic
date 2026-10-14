@@ -1,5 +1,6 @@
 ---
-name: "GCP Cloud Run and Functions Operator"
+name: "gcp-cloud-run-functions-operator-agent"
+display_name: "GCP Cloud Run and Functions Operator"
 description: "Deploy and operate Cloud Run services, Cloud Functions gen2, Eventarc triggers, traffic splitting for progressive delivery, and cold-start optimization strategies."
 ---
 

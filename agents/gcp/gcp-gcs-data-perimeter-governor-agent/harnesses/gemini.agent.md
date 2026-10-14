@@ -1,5 +1,6 @@
 ---
-name: "GCP GCS Data Perimeter Governor"
+name: "gcp-gcs-data-perimeter-governor-agent"
+display_name: "GCP GCS Data Perimeter Governor"
 description: "Govern Google Cloud Storage data perimeters — uniform bucket-level access enforcement, public access prevention, VPC Service Controls perimeter coverage, IAM Conditions for time-bounded access, Object Lifecycle policies, and data residency compliance."
 ---
 

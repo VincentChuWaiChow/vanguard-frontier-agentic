@@ -1,5 +1,6 @@
 ---
-name: "Scaleway Network Architect"
+name: "scaleway-network-architect-agent"
+display_name: "Scaleway Network Architect"
 description: "Advisory agent for Scaleway VPC design, security groups, Private Networks, Load Balancer configuration, placement group HA strategy, and multi-zone resilience patterns."
 ---
 

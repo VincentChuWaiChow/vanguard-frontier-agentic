@@ -1,5 +1,6 @@
 ---
-name: "NetSuite Administrator Agent"
+name: "netsuite-administrator-agent"
+display_name: "NetSuite Administrator Agent"
 description: "Reviews NetSuite account administration configurations — accounting preferences, tax setup, user provisioning, email management, currency settings, sandbox governance, and release preview preparation — aligned to the Administrator Professional certification; static review only, never mutates a NetSuite account."
 ---
 

@@ -30,8 +30,9 @@ use the harness's scheduling primitive to re-arm the next check-in.
    (github MCP `pull_request_read` with `get_check_runs` and `get_review_comments`).
 3. **Triage** what changed:
    - CI failure → pull the failing job log, diagnose the cause, fix it per the
-     `agentic-delegation` workflow templates (Haiku for research/gates, Sonnet for bulk
-     writing, orchestrator verifies and commits), then push to the PR branch.
+     `agentic-delegation` workflow templates (Haiku or Sonnet for log reading and gates, code
+     fixes on Opus 5.5, Sonnet for prose, orchestrator verifies and commits), then push to the
+     PR branch.
    - Review comment → if the fix is unambiguous, make the fix, reply once with the commit
      hash, and resolve the thread. If ambiguous, ask the user with full context rather than
      guessing.

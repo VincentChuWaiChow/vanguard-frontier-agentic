@@ -1,5 +1,6 @@
 ---
-name: "AWS Non-Destructive Task Automation Advisor"
+name: "aws-non-destructive-task-automation-advisor-agent"
+display_name: "AWS Non-Destructive Task Automation Advisor"
 description: "Design AWS-native, non-destructive automation for reporting, notification, evidence gathering, approvals, and workflow coordination using serverless and event-driven services."
 kind: "local"
 ---

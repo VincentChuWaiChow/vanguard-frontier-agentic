@@ -1,5 +1,6 @@
 ---
-name: "SAP HANA Cloud Performance & Cost"
+name: "sap-hana-cloud-performance-cost-agent"
+display_name: "SAP HANA Cloud Performance & Cost"
 description: "Reviews SAP HANA Cloud instance sizing, SQL query and workload performance patterns, NSE and data tiering configurations, cost metering and BTP capacity unit allocation, and monitoring and alerting setup for performance and cost gaps — flags over-provisioned instances, missing column store optimisation, absent partitioning, unmonitored long-running statements, and cost metering blind spots. Static review only — never mutates anything."
 ---
 

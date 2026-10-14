@@ -1,5 +1,6 @@
 ---
-name: "Lookalike Audience Upload Compliance Review Agent"
+name: "lookalike-audience-upload-compliance-review-agent"
+display_name: "Lookalike Audience Upload Compliance Review Agent"
 description: "Reviews custom-audience and lookalike-audience upload specifications for hashing adequacy, PII field scope, consent-basis validity, and platform data-sharing restrictions before upload to Meta, Google, LinkedIn, or TikTok — catching underhashed identifiers, consent-scope mismatches, and re-identification surfaces."
 ---
 
