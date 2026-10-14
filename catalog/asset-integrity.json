@@ -6,6 +6,7 @@
       "agents",
       "rules",
       "mcp",
+      "mods",
       "schemas",
       "catalog",
       "scripts",
@@ -35350,6 +35351,422 @@
       ]
     },
     {
+      "tree": "mods",
+      "aggregate_sha256": "e5b7ae07a4bbf389b310e3256e9083958e281069761cd0a055629219f995e201",
+      "files": [
+        {
+          "path": "mods/README.md",
+          "sha256": "e3234d5585fe0b325fc0984d25e5d3bdda54741e8b91582ea0dc213c02727e1a",
+          "bytes": 10150
+        },
+        {
+          "path": "mods/audit-trail/README.md",
+          "sha256": "5aac003e901333757158bcf32fc027e7bdfeaceb9014aa008fd3162b963e240b",
+          "bytes": 2828
+        },
+        {
+          "path": "mods/audit-trail/bin/hook.mjs",
+          "sha256": "3d834e8d7992f82f356d43d92342b9e37835438793d99919b726aa80dd8da0f1",
+          "bytes": 2588
+        },
+        {
+          "path": "mods/audit-trail/claude-code/UNSUPPORTED.md",
+          "sha256": "33f518528b7ce9551ccd964b2a38d575c67585345c8c0bd2605f501958229b8a",
+          "bytes": 382
+        },
+        {
+          "path": "mods/audit-trail/claude-code/settings.hooks.json",
+          "sha256": "eb1648fa5fd36f19007300fae94d337e3dad55ab3bc4d6f70921a0385d06268e",
+          "bytes": 291
+        },
+        {
+          "path": "mods/audit-trail/codex/hooks.json",
+          "sha256": "d138839c617da2c15e03c68993fa3586a899820d383a96b64b47d3c60fe010d6",
+          "bytes": 260
+        },
+        {
+          "path": "mods/audit-trail/kiro/UNSUPPORTED.md",
+          "sha256": "0a3cf9db18d1eae99810ae8d3755237dc8910784ac88acc2f89b018b150c6f47",
+          "bytes": 319
+        },
+        {
+          "path": "mods/audit-trail/kiro/audit-trail-post-tool-use-hook.json",
+          "sha256": "cfe125ecaff09e8bfdade8cbe642dc5cc017c005e42fc5feba70bb07bacdee13",
+          "bytes": 413
+        },
+        {
+          "path": "mods/audit-trail/lib/common.mjs",
+          "sha256": "a0adff21e12bbdeab1a90c4664e3c78abbaaad077791b150298b386d3e31afeb",
+          "bytes": 9331
+        },
+        {
+          "path": "mods/audit-trail/lib/core.mjs",
+          "sha256": "2b2718cb749d61349dfe06e52f8c490eacc79a922363fa935e1ae072a28fce3f",
+          "bytes": 2116
+        },
+        {
+          "path": "mods/audit-trail/lib/runtime.mjs",
+          "sha256": "8eb22b0e930d8c376737985ddea4e3e313df6d7e4be07154b9b512c2e03a3e9d",
+          "bytes": 6208
+        },
+        {
+          "path": "mods/audit-trail/mod.toml",
+          "sha256": "10374eed95df544c70bd7118ef2c9c9bfe7887d6cc32140aa6590e25164ccdab",
+          "bytes": 1207
+        },
+        {
+          "path": "mods/blast-radius-guard/.claude-plugin/plugin.json",
+          "sha256": "0e5280e05e90ebae62d37ef79017115586436733b4fa4761218f981f1bd73462",
+          "bytes": 156
+        },
+        {
+          "path": "mods/blast-radius-guard/README.md",
+          "sha256": "5e00c891608c2a2d3ea078ff4da9515b76fabd5e58d8ac8c88465599b4cc9936",
+          "bytes": 2256
+        },
+        {
+          "path": "mods/blast-radius-guard/bin/hook.mjs",
+          "sha256": "8f8085ce401fd855eac0a051a7ab8aac7094ca3d169c48e095e71f69ff2ddec9",
+          "bytes": 828
+        },
+        {
+          "path": "mods/blast-radius-guard/claude-code/settings.hooks.json",
+          "sha256": "317867e2a2d9df034ac8c2a7d9780b389fab2b84699709a48829742fa02bca72",
+          "bytes": 296
+        },
+        {
+          "path": "mods/blast-radius-guard/codex/UNSUPPORTED.md",
+          "sha256": "d1b6274715f67602db8619a696147d423815a7c3c5506c9312e5add91e029210",
+          "bytes": 191
+        },
+        {
+          "path": "mods/blast-radius-guard/codex/hooks.json",
+          "sha256": "6774a6139b38ad7dffb9580d84128f86090159c24109ee850c9bf1d965338a83",
+          "bytes": 265
+        },
+        {
+          "path": "mods/blast-radius-guard/hooks/hooks.json",
+          "sha256": "a9414e9fe26002943cfd416bc53b2bbe66a0226f3ee344b901cc3ad191b8f914",
+          "bytes": 43
+        },
+        {
+          "path": "mods/blast-radius-guard/hooks/register.test.ts",
+          "sha256": "d40858846c9a1a322d05e4be3e09ab8b2c0fd65511bc220ed8f6eef70d051e67",
+          "bytes": 3410
+        },
+        {
+          "path": "mods/blast-radius-guard/hooks/register.ts",
+          "sha256": "d172b19cf17f3bff8432ce786825650b6cd1afc98e1e47e3537a15e157f9684b",
+          "bytes": 685
+        },
+        {
+          "path": "mods/blast-radius-guard/kiro/UNSUPPORTED.md",
+          "sha256": "419c2da0a7b4813766bc6a77ee66e07942bd8007fe4034c869bf154b2882c252",
+          "bytes": 318
+        },
+        {
+          "path": "mods/blast-radius-guard/kiro/blast-radius-guard-pre-tool-use-hook.json",
+          "sha256": "9b2fd33a8ce1614f063704551bba2ca5ad95e6966354682cdd6123bcbaede229",
+          "bytes": 398
+        },
+        {
+          "path": "mods/blast-radius-guard/lib/common.mjs",
+          "sha256": "a0adff21e12bbdeab1a90c4664e3c78abbaaad077791b150298b386d3e31afeb",
+          "bytes": 9331
+        },
+        {
+          "path": "mods/blast-radius-guard/lib/core.mjs",
+          "sha256": "c257349cbe104314f1d9a30320dd43c37307ad2d12e7cf6897315d8f2d7a176c",
+          "bytes": 2865
+        },
+        {
+          "path": "mods/blast-radius-guard/lib/patterns.mjs",
+          "sha256": "b7a6f8ee860fe9f3fd742cc721e2371d5081d974d9f0d6ecf186678fc92da2b2",
+          "bytes": 6800
+        },
+        {
+          "path": "mods/blast-radius-guard/lib/runtime.mjs",
+          "sha256": "8eb22b0e930d8c376737985ddea4e3e313df6d7e4be07154b9b512c2e03a3e9d",
+          "bytes": 6208
+        },
+        {
+          "path": "mods/blast-radius-guard/mod.toml",
+          "sha256": "9fee829cc17d5af888d5cdf6db7375c4ac37e955ee2bfbe2f1959104583d23cb",
+          "bytes": 941
+        },
+        {
+          "path": "mods/blast-radius-guard/patterns.json",
+          "sha256": "ccd0e08ebba0741e73387184f1743463070bb71828c8392fe0a6a1395afd7026",
+          "bytes": 6709
+        },
+        {
+          "path": "mods/context-burn/.claude-plugin/plugin.json",
+          "sha256": "3bc75105bea34ce48f6c837bf7aa8bce6c9fa35818f887994d46674b8ae7550a",
+          "bytes": 181
+        },
+        {
+          "path": "mods/context-burn/README.md",
+          "sha256": "2d5b8f8befd5ecab806cf18b434d7fe4d90c0519eda99b3978ff974dfb5c08ab",
+          "bytes": 2207
+        },
+        {
+          "path": "mods/context-burn/bin/hook.mjs",
+          "sha256": "0fa78f49e65a7fb8895c68b6823a3eb0a3edca89ecdca2b3b6c8fdc7c50f40c5",
+          "bytes": 1566
+        },
+        {
+          "path": "mods/context-burn/claude-code/UNSUPPORTED.md",
+          "sha256": "4a9c667fd1a3e1f134a9e2b78bd5e408bb8ce05187b60eec669167a89c79ca3e",
+          "bytes": 329
+        },
+        {
+          "path": "mods/context-burn/claude-code/settings.hooks.json",
+          "sha256": "4b705a4ad7e6f56c005f43c8d2da42ddac72c151a78017c60b2aa64a9d04af0b",
+          "bytes": 566
+        },
+        {
+          "path": "mods/context-burn/codex/UNSUPPORTED.md",
+          "sha256": "b0d810540f8d06afb993c62e23515b9888d375edbd6d1caa99769ae29e1d7aaf",
+          "bytes": 243
+        },
+        {
+          "path": "mods/context-burn/codex/hooks.json",
+          "sha256": "6087f8444cdd1c031455df7538b32aebd09be058547796808abdbc7831a77faf",
+          "bytes": 504
+        },
+        {
+          "path": "mods/context-burn/hooks/hooks.json",
+          "sha256": "a9414e9fe26002943cfd416bc53b2bbe66a0226f3ee344b901cc3ad191b8f914",
+          "bytes": 43
+        },
+        {
+          "path": "mods/context-burn/hooks/register.test.ts",
+          "sha256": "748c5fefc822d3568f330013fd4444e3eb518dd046388eff487e37824c508882",
+          "bytes": 4652
+        },
+        {
+          "path": "mods/context-burn/hooks/register.ts",
+          "sha256": "8aa642970c392a2d413377c0896db9a31401c0be1767b0716885c48c0b11cf60",
+          "bytes": 1349
+        },
+        {
+          "path": "mods/context-burn/kiro/UNSUPPORTED.md",
+          "sha256": "b78514a24fddb2fc4a83aebc9556d422e386301fd1d5305e63e9256fe0f8055d",
+          "bytes": 241
+        },
+        {
+          "path": "mods/context-burn/kiro/context-burn-post-tool-use-hook.json",
+          "sha256": "5a5499dd41f230755a15fda6208cb19288858984e49e828cf0fecbda571660f1",
+          "bytes": 420
+        },
+        {
+          "path": "mods/context-burn/kiro/context-burn-session-start-hook.json",
+          "sha256": "e397d862579e69dece65acbb56f17461205976bc3f10696aeb723c2281942108",
+          "bytes": 423
+        },
+        {
+          "path": "mods/context-burn/lib/common.mjs",
+          "sha256": "a0adff21e12bbdeab1a90c4664e3c78abbaaad077791b150298b386d3e31afeb",
+          "bytes": 9331
+        },
+        {
+          "path": "mods/context-burn/lib/core.mjs",
+          "sha256": "bd34bba8a854d4b45a7fcd8e2ecd0eb70a10437367ee18e5ec27a0debf0a7a40",
+          "bytes": 2488
+        },
+        {
+          "path": "mods/context-burn/lib/runtime.mjs",
+          "sha256": "8eb22b0e930d8c376737985ddea4e3e313df6d7e4be07154b9b512c2e03a3e9d",
+          "bytes": 6208
+        },
+        {
+          "path": "mods/context-burn/mod.toml",
+          "sha256": "3269bd7a23925f731b707a9d0867286e26cc838e49b9e5507df27afcfa0749ad",
+          "bytes": 1320
+        },
+        {
+          "path": "mods/live-guard-gate/.claude-plugin/plugin.json",
+          "sha256": "14892c1a596486f228f7e0edefb38346f4e66e3a618e5adf6ef1fd55dcccda92",
+          "bytes": 158
+        },
+        {
+          "path": "mods/live-guard-gate/README.md",
+          "sha256": "a4351f75ea5c47d6b1bdfdeffb37de70506730ca88453004cdb061533d99bea3",
+          "bytes": 1619
+        },
+        {
+          "path": "mods/live-guard-gate/bin/hook.mjs",
+          "sha256": "edb54dfcc82819c9a3c56d7b38d137a6f870ebd58d4af64c694c87e1ff013e0e",
+          "bytes": 565
+        },
+        {
+          "path": "mods/live-guard-gate/claude-code/settings.hooks.json",
+          "sha256": "db1a4995ca2292c48ea747f6e5826a74a71a089bd3a7ace931fe3dbec0eef170",
+          "bytes": 293
+        },
+        {
+          "path": "mods/live-guard-gate/codex/UNSUPPORTED.md",
+          "sha256": "ea2cc35c2febd49202ae975e5728e1b860e459a8b34c315d91674f9af78bf731",
+          "bytes": 184
+        },
+        {
+          "path": "mods/live-guard-gate/codex/hooks.json",
+          "sha256": "119ad37e2b209f58fe18ca80e0bea2b1d7afc412c2e446c1ae359ec32e6fd1b4",
+          "bytes": 262
+        },
+        {
+          "path": "mods/live-guard-gate/hooks/hooks.json",
+          "sha256": "a9414e9fe26002943cfd416bc53b2bbe66a0226f3ee344b901cc3ad191b8f914",
+          "bytes": 43
+        },
+        {
+          "path": "mods/live-guard-gate/hooks/register.test.ts",
+          "sha256": "d52c2fb6fd830dbf9d3c18c391cb39d56820d363918d6e69f67e1b3991dd9bb0",
+          "bytes": 2090
+        },
+        {
+          "path": "mods/live-guard-gate/hooks/register.ts",
+          "sha256": "f742acdb7c2063d81574d887efc429fb198fcb4a15b8a4259f56e858ee74f42b",
+          "bytes": 477
+        },
+        {
+          "path": "mods/live-guard-gate/kiro/UNSUPPORTED.md",
+          "sha256": "4f00029185544affeb79eb29899381f72f89edd522b68d916ecb888c9a207b57",
+          "bytes": 245
+        },
+        {
+          "path": "mods/live-guard-gate/kiro/live-guard-gate-pre-tool-use-hook.json",
+          "sha256": "20d11949246dd4644a4795753d8154c65a235f4ad1e2b999f7baca7d1578b285",
+          "bytes": 397
+        },
+        {
+          "path": "mods/live-guard-gate/lib/common.mjs",
+          "sha256": "a0adff21e12bbdeab1a90c4664e3c78abbaaad077791b150298b386d3e31afeb",
+          "bytes": 9331
+        },
+        {
+          "path": "mods/live-guard-gate/lib/core.mjs",
+          "sha256": "549cd532ef446b4b749c83a8fc067233fcd678029918c49c158d521f0594397c",
+          "bytes": 1340
+        },
+        {
+          "path": "mods/live-guard-gate/lib/live-agents.mjs",
+          "sha256": "ae0661d2136e59cf7b3a99c3a13d59b43c9e4ad92724c348b2125e9b75416d45",
+          "bytes": 3000
+        },
+        {
+          "path": "mods/live-guard-gate/lib/patterns.mjs",
+          "sha256": "bc226ec4fa6d0a0d097cbcebede4db3c0df43420bdc0624f02372d05bfa3386c",
+          "bytes": 27519
+        },
+        {
+          "path": "mods/live-guard-gate/lib/runtime.mjs",
+          "sha256": "8eb22b0e930d8c376737985ddea4e3e313df6d7e4be07154b9b512c2e03a3e9d",
+          "bytes": 6208
+        },
+        {
+          "path": "mods/live-guard-gate/mod.toml",
+          "sha256": "1cc4913e64544540f7a3228f6fd910437f203ad2eef4a11bfea28cdb0aac98af",
+          "bytes": 792
+        },
+        {
+          "path": "mods/live-guard-gate/patterns.json",
+          "sha256": "5bde19a86602509d924697151f13199e0f7a319d98884a890bd3ac37bc238fac",
+          "bytes": 27428
+        },
+        {
+          "path": "mods/secret-redactor/.claude-plugin/plugin.json",
+          "sha256": "daddb4783ac3395f931e8153813cb43228867daf01c714b14bd36ac09bfdbdbc",
+          "bytes": 172
+        },
+        {
+          "path": "mods/secret-redactor/README.md",
+          "sha256": "937eaebe4df9e7feb0eda0011b90246a5e86e5735ec011daa1b960f34d3c9087",
+          "bytes": 3836
+        },
+        {
+          "path": "mods/secret-redactor/bin/hook.mjs",
+          "sha256": "aa17b0a1946509d9921a770a7952220fe016ce98e9ce911bb7fedce55fbb0e76",
+          "bytes": 1713
+        },
+        {
+          "path": "mods/secret-redactor/claude-code/UNSUPPORTED.md",
+          "sha256": "eade11e64fe7895e4a746d880b652f5282d0f8aab70dfd0e2e7f8d46eac4b70b",
+          "bytes": 237
+        },
+        {
+          "path": "mods/secret-redactor/claude-code/settings.hooks.json",
+          "sha256": "c108768dce040108f797094d1f675beb55121ef3df45d15057bf36880c7f5530",
+          "bytes": 568
+        },
+        {
+          "path": "mods/secret-redactor/codex/UNSUPPORTED.md",
+          "sha256": "9a0f997b40149f09fcdfc62e777a73b96b306fcb0543aaf0b741ce71fe774d9f",
+          "bytes": 294
+        },
+        {
+          "path": "mods/secret-redactor/codex/hooks.json",
+          "sha256": "1addc67672f982c427d47baadf94dbc4548a0afca1c2fa6cd1cc66744710e598",
+          "bytes": 262
+        },
+        {
+          "path": "mods/secret-redactor/hooks/hooks.json",
+          "sha256": "a9414e9fe26002943cfd416bc53b2bbe66a0226f3ee344b901cc3ad191b8f914",
+          "bytes": 43
+        },
+        {
+          "path": "mods/secret-redactor/hooks/register.test.ts",
+          "sha256": "1069beedc0ccb3f6dbcc3ace6dc05f02b77bbb6907633884e5d0d7a6ae978d1e",
+          "bytes": 6630
+        },
+        {
+          "path": "mods/secret-redactor/hooks/register.ts",
+          "sha256": "eab8392c70fc49ec0948e3339cd249e7efca64cb2d7a93bf7c7dfe1af28aee1a",
+          "bytes": 946
+        },
+        {
+          "path": "mods/secret-redactor/kiro/UNSUPPORTED.md",
+          "sha256": "0353415ad8f9424c2cf5beae40720ef69bc47c229161294427c6f9fc189946a8",
+          "bytes": 366
+        },
+        {
+          "path": "mods/secret-redactor/kiro/secret-redactor-pre-tool-use-hook.json",
+          "sha256": "e931b441d0844b2f4f60a3f6ec4ca5aa20f575bbb02b8be3ec92ed35ad095e3e",
+          "bytes": 411
+        },
+        {
+          "path": "mods/secret-redactor/lib/common.mjs",
+          "sha256": "a0adff21e12bbdeab1a90c4664e3c78abbaaad077791b150298b386d3e31afeb",
+          "bytes": 9331
+        },
+        {
+          "path": "mods/secret-redactor/lib/core.mjs",
+          "sha256": "70608d684163a885a748014f0c9bd0e99a800860001d86e79de078f627e852c6",
+          "bytes": 3251
+        },
+        {
+          "path": "mods/secret-redactor/lib/patterns.mjs",
+          "sha256": "d8fd43dcab41e07385ed671d31ff85789976439951fdae7f7abad3b100fb26c3",
+          "bytes": 3495
+        },
+        {
+          "path": "mods/secret-redactor/lib/runtime.mjs",
+          "sha256": "8eb22b0e930d8c376737985ddea4e3e313df6d7e4be07154b9b512c2e03a3e9d",
+          "bytes": 6208
+        },
+        {
+          "path": "mods/secret-redactor/mod.toml",
+          "sha256": "a8887badc3cb2d45113e6af3acaa5387ad478f0111821a5d679b23bc4d655d06",
+          "bytes": 1273
+        },
+        {
+          "path": "mods/secret-redactor/patterns.json",
+          "sha256": "8f87af2ec896d1734cc24174186c184209c6e3ef0efb7f99a503c38d25270e28",
+          "bytes": 3404
+        }
+      ]
+    },
+    {
       "tree": "schemas",
       "aggregate_sha256": "fb2e896d692a5ca10e543003b8c733bd1586ed0931065ea540401e0238c269df",
       "files": [
@@ -35427,7 +35844,7 @@
     },
     {
       "tree": "catalog",
-      "aggregate_sha256": "1717321307af0b4f33d47b275659f028c31b8bc8561b709ef7e6745f1510cc77",
+      "aggregate_sha256": "f0f0c255877d178782d238cd2fe060c91f44f163ecec5dfebcbd469424a13c91",
       "files": [
         {
           "path": "catalog/AGENTS.md",
@@ -35441,8 +35858,8 @@
         },
         {
           "path": "catalog/index.json",
-          "sha256": "a7e9f22fbac269b47401a9210a9127188063e67fda7683e78270fcac4e385dad",
-          "bytes": 438
+          "sha256": "e79d6b75833b43c28aedaeafd5e3866804f112a8915d3f0ed6c99bed69580f69",
+          "bytes": 471
         },
         {
           "path": "catalog/install-roles.json",
@@ -35498,7 +35915,7 @@
     },
     {
       "tree": "scripts",
-      "aggregate_sha256": "c61840ab6849bd286d38f6e6b839976385db76beec67f5c7cb94bf4bfd76a442",
+      "aggregate_sha256": "48e29f5e26ff136e65ccb5324f41eb8441cc04801425aabcfa579867cef7dd27",
       "files": [
         {
           "path": "scripts/apply-skill-allowed-tools.py",
@@ -35687,8 +36104,8 @@
         },
         {
           "path": "scripts/generate-mods.mjs",
-          "sha256": "ee20bbd9f8c5a713e17872bde89cbe5614801bb873d05eea10abce68f639e7f5",
-          "bytes": 26645
+          "sha256": "07dcefaab74225868c788d6d3cec4e40034c9c4582b95a881946db41bb1ebc7f",
+          "bytes": 27521
         },
         {
           "path": "scripts/generate-plugin-manifest.mjs",
@@ -35802,13 +36219,13 @@
         },
         {
           "path": "scripts/mods/common.mjs",
-          "sha256": "5bf36a775199605f6691a6b979ae37aa7214f44ab2452a547ed4a913db91498f",
-          "bytes": 9064
+          "sha256": "a0adff21e12bbdeab1a90c4664e3c78abbaaad077791b150298b386d3e31afeb",
+          "bytes": 9331
         },
         {
           "path": "scripts/mods/runtime.mjs",
-          "sha256": "e4bd816e7e99d7712e468f01160aaba96e365536a3849dfed77eb307eab18801",
-          "bytes": 5124
+          "sha256": "8eb22b0e930d8c376737985ddea4e3e313df6d7e4be07154b9b512c2e03a3e9d",
+          "bytes": 6208
         },
         {
           "path": "scripts/netsuite_data/agents/netsuite-administrator-agent.json",
@@ -36720,7 +37137,7 @@
     },
     {
       "tree": "tests",
-      "aggregate_sha256": "444a1dcaa4490e7325eae475f704060d947221f71b2ebb229d19bd4901d55375",
+      "aggregate_sha256": "520241e6a1c7454be6aca33f3aa00b5f5d4840decfd0a5f5f775e0ccd54f715a",
       "files": [
         {
           "path": "tests/AGENTS.md",
@@ -46989,8 +47406,8 @@
         },
         {
           "path": "tests/fuzz-properties.test.mjs",
-          "sha256": "5ac57420ee0a8d6f11f3bdf9ebc2682fa71a1098da4d95788dac2be5ddd85d07",
-          "bytes": 6920
+          "sha256": "9ddba3bcf9782fac7c4c4927762a4c108468d4e733a94c385a57c7f9f589bb9f",
+          "bytes": 19452
         },
         {
           "path": "tests/integration/rbac-pre-flight/README.md",
@@ -47058,6 +47475,11 @@
           "bytes": 16126
         },
         {
+          "path": "tests/mods.test.mjs",
+          "sha256": "fc5d4673faaa8a58811f5ec2621d305c07f195ed90dc69b1ac4e57e39c1b9f7f",
+          "bytes": 39865
+        },
+        {
           "path": "tests/test-codex-plugin-marketplace-install.test.mjs",
           "sha256": "d21a25cb49ee43985154c13a63ccfa0e888479cc8692ef0805b35e26f94b91fb",
           "bytes": 4931
@@ -47094,8 +47516,8 @@
         },
         {
           "path": "tests/validate-asset-integrity.py",
-          "sha256": "0d66688d6f10c8d3617bef61ff532524ebee10380328854f0adfe11f5cb66721",
-          "bytes": 7550
+          "sha256": "932eed084f88733452a43cb4de558e3d3952aea47f0f592b2f614541c5351a82",
+          "bytes": 7562
         },
         {
           "path": "tests/validate-aws-progressive-disclosure.py",
@@ -47233,8 +47655,8 @@
     },
     {
       "path": "CONTRIBUTING.md",
-      "sha256": "83146e8a58a766bf345763a91af881428d5fe3d8f1bdc8eec095eafef56ccf76",
-      "bytes": 9713
+      "sha256": "8b43545c84617d2c36361eb257c07eff23f6404247bf5cf8a403ecd2df9ba56e",
+      "bytes": 12244
     },
     {
       "path": "CODE_OF_CONDUCT.md",
@@ -47243,8 +47665,8 @@
     },
     {
       "path": "CLAUDE.md",
-      "sha256": "71108efa0e2383f9170c1bf8f10a984b4e505f0fb7f01a84b169e7066cdb3aed",
-      "bytes": 22576
+      "sha256": "fc5c17928bd4e9d3f44b09f292441049b5d0715bc4c63230e363ffcf6b2125fa",
+      "bytes": 24575
     },
     {
       "path": "AGENTS.md",
@@ -47258,8 +47680,8 @@
     },
     {
       "path": "package.json",
-      "sha256": "2ed2e159395af091da4a80aac76057ab6e7808633070fa4130004e91be1843d3",
-      "bytes": 7431
+      "sha256": "0aaf830fa60c721fa0ad4f9e1e33106720b49c251aefae097e2a39d752453dd0",
+      "bytes": 7649
     },
     {
       "path": ".releaserc.js",
@@ -47267,5 +47689,5 @@
       "bytes": 8340
     }
   ],
-  "aggregate_sha256": "f87d8df4f7b1fe56e706be315f14848087cea6916449ac2bfdef522aaf694603"
+  "aggregate_sha256": "764e24ed9a151d4af2655822cdc32c75b57dd7cdb57f76d8229a8438169daa8d"
 }

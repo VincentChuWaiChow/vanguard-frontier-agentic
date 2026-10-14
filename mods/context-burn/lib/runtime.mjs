@@ -5,6 +5,7 @@
 // stdin and renders the handler's decision in that harness's protocol. It writes no files
 // and reads no environment; Claude Code's native runtime never imports it.
 import { readFileSync } from 'node:fs'
+import { isAbsolute, resolve, sep } from 'node:path'
 
 const HARNESSES = new Set(['claude-code', 'kiro', 'codex'])
 const EVENTS = new Set(['PreToolUse', 'PostToolUse', 'SessionStart'])
@@ -19,6 +20,16 @@ const nodeIo = () => ({
 
 const message = (err) => (err instanceof Error ? err.message : String(err))
 
+// JSON.parse errors quote the text they failed on, and stdin can carry a tool's input or
+// output: report the failure without echoing any of it.
+function parseStdin(text) {
+  try {
+    return JSON.parse(text)
+  } catch {
+    throw new Error('stdin is not valid JSON')
+  }
+}
+
 export function parseArgs(argv) {
   const usage = 'usage: hook.mjs --harness <claude-code|kiro|codex> --event <PreToolUse|PostToolUse|SessionStart>'
   if (argv.length !== 4) throw new Error(usage)
@@ -31,6 +42,19 @@ export function parseArgs(argv) {
   if (!HARNESSES.has(args.harness)) throw new Error(`unknown harness ${args.harness}; ${usage}`)
   if (!EVENTS.has(args.event)) throw new Error(`unknown event ${args.event}; ${usage}`)
   return args
+}
+
+// Where an observer writes `path`. A relative path resolves against the project root when
+// the hook runs from its install location <root>/.<harness dir>/vanguard-mods/<id>/bin/,
+// otherwise against the working directory. Never CLAUDE_PROJECT_DIR: mods read only their
+// own VANGUARD_<ID>_* variables.
+export function projectPath(path, harness, binDir) {
+  if (isAbsolute(path)) return path
+  const parts = resolve(binDir).split(sep)
+  const n = parts.length
+  const dir = { 'claude-code': '.claude', kiro: '.kiro', codex: '.codex' }[harness]
+  const installed = n >= 5 && parts[n - 1] === 'bin' && parts[n - 3] === 'vanguard-mods' && parts[n - 4] === dir
+  return resolve(installed ? parts.slice(0, n - 4).join(sep) || sep : process.cwd(), path)
 }
 
 // Rejects decisions the harness cannot express, so a handler bug surfaces as an error
@@ -99,7 +123,7 @@ export async function runHook({ name, handlers, onError }, io = nodeIo()) {
   let payload
   let decision
   try {
-    payload = JSON.parse(io.readStdin())
+    payload = parseStdin(io.readStdin())
     if (payload === null || typeof payload !== 'object' || Array.isArray(payload)) throw new Error('stdin is not a JSON object')
     decision = normalize(await handlers[ctx.event](payload, ctx), ctx)
   } catch (err) {

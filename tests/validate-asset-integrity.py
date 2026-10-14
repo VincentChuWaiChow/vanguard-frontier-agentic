@@ -34,6 +34,7 @@ TREES = [
     "agents",
     "rules",
     "mcp",
+    "mods",
     "schemas",
     "catalog",
     # The shipped CLI and generator scripts (npm bin + manifest generators)

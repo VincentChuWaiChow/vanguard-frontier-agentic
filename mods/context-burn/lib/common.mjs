@@ -26,6 +26,15 @@ const ID_RE = /^[a-z0-9]+(-[a-z0-9]+)*$/
 const PATTERN_KEYS = new Set(['id', 'name', 'description', 'regex', 'flags', 'context', 'severity', 'agents'])
 const isStringArray = (v) => Array.isArray(v) && v.every((s) => typeof s === 'string' && s !== '')
 
+// Parser diagnostics can quote credential-bearing data; never expose it in hook logs.
+export function parseJson(text, source) {
+  try {
+    return JSON.parse(text)
+  } catch {
+    throw new Error(`${source}: invalid JSON`)
+  }
+}
+
 // Validates a patterns.json-shaped list and compiles it. Throws on anything malformed so a
 // bad extension file fails closed in the caller instead of silently matching nothing.
 export function compilePatterns(list, source = 'patterns') {
@@ -50,8 +59,8 @@ export function compilePatterns(list, source = 'patterns') {
     try {
       rx = new RegExp(p.regex, p.flags)
       rxg = new RegExp(p.regex, 'g' + p.flags)
-    } catch (err) {
-      throw new Error(`${where}: regex does not compile: ${err.message}`)
+    } catch {
+      throw new Error(`${where}: regex does not compile`)
     }
     return Object.freeze({
       id: p.id,
@@ -130,13 +139,13 @@ function redactLeaf(s, ctx, patterns, hits) {
   const y = fixedPoint(pre + s, patterns, hits)
   if (y === OVERFLOW_MARKER) return y
   const r = fixedPoint(pre, patterns, new Set())
-  if (y.startsWith(r)) return y.slice(r.length)
-  // A match spans the boundary: keep from the marker that covers it. Any slice of a fixed
-  // point is itself free of matches (the patterns have no anchors or lookbehind).
+  if (y.startsWith(r)) return fixedPoint(y.slice(r.length), patterns, hits)
+  // A match spans the boundary: keep from the marker that covers it. Slicing changes
+  // anchors and boundaries, so also check the standalone leaf after contextual matching.
   let d = 0
   while (d < r.length && y[d] === r[d]) d++
   const i = y.lastIndexOf(MARKER_PREFIX, d)
-  return i >= 0 ? y.slice(i) : y
+  return fixedPoint(i >= 0 ? y.slice(i) : y, patterns, hits)
 }
 
 function walk(v, ctx, patterns, hits) {

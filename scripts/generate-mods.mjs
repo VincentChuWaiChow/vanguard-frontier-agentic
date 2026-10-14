@@ -375,8 +375,29 @@ export function validateManifest(m, dirName, label) {
 // Loading (the only disk reads)
 // ---------------------------------------------------------------------------------------
 
+// Check components without following symlinks, before any read, mkdir or removal.
+function safePath(root, rel) {
+  const base = path.resolve(root)
+  const abs = path.resolve(base, rel)
+  const relative = path.relative(base, abs)
+  if (relative === '..' || relative.startsWith('..' + path.sep) || path.isAbsolute(relative)) {
+    throw new Error(`${rel}: escapes the repo`)
+  }
+  let current = base
+  for (const part of relative.split(path.sep).filter(Boolean)) {
+    current = path.join(current, part)
+    try {
+      if (lstatSync(current).isSymbolicLink()) throw new Error(`${rel}: symlink in repo path`)
+    } catch (e) {
+      if (e.code === 'ENOENT') break
+      throw e
+    }
+  }
+  return abs
+}
+
 function readText(root, rel) {
-  const buf = readFileSync(path.join(root, rel))
+  const buf = readFileSync(safePath(root, rel))
   const s = buf.toString('utf8')
   if (!Buffer.from(s, 'utf8').equals(buf)) throw new Error('not valid UTF-8, so it cannot be copied byte for byte')
   return s
@@ -384,12 +405,12 @@ function readText(root, rel) {
 
 function modDirs(root, errors) {
   try {
-    return readdirSync(path.join(root, 'mods'), { withFileTypes: true })
+    return readdirSync(safePath(root, 'mods'), { withFileTypes: true })
       .filter((e) => e.isDirectory() && !e.name.startsWith('.'))
       .map((e) => e.name)
       .sort(cmp)
-  } catch {
-    errors.push('mods/: directory is missing')
+  } catch (e) {
+    errors.push(e.code === 'ENOENT' ? 'mods/: directory is missing' : e.message)
     return []
   }
 }
@@ -617,14 +638,16 @@ const exists = (abs) => {
 }
 
 function walkFiles(root, rel, found = []) {
+  const abs = safePath(root, rel)
   let entries
   try {
-    entries = readdirSync(path.join(root, rel), { withFileTypes: true })
+    entries = readdirSync(abs, { withFileTypes: true })
   } catch {
     return found
   }
   for (const e of entries) {
     const child = `${rel}/${e.name}`
+    safePath(root, child)
     if (e.isDirectory()) walkFiles(root, child, found)
     else found.push(child) // files, symlinks and anything else count as files
   }
@@ -638,7 +661,7 @@ function findStale(root, ids, expected) {
     const base = `mods/${id}`
     for (const d of OWNED_DIRS) stale.push(...walkFiles(root, `${base}/${d}`))
     for (const [d, names] of Object.entries(OWNED_FILES)) {
-      for (const name of names) if (exists(path.join(root, base, d, name))) stale.push(`${base}/${d}/${name}`)
+      for (const name of names) if (exists(safePath(root, `${base}/${d}/${name}`))) stale.push(`${base}/${d}/${name}`)
     }
   }
   return stale.filter((rel) => !expected.has(rel)).sort(cmp)
@@ -647,9 +670,10 @@ function findStale(root, ids, expected) {
 function findDrift(root, expected) {
   const drift = []
   for (const [rel, content] of expected) {
+    const abs = safePath(root, rel)
     let actual = null
     try {
-      actual = readFileSync(path.join(root, rel))
+      actual = readFileSync(abs)
     } catch {
       // missing or unreadable counts as drift
     }
@@ -659,7 +683,7 @@ function findDrift(root, expected) {
 }
 
 function safeWrite(root, realRoot, rel, content) {
-  const abs = path.join(root, rel)
+  const abs = safePath(root, rel)
   mkdirSync(path.dirname(abs), { recursive: true })
   const dir = realpathSync(path.dirname(abs))
   if (dir !== realRoot && !dir.startsWith(realRoot + path.sep)) throw new Error(`${rel}: resolves outside the repo`)
@@ -711,8 +735,13 @@ export function main(argv = process.argv.slice(2), root = ROOT) {
   }
   if (errors.length) return fail(errors)
 
-  const drift = findDrift(root, expected)
-  const stale = findStale(root, mods.map((m) => m.id), expected)
+  let drift, stale
+  try {
+    drift = findDrift(root, expected)
+    stale = findStale(root, mods.map((m) => m.id), expected)
+  } catch (e) {
+    return fail([e.message])
+  }
 
   if (argv[0] === '--check') {
     const paths = [...new Set([...drift, ...stale])].sort(cmp)

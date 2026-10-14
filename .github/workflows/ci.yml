@@ -22,6 +22,13 @@ jobs:
         with:
           python-version: "3.x"
 
+      - uses: actions/setup-node@820762786026740c76f36085b0efc47a31fe5020 # v7.0.0
+        with:
+          node-version: "22"
+
+      - name: Validate mods
+        run: python3 tests/validate-mods.py
+
       - name: Validate catalog
         run: python3 tests/validate-catalog.py
 

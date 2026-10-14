@@ -254,8 +254,9 @@ audit-trail (Node) details:
 - **Session id:**
   - Taken from env, then from the payload's `session_id`, then `unsessioned`.
   - It must match `^[A-Za-z0-9._-]{1,128}$`. Otherwise the first 32 hex characters of its sha256 are used.
-- **Lock:** `<file>.lock` is opened with `wx`, and the open is retried for up to 2 s. A lock older than 30 s is treated as stale and taken over.
+- **Lock:** `<dir>/<session>.lock` is opened with `wx` before selecting the dated log file, and the open is retried for up to 2 s. Locks are never taken over based on age; orphaned locks require explicit recovery after confirming no writer remains. This tightens the original takeover design, which could race concurrent writers.
 - **Write:** read the sequence from the last line, append the new line, then remove the lock.
+  An existing non-empty file without a terminating newline is rejected without appending.
 - **Record fields:**
   - `timestamp` (ISO, with milliseconds);
   - `session_id`, `agent_id`, `tool_name`;

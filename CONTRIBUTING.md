@@ -1,6 +1,6 @@
 # Contributing to Vanguard Frontier Agentic
 
-This guide covers everything you need to add a skill, agent, rule, MCP reference, schema fix, or doc improvement to this repository. Read it alongside the companion docs it links to — this file adds the contributor-specific glue, not the full governance narrative.
+This guide covers everything you need to add a skill, agent, rule, MCP reference, mod, schema fix, or doc improvement to this repository. Read it alongside the companion docs it links to — this file adds the contributor-specific glue, not the full governance narrative.
 
 ---
 
@@ -25,6 +25,7 @@ All checks must pass before you open a pull request. If `npm run validate` fails
 | **Agents** | `agents/<provider>/<id>/` | Expert roles with judgment for review, architecture, and operations |
 | **Rules** | `rules/<harness>/` | Durable harness-specific operating instructions |
 | **MCP references** | `mcp/` | Trusted notes for connecting tools to real systems |
+| **Mods** | `mods/<id>/` | Tool-event guards and observers with explicit harness capabilities and runtime footprints |
 | **Schema fixes** | `schemas/` | Corrections to JSON Schema metadata contracts |
 | **Docs** | `docs/` | Governance, taxonomy, compatibility, and quality guidance |
 
@@ -142,6 +143,48 @@ Any agent that produces verdicts must emit all five required evidence fields: `v
 
 ---
 
+## Adding a Mod
+
+Read [mods/README.md](mods/README.md) for installation and the actual per-harness
+capability matrix. A mod is a tool-event guard or observer, not an agent variant.
+
+```text
+mods/<mod-id>/
+  mod.toml             # source: identity, events, footprint, harness capabilities
+  README.md            # behavior, reach, configuration and limitations
+  patterns.json        # source, when the mod uses patterns
+  lib/core.mjs         # portable production logic; no Node imports
+  bin/hook.mjs         # Node command adapter
+  hooks/register.ts    # native module, only when supported
+```
+
+Generated manifests, shared runtime copies, pattern modules and `catalog/mods.json`
+belong to `scripts/generate-mods.mjs`; do not hand-edit them.
+
+Before opening a PR:
+
+- [ ] Declare the exact runtime footprint and derived reach, with namespaced environment
+  variables and non-overlapping default write paths. Do not count generator output as
+  runtime reach or reserve a higher level for hypothetical behavior.
+- [ ] Cover each declared event and native/classic surface explicitly; document degraded
+  behavior and unsupported capabilities rather than silently dropping them.
+- [ ] Keep portable logic in the production core; add focused positive/negative tests
+  and relevant properties against that code, not a test-only implementation.
+- [ ] Document installation, extension schemas, write-path overrides, hook failure gaps
+  and permission-mode behavior. Do not claim complete DLP, immutable audit evidence or
+  enforcement from a hook that never executes. Never install both Claude Code adapters
+  for the same mod.
+- [ ] Run `npm run mods:write`, `npm run validate:mods` and `npm run test:fuzz`.
+- [ ] Run native `claude plugin validate mods/<id>` and `claude plugin test mods/<id>`
+  locally for each affected native mod; CI does not provide the native CLI.
+- [ ] Run positive and negative probes in each affected harness, or disclose which live
+  installations remain unverified.
+- [ ] After all generators settle, run `npm run asset-integrity:write` last on its own,
+  then `npm run validate`, spelling and Markdown lint. Include the commands and results
+  in the PR; never label an unrun check as passing.
+
+---
+
 ## Validation gates
 
 `npm run validate` runs the following checks in sequence. All must pass before merging.
@@ -153,6 +196,7 @@ Any agent that produces verdicts must emit all five required evidence fields: `v
 | `npm run manifest:check` (`tests/validate-skill-manifest.py`) | `catalog/skill-manifest.json` SHA hashes match current file contents. Fails if you edited skills without running `npm run manifest:write`. |
 | `npm run validate:allowed-tools` (`tests/validate-skill-allowed-tools.py`) | Every `SKILL.md` that declares `allowed-tools` in frontmatter uses only recognized tool names. |
 | `npm run validate:links` (`tests/validate-links.py --offline`) | Internal relative links in Markdown files resolve to real paths. Offline mode only — no HTTP calls during CI. |
+| `npm run validate:mods` (`tests/validate-mods.py`) | Mod manifests, derived reach, event/surface coverage, footprints, generated adapters, syntax and production-core tests agree. |
 
 For an additional pre-release check that validates external URLs, run `python3 tests/validate-links.py` (online mode) before tagging.
 
