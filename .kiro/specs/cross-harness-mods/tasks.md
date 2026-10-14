@@ -103,7 +103,7 @@ All generated harness files (`register.ts`, Kiro hook JSON, Codex `.sh` scripts)
     - Document: mod purpose (DLP credential redaction), reach level L0 with footprint, events handled (`PreToolUse` scans tool args; `PostToolUse` scans tool result), harness-specific install notes, env var `VANGUARD_SECRET_REDACTOR_PATTERNS` for extension patterns, and note that `register.ts` implements Pattern D (argument modification) in Claude Code.
     - _Requirements: 17.5_
 
-  - [ ]* 2.6 Add P1 (Redaction Completeness) inline property test to `tests/validate-mods.py`
+  - [ ] 2.6 Add P1 (Redaction Completeness) inline property test to `tests/validate-mods.py`
     - **Property 1: Redaction Completeness**
     - Add a `test_redaction_completeness()` function inside `run_pbt_suite()` that: imports `re`, `random`, `string`; for each pattern in `secret-redactor/patterns.json`; generates 200 random suffix strings; constructs a string containing the literal pattern match; calls an inline `redact(s, patterns)` function; asserts `re.search(pattern["regex"], result) is None`.
     - Also test pass-through: generate 200 random strings that don't match any pattern and verify the output equals the input.
@@ -143,7 +143,7 @@ All generated harness files (`register.ts`, Kiro hook JSON, Codex `.sh` scripts)
     - Document: purpose, reach level L1, env vars (`VANGUARD_BLAST_RADIUS_MODE`, `VANGUARD_BLAST_RADIUS_PATTERNS`), events (`PreToolUse` only), harness install notes.
     - _Requirements: 17.5_
 
-  - [ ]* 3.6 Add P2 (Guard Blocking) inline property test to `tests/validate-mods.py`
+  - [ ] 3.6 Add P2 (Guard Blocking) inline property test to `tests/validate-mods.py`
     - **Property 2: Guard Blocking**
     - Add `test_guard_blocking()` inside `run_pbt_suite()`: for each pattern in `blast-radius-guard/patterns.json`, construct 200 random strings that contain a literal substring matching the pattern regex; call an inline `evaluate(cmd, patterns)` function (returns `"block"` or `"confirm"` when matched, `"pass"` otherwise); assert `evaluate(cmd).decision != "pass"`.
     - Also generate 200 random strings that don't match any pattern and assert `evaluate(cmd) == "pass"`.
@@ -227,7 +227,7 @@ All generated harness files (`register.ts`, Kiro hook JSON, Codex `.sh` scripts)
     - Document: purpose (SOC 2 Type II / PCI-DSS Level 1 audit trail), reach level L1, env vars (`VANGUARD_AUDIT_LOG_PATH`, `VANGUARD_AUDIT_SESSION_ID`, `VANGUARD_AUDIT_AGENT_ID`), JSONL entry schema, events (`PostToolUse`), Codex limitation (POSIX-only, no jq), harness install notes, and the fail-closed behavior (exit 1 if log write fails).
     - _Requirements: 17.5_
 
-  - [ ]* 6.5 Add P3 (Audit Completeness) property test to `tests/fuzz-properties.test.mjs`
+  - [ ] 6.5 Add P3 (Audit Completeness) property test to `tests/fuzz-properties.test.mjs`
     - **Property 3: Audit Completeness**
     - Add import for `buildLogEntry` (inline the function in the test since it's not exported from a module yet — duplicate the pure logic from the `audit-trail` Claude Code register.ts).
     - Use `fc.array(fc.record({ tool_name: fc.string({ minLength: 1, maxLength: 30 }), tool_input: fc.object(), tool_output: fc.oneof(fc.string(), fc.object(), fc.integer()) }), { minLength: 1, maxLength: 50 })` as the arbitrary.
@@ -263,7 +263,7 @@ All generated harness files (`register.ts`, Kiro hook JSON, Codex `.sh` scripts)
     - Fix any gate failures found before proceeding.
     - _Requirements: 7.2, 7.3, 7.4, 7.6_
 
-  - [ ]* 7.4 Run `node tests/fuzz-properties.test.mjs` and confirm all properties pass
+  - [ ] 7.4 Run `node tests/fuzz-properties.test.mjs` and confirm all properties pass
     - Execute the test file and verify all `PASS` lines print including P3, P4, P5.
     - Fix any failures.
     - _Requirements: 16.3, 16.4, 16.5, 16.7_
