@@ -35352,7 +35352,7 @@
     },
     {
       "tree": "mods",
-      "aggregate_sha256": "e5b7ae07a4bbf389b310e3256e9083958e281069761cd0a055629219f995e201",
+      "aggregate_sha256": "cd8e92dd25384e93e2b9e88bbe3a19be42803127894ee9568ec051c9ca820f08",
       "files": [
         {
           "path": "mods/README.md",
@@ -35366,8 +35366,8 @@
         },
         {
           "path": "mods/audit-trail/bin/hook.mjs",
-          "sha256": "3d834e8d7992f82f356d43d92342b9e37835438793d99919b726aa80dd8da0f1",
-          "bytes": 2588
+          "sha256": "2724947cd4a8eda2a330d67a35a76cd382f0ddf25b5e5097d71147a9c2b64534",
+          "bytes": 2788
         },
         {
           "path": "mods/audit-trail/claude-code/UNSUPPORTED.md",
@@ -47699,5 +47699,5 @@
       "bytes": 9135
     }
   ],
-  "aggregate_sha256": "631d6a32d0bafc88c1665a42c1db7d7abd88c483b0057e8e14edb65b0c031c26"
+  "aggregate_sha256": "c5063e1daa65577345b2d4223676b9392fea47ef60ec643a6f5fb4f827e33af8"
 }

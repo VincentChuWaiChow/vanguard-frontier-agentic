@@ -31,6 +31,16 @@ function acquire(lock, file) {
   }
 }
 
+// Read directly instead of exists-then-read, so there is no check/use gap.
+function readIfExists(file) {
+  try {
+    return readFileSync(file, 'utf8')
+  } catch (err) {
+    if (err.code === 'ENOENT') return ''
+    throw err
+  }
+}
+
 async function PostToolUse(payload, ctx) {
   const base = projectPath(process.env.VANGUARD_AUDIT_TRAIL_LOG_DIR || '.audit', ctx.harness, import.meta.dirname)
   const sid = await safeSessionId(rawSessionId(process.env.VANGUARD_AUDIT_TRAIL_SESSION_ID, payload))
@@ -42,7 +52,7 @@ async function PostToolUse(payload, ctx) {
   try {
     const file = logFile(base, sid, timestamp.slice(0, 10))
     mkdirSync(dirname(file), { recursive: true })
-    const sequence = lastSequence(existsSync(file) ? readFileSync(file, 'utf8') : '', file) + 1
+    const sequence = lastSequence(readIfExists(file), file) + 1
     const agentId = process.env.VANGUARD_AUDIT_TRAIL_AGENT_ID
     const record = await buildRecord({ timestamp, sessionId: sid, agentId, payload, harness: ctx.harness, sequence })
     appendFileSync(file, JSON.stringify(record) + '\n')
