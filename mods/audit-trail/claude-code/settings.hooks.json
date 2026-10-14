@@ -1,0 +1,14 @@
+{
+  "hooks": {
+    "PostToolUse": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "node \"$CLAUDE_PROJECT_DIR/.claude/vanguard-mods/audit-trail/bin/hook.mjs\" --harness claude-code --event PostToolUse"
+          }
+        ]
+      }
+    ]
+  }
+}

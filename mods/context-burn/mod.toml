@@ -1,0 +1,37 @@
+[mod]
+id = "context-burn"
+name = "Context Burn"
+description = "Tracks context use per session in a status file and warns at 70% and 90% where the harness reports token use."
+version = "1.0.0"
+reach_level = 1
+events = ["PostToolUse", "SessionStart"]
+
+[footprint]
+env_reads = ["VANGUARD_CONTEXT_BURN_STATUS_PATH"]
+file_writes = [".claude/context-burn-status.json", ".kiro/context-burn-status.json", ".codex/context-burn-status.json"]
+spawns = []
+egress_hosts = []
+
+[harnesses.claude-code]
+supported = true
+surfaces = ["native", "classic"]
+events = ["PostToolUse", "SessionStart"]
+
+[harnesses.claude-code.degraded]
+classic = "Classic hooks receive no token counts, so only the tool-call counter is kept and no threshold warnings are emitted; PostToolUse fires only after a tool succeeds, so failed calls are not counted."
+
+[harnesses.kiro]
+supported = true
+requires = ["node"]
+events = ["PostToolUse", "SessionStart"]
+
+[harnesses.kiro.degraded]
+PostToolUse = "Kiro hooks receive no token counts; only the tool-call counter is kept and no threshold warnings are emitted."
+
+[harnesses.codex]
+supported = true
+requires = ["node"]
+events = ["PostToolUse", "SessionStart"]
+
+[harnesses.codex.degraded]
+PostToolUse = "Codex hooks receive no token counts; only the tool-call counter is kept and no threshold warnings are emitted."

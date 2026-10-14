@@ -35427,7 +35427,7 @@
     },
     {
       "tree": "catalog",
-      "aggregate_sha256": "4ec05eace49224a001f9b785d0189af83e01c9bec7d5d14acc0188f19efa9be8",
+      "aggregate_sha256": "1717321307af0b4f33d47b275659f028c31b8bc8561b709ef7e6745f1510cc77",
       "files": [
         {
           "path": "catalog/AGENTS.md",
@@ -35470,6 +35470,11 @@
           "bytes": 22265
         },
         {
+          "path": "catalog/mods.json",
+          "sha256": "0f48bc958380a834f590c10516e154abb84dbea3d05c93230e028b34270817f0",
+          "bytes": 1957
+        },
+        {
           "path": "catalog/rules.json",
           "sha256": "fef2d0f95301ef6e79a3a2d8065a01d4690b345cf5539249a73e0fcd6b5a26ae",
           "bytes": 606
@@ -35493,7 +35498,7 @@
     },
     {
       "tree": "scripts",
-      "aggregate_sha256": "6b4851dff7a905b17a887e3fcc583725351cdf297cd4831eedb16515bfb492e1",
+      "aggregate_sha256": "c61840ab6849bd286d38f6e6b839976385db76beec67f5c7cb94bf4bfd76a442",
       "files": [
         {
           "path": "scripts/apply-skill-allowed-tools.py",
@@ -35681,6 +35686,11 @@
           "bytes": 51539
         },
         {
+          "path": "scripts/generate-mods.mjs",
+          "sha256": "ee20bbd9f8c5a713e17872bde89cbe5614801bb873d05eea10abce68f639e7f5",
+          "bytes": 26645
+        },
+        {
           "path": "scripts/generate-plugin-manifest.mjs",
           "sha256": "de5f522072cedd0dff044e2f63fa3895c54881bfeda354a6e5eec6199d946a6b",
           "bytes": 8113
@@ -35789,6 +35799,16 @@
           "path": "scripts/model-policy.mjs",
           "sha256": "41c75f7a8dbd9f905f40c3c1773da86f81b27f5bef9d19f4394d2061ff9a9734",
           "bytes": 60046
+        },
+        {
+          "path": "scripts/mods/common.mjs",
+          "sha256": "5bf36a775199605f6691a6b979ae37aa7214f44ab2452a547ed4a913db91498f",
+          "bytes": 9064
+        },
+        {
+          "path": "scripts/mods/runtime.mjs",
+          "sha256": "e4bd816e7e99d7712e468f01160aaba96e365536a3849dfed77eb307eab18801",
+          "bytes": 5124
         },
         {
           "path": "scripts/netsuite_data/agents/netsuite-administrator-agent.json",
@@ -36700,7 +36720,7 @@
     },
     {
       "tree": "tests",
-      "aggregate_sha256": "45273c023437e4ac1e8e4a8ff2ee59bec373e83025a6c6fbef5a902a4d55d657",
+      "aggregate_sha256": "444a1dcaa4490e7325eae475f704060d947221f71b2ebb229d19bd4901d55375",
       "files": [
         {
           "path": "tests/AGENTS.md",
@@ -47138,6 +47158,11 @@
           "bytes": 6357
         },
         {
+          "path": "tests/validate-mods.py",
+          "sha256": "87b5ff8da62fa47db7ae2189172bcbcec116a9c55dbc51cda8270cb1da9d3c61",
+          "bytes": 34072
+        },
+        {
           "path": "tests/validate-multi-harness-marketplace.py",
           "sha256": "22b9ead28ef1f126f4ccd4e998a2b9c0ce7532bc433f89dfd0eba2b9d50ebbe0",
           "bytes": 7049
@@ -47242,5 +47267,5 @@
       "bytes": 8340
     }
   ],
-  "aggregate_sha256": "48081c482982549fcd52d8b34047e959db5140d060267666e3a320f39c6ad23d"
+  "aggregate_sha256": "f87d8df4f7b1fe56e706be315f14848087cea6916449ac2bfdef522aaf694603"
 }

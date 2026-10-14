@@ -1,0 +1,5 @@
+{
+  "name": "live-guard-gate",
+  "version": "1.0.0",
+  "description": "Asks before live cloud mutations and names the guard agent that should review them."
+}

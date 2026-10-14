@@ -1,0 +1,34 @@
+[mod]
+id = "blast-radius-guard"
+name = "Blast Radius Guard"
+description = "Asks before, or blocks, destructive shell commands and writes to system paths."
+version = "1.0.0"
+reach_level = 0
+events = ["PreToolUse"]
+
+[footprint]
+env_reads = ["VANGUARD_BLAST_RADIUS_GUARD_MODE", "VANGUARD_BLAST_RADIUS_GUARD_PATTERNS"]
+file_writes = []
+spawns = []
+egress_hosts = []
+
+[harnesses.claude-code]
+supported = true
+surfaces = ["native", "classic"]
+events = ["PreToolUse"]
+
+[harnesses.kiro]
+supported = true
+requires = ["node"]
+events = ["PreToolUse"]
+
+[harnesses.kiro.degraded]
+PreToolUse = "Kiro documents no confirmation protocol or stdin field names; the whole payload is scanned, the system-path rule applies to the path keys whatever the tool, and confirm mode denies."
+
+[harnesses.codex]
+supported = true
+requires = ["node"]
+events = ["PreToolUse"]
+
+[harnesses.codex.degraded]
+PreToolUse = "Codex rejects ask; confirm mode denies with a reason."

@@ -1,0 +1,14 @@
+{
+  "version": "v1",
+  "hooks": [
+    {
+      "name": "audit-trail:PostToolUse",
+      "description": "Appends one JSON line per tool call to a per-session log with sha256 hashes of the arguments and result.",
+      "trigger": "PostToolUse",
+      "action": {
+        "type": "command",
+        "command": "node .kiro/vanguard-mods/audit-trail/bin/hook.mjs --harness kiro --event PostToolUse"
+      }
+    }
+  ]
+}

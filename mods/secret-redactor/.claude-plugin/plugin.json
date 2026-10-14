@@ -1,0 +1,5 @@
+{
+  "name": "secret-redactor",
+  "version": "1.0.0",
+  "description": "Asks before tool calls whose input carries a credential and redacts credentials from tool output."
+}

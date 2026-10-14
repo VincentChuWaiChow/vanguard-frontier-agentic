@@ -1,0 +1,14 @@
+{
+  "version": "v1",
+  "hooks": [
+    {
+      "name": "context-burn:PostToolUse",
+      "description": "Tracks context use per session in a status file and warns at 70% and 90% where the harness reports token use.",
+      "trigger": "PostToolUse",
+      "action": {
+        "type": "command",
+        "command": "node .kiro/vanguard-mods/context-burn/bin/hook.mjs --harness kiro --event PostToolUse"
+      }
+    }
+  ]
+}

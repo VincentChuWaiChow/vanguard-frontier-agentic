@@ -1,0 +1,24 @@
+{
+  "hooks": {
+    "PreToolUse": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "node \"$CLAUDE_PROJECT_DIR/.claude/vanguard-mods/secret-redactor/bin/hook.mjs\" --harness claude-code --event PreToolUse"
+          }
+        ]
+      }
+    ],
+    "PostToolUse": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "node \"$CLAUDE_PROJECT_DIR/.claude/vanguard-mods/secret-redactor/bin/hook.mjs\" --harness claude-code --event PostToolUse"
+          }
+        ]
+      }
+    ]
+  }
+}

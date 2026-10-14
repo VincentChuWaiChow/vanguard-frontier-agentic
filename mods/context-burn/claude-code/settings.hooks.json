@@ -1,0 +1,24 @@
+{
+  "hooks": {
+    "PostToolUse": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "node \"$CLAUDE_PROJECT_DIR/.claude/vanguard-mods/context-burn/bin/hook.mjs\" --harness claude-code --event PostToolUse"
+          }
+        ]
+      }
+    ],
+    "SessionStart": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "node \"$CLAUDE_PROJECT_DIR/.claude/vanguard-mods/context-burn/bin/hook.mjs\" --harness claude-code --event SessionStart"
+          }
+        ]
+      }
+    ]
+  }
+}

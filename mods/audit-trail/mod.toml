@@ -1,0 +1,37 @@
+[mod]
+id = "audit-trail"
+name = "Audit Trail"
+description = "Appends one JSON line per tool call to a per-session log with sha256 hashes of the arguments and result."
+version = "1.0.0"
+reach_level = 1
+events = ["PostToolUse"]
+
+[footprint]
+env_reads = ["VANGUARD_AUDIT_TRAIL_LOG_DIR", "VANGUARD_AUDIT_TRAIL_SESSION_ID", "VANGUARD_AUDIT_TRAIL_AGENT_ID"]
+file_writes = [".audit/**"]
+spawns = []
+egress_hosts = []
+
+[harnesses.claude-code]
+supported = true
+surfaces = ["classic"]
+events = ["PostToolUse"]
+
+[harnesses.claude-code.degraded]
+classic = "Classic PostToolUse fires only after a tool succeeds, so failed tool calls are not logged."
+
+[harnesses.claude-code.unsupported]
+native = "The native mod API has no file append; rewriting the whole log would break append-only writes. Install the classic hook instead."
+
+[harnesses.kiro]
+supported = true
+requires = ["node"]
+events = ["PostToolUse"]
+
+[harnesses.kiro.degraded]
+PostToolUse = "Kiro does not document stdin field names; args_hash covers the whole payload, result_hash hashes null, and without VANGUARD_AUDIT_TRAIL_SESSION_ID every session shares the unsessioned log."
+
+[harnesses.codex]
+supported = true
+requires = ["node"]
+events = ["PostToolUse"]
