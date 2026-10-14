@@ -1,0 +1,276 @@
+{
+  "title": "Cross-harness mods execution",
+  "slug": "cross-harness-mods",
+  "created_at": "2026-10-14",
+  "updated_at": "2026-10-14",
+  "status": "complete",
+  "mode": "delegated",
+  "baseline_ref": "1ee35965f16251ce04fa9ffbb01c714e9d0b3e07",
+  "risk_level": "high",
+  "eval_contract": {
+    "level": "full",
+    "path": "eval-contract.md",
+    "status": "checked"
+  },
+  "approval": {
+    "required": false,
+    "granted": true,
+    "notes": "Existing tasks authorized; material contract changes require clarification."
+  },
+  "delegation": {
+    "native_agent_available": true,
+    "native_agent_planned": true,
+    "native_agent_used": true,
+    "agent_count": 11,
+    "wave_count": 3,
+    "no_delegation_reason": "",
+    "notes": "User requested fan-out (2026-10-14). Wave 1 (read-only, scratchpad-only writes): proto-probe (sonnet), pattern-designer (sonnet), repo-recon (haiku). Codex CLI unavailable: workspace out of credits; Gemini CLI absent. Wave A committed 51390cbe. Wave B: B1 secret-redactor by orchestrator (security-sensitive); B2-B5 by 4 Sonnet writers against scratchpad/specs/spec-B*.md; 4 Opus read-only refuters on B2-B5."
+  },
+  "packets": [
+    {
+      "id": "01-contract-review",
+      "status": "complete",
+      "owner": "orchestrator",
+      "write_scope": [],
+      "result_path": "results/01-contract-review.md"
+    },
+    {
+      "id": "02-integration-map",
+      "status": "complete",
+      "owner": "orchestrator",
+      "write_scope": [],
+      "result_path": "results/02-integration-map.md"
+    },
+    {
+      "id": "03-proto-probe",
+      "status": "complete",
+      "owner": "proto-probe (sonnet)",
+      "write_scope": [
+        "scratchpad/proto/"
+      ],
+      "result_path": "results/03-proto-probe.md"
+    },
+    {
+      "id": "04-pattern-design",
+      "status": "complete",
+      "owner": "pattern-designer (sonnet)",
+      "write_scope": [
+        "scratchpad/patterns/"
+      ],
+      "result_path": "results/04-pattern-design.md"
+    },
+    {
+      "id": "05-repo-recon",
+      "status": "complete",
+      "owner": "repo-recon (haiku)",
+      "write_scope": [],
+      "result_path": "results/05-repo-recon.md"
+    },
+    {
+      "id": "B1-secret-redactor",
+      "status": "complete",
+      "owner": "orchestrator",
+      "write_scope": [
+        "mods/secret-redactor/lib/core.mjs",
+        "mods/secret-redactor/bin/hook.mjs",
+        "mods/secret-redactor/hooks/",
+        "mods/secret-redactor/README.md"
+      ],
+      "result_path": ""
+    },
+    {
+      "id": "B2-blast-radius-guard",
+      "status": "complete",
+      "owner": "writer (sonnet)",
+      "write_scope": [
+        "mods/blast-radius-guard/lib/core.mjs",
+        "mods/blast-radius-guard/bin/hook.mjs",
+        "mods/blast-radius-guard/hooks/",
+        "mods/blast-radius-guard/README.md"
+      ],
+      "result_path": ""
+    },
+    {
+      "id": "B3-live-guard-gate",
+      "status": "complete",
+      "owner": "writer (sonnet)",
+      "write_scope": [
+        "mods/live-guard-gate/lib/core.mjs",
+        "mods/live-guard-gate/bin/hook.mjs",
+        "mods/live-guard-gate/hooks/",
+        "mods/live-guard-gate/README.md"
+      ],
+      "result_path": ""
+    },
+    {
+      "id": "B4-context-burn",
+      "status": "complete",
+      "owner": "writer (sonnet)",
+      "write_scope": [
+        "mods/context-burn/lib/core.mjs",
+        "mods/context-burn/bin/hook.mjs",
+        "mods/context-burn/hooks/",
+        "mods/context-burn/README.md"
+      ],
+      "result_path": ""
+    },
+    {
+      "id": "B5-audit-trail",
+      "status": "complete",
+      "owner": "writer (sonnet)",
+      "write_scope": [
+        "mods/audit-trail/lib/core.mjs",
+        "mods/audit-trail/bin/hook.mjs",
+        "mods/audit-trail/hooks/",
+        "mods/audit-trail/README.md"
+      ],
+      "result_path": ""
+    },
+    {
+      "id": "B0-runtime-stdin",
+      "status": "complete",
+      "owner": "orchestrator",
+      "write_scope": [
+        "scripts/mods/runtime.mjs",
+        "mods/*/lib/runtime.mjs"
+      ],
+      "result_path": "",
+      "notes": "projectPath(); stdin JSON errors no longer echo the payload (F5)"
+    }
+  ],
+  "verification": {
+    "status": "checked",
+    "checks": [
+      {
+        "name": "Native API contract",
+        "command": "Context7 and official primary docs",
+        "required": true,
+        "status": "pass",
+        "evidence": "Four native mods validate and test with Claude 2.1.296; 50 native tests, zero failures; all exits 0."
+      },
+      {
+        "name": "Repository validation",
+        "command": "npm run validate",
+        "required": true,
+        "status": "pass",
+        "evidence": "Final complete npm run validate exit 0; OK: 5 mods valid after anchored repair."
+      },
+      {
+        "name": "Spelling",
+        "command": "npm run lint:spell",
+        "required": true,
+        "status": "pass",
+        "evidence": "npm run lint:spell exit 0; final closeout documents checked again before their commit."
+      },
+      {
+        "name": "Markdown",
+        "command": "npx --yes markdownlint-cli2 **/*.md #node_modules",
+        "required": true,
+        "status": "pass",
+        "evidence": "Cached markdownlint-cli2-bin.mjs: 8401 files, zero issues, exit 0; closeout checked again before commit."
+      },
+      {
+        "name": "Runtime regression suite",
+        "command": "rtk proxy node --test tests/mods.test.mjs",
+        "required": true,
+        "status": "pass",
+        "evidence": "60 pass, 0 fail, exit 0 after approved anchored repair."
+      },
+      {
+        "name": "Production fuzz properties",
+        "command": "rtk proxy node tests/fuzz-properties.test.mjs",
+        "required": true,
+        "status": "pass",
+        "evidence": "P1-P5 plus anchored nested/argv property each 200 seeded runs, all pass, exit 0."
+      },
+      {
+        "name": "Anchored extension contract",
+        "command": "Focused production, actual CLI, native and seeded property regressions",
+        "required": true,
+        "status": "pass",
+        "evidence": "Object/argv/nested anchors and overlapping context-sensitive AWS secrets pass; independent review exit 0."
+      },
+      {
+        "name": "Package shipping",
+        "command": "npm pack --dry-run --ignore-scripts --json (cache in /tmp)",
+        "required": true,
+        "status": "pass",
+        "evidence": "82 mod files; all five adapters included; exit 0."
+      },
+      {
+        "name": "Live Kiro/Codex installation",
+        "command": "Not performed",
+        "required": false,
+        "status": "skipped",
+        "evidence": "No user configuration mutated; adapter invocation is not live hook enforcement proof."
+      },
+      {
+        "name": "Local feature commit",
+        "command": "git commit and independent git rev-parse/log/diff-tree checks",
+        "required": true,
+        "status": "pass",
+        "evidence": "16cc3100907217d6b734daa82eaac04b26ea530f; 51 scoped task files; no unrelated agent files or push."
+      }
+    ]
+  },
+  "completeness_score": {
+    "goal": 3,
+    "outcome": 3,
+    "scope": 2,
+    "constraints": 2,
+    "total": 10,
+    "note": "Raised from 6 after user resolved the four blocking contract questions."
+  },
+  "decisions": {
+    "claude_code_surface": "both: native mod (register.ts, tool.call) + classic plugin hooks fallback",
+    "unsupported_behavior": "fail closed + declare per-harness unsupported list in mod.toml; gate enforces; never silently downgrade",
+    "kiro_codex_runtime": "node .mjs with exported functions; tests import production exports",
+    "audit_trail": "per-session JSONL, per-session counter, sha256 hashes; no immutability/non-repudiation claims",
+    "defaults_taken": [
+      "scanner: do not ignore executable mods scripts; ignore only data/fixtures",
+      "patterns: portable flags field instead of inline (?i)",
+      "P5 reinterpreted as generator determinism/idempotence of --write then --check",
+      "env-var scan restricted to VANGUARD_* names"
+    ],
+    "architecture": "shared core: mods/<id>/ is the native plugin root; lib/common.mjs + lib/runtime.mjs copied from scripts/mods/",
+    "secret_redactor_pre": "ask (native/classic); deny with reason (kiro/codex)",
+    "reach": "exact match declared == derived; security_notes escape hatch dropped",
+    "context_burn": "counter status file; native uses $.session.usage(); node harnesses degraded",
+    "audit_trail_native": "unsupported (no append); classic covers Claude Code",
+    "commit_cadence": "one commit per wave, pushed to feat/cross-harness-mods"
+  },
+  "plan": {
+    "path": ".claude/plan/cross-harness-mods.md",
+    "approved": "2026-10-14"
+  },
+  "resume": {
+    "date": "2026-10-14",
+    "baseline_ref": "51390cbea8c2789147785ee9be4b34e1299ce8dc",
+    "agent_turns": 5,
+    "max_agent_turns": 5,
+    "max_open_workers": 3,
+    "repair_runs": 2,
+    "max_repair_runs": 2,
+    "elapsed_limit_minutes": 60,
+    "notes": "User approved one additional focused repair and requested commits. One extra read-only reviewer turn; no push, unrelated agent files or personal configuration.",
+    "actual_team": [
+      "runtime_tests",
+      "property_tests",
+      "docs_integration",
+      "final_review",
+      "final_review additional approved follow-up"
+    ],
+    "model_effort": "native inherited settings; observed identity UNVERIFIED",
+    "red_evidence": "node --test tests/mods.test.mjs: 58 tests, 51 pass, 7 fail, exit 1; full fuzz exit 0.",
+    "remaining_finding": "resolved: contextual matching followed by standalone-leaf recheck",
+    "additional_repair_approval": "granted by user on 2026-10-14",
+    "commit_authorized": true,
+    "push_authorized": false,
+    "additional_repair_red": "focused node tests: 0 pass, 2 fail, exit 1; native redactor: 17 pass, 2 fail, exit 1",
+    "additional_repair_green": "node regressions: 60 pass, 0 fail, exit 0; native redactor: 19 pass, 0 fail, exit 0",
+    "feature_commit": "16cc3100907217d6b734daa82eaac04b26ea530f",
+    "local_request_complete": true,
+    "publication": "not performed; no push authorized",
+    "closeout_commit": "records this verified feature receipt; its SHA is obtained from git after commit"
+  }
+}

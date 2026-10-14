@@ -1,0 +1,3 @@
+# Final independent review
+
+Read-only review of the integrated changes: scripts/mods/common.mjs, scripts/mods/runtime.mjs, scripts/generate-mods.mjs, mods/*/lib/core.mjs, mods/*/bin/hook.mjs and native register.ts, focused new tests and gate wiring. Check repaired boundary/locking/JSON errors and security claims. Cite actual reachable defects, not speculative unsupported cases. No edits, tests that write shared files, external tools, credentials, commits, push, or recursive agents. Documented degraded behavior and heuristics are intentional; distinguish them from new defects. Return severity, file:line, decisive reproduction, and whether completion is blocked.

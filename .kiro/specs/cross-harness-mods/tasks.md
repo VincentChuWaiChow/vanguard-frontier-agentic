@@ -371,7 +371,7 @@ All generated harness files (`register.ts`, Kiro hook JSON, Codex `.sh` scripts)
     - _Requirements: definition-of-done step 4_
 
   - [ ] 8.5 Checkpoint: All gates green. Run `git status` — confirm tree is clean (all generated files committed). Confirm branch is `feat/cross-harness-mods`. Ask the user if questions arise.
-    - _Execution note: User authorized commits after the anchored repair; publication remains unperformed and unrelated agent files are preserved. See [deviations](deviations.md)._
+    - _Execution note: Feature updates committed as `16cc3100` after the anchored repair. Unrelated `.kiro/kiro-agents/` remains untracked; no push or global clean-tree claim. Publication is still open. See [deviations](deviations.md)._
 
 
 ---
