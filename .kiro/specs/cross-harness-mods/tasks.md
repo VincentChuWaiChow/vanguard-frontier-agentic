@@ -5,7 +5,9 @@
 Implementation follows the approved [plan](../../../.claude/plan/cross-harness-mods.md)
 and [deviations](deviations.md), not the superseded API assumptions below. Checked items
 mean their approved equivalents are implemented and locally verified; intermediate
-checkpoint counts are not claims that historical staged runs occurred. The final commit/push checkpoint remains open. Live installed Kiro/Codex sessions are unverified.
+checkpoint counts are not claims that historical staged runs occurred. The final
+integrated checkpoint remains open. T9 and the new coverage/documentation
+follow-ups are not implemented. Live installed Kiro/Codex sessions are unverified.
 
 ## Overview
 
@@ -262,7 +264,7 @@ All generated harness files (`register.ts`, Kiro hook JSON, Codex `.sh` scripts)
 
   - [x] 5.5 Checkpoint: Run `npm run validate:mods` — must exit 0 with `context-burn` counted. Ask the user if questions arise.
 
-- [x] 6. T6 — `audit-trail` mod
+- [ ] 6. T6 — `audit-trail` mod (reopened for coverage task 6.7)
 
   - [x] 6.1 Write `mods/audit-trail/mod.toml` with `reach_level = 1` and `events = ["PostToolUse"]`
     - _Execution note: Namespaced AUDIT_TRAIL envs and per-session default writes. See [deviations](deviations.md)._
@@ -296,14 +298,19 @@ All generated harness files (`register.ts`, Kiro hook JSON, Codex `.sh` scripts)
     - _Execution note: P3 uses actual production audit hook/record code, not duplicated logic. See [deviations](deviations.md)._
 
     - **Property 3: Audit Completeness**
-    - Add import for `buildLogEntry` (inline the function in the test since it's not exported from a module yet — duplicate the pure logic from the `audit-trail` Claude Code register.ts).
-    - Use `fc.array(fc.record({ tool_name: fc.string({ minLength: 1, maxLength: 30 }), tool_input: fc.object(), tool_output: fc.oneof(fc.string(), fc.object(), fc.integer()) }), { minLength: 1, maxLength: 50 })` as the arbitrary.
-    - For each array, reduce by appending `JSON.stringify(buildLogEntry(evt, i + 1)) + "\n"` for each event with 1-based index.
-    - Assert: `lines.length == events.length` and `lines[i].sequence_number == i + 1` for all i.
-    - Run 200 iterations.
+    - Invoke the production Node audit hook with isolated temporary session logs; import `buildRecord`, `lastSequence` and `canonicalJson` for comparison, not copied append logic.
+    - Generate JSON-compatible payload dictionaries and use the wire key `tool_response`. Null-prototype dictionaries are valid JSON inputs; do not disable them to work around an unproven serialization problem.
+    - Assert actual JSONL record count, sequence 1..N, trailing newline, released lock and canonical hashes. The implemented seeded test samples N ∈ [1, 4] for 200 runs; the full boundary/nested-domain extension is tracked separately in 6.7.
     - **Validates: Requirements 14.2, 14.3, 16.3**
 
   - [x] 6.6 Checkpoint: Run `npm run validate:mods` — must exit 0 with all five mods not yet complete but `audit-trail` counted. Ask the user if questions arise.
+
+  - [ ] 6.7 Extend P3 coverage to nested JSON values and sequence boundaries
+    - Owned file: `tests/fuzz-properties.test.mjs`; serialize edits with 7.1 and 7.2.
+    - Use `fc.jsonValue({ maxDepth: 3 })` for nested input/result values, with 200 seeded random sequences sampling N ∈ [1, 50]. Keep the production hook invocation and temporary-log cleanup from 6.5.
+    - Add deterministic N = 1 and N = 50 cases, plus JSON-compatible null-prototype input. Assert real record counts, sequence values and hashes for each supported command adapter.
+    - Done: `rtk npm run test:fuzz` exits 0 with the boundary cases actually executed; report the seed and sample limits. Never claim this finite workload proves all possible sequences.
+    - _Design: Property 3 and Testing Strategy / P3; Requirements: 14.2, 14.3, 16.3, 16.7_
 
 - [x] 7. T7 — PBT extensions and full validation wiring
 
@@ -371,97 +378,179 @@ All generated harness files (`register.ts`, Kiro hook JSON, Codex `.sh` scripts)
     - _Requirements: definition-of-done step 4_
 
   - [ ] 8.5 Checkpoint: All gates green. Run `git status` — confirm tree is clean (all generated files committed). Confirm branch is `feat/cross-harness-mods`. Ask the user if questions arise.
-    - _Execution note: Feature updates committed as `16cc3100` after the anchored repair. Unrelated `.kiro/kiro-agents/` remains untracked; no push or global clean-tree claim. Publication is still open. See [deviations](deviations.md)._
+    - Run after T9 and its integrated checks, not before. Earlier feature verification and publication do not establish completion of the later Rust additions. Preserve unrelated `.kiro/kiro-agents/`; report it instead of staging/deleting it or claiming a globally clean tree. See [deviations](deviations.md).
+    - _Requirements: 18.12, repository definition of done_
+
+  - [ ] 8.6 Make each mod README's numeric reach declaration explicit
+    - Owned paths: `mods/*/README.md`. State the current derived L0/L1 value and declared footprint; L0 must be written explicitly even when footprint arrays are empty.
+    - Do not fabricate L2/L3 examples or change runtime reach to satisfy prose. Treat the footprint as disclosure, not isolation.
+    - Done: compare each README with its `mod.toml`; run spelling and Markdown gates after the edits.
+    - _Design: Data Models / mod.toml and reach taxonomy; Requirements: 2.1, 17.5, 17.6_
 
 - [ ] 9. T9 — Rust TUI (`vfa-tui`) integration for mods
 
+  - [x] 9.0 Record the approved full-browser scope and footprint source
+    - The user explicitly chose the visible browser with UI tasks and a defined footprint source. R8.7, R18.16–18.20, the visible-browser design and ADR-7 record the decision.
+    - Generator-produced footprint metadata is the source; legacy absence is `not recorded`. This completed decision task is not evidence that any T9 runtime work is implemented.
+    - _Design: ADR-7 and Rust TUI integration / Approved scope; Requirements: 8.7, 18 user story_
+
   - [ ] 9.1 Create `src/models/mod_catalog.rs` — `Mod` struct matching `catalog/mods.json`
-    - Following the exact pattern of `src/models/rule.rs` and `src/models/skill.rs`:
-    - Define `ModType` enum with `#[serde(rename = "mod")]` variant.
-    - Define `Mod` struct with `#[serde(deny_unknown_fields)]` containing: `id: String`, `name: String`, `entity_type: ModType` (field renamed `"type"`), `version: String`, `description: String`, `reach_level: u8`, `events: Vec<String>`, `harnesses: Vec<String>`, `path: String`, `security_notes: Option<String>`.
-    - The struct must exactly match the JSON fields produced by `scripts/generate-mods.mjs` into `catalog/mods.json`. Cross-check the generator's `generateCatalog()` output before writing.
-    - Do not add a `Provider` field — mods are not provider-scoped (they are cross-harness).
-    - _Requirements: 8.2 (catalog entry schema)_
+    - Owned file: `tools/vfa-tui/src/models/mod_catalog.rs`. Use the eight generator fields (`id`, `name`, `version`, `description`, `reach_level`, `events`, `harnesses`, `path`) and optional defaulted `security_notes` and `footprint: Option<ModFootprint>`. Define strict `ModFootprint` with four required string arrays: `env_reads`, `file_writes`, `spawns`, `egress_hosts`. No invented `ModType`, `type` or `Provider` field; no `flatten`.
+    - Pair with generated-entry deserialization tests and negative missing-required-field, unknown-field and wrong-type tests, including malformed/unknown nested footprint keys. Optional notes accept absence, null or string; optional footprint accepts absence/null without constructing an empty footprint.
+    - Done: exact current generated entries deserialize; invalid shapes fail. Reach 0–3 enforcement is paired with the shared parser in 9.3, not inferred from `u8`.
+    - _Design: Rust TUI integration / Mod struct; Requirements: 8.2, 18.1, 18.11_
 
   - [ ] 9.2 Register `mod_catalog` module in `src/models/mod.rs` and re-export `Mod`
     - Add `pub mod mod_catalog;` to `src/models/mod.rs`.
-    - Add `pub use mod_catalog::{Mod, ModType};` to the re-exports block (following the `#[allow(unused_imports)]` pattern used by all other re-exports in that file).
-    - _Requirements: 8.2_
+    - Add `pub use mod_catalog::{Mod, ModFootprint};` to the re-exports block following the existing import style. Paths in this task are relative to `tools/vfa-tui/`.
+    - Done: crate consumers import `crate::models::Mod`; no unused-import warnings.
+    - _Design: Rust TUI integration / Mod struct; Requirements: 18.2_
 
   - [ ] 9.3 Add `load_mods()` to `src/catalog/loader.rs`
-    - Following the exact pattern of `load_rules()` or `load_skills()` in the same file:
-    - Read `catalog/mods.json` via `read_catalog_file()` with the default size limit.
-    - Deserialize as `Vec<Mod>` via `serde_json::from_str`.
-    - For each entry call `check_mod_tainted()` (inline taint check: same control-byte detection pattern as `check_agent_tainted()` — check `id`, `name`, `description` for control bytes via `has_control_bytes()`).
-    - Return `(Vec<Mod>, Vec<TuiError>)`.
-    - When `catalog/mods.json` does not exist (returns `CatalogNotFound`), return an empty vec with no errors — mods are optional (the file starts as `[]` and the TUI must not fail on older checkouts without it).
-    - _Requirements: 8.1, 8.3_
+    - Owned file: `tools/vfa-tui/src/catalog/loader.rs`. Implement public `load_mods() -> (Vec<Mod>, Vec<TuiError>)` over the design's shared `read_mods_snapshot()` contract, preserving the validated bytes' hash for store consumers.
+    - Only OS `NotFound` means optional initial absence. Read at most 20 MiB + 1; reject excess, other I/O failures, invalid UTF-8, malformed/unknown-field input, reach outside 0–3 and tainted strings in every field/array, including footprint metadata. Reject the entire mod snapshot on failure. Do not copy the generic helper's all-errors-as-not-found mapping or use `exists()`.
+    - Pair with missing/empty, directory-as-file, invalid UTF-8, size boundary/excess, malformed/unknown-field, reach boundary and control-byte fixtures. Preserve the existing permitted tab/newline policy. Use a deterministic injected read error if permissions cannot be tested reliably under elevated execution.
+    - Test parse coordinates on multiline UTF-8 and EOF inputs; a `column()` value is not an absolute file-byte offset. Taint diagnostics identify the actual indexed field and byte position within its decoded string.
+    - Done: focused loader tests pass for valid and invalid fixtures; no changes to unrelated loaders or errors.
+    - _Design: Rust TUI integration / load_mods and Diagnostics; Requirements: 18.3, 18.4, 18.6, 18.15_
 
   - [ ] 9.4 Add `mods` field to `CatalogStore` in `src/catalog/store.rs` and wire it into `load()`, `reload_file()`, and `content_hashes`
     - Add `pub mods: Vec<Mod>` field to the `CatalogStore` struct.
-    - In `CatalogStore::load()`: call `loader::load_mods(workspace_root)`, extend `load_errors`, sort by `id` (case-insensitive), assign to `mods`.
-    - In the `content_hashes` initialisation block: add `"mods.json"` to the list of catalog filenames that get hashed.
-    - In `CatalogStore::reload_file()`: add a `"mods.json"` match arm that deserializes `Vec<Mod>`, sorts by id, updates `self.mods`, updates `content_hashes`, and returns `ReloadOutcome::Reloaded { catalog: "mods".to_string() }` — following the exact same pattern as the `"rules.json"` arm.
+    - In `CatalogStore::load()`: use the shared validated snapshot pipeline, extend errors and sort by `(id.to_lowercase(), id)`. Record the hash of those same bytes; do not reread mods in the generic hashing loop or cache hashes after absence/failure.
+    - Dispatch mods reloads before the generic unbounded read. Reuse startup validation and size limits; adopt the collection/hash together on success. Unchanged accepted bytes return `Unchanged`; missing or invalid reloads return `RetainedPrevious` without updating either collection or hash. A valid `[]` intentionally clears mods.
     - Add `pub fn mod_count(&self) -> usize { self.mods.len() }` query method.
     - Add `pub fn mod_by_id(&self, id: &str) -> Option<&Mod> { self.mods.iter().find(|m| m.id == id) }` query method.
-    - In the `#[cfg(test)] impl CatalogStore` block: add `mods: Vec::new()` to the `CatalogStore::from_parts()` constructor.
-    - _Requirements: 8.1, 8.3_
+    - Update `from_parts()` and exhaustive store literals in `tools/vfa-tui/src/test_fixtures.rs`, `src/app.rs`, `tests/property/reverse_lookup.rs`, and `tests/property/ui.rs` (last three relative to `tools/vfa-tui/`). Search for additional affected literals before editing; do not claim existing fixtures need no changes.
+    - Pair with sorting, exact case-sensitive known/unknown lookup, valid empty collection and data/hash retention tests. Serialize this task with all other `store.rs` writers.
+    - Done: focused store tests and existing fixture/property consumers compile and pass.
+    - _Design: Rust TUI integration / CatalogStore wiring; Requirements: 18.5, 18.6, 18.7, 18.8, 18.9, 18.10, 18.13, 18.14_
 
   - [ ] 9.5 Add unit and integration tests for mods loading to `src/catalog/store.rs`
-    - In the existing `#[cfg(test)] mod tests` block in `store.rs`, add:
-    - `store_loads_mods_successfully()`: calls `CatalogStore::load(workspace_root())`, asserts `store.load_errors.is_empty()`, asserts `store.mod_count() == 5` (the five starter mods from T1–T6).
-    - `store_mods_sorted_case_insensitive()`: asserts that `store.mods.windows(2)` are all in non-descending id order (same assertion pattern as `store_agents_sorted_case_insensitive()`).
-    - `store_mod_by_id_known()`: calls `store.mod_by_id("secret-redactor")` and asserts it returns `Some(m)` where `m.reach_level == 0`.
-    - `store_mod_by_id_unknown()`: calls `store.mod_by_id("nonexistent-mod-xyz")` and asserts it returns `None`.
-    - `store_reload_mods_json_unchanged()`: calls `store.reload_file(catalog_root.join("mods.json"))` and asserts `ReloadOutcome::Unchanged` (since the file was just loaded).
-    - _Requirements: 8.1, 8.3_
+    - Owned files: `tools/vfa-tui/src/catalog/store.rs` tests and `src/catalog/watcher.rs` tests (both crate-relative after the first). Use isolated existing workspace fixtures, not only the live checkout; attribute errors to mods rather than requiring unrelated catalog errors to be absent.
+    - Exercise N = 0, 1, 5 and varied generated valid counts, reordered IDs, metadata preservation and known/unknown exact lookups. Keep a generated-catalog smoke test comparing input IDs/count, not a permanent `== 5` assertion.
+    - Exercise load → unchanged → changed valid → repeated malformed/tainted/oversize/missing → corrected valid → valid empty. Check data and accepted hash after every transition; repeated failures must not be mislabeled `Unchanged`.
+    - Test generic watcher classification of `catalog/mods.json` deterministically. Existing app dispatch should reach the store; do not add a filename allowlist or rewrite the watcher without contrary evidence.
+    - Done: these tests fail when mods reload adoption or validation is disabled, and pass with the implementation. P8 is sampled evidence, not proven by one five-entry fixture.
+    - _Design: Property 8 and Rust TUI integration / verification; Requirements: 18.6, 18.7, 18.11, 18.13, 18.14_
 
   - [ ] 9.6 Run `rtk cargo test` in `tools/vfa-tui` — all tests must pass, zero clippy warnings
     - Run `rtk cargo fmt --check` — fix any formatting issues first.
     - Run `rtk cargo clippy --all-targets -- -D warnings` — fix all warnings.
-    - Run `rtk cargo test` — all existing tests plus the 5 new tests in 9.5 must pass.
-    - The new `Mod` struct must not break any existing test (it is additive — no existing struct changes).
-    - If `store_loads_mods_successfully()` fails because `catalog/mods.json` does not yet exist or is empty, verify T8.1 has been completed first (the generator must have written `catalog/mods.json` with 5 entries before running these tests).
-    - _Requirements: 8.1, 8.2, 8.3, definition-of-done step 5_
+    - Run `rtk cargo test` — all existing and new tests must pass. Run the generated-catalog integration smoke test after `rtk npm run mods:write`; missing/empty fixture tests must not depend on generation.
+    - After all source/docs/generators settle, run asset integrity last on its own, then repository validation, spelling and Markdown gates. Earlier T8 results are historical, not verification of the new integrated revision.
+    - Run after 9.7–9.10 as well as 9.1–9.5. Verify the visible browser, generated footprint parity, legacy unknown state and UI reload behavior; loader tests alone cannot complete T9. Record commands, exit codes and skipped checks.
+    - _Design: Rust TUI integration / verification; Requirements: 18.11, 18.12, repository definition of done_
+
+  - [ ] 9.7 Add generated catalog footprint metadata and its validator contract
+    - Owned paths: `scripts/generate-mods.mjs`, `tests/validate-mods.py`, `tests/mods.test.mjs`, generated `catalog/mods.json`.
+    - Extend the catalog mapping in `renderAll()` to copy all four manifest footprint arrays, preserving their order. Update the Python validator's exact expected-entry comparison in the same change; do not hand-edit catalog output or add a required discriminator/provider.
+    - Pair with production-generator tests comparing emitted arrays against each manifest, deterministic generation checks and a validator-negative fixture with a mismatched/missing footprint. Regenerate through one owner only.
+    - Done: `rtk npm run mods:write`, `rtk npm run validate:mods`, generator `--check` and mod property tests pass; fresh entries carry footprint while Rust still accepts legacy entries without it. Refresh integrity only after all later changes settle.
+    - _Design: Catalog entry schema and ADR-7; Requirements: 8.2, 8.4, 8.7, 18.1, 18.18_
+
+  - [ ] 9.8 Make the Mods list reachable in the primary Catalog tab
+    - Owned files: `tools/vfa-tui/src/ui/nav.rs`, `tools/vfa-tui/src/app.rs`. Serialize app edits with 9.4 and 9.9.
+    - Append a Mods sidebar entry; add `View::ModList` / `View::ModDetail(String)` and all required exhaustive dispatch, Catalog-tab synchronization, list-length/count and Enter/Back paths. Keep existing top-level tabs and sidebar indexes stable.
+    - Render ordered ID/name/L0–L3 rows and a `No mods` empty state. Up/down selection and Enter must target the displayed mod; provider-only filters must not hide cross-provider mods. Do not add install/enable/export/run actions.
+    - Pair with focused navigation and list-render tests. Done: primary `App::render` reaches the list via the Catalog tab, not only a directly invoked widget; existing navigation tests still pass.
+    - _Design: Visible mods browser; Requirements: 18.16, 18.20_
+
+  - [ ] 9.9 Add mod detail rendering and reload-safe selection
+    - Owned files: `tools/vfa-tui/src/ui/widgets/detail.rs`, `tools/vfa-tui/src/app.rs`; serialize with 9.8.
+    - Add the typed detail renderer and show all R18.17 fields. Render all four declared footprint arrays; distinguish `none declared` from absent/null `not recorded`. Preserve scrolling and Back/Escape navigation.
+    - Resolve displayed detail by ID after reload, clamp list indexes, and show a non-panicking `Mod no longer present` state when that ID is removed. Failed reload retains last valid metadata and surfaces its error.
+    - Pair with field-preservation, legacy/empty/non-empty footprint, scroll/back and removed-ID tests. Done: displayed arrays equal the generated catalog and no manifest parsing, declared-path access or hook invocation occurs during browsing.
+    - _Design: Visible mods browser and ADR-7; Requirements: 18.17, 18.18, 18.19, 18.20_
+
+  - [ ] 9.10 Exercise the full browser and reload path through the real App
+    - Owned files: `tools/vfa-tui/tests/integration/tui_primary_render.rs`, `tools/vfa-tui/tests/integration/tui_reload.rs`. Extend existing registered integration modules rather than creating an unregistered test file.
+    - Use isolated catalog fixtures and the existing Ratatui `TestBackend` to navigate Catalog → Mods → detail → Back, render identity/reach/events/harnesses/all footprint arrays, exercise scrolling, and cover missing/empty/legacy catalogs.
+    - Reload changed metadata, a shorter list, removed selected ID, malformed/tainted data, and corrected valid data. Assert actual rendered state plus selection bounds and retained error/data behavior, not only store counts. Verify existing agent/skill/rule navigation still works.
+    - Done: tests fail if the Mods route or reload refresh is disabled and pass with the implementation; finish with task 9.6 and final checkpoint 8.5.
+    - _Design: Visible mods browser and R18 verification; Requirements: 18.11, 18.16, 18.17, 18.18, 18.19, 18.20_
 
 ---
 
 ## Notes
 
-- Tasks marked with `*` are optional and can be skipped for faster MVP delivery. Core property tests (P1, P2 in validate-mods.py) are non-optional; only the fuzz-properties.test.mjs extensions are marked optional.
+- All property-test tasks are required. No optional marker makes P3/P8 or an explicit R18 deliverable skippable.
 - Generated files (`register.ts`, Kiro hook JSON, Codex `.sh` boilerplate) are produced by `npm run mods:write` — never hand-edit them. Only `mod.toml`, `patterns.json`, `logic.sh`, and `README.md` files are hand-authored.
 - The generator `--check` mode is the drift gate: if on-disk files differ from generated, `validate:mods` fails.
 - Run `npm run asset-integrity:write` LAST (after all generator runs and file edits), as described in CLAUDE.md.
 - `catalog/index.json` must include the `mods` key before `validate:catalog` runs; Task 1.3 handles this.
-- Reach level validation note: the validator should accept declared reach level ≥ derived reach level (conservative declaration is valid) when `security_notes` is present in the mod entry, per the `live-guard-gate` design decision. Strict equality is enforced for non-justified over-declaration.
-- The Rust TUI (`vfa-tui`) treats `catalog/mods.json` as optional at load time — `load_mods()` returns an empty vec (no error) when the file is absent, so older checkouts without mods are not broken. The 5-mod assertion in test `store_loads_mods_successfully()` requires T8.1 to have run first.
+- Reach follows the approved derived-footprint policy in [deviations](deviations.md); optional notes do not authorize aspirational over-declaration. TUI loading independently enforces the numeric 0–3 range.
+- Only OS NotFound is optional initial absence. Reload deletion retains previous data/hash with an error; write `[]` to clear deliberately.
+- The wave graph intentionally serializes shared generator outputs, fuzz-test edits and store-test edits. Safety takes precedence over a target parallelism percentage. Final checkpoint 8.5 follows T9, avoiding stale integrated-state evidence.
+- The user retained the full visible browser. T9 is not complete until list/detail/navigation, generated footprint metadata and actual App reload/render tests pass; foundation-only loading is insufficient.
 
 ## Task Dependency Graph
+
+Leaf-task waves preserve the existing ID convention; each shared writer is serialized.
 
 ```json
 {
   "waves": [
-    { "id": 0, "tasks": ["1.1", "1.2", "1.3", "1.4", "1.5"] },
-    { "id": 1, "tasks": ["1.6"] },
-    { "id": 2, "tasks": ["1.7"] },
-    { "id": 3, "tasks": ["1.8"] },
-    { "id": 4, "tasks": ["2.1", "3.1", "4.1", "5.1", "6.1"] },
-    { "id": 5, "tasks": ["2.2", "3.2", "4.2", "5.2", "6.2"] },
-    { "id": 6, "tasks": ["2.3"] },
-    { "id": 7, "tasks": ["2.4", "3.4", "4.3", "5.3", "6.3"] },
-    { "id": 8, "tasks": ["2.5", "3.5", "4.4", "5.4", "6.4"] },
-    { "id": 9, "tasks": ["2.6", "3.6", "6.5", "3.3"] },
-    { "id": 10, "tasks": ["7.1", "7.2", "7.3"] },
-    { "id": 11, "tasks": ["7.4"] },
-    { "id": 12, "tasks": ["8.1"] },
-    { "id": 13, "tasks": ["8.2"] },
-    { "id": 14, "tasks": ["8.3"] },
-    { "id": 15, "tasks": ["8.4"] },
-    { "id": 16, "tasks": ["9.1"] },
-    { "id": 17, "tasks": ["9.2"] },
-    { "id": 18, "tasks": ["9.3", "9.4"] },
-    { "id": 19, "tasks": ["9.5"] },
-    { "id": 20, "tasks": ["9.6"] }
+    { "id": 0, "tasks": ["1.1"] },
+    { "id": 1, "tasks": ["1.2"] },
+    { "id": 2, "tasks": ["1.3"] },
+    { "id": 3, "tasks": ["1.4"] },
+    { "id": 4, "tasks": ["1.5"] },
+    { "id": 5, "tasks": ["1.6"] },
+    { "id": 6, "tasks": ["1.7"] },
+    { "id": 7, "tasks": ["1.8"] },
+    { "id": 8, "tasks": ["1.9"] },
+    { "id": 9, "tasks": ["2.1"] },
+    { "id": 10, "tasks": ["2.2"] },
+    { "id": 11, "tasks": ["2.3"] },
+    { "id": 12, "tasks": ["2.4"] },
+    { "id": 13, "tasks": ["2.5"] },
+    { "id": 14, "tasks": ["2.6"] },
+    { "id": 15, "tasks": ["2.7"] },
+    { "id": 16, "tasks": ["3.1"] },
+    { "id": 17, "tasks": ["3.2"] },
+    { "id": 18, "tasks": ["3.3"] },
+    { "id": 19, "tasks": ["3.4"] },
+    { "id": 20, "tasks": ["3.5"] },
+    { "id": 21, "tasks": ["3.6"] },
+    { "id": 22, "tasks": ["3.7"] },
+    { "id": 23, "tasks": ["4.1"] },
+    { "id": 24, "tasks": ["4.2"] },
+    { "id": 25, "tasks": ["4.3"] },
+    { "id": 26, "tasks": ["4.4"] },
+    { "id": 27, "tasks": ["4.5"] },
+    { "id": 28, "tasks": ["5.1"] },
+    { "id": 29, "tasks": ["5.2"] },
+    { "id": 30, "tasks": ["5.3"] },
+    { "id": 31, "tasks": ["5.4"] },
+    { "id": 32, "tasks": ["5.5"] },
+    { "id": 33, "tasks": ["6.1"] },
+    { "id": 34, "tasks": ["6.2"] },
+    { "id": 35, "tasks": ["6.3"] },
+    { "id": 36, "tasks": ["6.4"] },
+    { "id": 37, "tasks": ["6.5"] },
+    { "id": 38, "tasks": ["6.6"] },
+    { "id": 39, "tasks": ["6.7"] },
+    { "id": 40, "tasks": ["7.1"] },
+    { "id": 41, "tasks": ["7.2"] },
+    { "id": 42, "tasks": ["7.3"] },
+    { "id": 43, "tasks": ["7.4"] },
+    { "id": 44, "tasks": ["8.1"] },
+    { "id": 45, "tasks": ["8.2"] },
+    { "id": 46, "tasks": ["8.3"] },
+    { "id": 47, "tasks": ["8.6"] },
+    { "id": 48, "tasks": ["8.4"] },
+    { "id": 49, "tasks": ["9.0"] },
+    { "id": 50, "tasks": ["9.1"] },
+    { "id": 51, "tasks": ["9.2"] },
+    { "id": 52, "tasks": ["9.3"] },
+    { "id": 53, "tasks": ["9.4"] },
+    { "id": 54, "tasks": ["9.5"] },
+    { "id": 55, "tasks": ["9.7"] },
+    { "id": 56, "tasks": ["9.8"] },
+    { "id": 57, "tasks": ["9.9"] },
+    { "id": 58, "tasks": ["9.10"] },
+    { "id": 59, "tasks": ["9.6"] },
+    { "id": 60, "tasks": ["8.5"] }
   ]
 }
 ```

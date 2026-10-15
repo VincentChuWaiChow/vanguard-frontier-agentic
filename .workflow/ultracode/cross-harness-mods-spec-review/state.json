@@ -1,0 +1,128 @@
+{
+  "title": "Cross-harness mods spec review",
+  "slug": "cross-harness-mods-spec-review",
+  "created_at": "2026-10-15T07:11:22.375925Z",
+  "updated_at": "2026-10-15T07:39:29.097092+00:00",
+  "status": "complete",
+  "mode": "delegated",
+  "baseline_ref": "7c07f0c789b66dcb9af67ee64176455ca496e104",
+  "risk_level": "medium",
+  "eval_contract": {
+    "level": "inline",
+    "path": "plan.md",
+    "status": "checked"
+  },
+  "approval": {
+    "required": false,
+    "granted": null,
+    "notes": "User confirmed spec-only updates and explicitly retained full visible browser and footprint source."
+  },
+  "delegation": {
+    "native_agent_available": true,
+    "native_agent_planned": true,
+    "native_agent_used": true,
+    "agent_count": 2,
+    "wave_count": 2,
+    "no_delegation_reason": "",
+    "notes": "Two read-only agents; three cumulative runs including final review. One parent bookkeeping repair. No further delegation planned. Requested model/effort not independently attested. Review completion is spec-only; runtime tasks remain pending.",
+    "agent_runs": 3
+  },
+  "packets": [
+    {
+      "id": "01-data-contract",
+      "status": "complete",
+      "owner": "read-only-agent",
+      "write_scope": [],
+      "result_path": "results/01-data-contract.md"
+    },
+    {
+      "id": "02-ui-tasks",
+      "status": "complete",
+      "owner": "read-only-agent",
+      "write_scope": [],
+      "result_path": "results/02-ui-tasks.md"
+    },
+    {
+      "id": "03-final-review",
+      "status": "complete",
+      "owner": "read-only-agent",
+      "write_scope": [],
+      "result_path": "results/03-final-review.md"
+    }
+  ],
+  "verification": {
+    "status": "pass",
+    "checks": [
+      {
+        "name": "Context7 and primary-source claims",
+        "command": "Context7 Serde, serde_json, fast-check; inspect installed fast-check",
+        "required": true,
+        "status": "pass",
+        "evidence": "claims.md and local Rust/Node probes"
+      },
+      {
+        "name": "focused traceability and negative probes",
+        "command": "rtk proxy python3 .workflow/ultracode/cross-harness-mods-spec-review/check_spec.py",
+        "required": true,
+        "status": "pass",
+        "evidence": "exit 0, R18.1-20, all graph leaves, pending-parent checks and negative mutations"
+      },
+      {
+        "name": "JSON-domain probe",
+        "command": "rtk proxy node .workflow/ultracode/cross-harness-mods-spec-review/probe-json-domain.mjs",
+        "required": true,
+        "status": "pass",
+        "evidence": "exit 0, 200 seeded runs plus explicit positive/negative cases"
+      },
+      {
+        "name": "isolated proposed Rust model",
+        "command": "rtk proxy cargo run --offline --manifest-path /tmp/vfa-spec-claims/Cargo.toml --target-dir /tmp/vfa-spec-claims/target",
+        "required": true,
+        "status": "pass",
+        "evidence": "exit 0; legacy/future footprint fixtures and missing/unknown-field failures; line/column vs byte probe"
+      },
+      {
+        "name": "proposed catalog JSON Schema",
+        "command": "Python jsonschema Draft202012Validator against extracted design schema",
+        "required": true,
+        "status": "pass",
+        "evidence": "legacy and planned footprint accepted; unknown outer/nested keys rejected"
+      },
+      {
+        "name": "full repository validation",
+        "command": "rtk proxy npm run validate",
+        "required": true,
+        "status": "pass",
+        "evidence": "outside-sandbox rerun exit 0; /tmp/vfa-spec-review-final-validate.log; initial sandbox run failed and is not counted as pass"
+      },
+      {
+        "name": "spelling",
+        "command": "rtk proxy npm run lint:spell",
+        "required": true,
+        "status": "pass",
+        "evidence": "exit 0, /tmp/vfa-spec-review-final-spell.log; repeat after final evidence text"
+      },
+      {
+        "name": "full Markdown lint",
+        "command": "rtk proxy node /home/raishin/.npm/_npx/3c2a9ea6c4b6e0a2/node_modules/markdownlint-cli2/markdownlint-cli2-bin.mjs \"**/*.md\" \"#node_modules\"",
+        "required": true,
+        "status": "pass",
+        "evidence": "exit 0, 8444 files and zero issues; repeat after final evidence text"
+      },
+      {
+        "name": "full Rust product gates",
+        "command": "cargo fmt --check; cargo clippy --all-targets -- -D warnings; cargo test",
+        "required": false,
+        "status": "skipped",
+        "evidence": "No tools/vfa-tui source changed; isolated proposed-model probe is not runtime implementation verification"
+      },
+      {
+        "name": "Kiro SMT analyzer",
+        "command": "Kiro Analyze Requirements",
+        "required": false,
+        "status": "skipped",
+        "evidence": "not available in this host; manual adversarial review explicitly identified"
+      }
+    ]
+  }
+}

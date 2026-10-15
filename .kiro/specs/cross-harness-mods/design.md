@@ -1,4 +1,4 @@
-# Design Document: `cross-harness-mods`
+# Design: cross-harness-mods
 
 ## Overview
 
@@ -417,13 +417,24 @@ else:                       reach_level = 0
     "harnesses":   { "type": "array", "minItems": 1, "items": {
                        "enum": ["claude-code", "kiro", "codex"] } },
     "path":        { "type": "string", "description": "repo-relative path to mod directory" },
-    "security_notes": { "type": "string" }
+    "security_notes": { "type": ["string", "null"] },
+    "footprint": {
+      "type": ["object", "null"],
+      "required": ["env_reads", "file_writes", "spawns", "egress_hosts"],
+      "properties": {
+        "env_reads": { "type": "array", "items": { "type": "string" } },
+        "file_writes": { "type": "array", "items": { "type": "string" } },
+        "spawns": { "type": "array", "items": { "type": "string" } },
+        "egress_hosts": { "type": "array", "items": { "type": "string" } }
+      },
+      "additionalProperties": false
+    }
   },
-  "additionalProperties": true
+  "additionalProperties": false
 }
 ```
 
-Concrete example for `secret-redactor`:
+Illustrative post-R8.7 entry for `secret-redactor` (not a baseline generated snapshot):
 
 ```json
 {
@@ -435,7 +446,13 @@ Concrete example for `secret-redactor`:
   "events": ["PreToolUse", "PostToolUse"],
   "harnesses": ["claude-code", "kiro", "codex"],
   "path": "mods/secret-redactor",
-  "security_notes": "L0 in-process. Patterns are regex-only; no external calls. Extensible via VANGUARD_SECRET_REDACTOR_PATTERNS env var pointing to additional patterns.json."
+  "security_notes": "L0 in-process. Patterns are regex-only; no external calls. Extensible via VANGUARD_SECRET_REDACTOR_PATTERNS env var pointing to additional patterns.json.",
+  "footprint": {
+    "env_reads": ["VANGUARD_SECRET_REDACTOR_PATTERNS"],
+    "file_writes": [],
+    "spawns": [],
+    "egress_hosts": []
+  }
 }
 ```
 
@@ -614,10 +631,11 @@ Formally: `evaluate(cmd).decision in {"block", "confirm"}` whenever
 
 ### Property 3: Audit Completeness
 
-*For any* sequence of N tool-call event objects where N ∈ [1, 50], applying the
-`audit-trail` log-append function to each event in sequence produces a JSONL string
-containing exactly N lines, each parseable as valid JSON, with `sequence_number` values
-1 through N in order.
+*For any* sequence of N JSON-compatible tool-call events, starting with a fresh
+writable session log and completing each production append successfully, the log
+contains exactly N JSON records with `sequence_number` values 1 through N in order.
+The test workload samples N ∈ [1, 50] and includes explicit boundary cases; it
+does not prove the invariant for all sequences or cover hooks that never execute.
 
 Formally:
 ```
@@ -680,6 +698,22 @@ Formally: for any script `s` and variable `v` appearing as `$v` or `${v}` in `s`
 `v in scan_env_vars(s)`.
 
 **Validates: Requirements 2.3**
+
+---
+
+### Property 8: TUI Mod Load Completeness
+
+*For any* readable, valid UTF-8 mod catalog snapshot of at most 20 MiB containing
+N schema-valid, untainted entries (N ≥ 0), initial loading returns exactly those
+N entries and their metadata, sorted by `(id.to_lowercase(), id)`, with no
+mod-attributable errors. Missing files are a separate optional-absence case.
+
+Tests use isolated N = 0, 1, 5 and varied-N fixtures, plus the real generated
+catalog. These finite checks exercise the invariant; they are not a universal
+proof. Successful changed reload and failure retention are separate R18 checks,
+not established by `Unchanged` or the five-starter smoke test.
+
+**Validates: Requirements 18.1, 18.3, 18.4, 18.5, 18.6, 18.11**
 
 ---
 
@@ -768,35 +802,24 @@ Runs 200 iterations with randomly generated suffixes.
 Idempotency)** — in `tests/fuzz-properties.test.mjs` using the existing `fast-check`
 devDependency. No new devDependencies added.
 
-```javascript
-// P3: Audit Completeness (illustrative)
-import fc from "fast-check";
+P3 invokes `mods/audit-trail/bin/hook.mjs` in an isolated temporary log directory,
+then inspects the real JSONL file and compares hashes with the production
+`buildRecord` / `canonicalJson` exports. Do not replace this with a test-local
+append implementation. Generate nested payload values using
+`fc.jsonValue({ maxDepth: 3 })`, or an explicitly JSON-compatible dictionary; use
+the wire key `tool_response`, not `tool_output`. Keep deterministic N = 1 and
+N = 50 cases in addition to 200 seeded random runs. The current production test
+samples shallow dictionaries and N ∈ [1, 4]; extending that coverage is pending
+task 6.7, not an already verified result.
 
-const toolCallEvent = fc.record({
-  tool_name: fc.string({ minLength: 1, maxLength: 30 }),
-  tool_input: fc.object(),
-  tool_output: fc.oneof(fc.string(), fc.object(), fc.integer()),
-});
-
-fc.assert(
-  fc.property(
-    fc.array(toolCallEvent, { minLength: 1, maxLength: 50 }),
-    (events) => {
-      const log = events.reduce((acc, evt, i) => {
-        const entry = buildLogEntry(evt, i + 1);
-        return acc + JSON.stringify(entry) + "\n";
-      }, "");
-      const lines = log.trim().split("\n");
-      assert.equal(lines.length, events.length);
-      lines.forEach((line, i) => {
-        const entry = JSON.parse(line);
-        assert.equal(entry.sequence_number, i + 1);
-      });
-    }
-  ),
-  { numRuns: 200 }
-);
-```
+**API correction:** Null-prototype objects are serializable with
+`JSON.stringify`. The installed fast-check 4.10.2 has
+`fc.object`'s `withNullPrototype` defaulting to false; v4's `record` and
+`dictionary` can generate null prototypes by default. Disabling that coverage
+does not repair JSON-domain mismatches such as undefined or non-finite numbers.
+`fc.anything()` is not a JSON-only replacement. Prefer a JSON-compatible
+arbitrary because hook stdin is JSON, not because prototypes prevent encoding.
+See [fast-check object APIs](https://fast-check.dev/docs/core-blocks/arbitraries/composites/object/).
 
 **P6 (Reach Level Derivation)** and **P7 (Env Var Coverage)** — inline in
 `tests/validate-mods.py` as property sub-tests using itertools and random sampling.
@@ -1092,7 +1115,12 @@ interface Pattern {
 
 ## Rust TUI (`vfa-tui`) Integration
 
-The `vfa-tui` Rust terminal UI reads all generated catalog JSON files. Adding `catalog/mods.json` requires wiring four layers in the existing codebase — a struct, a loader, the store, and the hot-reload matcher — following the identical pattern used for every other catalog type (`Agent`, `Skill`, `Rule`, `McpReference`).
+**Approved scope:** Full visible browser, not just data plumbing. R8.7 adds
+generator-produced footprint metadata; Rust reads the generated catalog rather
+than duplicating manifest logic. The review baseline has no footprint field, so
+the model accepts legacy absence and labels it honestly. Existing watcher
+dispatch is generic; no watcher rewrite is justified merely to recognize mods.
+The following design/tasks are planned work, not implemented functionality.
 
 ### `Mod` struct — `src/models/mod_catalog.rs`
 
@@ -1101,22 +1129,22 @@ The struct uses `#[serde(deny_unknown_fields)]` to fail loudly if the generator 
 ```rust
 use serde::{Deserialize, Serialize};
 
-/// The type discriminator for mod entries.
-#[derive(Debug, Clone, Copy, PartialEq, Eq, Serialize, Deserialize)]
-pub enum ModType {
-    #[serde(rename = "mod")]
-    Mod,
+#[derive(Debug, Clone, Serialize, Deserialize)]
+#[serde(deny_unknown_fields)]
+pub struct ModFootprint {
+    pub env_reads: Vec<String>,
+    pub file_writes: Vec<String>,
+    pub spawns: Vec<String>,
+    pub egress_hosts: Vec<String>,
 }
 
 /// A catalog mod entry, mirroring the output of `scripts/generate-mods.mjs`
-/// into `catalog/mods.json`.
+/// into `catalog/mods.json`, plus backward-compatible optional metadata.
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(deny_unknown_fields)]
 pub struct Mod {
     pub id: String,
     pub name: String,
-    #[serde(rename = "type")]
-    pub entity_type: ModType,
     pub version: String,
     pub description: String,
     /// L0–L3 reach level (integer 0–3).
@@ -1129,91 +1157,195 @@ pub struct Mod {
     pub path: String,
     #[serde(default)]
     pub security_notes: Option<String>,
+    #[serde(default)]
+    pub footprint: Option<ModFootprint>,
 }
 ```
 
 **Why no `Provider` field?** Mods are cross-harness and cross-provider. They are not scoped to a cloud provider the way agents and skills are — a `blast-radius-guard` mod applies equally to AWS, Azure, and GCP sessions. Adding a `Provider` enum field would be incorrect and would mislead the TUI's provider-faceted views.
 
-**Why `u8` for `reach_level`?** The valid range is 0–3. `u8` is the narrowest unsigned integer type in Rust and communicates the constraint clearly. The validator rejects values outside [0, 3] in Python; the Rust struct accepts any `u8` but the catalog gate ensures only valid values reach the binary.
+**Schema parity (R18.1–18.2):** The production generator currently emits eight
+required fields, no `type`, no `security_notes` and no footprint. Optional
+security notes and footprint metadata are accepted as specified by the catalog
+schema; absence/null means not recorded, not an inferred empty declaration.
+After R8.7, generation copies all four footprint arrays from `manifest.footprint`
+without re-deriving or executing behavior. Update `tests/validate-mods.py`'s exact
+catalog-entry comparison in the same task; otherwise it rejects the added field.
+Do not infer a discriminator from the unrelated `Rule` model. Unknown fields
+are rejected, matching `additionalProperties: false` above. No `flatten` is used.
+
+**Why `u8` for `reach_level`?** It is storage, not enforcement of 0–3. The shared
+mod parser must reject values greater than 3 at startup and reload; negative,
+fractional and out-of-u8-range values already fail deserialization. Do not trust
+a repository generation gate to have validated every checkout opened by the TUI.
 
 ### `load_mods()` — `src/catalog/loader.rs`
 
-Follows the exact same signature and control flow as `load_rules()`:
+Preserve the public `(Vec<Mod>, Vec<TuiError>)` interface, but do not blindly copy
+`load_rules()`: its generic read helper conflates all read failures with absence,
+and the old reload path bypasses taint checking. Use one mod-specific bounded
+read/parse pipeline for both public loading and store adoption (R18.3–18.7,
+18.13–18.15):
 
 ```rust
-pub fn load_mods(workspace_root: &Path) -> (Vec<Mod>, Vec<TuiError>) {
-    let file_path = workspace_root.join("catalog").join("mods.json");
+pub fn load_mods(workspace_root: &Path) -> (Vec<Mod>, Vec<TuiError>);
 
-    // Optional: mods.json is absent on checkouts without mods feature.
-    if !file_path.exists() {
-        return (Vec::new(), Vec::new());
-    }
-
-    let path = file_path.display().to_string();
-    let mut errors = Vec::new();
-
-    let data = match read_catalog_file(&file_path) {
-        Ok(d) => d,
-        Err(e) => { errors.push(e); return (Vec::new(), errors); }
-    };
-
-    let all_mods: Vec<Mod> = match serde_json::from_str(&data) {
-        Ok(m) => m,
-        Err(e) => {
-            errors.push(TuiError::CatalogParse { path, offset: e.column(), detail: e.to_string() });
-            return (Vec::new(), errors);
-        }
-    };
-
-    let mut mods = Vec::new();
-    for (idx, m) in all_mods.into_iter().enumerate() {
-        if check_mod_tainted(&m) {
-            errors.push(TuiError::TaintedEntry { path: path.clone(), offset: idx,
-                field: "control bytes detected".to_string() });
-        } else {
-            mods.push(m);
-        }
-    }
-    (mods, errors)
+// Crate-visible so the store can adopt data and hash from one read, not race
+// against a second filesystem read. None means an actual OS NotFound.
+pub(crate) struct ModSnapshot {
+    pub entries: Vec<Mod>,
+    pub content_hash: String,
 }
+pub(crate) fn read_mods_snapshot(path: &Path)
+    -> Result<Option<ModSnapshot>, TuiError>;
 ```
 
-The key difference from `load_agents()` is the `file_path.exists()` early-return: mods are optional and a missing `mods.json` is a valid state (older checkouts, pre-generation state). All other catalog loaders treat missing files as errors; mods treat them as empty.
+The signatures above are interface contracts, not complete compilable bodies.
+
+1. Open the file once; only `ErrorKind::NotFound` becomes `Ok(None)`. Do not use
+   an `exists()` precheck or suppress every `CatalogNotFound` from the generic
+   helper. Preserve a path and reason for other read failures.
+2. Read at most 20 MiB + 1 bytes and reject excess, then decode UTF-8 and parse
+   `Vec<Mod>`. The bound applies on reload as well as initial load.
+3. Validate reach 0–3 and all string fields, including events, harnesses, path,
+   version, optional notes and every footprint array, using the current sanitizer
+   policy. Reject the
+   whole mod snapshot on any failure; do not publish a partial collection.
+4. Hash the same raw bytes that were validated. A valid empty array has a hash;
+   an absent or invalid catalog does not. The public `load_mods()` wrapper
+   discards the hash, returning an empty collection plus any error on failure.
+
+**Diagnostics:** `serde_json::Error::column()` is a line-relative column, not a
+file offset. For the existing `CatalogParse.offset` byte label, convert the
+reported line/column using the original UTF-8 bytes; define a zero-based byte
+position, with EOF at `data.len()`. Test multiline, UTF-8 and EOF cases. Retain
+line/column in the detail. For `TaintedEntry`, put the actual field path (including
+entry/array indexes) in `field`, and the byte position within that decoded string
+in `offset`, not the entry ordinal. Do not change unrelated catalog diagnostics.
+See [serde_json Error](https://docs.rs/serde_json/latest/serde_json/struct.Error.html).
 
 ### `CatalogStore` wiring — `src/catalog/store.rs`
 
-Three changes, all additive (no existing fields removed or renamed):
+Add `pub mods: Vec<Mod>`. Initial `load()` uses `read_mods_snapshot()` via the
+same parser as `load_mods()`, extends errors, sorts by `(id.to_lowercase(), id)`,
+and inserts the snapshot's hash. Exclude mods from the later generic hash reread.
+`mod_count() -> usize` returns the length; `mod_by_id(&str) -> Option<&Mod>` is
+an exact, case-sensitive O(n) lookup (sorting does not change lookup semantics).
 
-1. **Field**: `pub mods: Vec<Mod>` added to the struct.
-2. **`load()`**: call `loader::load_mods(workspace_root)`, extend errors, sort by id, assign. Add `"mods.json"` to the `content_hashes` filename list.
-3. **`reload_file()`**: add `"mods.json"` match arm — same pattern as `"rules.json"`.
+Handle the registered mods path before the generic unbounded reload read.
+`read_mods_snapshot()` returns either absent, invalid, or a valid snapshot:
 
-The `from_parts()` test constructor gains `mods: Vec::new()` to keep all existing property-based tests compiling unchanged.
+| Result | Initial load | Reload |
+|---|---|---|
+| Actual NotFound | Empty, no mod error/hash | Retain previous collection/hash with error |
+| I/O, UTF-8, size, schema, reach or taint failure | Empty, error, no accepted hash | `RetainedPrevious`, unchanged data/hash |
+| Valid bytes, hash matches accepted snapshot | Adopt sorted entries/hash | `Unchanged` |
+| Valid changed bytes | Adopt sorted entries/hash | Adopt data/hash together; `Reloaded { catalog: "mods" }` |
+
+Initial absence is backward compatibility, not a deletion command. To clear an
+existing collection intentionally, write `[]`. A failed hash is never cached as
+accepted: repeat failures remain visible and corrected content can recover.
+
+Update `from_parts()` **and every exhaustive struct literal** with an empty mods
+field. This is an additive model change, not a promise of zero fixture edits.
 
 ### Architecture impact on existing components
 
 | Component | Change | Reason |
 |---|---|---|
 | `src/models/mod_catalog.rs` | New file | Rust struct for `catalog/mods.json` entries |
-| `src/models/mod.rs` | +2 lines | `pub mod mod_catalog;` + re-export |
-| `src/catalog/loader.rs` | +~35 lines | `load_mods()` + `check_mod_tainted()` |
-| `src/catalog/store.rs` | +~25 lines | field, load, reload arm, query methods, test helper, 5 tests |
-| All other files | No change | Strictly additive |
+| `src/models/mod.rs` | Module and `Mod` re-export | Crate consumers |
+| `src/catalog/loader.rs` | Bounded snapshot loader and shared validation | Startup/reload parity |
+| `src/catalog/store.rs` | Field, snapshot adoption, reload, queries, tests | Data/hash consistency |
+| `src/test_fixtures.rs`, `src/app.rs` | Initialize exhaustive store literals | Existing tests compile |
+| `tests/property/reverse_lookup.rs`, `tests/property/ui.rs` | Initialize exhaustive store literals | Existing property tests compile |
+| `src/catalog/watcher.rs` test module | Deterministic mods-path classification test | Existing generic watcher supports the path |
+| `src/ui/nav.rs`, `src/app.rs`, `src/ui/widgets/detail.rs` | Reachable Mods list/detail in primary Catalog tab | Fulfill visible user story |
+| `tests/integration/tui_primary_render.rs`, `tests/integration/tui_reload.rs` | Render, navigation and reload regressions | Test actual App surface |
+| Repository generator, validator, catalog and mod tests | Add declared footprint metadata | R8.7 source for displayed arrays |
 
-No UI view changes are required in this phase. The `CatalogStore` exposes `mod_count()` and `mod_by_id()` as the foundation for a future mods browser panel; the current scope stops at catalog loading and test coverage.
+All paths in this table are relative to `tools/vfa-tui/`, except any later
+generator amendment. No install/export/run-mod action is implied by browsing.
 
-### Correctness property for TUI loading
+### Visible mods browser (R18.16–18.20)
 
-**P8 — TUI Mod Load Completeness:**
-For any workspace where `catalog/mods.json` contains N valid entries (N ≥ 0),
-`CatalogStore::load(workspace_root).mod_count() == N`
-AND `store.load_errors` contains no entries attributable to `mods.json`.
+Use the existing primary `Tab::CatalogBrowser` path in `App::render`, not a
+standalone widget or an unreachable legacy view. Append a `Mods` sidebar entry
+so existing numeric section indexes do not shift. Add `View::ModList` and
+`View::ModDetail(String)` and include them in every relevant exhaustive match:
+Catalog-tab synchronization, list lengths/counts, Enter, Back/Escape, scrolling,
+sidebar selection and render dispatch. The existing top-level tabs stay intact.
 
-This property is verified by the integration test `store_loads_mods_successfully()` (N = 5 for the starter set) and the implicit case of `store_loads_successfully()` not breaking when `mods` is added to the store.
+The list uses `CatalogStore.mods` order and shows ID, name and `L{reach_level}`.
+Up/down select; Enter opens the selected ID; the empty state is `No mods`.
+Provider-only filters do not apply because mods are cross-provider. No new
+filtering, installation or export subsystem is introduced.
+
+The detail renderer follows the existing `detail.rs` interface style:
+
+```rust
+pub fn render_mod_detail(
+    entry: &Mod, area: Rect, frame: &mut Frame, scroll: u16, theme: &Theme,
+);
+```
+
+Show identity/version/description/path, explicit reach level, events, harnesses
+and all four footprint arrays under `Declared footprint`. A present empty array
+is `none declared`; missing/null metadata is `not recorded`, never equivalent
+to an empty array. Label this as disclosure, not sandbox enforcement or live
+harness verification. This is catalog text only: do not open declared paths,
+parse TOML, spawn mod hooks or contact egress hosts while rendering.
+
+On successful reload, resolve detail by ID from the new store, not a stale
+cached object. Clamp selection indexes to the new list length. A removed ID
+shows `Mod no longer present` and a working Back action. Failed reload retains
+the last valid detail/list and surfaces its error; an intentionally empty array
+renders the normal empty state. Tests render the actual `App` with the existing
+Ratatui `TestBackend` and exercise keyboard transitions, scrolling and reload.
+
+### R18 verification and traceability
+
+These are planned tests, not evidence that T9 is implemented. Use temporary
+workspaces with the other catalogs supplied by existing fixtures; attribute
+errors to `mods.json` rather than requiring all unrelated catalogs to be valid.
+
+| Criteria | Design / grader | Tasks |
+|---|---|---|
+| 18.1, 18.2 | Strict model; current generated entries deserialize, missing/unknown fields fail | 9.1, 9.2 |
+| 18.3, 18.4, 18.15 | Bounded loader; absent/empty, UTF-8, size, taint and coordinate fixtures | 9.3 |
+| 18.5, 18.6, 18.8, 18.9, 18.10 | Store initialization, ordering, metadata, queries, exact-byte hash and all literals | 9.4 |
+| 18.7, 18.13, 18.14 | Changed/unchanged, repeated invalid and corrected reload sequence | 9.4, 9.5 |
+| 18.11 | N = 0, 1, 5 plus varied generated fixtures; real-catalog ID parity | 9.5 |
+| 18.12 | Integrated Cargo and repository gates after all changes | 9.6, 8.5 |
+| 8.7, 18.1, 18.18 | Generator metadata, typed optional footprint, legacy unknown state | 9.1, 9.3, 9.7 |
+| 18.16, 18.20 | Reachable list, keyboard navigation, read-only cross-provider scope | 9.8, 9.10 |
+| 18.17, 18.18 | Scrollable detail, all four arrays, absent versus empty rendering | 9.9, 9.10 |
+| 18.19 | Actual app reload, selection bounds, removed-ID and failure states | 9.9, 9.10 |
+| 16.3 | Production append path, JSON-compatible recursive domain, N = 1/50 boundaries | 6.7 |
+| 17.5 | Explicit numeric reach declarations, including L0 | 8.6 |
+
+Startup/reload taint policy rejects an entire mod snapshot, unlike some existing
+catalog loaders' partial filtering. This deliberate parity avoids silently
+changing the visible mod set during a malformed update. Other loaders stay out
+of scope. There are no network dependencies or automatic retries; recovery is
+a subsequent watcher reload after correcting the local file.
 
 ---
 
 ## Design Decisions
+
+### ADR-7: Keep the full browser and generate its footprint metadata
+
+**Status:** Accepted by the user's explicit scope choice.
+**Context:** R18 promised display and footprint inspection, but the initial T9
+stopped at data plumbing and the current catalog omitted footprint arrays.
+**Decision:** Extend the generator/catalog in R8.7 and add the primary Catalog
+tab's mod list/detail flow. Preserve backward compatibility through optional
+typed metadata; do not duplicate manifest parsing in Rust or silently drop UI.
+**Consequences:** Generator/validator tests and Rust/UI tests must land together.
+Legacy entries display `not recorded`. The browser is inspection only and does
+not claim runtime enforcement. Future catalog schema changes must update the
+strict Rust model in the same change.
 
 **1. TOML for the manifest, not JSON or YAML**
 
