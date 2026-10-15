@@ -6,7 +6,8 @@ Implemented the approved full primary Catalog mods browser, strict bounded
 catalog loading/reload, generated footprint metadata, expanded production P3
 coverage and explicit numeric README reach disclosures. All required local gates passed. Implementation commits were published and
 independently verified through both `git ls-remote` and the PR API at
-`3b73f6509ef243fcd3e1f3b39e1cdf8728b18e1e`. All task checkboxes are complete.
+`3b73f6509ef243fcd3e1f3b39e1cdf8728b18e1e`. The runtime tasks are complete; checkpoint 8.5 is reopened for the scanner
+follow-up below.
 This final closeout changes only task/report metadata, not tested code.
 The PR's old upstream-conflict warning is stale: GitHub currently reports
 MERGEABLE against master `419fc01337189858c39d02c53201b8e7a4a829b3`.
@@ -55,7 +56,7 @@ committed separately and its remote head is checked in the final handoff.
 
 ## Review, scope and limits
 
-Three requested gpt-6.1-sol medium native runs: two disjoint implementation
+The initial three requested gpt-6.1-sol medium native runs used two disjoint implementation
 workers and one read-only reviewer. Parent integrated and ran gates. Review
 found one busy-write shortcut regression; parent consumed the one bounded
 repair with actual pending/running apply/integrity tests. Effective runtime
@@ -72,3 +73,23 @@ classification are covered; interactive terminal/live filesystem delivery and
 installed Kiro/Codex sessions remain unverified. Native harness CLI checks were
 not rerun because native runtime/adapters were unchanged. Unrelated untracked
 `.kiro/kiro-agents/` is preserved; no globally clean-tree claim is made.
+
+## User-approved scanner follow-up
+
+At head `1ac18901`, all GitHub workflow checks passed but code-scanning check
+`plugin-scanner` (116335918605) failed on the synthetic URL fixture at
+`tests/mods.test.mjs:30`. Source inspection confirmed deliberate generated test
+data, not a discovered live credential. The user explicitly approved one extra
+focused repair: URL component construction with an identical wire-value test,
+no scanner suppression, runtime changes or unrelated cleanup.
+
+The semantic-preservation regression passed before the edit; after it, all
+63 production mod tests passed (exit 0). A fourth/final read-only reviewer found
+no actionable defect. Generator drift passed; integrity was refreshed last on
+its own. Full repository/docs/secret checks passed, exit 0. Commit `e50af843`
+was pushed and its exact remote/PR head verified. The URL annotation is gone,
+but new scanner check 116431099084 fails on another existing synthetic token
+fixture at line 304. Expanded fixture-only repair approval has been requested;
+CI is not green and no new code scope or suppression was silently introduced.
+Original Rust/fuzz source trees are unchanged; prior local results are retained
+as such, while new-head CI is independently checked.

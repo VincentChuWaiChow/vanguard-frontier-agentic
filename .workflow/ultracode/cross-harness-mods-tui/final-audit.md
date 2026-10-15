@@ -28,7 +28,7 @@ producer/consumer changes, tests and outputs rather than only task checkboxes.
 | R8.7 / task 9.7 | PASS: production generator/validator parity, array order and deliberate missing/mismatch rejection |
 | R16.3 / task 6.7 | PASS: expanded actual production fuzz, seed/boundaries recorded in report |
 | R17.5 / task 8.6 | PASS: each README compared with manifest; full/hidden lint passed |
-| Task 8.5 / publication | PASS: scoped commits; remote and PR implementation head `3b73f6509ef243fcd3e1f3b39e1cdf8728b18e1e`; tracked tree clean and unrelated untracked files preserved |
+| Task 8.5 / publication | REOPENED for post-push synthetic-fixture scanner finding; prior publication proof: scoped commits; remote and PR implementation head `3b73f6509ef243fcd3e1f3b39e1cdf8728b18e1e`; tracked tree clean and unrelated untracked files preserved |
 
 Review finding: new sidebar shortcut bypassed active model-policy quit guard.
 Resolved by refusing new section navigation while subprocess_busy; two real
@@ -37,3 +37,12 @@ No known actionable implementation finding remains. Broader raw-path diagnostic
 consistency was not shown to violate the approved contract and was not expanded
 into unrelated hardening. Live runtime proof and universal PBT proof remain
 unverified, not silently upgraded to PASS.
+
+Additional user-approved scanner repair is tracked in packet/result 04.
+The previous CI snapshot is historical: original workflow checks passed, while
+code-scanning flagged a synthetic fixture. No readiness claim is made until
+the approved follow-up gates and exact-head scanner check are verified.
+
+The approved URL repair is published as e50af843 and passes all local gates.
+Scanner check 116431099084 now flags a separate synthetic token fixture at
+line 304; the next scope decision is with the user. Current CI is not green.

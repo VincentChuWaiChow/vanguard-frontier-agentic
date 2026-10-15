@@ -14,8 +14,10 @@ integrate UI/P3; all gates, independent review, task status and Git closeout.
 ## Delegation
 
 Two write workers with disjoint owned files; one integrated read-only reviewer.
-Three cumulative native runs used. The parent performed the one bounded repair
-after review found a busy-write navigation regression; no further wave needed.
+Three initial native runs and one parent busy-write repair completed. The user
+then explicitly approved an additional focused synthetic-URL scanner repair.
+A fourth/final read-only review run covers that fixture-only follow-up; no
+scanner suppression, runtime edits or additional agent runs are authorized.
 
 ## Agents
 

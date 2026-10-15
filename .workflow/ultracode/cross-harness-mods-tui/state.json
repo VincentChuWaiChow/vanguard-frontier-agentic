@@ -3,7 +3,7 @@
   "slug": "cross-harness-mods-tui",
   "created_at": "2026-10-15",
   "updated_at": "2026-10-15",
-  "status": "complete",
+  "status": "waiting_for_approval",
   "mode": "delegated",
   "baseline_ref": "4f5278f6c67308f3d69e1d45dae8dcbfffce0fea",
   "risk_level": "high",
@@ -21,12 +21,12 @@
     "native_agent_available": true,
     "native_agent_planned": true,
     "native_agent_used": true,
-    "agent_count": 3,
-    "agent_runs": 3,
-    "wave_count": 2,
+    "agent_count": 4,
+    "agent_runs": 4,
+    "wave_count": 3,
     "no_delegation_reason": "",
-    "notes": "Two disjoint implementation workers and one read-only reviewer; parent completed one bounded regression-first navigation guard repair. No recursive fanout.",
-    "repair_runs": 1
+    "notes": "Original 3 native runs and one parent busy-write repair completed. User explicitly approved one additional focused synthetic-URL scanner repair; fourth/final read-only review run. No config suppression or runtime changes.",
+    "repair_runs": 2
   },
   "packets": [
     {
@@ -58,10 +58,17 @@
       "owner": "read-only-agent",
       "write_scope": [],
       "result_path": "results/03-review.md"
+    },
+    {
+      "id": "04-fixture-review",
+      "status": "complete",
+      "owner": "read-only-agent",
+      "write_scope": [],
+      "result_path": "results/04-fixture-review.md"
     }
   ],
   "verification": {
-    "status": "pass",
+    "status": "fail",
     "checks": [
       {
         "name": "Cargo baseline",
@@ -139,6 +146,13 @@
         "required": true,
         "status": "pass",
         "evidence": "Both independently returned implementation SHA 3b73f6509ef243fcd3e1f3b39e1cdf8728b18e1e; branch tracked tree clean; unrelated .kiro/kiro-agents/ untouched. PR draft/MERGEABLE, CI not certified."
+      },
+      {
+        "name": "Approved scanner fixture follow-up",
+        "command": "Exact wire-value regression, mod tests, applicable repository gates and remote scanner CI",
+        "required": true,
+        "status": "fail",
+        "evidence": "Local gates pass, 63 production regressions pass, exact e50af843 SHA verified remote/PR. URL annotation removed, but new scanner check 116431099084 flags existing synthetic token fixture at tests/mods.test.mjs:304. Requested expanded fixture-only scope; no suppression or silent expansion."
       }
     ]
   },
@@ -151,5 +165,14 @@
     "remote_sha_verified": "3b73f6509ef243fcd3e1f3b39e1cdf8728b18e1e",
     "pr_head_verified": "3b73f6509ef243fcd3e1f3b39e1cdf8728b18e1e",
     "notes": "Final closeout changes only task/report metadata; its exact remote head is independently checked in final handoff. No merge or readiness claim."
+  },
+  "additional_repair": {
+    "authorization": "Explicit user reply: Repair and verify (Recommended)",
+    "scope": "Preserve the synthetic URL fixture bytes; no scanner suppression or runtime change",
+    "started_at": "2026-10-15T12:40:36.523607+00:00",
+    "reassess_at": "2026-10-15T13:05:36.523607+00:00",
+    "max_additional_repairs": 1,
+    "status": "url_fixed_other_fixture_alert_requires_scope_approval",
+    "repair_sha": "e50af843251319f9a6cd4ce0bed6b7ed3ad72ae1"
   }
 }
