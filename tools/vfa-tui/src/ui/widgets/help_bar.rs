@@ -12,6 +12,8 @@ use super::super::theme::Theme;
 /// Render context-sensitive help bar with keybindings for the current view.
 pub fn render_help_bar(view: &View, area: Rect, frame: &mut Frame, theme: &Theme) {
     let help_text = match view {
+        View::ModList => " j/k:Navigate  Enter:Details  Left/Right:Section  Tab:Tabs  q:Quit",
+        View::ModDetail(_) => " j/k:Scroll  Esc:Back  Left/Right:Section  Tab:Tabs  q:Quit",
         View::AgentList
         | View::SkillList
         | View::RoleList

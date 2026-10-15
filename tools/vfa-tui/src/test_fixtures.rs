@@ -89,6 +89,7 @@ pub fn catalog_store_fixture() -> CatalogStore {
         role_catalog_description: "Test catalog".to_string(),
         mcp_refs: vec![],
         rules: vec![],
+        mods: vec![],
         integrity: None,
         model_assignments: None,
         model_registry: None,

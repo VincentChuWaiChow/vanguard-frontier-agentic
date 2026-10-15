@@ -1,0 +1,138 @@
+{
+  "title": "Full mods TUI implementation",
+  "slug": "cross-harness-mods-tui",
+  "created_at": "2026-10-15",
+  "updated_at": "2026-10-15",
+  "status": "verifying",
+  "mode": "delegated",
+  "baseline_ref": "4f5278f6c67308f3d69e1d45dae8dcbfffce0fea",
+  "risk_level": "high",
+  "eval_contract": {
+    "level": "full",
+    "path": "eval-contract.md",
+    "status": "checked"
+  },
+  "approval": {
+    "required": false,
+    "granted": null,
+    "notes": "User explicitly authorized implementing the approved full scope."
+  },
+  "delegation": {
+    "native_agent_available": true,
+    "native_agent_planned": true,
+    "native_agent_used": true,
+    "agent_count": 3,
+    "agent_runs": 3,
+    "wave_count": 2,
+    "no_delegation_reason": "",
+    "notes": "Two disjoint implementation workers and one read-only reviewer; parent completed one bounded regression-first navigation guard repair. No recursive fanout.",
+    "repair_runs": 1
+  },
+  "packets": [
+    {
+      "id": "01-ui",
+      "status": "complete",
+      "owner": "write-capable-agent",
+      "write_scope": [
+        "tools/vfa-tui/src/app.rs",
+        "tools/vfa-tui/src/ui/nav.rs",
+        "tools/vfa-tui/src/ui/widgets/detail.rs",
+        "tools/vfa-tui/tests/integration/tui_primary_render.rs",
+        "tools/vfa-tui/tests/integration/tui_reload.rs"
+      ],
+      "result_path": "results/01-ui.md"
+    },
+    {
+      "id": "02-p3-docs",
+      "status": "complete",
+      "owner": "write-capable-agent",
+      "write_scope": [
+        "tests/fuzz-properties.test.mjs",
+        "mods/*/README.md"
+      ],
+      "result_path": "results/02-p3-docs.md"
+    },
+    {
+      "id": "03-review",
+      "status": "complete",
+      "owner": "read-only-agent",
+      "write_scope": [],
+      "result_path": "results/03-review.md"
+    }
+  ],
+  "verification": {
+    "status": "pass",
+    "checks": [
+      {
+        "name": "Cargo baseline",
+        "command": "cargo test --offline",
+        "required": true,
+        "status": "pass",
+        "evidence": "After locked dependency fetch: 826 lib, 10 binary, 94 integration, 173 property; exit 0."
+      },
+      {
+        "name": "Targeted integration",
+        "command": "cargo test --offline --lib mod; cargo test --offline --test integration_tests mod",
+        "required": true,
+        "status": "pass",
+        "evidence": "139 lib and 7 primary App tests passed, both exit 0."
+      },
+      {
+        "name": "Rust formatting and clippy",
+        "command": "cargo fmt --check; cargo clippy --offline --all-targets -- -D warnings",
+        "required": true,
+        "status": "pass",
+        "evidence": "Both exit 0; /tmp/vfa-tui-clippy.log."
+      },
+      {
+        "name": "Production fuzz",
+        "command": "npm run test:fuzz",
+        "required": true,
+        "status": "pass",
+        "evidence": "All properties, P3 200 seeded N=1..50 plus all three adapters N=1/50 and null-prototype; exit 0."
+      },
+      {
+        "name": "Generator and mod contracts",
+        "command": "node scripts/generate-mods.mjs --check; npm run validate:mods; node --test --test-name-pattern=catalog tests/mods.test.mjs",
+        "required": true,
+        "status": "pass",
+        "evidence": "In sync; 5 valid mods; 2 finalized positive/negative footprint tests; all exit 0."
+      },
+      {
+        "name": "Independent review repair",
+        "command": "cargo test --offline --lib catalog_sidebar_preserves_",
+        "required": true,
+        "status": "pass",
+        "evidence": "RED: 2 assertion failures exit 101; GREEN after busy guard: 2 pass exit 0, pending/running apply and integrity stages, both arrows."
+      },
+      {
+        "name": "Mutation sensitivity",
+        "command": "Disposable-copy reload-adoption, App reload and reach-check mutations",
+        "required": true,
+        "status": "pass",
+        "evidence": "Three intended assertion failures, cargo exit 101 each; production source never modified."
+      },
+      {
+        "name": "Final integrated Rust",
+        "command": "cargo fmt --check; cargo clippy --offline --all-targets -- -D warnings; cargo test --offline",
+        "required": true,
+        "status": "pass",
+        "evidence": "After rejecting shared-cache contamination, cargo clean -p vfa-tui then all gates exit 0: 841 lib, 10 binary, 101 integration, 173 property; one existing ignored doctest. /tmp/vfa-tui-clean-{clippy,cargo}.log."
+      },
+      {
+        "name": "Repository validation",
+        "command": "npm run validate",
+        "required": true,
+        "status": "pass",
+        "evidence": "All validators completed; terminal exit 0, /tmp/vfa-tui-final-validate.log. Integrity refreshed last on its own."
+      },
+      {
+        "name": "Spelling and Markdown",
+        "command": "npm run lint:spell; markdownlint-cli2 **/*.md #node_modules",
+        "required": true,
+        "status": "pass",
+        "evidence": "Both exit 0; full Markdown scan 8458 files, plus 17 explicitly named hidden spec/workflow Markdown files and hidden spelling checks."
+      }
+    ]
+  }
+}

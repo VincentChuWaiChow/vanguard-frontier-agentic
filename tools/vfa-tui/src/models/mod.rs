@@ -6,6 +6,7 @@ pub mod gate;
 pub mod harness;
 pub mod integrity;
 pub mod mcp_ref;
+pub mod mod_catalog;
 pub mod model_policy;
 pub mod model_registry;
 pub mod notification;
@@ -39,6 +40,8 @@ pub use harness::{Harness, SourceType};
 pub use integrity::{AssetIntegrity, IntegrityFile, IntegrityScope, IntegrityTree};
 #[allow(unused_imports)]
 pub use mcp_ref::{McpReference, McpType, PinStrategy, SignedRelease, TrustMatrix};
+#[allow(unused_imports)]
+pub use mod_catalog::{Mod, ModFootprint};
 #[allow(unused_imports)]
 pub use model_policy::{
     HarnessCapability, ModelAssignment, ModelAssignments, ModelPolicyCommand, ModelScope,

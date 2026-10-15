@@ -808,9 +808,9 @@ then inspects the real JSONL file and compares hashes with the production
 append implementation. Generate nested payload values using
 `fc.jsonValue({ maxDepth: 3 })`, or an explicitly JSON-compatible dictionary; use
 the wire key `tool_response`, not `tool_output`. Keep deterministic N = 1 and
-N = 50 cases in addition to 200 seeded random runs. The current production test
-samples shallow dictionaries and N ∈ [1, 4]; extending that coverage is pending
-task 6.7, not an already verified result.
+N = 50 cases in addition to 200 seeded random runs. The implemented production
+test uses seed 20261014 and explicitly samples N ∈ [1, 50], with deterministic
+N = 1/50 and null-prototype cases for all three command adapters (task 6.7).
 
 **API correction:** Null-prototype objects are serializable with
 `JSON.stringify`. The installed fast-check 4.10.2 has
@@ -1117,10 +1117,10 @@ interface Pattern {
 
 **Approved scope:** Full visible browser, not just data plumbing. R8.7 adds
 generator-produced footprint metadata; Rust reads the generated catalog rather
-than duplicating manifest logic. The review baseline has no footprint field, so
-the model accepts legacy absence and labels it honestly. Existing watcher
-dispatch is generic; no watcher rewrite is justified merely to recognize mods.
-The following design/tasks are planned work, not implemented functionality.
+than duplicating manifest logic. The model also accepts legacy footprint
+absence and labels it honestly. Existing watcher dispatch is generic; only a
+deterministic classification regression was needed, not a watcher rewrite.
+The following design is implemented in the current browser and catalog pipeline.
 
 ### `Mod` struct — `src/models/mod_catalog.rs`
 
@@ -1305,9 +1305,11 @@ Ratatui `TestBackend` and exercise keyboard transitions, scrolling and reload.
 
 ### R18 verification and traceability
 
-These are planned tests, not evidence that T9 is implemented. Use temporary
-workspaces with the other catalogs supplied by existing fixtures; attribute
-errors to `mods.json` rather than requiring all unrelated catalogs to be valid.
+The implemented tests use temporary workspaces and existing catalog fixtures.
+They cover every N from 0 through 32 plus real generated-catalog parity, exact
+hashes, validation/reload failure recovery, and the actual primary App browser.
+The implementation run report records commands, outcomes and remaining limits.
+Attribute errors to `mods.json`; unrelated catalogs remain outside this change.
 
 | Criteria | Design / grader | Tasks |
 |---|---|---|

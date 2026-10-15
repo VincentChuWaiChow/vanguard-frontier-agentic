@@ -48,6 +48,7 @@ fn store_from_agents(agents: Vec<Agent>) -> CatalogStore {
         role_catalog_description: String::new(),
         mcp_refs: vec![],
         rules: vec![],
+        mods: vec![],
         integrity: None,
         model_assignments: None,
         model_registry: None,

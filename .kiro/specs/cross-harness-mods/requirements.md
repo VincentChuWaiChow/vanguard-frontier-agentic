@@ -9,7 +9,8 @@ This document specifies the `mods/` directory feature for the `vanguard-frontier
 **Amendment boundary:** The approved [deviations](deviations.md) govern the
 historical harness/API assumptions retained in Requirements 1–17. This review
 amends R8.7, R16.3, R17.5 and R18; it does not reinstate superseded SDK, shell,
-reach or compliance claims. R18 and its UI/footprint work remain unimplemented.
+reach or compliance claims. R18 and its UI/footprint work are implemented;
+current verification is recorded in the implementation run report.
 
 - **Mod**: A named behavioral extension package living under `mods/<mod-id>/`. Contains a `mod.toml` manifest, per-harness subdirectories, and optional companion scripts.
 - **Mod_ID**: A kebab-case string that uniquely identifies a mod (e.g. `secret-redactor`). Must match `^[a-z0-9][a-z0-9-]+$`.
@@ -367,8 +368,9 @@ reach or compliance claims. R18 and its UI/footprint work remain unimplemented.
 20. THE mod browser SHALL be read-only and SHALL NOT install, enable, invoke or export mods. Provider-only filtering SHALL NOT hide cross-provider mods. The footprint SHALL be labeled as declared metadata, not enforced containment or proof of live harness support.
 
 **Scope decision:** The user explicitly retained the full visible browser with
-a defined footprint source. R8.7 is a planned generator extension; the review
-baseline emits no footprint object. Loading alone does not complete R18.
+a defined footprint source. R8.7 now emits manifest-derived footprint objects;
+legacy catalogs remain accepted as unknown metadata. Loading alone does not
+complete R18; the primary Catalog list/detail flow is implemented and tested.
 
 ---
 
@@ -418,4 +420,6 @@ AND `store.load_errors` contains no entries attributable to `mods.json`.
 The loaded IDs and metadata SHALL also equal the input entries after sorting.
 Verification requires isolated N = 0 and varied-N fixtures plus generated-catalog
 integration coverage; a five-entry example does not establish this universal
-invariant. These tests are planned, not implemented or verified by this review.
+invariant. Implemented tests cover every N from 0 through 32, deterministic
+ordering, exact-byte hashes, reload recovery and real generated-catalog parity.
+The finite fixtures are evidence, not proof of the universal invariant.
