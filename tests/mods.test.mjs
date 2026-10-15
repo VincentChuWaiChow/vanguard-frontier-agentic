@@ -301,7 +301,9 @@ test('pattern extensions append to built-ins and malformed patterns are rejected
 
 test('anchored redaction extensions guard and redact nested leaves without changing clean input', () => {
   const patterns = loadPatterns(JSON.stringify([pattern({ id: 'anchored-check', regex: '^extra_[a-z]{8}$', context: ['tool-input', 'tool-output'] })]))
-  for (const value of ['extra_abcdefgh', { token: 'extra_abcdefgh' }, ['prefix', 'extra_abcdefgh'], { nested: [{ stdout: 'extra_abcdefgh' }] }]) {
+  const values = ['extra_abcdefgh', { token: 'extra_' + 'abcdefgh' }, ['prefix', 'extra_abcdefgh'], { nested: [{ stdout: 'extra_abcdefgh' }] }]
+  assert.equal(values[1].token, 'extra_abcdefgh')
+  for (const value of values) {
     const before = JSON.stringify(value)
     assert.equal(checkInput(value, patterns)?.decision, 'ask')
     const redacted = redactOutput(value, patterns)
