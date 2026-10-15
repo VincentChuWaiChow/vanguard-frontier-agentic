@@ -37137,7 +37137,7 @@
     },
     {
       "tree": "tests",
-      "aggregate_sha256": "b367bf616ca935f845abc72f934ae98937c07b9537147484eacf194e0dfff8c0",
+      "aggregate_sha256": "e9fa81fed095e01a1d52c196cc462c6f64d6015c89da7b49127871dd02eafa53",
       "files": [
         {
           "path": "tests/AGENTS.md",
@@ -47481,8 +47481,8 @@
         },
         {
           "path": "tests/mods.test.mjs",
-          "sha256": "4c77728f1983749b601600b39f405e8e42952a6bb0311b59a5e6ffa19a4d4466",
-          "bytes": 42048
+          "sha256": "8d99657a2362554d6590375776c230b45146e0d2d90a880a486e9012c8743203",
+          "bytes": 42335
         },
         {
           "path": "tests/test-codex-plugin-marketplace-install.test.mjs",
@@ -47699,5 +47699,5 @@
       "bytes": 9135
     }
   ],
-  "aggregate_sha256": "ddb188f97de5cc2cc3607766f427dc422939e819f3d936182ff5a7c5435392e6"
+  "aggregate_sha256": "7f07730f165feb928bc1ccc2aef43c963bcb5d43aee67c66636739df69478850"
 }

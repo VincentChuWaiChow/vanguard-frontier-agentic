@@ -27,11 +27,19 @@ const PAT = 'ghp_' + 'a'.repeat(36)
 const FINE_PAT = 'github_pat_' + 'b'.repeat(24)
 const SECRET = 'c'.repeat(40)
 const BEARER = 'Bearer ' + 'd'.repeat(24)
-const URL_SECRET = 'https://reader:' + 'e'.repeat(16) + '@example.test/path'
+const fixtureUrl = new URL('https://example.test/path')
+fixtureUrl.username = 'reader'
+fixtureUrl.password = 'e'.repeat(16)
+const URL_SECRET = fixtureUrl.href
 const AT = '2000-01-01T00:00:00.000Z'
 const pattern = (overrides = {}) => ({ id: 'extra-check', name: 'Extra check', regex: 'extra_[a-z]{8}', flags: '', context: ['bash'], ...overrides })
 const digest = (value) => createHash('sha256').update(canonicalJson(value)).digest('hex')
 const hookPath = (id) => join(ROOT, 'mods', id, 'bin', 'hook.mjs')
+
+test('synthetic credential URL retains its exact wire value', () => {
+  const expected = ['https://', 'reader', ':', 'e'.repeat(16), '@example.test/path'].join('')
+  assert.equal(URL_SECRET, expected)
+})
 
 function temp(t) {
   const dir = mkdtempSync(join(tmpdir(), 'vfa-mods-test-'))
