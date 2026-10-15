@@ -1,5 +1,12 @@
 # Blast Radius Guard
 
+## Reach and declared footprint
+
+**L0 (no declared file writes, subprocess spawns or network egress).** The manifest
+only declares environment reads of `VANGUARD_BLAST_RADIUS_GUARD_MODE` and
+`VANGUARD_BLAST_RADIUS_GUARD_PATTERNS`. The `file_writes`, `spawns` and `egress_hosts`
+arrays are empty. This is capability disclosure, not enforced isolation.
+
 ## What it does
 
 Checks every tool call before it runs. It asks for confirmation, or blocks, when the call

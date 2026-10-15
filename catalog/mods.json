@@ -13,7 +13,19 @@
       "codex",
       "kiro"
     ],
-    "path": "mods/audit-trail"
+    "path": "mods/audit-trail",
+    "footprint": {
+      "env_reads": [
+        "VANGUARD_AUDIT_TRAIL_LOG_DIR",
+        "VANGUARD_AUDIT_TRAIL_SESSION_ID",
+        "VANGUARD_AUDIT_TRAIL_AGENT_ID"
+      ],
+      "file_writes": [
+        ".audit/**"
+      ],
+      "spawns": [],
+      "egress_hosts": []
+    }
   },
   {
     "id": "blast-radius-guard",
@@ -29,7 +41,16 @@
       "codex",
       "kiro"
     ],
-    "path": "mods/blast-radius-guard"
+    "path": "mods/blast-radius-guard",
+    "footprint": {
+      "env_reads": [
+        "VANGUARD_BLAST_RADIUS_GUARD_MODE",
+        "VANGUARD_BLAST_RADIUS_GUARD_PATTERNS"
+      ],
+      "file_writes": [],
+      "spawns": [],
+      "egress_hosts": []
+    }
   },
   {
     "id": "context-burn",
@@ -46,7 +67,19 @@
       "codex",
       "kiro"
     ],
-    "path": "mods/context-burn"
+    "path": "mods/context-burn",
+    "footprint": {
+      "env_reads": [
+        "VANGUARD_CONTEXT_BURN_STATUS_PATH"
+      ],
+      "file_writes": [
+        ".claude/context-burn-status.json",
+        ".kiro/context-burn-status.json",
+        ".codex/context-burn-status.json"
+      ],
+      "spawns": [],
+      "egress_hosts": []
+    }
   },
   {
     "id": "live-guard-gate",
@@ -62,7 +95,13 @@
       "codex",
       "kiro"
     ],
-    "path": "mods/live-guard-gate"
+    "path": "mods/live-guard-gate",
+    "footprint": {
+      "env_reads": [],
+      "file_writes": [],
+      "spawns": [],
+      "egress_hosts": []
+    }
   },
   {
     "id": "secret-redactor",
@@ -79,6 +118,14 @@
       "codex",
       "kiro"
     ],
-    "path": "mods/secret-redactor"
+    "path": "mods/secret-redactor",
+    "footprint": {
+      "env_reads": [
+        "VANGUARD_SECRET_REDACTOR_PATTERNS"
+      ],
+      "file_writes": [],
+      "spawns": [],
+      "egress_hosts": []
+    }
   }
 ]

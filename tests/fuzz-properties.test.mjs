@@ -316,43 +316,72 @@ fc.assert(
 );
 console.log("PASS  mods P2: dangerous commands/argv and normalized system writes never pass (200 runs, seed 20261014)");
 
-await fc.assert(
-  fc.asyncProperty(fc.array(metadata, { minLength: 1, maxLength: 4 }), safeSegment, fc.constantFrom("claude-code", "codex", "kiro"), async (events, sessionId, harness) => {
-    const directory = mkdtempSync(path.join(tmpdir(), "vfa-audit-property-"));
-    try {
-      const payloads = events.map((tool_input, i) => ({ session_id: sessionId, tool_name: "Read", tool_input, tool_response: { index: i, ok: true } }));
-      for (const payload of payloads) {
-        const stdout = execFileSync(process.execPath, [path.join(ROOT, "mods/audit-trail/bin/hook.mjs"), "--harness", harness, "--event", "PostToolUse"], {
-          input: JSON.stringify(payload),
-          encoding: "utf8",
-          timeout: 5000,
-          env: { ...process.env, VANGUARD_AUDIT_TRAIL_LOG_DIR: directory, VANGUARD_AUDIT_TRAIL_SESSION_ID: sessionId, VANGUARD_AUDIT_TRAIL_AGENT_ID: "property-test-agent" },
-        });
-        assert.equal(stdout, "");
-      }
-      const days = readdirSync(directory);
-      assert.equal(days.length, 1);
-      assert.deepEqual(readdirSync(path.join(directory, days[0])), [`${sessionId}.jsonl`], "append must release its lock");
-      const text = readFileSync(path.join(directory, days[0], `${sessionId}.jsonl`), "utf8");
-      assert.ok(text.endsWith("\n"));
-      const records = text.trimEnd().split("\n").map((line) => JSON.parse(line));
-      assert.equal(records.length, events.length);
-      assert.deepEqual(records.map((record) => record.sequence_number), events.map((_, i) => i + 1));
-      assert.equal(lastSequence(text), events.length);
-      for (const [i, record] of records.entries()) {
-        assert.equal(new Date(record.timestamp).toISOString(), record.timestamp);
-        assert.deepEqual(record, await buildRecord({ timestamp: record.timestamp, sessionId, agentId: "property-test-agent", payload: payloads[i], harness, sequence: i + 1 }));
-        const hash = (value) => createHash("sha256").update(canonicalJson(value)).digest("hex");
-        assert.equal(record.args_hash, hash(harness === "kiro" ? payloads[i] : payloads[i].tool_input));
-        assert.equal(record.result_hash, hash(harness === "kiro" ? null : payloads[i].tool_response));
-      }
-    } finally {
-      rmSync(directory, { recursive: true, force: true });
+const auditHarnesses = ["claude-code", "codex", "kiro"];
+const auditEvent = fc.record({
+  tool_input: fc.jsonValue({ maxDepth: 3 }),
+  tool_response: fc.jsonValue({ maxDepth: 3 }),
+});
+
+async function assertAuditSequence(events, sessionId, harness) {
+  const directory = mkdtempSync(path.join(tmpdir(), "vfa-audit-property-"));
+  try {
+    const payloads = events.map((event) => ({ session_id: sessionId, tool_name: "Read", ...event }));
+    for (const payload of payloads) {
+      const stdout = execFileSync(process.execPath, [path.join(ROOT, "mods/audit-trail/bin/hook.mjs"), "--harness", harness, "--event", "PostToolUse"], {
+        input: JSON.stringify(payload),
+        encoding: "utf8",
+        timeout: 5000,
+        env: { ...process.env, VANGUARD_AUDIT_TRAIL_LOG_DIR: directory, VANGUARD_AUDIT_TRAIL_SESSION_ID: sessionId, VANGUARD_AUDIT_TRAIL_AGENT_ID: "property-test-agent" },
+      });
+      assert.equal(stdout, "");
     }
-  }),
+    const days = readdirSync(directory);
+    assert.equal(days.length, 1);
+    assert.deepEqual(readdirSync(path.join(directory, days[0])), [`${sessionId}.jsonl`], "append must release its lock");
+    const text = readFileSync(path.join(directory, days[0], `${sessionId}.jsonl`), "utf8");
+    assert.ok(text.endsWith("\n"));
+    const records = text.trimEnd().split("\n").map((line) => JSON.parse(line));
+    assert.equal(records.length, events.length);
+    assert.deepEqual(records.map((record) => record.sequence_number), events.map((_, i) => i + 1));
+    assert.equal(lastSequence(text), events.length);
+    for (const [i, record] of records.entries()) {
+      assert.equal(new Date(record.timestamp).toISOString(), record.timestamp);
+      assert.deepEqual(record, await buildRecord({ timestamp: record.timestamp, sessionId, agentId: "property-test-agent", payload: payloads[i], harness, sequence: i + 1 }));
+      const hash = (value) => createHash("sha256").update(canonicalJson(value)).digest("hex");
+      assert.equal(record.args_hash, hash(harness === "kiro" ? payloads[i] : payloads[i].tool_input));
+      assert.equal(record.result_hash, hash(harness === "kiro" ? null : payloads[i].tool_response));
+    }
+  } finally {
+    rmSync(directory, { recursive: true, force: true });
+  }
+}
+
+// Choose N explicitly so fast-check's default array size bias cannot narrow the workload.
+const auditSequence = fc.integer({ min: 1, max: 50 })
+  .chain((length) => fc.array(auditEvent, { minLength: length, maxLength: length }));
+await fc.assert(
+  fc.asyncProperty(auditSequence, safeSegment, fc.constantFrom(...auditHarnesses), assertAuditSequence),
   MOD_FUZZ,
 );
-console.log("PASS  mods P3: actual audit hook appends N records with sequence 1..N (200 runs, seed 20261014)");
+console.log("PASS  mods P3: actual audit hook appends N records with sequence 1..N and nested JSON hashes (200 runs, N=1..50, seed 20261014)");
+
+const boundaryEvents = Array.from({ length: 50 }, (_, i) => ({
+  tool_input: { nested: [{ index: i, values: [null, true, false, i + 0.5, "line\nvalue"] }] },
+  tool_response: [null, { nested: { index: i, values: ["result", false] } }],
+}));
+// Prototypes are not part of JSON's wire contract; null-prototype input remains valid.
+const nullPrototypeInput = Object.assign(Object.create(null), {
+  nested: Object.assign(Object.create(null), { values: [null, true, 1.5, { text: "value" }] }),
+});
+assert.equal(Object.getPrototypeOf(nullPrototypeInput), null);
+assert.deepEqual(JSON.parse(JSON.stringify(nullPrototypeInput)), { nested: { values: [null, true, 1.5, { text: "value" }] } });
+for (const harness of auditHarnesses) {
+  for (const count of [1, 50]) {
+    await assertAuditSequence(boundaryEvents.slice(0, count), `boundary-${count}`, harness);
+  }
+  await assertAuditSequence([{ tool_input: nullPrototypeInput, tool_response: { ok: true, values: [null, [1, 2]] } }], "null-prototype", harness);
+}
+console.log("PASS  mods P3: explicit N=1/50 and JSON-compatible null-prototype input across claude-code, codex and kiro");
 
 const tomlString = fc.array(fc.oneof(fc.integer({ min: 0, max: 0xd7ff }), fc.integer({ min: 0xe000, max: 0x10ffff })), { maxLength: 20 })
   .map((points) => String.fromCodePoint(...points));
@@ -396,6 +425,7 @@ fc.assert(
       reach_level: manifest.mod.reach_level, events: manifest.mod.events,
       harnesses: Object.keys(manifest.harnesses).filter((harness) => manifest.harnesses[harness].supported).sort(),
       path: `mods/${id}`,
+      footprint: manifest.footprint,
     })));
   }),
   MOD_FUZZ,

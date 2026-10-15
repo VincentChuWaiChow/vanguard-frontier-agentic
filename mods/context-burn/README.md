@@ -4,6 +4,14 @@ Counts tool calls per session in a small status file. Where the harness reports 
 it also warns once at 70% and once at 90% of the context window. It only observes: it never
 blocks a tool and never changes a tool result.
 
+## Reach and declared footprint
+
+**L1 (file writes).** The manifest declares default writes to
+`.claude/context-burn-status.json`, `.kiro/context-burn-status.json` and
+`.codex/context-burn-status.json`, and reads `VANGUARD_CONTEXT_BURN_STATUS_PATH`.
+It declares no subprocess spawns or network egress. This is capability disclosure,
+not isolation; the status-path override can write outside these defaults.
+
 ## Status file
 
 Fields (pretty-printed JSON, rewritten in full on every event):

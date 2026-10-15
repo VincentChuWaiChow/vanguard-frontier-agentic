@@ -4,6 +4,12 @@ Asks before a tool call that would mutate live cloud infrastructure, and names t
 guard agents that should review it first. It covers Terraform and Pulumi, the AWS, Azure,
 Google Cloud and OCI CLIs, `kubectl`, Helm, Argo CD, Velero and Snowflake role changes.
 
+## Reach and declared footprint
+
+**L0 (no declared file writes, subprocess spawns or network egress).** All four
+manifest footprint arrays (`env_reads`, `file_writes`, `spawns` and `egress_hosts`)
+are empty. This is capability disclosure, not enforced isolation.
+
 ## How agent names are chosen
 
 Each pattern in `patterns.json` carries an `agents` list. When several patterns match,

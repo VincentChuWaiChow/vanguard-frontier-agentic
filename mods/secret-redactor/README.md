@@ -1,5 +1,12 @@
 # Secret Redactor
 
+## Reach and declared footprint
+
+**L0 (no declared file writes, subprocess spawns or network egress).** The manifest
+only declares an environment read of `VANGUARD_SECRET_REDACTOR_PATTERNS`.
+The `file_writes`, `spawns` and `egress_hosts` arrays are empty. This is capability
+disclosure, not enforced isolation.
+
 ## What it does
 
 - **Before a tool runs**, it scans every string in the tool input against the credential

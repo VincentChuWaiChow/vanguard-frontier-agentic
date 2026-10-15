@@ -618,6 +618,12 @@ export function renderAll(mods, ctx) {
         events: [...m.mod.events],
         harnesses: HARNESSES.filter((h) => m.harnesses[h].supported).sort(cmp),
         path: `mods/${id}`,
+        footprint: {
+          env_reads: [...m.footprint.env_reads],
+          file_writes: [...m.footprint.file_writes],
+          spawns: [...m.footprint.spawns],
+          egress_hosts: [...m.footprint.egress_hosts],
+        },
       })),
     ),
   )

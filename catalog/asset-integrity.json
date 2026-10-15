@@ -35352,7 +35352,7 @@
     },
     {
       "tree": "mods",
-      "aggregate_sha256": "cd8e92dd25384e93e2b9e88bbe3a19be42803127894ee9568ec051c9ca820f08",
+      "aggregate_sha256": "d4312c539dd77db1a1e48277f9c3474f7a3edaa595abb6432f66bcc29087f3fa",
       "files": [
         {
           "path": "mods/README.md",
@@ -35361,8 +35361,8 @@
         },
         {
           "path": "mods/audit-trail/README.md",
-          "sha256": "5aac003e901333757158bcf32fc027e7bdfeaceb9014aa008fd3162b963e240b",
-          "bytes": 2828
+          "sha256": "f9335ec0f01c9c717b34a773a37b82acce66d8a10d948b9ff54f29ab10acace3",
+          "bytes": 3222
         },
         {
           "path": "mods/audit-trail/bin/hook.mjs",
@@ -35421,8 +35421,8 @@
         },
         {
           "path": "mods/blast-radius-guard/README.md",
-          "sha256": "5e00c891608c2a2d3ea078ff4da9515b76fabd5e58d8ac8c88465599b4cc9936",
-          "bytes": 2256
+          "sha256": "a626562644a490613334d9e0c8e269034abf53a865c98dbdb5ba3176f495c8a1",
+          "bytes": 2608
         },
         {
           "path": "mods/blast-radius-guard/bin/hook.mjs",
@@ -35506,8 +35506,8 @@
         },
         {
           "path": "mods/context-burn/README.md",
-          "sha256": "2d5b8f8befd5ecab806cf18b434d7fe4d90c0519eda99b3978ff974dfb5c08ab",
-          "bytes": 2207
+          "sha256": "667c040af8e95782d80b7d823585bac79791618a22453239281e5315db2ff177",
+          "bytes": 2615
         },
         {
           "path": "mods/context-burn/bin/hook.mjs",
@@ -35591,8 +35591,8 @@
         },
         {
           "path": "mods/live-guard-gate/README.md",
-          "sha256": "a4351f75ea5c47d6b1bdfdeffb37de70506730ca88453004cdb061533d99bea3",
-          "bytes": 1619
+          "sha256": "29147a1da88edbf8fed5eb0daa1f8aade48243fba70194459e2e28beb95ada3f",
+          "bytes": 1883
         },
         {
           "path": "mods/live-guard-gate/bin/hook.mjs",
@@ -35681,8 +35681,8 @@
         },
         {
           "path": "mods/secret-redactor/README.md",
-          "sha256": "937eaebe4df9e7feb0eda0011b90246a5e86e5735ec011daa1b960f34d3c9087",
-          "bytes": 3836
+          "sha256": "4ea28d3a049c24d6bf5c3c71fbc71bf18865288c055a26a50e13b24d0f8035a7",
+          "bytes": 4148
         },
         {
           "path": "mods/secret-redactor/bin/hook.mjs",
@@ -35844,7 +35844,7 @@
     },
     {
       "tree": "catalog",
-      "aggregate_sha256": "f7878f078537b744748ddd6bb5b2e09820232a35921b9b4beb258428cbe57e80",
+      "aggregate_sha256": "a25c3fca46d817d029d958ec33e3874c90dbd0d145518f4098706b1d86c80483",
       "files": [
         {
           "path": "catalog/AGENTS.md",
@@ -35888,8 +35888,8 @@
         },
         {
           "path": "catalog/mods.json",
-          "sha256": "0f48bc958380a834f590c10516e154abb84dbea3d05c93230e028b34270817f0",
-          "bytes": 1957
+          "sha256": "f4e2c0695f642927a7c20f0f6aa9ba84b3feeab0ebbb434b9c2aa19e914ee599",
+          "bytes": 3044
         },
         {
           "path": "catalog/rules.json",
@@ -35915,7 +35915,7 @@
     },
     {
       "tree": "scripts",
-      "aggregate_sha256": "5df723c2bd0a45cccb5e232b696627945c4b174b75b8e3001e4683a521a2209d",
+      "aggregate_sha256": "1710b7da2010fd313c00bb7b9ea70c3cebed6f5289ad340fdd8b36c98e054295",
       "files": [
         {
           "path": "scripts/apply-skill-allowed-tools.py",
@@ -36104,8 +36104,8 @@
         },
         {
           "path": "scripts/generate-mods.mjs",
-          "sha256": "07dcefaab74225868c788d6d3cec4e40034c9c4582b95a881946db41bb1ebc7f",
-          "bytes": 27521
+          "sha256": "804e370fedeb41bf31e0f47564ebd7da562bc6cabbc531d2a1df622f56abf95d",
+          "bytes": 27753
         },
         {
           "path": "scripts/generate-plugin-manifest.mjs",
@@ -37137,7 +37137,7 @@
     },
     {
       "tree": "tests",
-      "aggregate_sha256": "f893522141bf614b4e706c2eb99069d62997fa067c8b9237d0453bc83b656944",
+      "aggregate_sha256": "b367bf616ca935f845abc72f934ae98937c07b9537147484eacf194e0dfff8c0",
       "files": [
         {
           "path": "tests/AGENTS.md",
@@ -47406,8 +47406,8 @@
         },
         {
           "path": "tests/fuzz-properties.test.mjs",
-          "sha256": "f71582722daf584a18c7aa9f6a482af0ff3e0860c8b261d26976728ff59c6a33",
-          "bytes": 18868
+          "sha256": "6e82620edbac7cc4ab4f6f48aa55ee8f95a2799f4a215d6909ea8af4e556906d",
+          "bytes": 20364
         },
         {
           "path": "tests/integration/rbac-pre-flight/README.md",
@@ -47481,8 +47481,8 @@
         },
         {
           "path": "tests/mods.test.mjs",
-          "sha256": "fc5d4673faaa8a58811f5ec2621d305c07f195ed90dc69b1ac4e57e39c1b9f7f",
-          "bytes": 39865
+          "sha256": "4c77728f1983749b601600b39f405e8e42952a6bb0311b59a5e6ffa19a4d4466",
+          "bytes": 42048
         },
         {
           "path": "tests/test-codex-plugin-marketplace-install.test.mjs",
@@ -47586,8 +47586,8 @@
         },
         {
           "path": "tests/validate-mods.py",
-          "sha256": "87b5ff8da62fa47db7ae2189172bcbcec116a9c55dbc51cda8270cb1da9d3c61",
-          "bytes": 34072
+          "sha256": "a962da6ccbac341546902839c912e2eb25edd024b2f0804cc8777759b9b71432",
+          "bytes": 34181
         },
         {
           "path": "tests/validate-multi-harness-marketplace.py",
@@ -47699,5 +47699,5 @@
       "bytes": 9135
     }
   ],
-  "aggregate_sha256": "c5063e1daa65577345b2d4223676b9392fea47ef60ec643a6f5fb4f827e33af8"
+  "aggregate_sha256": "ddb188f97de5cc2cc3607766f427dc422939e819f3d936182ff5a7c5435392e6"
 }

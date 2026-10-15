@@ -717,6 +717,7 @@ def check_catalog_mods(r: Report, root: Path, mods: list[Mod], mod_dirs: list[st
             "events": mod["events"],
             "harnesses": sorted(h for h in HARNESSES if m.sup(h)),
             "path": m.rel,
+            "footprint": {key: m.fp(key) for key in ("env_reads", "file_writes", "spawns", "egress_hosts")},
         }
         got = by_id.get(m.id)
         if got is not None and jdump(got) != jdump(want):

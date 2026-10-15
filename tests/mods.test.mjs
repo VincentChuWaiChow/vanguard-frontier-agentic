@@ -553,6 +553,52 @@ test('strict TOML parser preserves supported values and rejects unsupported or a
   }
 })
 
+test('catalog footprints mirror all four manifest arrays', () => {
+  const { mods, ctx, errors } = loadMods(ROOT)
+  assert.deepEqual(errors, [])
+  const catalog = JSON.parse(renderAll(mods, ctx).get('catalog/mods.json'))
+  for (const entry of catalog) {
+    const manifest = mods.find((m) => m.id === entry.id).manifest
+    assert.deepEqual(entry.footprint, manifest.footprint)
+    assert.deepEqual(Object.keys(entry.footprint).sort(), ['egress_hosts', 'env_reads', 'file_writes', 'spawns'])
+  }
+})
+
+test('catalog validator rejects missing or mismatched footprint metadata', (t) => {
+  const dir = temp(t)
+  mkdirSync(join(dir, 'catalog'))
+  const { mods, ctx } = loadMods(ROOT)
+  const entries = JSON.parse(renderAll(mods, ctx).get('catalog/mods.json'))
+  const source = `import importlib.util, json, pathlib, sys, tomllib
+spec = importlib.util.spec_from_file_location('vfa_mod_validator', ${JSON.stringify(join(ROOT, 'tests/validate-mods.py'))})
+module = importlib.util.module_from_spec(spec)
+sys.modules[spec.name] = module
+spec.loader.exec_module(module)
+root = pathlib.Path(sys.argv[1])
+source_root = pathlib.Path(${JSON.stringify(ROOT)})
+mods = [module.Mod(p.parent.name, p.parent, 'mods/' + p.parent.name, tomllib.loads(p.read_text())) for p in sorted(source_root.glob('mods/*/mod.toml'))]
+report = module.Report()
+module.check_catalog_mods(report, root, mods, [m.id for m in mods])
+print(json.dumps({'failed': report.failed, 'lines': report.lines}))`
+  const check = () => {
+    writeFileSync(join(dir, 'catalog/mods.json'), JSON.stringify(entries))
+    const r = spawnSync('python3', ['-c', source, dir], { encoding: 'utf8', timeout: 5000 })
+    assert.ifError(r.error)
+    assert.equal(r.status, 0, r.stderr)
+    return JSON.parse(r.stdout)
+  }
+  assert.equal(check().failed, 0)
+  const footprint = entries[0].footprint
+  delete entries[0].footprint
+  const missing = check()
+  assert.ok(missing.failed > 0)
+  assert.match(missing.lines.join('\n'), /FAIL.*footprint/)
+  entries[0].footprint = { ...footprint, spawns: ['unexpected-process'] }
+  const mismatched = check()
+  assert.ok(mismatched.failed > 0)
+  assert.match(mismatched.lines.join('\n'), /FAIL.*footprint/)
+})
+
 test('generation is byte-identical under reordered mods and rejects unknown live-agent references', () => {
   const { mods, ctx, errors } = loadMods(ROOT)
   assert.deepEqual(errors, [])

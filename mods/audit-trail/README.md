@@ -4,6 +4,14 @@ Appends one JSON line per tool call to a per-session log. It is an honest append
 no claim of immutability, carries no signatures, and any process with write access can edit or
 delete the file.
 
+## Reach and declared footprint
+
+**L1 (file writes).** The manifest declares default writes to `.audit/**`, reads
+`VANGUARD_AUDIT_TRAIL_LOG_DIR`, `VANGUARD_AUDIT_TRAIL_SESSION_ID` and
+`VANGUARD_AUDIT_TRAIL_AGENT_ID`, and declares no subprocess spawns or network egress.
+This is capability disclosure, not isolation; the log-directory override can write
+outside the declared default footprint.
+
 ## What it records
 
 | Field | Value |
