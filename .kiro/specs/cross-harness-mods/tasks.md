@@ -373,6 +373,56 @@ All generated harness files (`register.ts`, Kiro hook JSON, Codex `.sh` scripts)
   - [ ] 8.5 Checkpoint: All gates green. Run `git status` — confirm tree is clean (all generated files committed). Confirm branch is `feat/cross-harness-mods`. Ask the user if questions arise.
     - _Execution note: Feature updates committed as `16cc3100` after the anchored repair. Unrelated `.kiro/kiro-agents/` remains untracked; no push or global clean-tree claim. Publication is still open. See [deviations](deviations.md)._
 
+- [ ] 9. T9 — Rust TUI (`vfa-tui`) integration for mods
+
+  - [ ] 9.1 Create `src/models/mod_catalog.rs` — `Mod` struct matching `catalog/mods.json`
+    - Following the exact pattern of `src/models/rule.rs` and `src/models/skill.rs`:
+    - Define `ModType` enum with `#[serde(rename = "mod")]` variant.
+    - Define `Mod` struct with `#[serde(deny_unknown_fields)]` containing: `id: String`, `name: String`, `entity_type: ModType` (field renamed `"type"`), `version: String`, `description: String`, `reach_level: u8`, `events: Vec<String>`, `harnesses: Vec<String>`, `path: String`, `security_notes: Option<String>`.
+    - The struct must exactly match the JSON fields produced by `scripts/generate-mods.mjs` into `catalog/mods.json`. Cross-check the generator's `generateCatalog()` output before writing.
+    - Do not add a `Provider` field — mods are not provider-scoped (they are cross-harness).
+    - _Requirements: 8.2 (catalog entry schema)_
+
+  - [ ] 9.2 Register `mod_catalog` module in `src/models/mod.rs` and re-export `Mod`
+    - Add `pub mod mod_catalog;` to `src/models/mod.rs`.
+    - Add `pub use mod_catalog::{Mod, ModType};` to the re-exports block (following the `#[allow(unused_imports)]` pattern used by all other re-exports in that file).
+    - _Requirements: 8.2_
+
+  - [ ] 9.3 Add `load_mods()` to `src/catalog/loader.rs`
+    - Following the exact pattern of `load_rules()` or `load_skills()` in the same file:
+    - Read `catalog/mods.json` via `read_catalog_file()` with the default size limit.
+    - Deserialize as `Vec<Mod>` via `serde_json::from_str`.
+    - For each entry call `check_mod_tainted()` (inline taint check: same control-byte detection pattern as `check_agent_tainted()` — check `id`, `name`, `description` for control bytes via `has_control_bytes()`).
+    - Return `(Vec<Mod>, Vec<TuiError>)`.
+    - When `catalog/mods.json` does not exist (returns `CatalogNotFound`), return an empty vec with no errors — mods are optional (the file starts as `[]` and the TUI must not fail on older checkouts without it).
+    - _Requirements: 8.1, 8.3_
+
+  - [ ] 9.4 Add `mods` field to `CatalogStore` in `src/catalog/store.rs` and wire it into `load()`, `reload_file()`, and `content_hashes`
+    - Add `pub mods: Vec<Mod>` field to the `CatalogStore` struct.
+    - In `CatalogStore::load()`: call `loader::load_mods(workspace_root)`, extend `load_errors`, sort by `id` (case-insensitive), assign to `mods`.
+    - In the `content_hashes` initialisation block: add `"mods.json"` to the list of catalog filenames that get hashed.
+    - In `CatalogStore::reload_file()`: add a `"mods.json"` match arm that deserializes `Vec<Mod>`, sorts by id, updates `self.mods`, updates `content_hashes`, and returns `ReloadOutcome::Reloaded { catalog: "mods".to_string() }` — following the exact same pattern as the `"rules.json"` arm.
+    - Add `pub fn mod_count(&self) -> usize { self.mods.len() }` query method.
+    - Add `pub fn mod_by_id(&self, id: &str) -> Option<&Mod> { self.mods.iter().find(|m| m.id == id) }` query method.
+    - In the `#[cfg(test)] impl CatalogStore` block: add `mods: Vec::new()` to the `CatalogStore::from_parts()` constructor.
+    - _Requirements: 8.1, 8.3_
+
+  - [ ] 9.5 Add unit and integration tests for mods loading to `src/catalog/store.rs`
+    - In the existing `#[cfg(test)] mod tests` block in `store.rs`, add:
+    - `store_loads_mods_successfully()`: calls `CatalogStore::load(workspace_root())`, asserts `store.load_errors.is_empty()`, asserts `store.mod_count() == 5` (the five starter mods from T1–T6).
+    - `store_mods_sorted_case_insensitive()`: asserts that `store.mods.windows(2)` are all in non-descending id order (same assertion pattern as `store_agents_sorted_case_insensitive()`).
+    - `store_mod_by_id_known()`: calls `store.mod_by_id("secret-redactor")` and asserts it returns `Some(m)` where `m.reach_level == 0`.
+    - `store_mod_by_id_unknown()`: calls `store.mod_by_id("nonexistent-mod-xyz")` and asserts it returns `None`.
+    - `store_reload_mods_json_unchanged()`: calls `store.reload_file(catalog_root.join("mods.json"))` and asserts `ReloadOutcome::Unchanged` (since the file was just loaded).
+    - _Requirements: 8.1, 8.3_
+
+  - [ ] 9.6 Run `rtk cargo test` in `tools/vfa-tui` — all tests must pass, zero clippy warnings
+    - Run `rtk cargo fmt --check` — fix any formatting issues first.
+    - Run `rtk cargo clippy --all-targets -- -D warnings` — fix all warnings.
+    - Run `rtk cargo test` — all existing tests plus the 5 new tests in 9.5 must pass.
+    - The new `Mod` struct must not break any existing test (it is additive — no existing struct changes).
+    - If `store_loads_mods_successfully()` fails because `catalog/mods.json` does not yet exist or is empty, verify T8.1 has been completed first (the generator must have written `catalog/mods.json` with 5 entries before running these tests).
+    - _Requirements: 8.1, 8.2, 8.3, definition-of-done step 5_
 
 ---
 
@@ -384,6 +434,7 @@ All generated harness files (`register.ts`, Kiro hook JSON, Codex `.sh` scripts)
 - Run `npm run asset-integrity:write` LAST (after all generator runs and file edits), as described in CLAUDE.md.
 - `catalog/index.json` must include the `mods` key before `validate:catalog` runs; Task 1.3 handles this.
 - Reach level validation note: the validator should accept declared reach level ≥ derived reach level (conservative declaration is valid) when `security_notes` is present in the mod entry, per the `live-guard-gate` design decision. Strict equality is enforced for non-justified over-declaration.
+- The Rust TUI (`vfa-tui`) treats `catalog/mods.json` as optional at load time — `load_mods()` returns an empty vec (no error) when the file is absent, so older checkouts without mods are not broken. The 5-mod assertion in test `store_loads_mods_successfully()` requires T8.1 to have run first.
 
 ## Task Dependency Graph
 
@@ -405,7 +456,12 @@ All generated harness files (`register.ts`, Kiro hook JSON, Codex `.sh` scripts)
     { "id": 12, "tasks": ["8.1"] },
     { "id": 13, "tasks": ["8.2"] },
     { "id": 14, "tasks": ["8.3"] },
-    { "id": 15, "tasks": ["8.4"] }
+    { "id": 15, "tasks": ["8.4"] },
+    { "id": 16, "tasks": ["9.1"] },
+    { "id": 17, "tasks": ["9.2"] },
+    { "id": 18, "tasks": ["9.3", "9.4"] },
+    { "id": 19, "tasks": ["9.5"] },
+    { "id": 20, "tasks": ["9.6"] }
   ]
 }
 ```
