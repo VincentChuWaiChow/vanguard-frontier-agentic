@@ -6,8 +6,8 @@ Implemented the approved full primary Catalog mods browser, strict bounded
 catalog loading/reload, generated footprint metadata, expanded production P3
 coverage and explicit numeric README reach disclosures. All required local gates passed. Implementation commits were published and
 independently verified through both `git ls-remote` and the PR API at
-`3b73f6509ef243fcd3e1f3b39e1cdf8728b18e1e`. The runtime tasks are complete; checkpoint 8.5 is reopened for the scanner
-follow-up below.
+`3b73f6509ef243fcd3e1f3b39e1cdf8728b18e1e`. Runtime tasks and checkpoint 8.5 are complete;
+the approved scanner follow-up below passes local gates and exact-head GitHub CI.
 This final closeout changes only task/report metadata, not tested code.
 The PR's old upstream-conflict warning is stale: GitHub currently reports
 MERGEABLE against master `419fc01337189858c39d02c53201b8e7a4a829b3`.
@@ -89,7 +89,25 @@ no actionable defect. Generator drift passed; integrity was refreshed last on
 its own. Full repository/docs/secret checks passed, exit 0. Commit `e50af843`
 was pushed and its exact remote/PR head verified. The URL annotation is gone,
 but new scanner check 116431099084 fails on another existing synthetic token
-fixture at line 304. Expanded fixture-only repair approval has been requested;
-CI is not green and no new code scope or suppression was silently introduced.
+fixture at line 304. That remaining fixture-only scope was explicitly approved by the user. The
+pinned production rule is now clean for the full file, while positive/negative
+controls remain effective. No scanner rule/config
+or production behavior was changed.
 Original Rust/fuzz source trees are unchanged; prior local results are retained
 as such, while new-head CI is independently checked.
+
+### Final follow-up verification
+
+Source repair `9bf10878e3175673356fb4f120db4f500772f673` was normally pushed;
+remote branch and PR API independently returned that exact SHA. All GitHub
+checks passed, including Rust, fuzz, repository validation and plugin-scanner
+check 116451943347 (success, zero annotations/new alerts). The bounded
+`gh pr checks --watch` completed with exit 0. Checkpoint 8.5 is closed.
+
+Fresh local verification: all 63 mod tests, generator drift, full repository
+validation, spelling, full/hidden Markdown (8460 files), tracked-secret scan
+(14107 text files) and diff checks passed, exit 0. The actual pinned scanner
+rule failed before the token construction repair (exit 1), then passed for the
+entire file (exit 0), with positive/negative controls intact. No further agent
+runs were used. The final metadata-only closeout head is independently checked
+at handoff; this source-SHA CI evidence is not silently relabeled as another SHA.

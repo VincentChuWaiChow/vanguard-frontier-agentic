@@ -7,8 +7,8 @@ and [deviations](deviations.md), not the superseded API assumptions below. Check
 mean their approved equivalents are implemented and locally verified; intermediate
 checkpoint counts are not claims that historical staged runs occurred. The final
 implementation passed local gates and was verified on the remote branch/PR.
-Checkpoint 8.5 is reopened for a post-publication scanner finding in synthetic
-test fixtures; runtime implementation is unchanged. T9,
+Checkpoint 8.5 is complete after approved synthetic-fixture repairs and all-green
+GitHub checks on source head `9bf10878`; runtime implementation is unchanged. T9,
 expanded P3 coverage and explicit reach documentation are implemented with
 regressions; current proof is in the
 [implementation run](../../../.workflow/ultracode/cross-harness-mods-tui/final-report.md).
@@ -351,7 +351,7 @@ All generated harness files (`register.ts`, Kiro hook JSON, Codex `.sh` scripts)
     - Fix any failures.
     - _Requirements: 16.3, 16.4, 16.5, 16.7_
 
-- [ ] 8. T8 — Integration, asset integrity, and repo-level wiring
+- [x] 8. T8 — Integration, asset integrity, and repo-level wiring
 
   - [x] 8.1 Run `npm run mods:write` and then `npm run asset-integrity:write` to add all mod files to the integrity manifest
     - Run `node scripts/generate-mods.mjs` (ensure all 5 mods × 3 harnesses are fully generated).
@@ -382,9 +382,9 @@ All generated harness files (`register.ts`, Kiro hook JSON, Codex `.sh` scripts)
     - Fix any markdown lint failures in the new files.
     - _Requirements: definition-of-done step 4_
 
-  - [ ] 8.5 Checkpoint: All gates green. Run `git status` — confirm tree is clean (all generated files committed). Confirm branch is `feat/cross-harness-mods`. Ask the user if questions arise.
+  - [x] 8.5 Checkpoint: All gates green. Run `git status` — confirm tree is clean (all generated files committed). Confirm branch is `feat/cross-harness-mods`. Ask the user if questions arise.
     - Run after T9 and its integrated checks, not before. Earlier feature verification and publication do not establish completion of the later Rust additions. Preserve unrelated `.kiro/kiro-agents/`; report it instead of staging/deleting it or claiming a globally clean tree. See [deviations](deviations.md).
-    - _Post-publication follow-up: approved URL fixture repair `e50af843` preserves exact values and passes 63 mod regressions plus full local validation. Scanner check 116431099084 now flags another pre-existing synthetic token fixture at `tests/mods.test.mjs:304`; expanded fixture-only repair approval is pending. No scanner suppression was added._
+    - _Post-publication follow-up: approved fixture repairs `e50af843` and `9bf10878` preserve exact values and all 63 mod regressions. Full local validation/lints/secrets pass. The pinned production rule reports zero retained matches while its positive control still flags. All GitHub checks pass at exact remote/PR source head `9bf10878e3175673356fb4f120db4f500772f673`; scanner check 116451943347 succeeds with zero new alerts. No scanner suppression was added._
     - _Verified implementation: `3b73f6509ef243fcd3e1f3b39e1cdf8728b18e1e` on the remote branch and draft PR #212; tracked tree clean, unrelated untracked files preserved. Closeout changes only task/report metadata._
     - _Requirements: 18.12, repository definition of done_
 

@@ -17,3 +17,14 @@ Fourth/final cumulative native run is read-only review of this narrow diff.
 No edits, tests/builds/gates, external calls, recursive agents or Git writes.
 Return actionable findings with file:line, or none and remaining uncertainty.
 One additional parent repair authorized; reassess if unresolved after 25 minutes.
+
+## Approved scope expansion
+
+The user explicitly approved remaining synthetic-credential fixture constructions
+in tests/mods.test.mjs, preserving exact values/coverage and keeping all scanner
+rules/config unchanged. Parent first inspects the pinned scanner rule to avoid
+serial guesses. Four native runs are already consumed; no additional agents.
+Required checks: exact fixture values, all mod regressions, pinned-rule positive
+and negative probes, generator/integrity/repository/docs/secrets, normal push,
+and exact-head GitHub scanner/CI verification. One bounded file-scoped follow-up;
+reassess at 30 minutes or an unrelated finding. No runtime or dependency edits.

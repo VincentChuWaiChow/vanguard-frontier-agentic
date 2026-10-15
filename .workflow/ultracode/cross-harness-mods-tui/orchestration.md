@@ -18,6 +18,8 @@ Three initial native runs and one parent busy-write repair completed. The user
 then explicitly approved an additional focused synthetic-URL scanner repair.
 A fourth/final read-only review run covers that fixture-only follow-up; no
 scanner suppression, runtime edits or additional agent runs are authorized.
+The user subsequently approved remaining synthetic fixture constructions in the
+same test file. Parent owns this final deterministic pass; no new native runs.
 
 ## Agents
 

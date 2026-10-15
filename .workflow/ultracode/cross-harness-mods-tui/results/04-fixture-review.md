@@ -28,3 +28,32 @@ on remote and PR. The scanner no longer reported the URL line, but check
 116431099084 failed on another pre-existing synthetic token fixture at line 304.
 The CI criterion is NOT met. Parent requested explicit approval before expanding
 from the URL repair to other fixture constructions; no suppression was used.
+
+## Approved remaining-fixture expansion
+
+The user approved remaining fixture constructions in the same test file, keeping
+exact values/coverage and all scanner rules unchanged. The four-agent budget is
+exhausted; parent handles this deterministic file-scoped repair without further
+delegation. CI head b6cb4757 had every other check passing, scanner alone failing.
+
+Parent read the pinned action metadata: plugin-scanner 3.42.0, wheel SHA256
+`e0bbed6f5010689ca391c98767d52d45a5efacabcdc51f754ea632b603591391`.
+The wheel was downloaded to /tmp and hash-checked, not installed. Reviewed pure
+production secret helpers ran offline with a sanitized environment. Source
+confirms first retained match per file; full enumeration found only line 304.
+Actual pinned-rule RED: clean-file assertion failed, exit 1.
+
+A pre-edit unit assertion verified the original token string. The repaired
+fixture concatenates the same prefix/suffix, keeps the token key, and retains
+every original string/object/array/nested case and P1 guard/redaction assertion.
+Actual pinned-rule GREEN: no retained matches across the entire file, exit 0;
+the synthetic literal positive still flags and runtime-reference negative stays
+clean. No suppression, path-ignore, baseline, workflow or production change.
+
+Local full mod/repository/docs checks passed: 63 mod tests, generator drift,
+full validate, spelling, full/hidden Markdown and staged tracked-secret scan,
+all exit 0. Source repair `9bf10878e3175673356fb4f120db4f500772f673` was pushed;
+remote branch and PR exact heads independently verified. All GitHub checks
+passed at that SHA; plugin-scanner check 116451943347 succeeded with zero new
+alerts. Bounded `gh pr checks --watch` exit 0. The expanded repair was verified
+by the parent deterministic grader, not an additional independent agent run.
