@@ -4,12 +4,14 @@
 
 Implemented the approved full primary Catalog mods browser, strict bounded
 catalog loading/reload, generated footprint metadata, expanded production P3
-coverage and explicit numeric README reach disclosures. All required local gates passed. Publication is the remaining checkpoint;
-this report does not yet certify that branch/PR publication is complete.
+coverage and explicit numeric README reach disclosures. All required local gates passed. Implementation commits were published and
+independently verified through both `git ls-remote` and the PR API at
+`3b73f6509ef243fcd3e1f3b39e1cdf8728b18e1e`. All task checkboxes are complete.
+This final closeout changes only task/report metadata, not tested code.
 The PR's old upstream-conflict warning is stale: GitHub currently reports
 MERGEABLE against master `419fc01337189858c39d02c53201b8e7a4a829b3`.
-Mergeability will be re-queried after publishing; local gates are not merged-tree
-or GitHub CI proof. The existing PR stays draft.
+Post-push mergeability was re-queried and remains MERGEABLE; local gates are
+not merged-tree or GitHub CI proof. The existing PR stays draft.
 
 ## Capability and regression evidence
 
@@ -32,7 +34,7 @@ run in `tools/vfa-tui`; offline mode uses the existing lockfile unchanged.
 | Final `cargo fmt --check`, Clippy all-targets with `-D warnings`, `cargo test --offline` | PASS, exit 0: 841 lib, 10 binary, 101 integration, 173 property; one existing ignored doctest |
 | Full `npm run validate` | PASS, exit 0, every repository validator completed |
 | Final spelling and full Markdown lint | PASS, exit 0 each; full Markdown command scanned 8458 files; explicit hidden spec/workflow Markdown and spelling also pass |
-| Exact branch push and PR head | PENDING; existing draft PR #212, base master |
+| Exact branch push and PR head | PASS: remote and PR head both `3b73f6509ef243fcd3e1f3b39e1cdf8728b18e1e`; draft PR #212, base master |
 
 The initial Cargo offline cache miss was infrastructure, not feature RED.
 Approved `cargo fetch --locked` resolved it without dependency/lockfile changes.
@@ -46,6 +48,10 @@ crate's build artifacts with `cargo clean -p vfa-tui` and reran all Rust
 gates successfully from rebuilt crate artifacts; the contaminated run is not accepted as
 verification. Local raw logs live under `/tmp/vfa-tui-*` and
 `/tmp/vfa-mutant-*`, not as permanent repo artifacts.
+
+Implementation commits: `f300a3de` (footprint/P3/reach disclosures) and
+`3b73f650` (browser/validated snapshots/regressions). Final closeout metadata is
+committed separately and its remote head is checked in the final handoff.
 
 ## Review, scope and limits
 

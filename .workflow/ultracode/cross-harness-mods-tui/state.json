@@ -3,7 +3,7 @@
   "slug": "cross-harness-mods-tui",
   "created_at": "2026-10-15",
   "updated_at": "2026-10-15",
-  "status": "verifying",
+  "status": "complete",
   "mode": "delegated",
   "baseline_ref": "4f5278f6c67308f3d69e1d45dae8dcbfffce0fea",
   "risk_level": "high",
@@ -132,7 +132,24 @@
         "required": true,
         "status": "pass",
         "evidence": "Both exit 0; full Markdown scan 8458 files, plus 17 explicitly named hidden spec/workflow Markdown files and hidden spelling checks."
+      },
+      {
+        "name": "Publication checkpoint",
+        "command": "git ls-remote origin refs/heads/feat/cross-harness-mods; gh pr view 212",
+        "required": true,
+        "status": "pass",
+        "evidence": "Both independently returned implementation SHA 3b73f6509ef243fcd3e1f3b39e1cdf8728b18e1e; branch tracked tree clean; unrelated .kiro/kiro-agents/ untouched. PR draft/MERGEABLE, CI not certified."
       }
     ]
+  },
+  "publication": {
+    "branch": "feat/cross-harness-mods",
+    "pr": 212,
+    "draft": true,
+    "base": "master",
+    "implementation_sha": "3b73f6509ef243fcd3e1f3b39e1cdf8728b18e1e",
+    "remote_sha_verified": "3b73f6509ef243fcd3e1f3b39e1cdf8728b18e1e",
+    "pr_head_verified": "3b73f6509ef243fcd3e1f3b39e1cdf8728b18e1e",
+    "notes": "Final closeout changes only task/report metadata; its exact remote head is independently checked in final handoff. No merge or readiness claim."
   }
 }
