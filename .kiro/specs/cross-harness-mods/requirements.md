@@ -333,6 +333,32 @@ This document specifies the `mods/` directory feature for the `vanguard-frontier
 
 ---
 
+### Requirement 18: Rust TUI (`vfa-tui`) Catalog Integration
+
+**User Story:** As a developer using the `vfa-tui` terminal UI, I want `catalog/mods.json` to be loaded, displayed, and hot-reloaded alongside agents, skills, and rules, so that I can inspect mod metadata — reach level, supported harnesses, events, and footprint — without leaving the terminal.
+
+#### Acceptance Criteria
+
+1. THE `tools/vfa-tui` crate SHALL define a `Mod` struct in `src/models/mod_catalog.rs` with `#[serde(deny_unknown_fields)]` that exactly mirrors every field emitted into `catalog/mods.json` by `scripts/generate-mods.mjs`: `id`, `name`, `entity_type` (renamed from JSON key `"type"`), `version`, `description`, `reach_level`, `events`, `harnesses`, `path`, and `security_notes`.
+2. THE `Mod` struct SHALL be re-exported from `src/models/mod.rs` so all crate consumers can import it without referencing the module path directly.
+3. THE `src/catalog/loader.rs` module SHALL expose a `load_mods(workspace_root: &Path) -> (Vec<Mod>, Vec<TuiError>)` function that reads `catalog/mods.json`, deserializes its entries, and applies the same taint check (control-byte detection via `has_control_bytes`) used for agents and skills.
+4. WHEN `catalog/mods.json` does not exist, THE `load_mods()` function SHALL return an empty `Vec<Mod>` with no errors, so that checkouts predating the mods feature do not break the TUI.
+5. THE `CatalogStore` struct SHALL include a `pub mods: Vec<Mod>` field that is populated by `CatalogStore::load()` by calling `loader::load_mods()`, extending `load_errors`, and sorting the result by `id` (case-insensitive).
+6. THE `CatalogStore::load()` method SHALL add `"mods.json"` to the set of catalog file paths tracked in `content_hashes`, so the file watcher can detect hot-reload events.
+7. THE `CatalogStore::reload_file()` method SHALL handle the filename `"mods.json"` with a dedicated match arm that deserializes `Vec<Mod>`, sorts by id, updates `self.mods`, updates `content_hashes`, and returns `ReloadOutcome::Reloaded { catalog: "mods".to_string() }`.
+8. THE `CatalogStore` SHALL expose a `pub fn mod_count(&self) -> usize` method returning the number of loaded mods.
+9. THE `CatalogStore` SHALL expose a `pub fn mod_by_id(&self, id: &str) -> Option<&Mod>` method for O(n) lookup by ID.
+10. THE `#[cfg(test)] CatalogStore::from_parts()` constructor SHALL include `mods: Vec::new()` so existing property tests continue to compile without modification.
+11. THE `src/catalog/store.rs` test suite SHALL include the following five tests:
+    - `store_loads_mods_successfully`: asserts `store.mod_count() == 5` after loading the workspace with all five starter mods present (requires T8.1 to have run first).
+    - `store_mods_sorted_case_insensitive`: asserts that consecutive pairs in `store.mods` are in non-descending id order.
+    - `store_mod_by_id_known`: asserts `store.mod_by_id("secret-redactor")` returns `Some(m)` where `m.reach_level == 0`.
+    - `store_mod_by_id_unknown`: asserts `store.mod_by_id("nonexistent-mod-xyz")` returns `None`.
+    - `store_reload_mods_json_unchanged`: asserts `ReloadOutcome::Unchanged` when `reload_file` is called immediately after `load()`.
+12. WHEN the `tools/vfa-tui/**` tree changes, the CI gate SHALL run `cargo fmt --check`, `cargo clippy --all-targets -- -D warnings`, and `cargo test` — all must pass with zero warnings.
+
+---
+
 ## Correctness Properties (Formal Statements)
 
 These properties are the ground truth for property-based testing. Any implementation that violates them is incorrect regardless of other acceptance criteria.
@@ -363,3 +389,10 @@ For all `mod.toml` input `t`:
 `generate(t) == generate(generate(t))`.
 
 Equivalently: the output of the generator is a pure function of `mod.toml` content with no ambient state dependency.
+
+**P8 — TUI Mod Load Completeness:**
+For any workspace where `catalog/mods.json` contains N valid entries (N ≥ 0),
+`CatalogStore::load(workspace_root).mod_count() == N`
+AND `store.load_errors` contains no entries attributable to `mods.json`.
+
+This property is verified by the integration test `store_loads_mods_successfully()` (N = 5 for the starter set) and the implicit case of `store_loads_successfully()` not breaking when `mods` is added to the store.

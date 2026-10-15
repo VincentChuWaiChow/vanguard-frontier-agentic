@@ -1090,6 +1090,129 @@ interface Pattern {
 
 ---
 
+## Rust TUI (`vfa-tui`) Integration
+
+The `vfa-tui` Rust terminal UI reads all generated catalog JSON files. Adding `catalog/mods.json` requires wiring four layers in the existing codebase — a struct, a loader, the store, and the hot-reload matcher — following the identical pattern used for every other catalog type (`Agent`, `Skill`, `Rule`, `McpReference`).
+
+### `Mod` struct — `src/models/mod_catalog.rs`
+
+The struct uses `#[serde(deny_unknown_fields)]` to fail loudly if the generator emits a field that the Rust side doesn't know about. This is the established safety pattern: a catalog schema drift is caught at load time, not silently ignored.
+
+```rust
+use serde::{Deserialize, Serialize};
+
+/// The type discriminator for mod entries.
+#[derive(Debug, Clone, Copy, PartialEq, Eq, Serialize, Deserialize)]
+pub enum ModType {
+    #[serde(rename = "mod")]
+    Mod,
+}
+
+/// A catalog mod entry, mirroring the output of `scripts/generate-mods.mjs`
+/// into `catalog/mods.json`.
+#[derive(Debug, Clone, Serialize, Deserialize)]
+#[serde(deny_unknown_fields)]
+pub struct Mod {
+    pub id: String,
+    pub name: String,
+    #[serde(rename = "type")]
+    pub entity_type: ModType,
+    pub version: String,
+    pub description: String,
+    /// L0–L3 reach level (integer 0–3).
+    pub reach_level: u8,
+    /// Events the mod observes (e.g. ["PreToolUse", "PostToolUse"]).
+    pub events: Vec<String>,
+    /// Harnesses the mod supports (e.g. ["claude-code", "kiro", "codex"]).
+    pub harnesses: Vec<String>,
+    /// Repo-relative path to the mod directory.
+    pub path: String,
+    #[serde(default)]
+    pub security_notes: Option<String>,
+}
+```
+
+**Why no `Provider` field?** Mods are cross-harness and cross-provider. They are not scoped to a cloud provider the way agents and skills are — a `blast-radius-guard` mod applies equally to AWS, Azure, and GCP sessions. Adding a `Provider` enum field would be incorrect and would mislead the TUI's provider-faceted views.
+
+**Why `u8` for `reach_level`?** The valid range is 0–3. `u8` is the narrowest unsigned integer type in Rust and communicates the constraint clearly. The validator rejects values outside [0, 3] in Python; the Rust struct accepts any `u8` but the catalog gate ensures only valid values reach the binary.
+
+### `load_mods()` — `src/catalog/loader.rs`
+
+Follows the exact same signature and control flow as `load_rules()`:
+
+```rust
+pub fn load_mods(workspace_root: &Path) -> (Vec<Mod>, Vec<TuiError>) {
+    let file_path = workspace_root.join("catalog").join("mods.json");
+
+    // Optional: mods.json is absent on checkouts without mods feature.
+    if !file_path.exists() {
+        return (Vec::new(), Vec::new());
+    }
+
+    let path = file_path.display().to_string();
+    let mut errors = Vec::new();
+
+    let data = match read_catalog_file(&file_path) {
+        Ok(d) => d,
+        Err(e) => { errors.push(e); return (Vec::new(), errors); }
+    };
+
+    let all_mods: Vec<Mod> = match serde_json::from_str(&data) {
+        Ok(m) => m,
+        Err(e) => {
+            errors.push(TuiError::CatalogParse { path, offset: e.column(), detail: e.to_string() });
+            return (Vec::new(), errors);
+        }
+    };
+
+    let mut mods = Vec::new();
+    for (idx, m) in all_mods.into_iter().enumerate() {
+        if check_mod_tainted(&m) {
+            errors.push(TuiError::TaintedEntry { path: path.clone(), offset: idx,
+                field: "control bytes detected".to_string() });
+        } else {
+            mods.push(m);
+        }
+    }
+    (mods, errors)
+}
+```
+
+The key difference from `load_agents()` is the `file_path.exists()` early-return: mods are optional and a missing `mods.json` is a valid state (older checkouts, pre-generation state). All other catalog loaders treat missing files as errors; mods treat them as empty.
+
+### `CatalogStore` wiring — `src/catalog/store.rs`
+
+Three changes, all additive (no existing fields removed or renamed):
+
+1. **Field**: `pub mods: Vec<Mod>` added to the struct.
+2. **`load()`**: call `loader::load_mods(workspace_root)`, extend errors, sort by id, assign. Add `"mods.json"` to the `content_hashes` filename list.
+3. **`reload_file()`**: add `"mods.json"` match arm — same pattern as `"rules.json"`.
+
+The `from_parts()` test constructor gains `mods: Vec::new()` to keep all existing property-based tests compiling unchanged.
+
+### Architecture impact on existing components
+
+| Component | Change | Reason |
+|---|---|---|
+| `src/models/mod_catalog.rs` | New file | Rust struct for `catalog/mods.json` entries |
+| `src/models/mod.rs` | +2 lines | `pub mod mod_catalog;` + re-export |
+| `src/catalog/loader.rs` | +~35 lines | `load_mods()` + `check_mod_tainted()` |
+| `src/catalog/store.rs` | +~25 lines | field, load, reload arm, query methods, test helper, 5 tests |
+| All other files | No change | Strictly additive |
+
+No UI view changes are required in this phase. The `CatalogStore` exposes `mod_count()` and `mod_by_id()` as the foundation for a future mods browser panel; the current scope stops at catalog loading and test coverage.
+
+### Correctness property for TUI loading
+
+**P8 — TUI Mod Load Completeness:**
+For any workspace where `catalog/mods.json` contains N valid entries (N ≥ 0),
+`CatalogStore::load(workspace_root).mod_count() == N`
+AND `store.load_errors` contains no entries attributable to `mods.json`.
+
+This property is verified by the integration test `store_loads_mods_successfully()` (N = 5 for the starter set) and the implicit case of `store_loads_successfully()` not breaking when `mods` is added to the store.
+
+---
+
 ## Design Decisions
 
 **1. TOML for the manifest, not JSON or YAML**
