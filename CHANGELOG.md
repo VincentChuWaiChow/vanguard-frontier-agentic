@@ -1,3 +1,113 @@
+## 🛡️ v3.16.0 — *Provenance · Policy · Portability*
+_Released 2026-10-16_
+
+> _Curated multi-cloud, zero-trust agent marketplace — `AWS` · `Azure` · `OCI` · `GCP` · `Terraform`._
+> Least privilege, live evidence, safe rollback paths.
+
+**Release type:** New capabilities — review the sections below before upgrading.
+
+### ✨ Features
+
+* **mods:** add cross-harness mod manifests, shared runtime, generator and gate ([`51390cb`](https://github.com/VincentChuWaiChow/vanguard-frontier-agentic/commit/51390cbea8c2789147785ee9be4b34e1299ce8dc))
+  Wave A of the cross-harness-mods spec:
+
+  - mods/<id>/mod.toml for secret-redactor, blast-radius-guard,
+    live-guard-gate, context-burn and audit-trail, plus the three
+    pattern catalogs (patterns.json)
+  - scripts/mods/common.mjs: pure, import-free redaction and matching
+    core shared by the native runtime and the Node hooks
+  - scripts/mods/runtime.mjs: Node command-hook runtime that renders a
+    handler decision per harness protocol (claude-code, kiro, codex)
+  - scripts/generate-mods.mjs: deterministic generator for plugin, hook
+    and catalog files (--check, --print-manifests)
+  - tests/validate-mods.py: stdlib gate for the mod contract; joins the
+    validate chain in Wave C once the hand-written files exist
+  - .claude/plan/cross-harness-mods.md: approved plan with the deviation
+    table against the spec
+* **mods:** add cross-harness-mods spec — requirements, design, and tasks ([`b3d25df`](https://github.com/VincentChuWaiChow/vanguard-frontier-agentic/commit/b3d25dff47c573e06ff70efb82c4f4d30a7c812a))
+  Introduces the spec for a new mods/ behavioral extension layer that ships
+  enterprise-grade mod packages across Claude Code, Kiro, and Codex harnesses
+  from a single harness-agnostic mod.toml manifest.
+
+  Five starter mods:
+  - secret-redactor (L0): credential redaction, DLP compliance
+  - blast-radius-guard (L1): destructive operation interception
+  - live-guard-gate (L2): routes infra mutations through live-guard agents
+  - context-burn (L1): FinOps token/tool-call spend tracking with threshold alerts
+  - audit-trail (L1): SOC 2 / PCI-DSS Level 1 append-only JSONL log
+
+  Framework:
+  - mod.toml manifest schema with reach level taxonomy (L0-L3)
+  - scripts/generate-mods.mjs generator (zero external deps)
+  - tests/validate-mods.py gate joining npm run validate
+  - catalog/mods.json catalog file
+  - 7 formal correctness properties (P1-P7) with PBT targets
+* **mods:** add R18 and P8 for Rust TUI integration to spec docs ([`7c07f0c`](https://github.com/VincentChuWaiChow/vanguard-frontier-agentic/commit/7c07f0c789b66dcb9af67ee64176455ca496e104))
+  requirements.md:
+  - R18: 12 EARS acceptance criteria covering Mod struct
+    (deny_unknown_fields), load_mods() optional behavior,
+    CatalogStore field/sort/reload/query, 5 store tests, CI gate
+  - P8: TUI Mod Load Completeness — CatalogStore.mod_count() == N
+    for any workspace with N valid mods.json entries
+
+  design.md:
+  - New section: Rust TUI (vfa-tui) Integration
+    - Mod struct with annotated Rust code and no-Provider rationale
+    - load_mods() loader with optional-on-missing design
+    - CatalogStore wiring — field, load, reload arm, test helper
+    - Architecture impact table (strictly additive, 4 files touched)
+    - P8 property statement
+* **mods:** add T9 Rust TUI integration tasks for mods catalog ([`d0816e4`](https://github.com/VincentChuWaiChow/vanguard-frontier-agentic/commit/d0816e479bb1ff520aa53be32b7c9666c51998f5))
+  Wire catalog/mods.json into vfa-tui:
+  - 9.1: src/models/mod_catalog.rs — Mod struct (deny_unknown_fields)
+  - 9.2: register mod_catalog in models/mod.rs
+  - 9.3: loader::load_mods() in catalog/loader.rs (optional on missing file)
+  - 9.4: CatalogStore mods field, sort, reload arm, mod_count/mod_by_id
+  - 9.5: 5 unit/integration tests in store.rs
+  - 9.6: cargo fmt + clippy + test gate
+
+  Dependency graph extended with waves 16-20 after T8.
+* **mods:** complete cross-harness behavioral extensions ([`16cc310`](https://github.com/VincentChuWaiChow/vanguard-frontier-agentic/commit/16cc3100907217d6b734daa82eaac04b26ea530f))
+  Implement the five starter guards and observers with shared production cores, native Claude modules and explicit command-hook capability limits.
+
+  Wire packaging, catalog, integrity and CI validation; add production regression and seeded property suites, including anchored redaction, safe parsing, audit locking and generator path boundaries.
+* **mods:** publish footprints and expand production audit coverage ([`f300a3d`](https://github.com/VincentChuWaiChow/vanguard-frontier-agentic/commit/f300a3de469f8ee30123a57e394954ffc19cde65))
+* **tui:** add validated read-only mods browser ([`3b73f65`](https://github.com/VincentChuWaiChow/vanguard-frontier-agentic/commit/3b73f6509ef243fcd3e1f3b39e1cdf8728b18e1e))
+
+### 🐛 Bug Fixes
+
+* **mods:** address Codex review findings ([`e0759ae`](https://github.com/VincentChuWaiChow/vanguard-frontier-agentic/commit/e0759ae02bd132957d954691a0a83d3f5d0b22d6))
+* **mods:** read audit log without exists-then-read race ([`df0994d`](https://github.com/VincentChuWaiChow/vanguard-frontier-agentic/commit/df0994d887eb8db374d153932585cfb8ff5e878b))
+  Resolves CodeQL js/file-system-race (alert #241) in audit-trail hook.
+* **tests:** assemble synthetic token fixture at runtime ([`9bf1087`](https://github.com/VincentChuWaiChow/vanguard-frontier-agentic/commit/9bf10878e3175673356fb4f120db4f500772f673))
+* **tests:** construct synthetic URL credentials through components ([`e50af84`](https://github.com/VincentChuWaiChow/vanguard-frontier-agentic/commit/e50af843251319f9a6cd4ce0bed6b7ed3ad72ae1))
+* **tests:** remove optional marker from inline property test tasks ([`1ee3596`](https://github.com/VincentChuWaiChow/vanguard-frontier-agentic/commit/1ee35965f16251ce04fa9ffbb01c714e9d0b3e07))
+
+### 📚 Documentation
+
+* **mods:** close verified browser implementation tasks ([`1ac1890`](https://github.com/VincentChuWaiChow/vanguard-frontier-agentic/commit/1ac189011080fbced1ad926900ab2f821dab40a3))
+* **mods:** close verified scanner fixture checkpoint ([`dc8b29c`](https://github.com/VincentChuWaiChow/vanguard-frontier-agentic/commit/dc8b29c823fb89dc4246413f38a7b82fdd34aa18))
+* **mods:** give the README a friendlier quick-start layout ([`c96baa5`](https://github.com/VincentChuWaiChow/vanguard-frontier-agentic/commit/c96baa5c7f7bfff7d0612725b1b7089aed93cef3))
+* **mods:** reconcile TUI browser requirements and verification ([`4f5278f`](https://github.com/VincentChuWaiChow/vanguard-frontier-agentic/commit/4f5278f6c67308f3d69e1d45dae8dcbfffce0fea))
+* **mods:** record fixture repair and remaining scanner finding ([`b6cb475`](https://github.com/VincentChuWaiChow/vanguard-frontier-agentic/commit/b6cb47573839e4b956fd32dd9dc15bdcc590435b))
+* **mods:** record verified implementation closeout ([`225e6f2`](https://github.com/VincentChuWaiChow/vanguard-frontier-agentic/commit/225e6f2566bbbdfbd95625ae989f617f6634151e))
+  Capture the approved contract deviations, bounded agent routing, focused anchored-pattern RED/GREEN evidence and independently verified feature commit receipt.
+
+  Keep publication and live Kiro/Codex installation explicitly unperformed, and preserve unrelated agent files.
+* **workflow:** record mods README verification ([`6c87789`](https://github.com/VincentChuWaiChow/vanguard-frontier-agentic/commit/6c877892123181c25cfcaf56bc6f818b28960750))
+
+---
+
+### 📥 Install
+```bash
+npm install @raishin/vanguard-frontier-agentic@3.16.0
+```
+
+### 🔐 Supply-chain provenance
+Every release ships a build attestation (SLSA provenance) and an SBOM. Verify the tag with `gh attestation verify` before installing.
+
+**Full changelog:** https://github.com/VincentChuWaiChow/vanguard-frontier-agentic/compare/v3.15.0...v3.16.0
+
 ## 🛡️ v3.15.0 — *Provenance · Policy · Portability*
 _Released 2026-10-06_
 
