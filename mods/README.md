@@ -1,49 +1,75 @@
-# Cross-harness mods
+# Vanguard Mods
 
-Mods are tool-event guards and observers, not agent prompts. Each `mods/<id>/mod.toml`
-declares its events, harness support and runtime footprint. Shared logic lives in the
-mod's `lib/core.mjs`; native Claude Code modules and Node command hooks import that
-same logic. [The implementation plan](https://github.com/VincentChuWaiChow/vanguard-frontier-agentic/blob/dc8b29c823fb89dc4246413f38a7b82fdd34aa18/.claude/plan/cross-harness-mods.md) records
-the verified native API and [spec deviations](https://github.com/VincentChuWaiChow/vanguard-frontier-agentic/blob/dc8b29c823fb89dc4246413f38a7b82fdd34aa18/.kiro/specs/cross-harness-mods/deviations.md).
+<div align="center">
 
-## Capability matrix
+  <img src="../assets/logos/vanguard-frontier-agentic-logo.png" alt="Vanguard Frontier Agentic" width="140" />
 
-Supported does not mean identical. Generated `<harness>/UNSUPPORTED.md` files explain
-every declared unsupported or degraded event or surface.
+  <p><strong>Less “oops.” More visibility.</strong></p>
+  <p>Tool-call guardrails and observers for Claude Code, Kiro and Codex.</p>
 
-| Mod | Reach | Claude Code native | Claude Code classic | Kiro | Codex |
-|---|---|---|---|---|---|
-| [secret-redactor](secret-redactor/README.md) | L0 | Ask on credential-shaped input; redact or withhold output | Ask on input; replace successful output; failed output is not covered | Deny matching input; output redaction unsupported | Deny matching input; output redaction unsupported |
-| [blast-radius-guard](blast-radius-guard/README.md) | L0 | Ask in confirm mode; deny in block mode | Same decisions | Deny in either mode | Deny in either mode |
-| [live-guard-gate](live-guard-gate/README.md) | L0 | Ask and name guard agents to consult | Same decision | Deny and name guard agents | Deny and name guard agents |
-| [context-burn](context-burn/README.md) | L1 | Real session context usage; threshold toasts and status file | Tool-call counter only; successful calls only | Tool-call counter only | Tool-call counter only |
-| [audit-trail](audit-trail/README.md) | L1 | Unsupported: no file append; use classic | Append a record after successful calls | Append with degraded payload interpretation | Append a record |
+  <p>
+    <a href="#pick-a-mod">Pick a mod</a> &nbsp;·&nbsp;
+    <a href="#get-started">Get started</a> &nbsp;·&nbsp;
+    <a href="#know-the-limits">Know the limits</a> &nbsp;·&nbsp;
+    <a href="#under-the-hood">Under the hood</a>
+  </p>
 
-Guards run on `PreToolUse`; redaction and observers use `PostToolUse` where supported.
-Context Burn also handles `SessionStart`. Native events are `tool.check`, `tool.call`
-and `session.start`. Kiro's stdin field names are undocumented: guards fall back to the
-whole payload when no input object is recognized. Audit hashes the whole payload as
-arguments, hashes `null` as the result, and
-needs `VANGUARD_AUDIT_TRAIL_SESSION_ID` to avoid the shared `unsessioned` fallback.
+</div>
 
-## Reach levels
+---
 
-The level is derived from the highest declared runtime capability. It is a disclosure,
-not a sandbox or proof of safe behavior. Reading input or an extension file is allowed
-at L0; launching Node to run an adapter is not a subprocess spawned by the mod itself.
+Skills guide the agent. **Mods inspect its tool calls.** Ask before risky actions,
+redact supported output, or record what happened. Pick what you need—not everything at once.
 
-| Level | Definition | Starter examples |
-|---|---|---|
-| L0 | No declared file writes, subprocess spawns or network egress | Secret Redactor, Blast Radius Guard, Live Guard Gate |
-| L1 | File writes, but no declared subprocess spawns or network egress | Context Burn, Audit Trail |
-| L2 | Subprocess spawns, but no declared network egress | None |
-| L3 | Network egress | None; `validate:mods` warns, rather than blocks, on L3 |
+<a id="pick-a-mod"></a>
 
-## Installation
+## 🧰 Pick your guardrails
 
-Start from a local checkout. No mod needs a running network service or a network call
-to install. Native modules use the harness runtime; command adapters need Node 22+
-on `PATH`. Set these absolute paths, and choose a mod from the matrix:
+| Mod | The job | Reach |
+| --- | --- | --- |
+| [Secret Redactor](secret-redactor/README.md) | Spot credential-shaped input; redact supported output. | L0 |
+| [Blast Radius Guard](blast-radius-guard/README.md) | Ask or deny on destructive commands and system-path writes. | L0 |
+| [Live Guard Gate](live-guard-gate/README.md) | Flag cloud mutations and name guard agents to consult. | L0 |
+| [Context Burn](context-burn/README.md) | Count tool calls; warn on reported context use where supported. | L1 |
+| [Audit Trail](audit-trail/README.md) | Append call hashes and per-session sequence numbers. | L1 |
+
+**Reach is a label, not a sandbox:** L0 = no declared writes/spawns/network;
+L1 = file writes; L2 = subprocesses; L3 = network (warned, not blocked).
+Reads are allowed at L0; starting the Node adapter is not a mod-spawned subprocess.
+
+**Support differs:** Kiro/Codex deny instead of asking and cannot redact output.
+Claude Code Audit Trail needs classic. Classic Post hooks miss failed calls.
+
+<details>
+<summary><strong>🔎 Same mod, different harness? Check the fine print.</strong></summary>
+
+| Mod | Claude Code native | Claude Code classic | Kiro / Codex |
+| --- | --- | --- | --- |
+| Secret Redactor | Ask on input; redact or withhold output | Ask on input; replace successful output only | Deny matching input; no output redaction |
+| Blast Radius Guard | Ask in confirm mode; deny in block mode | Same | Deny in either mode |
+| Live Guard Gate | Ask and name guard agents | Same | Deny and name guard agents |
+| Context Burn | Session context usage and threshold toasts | Tool-call counter only | Tool-call counter only |
+| Audit Trail | Unsupported—use classic | Append after successful calls | Append; Kiro payload interpretation is degraded |
+
+Guards use `PreToolUse`; supported redaction and observers use `PostToolUse`;
+Context Burn also uses `SessionStart`.
+Native equivalents are `tool.check`, `tool.call` and `session.start`.
+
+Kiro's stdin fields are undocumented: guards scan the whole payload if input is
+unrecognized; Audit Trail hashes that payload as arguments and `null` as the result.
+Set `VANGUARD_AUDIT_TRAIL_SESSION_ID` to avoid its shared `unsessioned` fallback.
+See generated `<harness>/UNSUPPORTED.md` for remaining limits.
+
+</details>
+
+---
+
+<a id="get-started"></a>
+
+## 🚀 Get started
+
+Use a local checkout. Command adapters need **Node 22+**; native modules use the
+harness runtime. No service needed.
 
 ```bash
 source=/absolute/path/to/vanguard-frontier-agentic
@@ -51,47 +77,45 @@ target=/absolute/path/to/your/project
 mod=blast-radius-guard
 ```
 
-**Never load both native and classic adapters for the same mod.** They duplicate checks
-and observers; Context Burn would also share a status file and double count. Audit Trail
-has no native adapter, so use its classic hook even if other mods use native modules.
+> [!IMPORTANT]
+> **Native or classic. Not both for the same mod.** They duplicate checks and can
+> double-count Context Burn. Audit Trail has no native adapter—use classic.
 
-### Claude Code native
-
-Load the mod's plugin root for a session in the target project:
+<details>
+<summary><strong>🤖 Claude Code native</strong> — load a plugin root</summary>
 
 ```bash
 cd "$target"
 claude --plugin-dir "$source/mods/$mod"
 ```
 
-Do not use this command for `audit-trail`. Native modules use `hooks/register.ts` and
-generated `hooks/hooks.json` plus `.claude-plugin/plugin.json`. The native API is early
-access; check the dated implementation plan's verified build before upgrading it.
+Not for `audit-trail`. Native API: early access. Check the verified build in the
+[implementation notes](#under-the-hood) before upgrading.
 
-### Claude Code classic
+</details>
 
-Copy only `bin/` and `lib/`; generated pattern modules are already in `lib/`, so no
-separate `patterns.json` or catalog copy is needed:
+<details>
+<summary><strong>🤖 Claude Code classic</strong> — copy, then merge hooks</summary>
 
 ```bash
 mkdir -p "$target/.claude/vanguard-mods/$mod"
 cp -R "$source/mods/$mod/bin" "$source/mods/$mod/lib" "$target/.claude/vanguard-mods/$mod/"
 ```
 
-Merge `mods/<id>/claude-code/settings.hooks.json` from the checkout into the target's
-`.claude/settings.json`: append each event's hook entries under `hooks`, preserving
-existing entries and other settings. Do not replace the entire settings file.
-The generated command is:
+Append `mods/<id>/claude-code/settings.hooks.json` entries under `hooks` in the
+target's `.claude/settings.json`. **Keep existing hooks/settings.** Generated command:
 
 ```text
 node "$CLAUDE_PROJECT_DIR/.claude/vanguard-mods/<id>/bin/hook.mjs" --harness claude-code --event <event>
 ```
 
-`CLAUDE_PROJECT_DIR` stays fixed at the session's initial project root, including when
-changing worktrees. The hooks themselves do not read it; observer write paths are
-resolved from the installed adapter location.
+`CLAUDE_PROJECT_DIR` stays at the initial project root, even across worktree changes.
+Observers resolve relative writes from the installed adapter location.
 
-### Kiro
+</details>
+
+<details>
+<summary><strong>🔮 Kiro</strong> — copy the adapters and hook JSON</summary>
 
 ```bash
 mkdir -p "$target/.kiro/hooks" "$target/.kiro/vanguard-mods/$mod"
@@ -99,77 +123,83 @@ cp -R "$source/mods/$mod/bin" "$source/mods/$mod/lib" "$target/.kiro/vanguard-mo
 cp "$source/mods/$mod/kiro/"*-hook.json "$target/.kiro/hooks/"
 ```
 
-The generated command uses `.kiro/vanguard-mods/<id>/bin/hook.mjs` with
-`--harness kiro --event <event>`. Hook process cwd is not documented: replace that
-script path with the absolute installed path before relying on it. Copy only the
-generated `*-hook.json` files, not `UNSUPPORTED.md`. A confirmation request is rendered
-as a deny with exit 2; these adapters do not invent an ask or output-replacement protocol.
+Copy only `*-hook.json`, not `UNSUPPORTED.md`. Replace the relative script path
+inside each hook with its **absolute installed path**: hook cwd is undocumented.
+Commands use `--harness kiro --event <event>`; confirmation requests deny with exit 2.
 
-### Codex
+</details>
+
+<details>
+<summary><strong>⚡ Codex</strong> — copy, merge, then review trust</summary>
 
 ```bash
 mkdir -p "$target/.codex/vanguard-mods/$mod"
 cp -R "$source/mods/$mod/bin" "$source/mods/$mod/lib" "$target/.codex/vanguard-mods/$mod/"
 ```
 
-Merge `mods/<id>/codex/hooks.json` from the checkout into the target's `.codex/hooks.json`:
-append each event's entries under `hooks` without replacing existing hooks. Replace
-the generated relative `.codex/vanguard-mods/<id>/bin/hook.mjs` path with the absolute
-installed path; hook process cwd is not documented. Commands use
-`--harness codex --event <event>`. Complete Codex's hook trust review before relying on
-them. Confirmation requests become denies with exit 2. This redactor's Post event is
-unsupported on Codex: the general/built-in output replacement it needs is unavailable;
-the narrower MCP output field is not used as a silent substitute.
+Append event entries from `mods/<id>/codex/hooks.json` to the target's
+`.codex/hooks.json`, preserving existing hooks. Replace relative script paths with
+**absolute installed paths**; hook cwd is undocumented. Complete Codex's hook trust review.
 
-### Verify the installation
+Commands use `--harness codex --event <event>`; asks deny with exit 2.
+Redactor Post is unsupported; the narrower MCP output field is not substituted.
 
-In the actual harness, exercise one ordinary call and one harmless call carrying a
-matching test pattern. Check the expected ask/deny, output replacement or observer
-file—not just a process exit code. Repeat after changing paths, permissions, Node or
-the harness version. Inspect unsupported/degraded notes before enabling additional mods.
+</details>
 
-## Limits and configuration
+**Try it before trusting it:** run ordinary and harmless pattern-matching calls in
+the harness. Inspect the decision, output or observer file—not just exit codes.
+Repeat after path, permission, Node or harness changes.
 
-- **Not complete DLP.** Regexes miss formats they do not describe. Pre checks ask or
-  deny; they never rewrite arguments. Approved arguments still reach the tool, and
-  Post redaction happens after execution. It does not scrub other logs or network traffic.
-  Classic output replacements may be ignored if their shape does not match the tool's
-  output; see Secret Redactor's withholding limitations.
-- **Not a cloud authorization system.** Live Guard Gate names agents for manual review;
-  it never spawns one or verifies a cloud account is production. Guards scan string
-  input, not shell semantics, and relative paths are not resolved against a cwd.
-  An `ask` can be auto-approved by a bypass permission mode.
-- **Fail closed only after execution reaches the hook.** Guard handler/input failures
-  deny; redaction failures attempt to withhold output. Missing Node, moved scripts,
-  startup crashes and hook timeouts can prevent enforcement. CLI hook errors can be
-  non-blocking; Kiro IDE error handling differs. Verify the installed harness behavior.
-- **Counters are not token spend.** Only native Context Burn reads real session context
-  usage and emits threshold warnings when usable token/window data is present. Node
-  adapters count tool events only. Their unlocked read-modify-write can lose increments.
-- **Append is not immutability.** Audit Trail stores argument/result hashes and sequence
-  numbers, not signed or tamper-evident evidence. Writers can edit or delete the log;
-  hashes do not establish non-repudiation or compliance. Observer failures do not block
-  the tool, and classic observers miss failed calls.
-- **Footprints describe defaults.** Context Burn defaults to
-  `.<harness>/context-burn-status/<session-hash>.json` (`.claude` for Claude Code), where
-  the filename is the full lowercase SHA-256 of the UTF-8 session ID, never the raw ID.
-  Missing or empty Node session IDs share the hashed `unsessioned` fallback, so isolation
-  requires session identity. A shared exact `VANGUARD_CONTEXT_BURN_STATUS_PATH` override
-  opts out of default session isolation. No old single-file state is migrated automatically.
-  Audit Trail defaults
-  to `.audit/<UTC-date>/<session>.jsonl`, reusing an earlier file for the same session.
-  `VANGUARD_CONTEXT_BURN_STATUS_PATH` and `VANGUARD_AUDIT_TRAIL_LOG_DIR` can point outside
-  declared write globs. Overlap checks do not constrain those operator overrides.
-- **Extensions add, never replace.** `VANGUARD_SECRET_REDACTOR_PATTERNS` and
-  `VANGUARD_BLAST_RADIUS_GUARD_PATTERNS` name extra pattern files. An unreadable or invalid
-  configured file denies guards or withholds redactor output. Use absolute extension
-  paths to avoid cwd ambiguity. See each mod README for its schema and environment names.
+---
 
-## Development and gates
+<a id="know-the-limits"></a>
 
-Edit `mod.toml`, source `patterns.json`, core logic, entries and native modules—not
-generated adapters. `scripts/generate-mods.mjs` produces harness manifests, shared
-runtime copies, pattern modules and `catalog/mods.json` deterministically.
+## ⚠️ Guardrails, not guarantees
+
+- **A hook must run to help.** Guards deny handler/input errors; missing Node,
+  moved scripts, startup crashes and timeouts can leave calls unguarded.
+  CLI errors may not block; Kiro IDE handling differs.
+- **Regex is not complete DLP.** Pre checks never rewrite arguments; approved input
+  still reaches the tool. Post redaction does not scrub other logs or network traffic.
+  Redactor errors attempt withholding; classic shape mismatches may be ignored.
+  [Withholding has limits, too](secret-redactor/README.md#limitations).
+- **A review prompt is not authorization.** Live Guard Gate names agents—it never
+  spawns them or verifies production accounts. Guards scan strings, not shell semantics;
+  relative paths stay unresolved. Bypass modes can auto-approve an ask.
+- **Observers are not compliance proof.** Node counters track calls, not tokens or
+  spend; only native Context Burn uses reported context data. Unlocked updates can
+  lose increments. Audit logs are mutable, unsigned and not tamper-evident.
+  Observer failures do not block tools.
+
+<details>
+<summary><strong>🗂️ State files and custom patterns</strong></summary>
+
+- **Context Burn:** `.<harness>/context-burn-status/<session-hash>.json`
+  (`.claude` for Claude Code). Filenames use the full lowercase SHA-256 of the UTF-8
+  session ID, never raw IDs. Missing/empty Node IDs share `unsessioned` state.
+  `VANGUARD_CONTEXT_BURN_STATUS_PATH` is an exact override; sharing it opts out of
+  isolation. Old single-file state is not migrated automatically.
+- **Audit Trail:** `.audit/<UTC-date>/<session>.jsonl`; an earlier file is reused
+  across dates. `VANGUARD_AUDIT_TRAIL_LOG_DIR` overrides the directory.
+- **Footprints disclose defaults, not containment.** Overrides can write outside
+  declared globs; overlap checks do not constrain operator overrides.
+- **Patterns append, never replace.** `VANGUARD_SECRET_REDACTOR_PATTERNS` and
+  `VANGUARD_BLAST_RADIUS_GUARD_PATTERNS` accept extra pattern files. Use absolute paths.
+  Unreadable/invalid configured files deny guards or withhold redactor output.
+  Each mod README documents schemas and environment names.
+
+</details>
+
+<a id="under-the-hood"></a>
+
+## 🔧 Under the hood
+
+`mod.toml` declares support and footprint; `lib/core.mjs` holds shared behavior.
+Edit those sources, `patterns.json`, entries and native modules—not generated adapters.
+The generator produces manifests, shared runtime copies, pattern modules and `catalog/mods.json`.
+
+<details>
+<summary><strong>🛠️ Contributing? Run the gates.</strong></summary>
 
 ```bash
 npm run mods:write
@@ -179,10 +209,12 @@ npm run asset-integrity:write  # last generator, on its own
 npm run validate
 ```
 
-The stdlib Python gate needs Python 3.11+ (`tomllib`). It checks declared reach,
-event/surface coverage, namespace and footprint
-contracts, generated-file drift, adapter syntax and production-core tests. Fuzz tests
-exercise production exports, not a Python reimplementation. For each native mod, also
-run `claude plugin validate mods/<id>` and `claude plugin test mods/<id>` locally;
-CI does not provide the native CLI. Passing static checks does not prove a live harness
-loaded a hook. Spelling and Markdown lint remain separate repository gates.
+The Python gate needs **Python 3.11+**. For each supported native mod, also run
+`claude plugin validate mods/<id>` and `claude plugin test mods/<id>` locally;
+CI has no native CLI. Spelling and Markdown lint are separate gates.
+Static checks are not proof that an installed hook runs.
+
+</details>
+
+[Implementation plan](https://github.com/VincentChuWaiChow/vanguard-frontier-agentic/blob/dc8b29c823fb89dc4246413f38a7b82fdd34aa18/.claude/plan/cross-harness-mods.md)
+· [Spec deviations](https://github.com/VincentChuWaiChow/vanguard-frontier-agentic/blob/dc8b29c823fb89dc4246413f38a7b82fdd34aa18/.kiro/specs/cross-harness-mods/deviations.md)
