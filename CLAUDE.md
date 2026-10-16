@@ -8,6 +8,8 @@ This repository is a curated marketplace for **cloud**, **zero-trust**, and **co
 npm install                # one-time install
 pip install jsonschema     # one-time; validate:promotion-gatekeeper imports it and fails without it
 # ...make catalog/doc changes...
+npm run mods:write          # if mods changed; regenerate adapters, shared modules and catalog
+npm run validate:mods       # focused mod contracts and production-core tests
 npm run validate           # 20+ gates (every validate:* script in package.json — catalog, schema, asset integrity, model policy, routing, marketplace)
 npm run lint:spell         # codespell — separate CI gate, NOT part of validate
 npx --yes markdownlint-cli2 "**/*.md" "#node_modules"   # markdown lint — separate CI gate
@@ -28,6 +30,7 @@ If you touched the catalog (agents/skills/roles/providers), run `npm run manifes
 - `agents/` — expert roles with judgment for review, architecture, and operations (each with per-harness variant files under `harnesses/`)
 - `rules/` — harness-specific operating guidance
 - `mcp/` — MCP references and trust-boundary notes
+- `mods/` — cross-harness tool-event guards and observers; `mod.toml` sources, shared core logic and generated adapters
 - `catalog/` — machine-readable indexes (agents, skills, model policy/registry/assignments, asset-integrity manifest)
 - `schemas/` — metadata contracts
 - `docs/` — governance, taxonomy, compatibility, and quality guidance (Jekyll site)
@@ -78,7 +81,7 @@ These are the behaviors that make the difference between passable and trustworth
 
 Work is finished only when ALL of these hold — in this order, since the integrity manifest must hash the settled tree:
 
-1. Generated files regenerated (`manifest:write:all` / `docs-data:write` / `model-policy:apply` as applicable to what you touched).
+1. Generated files regenerated (`manifest:write:all` / `docs-data:write` / `model-policy:apply` / `mods:write` as applicable to what you touched).
 2. `npm run asset-integrity:write` run **last, on its own** if anything it hashes changed (agents/, plugins/, root files, package.json — see the canonical section below).
 3. `npm run validate` — zero failures.
 4. `npm run lint:spell` and `npx --yes markdownlint-cli2 "**/*.md" "#node_modules"` — zero failures.
@@ -139,6 +142,29 @@ This repo ships as an npm package AND as four harness marketplaces; each manifes
 
 A `<provider>-maestro-agent` requires a routing fixture at `tests/fixtures/<provider>-maestro-routing/` containing `taxonomy.json` + `inputs/NN-name.json` + `expected/NN-name.json`. Every agent referenced must exist in `catalog/agents.json`. Generate the `expected/` files from the grader (`tests/validate-maestro-routing.py` → `evaluate(task, taxonomy)`) so they stay consistent, and list guarded-mutating-live agents under `live_guards` so they are never auto-dispatched (they only appear in `live-guard-gate` mode). The `validate:maestro-routing` gate enforces all of this.
 
+## Mods
+
+`mods/<id>/mod.toml` is the source of truth for each tool-event mod. Hand-written
+`lib/core.mjs`, `bin/hook.mjs` and (where supported) `hooks/register.ts` hold behavior.
+`npm run mods:write` generates harness manifests, shared runtime copies, pattern modules
+and `catalog/mods.json`; never hand-edit those outputs. See [mods/README.md](mods/README.md)
+for installation, the capability matrix and limitations.
+
+- **Reach is derived, not aspirational:** L0 has no declared file writes, spawns or
+  egress; L1 writes files; L2 spawns subprocesses; L3 has network egress. The highest
+  declared capability wins; L3 warns in `validate:mods`. This is disclosure, not isolation.
+- **Harness differences stay explicit:** Kiro/Codex asks become denies, their output
+  redaction is unsupported, native Audit Trail is unsupported, and Node Context Burn
+  tracks tool calls rather than tokens. Generated `UNSUPPORTED.md` records degraded or
+  unsupported behavior. Never load native and classic adapters for the same mod.
+- **Do not overclaim:** regex redaction is not complete DLP; an append log is not immutable,
+  tamper-evident or non-repudiable. Missing or failed hook execution can leave calls
+  unguarded. Environment write-path overrides can exceed the declared default footprint.
+- **Verification:** run `npm run validate:mods`, `npm run test:fuzz`, and positive/negative
+  probes; run native `claude plugin validate`/`claude plugin test` locally for affected
+  native mods (the native CLI is not in CI). Regenerate first, refresh asset integrity
+  last on its own, then run repository gates. Static checks are not live installation proof.
+
 ## Model policy
 
 Per-harness model/reasoning-effort assignment is policy-driven, not hand-edited. `catalog/model-policy.json` (schema: `schemas/model-policy.schema.json`) is the canonical source; `scripts/model-policy.mjs` resolves it into `catalog/model-assignments.json` and projects it into harness files (`codex.toml` `model`/`model_reasoning_effort`/`model_provider`; `claude-code` `.agent.md` `model:`/`effort:` frontmatter; `cursor` `.agent.md` `model:`). Rules scope to `all` | `provider:<id>` | `role:<id>` | `agent:<id>` per harness; precedence is agent > role > provider > all; `auto` clears the field.
@@ -196,7 +222,7 @@ This repo supports multiple harnesses without pretending they are identical.
 
 ## Asset integrity (canonical reference)
 
-`catalog/asset-integrity.json` holds SHA256 hashes of all tracked assets. If any file in `agents/`, `plugins/`, `.github/plugin/`, `package.json`, or a root file changes and the manifest is not refreshed, the `validate:asset-integrity` gate fails and blocks release automation. Regenerate it whenever you add/move/remove agents, plugins, or skills; edit `.github/workflows/release.yml`; or change any root-level file (README.md, AGENTS.md, CLAUDE.md, package.json, …):
+`catalog/asset-integrity.json` holds SHA256 hashes of all tracked assets. If any file in `agents/`, `plugins/`, `.github/plugin/`, `mods/`, `package.json`, or a root file changes and the manifest is not refreshed, the `validate:asset-integrity` gate fails and blocks release automation. Regenerate it whenever you add/move/remove agents, plugins, skills or mods; change `catalog/mods.json`; edit `.github/workflows/release.yml`; or change any root-level file (README.md, AGENTS.md, CLAUDE.md, package.json, …):
 
 ```bash
 python3 tests/validate-asset-integrity.py --write   # or: npm run asset-integrity:write

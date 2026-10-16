@@ -1,0 +1,5 @@
+{
+  "name": "blast-radius-guard",
+  "version": "1.0.0",
+  "description": "Asks before, or blocks, destructive shell commands and writes to system paths."
+}

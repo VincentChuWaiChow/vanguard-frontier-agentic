@@ -1,0 +1,5 @@
+{
+  "name": "context-burn",
+  "version": "1.0.0",
+  "description": "Tracks context use per session in a status file and warns at 70% and 90% where the harness reports token use."
+}

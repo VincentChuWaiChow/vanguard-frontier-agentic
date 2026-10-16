@@ -1,0 +1,131 @@
+[
+  {
+    "id": "audit-trail",
+    "name": "Audit Trail",
+    "version": "1.0.0",
+    "description": "Appends one JSON line per tool call to a per-session log with sha256 hashes of the arguments and result.",
+    "reach_level": 1,
+    "events": [
+      "PostToolUse"
+    ],
+    "harnesses": [
+      "claude-code",
+      "codex",
+      "kiro"
+    ],
+    "path": "mods/audit-trail",
+    "footprint": {
+      "env_reads": [
+        "VANGUARD_AUDIT_TRAIL_LOG_DIR",
+        "VANGUARD_AUDIT_TRAIL_SESSION_ID",
+        "VANGUARD_AUDIT_TRAIL_AGENT_ID"
+      ],
+      "file_writes": [
+        ".audit/**"
+      ],
+      "spawns": [],
+      "egress_hosts": []
+    }
+  },
+  {
+    "id": "blast-radius-guard",
+    "name": "Blast Radius Guard",
+    "version": "1.0.0",
+    "description": "Asks before, or blocks, destructive shell commands and writes to system paths.",
+    "reach_level": 0,
+    "events": [
+      "PreToolUse"
+    ],
+    "harnesses": [
+      "claude-code",
+      "codex",
+      "kiro"
+    ],
+    "path": "mods/blast-radius-guard",
+    "footprint": {
+      "env_reads": [
+        "VANGUARD_BLAST_RADIUS_GUARD_MODE",
+        "VANGUARD_BLAST_RADIUS_GUARD_PATTERNS"
+      ],
+      "file_writes": [],
+      "spawns": [],
+      "egress_hosts": []
+    }
+  },
+  {
+    "id": "context-burn",
+    "name": "Context Burn",
+    "version": "1.0.0",
+    "description": "Tracks context use per session in a status file and warns at 70% and 90% where the harness reports token use.",
+    "reach_level": 1,
+    "events": [
+      "PostToolUse",
+      "SessionStart"
+    ],
+    "harnesses": [
+      "claude-code",
+      "codex",
+      "kiro"
+    ],
+    "path": "mods/context-burn",
+    "footprint": {
+      "env_reads": [
+        "VANGUARD_CONTEXT_BURN_STATUS_PATH"
+      ],
+      "file_writes": [
+        ".claude/context-burn-status/*.json",
+        ".kiro/context-burn-status/*.json",
+        ".codex/context-burn-status/*.json"
+      ],
+      "spawns": [],
+      "egress_hosts": []
+    }
+  },
+  {
+    "id": "live-guard-gate",
+    "name": "Live Guard Gate",
+    "version": "1.0.0",
+    "description": "Asks before live cloud mutations and names the guard agent that should review them.",
+    "reach_level": 0,
+    "events": [
+      "PreToolUse"
+    ],
+    "harnesses": [
+      "claude-code",
+      "codex",
+      "kiro"
+    ],
+    "path": "mods/live-guard-gate",
+    "footprint": {
+      "env_reads": [],
+      "file_writes": [],
+      "spawns": [],
+      "egress_hosts": []
+    }
+  },
+  {
+    "id": "secret-redactor",
+    "name": "Secret Redactor",
+    "version": "1.0.0",
+    "description": "Asks before tool calls whose input carries a credential and redacts credentials from tool output.",
+    "reach_level": 0,
+    "events": [
+      "PreToolUse",
+      "PostToolUse"
+    ],
+    "harnesses": [
+      "claude-code",
+      "codex",
+      "kiro"
+    ],
+    "path": "mods/secret-redactor",
+    "footprint": {
+      "env_reads": [
+        "VANGUARD_SECRET_REDACTOR_PATTERNS"
+      ],
+      "file_writes": [],
+      "spawns": [],
+      "egress_hosts": []
+    }
+  }
+]

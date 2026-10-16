@@ -5,7 +5,7 @@ use sha2::{Digest, Sha256};
 
 use crate::error::TuiError;
 use crate::models::{
-    Agent, AssetIntegrity, McpReference, ModelAssignments, ModelRegistry, Role, Rule, Skill,
+    Agent, AssetIntegrity, McpReference, Mod, ModelAssignments, ModelRegistry, Role, Rule, Skill,
     WorkflowCatalog,
 };
 
@@ -56,6 +56,7 @@ pub struct CatalogStore {
     pub role_catalog_description: String,
     pub mcp_refs: Vec<McpReference>,
     pub rules: Vec<Rule>,
+    pub mods: Vec<Mod>,
     pub integrity: Option<AssetIntegrity>,
     /// Resolved per-agent/per-harness model + reasoning assignments
     /// (catalog/model-assignments.json); absent on older checkouts.
@@ -125,6 +126,28 @@ impl CatalogStore {
         let (workflows, errs) = loader::load_workflows(workspace_root);
         load_errors.extend(errs);
 
+        let mut mods = Vec::new();
+        let mods_path = workspace_root.join("catalog/mods.json");
+        let mut mods_hash = None;
+        match std::path::absolute(&mods_path) {
+            Ok(path) => match loader::read_mods_snapshot(&path) {
+                Ok(Some(mut snapshot)) => {
+                    snapshot
+                        .entries
+                        .sort_by_key(|entry| (entry.id.to_lowercase(), entry.id.clone()));
+                    mods = snapshot.entries;
+                    mods_hash = Some((path, snapshot.content_hash));
+                }
+                Ok(None) => {}
+                Err(error) => load_errors.push(error),
+            },
+            Err(error) => load_errors.push(TuiError::CatalogParse {
+                path: mods_path.display().to_string(),
+                offset: 0,
+                detail: error.to_string(),
+            }),
+        }
+
         // Sort by ID, case-insensitive
         agents.sort_by_key(|a| a.id.to_lowercase());
         skills.sort_by_key(|a| a.id.to_lowercase());
@@ -139,6 +162,9 @@ impl CatalogStore {
         // Build content hashes for the catalog JSON files
         let catalog_dir = workspace_root.join("catalog");
         let mut content_hashes = HashMap::new();
+        if let Some((path, hash)) = mods_hash {
+            content_hashes.insert(path, hash);
+        }
         for filename in &[
             "agents.json",
             "skills.json",
@@ -164,13 +190,15 @@ impl CatalogStore {
             role_catalog_description,
             mcp_refs,
             rules,
+            mods,
             integrity,
             model_assignments,
             model_registry,
             workflows,
             load_errors,
             content_hashes,
-            catalog_root: workspace_root.to_path_buf(),
+            catalog_root: std::path::absolute(workspace_root)
+                .unwrap_or_else(|_| workspace_root.to_path_buf()),
         }
     }
 
@@ -184,6 +212,9 @@ impl CatalogStore {
     ///   state and returns `ReloadOutcome::RetainedPrevious` with error detail
     ///   (including byte offset when available from serde_json).
     pub fn reload_file(&mut self, path: &Path) -> ReloadOutcome {
+        if path.file_name().and_then(|name| name.to_str()) == Some("mods.json") {
+            return self.reload_mods(path);
+        }
         // Read raw bytes for hashing, fall back gracefully on I/O error
         let bytes = match std::fs::read(path) {
             Ok(b) => b,
@@ -569,6 +600,49 @@ impl CatalogStore {
         result
     }
 
+    fn reload_mods(&mut self, path: &Path) -> ReloadOutcome {
+        let path = match std::path::absolute(path) {
+            Ok(path) => path,
+            Err(error) => {
+                return ReloadOutcome::RetainedPrevious {
+                    error: error.to_string(),
+                }
+            }
+        };
+        match loader::read_mods_snapshot(&path) {
+            Ok(Some(mut snapshot)) => {
+                if self.content_hashes.get(&path) == Some(&snapshot.content_hash) {
+                    return ReloadOutcome::Unchanged;
+                }
+                snapshot
+                    .entries
+                    .sort_by_key(|entry| (entry.id.to_lowercase(), entry.id.clone()));
+                self.mods = snapshot.entries;
+                self.content_hashes.insert(path, snapshot.content_hash);
+                ReloadOutcome::Reloaded {
+                    catalog: "mods".to_string(),
+                }
+            }
+            Ok(None) => ReloadOutcome::RetainedPrevious {
+                error: TuiError::CatalogNotFound {
+                    path: path.display().to_string(),
+                }
+                .to_string(),
+            },
+            Err(error) => ReloadOutcome::RetainedPrevious {
+                error: error.to_string(),
+            },
+        }
+    }
+
+    pub fn mod_count(&self) -> usize {
+        self.mods.len()
+    }
+
+    pub fn mod_by_id(&self, id: &str) -> Option<&Mod> {
+        self.mods.iter().find(|entry| entry.id == id)
+    }
+
     /// Find skills whose id is in an agent's companion_skills.
     pub fn skills_for_agent(&self, agent_id: &str) -> Vec<&Skill> {
         let agent = match self.agents.iter().find(|a| a.id == agent_id) {
@@ -674,6 +748,7 @@ impl CatalogStore {
             role_catalog_description: String::new(),
             mcp_refs,
             rules,
+            mods: Vec::new(),
             integrity: None,
             model_assignments: None,
             model_registry: None,
@@ -714,6 +789,163 @@ mod tests {
         assert!(!store.rules.is_empty());
         assert!(!store.roles.is_empty());
         assert!(store.integrity.is_some());
+    }
+
+    fn mod_entry(index: usize) -> serde_json::Value {
+        serde_json::json!({
+            "id": format!("mod-{index:02}"), "name": format!("Mod {index}"),
+            "version": "1.0.0", "description": "Example metadata", "reach_level": index % 4,
+            "events": ["PreToolUse"], "harnesses": ["codex"], "path": format!("mods/mod-{index:02}"),
+            "footprint": {"env_reads": ["EXAMPLE"], "file_writes": [], "spawns": [], "egress_hosts": []}
+        })
+    }
+
+    fn mods_workspace() -> tempfile::TempDir {
+        let dir = tempfile::tempdir().unwrap();
+        let catalog = dir.path().join("catalog");
+        std::fs::create_dir(&catalog).unwrap();
+        let fixtures = Path::new(env!("CARGO_MANIFEST_DIR")).join("tests/fixtures/catalog");
+        for entry in std::fs::read_dir(fixtures).unwrap() {
+            let entry = entry.unwrap();
+            if entry.path().is_file() {
+                std::fs::copy(entry.path(), catalog.join(entry.file_name())).unwrap();
+            }
+        }
+        dir
+    }
+
+    #[test]
+    fn store_mods_varied_counts_preserve_all_metadata_and_exact_hash() {
+        let dir = mods_workspace();
+        let path = dir.path().join("catalog/mods.json");
+        for count in 0..=32 {
+            let expected: Vec<Mod> = (0..count)
+                .map(|i| serde_json::from_value(mod_entry(i)).unwrap())
+                .collect();
+            let input: Vec<_> = expected.iter().rev().collect();
+            let bytes = serde_json::to_vec_pretty(&input).unwrap();
+            std::fs::write(&path, &bytes).unwrap();
+            let store = CatalogStore::load(dir.path());
+            assert!(store.load_errors.is_empty(), "{:?}", store.load_errors);
+            assert_eq!(store.mods, expected);
+            assert_eq!(store.mod_count(), count);
+            assert_eq!(store.content_hashes[&path], sha256_hex(&bytes));
+            assert!(store.mod_by_id("absent-mod").is_none());
+            assert!(
+                store.mod_by_id("MOD-00").is_none(),
+                "lookup is exact, not folded"
+            );
+            assert_eq!(store.mod_by_id("mod-00"), expected.first());
+        }
+    }
+
+    #[test]
+    fn store_mods_sort_case_insensitive_with_deterministic_ties() {
+        let dir = mods_workspace();
+        let entries: Vec<_> = ["z-mod", "a-mod", "A-mod"]
+            .iter()
+            .map(|id| {
+                let mut entry = mod_entry(0);
+                entry["id"] = serde_json::json!(id);
+                entry
+            })
+            .collect();
+        std::fs::write(
+            dir.path().join("catalog/mods.json"),
+            serde_json::to_vec(&entries).unwrap(),
+        )
+        .unwrap();
+        let store = CatalogStore::load(dir.path());
+        assert_eq!(
+            store.mods.iter().map(|m| m.id.as_str()).collect::<Vec<_>>(),
+            ["A-mod", "a-mod", "z-mod"]
+        );
+    }
+
+    #[test]
+    fn store_mods_missing_invalid_and_relative_root_hash_contract() {
+        let dir = mods_workspace();
+        let path = dir.path().join("catalog/mods.json");
+        let store = CatalogStore::load(dir.path());
+        assert_eq!(store.mod_count(), 0);
+        assert!(!store.content_hashes.contains_key(&path));
+        std::fs::write(&path, b"malformed").unwrap();
+        let store = CatalogStore::load(dir.path());
+        assert_eq!(store.mod_count(), 0);
+        assert!(!store.content_hashes.contains_key(&path));
+        assert!(store
+            .load_errors
+            .iter()
+            .any(|error| error.to_string().contains("mods.json")));
+        let relative = tempfile::tempdir_in(".").unwrap();
+        std::fs::create_dir(relative.path().join("catalog")).unwrap();
+        std::fs::write(relative.path().join("catalog/mods.json"), b"[]").unwrap();
+        let store = CatalogStore::load(relative.path());
+        assert!(store.catalog_root.is_absolute());
+        let absolute = std::path::absolute(relative.path().join("catalog/mods.json")).unwrap();
+        assert_eq!(store.content_hashes[&absolute], sha256_hex(b"[]"));
+    }
+
+    #[test]
+    fn store_mods_reload_retains_failed_bytes_and_recovers() {
+        let dir = mods_workspace();
+        let path = dir.path().join("catalog/mods.json");
+        std::fs::write(&path, serde_json::to_vec(&vec![mod_entry(0)]).unwrap()).unwrap();
+        let mut store = CatalogStore::load(dir.path());
+        let original = store.mods.clone();
+        let hash = store.content_hashes[&path].clone();
+        assert!(matches!(store.reload_file(&path), ReloadOutcome::Unchanged));
+        let mut reach = mod_entry(0);
+        reach["reach_level"] = serde_json::json!(4);
+        let mut taint = mod_entry(0);
+        taint["footprint"]["egress_hosts"] = serde_json::json!(["bad\u{1b}host"]);
+        let mut unknown = mod_entry(0);
+        unknown["unknown"] = serde_json::json!(true);
+        for bytes in [
+            b"malformed".to_vec(),
+            vec![0xff],
+            serde_json::to_vec(&vec![reach]).unwrap(),
+            serde_json::to_vec(&vec![taint]).unwrap(),
+            serde_json::to_vec(&vec![unknown]).unwrap(),
+            vec![b' '; 20 * 1024 * 1024 + 1],
+        ] {
+            std::fs::write(&path, bytes).unwrap();
+            for _ in 0..2 {
+                assert!(matches!(
+                    store.reload_file(&path),
+                    ReloadOutcome::RetainedPrevious { .. }
+                ));
+                assert_eq!(store.mods, original);
+                assert_eq!(store.content_hashes[&path], hash);
+            }
+        }
+        std::fs::remove_file(&path).unwrap();
+        for _ in 0..2 {
+            assert!(matches!(
+                store.reload_file(&path),
+                ReloadOutcome::RetainedPrevious { .. }
+            ));
+            assert_eq!(store.mods, original);
+            assert_eq!(store.content_hashes[&path], hash);
+        }
+        let changed = serde_json::to_vec_pretty(&vec![mod_entry(2), mod_entry(1)]).unwrap();
+        std::fs::write(&path, &changed).unwrap();
+        assert!(
+            matches!(store.reload_file(&path), ReloadOutcome::Reloaded { catalog } if catalog == "mods")
+        );
+        assert_eq!(
+            store.mods.iter().map(|m| m.id.as_str()).collect::<Vec<_>>(),
+            ["mod-01", "mod-02"]
+        );
+        assert_eq!(store.content_hashes[&path], sha256_hex(&changed));
+        std::fs::write(&path, b"[]").unwrap();
+        assert!(matches!(
+            store.reload_file(&path),
+            ReloadOutcome::Reloaded { .. }
+        ));
+        assert_eq!(store.mod_count(), 0);
+        assert_eq!(store.content_hashes[&path], sha256_hex(b"[]"));
+        assert!(matches!(store.reload_file(&path), ReloadOutcome::Unchanged));
     }
 
     #[test]

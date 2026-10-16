@@ -1,13 +1,127 @@
+use std::io::Read;
 use std::path::Path;
+
+use sha2::{Digest, Sha256};
 
 use crate::error::TuiError;
 use crate::models::{
-    Agent, AssetIntegrity, McpReference, ModelAssignments, ModelRegistry, RoleCatalog, Rule, Skill,
-    WorkflowCatalog,
+    Agent, AssetIntegrity, McpReference, Mod, ModelAssignments, ModelRegistry, RoleCatalog, Rule,
+    Skill, WorkflowCatalog,
 };
-use crate::security::sanitize::has_control_bytes;
+use crate::security::sanitize::{
+    has_control_bytes, is_disallowed_control, sanitize_catalog_string,
+};
 
 const MAX_CATALOG_FILE_SIZE: u64 = 20 * 1024 * 1024;
+
+#[derive(Debug)]
+pub(crate) struct ModSnapshot {
+    pub entries: Vec<Mod>,
+    pub content_hash: String,
+}
+
+fn mod_error(path: &Path, offset: usize, detail: String) -> TuiError {
+    TuiError::CatalogParse {
+        path: sanitize_catalog_string(&path.display().to_string()),
+        offset,
+        detail: sanitize_catalog_string(&detail),
+    }
+}
+
+/// Optional only when opening reports NotFound. Other failures remain visible.
+pub fn load_mods(workspace_root: &Path) -> (Vec<Mod>, Vec<TuiError>) {
+    match read_mods_snapshot(&workspace_root.join("catalog/mods.json")) {
+        Ok(Some(snapshot)) => (snapshot.entries, Vec::new()),
+        Ok(None) => (Vec::new(), Vec::new()),
+        Err(error) => (Vec::new(), vec![error]),
+    }
+}
+
+/// Validate and hash exactly one bounded read; never cache failed bytes.
+pub(crate) fn read_mods_snapshot(path: &Path) -> Result<Option<ModSnapshot>, TuiError> {
+    let file = match std::fs::File::open(path) {
+        Ok(file) => file,
+        Err(error) if error.kind() == std::io::ErrorKind::NotFound => return Ok(None),
+        Err(error) => return Err(mod_error(path, 0, format!("could not open: {error}"))),
+    };
+    read_mods_from(file, path).map(Some)
+}
+
+fn read_mods_from(reader: impl Read, path: &Path) -> Result<ModSnapshot, TuiError> {
+    let mut bytes = Vec::new();
+    reader
+        .take(MAX_CATALOG_FILE_SIZE + 1)
+        .read_to_end(&mut bytes)
+        .map_err(|error| mod_error(path, 0, format!("could not read: {error}")))?;
+    if bytes.len() as u64 > MAX_CATALOG_FILE_SIZE {
+        return Err(mod_error(
+            path,
+            0,
+            format!("file too large: maximum is {MAX_CATALOG_FILE_SIZE} bytes"),
+        ));
+    }
+    let text = std::str::from_utf8(&bytes)
+        .map_err(|error| mod_error(path, error.valid_up_to(), format!("invalid UTF-8: {error}")))?;
+    let entries: Vec<Mod> = serde_json::from_str(text).map_err(|error| {
+        let offset = if error.is_eof() {
+            bytes.len()
+        } else {
+            let line_start: usize = text
+                .split_inclusive('\n')
+                .take(error.line().saturating_sub(1))
+                .map(str::len)
+                .sum();
+            (line_start + error.column().saturating_sub(1)).min(bytes.len())
+        };
+        mod_error(path, offset, error.to_string())
+    })?;
+    for (index, entry) in entries.iter().enumerate() {
+        if entry.reach_level > 3 {
+            return Err(mod_error(
+                path,
+                0,
+                format!("mods[{index}].reach_level must be in 0..=3"),
+            ));
+        }
+        let value =
+            serde_json::to_value(entry).map_err(|error| mod_error(path, 0, error.to_string()))?;
+        if let Some((field, offset)) = mod_taint(&value, &format!("mods[{index}]")) {
+            return Err(TuiError::TaintedEntry {
+                path: path.display().to_string(),
+                offset,
+                field,
+            });
+        }
+    }
+    use std::fmt::Write as _;
+    let content_hash = Sha256::digest(&bytes)
+        .iter()
+        .fold(String::new(), |mut out, byte| {
+            let _ = write!(out, "{byte:02x}");
+            out
+        });
+    Ok(ModSnapshot {
+        entries,
+        content_hash,
+    })
+}
+
+fn mod_taint(value: &serde_json::Value, field: &str) -> Option<(String, usize)> {
+    match value {
+        serde_json::Value::String(text) if has_control_bytes(text) => text
+            .char_indices()
+            .find(|(_, character)| is_disallowed_control(*character))
+            .map(|(offset, _)| (field.to_string(), offset)),
+        serde_json::Value::Array(items) => items
+            .iter()
+            .enumerate()
+            .find_map(|(index, item)| mod_taint(item, &format!("{field}[{index}]"))),
+        serde_json::Value::Object(items) => items
+            .iter()
+            .find_map(|(key, item)| mod_taint(item, &format!("{field}.{key}"))),
+        _ => None,
+    }
+}
 
 /// Read a catalog file with size validation.
 /// Returns an error if the file exceeds `max_size`.
@@ -508,6 +622,177 @@ mod tests {
         let (agents, errors) = load_agents(workspace_root());
         assert!(errors.is_empty(), "errors: {errors:?}");
         assert!(!agents.is_empty());
+    }
+
+    fn mod_entry() -> serde_json::Value {
+        serde_json::json!({
+            "id": "example-mod", "name": "Example é", "version": "1.0.0",
+            "description": "Example mod", "reach_level": 0,
+            "events": ["PreToolUse"], "harnesses": ["codex"], "path": "mods/example-mod",
+            "security_notes": "Declared only", "footprint": {
+                "env_reads": ["EXAMPLE"], "file_writes": ["example/**"],
+                "spawns": ["example-process"], "egress_hosts": ["example.invalid"]
+            }
+        })
+    }
+
+    fn mods_workspace(bytes: &[u8]) -> tempfile::TempDir {
+        let dir = tempfile::tempdir().unwrap();
+        std::fs::create_dir(dir.path().join("catalog")).unwrap();
+        std::fs::write(dir.path().join("catalog/mods.json"), bytes).unwrap();
+        dir
+    }
+
+    #[test]
+    fn load_mods_optional_empty_and_current_catalog() {
+        let missing = tempfile::tempdir().unwrap();
+        let (entries, errors) = load_mods(missing.path());
+        assert!(entries.is_empty() && errors.is_empty());
+        let empty = mods_workspace(b"[]");
+        let (entries, errors) = load_mods(empty.path());
+        assert!(entries.is_empty() && errors.is_empty());
+        let actual: serde_json::Value = serde_json::from_str(
+            &std::fs::read_to_string(workspace_root().join("catalog/mods.json")).unwrap(),
+        )
+        .unwrap();
+        let (entries, errors) = load_mods(workspace_root());
+        assert!(errors.is_empty(), "{errors:?}");
+        assert_eq!(entries.len(), actual.as_array().unwrap().len());
+        for entry in entries {
+            let raw = actual
+                .as_array()
+                .unwrap()
+                .iter()
+                .find(|raw| raw["id"] == entry.id)
+                .unwrap();
+            let expected: crate::models::Mod = serde_json::from_value(raw.clone()).unwrap();
+            assert_eq!(entry, expected);
+        }
+    }
+
+    #[test]
+    fn load_mods_rejects_all_tainted_fields_without_partial_adoption() {
+        for field in [
+            "/id",
+            "/name",
+            "/version",
+            "/description",
+            "/path",
+            "/security_notes",
+            "/events/0",
+            "/harnesses/0",
+            "/footprint/env_reads/0",
+            "/footprint/file_writes/0",
+            "/footprint/spawns/0",
+            "/footprint/egress_hosts/0",
+        ] {
+            let mut tainted = mod_entry();
+            *tainted.pointer_mut(field).unwrap() = serde_json::json!("é\u{1b}bad");
+            let dir = mods_workspace(&serde_json::to_vec(&vec![mod_entry(), tainted]).unwrap());
+            let (entries, errors) = load_mods(dir.path());
+            assert!(entries.is_empty(), "partially adopted {field}");
+            match &errors[0] {
+                TuiError::TaintedEntry {
+                    offset,
+                    field: diagnostic,
+                    ..
+                } => {
+                    assert_eq!(*offset, 2, "byte offset within the UTF-8 field");
+                    assert!(diagnostic.starts_with("mods[1]."), "{diagnostic}");
+                    assert!(diagnostic
+                        .contains(field.trim_start_matches('/').split('/').next().unwrap()));
+                }
+                other => panic!("expected taint diagnostic for {field}, got {other:?}"),
+            }
+        }
+        let mut allowed = mod_entry();
+        allowed["description"] = serde_json::json!("allowed\tand\nnewlines");
+        let dir = mods_workspace(&serde_json::to_vec(&vec![allowed]).unwrap());
+        assert!(load_mods(dir.path()).1.is_empty());
+    }
+
+    #[test]
+    fn load_mods_enforces_reach_and_schema() {
+        for level in [
+            serde_json::json!(-1),
+            serde_json::json!(4),
+            serde_json::json!(255),
+            serde_json::json!(1.5),
+        ] {
+            let mut entry = mod_entry();
+            entry["reach_level"] = level;
+            let dir = mods_workspace(&serde_json::to_vec(&vec![entry]).unwrap());
+            let (entries, errors) = load_mods(dir.path());
+            assert!(entries.is_empty() && !errors.is_empty());
+        }
+        for level in 0..=3 {
+            let mut entry = mod_entry();
+            entry["reach_level"] = serde_json::json!(level);
+            let dir = mods_workspace(&serde_json::to_vec(&vec![entry]).unwrap());
+            assert!(load_mods(dir.path()).1.is_empty());
+        }
+        let mut entry = mod_entry();
+        entry["unknown\u{1b}field"] = serde_json::json!(true);
+        let dir = mods_workspace(&serde_json::to_vec(&vec![entry]).unwrap());
+        let (entries, errors) = load_mods(dir.path());
+        assert!(entries.is_empty() && !errors.is_empty());
+        assert!(!errors[0].to_string().contains('\u{1b}'));
+    }
+
+    #[test]
+    fn load_mods_bounds_reads_and_reports_real_io_failures() {
+        let mut limit = vec![b' '; MAX_CATALOG_FILE_SIZE as usize];
+        limit[0] = b'[';
+        *limit.last_mut().unwrap() = b']';
+        let dir = mods_workspace(&limit);
+        assert!(load_mods(dir.path()).1.is_empty());
+        limit.push(b' ');
+        std::fs::write(dir.path().join("catalog/mods.json"), &limit).unwrap();
+        let (entries, errors) = load_mods(dir.path());
+        assert!(entries.is_empty());
+        assert!(errors[0].to_string().contains("too large"));
+        std::fs::remove_file(dir.path().join("catalog/mods.json")).unwrap();
+        std::fs::create_dir(dir.path().join("catalog/mods.json")).unwrap();
+        assert!(
+            !load_mods(dir.path()).1.is_empty(),
+            "directory is not optional absence"
+        );
+        struct Denied;
+        impl std::io::Read for Denied {
+            fn read(&mut self, _: &mut [u8]) -> std::io::Result<usize> {
+                Err(std::io::Error::from(std::io::ErrorKind::PermissionDenied))
+            }
+        }
+        let error = read_mods_from(Denied, Path::new("catalog/mods.json")).unwrap_err();
+        assert!(error
+            .to_string()
+            .to_lowercase()
+            .contains("permission denied"));
+    }
+
+    #[test]
+    fn load_mods_reports_utf8_multiline_and_eof_byte_positions() {
+        let dir = mods_workspace(b"\xff");
+        let errors = load_mods(dir.path()).1;
+        assert!(matches!(
+            &errors[0],
+            TuiError::CatalogParse { offset: 0, .. }
+        ));
+        let entry = serde_json::to_string(&mod_entry()).unwrap();
+        let invalid = format!("[\n{entry},\n ?\n]");
+        std::fs::write(dir.path().join("catalog/mods.json"), &invalid).unwrap();
+        match &load_mods(dir.path()).1[0] {
+            TuiError::CatalogParse { offset, detail, .. } => {
+                assert_eq!(*offset, invalid.find('?').unwrap());
+                assert!(detail.contains("line 3 column 2"), "{detail}");
+            }
+            other => panic!("{other:?}"),
+        }
+        let eof = format!("[\n{entry},\n");
+        std::fs::write(dir.path().join("catalog/mods.json"), &eof).unwrap();
+        assert!(
+            matches!(&load_mods(dir.path()).1[0], TuiError::CatalogParse { offset, .. } if *offset == eof.len())
+        );
     }
 
     #[test]

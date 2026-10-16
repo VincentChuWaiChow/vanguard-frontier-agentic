@@ -1,0 +1,14 @@
+{
+  "version": "v1",
+  "hooks": [
+    {
+      "name": "blast-radius-guard:PreToolUse",
+      "description": "Asks before, or blocks, destructive shell commands and writes to system paths.",
+      "trigger": "PreToolUse",
+      "action": {
+        "type": "command",
+        "command": "node .kiro/vanguard-mods/blast-radius-guard/bin/hook.mjs --harness kiro --event PreToolUse"
+      }
+    }
+  ]
+}

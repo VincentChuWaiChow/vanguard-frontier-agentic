@@ -335,6 +335,16 @@ mod tests {
     }
 
     #[test]
+    fn classify_mods_catalog_without_a_filename_allowlist() {
+        let catalog = PathBuf::from("/tmp/catalog");
+        let changed = catalog.join("mods.json");
+        assert_eq!(
+            classify_path(&changed, &catalog, None, &[]),
+            Some(WatcherEvent::Catalog(changed))
+        );
+    }
+
+    #[test]
     fn classify_registry_path_exact() {
         let cat = PathBuf::from("/tmp/catalog");
         let reg = PathBuf::from("/home/user/.config/vfa/workspaces.toml");

@@ -1,0 +1,14 @@
+{
+  "hooks": {
+    "PreToolUse": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "node \"$CLAUDE_PROJECT_DIR/.claude/vanguard-mods/blast-radius-guard/bin/hook.mjs\" --harness claude-code --event PreToolUse"
+          }
+        ]
+      }
+    ]
+  }
+}

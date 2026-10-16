@@ -1,0 +1,188 @@
+{
+  "title": "Full mods TUI implementation",
+  "slug": "cross-harness-mods-tui",
+  "created_at": "2026-10-15",
+  "updated_at": "2026-10-15",
+  "status": "complete",
+  "mode": "delegated",
+  "baseline_ref": "4f5278f6c67308f3d69e1d45dae8dcbfffce0fea",
+  "risk_level": "high",
+  "eval_contract": {
+    "level": "full",
+    "path": "eval-contract.md",
+    "status": "checked"
+  },
+  "approval": {
+    "required": false,
+    "granted": null,
+    "notes": "User explicitly authorized implementing the approved full scope."
+  },
+  "delegation": {
+    "native_agent_available": true,
+    "native_agent_planned": true,
+    "native_agent_used": true,
+    "agent_count": 4,
+    "agent_runs": 4,
+    "wave_count": 3,
+    "no_delegation_reason": "",
+    "notes": "Original 3 native runs and one parent busy-write repair completed. User explicitly approved one additional focused synthetic-URL scanner repair; fourth/final read-only review run. No config suppression or runtime changes. User approved expanded remaining-fixture scope; parent handles it with no further native runs.",
+    "repair_runs": 3
+  },
+  "packets": [
+    {
+      "id": "01-ui",
+      "status": "complete",
+      "owner": "write-capable-agent",
+      "write_scope": [
+        "tools/vfa-tui/src/app.rs",
+        "tools/vfa-tui/src/ui/nav.rs",
+        "tools/vfa-tui/src/ui/widgets/detail.rs",
+        "tools/vfa-tui/tests/integration/tui_primary_render.rs",
+        "tools/vfa-tui/tests/integration/tui_reload.rs"
+      ],
+      "result_path": "results/01-ui.md"
+    },
+    {
+      "id": "02-p3-docs",
+      "status": "complete",
+      "owner": "write-capable-agent",
+      "write_scope": [
+        "tests/fuzz-properties.test.mjs",
+        "mods/*/README.md"
+      ],
+      "result_path": "results/02-p3-docs.md"
+    },
+    {
+      "id": "03-review",
+      "status": "complete",
+      "owner": "read-only-agent",
+      "write_scope": [],
+      "result_path": "results/03-review.md"
+    },
+    {
+      "id": "04-fixture-review",
+      "status": "complete",
+      "owner": "read-only-agent",
+      "write_scope": [],
+      "result_path": "results/04-fixture-review.md"
+    }
+  ],
+  "verification": {
+    "status": "pass",
+    "checks": [
+      {
+        "name": "Cargo baseline",
+        "command": "cargo test --offline",
+        "required": true,
+        "status": "pass",
+        "evidence": "After locked dependency fetch: 826 lib, 10 binary, 94 integration, 173 property; exit 0."
+      },
+      {
+        "name": "Targeted integration",
+        "command": "cargo test --offline --lib mod; cargo test --offline --test integration_tests mod",
+        "required": true,
+        "status": "pass",
+        "evidence": "139 lib and 7 primary App tests passed, both exit 0."
+      },
+      {
+        "name": "Rust formatting and clippy",
+        "command": "cargo fmt --check; cargo clippy --offline --all-targets -- -D warnings",
+        "required": true,
+        "status": "pass",
+        "evidence": "Both exit 0; /tmp/vfa-tui-clippy.log."
+      },
+      {
+        "name": "Production fuzz",
+        "command": "npm run test:fuzz",
+        "required": true,
+        "status": "pass",
+        "evidence": "All properties, P3 200 seeded N=1..50 plus all three adapters N=1/50 and null-prototype; exit 0."
+      },
+      {
+        "name": "Generator and mod contracts",
+        "command": "node scripts/generate-mods.mjs --check; npm run validate:mods; node --test --test-name-pattern=catalog tests/mods.test.mjs",
+        "required": true,
+        "status": "pass",
+        "evidence": "In sync; 5 valid mods; 2 finalized positive/negative footprint tests; all exit 0."
+      },
+      {
+        "name": "Independent review repair",
+        "command": "cargo test --offline --lib catalog_sidebar_preserves_",
+        "required": true,
+        "status": "pass",
+        "evidence": "RED: 2 assertion failures exit 101; GREEN after busy guard: 2 pass exit 0, pending/running apply and integrity stages, both arrows."
+      },
+      {
+        "name": "Mutation sensitivity",
+        "command": "Disposable-copy reload-adoption, App reload and reach-check mutations",
+        "required": true,
+        "status": "pass",
+        "evidence": "Three intended assertion failures, cargo exit 101 each; production source never modified."
+      },
+      {
+        "name": "Final integrated Rust",
+        "command": "cargo fmt --check; cargo clippy --offline --all-targets -- -D warnings; cargo test --offline",
+        "required": true,
+        "status": "pass",
+        "evidence": "After rejecting shared-cache contamination, cargo clean -p vfa-tui then all gates exit 0: 841 lib, 10 binary, 101 integration, 173 property; one existing ignored doctest. /tmp/vfa-tui-clean-{clippy,cargo}.log."
+      },
+      {
+        "name": "Repository validation",
+        "command": "npm run validate",
+        "required": true,
+        "status": "pass",
+        "evidence": "All validators completed; terminal exit 0, /tmp/vfa-tui-final-validate.log. Integrity refreshed last on its own."
+      },
+      {
+        "name": "Spelling and Markdown",
+        "command": "npm run lint:spell; markdownlint-cli2 **/*.md #node_modules",
+        "required": true,
+        "status": "pass",
+        "evidence": "Both exit 0; full Markdown scan 8458 files, plus 17 explicitly named hidden spec/workflow Markdown files and hidden spelling checks."
+      },
+      {
+        "name": "Publication checkpoint",
+        "command": "git ls-remote origin refs/heads/feat/cross-harness-mods; gh pr view 212",
+        "required": true,
+        "status": "pass",
+        "evidence": "Both independently returned implementation SHA 3b73f6509ef243fcd3e1f3b39e1cdf8728b18e1e; branch tracked tree clean; unrelated .kiro/kiro-agents/ untouched. PR draft/MERGEABLE, CI not certified."
+      },
+      {
+        "name": "Approved scanner fixture follow-up",
+        "command": "Exact wire-value regression, mod tests, applicable repository gates and remote scanner CI",
+        "required": true,
+        "status": "pass",
+        "evidence": "Pinned production rule RED at 304 (exit 1), then whole-file GREEN with positive/negative controls (exit 0); 63 mod tests/full validate/docs/secrets pass. Exact source SHA 9bf10878e3175673356fb4f120db4f500772f673 independently verified on remote/PR. All GitHub checks pass; scanner 116451943347 success, zero new alerts. Final metadata-only head is independently checked at handoff."
+      }
+    ]
+  },
+  "publication": {
+    "branch": "feat/cross-harness-mods",
+    "pr": 212,
+    "draft": true,
+    "base": "master",
+    "implementation_sha": "3b73f6509ef243fcd3e1f3b39e1cdf8728b18e1e",
+    "remote_sha_verified": "3b73f6509ef243fcd3e1f3b39e1cdf8728b18e1e",
+    "pr_head_verified": "3b73f6509ef243fcd3e1f3b39e1cdf8728b18e1e",
+    "notes": "Final closeout changes only task/report metadata; its exact remote head is independently checked in final handoff. No merge or readiness claim.",
+    "fixture_repair_sha": "9bf10878e3175673356fb4f120db4f500772f673",
+    "fixture_remote_sha_verified": "9bf10878e3175673356fb4f120db4f500772f673",
+    "fixture_pr_head_verified": "9bf10878e3175673356fb4f120db4f500772f673",
+    "fixture_ci": "All checks pass at source SHA; plugin-scanner check 116451943347 success with zero new alerts; gh pr checks --watch exit 0."
+  },
+  "additional_repair": {
+    "authorization": "Explicit user reply: Finish fixture repairs (Recommended)",
+    "scope": "User-approved remaining synthetic-credential fixture construction in tests/mods.test.mjs; preserve exact values/coverage, no scanner-policy or runtime changes",
+    "started_at": "2026-10-15T12:40:36.523607+00:00",
+    "reassess_at": "2026-10-15T13:05:36.523607+00:00",
+    "max_additional_repairs": 1,
+    "status": "complete",
+    "repair_sha": "e50af843251319f9a6cd4ce0bed6b7ed3ad72ae1",
+    "expanded_started_epoch": 1792070435,
+    "expanded_reassess_epoch": 1792072235,
+    "pinned_scanner_version": "3.42.0",
+    "pinned_scanner_sha256": "e0bbed6f5010689ca391c98767d52d45a5efacabcdc51f754ea632b603591391",
+    "rule_evidence": "Actual production rule RED at line 304 (exit 1); full file zero retained matches after fixture assembly change (exit 0), with detection-positive and runtime-reference-negative controls still passing.",
+    "expanded_repair_sha": "9bf10878e3175673356fb4f120db4f500772f673"
+  }
+}

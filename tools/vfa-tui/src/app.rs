@@ -388,6 +388,25 @@ impl App {
             return;
         }
 
+        // Sidebar navigation must remain reachable even on builder sections.
+        // Do not bypass an output view's busy-write and quit guards.
+        if self.nav.current_tab == crate::ui::nav::Tab::CatalogBrowser
+            && matches!(key.code, KeyCode::Left | KeyCode::Right)
+            && !self.subprocess_busy()
+        {
+            let count = SIDEBAR_SECTIONS.len();
+            let next = if key.code == KeyCode::Left {
+                (self.nav.sidebar_index + count - 1) % count
+            } else {
+                (self.nav.sidebar_index + 1) % count
+            };
+            self.nav.set_sidebar_index(next);
+            self.clamp_mod_selection();
+            self.update_filtered();
+            self.mark_dirty();
+            return;
+        }
+
         // Export views have their own key handling
         match &self.nav.current_view {
             View::ExportBuilder => {
@@ -441,12 +460,17 @@ impl App {
             KeyCode::Char('h') if self.nav.current_view == View::AgentList => {
                 self.cycle_harness_filter();
             }
-            KeyCode::Char('m') => {
+            KeyCode::Char('m')
+                if !matches!(self.nav.current_view, View::ModList | View::ModDetail(_)) =>
+            {
                 self.open_model_policy_builder();
             }
             KeyCode::Esc => {
                 // Clear filters first, then pop view
-                if self.provider_filter.is_some() || self.harness_filter.is_some() {
+                if matches!(self.nav.current_view, View::ModDetail(_)) {
+                    self.nav.pop_view();
+                    self.clamp_mod_selection();
+                } else if self.provider_filter.is_some() || self.harness_filter.is_some() {
                     self.provider_filter = None;
                     self.harness_filter = None;
                     self.update_filtered();
@@ -467,7 +491,10 @@ impl App {
             }
             KeyCode::Char('j') | KeyCode::Down => self.handle_down(),
             KeyCode::Char('k') | KeyCode::Up => self.handle_up(),
-            KeyCode::Char('g') => self.nav.select_first(),
+            KeyCode::Char('g') => {
+                self.nav.select_first();
+                self.clamp_mod_selection();
+            }
             KeyCode::Char('G') => {
                 let max = self.current_list_len();
                 self.nav.select_last(max);
@@ -1258,6 +1285,7 @@ impl App {
             | View::McpDetail(_)
             | View::RuleDetail(_)
             | View::WorkflowDetail(_)
+            | View::ModDetail(_)
             | View::IntegrityDetail(_)
             | View::RoleDetail(_) => {
                 self.nav.detail_scroll = self.nav.detail_scroll.saturating_add(1);
@@ -1276,6 +1304,7 @@ impl App {
             | View::McpDetail(_)
             | View::RuleDetail(_)
             | View::WorkflowDetail(_)
+            | View::ModDetail(_)
             | View::IntegrityDetail(_)
             | View::RoleDetail(_) => {
                 self.nav.detail_scroll = self.nav.detail_scroll.saturating_sub(1);
@@ -1319,6 +1348,11 @@ impl App {
             View::RuleList => {
                 if let Some(rule) = self.catalog.rules.get(idx) {
                     self.nav.push_view(View::RuleDetail(rule.id.clone()));
+                }
+            }
+            View::ModList => {
+                if let Some(entry) = self.catalog.mods.get(idx) {
+                    self.nav.push_view(View::ModDetail(entry.id.clone()));
                 }
             }
             View::WorkflowList => {
@@ -1509,6 +1543,8 @@ impl App {
                         | View::McpList
                         | View::RuleList
                         | View::WorkflowList
+                        | View::ModList
+                        | View::ModDetail(_)
                         | View::RoleList
                         | View::ProviderList
                         | View::IntegrityOverview
@@ -1526,13 +1562,32 @@ impl App {
     /// Best-effort: catalog load errors are surfaced via the status message but
     /// never panic, so a malformed edit keeps the previous render usable.
     pub fn reload_catalog(&mut self) {
-        self.catalog = CatalogStore::load(&self.workspace_root);
+        let mut next = CatalogStore::load(&self.workspace_root);
+        let mods_path = self.catalog.catalog_root.join("catalog/mods.json");
+        let mods_changed =
+            next.content_hashes.get(&mods_path) != self.catalog.content_hashes.get(&mods_path);
+        let retained_mods = !next.content_hashes.contains_key(&mods_path)
+            && self.catalog.content_hashes.contains_key(&mods_path);
+        if retained_mods {
+            next.mods = std::mem::take(&mut self.catalog.mods);
+            if let Some(hash) = self.catalog.content_hashes.get(&mods_path) {
+                next.content_hashes.insert(mods_path, hash.clone());
+            }
+        }
+        self.catalog = next;
+        if mods_changed && !retained_mods && matches!(self.nav.current_view, View::ModDetail(_)) {
+            self.nav.detail_scroll = 0;
+        }
+        self.clamp_mod_selection();
         self.update_filtered();
         // The builder caches its pickers; a reload that changes (or removes)
         // catalog/model-registry.json must rebuild them, or the view would go
         // on offering values the freshly loaded registry no longer verifies.
         self.refresh_model_policy_choices();
-        let msg = if self.catalog.load_errors.is_empty() {
+        let msg = if retained_mods {
+            "mods reload failed; retained previous snapshot (catalog missing or invalid)"
+                .to_string()
+        } else if self.catalog.load_errors.is_empty() {
             "Catalog reloaded".to_string()
         } else {
             format!(
@@ -1553,12 +1608,34 @@ impl App {
         path: &std::path::Path,
     ) -> crate::catalog::store::ReloadOutcome {
         let outcome = self.catalog.reload_file(path);
+        if matches!(&outcome, crate::catalog::store::ReloadOutcome::Reloaded { catalog } if catalog == "mods")
+            && matches!(self.nav.current_view, View::ModDetail(_))
+        {
+            self.nav.detail_scroll = 0;
+        }
+        if let crate::catalog::store::ReloadOutcome::RetainedPrevious { error } = &outcome {
+            self.status_message = Some((error.clone(), Instant::now()));
+        }
+        self.clamp_mod_selection();
         self.update_filtered();
         // Same reason as reload_catalog: keep the cached pickers in step with
         // whatever the store now holds.
         self.refresh_model_policy_choices();
         self.mark_dirty();
         outcome
+    }
+
+    /// Keep the Mods list selection valid after navigation or catalog adoption.
+    fn clamp_mod_selection(&mut self) {
+        if matches!(self.nav.current_view, View::ModList | View::ModDetail(_)) {
+            let count = self.catalog.mod_count();
+            let selected = if count == 0 {
+                None
+            } else {
+                Some(self.nav.selected_index().min(count - 1))
+            };
+            self.nav.list_state.select(selected);
+        }
     }
 
     /// Tick: clear expired status messages, drain subprocess output with sanitization,
@@ -2041,6 +2118,28 @@ impl App {
             View::McpDetail(ref id) => self.render_mcp_detail_view(id, content_area, frame, theme),
             View::RuleList => self.render_rule_list(content_area, frame, theme),
             View::WorkflowList => self.render_workflow_list(content_area, frame, theme),
+            View::ModList => self.render_mod_list(content_area, frame, theme),
+            View::ModDetail(ref id) => {
+                if let Some(entry) = self.catalog.mod_by_id(id) {
+                    detail::render_mod_detail(
+                        entry,
+                        content_area,
+                        frame,
+                        self.nav.detail_scroll,
+                        theme,
+                    );
+                } else {
+                    frame.render_widget(
+                        ratatui::widgets::Paragraph::new("Mod no longer present — Esc: Back")
+                            .block(
+                                ratatui::widgets::Block::default()
+                                    .borders(ratatui::widgets::Borders::ALL)
+                                    .title("Mod"),
+                            ),
+                        content_area,
+                    );
+                }
+            }
             View::WorkflowDetail(ref id) => {
                 self.render_workflow_detail_view(id, content_area, frame, theme)
             }
@@ -2069,7 +2168,9 @@ impl App {
             }
         }
 
-        if self.search_active || !self.search_query.is_empty() {
+        if !matches!(self.nav.current_view, View::ModList | View::ModDetail(_))
+            && (self.search_active || !self.search_query.is_empty())
+        {
             let search_area = ratatui::layout::Rect {
                 x: content_area.x,
                 y: content_area.y,
@@ -2080,6 +2181,35 @@ impl App {
                 &self.search_query,
                 self.search_active,
                 search_area,
+                frame,
+                theme,
+            );
+        }
+    }
+
+    fn render_mod_list(&mut self, area: ratatui::layout::Rect, frame: &mut Frame, theme: &Theme) {
+        self.clamp_mod_selection();
+        let items: Vec<String> = self
+            .catalog
+            .mods
+            .iter()
+            .map(|entry| format!("{} - {} [L{}]", entry.id, entry.name, entry.reach_level))
+            .collect();
+        if items.is_empty() {
+            frame.render_widget(
+                ratatui::widgets::Paragraph::new("No mods").block(
+                    ratatui::widgets::Block::default()
+                        .borders(ratatui::widgets::Borders::ALL)
+                        .title("Mods"),
+                ),
+                area,
+            );
+        } else {
+            list_view::render_list_view(
+                &items,
+                &mut self.nav.list_state,
+                "Mods",
+                area,
                 frame,
                 theme,
             );
@@ -3121,6 +3251,7 @@ impl App {
             Line::from("  Esc           Back / clear filters"),
             Line::from("  Tab           Next section"),
             Line::from("  Shift+Tab     Previous section"),
+            Line::from("  Left/Right    Previous/next Catalog section"),
             Line::from(""),
             Line::from(Span::styled(
                 "Search & Filter",
@@ -3199,6 +3330,7 @@ impl App {
             View::McpList => self.catalog.mcp_refs.len(),
             View::RuleList => self.catalog.rules.len(),
             View::WorkflowList => self.workflows().len(),
+            View::ModList => self.catalog.mod_count(),
             View::ValidationList => self.validation_gates.len() + 1, // +1 for "Run All"
             View::ProviderAgents(p) => self.catalog.agents_by_provider(p).len(),
             View::IntegrityOverview => self
@@ -3221,6 +3353,7 @@ impl App {
             View::McpList => (self.catalog.mcp_refs.len(), self.catalog.mcp_refs.len()),
             View::RuleList => (self.catalog.rules.len(), self.catalog.rules.len()),
             View::WorkflowList => (self.workflows().len(), self.workflows().len()),
+            View::ModList => (self.catalog.mod_count(), self.catalog.mod_count()),
             _ => (0, 0),
         }
     }
@@ -3492,6 +3625,7 @@ mod tests {
             role_catalog_description: String::new(),
             mcp_refs: Vec::new(),
             rules: Vec::new(),
+            mods: Vec::new(),
             integrity: None,
             model_assignments: None,
             model_registry: None,
@@ -3918,6 +4052,58 @@ mod tests {
         assert!(!app.should_quit);
         assert!(app.pending_subprocess.is_some());
         assert!(app.model_policy_stage.is_some());
+    }
+
+    #[test]
+    fn catalog_sidebar_preserves_pending_model_policy_write_guard() {
+        for stage in [ModelPolicyStage::Apply, ModelPolicyStage::IntegrityRefresh] {
+            for arrow in [KeyCode::Left, KeyCode::Right] {
+                let mut app = make_app();
+                app.nav.current_tab = crate::ui::nav::Tab::CatalogBrowser;
+                app.nav.push_view(View::ModelPolicyOutput);
+                let (_tx, rx) = tokio::sync::oneshot::channel();
+                app.pending_subprocess = Some(rx);
+                app.model_policy_stage = Some(stage);
+                app.handle_key_event(key_event(arrow));
+                assert_eq!(app.nav.current_view, View::ModelPolicyOutput);
+                app.handle_key_event(key_event(KeyCode::Char('q')));
+                assert!(!app.should_quit);
+                assert!(app.pending_subprocess.is_some());
+            }
+        }
+    }
+
+    #[cfg(unix)]
+    #[tokio::test]
+    async fn catalog_sidebar_preserves_running_model_policy_write_guard() {
+        for stage in [ModelPolicyStage::Apply, ModelPolicyStage::IntegrityRefresh] {
+            for arrow in [KeyCode::Left, KeyCode::Right] {
+                let mut app = make_app();
+                app.nav.current_tab = crate::ui::nav::Tab::CatalogBrowser;
+                app.nav.push_view(View::ModelPolicyOutput);
+                app.model_policy_stage = Some(stage);
+                app.subprocess_handle = Some(
+                    SubprocessExecutor::spawn(
+                        "sleep",
+                        &["30".to_string()],
+                        &app.workspace_root,
+                        Duration::from_secs(60),
+                    )
+                    .await
+                    .unwrap(),
+                );
+                app.handle_key_event(key_event(arrow));
+                assert_eq!(app.nav.current_view, View::ModelPolicyOutput);
+                app.handle_key_event(key_event(KeyCode::Char('q')));
+                assert!(!app.should_quit);
+                app.subprocess_handle
+                    .take()
+                    .unwrap()
+                    .cancel()
+                    .await
+                    .unwrap();
+            }
+        }
     }
 
     #[test]

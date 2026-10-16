@@ -66,4 +66,4 @@ The grader provides three structural guarantees:
 
 - <!-- count:global:maestros -->35<!-- /count --> maestros covered, one routing fixture directory each
 - <!-- count:global:scenarios -->840<!-- /count --> scenarios validated
-- enforced by `validate:maestro-routing`, one of the <!-- count:global:gates -->29<!-- /count --> `npm run validate` gates
+- enforced by `validate:maestro-routing`, one of the <!-- count:global:gates -->30<!-- /count --> `npm run validate` gates

@@ -1,0 +1,24 @@
+{
+  "hooks": {
+    "PostToolUse": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "node .codex/vanguard-mods/context-burn/bin/hook.mjs --harness codex --event PostToolUse"
+          }
+        ]
+      }
+    ],
+    "SessionStart": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "node .codex/vanguard-mods/context-burn/bin/hook.mjs --harness codex --event SessionStart"
+          }
+        ]
+      }
+    ]
+  }
+}

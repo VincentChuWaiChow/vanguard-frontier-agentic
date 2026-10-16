@@ -1,0 +1,14 @@
+{
+  "hooks": {
+    "PreToolUse": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "node .codex/vanguard-mods/secret-redactor/bin/hook.mjs --harness codex --event PreToolUse"
+          }
+        ]
+      }
+    ]
+  }
+}

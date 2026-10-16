@@ -170,6 +170,7 @@ proptest! {
                 role_catalog_description: "test".to_string(),
                 mcp_refs: Vec::new(),
                 rules: Vec::new(),
+                mods: Vec::new(),
                 integrity: None,
                 model_assignments: None,
                 model_registry: None,

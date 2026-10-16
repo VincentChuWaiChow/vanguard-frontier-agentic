@@ -1,0 +1,34 @@
+[mod]
+id = "live-guard-gate"
+name = "Live Guard Gate"
+description = "Asks before live cloud mutations and names the guard agent that should review them."
+version = "1.0.0"
+reach_level = 0
+events = ["PreToolUse"]
+
+[footprint]
+env_reads = []
+file_writes = []
+spawns = []
+egress_hosts = []
+
+[harnesses.claude-code]
+supported = true
+surfaces = ["native", "classic"]
+events = ["PreToolUse"]
+
+[harnesses.kiro]
+supported = true
+requires = ["node"]
+events = ["PreToolUse"]
+
+[harnesses.kiro.degraded]
+PreToolUse = "Kiro documents no confirmation protocol or stdin field names; the whole payload is scanned and a hit is denied."
+
+[harnesses.codex]
+supported = true
+requires = ["node"]
+events = ["PreToolUse"]
+
+[harnesses.codex.degraded]
+PreToolUse = "Codex rejects ask; a hit is denied with a reason."

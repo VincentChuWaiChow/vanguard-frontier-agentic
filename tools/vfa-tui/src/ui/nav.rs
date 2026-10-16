@@ -113,6 +113,8 @@ pub enum View {
     RuleDetail(String),
     WorkflowList,
     WorkflowDetail(String),
+    ModList,
+    ModDetail(String),
     ValidationList,
     ValidationOutput(String),
     ExportBuilder,
@@ -146,6 +148,7 @@ pub const SIDEBAR_SECTIONS: &[SidebarEntry] = &[
     // app tests address sidebar sections by hardcoded index; inserting mid-list
     // silently repoints every one of those numbers at a different section.
     ("Workflows", || View::WorkflowList),
+    ("Mods", || View::ModList),
 ];
 
 // ── Keybinding action enum ───────────────────────────────────────────────────
@@ -563,7 +566,7 @@ mod tests {
 
     #[test]
     fn sidebar_sections_count() {
-        assert_eq!(SIDEBAR_SECTIONS.len(), 11);
+        assert_eq!(SIDEBAR_SECTIONS.len(), 12);
     }
 
     #[test]
@@ -580,6 +583,7 @@ mod tests {
             View::ModelPolicyBuilder,
             View::IntegrityOverview,
             View::WorkflowList,
+            View::ModList,
         ];
         for (i, expected) in expected_views.iter().enumerate() {
             let view_fn = SIDEBAR_SECTIONS[i].1;

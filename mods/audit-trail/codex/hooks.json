@@ -1,0 +1,14 @@
+{
+  "hooks": {
+    "PostToolUse": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "node .codex/vanguard-mods/audit-trail/bin/hook.mjs --harness codex --event PostToolUse"
+          }
+        ]
+      }
+    ]
+  }
+}

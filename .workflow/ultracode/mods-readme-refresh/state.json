@@ -1,0 +1,90 @@
+{
+  "title": "Mods README refresh",
+  "slug": "mods-readme-refresh",
+  "created_at": "2026-10-16T12:32:34.900Z",
+  "updated_at": "2026-10-16T12:46:30.299191+00:00",
+  "status": "complete",
+  "mode": "delegated",
+  "baseline_ref": "e0759ae02bd132957d954691a0a83d3f5d0b22d6",
+  "risk_level": "low",
+  "eval_contract": {
+    "level": "inline",
+    "path": "plan.md",
+    "status": "checked"
+  },
+  "approval": {
+    "required": true,
+    "granted": true,
+    "notes": "User approved commit and push to PR 212 in the current task."
+  },
+  "delegation": {
+    "native_agent_available": true,
+    "native_agent_planned": true,
+    "native_agent_used": true,
+    "agent_count": 1,
+    "wave_count": 1,
+    "no_delegation_reason": "",
+    "notes": "One bounded read-only packet; parent owns writing and verification."
+  },
+  "packets": [
+    {
+      "id": "01-fact-check",
+      "status": "complete",
+      "owner": "read-only-agent",
+      "write_scope": [],
+      "result_path": "results/01-fact-check.md"
+    }
+  ],
+  "verification": {
+    "status": "pass",
+    "checks": [
+      {
+        "name": "README semantics, command parity and local links",
+        "command": "parent source checklist and Python structural probe",
+        "required": true,
+        "status": "pass",
+        "evidence": "Seven unchanged command blocks, Bash syntax, anchors, local/package image links and 19.1 percent fewer words."
+      },
+      {
+        "name": "targeted Markdown/spelling",
+        "command": "cached markdownlint-cli2 and codespell on README/workflow",
+        "required": true,
+        "status": "pass",
+        "evidence": "Draft lint exited 0; final metadata receipt is checked separately before its commit."
+      },
+      {
+        "name": "full validation",
+        "command": "npm run validate",
+        "required": true,
+        "status": "pass",
+        "evidence": "npm run validate exited 0; /tmp/vfa-mods-readme-validate.log. Mods contracts and production tests passed."
+      },
+      {
+        "name": "repository spelling and Markdown",
+        "command": "npm run lint:spell; cached markdownlint-cli2 with explicit workflow glob",
+        "required": true,
+        "status": "pass",
+        "evidence": "All exit 0; Markdown lint scanned 8466 files with zero issues; explicit workflow spelling passed."
+      },
+      {
+        "name": "settled integrity and generator sync",
+        "command": "node scripts/generate-mods.mjs --check; npm run asset-integrity:write; npm run validate",
+        "required": true,
+        "status": "pass",
+        "evidence": "Generator in sync; only mods/README.md hash and containing aggregates changed."
+      },
+      {
+        "name": "source publication",
+        "command": "git push origin feat/cross-harness-mods; git ls-remote origin refs/heads/feat/cross-harness-mods",
+        "required": true,
+        "status": "pass",
+        "evidence": "Source commit c96baa5c7f7bfff7d0612725b1b7089aed93cef3 pushed and exact remote SHA independently verified."
+      }
+    ]
+  },
+  "publication": {
+    "source_commit": "c96baa5c7f7bfff7d0612725b1b7089aed93cef3",
+    "source_remote_verified": true,
+    "receipt_note": "This workflow-only commit records already verified source publication. Parent final handoff verifies the final branch tip separately."
+  }
+}

@@ -1,0 +1,43 @@
+[mod]
+id = "secret-redactor"
+name = "Secret Redactor"
+description = "Asks before tool calls whose input carries a credential and redacts credentials from tool output."
+version = "1.0.0"
+reach_level = 0
+events = ["PreToolUse", "PostToolUse"]
+
+[footprint]
+env_reads = ["VANGUARD_SECRET_REDACTOR_PATTERNS"]
+file_writes = []
+spawns = []
+egress_hosts = []
+
+[harnesses.claude-code]
+supported = true
+surfaces = ["native", "classic"]
+events = ["PreToolUse", "PostToolUse"]
+
+[harnesses.claude-code.degraded]
+classic = "Classic PostToolUse fires only after a tool succeeds, so output from a failed tool is not redacted."
+
+[harnesses.kiro]
+supported = true
+requires = ["node"]
+events = ["PreToolUse"]
+
+[harnesses.kiro.unsupported]
+PostToolUse = "Kiro documents no way for a hook to replace tool output, so output cannot be redacted."
+
+[harnesses.kiro.degraded]
+PreToolUse = "Kiro documents no confirmation protocol or stdin field names; the whole payload is scanned and a hit is denied."
+
+[harnesses.codex]
+supported = true
+requires = ["node"]
+events = ["PreToolUse"]
+
+[harnesses.codex.unsupported]
+PostToolUse = "Codex PostToolUse cannot replace tool output, so output cannot be redacted."
+
+[harnesses.codex.degraded]
+PreToolUse = "Codex rejects ask; a hit is denied with a reason."

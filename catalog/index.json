@@ -1,12 +1,13 @@
 {
   "name": "vanguard-frontier-agentic",
-  "summary": "Curated cross-harness marketplace for cloud-focused agent skills, agents, rules, MCP references, and delegation workflows.",
+  "summary": "Curated cross-harness marketplace for cloud-focused agent skills, agents, rules, MCP references, delegation workflows, and mods.",
   "last_updated": "2026-05-09",
   "catalogs": {
     "skills": "catalog/skills.json",
     "agents": "catalog/agents.json",
     "rules": "catalog/rules.json",
     "mcp_references": "catalog/mcp-references.json",
-    "workflows": "catalog/workflows.json"
+    "workflows": "catalog/workflows.json",
+    "mods": "catalog/mods.json"
   }
 }

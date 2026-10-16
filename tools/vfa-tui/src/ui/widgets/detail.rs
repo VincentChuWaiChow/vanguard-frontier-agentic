@@ -5,7 +5,7 @@ use ratatui::{
     Frame,
 };
 
-use crate::models::{Agent, McpReference, Rule, Skill, Workflow};
+use crate::models::{Agent, McpReference, Mod, Rule, Skill, Workflow};
 
 use super::super::theme::Theme;
 
@@ -433,3 +433,54 @@ pub const AGENT_DETAIL_REQUIRED_LABELS: &[&str] = &[
     "Harness Variants",
     "Roles",
 ];
+
+/// Display catalog disclosure only; never inspect paths or invoke a mod.
+pub fn render_mod_detail(entry: &Mod, area: Rect, frame: &mut Frame, scroll: u16, theme: &Theme) {
+    let mut lines = vec![
+        detail_line("ID", &entry.id, theme),
+        detail_line("Name", &entry.name, theme),
+        detail_line("Version", &entry.version, theme),
+        detail_line("Description", &entry.description, theme),
+        detail_line("Reach Level", &format!("L{}", entry.reach_level), theme),
+        detail_line("Events", &entry.events.join(", "), theme),
+        detail_line("Harnesses", &entry.harnesses.join(", "), theme),
+        detail_line("Path", &entry.path, theme),
+        detail_line(
+            "Security Notes",
+            &format_option(&entry.security_notes),
+            theme,
+        ),
+    ];
+    if let Some(footprint) = &entry.footprint {
+        lines.push(detail_line("Declared footprint", "", theme));
+        for (label, values) in [
+            ("env_reads", &footprint.env_reads),
+            ("file_writes", &footprint.file_writes),
+            ("spawns", &footprint.spawns),
+            ("egress_hosts", &footprint.egress_hosts),
+        ] {
+            let value = if values.is_empty() {
+                "none declared".to_string()
+            } else {
+                values.join(", ")
+            };
+            lines.push(detail_line(label, &value, theme));
+        }
+    } else {
+        lines.push(detail_line("Declared footprint", "not recorded", theme));
+    }
+    lines.push(Line::from("Disclosure only; not enforced containment."));
+    lines.push(Line::from(
+        "Declared metadata is not live harness verification.",
+    ));
+    let paragraph = Paragraph::new(lines)
+        .block(
+            Block::default()
+                .borders(Borders::ALL)
+                .title(format!("{} — Esc: Back", entry.name))
+                .border_style(theme.border_style()),
+        )
+        .wrap(Wrap { trim: false })
+        .scroll((scroll, 0));
+    frame.render_widget(paragraph, area);
+}
