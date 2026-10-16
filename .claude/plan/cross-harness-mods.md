@@ -76,7 +76,8 @@ These are recorded in `.kiro/specs/cross-harness-mods/deviations.md`. In `tasks.
 | 11.8 | unanchored `/(etc\|usr\|…)/` | anchored at the path start, after POSIX normalization of `.` and `..` | the unanchored form matches `/home/me/usr/notes` |
 | 12.2 | `live-agents.json` | `lib/live-agents.mjs` with `covered` and `uncovered` | the native runtime refuses JSON imports |
 | 12.3 | `live-patterns.json` | `patterns.json`, like the other pattern mods | one file name per role |
-| 13.3 | default `.kiro/context-burn-status.json` | `.claude/`, `.kiro/` or `.codex/context-burn-status.json` per harness | a Kiro path is wrong on the other two harnesses |
+| 13.3 | default `.kiro/context-burn-status.json` | `.claude/context-burn-status/<session-hash>.json`, equivalently `.kiro/` or `.codex/`; full lowercase SHA-256 of the UTF-8 session ID | per-session defaults avoid cross-session resets; raw IDs never enter paths |
+| 8.6 / catalog ID policy | uniqueness against agents, skills and rules only | also check MCP entity IDs and top-level workflow entity IDs, not nested IDs or references | the broader catalog policy covers entity declarations, not every JSON `id` |
 | 13.4 | `console.warn` plus an in-memory accumulator | a toast plus `$.session.usage().context` | the engine reports real context use; an accumulator guesses |
 | 13.5 | `max_tokens` option | dropped: the window comes from `$.session.usage()` | a configured window can only disagree with the real one |
 | 14.4 | `.audit/vanguard-audit-<YYYY-MM-DD>.jsonl`, `VANGUARD_AUDIT_LOG_PATH` | `<dir>/<YYYY-MM-DD>/<session>.jsonl`, `VANGUARD_AUDIT_TRAIL_LOG_DIR` | one file per session keeps sequence numbers per session; 15.3 env naming |
@@ -233,13 +234,13 @@ Redactor details:
 
 context-burn details:
 
-- **Status file:** default `.claude/`, `.kiro/` or `.codex/context-burn-status.json` by harness; `VANGUARD_CONTEXT_BURN_STATUS_PATH` overrides it. The whole file is rewritten on each event.
+- **Status file:** default `.claude/context-burn-status/<session-hash>.json`, equivalently `.kiro/` or `.codex/`, where the filename is the full lowercase SHA-256 of the UTF-8 `session_id`, never the raw ID. Declared footprints are `context-burn-status/*.json` under each harness directory. The whole file is rewritten on each event. Missing or empty Node session IDs share the hashed `unsessioned` fallback, so isolation requires session identity. `VANGUARD_CONTEXT_BURN_STATUS_PATH` is an exact override; sharing it across sessions opts out of default isolation. No automatic old-single-file migration or cleanup.
 - **Fields:** `session_id`, `tool_call_count`, `last_updated` (ISO 8601), `threshold_events` (an array of `{ threshold, tokens, window, at }`, empty where no token data exists).
 - **Messages** (native only, once per threshold per session):
   - `[context-burn] WARNING: 70% context used (<tokens> / <window> tokens)`
   - `[context-burn] CRITICAL: 90% context used (<tokens> / <window> tokens)`
   - `tokens` is `context.tokens`, else `percent` × `window` / 100, rounded. With neither, no threshold is evaluated.
-- **Node counter:** `SessionStart` resets the count for its session; `PostToolUse` increments it. An unreadable or unparsable status file starts a fresh count and says so on stderr. Ponytail: parallel hooks can lose an increment (read-modify-write, no lock); add the audit-trail lock if exact counts matter.
+- **Node counter:** `SessionStart` resets the count for its session; `PostToolUse` increments it. An unreadable or invalid status file, including malformed threshold event objects or fields, starts a fresh count and says so on stderr. Same-session parallel updates can lose increments (read-modify-write, no lock); this change adds no locking.
 
 Write paths (both observers):
 
@@ -367,7 +368,7 @@ Each mod sets `onError` as follows:
     - The shared `lib/common.mjs` and `lib/runtime.mjs` must contain no write APIs at all.
   - Env scan, using the rules above.
   - `catalog/mods.json` matches.
-  - Mod ids are unique against the agents, skills and rules catalogs.
+  - Mod ids are unique against entity IDs in the agents, skills, rules and MCP catalogs and top-level workflow entity IDs, not nested IDs or references.
   - No two mods have overlapping `file_writes`.
   - Patterns compile under Python `re.ASCII`.
   - P1 (redaction completeness) and P2 (guard blocking) run in `tests/mods.test.mjs` against the production exports, through the test run below, not as a Python mirror.

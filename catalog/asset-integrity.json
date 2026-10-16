@@ -35352,12 +35352,12 @@
     },
     {
       "tree": "mods",
-      "aggregate_sha256": "d4312c539dd77db1a1e48277f9c3474f7a3edaa595abb6432f66bcc29087f3fa",
+      "aggregate_sha256": "b7861d3d603b0ea311c4fe33c09982fbe86133a8ccae88fab0a175b04659cf71",
       "files": [
         {
           "path": "mods/README.md",
-          "sha256": "e3234d5585fe0b325fc0984d25e5d3bdda54741e8b91582ea0dc213c02727e1a",
-          "bytes": 10150
+          "sha256": "21cdd01cabf3d4e4365f6ceff3a6d5b25020ac4dc3bd9438058522e00f8ab4d2",
+          "bytes": 10745
         },
         {
           "path": "mods/audit-trail/README.md",
@@ -35506,13 +35506,13 @@
         },
         {
           "path": "mods/context-burn/README.md",
-          "sha256": "667c040af8e95782d80b7d823585bac79791618a22453239281e5315db2ff177",
-          "bytes": 2615
+          "sha256": "8cb10099fb5a0d6e85f0c1e7dfd256764cc25e42dcbc85d98d18df3a76c9d056",
+          "bytes": 3102
         },
         {
           "path": "mods/context-burn/bin/hook.mjs",
-          "sha256": "0fa78f49e65a7fb8895c68b6823a3eb0a3edca89ecdca2b3b6c8fdc7c50f40c5",
-          "bytes": 1566
+          "sha256": "74c44aa06da7f0d2dedbf46c1c295c8539de81aa0f0f7e2c12ce3bb6f071334e",
+          "bytes": 1706
         },
         {
           "path": "mods/context-burn/claude-code/UNSUPPORTED.md",
@@ -35541,13 +35541,13 @@
         },
         {
           "path": "mods/context-burn/hooks/register.test.ts",
-          "sha256": "748c5fefc822d3568f330013fd4444e3eb518dd046388eff487e37824c508882",
-          "bytes": 4652
+          "sha256": "07c5de2be3ca37189ee0f4b4b92d3c9455088d913157f1424f1e8768501001b3",
+          "bytes": 6270
         },
         {
           "path": "mods/context-burn/hooks/register.ts",
-          "sha256": "8aa642970c392a2d413377c0896db9a31401c0be1767b0716885c48c0b11cf60",
-          "bytes": 1349
+          "sha256": "74fa4dceff3628a5dc87028ec3bfadca282cc963bae698f6a1171d9f1f55d8df",
+          "bytes": 1467
         },
         {
           "path": "mods/context-burn/kiro/UNSUPPORTED.md",
@@ -35571,8 +35571,8 @@
         },
         {
           "path": "mods/context-burn/lib/core.mjs",
-          "sha256": "bd34bba8a854d4b45a7fcd8e2ecd0eb70a10437367ee18e5ec27a0debf0a7a40",
-          "bytes": 2488
+          "sha256": "734a1afd2c620be821db0104f49bc91e43c37682ac4235f558fb867b477d1429",
+          "bytes": 2979
         },
         {
           "path": "mods/context-burn/lib/runtime.mjs",
@@ -35581,8 +35581,8 @@
         },
         {
           "path": "mods/context-burn/mod.toml",
-          "sha256": "3269bd7a23925f731b707a9d0867286e26cc838e49b9e5507df27afcfa0749ad",
-          "bytes": 1320
+          "sha256": "f3b23d811587bbe499b6276073c8796ca7ff9379f9fdf3bf24b5d818b2018d8c",
+          "bytes": 1326
         },
         {
           "path": "mods/live-guard-gate/.claude-plugin/plugin.json",
@@ -35844,12 +35844,12 @@
     },
     {
       "tree": "catalog",
-      "aggregate_sha256": "a25c3fca46d817d029d958ec33e3874c90dbd0d145518f4098706b1d86c80483",
+      "aggregate_sha256": "c0991f1154c988fea3bebd56fcac8a4afd06fa5d5423f3b6d8a8e1bee5405769",
       "files": [
         {
           "path": "catalog/AGENTS.md",
-          "sha256": "fc5e34ed01ae5dd19b9ca3890872496a3c213894742f3d9433b9cae330e330e0",
-          "bytes": 763
+          "sha256": "fea971506336e13034f64a876cd8a6d5829eb5527a1011f7edd7a982ac923c15",
+          "bytes": 936
         },
         {
           "path": "catalog/agents.json",
@@ -35858,8 +35858,8 @@
         },
         {
           "path": "catalog/index.json",
-          "sha256": "e79d6b75833b43c28aedaeafd5e3866804f112a8915d3f0ed6c99bed69580f69",
-          "bytes": 471
+          "sha256": "337fff65d4d8662b8c091eea6b05cf718af2175c59433bb1ad536683180e586d",
+          "bytes": 477
         },
         {
           "path": "catalog/install-roles.json",
@@ -35888,8 +35888,8 @@
         },
         {
           "path": "catalog/mods.json",
-          "sha256": "f4e2c0695f642927a7c20f0f6aa9ba84b3feeab0ebbb434b9c2aa19e914ee599",
-          "bytes": 3044
+          "sha256": "d882becb544e4911c825562e0069a577cf301534f93d825b589fda60db8e2626",
+          "bytes": 3050
         },
         {
           "path": "catalog/rules.json",
@@ -37137,7 +37137,7 @@
     },
     {
       "tree": "tests",
-      "aggregate_sha256": "ca9adff0e70d52b5c2ae97817b662e14a180c699362702d3e5bcc2201e08e63e",
+      "aggregate_sha256": "3a329e7bf9ac9147e6e7c9a693741f67c32024dac6025540541a149936e5dafa",
       "files": [
         {
           "path": "tests/AGENTS.md",
@@ -47481,8 +47481,8 @@
         },
         {
           "path": "tests/mods.test.mjs",
-          "sha256": "aae08c8ed77ebecafea489e7156ee5933e9fedcd392bbae60f1239a4e5fac6be",
-          "bytes": 42414
+          "sha256": "446ee60e7e301ba193e687aa967ff284ac30628b6f0a2630e11b65f1b3deea03",
+          "bytes": 47587
         },
         {
           "path": "tests/test-codex-plugin-marketplace-install.test.mjs",
@@ -47586,8 +47586,8 @@
         },
         {
           "path": "tests/validate-mods.py",
-          "sha256": "a962da6ccbac341546902839c912e2eb25edd024b2f0804cc8777759b9b71432",
-          "bytes": 34181
+          "sha256": "1c251e9532c2ab0c0967d62bd81f3323262b9cee07635bf7b12eee6d1ecfe8bf",
+          "bytes": 34451
         },
         {
           "path": "tests/validate-multi-harness-marketplace.py",
@@ -47699,5 +47699,5 @@
       "bytes": 9135
     }
   ],
-  "aggregate_sha256": "949a41c423c26f6226e67775f5dbdee5bd8558a85aae5c8bca3f40067c870e64"
+  "aggregate_sha256": "3973b52b5da64160d00c09a785b08c61a7dffb69a38abb5ab8f474dcbb24bc35"
 }

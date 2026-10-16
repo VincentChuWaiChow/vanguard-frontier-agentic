@@ -13,7 +13,7 @@ import { checkInput, loadPatterns, redactOutput, redactResult, WITHHELD } from '
 import { checkToolUse as blastCheck, compileGuardPatterns, modeOf, normalizePosix, toolUseFromPayload } from '../mods/blast-radius-guard/lib/core.mjs'
 import { checkToolUse as liveCheck } from '../mods/live-guard-gate/lib/core.mjs'
 import livePatterns from '../mods/live-guard-gate/lib/patterns.mjs'
-import { DEFAULT_STATUS_PATH, freshStatus, parseStatus, recordCall, serializeStatus } from '../mods/context-burn/lib/core.mjs'
+import { defaultStatusPath, freshStatus, parseStatus, recordCall, serializeStatus } from '../mods/context-burn/lib/core.mjs'
 import { buildRecord, lastSequence, rawSessionId, safeSessionId } from '../mods/audit-trail/lib/core.mjs'
 
 const ROOT = resolve(dirname(fileURLToPath(import.meta.url)), '..')
@@ -166,6 +166,40 @@ for (const harness of HARNESSES) {
       assert.equal(r.status, 1)
       assert.match(r.stderr, /not valid JSON/)
       assert.equal(parseStatus(readFileSync(file, 'utf8')).tool_call_count, 0)
+    }
+  })
+
+  test(`context-burn ${harness}: interleaved sessions keep independent default counters`, (t) => {
+    const dir = temp(t), dot = harness === 'claude-code' ? '.claude' : `.${harness}`
+    const sessions = ['../first', '..\\second']
+    const options = { cwd: dir }
+    for (const session_id of sessions) {
+      clean(hook('context-burn', harness, 'SessionStart', { session_id }, options))
+      clean(hook('context-burn', harness, 'PostToolUse', { session_id }, options))
+    }
+    for (const session_id of sessions) clean(hook('context-burn', harness, 'PostToolUse', { session_id }, options))
+    const statusDir = join(dir, dot, 'context-burn-status')
+    assert.ok(existsSync(statusDir), 'default state must be stored per session')
+    const files = readdirSync(statusDir)
+    assert.equal(files.length, 2)
+    for (const file of files) assert.match(file, /^[a-f0-9]{64}\.json$/)
+    const statuses = files.map((file) => parseStatus(readFileSync(join(statusDir, file), 'utf8')))
+    assert.deepEqual(statuses.map((s) => [s.session_id, s.tool_call_count]).sort(), sessions.map((id) => [id, 2]).sort())
+    clean(hook('context-burn', harness, 'SessionStart', { session_id: sessions[0] }, options))
+    const reset = files.map((file) => parseStatus(readFileSync(join(statusDir, file), 'utf8')))
+    assert.deepEqual(reset.map((s) => [s.session_id, s.tool_call_count]).sort(), [[sessions[0], 0], [sessions[1], 2]].sort())
+  })
+
+  test(`context-burn ${harness}: malformed persisted threshold events restart the count`, (t) => {
+    const dir = temp(t), file = join(dir, 'status.json')
+    for (const event of [null, { threshold: 70 }]) {
+      writeFileSync(file, serializeStatus({ ...freshStatus('recover', AT), tool_call_count: 4, threshold_events: [event] }))
+      const r = hook('context-burn', harness, 'PostToolUse', { session_id: 'recover' }, { env: { VANGUARD_CONTEXT_BURN_STATUS_PATH: file } })
+      assert.equal(r.status, 0, r.stderr)
+      assert.match(r.stderr, /starting a fresh count/)
+      const status = parseStatus(readFileSync(file, 'utf8'))
+      assert.equal(status.tool_call_count, 1)
+      assert.deepEqual(status.threshold_events, [])
     }
   })
 
@@ -444,6 +478,25 @@ test('context thresholds fire once per session and support tokens or percent wit
   for (const text of ['{}', 'null', '{', JSON.stringify({ ...initial, tool_call_count: -1 })]) assert.throws(() => parseStatus(text))
 })
 
+test('context status rejects malformed threshold event objects and required fields', () => {
+  const event = { threshold: 70, tokens: 750, window: 1000, at: AT }
+  const status = { ...freshStatus('first', AT), threshold_events: [event] }
+  assert.deepEqual(parseStatus(serializeStatus(status)), status)
+  for (const bad of [null, [], 'event', {}, { ...event, threshold: '70' }, { ...event, threshold: 80 }, { ...event, tokens: undefined }, { ...event, tokens: '750' }, { ...event, tokens: -1 }, { ...event, window: 0 }, { ...event, window: '1000' }, { ...event, at: undefined }, { ...event, at: 0 }]) {
+    assert.throws(() => parseStatus(serializeStatus({ ...status, threshold_events: [bad] })), /not a context-burn status/)
+  }
+})
+
+test('context default paths use the complete session hash under the harness directory', async () => {
+  for (const harness of HARNESSES) {
+    const dot = harness === 'claude-code' ? '.claude' : `.${harness}`
+    for (const sessionId of ['installed', '../first', '..\\second', 'session-\u2603', 'unsessioned']) {
+      const hash = createHash('sha256').update(sessionId).digest('hex')
+      assert.equal(await defaultStatusPath(harness, sessionId), `${dot}/context-burn-status/${hash}.json`)
+    }
+  }
+})
+
 test('context corrupted state starts fresh loudly, while observer write failures remain non-blocking errors', (t) => {
   const dir = temp(t), file = join(dir, 'status.json')
   writeFileSync(file, 'not-json')
@@ -462,13 +515,13 @@ test('context corrupted state starts fresh loudly, while observer write failures
   }
 })
 
-test('observer defaults resolve to the installed project, not the invocation directory', (t) => {
+test('observer defaults resolve to the installed project, not the invocation directory', async (t) => {
   const dir = temp(t)
   for (const harness of HARNESSES) {
     const dot = harness === 'claude-code' ? '.claude' : `.${harness}`
     for (const id of ['context-burn', 'audit-trail']) {
       const bin = join(dir, dot, 'vanguard-mods', id, 'bin')
-      const status = DEFAULT_STATUS_PATH[harness]
+      const status = await defaultStatusPath(harness, 'installed')
       assert.equal(projectPath(status, harness, bin), join(dir, status))
       assert.equal(projectPath('/absolute/status.json', harness, bin), '/absolute/status.json')
       const install = dirname(bin)
@@ -607,6 +660,40 @@ print(json.dumps({'failed': report.failed, 'lines': report.lines}))`
   const mismatched = check()
   assert.ok(mismatched.failed > 0)
   assert.match(mismatched.lines.join('\n'), /FAIL.*footprint/)
+})
+
+test('mod ids cannot collide with MCP or workflow entities or existing catalog types', (t) => {
+  const dir = temp(t)
+  mkdirSync(join(dir, 'catalog'))
+  const names = ['agents', 'skills', 'rules', 'mcp-references', 'workflows']
+  const write = (name, entries) => writeFileSync(join(dir, 'catalog', `${name}.json`), JSON.stringify(name === 'workflows' ? { workflows: entries } : entries))
+  for (const name of names) write(name, [])
+  const source = `import importlib.util, json, pathlib, sys, types
+spec = importlib.util.spec_from_file_location('vfa_mod_validator', ${JSON.stringify(join(ROOT, 'tests/validate-mods.py'))})
+module = importlib.util.module_from_spec(spec)
+sys.modules[spec.name] = module
+spec.loader.exec_module(module)
+report = module.Report()
+module.check_catalog_ids(report, pathlib.Path(sys.argv[1]), [types.SimpleNamespace(id='probe-mod', rel='mods/probe-mod')])
+print(json.dumps({'failed': report.failed, 'lines': report.lines}))`
+  const check = () => {
+    const r = spawnSync('python3', ['-c', source, dir], { encoding: 'utf8', timeout: 5000 })
+    assert.ifError(r.error)
+    assert.equal(r.status, 0, r.stderr)
+    return JSON.parse(r.stdout)
+  }
+  assert.equal(check().failed, 0)
+  for (const name of names) {
+    write(name, [{ id: 'probe-mod' }])
+    const report = check()
+    assert.equal(report.failed, 1, name)
+    assert.match(report.lines.join('\n'), new RegExp(`collides with an id in catalog/${name}\\.json`))
+    write(name, [])
+  }
+  write('workflows', [{ id: 'different-workflow', phases: [{ id: 'probe-mod' }] }])
+  assert.equal(check().failed, 0, 'nested references are not entity ids')
+  write('workflows', {})
+  assert.equal(check().failed, 1, 'malformed workflow entities must fail closed')
 })
 
 test('generation is byte-identical under reordered mods and rejects unknown live-agent references', () => {

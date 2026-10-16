@@ -3,8 +3,8 @@
 Mods are tool-event guards and observers, not agent prompts. Each `mods/<id>/mod.toml`
 declares its events, harness support and runtime footprint. Shared logic lives in the
 mod's `lib/core.mjs`; native Claude Code modules and Node command hooks import that
-same logic. [The implementation plan](../.claude/plan/cross-harness-mods.md) records
-the verified native API and [spec deviations](../.kiro/specs/cross-harness-mods/deviations.md).
+same logic. [The implementation plan](https://github.com/VincentChuWaiChow/vanguard-frontier-agentic/blob/dc8b29c823fb89dc4246413f38a7b82fdd34aa18/.claude/plan/cross-harness-mods.md) records
+the verified native API and [spec deviations](https://github.com/VincentChuWaiChow/vanguard-frontier-agentic/blob/dc8b29c823fb89dc4246413f38a7b82fdd34aa18/.kiro/specs/cross-harness-mods/deviations.md).
 
 ## Capability matrix
 
@@ -151,7 +151,12 @@ the harness version. Inspect unsupported/degraded notes before enabling addition
   hashes do not establish non-repudiation or compliance. Observer failures do not block
   the tool, and classic observers miss failed calls.
 - **Footprints describe defaults.** Context Burn defaults to
-  `.<harness>/context-burn-status.json` (`.claude` for Claude Code); Audit Trail defaults
+  `.<harness>/context-burn-status/<session-hash>.json` (`.claude` for Claude Code), where
+  the filename is the full lowercase SHA-256 of the UTF-8 session ID, never the raw ID.
+  Missing or empty Node session IDs share the hashed `unsessioned` fallback, so isolation
+  requires session identity. A shared exact `VANGUARD_CONTEXT_BURN_STATUS_PATH` override
+  opts out of default session isolation. No old single-file state is migrated automatically.
+  Audit Trail defaults
   to `.audit/<UTC-date>/<session>.jsonl`, reusing an earlier file for the same session.
   `VANGUARD_CONTEXT_BURN_STATUS_PATH` and `VANGUARD_AUDIT_TRAIL_LOG_DIR` can point outside
   declared write globs. Overlap checks do not constrain those operator overrides.

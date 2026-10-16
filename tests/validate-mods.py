@@ -33,7 +33,7 @@ SURFACES = ("native", "classic")
 EV_KEBAB = {"PreToolUse": "pre-tool-use", "PostToolUse": "post-tool-use", "SessionStart": "session-start"}
 NATIVE_EVENT = {"PreToolUse": "tool.check", "PostToolUse": "tool.call", "SessionStart": "session.start"}
 KIRO_HOOK_KEYS = {"name", "description", "trigger", "matcher", "action", "timeout", "enabled", "confirm"}
-CATALOGS = ("agents", "skills", "rules")
+CATALOGS = ("agents", "skills", "rules", "mcp-references", "workflows")
 TIMEOUT = 60
 
 # Capability tokens: (label, regex, exemption). exemption "net" is lifted by
@@ -734,6 +734,11 @@ def check_catalog_ids(r: Report, root: Path, mods: list[Mod]) -> None:
             if not p.is_file():
                 r.fail(rel, "is missing, so mod id uniqueness cannot be checked")
             continue
+        if name == "workflows":
+            data = data.get("workflows") if isinstance(data, dict) else None
+            if not isinstance(data, list):
+                r.fail(rel, "must contain a workflows array")
+                continue
         if not isinstance(data, list):
             r.fail(rel, "must be a top-level array")
             continue

@@ -8,7 +8,7 @@ events = ["PostToolUse", "SessionStart"]
 
 [footprint]
 env_reads = ["VANGUARD_CONTEXT_BURN_STATUS_PATH"]
-file_writes = [".claude/context-burn-status.json", ".kiro/context-burn-status.json", ".codex/context-burn-status.json"]
+file_writes = [".claude/context-burn-status/*.json", ".kiro/context-burn-status/*.json", ".codex/context-burn-status/*.json"]
 spawns = []
 egress_hosts = []
 

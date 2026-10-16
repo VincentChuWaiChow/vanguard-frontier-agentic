@@ -1,12 +1,17 @@
 // Pure counter and threshold logic for context-burn. The native module and the Node hook
 // both import it, so the status file means the same thing on every harness.
-import { parseJson } from './common.mjs'
+import { parseJson, sha256Hex } from './common.mjs'
 
-export const DEFAULT_STATUS_PATH = Object.freeze({
-  'claude-code': '.claude/context-burn-status.json',
-  kiro: '.kiro/context-burn-status.json',
-  codex: '.codex/context-burn-status.json',
+const STATUS_DIR = Object.freeze({
+  'claude-code': '.claude/context-burn-status',
+  kiro: '.kiro/context-burn-status',
+  codex: '.codex/context-burn-status',
 })
+
+// Never interpolate a raw session id into a filesystem path.
+export async function defaultStatusPath(harness, sessionId) {
+  return `${STATUS_DIR[harness]}/${await sha256Hex(sessionId)}.json`
+}
 
 const THRESHOLDS = [
   [70, 'WARNING'],
@@ -29,7 +34,14 @@ export function parseStatus(text) {
     Number.isInteger(s.tool_call_count) &&
     s.tool_call_count >= 0 &&
     typeof s.last_updated === 'string' &&
-    Array.isArray(s.threshold_events)
+    Array.isArray(s.threshold_events) &&
+    s.threshold_events.every((t) =>
+      t !== null && typeof t === 'object' && !Array.isArray(t) &&
+      THRESHOLDS.some(([threshold]) => t.threshold === threshold) &&
+      Number.isFinite(t.tokens) && t.tokens >= 0 &&
+      Number.isFinite(t.window) && t.window > 0 &&
+      typeof t.at === 'string',
+    )
   if (!ok) throw new Error('status file is not a context-burn status')
   return s
 }
