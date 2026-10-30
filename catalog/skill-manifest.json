@@ -45,12 +45,12 @@
     {
       "id": "agentic-board-protocol",
       "path": "skills/cross-functional/agentic-board-protocol",
-      "aggregate_sha256": "3f05d7fcd7d04d5732417a8cb1567649bcff313254e0ba627eb37362d08d9148",
+      "aggregate_sha256": "f0973983f39efbe3e2a3ec932c78c001e8abf6d0ea896c1b12ba9129f85b1de0",
       "files": [
         {
           "path": "skills/cross-functional/agentic-board-protocol/SKILL.md",
-          "sha256": "3b5d62e9a917bed25fec6ac84d4ab078049100b04f9e59489e6cdd81068d5637",
-          "bytes": 7601
+          "sha256": "de434f9d30a028354e55e24935b8811aeda8df820283b8f0e4a6e3a335a98be0",
+          "bytes": 7648
         },
         {
           "path": "skills/cross-functional/agentic-board-protocol/metadata.json",
@@ -59,8 +59,8 @@
         },
         {
           "path": "skills/cross-functional/agentic-board-protocol/references/decision-record.md",
-          "sha256": "81fb80dba687051e81b242e8dca26cbde8c6cfd0dce7dcdc376ada04b554c7a5",
-          "bytes": 22657
+          "sha256": "cefebd0dc773d86697c20cf055fe07f3ff98fc2d10c3357c9772e9868b9bed52",
+          "bytes": 23891
         },
         {
           "path": "skills/cross-functional/agentic-board-protocol/references/handoff-envelope.md",
@@ -74,8 +74,8 @@
         },
         {
           "path": "skills/cross-functional/agentic-board-protocol/references/stop-conditions.md",
-          "sha256": "9a0642098be3c516a21c3e64d7adeb18c85e05127e8362786b62fc623b89c0a7",
-          "bytes": 14472
+          "sha256": "62f3759fe27e22adaa766452c9054b06ea589581ddd5c1c66d89322c02463b3c",
+          "bytes": 14881
         },
         {
           "path": "skills/cross-functional/agentic-board-protocol/references/value-case.md",
@@ -87,7 +87,7 @@
     {
       "id": "agentic-security-review",
       "path": "skills/cross-functional/agentic-security-review",
-      "aggregate_sha256": "d64935762c3ff23d8986b4b0e25c09627e90cb087cdc4fcc1511083adaee6d6b",
+      "aggregate_sha256": "a7181d9a82ea7dab64c35bd4a7ce6667fc7097469aa274b8154044360d0f78d1",
       "files": [
         {
           "path": "skills/cross-functional/agentic-security-review/SKILL.md",
@@ -121,8 +121,8 @@
         },
         {
           "path": "skills/cross-functional/agentic-security-review/references/workflow-and-output.md",
-          "sha256": "85c1ed907e1535996af6f2611a640e2a539044a8f62c5ec895d60ae9fe1e2e4b",
-          "bytes": 19734
+          "sha256": "e2ed441d4d96ebda55c0af9a7f264a48694dc348d3aba5bccfd7774333557320",
+          "bytes": 20034
         }
       ]
     },

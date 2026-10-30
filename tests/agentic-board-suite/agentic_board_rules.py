@@ -157,12 +157,12 @@ RULES: dict[str, str] = {
     "DR-OWNER-FROM-ROOT": "A correlation carrying a decision-request is opened by a principal whose root names a decision_owner other than itself, and every decision-request is addressed to that owner.",
     "DR-CLASS-FROM-ROOT": "A decision-request's decision_class equals the decision_class declared on the root envelope.",
     "DR-CHALLENGE-REQUIRED": "At R2+, with any materiality flag, or for automation-investment, at least one challenge is attached.",
-    "DR-DESIGNATED-CHALLENGER": "When a challenge is required, the designated challenger for the decision class sent a completed challenge of the proposer's own envelopes.",
+    "DR-DESIGNATED-CHALLENGER": "When a challenge is required, the designated challenger for the decision class sent a challenge of the proposer's own envelopes that completed, or that stopped only because the round cap was reached.",
     "DR-PROPOSER-NOT-CHALLENGER": "No attached challenge was raised by the proposer.",
     "DR-ALTERNATIVES": "When a challenge is required, at least one materially different alternative is recorded.",
-    "DR-UNRESOLVED-DISSENT": "Every attached challenge whose outcome is sustained or unresolved has a dissent entry; no agent, the challenger included, clears it by a later withdrawal.",
-    "DR-NO-APPROVE-OVER-DISSENT": "With any attached challenge sustained or unresolved, recommended_outcome is not approve.",
-    "DR-HARD-GATE": "With any attached HARD-gate challenge sustained or unresolved, recommended_outcome is reject, redesign, or escalate.",
+    "DR-UNRESOLVED-DISSENT": "Every attached challenge that is open (outcome sustained or unresolved, or stopped with a stop reason whatever its outcome) has a dissent entry; no agent, the challenger included, clears it by a later withdrawal.",
+    "DR-NO-APPROVE-OVER-DISSENT": "With any attached challenge open (sustained, unresolved or stopped), recommended_outcome is not approve.",
+    "DR-HARD-GATE": "With any attached HARD-gate challenge open (sustained, unresolved or stopped), recommended_outcome is reject, redesign, or escalate.",
     "DR-VALUE-CASE-REQUIRED": "An automation-investment decision-request carries a value_case.",
     # --- decision records (principal-sourced) -------------------------------------------------
     "DRC-PRINCIPAL-SOURCE": "A decision-record is sent by a principal.",
@@ -176,7 +176,7 @@ RULES: dict[str, str] = {
     "DRC-SECOND-APPROVER": "A decider's record sent at R5, or binding an R5 decision-request, names a second approver distinct from the decider.",
     "DRC-CO-SIGNED": "The decider's record on the decision-request in force, when it names a second approver, is co-signed by that principal's own decision-record.",
     "DRC-CO-SIGN-BINDING": "A co-signing record names a decider's record on the same request with the same digest and outcome, comes from that record's second approver, descends from it in the parent chain, and names no second approver itself.",
-    "DRC-HARD-GATE-ACCEPTANCE": "Approving a request with any attached HARD-gate challenge sustained or unresolved requires risk_acceptance_ref; only a principal lifts a HARD gate.",
+    "DRC-HARD-GATE-ACCEPTANCE": "Approving a request with any attached HARD-gate challenge open (sustained, unresolved or stopped) requires risk_acceptance_ref; only a principal lifts a HARD gate.",
     "DRC-APPROVAL-STATE": "approval_state is approved for approve/conditional-approve and rejected for reject/redesign.",
     # --- value case ---------------------------------------------------------------------------
     "VC-ORDER": "Every money range satisfies low <= point <= high.",
@@ -499,12 +499,14 @@ def _check_chain(env: dict, parent: dict) -> set[str]:
 
 
 def _counted_rounds(challenges: list[dict], by_id: dict, order: _Order) -> dict[str, int]:
-    """A round is one proposal version received: the delegates and returns that the proposer of a
-    challenge's target had delivered to the challenger before the challenge (at least 1).
+    """A round is one exchange received: the delegates, returns and challenges (not stopped) that the
+    proposer of a challenge's target had sent to the challenger before the challenge (at least 1).
 
-    The challenger cannot raise its own round by naming other envelopes, its own, ones it never
-    received or another proposer's; only the proposer delivering a revision moves it, and the
-    round cap bounds how often that can happen.
+    The count is per pair of parties across the correlation, whatever role each held, so sub-questions
+    and a change of proposer use up rounds too. The challenger cannot raise its own round by naming
+    other envelopes, its own, ones it never received or another proposer's. Rounds bound the exchange
+    and clear nothing: an answer stopped at the cap still counts as the designated challenge and stays
+    open, so the principal decides.
     """
     delivered: dict[tuple, list[dict]] = {}
     for e in by_id.values():
@@ -660,11 +662,12 @@ def _attached_challenges(req: dict, by_id: dict) -> list[dict]:
 
 
 def _open(ch: dict) -> bool:
-    return ch["challenge"]["outcome"] in ("sustained", "unresolved")
+    # A stopped challenge resolved nothing, whatever outcome it records; only a principal resolves it.
+    return ch["challenge"]["outcome"] in ("sustained", "unresolved") or bool(ch["stop_reasons"])
 
 
 def _live(request: dict, ctx: dict) -> list[dict]:
-    """Attached challenges whose own outcome is sustained or unresolved.
+    """Attached challenges that are open: outcome sustained or unresolved, or stopped.
 
     No agent clears a challenge, not even its own challenger: a later withdrawal is recorded beside
     the finding, never instead of it. Dissent is preserved, and a HARD gate stays live until a
@@ -721,7 +724,7 @@ def _check_decision_request_links(env: dict, ctx: dict) -> set[str]:
         designated = fallback if primary == req["proposer_agent"] else primary
         challengers = {c["source"].get("id") for c in attached
                        if c["source"]["kind"] == "agent" and _on_proposer(c, req["proposer_agent"], by_id)
-                       and c["status"] == "completed"}
+                       and (c["status"] == "completed" or c["stop_reasons"] == ["challenge-rounds-exceeded"])}
         if designated == req["proposer_agent"] or designated not in challengers:
             out.add("DR-DESIGNATED-CHALLENGER")
     if any(c["source"].get("id") == req["proposer_agent"] for c in attached):

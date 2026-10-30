@@ -34,7 +34,7 @@
   "trees": [
     {
       "tree": "agents",
-      "aggregate_sha256": "0d6d691a466c763e047b794a9184c7b8dfe13283f078f921cd13c5f80f42e830",
+      "aggregate_sha256": "0122b42c7c48fdca71532292b93c00c5a3d08d90c8e7b3d4b2ac8cc2e4c69b84",
       "files": [
         {
           "path": "agents/AGENTS.md",
@@ -8023,43 +8023,43 @@
         },
         {
           "path": "agents/cross-functional/agentic-security-review-agent/AGENT.md",
-          "sha256": "58650c094fbaec2b431d0de2c93c71939047160ec5eff83ccef016b33842d765",
-          "bytes": 28888
+          "sha256": "c4d571813937d044fb62c31495182832b290d30cfb2d15b38215b21bcf492105",
+          "bytes": 29205
         },
         {
           "path": "agents/cross-functional/agentic-security-review-agent/harnesses/claude-code.agent.md",
-          "sha256": "ca0f01b487a9405b1b613436d701ff071ea698482f60421b58cadefdf24ef4e2",
-          "bytes": 27858
+          "sha256": "39552dafda2d8f9d42b3755fd002a0dca0db2ed7c6b8550c196d2e2d932efee2",
+          "bytes": 28175
         },
         {
           "path": "agents/cross-functional/agentic-security-review-agent/harnesses/codex.toml",
-          "sha256": "f13f94e39fd507aeaeaf157cbd6f2e1b3d9a64e0f9543edde01d8e866ff5e69c",
-          "bytes": 27991
+          "sha256": "1e7cab493a44aff07f8d7cd0d53aa1231662e388c4c6ad60e47e87af9a9f72ef",
+          "bytes": 28308
         },
         {
           "path": "agents/cross-functional/agentic-security-review-agent/harnesses/copilot.agent.md",
-          "sha256": "2501a568369141e29e78942179929151d4cda665f257c07008aaf63ab80fe43f",
-          "bytes": 27938
+          "sha256": "d0dab16d4e9f73928c9f0b138ed7ba41deee4b2e8e6431ccae089685338c42e8",
+          "bytes": 28255
         },
         {
           "path": "agents/cross-functional/agentic-security-review-agent/harnesses/cursor.agent.md",
-          "sha256": "85bca10cca65bc3c3e493203106763315976da0e16ff6b4759e056096d2efe02",
-          "bytes": 27847
+          "sha256": "a6cf26c4841e417f23547735e870dd59b7bea2a93892b25bb990957bf7b48c7c",
+          "bytes": 28164
         },
         {
           "path": "agents/cross-functional/agentic-security-review-agent/harnesses/gemini.agent.md",
-          "sha256": "f1a6545da810a41b9c60bdcf3f96bdea1ef4f7e8522afd084ddddc861810c600",
-          "bytes": 27965
+          "sha256": "6431fcde8d2c4ea5d2eb8164a1c1e061191d85e0c1b02f4be9f97227c4c325ec",
+          "bytes": 28282
         },
         {
           "path": "agents/cross-functional/agentic-security-review-agent/harnesses/kiro-cli.agent.json",
-          "sha256": "4d9722bcc2a4f819fae17a174727636613b66c323781051154b4030e44ea4aac",
-          "bytes": 28008
+          "sha256": "1b34debdcc9d67b7ae99e3fc75b21a0def17cbbe8739674e66ea34454995c3fd",
+          "bytes": 28325
         },
         {
           "path": "agents/cross-functional/agentic-security-review-agent/harnesses/kiro-ide.agent.md",
-          "sha256": "ea10259b9eb51de26c60f2f47c05aa8317e6d87f926281b4f09b01a8d9d951d9",
-          "bytes": 27832
+          "sha256": "031b85ad1ea54e7ef819e719706cdc80b16ed4dd899b5c5b98386427c17dcba7",
+          "bytes": 28149
         },
         {
           "path": "agents/cross-functional/agentic-security-review-agent/metadata.json",
@@ -8068,43 +8068,43 @@
         },
         {
           "path": "agents/cross-functional/agentic-system-architecture-review-agent/AGENT.md",
-          "sha256": "52b1286861b618443c60d40c2874393acc4b18478a0d4f40f96e7c32a7121f91",
-          "bytes": 23751
+          "sha256": "2272f102d37cb0996f0c46c7dec856f9d987b481da5251fe657e61b2ee4eff11",
+          "bytes": 23983
         },
         {
           "path": "agents/cross-functional/agentic-system-architecture-review-agent/harnesses/claude-code.agent.md",
-          "sha256": "fe865427a16d95d7de68c9857e6cb17ab73e3749da04aff662fe98e6f8e65674",
-          "bytes": 22745
+          "sha256": "77ca844b6f820620e49f660841e5a04694521d73a6edfbdf0090806379d6d741",
+          "bytes": 22977
         },
         {
           "path": "agents/cross-functional/agentic-system-architecture-review-agent/harnesses/codex.toml",
-          "sha256": "66d6d566de5a722a78ec8e3552e56f5f4bb7ae17eeb1e682ba0ae1522ebd3871",
-          "bytes": 22878
+          "sha256": "f1225c9ee1d18d3ab7c17fb8350bdeeb62a15fc7ce8e8901b9dcbdb8108db492",
+          "bytes": 23110
         },
         {
           "path": "agents/cross-functional/agentic-system-architecture-review-agent/harnesses/copilot.agent.md",
-          "sha256": "98fb05e369a664aa8ee85b751112c36834135c0ca7ec21e338f26c40d50c365a",
-          "bytes": 22825
+          "sha256": "396c1e82c244b5c93b9572dc531dc9369321970a94f3c3af80b1639c4da4a299",
+          "bytes": 23057
         },
         {
           "path": "agents/cross-functional/agentic-system-architecture-review-agent/harnesses/cursor.agent.md",
-          "sha256": "d8bdd67ae6c03e68fa78d522488fa7adab00fe6d0ac2e4e6f26061e0dd765f74",
-          "bytes": 22734
+          "sha256": "9588cba21bb07e88e72397b7a584b712894d1a8026da0a91829baacf1081b8fe",
+          "bytes": 22966
         },
         {
           "path": "agents/cross-functional/agentic-system-architecture-review-agent/harnesses/gemini.agent.md",
-          "sha256": "c5c6715d3f398878ff45b4128716adf75168105ebebb2b178e785665e02f5615",
-          "bytes": 22863
+          "sha256": "9bef907f09ea69766b903ee53db9eebb432f28556e002f713dafdb7f77732897",
+          "bytes": 23095
         },
         {
           "path": "agents/cross-functional/agentic-system-architecture-review-agent/harnesses/kiro-cli.agent.json",
-          "sha256": "1ee301ba54337d58bc8283deacf93ccce76d09c7eb5d30c49c9149b9b4fe50ed",
-          "bytes": 22884
+          "sha256": "0db8ed2e304a3c2ff92c6cd3d26dd6305b4a0e1c5d5e6e2b8ed44073e2140497",
+          "bytes": 23116
         },
         {
           "path": "agents/cross-functional/agentic-system-architecture-review-agent/harnesses/kiro-ide.agent.md",
-          "sha256": "c5e4398edadf1c44daca1177c92ee1c26fe65ee88a1f500f08b9770c19bdb94e",
-          "bytes": 22719
+          "sha256": "d392a08221028d7e35eefae956b76fb47663983cecabed68627462471fc7b787",
+          "bytes": 22951
         },
         {
           "path": "agents/cross-functional/agentic-system-architecture-review-agent/metadata.json",
@@ -35939,7 +35939,7 @@
     },
     {
       "tree": "catalog",
-      "aggregate_sha256": "58f5080e2f1413cce7f5c1c116d02d1190fc1de5e434a801a55f2f0baf75940b",
+      "aggregate_sha256": "1d0d676063fceae88a3a36666529d12a6dd37a1fe88bc53280d4ed5101f865fa",
       "files": [
         {
           "path": "catalog/AGENTS.md",
@@ -35993,7 +35993,7 @@
         },
         {
           "path": "catalog/skill-manifest.json",
-          "sha256": "fb6e5059d3cf2c618057e4ee050f3fa825e29edda3d3d375f629664d65fc9d45",
+          "sha256": "f641f0aadfdf80acb7326a5ebe78917c81da5a165d7c31bc0258ccbd077f4f91",
           "bytes": 1095120
         },
         {
@@ -37232,7 +37232,7 @@
     },
     {
       "tree": "tests",
-      "aggregate_sha256": "ce021520c877307321b7e7a97317995c8c6722f1f232af92eab9061fd4e4e33e",
+      "aggregate_sha256": "4b0952aa3e0c115374c4686ed2a70089cfd8617d2cba74973eec08335af7a0bf",
       "files": [
         {
           "path": "tests/AGENTS.md",
@@ -37246,8 +37246,8 @@
         },
         {
           "path": "tests/agentic-board-suite/_build_fixtures.py",
-          "sha256": "7ce90936a84e175318a5f87556bab1600d79bba292aadfaad5cad32f8065d3ab",
-          "bytes": 101920
+          "sha256": "e39a0b2119b40fa21fa1702472cc1b65e4023d0dc181dcc71ab4bb04fa3dc437",
+          "bytes": 109001
         },
         {
           "path": "tests/agentic-board-suite/_build_harnesses.py",
@@ -37256,8 +37256,8 @@
         },
         {
           "path": "tests/agentic-board-suite/agentic_board_rules.py",
-          "sha256": "2d26c19c11ad741a21d0b94ae1ec485571b3c3ce8dd06ef223a15a69b4c21f6b",
-          "bytes": 50311
+          "sha256": "85fc115083a6d076c841f71a7802da58d952f55feb2ae945ce081dd81577e61c",
+          "bytes": 50898
         },
         {
           "path": "tests/agentic-board-suite/fixtures/invalid/CH-PROPOSAL-LINK--challenge-names-a-later-envelope.json",
@@ -37371,8 +37371,8 @@
         },
         {
           "path": "tests/agentic-board-suite/fixtures/invalid/DR-DESIGNATED-CHALLENGER--stopped-designated-challenge.json",
-          "sha256": "bf2e2fdc44c5cb123b27b4ba9758f146c9bbef5c46255d460edb0f29d61b13f9",
-          "bytes": 10728
+          "sha256": "f8a5b2c953d5602294a1f1c82a6844e01ac42ca4b6e8df112763886cb9b7eddf",
+          "bytes": 10892
         },
         {
           "path": "tests/agentic-board-suite/fixtures/invalid/DR-HARD-GATE--conditional-over-hard-gate.json",
@@ -37383,6 +37383,11 @@
           "path": "tests/agentic-board-suite/fixtures/invalid/DR-HARD-GATE--unresolved-hard-gate.json",
           "sha256": "adebd89aeff35dc2d3aeb7ed2b534ececc2b5754add94e4f10da4f282b35e170",
           "bytes": 11165
+        },
+        {
+          "path": "tests/agentic-board-suite/fixtures/invalid/DR-NO-APPROVE-OVER-DISSENT--approve-over-a-stopped-challenge.json",
+          "sha256": "078691093e67a99d9db1376d22e3dfcfffce2590c650a875b2aa44c32baca0da",
+          "bytes": 12823
         },
         {
           "path": "tests/agentic-board-suite/fixtures/invalid/DR-NO-APPROVE-OVER-DISSENT--approve-over-dissent.json",
@@ -37490,6 +37495,11 @@
           "bytes": 10722
         },
         {
+          "path": "tests/agentic-board-suite/fixtures/invalid/DR-UNRESOLVED-DISSENT--stopped-challenge-recorded-withdrawn.json",
+          "sha256": "f082526797a2fac0aec545e08ca02d042ab59f0393a845c0085dd4cd09ce5294",
+          "bytes": 12665
+        },
+        {
           "path": "tests/agentic-board-suite/fixtures/invalid/DR-UNRESOLVED-DISSENT--unresolved-without-dissent.json",
           "sha256": "cf648456b4fc83a53ea409215799b475523ddd212405bdcefd7a38f741744b21",
           "bytes": 10734
@@ -37525,6 +37535,11 @@
           "bytes": 13363
         },
         {
+          "path": "tests/agentic-board-suite/fixtures/invalid/DRC-CO-SIGN-BINDING--co-sign-does-not-descend-from-its-record.json",
+          "sha256": "303d93921014eae6f52d87725f7270293e561da36c0d0b13ecfedc26a1de25b4",
+          "bytes": 15347
+        },
+        {
           "path": "tests/agentic-board-suite/fixtures/invalid/DRC-CO-SIGN-BINDING--co-sign-is-the-parent-of-its-record.json",
           "sha256": "709c551baf3d96e054c3cd504c68c8d65d82facb0139ffbdba8d7e1cc531d01e",
           "bytes": 15388
@@ -37538,11 +37553,6 @@
           "path": "tests/agentic-board-suite/fixtures/invalid/DRC-CO-SIGN-BINDING--co-sign-nobody-asked-for.json",
           "sha256": "ca9ac0f717cd6d7ec939b6c297665d18601aea6d46ff45fd8132b3ac2203c112",
           "bytes": 13363
-        },
-        {
-          "path": "tests/agentic-board-suite/fixtures/invalid/DRC-CO-SIGN-BINDING--co-sign-not-a-child-of-its-record.json",
-          "sha256": "2c935c69cd561e7be4ad8c95fe19b9ff4de14dd79d6a1a5ad8804f4beca19c89",
-          "bytes": 15340
         },
         {
           "path": "tests/agentic-board-suite/fixtures/invalid/DRC-CO-SIGN-BINDING--co-sign-sent-before-the-record.json",
@@ -37596,8 +37606,8 @@
         },
         {
           "path": "tests/agentic-board-suite/fixtures/invalid/DRC-HARD-GATE-ACCEPTANCE--stopped-over-cap-withdrawal.json",
-          "sha256": "903542be37ad0589de9b16dba21313da40204ff6b50ea5933dd0b94eddf333fb",
-          "bytes": 18876
+          "sha256": "afc2bccbc17a57498f07179e4db13c7f0be0af7e89853a65e2cd6d1ad943b9f5",
+          "bytes": 19034
         },
         {
           "path": "tests/agentic-board-suite/fixtures/invalid/DRC-HARD-GATE-ACCEPTANCE--unrelated-withdrawal-does-not-clear-gate.json",
@@ -38185,9 +38195,19 @@
           "bytes": 15044
         },
         {
+          "path": "tests/agentic-board-suite/fixtures/valid/v11x-designated-challenge-first-answer-over-cap.json",
+          "sha256": "8b1b3d8d82a28f521b8e1dbdaec20bc0a22d8e320d7a57d2c1b93a1374c6ff65",
+          "bytes": 18333
+        },
+        {
           "path": "tests/agentic-board-suite/fixtures/valid/v11x-interleaved-challenger-round-two.json",
           "sha256": "34469364bcf70cdc2859b10c9a2114b2bd9ff8ead511c8ca2341d40cbaaabe9b",
           "bytes": 18544
+        },
+        {
+          "path": "tests/agentic-board-suite/fixtures/valid/v11x-proposal-handed-to-the-challenger-capped.json",
+          "sha256": "cebcaae000c2cb3302ac90c19d36e8cb8cdcbbaf71771d3726c404aaa1ca0c4b",
+          "bytes": 25959
         },
         {
           "path": "tests/agentic-board-suite/fixtures/valid/v11x-round-three-escalation-path.json",
@@ -38226,8 +38246,8 @@
         },
         {
           "path": "tests/agentic-board-suite/test_agentic_board.py",
-          "sha256": "9976a54d30db33b598495018cfe6d3eba92d001ebe31f61eeed10b4ed978b166",
-          "bytes": 29742
+          "sha256": "023c6b1eb68d0f6d5d60256222881f874eb33f66ca970d686a5c7dc039901431",
+          "bytes": 30210
         },
         {
           "path": "tests/eval-qa-cluster.mjs",
@@ -48779,5 +48799,5 @@
       "bytes": 9135
     }
   ],
-  "aggregate_sha256": "7601178ee3cd2f3478c822a632d93866f84fed414160a21beb866f9889c7489a"
+  "aggregate_sha256": "f41a14bc3de4ccb7a8a469a4f2019bd080f24e8cde992606ddbcf5a0f522ef5d"
 }

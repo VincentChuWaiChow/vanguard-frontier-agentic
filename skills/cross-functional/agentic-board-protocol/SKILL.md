@@ -44,7 +44,7 @@ Use this skill when:
 - Monotonic attenuation down a chain: tier, classification, materiality flags and prohibitions never shrink; deadline and max_hops never extend; actions and budget limits only narrow.
 - Stop conditions are computed from envelope fields, never the wall clock: depth, deadline, budget, blocking missing evidence, mutation intent, instruction bait, routing loop, challenge rounds.
 - Challengers are designated by decision class. The proposer never challenges its own proposal; independence is procedural, not epistemic.
-- HARD gate: a security challenge with hard_gate true that is sustained or unresolved forbids recommending approve or conditional-approve. Only a principal decision-record with a risk acceptance reference may approve over it.
+- HARD gate: a security challenge with hard_gate true that is open (sustained or unresolved, or stopped whatever outcome it records) forbids recommending approve or conditional-approve. Only a principal decision-record with a risk acceptance reference may approve over it.
 - subject_risk_tier is the canonical R0 to R5 tier of the decision under review. The board's own work is static review. Materiality flags force full-depth review and never remap the tier.
 - Value-case promotion rule: beyond pilot needs measured confidence and a net annual value low above every counterfactual's low. Synthetic records never exceed pilot.
 - Frameworks are candidate mappings, never certification or a claim of compliance.

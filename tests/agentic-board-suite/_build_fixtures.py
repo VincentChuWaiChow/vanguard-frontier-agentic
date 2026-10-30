@@ -840,7 +840,8 @@ def _over_cap_withdrawal(doc):
     request["decision_request"].update({
         "challenge_task_ids": ["v11-m3", "v11-m5", "v11-m7"], "recommended_outcome": "escalate",
         "dissent": [{"challenge_task_id": t, "position": "Sustained HARD gate carried to the decision owner."}
-                    for t in ("v11-m3", "v11-m5")]})
+                    for t in ("v11-m3", "v11-m5")]
+        + [{"challenge_task_id": "v11-m7", "position": "Stopped at the round cap, so it stays open whatever it records."}]})
     record.update({"task_id": "v11-m9", "parent_task_id": "v11-m8", "hop_count": 6, "sent_at": T("09:09:00")})
     record["decision_record"] = dict(record["decision_record"], request_task_id="v11-m8")
     record["decision_record"].pop("risk_acceptance_ref")
@@ -1051,6 +1052,78 @@ def _round_three_escalation_path(doc):
     doc["messages"] += [_return_to_challenger(doc, 6, T("09:06:00")), third, esc, back, request, record]
 
 
+
+def _designated_challenge_first_answer_over_cap(doc):
+    """ARCH sends SEC the proposal and two security sub-questions; SEC's first answer is round 3 and stops at the cap.
+
+    A designated challenge stopped only by the cap still counts, stays open as dissent, and the owner decides.
+    """
+    _round_three_escalation_path(doc)
+    keep = [e for e in doc["messages"] if e["task_id"] not in ("v11-m3", "v11-m4", "v11-m5", "v11-m6")]
+    subs = []
+    for tid, at, objective in (("v11-q1", "09:02:10", "Assess whether the token broker's audience check is reachable from the tool output channel."),
+                               ("v11-q2", "09:02:20", "Assess whether the session cache can leak credentials across tenants.")):
+        q = copy.deepcopy(m(doc, 2))
+        q.update({"task_id": tid, "sent_at": T(at), "objective": objective})
+        subs.append(q)
+    first = m(doc, 7)
+    first.update({"parent_task_id": "v11-m2", "hop_count": 2})
+    first["challenge"] = dict(first["challenge"], proposal_task_id="v11-m2", round=3)
+    for n, hop in ((8, 3), (9, 4), (10, 5), (11, 6)):
+        m(doc, n)["hop_count"] = hop
+    req = m(doc, 10)["decision_request"]
+    req["challenge_task_ids"] = ["v11-m7"]
+    req["dissent"] = [d for d in req["dissent"] if d["challenge_task_id"] == "v11-m7"]
+    doc["messages"] = keep[:2] + subs + keep[2:]
+
+
+def _takeover_capped_path(doc):
+    """The owner hands ARCH's proposal to SEC after two sustained rounds; ARCH's first challenge of SEC's proposal is
+    round 3 because SEC's earlier challenges to ARCH count, so it stops at the cap and the owner decides."""
+    _round_three_escalation_path(doc)
+    msgs = {e["task_id"]: e for e in doc["messages"]}
+    budget = msgs["v11-m5"]["budget"]
+
+    def mk(src, **kw):
+        e = copy.deepcopy(msgs[src])
+        e["budget"] = dict(budget)
+        e.update(kw)
+        return e
+
+    head = [copy.deepcopy(msgs[t]) for t in ("v11-m1", "v11-m2", "v11-m3", "v11-m4", "v11-m5")]
+    for e in head[2::2]:
+        e["challenge"] = dict(e["challenge"], hard_gate=False, finding="No audit of token exchange failures in this version.")
+    esc = mk("v11-m8", parent_task_id="v11-m5", hop_count=5, sent_at=T("09:06:00"), stop_reasons=[],
+             objective="Two sustained rounds from the designated challenger; ask the decision owner how to proceed.",
+             escalation={"reason": "Two sustained rounds on v11-m2 and v11-m4.", "route_hint": "Owner reassigns the proposal."})
+    redo = mk("v11-m9", task_id="v11-m6", parent_task_id="v11-m8", hop_count=6, sent_at=T("09:07:00"), destination=agent(SEC),
+              objective="Propose the supplier-onboarding design yourself; the architecture agent challenges it.")
+    prop = mk("v11-m6", task_id="v11-m7", parent_task_id="v11-m6", hop_count=7, sent_at=T("09:08:00"),
+              source=agent(SEC), destination=agent(ARCH), objective="Security agent's proposal: per-hop audited token exchange.",
+              verdict={"outcome": "pass-with-conditions", "summary": "Proposal: per-hop audited token exchange.",
+                       "conditions": ["Audit every token exchange"]})
+    capped = mk("v11-m3", task_id="v11-m9", parent_task_id="v11-m7", hop_count=8, sent_at=T("09:09:00"),
+                source=agent(ARCH), destination=agent(SEC), status="stopped", stop_reasons=["challenge-rounds-exceeded"],
+                challenge={"proposal_task_id": "v11-m7", "round": 3, "hard_gate": False, "outcome": "sustained",
+                           "finding": "The audit sink is a single point of failure for every hop."})
+    esc2 = mk("v11-m8", task_id="v11-m12", parent_task_id="v11-m9", hop_count=9, sent_at=T("09:09:20"), source=agent(SEC),
+              escalation={"reason": "Round cap reached on the architecture agent's first challenge (v11-m9, sustained).",
+                          "route_hint": "Owner decides."})
+    back = mk("v11-m9", task_id="v11-m13", parent_task_id="v11-m12", hop_count=10, sent_at=T("09:09:40"), destination=agent(SEC),
+              objective="Assemble a decision-request with every round and its dissent attached.")
+    req = mk("v11-m10", parent_task_id="v11-m13", hop_count=11, sent_at=T("09:10:00"), source=agent(SEC))
+    req["budget"] = dict(msgs["v11-m10"]["budget"])
+    req["decision_request"] = dict(req["decision_request"], proposer_agent=SEC, challenge_task_ids=["v11-m9"],
+                                   recommended_outcome="conditional-approve",
+                                   proposal_summary="Security agent's design: per-hop audited token exchange.",
+                                   dissent=[{"challenge_task_id": "v11-m9", "position": "Audit sink is a single point of failure."}])
+    rec = copy.deepcopy(msgs["v11-m11"])
+    rec.update({"parent_task_id": "v11-m10", "hop_count": 12, "destination": agent(SEC), "approval_state": "approved"})
+    rec["decision_record"] = {k: v for k, v in rec["decision_record"].items() if k != "risk_acceptance_ref"}
+    rec["decision_record"].update({"request_task_id": "v11-m10", "outcome": "conditional-approve",
+                                   "conditions": ["Replicate the audit sink"]})
+    doc["messages"] = head + [esc, redo, prop, capped, esc2, back, req, rec]
+
 def _challenge_after_record_same_second(doc):
     follow = copy.deepcopy(m(doc, 2))
     follow.update({"task_id": "v02-m6", "parent_task_id": "v02-m5", "hop_count": 5, "sent_at": T("09:05:00"),
@@ -1191,12 +1264,33 @@ def _stopped_designated_challenge(doc):
     m(doc, 3).update({"status": "stopped", "stop_reasons": ["missing-evidence"]})
     m(doc, 3)["challenge"].update({"outcome": "withdrawn", "finding": "Stopped before the attack ran: no design evidence was supplied."})
     m(doc, 4).update({"parent_task_id": "v02-m1", "hop_count": 1})
-    m(doc, 4)["decision_request"]["dissent"] = []
+    m(doc, 4)["decision_request"]["dissent"] = [{"challenge_task_id": "v02-m3",
+                                                 "position": "Stopped before the attack ran; carried to the decision owner."}]
     m(doc, 5)["hop_count"] = 2
 
 
-def _cosign_not_child_of_record(doc):
-    """The co-signature reaches the second approver through a side escalate, in the record's own second."""
+def _stopped_challenge_recorded_withdrawn(dissent: bool, recommended: str):
+    """SEC's completed challenge withdraws; its later challenge stops on a blocking gap, also recorded withdrawn.
+
+    The stop resolved nothing, so the stopped challenge stays open whatever outcome it records.
+    """
+    def mutate(doc):
+        completed = copy.deepcopy(m(doc, 3))
+        completed.update({"task_id": "v02-m3c", "sent_at": T("09:02:30")})
+        completed["challenge"] = dict(completed["challenge"], outcome="withdrawn",
+                                      finding="Withdrawn: the namespace is partitioned in the cited design.")
+        _stopped_designated_challenge(doc)
+        req = m(doc, 4)["decision_request"]
+        doc["messages"].insert(2, completed)
+        req.update({"challenge_task_ids": ["v02-m3c", "v02-m3"], "recommended_outcome": recommended})
+        if not dissent:
+            req["dissent"] = []
+    return mutate
+
+
+def _cosign_not_descended_from_record(doc):
+    """The co-signature reaches the second approver through a side escalate, in the record's own second, so it does not
+    descend from the record it co-signs."""
     fyi = copy.deepcopy(m(doc, 5))
     fyi.pop("decision_record")
     fyi.update({"message_type": "escalate", "task_id": "v06-m7", "source": P_DEC, "destination": P_DEC2,
@@ -1563,8 +1657,13 @@ INVALID = [
     # --- fifth independent check (agent clearing removed by owner decision) ---
     ("DR-RISK-CARRIED", "risk-raised-after-request-before-decision", "v02", _risk_raised_before_decision, True),
     ("DR-DESIGNATED-CHALLENGER", "stopped-designated-challenge", "v02", _stopped_designated_challenge, True),
-    ("DRC-CO-SIGN-BINDING", "co-sign-not-a-child-of-its-record", "v06", _cosign_not_child_of_record, True),
+    ("DRC-CO-SIGN-BINDING", "co-sign-does-not-descend-from-its-record", "v06", _cosign_not_descended_from_record, True),
     ("STOP-CHALLENGE-ROUNDS", "revisions-carried-in-rebuttal-challenges", "v11", _revisions_in_rebuttal_challenges, True),
+    # --- sixth independent check ---
+    ("DR-UNRESOLVED-DISSENT", "stopped-challenge-recorded-withdrawn", "v02",
+     _stopped_challenge_recorded_withdrawn(dissent=False, recommended="conditional-approve"), True),
+    ("DR-NO-APPROVE-OVER-DISSENT", "approve-over-a-stopped-challenge", "v02",
+     _stopped_challenge_recorded_withdrawn(dissent=True, recommended="approve"), True),
 ]
 
 # Valid variants: (slug, base scenario, mutation). Each is a legitimate flow next to a rule's
@@ -1595,6 +1694,8 @@ VALID_VARIANTS = [
     ("round-three-escalation-path", "v11", _round_three_escalation_path),
     ("challenge-after-record-same-second", "v02", _challenge_after_record_same_second),
     ("security-proposal-returned-to-its-delegator", "v02", _security_proposal_returned_to_delegator),
+    ("designated-challenge-first-answer-over-cap", "v11", _designated_challenge_first_answer_over_cap),
+    ("proposal-handed-to-the-challenger-capped", "v11", _takeover_capped_path),
 ]
 
 

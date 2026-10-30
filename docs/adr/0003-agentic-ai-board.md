@@ -71,6 +71,17 @@ A fifth independent check reported 11 findings against commit 71317aa5, none hig
 
 The full list is in docs/architecture/agentic-ai-board.md, section "Corrections after the fifth independent check" (cited by path, as elsewhere in this ADR).
 
+## Corrections after the sixth independent check
+
+A sixth independent check reported 7 findings against commit 687fdd20, 4 distinct, the most severe a medium false rejection; the bypass hunt found none. Where the sections above conflict with this one, this one is current.
+
+- **Rounds decide when, not what.** Requiring a completed designated challenge left some correlations undecidable once the designated challenger's first answer fell past the round cap, so the claim above that rounds only bound the exchange was wrong at 687fdd20. A designated challenge stopped only by the cap now counts.
+- **A stopped challenge is open.** Whatever outcome it records, a stopped challenge is carried as dissent, blocks recommending approve and, as a HARD gate, stays live. STOP-TERMINAL stays branch-scoped: the gate does not prove every stop was escalated before the request.
+- **Wording.** A co-signing record descends from its record, not necessarily as its child; and no evidence, however strong, lets an agent close a HARD gate or a dissent.
+- **Counts.** 88 rules, 37 valid and 160 invalid fixtures, 48 targeted mutants, all killed. These supersede the counts above.
+
+The full list is in docs/architecture/agentic-ai-board.md, section "Corrections after the sixth independent check".
+
 ## Date
 
 2026-10-30

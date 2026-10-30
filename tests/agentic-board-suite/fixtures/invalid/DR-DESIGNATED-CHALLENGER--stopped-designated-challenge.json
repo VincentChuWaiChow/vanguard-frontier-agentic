@@ -258,7 +258,12 @@
         "challenge_task_ids": [
           "v02-m3"
         ],
-        "dissent": [],
+        "dissent": [
+          {
+            "challenge_task_id": "v02-m3",
+            "position": "Stopped before the attack ran; carried to the decision owner."
+          }
+        ],
         "recommended_outcome": "conditional-approve"
       }
     },
@@ -321,7 +326,7 @@
       "synthetic": true,
       "decision_record": {
         "request_task_id": "v02-m4",
-        "request_digest": "sha256:e929bccb831eac554263cf7960deab7c00c9d4f103ef508fb0c8a9a299262398",
+        "request_digest": "sha256:f63e24e84d7aaf6f7d17b2b80ad5e2e951ecc191e75a67b788e3d6702dad218e",
         "outcome": "conditional-approve",
         "decided_by": {
           "kind": "principal",

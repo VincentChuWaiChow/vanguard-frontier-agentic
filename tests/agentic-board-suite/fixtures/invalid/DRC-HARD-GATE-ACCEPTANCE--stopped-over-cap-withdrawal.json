@@ -532,6 +532,10 @@
           {
             "challenge_task_id": "v11-m5",
             "position": "Sustained HARD gate carried to the decision owner."
+          },
+          {
+            "challenge_task_id": "v11-m7",
+            "position": "Stopped at the round cap, so it stays open whatever it records."
           }
         ],
         "recommended_outcome": "escalate"
@@ -598,7 +602,7 @@
       "synthetic": true,
       "decision_record": {
         "request_task_id": "v11-m8",
-        "request_digest": "sha256:364a0c4cf1efedd2091335a3db722cc7d32db292f86f1d5cb7f4fb7492631710",
+        "request_digest": "sha256:9d974f9c39267b32c26286f40c50aa931916d73491ffc86907f4824f6985750b",
         "outcome": "conditional-approve",
         "decided_by": {
           "kind": "principal",

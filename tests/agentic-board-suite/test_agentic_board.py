@@ -456,7 +456,13 @@ class TargetedMutantTests(unittest.TestCase):
         ("risk declared before the decision is carried", 'points = [env] if env["task_id"] in ctx["superseded"] else [env] + binding', "points = [env]"),
         ("the designated challenger challenged the proposal", 'if c["source"]["kind"] == "agent" and _on_proposer(c, req["proposer_agent"], by_id)\n',
          'if c["source"]["kind"] == "agent"\n'),
-        ("the designated challenge was completed", 'and c["status"] == "completed"}', "}"),
+        ("the designated challenge was completed",
+         'and (c["status"] == "completed" or c["stop_reasons"] == ["challenge-rounds-exceeded"])}', "}"),
+        # sixth independent check
+        ("a designated challenge stopped only at the cap counts", ' or c["stop_reasons"] == ["challenge-rounds-exceeded"])}', ")}"),
+        ("only the cap stop counts as the designated challenge", 'c["stop_reasons"] == ["challenge-rounds-exceeded"]',
+         'bool(c["stop_reasons"])'),
+        ("a stopped challenge stays open", ' or bool(ch["stop_reasons"])', ""),
         ("a co-sign descends from its record", ' or all(a is not target for a in _ancestors(env, by_id))):', "):"),
     ]
 
