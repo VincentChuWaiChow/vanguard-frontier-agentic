@@ -311,7 +311,7 @@ const DERIVED_KEYWORDS = {
   marketing: ["marketing-governance", "consent-compliance", "advertising-fairness", "email-authentication"],
   hr: ["hr-governance", "employment-risk", "compensation-equity", "recruiting"],
   legal: ["legal-risk", "contract-review", "privacy-compliance", "regulatory"],
-  generic: ["test-quality", "ci-pipeline", "helm-chart", "manifest-review"],
+  generic: ["test-quality", "ci-pipeline", "helm-chart", "manifest-review", "agentic-security", "multi-agent-architecture"],
   "multi-cloud": ["finops", "cloud-pricing", "cost-optimization", "reserved-instances"],
   backstage: ["backstage", "scaffolder", "software-templates", "developer-portal"],
   "cert-manager": ["cert-manager", "x509", "certificate-lifecycle", "pki"],
@@ -384,6 +384,16 @@ function deriveTopics(entries) {
     })
     .slice(0, 4);
   return topics.join(", ");
+}
+
+/**
+ * Directories under agents/ that actually hold a provider's agents. The provider id is
+ * not a path: generic agents live in agents/qa/ and agents/cross-functional/, so naming
+ * agents/<provider>/ would point readers at a directory that does not exist.
+ */
+function agentDirs(entries) {
+  const dirs = [...new Set(entries.map((e) => e.path.split("/")[1]))].sort();
+  return dirs.map((d) => `agents/${d}/`).join(" and ");
 }
 
 /**
@@ -503,7 +513,7 @@ function deriveProviderConfig(provider, catalogEntries) {
   } else {
     // Multiple agents, no maestro
     const topics = deriveTopics(entries);
-    description = `Curated ${displayLabel} review agents covering ${topics}. Reference agents directly under agents/${provider}/. Static review only; no live mutations.`;
+    description = `Curated ${displayLabel} review agents covering ${topics}. Reference agents directly under ${agentDirs(entries)}. Static review only; no live mutations.`;
   }
 
   // Keywords
@@ -547,7 +557,7 @@ function deriveProviderConfig(provider, catalogEntries) {
   } else if (provider === "multi-cloud") {
     invariants.push("Cost recommendations are estimates based on public pricing; verify against actual billing before acting.");
   } else if (provider === "generic") {
-    invariants.push("Agents are provider-agnostic and focus on CI, Helm, manifest, and test-quality patterns.");
+    invariants.push("Agents are provider-agnostic: CI, Helm, manifest, and test-quality review under agents/qa/; cross-tier revenue-journey integrity and vendor-neutral agentic system architecture and security review under agents/cross-functional/. The agentic reviewers hand off through skills/cross-functional/agentic-board-protocol and never approve or execute.");
   } else if (provider === "argocd") {
     invariants.push("Sync and rollout strategies must be validated against the target cluster GitOps workflow.");
   } else if (provider === "backstage") {
@@ -676,7 +686,7 @@ function renderPower(provider, cfg) {
       ? liveMaestro
         ? `This board has two planes with two routers. Send static-review work to \`${maestro.id}\` — its contract refuses live operations, so it must never be given a mutation task. Send live control-plane work to \`${liveMaestro.id}\`, which is the only router that gates the live-guard operators below. Classify first, then dispatch to one specialist or a small parallel team; never have either maestro execute a mutation itself.`
         : "Use the maestro as the entry point: classify the task, then dispatch to one specialist or a parallel team of specialists. Never have the maestro itself execute a live mutation."
-      : "Reference agents directly from agents/" + provider + "/ without maestro-based routing.",
+      : "Reference agents directly from " + agentDirs(entries) + " without maestro-based routing.",
     "",
     "## Live-guard agents (gate_mode only)",
     "",

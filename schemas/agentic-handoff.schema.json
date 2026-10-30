@@ -1,0 +1,432 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/VincentChuWaiChow/vanguard-frontier-agentic/schemas/agentic-handoff.schema.json",
+  "title": "Agentic Board Handoff Envelope",
+  "description": "Structural contract for the only channel between agentic-board agents (agentic-system-architecture-review-agent, agentic-security-review-agent, composed challengers) and accountable human principals. This repo defines the CONTRACT; a deploying organization's runtime is responsible for authenticating senders and approvers, enforcing authorization, and storing records append-only. A valid envelope authorizes nothing: it is a data contract, not an access-control mechanism. This schema checks SHAPE only; every cross-field and cross-message rule (approval sourcing, monotonic attenuation, stop conditions, designated challengers, HARD gates, value-case arithmetic) is checked by tests/agentic-board-suite/agentic_board_rules.py so each rule fails with its own id. No field may carry credentials, tokens, or secrets; principals are opaque pseudonymous subjects, never names or emails.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version",
+    "message_type",
+    "task_id",
+    "correlation_id",
+    "parent_task_id",
+    "hop_count",
+    "max_hops",
+    "sent_at",
+    "source",
+    "destination",
+    "objective",
+    "input_schema_version",
+    "subject_risk_tier",
+    "data_classification",
+    "materiality_flags",
+    "authorized_actions",
+    "do_not_do_list",
+    "evidence_refs",
+    "missing_evidence",
+    "budget",
+    "deadline",
+    "approval_state",
+    "expected_output_schema",
+    "status",
+    "stop_reasons",
+    "synthetic"
+  ],
+  "properties": {
+    "schema_version": {
+      "const": "1.0.0"
+    },
+    "message_type": {
+      "enum": ["delegate", "return", "challenge", "escalate", "decision-request", "decision-record"],
+      "description": "delegate: ask an agent to perform analysis. return: deliver a verdict to the requester. challenge: a designated challenger's adversarial finding on a proposal. escalate: stop and hand to an accountable principal. decision-request: an agent assembles proposal, alternatives, challenges and dissent for a principal (never a decision). decision-record: the principal's decision, bound to one decision-request."
+    },
+    "task_id": {
+      "$ref": "#/$defs/id"
+    },
+    "correlation_id": {
+      "$ref": "#/$defs/id"
+    },
+    "parent_task_id": {
+      "oneOf": [{ "$ref": "#/$defs/id" }, { "type": "null" }],
+      "description": "task_id of the message this one responds to; null only on the root message (hop_count 0)."
+    },
+    "hop_count": {
+      "type": "integer",
+      "minimum": 0,
+      "maximum": 32
+    },
+    "max_hops": {
+      "type": "integer",
+      "minimum": 1,
+      "maximum": 16
+    },
+    "sent_at": {
+      "$ref": "#/$defs/utc_timestamp"
+    },
+    "source": {
+      "$ref": "#/$defs/party"
+    },
+    "destination": {
+      "$ref": "#/$defs/party"
+    },
+    "objective": {
+      "type": "string",
+      "minLength": 10,
+      "maxLength": 2000,
+      "description": "The analysis question, phrased as a review question (\"Assess whether ...\"). An imperative mutation request is a stop condition, not an objective."
+    },
+    "input_schema_version": {
+      "$ref": "#/$defs/semver"
+    },
+    "subject_risk_tier": {
+      "enum": ["R0", "R1", "R2", "R3", "R4", "R5"],
+      "description": "Canonical action risk tier (docs/compliance/applicability-engine.md, schemas/audit-event.schema.json risk_tier) of the DECISION UNDER REVIEW, not of the board's own static analysis. Never redefined here."
+    },
+    "data_classification": {
+      "enum": ["public", "internal", "confidential", "restricted"],
+      "description": "Classification of the material carried in this envelope; same vocabulary as audit-event input_classification."
+    },
+    "materiality_flags": {
+      "type": "array",
+      "uniqueItems": true,
+      "items": {
+        "enum": ["financial", "regulatory", "security-critical", "external-communication", "personal-data", "irreversible"]
+      },
+      "description": "Flags that force full-depth review and principal escalation. They never remap subject_risk_tier."
+    },
+    "authorized_actions": {
+      "type": "array",
+      "minItems": 1,
+      "uniqueItems": true,
+      "items": {
+        "$ref": "#/$defs/action"
+      },
+      "description": "Board agents may only be authorized read/analyze/recommend/challenge/escalate (rule HO-NO-EXECUTION). The wider vocabulary exists so a violation is expressible and caught by its own rule."
+    },
+    "do_not_do_list": {
+      "type": "array",
+      "minItems": 1,
+      "uniqueItems": true,
+      "items": {
+        "type": "string",
+        "minLength": 3,
+        "maxLength": 300
+      },
+      "description": "Explicit prohibitions that travel with the work. Never empty; never shrinks down a chain."
+    },
+    "evidence_refs": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["ref", "label"],
+        "properties": {
+          "ref": { "type": "string", "minLength": 3, "maxLength": 500 },
+          "label": {
+            "enum": [
+              "live-evidence",
+              "repo-evidence",
+              "user-provided-sanitized-evidence",
+              "context7-grounded",
+              "documentation-based",
+              "inference"
+            ]
+          }
+        }
+      }
+    },
+    "missing_evidence": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["item", "blocking"],
+        "properties": {
+          "item": { "type": "string", "minLength": 3, "maxLength": 300 },
+          "blocking": { "type": "boolean" }
+        }
+      }
+    },
+    "budget": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "currency",
+        "limit_tool_calls",
+        "spent_tool_calls",
+        "limit_tokens",
+        "spent_tokens",
+        "limit_cost_minor",
+        "spent_cost_minor"
+      ],
+      "properties": {
+        "currency": { "$ref": "#/$defs/currency" },
+        "limit_tool_calls": { "type": "integer", "minimum": 0 },
+        "spent_tool_calls": { "type": "integer", "minimum": 0 },
+        "limit_tokens": { "type": "integer", "minimum": 0 },
+        "spent_tokens": { "type": "integer", "minimum": 0 },
+        "limit_cost_minor": { "type": "integer", "minimum": 0, "description": "Integer minor currency units (e.g. cents)." },
+        "spent_cost_minor": { "type": "integer", "minimum": 0 }
+      }
+    },
+    "deadline": {
+      "$ref": "#/$defs/utc_timestamp"
+    },
+    "approval_state": {
+      "enum": ["not-required", "pending-human-review", "approved", "rejected"],
+      "description": "Only a principal-sourced decision-record may carry approved or rejected (rules HO-AGENT-NO-APPROVAL, DRC-APPROVAL-STATE)."
+    },
+    "expected_output_schema": {
+      "type": "string",
+      "pattern": "^[a-z0-9][a-z0-9-]*/[0-9]+\\.[0-9]+\\.[0-9]+$"
+    },
+    "status": {
+      "enum": ["dispatched", "completed", "escalated", "stopped"]
+    },
+    "stop_reasons": {
+      "type": "array",
+      "uniqueItems": true,
+      "items": {
+        "enum": [
+          "delegation-depth-exceeded",
+          "deadline-passed",
+          "budget-exhausted",
+          "missing-evidence",
+          "live-guard-intent",
+          "routing-loop",
+          "challenge-rounds-exceeded",
+          "conflicting-instructions"
+        ]
+      }
+    },
+    "stop_note": {
+      "type": "string",
+      "minLength": 10,
+      "maxLength": 1000,
+      "description": "Required when conflicting-instructions is declared (it is declarable, not computable)."
+    },
+    "redactions": {
+      "type": "array",
+      "uniqueItems": true,
+      "items": { "type": "string", "minLength": 3, "maxLength": 200 }
+    },
+    "synthetic": {
+      "type": "boolean",
+      "description": "true for fixtures and examples. Synthetic records can never carry measured value evidence or promotion beyond pilot (rule VC-SYNTHETIC)."
+    },
+    "verdict": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["outcome", "summary"],
+      "properties": {
+        "outcome": { "enum": ["pass", "pass-with-conditions", "block", "simpler-pattern-sufficient"] },
+        "summary": { "type": "string", "minLength": 10, "maxLength": 2000 },
+        "conditions": { "type": "array", "items": { "type": "string", "minLength": 3, "maxLength": 500 } }
+      }
+    },
+    "challenge": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["proposal_task_id", "round", "hard_gate", "outcome", "finding"],
+      "properties": {
+        "proposal_task_id": { "$ref": "#/$defs/id" },
+        "round": { "type": "integer", "minimum": 1, "maximum": 8 },
+        "hard_gate": { "type": "boolean" },
+        "outcome": { "enum": ["sustained", "withdrawn", "unresolved"] },
+        "finding": { "type": "string", "minLength": 10, "maxLength": 2000 }
+      }
+    },
+    "escalation": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["reason", "route_hint"],
+      "properties": {
+        "reason": { "type": "string", "minLength": 10, "maxLength": 1000 },
+        "route_hint": {
+          "type": "string",
+          "minLength": 3,
+          "maxLength": 200,
+          "description": "Where an accountable human should take the work next, e.g. the owning provider's live-guard path. A hint, never a dispatch."
+        }
+      }
+    },
+    "decision_request": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["decision_class", "proposer_agent", "proposal_summary", "alternatives", "challenge_task_ids", "dissent", "recommended_outcome"],
+      "properties": {
+        "decision_class": { "enum": ["architecture", "security", "automation-investment"] },
+        "proposer_agent": { "$ref": "#/$defs/agent_id" },
+        "proposal_summary": { "type": "string", "minLength": 10, "maxLength": 4000 },
+        "alternatives": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": ["kind", "summary", "rejected_because"],
+            "properties": {
+              "kind": { "enum": ["eliminate", "redesign", "existing-process", "deterministic-workflow", "conventional-automation", "single-agent", "multi-agent", "other"] },
+              "summary": { "type": "string", "minLength": 10, "maxLength": 1000 },
+              "rejected_because": { "type": "string", "minLength": 10, "maxLength": 1000 }
+            }
+          }
+        },
+        "challenge_task_ids": { "type": "array", "uniqueItems": true, "items": { "$ref": "#/$defs/id" } },
+        "dissent": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": ["challenge_task_id", "position"],
+            "properties": {
+              "challenge_task_id": { "$ref": "#/$defs/id" },
+              "position": { "type": "string", "minLength": 10, "maxLength": 2000 }
+            }
+          }
+        },
+        "recommended_outcome": { "enum": ["approve", "conditional-approve", "reject", "redesign", "escalate"] },
+        "value_case": { "$ref": "#/$defs/value_case" }
+      }
+    },
+    "decision_record": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["request_task_id", "request_digest", "outcome", "decided_by", "rationale", "dissent_acknowledged"],
+      "properties": {
+        "request_task_id": { "$ref": "#/$defs/id" },
+        "request_digest": { "type": "string", "pattern": "^sha256:[a-f0-9]{64}$", "description": "sha256 of the canonical JSON (sorted keys, separators ',' ':', UTF-8) of the referenced decision-request envelope." },
+        "outcome": { "enum": ["approve", "conditional-approve", "reject", "redesign"] },
+        "decided_by": { "$ref": "#/$defs/principal" },
+        "second_approver": { "$ref": "#/$defs/principal" },
+        "risk_acceptance_ref": { "type": "string", "minLength": 3, "maxLength": 300 },
+        "conditions": { "type": "array", "items": { "type": "string", "minLength": 3, "maxLength": 500 } },
+        "rationale": { "type": "string", "minLength": 10, "maxLength": 4000 },
+        "dissent_acknowledged": { "const": true }
+      }
+    }
+  },
+  "$defs": {
+    "id": {
+      "type": "string",
+      "pattern": "^[a-z0-9][a-z0-9-]{2,63}$"
+    },
+    "agent_id": {
+      "type": "string",
+      "pattern": "^[a-z0-9][a-z0-9-]*-agent$"
+    },
+    "semver": {
+      "type": "string",
+      "pattern": "^[0-9]+\\.[0-9]+\\.[0-9]+$"
+    },
+    "currency": {
+      "type": "string",
+      "pattern": "^[A-Z]{3}$"
+    },
+    "utc_timestamp": {
+      "type": "string",
+      "pattern": "^[0-9]{4}-[0-9]{2}-[0-9]{2}T[0-9]{2}:[0-9]{2}:[0-9]{2}Z$",
+      "description": "RFC 3339 UTC with a literal Z and whole seconds only, so string order equals time order."
+    },
+    "action": {
+      "enum": ["read", "analyze", "recommend", "challenge", "escalate", "execute", "mutate", "deploy", "approve", "pay", "communicate-externally", "delete", "grant-access"]
+    },
+    "principal": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["kind", "subject", "role"],
+      "properties": {
+        "kind": { "const": "principal" },
+        "subject": {
+          "type": "string",
+          "pattern": "^subject:[a-z0-9-]{2,32}:[a-f0-9]{16,64}$",
+          "description": "Opaque pseudonymous individual subject issued by the deploying organization's identity provider. Never a name, email, or shared role."
+        },
+        "role": { "type": "string", "pattern": "^[a-z0-9][a-z0-9-]{1,63}$" }
+      }
+    },
+    "agent": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["kind", "id"],
+      "properties": {
+        "kind": { "const": "agent" },
+        "id": { "$ref": "#/$defs/agent_id" }
+      }
+    },
+    "party": {
+      "oneOf": [{ "$ref": "#/$defs/agent" }, { "$ref": "#/$defs/principal" }]
+    },
+    "money_range": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["low", "point", "high"],
+      "properties": {
+        "low": { "type": "integer" },
+        "point": { "type": "integer" },
+        "high": { "type": "integer" }
+      },
+      "description": "Integer minor currency units; low <= point <= high (rule VC-ORDER)."
+    },
+    "value_case": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "currency",
+        "baseline_process",
+        "annual_volume",
+        "baseline_labor_error_cost",
+        "baseline_loss_leakage",
+        "intervention_rate_bp",
+        "exception_rate_bp",
+        "verified_annual_benefit",
+        "annual_run_cost",
+        "annual_oversight_cost",
+        "annualized_implementation_cost",
+        "expected_risk_loss",
+        "net_annual_value",
+        "runs",
+        "successful_runs",
+        "cost_per_successful_task_minor",
+        "counterfactuals",
+        "confidence",
+        "promotion_state",
+        "measurement_plan"
+      ],
+      "properties": {
+        "currency": { "$ref": "#/$defs/currency" },
+        "baseline_process": { "type": "string", "minLength": 10, "maxLength": 1000 },
+        "annual_volume": { "type": "integer", "minimum": 0 },
+        "baseline_labor_error_cost": { "type": "integer", "minimum": 0 },
+        "baseline_loss_leakage": { "type": "integer", "minimum": 0 },
+        "intervention_rate_bp": { "type": "integer", "minimum": 0, "maximum": 10000, "description": "Share of cases needing human intervention, in basis points." },
+        "exception_rate_bp": { "type": "integer", "minimum": 0, "maximum": 10000 },
+        "verified_annual_benefit": { "$ref": "#/$defs/money_range" },
+        "annual_run_cost": { "$ref": "#/$defs/money_range" },
+        "annual_oversight_cost": { "$ref": "#/$defs/money_range" },
+        "annualized_implementation_cost": { "$ref": "#/$defs/money_range" },
+        "expected_risk_loss": { "$ref": "#/$defs/money_range" },
+        "net_annual_value": { "$ref": "#/$defs/money_range" },
+        "runs": { "type": "integer", "minimum": 0 },
+        "successful_runs": { "type": "integer", "minimum": 0 },
+        "cost_per_successful_task_minor": { "type": "integer", "minimum": 0 },
+        "counterfactuals": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": ["kind", "net_annual_value", "basis"],
+            "properties": {
+              "kind": { "enum": ["existing-process", "conventional-automation", "deterministic-workflow", "single-agent", "multi-agent"] },
+              "net_annual_value": { "$ref": "#/$defs/money_range" },
+              "basis": { "type": "string", "minLength": 10, "maxLength": 1000 }
+            }
+          }
+        },
+        "confidence": { "enum": ["assumption", "estimate", "benchmark", "measured"] },
+        "promotion_state": { "enum": ["candidate", "pilot", "limited-production", "production"] },
+        "measurement_plan": { "type": "string", "minLength": 10, "maxLength": 2000 }
+      }
+    }
+  }
+}

@@ -52,7 +52,7 @@ Owns:
 Does not own — route to the named sibling:
 
 - Server hosting, transport selection, and network posture → the `mcp/` references and the security board.
-- Organization-wide MCP trust policy → the security board.
+- Organization-wide MCP trust policy → its named human policy owner, with the `mcp/` references; per-server trust review → `agentic-security-review-agent`.
 - Vendor-specific connector governance → `netsuite-ai-connector-mcp-agent` and `nvidia-agentic-ai-platform-review-agent` for their respective connectors.
 - Application-side input validation unrelated to a declared MCP tool schema → `typescript-runtime-boundary-contract-agent`.
 - Tool-contract versioning mechanics considered as a general semver/declaration question → `typescript-public-api-and-declaration-governance-agent`.

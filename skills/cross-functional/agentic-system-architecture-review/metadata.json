@@ -1,0 +1,31 @@
+{
+  "id": "agentic-system-architecture-review",
+  "name": "Agentic System Architecture Review",
+  "type": "skill",
+  "provider": "generic",
+  "harnesses": [
+    "codex",
+    "claude-code",
+    "cursor",
+    "gemini",
+    "kiro",
+    "other"
+  ],
+  "summary": "Review an agentic system's pattern choice (deterministic workflow, single agent, multi-agent), delegation and handoff design, state and memory, durable execution, and cascading-failure containment, vendor-neutrally, with progressive-disclosure references and a verdict that must survive a designated challenge.",
+  "source_type": "original",
+  "official_docs": [
+    "https://docs.langchain.com/oss/python/langgraph/persistence",
+    "https://openai.github.io/openai-agents-python/multi_agent/",
+    "https://learn.microsoft.com/agent-framework/workflows/orchestrations/",
+    "https://adk.dev/workflows/",
+    "https://docs.temporal.io/evaluate/understanding-temporal",
+    "https://a2a-protocol.org/latest/specification/",
+    "https://github.com/open-telemetry/semantic-conventions-genai",
+    "https://www.finops.org/wg/finops-for-ai-overview/"
+  ],
+  "security_notes": "Static review only; never executes or deploys, never handles credentials or customer data. Framework behaviour is version-sensitive: verify against Context7 or official docs for the installed version before asserting it. Verdicts are proposals for the agentic-board-protocol decision process, never approvals.",
+  "last_verified": "2026-10-30",
+  "path": "skills/cross-functional/agentic-system-architecture-review",
+  "author": "github: VincentChuWaiChow",
+  "version": "0.1.0"
+}

@@ -8,7 +8,7 @@ The thirteen domains, the signals that select each one, and the boundaries that 
 - `build-graph-performance` owns the TypeScript program graph measured with evidence; `monorepo-dx-agent` on the frontend board owns the task graph and remote caching. A request to speed something up without a measurement is a refuse-and-ask, not a dispatch.
 - `static-enforcement-policy` owns what the toolchain must prove and at what cost across packages; `type-soundness` owns whether one construct is sound. A question about which flags or lint rules the fleet must run routes to enforcement; a question about whether a specific predicate lies routes to soundness.
 - `package-publication-integrity` owns publish authority, provenance, and what ships in the tarball; dependency intake, lockfile policy, and install-time scripts belong to `package-governance-agent` on the frontend board.
-- `mcp-tool-contract` owns whether a declared MCP tool contract matches its TypeScript handler; transport, hosting, and organization MCP trust policy belong to the security board and the `mcp/` references, and vendor connectors to their own agents.
+- `mcp-tool-contract` owns whether a declared MCP tool contract matches its TypeScript handler; whether to trust a specific third-party MCP server belongs to `agentic-security-review-agent`; transport and hosting belong to the `mcp/` references; organization MCP trust policy belongs to its named human policy owner; vendor connectors belong to their own agents.
 - `engineering-economics` is never dispatched first: it consumes measurements another specialist produced and refuses to originate one. A cost question with no supplied measurements routes to the specialist who can measure it, not to economics.
 
 ## Routing table

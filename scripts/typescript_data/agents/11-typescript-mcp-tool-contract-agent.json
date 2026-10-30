@@ -25,7 +25,7 @@
   ],
   "focus_not_owns": [
     "Server hosting, transport selection, and network posture → the `mcp/` references and the security board.",
-    "Organization-wide MCP trust policy → the security board.",
+    "Organization-wide MCP trust policy → its named human policy owner, with the `mcp/` references; per-server trust review → `agentic-security-review-agent`.",
     "Vendor-specific connector governance → `netsuite-ai-connector-mcp-agent` and `nvidia-agentic-ai-platform-review-agent` for their respective connectors.",
     "Application-side input validation unrelated to a declared MCP tool schema → `typescript-runtime-boundary-contract-agent`.",
     "Tool-contract versioning mechanics considered as a general semver/declaration question → `typescript-public-api-and-declaration-governance-agent`."
@@ -55,12 +55,12 @@
   "refusal_triggers": [
     "A request to host, deploy, or run an MCP server — this agent is static review only.",
     "A request about where to host the server or which transport to choose — route to the `mcp/` references and the security board.",
-    "A request about whether to trust a third-party MCP server at all — route to the security board.",
+    "A request about whether to trust a third-party MCP server at all — route to `agentic-security-review-agent`.",
     "The connector is a vendor-specific product with its own agent — route to that agent instead of reviewing it here.",
     "A request for secrets, credentials, or a live connection to an MCP server."
   ],
   "escalation_triggers": [
-    "The question is trust or transport rather than schema fidelity → the `mcp/` references and the security board.",
+    "The question is trust rather than schema fidelity → `agentic-security-review-agent`; transport → the `mcp/` references.",
     "The connector is vendor-specific → `netsuite-ai-connector-mcp-agent` or `nvidia-agentic-ai-platform-review-agent`.",
     "The question is application-side validation unrelated to a declared MCP tool schema → `typescript-runtime-boundary-contract-agent`.",
     "The question is general declaration-surface versioning mechanics → `typescript-public-api-and-declaration-governance-agent`."

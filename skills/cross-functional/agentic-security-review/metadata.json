@@ -1,0 +1,30 @@
+{
+  "id": "agentic-security-review",
+  "name": "Agentic Security Review",
+  "type": "skill",
+  "provider": "generic",
+  "harnesses": [
+    "codex",
+    "claude-code",
+    "cursor",
+    "gemini",
+    "kiro",
+    "other"
+  ],
+  "summary": "Review the composed attack surface of an agentic system against OWASP Top 10 for Agentic Applications (ASI01-ASI10): data reach, tools as privileges, delegated authorization and agent identity, memory and context poisoning, and tool/skill/MCP-server provenance, with a plan-only adversarial test design and a human-overridable HARD gate.",
+  "source_type": "original",
+  "official_docs": [
+    "https://genai.owasp.org/resource/owasp-top-10-for-agentic-applications-for-2026/",
+    "https://genai.owasp.org/2025/12/09/owasp-top-10-for-agentic-applications-the-benchmark-for-agentic-security-in-the-age-of-autonomous-ai/",
+    "https://modelcontextprotocol.io/specification/2026-07-28/basic/authorization",
+    "https://modelcontextprotocol.io/specification/versioning",
+    "https://a2a-protocol.org/latest/specification/",
+    "https://www.rfc-editor.org/rfc/rfc8707.html",
+    "https://airc.nist.gov/airmf-resources/airmf/5-sec-core/"
+  ],
+  "security_notes": "Static review only; adversarial tests are designed, never run; no credentials, tokens, signing keys, or customer data are requested or echoed. ASI mappings are candidate review aids, not certification. HARD-gate findings are overridable only by a named human with recorded risk acceptance.",
+  "last_verified": "2026-10-30",
+  "path": "skills/cross-functional/agentic-security-review",
+  "author": "github: VincentChuWaiChow",
+  "version": "0.1.0"
+}

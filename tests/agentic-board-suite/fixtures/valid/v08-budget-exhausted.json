@@ -1,0 +1,186 @@
+{
+  "description": "Budget exhaustion stops further delegation and escalates.",
+  "messages": [
+    {
+      "schema_version": "1.0.0",
+      "message_type": "delegate",
+      "task_id": "v08-m1",
+      "correlation_id": "v08-corr",
+      "parent_task_id": null,
+      "hop_count": 0,
+      "max_hops": 8,
+      "sent_at": "2026-10-01T09:01:00Z",
+      "source": {
+        "kind": "principal",
+        "subject": "subject:corp-idp:7c1e9a40b2d35f68",
+        "role": "platform-owner"
+      },
+      "destination": {
+        "kind": "agent",
+        "id": "agentic-system-architecture-review-agent"
+      },
+      "objective": "Assess whether the retry and compensation design of the order agent is idempotent.",
+      "input_schema_version": "1.0.0",
+      "subject_risk_tier": "R0",
+      "data_classification": "internal",
+      "materiality_flags": [],
+      "authorized_actions": [
+        "read",
+        "analyze",
+        "recommend",
+        "challenge",
+        "escalate"
+      ],
+      "do_not_do_list": [
+        "Do not execute, deploy, or mutate any system",
+        "Do not request, store, or echo credentials, tokens, or secrets",
+        "Do not record an approval on behalf of a human"
+      ],
+      "evidence_refs": [
+        {
+          "ref": "repo:docs/design/v08.md#section-1",
+          "label": "repo-evidence"
+        }
+      ],
+      "missing_evidence": [],
+      "budget": {
+        "currency": "USD",
+        "limit_tool_calls": 10,
+        "spent_tool_calls": 0,
+        "limit_tokens": 400000,
+        "spent_tokens": 0,
+        "limit_cost_minor": 2000,
+        "spent_cost_minor": 0
+      },
+      "deadline": "2026-10-08T17:00:00Z",
+      "approval_state": "not-required",
+      "expected_output_schema": "agentic-review-verdict/1.0.0",
+      "status": "dispatched",
+      "stop_reasons": [],
+      "synthetic": true
+    },
+    {
+      "schema_version": "1.0.0",
+      "message_type": "delegate",
+      "task_id": "v08-m2",
+      "correlation_id": "v08-corr",
+      "parent_task_id": "v08-m1",
+      "hop_count": 1,
+      "max_hops": 8,
+      "sent_at": "2026-10-01T09:02:00Z",
+      "source": {
+        "kind": "agent",
+        "id": "agentic-system-architecture-review-agent"
+      },
+      "destination": {
+        "kind": "agent",
+        "id": "agentic-security-review-agent"
+      },
+      "objective": "Assess whether retried tool calls can replay a payment instruction.",
+      "input_schema_version": "1.0.0",
+      "subject_risk_tier": "R0",
+      "data_classification": "internal",
+      "materiality_flags": [],
+      "authorized_actions": [
+        "read",
+        "analyze",
+        "recommend",
+        "challenge",
+        "escalate"
+      ],
+      "do_not_do_list": [
+        "Do not execute, deploy, or mutate any system",
+        "Do not request, store, or echo credentials, tokens, or secrets",
+        "Do not record an approval on behalf of a human"
+      ],
+      "evidence_refs": [
+        {
+          "ref": "repo:docs/design/v08.md#section-1",
+          "label": "repo-evidence"
+        }
+      ],
+      "missing_evidence": [],
+      "budget": {
+        "currency": "USD",
+        "limit_tool_calls": 10,
+        "spent_tool_calls": 10,
+        "limit_tokens": 400000,
+        "spent_tokens": 50000,
+        "limit_cost_minor": 2000,
+        "spent_cost_minor": 200
+      },
+      "deadline": "2026-10-08T17:00:00Z",
+      "approval_state": "not-required",
+      "expected_output_schema": "agentic-review-verdict/1.0.0",
+      "status": "stopped",
+      "stop_reasons": [
+        "budget-exhausted"
+      ],
+      "synthetic": true
+    },
+    {
+      "schema_version": "1.0.0",
+      "message_type": "escalate",
+      "task_id": "v08-m3",
+      "correlation_id": "v08-corr",
+      "parent_task_id": "v08-m2",
+      "hop_count": 2,
+      "max_hops": 8,
+      "sent_at": "2026-10-01T09:03:00Z",
+      "source": {
+        "kind": "agent",
+        "id": "agentic-system-architecture-review-agent"
+      },
+      "destination": {
+        "kind": "principal",
+        "subject": "subject:corp-idp:7c1e9a40b2d35f68",
+        "role": "platform-owner"
+      },
+      "objective": "Escalate: the review budget is exhausted before the security pass could run.",
+      "input_schema_version": "1.0.0",
+      "subject_risk_tier": "R0",
+      "data_classification": "internal",
+      "materiality_flags": [],
+      "authorized_actions": [
+        "read",
+        "analyze",
+        "recommend",
+        "challenge",
+        "escalate"
+      ],
+      "do_not_do_list": [
+        "Do not execute, deploy, or mutate any system",
+        "Do not request, store, or echo credentials, tokens, or secrets",
+        "Do not record an approval on behalf of a human"
+      ],
+      "evidence_refs": [
+        {
+          "ref": "repo:docs/design/v08.md#section-1",
+          "label": "repo-evidence"
+        }
+      ],
+      "missing_evidence": [],
+      "budget": {
+        "currency": "USD",
+        "limit_tool_calls": 10,
+        "spent_tool_calls": 10,
+        "limit_tokens": 400000,
+        "spent_tokens": 50000,
+        "limit_cost_minor": 2000,
+        "spent_cost_minor": 200
+      },
+      "deadline": "2026-10-08T17:00:00Z",
+      "approval_state": "not-required",
+      "expected_output_schema": "agentic-review-verdict/1.0.0",
+      "status": "escalated",
+      "stop_reasons": [
+        "budget-exhausted"
+      ],
+      "synthetic": true,
+      "escalation": {
+        "reason": "Tool-call budget exhausted at the delegation hop.",
+        "route_hint": "Decision owner may raise the budget in a new correlation."
+      }
+    }
+  ]
+}
