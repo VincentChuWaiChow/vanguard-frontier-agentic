@@ -49,7 +49,7 @@ Evaluation details, the full inventory and the per-candidate table are in docs/a
 ### What becomes easier
 
 - **Reviewing an agentic system without a vendor lens.** Pattern selection, durability, containment and the composed attack surface now have an owner each, and a "should this be multi-agent at all" question has a defined answer path.
-- **Auditing a handoff.** A record set can be checked offline against 67 rules, each failing under its own id, including the rule that only a principal records a decision.
+- **Auditing a handoff.** A record set can be checked offline against 68 rules, each failing under its own id, including the rule that only a principal records a decision.
 - **Adding a rule.** A new rule needs a predicate, a sole-violation fixture and a documented row; the gate fails if any of the three is missing.
 - **Keeping one owner per concept.** The protocol's ownership table prevents a second asset from quietly restating the first.
 
@@ -73,7 +73,7 @@ Evaluation details, the full inventory and the per-candidate table are in docs/a
 ### Mitigations
 
 - The honesty boundary is repeated in the schema description, the protocol, both agent contracts and the design record, so a reader of any one of them meets it.
-- Every rule has a sole-violation fixture, and a mutation probe neutralized each rule add-site in turn. It found 64 sites, killed 63 by fixtures, and the one survivor (the empty-document return) has its own covering test.
+- Every rule has a sole-violation fixture, and a mutation probe neutralized each rule add-site in turn. It found 65 sites, killed 64 by fixtures, and the one survivor (the empty-document return) has its own covering test.
 - The gate runs an AST denylist scan for listed wall-clock, network and randomness imports and calls. A denylist does not catch indirect forms, which the design record lists, so determinism also rests on review. The gate is meant to change result only when committed data changes.
 - Facts are labeled by verification level, and anything not confirmed from a primary source is left out or marked for verification.
 - The pull request is a draft, the ordering exception is stated in it, and the owner can defer the whole wave to Milestone 3 without losing the design record.

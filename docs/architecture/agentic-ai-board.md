@@ -298,7 +298,7 @@ Both agents carry the same thirteen-row authority card in their AGENT.md. The ro
 
 ## Topology and handoff contract
 
-The envelope in [schemas/agentic-handoff.schema.json](../../schemas/agentic-handoff.schema.json) is the only channel between board agents and principals. The schema checks shape only; the cross-field rules live in tests/agentic-board-suite/agentic_board_rules.py, one predicate per rule id, so each defect fails with the id that names it. There are 67 rule ids in six families as of 2026-10-30: 29 envelope, record-set and chain rules (HO), 8 computed stop conditions (STOP), 1 challenge link rule (CH), 12 decision-request rules (DR), 7 decision-record rules (DRC) and 10 value-case rules (VC). The rule tables are in the protocol references: [handoff envelope](../../skills/cross-functional/agentic-board-protocol/references/handoff-envelope.md), [stop conditions](../../skills/cross-functional/agentic-board-protocol/references/stop-conditions.md), [decision record](../../skills/cross-functional/agentic-board-protocol/references/decision-record.md) and [value case](../../skills/cross-functional/agentic-board-protocol/references/value-case.md).
+The envelope in [schemas/agentic-handoff.schema.json](../../schemas/agentic-handoff.schema.json) is the only channel between board agents and principals. The schema checks shape only; the cross-field rules live in tests/agentic-board-suite/agentic_board_rules.py, one predicate per rule id, so each defect fails with the id that names it. There are 68 rule ids in six families as of 2026-10-30: 30 envelope, record-set and chain rules (HO), 8 computed stop conditions (STOP), 1 challenge link rule (CH), 12 decision-request rules (DR), 7 decision-record rules (DRC) and 10 value-case rules (VC). The rule tables are in the protocol references: [handoff envelope](../../skills/cross-functional/agentic-board-protocol/references/handoff-envelope.md), [stop conditions](../../skills/cross-functional/agentic-board-protocol/references/stop-conditions.md), [decision record](../../skills/cross-functional/agentic-board-protocol/references/decision-record.md) and [value case](../../skills/cross-functional/agentic-board-protocol/references/value-case.md).
 
 | Message type | Purpose |
 |---|---|
@@ -383,7 +383,7 @@ Classification under the EU AI Act is routed to legal-regulatory-compliance-agen
 
 The gate is deterministic and offline, reading committed files only (`python3 -m unittest discover -s tests/agentic-board-suite -p "test_*.py"`). It proves:
 
-- Every one of the 67 rules has a sole-violation fixture, and each of the 76 invalid fixtures fails exactly its one declared rule.
+- Every one of the 68 rules has a sole-violation fixture, and each of the 77 invalid fixtures fails exactly its one declared rule.
 - The 10 valid record sets pass and are all marked synthetic.
 - The fixtures are current with their builder, and every agent id they use exists in the catalog.
 - The protocol references document exactly the rule table, no more and no fewer ids.
@@ -403,7 +403,7 @@ The gate is deterministic and offline, reading committed files only (`python3 -m
 
 ### Mutation probe
 
-The probe neutralizes each rule add-site in agentic_board_rules.py in memory and replays every fixture. It found 64 mutation sites (63 rule add-sites and the early return for an empty document). Fixtures killed 63. The one survivor is the empty-document return, which test_empty_document_fails_closed covers directly. The probe was re-run on 2026-10-30 and reproduced these numbers. Routing is not used: the board is wired into no routing fixture, and validate:maestro-routing does not exercise it.
+The probe neutralizes each rule add-site in agentic_board_rules.py in memory and replays every fixture. It found 65 mutation sites (64 rule add-sites and the early return for an empty document). Fixtures killed 64. The one survivor is the empty-document return, which test_empty_document_fails_closed covers directly. The probe was re-run on 2026-10-30 and reproduced these numbers. Routing is not used: the board is wired into no routing fixture, and validate:maestro-routing does not exercise it.
 
 ### Negative probes the gate already carries
 
@@ -447,7 +447,7 @@ This scorecard is the author's judgment against a rubric defined in this documen
 
 | Dimension | Score | Evidence | Why not higher |
 |---|---|---|---|
-| Security | 3 | No execute verb; principal-only approvals bound by request digest; HARD gate; 67 rules with sole-violation fixtures and a mutation probe; read-only declarations in four harness adapters | Sender authentication, authorization and audit storage are runtime-only; three adapters are prompt-level; enforcement of the declared grant is verified only for the Claude Code `tools` field, and the repository's own execution-tiers document disagrees; ASI02, ASI04, ASI05, ASI06 and ASI10 have no repository control; no red-team run |
+| Security | 3 | No execute verb; principal-only approvals bound by request digest; HARD gate; 68 rules with sole-violation fixtures and a mutation probe; read-only declarations in four harness adapters | Sender authentication, authorization and audit storage are runtime-only; three adapters are prompt-level; enforcement of the declared grant is verified only for the Claude Code `tools` field, and the repository's own execution-tiers document disagrees; ASI02, ASI04, ASI05, ASI06 and ASI10 have no repository control; no red-team run |
 | Operational burden | 2 | Nothing to operate in this repository; one added gate; two agents and three skills to install via two install roles | Adopters must build the runtime, record store and approver authentication; the cost of challenger, alternative and dissent for R2+ work is unmeasured |
 | Interoperability | 2 | Envelope is a JSON Schema 2020-12 document; seven harness adapters; parity with the audit-event vocabularies is checked offline | No wire binding to MCP or A2A is implemented; framework and protocol facts drift; no other system has consumed the envelope |
 | Economics | 1 | A value-case contract with interval arithmetic, counterfactuals and a promotion rule, with bookkeeping checked offline | No measured benefit, no baseline, and synthetic fixtures cannot exceed pilot. The arithmetic proves bookkeeping, not value |
