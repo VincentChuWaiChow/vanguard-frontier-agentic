@@ -1,3 +1,180 @@
+## 🛡️ v3.17.0 — *Provenance · Policy · Portability*
+_Released 2026-10-30_
+
+> _Curated multi-cloud, zero-trust agent marketplace — `AWS` · `Azure` · `OCI` · `GCP` · `Terraform`._
+> Least privilege, live evidence, safe rollback paths.
+
+**Release type:** New capabilities — review the sections below before upgrading.
+
+### ✨ Features
+
+* **agentic-board:** add architecture and security reviewers with protocol skill ([`246754b`](https://github.com/VincentChuWaiChow/vanguard-frontier-agentic/commit/246754b836beeeb3b1d1a519dda75c189c40c308))
+  Adds the two vendor-neutral static-review agents and their companion
+  skills, plus the shared Layer-3 protocol:
+
+  - agentic-system-architecture-review-agent (+ skill): lowest sufficient
+    pattern (deterministic workflow / single agent / multi-agent),
+    delegation and handoff design, state and durable execution, and
+    cascading-failure containment.
+  - agentic-security-review-agent (+ skill): OWASP ASI01-ASI10 walk, data
+    reach, delegated authorization (MCP audience binding, no token
+    passthrough, A2A schemes), memory poisoning, provenance; HARD-gate
+    challenges only a principal decision record with a risk acceptance
+    reference can override.
+  - agentic-board-protocol: handoff envelope, computed stop conditions,
+    adversarial decision record with designated challengers, R0-R5
+    crosswalk (canonical tiers reused, never redefined), value case.
+  - Seven harness adapters per agent; claude-code adapters carry
+    tools: Read, Grep, Glob, copilot read/search, codex read-only sandbox,
+    cursor readonly.
+  - New rule HO-APPROVAL-ONLY-ON-RECORD closes a gap found in adversarial
+    review: a principal-sourced non-record envelope could carry approved.
+  - docs/execution-tiers.md: corrects the enforcement table — SKILL.md
+    allowed-tools pre-approves rather than restricts in Claude Code, and
+    claude-code/cursor adapters can carry real restrictions (official docs
+    cited).
+  - Kiro Powers: generic/kubernetes/multi-cloud now name the directories
+    their agents actually live in.
+  - Remaining TypeScript MCP-trust clause repointed.
+  - Design record and ADR-0003; catalog, manifests, counts regenerated;
+    asset integrity refreshed last.
+* **agentic-board:** add handoff contract schema and deterministic gate ([`94c4000`](https://github.com/VincentChuWaiChow/vanguard-frontier-agentic/commit/94c40002cc83022fe5fe3f4db3f304e545afab4c))
+  Adds schemas/agentic-handoff.schema.json (shape-only envelope for the
+  vendor-neutral agentic board) and tests/agentic-board-suite: a pure-Python
+  rule engine (67 rule ids, one predicate each), a deterministic fixture
+  builder whose expected violations are declared per mutation rather than
+  computed by the gate, 10 valid and 76 sole-violation fixtures, schema
+  parity with audit-event (R0-R5, classification), board invariants, and an
+  AST scan forbidding wall-clock, network, and randomness. Wired into
+  npm run validate as validate:agentic-board.
+
+### 🐛 Bug Fixes
+
+* **agentic-board:** close bypasses found by second independent review ([`a9721e6`](https://github.com/VincentChuWaiChow/vanguard-frontier-agentic/commit/a9721e69bf407103c6e72b6fc7a114c3742242c6))
+  A second independent adversarial review re-tested the first remediation
+  with seven attack lenses and reported 51 findings. Every engine finding
+  was reproduced from its probe before fixing.
+
+  Bypasses closed (the gate accepted record sets the protocol forbids):
+  - A HARD-gate withdrawal attached although sent after the request or the
+    decision cleared the gate retroactively: new DR-CHALLENGE-PRECEDES.
+  - Same-second rounds were ordered by task_id; order is now causal (an
+    ancestor, or an earlier second; same-second siblings are unordered).
+  - A stopped round-3 withdrawal cleared sustained HARD rounds; only a
+    completed withdrawal in a strictly later counted round clears.
+  - A superseding request from another proposer dropped a HARD gate:
+    DR-ONE-REQUEST requires the same proposer and rejects cycles.
+  - R5 dual control keyed on the record's own tier; it now also follows
+    the bound request's tier.
+  - A stop marked escalated on a delegate escaped STOP-TERMINAL: escalated
+    status must address a principal, and no decision binds a halted request.
+  - The one-revisit routing exemption allowed unbounded revisits.
+  - A block return skipping the delegator: new HO-RETURN-TO-SENDER.
+* **agentic-board:** close decision-authority holes found by independent adversarial review ([`64e2674`](https://github.com/VincentChuWaiChow/vanguard-frontier-agentic/commit/64e2674726353eb3b4909948a6ff77c9e9532977))
+  An independent 10-reviewer adversarial review (chair verdict REDESIGN, 63.2/100) showed the
+  gate accepted record sets its documentation said it rejects. This closes them in rules, not prose:
+
+  - DR-CHALLENGE-COMPLETE: every challenge on the proposal up to the decision is attached; a HARD
+    gate clears only on the same challenger's later HARD-gate withdrawal
+  - DR-ONE-REQUEST (+ supersedes_task_id), DR-OWNER-FROM-ROOT, DR-CLASS-FROM-ROOT: the requesting
+    principal names the decider and the decision class; the proposer cannot pick or relabel them
+  - DRC-ONE-RECORD, DRC-DECIDER-IS-ADDRESSEE, DRC-AFTER-REQUEST, DRC-COMPLETED
+  - DRC-CO-SIGNED, DRC-CO-SIGN-BINDING: R5 dual control is the second approver's own record
+  - STOP-TERMINAL, CH-ROUND-COUNTED, HO-DESTINATION-TIER, HO-MONO-SPENT, HO-BLOCK-AS-CHALLENGE,
+    HO-RETURN-EVIDENCE, VC-COST-SIGN; deterministic-workflow counterfactual required
+  - HO-SCHEMA reads patterns as ECMA-262 (trailing newline fails) and reports malformed JSON,
+    duplicate keys, non-object input and lone surrogates instead of tracebacks; --digest CLI mode
+* **agentic-board:** close holes found by third independent check ([`11249b5`](https://github.com/VincentChuWaiChow/vanguard-frontier-agentic/commit/11249b5c46719ea8644508bb680990b5d167abaa))
+  A third independent check of a9721e69 (closure, new-predicate bypass
+  hunt, new-strictness false-rejection hunt) reported 13 findings. Every
+  one was reproduced from its probe before fixing.
+
+  Not closed by a9721e69, now closed:
+  - A different proposer that never superseded, or a HARD gate on the
+    requester's framing, still left a HARD gate behind. HARD gates are
+    now owed correlation-wide (DR-CHALLENGE-COMPLETE) and attachable
+    wherever raised (DR-CHALLENGE-TARGETS-PROPOSAL).
+  - One human decided an R5 matter through a request on a lower-tier
+    branch or a lowering re-ask: new DR-RISK-CARRIED.
+
+  New bypasses closed:
+  - Self-named targets allowed unlimited revisits; the revisit is now
+    counted by delegates.
+  - A challenge naming a later envelope posed as a later round:
+    CH-PROPOSAL-LINK requires the target to precede the challenge, and a
+    round is fixed by what the challenger had answered when it sent it.
+  - A withdrawal replying to the decision-record was attached: causal
+    order gains record->request and co-sign->record edges; completeness
+    uses causal order; DRC-AFTER-REQUEST rejects a request that descends
+    from its own record.
+
+  Regressions from a9721e69 fixed: a delegator may report back to its
+  own requester after a challenge (HO-RETURN-TO-SENDER), and a stopped
+  delegate no longer counts as already delegated. Agent contracts now
+  send proposals to the challenger as delegates and mark stops toward
+  agents as stopped; stop-conditions documents the capped-round path and
+  that an escalated envelope is itself the hand-off.
+
+  88 rules, 34 valid / 150 invalid fixtures, 42 targeted mutants killed.
+* **agentic-board:** count cap-stopped designated challenges; keep stopped challenges open ([`f24367e`](https://github.com/VincentChuWaiChow/vanguard-frontier-agentic/commit/f24367e7856077525587ce27540a3b15b5107c96))
+  Sixth independent check of 687fdd20: 7 findings (4 distinct), no bypass.
+
+  - DR-DESIGNATED-CHALLENGER also counts a designated challenge whose only
+    stop reason is challenge-rounds-exceeded. Requiring a completed one made
+    a correlation undecidable once the designated challenger's first answer
+    fell past the cap (sub-questions first, or the proposal handed to the
+    former challenger). A stop for any other reason still does not count.
+  - A stopped challenge is open whatever outcome it records: it needs a
+    dissent entry, blocks recommending approve and, as a HARD gate, stays
+    live. A blocking-gap stop recorded withdrawn no longer passes as resolved.
+  - Docs: STOP-TERMINAL is branch-scoped (known limit); a co-sign descends
+    from its record (not necessarily its child); no evidence lets an agent
+    close a HARD gate or dissent; questions to the designated challenger use
+    up its rounds; _counted_rounds docstring matches the code.
+  - Fixtures: 2 valid variants (37), 2 invalid (160), one renamed;
+    3 new targeted mutants (48), all killed.
+* **agentic-board:** remove agent-side clearing of findings (owner decision) ([`687fdd2`](https://github.com/VincentChuWaiChow/vanguard-frontier-agentic/commit/687fdd202940ab42a2410ad7e7193c0bfdb8140f))
+  Five independent checks each found a way for an adversary to control
+  what counted as the "later round" that let a challenger clear its own
+* **agentic-board:** replace round and risk mechanisms after fourth check ([`71317aa`](https://github.com/VincentChuWaiChow/vanguard-frontier-agentic/commit/71317aa54383a36c1370a8249ff20b73eeb858f5))
+  A fourth independent check of 11249b5c reported 16 findings; every
+  engine finding was reproduced from its probe. They showed two root
+  causes patched symptom by symptom across earlier passes, so this
+  replaces both mechanisms instead of adding a fifth patch.
+
+  - Rounds: a challenge's round is now the number of proposal versions
+    (delegates and returns, not stopped) the proposer of its target had
+    delivered to the challenger before it. Naming its own envelopes, an
+    envelope it never received, another proposer's revision, or revisions
+    sent as returns or sibling delegates no longer moves a round. A HARD
+    gate clears only on the same proposer's later version; after a change
+    of proposer it stays live until the original party revises or a
+    principal accepts the risk.
+  - Risk: DR-RISK-CARRIED now holds a request to the tier and flags of
+    every envelope in the correlation not causally after it, closing a
+    requester's re-tiering, a challenger raising the tier outside an
+    attached challenge, and a same-second lowering re-ask.
+
+### 📚 Documentation
+
+* **agentic-board:** correct rule and fixture counts after HO-APPROVAL-ONLY-ON-RECORD ([`1bb887e`](https://github.com/VincentChuWaiChow/vanguard-frontier-agentic/commit/1bb887eedbfa87718bd739fb72d2eb55509d565a))
+  The design record and ADR quoted 67 rules, 76 invalid fixtures and a
+  64-site mutation probe from before the approval-sourcing rule landed.
+  Re-ran the probe on the current rules: 65 sites, 64 killed by fixtures,
+  the empty-document return covered by its own unit test.
+
+---
+
+### 📥 Install
+```bash
+npm install @raishin/vanguard-frontier-agentic@3.17.0
+```
+
+### 🔐 Supply-chain provenance
+Every release ships a build attestation (SLSA provenance) and an SBOM. Verify the tag with `gh attestation verify` before installing.
+
+**Full changelog:** https://github.com/VincentChuWaiChow/vanguard-frontier-agentic/compare/v3.16.0...v3.17.0
+
 ## 🛡️ v3.16.0 — *Provenance · Policy · Portability*
 _Released 2026-10-16_
 
@@ -12004,7 +12181,7 @@ Collateral: regenerate asset-integrity.json, plugin manifests
 
 ## 🔴 v2.0.0 — *Zero-Trust Scope Enforcement* &mdash; 2026-05-16
 
-> _Provider-scoped exports are now strict and auditable. 735 agents · 761 skills · 45 providers · 76 roles_
+> _Provider-scoped exports are now strict and auditable. 737 agents · 764 skills · 45 providers · 76 roles_
 >
 > This release closes a class of privilege-escalation bugs in the export CLI and hardens the
 > entire provider-scope boundary from user input through to CI attestation.
