@@ -57,6 +57,16 @@ A fourth independent check (closure of the third check's findings, a bypass hunt
 - **Wording aligned with the code.** DR-CHALLENGE-COMPLETE counts every decision-record bound to the request in force, the co-signing record included. The agent contracts and handoff-envelope.md say to hand a proposal to the challenger as a return when the challenger is the agent that delegated the work, since a delegate back to it is a routing loop.
 - **Counts.** 88 rules (unchanged), 35 valid fixtures (12 hand-written scenarios and 23 variants) and 156 invalid fixtures; TargetedMutantTests commits 47 targeted mutants and the corpus kills all 47. These supersede the counts in the sections above.
 
+## Corrections after the fifth independent check
+
+A fifth independent check (closure, a bypass hunt and a false-rejection hunt on the mechanisms replaced after the fourth check) reported 11 findings against commit 71317aa5, none high. Several showed that delivered-version rounds still let a carrier the adversary controls decide what counts as a later round: revisions relayed through a third agent or the requester, or carried in rebuttal challenges. Across five checks, every definition of a "later round" that let a challenger clear its own finding had such a carrier. Where an earlier section conflicts with this one, this one is current.
+
+- **Owner decision: no agent clears a finding.** The repository owner chose to remove agent-side clearing rather than define rounds a sixth time. A challenge's liveness is now its own outcome: sustained or unresolved stays live, a later withdrawal is recorded beside it and lifts nothing, every live challenge is carried as dissent, and a HARD gate stays live until a principal's decision-record carries risk_acceptance_ref. This returns to the design's first principle that dissent is preserved, never deleted, and it removes the whole attack class rather than one more instance of it. The cost is that an honest retraction now needs a human's risk acceptance to lift a HARD gate. Rounds remain, but only to bound the exchange; a miscounted round changes how long an exchange runs, never an outcome.
+- **Risk declared before the decision is carried.** DR-RISK-CARRIED stopped at the request, so an R5 or irreversible declaration made after the request but before the decision never reached it. For the request in force it now carries every envelope not causally after every decision-record bound to it, the same horizon DR-CHALLENGE-COMPLETE uses.
+- **A stopped challenge is not the designated challenge.** A designated challenge that declared a stop, recorded as withdrawn, satisfied DR-DESIGNATED-CHALLENGER. Only a completed challenge of the proposal counts now.
+- **A co-sign descends from its record.** DRC-CO-SIGN-BINDING accepted a co-signing record in its record's second with no path to it; the docs already said the co-sign is the record's child, and the rule now requires it.
+- **Counts.** 88 rules, 35 valid fixtures and 158 invalid fixtures; TargetedMutantTests commits 45 targeted mutants (the clearing mutants went with the clearing code) and the corpus kills all 45. These supersede the counts in the sections above.
+
 ## Status and scope
 
 | Field | Value |
@@ -408,7 +418,7 @@ Review depth is proportionate. R0 and R1 without materiality flags need a single
 
 A security challenge with hard_gate true and outcome sustained or unresolved forbids the proposer from recommending approve or conditional-approve. Only a principal decision-record carrying a risk acceptance reference may approve over it, and agents can never record a gate as overruled.
 
-The override rule holds over every challenge on the proposal, not only the challenges a proposer chose to attach. DR-CHALLENGE-COMPLETE requires every challenge on the proposer's envelopes sent no later than the request (or a decision-record binding it) to be attached, so a HARD gate cannot be dropped by omission or by arriving late. A HARD gate clears only when the same challenger sends a later round that is itself a HARD-gate withdrawal. Before the independent review this record stated the guarantee without saying that it held only for attached challenges, which the review showed was bypassable; DR-CHALLENGE-COMPLETE closes that bypass.
+The override rule holds over every challenge on the proposal, not only the challenges a proposer chose to attach. DR-CHALLENGE-COMPLETE requires every challenge on the proposer's envelopes sent no later than the request (or a decision-record binding it) to be attached, so a HARD gate cannot be dropped by omission or by arriving late. No agent clears a HARD gate, the challenger included: a withdrawal is recorded beside the finding, and only a principal's risk acceptance lifts it (owner decision after the fifth independent check). Before the independent review this record stated the guarantee without saying that it held only for attached challenges, which the review showed was bypassable; DR-CHALLENGE-COMPLETE closes that bypass.
 
 ### Candidate threat mapping
 
@@ -442,7 +452,7 @@ Classification under the EU AI Act is routed to legal-regulatory-compliance-agen
 
 The gate is deterministic and offline, reading committed files only (`python3 -m unittest discover -s tests/agentic-board-suite -p "test_*.py"`). It proves:
 
-- Every one of the 88 rules has a sole-violation fixture, and each of the 156 invalid fixtures fails exactly its one declared rule.
+- Every one of the 88 rules has a sole-violation fixture, and each of the 158 invalid fixtures fails exactly its one declared rule.
 - The 35 valid record sets (12 hand-written scenarios and 23 variants that pin a rule's boundary from the accepting side) pass and are all marked synthetic.
 - The fixtures are current with their builder, every agent id they use exists in the catalog, and the harness adapters are current with the committed tests/agentic-board-suite/_build_harnesses.py (checked with `--check`). The adapters previously came from an uncommitted scratch script and could drift.
 - The protocol references document exactly the rule table, no more and no fewer ids.
@@ -450,7 +460,7 @@ The gate is deterministic and offline, reading committed files only (`python3 -m
 - The board agents are generic, static-review and experimental, bundle the protocol, and carry the tool-restriction declarations in five harness adapters; the board skills declare Read Grep Glob and link each reference.
 - An AST denylist scan finds none of the listed wall-clock, network or randomness imports and calls in the rules or the fixture builder.
 - The mutation-intent and instruction-bait patterns (LIVE_GUARD_INTENT and INSTRUCTION_BAIT) behave as pinned: the suite pins known misses, known false stops and bait negatives.
-- Forty-seven targeted mutants (TargetedMutantTests) are each killed by the corpus.
+- Forty-five targeted mutants (TargetedMutantTests) are each killed by the corpus.
 
 ### Rules added after the independent review
 
@@ -505,6 +515,14 @@ Changed after the fourth check; no rule was added.
 - DR-DESIGNATED-CHALLENGER (changed): only challenges of the proposer's own envelopes count.
 - DRC-CO-SIGN-BINDING (changed): a co-signing record may not be an ancestor of the record it co-signs.
 
+Changed after the fifth check, by owner decision; no rule was added.
+
+- DR-UNRESOLVED-DISSENT, DR-NO-APPROVE-OVER-DISSENT, DR-HARD-GATE and DRC-HARD-GATE-ACCEPTANCE (changed): a challenge counts while its own outcome is sustained or unresolved; no agent, the challenger included, clears it by a later withdrawal, and only a principal's risk acceptance lifts a HARD gate.
+- CH-ROUND-COUNTED (changed): rebuttal challenges from the proposer count as exchanges; rounds bound the exchange and never clear a finding.
+- DR-RISK-CARRIED (changed): for the request in force, risk declared before its decision is carried.
+- DR-DESIGNATED-CHALLENGER (changed): only a completed challenge of the proposal counts.
+- DRC-CO-SIGN-BINDING (changed): a co-signing record descends from the record it co-signs.
+
 ### What it does not prove
 
 - That any content is true, that any principal is who the record says, or that anyone approved anything.
@@ -517,7 +535,7 @@ Changed after the fourth check; no rule was added.
 
 ### Mutation probe
 
-The earlier probe neutralized each rule add-site in agentic_board_rules.py in memory and replayed every fixture. It found 65 mutation sites (64 rule add-sites and the early return for an empty document). Fixtures killed 64. The one survivor is the empty-document return, which test_empty_document_fails_closed covers directly. The probe was re-run on 2026-10-30 and reproduced these numbers. It used deletion operators only, so it says nothing about comparison, boolean or constant mutations: the independent chair found 5 of 5 targeted mutants of those kinds surviving. The suite now commits 47 targeted mutants (TargetedMutantTests) and the corpus kills all 47. The second independent review's mutation lens generated a broad mutant set over the new predicates, and its distinguishing probes were added as fixtures. A full mutation probe with an enumerated list of equivalent mutants is still open (RB-08, partial); this record claims no more than the 47 killed mutants and the earlier deletion probe. Routing is not used: the board is wired into no routing fixture, and validate:maestro-routing does not exercise it.
+The earlier probe neutralized each rule add-site in agentic_board_rules.py in memory and replayed every fixture. It found 65 mutation sites (64 rule add-sites and the early return for an empty document). Fixtures killed 64. The one survivor is the empty-document return, which test_empty_document_fails_closed covers directly. The probe was re-run on 2026-10-30 and reproduced these numbers. It used deletion operators only, so it says nothing about comparison, boolean or constant mutations: the independent chair found 5 of 5 targeted mutants of those kinds surviving. The suite now commits 45 targeted mutants (TargetedMutantTests) and the corpus kills all 45. The second independent review's mutation lens generated a broad mutant set over the new predicates, and its distinguishing probes were added as fixtures. A full mutation probe with an enumerated list of equivalent mutants is still open (RB-08, partial); this record claims no more than the 45 killed mutants and the earlier deletion probe. Routing is not used: the board is wired into no routing fixture, and validate:maestro-routing does not exercise it.
 
 ### Negative probes the gate already carries
 
@@ -563,7 +581,7 @@ This scorecard is the author's judgment against a rubric defined in this documen
 
 | Dimension | Score | Evidence | Why not higher |
 |---|---|---|---|
-| Security | 3 | No execute verb; principal-only approvals bound by request digest; a HARD gate that holds over every HARD gate in the correlation, not only attached ones (DR-CHALLENGE-COMPLETE); 88 rules with sole-violation fixtures and 47 committed targeted mutants (a full mutation probe is open, RB-08); tool-restriction declarations in five harness adapters | Sender authentication, authorization and audit storage are runtime-only; two adapters are prompt-level and Codex has no per-agent sandbox; enforcement is documented by the vendor for Claude Code `tools`, Gemini `tools` and, as a partial restriction, Cursor `readonly`; the amended execution-tiers document awaits the owner's acceptance; ASI02, ASI04, ASI05, ASI06 and ASI10 have no repository control; no red-team run |
+| Security | 3 | No execute verb; principal-only approvals bound by request digest; a HARD gate that holds over every HARD gate in the correlation, not only attached ones (DR-CHALLENGE-COMPLETE); 88 rules with sole-violation fixtures and 45 committed targeted mutants (a full mutation probe is open, RB-08); tool-restriction declarations in five harness adapters | Sender authentication, authorization and audit storage are runtime-only; two adapters are prompt-level and Codex has no per-agent sandbox; enforcement is documented by the vendor for Claude Code `tools`, Gemini `tools` and, as a partial restriction, Cursor `readonly`; the amended execution-tiers document awaits the owner's acceptance; ASI02, ASI04, ASI05, ASI06 and ASI10 have no repository control; no red-team run |
 | Operational burden | 2 | Nothing to operate in this repository; one added gate; two agents and three skills to install via three install roles | Adopters must build the runtime, record store and approver authentication; the cost of challenger, alternative and dissent for R2+ work is unmeasured |
 | Interoperability | 2 | Envelope is a JSON Schema 2020-12 document; seven harness adapters; parity with the audit-event vocabularies is checked offline | No wire binding to MCP or A2A is implemented; framework and protocol facts drift; no other system has consumed the envelope |
 | Economics | 1 | A value-case contract with interval arithmetic, counterfactuals and a promotion rule, with bookkeeping checked offline | No measured benefit, no baseline, and synthetic fixtures cannot exceed pilot. The arithmetic proves bookkeeping, not value |
@@ -589,7 +607,7 @@ Basis: two adversarial refuters probed the synthesized design in memory (includi
 | agentic-system-architecture-review | APPROVE WITH CONDITIONS | Framework facts are research-delegate findings cited "per" sources and must be re-verified for the installed version |
 | agentic-security-review | APPROVE WITH CONDITIONS | MCP authorization and A2A claims are limited to the verified revisions and wording; verify against installed software |
 | schemas/agentic-handoff.schema.json | APPROVE WITH CONDITIONS | Shape only; opaque subjects; no credential fields; useful only if the runtime authenticates senders |
-| tests/agentic-board-suite | APPROVE WITH CONDITIONS | Oracles are not runtime enforcement and fail open; the determinism scan is a denylist; the earlier deletion probe's one survivor has its own covering test and 47 targeted mutants are committed and killed, but a full mutation probe is open (RB-08); it proves form, not truth |
+| tests/agentic-board-suite | APPROVE WITH CONDITIONS | Oracles are not runtime enforcement and fail open; the determinism scan is a denylist; the earlier deletion probe's one survivor has its own covering test and 45 targeted mutants are committed and killed, but a full mutation probe is open (RB-08); it proves form, not truth |
 | Kiro Power invariant text and install-role wiring | APPROVE | Each corrects a verified defect or wires the board into discovery |
 | TypeScript per-server MCP-trust routing | APPROVE WITH CONDITIONS | Only the per-server MCP trust clauses were repointed, including the per-server entry in the MCP tool-contract companion skill. The TypeScript routing contract was not changed, so the grader still routes MCP-server-trust tasks to typescript-mcp-tool-contract-agent until an inbound route is added (RB-19). Other clauses in the maestro and in the runtime-boundary, package-publication, MCP tool-contract and automation-governance specialists still route to a "security board" or "application security board" that does not exist; the backlog item holds the owner decision |
 

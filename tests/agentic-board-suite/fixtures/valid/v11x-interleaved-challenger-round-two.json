@@ -390,8 +390,13 @@
           "v11-m5",
           "v11-m9"
         ],
-        "dissent": [],
-        "recommended_outcome": "approve"
+        "dissent": [
+          {
+            "challenge_task_id": "v11-m3",
+            "position": "Withdrawn by the challenger in round 2 on new evidence; a HARD gate is lifted only by the decision owner's risk acceptance."
+          }
+        ],
+        "recommended_outcome": "escalate"
       }
     },
     {
@@ -455,15 +460,19 @@
       "synthetic": true,
       "decision_record": {
         "request_task_id": "v11-m6",
-        "request_digest": "sha256:f4ab052b94cf66a8ceb5e7b3bbfb5093b7773048d356c3854a94387d55af2075",
-        "outcome": "approve",
+        "request_digest": "sha256:c1b79efba6baf951e45bfce2c3ccf95f8d6583ead5f21861b2a3c98764e873ce",
+        "outcome": "conditional-approve",
         "decided_by": {
           "kind": "principal",
           "subject": "subject:corp-idp:a94f03d2c8e1b756",
           "role": "ai-risk-owner"
         },
         "rationale": "Decision taken on the attached proposal, alternatives, challenges and dissent.",
-        "dissent_acknowledged": true
+        "dissent_acknowledged": true,
+        "risk_acceptance_ref": "risk-acceptance:RA-2026-0057",
+        "conditions": [
+          "Keep the per-hop audience-bound token exchange"
+        ]
       }
     },
     {

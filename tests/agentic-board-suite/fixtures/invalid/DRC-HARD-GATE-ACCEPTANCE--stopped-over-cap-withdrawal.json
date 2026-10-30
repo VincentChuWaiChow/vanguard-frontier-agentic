@@ -599,14 +599,17 @@
       "decision_record": {
         "request_task_id": "v11-m8",
         "request_digest": "sha256:364a0c4cf1efedd2091335a3db722cc7d32db292f86f1d5cb7f4fb7492631710",
-        "outcome": "approve",
+        "outcome": "conditional-approve",
         "decided_by": {
           "kind": "principal",
           "subject": "subject:corp-idp:a94f03d2c8e1b756",
           "role": "ai-risk-owner"
         },
         "rationale": "Decision taken on the attached proposal, alternatives, challenges and dissent.",
-        "dissent_acknowledged": true
+        "dissent_acknowledged": true,
+        "conditions": [
+          "Keep the per-hop audience-bound token exchange"
+        ]
       }
     }
   ],

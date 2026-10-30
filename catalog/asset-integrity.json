@@ -34,7 +34,7 @@
   "trees": [
     {
       "tree": "agents",
-      "aggregate_sha256": "ff85e86ba46d9e45608eb3dfd2e769ff023ce885d7641488eb3f096ba52306d2",
+      "aggregate_sha256": "0d6d691a466c763e047b794a9184c7b8dfe13283f078f921cd13c5f80f42e830",
       "files": [
         {
           "path": "agents/AGENTS.md",
@@ -8023,43 +8023,43 @@
         },
         {
           "path": "agents/cross-functional/agentic-security-review-agent/AGENT.md",
-          "sha256": "cb81beef861e41cbe896953c1337bf2ac2b8d5572a315bc3d7f4ad5fe561f278",
-          "bytes": 28742
+          "sha256": "58650c094fbaec2b431d0de2c93c71939047160ec5eff83ccef016b33842d765",
+          "bytes": 28888
         },
         {
           "path": "agents/cross-functional/agentic-security-review-agent/harnesses/claude-code.agent.md",
-          "sha256": "e6fc0457dd796d8ec7e7a58398edb17d578e7c35e48cf4ab176ca50dc1c64636",
-          "bytes": 27712
+          "sha256": "ca0f01b487a9405b1b613436d701ff071ea698482f60421b58cadefdf24ef4e2",
+          "bytes": 27858
         },
         {
           "path": "agents/cross-functional/agentic-security-review-agent/harnesses/codex.toml",
-          "sha256": "34170f3a3db2bcbdc3259d69efa7847d7fbfb7634631d4af19b6e2efeb159519",
-          "bytes": 27845
+          "sha256": "f13f94e39fd507aeaeaf157cbd6f2e1b3d9a64e0f9543edde01d8e866ff5e69c",
+          "bytes": 27991
         },
         {
           "path": "agents/cross-functional/agentic-security-review-agent/harnesses/copilot.agent.md",
-          "sha256": "39274fe60953fc6c09f4cc3a9433cc7656d7c09d32d043819b61e9ac51ef7b54",
-          "bytes": 27792
+          "sha256": "2501a568369141e29e78942179929151d4cda665f257c07008aaf63ab80fe43f",
+          "bytes": 27938
         },
         {
           "path": "agents/cross-functional/agentic-security-review-agent/harnesses/cursor.agent.md",
-          "sha256": "27c84091a4e31735f679d9e05eebdfd29dcb0d7de5cb70084237a9a5851cdafb",
-          "bytes": 27701
+          "sha256": "85bca10cca65bc3c3e493203106763315976da0e16ff6b4759e056096d2efe02",
+          "bytes": 27847
         },
         {
           "path": "agents/cross-functional/agentic-security-review-agent/harnesses/gemini.agent.md",
-          "sha256": "455441d344268cb24d0518c6820939346c605f9b2c73d2bcb94292b54ec16353",
-          "bytes": 27819
+          "sha256": "f1a6545da810a41b9c60bdcf3f96bdea1ef4f7e8522afd084ddddc861810c600",
+          "bytes": 27965
         },
         {
           "path": "agents/cross-functional/agentic-security-review-agent/harnesses/kiro-cli.agent.json",
-          "sha256": "8d868b1af8d96be4137561974c8c4bd7849373b681e9c55d2d976034758e83f0",
-          "bytes": 27862
+          "sha256": "4d9722bcc2a4f819fae17a174727636613b66c323781051154b4030e44ea4aac",
+          "bytes": 28008
         },
         {
           "path": "agents/cross-functional/agentic-security-review-agent/harnesses/kiro-ide.agent.md",
-          "sha256": "cde3c0cd4c07aee4c7b596555baec53894a841133adfdae327d992a37ec8c847",
-          "bytes": 27686
+          "sha256": "ea10259b9eb51de26c60f2f47c05aa8317e6d87f926281b4f09b01a8d9d951d9",
+          "bytes": 27832
         },
         {
           "path": "agents/cross-functional/agentic-security-review-agent/metadata.json",
@@ -35939,7 +35939,7 @@
     },
     {
       "tree": "catalog",
-      "aggregate_sha256": "c79d68b77efa84562ab0132c6492fb0b6eceacdcbd0b0e89fe603b95c7636b3d",
+      "aggregate_sha256": "58f5080e2f1413cce7f5c1c116d02d1190fc1de5e434a801a55f2f0baf75940b",
       "files": [
         {
           "path": "catalog/AGENTS.md",
@@ -35993,7 +35993,7 @@
         },
         {
           "path": "catalog/skill-manifest.json",
-          "sha256": "8ca35e2283b77e6ce66fb975cb953ff884e42481efd2eb6b1a0e43d7242cf40e",
+          "sha256": "fb6e5059d3cf2c618057e4ee050f3fa825e29edda3d3d375f629664d65fc9d45",
           "bytes": 1095120
         },
         {
@@ -37232,7 +37232,7 @@
     },
     {
       "tree": "tests",
-      "aggregate_sha256": "7b0c21dcd1bbb933b642bb21f7f7a2cce63c6cd9548b1e025dc122f2dc3a6a03",
+      "aggregate_sha256": "ce021520c877307321b7e7a97317995c8c6722f1f232af92eab9061fd4e4e33e",
       "files": [
         {
           "path": "tests/AGENTS.md",
@@ -37246,8 +37246,8 @@
         },
         {
           "path": "tests/agentic-board-suite/_build_fixtures.py",
-          "sha256": "9654a1f62a7c3e44ec92b2de092e0e9a818995e6a0c43560459c38e643140681",
-          "bytes": 98955
+          "sha256": "7ce90936a84e175318a5f87556bab1600d79bba292aadfaad5cad32f8065d3ab",
+          "bytes": 101920
         },
         {
           "path": "tests/agentic-board-suite/_build_harnesses.py",
@@ -37256,8 +37256,8 @@
         },
         {
           "path": "tests/agentic-board-suite/agentic_board_rules.py",
-          "sha256": "c87485937677447c74f56767132472546a6da25fcf8902c26f43abaeb17ce280",
-          "bytes": 50819
+          "sha256": "2d26c19c11ad741a21d0b94ae1ec485571b3c3ce8dd06ef223a15a69b4c21f6b",
+          "bytes": 50311
         },
         {
           "path": "tests/agentic-board-suite/fixtures/invalid/CH-PROPOSAL-LINK--challenge-names-a-later-envelope.json",
@@ -37276,8 +37276,8 @@
         },
         {
           "path": "tests/agentic-board-suite/fixtures/invalid/CH-ROUND-COUNTED--round-two-declared-as-one.json",
-          "sha256": "eba7890e2b39f102e1ce5d5eed48fe87b2034f52f125286dca4ff36dfe270b5a",
-          "bytes": 14490
+          "sha256": "89d2ae793343c56164ef14e1221338e2184013f92d26b8d9db757f628662181d",
+          "bytes": 14886
         },
         {
           "path": "tests/agentic-board-suite/fixtures/invalid/CH-ROUND-COUNTED--self-declared-round.json",
@@ -37296,8 +37296,8 @@
         },
         {
           "path": "tests/agentic-board-suite/fixtures/invalid/DR-CHALLENGE-COMPLETE--hard-gate-left-unattached.json",
-          "sha256": "5ae7c86e9ae98af13ed44872189ac8bd41ca7eab460c70c594e61fcf670bc732",
-          "bytes": 14480
+          "sha256": "3229126e760478dd19b1d4b542b29a590f57e5bee84947492138e5ef6cebc3bd",
+          "bytes": 14876
         },
         {
           "path": "tests/agentic-board-suite/fixtures/invalid/DR-CHALLENGE-COMPLETE--hard-gate-on-root-left-unattached.json",
@@ -37316,8 +37316,8 @@
         },
         {
           "path": "tests/agentic-board-suite/fixtures/invalid/DR-CHALLENGE-PRECEDES--withdrawal-attached-before-it-was-sent.json",
-          "sha256": "981765aee772f070b5ce0faabafccd8f8e39dd0b91085ae9799f87dcece9df39",
-          "bytes": 14827
+          "sha256": "133dde592ea78325e27cd70b2a2f50bd60b71d9134d76d8ac035f8e5cf6c6728",
+          "bytes": 14890
         },
         {
           "path": "tests/agentic-board-suite/fixtures/invalid/DR-CHALLENGE-PRECEDES--withdrawal-descends-from-the-record.json",
@@ -37368,6 +37368,11 @@
           "path": "tests/agentic-board-suite/fixtures/invalid/DR-DESIGNATED-CHALLENGER--investment-without-finance.json",
           "sha256": "f04ebc87c86f08fd9aedea5c2f7bc2d22b42219614e267839977721c919f3ec0",
           "bytes": 13796
+        },
+        {
+          "path": "tests/agentic-board-suite/fixtures/invalid/DR-DESIGNATED-CHALLENGER--stopped-designated-challenge.json",
+          "sha256": "bf2e2fdc44c5cb123b27b4ba9758f146c9bbef5c46255d460edb0f29d61b13f9",
+          "bytes": 10728
         },
         {
           "path": "tests/agentic-board-suite/fixtures/invalid/DR-HARD-GATE--conditional-over-hard-gate.json",
@@ -37421,8 +37426,8 @@
         },
         {
           "path": "tests/agentic-board-suite/fixtures/invalid/DR-OWNER-FROM-ROOT--agent-opens-decision-path.json",
-          "sha256": "d20f3448eae3f9df084afbce630e685004b07bf14bab5cf2d0874bbb49f854aa",
-          "bytes": 14447
+          "sha256": "7199faefbd63f3fc35f074ce515af79f575b0cc45404d42eed0add1e69e12daa",
+          "bytes": 14843
         },
         {
           "path": "tests/agentic-board-suite/fixtures/invalid/DR-OWNER-FROM-ROOT--owner-is-the-requester.json",
@@ -37466,8 +37471,13 @@
         },
         {
           "path": "tests/agentic-board-suite/fixtures/invalid/DR-RISK-CARRIED--request-drops-materiality-flags.json",
-          "sha256": "9704612fa27fbde3b7c4fa907b1bcf05ba8ba7c503788b521d03e66903d8af7b",
-          "bytes": 14459
+          "sha256": "ea6a802ccb6e5a87439d8f325dd644705b532d737d81d9158e69effdca6c597f",
+          "bytes": 14855
+        },
+        {
+          "path": "tests/agentic-board-suite/fixtures/invalid/DR-RISK-CARRIED--risk-raised-after-request-before-decision.json",
+          "sha256": "e24b6bfa7dcce1f4340de0db7ef1e33a21c31e501e71edae726cee490be4e854",
+          "bytes": 12664
         },
         {
           "path": "tests/agentic-board-suite/fixtures/invalid/DR-TO-PRINCIPAL--request-to-agent.json",
@@ -37530,6 +37540,11 @@
           "bytes": 13363
         },
         {
+          "path": "tests/agentic-board-suite/fixtures/invalid/DRC-CO-SIGN-BINDING--co-sign-not-a-child-of-its-record.json",
+          "sha256": "2c935c69cd561e7be4ad8c95fe19b9ff4de14dd79d6a1a5ad8804f4beca19c89",
+          "bytes": 15340
+        },
+        {
           "path": "tests/agentic-board-suite/fixtures/invalid/DRC-CO-SIGN-BINDING--co-sign-sent-before-the-record.json",
           "sha256": "6114f2de9596d81482f7e00fb4a7d62dad7fd4b66b29f548745be361ab1a518f",
           "bytes": 15373
@@ -37570,11 +37585,6 @@
           "bytes": 12884
         },
         {
-          "path": "tests/agentic-board-suite/fixtures/invalid/DRC-HARD-GATE-ACCEPTANCE--gate-raised-after-the-withdrawal.json",
-          "sha256": "f172c1144e240b842093fc17bead74d7e630b8f4552e09fdaac3152c97c7aa1c",
-          "bytes": 16671
-        },
-        {
           "path": "tests/agentic-board-suite/fixtures/invalid/DRC-HARD-GATE-ACCEPTANCE--override-without-acceptance.json",
           "sha256": "dc6cd590ab7a194f30aa2f0f82933727ff2a98d5b0267707a30a5ba9bbd1b203",
           "bytes": 11121
@@ -37585,14 +37595,9 @@
           "bytes": 13069
         },
         {
-          "path": "tests/agentic-board-suite/fixtures/invalid/DRC-HARD-GATE-ACCEPTANCE--same-second-gate-is-not-cleared.json",
-          "sha256": "5d5b15fe893139c63d0c99126eda32231be45db346f3949f9e1ec238ff05d944",
-          "bytes": 16670
-        },
-        {
           "path": "tests/agentic-board-suite/fixtures/invalid/DRC-HARD-GATE-ACCEPTANCE--stopped-over-cap-withdrawal.json",
-          "sha256": "c5ec0fcb43e9ea8347b5fb844219214f27db5040cf0f56ef0de46b54d5dd588f",
-          "bytes": 18770
+          "sha256": "903542be37ad0589de9b16dba21313da40204ff6b50ea5933dd0b94eddf333fb",
+          "bytes": 18876
         },
         {
           "path": "tests/agentic-board-suite/fixtures/invalid/DRC-HARD-GATE-ACCEPTANCE--unrelated-withdrawal-does-not-clear-gate.json",
@@ -37885,6 +37890,11 @@
           "bytes": 4078
         },
         {
+          "path": "tests/agentic-board-suite/fixtures/invalid/STOP-CHALLENGE-ROUNDS--revisions-carried-in-rebuttal-challenges.json",
+          "sha256": "f89281356224b2d8bacdabe86835732684b91f74a78aae2f2270b5807a59acab",
+          "bytes": 13653
+        },
+        {
           "path": "tests/agentic-board-suite/fixtures/invalid/STOP-CHALLENGE-ROUNDS--third-round.json",
           "sha256": "677ea99b4a20a082c97c7d719e7bed7224ae8bf3db3325ae85834e44a58939bc",
           "bytes": 13601
@@ -37941,8 +37951,8 @@
         },
         {
           "path": "tests/agentic-board-suite/fixtures/invalid/STOP-ROUTING-LOOP--second-revisit-to-challenger.json",
-          "sha256": "953fc6512c5fedff0053668be0deede84202e274860153f4c9a8e9522dbb1073",
-          "bytes": 16236
+          "sha256": "60a2765f5e0911bbb2bad3ae19ba500789659d1f242952d0c023e86587aba3ab",
+          "bytes": 16632
         },
         {
           "path": "tests/agentic-board-suite/fixtures/invalid/STOP-TERMINAL--challenge-answers-stopped-delegate.json",
@@ -38171,28 +38181,28 @@
         },
         {
           "path": "tests/agentic-board-suite/fixtures/valid/v11-two-rounds-hard-gate-withdrawn.json",
-          "sha256": "20a304718b4bda57f2b3bc62443a9676e467d9290b5df594e3bd67b1d8b91aeb",
-          "bytes": 14522
+          "sha256": "c8834178eea6fba6faa00109c2caaa4df7778ae344f2967826ad1c755a35dc11",
+          "bytes": 15044
         },
         {
           "path": "tests/agentic-board-suite/fixtures/valid/v11x-interleaved-challenger-round-two.json",
-          "sha256": "796faa355a72a3c2756868ae196dd96da67ef68eeebd6bae0867d3240ec1433d",
-          "bytes": 18148
+          "sha256": "34469364bcf70cdc2859b10c9a2114b2bd9ff8ead511c8ca2341d40cbaaabe9b",
+          "bytes": 18544
         },
         {
           "path": "tests/agentic-board-suite/fixtures/valid/v11x-round-three-escalation-path.json",
-          "sha256": "cff1b0646cbe39ad19041069f09d18e21ef910754368e0a5e64a81b5c3e0bff6",
-          "bytes": 22664
+          "sha256": "6a4108b4fa5f23e635608eaa7f7317d2da34780703ed9a496a0594d34a424001",
+          "bytes": 22821
         },
         {
           "path": "tests/agentic-board-suite/fixtures/valid/v11x-same-second-round-two.json",
-          "sha256": "d036fdd74c7040ceb68d42701e68fa7f64ef34a5a003d16ebd15b1a1f8ff5d45",
-          "bytes": 14398
+          "sha256": "b9600ba5819722cc73eb6baa6ba2ae6deb2b5bbd6ed2c5ba29cad6e49e907439",
+          "bytes": 14794
         },
         {
           "path": "tests/agentic-board-suite/fixtures/valid/v11x-two-findings-one-round.json",
-          "sha256": "45dc196890360189bc3a47f1b8f4089e810ee0eab73c49bfa4f96367627a2f1e",
-          "bytes": 16388
+          "sha256": "fafda379c22e2bf5d240dea68f399e3ef7fdef7da6dd90f981b8cddd9257453c",
+          "bytes": 16923
         },
         {
           "path": "tests/agentic-board-suite/fixtures/valid/v12-superseded-request.json",
@@ -38216,8 +38226,8 @@
         },
         {
           "path": "tests/agentic-board-suite/test_agentic_board.py",
-          "sha256": "98e704f6d00f7e3b51ddca00019713c5bd14851171d88a9451c5d32735ebd122",
-          "bytes": 29995
+          "sha256": "9976a54d30db33b598495018cfe6d3eba92d001ebe31f61eeed10b4ed978b166",
+          "bytes": 29742
         },
         {
           "path": "tests/eval-qa-cluster.mjs",
@@ -48769,5 +48779,5 @@
       "bytes": 9135
     }
   ],
-  "aggregate_sha256": "ad5e3b3fe3bace8eb698d89cc4935fc8dd569da09f382c781ee44b6659c2447f"
+  "aggregate_sha256": "7601178ee3cd2f3478c822a632d93866f84fed414160a21beb866f9889c7489a"
 }

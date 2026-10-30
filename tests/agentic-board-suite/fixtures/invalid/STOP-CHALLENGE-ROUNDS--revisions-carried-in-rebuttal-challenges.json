@@ -1,5 +1,5 @@
 {
-  "description": "Sole violation of DRC-HARD-GATE-ACCEPTANCE: same second gate is not cleared (derived from v11).",
+  "description": "Sole violation of STOP-CHALLENGE-ROUNDS: revisions carried in rebuttal challenges (derived from v11).",
   "messages": [
     {
       "schema_version": "1.0.0",
@@ -192,13 +192,13 @@
     },
     {
       "schema_version": "1.0.0",
-      "message_type": "delegate",
-      "task_id": "v11-m4",
+      "message_type": "challenge",
+      "task_id": "v11-b1",
       "correlation_id": "v11-corr",
       "parent_task_id": "v11-m3",
       "hop_count": 3,
       "max_hops": 8,
-      "sent_at": "2026-10-01T09:05:00Z",
+      "sent_at": "2026-10-01T09:04:00Z",
       "source": {
         "kind": "agent",
         "id": "agentic-system-architecture-review-agent"
@@ -207,7 +207,7 @@
         "kind": "agent",
         "id": "agentic-security-review-agent"
       },
-      "objective": "Challenge the revised v11 proposal: token passthrough replaced by audience-bound token exchange.",
+      "objective": "Challenge findings for the v11 proposal.",
       "input_schema_version": "1.0.0",
       "subject_risk_tier": "R3",
       "data_classification": "internal",
@@ -236,70 +236,11 @@
       "budget": {
         "currency": "USD",
         "limit_tool_calls": 40,
-        "spent_tool_calls": 16,
+        "spent_tool_calls": 14,
         "limit_tokens": 400000,
-        "spent_tokens": 80000,
+        "spent_tokens": 70000,
         "limit_cost_minor": 2000,
-        "spent_cost_minor": 320
-      },
-      "deadline": "2026-10-08T17:00:00Z",
-      "approval_state": "not-required",
-      "expected_output_schema": "agentic-review-verdict/1.0.0",
-      "status": "dispatched",
-      "stop_reasons": [],
-      "synthetic": true
-    },
-    {
-      "schema_version": "1.0.0",
-      "message_type": "challenge",
-      "task_id": "v11-m5",
-      "correlation_id": "v11-corr",
-      "parent_task_id": "v11-m4",
-      "hop_count": 4,
-      "max_hops": 8,
-      "sent_at": "2026-10-01T09:05:00Z",
-      "source": {
-        "kind": "agent",
-        "id": "agentic-security-review-agent"
-      },
-      "destination": {
-        "kind": "agent",
-        "id": "agentic-system-architecture-review-agent"
-      },
-      "objective": "Round 2 challenge findings for the revised v11 proposal.",
-      "input_schema_version": "1.0.0",
-      "subject_risk_tier": "R3",
-      "data_classification": "internal",
-      "materiality_flags": [
-        "security-critical"
-      ],
-      "authorized_actions": [
-        "read",
-        "analyze",
-        "recommend",
-        "challenge",
-        "escalate"
-      ],
-      "do_not_do_list": [
-        "Do not execute, deploy, or mutate any system",
-        "Do not request, store, or echo credentials, tokens, or secrets",
-        "Do not record an approval on behalf of a human"
-      ],
-      "evidence_refs": [
-        {
-          "ref": "repo:docs/design/v11.md#section-1",
-          "label": "repo-evidence"
-        }
-      ],
-      "missing_evidence": [],
-      "budget": {
-        "currency": "USD",
-        "limit_tool_calls": 40,
-        "spent_tool_calls": 20,
-        "limit_tokens": 400000,
-        "spent_tokens": 100000,
-        "limit_cost_minor": 2000,
-        "spent_cost_minor": 400
+        "spent_cost_minor": 280
       },
       "deadline": "2026-10-08T17:00:00Z",
       "approval_state": "not-required",
@@ -308,176 +249,20 @@
       "stop_reasons": [],
       "synthetic": true,
       "challenge": {
-        "proposal_task_id": "v11-m4",
-        "round": 2,
-        "hard_gate": true,
-        "outcome": "withdrawn",
-        "finding": "Withdrawn on new evidence: each hop now exchanges for an audience-bound token the server validates."
-      }
-    },
-    {
-      "schema_version": "1.0.0",
-      "message_type": "decision-request",
-      "task_id": "v11-m6",
-      "correlation_id": "v11-corr",
-      "parent_task_id": "v11-m5",
-      "hop_count": 5,
-      "max_hops": 8,
-      "sent_at": "2026-10-01T09:06:00Z",
-      "source": {
-        "kind": "agent",
-        "id": "agentic-system-architecture-review-agent"
-      },
-      "destination": {
-        "kind": "principal",
-        "subject": "subject:corp-idp:a94f03d2c8e1b756",
-        "role": "ai-risk-owner"
-      },
-      "objective": "Request a human decision on the revised v11 proposal with both challenge rounds attached.",
-      "input_schema_version": "1.0.0",
-      "subject_risk_tier": "R3",
-      "data_classification": "internal",
-      "materiality_flags": [
-        "security-critical"
-      ],
-      "authorized_actions": [
-        "read",
-        "analyze",
-        "recommend",
-        "challenge",
-        "escalate"
-      ],
-      "do_not_do_list": [
-        "Do not execute, deploy, or mutate any system",
-        "Do not request, store, or echo credentials, tokens, or secrets",
-        "Do not record an approval on behalf of a human"
-      ],
-      "evidence_refs": [
-        {
-          "ref": "repo:docs/design/v11.md#section-1",
-          "label": "repo-evidence"
-        }
-      ],
-      "missing_evidence": [],
-      "budget": {
-        "currency": "USD",
-        "limit_tool_calls": 40,
-        "spent_tool_calls": 22,
-        "limit_tokens": 400000,
-        "spent_tokens": 110000,
-        "limit_cost_minor": 2000,
-        "spent_cost_minor": 440
-      },
-      "deadline": "2026-10-08T17:00:00Z",
-      "approval_state": "pending-human-review",
-      "expected_output_schema": "agentic-review-verdict/1.0.0",
-      "status": "dispatched",
-      "stop_reasons": [],
-      "synthetic": true,
-      "decision_request": {
-        "decision_class": "architecture",
-        "proposer_agent": "agentic-system-architecture-review-agent",
-        "proposal_summary": "Revised supplier-onboarding design: per-hop audience-bound token exchange replaces passthrough.",
-        "alternatives": [
-          {
-            "kind": "single-agent",
-            "summary": "One agent calling the ERP through its own audience-bound credential.",
-            "rejected_because": "Requires an ERP connector change outside the pilot window."
-          }
-        ],
-        "challenge_task_ids": [
-          "v11-m3",
-          "v11-m5",
-          "v11-m8"
-        ],
-        "dissent": [
-          {
-            "challenge_task_id": "v11-m8",
-            "position": "Raised after or alongside the round-2 withdrawal, which cannot clear it."
-          }
-        ],
-        "recommended_outcome": "escalate"
-      }
-    },
-    {
-      "schema_version": "1.0.0",
-      "message_type": "decision-record",
-      "task_id": "v11-m7",
-      "correlation_id": "v11-corr",
-      "parent_task_id": "v11-m6",
-      "hop_count": 6,
-      "max_hops": 8,
-      "sent_at": "2026-10-01T09:07:00Z",
-      "source": {
-        "kind": "principal",
-        "subject": "subject:corp-idp:a94f03d2c8e1b756",
-        "role": "ai-risk-owner"
-      },
-      "destination": {
-        "kind": "agent",
-        "id": "agentic-system-architecture-review-agent"
-      },
-      "objective": "Record the decision owner's decision on the revised v11 proposal.",
-      "input_schema_version": "1.0.0",
-      "subject_risk_tier": "R3",
-      "data_classification": "internal",
-      "materiality_flags": [
-        "security-critical"
-      ],
-      "authorized_actions": [
-        "read",
-        "analyze",
-        "recommend",
-        "challenge",
-        "escalate"
-      ],
-      "do_not_do_list": [
-        "Do not execute, deploy, or mutate any system",
-        "Do not request, store, or echo credentials, tokens, or secrets",
-        "Do not record an approval on behalf of a human"
-      ],
-      "evidence_refs": [
-        {
-          "ref": "repo:docs/design/v11.md#section-1",
-          "label": "repo-evidence"
-        }
-      ],
-      "missing_evidence": [],
-      "budget": {
-        "currency": "USD",
-        "limit_tool_calls": 40,
-        "spent_tool_calls": 22,
-        "limit_tokens": 400000,
-        "spent_tokens": 110000,
-        "limit_cost_minor": 2000,
-        "spent_cost_minor": 440
-      },
-      "deadline": "2026-10-08T17:00:00Z",
-      "approval_state": "approved",
-      "expected_output_schema": "agentic-review-verdict/1.0.0",
-      "status": "completed",
-      "stop_reasons": [],
-      "synthetic": true,
-      "decision_record": {
-        "request_task_id": "v11-m6",
-        "request_digest": "sha256:79f70e52d3adaea5a01fef02257033e823fe5fd36a6346f6949958b7df7c9720",
-        "outcome": "approve",
-        "decided_by": {
-          "kind": "principal",
-          "subject": "subject:corp-idp:a94f03d2c8e1b756",
-          "role": "ai-risk-owner"
-        },
-        "rationale": "Decision taken on the attached proposal, alternatives, challenges and dissent.",
-        "dissent_acknowledged": true
+        "proposal_task_id": "v11-m3",
+        "round": 1,
+        "hard_gate": false,
+        "outcome": "sustained",
+        "finding": "Rebuttal of the previous finding with a revised design."
       }
     },
     {
       "schema_version": "1.0.0",
       "message_type": "challenge",
-      "task_id": "v11-m8",
+      "task_id": "v11-c2",
       "correlation_id": "v11-corr",
-      "parent_task_id": "v11-m2",
-      "hop_count": 2,
+      "parent_task_id": "v11-b1",
+      "hop_count": 4,
       "max_hops": 8,
       "sent_at": "2026-10-01T09:05:00Z",
       "source": {
@@ -530,15 +315,147 @@
       "stop_reasons": [],
       "synthetic": true,
       "challenge": {
-        "proposal_task_id": "v11-m2",
-        "round": 1,
+        "proposal_task_id": "v11-b1",
+        "round": 2,
         "hard_gate": true,
         "outcome": "sustained",
-        "finding": "Second HARD gate on the first v11 proposal: the MCP server logs raw tokens."
+        "finding": "Still token passthrough after the rebuttal."
+      }
+    },
+    {
+      "schema_version": "1.0.0",
+      "message_type": "challenge",
+      "task_id": "v11-b2",
+      "correlation_id": "v11-corr",
+      "parent_task_id": "v11-c2",
+      "hop_count": 5,
+      "max_hops": 8,
+      "sent_at": "2026-10-01T09:06:00Z",
+      "source": {
+        "kind": "agent",
+        "id": "agentic-system-architecture-review-agent"
+      },
+      "destination": {
+        "kind": "agent",
+        "id": "agentic-security-review-agent"
+      },
+      "objective": "Challenge findings for the v11 proposal.",
+      "input_schema_version": "1.0.0",
+      "subject_risk_tier": "R3",
+      "data_classification": "internal",
+      "materiality_flags": [
+        "security-critical"
+      ],
+      "authorized_actions": [
+        "read",
+        "analyze",
+        "recommend",
+        "challenge",
+        "escalate"
+      ],
+      "do_not_do_list": [
+        "Do not execute, deploy, or mutate any system",
+        "Do not request, store, or echo credentials, tokens, or secrets",
+        "Do not record an approval on behalf of a human"
+      ],
+      "evidence_refs": [
+        {
+          "ref": "repo:docs/design/v11.md#section-1",
+          "label": "repo-evidence"
+        }
+      ],
+      "missing_evidence": [],
+      "budget": {
+        "currency": "USD",
+        "limit_tool_calls": 40,
+        "spent_tool_calls": 14,
+        "limit_tokens": 400000,
+        "spent_tokens": 70000,
+        "limit_cost_minor": 2000,
+        "spent_cost_minor": 280
+      },
+      "deadline": "2026-10-08T17:00:00Z",
+      "approval_state": "not-required",
+      "expected_output_schema": "agentic-review-verdict/1.0.0",
+      "status": "completed",
+      "stop_reasons": [],
+      "synthetic": true,
+      "challenge": {
+        "proposal_task_id": "v11-c2",
+        "round": 2,
+        "hard_gate": false,
+        "outcome": "sustained",
+        "finding": "Rebuttal of the previous finding with a revised design."
+      }
+    },
+    {
+      "schema_version": "1.0.0",
+      "message_type": "challenge",
+      "task_id": "v11-c3",
+      "correlation_id": "v11-corr",
+      "parent_task_id": "v11-b2",
+      "hop_count": 6,
+      "max_hops": 8,
+      "sent_at": "2026-10-01T09:07:00Z",
+      "source": {
+        "kind": "agent",
+        "id": "agentic-security-review-agent"
+      },
+      "destination": {
+        "kind": "agent",
+        "id": "agentic-system-architecture-review-agent"
+      },
+      "objective": "Challenge findings for the v11 proposal.",
+      "input_schema_version": "1.0.0",
+      "subject_risk_tier": "R3",
+      "data_classification": "internal",
+      "materiality_flags": [
+        "security-critical"
+      ],
+      "authorized_actions": [
+        "read",
+        "analyze",
+        "recommend",
+        "challenge",
+        "escalate"
+      ],
+      "do_not_do_list": [
+        "Do not execute, deploy, or mutate any system",
+        "Do not request, store, or echo credentials, tokens, or secrets",
+        "Do not record an approval on behalf of a human"
+      ],
+      "evidence_refs": [
+        {
+          "ref": "repo:docs/design/v11.md#section-1",
+          "label": "repo-evidence"
+        }
+      ],
+      "missing_evidence": [],
+      "budget": {
+        "currency": "USD",
+        "limit_tool_calls": 40,
+        "spent_tool_calls": 14,
+        "limit_tokens": 400000,
+        "spent_tokens": 70000,
+        "limit_cost_minor": 2000,
+        "spent_cost_minor": 280
+      },
+      "deadline": "2026-10-08T17:00:00Z",
+      "approval_state": "not-required",
+      "expected_output_schema": "agentic-review-verdict/1.0.0",
+      "status": "completed",
+      "stop_reasons": [],
+      "synthetic": true,
+      "challenge": {
+        "proposal_task_id": "v11-b2",
+        "round": 3,
+        "hard_gate": true,
+        "outcome": "sustained",
+        "finding": "Still token passthrough after the rebuttal."
       }
     }
   ],
   "expected_violations": [
-    "DRC-HARD-GATE-ACCEPTANCE"
+    "STOP-CHALLENGE-ROUNDS"
   ]
 }

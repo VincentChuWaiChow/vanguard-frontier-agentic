@@ -344,6 +344,7 @@
         },
         "rationale": "Decision taken on the attached proposal, alternatives, challenges and dissent.",
         "dissent_acknowledged": true,
+        "risk_acceptance_ref": "risk-acceptance:RA-2026-0042",
         "conditions": [
           "Replace token passthrough with an audience-bound token exchange before go-live"
         ]

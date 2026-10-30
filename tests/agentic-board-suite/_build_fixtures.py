@@ -391,8 +391,9 @@ def v11() -> dict:
         "alternatives": [{"kind": "single-agent", "summary": "One agent calling the ERP through its own audience-bound credential.",
                           "rejected_because": "Requires an ERP connector change outside the pilot window."}],
         "challenge_task_ids": [f"{s}-m3", f"{s}-m5"],
-        "dissent": [],
-        "recommended_outcome": "approve",
+        "dissent": [{"challenge_task_id": f"{s}-m3",
+                     "position": "Withdrawn by the challenger in round 2 on new evidence; a HARD gate is lifted only by the decision owner's risk acceptance."}],
+        "recommended_outcome": "escalate",
     }
     msgs = chain([
         env(s, 1, "delegate", P_REQ, agent(ARCH),
@@ -417,10 +418,14 @@ def v11() -> dict:
             parent=5, spent=22, approval_state="pending-human-review", decision_request=req, **raised),
         env(s, 7, "decision-record", P_DEC, agent(ARCH), "Record the decision owner's decision on the revised v11 proposal.",
             parent=6, spent=22, status="completed", approval_state="approved", **raised,
-            decision_record=_record(s, "approve", request_task_id=f"{s}-m6")),
+            decision_record=_record(s, "conditional-approve", request_task_id=f"{s}-m6",
+                                    risk_acceptance_ref="risk-acceptance:RA-2026-0057",
+                                    conditions=["Keep the per-hop audience-bound token exchange"])),
     ])
     return finalize({"description": ("Two counted challenge rounds: a HARD gate raised in round 1 is withdrawn by the same "
-                                     "challenger in round 2 on new evidence; the tier is raised mid-chain, never lowered."),
+                                     "challenger in round 2 on new evidence. The withdrawal is recorded but clears nothing: "
+                                     "the gate goes to the owner as dissent and is lifted only by a risk acceptance. The tier "
+                                     "is raised mid-chain, never lowered."),
                      "messages": msgs})
 
 
@@ -664,7 +669,7 @@ def _spent_reset(doc):
     m(doc, 3)["budget"].update({"spent_tool_calls": 7, "spent_tokens": 35000, "spent_cost_minor": 140})
 
 
-def _v04_round_two(outcome: str, hard_gate: bool, sent_at: str, finding: str):
+def _v04_round_two(outcome: str, hard_gate: bool, sent_at: str, finding: str, keep_acceptance: bool = False):
     """v04 plus a revised proposal (m6) and SEC's genuine round-2 challenge of it (m7), attached to the request."""
     def mut(doc):
         rev = copy.deepcopy(m(doc, 2))
@@ -677,7 +682,8 @@ def _v04_round_two(outcome: str, hard_gate: bool, sent_at: str, finding: str):
                                    outcome=outcome, finding=finding)
         doc["messages"] += [rev, second]
         m(doc, 4)["decision_request"]["challenge_task_ids"].append("v04-m7")
-        del m(doc, 5)["decision_record"]["risk_acceptance_ref"]
+        if not keep_acceptance:
+            del m(doc, 5)["decision_record"]["risk_acceptance_ref"]
     return mut
 
 
@@ -686,7 +692,7 @@ _unrelated_withdrawal = _v04_round_two("withdrawn", False, T("09:03:40"),
                                        "Minor naming inconsistency in the orchestrator config; withdrawn.")
 # A HARD-gate withdrawal that the request cites although it was sent after the request.
 _forward_attached_withdrawal = _v04_round_two("withdrawn", True, T("09:04:30"),
-                                              "Withdrawn: the revised design exchanges tokens per hop.")
+                                              "Withdrawn: the revised design exchanges tokens per hop.", keep_acceptance=True)
 
 
 def _cosign_from_requester(doc):
@@ -818,22 +824,6 @@ def _v06_reask(cosigned: bool):
     return mut
 
 
-def _v11_extra_gate(sent_at: str, counted_round: int, revision_at: str | None = None):
-    """SEC raises a second HARD gate on m2 at ``sent_at``; the request escalates with it as dissent. Its round
-    counts the envelopes SEC had already answered by then."""
-    def mut(doc):
-        if revision_at:  # the revision and its withdrawal share the gate's second, with no path to the gate
-            m(doc, 4)["sent_at"] = m(doc, 5)["sent_at"] = revision_at
-        gate = copy.deepcopy(m(doc, 3))
-        gate.update({"task_id": "v11-m8", "parent_task_id": "v11-m2", "hop_count": 2, "sent_at": sent_at})
-        gate["challenge"] = dict(gate["challenge"], round=counted_round, finding="Second HARD gate on the first v11 proposal: the MCP server logs raw tokens.")
-        doc["messages"].append(gate)
-        req = m(doc, 6)["decision_request"]
-        req.update({"recommended_outcome": "escalate", "challenge_task_ids": req["challenge_task_ids"] + ["v11-m8"],
-                    "dissent": [{"challenge_task_id": "v11-m8", "position": "Raised after or alongside the round-2 withdrawal, which cannot clear it."}]})
-    return mut
-
-
 def _over_cap_withdrawal(doc):
     """Two sustained HARD rounds, then a round-3 HARD withdrawal honestly stopped as over the cap."""
     record = copy.deepcopy(m(doc, 7))
@@ -853,6 +843,7 @@ def _over_cap_withdrawal(doc):
                     for t in ("v11-m3", "v11-m5")]})
     record.update({"task_id": "v11-m9", "parent_task_id": "v11-m8", "hop_count": 6, "sent_at": T("09:09:00")})
     record["decision_record"] = dict(record["decision_record"], request_task_id="v11-m8")
+    record["decision_record"].pop("risk_acceptance_ref")
     doc["messages"] += [_return_to_challenger(doc, 6, T("09:06:00")), third, request, record]
 
 
@@ -1186,6 +1177,54 @@ def _security_proposal_returned_to_delegator(doc):
 
 
 
+def _risk_raised_before_decision(doc):
+    """Between the request and the decision, ARCH raises a sub-question to R4; the decision must carry it."""
+    side = copy.deepcopy(m(doc, 2))
+    side.update({"task_id": "v02-m6", "parent_task_id": "v02-m3", "hop_count": 3, "sent_at": T("09:04:30"),
+                 "destination": agent(FIN), "subject_risk_tier": "R4", "budget": dict(m(doc, 3)["budget"]),
+                 "objective": "Assess the irreversible cost of the shared-ledger exposure the challenge found."})
+    doc["messages"].append(side)
+
+
+def _stopped_designated_challenge(doc):
+    """SEC's only challenge declares it never proceeded; the request, parented on the root, still cites it."""
+    m(doc, 3).update({"status": "stopped", "stop_reasons": ["missing-evidence"]})
+    m(doc, 3)["challenge"].update({"outcome": "withdrawn", "finding": "Stopped before the attack ran: no design evidence was supplied."})
+    m(doc, 4).update({"parent_task_id": "v02-m1", "hop_count": 1})
+    m(doc, 4)["decision_request"]["dissent"] = []
+    m(doc, 5)["hop_count"] = 2
+
+
+def _cosign_not_child_of_record(doc):
+    """The co-signature reaches the second approver through a side escalate, in the record's own second."""
+    fyi = copy.deepcopy(m(doc, 5))
+    fyi.pop("decision_record")
+    fyi.update({"message_type": "escalate", "task_id": "v06-m7", "source": P_DEC, "destination": P_DEC2,
+                "parent_task_id": "v06-m4", "hop_count": 4, "sent_at": T("09:04:30"), "status": "escalated",
+                "approval_state": "not-required", "objective": "Ask the second approver to review the v06 request.",
+                "escalation": {"reason": "R5 decisions need a second approver.", "route_hint": "Second approver co-signs."}})
+    doc["messages"].append(fyi)
+    m(doc, 6).update({"parent_task_id": "v06-m7", "hop_count": 5, "sent_at": T("09:05:00")})
+
+
+
+def _revisions_in_rebuttal_challenges(doc):
+    """ARCH answers SEC with rebuttal challenges instead of delegates; each is an exchange, so SEC's third answer is round 3."""
+    doc["messages"] = doc["messages"][:3]
+    prev = "v11-m3"
+    plan = [("v11-b1", "v11-m3", 1, ARCH, SEC, T("09:04:00")), ("v11-c2", "v11-b1", 2, SEC, ARCH, T("09:05:00")),
+            ("v11-b2", "v11-c2", 2, ARCH, SEC, T("09:06:00")), ("v11-c3", "v11-b2", 3, SEC, ARCH, T("09:07:00"))]
+    for hop, (tid, target, rnd, src, dst, at) in enumerate(plan, start=3):
+        c = copy.deepcopy(m(doc, 3))
+        c.update({"task_id": tid, "parent_task_id": prev, "hop_count": hop, "sent_at": at, "source": agent(src), "destination": agent(dst)})
+        c["challenge"] = dict(c["challenge"], proposal_task_id=target, round=rnd, hard_gate=src == SEC,
+                              finding="Rebuttal of the previous finding with a revised design." if src == ARCH
+                              else "Still token passthrough after the rebuttal.")
+        doc["messages"].append(c)
+        prev = tid
+
+
+
 # --- valid variants: legitimate flows that pin a rule's boundary from the accepting side ---
 
 def _return_verdict(outcome: str, refs: list[dict] | None = None, gaps: list[dict] | None = None):
@@ -1236,6 +1275,7 @@ def _two_findings_one_round(doc):
                                 finding="Second round-1 finding on the same proposal: no audit of token exchange failures.")
     doc["messages"].append(sibling)
     m(doc, 6)["decision_request"]["challenge_task_ids"].append("v11-m8")
+    m(doc, 6)["decision_request"]["dissent"].append({"challenge_task_id": "v11-m8", "position": "Second round-1 finding carried to the owner."})
 
 
 def _interleaved_challenger(doc):
@@ -1477,8 +1517,6 @@ INVALID = [
     ("DR-CHALLENGE-COMPLETE", "superseded-request-missed-earlier-challenge", "v12", _superseded_missed_challenge, True),
     ("DRC-CO-SIGNED", "decision-in-force-not-co-signed", "v06", _v06_reask(False), True),
     ("CH-ROUND-COUNTED", "round-two-declared-as-one", "v11", lambda d: m(d, 5)["challenge"].update({"round": 1}), True),
-    ("DRC-HARD-GATE-ACCEPTANCE", "gate-raised-after-the-withdrawal", "v11", _v11_extra_gate(T("09:05:30"), 2), True),
-    ("DRC-HARD-GATE-ACCEPTANCE", "same-second-gate-is-not-cleared", "v11", _v11_extra_gate(T("09:05:00"), 1, revision_at=T("09:05:00")), True),
     ("DRC-HARD-GATE-ACCEPTANCE", "stopped-over-cap-withdrawal", "v11", _over_cap_withdrawal, True),
     ("DRC-HARD-GATE-ACCEPTANCE", "same-round-withdrawal", "v04", _same_round_hard_withdrawal, True),
     # distinguishing probes from the mutation-adequacy lens (each kills a surviving mutant)
@@ -1522,6 +1560,11 @@ INVALID = [
     ("DR-RISK-CARRIED", "concurrent-higher-tier-envelope", "v02", _concurrent_higher_tier, True),
     ("DR-DESIGNATED-CHALLENGER", "designated-challenger-only-on-the-framing", "v02", _designated_challenger_only_on_framing, True),
     ("DRC-CO-SIGN-BINDING", "co-sign-is-the-parent-of-its-record", "v06", _cosign_parent_of_record, True),
+    # --- fifth independent check (agent clearing removed by owner decision) ---
+    ("DR-RISK-CARRIED", "risk-raised-after-request-before-decision", "v02", _risk_raised_before_decision, True),
+    ("DR-DESIGNATED-CHALLENGER", "stopped-designated-challenge", "v02", _stopped_designated_challenge, True),
+    ("DRC-CO-SIGN-BINDING", "co-sign-not-a-child-of-its-record", "v06", _cosign_not_child_of_record, True),
+    ("STOP-CHALLENGE-ROUNDS", "revisions-carried-in-rebuttal-challenges", "v11", _revisions_in_rebuttal_challenges, True),
 ]
 
 # Valid variants: (slug, base scenario, mutation). Each is a legitimate flow next to a rule's

@@ -736,7 +736,11 @@
           "role": "ai-risk-owner"
         },
         "rationale": "Decision taken on the attached proposal, alternatives, challenges and dissent.",
-        "dissent_acknowledged": true
+        "dissent_acknowledged": true,
+        "risk_acceptance_ref": "risk-acceptance:RA-2026-0057",
+        "conditions": [
+          "Keep the per-hop audience-bound token exchange"
+        ]
       }
     }
   ]

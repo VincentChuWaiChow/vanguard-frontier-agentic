@@ -45,7 +45,7 @@
     {
       "id": "agentic-board-protocol",
       "path": "skills/cross-functional/agentic-board-protocol",
-      "aggregate_sha256": "acae42ceb2b82f9fc6658598396fef1fcd96bc7ff7d6dddcb2c065752ae3e6a4",
+      "aggregate_sha256": "3f05d7fcd7d04d5732417a8cb1567649bcff313254e0ba627eb37362d08d9148",
       "files": [
         {
           "path": "skills/cross-functional/agentic-board-protocol/SKILL.md",
@@ -59,8 +59,8 @@
         },
         {
           "path": "skills/cross-functional/agentic-board-protocol/references/decision-record.md",
-          "sha256": "a42f1f62b0d7285f21c18a3ef70ad42e47cb4a56be9809d85443cdbe5c20b13c",
-          "bytes": 23072
+          "sha256": "81fb80dba687051e81b242e8dca26cbde8c6cfd0dce7dcdc376ada04b554c7a5",
+          "bytes": 22657
         },
         {
           "path": "skills/cross-functional/agentic-board-protocol/references/handoff-envelope.md",
@@ -74,8 +74,8 @@
         },
         {
           "path": "skills/cross-functional/agentic-board-protocol/references/stop-conditions.md",
-          "sha256": "7ef60f2b913e28b138cd6e82064544e49552352d9d9c4f5717c90ec36d743798",
-          "bytes": 14042
+          "sha256": "9a0642098be3c516a21c3e64d7adeb18c85e05127e8362786b62fc623b89c0a7",
+          "bytes": 14472
         },
         {
           "path": "skills/cross-functional/agentic-board-protocol/references/value-case.md",
