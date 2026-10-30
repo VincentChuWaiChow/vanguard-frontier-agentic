@@ -413,7 +413,8 @@ class TargetedMutantTests(unittest.TestCase):
         ("destination tier", "not in DISPATCHABLE_TIERS", "in DISPATCHABLE_TIERS"),
         ("one request", 'if len([r for r in requests if "supersedes_task_id" not in r["decision_request"]]) > 1:',
          'if len([r for r in requests if "supersedes_task_id" not in r["decision_request"]]) > 2:'),
-        ("counted round", 'rounds[c["task_id"]] = 1 + len(answered)', 'rounds[c["task_id"]] = len(answered)'),
+        ("counted round", 'rounds[c["task_id"]] = max(1, sum(1 for e in received if order.precedes(e, c)))',
+         'rounds[c["task_id"]] = 1'),
         ("stop terminal", 'env["message_type"] != "escalate":', 'env["message_type"] == "escalate":'),
         ("owner is not requester", 'root["decision_owner"]["subject"] == root["source"]["subject"]',
          'root["decision_owner"]["subject"] != root["source"]["subject"]'),
@@ -452,6 +453,14 @@ class TargetedMutantTests(unittest.TestCase):
         ("a challenge answers something already sent", "if target is None or not order.precedes(target, env):", "if target is None:"),
         ("a record follows the request it binds", 'preds.append(rec["request_task_id"])', "pass"),
         ("a request does not descend from its record", ' or env["task_id"] in ctx["order"].ancestors(request):', ":"),
+        # fourth independent check
+        ("a stopped delegate was never delivered", 'and e["status"] != "stopped":  # a stopped delegate was never delivered', ":"),
+        ("clearance stays on the same proposer's work", "and proposer(w) is not None and proposer(w) == proposer(c)", ""),
+        ("the decision carries the correlation's risk", "carried = [e for e in by_id.values() if e is not env and not order.precedes(env, e)]",
+         "carried = [e for e in by_id.values() if e is not env and order.precedes(e, env)]"),
+        ("the designated challenger challenged the proposal", 'if c["source"]["kind"] == "agent" and _on_proposer(c, req["proposer_agent"], by_id)}',
+         'if c["source"]["kind"] == "agent"}'),
+        ("a co-sign is not an ancestor of its record", ' or env["task_id"] in ctx["order"].ancestors(target)):', "):"),
     ]
 
     def test_every_targeted_mutant_is_killed(self):

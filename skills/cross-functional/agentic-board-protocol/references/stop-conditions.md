@@ -67,7 +67,7 @@ This is a record-keeping and review contract checked offline. It does not stop a
 
 ### Challenge rounds
 
-- Trigger: a challenge envelope whose round is above 2. Rounds are counted, not self-declared: a challenge's round must equal 1 plus the distinct earlier proposal envelopes from the same proposer that the same challenger has challenged (`CH-ROUND-COUNTED`), so labelling every challenge round 1 does not reset the cap. Several challenges on one proposal envelope are one round; put every finding of a round on the envelope it answers. The schema allows rounds up to 8, so a third round is expressible and caught.
+- Trigger: a challenge envelope whose round is above 2. Rounds are counted, not self-declared: a challenge's round must equal the number of proposal versions (delegates and returns) the proposer had delivered to the challenger before it (`CH-ROUND-COUNTED`), so labelling every challenge round 1, or naming the original envelope every time, does not reset the cap. Every challenge sent before the next version arrives shares a round. The schema allows rounds up to 8, so a third round is expressible and caught.
 - Declare: challenge-rounds-exceeded.
 - Next: escalate, naming the open challenges in the escalation reason. The escalation payload carries no challenge list, so the principal sends the work back to the proposer, who assembles a decision-request with every round and its dissent attached; the principal decides on that. Never run a third round to wear the other side down.
 - Why: the adversarial exchange is bounded so that persistence or confidence cannot stand in for evidence. No OWASP mapping is claimed.

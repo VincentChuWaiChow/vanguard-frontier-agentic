@@ -45,7 +45,7 @@
     {
       "id": "agentic-board-protocol",
       "path": "skills/cross-functional/agentic-board-protocol",
-      "aggregate_sha256": "40cb4c96591ae1183bdd7ece015863809433dbed4429fcc56a394fbdf4fbbe13",
+      "aggregate_sha256": "acae42ceb2b82f9fc6658598396fef1fcd96bc7ff7d6dddcb2c065752ae3e6a4",
       "files": [
         {
           "path": "skills/cross-functional/agentic-board-protocol/SKILL.md",
@@ -59,13 +59,13 @@
         },
         {
           "path": "skills/cross-functional/agentic-board-protocol/references/decision-record.md",
-          "sha256": "a0973db63746157cbf063ff21e33f44c1ef0f3b5107b8506f0a8fb67649482b6",
-          "bytes": 22417
+          "sha256": "a42f1f62b0d7285f21c18a3ef70ad42e47cb4a56be9809d85443cdbe5c20b13c",
+          "bytes": 23072
         },
         {
           "path": "skills/cross-functional/agentic-board-protocol/references/handoff-envelope.md",
-          "sha256": "816c6c4cec168c13ca1eb86ed5de7e934c6861f7bddc1ac73bc2641f9188828b",
-          "bytes": 20213
+          "sha256": "e84c4e02e799c823a0bab0eeabdb9ca18911dc6f6edbc15b64b2e10d91d7b2bb",
+          "bytes": 20279
         },
         {
           "path": "skills/cross-functional/agentic-board-protocol/references/risk-tier-crosswalk.md",
@@ -74,8 +74,8 @@
         },
         {
           "path": "skills/cross-functional/agentic-board-protocol/references/stop-conditions.md",
-          "sha256": "d1c98ee0410f8cbd213c31e34c5e673da6f372c6b7d9f93ec4a608639bed8fef",
-          "bytes": 14043
+          "sha256": "7ef60f2b913e28b138cd6e82064544e49552352d9d9c4f5717c90ec36d743798",
+          "bytes": 14042
         },
         {
           "path": "skills/cross-functional/agentic-board-protocol/references/value-case.md",

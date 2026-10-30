@@ -47,6 +47,16 @@ A third independent check (three time-boxed lenses: closure of the second review
 - **Contracts aligned with the gate.** Both agent contracts said to "hand the verdict to the designated challenger", which an agent could send as a return; they now say to send the proposal as a delegate. They allowed status escalated on any stop; it is now stopped, or escalated only toward a principal, and after a stop only an escalate follows. stop-conditions.md now says that an escalated envelope is itself the hand-off, and gives the path after a capped round: escalate, the principal sends the work back, and the proposer asks with every round attached. Fanning out several proposal envelopes to one challenger uses up a round for each; that is documented, not changed.
 - **Counts.** There are now 88 rules (HO 35, DR 18, DRC 13, VC 11, STOP 9, CH 2), 34 valid fixtures (12 hand-written scenarios and 22 variants) and 150 invalid fixtures. TargetedMutantTests commits 42 targeted mutants and the corpus kills all 42. These supersede the counts in the sections above.
 
+## Corrections after the fourth independent check
+
+A fourth independent check (closure of the third check's findings, a bypass hunt and a false-rejection hunt) reported 16 findings against commit 11249b5c, and every engine finding was reproduced from its probe. They showed that two root causes had been patched symptom by symptom, so this pass replaced both mechanisms. Where an earlier section conflicts with this one, this one is current.
+
+- **Rounds no longer come from targets the challenger names.** Each earlier fix closed one way for a challenger to move its own round, and the next check found another: naming its own envelopes, an envelope it never received, another proposer's revision, or revisions delivered as returns or sibling delegates. A challenge's round is now the number of proposal versions (delegates and returns, not stopped) that the proposer of its target had delivered to the challenger before it. A HARD gate clears only on the same challenger's withdrawal on the same proposer's work after a newer version reached it; a gate on one party's work does not clear on another party's revision, so after a change of proposer it stays live until the original party revises or a principal accepts the risk.
+- **The decision's risk comes from the whole correlation.** DR-RISK-CARRIED listed sources (attached challenges, their targets, the proposer's earlier envelopes), and a requester's re-tiering, a challenger raising the tier outside an attached challenge, and a same-second re-ask each slipped past the list. A decision-request's tier and flags must now be at least those of every envelope in the correlation that is not causally after it.
+- **Smaller holes.** The designated challenger counts only when it challenged the proposer's own envelopes, so a withdrawn HARD gate on the framing no longer satisfies DR-DESIGNATED-CHALLENGER. A co-signing record may not be an ancestor of the record it co-signs. A stopped delegate is not a delivered version.
+- **Wording aligned with the code.** DR-CHALLENGE-COMPLETE counts every decision-record bound to the request in force, the co-signing record included. The agent contracts and handoff-envelope.md say to hand a proposal to the challenger as a return when the challenger is the agent that delegated the work, since a delegate back to it is a routing loop.
+- **Counts.** 88 rules (unchanged), 35 valid fixtures (12 hand-written scenarios and 23 variants) and 156 invalid fixtures; TargetedMutantTests commits 47 targeted mutants and the corpus kills all 47. These supersede the counts in the sections above.
+
 ## Status and scope
 
 | Field | Value |
@@ -432,15 +442,15 @@ Classification under the EU AI Act is routed to legal-regulatory-compliance-agen
 
 The gate is deterministic and offline, reading committed files only (`python3 -m unittest discover -s tests/agentic-board-suite -p "test_*.py"`). It proves:
 
-- Every one of the 88 rules has a sole-violation fixture, and each of the 150 invalid fixtures fails exactly its one declared rule.
-- The 34 valid record sets (12 hand-written scenarios and 22 variants that pin a rule's boundary from the accepting side) pass and are all marked synthetic.
+- Every one of the 88 rules has a sole-violation fixture, and each of the 156 invalid fixtures fails exactly its one declared rule.
+- The 35 valid record sets (12 hand-written scenarios and 23 variants that pin a rule's boundary from the accepting side) pass and are all marked synthetic.
 - The fixtures are current with their builder, every agent id they use exists in the catalog, and the harness adapters are current with the committed tests/agentic-board-suite/_build_harnesses.py (checked with `--check`). The adapters previously came from an uncommitted scratch script and could drift.
 - The protocol references document exactly the rule table, no more and no fewer ids.
 - subject_risk_tier and data_classification reuse the audit-event vocabularies, the board's actions are a subset of the schema's, and designated challengers exist in the catalog.
 - The board agents are generic, static-review and experimental, bundle the protocol, and carry the tool-restriction declarations in five harness adapters; the board skills declare Read Grep Glob and link each reference.
 - An AST denylist scan finds none of the listed wall-clock, network or randomness imports and calls in the rules or the fixture builder.
 - The mutation-intent and instruction-bait patterns (LIVE_GUARD_INTENT and INSTRUCTION_BAIT) behave as pinned: the suite pins known misses, known false stops and bait negatives.
-- Forty-two targeted mutants (TargetedMutantTests) are each killed by the corpus.
+- Forty-seven targeted mutants (TargetedMutantTests) are each killed by the corpus.
 
 ### Rules added after the independent review
 
@@ -487,6 +497,14 @@ Added or changed after the third check. DR-RISK-CARRIED is new, and the counts a
 - HO-RETURN-TO-SENDER (changed): a return may also go to whoever delegated to its sender earlier in the chain.
 - DRC-AFTER-REQUEST (changed): the bound request must not descend from the record.
 
+Changed after the fourth check; no rule was added.
+
+- CH-ROUND-COUNTED (changed): a round is the number of proposal versions the proposer of the challenge's target delivered to the challenger before it.
+- DR-UNRESOLVED-DISSENT, DR-NO-APPROVE-OVER-DISSENT, DR-HARD-GATE and DRC-HARD-GATE-ACCEPTANCE (changed through the shared liveness test): a withdrawal clears a challenge only on the same proposer's work after a newer version reached the challenger.
+- DR-RISK-CARRIED (changed): every envelope in the correlation that is not causally after the request counts.
+- DR-DESIGNATED-CHALLENGER (changed): only challenges of the proposer's own envelopes count.
+- DRC-CO-SIGN-BINDING (changed): a co-signing record may not be an ancestor of the record it co-signs.
+
 ### What it does not prove
 
 - That any content is true, that any principal is who the record says, or that anyone approved anything.
@@ -499,7 +517,7 @@ Added or changed after the third check. DR-RISK-CARRIED is new, and the counts a
 
 ### Mutation probe
 
-The earlier probe neutralized each rule add-site in agentic_board_rules.py in memory and replayed every fixture. It found 65 mutation sites (64 rule add-sites and the early return for an empty document). Fixtures killed 64. The one survivor is the empty-document return, which test_empty_document_fails_closed covers directly. The probe was re-run on 2026-10-30 and reproduced these numbers. It used deletion operators only, so it says nothing about comparison, boolean or constant mutations: the independent chair found 5 of 5 targeted mutants of those kinds surviving. The suite now commits 42 targeted mutants (TargetedMutantTests) and the corpus kills all 42. The second independent review's mutation lens generated a broad mutant set over the new predicates, and its distinguishing probes were added as fixtures. A full mutation probe with an enumerated list of equivalent mutants is still open (RB-08, partial); this record claims no more than the 42 killed mutants and the earlier deletion probe. Routing is not used: the board is wired into no routing fixture, and validate:maestro-routing does not exercise it.
+The earlier probe neutralized each rule add-site in agentic_board_rules.py in memory and replayed every fixture. It found 65 mutation sites (64 rule add-sites and the early return for an empty document). Fixtures killed 64. The one survivor is the empty-document return, which test_empty_document_fails_closed covers directly. The probe was re-run on 2026-10-30 and reproduced these numbers. It used deletion operators only, so it says nothing about comparison, boolean or constant mutations: the independent chair found 5 of 5 targeted mutants of those kinds surviving. The suite now commits 47 targeted mutants (TargetedMutantTests) and the corpus kills all 47. The second independent review's mutation lens generated a broad mutant set over the new predicates, and its distinguishing probes were added as fixtures. A full mutation probe with an enumerated list of equivalent mutants is still open (RB-08, partial); this record claims no more than the 47 killed mutants and the earlier deletion probe. Routing is not used: the board is wired into no routing fixture, and validate:maestro-routing does not exercise it.
 
 ### Negative probes the gate already carries
 
@@ -545,7 +563,7 @@ This scorecard is the author's judgment against a rubric defined in this documen
 
 | Dimension | Score | Evidence | Why not higher |
 |---|---|---|---|
-| Security | 3 | No execute verb; principal-only approvals bound by request digest; a HARD gate that holds over every HARD gate in the correlation, not only attached ones (DR-CHALLENGE-COMPLETE); 88 rules with sole-violation fixtures and 42 committed targeted mutants (a full mutation probe is open, RB-08); tool-restriction declarations in five harness adapters | Sender authentication, authorization and audit storage are runtime-only; two adapters are prompt-level and Codex has no per-agent sandbox; enforcement is documented by the vendor for Claude Code `tools`, Gemini `tools` and, as a partial restriction, Cursor `readonly`; the amended execution-tiers document awaits the owner's acceptance; ASI02, ASI04, ASI05, ASI06 and ASI10 have no repository control; no red-team run |
+| Security | 3 | No execute verb; principal-only approvals bound by request digest; a HARD gate that holds over every HARD gate in the correlation, not only attached ones (DR-CHALLENGE-COMPLETE); 88 rules with sole-violation fixtures and 47 committed targeted mutants (a full mutation probe is open, RB-08); tool-restriction declarations in five harness adapters | Sender authentication, authorization and audit storage are runtime-only; two adapters are prompt-level and Codex has no per-agent sandbox; enforcement is documented by the vendor for Claude Code `tools`, Gemini `tools` and, as a partial restriction, Cursor `readonly`; the amended execution-tiers document awaits the owner's acceptance; ASI02, ASI04, ASI05, ASI06 and ASI10 have no repository control; no red-team run |
 | Operational burden | 2 | Nothing to operate in this repository; one added gate; two agents and three skills to install via three install roles | Adopters must build the runtime, record store and approver authentication; the cost of challenger, alternative and dissent for R2+ work is unmeasured |
 | Interoperability | 2 | Envelope is a JSON Schema 2020-12 document; seven harness adapters; parity with the audit-event vocabularies is checked offline | No wire binding to MCP or A2A is implemented; framework and protocol facts drift; no other system has consumed the envelope |
 | Economics | 1 | A value-case contract with interval arithmetic, counterfactuals and a promotion rule, with bookkeeping checked offline | No measured benefit, no baseline, and synthetic fixtures cannot exceed pilot. The arithmetic proves bookkeeping, not value |
@@ -571,7 +589,7 @@ Basis: two adversarial refuters probed the synthesized design in memory (includi
 | agentic-system-architecture-review | APPROVE WITH CONDITIONS | Framework facts are research-delegate findings cited "per" sources and must be re-verified for the installed version |
 | agentic-security-review | APPROVE WITH CONDITIONS | MCP authorization and A2A claims are limited to the verified revisions and wording; verify against installed software |
 | schemas/agentic-handoff.schema.json | APPROVE WITH CONDITIONS | Shape only; opaque subjects; no credential fields; useful only if the runtime authenticates senders |
-| tests/agentic-board-suite | APPROVE WITH CONDITIONS | Oracles are not runtime enforcement and fail open; the determinism scan is a denylist; the earlier deletion probe's one survivor has its own covering test and 42 targeted mutants are committed and killed, but a full mutation probe is open (RB-08); it proves form, not truth |
+| tests/agentic-board-suite | APPROVE WITH CONDITIONS | Oracles are not runtime enforcement and fail open; the determinism scan is a denylist; the earlier deletion probe's one survivor has its own covering test and 47 targeted mutants are committed and killed, but a full mutation probe is open (RB-08); it proves form, not truth |
 | Kiro Power invariant text and install-role wiring | APPROVE | Each corrects a verified defect or wires the board into discovery |
 | TypeScript per-server MCP-trust routing | APPROVE WITH CONDITIONS | Only the per-server MCP trust clauses were repointed, including the per-server entry in the MCP tool-contract companion skill. The TypeScript routing contract was not changed, so the grader still routes MCP-server-trust tasks to typescript-mcp-tool-contract-agent until an inbound route is added (RB-19). Other clauses in the maestro and in the runtime-boundary, package-publication, MCP tool-contract and automation-governance specialists still route to a "security board" or "application security board" that does not exist; the backlog item holds the owner decision |
 

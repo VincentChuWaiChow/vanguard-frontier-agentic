@@ -309,7 +309,7 @@
       "synthetic": true,
       "challenge": {
         "proposal_task_id": "v11-m2",
-        "round": 1,
+        "round": 2,
         "hard_gate": true,
         "outcome": "sustained",
         "finding": "Still token passthrough; answered against the original envelope."

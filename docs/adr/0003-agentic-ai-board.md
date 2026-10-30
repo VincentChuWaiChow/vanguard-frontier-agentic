@@ -50,6 +50,17 @@ A third independent check reported 13 findings against commit a9721e69, and ever
 
 The full list is in docs/architecture/agentic-ai-board.md, section "Corrections after the third independent check" (cited by path, as elsewhere in this ADR).
 
+## Corrections after the fourth independent check
+
+A fourth independent check reported 16 findings against commit 11249b5c, and every engine finding was reproduced. Two mechanisms that earlier passes patched symptom by symptom were replaced. Where the sections above conflict with this one, this one is current.
+
+- **Rounds are proposal versions delivered.** A challenge's round is the number of versions the proposer delivered to the challenger before it, so naming other envelopes cannot move it, and a HARD gate clears only on the same proposer's later version. After a change of proposer, the gate stays live until the original party revises or a principal accepts the risk.
+- **The decision's risk comes from the whole correlation.** A decision-request is never lower in tier or flags than any envelope that is not causally after it.
+- **Smaller fixes.** Only challenges of the proposal satisfy the designated challenger; a co-sign cannot be an ancestor of its record; the contracts say when to hand a proposal back as a return.
+- **Counts.** 88 rules, 35 valid and 156 invalid fixtures, 47 targeted mutants, all killed. These supersede the counts above.
+
+The full list is in docs/architecture/agentic-ai-board.md, section "Corrections after the fourth independent check" (cited by path, as elsewhere in this ADR).
+
 ## Date
 
 2026-10-30
@@ -111,7 +122,7 @@ Evaluation details, the full inventory and the per-candidate table are in docs/a
 ### Mitigations
 
 - The honesty boundary is repeated in the schema description, the protocol, both agent contracts and the design record, so a reader of any one of them meets it.
-- Every rule has a sole-violation fixture, and every invalid fixture fails exactly its one declared rule. An earlier probe that deleted rule add-sites found 65 sites and killed 64 by fixtures, but it used deletion operators only, and the independent chair found 5 of 5 targeted comparison, boolean and constant mutants surviving. The suite now commits 42 targeted mutants (TargetedMutantTests) and the corpus kills all 42. A full mutation probe with an enumerated list of equivalent mutants is still open (RB-08, partial).
+- Every rule has a sole-violation fixture, and every invalid fixture fails exactly its one declared rule. An earlier probe that deleted rule add-sites found 65 sites and killed 64 by fixtures, but it used deletion operators only, and the independent chair found 5 of 5 targeted comparison, boolean and constant mutants surviving. The suite now commits 47 targeted mutants (TargetedMutantTests) and the corpus kills all 47. A full mutation probe with an enumerated list of equivalent mutants is still open (RB-08, partial).
 - The gate runs an AST denylist scan for listed wall-clock, network and randomness imports and calls. A denylist does not catch indirect forms, which the design record lists, so determinism also rests on review. The gate is meant to change result only when committed data changes.
 - Facts are labeled by verification level, and anything not confirmed from a primary source is left out or marked for verification.
 - The pull request is a draft, the ordering exception is stated in it, and the owner can defer the whole wave to Milestone 3 without losing the design record.

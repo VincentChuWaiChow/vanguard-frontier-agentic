@@ -145,22 +145,22 @@ RULES: dict[str, str] = {
     "STOP-TERMINAL": "Every child of a stopped envelope is an escalate (which HO-ESCALATE-TO-PRINCIPAL sends to a principal), and no decision-record binds a decision-request that declares a stop reason.",
     # --- challenges and decision requests -----------------------------------------------------
     "CH-PROPOSAL-LINK": "A challenge's proposal_task_id resolves to an envelope in the record set that precedes the challenge: a challenge answers something already sent.",
-    "CH-ROUND-COUNTED": "A challenge's round equals 1 plus the number of distinct other proposal envelopes from the same proposer that the same challenger challenged before it (before: causally earlier), so a round is fixed by what was on record when it was sent.",
+    "CH-ROUND-COUNTED": "A challenge's round equals the number of delegates and returns (not stopped) that the proposer of its target had delivered to the challenger before it, at least 1: a round is a proposal version received, so the challenger cannot choose it by naming targets.",
     "DR-TO-PRINCIPAL": "A decision-request is addressed to a principal; agents never decide.",
     "DR-PROPOSER-IS-SENDER": "A decision-request is sent by the agent it names as proposer_agent (no attributing a proposal to another agent).",
     "DR-CHALLENGE-TARGETS-PROPOSAL": "Every attached challenge that is not a HARD gate points at an envelope sent by the proposer; a HARD gate is attached wherever it was raised.",
     "DR-CHALLENGE-RESOLVES": "Every challenge_task_ids entry resolves to a challenge envelope in the record set.",
     "DR-CHALLENGE-PRECEDES": "No attached challenge was sent after the decision-request or descends from it.",
-    "DR-CHALLENGE-COMPLETE": "Every challenge on the proposer's envelopes, and every HARD-gate challenge anywhere in the correlation, that precedes the request is attached; for the request in force, so is every such challenge that is not causally after a decision-record binding it.",
-    "DR-RISK-CARRIED": "A decision-request's subject_risk_tier is at least, and its materiality_flags include, those of every challenge it attaches, every envelope those target, and every envelope its proposer sent before it (which includes any request it supersedes).",
+    "DR-CHALLENGE-COMPLETE": "Every challenge on the proposer's envelopes, and every HARD-gate challenge anywhere in the correlation, that precedes the request is attached; for the request in force, so is every such challenge that is not causally after every decision-record binding it, the co-signing record included.",
+    "DR-RISK-CARRIED": "A decision-request's subject_risk_tier is at least, and its materiality_flags include, those of every envelope in the correlation that is not causally after it: the decision carries the highest risk declared before it, wherever it was declared.",
     "DR-ONE-REQUEST": "A correlation has one decision-request in force: any other supersedes a decision-request from the same proposer sent no later than itself, no request is superseded twice, and supersession has no cycle.",
     "DR-OWNER-FROM-ROOT": "A correlation carrying a decision-request is opened by a principal whose root names a decision_owner other than itself, and every decision-request is addressed to that owner.",
     "DR-CLASS-FROM-ROOT": "A decision-request's decision_class equals the decision_class declared on the root envelope.",
     "DR-CHALLENGE-REQUIRED": "At R2+, with any materiality flag, or for automation-investment, at least one challenge is attached.",
-    "DR-DESIGNATED-CHALLENGER": "When a challenge is required, the designated challenger for the decision class is among the challengers.",
+    "DR-DESIGNATED-CHALLENGER": "When a challenge is required, the designated challenger for the decision class is among the challengers of the proposer's own envelopes.",
     "DR-PROPOSER-NOT-CHALLENGER": "No attached challenge was raised by the proposer.",
     "DR-ALTERNATIVES": "When a challenge is required, at least one materially different alternative is recorded.",
-    "DR-UNRESOLVED-DISSENT": "Every live attached challenge has a dissent entry. Live: sustained or unresolved and not cleared; only the same challenger's completed withdrawal in a later counted round, sent after it, clears it, and a HARD gate clears only on a HARD-gate withdrawal.",
+    "DR-UNRESOLVED-DISSENT": "Every live attached challenge has a dissent entry. Live: sustained or unresolved and not cleared; only the same challenger's completed withdrawal on the same proposer's work in a later round (a later version delivered to it), sent after it, clears it, and a HARD gate clears only on a HARD-gate withdrawal.",
     "DR-NO-APPROVE-OVER-DISSENT": "With any live attached challenge, recommended_outcome is not approve.",
     "DR-HARD-GATE": "With a live HARD-gate attached challenge, recommended_outcome is reject, redesign, or escalate.",
     "DR-VALUE-CASE-REQUIRED": "An automation-investment decision-request carries a value_case.",
@@ -175,7 +175,7 @@ RULES: dict[str, str] = {
     "DRC-COMPLETED": "A decision-record has status completed.",
     "DRC-SECOND-APPROVER": "A decider's record sent at R5, or binding an R5 decision-request, names a second approver distinct from the decider.",
     "DRC-CO-SIGNED": "The decider's record on the decision-request in force, when it names a second approver, is co-signed by that principal's own decision-record.",
-    "DRC-CO-SIGN-BINDING": "A co-signing record names a decider's record on the same request with the same digest and outcome, comes from that record's second approver, is not sent before it, and names no second approver itself.",
+    "DRC-CO-SIGN-BINDING": "A co-signing record names a decider's record on the same request with the same digest and outcome, comes from that record's second approver, is not sent before it or an ancestor of it, and names no second approver itself.",
     "DRC-HARD-GATE-ACCEPTANCE": "Approving over a live HARD-gate challenge requires risk_acceptance_ref.",
     "DRC-APPROVAL-STATE": "approval_state is approved for approve/conditional-approve and rejected for reject/redesign.",
     # --- value case ---------------------------------------------------------------------------
@@ -499,21 +499,23 @@ def _check_chain(env: dict, parent: dict) -> set[str]:
 
 
 def _counted_rounds(challenges: list[dict], by_id: dict, order: _Order) -> dict[str, int]:
-    """A round is one proposal envelope answered: several challenges on one envelope share a round.
+    """A round is one proposal version received: the delegates and returns that the proposer of a
+    challenge's target had delivered to the challenger before the challenge (at least 1).
 
-    A challenge's round counts the other envelopes its challenger had already answered, so it is
-    fixed by what was on record when it was sent, never by an envelope that came later.
+    The challenger cannot raise its own round by naming other envelopes, its own, ones it never
+    received or another proposer's; only the proposer delivering a revision moves it, and the
+    round cap bounds how often that can happen.
     """
-    groups: dict[tuple, list[tuple[dict, str]]] = {}
+    delivered: dict[tuple, list[dict]] = {}
+    for e in by_id.values():
+        if e["message_type"] in ("delegate", "return") and e["status"] != "stopped":  # a stopped delegate was never delivered
+            delivered.setdefault((_party_key(e["source"]), _party_key(e["destination"])), []).append(e)
+    rounds: dict[str, int] = {}
     for c in challenges:
         target = by_id.get(c["challenge"]["proposal_task_id"])
         if target is not None:
-            groups.setdefault((_party_key(c["source"]), _party_key(target["source"])), []).append((c, target["task_id"]))
-    rounds: dict[str, int] = {}
-    for group in groups.values():
-        for c, target_id in group:
-            answered = {t for other, t in group if t != target_id and order.precedes(other, c)}
-            rounds[c["task_id"]] = 1 + len(answered)
+            received = delivered.get((_party_key(target["source"]), _party_key(c["source"])), [])
+            rounds[c["task_id"]] = max(1, sum(1 for e in received if order.precedes(e, c)))
     return rounds
 
 
@@ -676,9 +678,14 @@ def _live(request: dict, ctx: dict) -> list[dict]:
     attached = _attached_challenges(request["decision_request"], ctx["by_id"])
     rounds, order = ctx["rounds"], ctx["order"]
 
+    def proposer(ch: dict):
+        target = ctx["by_id"].get(ch["challenge"]["proposal_task_id"])
+        return _party_key(target["source"]) if target is not None else None
+
     def clears(w: dict, c: dict) -> bool:
         rw, rc = rounds.get(w["task_id"], 0), rounds.get(c["task_id"], 0)
         return (_party_key(w["source"]) == _party_key(c["source"])
+                and proposer(w) is not None and proposer(w) == proposer(c)
                 and w["challenge"]["outcome"] == "withdrawn"
                 and (w["challenge"]["hard_gate"] or not c["challenge"]["hard_gate"])
                 and rc < rw
@@ -714,12 +721,9 @@ def _check_decision_request_links(env: dict, ctx: dict) -> set[str]:
     if any((c["challenge"]["hard_gate"] or _on_proposer(c, req["proposer_agent"], by_id))
            and c["task_id"] not in req["challenge_task_ids"] for c in owed):
         out.add("DR-CHALLENGE-COMPLETE")
-    # The decision's risk is carried, never lowered by asking from a lower-tier branch or a re-ask. The
-    # proposer's earlier envelopes include any request this one supersedes (DR-ONE-REQUEST: same proposer).
-    carried = attached + [by_id[c["challenge"]["proposal_task_id"]] for c in attached
-                          if c["challenge"]["proposal_task_id"] in by_id]
-    carried += [e for e in by_id.values() if e["source"].get("id") == req["proposer_agent"]
-                and e["source"]["kind"] == "agent" and e is not env and order.precedes(e, env)]
+    # The decision carries the highest risk declared before it anywhere in the correlation (a same-second
+    # envelope counts), so no branch, re-ask or re-tiering can ask a lower-stakes question than the one raised.
+    carried = [e for e in by_id.values() if e is not env and not order.precedes(env, e)]
     if any(_tier(e["subject_risk_tier"]) > _tier(env["subject_risk_tier"])
            or not set(e["materiality_flags"]) <= set(env["materiality_flags"]) for e in carried):
         out.add("DR-RISK-CARRIED")
@@ -730,7 +734,8 @@ def _check_decision_request_links(env: dict, ctx: dict) -> set[str]:
     elif _requires_challenge(env, req):
         primary, fallback = DESIGNATED_CHALLENGERS[req["decision_class"]]
         designated = fallback if primary == req["proposer_agent"] else primary
-        challengers = {c["source"].get("id") for c in attached if c["source"]["kind"] == "agent"}
+        challengers = {c["source"].get("id") for c in attached
+                       if c["source"]["kind"] == "agent" and _on_proposer(c, req["proposer_agent"], by_id)}
         if designated == req["proposer_agent"] or designated not in challengers:
             out.add("DR-DESIGNATED-CHALLENGER")
     if any(c["source"].get("id") == req["proposer_agent"] for c in attached):
@@ -789,7 +794,7 @@ def _check_decision_record_links(env: dict, ctx: dict) -> set[str]:
                 or (trec["request_task_id"], trec["request_digest"], trec["outcome"])
                 != (rec["request_task_id"], rec["request_digest"], rec["outcome"])
                 or trec.get("second_approver", {}).get("subject") != rec["decided_by"]["subject"]
-                or env["sent_at"] < target["sent_at"]):
+                or env["sent_at"] < target["sent_at"] or env["task_id"] in ctx["order"].ancestors(target)):
             out.add("DRC-CO-SIGN-BINDING")
     elif ("second_approver" in rec and rec["second_approver"]["subject"] != rec["decided_by"]["subject"]
           and rec["request_task_id"] not in ctx["superseded"]  # a superseded request's record is void, not owed a co-sign

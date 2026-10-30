@@ -178,7 +178,7 @@
       "stop_reasons": [],
       "synthetic": true,
       "challenge": {
-        "proposal_task_id": "v02-m1",
+        "proposal_task_id": "v02-m2",
         "round": 1,
         "hard_gate": false,
         "outcome": "sustained",
@@ -254,12 +254,17 @@
           }
         ],
         "challenge_task_ids": [
-          "v02-m3"
+          "v02-m3",
+          "v02-m6"
         ],
         "dissent": [
           {
             "challenge_task_id": "v02-m3",
             "position": "The challenger's finding stands unresolved by evidence and is carried to the decision owner."
+          },
+          {
+            "challenge_task_id": "v02-m6",
+            "position": "Framing gap carried to the decision owner."
           }
         ],
         "recommended_outcome": "conditional-approve"
@@ -324,7 +329,7 @@
       "synthetic": true,
       "decision_record": {
         "request_task_id": "v02-m4",
-        "request_digest": "sha256:528542034a976563b89f9232f88bd6f072b38d431ff8f3d9cc21bdfa00fb7178",
+        "request_digest": "sha256:c0966af104a8d45f33cd988fcc05e5994160b03c30054b8e4e3848d4e2ae90d9",
         "outcome": "conditional-approve",
         "decided_by": {
           "kind": "principal",
@@ -336,6 +341,70 @@
         "conditions": [
           "Partition memory per tenant before pilot"
         ]
+      }
+    },
+    {
+      "schema_version": "1.0.0",
+      "message_type": "challenge",
+      "task_id": "v02-m6",
+      "correlation_id": "v02-corr",
+      "parent_task_id": "v02-m2",
+      "hop_count": 2,
+      "max_hops": 8,
+      "sent_at": "2026-10-01T09:03:30Z",
+      "source": {
+        "kind": "agent",
+        "id": "agentic-security-review-agent"
+      },
+      "destination": {
+        "kind": "agent",
+        "id": "agentic-system-architecture-review-agent"
+      },
+      "objective": "Challenge findings for the v02 proposal.",
+      "input_schema_version": "1.0.0",
+      "subject_risk_tier": "R2",
+      "data_classification": "internal",
+      "materiality_flags": [],
+      "authorized_actions": [
+        "read",
+        "analyze",
+        "recommend",
+        "challenge",
+        "escalate"
+      ],
+      "do_not_do_list": [
+        "Do not execute, deploy, or mutate any system",
+        "Do not request, store, or echo credentials, tokens, or secrets",
+        "Do not record an approval on behalf of a human"
+      ],
+      "evidence_refs": [
+        {
+          "ref": "repo:docs/design/v02.md#section-1",
+          "label": "repo-evidence"
+        }
+      ],
+      "missing_evidence": [],
+      "budget": {
+        "currency": "USD",
+        "limit_tool_calls": 40,
+        "spent_tool_calls": 14,
+        "limit_tokens": 400000,
+        "spent_tokens": 70000,
+        "limit_cost_minor": 2000,
+        "spent_cost_minor": 280
+      },
+      "deadline": "2026-10-08T17:00:00Z",
+      "approval_state": "not-required",
+      "expected_output_schema": "agentic-review-verdict/1.0.0",
+      "status": "completed",
+      "stop_reasons": [],
+      "synthetic": true,
+      "challenge": {
+        "proposal_task_id": "v02-m1",
+        "round": 1,
+        "hard_gate": false,
+        "outcome": "sustained",
+        "finding": "The requester's framing omits the tenant-isolation requirement entirely."
       }
     }
   ],
