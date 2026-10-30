@@ -175,7 +175,7 @@
     },
     "approval_state": {
       "enum": ["not-required", "pending-human-review", "approved", "rejected"],
-      "description": "Only a principal-sourced decision-record may carry approved or rejected (rules HO-AGENT-NO-APPROVAL, DRC-APPROVAL-STATE)."
+      "description": "Only a principal-sourced decision-record may carry approved or rejected (rules HO-AGENT-NO-APPROVAL, HO-APPROVAL-ONLY-ON-RECORD, DRC-APPROVAL-STATE)."
     },
     "expected_output_schema": {
       "type": "string",

@@ -629,11 +629,12 @@ function summarize(provider) {
     maestro,
     liveMaestro,
     liveGuards,
+    dirs: agentDirs(entries),
   };
 }
 
 function renderPower(provider, cfg) {
-  const { total, kiroAvailable, maestro, liveMaestro, liveGuards } = summarize(provider);
+  const { total, kiroAvailable, maestro, liveMaestro, liveGuards, dirs } = summarize(provider);
   const frontmatter = [
     "---",
     `name: "vanguard-${provider}"`,
@@ -686,7 +687,7 @@ function renderPower(provider, cfg) {
       ? liveMaestro
         ? `This board has two planes with two routers. Send static-review work to \`${maestro.id}\` — its contract refuses live operations, so it must never be given a mutation task. Send live control-plane work to \`${liveMaestro.id}\`, which is the only router that gates the live-guard operators below. Classify first, then dispatch to one specialist or a small parallel team; never have either maestro execute a mutation itself.`
         : "Use the maestro as the entry point: classify the task, then dispatch to one specialist or a parallel team of specialists. Never have the maestro itself execute a live mutation."
-      : "Reference agents directly from " + agentDirs(entries) + " without maestro-based routing.",
+      : "Reference agents directly from " + dirs + " without maestro-based routing.",
     "",
     "## Live-guard agents (gate_mode only)",
     "",
@@ -702,7 +703,7 @@ function renderPower(provider, cfg) {
     "",
     "## Where the agents live",
     "",
-    `Agent specs and adapters are part of the [Vanguard Frontier Agentic](https://github.com/VincentChuWaiChow/vanguard-frontier-agentic) marketplace. For this provider, see \`agents/${provider}/\` in that repository. ${adapterNote}`,
+    `Agent specs and adapters are part of the [Vanguard Frontier Agentic](https://github.com/VincentChuWaiChow/vanguard-frontier-agentic) marketplace. For this provider, see ${dirs.split(" and ").map((d) => "`" + d + "`").join(" and ")} in that repository. ${adapterNote}`,
     "",
     "## Companion install paths",
     "",

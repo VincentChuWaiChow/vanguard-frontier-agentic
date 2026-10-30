@@ -1,13 +1,13 @@
 ---
 name: "vanguard-generic"
 displayName: "Vanguard Frontier — Generic"
-description: "Curated Generic review agents covering ci test pipeline, helm chart quality, kubernetes manifest quality, llm ai pipeline test. Reference agents directly under agents/generic/. Static review only; no live mutations."
-keywords: ["test-quality", "ci-pipeline", "helm-chart", "manifest-review"]
+description: "Curated Generic review agents covering agentic security, agentic system architecture, ci test pipeline, helm chart quality. Reference agents directly under agents/cross-functional/ and agents/qa/. Static review only; no live mutations."
+keywords: ["test-quality", "ci-pipeline", "helm-chart", "manifest-review", "agentic-security", "multi-agent-architecture"]
 author: "VincentChuWaiChow"
 ---
 # Vanguard Frontier — Generic
 
-Curated Generic review agents covering ci test pipeline, helm chart quality, kubernetes manifest quality, llm ai pipeline test. Reference agents directly under agents/generic/. Static review only; no live mutations.
+Curated Generic review agents covering agentic security, agentic system architecture, ci test pipeline, helm chart quality. Reference agents directly under agents/cross-functional/ and agents/qa/. Static review only; no live mutations.
 
 ## When to engage this Power
 
@@ -17,7 +17,7 @@ Activate when the task references Generic services, resources, or operations. Do
 
 - *(no maestro for this provider; reference agents directly under `agents/generic/`)*
 
-Reference agents directly from agents/generic/ without maestro-based routing.
+Reference agents directly from agents/cross-functional/ and agents/qa/ without maestro-based routing.
 
 ## Live-guard agents (gate_mode only)
 
@@ -28,11 +28,11 @@ Live-guard agents enforce approval, target confirmation, evidence capture, and r
 ## Invariants
 
 - Static review only -- agents analyze configuration and provide findings without mutating live systems.
-- Agents are provider-agnostic and focus on CI, Helm, manifest, and test-quality patterns.
+- Agents are provider-agnostic: CI, Helm, manifest, and test-quality review under agents/qa/; cross-tier revenue-journey integrity and vendor-neutral agentic system architecture and security review under agents/cross-functional/. The agentic reviewers hand off through skills/cross-functional/agentic-board-protocol and never approve or execute.
 
 ## Where the agents live
 
-Agent specs and adapters are part of the [Vanguard Frontier Agentic](https://github.com/VincentChuWaiChow/vanguard-frontier-agentic) marketplace. For this provider, see `agents/generic/` in that repository. 10 of 11 agents in this provider ship a Kiro adapter; the rest provide steering context only.
+Agent specs and adapters are part of the [Vanguard Frontier Agentic](https://github.com/VincentChuWaiChow/vanguard-frontier-agentic) marketplace. For this provider, see `agents/cross-functional/` and `agents/qa/` in that repository. 12 of 13 agents in this provider ship a Kiro adapter; the rest provide steering context only.
 
 ## Companion install paths
 

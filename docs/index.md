@@ -41,6 +41,7 @@ Supported harnesses: Claude Code, Codex, GitHub Copilot, Cursor, Gemini CLI, Kir
 | [Governance](governance/) | ADR process, maintainer responsibilities, quality gates |
 | [ADR-0001: Initial Architecture](adr/0001-initial-architecture/) | Three-layer Maestro decision record |
 | [ADR-0002: Jekyll + GitHub Pages](adr/0002-documentation-site-with-jekyll-github-pages/) | Documentation platform choice |
+| [ADR-0003: Agentic AI Board](adr/0003-agentic-ai-board/) | Vendor-neutral agentic board (proposed) |
 
 ### 📋 Operations
 

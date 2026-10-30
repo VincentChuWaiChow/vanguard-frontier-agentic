@@ -25,7 +25,7 @@ This skill decides whether a declared MCP tool contract matches what its TypeScr
 ## When not to use
 
 - The question is where to host the server or which transport to use — route to the `mcp/` references and the security board.
-- The question is whether to trust a third-party MCP server — route to the security board.
+- The question is whether to trust a third-party MCP server — route to `agentic-security-review-agent`.
 - The connector is a vendor-specific product with its own agent — route to that agent.
 - The question is application-side validation unrelated to a declared MCP tool schema — route to `typescript-runtime-boundary-contract-agent`.
 - The task requires actually running or hosting the server — this skill is static-review only.

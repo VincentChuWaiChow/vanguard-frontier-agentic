@@ -85,6 +85,7 @@ RULES: dict[str, str] = {
     "HO-NO-SELF-ADDRESS": "source and destination are different parties.",
     "HO-NO-EXECUTION": "authorized_actions is a subset of read/analyze/recommend/challenge/escalate.",
     "HO-AGENT-NO-APPROVAL": "An agent-sourced envelope carries approval_state not-required or pending-human-review.",
+    "HO-APPROVAL-ONLY-ON-RECORD": "A principal-sourced envelope other than a decision-record carries approval_state not-required or pending-human-review.",
     "HO-ESCALATE-TO-PRINCIPAL": "An escalate envelope is addressed to a principal.",
     "HO-PAYLOAD-RETURN": "A return envelope carries a verdict.",
     "HO-PAYLOAD-CHALLENGE": "A challenge envelope carries a challenge.",
@@ -259,6 +260,9 @@ def _check_envelope(env: dict) -> set[str]:
         out.add("HO-NO-EXECUTION")
     if src["kind"] == "agent" and env["approval_state"] not in ("not-required", "pending-human-review"):
         out.add("HO-AGENT-NO-APPROVAL")
+    if (src["kind"] == "principal" and mtype != "decision-record"
+            and env["approval_state"] not in ("not-required", "pending-human-review")):
+        out.add("HO-APPROVAL-ONLY-ON-RECORD")
     if mtype == "escalate" and dst["kind"] != "principal":
         out.add("HO-ESCALATE-TO-PRINCIPAL")
     own = PAYLOAD_BY_TYPE[mtype]

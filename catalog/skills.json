@@ -61,6 +61,95 @@
     "lifecycle": "stable"
   },
   {
+    "id": "agentic-board-protocol",
+    "name": "Agentic Board Protocol",
+    "type": "skill",
+    "provider": "generic",
+    "harnesses": [
+      "codex",
+      "claude-code",
+      "cursor",
+      "gemini",
+      "kiro",
+      "other"
+    ],
+    "summary": "Shared Layer-3 contract for the agentic board: the versioned handoff envelope (schemas/agentic-handoff.schema.json), computed stop conditions, the adversarial decision process and designated challengers, the R0-R5 risk-tier crosswalk, and the value-case contract — each rule checked deterministically by validate:agentic-board.",
+    "source_type": "original",
+    "official_docs": [
+      "https://airc.nist.gov/airmf-resources/airmf/5-sec-core/",
+      "https://genai.owasp.org/resource/owasp-top-10-for-agentic-applications-for-2026/",
+      "https://www.finops.org/framework/capabilities/unit-economics/",
+      "https://www.finops.org/wg/finops-for-ai-overview/",
+      "https://json-schema.org/draft/2020-12"
+    ],
+    "security_notes": "A data and process contract, not an access-control mechanism: it authorizes nothing, and a valid envelope is not proof that an approval happened. Principals are opaque pseudonymous subjects; envelopes never carry credentials or secrets. Runtime authentication, authorization and append-only storage are the deploying organization's responsibility.",
+    "last_verified": "2026-10-30",
+    "path": "skills/cross-functional/agentic-board-protocol",
+    "version": "0.1.0",
+    "author": "github: VincentChuWaiChow"
+  },
+  {
+    "id": "agentic-security-review",
+    "name": "Agentic Security Review",
+    "type": "skill",
+    "provider": "generic",
+    "harnesses": [
+      "codex",
+      "claude-code",
+      "cursor",
+      "gemini",
+      "kiro",
+      "other"
+    ],
+    "summary": "Review the composed attack surface of an agentic system against OWASP Top 10 for Agentic Applications (ASI01-ASI10): data reach, tools as privileges, delegated authorization and agent identity, memory and context poisoning, and tool/skill/MCP-server provenance, with a plan-only adversarial test design and HARD-gate challenges that only a principal's decision record with a risk acceptance reference can override.",
+    "source_type": "original",
+    "official_docs": [
+      "https://genai.owasp.org/resource/owasp-top-10-for-agentic-applications-for-2026/",
+      "https://genai.owasp.org/2025/12/09/owasp-top-10-for-agentic-applications-the-benchmark-for-agentic-security-in-the-age-of-autonomous-ai/",
+      "https://modelcontextprotocol.io/specification/2026-07-28/basic/authorization",
+      "https://modelcontextprotocol.io/specification/versioning",
+      "https://a2a-protocol.org/latest/specification/",
+      "https://www.rfc-editor.org/rfc/rfc8707.html",
+      "https://airc.nist.gov/airmf-resources/airmf/5-sec-core/"
+    ],
+    "security_notes": "Static review only; adversarial tests are designed, never run; no credentials, tokens, signing keys, or customer data are requested or echoed. ASI mappings are candidate review aids, not certification. HARD-gate challenges are overridable only by a principal-sourced decision record carrying a risk acceptance reference.",
+    "last_verified": "2026-10-30",
+    "path": "skills/cross-functional/agentic-security-review",
+    "version": "0.1.0",
+    "author": "github: VincentChuWaiChow"
+  },
+  {
+    "id": "agentic-system-architecture-review",
+    "name": "Agentic System Architecture Review",
+    "type": "skill",
+    "provider": "generic",
+    "harnesses": [
+      "codex",
+      "claude-code",
+      "cursor",
+      "gemini",
+      "kiro",
+      "other"
+    ],
+    "summary": "Review an agentic system's pattern choice (deterministic workflow, single agent, multi-agent), delegation and handoff design, state and memory, durable execution, and cascading-failure containment, vendor-neutrally, with progressive-disclosure references and a verdict that must survive a designated challenge.",
+    "source_type": "original",
+    "official_docs": [
+      "https://docs.langchain.com/oss/python/langgraph/persistence",
+      "https://openai.github.io/openai-agents-python/multi_agent/",
+      "https://learn.microsoft.com/agent-framework/workflows/orchestrations/",
+      "https://adk.dev/workflows/",
+      "https://docs.temporal.io/evaluate/understanding-temporal",
+      "https://a2a-protocol.org/latest/specification/",
+      "https://github.com/open-telemetry/semantic-conventions-genai",
+      "https://www.finops.org/wg/finops-for-ai-overview/"
+    ],
+    "security_notes": "Static review only; never executes or deploys, never handles credentials or customer data. Framework behaviour is version-sensitive: verify against Context7 or official docs for the installed version before asserting it. Verdicts are proposals for the agentic-board-protocol decision process, never approvals.",
+    "last_verified": "2026-10-30",
+    "path": "skills/cross-functional/agentic-system-architecture-review",
+    "version": "0.1.0",
+    "author": "github: VincentChuWaiChow"
+  },
+  {
     "id": "ai-advertising-targeting-fairness-review",
     "name": "AI Advertising Targeting Fairness Review",
     "type": "skill",

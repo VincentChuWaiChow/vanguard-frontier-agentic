@@ -496,6 +496,77 @@
     "lifecycle": "experimental"
   },
   {
+    "id": "agentic-security-review-agent",
+    "name": "Agentic Security Review Agent",
+    "type": "agent",
+    "provider": "generic",
+    "harnesses": [
+      "codex",
+      "copilot",
+      "claude-code",
+      "cursor",
+      "gemini",
+      "kiro"
+    ],
+    "summary": "Vendor-neutral static-review agent for the composed attack surface of an agentic system, mapped to the OWASP Top 10 for Agentic Applications (ASI01-ASI10): effective data reach, tools as privilege grants, delegated authorization and agent identity (audience-bound MCP tokens, no token passthrough, A2A security schemes), memory and context poisoning, and consumer-side provenance of tools, skills and MCP servers. Raises HARD-gate challenges that only a principal-sourced decision record with a risk acceptance reference can override.",
+    "source_type": "original",
+    "official_docs": [
+      "https://genai.owasp.org/resource/owasp-top-10-for-agentic-applications-for-2026/",
+      "https://genai.owasp.org/2025/12/09/owasp-top-10-for-agentic-applications-the-benchmark-for-agentic-security-in-the-age-of-autonomous-ai/",
+      "https://modelcontextprotocol.io/specification/2026-07-28/basic/authorization",
+      "https://modelcontextprotocol.io/specification/versioning",
+      "https://a2a-protocol.org/latest/specification/",
+      "https://www.rfc-editor.org/rfc/rfc8707.html",
+      "https://airc.nist.gov/airmf-resources/airmf/5-sec-core/"
+    ],
+    "security_notes": "Static review only: designs adversarial test plans but never executes attacks, payloads, or probes against any live, sandbox, or staging system; never requests, stores, or echoes credentials, tokens, signing keys, or customer data (credential-shaped strings are redact-and-flag findings). ASI mappings are candidate review aids, never certification. A sustained or unresolved HARD-gate finding can be overridden only by a human decision owner's principal-sourced decision record carrying a risk acceptance reference, never by an agent.",
+    "last_verified": "2026-10-30",
+    "path": "agents/cross-functional/agentic-security-review-agent",
+    "version": "0.1.0",
+    "execution_tier": "static-review",
+    "lifecycle": "experimental",
+    "companion_skills": [
+      "agentic-security-review",
+      "agentic-board-protocol"
+    ]
+  },
+  {
+    "id": "agentic-system-architecture-review-agent",
+    "name": "Agentic System Architecture Review Agent",
+    "type": "agent",
+    "provider": "generic",
+    "harnesses": [
+      "codex",
+      "copilot",
+      "claude-code",
+      "cursor",
+      "gemini",
+      "kiro"
+    ],
+    "summary": "Vendor-neutral static-review agent for the form and control flow of an agentic system: whether a deterministic workflow, a single agent, or a multi-agent topology is the lowest sufficient pattern; delegation boundaries and handoff contracts; state, memory isolation and retention; durable execution (checkpointing, idempotency, timeouts, compensation, replay); and cascading-failure containment. Proposes and reviews; never approves, executes, or deploys.",
+    "source_type": "original",
+    "official_docs": [
+      "https://docs.langchain.com/oss/python/langgraph/persistence",
+      "https://openai.github.io/openai-agents-python/multi_agent/",
+      "https://learn.microsoft.com/agent-framework/workflows/orchestrations/",
+      "https://adk.dev/workflows/",
+      "https://docs.temporal.io/evaluate/understanding-temporal",
+      "https://a2a-protocol.org/latest/specification/",
+      "https://github.com/open-telemetry/semantic-conventions-genai",
+      "https://www.finops.org/wg/finops-for-ai-overview/"
+    ],
+    "security_notes": "Static review only: reads supplied designs, code, configuration and traces; never executes, deploys, or contacts a live system, and never requests or echoes credentials, tokens, tenant identifiers, or customer data. Its verdicts are advisory proposals that must pass the designated security challenge and a human decision owner per agentic-board-protocol; it cannot approve its own proposal. Framework API claims are version-sensitive and must be grounded in Context7 or official docs for the installed version.",
+    "last_verified": "2026-10-30",
+    "path": "agents/cross-functional/agentic-system-architecture-review-agent",
+    "version": "0.1.0",
+    "execution_tier": "static-review",
+    "lifecycle": "experimental",
+    "companion_skills": [
+      "agentic-system-architecture-review",
+      "agentic-board-protocol"
+    ]
+  },
+  {
     "id": "ai-advertising-targeting-fairness-review-agent",
     "name": "AI Advertising Targeting Fairness Review Agent",
     "type": "agent",

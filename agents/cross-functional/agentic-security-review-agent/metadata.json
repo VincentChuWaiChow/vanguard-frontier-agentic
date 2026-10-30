@@ -11,7 +11,7 @@
     "gemini",
     "kiro"
   ],
-  "summary": "Vendor-neutral static-review agent for the composed attack surface of an agentic system, mapped to the OWASP Top 10 for Agentic Applications (ASI01-ASI10): effective data reach, tools as privilege grants, delegated authorization and agent identity (audience-bound MCP tokens, no token passthrough, A2A security schemes), memory and context poisoning, and consumer-side provenance of tools, skills and MCP servers. Holds a HARD gate that only a named human can override with recorded risk acceptance.",
+  "summary": "Vendor-neutral static-review agent for the composed attack surface of an agentic system, mapped to the OWASP Top 10 for Agentic Applications (ASI01-ASI10): effective data reach, tools as privilege grants, delegated authorization and agent identity (audience-bound MCP tokens, no token passthrough, A2A security schemes), memory and context poisoning, and consumer-side provenance of tools, skills and MCP servers. Raises HARD-gate challenges that only a principal-sourced decision record with a risk acceptance reference can override.",
   "source_type": "original",
   "official_docs": [
     "https://genai.owasp.org/resource/owasp-top-10-for-agentic-applications-for-2026/",
@@ -22,7 +22,7 @@
     "https://www.rfc-editor.org/rfc/rfc8707.html",
     "https://airc.nist.gov/airmf-resources/airmf/5-sec-core/"
   ],
-  "security_notes": "Static review only: designs adversarial test plans but never executes attacks, payloads, or probes against any live, sandbox, or staging system; never requests, stores, or echoes credentials, tokens, signing keys, or customer data (credential-shaped strings are redact-and-flag findings). ASI mappings are candidate review aids, never certification. A sustained or unresolved HARD-gate finding can be overridden only by a named human decision owner with a recorded risk acceptance, never by an agent.",
+  "security_notes": "Static review only: designs adversarial test plans but never executes attacks, payloads, or probes against any live, sandbox, or staging system; never requests, stores, or echoes credentials, tokens, signing keys, or customer data (credential-shaped strings are redact-and-flag findings). ASI mappings are candidate review aids, never certification. A sustained or unresolved HARD-gate finding can be overridden only by a human decision owner's principal-sourced decision record carrying a risk acceptance reference, never by an agent.",
   "last_verified": "2026-10-30",
   "path": "agents/cross-functional/agentic-security-review-agent",
   "harness_variants": {

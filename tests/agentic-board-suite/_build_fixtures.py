@@ -484,6 +484,7 @@ INVALID = [
     ("HO-NO-EXECUTION", "deploy-authorized", "v01",
      _set(lambda d: m(d, 1), "authorized_actions", ALL_ACTIONS + ["deploy"]), True),
     ("HO-AGENT-NO-APPROVAL", "agent-claims-approval", "v01", _set(lambda d: m(d, 2), "approval_state", "approved"), True),
+    ("HO-APPROVAL-ONLY-ON-RECORD", "principal-delegate-claims-approval", "v01", _set(lambda d: m(d, 1), "approval_state", "approved"), True),
     ("HO-ESCALATE-TO-PRINCIPAL", "escalate-to-agent", "v05", _set(lambda d: m(d, 2), "destination", agent(SEC)), True),
     ("HO-PAYLOAD-RETURN", "return-without-verdict", "v01", _del(lambda d: m(d, 2), "verdict"), True),
     ("HO-PAYLOAD-CHALLENGE", "challenge-without-payload", "v10", _del(lambda d: m(d, 3), "challenge"), True),
