@@ -8,7 +8,7 @@ This is a record-keeping and review contract checked offline. It does not stop a
 
 ## How to declare a stop
 
-- Set status to stopped when the work did not proceed, or escalated when the message hands the work to a principal.
+- Set status to stopped when the work did not proceed, or escalated when the message hands the work to a principal. Escalated is valid only on an envelope addressed to a principal (`HO-ESCALATE-TO-PRINCIPAL`), so a delegate to an agent that meets a condition is stopped, and only an escalate may follow it (`STOP-TERMINAL`). A decision-request that declares any stop reason, stopped or escalated, can never be decided.
 - Add the reason to stop_reasons. A reason on a dispatched or completed message fails, and a stopped message with no reason fails.
 - For conflicting-instructions, add a stop_note of 10 to 1000 characters saying what conflicted.
 - Declare on the envelope that meets the condition. Then send an escalate envelope addressed to a principal with an escalation reason and a route_hint. The route_hint says where an accountable human should take the work; it is never a dispatch. The gate checks the declaration and the escalate envelope's own rules; it does not require that an escalate follows, so the agent contracts carry that expectation.
@@ -60,14 +60,14 @@ This is a record-keeping and review contract checked offline. It does not stop a
 
 ### Routing loop
 
-- Trigger: a delegate addressed to an agent that was already the destination of an earlier delegate in its own parent chain. One revisit is not a loop: a proposer sending its revised proposal back to the challenger whose challenge is the delegate's parent (round 2), which the challenge-round cap bounds.
+- Trigger: an agent-sourced delegate addressed to an agent that was already the destination of an earlier delegate in its own parent chain. One revisit is not a loop: a proposer taking its revised proposal back to a challenger that challenged its work earlier in the chain (round 2), whatever the delegate's immediate parent. Every proposal envelope that challenger has already answered in the chain counts, so once it has answered two, a further delegate back to it is a loop. A principal-sourced delegate is never a loop: a human re-scoping, restating an objective after instruction bait, or supplying evidence is a decision, not agents passing work around.
 - Declare: routing-loop.
 - Next: escalate. A principal re-scopes the work; the board does not re-delegate to an agent that already holds part of the chain.
 - Why: loops amplify cost and failure across agents. As containment it maps to ASI08 Cascading Failures.
 
 ### Challenge rounds
 
-- Trigger: a challenge envelope whose round is above 2. Rounds are counted, not self-declared: a challenge's round must equal 1 plus the earlier challenges by the same challenger on the same proposer's envelopes (`CH-ROUND-COUNTED`), so labelling every challenge round 1 does not reset the cap. The schema allows rounds up to 8, so a third round is expressible and caught.
+- Trigger: a challenge envelope whose round is above 2. Rounds are counted, not self-declared: a challenge's round must equal 1 plus the distinct earlier proposal envelopes from the same proposer that the same challenger has challenged (`CH-ROUND-COUNTED`), so labelling every challenge round 1 does not reset the cap. Several challenges on one proposal envelope are one round; put every finding of a round on the envelope it answers. The schema allows rounds up to 8, so a third round is expressible and caught.
 - Declare: challenge-rounds-exceeded.
 - Next: escalate with the open challenges and their dissent attached, and let the principal decide. Never run a third round to wear the other side down.
 - Why: the adversarial exchange is bounded so that persistence or confidence cannot stand in for evidence. No OWASP mapping is claimed.
@@ -117,6 +117,6 @@ conflicting-instructions is computed for objective bait, and it is also declarab
 | `STOP-MISSING-EVIDENCE` | A delegate or decision-request with blocking missing evidence declares missing-evidence and is stopped or escalated. | missing-evidence |
 | `STOP-LIVE-GUARD` | A delegate whose objective opens with a mutation verb declares live-guard-intent and is stopped or escalated. | live-guard-intent |
 | `STOP-INSTRUCTION-BAIT` | An objective carrying instruction-override or claimed-approval bait declares conflicting-instructions and is stopped or escalated. | conflicting-instructions |
-| `STOP-ROUTING-LOOP` | A delegate to an agent already delegated to earlier in its own chain declares routing-loop and is stopped or escalated. | routing-loop |
-| `STOP-TERMINAL` | Every child of a stopped envelope is an escalate (which `HO-ESCALATE-TO-PRINCIPAL` sends to a principal), and no decision-record binds a stopped decision-request. | none: it constrains what follows a stop |
+| `STOP-ROUTING-LOOP` | An agent-sourced delegate to an agent already delegated to earlier in its own chain declares routing-loop and is stopped or escalated, unless it takes a revised proposal back to a challenger that has challenged its sender's work in that chain on fewer than 2 proposal envelopes. | routing-loop |
+| `STOP-TERMINAL` | Every child of a stopped envelope is an escalate (which `HO-ESCALATE-TO-PRINCIPAL` sends to a principal), and no decision-record binds a decision-request that declares a stop reason, stopped or escalated. | none: it constrains what follows a stop |
 | `STOP-CHALLENGE-ROUNDS` | A challenge beyond round 2 declares challenge-rounds-exceeded and is stopped or escalated. | challenge-rounds-exceeded |

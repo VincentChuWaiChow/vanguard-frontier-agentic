@@ -13,7 +13,7 @@ Climb the ladder only as far as the evidence demands. The lowest rung that meets
 | 1. Eliminate | Does the process or step need to exist at all? | This protocol | decision_request.alternatives, kind eliminate |
 | 2. Redesign | Can the process be simplified before anything is automated? | This protocol | alternatives, kind redesign |
 | 3. Existing process | Is the current process, perhaps with small fixes, good enough? | This protocol | alternatives, kind existing-process; counterfactual existing-process (required) |
-| 4. Deterministic workflow | Does a fixed, coded flow with no model-chosen steps do the job? | The architecture agent (technical rung) | alternatives, kind deterministic-workflow; counterfactual deterministic-workflow (optional) |
+| 4. Deterministic workflow | Does a fixed, coded flow with no model-chosen steps do the job? | The architecture agent (technical rung) | alternatives, kind deterministic-workflow; counterfactual deterministic-workflow (required) |
 | 5. Conventional automation or RPA | Do rules engines, ERP-native matching, scripts or robotic process automation do the job? | This protocol | alternatives, kind conventional-automation; counterfactual conventional-automation (required) |
 | 6. Single agent | Does one model-driven agent with a fixed tool list do the job? | The architecture agent (technical rung) | alternatives, kind single-agent; counterfactual single-agent (required) |
 | 7. Multi-agent | Is there evidence for several cooperating agents? | The architecture agent (technical rung) | alternatives, kind multi-agent; counterfactual multi-agent (optional) |
@@ -89,7 +89,7 @@ Cost per successful task is annual run cost divided by successful runs, as an in
 A counterfactual is what the organization would get from an alternative, valued the same way.
 
 - Required: existing-process, conventional-automation, deterministic-workflow and single-agent.
-- Optional: deterministic-workflow and multi-agent.
+- Optional: multi-agent.
 - Each has a net annual value range and a basis in words saying where the number came from.
 - When net annual value is measured as an increment over the status quo, the existing-process counterfactual is zero by construction. Say so in its basis.
 
@@ -137,7 +137,6 @@ The offline gate checks arithmetic and structure. It does not check:
 
 - that any input is true, including a measured label;
 - that counterfactual net annual values were computed correctly; only the range order of each is checked;
-- that cost ranges are non-negative: a negative implementation cost or expected risk loss, entered consistently with the net annual value, is not rejected, and neither is a negative oversight cost when both rates are zero. A negative run cost is caught only indirectly, by the unit-cost rule, and only when there are successful runs;
 - that runs relates to annual_volume, that the amortization period is stated, or that currency is a real ISO 4217 code;
 - that the quality bar is defined, or that benefits are not double-counted inside the ceiling.
 

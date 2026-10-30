@@ -317,7 +317,7 @@
     },
     {
       "schema_version": "1.0.0",
-      "message_type": "delegate",
+      "message_type": "return",
       "task_id": "v11-m6",
       "correlation_id": "v11-corr",
       "parent_task_id": "v11-m5",
@@ -332,7 +332,7 @@
         "kind": "agent",
         "id": "agentic-security-review-agent"
       },
-      "objective": "Challenge the v11 proposal a third time after the withdrawal.",
+      "objective": "Return the v11 proposal to the challenger once more.",
       "input_schema_version": "1.0.0",
       "subject_risk_tier": "R3",
       "data_classification": "internal",
@@ -370,9 +370,16 @@
       "deadline": "2026-10-08T17:00:00Z",
       "approval_state": "not-required",
       "expected_output_schema": "agentic-review-verdict/1.0.0",
-      "status": "dispatched",
+      "status": "completed",
       "stop_reasons": [],
-      "synthetic": true
+      "synthetic": true,
+      "verdict": {
+        "outcome": "pass-with-conditions",
+        "summary": "Proposal unchanged since the round-2 answer; returned for another look.",
+        "conditions": [
+          "Keep the audience-bound token exchange"
+        ]
+      }
     },
     {
       "schema_version": "1.0.0",

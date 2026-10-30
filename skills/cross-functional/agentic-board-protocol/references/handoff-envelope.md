@@ -13,7 +13,7 @@ Every envelope has one `message_type`. A type carries its own payload object (de
 | message_type | Payload key | Purpose |
 |---|---|---|
 | delegate | none | Ask an agent to perform analysis. The objective is a review question. Sent by a principal or an agent. |
-| return | verdict | Deliver a verdict to the requester. verdict.outcome is one of pass, pass-with-conditions, block, simpler-pattern-sufficient, with a summary and optional conditions. |
+| return | verdict | Deliver a verdict to the requester: a return is addressed to the sender of its parent. verdict.outcome is one of pass, pass-with-conditions, block, simpler-pattern-sufficient, with a summary and optional conditions. |
 | challenge | challenge | A designated challenger's adversarial finding on a proposal: proposal_task_id, round, hard_gate, outcome (sustained, withdrawn, unresolved) and finding. |
 | escalate | escalation | Stop and hand the work to an accountable principal: a reason and a route_hint. The route_hint says where a human should take the work next; it is a hint, never a dispatch. Always addressed to a principal. |
 | decision-request | decision_request | An agent assembles proposal, alternatives, challenges and dissent for a principal. It is never a decision. Addressed to a principal and sent by the agent it names as proposer. |
@@ -71,7 +71,7 @@ All fields below are required by the schema unless marked optional. The schema r
 | Field | Purpose and constraints |
 |---|---|
 | approval_state | not-required, pending-human-review, approved or rejected. An agent-sourced message carries only the first two. A principal-sourced decision-record carries approved or rejected. |
-| status | dispatched, completed, escalated or stopped. |
+| status | dispatched, completed, escalated or stopped. Escalated means the message hands the work to a principal, so it is valid only on an envelope addressed to a principal. |
 | stop_reasons | Zero or more of the eight stop reason values, listed in [stop-conditions.md](stop-conditions.md). Any reason requires status stopped or escalated; status stopped requires at least one reason. |
 | stop_note | Optional in general, 10 to 1000 characters. Required when conflicting-instructions is declared. |
 | redactions | Optional list naming what was removed from the carried material, so a reader knows content is absent. It never lists the removed values. |
@@ -162,7 +162,8 @@ What to notice:
 - subject_risk_tier is the requester's tier for the decision under review (R2 here, a reversible non-production change). The board's own work is static review at any tier.
 - The evidence ref points into the adopter's own repository, as its adopter-repo prefix says. No such file exists in this repository, and the gate does not resolve evidence refs.
 - The one missing_evidence item is non-blocking, so it does not stop the delegate, but the receiver sees the gap.
-- To validate a record set, wrap envelopes as `{"messages": [ ... ]}` in a file and run `python3 tests/agentic-board-suite/agentic_board_rules.py <record-set.json>`. It prints one rule id per violation and exits 1 on any violation.
+- To validate a record set, wrap envelopes as `{"messages": [ ... ]}` in a file and run `python3 tests/agentic-board-suite/agentic_board_rules.py <record-set.json>`. It prints one rule id per violation and exits 1 on any violation, and exits 2 when a path cannot be read (later files are still checked). Malformed input (invalid or non-strict JSON, duplicate keys, NaN or Infinity, nesting deeper than 32 levels, lone surrogates) reports `HO-SCHEMA`, never a traceback.
+- The gate and the schema live in this repository (or its npm package). An install exported to another repository carries the agents and this protocol's prose, not the gate, so run it from a checkout of this repository.
 
 ## Rules checked by the gate
 
@@ -176,7 +177,7 @@ Each row names the rule id the offline gate reports. The requirement is the gate
 | `HO-NO-EXECUTION` | Envelope | authorized_actions is a subset of read, analyze, recommend, challenge, escalate. The board has no execute verb. |
 | `HO-AGENT-NO-APPROVAL` | Envelope | An agent-sourced envelope carries approval_state not-required or pending-human-review. Agents cannot write approved or rejected. |
 | `HO-APPROVAL-ONLY-ON-RECORD` | Envelope | A principal-sourced envelope other than a decision-record carries approval_state not-required or pending-human-review. Together with `HO-AGENT-NO-APPROVAL` and `DRC-APPROVAL-STATE`, approved and rejected can appear only on a principal-sourced decision-record. Whether the sender really is that principal is runtime-only. |
-| `HO-ESCALATE-TO-PRINCIPAL` | Envelope | An escalate envelope is addressed to a principal, never to another agent. |
+| `HO-ESCALATE-TO-PRINCIPAL` | Envelope | An escalate envelope, and any envelope with status escalated, is addressed to a principal, never to another agent. A stop marked escalated on a delegate to an agent would otherwise escape `STOP-TERMINAL`. |
 | `HO-PAYLOAD-RETURN` | Envelope | A return envelope carries a verdict. |
 | `HO-PAYLOAD-CHALLENGE` | Envelope | A challenge envelope carries a challenge. |
 | `HO-PAYLOAD-ESCALATE` | Envelope | An escalate envelope carries an escalation. |
@@ -195,6 +196,7 @@ Each row names the rule id the offline gate reports. The requirement is the gate
 | `HO-CHAIN-PARENT` | Chain | A non-root envelope's parent is present and hop_count equals the parent's plus one. A missing parent is a violation, never a pass. |
 | `HO-CHAIN-TIME` | Chain | An envelope is not sent before its parent. |
 | `HO-CHAIN-CUSTODY` | Chain | An envelope is sent by its parent's destination, or by its parent's sender when the parent was stopped. This is a consistency check on the record; proving the sender really is that party is runtime-only. |
+| `HO-RETURN-TO-SENDER` | Chain | A return is addressed to the sender of its parent: a finding goes back to whoever asked for it. A reviewer's block verdict cannot skip the delegating agent and land with a principal outside the decision path. |
 | `HO-ATTEN-ACTIONS` | Chain | authorized_actions never widen from parent to child. |
 | `HO-ATTEN-BUDGET` | Chain | Budget limits never increase from parent to child, and the currency never changes. Limits are compared, not spent counters. |
 | `HO-MONO-TIER` | Chain | subject_risk_tier never decreases from parent to child. |

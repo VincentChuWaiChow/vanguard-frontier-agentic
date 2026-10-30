@@ -182,7 +182,8 @@
       "pattern": "^[a-z0-9][a-z0-9-]*/[0-9]+\\.[0-9]+\\.[0-9]+$"
     },
     "status": {
-      "enum": ["dispatched", "completed", "escalated", "stopped"]
+      "enum": ["dispatched", "completed", "escalated", "stopped"],
+      "description": "escalated means the message hands the work to a principal, so it is valid only on an envelope addressed to a principal (rule HO-ESCALATE-TO-PRINCIPAL)."
     },
     "stop_reasons": {
       "type": "array",
@@ -294,7 +295,7 @@
           }
         },
         "recommended_outcome": { "enum": ["approve", "conditional-approve", "reject", "redesign", "escalate"] },
-        "supersedes_task_id": { "$ref": "#/$defs/id", "description": "An earlier decision-request in the same correlation that this one replaces; it must go to the same principal (rule DR-ONE-REQUEST). The decision in force is the one bound to the request nothing supersedes." },
+        "supersedes_task_id": { "$ref": "#/$defs/id", "description": "A decision-request from the same proposer, sent no later than this one, that this one replaces (rule DR-ONE-REQUEST: no request is superseded twice and supersession has no cycle); like every request it goes to the root's decision_owner (rule DR-OWNER-FROM-ROOT). The decision in force is the one bound to the request nothing supersedes; a record on a superseded request is void." },
         "value_case": { "$ref": "#/$defs/value_case" }
       }
     },

@@ -1,11 +1,13 @@
 #!/usr/bin/env python3
 """Gate: a Copilot agent's tool grant must match its declared execution tier.
 
-The Copilot adapter is the one harness in this repo that carries a per-agent tool
-grant (the Markdown-family adapters carry name/description only, and Codex expresses
-posture through ``sandbox_mode``). That makes ``copilot.agent.md`` the place where an
-agent's declared trust posture either is or is not actually enforced — and it had
-drifted both ways:
+The Copilot adapter is the one per-agent tool grant every tiered agent in this repo
+carries, so this gate reads ``copilot.agent.md`` only. (A few agents also carry a Claude
+Code or Gemini ``tools:`` allowlist or Cursor ``readonly: true``, checked by their own
+suites, e.g. tests/agentic-board-suite; Codex ignores ``sandbox_mode`` in a custom agent
+file, per developers.openai.com/codex/subagents.) That makes ``copilot.agent.md`` the
+place where an agent's declared trust posture is checked here — and it had drifted both
+ways:
 
   * ``static-review`` agents were granted ``execute/runInTerminal``, contradicting the
     tier's own definition ("no Bash", per schemas/agent.schema.json) and the agent's

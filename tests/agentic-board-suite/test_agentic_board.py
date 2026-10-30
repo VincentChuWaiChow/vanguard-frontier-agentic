@@ -6,9 +6,11 @@ Deterministic and offline: reads committed files only. Run with
 import ast
 import json
 import re
+import shutil
 import subprocess
 import sys
 import tempfile
+import tomllib
 import types
 import unittest
 from pathlib import Path
@@ -237,7 +239,9 @@ class BoardInvariantTests(unittest.TestCase):
                 self.assertEqual(re.findall(r'- "([^"]+)"', block), ["read", "search", "search/codebase"])
                 claude = (h / "claude-code.agent.md").read_text(encoding="utf-8").split("---", 2)[1]
                 self.assertIn('tools: "Read, Grep, Glob"', claude)
-                self.assertIn('sandbox_mode = "read-only"', (h / "codex.toml").read_text(encoding="utf-8"))
+                codex = tomllib.loads((h / "codex.toml").read_text(encoding="utf-8"))
+                self.assertIs(codex["features"]["shell_tool"], False)
+                self.assertNotIn("sandbox_mode", codex, "a Codex custom agent file cannot override sandbox_mode")
                 self.assertIn("readonly: true", (h / "cursor.agent.md").read_text(encoding="utf-8"))
                 gemini = (h / "gemini.agent.md").read_text(encoding="utf-8").split("---", 2)[1]
                 block = gemini.split("tools:\n", 1)[1]
@@ -246,6 +250,38 @@ class BoardInvariantTests(unittest.TestCase):
 
     def test_harness_adapters_are_generated_from_agent_md(self):
         self.assertEqual(harness_builder.main(["--check"]), 0, "run: python3 tests/agentic-board-suite/_build_harnesses.py")
+
+    def test_harness_builder_keeps_model_policy_lines_and_ignores_body_decoys(self):
+        src = ROOT / f"agents/cross-functional/{rules.SEC}"
+        with tempfile.TemporaryDirectory() as tmp:
+            agent_dir = Path(tmp) / rules.SEC
+            shutil.copytree(src, agent_dir)
+            h = agent_dir / "harnesses"
+            for name, lines in (("claude-code.agent.md", 'model: "opus"\neffort: "high"\n'), ("cursor.agent.md", 'model: "auto-x"\n')):
+                text = (h / name).read_text(encoding="utf-8")
+                (h / name).write_text(text.replace("---\n\n#", lines + "---\n\n#", 1), encoding="utf-8")
+            codex = (h / "codex.toml").read_text(encoding="utf-8")
+            (h / "codex.toml").write_text(re.sub(r'(?m)^model = ".*"$', 'model = "gpt-x"', codex, count=1), encoding="utf-8")
+            agent_md = agent_dir / "AGENT.md"
+            agent_md.write_text(agent_md.read_text(encoding="utf-8") + '\n```toml\nmodel = "decoy"\n```\n', encoding="utf-8")
+            for _ in range(2):  # a second run must converge, not lift body text into the header
+                for name, text in harness_builder.render(agent_dir).items():
+                    (h / name).write_text(text, encoding="utf-8")
+            self.assertIn('tools: "Read, Grep, Glob"\nmodel: "opus"\neffort: "high"\n---', (h / "claude-code.agent.md").read_text(encoding="utf-8"))
+            self.assertIn('readonly: true\nmodel: "auto-x"\n---', (h / "cursor.agent.md").read_text(encoding="utf-8"))
+            parsed = tomllib.loads((h / "codex.toml").read_text(encoding="utf-8"))
+            self.assertEqual(parsed["model"], "gpt-x")
+
+    def test_untiered_handoff_list_matches_the_catalog(self):
+        """Every agent a board agent hands work to, that the gate would not dispatch to, is in its escalate-only list."""
+        for agent_id in BOARD_AGENTS:
+            with self.subTest(agent=agent_id):
+                text = (ROOT / f"agents/cross-functional/{agent_id}/AGENT.md").read_text(encoding="utf-8")
+                named = set(re.findall(r"`([a-z0-9-]+-agent)`", text)) - {agent_id}
+                undispatchable = {a for a in named if CATALOG_AGENTS.get(a, {}).get("execution_tier") not in rules.DISPATCHABLE_TIERS}
+                line = next(ln for ln in text.splitlines() if ln.startswith("- Untiered agents:"))
+                listed = set(re.findall(r"`([a-z0-9-]+-agent)`", line.split("have no catalog execution tier", 1)[0]))
+                self.assertEqual(listed, undispatchable)
 
     def test_board_agents_treat_reviewed_material_as_data(self):
         for agent_id in BOARD_AGENTS:
@@ -300,6 +336,57 @@ class CliTests(unittest.TestCase):
                     self.assertNotIn("Traceback", out.stderr)
                     self.assertEqual(out.stdout.strip(), f"{path}: HO-SCHEMA")
 
+    def test_hostile_input_reports_a_rule_id_not_a_traceback(self):
+        deep = '{"messages": [' + "[" * 100000 + "]" * 100000 + "]}"
+        cases = {"deep.json": deep, "nested.json": '{"messages": [{"a": ' + "[" * 200 + "]" * 200 + "}]}",
+                 "nan.json": '{"messages": [{"objective": NaN}]}', "latin1.json": None}
+        with tempfile.TemporaryDirectory() as tmp:
+            for name, text in cases.items():
+                path = Path(tmp) / name
+                if text is None:
+                    path.write_bytes(b'{"messages": ["\xff"]}')
+                else:
+                    path.write_text(text, encoding="utf-8")
+                with self.subTest(case=name):
+                    out = self._run(str(path))
+                    self.assertEqual((out.returncode, out.stdout.strip()), (1, f"{path}: HO-SCHEMA"))
+                    self.assertNotIn("Traceback", out.stderr)
+
+    def test_unreadable_path_is_reported_and_later_files_are_still_checked(self):
+        valid = FIXTURES / "valid/v01-r0-single-review.json"
+        out = self._run("/nonexistent/record-set.json", str(valid))
+        self.assertEqual(out.returncode, 2)
+        self.assertIn("cannot read", out.stderr)
+        self.assertNotIn("Traceback", out.stderr)
+
+    def test_digest_rejects_anything_but_a_strict_schema_valid_request(self):
+        doc = load(FIXTURES / "valid/v04-r3-hard-gate-risk-acceptance.json")
+        request = next(e for e in doc["messages"] if e["message_type"] == "decision-request")
+        bad_request = json.dumps(dict(request, objective="x"))
+        cases = {"bad.json": "{", "dup.json": '{"a": 1, "a": 2}', "nan.json": '{"a": NaN}', "nondict.json": "[]",
+                 "delegate.json": json.dumps(doc["messages"][0]), "invalid.json": bad_request,
+                 "surrogate.json": json.dumps(dict(request, objective="\ud800" * 12))}
+        with tempfile.TemporaryDirectory() as tmp:
+            for name, text in cases.items():
+                path = Path(tmp) / name
+                path.write_text(text, encoding="utf-8")
+                with self.subTest(case=name):
+                    out = self._run("--digest", str(path))
+                    self.assertEqual(out.returncode, 2)
+                    self.assertEqual(out.stdout, "")
+                    self.assertNotIn("Traceback", out.stderr)
+
+    def test_lone_surrogate_and_deep_nesting_fail_the_schema_in_process(self):
+        doc = load(FIXTURES / "valid/v01-r0-single-review.json")
+        doc["messages"][1]["verdict"]["summary"] = "Lone surrogate \ud800 inside a free-text field."
+        self.assertEqual(rules.check_record_set(doc), ["HO-SCHEMA"])
+        nested: list = []
+        for _ in range(5000):
+            nested = [nested]
+        doc = load(FIXTURES / "valid/v01-r0-single-review.json")
+        doc["messages"][1]["evidence_refs"] = nested
+        self.assertEqual(rules.check_record_set(doc), ["HO-SCHEMA"])
+
     def test_trailing_newline_identifier_fails_the_schema(self):
         doc = load(FIXTURES / "valid/v06-r5-dual-approval.json")
         doc["messages"][4]["decision_record"]["second_approver"]["subject"] += "\n"
@@ -326,11 +413,34 @@ class TargetedMutantTests(unittest.TestCase):
         ("destination tier", "not in DISPATCHABLE_TIERS", "in DISPATCHABLE_TIERS"),
         ("one request", 'if len([r for r in requests if "supersedes_task_id" not in r["decision_request"]]) > 1:',
          'if len([r for r in requests if "supersedes_task_id" not in r["decision_request"]]) > 2:'),
-        ("counted round", 'if c["challenge"]["round"] != i + 1:', 'if c["challenge"]["round"] != i:'),
+        ("counted round", 'rounds[c["task_id"]] = 1 + sum(', 'rounds[c["task_id"]] = sum('),
         ("stop terminal", 'env["message_type"] != "escalate":', 'env["message_type"] == "escalate":'),
         ("owner is not requester", 'root["decision_owner"]["subject"] == root["source"]["subject"]',
          'root["decision_owner"]["subject"] != root["source"]["subject"]'),
         ("return evidence label", 'r["label"] != "inference"', 'r["label"] == "inference"'),
+        # second independent re-review: every clause it added or changed
+        ("attached challenge precedes the request", "if any(order.precedes(env, c) for c in attached):", "if False:"),
+        ("causal order reads the parent chain", 'return a["task_id"] in self.ancestors(b) or a["sent_at"] < b["sent_at"]',
+         'return a["sent_at"] < b["sent_at"]'),
+        ("same-second envelopes are unordered", 'or a["sent_at"] < b["sent_at"]', 'or a["sent_at"] <= b["sent_at"]'),
+        ("clearance needs a later round", "and rc < rw", "and rc <= rw"),
+        ("clearance needs a completed withdrawal", 'and w["status"] == "completed"', "and True"),
+        ("clearance follows the finding", "and order.precedes(c, w))", "and True)"),
+        ("superseded request judged as of sending", 'if env["task_id"] in ctx["superseded"]:', "if False:"),
+        ("supersession keeps the proposer",
+         'or old["decision_request"]["proposer_agent"] != r["decision_request"]["proposer_agent"]):', "):"),
+        ("supersedes no later request", "or order.precedes(r, old)", "or False"),
+        ("supersession has no cycle", "        else:\n            return {\"DR-ONE-REQUEST\"}\n    return set()", "    return set()"),
+        ("R5 dual control follows the request", 'if request["subject_risk_tier"] == "R5" and (', "if False and ("),
+        ("escalated status goes to a principal", '(mtype == "escalate" or env["status"] == "escalated")', 'mtype == "escalate"'),
+        ("return goes to its parent's sender",
+         'if env["message_type"] == "return" and _party_key(env["destination"]) != _party_key(parent["source"]):', "if False:"),
+        ("one bounded revisit", "return not (on_sender and len(answered) < MAX_CHALLENGE_ROUNDS)", "return not on_sender"),
+        ("revisit only to the sender's challenger", "return not (on_sender and len(answered) < MAX_CHALLENGE_ROUNDS)",
+         "return not (len(answered) < MAX_CHALLENGE_ROUNDS)"),
+        ("a principal re-scoping is not a loop", 'or env["source"]["kind"] != "agent":', ":"),
+        ("a superseded record owes no co-sign", 'and rec["request_task_id"] not in ctx["superseded"]', ""),
+        ("no decision on a halted request", 'if request["stop_reasons"]:', 'if request["status"] == "stopped":'),
     ]
 
     def test_every_targeted_mutant_is_killed(self):

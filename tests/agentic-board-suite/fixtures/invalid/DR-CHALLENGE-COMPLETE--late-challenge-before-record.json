@@ -396,7 +396,7 @@
       "synthetic": true,
       "challenge": {
         "proposal_task_id": "v02-m2",
-        "round": 2,
+        "round": 1,
         "hard_gate": true,
         "outcome": "sustained",
         "finding": "Raised after the request: the worker pool can write to the shared ledger without review."

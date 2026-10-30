@@ -47,6 +47,7 @@ BOARD_ACTIONS = frozenset({"read", "analyze", "recommend", "challenge", "escalat
 TIER_ORDER = ("R0", "R1", "R2", "R3", "R4", "R5")
 CLASS_ORDER = ("public", "internal", "confidential", "restricted")
 MAX_CHALLENGE_ROUNDS = 2
+MAX_DEPTH = 32  # a schema-valid envelope nests about six deep; deeper input is rejected before validation
 REQUIRED_COUNTERFACTUALS = frozenset({"existing-process", "conventional-automation", "deterministic-workflow", "single-agent"})
 COST_RANGES = ("annual_run_cost", "annual_oversight_cost", "annualized_implementation_cost", "expected_risk_loss")
 # Catalog execution tiers an agent may hold to receive board work (committed data, so deterministic).
@@ -101,7 +102,7 @@ RULES: dict[str, str] = {
     "HO-NO-EXECUTION": "authorized_actions is a subset of read/analyze/recommend/challenge/escalate.",
     "HO-AGENT-NO-APPROVAL": "An agent-sourced envelope carries approval_state not-required or pending-human-review.",
     "HO-APPROVAL-ONLY-ON-RECORD": "A principal-sourced envelope other than a decision-record carries approval_state not-required or pending-human-review.",
-    "HO-ESCALATE-TO-PRINCIPAL": "An escalate envelope is addressed to a principal.",
+    "HO-ESCALATE-TO-PRINCIPAL": "An escalate envelope, and any envelope with status escalated, is addressed to a principal.",
     "HO-PAYLOAD-RETURN": "A return envelope carries a verdict.",
     "HO-PAYLOAD-CHALLENGE": "A challenge envelope carries a challenge.",
     "HO-PAYLOAD-ESCALATE": "An escalate envelope carries an escalation.",
@@ -121,6 +122,7 @@ RULES: dict[str, str] = {
     "HO-CHAIN-PARENT": "A non-root envelope's parent is present and hop_count equals the parent's plus one.",
     "HO-CHAIN-TIME": "An envelope is not sent before its parent.",
     "HO-CHAIN-CUSTODY": "An envelope is sent by its parent's destination, or by its parent's sender when the parent was stopped.",
+    "HO-RETURN-TO-SENDER": "A return is addressed to the sender of its parent: a finding goes back to whoever asked for it.",
     "HO-ATTEN-ACTIONS": "authorized_actions never widen from parent to child.",
     "HO-ATTEN-BUDGET": "Budget limits never increase from parent to child, and the currency never changes.",
     "HO-MONO-TIER": "subject_risk_tier never decreases from parent to child.",
@@ -138,27 +140,28 @@ RULES: dict[str, str] = {
     "STOP-MISSING-EVIDENCE": "A delegate or decision-request with blocking missing evidence declares missing-evidence and is stopped/escalated.",
     "STOP-LIVE-GUARD": "A delegate whose objective opens with a mutation verb declares live-guard-intent and is stopped/escalated.",
     "STOP-INSTRUCTION-BAIT": "An objective carrying instruction-override or claimed-approval bait declares conflicting-instructions and is stopped/escalated.",
-    "STOP-ROUTING-LOOP": "A delegate to an agent already delegated to earlier in its own chain declares routing-loop and is stopped/escalated.",
+    "STOP-ROUTING-LOOP": "An agent-sourced delegate to an agent already delegated to earlier in its own chain declares routing-loop and is stopped/escalated, unless it takes a revised proposal back to a challenger that has challenged its sender's work in that chain on fewer than 2 proposal envelopes.",
     "STOP-CHALLENGE-ROUNDS": "A challenge beyond round 2 declares challenge-rounds-exceeded and is stopped/escalated.",
-    "STOP-TERMINAL": "Every child of a stopped envelope is an escalate (which HO-ESCALATE-TO-PRINCIPAL sends to a principal), and no decision-record binds a stopped decision-request.",
+    "STOP-TERMINAL": "Every child of a stopped envelope is an escalate (which HO-ESCALATE-TO-PRINCIPAL sends to a principal), and no decision-record binds a decision-request that declares a stop reason.",
     # --- challenges and decision requests -----------------------------------------------------
     "CH-PROPOSAL-LINK": "A challenge's proposal_task_id resolves to an envelope in the record set.",
-    "CH-ROUND-COUNTED": "A challenge's round equals 1 plus the number of earlier challenges by the same challenger on envelopes from the same proposer.",
+    "CH-ROUND-COUNTED": "A challenge's round equals 1 plus the number of distinct earlier proposal envelopes from the same proposer that the same challenger has challenged (earlier: an ancestor, or sent in an earlier second).",
     "DR-TO-PRINCIPAL": "A decision-request is addressed to a principal; agents never decide.",
     "DR-PROPOSER-IS-SENDER": "A decision-request is sent by the agent it names as proposer_agent (no attributing a proposal to another agent).",
     "DR-CHALLENGE-TARGETS-PROPOSAL": "Every attached challenge's proposal_task_id points at an envelope sent by the proposer.",
     "DR-CHALLENGE-RESOLVES": "Every challenge_task_ids entry resolves to a challenge envelope in the record set.",
-    "DR-CHALLENGE-COMPLETE": "Every challenge on the proposer's envelopes sent no later than the request (or than a decision-record binding it) is attached.",
-    "DR-ONE-REQUEST": "A correlation has one decision-request in force: any other names an earlier decision-request in supersedes_task_id, and no request is superseded twice.",
+    "DR-CHALLENGE-PRECEDES": "No attached challenge was sent after the decision-request or descends from it.",
+    "DR-CHALLENGE-COMPLETE": "Every challenge on the proposer's envelopes that precedes the request is attached; for the request in force, so is every one sent no later than a decision-record binding it.",
+    "DR-ONE-REQUEST": "A correlation has one decision-request in force: any other supersedes a decision-request from the same proposer sent no later than itself, no request is superseded twice, and supersession has no cycle.",
     "DR-OWNER-FROM-ROOT": "A correlation carrying a decision-request is opened by a principal whose root names a decision_owner other than itself, and every decision-request is addressed to that owner.",
     "DR-CLASS-FROM-ROOT": "A decision-request's decision_class equals the decision_class declared on the root envelope.",
     "DR-CHALLENGE-REQUIRED": "At R2+, with any materiality flag, or for automation-investment, at least one challenge is attached.",
     "DR-DESIGNATED-CHALLENGER": "When a challenge is required, the designated challenger for the decision class is among the challengers.",
     "DR-PROPOSER-NOT-CHALLENGER": "No attached challenge was raised by the proposer.",
     "DR-ALTERNATIVES": "When a challenge is required, at least one materially different alternative is recorded.",
-    "DR-UNRESOLVED-DISSENT": "Every sustained or unresolved attached challenge that its challenger has not withdrawn in a later round (a HARD gate clears only on a later HARD-gate withdrawal) has a dissent entry.",
-    "DR-NO-APPROVE-OVER-DISSENT": "With any live (sustained or unresolved, not later withdrawn) attached challenge, recommended_outcome is not approve.",
-    "DR-HARD-GATE": "With a live HARD-gate challenge (sustained or unresolved, not withdrawn by a later HARD-gate round), recommended_outcome is reject, redesign, or escalate.",
+    "DR-UNRESOLVED-DISSENT": "Every live attached challenge has a dissent entry. Live: sustained or unresolved and not cleared; only the same challenger's completed withdrawal in a later counted round, sent after it, clears it, and a HARD gate clears only on a HARD-gate withdrawal.",
+    "DR-NO-APPROVE-OVER-DISSENT": "With any live attached challenge, recommended_outcome is not approve.",
+    "DR-HARD-GATE": "With a live HARD-gate attached challenge, recommended_outcome is reject, redesign, or escalate.",
     "DR-VALUE-CASE-REQUIRED": "An automation-investment decision-request carries a value_case.",
     # --- decision records (principal-sourced) -------------------------------------------------
     "DRC-PRINCIPAL-SOURCE": "A decision-record is sent by a principal.",
@@ -169,8 +172,8 @@ RULES: dict[str, str] = {
     "DRC-AFTER-REQUEST": "A decision-record is not sent before the decision-request it binds.",
     "DRC-ONE-RECORD": "A decision-request has at most one decider's record, and each decider's record at most one co-signing record.",
     "DRC-COMPLETED": "A decision-record has status completed.",
-    "DRC-SECOND-APPROVER": "An R5 decider's record names a second approver distinct from the decider.",
-    "DRC-CO-SIGNED": "A decider's record that names a second approver is co-signed by that principal's own decision-record.",
+    "DRC-SECOND-APPROVER": "A decider's record sent at R5, or binding an R5 decision-request, names a second approver distinct from the decider.",
+    "DRC-CO-SIGNED": "The decider's record on the decision-request in force, when it names a second approver, is co-signed by that principal's own decision-record.",
     "DRC-CO-SIGN-BINDING": "A co-signing record names a decider's record on the same request with the same digest and outcome, comes from that record's second approver, is not sent before it, and names no second approver itself.",
     "DRC-HARD-GATE-ACCEPTANCE": "Approving over a live HARD-gate challenge requires risk_acceptance_ref.",
     "DRC-APPROVAL-STATE": "approval_state is approved for approve/conditional-approve and rejected for reject/redesign.",
@@ -228,6 +231,18 @@ def _encodable(env) -> bool:
     except (UnicodeEncodeError, TypeError, ValueError):
         return False
     return True
+
+
+def _depth(value) -> int:
+    """Nesting depth, computed without recursion so hostile input cannot exhaust the stack."""
+    deepest, stack = 0, [(value, 1)]
+    while stack:
+        cur, d = stack.pop()
+        if isinstance(cur, (dict, list)):
+            deepest = max(deepest, d)
+            if d <= MAX_DEPTH:
+                stack.extend((v, d + 1) for v in (cur.values() if isinstance(cur, dict) else cur))
+    return deepest
 
 
 def canonical_digest(envelope: dict) -> str:
@@ -328,7 +343,7 @@ def _check_envelope(env: dict) -> set[str]:
     if (src["kind"] == "principal" and mtype != "decision-record"
             and env["approval_state"] not in ("not-required", "pending-human-review")):
         out.add("HO-APPROVAL-ONLY-ON-RECORD")
-    if mtype == "escalate" and dst["kind"] != "principal":
+    if (mtype == "escalate" or env["status"] == "escalated") and dst["kind"] != "principal":
         out.add("HO-ESCALATE-TO-PRINCIPAL")
     if mtype == "return" and "verdict" in env:
         if dst["kind"] == "agent" and env["verdict"]["outcome"] == "block":
@@ -409,6 +424,28 @@ def _ancestors(env: dict, by_id: dict) -> list[dict]:
     return chain
 
 
+class _Order:
+    """Causal order over one record set: the parent chain first, whole-second sent_at otherwise.
+
+    a precedes b when a is an ancestor of b, or a was sent in an earlier second. Two envelopes
+    sent in the same second with neither descending from the other are unordered: no rule may
+    treat either one as later, so a task_id string never decides which round came last.
+    """
+
+    def __init__(self, by_id: dict):
+        self.by_id = by_id
+        self._anc: dict[str, frozenset] = {}
+
+    def ancestors(self, env: dict) -> frozenset:
+        key = env["task_id"]
+        if key not in self._anc:
+            self._anc[key] = frozenset(a["task_id"] for a in _ancestors(env, self.by_id))
+        return self._anc[key]
+
+    def precedes(self, a: dict, b: dict) -> bool:
+        return a["task_id"] in self.ancestors(b) or a["sent_at"] < b["sent_at"]
+
+
 def _check_chain(env: dict, parent: dict) -> set[str]:
     out: set[str] = set()
     if env["sent_at"] < parent["sent_at"]:
@@ -418,6 +455,8 @@ def _check_chain(env: dict, parent: dict) -> set[str]:
         parent["status"] == "stopped" and sender == _party_key(parent["source"])
     ):
         out.add("HO-CHAIN-CUSTODY")
+    if env["message_type"] == "return" and _party_key(env["destination"]) != _party_key(parent["source"]):
+        out.add("HO-RETURN-TO-SENDER")
     if not set(env["authorized_actions"]) <= set(parent["authorized_actions"]):
         out.add("HO-ATTEN-ACTIONS")
     cb, pb = env["budget"], parent["budget"]
@@ -442,6 +481,39 @@ def _check_chain(env: dict, parent: dict) -> set[str]:
     return out
 
 
+def _counted_rounds(challenges: list[dict], by_id: dict, order: _Order) -> dict[str, int]:
+    """A round is one proposal envelope answered: several challenges on one envelope share a round."""
+    groups: dict[tuple, dict[str, dict]] = {}
+    for c in challenges:
+        target = by_id.get(c["challenge"]["proposal_task_id"])
+        if target is not None:
+            groups.setdefault((_party_key(c["source"]), _party_key(target["source"])), {})[target["task_id"]] = target
+    rounds: dict[str, int] = {}
+    for c in challenges:
+        target = by_id.get(c["challenge"]["proposal_task_id"])
+        if target is not None:
+            seen = groups[(_party_key(c["source"]), _party_key(target["source"]))]
+            rounds[c["task_id"]] = 1 + sum(1 for t in seen.values() if t is not target and order.precedes(t, target))
+    return rounds
+
+
+def _routing_loop(env: dict, by_id: dict) -> bool:
+    """An agent re-delegating to an agent already in its chain, beyond the one bounded revisit."""
+    if env["message_type"] != "delegate" or env["destination"]["kind"] != "agent" or env["source"]["kind"] != "agent":
+        return False  # a principal re-scoping the work is a human decision, not an agent loop
+    ancestors = _ancestors(env, by_id)
+    dest = env["destination"]["id"]
+    if not any(a["message_type"] == "delegate" and a["destination"].get("id") == dest for a in ancestors):
+        return False
+    # Round 2: the proposer takes its revised proposal back to a challenger that challenged its
+    # work. Every proposal envelope that challenger already answered in this chain counts, so
+    # the revisit is allowed once (fewer than MAX_CHALLENGE_ROUNDS answered), never repeatedly.
+    answered = {a["challenge"]["proposal_task_id"] for a in ancestors
+                if a["message_type"] == "challenge" and "challenge" in a and _party_key(a["source"]) == ("agent", dest)}
+    on_sender = any(t in by_id and _party_key(by_id[t]["source"]) == _party_key(env["source"]) for t in answered)
+    return not (on_sender and len(answered) < MAX_CHALLENGE_ROUNDS)
+
+
 def check_record_set(doc) -> list[str]:
     """Return the sorted list of violated rule ids for one record set."""
     messages = doc.get("messages") if isinstance(doc, dict) else None
@@ -451,7 +523,7 @@ def check_record_set(doc) -> list[str]:
     violations: set[str] = set()
     valid: list[dict] = []
     for env in messages:
-        if not isinstance(env, dict) or not _encodable(env) or list(validator.iter_errors(env)):
+        if not isinstance(env, dict) or _depth(env) > MAX_DEPTH or not _encodable(env) or list(validator.iter_errors(env)):
             violations.add("HO-SCHEMA")
         else:
             valid.append(env)
@@ -468,10 +540,17 @@ def check_record_set(doc) -> list[str]:
         violations.add("HO-ONE-ROOT")
     by_id = {e["task_id"]: e for e in valid}
     root = roots[0] if len(roots) == 1 else None
+    order = _Order(by_id)
 
     challenges = [e for e in valid if e["message_type"] == "challenge" and "challenge" in e]
     requests = [e for e in valid if e["message_type"] == "decision-request" and "decision_request" in e]
     records = [e for e in valid if e["message_type"] == "decision-record" and "decision_record" in e]
+    rounds = _counted_rounds(challenges, by_id, order)
+    superseded = {r["decision_request"]["supersedes_task_id"] for r in requests if "supersedes_task_id" in r["decision_request"]}
+    ctx = {"by_id": by_id, "order": order, "rounds": rounds, "superseded": superseded, "challenges": challenges,
+           "records": records, "root": root, "live": {},
+           "cosigners": {(r["decision_record"]["co_signs_task_id"], r["decision_record"]["decided_by"]["subject"])
+                         for r in records if "co_signs_task_id" in r["decision_record"]}}
 
     for env in valid:
         violations |= _check_envelope(env)
@@ -481,23 +560,15 @@ def check_record_set(doc) -> list[str]:
                 violations.add("HO-CHAIN-PARENT")
             if parent is not None:
                 violations |= _check_chain(env, parent)
-        if env["message_type"] == "delegate" and env["destination"]["kind"] == "agent":
-            earlier = {
-                a["destination"].get("id")
-                for a in _ancestors(env, by_id)
-                if a["message_type"] == "delegate" and a["destination"]["kind"] == "agent"
-            }
-            # Round 2: the proposer sends the revised proposal back to the challenger that challenged
-            # it. That revisit is bounded by STOP-CHALLENGE-ROUNDS, so it is not a routing loop.
-            rechallenge = (parent is not None and parent["message_type"] == "challenge"
-                           and _party_key(parent["source"]) == _party_key(env["destination"]))
-            if env["destination"]["id"] in earlier and not rechallenge and not _stopped(env, "routing-loop"):
-                violations.add("STOP-ROUTING-LOOP")
+        if _routing_loop(env, by_id) and not _stopped(env, "routing-loop"):
+            violations.add("STOP-ROUTING-LOOP")
         if env["message_type"] == "challenge" and "challenge" in env:
             if env["challenge"]["proposal_task_id"] not in by_id:
                 violations.add("CH-PROPOSAL-LINK")
+            elif env["challenge"]["round"] != rounds[env["task_id"]]:
+                violations.add("CH-ROUND-COUNTED")
         if env["message_type"] == "decision-request" and "decision_request" in env:
-            violations |= _check_decision_request_links(env, by_id, challenges, records)
+            violations |= _check_decision_request_links(env, ctx)
             if root is not None and root.get("decision_class") != env["decision_request"]["decision_class"]:
                 violations.add("DR-CLASS-FROM-ROOT")
             if root is not None and (
@@ -508,30 +579,9 @@ def check_record_set(doc) -> list[str]:
             ):
                 violations.add("DR-OWNER-FROM-ROOT")
         if env["message_type"] == "decision-record" and "decision_record" in env:
-            violations |= _check_decision_record_links(env, by_id, root, records)
+            violations |= _check_decision_record_links(env, ctx)
 
-    # Rounds are counted, never self-declared: per challenger, per proposer whose envelope it targets.
-    rounds: dict[tuple, list[dict]] = {}
-    for c in challenges:
-        target = by_id.get(c["challenge"]["proposal_task_id"])
-        if target is not None:
-            rounds.setdefault((_party_key(c["source"]), _party_key(target["source"])), []).append(c)
-    for group in rounds.values():
-        for i, c in enumerate(sorted(group, key=lambda x: (x["sent_at"], x["task_id"]))):
-            if c["challenge"]["round"] != i + 1:
-                violations.add("CH-ROUND-COUNTED")
-
-    # One decision-request in force per correlation; re-asking goes to the same principal.
-    if len([r for r in requests if "supersedes_task_id" not in r["decision_request"]]) > 1:
-        violations.add("DR-ONE-REQUEST")
-    superseded = [r["decision_request"]["supersedes_task_id"] for r in requests if "supersedes_task_id" in r["decision_request"]]
-    if len(superseded) != len(set(superseded)):
-        violations.add("DR-ONE-REQUEST")
-    for r in requests:
-        if "supersedes_task_id" in r["decision_request"]:
-            old = by_id.get(r["decision_request"]["supersedes_task_id"])
-            if old is None or old["message_type"] != "decision-request" or old["sent_at"] >= r["sent_at"]:
-                violations.add("DR-ONE-REQUEST")
+    violations |= _check_supersession(requests, by_id, order)
 
     # One decider's record per request, one co-signature per decider's record.
     primaries = Counter(r["decision_record"]["request_task_id"] for r in records if "co_signs_task_id" not in r["decision_record"])
@@ -539,6 +589,32 @@ def check_record_set(doc) -> list[str]:
     if any(n > 1 for n in primaries.values()) or any(n > 1 for n in cosigns.values()):
         violations.add("DRC-ONE-RECORD")
     return sorted(violations)
+
+
+def _check_supersession(requests: list[dict], by_id: dict, order: _Order) -> set[str]:
+    """One decision-request in force: supersession forms one chain back to the original request."""
+    if len([r for r in requests if "supersedes_task_id" not in r["decision_request"]]) > 1:
+        return {"DR-ONE-REQUEST"}
+    targets = [r["decision_request"]["supersedes_task_id"] for r in requests if "supersedes_task_id" in r["decision_request"]]
+    if len(targets) != len(set(targets)):
+        return {"DR-ONE-REQUEST"}
+    for r in requests:
+        if "supersedes_task_id" not in r["decision_request"]:
+            continue
+        old = by_id.get(r["decision_request"]["supersedes_task_id"])
+        if (old is None or old is r or "decision_request" not in old or old["message_type"] != "decision-request"
+                or order.precedes(r, old)  # a request supersedes only one sent no later than itself
+                or old["decision_request"]["proposer_agent"] != r["decision_request"]["proposer_agent"]):
+            return {"DR-ONE-REQUEST"}
+        cur = r  # walk back to the original request; a walk longer than the request count is a cycle
+        for _ in range(len(requests)):
+            nxt = by_id.get(cur["decision_request"]["supersedes_task_id"])
+            if nxt is None or "decision_request" not in nxt or "supersedes_task_id" not in nxt["decision_request"]:
+                break
+            cur = nxt
+        else:
+            return {"DR-ONE-REQUEST"}
+    return set()
 
 
 def _attached_challenges(req: dict, by_id: dict) -> list[dict]:
@@ -552,21 +628,32 @@ def _open(ch: dict) -> bool:
     return ch["challenge"]["outcome"] in ("sustained", "unresolved")
 
 
-def _live(challenges: list[dict]) -> list[dict]:
-    """Open challenges not withdrawn by the same challenger in a later round.
+def _live(request: dict, ctx: dict) -> list[dict]:
+    """Open attached challenges that their own challenger has not cleared.
 
-    Only the challenger can clear its own finding, and a HARD gate clears only on a later round
-    that is itself a HARD-gate withdrawal, so an unrelated withdrawn nit never erases it.
+    Only the challenger can clear its own finding: with a completed withdrawal in a later counted
+    round, sent after the finding. A HARD gate clears only on a HARD-gate withdrawal, so an
+    unrelated withdrawn nit never erases it. A round past the cap must declare
+    challenge-rounds-exceeded (STOP-CHALLENGE-ROUNDS), and a completed envelope carries no stop
+    reason (HO-REASON-HAS-STATUS), so a round the protocol forbids never clears anything.
     """
-    def cleared(c: dict) -> bool:
-        return any(
-            _party_key(w["source"]) == _party_key(c["source"])
-            and (w["sent_at"], w["task_id"]) > (c["sent_at"], c["task_id"])
-            and w["challenge"]["outcome"] == "withdrawn"
-            and (w["challenge"]["hard_gate"] or not c["challenge"]["hard_gate"])
-            for w in challenges
-        )
-    return [c for c in challenges if _open(c) and not cleared(c)]
+    key = request["task_id"]
+    if key in ctx["live"]:
+        return ctx["live"][key]
+    attached = _attached_challenges(request["decision_request"], ctx["by_id"])
+    rounds, order = ctx["rounds"], ctx["order"]
+
+    def clears(w: dict, c: dict) -> bool:
+        rw, rc = rounds.get(w["task_id"], 0), rounds.get(c["task_id"], 0)
+        return (_party_key(w["source"]) == _party_key(c["source"])
+                and w["challenge"]["outcome"] == "withdrawn"
+                and (w["challenge"]["hard_gate"] or not c["challenge"]["hard_gate"])
+                and rc < rw
+                and w["status"] == "completed"
+                and order.precedes(c, w))
+    live = [c for c in attached if _open(c) and not any(clears(w, c) for w in attached)]
+    ctx["live"][key] = live
+    return live
 
 
 def _on_proposer(ch: dict, proposer: str, by_id: dict) -> bool:
@@ -574,16 +661,24 @@ def _on_proposer(ch: dict, proposer: str, by_id: dict) -> bool:
     return target is not None and target["source"]["kind"] == "agent" and target["source"]["id"] == proposer
 
 
-def _check_decision_request_links(env: dict, by_id: dict, challenges: list[dict], records: list[dict]) -> set[str]:
+def _check_decision_request_links(env: dict, ctx: dict) -> set[str]:
     out: set[str] = set()
+    by_id, order = ctx["by_id"], ctx["order"]
     req = env["decision_request"]
     attached = _attached_challenges(req, by_id)
-    # Completeness: the principal sees every challenge raised on the proposal up to the decision,
-    # so a HARD gate cannot be dropped by leaving it unattached or by deciding before attaching it.
-    horizon = max([env["sent_at"]] + [r["sent_at"] for r in records
-                                      if r["decision_record"]["request_task_id"] == env["task_id"]])
-    if any(_on_proposer(c, req["proposer_agent"], by_id) and c["sent_at"] <= horizon
-           and c["task_id"] not in req["challenge_task_ids"] for c in challenges):
+    if any(order.precedes(env, c) for c in attached):
+        out.add("DR-CHALLENGE-PRECEDES")
+    # Completeness: the principal sees every challenge raised on the proposal before the request.
+    # The request in force is also held to every challenge up to its decision, so a HARD gate cannot
+    # be dropped by leaving it unattached or by deciding before it arrives; a superseded request is
+    # judged as of its own sending, so re-asking with the late challenge attached cures it.
+    if env["task_id"] in ctx["superseded"]:
+        owed = [c for c in ctx["challenges"] if order.precedes(c, env)]
+    else:
+        horizon = max([env["sent_at"]] + [r["sent_at"] for r in ctx["records"]
+                                          if r["decision_record"]["request_task_id"] == env["task_id"]])
+        owed = [c for c in ctx["challenges"] if c["sent_at"] <= horizon]
+    if any(_on_proposer(c, req["proposer_agent"], by_id) and c["task_id"] not in req["challenge_task_ids"] for c in owed):
         out.add("DR-CHALLENGE-COMPLETE")
     if len(attached) != len(req["challenge_task_ids"]):
         out.add("DR-CHALLENGE-RESOLVES")
@@ -601,7 +696,7 @@ def _check_decision_request_links(env: dict, by_id: dict, challenges: list[dict]
         target = by_id.get(c["challenge"]["proposal_task_id"])
         if target is not None and not (target["source"]["kind"] == "agent" and target["source"]["id"] == req["proposer_agent"]):
             out.add("DR-CHALLENGE-TARGETS-PROPOSAL")
-    live = _live(attached)
+    live = _live(env, ctx)
     dissent_ids = {d["challenge_task_id"] for d in req["dissent"]}
     if any(c["task_id"] not in dissent_ids for c in live):
         out.add("DR-UNRESOLVED-DISSENT")
@@ -614,8 +709,9 @@ def _check_decision_request_links(env: dict, by_id: dict, challenges: list[dict]
     return out
 
 
-def _check_decision_record_links(env: dict, by_id: dict, root: dict | None, records: list[dict]) -> set[str]:
+def _check_decision_record_links(env: dict, ctx: dict) -> set[str]:
     out: set[str] = set()
+    by_id, root = ctx["by_id"], ctx["root"]
     rec = env["decision_record"]
     cosign = "co_signs_task_id" in rec
     request = by_id.get(rec["request_task_id"])
@@ -629,13 +725,17 @@ def _check_decision_record_links(env: dict, by_id: dict, root: dict | None, reco
     if request is not None:
         if env["sent_at"] < request["sent_at"]:
             out.add("DRC-AFTER-REQUEST")
-        if request["status"] == "stopped":
+        if request["stop_reasons"]:  # stopped or escalated: a request that met a stop condition is not decidable
             out.add("STOP-TERMINAL")
     if request is not None and "decision_request" in request and not cosign:
         dst = request["destination"]
         if dst["kind"] == "principal" and rec["decided_by"]["subject"] != dst["subject"]:
             out.add("DRC-DECIDER-IS-ADDRESSEE")
-        hard_open = any(c["challenge"]["hard_gate"] for c in _live(_attached_challenges(request["decision_request"], by_id)))
+        if request["subject_risk_tier"] == "R5" and (
+            "second_approver" not in rec or rec["second_approver"]["subject"] == rec["decided_by"]["subject"]
+        ):
+            out.add("DRC-SECOND-APPROVER")
+        hard_open = any(c["challenge"]["hard_gate"] for c in _live(request, ctx))
         if hard_open and rec["outcome"] in ("approve", "conditional-approve") and "risk_acceptance_ref" not in rec:
             out.add("DRC-HARD-GATE-ACCEPTANCE")
     if cosign:
@@ -647,10 +747,10 @@ def _check_decision_record_links(env: dict, by_id: dict, root: dict | None, reco
                 or trec.get("second_approver", {}).get("subject") != rec["decided_by"]["subject"]
                 or env["sent_at"] < target["sent_at"]):
             out.add("DRC-CO-SIGN-BINDING")
-    elif "second_approver" in rec and rec["second_approver"]["subject"] != rec["decided_by"]["subject"]:
-        if not any(r["decision_record"].get("co_signs_task_id") == env["task_id"]
-                   and r["decision_record"]["decided_by"]["subject"] == rec["second_approver"]["subject"] for r in records):
-            out.add("DRC-CO-SIGNED")
+    elif ("second_approver" in rec and rec["second_approver"]["subject"] != rec["decided_by"]["subject"]
+          and rec["request_task_id"] not in ctx["superseded"]  # a superseded request's record is void, not owed a co-sign
+          and (env["task_id"], rec["second_approver"]["subject"]) not in ctx["cosigners"]):
+        out.add("DRC-CO-SIGNED")
     return out
 
 
@@ -661,9 +761,20 @@ def _reject_duplicate_keys(pairs: list) -> dict:
     return dict(pairs)
 
 
+def _reject_constant(name: str):
+    raise ValueError(f"{name} is not JSON")
+
+
 def load_json(path: str):
-    """Strict load: duplicate keys are an error (they would make the digest ambiguous)."""
-    return json.loads(Path(path).read_text(encoding="utf-8"), object_pairs_hook=_reject_duplicate_keys)
+    """Strict load: duplicate keys, NaN and Infinity are errors (each would make the digest ambiguous).
+
+    Raises ValueError (including JSONDecodeError), UnicodeDecodeError, RecursionError or OSError.
+    """
+    return json.loads(Path(path).read_text(encoding="utf-8"), object_pairs_hook=_reject_duplicate_keys,
+                      parse_constant=_reject_constant)
+
+
+MALFORMED = (ValueError, UnicodeDecodeError, RecursionError)
 
 
 def main(argv: list[str]) -> int:
@@ -673,22 +784,35 @@ def main(argv: list[str]) -> int:
         return 2
     if argv[0] == "--digest":
         for path in argv[1:]:
-            envelope = load_json(path)
-            if not isinstance(envelope, dict) or envelope.get("message_type") != "decision-request":
-                print(f"{path}: not a decision-request envelope", file=sys.stderr)
+            try:
+                envelope = load_json(path)
+            except OSError as exc:
+                print(f"{path}: cannot read ({exc.strerror or exc})", file=sys.stderr)
+                return 2
+            except MALFORMED:
+                print(f"{path}: not strict JSON", file=sys.stderr)
+                return 2
+            if (not isinstance(envelope, dict) or envelope.get("message_type") != "decision-request"
+                    or _depth(envelope) > MAX_DEPTH or not _encodable(envelope)
+                    or list(_schema_validator().iter_errors(envelope))):
+                print(f"{path}: not a schema-valid decision-request envelope", file=sys.stderr)
                 return 2
             print(canonical_digest(envelope))
         return 0
-    failed = False
+    failed, unreadable = False, False
     for path in argv:
         try:
             rules = check_record_set(load_json(path))
-        except (ValueError, UnicodeDecodeError):
+        except OSError as exc:
+            print(f"{path}: cannot read ({exc.strerror or exc})", file=sys.stderr)
+            unreadable = True
+            continue
+        except MALFORMED:
             rules = ["HO-SCHEMA"]
         for rule in rules:
             failed = True
             print(f"{path}: {rule}")
-    return 1 if failed else 0
+    return 2 if unreadable else 1 if failed else 0
 
 
 if __name__ == "__main__":
