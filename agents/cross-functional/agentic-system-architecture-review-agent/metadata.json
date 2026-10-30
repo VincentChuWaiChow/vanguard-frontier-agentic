@@ -1,0 +1,46 @@
+{
+  "id": "agentic-system-architecture-review-agent",
+  "name": "Agentic System Architecture Review Agent",
+  "type": "agent",
+  "provider": "generic",
+  "harnesses": [
+    "codex",
+    "copilot",
+    "claude-code",
+    "cursor",
+    "gemini",
+    "kiro"
+  ],
+  "summary": "Vendor-neutral static-review agent for the form and control flow of an agentic system: whether a deterministic workflow, a single agent, or a multi-agent topology is the lowest sufficient pattern; delegation boundaries and handoff contracts; state, memory isolation and retention; durable execution (checkpointing, idempotency, timeouts, compensation, replay); and cascading-failure containment. Proposes and reviews; never approves, executes, or deploys.",
+  "source_type": "original",
+  "official_docs": [
+    "https://docs.langchain.com/oss/python/langgraph/persistence",
+    "https://openai.github.io/openai-agents-python/multi_agent/",
+    "https://learn.microsoft.com/agent-framework/workflows/orchestrations/",
+    "https://adk.dev/workflows/",
+    "https://docs.temporal.io/evaluate/understanding-temporal",
+    "https://a2a-protocol.org/latest/specification/",
+    "https://github.com/open-telemetry/semantic-conventions-genai",
+    "https://www.finops.org/wg/finops-for-ai-overview/"
+  ],
+  "security_notes": "Static review only: reads supplied designs, code, configuration and traces; never executes, deploys, or contacts a live system, and never requests or echoes credentials, tokens, tenant identifiers, or customer data. Its verdicts are advisory proposals that must pass the designated security challenge and a human decision owner per agentic-board-protocol; it cannot approve its own proposal. Framework API claims are version-sensitive and must be grounded in Context7 or official docs for the installed version.",
+  "last_verified": "2026-10-30",
+  "path": "agents/cross-functional/agentic-system-architecture-review-agent",
+  "harness_variants": {
+    "codex": "agents/cross-functional/agentic-system-architecture-review-agent/harnesses/codex.toml",
+    "copilot": "agents/cross-functional/agentic-system-architecture-review-agent/harnesses/copilot.agent.md",
+    "claude-code": "agents/cross-functional/agentic-system-architecture-review-agent/harnesses/claude-code.agent.md",
+    "cursor": "agents/cross-functional/agentic-system-architecture-review-agent/harnesses/cursor.agent.md",
+    "gemini": "agents/cross-functional/agentic-system-architecture-review-agent/harnesses/gemini.agent.md",
+    "kiro-ide": "agents/cross-functional/agentic-system-architecture-review-agent/harnesses/kiro-ide.agent.md",
+    "kiro-cli": "agents/cross-functional/agentic-system-architecture-review-agent/harnesses/kiro-cli.agent.json"
+  },
+  "companion_skills": [
+    "agentic-system-architecture-review",
+    "agentic-board-protocol"
+  ],
+  "execution_tier": "static-review",
+  "lifecycle": "experimental",
+  "author": "github: VincentChuWaiChow",
+  "version": "0.1.0"
+}

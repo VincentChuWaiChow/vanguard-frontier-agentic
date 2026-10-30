@@ -178,6 +178,8 @@
     "./agents/contabo/contabo-live-storage-operations-guard-agent/harnesses/claude-code.agent.md",
     "./agents/contabo/contabo-maestro-agent/harnesses/claude-code.agent.md",
     "./agents/contabo/contabo-security-hardening-agent/harnesses/claude-code.agent.md",
+    "./agents/cross-functional/agentic-security-review-agent/harnesses/claude-code.agent.md",
+    "./agents/cross-functional/agentic-system-architecture-review-agent/harnesses/claude-code.agent.md",
     "./agents/cross-functional/revenue-critical-journey-integrity-agent/harnesses/claude-code.agent.md",
     "./agents/databricks/databricks-ai-bi-genie-agent/harnesses/claude-code.agent.md",
     "./agents/databricks/databricks-data-protection-privacy-agent/harnesses/claude-code.agent.md",

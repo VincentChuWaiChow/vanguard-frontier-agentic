@@ -1,0 +1,433 @@
+{
+  "messages": [
+    {
+      "schema_version": "1.0.0",
+      "message_type": "delegate",
+      "task_id": "v06-m1",
+      "correlation_id": "v06-corr",
+      "parent_task_id": null,
+      "hop_count": 0,
+      "max_hops": 8,
+      "sent_at": "2026-10-01T09:01:00Z",
+      "source": {
+        "kind": "principal",
+        "subject": "subject:corp-idp:7c1e9a40b2d35f68",
+        "role": "platform-owner"
+      },
+      "destination": {
+        "kind": "agent",
+        "id": "agentic-security-review-agent"
+      },
+      "objective": "Assess whether permanently purging agent long-term memory for an off-boarded tenant meets the retention policy.",
+      "input_schema_version": "1.0.0",
+      "subject_risk_tier": "R3",
+      "data_classification": "internal",
+      "materiality_flags": [
+        "irreversible",
+        "regulatory"
+      ],
+      "authorized_actions": [
+        "read",
+        "analyze",
+        "recommend",
+        "challenge",
+        "escalate"
+      ],
+      "do_not_do_list": [
+        "Do not execute, deploy, or mutate any system",
+        "Do not request, store, or echo credentials, tokens, or secrets",
+        "Do not record an approval on behalf of a human"
+      ],
+      "evidence_refs": [
+        {
+          "ref": "repo:docs/design/v06.md#section-1",
+          "label": "repo-evidence"
+        }
+      ],
+      "missing_evidence": [],
+      "budget": {
+        "currency": "USD",
+        "limit_tool_calls": 40,
+        "spent_tool_calls": 0,
+        "limit_tokens": 400000,
+        "spent_tokens": 0,
+        "limit_cost_minor": 2000,
+        "spent_cost_minor": 0
+      },
+      "deadline": "2026-10-08T17:00:00Z",
+      "approval_state": "not-required",
+      "expected_output_schema": "agentic-review-verdict/1.0.0",
+      "status": "dispatched",
+      "stop_reasons": [],
+      "synthetic": true,
+      "decision_class": "security",
+      "decision_owner": {
+        "kind": "principal",
+        "subject": "subject:corp-idp:a94f03d2c8e1b756",
+        "role": "ai-risk-owner"
+      }
+    },
+    {
+      "schema_version": "1.0.0",
+      "message_type": "delegate",
+      "task_id": "v06-m2",
+      "correlation_id": "v06-corr",
+      "parent_task_id": "v06-m1",
+      "hop_count": 1,
+      "max_hops": 8,
+      "sent_at": "2026-10-01T09:02:00Z",
+      "source": {
+        "kind": "agent",
+        "id": "agentic-security-review-agent"
+      },
+      "destination": {
+        "kind": "agent",
+        "id": "agentic-system-architecture-review-agent"
+      },
+      "objective": "Challenge the proposal for v06: attack its strongest failure paths and cite evidence.",
+      "input_schema_version": "1.0.0",
+      "subject_risk_tier": "R5",
+      "data_classification": "internal",
+      "materiality_flags": [
+        "irreversible",
+        "regulatory"
+      ],
+      "authorized_actions": [
+        "read",
+        "analyze",
+        "recommend",
+        "challenge",
+        "escalate"
+      ],
+      "do_not_do_list": [
+        "Do not execute, deploy, or mutate any system",
+        "Do not request, store, or echo credentials, tokens, or secrets",
+        "Do not record an approval on behalf of a human"
+      ],
+      "evidence_refs": [
+        {
+          "ref": "repo:docs/design/v06.md#section-1",
+          "label": "repo-evidence"
+        }
+      ],
+      "missing_evidence": [],
+      "budget": {
+        "currency": "USD",
+        "limit_tool_calls": 40,
+        "spent_tool_calls": 8,
+        "limit_tokens": 400000,
+        "spent_tokens": 40000,
+        "limit_cost_minor": 2000,
+        "spent_cost_minor": 160
+      },
+      "deadline": "2026-10-08T17:00:00Z",
+      "approval_state": "not-required",
+      "expected_output_schema": "agentic-review-verdict/1.0.0",
+      "status": "dispatched",
+      "stop_reasons": [],
+      "synthetic": true
+    },
+    {
+      "schema_version": "1.0.0",
+      "message_type": "challenge",
+      "task_id": "v06-m3",
+      "correlation_id": "v06-corr",
+      "parent_task_id": "v06-m2",
+      "hop_count": 2,
+      "max_hops": 8,
+      "sent_at": "2026-10-01T09:03:00Z",
+      "source": {
+        "kind": "agent",
+        "id": "agentic-system-architecture-review-agent"
+      },
+      "destination": {
+        "kind": "agent",
+        "id": "agentic-security-review-agent"
+      },
+      "objective": "Challenge findings for the v06 proposal.",
+      "input_schema_version": "1.0.0",
+      "subject_risk_tier": "R5",
+      "data_classification": "internal",
+      "materiality_flags": [
+        "irreversible",
+        "regulatory"
+      ],
+      "authorized_actions": [
+        "read",
+        "analyze",
+        "recommend",
+        "challenge",
+        "escalate"
+      ],
+      "do_not_do_list": [
+        "Do not execute, deploy, or mutate any system",
+        "Do not request, store, or echo credentials, tokens, or secrets",
+        "Do not record an approval on behalf of a human"
+      ],
+      "evidence_refs": [
+        {
+          "ref": "repo:docs/design/v06.md#section-1",
+          "label": "repo-evidence"
+        }
+      ],
+      "missing_evidence": [],
+      "budget": {
+        "currency": "USD",
+        "limit_tool_calls": 40,
+        "spent_tool_calls": 14,
+        "limit_tokens": 400000,
+        "spent_tokens": 70000,
+        "limit_cost_minor": 2000,
+        "spent_cost_minor": 280
+      },
+      "deadline": "2026-10-08T17:00:00Z",
+      "approval_state": "not-required",
+      "expected_output_schema": "agentic-review-verdict/1.0.0",
+      "status": "completed",
+      "stop_reasons": [],
+      "synthetic": true,
+      "challenge": {
+        "proposal_task_id": "v06-m2",
+        "round": 1,
+        "hard_gate": false,
+        "outcome": "withdrawn",
+        "finding": "Initial concern about replay from checkpoints withdrawn: checkpoints share the same retention job."
+      }
+    },
+    {
+      "schema_version": "1.0.0",
+      "message_type": "decision-request",
+      "task_id": "v06-m4",
+      "correlation_id": "v06-corr",
+      "parent_task_id": "v06-m1",
+      "hop_count": 1,
+      "max_hops": 8,
+      "sent_at": "2026-10-01T09:04:00Z",
+      "source": {
+        "kind": "agent",
+        "id": "agentic-security-review-agent"
+      },
+      "destination": {
+        "kind": "principal",
+        "subject": "subject:corp-idp:a94f03d2c8e1b756",
+        "role": "ai-risk-owner"
+      },
+      "objective": "Request a human decision on the v06 proposal with challenges and dissent attached.",
+      "input_schema_version": "1.0.0",
+      "subject_risk_tier": "R3",
+      "data_classification": "internal",
+      "materiality_flags": [
+        "irreversible",
+        "regulatory"
+      ],
+      "authorized_actions": [
+        "read",
+        "analyze",
+        "recommend",
+        "challenge",
+        "escalate"
+      ],
+      "do_not_do_list": [
+        "Do not execute, deploy, or mutate any system",
+        "Do not request, store, or echo credentials, tokens, or secrets",
+        "Do not record an approval on behalf of a human"
+      ],
+      "evidence_refs": [
+        {
+          "ref": "repo:docs/design/v06.md#section-1",
+          "label": "repo-evidence"
+        }
+      ],
+      "missing_evidence": [],
+      "budget": {
+        "currency": "USD",
+        "limit_tool_calls": 40,
+        "spent_tool_calls": 18,
+        "limit_tokens": 400000,
+        "spent_tokens": 90000,
+        "limit_cost_minor": 2000,
+        "spent_cost_minor": 360
+      },
+      "deadline": "2026-10-08T17:00:00Z",
+      "approval_state": "pending-human-review",
+      "expected_output_schema": "agentic-review-verdict/1.0.0",
+      "status": "dispatched",
+      "stop_reasons": [],
+      "synthetic": true,
+      "decision_request": {
+        "decision_class": "security",
+        "proposer_agent": "agentic-security-review-agent",
+        "proposal_summary": "Proposal assembled by agentic-security-review-agent for v06; see evidence_refs for the design under review.",
+        "alternatives": [
+          {
+            "kind": "other",
+            "summary": "Crypto-shred the tenant key instead of purging records.",
+            "rejected_because": "Key is shared with an active tenant in the current design."
+          }
+        ],
+        "challenge_task_ids": [
+          "v06-m3"
+        ],
+        "dissent": [],
+        "recommended_outcome": "approve"
+      }
+    },
+    {
+      "schema_version": "1.0.0",
+      "message_type": "decision-record",
+      "task_id": "v06-m5",
+      "correlation_id": "v06-corr",
+      "parent_task_id": "v06-m4",
+      "hop_count": 2,
+      "max_hops": 8,
+      "sent_at": "2026-10-01T09:05:00Z",
+      "source": {
+        "kind": "principal",
+        "subject": "subject:corp-idp:a94f03d2c8e1b756",
+        "role": "ai-risk-owner"
+      },
+      "destination": {
+        "kind": "principal",
+        "subject": "subject:corp-idp:3d8b6e21f40ac975",
+        "role": "security-risk-owner"
+      },
+      "objective": "Record the decision owner's decision on the v06 proposal.",
+      "input_schema_version": "1.0.0",
+      "subject_risk_tier": "R5",
+      "data_classification": "internal",
+      "materiality_flags": [
+        "irreversible",
+        "regulatory"
+      ],
+      "authorized_actions": [
+        "read",
+        "analyze",
+        "recommend",
+        "challenge",
+        "escalate"
+      ],
+      "do_not_do_list": [
+        "Do not execute, deploy, or mutate any system",
+        "Do not request, store, or echo credentials, tokens, or secrets",
+        "Do not record an approval on behalf of a human"
+      ],
+      "evidence_refs": [
+        {
+          "ref": "repo:docs/design/v06.md#section-1",
+          "label": "repo-evidence"
+        }
+      ],
+      "missing_evidence": [],
+      "budget": {
+        "currency": "USD",
+        "limit_tool_calls": 40,
+        "spent_tool_calls": 18,
+        "limit_tokens": 400000,
+        "spent_tokens": 90000,
+        "limit_cost_minor": 2000,
+        "spent_cost_minor": 360
+      },
+      "deadline": "2026-10-08T17:00:00Z",
+      "approval_state": "approved",
+      "expected_output_schema": "agentic-review-verdict/1.0.0",
+      "status": "completed",
+      "stop_reasons": [],
+      "synthetic": true,
+      "decision_record": {
+        "request_task_id": "v06-m4",
+        "request_digest": "sha256:a1d824d9ad2c5fe42eadb1870b1eccb39c01e97f09bd9fc5fb78e8cc2ec14019",
+        "outcome": "approve",
+        "decided_by": {
+          "kind": "principal",
+          "subject": "subject:corp-idp:a94f03d2c8e1b756",
+          "role": "ai-risk-owner"
+        },
+        "rationale": "Decision taken on the attached proposal, alternatives, challenges and dissent.",
+        "dissent_acknowledged": true,
+        "second_approver": {
+          "kind": "principal",
+          "subject": "subject:corp-idp:3d8b6e21f40ac975",
+          "role": "security-risk-owner"
+        }
+      }
+    },
+    {
+      "schema_version": "1.0.0",
+      "message_type": "decision-record",
+      "task_id": "v06-m6",
+      "correlation_id": "v06-corr",
+      "parent_task_id": "v06-m5",
+      "hop_count": 3,
+      "max_hops": 8,
+      "sent_at": "2026-10-01T09:06:00Z",
+      "source": {
+        "kind": "principal",
+        "subject": "subject:corp-idp:3d8b6e21f40ac975",
+        "role": "security-risk-owner"
+      },
+      "destination": {
+        "kind": "agent",
+        "id": "agentic-security-review-agent"
+      },
+      "objective": "Co-sign the decision owner's decision on the v06 proposal as the named second approver.",
+      "input_schema_version": "1.0.0",
+      "subject_risk_tier": "R5",
+      "data_classification": "internal",
+      "materiality_flags": [
+        "irreversible",
+        "regulatory"
+      ],
+      "authorized_actions": [
+        "read",
+        "analyze",
+        "recommend",
+        "challenge",
+        "escalate"
+      ],
+      "do_not_do_list": [
+        "Do not execute, deploy, or mutate any system",
+        "Do not request, store, or echo credentials, tokens, or secrets",
+        "Do not record an approval on behalf of a human"
+      ],
+      "evidence_refs": [
+        {
+          "ref": "repo:docs/design/v06.md#section-1",
+          "label": "repo-evidence"
+        }
+      ],
+      "missing_evidence": [],
+      "budget": {
+        "currency": "USD",
+        "limit_tool_calls": 40,
+        "spent_tool_calls": 18,
+        "limit_tokens": 400000,
+        "spent_tokens": 90000,
+        "limit_cost_minor": 2000,
+        "spent_cost_minor": 360
+      },
+      "deadline": "2026-10-08T17:00:00Z",
+      "approval_state": "approved",
+      "expected_output_schema": "agentic-review-verdict/1.0.0",
+      "status": "completed",
+      "stop_reasons": [],
+      "synthetic": true,
+      "decision_record": {
+        "request_task_id": "v06-m4",
+        "request_digest": "sha256:a1d824d9ad2c5fe42eadb1870b1eccb39c01e97f09bd9fc5fb78e8cc2ec14019",
+        "outcome": "approve",
+        "decided_by": {
+          "kind": "principal",
+          "subject": "subject:corp-idp:3d8b6e21f40ac975",
+          "role": "security-risk-owner"
+        },
+        "rationale": "Decision taken on the attached proposal, alternatives, challenges and dissent.",
+        "dissent_acknowledged": true,
+        "co_signs_task_id": "v06-m5"
+      }
+    }
+  ],
+  "description": "Sole violation of DR-RISK-CARRIED: r5 decided through lower tier request (derived from v06).",
+  "expected_violations": [
+    "DR-RISK-CARRIED"
+  ]
+}

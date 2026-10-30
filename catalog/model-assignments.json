@@ -525,6 +525,72 @@
       "reasoning_source": "default"
     },
     {
+      "agent_id": "agentic-security-review-agent",
+      "harness": "codex",
+      "model": "gpt-6-sol",
+      "model_provider": null,
+      "model_fallback_from": null,
+      "model_warning": null,
+      "reasoning_effort": "high",
+      "model_source": "provider:generic",
+      "reasoning_source": "all"
+    },
+    {
+      "agent_id": "agentic-security-review-agent",
+      "harness": "claude-code",
+      "model": null,
+      "model_provider": null,
+      "model_fallback_from": null,
+      "model_warning": null,
+      "reasoning_effort": null,
+      "model_source": "default",
+      "reasoning_source": "default"
+    },
+    {
+      "agent_id": "agentic-security-review-agent",
+      "harness": "cursor",
+      "model": null,
+      "model_provider": null,
+      "model_fallback_from": null,
+      "model_warning": null,
+      "reasoning_effort": null,
+      "model_source": "default",
+      "reasoning_source": "default"
+    },
+    {
+      "agent_id": "agentic-system-architecture-review-agent",
+      "harness": "codex",
+      "model": "gpt-6-sol",
+      "model_provider": null,
+      "model_fallback_from": null,
+      "model_warning": null,
+      "reasoning_effort": "high",
+      "model_source": "provider:generic",
+      "reasoning_source": "all"
+    },
+    {
+      "agent_id": "agentic-system-architecture-review-agent",
+      "harness": "claude-code",
+      "model": null,
+      "model_provider": null,
+      "model_fallback_from": null,
+      "model_warning": null,
+      "reasoning_effort": null,
+      "model_source": "default",
+      "reasoning_source": "default"
+    },
+    {
+      "agent_id": "agentic-system-architecture-review-agent",
+      "harness": "cursor",
+      "model": null,
+      "model_provider": null,
+      "model_fallback_from": null,
+      "model_warning": null,
+      "reasoning_effort": null,
+      "model_source": "default",
+      "reasoning_source": "default"
+    },
+    {
       "agent_id": "ai-advertising-targeting-fairness-review-agent",
       "harness": "codex",
       "model": "gpt-5.4",

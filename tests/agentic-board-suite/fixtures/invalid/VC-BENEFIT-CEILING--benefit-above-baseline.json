@@ -1,0 +1,436 @@
+{
+  "messages": [
+    {
+      "schema_version": "1.0.0",
+      "message_type": "delegate",
+      "task_id": "v03-m1",
+      "correlation_id": "v03-corr",
+      "parent_task_id": null,
+      "hop_count": 0,
+      "max_hops": 8,
+      "sent_at": "2026-10-01T09:01:00Z",
+      "source": {
+        "kind": "principal",
+        "subject": "subject:corp-idp:7c1e9a40b2d35f68",
+        "role": "platform-owner"
+      },
+      "destination": {
+        "kind": "agent",
+        "id": "agentic-system-architecture-review-agent"
+      },
+      "objective": "Assess whether an agent should triage invoice exceptions instead of the current analyst queue.",
+      "input_schema_version": "1.0.0",
+      "subject_risk_tier": "R2",
+      "data_classification": "internal",
+      "materiality_flags": [
+        "financial"
+      ],
+      "authorized_actions": [
+        "read",
+        "analyze",
+        "recommend",
+        "challenge",
+        "escalate"
+      ],
+      "do_not_do_list": [
+        "Do not execute, deploy, or mutate any system",
+        "Do not request, store, or echo credentials, tokens, or secrets",
+        "Do not record an approval on behalf of a human"
+      ],
+      "evidence_refs": [
+        {
+          "ref": "repo:docs/design/v03.md#section-1",
+          "label": "repo-evidence"
+        }
+      ],
+      "missing_evidence": [],
+      "budget": {
+        "currency": "USD",
+        "limit_tool_calls": 40,
+        "spent_tool_calls": 0,
+        "limit_tokens": 400000,
+        "spent_tokens": 0,
+        "limit_cost_minor": 2000,
+        "spent_cost_minor": 0
+      },
+      "deadline": "2026-10-08T17:00:00Z",
+      "approval_state": "not-required",
+      "expected_output_schema": "agentic-review-verdict/1.0.0",
+      "status": "dispatched",
+      "stop_reasons": [],
+      "synthetic": true,
+      "decision_class": "automation-investment",
+      "decision_owner": {
+        "kind": "principal",
+        "subject": "subject:corp-idp:a94f03d2c8e1b756",
+        "role": "ai-risk-owner"
+      }
+    },
+    {
+      "schema_version": "1.0.0",
+      "message_type": "delegate",
+      "task_id": "v03-m2",
+      "correlation_id": "v03-corr",
+      "parent_task_id": "v03-m1",
+      "hop_count": 1,
+      "max_hops": 8,
+      "sent_at": "2026-10-01T09:02:00Z",
+      "source": {
+        "kind": "agent",
+        "id": "agentic-system-architecture-review-agent"
+      },
+      "destination": {
+        "kind": "agent",
+        "id": "finance-capital-allocation-advisor-agent"
+      },
+      "objective": "Challenge the proposal for v03: attack its strongest failure paths and cite evidence.",
+      "input_schema_version": "1.0.0",
+      "subject_risk_tier": "R2",
+      "data_classification": "internal",
+      "materiality_flags": [
+        "financial"
+      ],
+      "authorized_actions": [
+        "read",
+        "analyze",
+        "recommend",
+        "challenge",
+        "escalate"
+      ],
+      "do_not_do_list": [
+        "Do not execute, deploy, or mutate any system",
+        "Do not request, store, or echo credentials, tokens, or secrets",
+        "Do not record an approval on behalf of a human"
+      ],
+      "evidence_refs": [
+        {
+          "ref": "repo:docs/design/v03.md#section-1",
+          "label": "repo-evidence"
+        }
+      ],
+      "missing_evidence": [],
+      "budget": {
+        "currency": "USD",
+        "limit_tool_calls": 40,
+        "spent_tool_calls": 8,
+        "limit_tokens": 400000,
+        "spent_tokens": 40000,
+        "limit_cost_minor": 2000,
+        "spent_cost_minor": 160
+      },
+      "deadline": "2026-10-08T17:00:00Z",
+      "approval_state": "not-required",
+      "expected_output_schema": "agentic-review-verdict/1.0.0",
+      "status": "dispatched",
+      "stop_reasons": [],
+      "synthetic": true
+    },
+    {
+      "schema_version": "1.0.0",
+      "message_type": "challenge",
+      "task_id": "v03-m3",
+      "correlation_id": "v03-corr",
+      "parent_task_id": "v03-m2",
+      "hop_count": 2,
+      "max_hops": 8,
+      "sent_at": "2026-10-01T09:03:00Z",
+      "source": {
+        "kind": "agent",
+        "id": "finance-capital-allocation-advisor-agent"
+      },
+      "destination": {
+        "kind": "agent",
+        "id": "agentic-system-architecture-review-agent"
+      },
+      "objective": "Challenge findings for the v03 proposal.",
+      "input_schema_version": "1.0.0",
+      "subject_risk_tier": "R2",
+      "data_classification": "internal",
+      "materiality_flags": [
+        "financial"
+      ],
+      "authorized_actions": [
+        "read",
+        "analyze",
+        "recommend",
+        "challenge",
+        "escalate"
+      ],
+      "do_not_do_list": [
+        "Do not execute, deploy, or mutate any system",
+        "Do not request, store, or echo credentials, tokens, or secrets",
+        "Do not record an approval on behalf of a human"
+      ],
+      "evidence_refs": [
+        {
+          "ref": "repo:docs/design/v03.md#section-1",
+          "label": "repo-evidence"
+        }
+      ],
+      "missing_evidence": [],
+      "budget": {
+        "currency": "USD",
+        "limit_tool_calls": 40,
+        "spent_tool_calls": 14,
+        "limit_tokens": 400000,
+        "spent_tokens": 70000,
+        "limit_cost_minor": 2000,
+        "spent_cost_minor": 280
+      },
+      "deadline": "2026-10-08T17:00:00Z",
+      "approval_state": "not-required",
+      "expected_output_schema": "agentic-review-verdict/1.0.0",
+      "status": "completed",
+      "stop_reasons": [],
+      "synthetic": true,
+      "challenge": {
+        "proposal_task_id": "v03-m2",
+        "round": 1,
+        "hard_gate": false,
+        "outcome": "sustained",
+        "finding": "The deterministic-workflow counterfactual beats the agent on point net annual value; the agent case is not incremental."
+      }
+    },
+    {
+      "schema_version": "1.0.0",
+      "message_type": "decision-request",
+      "task_id": "v03-m4",
+      "correlation_id": "v03-corr",
+      "parent_task_id": "v03-m3",
+      "hop_count": 3,
+      "max_hops": 8,
+      "sent_at": "2026-10-01T09:04:00Z",
+      "source": {
+        "kind": "agent",
+        "id": "agentic-system-architecture-review-agent"
+      },
+      "destination": {
+        "kind": "principal",
+        "subject": "subject:corp-idp:a94f03d2c8e1b756",
+        "role": "ai-risk-owner"
+      },
+      "objective": "Request a human decision on the v03 proposal with challenges and dissent attached.",
+      "input_schema_version": "1.0.0",
+      "subject_risk_tier": "R2",
+      "data_classification": "internal",
+      "materiality_flags": [
+        "financial"
+      ],
+      "authorized_actions": [
+        "read",
+        "analyze",
+        "recommend",
+        "challenge",
+        "escalate"
+      ],
+      "do_not_do_list": [
+        "Do not execute, deploy, or mutate any system",
+        "Do not request, store, or echo credentials, tokens, or secrets",
+        "Do not record an approval on behalf of a human"
+      ],
+      "evidence_refs": [
+        {
+          "ref": "repo:docs/design/v03.md#section-1",
+          "label": "repo-evidence"
+        }
+      ],
+      "missing_evidence": [],
+      "budget": {
+        "currency": "USD",
+        "limit_tool_calls": 40,
+        "spent_tool_calls": 18,
+        "limit_tokens": 400000,
+        "spent_tokens": 90000,
+        "limit_cost_minor": 2000,
+        "spent_cost_minor": 360
+      },
+      "deadline": "2026-10-08T17:00:00Z",
+      "approval_state": "pending-human-review",
+      "expected_output_schema": "agentic-review-verdict/1.0.0",
+      "status": "dispatched",
+      "stop_reasons": [],
+      "synthetic": true,
+      "decision_request": {
+        "decision_class": "automation-investment",
+        "proposer_agent": "agentic-system-architecture-review-agent",
+        "proposal_summary": "Proposal assembled by agentic-system-architecture-review-agent for v03; see evidence_refs for the design under review.",
+        "alternatives": [
+          {
+            "kind": "deterministic-workflow",
+            "summary": "Rules-based exception router with a human queue.",
+            "rejected_because": "Rejected by the proposer on flexibility grounds; the challenger disputes this."
+          }
+        ],
+        "challenge_task_ids": [
+          "v03-m3"
+        ],
+        "dissent": [
+          {
+            "challenge_task_id": "v03-m3",
+            "position": "The challenger's finding stands unresolved by evidence and is carried to the decision owner."
+          }
+        ],
+        "recommended_outcome": "reject",
+        "value_case": {
+          "currency": "USD",
+          "baseline_process": "Accounts-payable analysts triage invoice exceptions manually in the ERP work queue.",
+          "annual_volume": 50000,
+          "baseline_labor_error_cost": 50000000,
+          "baseline_loss_leakage": 5000000,
+          "intervention_rate_bp": 800,
+          "exception_rate_bp": 300,
+          "verified_annual_benefit": {
+            "low": 20000000,
+            "point": 40000000,
+            "high": 60000000
+          },
+          "annual_run_cost": {
+            "low": 8000000,
+            "point": 10000000,
+            "high": 14000000
+          },
+          "annual_oversight_cost": {
+            "low": 6000000,
+            "point": 8000000,
+            "high": 10000000
+          },
+          "annualized_implementation_cost": {
+            "low": 5000000,
+            "point": 6000000,
+            "high": 8000000
+          },
+          "expected_risk_loss": {
+            "low": 1000000,
+            "point": 2000000,
+            "high": 4000000
+          },
+          "net_annual_value": {
+            "low": -16000000,
+            "point": 14000000,
+            "high": 40000000
+          },
+          "runs": 50000,
+          "successful_runs": 46000,
+          "cost_per_successful_task_minor": 217,
+          "counterfactuals": [
+            {
+              "kind": "existing-process",
+              "net_annual_value": {
+                "low": 0,
+                "point": 0,
+                "high": 0
+              },
+              "basis": "Status quo is the zero baseline by definition."
+            },
+            {
+              "kind": "conventional-automation",
+              "net_annual_value": {
+                "low": 5000000,
+                "point": 12000000,
+                "high": 18000000
+              },
+              "basis": "ERP-native matching rules plus tolerance thresholds, vendor estimate."
+            },
+            {
+              "kind": "deterministic-workflow",
+              "net_annual_value": {
+                "low": 10000000,
+                "point": 20000000,
+                "high": 26000000
+              },
+              "basis": "Rules-based exception router with human queue, internal estimate."
+            },
+            {
+              "kind": "single-agent",
+              "net_annual_value": {
+                "low": -5000000,
+                "point": 10000000,
+                "high": 22000000
+              },
+              "basis": "One agent with read-only ERP tools and human approval on every case."
+            }
+          ],
+          "confidence": "estimate",
+          "promotion_state": "candidate",
+          "measurement_plan": "Shadow-mode pilot over one quarter with a randomized control queue; report cost per successful outcome as a distribution."
+        }
+      }
+    },
+    {
+      "schema_version": "1.0.0",
+      "message_type": "decision-record",
+      "task_id": "v03-m5",
+      "correlation_id": "v03-corr",
+      "parent_task_id": "v03-m4",
+      "hop_count": 4,
+      "max_hops": 8,
+      "sent_at": "2026-10-01T09:05:00Z",
+      "source": {
+        "kind": "principal",
+        "subject": "subject:corp-idp:a94f03d2c8e1b756",
+        "role": "ai-risk-owner"
+      },
+      "destination": {
+        "kind": "agent",
+        "id": "agentic-system-architecture-review-agent"
+      },
+      "objective": "Record the decision owner's decision on the v03 proposal.",
+      "input_schema_version": "1.0.0",
+      "subject_risk_tier": "R2",
+      "data_classification": "internal",
+      "materiality_flags": [
+        "financial"
+      ],
+      "authorized_actions": [
+        "read",
+        "analyze",
+        "recommend",
+        "challenge",
+        "escalate"
+      ],
+      "do_not_do_list": [
+        "Do not execute, deploy, or mutate any system",
+        "Do not request, store, or echo credentials, tokens, or secrets",
+        "Do not record an approval on behalf of a human"
+      ],
+      "evidence_refs": [
+        {
+          "ref": "repo:docs/design/v03.md#section-1",
+          "label": "repo-evidence"
+        }
+      ],
+      "missing_evidence": [],
+      "budget": {
+        "currency": "USD",
+        "limit_tool_calls": 40,
+        "spent_tool_calls": 18,
+        "limit_tokens": 400000,
+        "spent_tokens": 90000,
+        "limit_cost_minor": 2000,
+        "spent_cost_minor": 360
+      },
+      "deadline": "2026-10-08T17:00:00Z",
+      "approval_state": "rejected",
+      "expected_output_schema": "agentic-review-verdict/1.0.0",
+      "status": "completed",
+      "stop_reasons": [],
+      "synthetic": true,
+      "decision_record": {
+        "request_task_id": "v03-m4",
+        "request_digest": "sha256:ce0f45d436ec6203af24b4b64aefd949b817ddfdf3a7ae26e31742f37b9becaa",
+        "outcome": "reject",
+        "decided_by": {
+          "kind": "principal",
+          "subject": "subject:corp-idp:a94f03d2c8e1b756",
+          "role": "ai-risk-owner"
+        },
+        "rationale": "Decision taken on the attached proposal, alternatives, challenges and dissent.",
+        "dissent_acknowledged": true
+      }
+    }
+  ],
+  "description": "Sole violation of VC-BENEFIT-CEILING: benefit above baseline (derived from v03).",
+  "expected_violations": [
+    "VC-BENEFIT-CEILING"
+  ]
+}

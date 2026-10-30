@@ -1,0 +1,408 @@
+{
+  "messages": [
+    {
+      "schema_version": "1.0.0",
+      "message_type": "delegate",
+      "task_id": "v02-m1",
+      "correlation_id": "v02-corr",
+      "parent_task_id": null,
+      "hop_count": 0,
+      "max_hops": 8,
+      "sent_at": "2026-10-01T09:01:00Z",
+      "source": {
+        "kind": "principal",
+        "subject": "subject:corp-idp:7c1e9a40b2d35f68",
+        "role": "platform-owner"
+      },
+      "destination": {
+        "kind": "agent",
+        "id": "agentic-system-architecture-review-agent"
+      },
+      "objective": "Assess whether a supervisor-plus-two-workers design is justified for a non-production document-intake pipeline.",
+      "input_schema_version": "1.0.0",
+      "subject_risk_tier": "R2",
+      "data_classification": "internal",
+      "materiality_flags": [],
+      "authorized_actions": [
+        "read",
+        "analyze",
+        "recommend",
+        "challenge",
+        "escalate"
+      ],
+      "do_not_do_list": [
+        "Do not execute, deploy, or mutate any system",
+        "Do not request, store, or echo credentials, tokens, or secrets",
+        "Do not record an approval on behalf of a human"
+      ],
+      "evidence_refs": [
+        {
+          "ref": "repo:docs/design/v02.md#section-1",
+          "label": "repo-evidence"
+        }
+      ],
+      "missing_evidence": [],
+      "budget": {
+        "currency": "USD",
+        "limit_tool_calls": 40,
+        "spent_tool_calls": 0,
+        "limit_tokens": 400000,
+        "spent_tokens": 0,
+        "limit_cost_minor": 2000,
+        "spent_cost_minor": 0
+      },
+      "deadline": "2026-10-08T17:00:00Z",
+      "approval_state": "not-required",
+      "expected_output_schema": "agentic-review-verdict/1.0.0",
+      "status": "dispatched",
+      "stop_reasons": [],
+      "synthetic": true,
+      "decision_class": "architecture",
+      "decision_owner": {
+        "kind": "principal",
+        "subject": "subject:corp-idp:3d8b6e21f40ac975",
+        "role": "security-risk-owner"
+      }
+    },
+    {
+      "schema_version": "1.0.0",
+      "message_type": "delegate",
+      "task_id": "v02-m2",
+      "correlation_id": "v02-corr",
+      "parent_task_id": "v02-m1",
+      "hop_count": 1,
+      "max_hops": 8,
+      "sent_at": "2026-10-01T09:02:00Z",
+      "source": {
+        "kind": "agent",
+        "id": "agentic-system-architecture-review-agent"
+      },
+      "destination": {
+        "kind": "agent",
+        "id": "agentic-security-review-agent"
+      },
+      "objective": "Challenge the proposal for v02: attack its strongest failure paths and cite evidence.",
+      "input_schema_version": "1.0.0",
+      "subject_risk_tier": "R2",
+      "data_classification": "internal",
+      "materiality_flags": [],
+      "authorized_actions": [
+        "read",
+        "analyze",
+        "recommend",
+        "challenge",
+        "escalate"
+      ],
+      "do_not_do_list": [
+        "Do not execute, deploy, or mutate any system",
+        "Do not request, store, or echo credentials, tokens, or secrets",
+        "Do not record an approval on behalf of a human"
+      ],
+      "evidence_refs": [
+        {
+          "ref": "repo:docs/design/v02.md#section-1",
+          "label": "repo-evidence"
+        }
+      ],
+      "missing_evidence": [],
+      "budget": {
+        "currency": "USD",
+        "limit_tool_calls": 40,
+        "spent_tool_calls": 8,
+        "limit_tokens": 400000,
+        "spent_tokens": 40000,
+        "limit_cost_minor": 2000,
+        "spent_cost_minor": 160
+      },
+      "deadline": "2026-10-08T17:00:00Z",
+      "approval_state": "not-required",
+      "expected_output_schema": "agentic-review-verdict/1.0.0",
+      "status": "dispatched",
+      "stop_reasons": [],
+      "synthetic": true
+    },
+    {
+      "schema_version": "1.0.0",
+      "message_type": "challenge",
+      "task_id": "v02-m3",
+      "correlation_id": "v02-corr",
+      "parent_task_id": "v02-m2",
+      "hop_count": 2,
+      "max_hops": 8,
+      "sent_at": "2026-10-01T09:03:00Z",
+      "source": {
+        "kind": "agent",
+        "id": "agentic-security-review-agent"
+      },
+      "destination": {
+        "kind": "agent",
+        "id": "agentic-system-architecture-review-agent"
+      },
+      "objective": "Challenge findings for the v02 proposal.",
+      "input_schema_version": "1.0.0",
+      "subject_risk_tier": "R2",
+      "data_classification": "internal",
+      "materiality_flags": [],
+      "authorized_actions": [
+        "read",
+        "analyze",
+        "recommend",
+        "challenge",
+        "escalate"
+      ],
+      "do_not_do_list": [
+        "Do not execute, deploy, or mutate any system",
+        "Do not request, store, or echo credentials, tokens, or secrets",
+        "Do not record an approval on behalf of a human"
+      ],
+      "evidence_refs": [
+        {
+          "ref": "repo:docs/design/v02.md#section-1",
+          "label": "repo-evidence"
+        }
+      ],
+      "missing_evidence": [],
+      "budget": {
+        "currency": "USD",
+        "limit_tool_calls": 40,
+        "spent_tool_calls": 14,
+        "limit_tokens": 400000,
+        "spent_tokens": 70000,
+        "limit_cost_minor": 2000,
+        "spent_cost_minor": 280
+      },
+      "deadline": "2026-10-08T17:00:00Z",
+      "approval_state": "not-required",
+      "expected_output_schema": "agentic-review-verdict/1.0.0",
+      "status": "completed",
+      "stop_reasons": [],
+      "synthetic": true,
+      "challenge": {
+        "proposal_task_id": "v02-m2",
+        "round": 1,
+        "hard_gate": false,
+        "outcome": "sustained",
+        "finding": "Worker agents share one writable memory namespace, so a poisoned retrieval can persist across tenants' runs."
+      }
+    },
+    {
+      "schema_version": "1.0.0",
+      "message_type": "decision-request",
+      "task_id": "v02-m4",
+      "correlation_id": "v02-corr",
+      "parent_task_id": "v02-m3",
+      "hop_count": 3,
+      "max_hops": 8,
+      "sent_at": "2026-10-01T09:04:00Z",
+      "source": {
+        "kind": "agent",
+        "id": "agentic-system-architecture-review-agent"
+      },
+      "destination": {
+        "kind": "principal",
+        "subject": "subject:corp-idp:3d8b6e21f40ac975",
+        "role": "security-risk-owner"
+      },
+      "objective": "Request a human decision on the v02 proposal with challenges and dissent attached.",
+      "input_schema_version": "1.0.0",
+      "subject_risk_tier": "R2",
+      "data_classification": "internal",
+      "materiality_flags": [],
+      "authorized_actions": [
+        "read",
+        "analyze",
+        "recommend",
+        "challenge",
+        "escalate"
+      ],
+      "do_not_do_list": [
+        "Do not execute, deploy, or mutate any system",
+        "Do not request, store, or echo credentials, tokens, or secrets",
+        "Do not record an approval on behalf of a human"
+      ],
+      "evidence_refs": [
+        {
+          "ref": "repo:docs/design/v02.md#section-1",
+          "label": "repo-evidence"
+        }
+      ],
+      "missing_evidence": [],
+      "budget": {
+        "currency": "USD",
+        "limit_tool_calls": 40,
+        "spent_tool_calls": 18,
+        "limit_tokens": 400000,
+        "spent_tokens": 90000,
+        "limit_cost_minor": 2000,
+        "spent_cost_minor": 360
+      },
+      "deadline": "2026-10-08T17:00:00Z",
+      "approval_state": "pending-human-review",
+      "expected_output_schema": "agentic-review-verdict/1.0.0",
+      "status": "dispatched",
+      "stop_reasons": [],
+      "synthetic": true,
+      "decision_request": {
+        "decision_class": "architecture",
+        "proposer_agent": "agentic-system-architecture-review-agent",
+        "proposal_summary": "Proposal assembled by agentic-system-architecture-review-agent for v02; see evidence_refs for the design under review.",
+        "alternatives": [
+          {
+            "kind": "single-agent",
+            "summary": "One agent with sequential tool calls and no shared memory.",
+            "rejected_because": "Peak document volume exceeds one context window; parallel extraction is required."
+          }
+        ],
+        "challenge_task_ids": [
+          "v02-m3"
+        ],
+        "dissent": [
+          {
+            "challenge_task_id": "v02-m3",
+            "position": "The challenger's finding stands unresolved by evidence and is carried to the decision owner."
+          }
+        ],
+        "recommended_outcome": "conditional-approve"
+      }
+    },
+    {
+      "schema_version": "1.0.0",
+      "message_type": "decision-record",
+      "task_id": "v02-m5",
+      "correlation_id": "v02-corr",
+      "parent_task_id": "v02-m6",
+      "hop_count": 4,
+      "max_hops": 8,
+      "sent_at": "2026-10-01T09:05:00Z",
+      "source": {
+        "kind": "principal",
+        "subject": "subject:corp-idp:a94f03d2c8e1b756",
+        "role": "ai-risk-owner"
+      },
+      "destination": {
+        "kind": "agent",
+        "id": "agentic-system-architecture-review-agent"
+      },
+      "objective": "Record the decision owner's decision on the v02 proposal.",
+      "input_schema_version": "1.0.0",
+      "subject_risk_tier": "R2",
+      "data_classification": "internal",
+      "materiality_flags": [],
+      "authorized_actions": [
+        "read",
+        "analyze",
+        "recommend",
+        "challenge",
+        "escalate"
+      ],
+      "do_not_do_list": [
+        "Do not execute, deploy, or mutate any system",
+        "Do not request, store, or echo credentials, tokens, or secrets",
+        "Do not record an approval on behalf of a human"
+      ],
+      "evidence_refs": [
+        {
+          "ref": "repo:docs/design/v02.md#section-1",
+          "label": "repo-evidence"
+        }
+      ],
+      "missing_evidence": [],
+      "budget": {
+        "currency": "USD",
+        "limit_tool_calls": 40,
+        "spent_tool_calls": 18,
+        "limit_tokens": 400000,
+        "spent_tokens": 90000,
+        "limit_cost_minor": 2000,
+        "spent_cost_minor": 360
+      },
+      "deadline": "2026-10-08T17:00:00Z",
+      "approval_state": "approved",
+      "expected_output_schema": "agentic-review-verdict/1.0.0",
+      "status": "completed",
+      "stop_reasons": [],
+      "synthetic": true,
+      "decision_record": {
+        "request_task_id": "v02-m4",
+        "request_digest": "sha256:812aa6d9eec6f7b62fe0e0f96ee3e917e2ba8e9032bfec0b4b9e7a8bea18f924",
+        "outcome": "conditional-approve",
+        "decided_by": {
+          "kind": "principal",
+          "subject": "subject:corp-idp:a94f03d2c8e1b756",
+          "role": "ai-risk-owner"
+        },
+        "rationale": "Decision taken on the attached proposal, alternatives, challenges and dissent.",
+        "dissent_acknowledged": true,
+        "conditions": [
+          "Partition memory per tenant before pilot"
+        ]
+      }
+    },
+    {
+      "schema_version": "1.0.0",
+      "message_type": "escalate",
+      "task_id": "v02-m6",
+      "correlation_id": "v02-corr",
+      "parent_task_id": "v02-m3",
+      "hop_count": 3,
+      "max_hops": 8,
+      "sent_at": "2026-10-01T09:04:30Z",
+      "source": {
+        "kind": "agent",
+        "id": "agentic-system-architecture-review-agent"
+      },
+      "destination": {
+        "kind": "principal",
+        "subject": "subject:corp-idp:a94f03d2c8e1b756",
+        "role": "ai-risk-owner"
+      },
+      "objective": "Escalate the v02 decision to the principal who will record it.",
+      "input_schema_version": "1.0.0",
+      "subject_risk_tier": "R2",
+      "data_classification": "internal",
+      "materiality_flags": [],
+      "authorized_actions": [
+        "read",
+        "analyze",
+        "recommend",
+        "challenge",
+        "escalate"
+      ],
+      "do_not_do_list": [
+        "Do not execute, deploy, or mutate any system",
+        "Do not request, store, or echo credentials, tokens, or secrets",
+        "Do not record an approval on behalf of a human"
+      ],
+      "evidence_refs": [
+        {
+          "ref": "repo:docs/design/v02.md#section-1",
+          "label": "repo-evidence"
+        }
+      ],
+      "missing_evidence": [],
+      "budget": {
+        "currency": "USD",
+        "limit_tool_calls": 40,
+        "spent_tool_calls": 16,
+        "limit_tokens": 400000,
+        "spent_tokens": 80000,
+        "limit_cost_minor": 2000,
+        "spent_cost_minor": 320
+      },
+      "deadline": "2026-10-08T17:00:00Z",
+      "approval_state": "not-required",
+      "expected_output_schema": "agentic-review-verdict/1.0.0",
+      "status": "escalated",
+      "stop_reasons": [],
+      "synthetic": true,
+      "escalation": {
+        "reason": "The decision owner is reachable only through this escalation.",
+        "route_hint": "Decision owner records the decision against the attached request."
+      }
+    }
+  ],
+  "description": "Sole violation of DRC-DECIDER-IS-ADDRESSEE: decided by non addressee (derived from v02).",
+  "expected_violations": [
+    "DRC-DECIDER-IS-ADDRESSEE"
+  ]
+}

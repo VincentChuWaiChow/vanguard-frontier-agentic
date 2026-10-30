@@ -177,6 +177,8 @@
     "./agents/contabo/contabo-live-storage-operations-guard-agent/harnesses/cursor.agent.md",
     "./agents/contabo/contabo-maestro-agent/harnesses/cursor.agent.md",
     "./agents/contabo/contabo-security-hardening-agent/harnesses/cursor.agent.md",
+    "./agents/cross-functional/agentic-security-review-agent/harnesses/cursor.agent.md",
+    "./agents/cross-functional/agentic-system-architecture-review-agent/harnesses/cursor.agent.md",
     "./agents/cross-functional/revenue-critical-journey-integrity-agent/harnesses/cursor.agent.md",
     "./agents/databricks/databricks-ai-bi-genie-agent/harnesses/cursor.agent.md",
     "./agents/databricks/databricks-data-protection-privacy-agent/harnesses/cursor.agent.md",

@@ -233,13 +233,16 @@ interchangeable — be precise about which one is doing the work:
 
 | Harness surface | How posture is expressed | Enforced? |
 |---|---|---|
-| `harnesses/codex.toml` | `sandbox_mode` (`read-only` vs `workspace-write`) | Yes — sandbox-level |
+| `harnesses/codex.toml` | `sandbox_mode` (`read-only` vs `workspace-write`); optional `[features]` keys set to `false` | **No** for `sandbox_mode` — a Codex custom agent inherits the parent session's sandbox, and `sandbox_mode`, `approval_policy`, `model_provider` and `mcp_servers` in a custom agent file do not override it ([Codex subagents](https://developers.openai.com/codex/subagents)). Feature keys such as `features.shell_tool = false` do reduce a custom agent's capabilities; the agentic-board agents set it. The `sandbox_mode` lines most catalog adapters carry document intent only |
 | `harnesses/copilot.agent.md` | per-agent `tools:` allowlist | Yes — the agent gets exactly these tools |
-| companion `SKILL.md` | `allowed-tools` | Yes — at skill-invocation level |
-| `claude-code` / `cursor` / `gemini` / `kiro-ide` `.agent.md` | `name` + `description` only | **No** — carried by the agent's operating rules, not a tool grant |
+| companion `SKILL.md` | `allowed-tools` | **No** in Claude Code — it pre-approves the listed tools for the invoking turn and does not remove others; the restricting field there is `disallowed-tools` ([skills docs](https://code.claude.com/docs/en/skills)). Not verified for other harnesses |
+| `claude-code` `.agent.md` | optional `tools:` allowlist | Yes when present — a Claude Code subagent with no `tools:` inherits every available tool ([sub-agents docs](https://code.claude.com/docs/en/sub-agents)); most adapters here omit it, the agentic board's carry `Read, Grep, Glob` |
+| `cursor` `.agent.md` | optional `readonly: true` | Partially — restricts file edits and state-changing shell commands ([subagents docs](https://cursor.com/docs/subagents)) |
+| `gemini` `.agent.md` | optional `tools:` allowlist | **Yes, when present** (vendor documentation: the subagent "only has access to the tools you explicitly grant it"; not tested live here) — an omitted `tools` field inherits every parent tool ([Gemini CLI subagents](https://geminicli.com/docs/core/subagents/)); the agentic-board agents carry `read_file`, `grep_search`, `glob`, `list_directory` ([Gemini CLI tools reference](https://geminicli.com/docs/reference/tools/)). Most catalog agents omit it. |
+| `kiro-ide` `.agent.md` | `name` + `description` only | **No** — carried by the agent's operating rules, not a tool grant |
 | `harnesses/kiro-cli.agent.json` | no tools key | **No** — same as above |
 
-The Copilot adapter is therefore the one **agent-level** tool grant in this catalog, and
+The Copilot adapter is therefore the one **agent-level** tool grant every tiered agent must carry, and
 `tests/validate-agent-tool-tiers.py` (`npm run validate:agent-tool-tiers`) enforces that
 it agrees with the agent's declared tier:
 

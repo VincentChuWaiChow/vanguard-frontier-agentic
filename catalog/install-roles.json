@@ -66,8 +66,11 @@
     },
     "cloud-ai-platform-engineer": {
       "label": "Cloud AI Platform Engineer",
-      "description": "Build, deploy, harden, and govern AI / GenAI platforms on NVIDIA, GCP Vertex/Gemini, Huawei ModelArts, and adjacent stacks. Covers GenAI guardrails, agentic platform review, model promotion gating, CUDA / TensorRT / Triton review, and MLOps pipelines.",
+      "description": "Build, deploy, harden, and govern AI / GenAI platforms on NVIDIA, GCP Vertex/Gemini, Huawei ModelArts, and adjacent stacks. Covers GenAI guardrails, agentic platform review, model promotion gating, CUDA / TensorRT / Triton review, and MLOps pipelines. Includes the vendor-neutral agentic board: agentic system architecture review and agentic security review with the shared agentic-board-protocol handoff and decision contract.",
       "agents": [
+        "agentic-security-review-agent",
+        "agentic-system-architecture-review-agent",
+        "finance-capital-allocation-advisor-agent",
         "gcp-alloydb-ai-developer-agent",
         "gcp-gemini-api-developer-agent",
         "gcp-vertex-ai-mlops-engineer-agent",
@@ -86,6 +89,10 @@
         "nvidia-triton-inference-serving-review-agent"
       ],
       "skills": [
+        "agentic-board-protocol",
+        "agentic-security-review",
+        "agentic-system-architecture-review",
+        "capital-allocation-advisor",
         "gcp-alloydb-ai-developer",
         "gcp-gemini-api-developer",
         "gcp-vertex-ai-mlops-engineer",
@@ -558,6 +565,8 @@
       "label": "Cloud Security Engineer",
       "description": "IAM/RBAC review, secrets lifecycle, security posture hardening, identity governance, live guards for access and key mutations across AWS, Azure, OCI, GCP, Alibaba Cloud, Huawei Cloud, and Kubernetes.",
       "agents": [
+        "agentic-security-review-agent",
+        "agentic-system-architecture-review-agent",
         "alibaba-actiontrail-audit-analyst-agent",
         "alibaba-certificate-manager-issuer-review-agent",
         "alibaba-china-compliance-agent",
@@ -588,6 +597,7 @@
         "azure-security-posture-hardening-agent",
         "azure-waf-security-review-agent",
         "contabo-security-hardening-agent",
+        "finance-capital-allocation-advisor-agent",
         "gcp-certificate-manager-issuer-review-agent",
         "gcp-cloud-auth-advisor-agent",
         "gcp-compliance-assured-workloads-agent",
@@ -634,6 +644,9 @@
         "terraform-supply-chain-integrity-agent"
       ],
       "skills": [
+        "agentic-board-protocol",
+        "agentic-security-review",
+        "agentic-system-architecture-review",
         "alibaba-actiontrail-audit-analyst",
         "alibaba-certificate-manager-issuer-review",
         "alibaba-china-compliance",
@@ -663,6 +676,7 @@
         "azure-role-selector",
         "azure-security-posture-hardening",
         "azure-waf-security-review",
+        "capital-allocation-advisor",
         "contabo-security-hardening",
         "gcp-certificate-manager-issuer-review",
         "gcp-cloud-auth-advisor",
@@ -2371,13 +2385,20 @@
         "typescript-maestro-agent",
         "typescript-mcp-tool-contract-agent",
         "typescript-runtime-boundary-contract-agent",
-        "typescript-business-critical-automation-governance-agent"
+        "typescript-business-critical-automation-governance-agent",
+        "agentic-system-architecture-review-agent",
+        "agentic-security-review-agent",
+        "finance-capital-allocation-advisor-agent"
       ],
       "skills": [
         "typescript-maestro",
         "typescript-mcp-tool-contract",
         "typescript-runtime-boundary-contract",
-        "typescript-business-critical-automation-governance"
+        "typescript-business-critical-automation-governance",
+        "agentic-system-architecture-review",
+        "agentic-security-review",
+        "capital-allocation-advisor",
+        "agentic-board-protocol"
       ]
     },
     "snowflake-platform-architect": {

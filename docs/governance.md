@@ -27,6 +27,7 @@ Significant technical decisions are documented as ADRs in `docs/adr/`.
 |---|-------|--------|
 | 0001 | [Initial Architecture (Three-Layer Maestro)](adr/0001-initial-architecture/) | Accepted |
 | 0002 | [Documentation Site with Jekyll + GitHub Pages](adr/0002-documentation-site-with-jekyll-github-pages/) | Accepted |
+| 0003 | [Vendor-Neutral Agentic AI Board](adr/0003-agentic-ai-board/) | Proposed |
 
 ### When to Write an ADR
 

@@ -1,0 +1,28 @@
+{
+  "id": "agentic-board-protocol",
+  "name": "Agentic Board Protocol",
+  "type": "skill",
+  "provider": "generic",
+  "harnesses": [
+    "codex",
+    "claude-code",
+    "cursor",
+    "gemini",
+    "kiro",
+    "other"
+  ],
+  "summary": "Shared Layer-3 contract for the agentic board: the versioned handoff envelope (schemas/agentic-handoff.schema.json), computed stop conditions, the adversarial decision process and designated challengers, the R0-R5 risk-tier crosswalk, and the value-case contract — each rule checked deterministically by validate:agentic-board.",
+  "source_type": "original",
+  "official_docs": [
+    "https://airc.nist.gov/airmf-resources/airmf/5-sec-core/",
+    "https://genai.owasp.org/resource/owasp-top-10-for-agentic-applications-for-2026/",
+    "https://www.finops.org/framework/capabilities/unit-economics/",
+    "https://www.finops.org/wg/finops-for-ai-overview/",
+    "https://json-schema.org/draft/2020-12"
+  ],
+  "security_notes": "A data and process contract, not an access-control mechanism: it authorizes nothing, and a valid envelope is not proof that an approval happened. Principals are opaque pseudonymous subjects; envelopes never carry credentials or secrets. Runtime authentication, authorization and append-only storage are the deploying organization's responsibility.",
+  "last_verified": "2026-10-30",
+  "path": "skills/cross-functional/agentic-board-protocol",
+  "author": "github: VincentChuWaiChow",
+  "version": "0.1.0"
+}

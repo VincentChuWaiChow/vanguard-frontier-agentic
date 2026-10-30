@@ -32,7 +32,8 @@ docs/
 ├── faq.md                   # Frequently asked questions
 └── adr/                     # Architecture Decision Records
     ├── 0001-initial-architecture.md
-    └── 0002-documentation-site-with-jekyll-github-pages.md
+    ├── 0002-documentation-site-with-jekyll-github-pages.md
+    └── 0003-agentic-ai-board.md
 ```
 
 ---

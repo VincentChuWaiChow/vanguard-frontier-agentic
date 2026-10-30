@@ -2,18 +2,18 @@
 # Do NOT edit manually — run: node scripts/generate-docs-data.mjs
 # This file is the single source of truth for all catalog counts in Jekyll docs.
 
-agents: 735
-skills: 761
+agents: 737
+skills: 764
 providers: 45
 mcp_references: 3
 rules: 1
-workflows: 1
+workflows: 2
 install_roles: 76
-validation_gates: 27
+validation_gates: 31
 agent_directories: 49
 skill_directories: 49
 maestro_scenarios: 357
-version: "3.11.1"
+version: "3.16.0"
 
 # Provider list (flat)
 provider_list:
@@ -148,7 +148,7 @@ provider_taxonomy:
       - name: "typescript"
         agents: 14
       - name: "generic"
-        agents: 11
+        agents: 13
       - name: "multi-cloud"
         agents: 3
   - category: "ERP & Finance"
@@ -186,6 +186,8 @@ provider_taxonomy:
 workflow_list:
   - name: "agentic-delegation"
     phases: 7
+  - name: "plugin-security-scan"
+    phases: 8
 
 # Role list
 role_list:
