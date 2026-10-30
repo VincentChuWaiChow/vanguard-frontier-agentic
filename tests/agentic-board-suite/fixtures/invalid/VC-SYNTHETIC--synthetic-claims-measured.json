@@ -58,7 +58,13 @@
       "expected_output_schema": "agentic-review-verdict/1.0.0",
       "status": "dispatched",
       "stop_reasons": [],
-      "synthetic": true
+      "synthetic": true,
+      "decision_class": "automation-investment",
+      "decision_owner": {
+        "kind": "principal",
+        "subject": "subject:corp-idp:a94f03d2c8e1b756",
+        "role": "ai-risk-owner"
+      }
     },
     {
       "schema_version": "1.0.0",

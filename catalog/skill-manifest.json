@@ -45,7 +45,7 @@
     {
       "id": "agentic-board-protocol",
       "path": "skills/cross-functional/agentic-board-protocol",
-      "aggregate_sha256": "e0973d5f0d8bee8113b9b8fd5079e036218508b0902a74fec5d7fed390aa25ca",
+      "aggregate_sha256": "aa50787bf1046af8f98192069ba3b5bf5919e3309c5f10207421e8943877eb71",
       "files": [
         {
           "path": "skills/cross-functional/agentic-board-protocol/SKILL.md",
@@ -59,40 +59,40 @@
         },
         {
           "path": "skills/cross-functional/agentic-board-protocol/references/decision-record.md",
-          "sha256": "e4b5318d9fd7b8170a7d8aece1ec9e75f596907d64897460fbc546d691304df0",
-          "bytes": 12796
+          "sha256": "a2aab2f5b51954e2500a6cd89481273995c686b7a163e98cd1fa3bce43a5c482",
+          "bytes": 18201
         },
         {
           "path": "skills/cross-functional/agentic-board-protocol/references/handoff-envelope.md",
-          "sha256": "9fa0b0f0b11e8d85e92e66241235e4ceb8fac339c9619bb2d0927cc90f6ca61c",
-          "bytes": 17093
+          "sha256": "42480f0e247ff13146ce61dd71a3a39722ae7e2b8b8624db4cd31bb98a5be324",
+          "bytes": 18918
         },
         {
           "path": "skills/cross-functional/agentic-board-protocol/references/risk-tier-crosswalk.md",
-          "sha256": "8aa23d0a922e7cb5920333fd4be135168f73e85db2832ee729fd9332a39f9b37",
-          "bytes": 10651
+          "sha256": "faf730d985498104b5b5be653f3468ec33ba2aedb75677751a9a34debb6cb0c2",
+          "bytes": 10920
         },
         {
           "path": "skills/cross-functional/agentic-board-protocol/references/stop-conditions.md",
-          "sha256": "fb3404fe66fbcd5dccc0c534c9482cec02d4f1d9ea1af8ee114ff157c08fb92b",
-          "bytes": 10675
+          "sha256": "4455de808cc3b9d1984ef1ccedc5bfa66a6cdcae7d79864e34f714b43cbe8d30",
+          "bytes": 12475
         },
         {
           "path": "skills/cross-functional/agentic-board-protocol/references/value-case.md",
-          "sha256": "fa107118564cacc859f670d417fb27960d1324c98a8b7b7a0eaa2387b33fe879",
-          "bytes": 14484
+          "sha256": "b65965a0e8518f24c4852203a57cd6e7fa18ab3aed2fb9527447e6bc745cc6b8",
+          "bytes": 14796
         }
       ]
     },
     {
       "id": "agentic-security-review",
       "path": "skills/cross-functional/agentic-security-review",
-      "aggregate_sha256": "cf6d80b4cdc528503b322b740625a00097091a47b0f17ee2da5d0d5cf0cf5653",
+      "aggregate_sha256": "93cfb4815708555e03de816b64a0ee049be53188b0023fad0609b4f48e46faf4",
       "files": [
         {
           "path": "skills/cross-functional/agentic-security-review/SKILL.md",
-          "sha256": "3708b6ce55ca436775d30ee6b92d70af4160e9857af0ac17f1a94f13efd5c1eb",
-          "bytes": 10196
+          "sha256": "1bcbb8f942b068e15fbbdcb975614105064c3156120bff63182d7b9feffff948",
+          "bytes": 10466
         },
         {
           "path": "skills/cross-functional/agentic-security-review/metadata.json",
@@ -101,8 +101,8 @@
         },
         {
           "path": "skills/cross-functional/agentic-security-review/references/identity-and-delegated-authorization.md",
-          "sha256": "0e3ac706297745dc19a1aaddb125bde058aeb4654352928ed1b68560bb886091",
-          "bytes": 15155
+          "sha256": "a85ca29c8a9551ea7d11fc5e7b5608e9bcb53096e783572427af47f44d1a7a31",
+          "bytes": 15366
         },
         {
           "path": "skills/cross-functional/agentic-security-review/references/supply-chain-and-provenance.md",
@@ -129,12 +129,12 @@
     {
       "id": "agentic-system-architecture-review",
       "path": "skills/cross-functional/agentic-system-architecture-review",
-      "aggregate_sha256": "07117d2b891ba40e9d200019b482ef2c9e3f1b63f6c2511d90d841906779a6d2",
+      "aggregate_sha256": "0c71491069666775a8db54cc556651b7305157b0a3479ce639c86da415362f0a",
       "files": [
         {
           "path": "skills/cross-functional/agentic-system-architecture-review/SKILL.md",
-          "sha256": "12f5a35c73c0bee8d56f4258daf4f413f3d9b3485f19a02cdd44a4d8c871d24a",
-          "bytes": 8135
+          "sha256": "59d9ba90cb672b7f2f17e3dfc3ba3a9946338986dbfb848714b9c556144810f0",
+          "bytes": 8405
         },
         {
           "path": "skills/cross-functional/agentic-system-architecture-review/metadata.json",
@@ -148,8 +148,8 @@
         },
         {
           "path": "skills/cross-functional/agentic-system-architecture-review/references/pattern-selection.md",
-          "sha256": "7ee9775c311f27b78324edb9acab1e6d367a22db25388a095af1887422cb9430",
-          "bytes": 13646
+          "sha256": "226e4cfc3c448f5507739537e70864e2e8dd1a3534c50422c2f7b5877163142d",
+          "bytes": 13691
         },
         {
           "path": "skills/cross-functional/agentic-system-architecture-review/references/reliability-and-containment.md",

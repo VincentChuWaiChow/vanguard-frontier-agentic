@@ -238,7 +238,8 @@ interchangeable — be precise about which one is doing the work:
 | companion `SKILL.md` | `allowed-tools` | **No** in Claude Code — it pre-approves the listed tools for the invoking turn and does not remove others; the restricting field there is `disallowed-tools` ([skills docs](https://code.claude.com/docs/en/skills)). Not verified for other harnesses |
 | `claude-code` `.agent.md` | optional `tools:` allowlist | Yes when present — a Claude Code subagent with no `tools:` inherits every available tool ([sub-agents docs](https://code.claude.com/docs/en/sub-agents)); most adapters here omit it, the agentic board's carry `Read, Grep, Glob` |
 | `cursor` `.agent.md` | optional `readonly: true` | Partially — restricts file edits and state-changing shell commands ([subagents docs](https://cursor.com/docs/subagents)) |
-| `gemini` / `kiro-ide` `.agent.md` | `name` + `description` only | **No** — carried by the agent's operating rules, not a tool grant |
+| `gemini` `.agent.md` | optional `tools:` allowlist | **Yes, when present** — an omitted `tools` field inherits every parent tool ([Gemini CLI subagents](https://geminicli.com/docs/core/subagents/)); the agentic-board agents carry `read_file`, `grep_search`, `glob`, `list_directory` ([Gemini CLI tools reference](https://geminicli.com/docs/reference/tools/)). Most catalog agents omit it. |
+| `kiro-ide` `.agent.md` | `name` + `description` only | **No** — carried by the agent's operating rules, not a tool grant |
 | `harnesses/kiro-cli.agent.json` | no tools key | **No** — same as above |
 
 The Copilot adapter is therefore the one **agent-level** tool grant every tiered agent must carry, and

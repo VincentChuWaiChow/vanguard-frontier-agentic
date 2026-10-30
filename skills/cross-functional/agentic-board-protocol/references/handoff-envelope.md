@@ -84,22 +84,22 @@ A principal is an accountable individual, identified by an opaque, pseudonymous 
 - The subject has the form `subject:<issuer>:<hex digest>`, for example `subject:corp-idp:7c1e9a40b2d35f68`. The schema pattern allows a lowercase issuer label and 16 to 64 hexadecimal characters.
 - A subject is never a name, an email address, or a shared or group identity. This follows the stance of schemas/audit-event.schema.json, where caller_identity must be an identified individual principal and never a shared or unidentified identity for R3+ actions.
 - The role is a separate, descriptive field. Self-approval and distinct-second-approver checks compare subjects, never roles: two people sharing a role are two approvers, and one person holding two roles is still one approver.
-- Subjects are opaque on purpose. The record carries no personal data, and the mapping from subject to person stays with the organization's identity provider.
+- Subjects are opaque on purpose: the record carries no names or emails, and the mapping from subject to person stays with the organization's identity provider. Opaque is not anonymous. A subject the deploying organization can map back to a person is pseudonymous personal data under the GDPR (Recital 26), so records need the organization's retention and data-protection handling like any other personal data.
 - The schema cannot tell whether a subject really is an individual or whether the sender really holds it. Issuing individual subjects and authenticating the sender is the runtime's job.
 
 ## Reading a chain
 
-By protocol the root delegate comes from a principal and has hop_count 0. The gate does not require a principal root: when an agent opens the correlation, the requester-is-not-decider check has nothing to compare against (see [decision-record.md](decision-record.md)). Every other message points at its parent and has hop_count equal to the parent's plus one. A message is sent by its parent's destination (a reply), or by its parent's sender when the parent was stopped (escalating its own stopped delegate).
+By protocol the root delegate comes from a principal and has hop_count 0. The gate requires a principal root only for a correlation that carries a decision-request, whose root must also name the decision class and decision owner (`DR-OWNER-FROM-ROOT`, `DR-CLASS-FROM-ROOT`). A review-only correlation may be opened by an agent; nothing in it can be decided. Every other message points at its parent and has hop_count equal to the parent's plus one. A message is sent by its parent's destination (a reply), or by its parent's sender when the parent was stopped (escalating its own stopped delegate). A stopped message is terminal: its only permitted child is an escalate to a principal (`STOP-TERMINAL`).
 
-Down the chain, limits only tighten: tier, classification, materiality flags and prohibitions never shrink; deadline and max_hops never extend; actions and budget limits never widen. A record set in which a child asks for more than its parent granted fails that rule's own id, so any widening shows up when the record set is validated.
+Down the chain, limits only tighten: tier, classification, materiality flags and prohibitions never shrink; deadline and max_hops never extend; actions and budget limits never widen; spent counters are cumulative and never decrease. These hold per chain, parent to child. Siblings each inherit the parent's limits, so fan-out across siblings is not bounded by the gate; a runtime has to carve the budget across them. A record set in which a child asks for more than its parent granted fails that rule's own id, so any widening shows up when the record set is validated.
 
 ## What a valid envelope does NOT prove
 
 A record set that passes the gate is well-formed and internally consistent. It does not prove:
 
 - who sent a message. The schema and the gate do not authenticate senders; the deploying runtime must.
-- that a human approval happened. An approved decision-record is data; whether the named subject really decided is the runtime's and the organization's to establish. Nor does the gate confine approved and rejected to decision-records on the principal side, as the note on the agent-approval rule in the rules table below explains.
-- that sent_at is true, that spent counters are accurate, or that the data_classification and subject_risk_tier were assigned correctly.
+- that a human approval happened. An approved decision-record is data; whether the named subject really decided is the runtime's and the organization's to establish. The gate does confine approved and rejected to principal-sourced decision-records (see `HO-APPROVAL-ONLY-ON-RECORD` below), but it cannot check that the sender really is that principal.
+- that sent_at is true, that spent counters are accurate, or that the data_classification and subject_risk_tier were assigned correctly. Whoever composes an envelope writes these fields; only a runtime that stamps them makes them evidence.
 - that evidence_refs resolve, that evidence labels are honest, or that redactions were applied.
 - that any control exists. A tool grant, sandbox or approval workflow named in a record is a claim about a runtime this repository does not contain.
 - that records are stored append-only or are tamper-evident. An append log is not immutable by itself.
@@ -170,7 +170,7 @@ Each row names the rule id the offline gate reports. The requirement is the gate
 
 | Rule | Scope | Requirement and notes |
 |---|---|---|
-| `HO-SCHEMA` | Envelope | Envelope matches schemas/agentic-handoff.schema.json (shape only). A missing or empty messages array also fails here, so an empty document never passes. |
+| `HO-SCHEMA` | Envelope | Envelope matches schemas/agentic-handoff.schema.json (shape only), with patterns read as ECMA-262 as JSON Schema requires, so a trailing newline never passes an identifier pattern. A missing or empty messages array, a non-object document or message, invalid JSON, duplicate object keys and undigestable strings (a lone surrogate) also fail here, never as a traceback. |
 | `HO-ROOT-PARENT` | Envelope | parent_task_id is null if and only if hop_count is 0. |
 | `HO-NO-SELF-ADDRESS` | Envelope | source and destination are different parties, compared by agent id or principal subject. |
 | `HO-NO-EXECUTION` | Envelope | authorized_actions is a subset of read, analyze, recommend, challenge, escalate. The board has no execute verb. |
@@ -186,6 +186,9 @@ Each row names the rule id the offline gate reports. The requirement is the gate
 | `HO-STOPPED-HAS-REASON` | Envelope | status stopped requires at least one stop reason. |
 | `HO-REASON-HAS-STATUS` | Envelope | Any stop reason requires status stopped or escalated. |
 | `HO-STOP-NOTE` | Envelope | Declaring conflicting-instructions requires a stop_note. |
+| `HO-BLOCK-AS-CHALLENGE` | Envelope | A return addressed to an agent never carries verdict block. An agent's adverse finding on another agent's work travels as a challenge, so the decision path has to carry it. |
+| `HO-RETURN-EVIDENCE` | Envelope | A return whose verdict is not block cites at least one evidence_ref not labelled inference and lists no blocking missing evidence. A pass over a declared blocking gap is not a pass. |
+| `HO-DESTINATION-TIER` | Envelope | Every agent destination is a catalog agent (catalog/agents.json) whose execution_tier is static-review or read-only-runtime. Untiered and mutating-runtime agents get an escalate route hint to a principal, never a delegate. |
 | `HO-UNIQUE-TASK-ID` | Record set | task_id is unique within the record set. |
 | `HO-ONE-CORRELATION` | Record set | All envelopes in the record set share one correlation_id. |
 | `HO-ONE-ROOT` | Record set | Exactly one envelope in the record set has hop_count 0. |
@@ -200,3 +203,4 @@ Each row names the rule id the offline gate reports. The requirement is the gate
 | `HO-MONO-PROHIBITIONS` | Chain | do_not_do_list never loses an item from parent to child. |
 | `HO-MONO-DEADLINE` | Chain | deadline never extends from parent to child. |
 | `HO-MONO-MAX-HOPS` | Chain | max_hops never increases from parent to child. |
+| `HO-MONO-SPENT` | Chain | Budget spent counters are cumulative: they never decrease from parent to child. |

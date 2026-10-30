@@ -1,0 +1,184 @@
+{
+  "description": "Sole violation of HO-BLOCK-AS-CHALLENGE: block sent as return (derived from v10).",
+  "messages": [
+    {
+      "schema_version": "1.0.0",
+      "message_type": "delegate",
+      "task_id": "v10-m1",
+      "correlation_id": "v10-corr",
+      "parent_task_id": null,
+      "hop_count": 0,
+      "max_hops": 8,
+      "sent_at": "2026-10-01T09:01:00Z",
+      "source": {
+        "kind": "principal",
+        "subject": "subject:corp-idp:7c1e9a40b2d35f68",
+        "role": "platform-owner"
+      },
+      "destination": {
+        "kind": "agent",
+        "id": "agentic-system-architecture-review-agent"
+      },
+      "objective": "Assess whether the A2A task lifecycle is used as a resumability boundary in the claims workflow.",
+      "input_schema_version": "1.0.0",
+      "subject_risk_tier": "R1",
+      "data_classification": "internal",
+      "materiality_flags": [],
+      "authorized_actions": [
+        "read",
+        "analyze",
+        "recommend",
+        "challenge",
+        "escalate"
+      ],
+      "do_not_do_list": [
+        "Do not execute, deploy, or mutate any system",
+        "Do not request, store, or echo credentials, tokens, or secrets",
+        "Do not record an approval on behalf of a human"
+      ],
+      "evidence_refs": [
+        {
+          "ref": "repo:docs/design/v10.md#section-1",
+          "label": "repo-evidence"
+        }
+      ],
+      "missing_evidence": [],
+      "budget": {
+        "currency": "USD",
+        "limit_tool_calls": 40,
+        "spent_tool_calls": 0,
+        "limit_tokens": 400000,
+        "spent_tokens": 0,
+        "limit_cost_minor": 2000,
+        "spent_cost_minor": 0
+      },
+      "deadline": "2026-10-08T17:00:00Z",
+      "approval_state": "not-required",
+      "expected_output_schema": "agentic-review-verdict/1.0.0",
+      "status": "dispatched",
+      "stop_reasons": [],
+      "synthetic": true
+    },
+    {
+      "schema_version": "1.0.0",
+      "message_type": "delegate",
+      "task_id": "v10-m2",
+      "correlation_id": "v10-corr",
+      "parent_task_id": "v10-m1",
+      "hop_count": 1,
+      "max_hops": 8,
+      "sent_at": "2026-10-01T09:02:00Z",
+      "source": {
+        "kind": "agent",
+        "id": "agentic-system-architecture-review-agent"
+      },
+      "destination": {
+        "kind": "agent",
+        "id": "agentic-security-review-agent"
+      },
+      "objective": "Challenge the resumability proposal for the claims workflow.",
+      "input_schema_version": "1.0.0",
+      "subject_risk_tier": "R1",
+      "data_classification": "internal",
+      "materiality_flags": [],
+      "authorized_actions": [
+        "read",
+        "analyze",
+        "recommend",
+        "challenge",
+        "escalate"
+      ],
+      "do_not_do_list": [
+        "Do not execute, deploy, or mutate any system",
+        "Do not request, store, or echo credentials, tokens, or secrets",
+        "Do not record an approval on behalf of a human"
+      ],
+      "evidence_refs": [
+        {
+          "ref": "repo:docs/design/v10.md#section-1",
+          "label": "repo-evidence"
+        }
+      ],
+      "missing_evidence": [],
+      "budget": {
+        "currency": "USD",
+        "limit_tool_calls": 40,
+        "spent_tool_calls": 5,
+        "limit_tokens": 400000,
+        "spent_tokens": 25000,
+        "limit_cost_minor": 2000,
+        "spent_cost_minor": 100
+      },
+      "deadline": "2026-10-08T17:00:00Z",
+      "approval_state": "not-required",
+      "expected_output_schema": "agentic-review-verdict/1.0.0",
+      "status": "dispatched",
+      "stop_reasons": [],
+      "synthetic": true
+    },
+    {
+      "schema_version": "1.0.0",
+      "message_type": "return",
+      "task_id": "v10-m3",
+      "correlation_id": "v10-corr",
+      "parent_task_id": "v10-m2",
+      "hop_count": 2,
+      "max_hops": 8,
+      "sent_at": "2026-10-01T09:03:00Z",
+      "source": {
+        "kind": "agent",
+        "id": "agentic-security-review-agent"
+      },
+      "destination": {
+        "kind": "agent",
+        "id": "agentic-system-architecture-review-agent"
+      },
+      "objective": "Challenge findings for the resumability proposal.",
+      "input_schema_version": "1.0.0",
+      "subject_risk_tier": "R1",
+      "data_classification": "internal",
+      "materiality_flags": [],
+      "authorized_actions": [
+        "read",
+        "analyze",
+        "recommend",
+        "challenge",
+        "escalate"
+      ],
+      "do_not_do_list": [
+        "Do not execute, deploy, or mutate any system",
+        "Do not request, store, or echo credentials, tokens, or secrets",
+        "Do not record an approval on behalf of a human"
+      ],
+      "evidence_refs": [
+        {
+          "ref": "repo:docs/design/v10.md#section-1",
+          "label": "repo-evidence"
+        }
+      ],
+      "missing_evidence": [],
+      "budget": {
+        "currency": "USD",
+        "limit_tool_calls": 40,
+        "spent_tool_calls": 9,
+        "limit_tokens": 400000,
+        "spent_tokens": 45000,
+        "limit_cost_minor": 2000,
+        "spent_cost_minor": 180
+      },
+      "deadline": "2026-10-08T17:00:00Z",
+      "approval_state": "not-required",
+      "expected_output_schema": "agentic-review-verdict/1.0.0",
+      "status": "completed",
+      "stop_reasons": [],
+      "synthetic": true,
+      "verdict": {
+        "outcome": "block",
+        "summary": "Adverse finding on the proposal sent as a return, which no decision path must carry."
+      }
+    }
+  ],
+  "expected_violations": [
+    "HO-BLOCK-AS-CHALLENGE"
+  ]
+}

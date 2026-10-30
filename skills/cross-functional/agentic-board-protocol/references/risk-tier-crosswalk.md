@@ -60,7 +60,7 @@ The R scale and the execution tiers answer different questions. R describes the 
 
 An approved R3 or higher decision describes a production change. Making that change through an agent is outside this board and, in docs/execution-tiers.md, goes only through a gated live-guard path with human approval.
 
-A tier is a declaration until a harness enforces it. For the board's two agents, copilot `tools:`, codex `sandbox_mode = "read-only"`, cursor `readonly: true` and claude-code `tools: "Read, Grep, Glob"` restrict tools in those harnesses. The gemini, kiro-ide and kiro-cli adapters carry no tool grant here, so their limits are prompt-level only. A SKILL.md allowed-tools line pre-approves tools; it does not restrict them ([Claude Code skills documentation](https://code.claude.com/docs/en/skills)).
+A tier is a declaration until a harness enforces it. For the board's two agents, claude-code `tools: "Read, Grep, Glob"` and gemini `tools:` are documented allowlists (an omitted list inherits every parent tool), cursor `readonly: true` blocks file edits and state-changing shell but not every tool, and copilot `tools:` and codex `sandbox_mode = "read-only"` follow this repo's own gates; kiro-ide and kiro-cli carry no verified restricting field, so their limits are prompt-level only. The per-harness table in [docs/execution-tiers.md](../../../../docs/execution-tiers.md) is the single source for these claims. A SKILL.md allowed-tools line pre-approves tools; it does not restrict them ([Claude Code skills documentation](https://code.claude.com/docs/en/skills)).
 
 ## NIST AI RMF candidate mapping
 

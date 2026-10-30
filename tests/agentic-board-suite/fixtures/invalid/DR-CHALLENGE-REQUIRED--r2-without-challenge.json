@@ -56,7 +56,13 @@
       "expected_output_schema": "agentic-review-verdict/1.0.0",
       "status": "dispatched",
       "stop_reasons": [],
-      "synthetic": true
+      "synthetic": true,
+      "decision_class": "architecture",
+      "decision_owner": {
+        "kind": "principal",
+        "subject": "subject:corp-idp:a94f03d2c8e1b756",
+        "role": "ai-risk-owner"
+      }
     },
     {
       "schema_version": "1.0.0",
@@ -172,7 +178,7 @@
       "stop_reasons": [],
       "synthetic": true,
       "challenge": {
-        "proposal_task_id": "v02-m2",
+        "proposal_task_id": "v02-m1",
         "round": 1,
         "hard_gate": false,
         "outcome": "sustained",

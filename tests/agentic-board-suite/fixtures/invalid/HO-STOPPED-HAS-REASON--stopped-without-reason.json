@@ -55,7 +55,7 @@
       "deadline": "2026-10-08T17:00:00Z",
       "approval_state": "not-required",
       "expected_output_schema": "agentic-review-verdict/1.0.0",
-      "status": "stopped",
+      "status": "dispatched",
       "stop_reasons": [],
       "synthetic": true
     },
@@ -113,7 +113,7 @@
       "deadline": "2026-10-08T17:00:00Z",
       "approval_state": "not-required",
       "expected_output_schema": "agentic-review-verdict/1.0.0",
-      "status": "completed",
+      "status": "stopped",
       "stop_reasons": [],
       "synthetic": true,
       "verdict": {

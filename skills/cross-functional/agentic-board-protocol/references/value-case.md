@@ -88,7 +88,7 @@ Cost per successful task is annual run cost divided by successful runs, as an in
 
 A counterfactual is what the organization would get from an alternative, valued the same way.
 
-- Required: existing-process, conventional-automation and single-agent.
+- Required: existing-process, conventional-automation, deterministic-workflow and single-agent.
 - Optional: deterministic-workflow and multi-agent.
 - Each has a net annual value range and a basis in words saying where the number came from.
 - When net annual value is measured as an increment over the status quo, the existing-process counterfactual is zero by construction. Say so in its basis.
@@ -148,12 +148,13 @@ The finance challenger covers these. The checklist above is how.
 | Rule | Requirement and notes |
 |---|---|
 | `VC-ORDER` | Every money range satisfies low <= point <= high. This covers the counterfactual ranges too. |
+| `VC-COST-SIGN` | No cost range (run, oversight, implementation, expected risk loss) is negative; a negative cost would inflate net annual value. |
 | `VC-NAV-ARITHMETIC` | net_annual_value equals benefit minus run, oversight, implementation and risk loss under interval arithmetic. |
 | `VC-BENEFIT-CEILING` | verified_annual_benefit.high does not exceed baseline labor and error cost plus baseline loss and leakage. |
 | `VC-OVERSIGHT` | A non-zero intervention or exception rate requires annual_oversight_cost.low > 0. |
 | `VC-RUNS-BOUND` | successful_runs does not exceed runs. |
 | `VC-UNIT-COST` | cost_per_successful_task_minor equals floor(annual_run_cost.point / successful_runs), or 0 with no successful runs. |
-| `VC-COUNTERFACTUALS` | Counterfactuals include existing-process, conventional-automation and single-agent. |
+| `VC-COUNTERFACTUALS` | Counterfactuals include existing-process, conventional-automation, deterministic-workflow and single-agent. Requiring the deterministic workflow stops a proposal from winning by leaving out the rung most likely to beat it. |
 | `VC-PROMOTION` | limited-production or production requires measured confidence and net_annual_value.low above every counterfactual's low. |
 | `VC-SYNTHETIC` | A synthetic record never claims measured confidence or promotion beyond pilot. |
 | `VC-RECOMMEND-INCREMENTAL` | Recommending approve or conditional-approve on an investment requires net_annual_value.point above every counterfactual's point. |

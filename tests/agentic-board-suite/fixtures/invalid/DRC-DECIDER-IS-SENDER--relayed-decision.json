@@ -56,7 +56,13 @@
       "expected_output_schema": "agentic-review-verdict/1.0.0",
       "status": "dispatched",
       "stop_reasons": [],
-      "synthetic": true
+      "synthetic": true,
+      "decision_class": "architecture",
+      "decision_owner": {
+        "kind": "principal",
+        "subject": "subject:corp-idp:a94f03d2c8e1b756",
+        "role": "ai-risk-owner"
+      }
     },
     {
       "schema_version": "1.0.0",
@@ -264,14 +270,14 @@
       "message_type": "decision-record",
       "task_id": "v02-m5",
       "correlation_id": "v02-corr",
-      "parent_task_id": "v02-m4",
+      "parent_task_id": "v02-m6",
       "hop_count": 4,
       "max_hops": 8,
       "sent_at": "2026-10-01T09:05:00Z",
       "source": {
         "kind": "principal",
-        "subject": "subject:corp-idp:a94f03d2c8e1b756",
-        "role": "ai-risk-owner"
+        "subject": "subject:corp-idp:3d8b6e21f40ac975",
+        "role": "security-risk-owner"
       },
       "destination": {
         "kind": "agent",
@@ -322,14 +328,76 @@
         "outcome": "conditional-approve",
         "decided_by": {
           "kind": "principal",
-          "subject": "subject:corp-idp:3d8b6e21f40ac975",
-          "role": "security-risk-owner"
+          "subject": "subject:corp-idp:a94f03d2c8e1b756",
+          "role": "ai-risk-owner"
         },
         "rationale": "Decision taken on the attached proposal, alternatives, challenges and dissent.",
         "dissent_acknowledged": true,
         "conditions": [
           "Partition memory per tenant before pilot"
         ]
+      }
+    },
+    {
+      "schema_version": "1.0.0",
+      "message_type": "escalate",
+      "task_id": "v02-m6",
+      "correlation_id": "v02-corr",
+      "parent_task_id": "v02-m3",
+      "hop_count": 3,
+      "max_hops": 8,
+      "sent_at": "2026-10-01T09:04:30Z",
+      "source": {
+        "kind": "agent",
+        "id": "agentic-system-architecture-review-agent"
+      },
+      "destination": {
+        "kind": "principal",
+        "subject": "subject:corp-idp:3d8b6e21f40ac975",
+        "role": "security-risk-owner"
+      },
+      "objective": "Escalate the v02 decision to the principal who will record it.",
+      "input_schema_version": "1.0.0",
+      "subject_risk_tier": "R2",
+      "data_classification": "internal",
+      "materiality_flags": [],
+      "authorized_actions": [
+        "read",
+        "analyze",
+        "recommend",
+        "challenge",
+        "escalate"
+      ],
+      "do_not_do_list": [
+        "Do not execute, deploy, or mutate any system",
+        "Do not request, store, or echo credentials, tokens, or secrets",
+        "Do not record an approval on behalf of a human"
+      ],
+      "evidence_refs": [
+        {
+          "ref": "repo:docs/design/v02.md#section-1",
+          "label": "repo-evidence"
+        }
+      ],
+      "missing_evidence": [],
+      "budget": {
+        "currency": "USD",
+        "limit_tool_calls": 40,
+        "spent_tool_calls": 16,
+        "limit_tokens": 400000,
+        "spent_tokens": 80000,
+        "limit_cost_minor": 2000,
+        "spent_cost_minor": 320
+      },
+      "deadline": "2026-10-08T17:00:00Z",
+      "approval_state": "not-required",
+      "expected_output_schema": "agentic-review-verdict/1.0.0",
+      "status": "escalated",
+      "stop_reasons": [],
+      "synthetic": true,
+      "escalation": {
+        "reason": "The decision owner is reachable only through this escalation.",
+        "route_hint": "Decision owner records the decision against the attached request."
       }
     }
   ],

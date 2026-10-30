@@ -59,7 +59,13 @@
       "expected_output_schema": "agentic-review-verdict/1.0.0",
       "status": "dispatched",
       "stop_reasons": [],
-      "synthetic": true
+      "synthetic": true,
+      "decision_class": "security",
+      "decision_owner": {
+        "kind": "principal",
+        "subject": "subject:corp-idp:a94f03d2c8e1b756",
+        "role": "ai-risk-owner"
+      }
     },
     {
       "schema_version": "1.0.0",
@@ -281,8 +287,9 @@
         "role": "ai-risk-owner"
       },
       "destination": {
-        "kind": "agent",
-        "id": "agentic-security-review-agent"
+        "kind": "principal",
+        "subject": "subject:corp-idp:3d8b6e21f40ac975",
+        "role": "security-risk-owner"
       },
       "objective": "Record the decision owner's decision on the v06 proposal.",
       "input_schema_version": "1.0.0",

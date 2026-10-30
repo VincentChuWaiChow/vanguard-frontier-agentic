@@ -2,7 +2,7 @@
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "$id": "https://github.com/VincentChuWaiChow/vanguard-frontier-agentic/schemas/agentic-handoff.schema.json",
   "title": "Agentic Board Handoff Envelope",
-  "description": "Structural contract for the only channel between agentic-board agents (agentic-system-architecture-review-agent, agentic-security-review-agent, composed challengers) and accountable human principals. This repo defines the CONTRACT; a deploying organization's runtime is responsible for authenticating senders and approvers, enforcing authorization, and storing records append-only. A valid envelope authorizes nothing: it is a data contract, not an access-control mechanism. This schema checks SHAPE only; every cross-field and cross-message rule (approval sourcing, monotonic attenuation, stop conditions, designated challengers, HARD gates, value-case arithmetic) is checked by tests/agentic-board-suite/agentic_board_rules.py so each rule fails with its own id. No field may carry credentials, tokens, or secrets; principals are opaque pseudonymous subjects, never names or emails.",
+  "description": "Structural contract for the only channel between agentic-board agents (agentic-system-architecture-review-agent, agentic-security-review-agent, composed challengers) and accountable human principals. This repo defines the CONTRACT; a deploying organization's runtime is responsible for authenticating senders and approvers, enforcing authorization, and storing records append-only. A valid envelope authorizes nothing: it is a data contract, not an access-control mechanism. Patterns are ECMA-262 as JSON Schema requires: '$' matches only at the end of the string, so a trailing newline never passes (the gate enforces this even where a validator uses Python re.search semantics). This schema checks SHAPE only; every cross-field and cross-message rule (approval sourcing, monotonic attenuation, stop conditions, designated challengers, HARD gates, value-case arithmetic) is checked by tests/agentic-board-suite/agentic_board_rules.py so each rule fails with its own id. No field may carry credentials, tokens, or secrets; principals are opaque pseudonymous subjects, never names or emails.",
   "type": "object",
   "additionalProperties": false,
   "required": [
@@ -211,6 +211,14 @@
       "uniqueItems": true,
       "items": { "type": "string", "minLength": 3, "maxLength": 200 }
     },
+    "decision_class": {
+      "enum": ["architecture", "security", "automation-investment"],
+      "description": "Declared by the root delegate's sender: the class of decision this correlation is for. Required on the root of any correlation that carries a decision-request, which must match it (rule DR-CLASS-FROM-ROOT), so a proposer cannot relabel an investment to escape the value case and the finance challenger."
+    },
+    "decision_owner": {
+      "$ref": "#/$defs/principal",
+      "description": "Declared by the principal who opens a correlation that will carry a decision-request: the accountable principal every decision-request must be addressed to (rule DR-OWNER-FROM-ROOT), so the proposing agent never chooses its own decider."
+    },
     "synthetic": {
       "type": "boolean",
       "description": "true for fixtures and examples. Synthetic records can never carry measured value evidence or promotion beyond pilot (rule VC-SYNTHETIC)."
@@ -286,6 +294,7 @@
           }
         },
         "recommended_outcome": { "enum": ["approve", "conditional-approve", "reject", "redesign", "escalate"] },
+        "supersedes_task_id": { "$ref": "#/$defs/id", "description": "An earlier decision-request in the same correlation that this one replaces; it must go to the same principal (rule DR-ONE-REQUEST). The decision in force is the one bound to the request nothing supersedes." },
         "value_case": { "$ref": "#/$defs/value_case" }
       }
     },
@@ -295,10 +304,11 @@
       "required": ["request_task_id", "request_digest", "outcome", "decided_by", "rationale", "dissent_acknowledged"],
       "properties": {
         "request_task_id": { "$ref": "#/$defs/id" },
-        "request_digest": { "type": "string", "pattern": "^sha256:[a-f0-9]{64}$", "description": "sha256 of the canonical JSON (sorted keys, separators ',' ':', UTF-8) of the referenced decision-request envelope." },
+        "request_digest": { "type": "string", "pattern": "^sha256:[a-f0-9]{64}$", "description": "sha256 of the canonical JSON (sorted keys, separators ',' ':', UTF-8) of the referenced decision-request envelope. Compute it with: python3 tests/agentic-board-suite/agentic_board_rules.py --digest <request-envelope.json>." },
         "outcome": { "enum": ["approve", "conditional-approve", "reject", "redesign"] },
         "decided_by": { "$ref": "#/$defs/principal" },
-        "second_approver": { "$ref": "#/$defs/principal" },
+        "second_approver": { "$ref": "#/$defs/principal", "description": "Named on the decider's record; it counts only once that principal sends their own co-signing decision-record (rules DRC-CO-SIGNED, DRC-CO-SIGN-BINDING)." },
+        "co_signs_task_id": { "$ref": "#/$defs/id", "description": "Present only on a co-signing record: the task_id of the decider's record that named this principal as second_approver. A co-signing record repeats the same request, digest and outcome." },
         "risk_acceptance_ref": { "type": "string", "minLength": 3, "maxLength": 300 },
         "conditions": { "type": "array", "items": { "type": "string", "minLength": 3, "maxLength": 500 } },
         "rationale": { "type": "string", "minLength": 10, "maxLength": 4000 },

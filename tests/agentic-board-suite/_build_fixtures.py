@@ -155,7 +155,8 @@ def _decision_scenario(s: str, tier: str, flags: list[str], proposer: str, chall
         dec_req["value_case"] = value_case
     common = {"tier": tier, "materiality_flags": list(flags)}
     msgs = chain([
-        env(s, 1, "delegate", P_REQ, agent(proposer), objective, parent=None, **common),
+        env(s, 1, "delegate", P_REQ, agent(proposer), objective, parent=None, decision_class=decision_class,
+            decision_owner=P_DEC, **common),
         env(s, 2, "delegate", agent(proposer), agent(challenger),
             f"Challenge the proposal for {s}: attack its strongest failure paths and cite evidence.",
             parent=1, spent=8, **common),
@@ -293,7 +294,17 @@ def v06() -> dict:
         [{"kind": "other", "summary": "Crypto-shred the tenant key instead of purging records.",
           "rejected_because": "Key is shared with an active tenant in the current design."}],
         "approve", _record(s, "approve", second_approver=P_DEC2), "approved", dissent=False)
-    doc["description"] = "R5 irreversible decision with a withdrawn challenge, approved by two distinct human subjects."
+    # The decider routes the record to the named second approver, who co-signs with their own record.
+    m5 = doc["messages"][4]
+    m5["destination"] = P_DEC2
+    cosign = env(s, 6, "decision-record", P_DEC2, agent(SEC),
+                 "Co-sign the decision owner's decision on the v06 proposal as the named second approver.",
+                 parent=5, spent=18, status="completed", approval_state="approved",
+                 tier="R5", materiality_flags=["irreversible", "regulatory"],
+                 decision_record=_record(s, "approve", decider=P_DEC2, co_signs_task_id=f"{s}-m5"))
+    doc["messages"] = chain(doc["messages"] + [cosign])
+    doc["description"] = ("R5 irreversible decision with a withdrawn challenge, approved by the decision owner and "
+                          "co-signed by a second, distinct human subject in their own record.")
     return finalize(doc)
 
 
@@ -364,10 +375,73 @@ def v10() -> dict:
     return {"description": "R1 optional challenge with no decision request.", "messages": msgs}
 
 
+def v11() -> dict:
+    s = "v11"
+    raised = {"tier": "R3", "materiality_flags": ["security-critical"]}
+    req = {
+        "decision_class": "architecture",
+        "proposer_agent": ARCH,
+        "proposal_summary": "Revised supplier-onboarding design: per-hop audience-bound token exchange replaces passthrough.",
+        "alternatives": [{"kind": "single-agent", "summary": "One agent calling the ERP through its own audience-bound credential.",
+                          "rejected_because": "Requires an ERP connector change outside the pilot window."}],
+        "challenge_task_ids": [f"{s}-m3", f"{s}-m5"],
+        "dissent": [],
+        "recommended_outcome": "approve",
+    }
+    msgs = chain([
+        env(s, 1, "delegate", P_REQ, agent(ARCH),
+            "Assess whether the supplier-onboarding multi-agent design is fit for a non-production pilot.",
+            parent=None, tier="R2", decision_class="architecture", decision_owner=P_DEC),
+        env(s, 2, "delegate", agent(ARCH), agent(SEC),
+            "Challenge the proposal for v11: the design forwards user tokens to the ERP MCP server.",
+            parent=1, spent=8, **raised),
+        env(s, 3, "challenge", agent(SEC), agent(ARCH), "Challenge findings for the v11 proposal.",
+            parent=2, spent=14, status="completed", **raised,
+            challenge={"proposal_task_id": f"{s}-m2", "round": 1, "hard_gate": True, "outcome": "sustained",
+                       "finding": "Token passthrough: the ERP MCP server receives a token whose audience it cannot validate."}),
+        env(s, 4, "delegate", agent(ARCH), agent(SEC),
+            "Challenge the revised v11 proposal: token passthrough replaced by audience-bound token exchange.",
+            parent=3, spent=16, **raised),
+        env(s, 5, "challenge", agent(SEC), agent(ARCH), "Round 2 challenge findings for the revised v11 proposal.",
+            parent=4, spent=20, status="completed", **raised,
+            challenge={"proposal_task_id": f"{s}-m4", "round": 2, "hard_gate": True, "outcome": "withdrawn",
+                       "finding": "Withdrawn on new evidence: each hop now exchanges for an audience-bound token the server validates."}),
+        env(s, 6, "decision-request", agent(ARCH), P_DEC,
+            "Request a human decision on the revised v11 proposal with both challenge rounds attached.",
+            parent=5, spent=22, approval_state="pending-human-review", decision_request=req, **raised),
+        env(s, 7, "decision-record", P_DEC, agent(ARCH), "Record the decision owner's decision on the revised v11 proposal.",
+            parent=6, spent=22, status="completed", approval_state="approved", **raised,
+            decision_record=_record(s, "approve", request_task_id=f"{s}-m6")),
+    ])
+    return finalize({"description": ("Two counted challenge rounds: a HARD gate raised in round 1 is withdrawn by the same "
+                                     "challenger in round 2 on new evidence; the tier is raised mid-chain, never lowered."),
+                     "messages": msgs})
+
+
+def v12() -> dict:
+    s = "v12"
+    doc = v02()
+    doc = json.loads(json.dumps(doc).replace('"v02-', '"v12-').replace("for v02", "for v12").replace("the v02", "the v12"))
+    first = doc["messages"][3]
+    again = copy.deepcopy(first)
+    again.update({"task_id": f"{s}-m6", "parent_task_id": f"{s}-m5", "sent_at": "2026-10-01T09:06:00Z",
+                  "objective": "Request a human decision on the v12 proposal again, revised after the first decision's conditions."})
+    again["decision_request"].update({"supersedes_task_id": f"{s}-m4",
+                                      "proposal_summary": "Revised v12 proposal: memory partitioned per tenant, as the first decision required."})
+    second = copy.deepcopy(doc["messages"][4])
+    second.update({"task_id": f"{s}-m7", "parent_task_id": f"{s}-m6", "sent_at": "2026-10-01T09:06:00Z"})
+    second["decision_record"].update({"request_task_id": f"{s}-m6", "conditions": ["Re-run the challenge after the first tenant migrates"]})
+    doc["messages"] = chain(doc["messages"] + [again, second])
+    doc["description"] = ("A decision-request superseded by a revised one to the same principal; the decision in force is the "
+                          "one bound to the request nothing supersedes.")
+    return finalize(doc)
+
+
 VALID = {"v01-r0-single-review": v01, "v02-r2-architecture-dissent": v02, "v03-investment-loses-to-workflow": v03,
          "v04-r3-hard-gate-risk-acceptance": v04, "v05-live-guard-escalation": v05, "v06-r5-dual-approval": v06,
          "v07-depth-and-routing-loop": v07, "v08-budget-exhausted": v08, "v09-instruction-bait": v09,
-         "v10-r1-optional-challenge": v10}
+         "v10-r1-optional-challenge": v10, "v11-two-rounds-hard-gate-withdrawn": v11,
+         "v12-superseded-request": v12}
 
 
 # ----------------------------------------------------------------------------------------------
@@ -449,7 +523,8 @@ def _challenger_assembles(doc):
                 "dissent": [{"challenge_task_id": "v02-m3",
                              "position": "The challenger's finding stands unresolved by evidence and is carried to the decision owner."}]})
     msgs = chain([
-        env(s, 1, "delegate", P_REQ, agent(SEC), old["v02-m1"]["objective"], parent=None, **common),
+        env(s, 1, "delegate", P_REQ, agent(SEC), old["v02-m1"]["objective"], parent=None, decision_class="architecture",
+            decision_owner=P_DEC, **common),
         env(s, 2, "delegate", agent(SEC), agent(ARCH), "Challenge the proposal for v02: attack its strongest failure paths and cite evidence.",
             parent=1, spent=8, **common),
         env(s, 3, "challenge", agent(ARCH), agent(SEC), "Challenge findings for the v02 proposal.", parent=2, spent=14,
@@ -462,6 +537,117 @@ def _challenger_assembles(doc):
             parent=4, spent=18, approval_state="pending-human-review", decision_request=req, **common),
     ])
     doc["messages"] = msgs
+
+
+def _record_via_escalate(to: dict, escalate_at: str, record_at: str):
+    """Re-parent v02's decision-record onto an escalate from the proposer to principal ``to``."""
+    def mut(doc):
+        esc = copy.deepcopy(m(doc, 3))
+        for k in ("challenge",):
+            esc.pop(k)
+        esc.update({"message_type": "escalate", "task_id": "v02-m6", "source": agent(ARCH), "destination": to,
+                    "parent_task_id": "v02-m3", "hop_count": 3, "sent_at": escalate_at, "status": "escalated",
+                    "objective": "Escalate the v02 decision to the principal who will record it.",
+                    "budget": dict(m(doc, 3)["budget"], spent_tool_calls=16, spent_tokens=80000, spent_cost_minor=320),
+                    "escalation": {"reason": "The decision owner is reachable only through this escalation.",
+                                   "route_hint": "Decision owner records the decision against the attached request."}})
+        doc["messages"].append(esc)
+        m(doc, 5).update({"parent_task_id": "v02-m6", "hop_count": 4, "sent_at": record_at})
+    return mut
+
+
+def _unattached_challenge_tier(tier: str, flags: list[str]):
+    """No challenge attached; the only challenge targets the requester's message, so none is owed."""
+    def mut(doc):
+        for e in doc["messages"]:
+            e["subject_risk_tier"], e["materiality_flags"] = tier, list(flags)
+        m(doc, 3)["challenge"]["proposal_task_id"] = "v02-m1"
+        m(doc, 4)["decision_request"].update({"challenge_task_ids": [], "dissent": []})
+    return mut
+
+
+def _late_challenge(doc):
+    late = copy.deepcopy(m(doc, 3))
+    late.update({"task_id": "v02-m6", "parent_task_id": "v02-m2", "hop_count": 2, "sent_at": "2026-10-01T09:05:00Z"})
+    late["challenge"] = dict(late["challenge"], round=2, hard_gate=True,
+                             finding="Raised after the request: the worker pool can write to the shared ledger without review.")
+    doc["messages"].append(late)
+
+
+def _second_request(to: dict, supersedes: str | None):
+    def mut(doc):
+        again = copy.deepcopy(m(doc, 4))
+        again.update({"task_id": "v02-m6", "parent_task_id": "v02-m5", "hop_count": 5,
+                      "sent_at": "2026-10-01T09:06:00Z", "destination": to})
+        if supersedes:
+            again["decision_request"]["supersedes_task_id"] = supersedes
+        doc["messages"].append(again)
+    return mut
+
+
+def _contradicting_record(doc):
+    other = copy.deepcopy(m(doc, 5))
+    other.update({"task_id": "v02-m6", "sent_at": "2026-10-01T09:06:00Z", "approval_state": "rejected"})
+    other["decision_record"] = dict(other["decision_record"], outcome="reject")
+    other["decision_record"].pop("conditions", None)
+    doc["messages"].append(other)
+
+
+def _third_round(doc):
+    doc["messages"] = doc["messages"][:5]
+    base = m(doc, 4)
+    again = copy.deepcopy(base)
+    again.update({"task_id": "v11-m6", "parent_task_id": "v11-m5", "hop_count": 5, "sent_at": "2026-10-01T09:06:00Z",
+                  "objective": "Challenge the v11 proposal a third time after the withdrawal.",
+                  "budget": dict(m(doc, 5)["budget"])})
+    third = copy.deepcopy(m(doc, 5))
+    third.update({"task_id": "v11-m7", "parent_task_id": "v11-m6", "hop_count": 6, "sent_at": "2026-10-01T09:07:00Z"})
+    third["challenge"] = dict(third["challenge"], proposal_task_id="v11-m6", round=3, outcome="sustained",
+                              finding="A third round reopening the withdrawn gate without new evidence.")
+    doc["messages"] += [again, third]
+
+
+def _reply_to_stopped(doc):
+    reply = copy.deepcopy(m(doc, 3))
+    reply.update({"message_type": "return", "task_id": "v07-m4", "source": agent(ARCH), "destination": agent(SEC),
+                  "parent_task_id": "v07-m3", "hop_count": 3, "sent_at": "2026-10-01T09:04:00Z", "status": "completed",
+                  "stop_reasons": [], "objective": "Answer the stopped delegate as if it had been dispatched.",
+                  "verdict": {"outcome": "pass", "summary": "Fan-out limits look bounded; the stop was ignored."}})
+    doc["messages"].append(reply)
+
+
+def _decide_stopped_request(doc):
+    m(doc, 4).update({"status": "stopped", "stop_reasons": ["missing-evidence"],
+                      "missing_evidence": [{"item": "Load-test evidence for the worker pool", "blocking": True}]})
+
+
+def _route_to(aid: str):
+    def mut(doc):
+        m(doc, 1)["destination"] = agent(aid)
+        m(doc, 2)["source"] = agent(aid)
+    return mut
+
+
+def _spent_reset(doc):
+    m(doc, 3)["budget"].update({"spent_tool_calls": 7, "spent_tokens": 35000, "spent_cost_minor": 140})
+
+
+def _unrelated_withdrawal(doc):
+    """The HARD-gate challenger later withdraws an unrelated non-HARD nit; the gate must stay live."""
+    nit = copy.deepcopy(m(doc, 3))
+    nit.update({"task_id": "v04-m6", "sent_at": "2026-10-01T09:03:30Z"})
+    nit["challenge"] = dict(nit["challenge"], round=2, hard_gate=False, outcome="withdrawn",
+                            finding="Minor naming inconsistency in the orchestrator config; withdrawn.")
+    doc["messages"].append(nit)
+    m(doc, 4)["decision_request"]["challenge_task_ids"].append("v04-m6")
+    del m(doc, 5)["decision_record"]["risk_acceptance_ref"]
+
+
+def _cosign_from_requester(doc):
+    m(doc, 5)["decision_record"]["second_approver"] = P_REQ
+    m(doc, 5)["destination"] = P_REQ
+    m(doc, 6)["source"] = P_REQ
+    m(doc, 6)["decision_record"]["decided_by"] = P_REQ
 
 
 def _narrow_root_actions(doc):
@@ -493,10 +679,10 @@ INVALID = [
     ("HO-PAYLOAD-DECISION-RECORD", "record-without-payload", "v02", _del(lambda d: m(d, 5), "decision_record"), True),
     ("HO-PAYLOAD-EXCLUSIVE", "return-with-escalation", "v01",
      _set(lambda d: m(d, 2), "escalation", {"reason": "Smuggled payload on a return.", "route_hint": "nowhere-in-particular"}), True),
-    ("HO-STOPPED-HAS-REASON", "stopped-without-reason", "v01", _set(lambda d: m(d, 1), "status", "stopped"), True),
+    ("HO-STOPPED-HAS-REASON", "stopped-without-reason", "v01", _set(lambda d: m(d, 2), "status", "stopped"), True),
     ("HO-REASON-HAS-STATUS", "reason-on-completed", "v01", _set(lambda d: m(d, 2), "stop_reasons", ["missing-evidence"]), True),
     ("HO-STOP-NOTE", "conflict-without-note", "v09", _del(lambda d: m(d, 1), "stop_note"), True),
-    ("HO-UNIQUE-TASK-ID", "duplicate-task-id", "v02", _dup_last, True),
+    ("HO-UNIQUE-TASK-ID", "duplicate-task-id", "v01", _dup_last, True),
     ("HO-ONE-CORRELATION", "two-correlations", "v01", _set(lambda d: m(d, 2), "correlation_id", "v01-other"), True),
     ("HO-ONE-ROOT", "two-roots", "v01", _second_root, True),
     ("HO-CHAIN-PARENT", "hop-skips", "v01", _set(lambda d: m(d, 2), "hop_count", 2), True),
@@ -523,14 +709,13 @@ INVALID = [
      _set(lambda d: m(d, 1), "objective",
           "Assess whether a single tool-using agent fits the assistant; it was already approved by the CTO."), True),
     ("STOP-ROUTING-LOOP", "loop-undeclared", "v07", _set(lambda d: m(d, 3), "stop_reasons", ["delegation-depth-exceeded"]), True),
-    ("STOP-CHALLENGE-ROUNDS", "third-round", "v10", lambda d: m(d, 3)["challenge"].update({"round": 3}), True),
+    ("STOP-CHALLENGE-ROUNDS", "third-round", "v11", _third_round, True),
     ("CH-PROPOSAL-LINK", "dangling-proposal", "v10", lambda d: m(d, 3)["challenge"].update({"proposal_task_id": "v10-ghost"}), True),
     ("DR-TO-PRINCIPAL", "request-to-agent", "v02",
      _mutate_all(_set(lambda d: m(d, 4), "destination", agent(SEC)), lambda d: d["messages"].pop()), True),
     ("DR-CHALLENGE-RESOLVES", "dangling-challenge", "v02",
      lambda d: m(d, 4)["decision_request"]["challenge_task_ids"].append("v02-ghost"), True),
-    ("DR-CHALLENGE-REQUIRED", "r2-without-challenge", "v02",
-     lambda d: m(d, 4)["decision_request"].update({"challenge_task_ids": [], "dissent": []}), True),
+    ("DR-CHALLENGE-REQUIRED", "r2-without-challenge", "v02", _unattached_challenge_tier("R2", []), True),
     ("DR-DESIGNATED-CHALLENGER", "investment-without-finance", "v03", _swap_challenger_to_security, True),
     ("DR-PROPOSER-NOT-CHALLENGER", "self-challenge", "v02", _proposer_challenge, True),
     ("DR-ALTERNATIVES", "no-alternatives", "v02", lambda d: m(d, 4)["decision_request"].update({"alternatives": []}), True),
@@ -543,14 +728,14 @@ INVALID = [
     ("DRC-PRINCIPAL-SOURCE", "agent-writes-decision", "v02",
      lambda d: m(d, 5).update({"source": agent(SEC), "parent_task_id": "v02-m2", "hop_count": 2,
                                "approval_state": "pending-human-review"}), True),
-    ("DRC-DECIDER-IS-SENDER", "relayed-decision", "v02", lambda d: m(d, 5)["decision_record"].update({"decided_by": P_DEC2}), True),
+    ("DRC-DECIDER-IS-SENDER", "relayed-decision", "v02",
+     _mutate_all(_record_via_escalate(P_DEC2, "2026-10-01T09:04:30Z", "2026-10-01T09:05:00Z"),
+                 _set(lambda d: m(d, 5), "source", P_DEC2)), True),
     ("DRC-REQUEST-BINDING", "request-edited-after-decision", "v02",
      lambda d: m(d, 4)["decision_request"].update({"proposal_summary": "Proposal text silently edited after the decision was recorded."}),
      False),
-    ("DRC-NOT-REQUESTER", "requester-decides", "v02",
-     _mutate_all(_set(lambda d: m(d, 4), "destination", P_REQ), _set(lambda d: m(d, 5), "source", P_REQ),
-                 lambda d: m(d, 5)["decision_record"].update({"decided_by": P_REQ})), True),
-    ("DRC-SECOND-APPROVER", "r5-single-approver", "v06", _del(lambda d: m(d, 5)["decision_record"], "second_approver"), True),
+    ("DRC-SECOND-APPROVER", "r5-single-approver", "v06",
+     _mutate_all(_del(lambda d: m(d, 5)["decision_record"], "second_approver"), lambda d: d["messages"].pop()), True),
     ("DRC-HARD-GATE-ACCEPTANCE", "override-without-acceptance", "v04",
      _del(lambda d: m(d, 5)["decision_record"], "risk_acceptance_ref"), True),
     ("DRC-APPROVAL-STATE", "state-contradicts-outcome", "v02", _set(lambda d: m(d, 5), "approval_state", "rejected"), True),
@@ -571,7 +756,7 @@ INVALID = [
     ("STOP-MISSING-EVIDENCE", "decision-request-blocking-gap", "v02",
      _set(lambda d: m(d, 4), "missing_evidence", [{"item": "Load-test evidence for the worker pool", "blocking": True}]), True),
     ("DRC-SECOND-APPROVER", "second-approver-is-decider", "v06",
-     lambda d: m(d, 5)["decision_record"].update({"second_approver": P_DEC}), True),
+     _mutate_all(lambda d: m(d, 5)["decision_record"].update({"second_approver": P_DEC}), lambda d: d["messages"].pop()), True),
     ("DRC-REQUEST-BINDING", "points-at-challenge", "v02",
      lambda d: m(d, 5)["decision_record"].update({"request_task_id": "v02-m3"}), True),
     ("VC-PROMOTION", "measured-but-not-incremental", "v03",
@@ -587,6 +772,55 @@ INVALID = [
     ("HO-CHAIN-CUSTODY", "reply-from-outside-chain", "v01", _set(lambda d: m(d, 2), "source", agent(SEC)), True),
     ("DR-CHALLENGE-TARGETS-PROPOSAL", "challenge-of-requester-message", "v02",
      lambda d: m(d, 3)["challenge"].update({"proposal_task_id": "v02-m1"}), True),
+    # --- rules added after the independent adversarial review (RB-01..RB-07, RB-11, R7-01..03) ---
+    ("DR-CHALLENGE-COMPLETE", "hard-gate-left-unattached", "v11",
+     lambda d: m(d, 6)["decision_request"].update({"challenge_task_ids": ["v11-m5"]}), True),
+    ("DR-CHALLENGE-COMPLETE", "late-challenge-before-record", "v02", _late_challenge, True),
+    ("DR-ONE-REQUEST", "re-ask-without-supersedes", "v02", _second_request(P_DEC, None), True),
+    ("DR-ONE-REQUEST", "supersedes-a-challenge", "v02", _second_request(P_DEC, "v02-m3"), True),
+    ("DR-OWNER-FROM-ROOT", "request-to-non-owner", "v02",
+     _mutate_all(_set(lambda d: m(d, 4), "destination", P_DEC2), lambda d: d["messages"].pop()), True),
+    ("DR-OWNER-FROM-ROOT", "root-names-no-owner", "v02", _del(lambda d: m(d, 1), "decision_owner"), True),
+    ("DR-OWNER-FROM-ROOT", "agent-opens-decision-path", "v11",
+     lambda d: m(d, 1).update({"source": agent(SEC)}), True),
+    ("HO-BLOCK-AS-CHALLENGE", "block-sent-as-return", "v10",
+     lambda d: (m(d, 3).pop("challenge"), m(d, 3).update({"message_type": "return", "verdict": {
+         "outcome": "block", "summary": "Adverse finding on the proposal sent as a return, which no decision path must carry."}})), True),
+    ("HO-RETURN-EVIDENCE", "pass-over-blocking-gap", "v01",
+     _set(lambda d: m(d, 2), "missing_evidence", [{"item": "Threat model for the retrieval index", "blocking": True}]), True),
+    ("HO-RETURN-EVIDENCE", "pass-on-inference-only", "v01",
+     _set(lambda d: m(d, 2), "evidence_refs", [{"ref": "reviewer-judgment", "label": "inference"}]), True),
+    ("DR-CLASS-FROM-ROOT", "root-declares-other-class", "v02", _set(lambda d: m(d, 1), "decision_class", "security"), True),
+    ("DR-CLASS-FROM-ROOT", "root-declares-no-class", "v02", _del(lambda d: m(d, 1), "decision_class"), True),
+    ("DRC-ONE-RECORD", "contradicting-records", "v02", _contradicting_record, True),
+    ("DRC-DECIDER-IS-ADDRESSEE", "decided-by-non-addressee", "v02",
+     _mutate_all(_set(lambda d: m(d, 4), "destination", P_DEC2), _set(lambda d: m(d, 1), "decision_owner", P_DEC2),
+                 _record_via_escalate(P_DEC, "2026-10-01T09:04:30Z", "2026-10-01T09:05:00Z")), True),
+    ("DRC-AFTER-REQUEST", "decided-before-request", "v02",
+     _record_via_escalate(P_DEC, "2026-10-01T09:03:30Z", "2026-10-01T09:03:45Z"), True),
+    ("DRC-COMPLETED", "record-left-dispatched", "v02", _set(lambda d: m(d, 5), "status", "dispatched"), True),
+    ("DRC-CO-SIGNED", "named-second-approver-never-signs", "v06", lambda d: d["messages"].pop(), True),
+    ("DRC-CO-SIGN-BINDING", "co-sign-contradicts-outcome", "v06",
+     _mutate_all(lambda d: m(d, 6)["decision_record"].update({"outcome": "reject"}),
+                 _set(lambda d: m(d, 6), "approval_state", "rejected")), True),
+    ("DRC-CO-SIGN-BINDING", "co-sign-names-another-approver", "v06",
+     lambda d: m(d, 6)["decision_record"].update({"second_approver": P_DEC}), True),
+    ("DRC-NOT-REQUESTER", "second-approver-is-requester", "v06", _cosign_from_requester, True),
+    ("STOP-TERMINAL", "reply-to-stopped-delegate", "v07", _reply_to_stopped, True),
+    ("STOP-TERMINAL", "decision-on-stopped-request", "v02", _decide_stopped_request, True),
+    ("HO-DESTINATION-TIER", "delegate-to-live-guard", "v01", _route_to("snowflake-live-rbac-grant-guard-agent"), True),
+    ("HO-DESTINATION-TIER", "delegate-to-untiered-agent", "v01", _route_to("aws-agentcore-agent"), True),
+    ("HO-MONO-SPENT", "spent-counter-reset", "v02", _spent_reset, True),
+    ("DRC-HARD-GATE-ACCEPTANCE", "unrelated-withdrawal-does-not-clear-gate", "v04", _unrelated_withdrawal, True),
+    ("CH-ROUND-COUNTED", "self-declared-round", "v10", lambda d: m(d, 3)["challenge"].update({"round": 2}), True),
+    ("VC-COST-SIGN", "negative-risk-loss", "v03", _vc_edit(expected_risk_loss=rng(-1000000, 2000000, 4000000)), True),
+    ("VC-COUNTERFACTUALS", "workflow-counterfactual-missing", "v03",
+     lambda d: vc_of(d).update({"counterfactuals": [c for c in vc_of(d)["counterfactuals"] if c["kind"] != "deterministic-workflow"]}), True),
+    # boundary pairs that pin the direction and disjuncts of core predicates (mutation survivors)
+    ("DR-CHALLENGE-REQUIRED", "r3-no-flags-without-challenge", "v02", _unattached_challenge_tier("R3", []), True),
+    ("DR-CHALLENGE-REQUIRED", "r1-flag-without-challenge", "v02", _unattached_challenge_tier("R1", ["personal-data"]), True),
+    ("HO-CHAIN-CUSTODY", "parent-sender-continues-unstopped", "v01",
+     _mutate_all(_set(lambda d: m(d, 2), "source", P_REQ), _set(lambda d: m(d, 2), "destination", agent(ARCH))), True),
 ]
 
 

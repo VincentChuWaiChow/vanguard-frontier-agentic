@@ -59,7 +59,13 @@
       "expected_output_schema": "agentic-review-verdict/1.0.0",
       "status": "dispatched",
       "stop_reasons": [],
-      "synthetic": true
+      "synthetic": true,
+      "decision_class": "security",
+      "decision_owner": {
+        "kind": "principal",
+        "subject": "subject:corp-idp:a94f03d2c8e1b756",
+        "role": "ai-risk-owner"
+      }
     },
     {
       "schema_version": "1.0.0",
@@ -281,8 +287,9 @@
         "role": "ai-risk-owner"
       },
       "destination": {
-        "kind": "agent",
-        "id": "agentic-security-review-agent"
+        "kind": "principal",
+        "subject": "subject:corp-idp:3d8b6e21f40ac975",
+        "role": "security-risk-owner"
       },
       "objective": "Record the decision owner's decision on the v06 proposal.",
       "input_schema_version": "1.0.0",
@@ -343,7 +350,81 @@
           "role": "security-risk-owner"
         }
       }
+    },
+    {
+      "schema_version": "1.0.0",
+      "message_type": "decision-record",
+      "task_id": "v06-m6",
+      "correlation_id": "v06-corr",
+      "parent_task_id": "v06-m5",
+      "hop_count": 5,
+      "max_hops": 8,
+      "sent_at": "2026-10-01T09:06:00Z",
+      "source": {
+        "kind": "principal",
+        "subject": "subject:corp-idp:3d8b6e21f40ac975",
+        "role": "security-risk-owner"
+      },
+      "destination": {
+        "kind": "agent",
+        "id": "agentic-security-review-agent"
+      },
+      "objective": "Co-sign the decision owner's decision on the v06 proposal as the named second approver.",
+      "input_schema_version": "1.0.0",
+      "subject_risk_tier": "R5",
+      "data_classification": "internal",
+      "materiality_flags": [
+        "irreversible",
+        "regulatory"
+      ],
+      "authorized_actions": [
+        "read",
+        "analyze",
+        "recommend",
+        "challenge",
+        "escalate"
+      ],
+      "do_not_do_list": [
+        "Do not execute, deploy, or mutate any system",
+        "Do not request, store, or echo credentials, tokens, or secrets",
+        "Do not record an approval on behalf of a human"
+      ],
+      "evidence_refs": [
+        {
+          "ref": "repo:docs/design/v06.md#section-1",
+          "label": "repo-evidence"
+        }
+      ],
+      "missing_evidence": [],
+      "budget": {
+        "currency": "USD",
+        "limit_tool_calls": 40,
+        "spent_tool_calls": 18,
+        "limit_tokens": 400000,
+        "spent_tokens": 90000,
+        "limit_cost_minor": 2000,
+        "spent_cost_minor": 360
+      },
+      "deadline": "2026-10-08T17:00:00Z",
+      "approval_state": "approved",
+      "expected_output_schema": "agentic-review-verdict/1.0.0",
+      "status": "completed",
+      "stop_reasons": [],
+      "synthetic": true,
+      "decision_record": {
+        "request_task_id": "v06-m4",
+        "request_digest": "sha256:1259f41f7295d7b320d62246eb27a67a2baccc11fcf549f02a6d13f6954548f8",
+        "outcome": "approve",
+        "decided_by": {
+          "kind": "principal",
+          "subject": "subject:corp-idp:3d8b6e21f40ac975",
+          "role": "security-risk-owner"
+        },
+        "rationale": "Decision taken on the attached proposal, alternatives, challenges and dissent.",
+        "dissent_acknowledged": true,
+        "co_signs_task_id": "v06-m5"
+      }
     }
   ],
-  "description": "R5 irreversible decision with a withdrawn challenge, approved by two distinct human subjects."
+  "description": "R5 irreversible decision with a withdrawn challenge, approved by the decision owner and co-signed by a second, distinct human subject in their own record."
 }
