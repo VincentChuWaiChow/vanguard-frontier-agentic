@@ -35,6 +35,18 @@ A second independent adversarial review (seven attack lenses: authority bypass, 
 - **Entering the board.** "Only a user can enter the board, by naming an agent" ignored harness automatic delegation. The same Gemini page documents that the main agent may call a subagent when a task matches its description. No maestro routes to the board, so it is entered when a user names an agent or when a harness's main agent delegates to it automatically from its description. A routing contract still does not exist (RB-19).
 - **Install-role export coverage, and the gate does not travel.** This record said the install roles carry the board without saying where export stops. cloud-security-engineer and cloud-ai-platform-engineer also contain nvidia-model-promotion-gatekeeper-agent, which has only claude-code and cursor variants, so exporting those two roles to codex, gemini, copilot or kiro aborts (a pre-existing exporter behavior). typescript-agentic-contract-engineer exports on all six platforms. An exported install carries the protocol prose and agents, not the offline gate (tests/agentic-board-suite/agentic_board_rules.py) or the schema; the protocol skill now says so.
 
+## Corrections after the third independent check
+
+A third independent check (three time-boxed lenses: closure of the second review's findings, a bypass hunt on the new predicates, and a false-rejection hunt on the new strictness) reported 13 findings against commit a9721e69. Every one was reproduced from its probe. Where an earlier section conflicts with this one, this one is current.
+
+- **HARD gates left behind by a change of proposer.** The second section said a different proposer could no longer leave a HARD gate behind. That held only when the new proposer superseded the old request: a different proposer that never superseded, or a HARD gate raised on the requester's framing, still escaped. HARD gates are now owed correlation-wide. DR-CHALLENGE-COMPLETE requires every HARD gate that precedes the request to be attached wherever it was raised, and DR-CHALLENGE-TARGETS-PROPOSAL lets a HARD gate be attached although it targets another party's envelope.
+- **R5 decided through a lower-tier request.** Keying DRC-SECOND-APPROVER on the bound request's tier did not help when the request itself sat on a lower-tier branch, or a re-ask lowered it from R5 to R3. The new rule DR-RISK-CARRIED requires a decision-request's tier and materiality flags to be at least those of the challenges it attaches, the envelopes they target and everything its proposer sent before it.
+- **Rounds and revisits read from self-named targets.** A challenger that named the original envelope in every answer allowed unlimited revisits, and a challenge that named a later envelope, even the request, posed as a later round and cleared a HARD gate. CH-PROPOSAL-LINK now requires the challenged envelope to precede the challenge, a round counts the envelopes its challenger had already answered when it was sent, and the one revisit is counted by delegates, not by targets.
+- **Causal order ignored bindings.** A withdrawal sent as a reply to the decision-record, in the request's own second, was attached and cleared the gate. The causal order now includes binding edges: a decision-record comes after the request it binds, and a co-signing record after the record it co-signs. DR-CHALLENGE-COMPLETE uses that order instead of whole seconds, and DRC-AFTER-REQUEST also rejects a request that descends from its own record.
+- **Regressions from the second remediation, fixed.** HO-RETURN-TO-SENDER rejected a delegator reporting back to its own requester after a challenge; a return may now go to whoever delegated to its sender earlier in the chain, which still stops a reviewer's verdict from skipping the delegating agent. A stopped delegate no longer counts as "already delegated", so an agent may dispatch again after a principal cures the stop.
+- **Contracts aligned with the gate.** Both agent contracts said to "hand the verdict to the designated challenger", which an agent could send as a return; they now say to send the proposal as a delegate. They allowed status escalated on any stop; it is now stopped, or escalated only toward a principal, and after a stop only an escalate follows. stop-conditions.md now says that an escalated envelope is itself the hand-off, and gives the path after a capped round: escalate, the principal sends the work back, and the proposer asks with every round attached. Fanning out several proposal envelopes to one challenger uses up a round for each; that is documented, not changed.
+- **Counts.** There are now 88 rules (HO 35, DR 18, DRC 13, VC 11, STOP 9, CH 2), 34 valid fixtures (12 hand-written scenarios and 22 variants) and 150 invalid fixtures. TargetedMutantTests commits 42 targeted mutants and the corpus kills all 42. These supersede the counts in the sections above.
+
 ## Status and scope
 
 | Field | Value |
@@ -331,7 +343,7 @@ Both agents carry the same thirteen-row authority card in their AGENT.md. The ro
 
 ## Topology and handoff contract
 
-The envelope in [schemas/agentic-handoff.schema.json](../../schemas/agentic-handoff.schema.json) is the only channel between board agents and principals. The schema checks shape only; the cross-field rules live in tests/agentic-board-suite/agentic_board_rules.py, one predicate per rule id, so each defect fails with the id that names it. There are 87 rule ids in six families as of 2026-10-30: 35 envelope, record-set and chain rules (HO), 9 computed stop conditions (STOP), 2 challenge rules (CH), 17 decision-request rules (DR), 13 decision-record rules (DRC) and 11 value-case rules (VC). The rule tables are in the protocol references: [handoff envelope](../../skills/cross-functional/agentic-board-protocol/references/handoff-envelope.md), [stop conditions](../../skills/cross-functional/agentic-board-protocol/references/stop-conditions.md), [decision record](../../skills/cross-functional/agentic-board-protocol/references/decision-record.md) and [value case](../../skills/cross-functional/agentic-board-protocol/references/value-case.md).
+The envelope in [schemas/agentic-handoff.schema.json](../../schemas/agentic-handoff.schema.json) is the only channel between board agents and principals. The schema checks shape only; the cross-field rules live in tests/agentic-board-suite/agentic_board_rules.py, one predicate per rule id, so each defect fails with the id that names it. There are 88 rule ids in six families as of 2026-10-30: 35 envelope, record-set and chain rules (HO), 9 computed stop conditions (STOP), 2 challenge rules (CH), 18 decision-request rules (DR), 13 decision-record rules (DRC) and 11 value-case rules (VC). The rule tables are in the protocol references: [handoff envelope](../../skills/cross-functional/agentic-board-protocol/references/handoff-envelope.md), [stop conditions](../../skills/cross-functional/agentic-board-protocol/references/stop-conditions.md), [decision record](../../skills/cross-functional/agentic-board-protocol/references/decision-record.md) and [value case](../../skills/cross-functional/agentic-board-protocol/references/value-case.md).
 
 | Message type | Purpose |
 |---|---|
@@ -420,15 +432,15 @@ Classification under the EU AI Act is routed to legal-regulatory-compliance-agen
 
 The gate is deterministic and offline, reading committed files only (`python3 -m unittest discover -s tests/agentic-board-suite -p "test_*.py"`). It proves:
 
-- Every one of the 87 rules has a sole-violation fixture, and each of the 142 invalid fixtures fails exactly its one declared rule.
-- The 30 valid record sets (12 hand-written scenarios and 18 variants that pin a rule's boundary from the accepting side) pass and are all marked synthetic.
+- Every one of the 88 rules has a sole-violation fixture, and each of the 150 invalid fixtures fails exactly its one declared rule.
+- The 34 valid record sets (12 hand-written scenarios and 22 variants that pin a rule's boundary from the accepting side) pass and are all marked synthetic.
 - The fixtures are current with their builder, every agent id they use exists in the catalog, and the harness adapters are current with the committed tests/agentic-board-suite/_build_harnesses.py (checked with `--check`). The adapters previously came from an uncommitted scratch script and could drift.
 - The protocol references document exactly the rule table, no more and no fewer ids.
 - subject_risk_tier and data_classification reuse the audit-event vocabularies, the board's actions are a subset of the schema's, and designated challengers exist in the catalog.
 - The board agents are generic, static-review and experimental, bundle the protocol, and carry the tool-restriction declarations in five harness adapters; the board skills declare Read Grep Glob and link each reference.
 - An AST denylist scan finds none of the listed wall-clock, network or randomness imports and calls in the rules or the fixture builder.
 - The mutation-intent and instruction-bait patterns (LIVE_GUARD_INTENT and INSTRUCTION_BAIT) behave as pinned: the suite pins known misses, known false stops and bait negatives.
-- Thirty-three targeted mutants (TargetedMutantTests) are each killed by the corpus.
+- Forty-two targeted mutants (TargetedMutantTests) are each killed by the corpus.
 
 ### Rules added after the independent review
 
@@ -464,6 +476,17 @@ Added or changed after the second review. DR-CHALLENGE-PRECEDES and HO-RETURN-TO
 - DRC-SECOND-APPROVER (changed): also applies when the bound decision-request is R5, not only when the decision-record's own tier is R5.
 - DRC-CO-SIGNED (changed): a superseded request's record is void and owes no co-signature, while the decision in force still needs its co-signature.
 
+Added or changed after the third check. DR-RISK-CARRIED is new, and the counts above include it. The other rules named here changed.
+
+- DR-RISK-CARRIED (new): a decision-request's tier and materiality flags are at least those of the challenges it attaches, the envelopes they target and every envelope its proposer sent before it, so a request on a lower-tier branch or a lowering re-ask cannot escape R5 dual control.
+- DR-CHALLENGE-COMPLETE (changed): every HARD gate in the correlation is owed, wherever it was raised, and the request in force is judged by causal order rather than whole seconds.
+- DR-CHALLENGE-TARGETS-PROPOSAL (changed): a HARD gate may be attached although it targets another party's envelope.
+- CH-PROPOSAL-LINK (changed): the challenged envelope must precede the challenge.
+- CH-ROUND-COUNTED (changed): a round counts the envelopes the challenger had already answered when the challenge was sent.
+- STOP-ROUTING-LOOP (changed): the one revisit is counted by delegates to the challenger, not by the envelopes it names, and a stopped delegate does not count.
+- HO-RETURN-TO-SENDER (changed): a return may also go to whoever delegated to its sender earlier in the chain.
+- DRC-AFTER-REQUEST (changed): the bound request must not descend from the record.
+
 ### What it does not prove
 
 - That any content is true, that any principal is who the record says, or that anyone approved anything.
@@ -476,7 +499,7 @@ Added or changed after the second review. DR-CHALLENGE-PRECEDES and HO-RETURN-TO
 
 ### Mutation probe
 
-The earlier probe neutralized each rule add-site in agentic_board_rules.py in memory and replayed every fixture. It found 65 mutation sites (64 rule add-sites and the early return for an empty document). Fixtures killed 64. The one survivor is the empty-document return, which test_empty_document_fails_closed covers directly. The probe was re-run on 2026-10-30 and reproduced these numbers. It used deletion operators only, so it says nothing about comparison, boolean or constant mutations: the independent chair found 5 of 5 targeted mutants of those kinds surviving. The suite now commits 33 targeted mutants (TargetedMutantTests) and the corpus kills all 33. The second independent review's mutation lens generated a broad mutant set over the new predicates, and its distinguishing probes were added as fixtures. A full mutation probe with an enumerated list of equivalent mutants is still open (RB-08, partial); this record claims no more than the 33 killed mutants and the earlier deletion probe. Routing is not used: the board is wired into no routing fixture, and validate:maestro-routing does not exercise it.
+The earlier probe neutralized each rule add-site in agentic_board_rules.py in memory and replayed every fixture. It found 65 mutation sites (64 rule add-sites and the early return for an empty document). Fixtures killed 64. The one survivor is the empty-document return, which test_empty_document_fails_closed covers directly. The probe was re-run on 2026-10-30 and reproduced these numbers. It used deletion operators only, so it says nothing about comparison, boolean or constant mutations: the independent chair found 5 of 5 targeted mutants of those kinds surviving. The suite now commits 42 targeted mutants (TargetedMutantTests) and the corpus kills all 42. The second independent review's mutation lens generated a broad mutant set over the new predicates, and its distinguishing probes were added as fixtures. A full mutation probe with an enumerated list of equivalent mutants is still open (RB-08, partial); this record claims no more than the 42 killed mutants and the earlier deletion probe. Routing is not used: the board is wired into no routing fixture, and validate:maestro-routing does not exercise it.
 
 ### Negative probes the gate already carries
 
@@ -522,7 +545,7 @@ This scorecard is the author's judgment against a rubric defined in this documen
 
 | Dimension | Score | Evidence | Why not higher |
 |---|---|---|---|
-| Security | 3 | No execute verb; principal-only approvals bound by request digest; a HARD gate that holds over every challenge on the proposal, not only attached ones (DR-CHALLENGE-COMPLETE); 87 rules with sole-violation fixtures and 33 committed targeted mutants (a full mutation probe is open, RB-08); tool-restriction declarations in five harness adapters | Sender authentication, authorization and audit storage are runtime-only; two adapters are prompt-level and Codex has no per-agent sandbox; enforcement is documented by the vendor for Claude Code `tools`, Gemini `tools` and, as a partial restriction, Cursor `readonly`; the amended execution-tiers document awaits the owner's acceptance; ASI02, ASI04, ASI05, ASI06 and ASI10 have no repository control; no red-team run |
+| Security | 3 | No execute verb; principal-only approvals bound by request digest; a HARD gate that holds over every HARD gate in the correlation, not only attached ones (DR-CHALLENGE-COMPLETE); 88 rules with sole-violation fixtures and 42 committed targeted mutants (a full mutation probe is open, RB-08); tool-restriction declarations in five harness adapters | Sender authentication, authorization and audit storage are runtime-only; two adapters are prompt-level and Codex has no per-agent sandbox; enforcement is documented by the vendor for Claude Code `tools`, Gemini `tools` and, as a partial restriction, Cursor `readonly`; the amended execution-tiers document awaits the owner's acceptance; ASI02, ASI04, ASI05, ASI06 and ASI10 have no repository control; no red-team run |
 | Operational burden | 2 | Nothing to operate in this repository; one added gate; two agents and three skills to install via three install roles | Adopters must build the runtime, record store and approver authentication; the cost of challenger, alternative and dissent for R2+ work is unmeasured |
 | Interoperability | 2 | Envelope is a JSON Schema 2020-12 document; seven harness adapters; parity with the audit-event vocabularies is checked offline | No wire binding to MCP or A2A is implemented; framework and protocol facts drift; no other system has consumed the envelope |
 | Economics | 1 | A value-case contract with interval arithmetic, counterfactuals and a promotion rule, with bookkeeping checked offline | No measured benefit, no baseline, and synthetic fixtures cannot exceed pilot. The arithmetic proves bookkeeping, not value |
@@ -548,7 +571,7 @@ Basis: two adversarial refuters probed the synthesized design in memory (includi
 | agentic-system-architecture-review | APPROVE WITH CONDITIONS | Framework facts are research-delegate findings cited "per" sources and must be re-verified for the installed version |
 | agentic-security-review | APPROVE WITH CONDITIONS | MCP authorization and A2A claims are limited to the verified revisions and wording; verify against installed software |
 | schemas/agentic-handoff.schema.json | APPROVE WITH CONDITIONS | Shape only; opaque subjects; no credential fields; useful only if the runtime authenticates senders |
-| tests/agentic-board-suite | APPROVE WITH CONDITIONS | Oracles are not runtime enforcement and fail open; the determinism scan is a denylist; the earlier deletion probe's one survivor has its own covering test and 33 targeted mutants are committed and killed, but a full mutation probe is open (RB-08); it proves form, not truth |
+| tests/agentic-board-suite | APPROVE WITH CONDITIONS | Oracles are not runtime enforcement and fail open; the determinism scan is a denylist; the earlier deletion probe's one survivor has its own covering test and 42 targeted mutants are committed and killed, but a full mutation probe is open (RB-08); it proves form, not truth |
 | Kiro Power invariant text and install-role wiring | APPROVE | Each corrects a verified defect or wires the board into discovery |
 | TypeScript per-server MCP-trust routing | APPROVE WITH CONDITIONS | Only the per-server MCP trust clauses were repointed, including the per-server entry in the MCP tool-contract companion skill. The TypeScript routing contract was not changed, so the grader still routes MCP-server-trust tasks to typescript-mcp-tool-contract-agent until an inbound route is added (RB-19). Other clauses in the maestro and in the runtime-boundary, package-publication, MCP tool-contract and automation-governance specialists still route to a "security board" or "application security board" that does not exist; the backlog item holds the owner decision |
 

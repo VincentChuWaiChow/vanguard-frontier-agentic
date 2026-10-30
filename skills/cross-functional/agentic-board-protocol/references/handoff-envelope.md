@@ -13,7 +13,7 @@ Every envelope has one `message_type`. A type carries its own payload object (de
 | message_type | Payload key | Purpose |
 |---|---|---|
 | delegate | none | Ask an agent to perform analysis. The objective is a review question. Sent by a principal or an agent. |
-| return | verdict | Deliver a verdict to the requester: a return is addressed to the sender of its parent. verdict.outcome is one of pass, pass-with-conditions, block, simpler-pattern-sufficient, with a summary and optional conditions. |
+| return | verdict | Deliver a verdict to the requester: a return goes back up its chain, to its parent's sender or to whoever delegated the work to its sender earlier in the chain. verdict.outcome is one of pass, pass-with-conditions, block, simpler-pattern-sufficient, with a summary and optional conditions. |
 | challenge | challenge | A designated challenger's adversarial finding on a proposal: proposal_task_id, round, hard_gate, outcome (sustained, withdrawn, unresolved) and finding. |
 | escalate | escalation | Stop and hand the work to an accountable principal: a reason and a route_hint. The route_hint says where a human should take the work next; it is a hint, never a dispatch. Always addressed to a principal. |
 | decision-request | decision_request | An agent assembles proposal, alternatives, challenges and dissent for a principal. It is never a decision. Addressed to a principal and sent by the agent it names as proposer. |
@@ -196,7 +196,7 @@ Each row names the rule id the offline gate reports. The requirement is the gate
 | `HO-CHAIN-PARENT` | Chain | A non-root envelope's parent is present and hop_count equals the parent's plus one. A missing parent is a violation, never a pass. |
 | `HO-CHAIN-TIME` | Chain | An envelope is not sent before its parent. |
 | `HO-CHAIN-CUSTODY` | Chain | An envelope is sent by its parent's destination, or by its parent's sender when the parent was stopped. This is a consistency check on the record; proving the sender really is that party is runtime-only. |
-| `HO-RETURN-TO-SENDER` | Chain | A return is addressed to the sender of its parent: a finding goes back to whoever asked for it. A reviewer's block verdict cannot skip the delegating agent and land with a principal outside the decision path. |
+| `HO-RETURN-TO-SENDER` | Chain | A return goes back up its chain: to its parent's sender, or to the sender of an earlier delegate in its chain that was addressed to the return's sender, so a delegator can report to its own requester after a challenge or sub-review. A reviewer's block verdict cannot skip the delegating agent and land with a principal outside the decision path, and a proposer hands its proposal to a challenger as a delegate, not a return. |
 | `HO-ATTEN-ACTIONS` | Chain | authorized_actions never widen from parent to child. |
 | `HO-ATTEN-BUDGET` | Chain | Budget limits never increase from parent to child, and the currency never changes. Limits are compared, not spent counters. |
 | `HO-MONO-TIER` | Chain | subject_risk_tier never decreases from parent to child. |

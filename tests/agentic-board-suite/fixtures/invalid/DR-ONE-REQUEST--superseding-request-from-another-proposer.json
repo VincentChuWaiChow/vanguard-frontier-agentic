@@ -475,7 +475,7 @@
         "subject": "subject:corp-idp:a94f03d2c8e1b756",
         "role": "ai-risk-owner"
       },
-      "objective": "Request a human decision on the v04 proposal with challenges and dissent attached.",
+      "objective": "Request a human decision on FIN's restated v04 proposal.",
       "input_schema_version": "1.0.0",
       "subject_risk_tier": "R3",
       "data_classification": "internal",
@@ -528,10 +528,16 @@
           }
         ],
         "challenge_task_ids": [
+          "v04-m3",
           "v04-m8"
         ],
-        "dissent": [],
-        "recommended_outcome": "approve",
+        "dissent": [
+          {
+            "challenge_task_id": "v04-m3",
+            "position": "SEC's HARD gate on ARCH's proposal stays live."
+          }
+        ],
+        "recommended_outcome": "redesign",
         "supersedes_task_id": "v04-m4"
       }
     },
@@ -589,15 +595,15 @@
         "spent_cost_minor": 360
       },
       "deadline": "2026-10-08T17:00:00Z",
-      "approval_state": "approved",
+      "approval_state": "rejected",
       "expected_output_schema": "agentic-review-verdict/1.0.0",
       "status": "completed",
       "stop_reasons": [],
       "synthetic": true,
       "decision_record": {
         "request_task_id": "v04-m9",
-        "request_digest": "sha256:553d4b6ac38bff8c7b11fae52900c11a40ada2f495714062fdc5e3a9193bc61a",
-        "outcome": "approve",
+        "request_digest": "sha256:c6897cfe9db3fe9dad88e5766b2b7f2ffd301b9927add08f6bd31599266b1d5f",
+        "outcome": "reject",
         "decided_by": {
           "kind": "principal",
           "subject": "subject:corp-idp:a94f03d2c8e1b756",

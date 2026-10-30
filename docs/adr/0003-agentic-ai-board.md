@@ -38,6 +38,18 @@ A second independent adversarial review (seven attack lenses) re-tested the firs
 
 The full list, including false rejections fixed, crash hardening and install-role export coverage, is in docs/architecture/agentic-ai-board.md, section "Corrections after the second independent review" (cited by path, as elsewhere in this ADR).
 
+## Corrections after the third independent check
+
+A third independent check reported 13 findings against commit a9721e69, and every one was reproduced from its probe. Where the sections above conflict with this one, this one is current.
+
+- **HARD gates are owed correlation-wide.** A different proposer that never superseded the request, or a HARD gate raised on the requester's framing, still left the gate behind. Every HARD gate that precedes the request must now be attached, wherever it was raised.
+- **The decision's risk is carried.** One human could still decide an R5 matter through a request on a lower-tier branch or a lowering re-ask. The new rule DR-RISK-CARRIED holds a request's tier and flags to those of its challenges, their targets and its proposer's earlier envelopes.
+- **Rounds, revisits and causal order.** A challenge must answer an envelope already sent; a round is fixed when the challenge is sent; the one revisit is counted by delegates; and a decision-record comes after the request it binds in the causal order.
+- **Regressions fixed and contracts aligned.** A delegator may report back to its own requester after a challenge, a stopped delegate does not count as already delegated, and the agent contracts now send proposals to the challenger as delegates and mark stops toward agents as stopped.
+- **Counts.** 88 rules, 34 valid fixtures and 150 invalid fixtures; 42 targeted mutants, all killed. These supersede the counts above.
+
+The full list is in docs/architecture/agentic-ai-board.md, section "Corrections after the third independent check" (cited by path, as elsewhere in this ADR).
+
 ## Date
 
 2026-10-30
@@ -75,7 +87,7 @@ Evaluation details, the full inventory and the per-candidate table are in docs/a
 ### What becomes easier
 
 - **Reviewing an agentic system without a vendor lens.** Pattern selection, durability, containment and the composed attack surface now have an owner each, and a "should this be multi-agent at all" question has a defined answer path.
-- **Auditing a handoff.** A record set can be checked offline against 87 rules, each failing under its own id, including the rule that only a principal records a decision.
+- **Auditing a handoff.** A record set can be checked offline against 88 rules, each failing under its own id, including the rule that only a principal records a decision.
 - **Adding a rule.** A new rule needs a predicate, a sole-violation fixture and a documented row; the gate fails if any of the three is missing.
 - **Keeping one owner per concept.** The protocol's ownership table prevents a second asset from quietly restating the first.
 
@@ -99,7 +111,7 @@ Evaluation details, the full inventory and the per-candidate table are in docs/a
 ### Mitigations
 
 - The honesty boundary is repeated in the schema description, the protocol, both agent contracts and the design record, so a reader of any one of them meets it.
-- Every rule has a sole-violation fixture, and every invalid fixture fails exactly its one declared rule. An earlier probe that deleted rule add-sites found 65 sites and killed 64 by fixtures, but it used deletion operators only, and the independent chair found 5 of 5 targeted comparison, boolean and constant mutants surviving. The suite now commits 33 targeted mutants (TargetedMutantTests) and the corpus kills all 33. A full mutation probe with an enumerated list of equivalent mutants is still open (RB-08, partial).
+- Every rule has a sole-violation fixture, and every invalid fixture fails exactly its one declared rule. An earlier probe that deleted rule add-sites found 65 sites and killed 64 by fixtures, but it used deletion operators only, and the independent chair found 5 of 5 targeted comparison, boolean and constant mutants surviving. The suite now commits 42 targeted mutants (TargetedMutantTests) and the corpus kills all 42. A full mutation probe with an enumerated list of equivalent mutants is still open (RB-08, partial).
 - The gate runs an AST denylist scan for listed wall-clock, network and randomness imports and calls. A denylist does not catch indirect forms, which the design record lists, so determinism also rests on review. The gate is meant to change result only when committed data changes.
 - Facts are labeled by verification level, and anything not confirmed from a primary source is left out or marked for verification.
 - The pull request is a draft, the ordering exception is stated in it, and the owner can defer the whole wave to Milestone 3 without losing the design record.
