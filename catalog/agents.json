@@ -7453,6 +7453,47 @@
     "execution_tier": "static-review"
   },
   {
+    "id": "gcp-agent-runtime-review-agent",
+    "name": "GCP Agent Runtime Review Agent",
+    "type": "agent",
+    "provider": "gcp",
+    "harnesses": [
+      "codex",
+      "copilot",
+      "claude-code",
+      "cursor",
+      "gemini",
+      "kiro"
+    ],
+    "summary": "Static production-readiness and security reviewer for agents on Google Cloud Agent Runtime (Gemini Enterprise Agent Platform; formerly Vertex AI Agent Engine, API resource ReasoningEngine), especially ADK agents: renamed SDK and CLI surface, runtime principals and IAM, PSC and VPC-SC, ADK tool guardrails, loop bounds, session and memory scope, the unsupported tool-confirmation path on managed sessions, revisions, traffic, deletion hazards, quotas, tracing and adk eval evidence. Reviews and plans; never deploys, updates, changes IAM or deletes.",
+    "source_type": "original",
+    "official_docs": [
+      "https://docs.cloud.google.com/gemini-enterprise-agent-platform/build/runtime",
+      "https://docs.cloud.google.com/gemini-enterprise-agent-platform/build/runtime/setup",
+      "https://docs.cloud.google.com/gemini-enterprise-agent-platform/build/runtime/sdk-migration",
+      "https://docs.cloud.google.com/gemini-enterprise-agent-platform/scale/runtime/deploy-an-agent",
+      "https://docs.cloud.google.com/gemini-enterprise-agent-platform/scale/runtime/manage-deployed-agents",
+      "https://docs.cloud.google.com/gemini-enterprise-agent-platform/scale/runtime/manage-revisions-and-traffic",
+      "https://docs.cloud.google.com/gemini-enterprise-agent-platform/scale/runtime/agent-identity",
+      "https://docs.cloud.google.com/gemini-enterprise-agent-platform/scale/runtime/private-service-connect-interface",
+      "https://docs.cloud.google.com/gemini-enterprise-agent-platform/scale/runtime/tracing",
+      "https://docs.cloud.google.com/gemini-enterprise-agent-platform/resources/agent-quotas",
+      "https://adk.dev/safety/",
+      "https://adk.dev/api-reference/cli/",
+      "https://adk.dev/tools-custom/confirmation/",
+      "https://pypi.org/project/google-adk/"
+    ],
+    "security_notes": "Static review only: reads supplied code and configuration and never runs adk deploy, SDK, gcloud or Terraform operations, never changes IAM or traffic and never deletes. Never requests or echoes credentials, tokens, keys or customer data. Deletion and revision archiving are irreversible and always escalated to an accountable human. Version-sensitive claims are pinned to ADK 2.13.0 and the Agent Platform docs verified 2026-11-01.",
+    "last_verified": "2026-11-01",
+    "path": "agents/gcp/gcp-agent-runtime-review-agent",
+    "version": "0.1.0",
+    "execution_tier": "static-review",
+    "lifecycle": "experimental",
+    "companion_skills": [
+      "gcp-agent-runtime-review"
+    ]
+  },
+  {
     "id": "gcp-alloydb-ai-developer-agent",
     "name": "GCP AlloyDB AI Developer",
     "type": "agent",

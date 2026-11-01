@@ -1,0 +1,37 @@
+{
+  "id": "gcp-agent-runtime-review",
+  "name": "GCP Agent Runtime Review",
+  "type": "skill",
+  "provider": "gcp",
+  "harnesses": [
+    "codex",
+    "claude-code",
+    "cursor",
+    "gemini",
+    "kiro",
+    "other"
+  ],
+  "summary": "Static review procedure for agents on Google Cloud Agent Runtime (formerly Vertex AI Agent Engine), especially ADK agents: name map across renamed APIs, principals and IAM, network boundaries, ADK guardrails and the tool-confirmation gap on managed sessions, revisions, traffic, deletion, quotas, tracing and adk eval evidence.",
+  "source_type": "original",
+  "official_docs": [
+    "https://docs.cloud.google.com/gemini-enterprise-agent-platform/build/runtime",
+    "https://docs.cloud.google.com/gemini-enterprise-agent-platform/build/runtime/setup",
+    "https://docs.cloud.google.com/gemini-enterprise-agent-platform/build/runtime/sdk-migration",
+    "https://docs.cloud.google.com/gemini-enterprise-agent-platform/scale/runtime/deploy-an-agent",
+    "https://docs.cloud.google.com/gemini-enterprise-agent-platform/scale/runtime/manage-deployed-agents",
+    "https://docs.cloud.google.com/gemini-enterprise-agent-platform/scale/runtime/manage-revisions-and-traffic",
+    "https://docs.cloud.google.com/gemini-enterprise-agent-platform/scale/runtime/agent-identity",
+    "https://docs.cloud.google.com/gemini-enterprise-agent-platform/scale/runtime/private-service-connect-interface",
+    "https://docs.cloud.google.com/gemini-enterprise-agent-platform/scale/runtime/tracing",
+    "https://docs.cloud.google.com/gemini-enterprise-agent-platform/resources/agent-quotas",
+    "https://adk.dev/safety/",
+    "https://adk.dev/api-reference/cli/",
+    "https://adk.dev/tools-custom/confirmation/",
+    "https://pypi.org/project/google-adk/"
+  ],
+  "security_notes": "Static review only: reads supplied code and configuration and never runs adk deploy, SDK, gcloud or Terraform operations, never changes IAM or traffic and never deletes. Never requests or echoes credentials, tokens, keys or customer data. Deletion and revision archiving are irreversible and always escalated to an accountable human. Version-sensitive claims are pinned to ADK 2.13.0 and the Agent Platform docs verified 2026-11-01.",
+  "last_verified": "2026-11-01",
+  "path": "skills/gcp/gcp-agent-runtime-review",
+  "author": "github: VincentChuWaiChow",
+  "version": "0.1.0"
+}

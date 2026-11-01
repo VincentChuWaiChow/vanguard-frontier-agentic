@@ -1,0 +1,7 @@
+{
+  "name": "045-happy-agent-runtime-review",
+  "task": "Review our ADK agent deployed on Agent Runtime: callbacks, session service and IAM.",
+  "tags": [
+    "happy-path"
+  ]
+}

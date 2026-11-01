@@ -34,16 +34,16 @@
   "trees": [
     {
       "tree": "agents",
-      "aggregate_sha256": "0122b42c7c48fdca71532292b93c00c5a3d08d90c8e7b3d4b2ac8cc2e4c69b84",
+      "aggregate_sha256": "9d79b8f8f17a1c4cd2fe07076ed6d17b9cc9698df9f9fe50dd60a5a3b0dacc87",
       "files": [
         {
           "path": "agents/AGENTS.md",
-          "sha256": "1589e2d8e6cb70d046f8a48585f47b2e3289df9a7b8d8b45522a1a9e2c7d8d7c",
+          "sha256": "41fccdcf07f3aad8f1e0cc164cb3a2e314c279589cc30ce3cf85cb8d6bd36faf",
           "bytes": 28065
         },
         {
           "path": "agents/README.md",
-          "sha256": "bd2501cd22fe477de88a759d42c46146c543940d934625f74858845952edf8ef",
+          "sha256": "2138077edebc7b25ac76784154106e8b70abf7505bfdab06c7748bad89341a29",
           "bytes": 10047
         },
         {
@@ -11853,8 +11853,53 @@
         },
         {
           "path": "agents/gcp/README.md",
-          "sha256": "be2bd2e334304940d2f27c1f128548540d1d3df6ae1580513d2ce0aae6c9a35e",
-          "bytes": 5151
+          "sha256": "10b6e0f720447d39f2c05445ff18d7ea0a07d43dea39726c436e69f8a731c678",
+          "bytes": 5260
+        },
+        {
+          "path": "agents/gcp/gcp-agent-runtime-review-agent/AGENT.md",
+          "sha256": "3d54500e80e1408e68fc8c36f36c9a418c590e1bd985c7029e9926a52f636062",
+          "bytes": 9039
+        },
+        {
+          "path": "agents/gcp/gcp-agent-runtime-review-agent/harnesses/claude-code.agent.md",
+          "sha256": "f7b540504e920724202006c9b3cee78f199a1d573cc3be55f2a9f44e78330f7c",
+          "bytes": 8523
+        },
+        {
+          "path": "agents/gcp/gcp-agent-runtime-review-agent/harnesses/codex.toml",
+          "sha256": "e3bc69d9ba2df698bd6a2f5b7d9f9d5b1937679cd3cb335a1064021fec2974f7",
+          "bytes": 8654
+        },
+        {
+          "path": "agents/gcp/gcp-agent-runtime-review-agent/harnesses/copilot.agent.md",
+          "sha256": "af6164e4ffa57c912cdf5625179e6c2fcc08323683ea54b92ad765eaa1d2fb11",
+          "bytes": 8603
+        },
+        {
+          "path": "agents/gcp/gcp-agent-runtime-review-agent/harnesses/cursor.agent.md",
+          "sha256": "684e117b003f7d6151f748815079b3feb2b8f857222f501f4cd71dfb939a5245",
+          "bytes": 8512
+        },
+        {
+          "path": "agents/gcp/gcp-agent-runtime-review-agent/harnesses/gemini.agent.md",
+          "sha256": "82a481a30f5362f744fede9d6637026aa2d7bfa11db718394161fb151496c05c",
+          "bytes": 8631
+        },
+        {
+          "path": "agents/gcp/gcp-agent-runtime-review-agent/harnesses/kiro-cli.agent.json",
+          "sha256": "f8dfd636d05263f6fa4d36ddf183cd45a52e71316930ea9c224a988027a85da7",
+          "bytes": 8630
+        },
+        {
+          "path": "agents/gcp/gcp-agent-runtime-review-agent/harnesses/kiro-ide.agent.md",
+          "sha256": "f0f7bf9d4069a60c585344224d5ae3b667022e1b4a7dbd9f7d341ec66b89e9eb",
+          "bytes": 8497
+        },
+        {
+          "path": "agents/gcp/gcp-agent-runtime-review-agent/metadata.json",
+          "sha256": "e883985d14841cc520c5e1d04fc4b12b4251c8e80a91ab257173a94dd44a0846",
+          "bytes": 3392
         },
         {
           "path": "agents/gcp/gcp-alloydb-ai-developer-agent/AGENT.md",
@@ -35939,7 +35984,7 @@
     },
     {
       "tree": "catalog",
-      "aggregate_sha256": "dc0dc9143ebfdab33c22bf0ebde7c6bcdb9385eba871d323156622bb2dee4bfb",
+      "aggregate_sha256": "925013b79728f7b58cb5952d5754c3fbd79137330fde4b3bbad3d1dd4f63a923",
       "files": [
         {
           "path": "catalog/AGENTS.md",
@@ -35948,8 +35993,8 @@
         },
         {
           "path": "catalog/agents.json",
-          "sha256": "280d3a118e6ae6acb3835ae64a1527c1cb155a272122908b7f46d646b301524f",
-          "bytes": 1276695
+          "sha256": "226df3aa663261108ca23efd3c933c27fd1299e177626c12715bd313e39ebc6e",
+          "bytes": 1279490
         },
         {
           "path": "catalog/index.json",
@@ -35958,8 +36003,8 @@
         },
         {
           "path": "catalog/install-roles.json",
-          "sha256": "e0c2f77057e532f9151c1c5cf9b2cc0c9df7e4af43b27018f8984d55b0c7e0ec",
-          "bytes": 128929
+          "sha256": "2180fe8acd4736ff2a91186a97565f52998ef54a6b2b56240fc6b77123fa0ebf",
+          "bytes": 129007
         },
         {
           "path": "catalog/mcp-references.json",
@@ -35968,8 +36013,8 @@
         },
         {
           "path": "catalog/model-assignments.json",
-          "sha256": "ba8ed4efb2ffa37843bfb822897f0fc0a93f65762cee0c3e60a1aecda2e20dd5",
-          "bytes": 703517
+          "sha256": "c8189bcc2dac324e86a2629c7433d8530fed1f275a55f8e03eb68fb0c436c07b",
+          "bytes": 704444
         },
         {
           "path": "catalog/model-policy.json",
@@ -35993,13 +36038,13 @@
         },
         {
           "path": "catalog/skill-manifest.json",
-          "sha256": "e5a54b35c070d9d4f6d23fd36436bf66fa29af08498ad9b73630af6379bc4cbe",
-          "bytes": 1095120
+          "sha256": "c7b36e877955ce45db99513de1ff3d496a90659f94feaabfb68b04c81a493be3",
+          "bytes": 1097115
         },
         {
           "path": "catalog/skills.json",
-          "sha256": "6e90b1be3be9c45d47bd2f79881df830eb03696b92b655f6c3bb8b045f34768b",
-          "bytes": 1244492
+          "sha256": "085fed0ce7635951b3095f1a56d090745e58d226dca39c7a7e42aef41b03629f",
+          "bytes": 1246950
         },
         {
           "path": "catalog/workflows.json",
@@ -36881,7 +36926,7 @@
     },
     {
       "tree": "powers",
-      "aggregate_sha256": "1330c0062937fc4a6ac2a6c6780f9bfec3c26c5ac12aefa3b1ec9685b80d012d",
+      "aggregate_sha256": "e6a0356ab2873e96560ebbf702c6a280ded4f79fc566d00e5b8e2c1e07bf5da1",
       "files": [
         {
           "path": "powers/README.md",
@@ -36965,7 +37010,7 @@
         },
         {
           "path": "powers/vanguard-gcp/POWER.md",
-          "sha256": "b6064c84f3568cccd1d43da62f7a056f7e98cd237641bc25e725cd0915f5a1f0",
+          "sha256": "0fe89edd9f98061672d4c9aa58e8b1791e1c3eba746a6910ca64f1f865651073",
           "bytes": 3147
         },
         {
@@ -37163,7 +37208,7 @@
     },
     {
       "tree": ".claude-plugin",
-      "aggregate_sha256": "de65f68b4d42ff149216c49f508692e1d34b936f6c16918aba07cb35f2d91fc1",
+      "aggregate_sha256": "c5465953c9e984ac29a9e09de4767ea180ad1d2bb613111b03df1a59c1761106",
       "files": [
         {
           "path": ".claude-plugin/README.md",
@@ -37172,19 +37217,19 @@
         },
         {
           "path": ".claude-plugin/marketplace.json",
-          "sha256": "5d3a821fa2881b051355c1b0ef6660e1f2412095a854851eebb2be2630b7be41",
+          "sha256": "06c9457a9906d2c2de4ba4d8dfe9b135a45523a86fc92560651a01893ed23ac8",
           "bytes": 855
         },
         {
           "path": ".claude-plugin/plugin.json",
-          "sha256": "5809426a8eed1e8ea63cf07b422b7454f51cd67d2403c2a802f5fe6f829f8760",
-          "bytes": 68103
+          "sha256": "72205148a03dcc3ea8c2cf8eb0e091444781d6c6caf798e44064d8dc2be36d2e",
+          "bytes": 68185
         }
       ]
     },
     {
       "tree": ".cursor-plugin",
-      "aggregate_sha256": "7008526d750fdbfa53b8683d1efe7335239096fad51d54fbfb769eb87ed7d7e9",
+      "aggregate_sha256": "0796ab03124b0fe03d1520e9f996d17860cef86809560f78a59a98974b343660",
       "files": [
         {
           "path": ".cursor-plugin/README.md",
@@ -37193,8 +37238,8 @@
         },
         {
           "path": ".cursor-plugin/plugin.json",
-          "sha256": "81d130db47882a3910579ef40c7fa088d06d105fb4a44058e78b283c69174693",
-          "bytes": 64394
+          "sha256": "076580f5df0c3dfb8f67626834d533398f0211935a5c7a8e619372e59397a221",
+          "bytes": 64471
         }
       ]
     },
@@ -37232,7 +37277,7 @@
     },
     {
       "tree": "tests",
-      "aggregate_sha256": "8ae691d3412bda0d2071ea7e659209b888d149a0257df81808c680860227be3d",
+      "aggregate_sha256": "c7c4c0d68c6773ca8f3cec91751b62366e11fd0564aba89ad56909529dc0d586",
       "files": [
         {
           "path": "tests/AGENTS.md",
@@ -38271,7 +38316,7 @@
         },
         {
           "path": "tests/fixtures/README.md",
-          "sha256": "1bff07debfbb315e682a7a21891ae8eba637a290aed7bf882b8eacc7ce1876f5",
+          "sha256": "acaf3d3c24397635ed5f3e69b3464bdb2cd75916a8daf95d476546cee9f0399c",
           "bytes": 3698
         },
         {
@@ -42230,6 +42275,21 @@
           "bytes": 77
         },
         {
+          "path": "tests/fixtures/gcp-maestro-routing/expected/045-happy-agent-runtime-review.json",
+          "sha256": "c9e5c973a4adab15b0f13bd2bdafe65ede47e5c3441169344167fddeda08b1ab",
+          "bytes": 78
+        },
+        {
+          "path": "tests/fixtures/gcp-maestro-routing/expected/046-happy-agent-runtime-review-legacy-name.json",
+          "sha256": "c9e5c973a4adab15b0f13bd2bdafe65ede47e5c3441169344167fddeda08b1ab",
+          "bytes": 78
+        },
+        {
+          "path": "tests/fixtures/gcp-maestro-routing/expected/047-happy-agent-runtime-review-sdk-migration.json",
+          "sha256": "c9e5c973a4adab15b0f13bd2bdafe65ede47e5c3441169344167fddeda08b1ab",
+          "bytes": 78
+        },
+        {
           "path": "tests/fixtures/gcp-maestro-routing/expected/adv-ambiguous.json",
           "sha256": "93d7b7768c78f4f08a3d2d77a98110ba46316d589148f9778281b17d8bb9974e",
           "bytes": 44
@@ -42270,9 +42330,19 @@
           "bytes": 97
         },
         {
+          "path": "tests/fixtures/gcp-maestro-routing/expected/adv-liveguard-07-agent-runtime-deletion.json",
+          "sha256": "b0fecde64115bfa20b92330e6a4a090efdf4b2ca593ad16aca32779676290878",
+          "bytes": 103
+        },
+        {
           "path": "tests/fixtures/gcp-maestro-routing/expected/adv-persona-replacement.json",
           "sha256": "6245128a87aac3df8399cbe5e4ba78f33b5ba1ca7b55c0977b13cd80d98a555d",
           "bytes": 78
+        },
+        {
+          "path": "tests/fixtures/gcp-maestro-routing/expected/adv-scope-agent-runtime-vs-training.json",
+          "sha256": "242306eb1e9f26b1e20ecfed3bba5be719180397280c5dee8335bdaae250cdc7",
+          "bytes": 82
         },
         {
           "path": "tests/fixtures/gcp-maestro-routing/expected/adv-secrets-bait.json",
@@ -42500,6 +42570,21 @@
           "bytes": 134
         },
         {
+          "path": "tests/fixtures/gcp-maestro-routing/inputs/045-happy-agent-runtime-review.json",
+          "sha256": "512207c4dca4367aef7176a21ee840a0f45eaa1d597239a1dc82e4d096f16989",
+          "bytes": 178
+        },
+        {
+          "path": "tests/fixtures/gcp-maestro-routing/inputs/046-happy-agent-runtime-review-legacy-name.json",
+          "sha256": "fc68f945f6d80ae6a3a8aa527f5e3b1e44263233a447f0950a2a2059d15cf1db",
+          "bytes": 202
+        },
+        {
+          "path": "tests/fixtures/gcp-maestro-routing/inputs/047-happy-agent-runtime-review-sdk-migration.json",
+          "sha256": "1dccb61c9c194fd6917f897d83425299cdc162bb5451bdb44d576a241054d45f",
+          "bytes": 247
+        },
+        {
           "path": "tests/fixtures/gcp-maestro-routing/inputs/adv-ambiguous.json",
           "sha256": "719b82ca90bbc8d2f22dbfe237a98cd4e0cd50056835f5c65ca03aa21947c177",
           "bytes": 113
@@ -42540,8 +42625,18 @@
           "bytes": 237
         },
         {
+          "path": "tests/fixtures/gcp-maestro-routing/inputs/adv-liveguard-07-agent-runtime-deletion.json",
+          "sha256": "8fc363f27dd5a8117b30261770d2855602c1252e83bf69fb0951d4dad38f24cc",
+          "bytes": 199
+        },
+        {
           "path": "tests/fixtures/gcp-maestro-routing/inputs/adv-persona-replacement.json",
           "sha256": "7a4a2359786e1a4e755be7cd344d2a49c749af402eb83e6f9f352939896f7c9c",
+          "bytes": 190
+        },
+        {
+          "path": "tests/fixtures/gcp-maestro-routing/inputs/adv-scope-agent-runtime-vs-training.json",
+          "sha256": "2a7a6592ad4d0b75ab2cd4930fbe6ff957ff7800e47137cb275bac00451b5174",
           "bytes": 190
         },
         {
@@ -42551,8 +42646,8 @@
         },
         {
           "path": "tests/fixtures/gcp-maestro-routing/taxonomy.json",
-          "sha256": "26a01afbf3e52c53f239889af714b80ef0ade29c9de8f6410d6dc3d84409055a",
-          "bytes": 13317
+          "sha256": "711bb81028bcab222386f7da60b2fa66a860c0321cb375a98e61433228e5ed1b",
+          "bytes": 13678
         },
         {
           "path": "tests/fixtures/hetzner-maestro-routing/expected/001-happy-capacity-planner.json",
@@ -48760,7 +48855,7 @@
   "root_files": [
     {
       "path": "README.md",
-      "sha256": "1204af42384bb0cc6540d3835c3626e77bf446ffb5e67f7c177e200a9fec0650",
+      "sha256": "987e4fad92260b7ae93372e8022579960b9f80cbfdd1d6cada99d539dd8cb9d0",
       "bytes": 115723
     },
     {
@@ -48809,5 +48904,5 @@
       "bytes": 9135
     }
   ],
-  "aggregate_sha256": "353cd7fc2f4e80fb70b3739570914809835ff8e0b80110c356a40f8e821acdfe"
+  "aggregate_sha256": "cb2a37471dc8f04edec104a51fd63611f79cc869a5d8f9047dffcdfb08d6d2cd"
 }

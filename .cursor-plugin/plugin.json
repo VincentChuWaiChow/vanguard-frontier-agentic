@@ -259,6 +259,7 @@
     "./agents/frontend/vue-specialist-agent/harnesses/cursor.agent.md",
     "./agents/frontend/web-performance-core-vitals-agent/harnesses/cursor.agent.md",
     "./agents/frontend/web-platform-foundation-agent/harnesses/cursor.agent.md",
+    "./agents/gcp/gcp-agent-runtime-review-agent/harnesses/cursor.agent.md",
     "./agents/gcp/gcp-alloydb-ai-developer-agent/harnesses/cursor.agent.md",
     "./agents/gcp/gcp-alloydb-cloudsql-dba-agent/harnesses/cursor.agent.md",
     "./agents/gcp/gcp-anthos-multicloud-architect-agent/harnesses/cursor.agent.md",

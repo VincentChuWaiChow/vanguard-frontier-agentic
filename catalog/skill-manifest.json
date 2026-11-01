@@ -8360,6 +8360,53 @@
       ]
     },
     {
+      "id": "gcp-agent-runtime-review",
+      "path": "skills/gcp/gcp-agent-runtime-review",
+      "aggregate_sha256": "fe466354b4dc0da8050d1a7fb411c1525a249d6017395640aaac4bb27e5ac2ee",
+      "files": [
+        {
+          "path": "skills/gcp/gcp-agent-runtime-review/SKILL.md",
+          "sha256": "a58005bc5643236054a9b3359c9b3cef2f8b3f90729c0536f8b9cc97e27289e6",
+          "bytes": 7331
+        },
+        {
+          "path": "skills/gcp/gcp-agent-runtime-review/metadata.json",
+          "sha256": "0edd602789041a055762cab3cfb1aff445f341493646c5f96b8f3255e9edf445",
+          "bytes": 2383
+        },
+        {
+          "path": "skills/gcp/gcp-agent-runtime-review/references/adk-runtime-controls.md",
+          "sha256": "8e3ae8025dfa75e68a8b4f41531752b30106078bd29301750224135ef32d1039",
+          "bytes": 8549
+        },
+        {
+          "path": "skills/gcp/gcp-agent-runtime-review/references/deployment-and-lifecycle.md",
+          "sha256": "a532d04efde49598c77fda79b7a1b7de168914178c8aec1aefea353490d4319a",
+          "bytes": 7446
+        },
+        {
+          "path": "skills/gcp/gcp-agent-runtime-review/references/identity-and-network-boundaries.md",
+          "sha256": "75bf47d33e3aa7d42585ef97a74ae7f0e2a9ebf2c56606e7419551c59594197d",
+          "bytes": 7235
+        },
+        {
+          "path": "skills/gcp/gcp-agent-runtime-review/references/official-sources.md",
+          "sha256": "a2a02d36e830aa9f20cb07b582e42a6f0eb430ef1da7a56e6c2ec5d206bef0c2",
+          "bytes": 6727
+        },
+        {
+          "path": "skills/gcp/gcp-agent-runtime-review/references/verification-and-evaluations.md",
+          "sha256": "e3063f5cf5ccd75f65843efffaf00c3fd1be708e996db809f276ebb7e6e50572",
+          "bytes": 5134
+        },
+        {
+          "path": "skills/gcp/gcp-agent-runtime-review/references/workflow-and-output.md",
+          "sha256": "3660b701efb6007cada62b2d938c1f3f2855e88b79b17c5c25ac43ff041e5db7",
+          "bytes": 5099
+        }
+      ]
+    },
+    {
       "id": "gcp-alloydb-ai-developer",
       "path": "skills/gcp/gcp-alloydb-ai-developer",
       "aggregate_sha256": "523629ffd33c22c557ac5645d5bf35a5a93a2be3714b2d6e3e738507fc553668",
@@ -9179,12 +9226,12 @@
     {
       "id": "gcp-maestro",
       "path": "skills/gcp/gcp-maestro",
-      "aggregate_sha256": "ed5848cc2c6d3fef6246c392872aba66e8e5f739c0fc7d51228b29eee17b5e2d",
+      "aggregate_sha256": "1b8400e91ebb6a58dc275b86b8dc893f22b8eec24ebcd38fb11a0e40d420e01f",
       "files": [
         {
           "path": "skills/gcp/gcp-maestro/SKILL.md",
-          "sha256": "5726bdea5fd58bdf8d02add0480c304f1d10e14e2893c683caf705d4e2b1b9f4",
-          "bytes": 13252
+          "sha256": "4f1aa6cc64b027adb11464fd7c106c3334eae966d426ead3ee63026a6f3e3c76",
+          "bytes": 13540
         },
         {
           "path": "skills/gcp/gcp-maestro/metadata.json",
