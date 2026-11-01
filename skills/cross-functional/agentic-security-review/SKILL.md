@@ -2,10 +2,11 @@
 name: agentic-security-review
 description: Use this skill to review the composed attack surface of an agentic system against the OWASP Top 10 for Agentic Applications (ASI01 to ASI10) — whether tool descriptions, retrieved content and tool output can steer a tool call, what the agent can reach once steered (tools as privilege grants, effective data reach), how agent identity and delegated authorization work (caller versus effective identity, MCP audience binding and token passthrough, A2A security schemes and signed Agent Cards), how memory and context can be poisoned, and where MCP servers, skills, tools, prompts and models come from (pinning, signatures, component inventory, drift, revocation). Output is a plan-only adversarial test design plus findings with an optional HARD gate; under the protocol, a principal can approve over a HARD-gate challenge only with a recorded risk acceptance reference. Static review only; it never runs an attack, never approves anything, and its verdict is a proposal under the agentic-board-protocol skill.
 allowed-tools: Read Grep Glob
+disallowed-tools: Write Edit NotebookEdit Bash
 metadata:
   author: "github: VincentChuWaiChow"
   version: "0.1.0"
-  updated: "2026-10-30"
+  updated: "2026-11-01"
   category: security
   lifecycle: experimental
 ---
@@ -53,7 +54,7 @@ Do not use this skill for:
 - Redact and flag credential-shaped strings. Never request, echo or store credentials, tokens, signing keys, tenant identifiers, or customer data.
 - Label every claim `live-evidence`, `repo-evidence`, `user-provided-sanitized-evidence`, `context7-grounded`, `documentation-based`, or `inference`. For MCP, A2A and OWASP facts cite the official page and revision; where the installed version is unverified write "verify against the official docs for the installed version". Ground SDK and framework APIs in Context7 when the harness provides it; absence from a Context7 result is uncorroborated, not disproven.
 - Emit handoffs per the protocol: objectives phrased as review questions, the designated challenger named, and any decision request addressed to a human principal. Never approve.
-- State the tool-grant boundary plainly: claude-code `tools: "Read, Grep, Glob"` and gemini `tools:` are documented allowlists (an omitted list inherits every parent tool), cursor `readonly: true` blocks file edits and state-changing shell but not every tool, copilot `tools:` follows this repo's own gates, and the codex adapter sets `features.shell_tool = false` but cannot set its own sandbox (a Codex custom agent inherits the parent session's, per https://developers.openai.com/codex/subagents); under codex, kiro-ide and kiro-cli the no-write limit is prompt-level only. The per-harness table in [docs/execution-tiers.md](../../../docs/execution-tiers.md) is the single source for these claims. A SKILL.md `allowed-tools` line pre-approves tools; it does not restrict them (per https://code.claude.com/docs/en/skills).
+- State the tool-grant boundary plainly: claude-code `tools: "Read, Grep, Glob"` and gemini `tools:` are documented allowlists (an omitted list inherits every parent tool), cursor `readonly: true` blocks file edits and state-changing shell but not every tool, copilot `tools:` follows this repo's own gates, and the codex adapter sets `features.shell_tool = false` but cannot set its own sandbox (a Codex custom agent inherits the parent session's, per https://developers.openai.com/codex/subagents); under codex, kiro-ide and kiro-cli the no-write limit is prompt-level only. The per-harness table in [docs/execution-tiers.md](../../../docs/execution-tiers.md) is the single source for these claims. A SKILL.md `allowed-tools` line pre-approves tools; it does not restrict them (per https://code.claude.com/docs/en/skills). Under Claude Code this skill's `disallowed-tools` line removes Write, Edit, NotebookEdit and Bash while the skill is active, and the restriction clears with the next user message (same page); no other harness is known to read the field, so elsewhere the limit stays with the adapter or the prompt.
 - Never claim certification, compliance, or that a mapping satisfies a framework. A mapping is a candidate that an accountable owner confirms.
 
 ## References
