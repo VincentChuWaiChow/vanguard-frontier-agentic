@@ -36,7 +36,7 @@ Decide whether an agent on Agent Runtime is safe to run in production: who it ac
 
 ## Inputs
 
-Sanitized agent source; the pinned `google-adk` and Agent Platform SDK versions; the deploy command, SDK config or Terraform; runtime identity and IAM bindings; session and memory service configuration; network configuration; evaluation files. No credentials, tokens, keys or customer data.
+Sanitized agent source; the framework and its pinned version (the `google-adk` version when the agent uses ADK) and the Agent Platform SDK version; the deploy command, SDK config or Terraform; runtime identity and IAM bindings; session and memory service configuration; network configuration; evaluation files. No credentials, tokens, keys or customer data.
 
 ## Supported scope
 

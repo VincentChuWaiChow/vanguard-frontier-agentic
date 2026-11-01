@@ -4,7 +4,7 @@ Answers one question: in what order to review an agent bound for, or running on,
 
 ## Preconditions
 
-- Evidence is supplied or readable in the repository: agent source, the pinned `google-adk` version (lockfile or requirements), the deploy command or SDK or Terraform config, the runtime identity and its IAM bindings, the session and memory service configuration, and the network configuration.
+- Evidence is supplied or readable in the repository: agent source, the framework and its pinned version from the lockfile or requirements (the `google-adk` version when the agent uses ADK), the deploy command or SDK or Terraform config, the runtime identity and its IAM bindings, the session and memory service configuration, and the network configuration.
 - Every item is sanitized. Credentials, tokens, keys, customer data and personal data are absent; if one appears, stop, flag it and ask for a redacted copy without repeating it.
 - The question is a review or a plan. A request to deploy, update traffic, change IAM or delete is answered with a reviewed plan for an accountable human, never executed.
 
@@ -12,7 +12,7 @@ Answers one question: in what order to review an agent bound for, or running on,
 
 1. **Classify the request.** Pre-deployment design review, production-readiness review, change review (update or traffic split), deletion plan, or incident review. Route out first: vendor-neutral pattern choice to `agentic-system-architecture-review-agent`; Vertex AI training, pipelines or endpoints to `gcp-vertex-ai-mlops-engineer-agent`; Gemini API calls outside an agent runtime to `gcp-gemini-api-developer-agent`; a Terraform plan as a whole to `gcp-iac-change-safety-review-agent`.
 2. **Normalize names.** Map Agent Engine, Reasoning Engine, `reasoningEngines`, `vertexai.agent_engines`, `agentplatform` runtimes and `adk deploy agent_engine` to the one resource under review ([deployment-and-lifecycle.md](deployment-and-lifecycle.md)).
-3. **Pin versions.** Record the ADK version and the Agent Platform SDK in use. Yanked ADK 1.27.0 is blocking. Note every claim below that the pinned version might change.
+3. **Pin versions.** Record the framework and its version (the `google-adk` version for an ADK agent) and the Agent Platform SDK in use. For an ADK agent, yanked ADK 1.27.0 is blocking. Note every claim below that the pinned version might change.
 4. **Check identity.** Which principal runs the agent, who can deploy, who can query, and whether principals are shared across agents ([identity-and-network-boundaries.md](identity-and-network-boundaries.md)).
 5. **Walk the trust boundaries.** For each path into the model (prompt, tool results, memory, state, A2A), name the scope key and the gate before any action.
 6. **Check tool controls.** Deny-by-default guardrail on mutating tools, plugin for app-wide policy, explicit loop bounds, delegation that cannot route untrusted input into a privileged agent ([adk-runtime-controls.md](adk-runtime-controls.md)).
@@ -27,7 +27,7 @@ Answers one question: in what order to review an agent bound for, or running on,
 
 | Condition | Action |
 |---|---|
-| Blocking evidence missing (no identity, no session service, no ADK version) | Stop; list exactly what is needed; issue no verdict |
+| Blocking evidence missing (no identity, no session and memory configuration, no framework version; the ADK version is required only for an ADK agent) | Stop; list exactly what is needed; issue no verdict |
 | Live mutation requested | Refuse to execute; return a command plan with the approver named |
 | Finding is vendor-neutral (generic injection, A2A card trust, memory poisoning in depth) | Hand off to `agentic-security-review-agent`; keep only the platform-specific control |
 | A board security challenge raises a HARD gate | Carry it unchanged; never recommend approval over it |
@@ -39,7 +39,7 @@ Answers one question: in what order to review an agent bound for, or running on,
 Return:
 
 - **Verdict:** `pass`, `pass-with-conditions` or `block`, plus the request class from step 1.
-- **Scope and versions:** resource name, region, ADK version, SDK namespace, deployment method.
+- **Scope and versions:** resource name, region, framework and version, SDK namespace, deployment method.
 - **Findings:** each with severity (blocking, high, medium, low), the evidence (file and line, flag, binding or config key), the failure scenario, the fix, and the source URL that supports it.
 - **Identity map:** deployer, caller and runtime principals with their roles.
 - **Change or deletion plan,** when asked: steps, the approver, the rollback target revision, and the irreversible steps marked as such.

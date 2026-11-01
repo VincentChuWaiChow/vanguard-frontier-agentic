@@ -8362,12 +8362,12 @@
     {
       "id": "gcp-agent-runtime-review",
       "path": "skills/gcp/gcp-agent-runtime-review",
-      "aggregate_sha256": "fe466354b4dc0da8050d1a7fb411c1525a249d6017395640aaac4bb27e5ac2ee",
+      "aggregate_sha256": "411b7d531ace1f167512f2679e1d713388f56ded8d5cc6501fba3c33f85de0e4",
       "files": [
         {
           "path": "skills/gcp/gcp-agent-runtime-review/SKILL.md",
-          "sha256": "a58005bc5643236054a9b3359c9b3cef2f8b3f90729c0536f8b9cc97e27289e6",
-          "bytes": 7331
+          "sha256": "866ddd2146e9f91ce1dacf2b0799d79671e3f18c1d404d73f00bfe11590f59ea",
+          "bytes": 7398
         },
         {
           "path": "skills/gcp/gcp-agent-runtime-review/metadata.json",
@@ -8401,8 +8401,8 @@
         },
         {
           "path": "skills/gcp/gcp-agent-runtime-review/references/workflow-and-output.md",
-          "sha256": "3660b701efb6007cada62b2d938c1f3f2855e88b79b17c5c25ac43ff041e5db7",
-          "bytes": 5099
+          "sha256": "d4737cfefe98afd901928deba7be7e4a7ef5f9b02f5b609801033d96cfa08d4e",
+          "bytes": 5322
         }
       ]
     },

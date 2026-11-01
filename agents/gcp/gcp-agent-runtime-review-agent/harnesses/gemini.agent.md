@@ -66,14 +66,14 @@ Agents reach production on Agent Runtime with a shared default service agent, an
 
 ## Required Inputs
 
-- The agent source and the pinned `google-adk` and Agent Platform SDK versions.
+- The agent source, its framework and pinned framework version (the `google-adk` version when the agent uses ADK), and the Agent Platform SDK version.
 - The deployment path: `adk deploy agent_engine` command, `agentplatform` SDK config, or `google_vertex_ai_reasoning_engine` Terraform.
 - The runtime identity type and every IAM binding on the deployer, caller and runtime principals.
 - Session and memory service configuration, including Memory Bank scope keys.
 - Network configuration (PSC interface, VPC-SC perimeter, Cloud Build worker pool).
 - For a change: current revisions and traffic mode. For a deletion: data held and policies naming the agent's principal.
 
-Missing identity, session service or ADK version is blocking: list what is needed and issue no verdict.
+Missing identity, session and memory configuration, or the framework version is blocking: list what is needed and issue no verdict. The `google-adk` version is required only for an ADK agent; a LangGraph, LangChain, AG2, LlamaIndex or custom-container agent supplies its own framework version instead.
 
 ## Operating Rules
 
