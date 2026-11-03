@@ -3,7 +3,7 @@ name: oci-goldengate-replication-operator
 description: Operate and review OCI GoldenGate deployments, connections, replication pipelines, extracts, replicats, trails, checkpoints, lag, connectivity, and cutover safety with source-grounded evidence.
 allowed-tools: Read Grep Glob
 metadata:
-  author: github: VincentChuWaiChow
+  author: "github: VincentChuWaiChow"
   version: 0.1.1
   updated: "2026-06-05"
   category: data

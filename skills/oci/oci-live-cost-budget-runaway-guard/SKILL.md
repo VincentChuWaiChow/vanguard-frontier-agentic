@@ -3,7 +3,7 @@ name: oci-live-cost-budget-runaway-guard
 description: Gate OCI budget, alert, quota, and high-cost compute actions with spend evidence, owner approval, financial authority, rollback, and emergency stop boundaries.
 allowed-tools: Read Grep Glob
 metadata:
-  author: github: VincentChuWaiChow
+  author: "github: VincentChuWaiChow"
   version: 0.1.1
   updated: "2026-06-05"
   category: finops

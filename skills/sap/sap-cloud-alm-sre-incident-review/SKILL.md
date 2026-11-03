@@ -1,6 +1,6 @@
 ---
 name: sap-cloud-alm-sre-incident-review
-description: Review SAP Cloud ALM for SRE and operations governance: health monitoring configuration, alerting rule coverage, integration and exception monitoring, business process monitoring, incident and problem management process, root-cause analysis workflow, and SLA and service continuity controls. Does not access live Cloud ALM tenants or mutate monitoring configuration.
+description: "Review SAP Cloud ALM for SRE and operations governance: health monitoring configuration, alerting rule coverage, integration and exception monitoring, business process monitoring, incident and problem management process, root-cause analysis workflow, and SLA and service continuity controls. Does not access live Cloud ALM tenants or mutate monitoring configuration."
 allowed-tools: Read Grep Glob WebSearch WebFetch
 metadata:
   author: "github: VincentChuWaiChow"

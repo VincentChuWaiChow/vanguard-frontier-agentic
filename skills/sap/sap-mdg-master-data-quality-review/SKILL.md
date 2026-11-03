@@ -1,6 +1,6 @@
 ---
 name: sap-mdg-master-data-quality-review
-description: Review SAP Master Data Governance (MDG) configuration and data quality posture: data models and entity types, validation and derivation rules, governance workflow design, consolidation and mass processing configuration, data quality KPI dashboards, and key mapping setup. Flags governance gaps, mis-configured validation rules, workflow bottlenecks, and data quality KPI blind spots. Does not create, modify, or approve master data records.
+description: "Review SAP Master Data Governance (MDG) configuration and data quality posture: data models and entity types, validation and derivation rules, governance workflow design, consolidation and mass processing configuration, data quality KPI dashboards, and key mapping setup. Flags governance gaps, mis-configured validation rules, workflow bottlenecks, and data quality KPI blind spots. Does not create, modify, or approve master data records."
 allowed-tools: Read Grep Glob WebSearch WebFetch
 metadata:
   author: "github: VincentChuWaiChow"

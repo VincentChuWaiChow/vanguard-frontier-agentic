@@ -3,7 +3,7 @@ name: oci-live-vault-key-destruction-guard
 description: Guard OCI Vault key deletion, cancellation, disablement, rotation, and HSM/software key lifecycle decisions with usage, dependency, waiting-window, backup, and recovery-limit evidence.
 allowed-tools: Read Grep Glob
 metadata:
-  author: github: VincentChuWaiChow
+  author: "github: VincentChuWaiChow"
   version: 0.1.1
   updated: "2026-06-05"
   category: security

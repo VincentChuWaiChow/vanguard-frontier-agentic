@@ -3,7 +3,7 @@ name: oci-support-incident-coordinator
 description: Coordinate OCI support incidents with sanitized evidence, severity discipline, ownership, timelines, impact statements, and safe escalation packages.
 allowed-tools: Read Grep Glob
 metadata:
-  author: github: VincentChuWaiChow
+  author: "github: VincentChuWaiChow"
   version: 0.1.1
   updated: "2026-06-05"
   category: operational

@@ -3,7 +3,7 @@ name: oci-security-compliance-reviewer
 description: Review OCI security, IAM, network exposure, logging, encryption, Cloud Guard, Vulnerability Scanning, Security Zones, and compliance evidence with least-privilege and source-grounded findings.
 allowed-tools: Read Grep Glob
 metadata:
-  author: github: VincentChuWaiChow
+  author: "github: VincentChuWaiChow"
   version: 0.1.1
   updated: "2026-06-05"
   category: compliance

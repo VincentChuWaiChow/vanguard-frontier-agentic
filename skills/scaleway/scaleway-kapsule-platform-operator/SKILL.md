@@ -1,6 +1,6 @@
 ---
 name: scaleway-kapsule-platform-operator
-description: Review and advise on Scaleway Kapsule managed Kubernetes cluster readiness: node pool sizing and autoscaling, CNI plugin selection (Cilium, Calico, Kilo), placement group policy (max_availability vs enforced), Kubernetes version currency, PodDisruptionBudget coverage, and workload scheduling posture. Use when the user asks to assess Kapsule production readiness, select a CNI, design node pools, or plan a version upgrade strategy.
+description: "Review and advise on Scaleway Kapsule managed Kubernetes cluster readiness: node pool sizing and autoscaling, CNI plugin selection (Cilium, Calico, Kilo), placement group policy (max_availability vs enforced), Kubernetes version currency, PodDisruptionBudget coverage, and workload scheduling posture. Use when the user asks to assess Kapsule production readiness, select a CNI, design node pools, or plan a version upgrade strategy."
 allowed-tools: Read Grep Glob
 metadata:
   author: "github: VincentChuWaiChow"

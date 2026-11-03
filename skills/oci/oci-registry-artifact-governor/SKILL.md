@@ -3,7 +3,7 @@ name: oci-registry-artifact-governor
 description: Govern OCI Container Registry repositories, container images, Helm/OCI artifacts, public access, retention policies, signatures, vulnerability scanning, provenance, and least-privilege push/pull access.
 allowed-tools: Read Grep Glob
 metadata:
-  author: github: VincentChuWaiChow
+  author: "github: VincentChuWaiChow"
   version: 0.1.1
   updated: "2026-06-05"
   category: delivery

@@ -3,7 +3,7 @@ name: oci-live-network-security-rule-guard
 description: Guard live OCI Security List and Network Security Group rule changes with current-state capture, open-internet detection, sensitive-port review, stateful/stateless assessment, approval, and rollback evidence.
 allowed-tools: Read Grep Glob
 metadata:
-  author: github: VincentChuWaiChow
+  author: "github: VincentChuWaiChow"
   version: 0.1.1
   updated: "2026-06-05"
   category: security

@@ -1,6 +1,6 @@
 ---
 name: sap-ewm-tm-logistics-execution-review
-description: Review SAP Extended Warehouse Management (EWM) and Transportation Management (TM) execution risk: warehouse process type design, wave and task management controls, slotting and bin assignment governance, freight order and carrier management, dock and yard management controls, shipment execution exception handling, and integration quality with SAP S/4HANA. Flags control gaps in warehouse execution flows, unauthorized goods movement paths, freight settlement leakage, carrier assignment governance weaknesses, and unresolved logistics exceptions. Does not post goods movements, confirm warehouse tasks, release freight orders, or mutate any live EWM or TM system.
+description: "Review SAP Extended Warehouse Management (EWM) and Transportation Management (TM) execution risk: warehouse process type design, wave and task management controls, slotting and bin assignment governance, freight order and carrier management, dock and yard management controls, shipment execution exception handling, and integration quality with SAP S/4HANA. Flags control gaps in warehouse execution flows, unauthorized goods movement paths, freight settlement leakage, carrier assignment governance weaknesses, and unresolved logistics exceptions. Does not post goods movements, confirm warehouse tasks, release freight orders, or mutate any live EWM or TM system."
 allowed-tools: Read Grep Glob WebSearch WebFetch
 metadata:
   author: "github: VincentChuWaiChow"

@@ -3,7 +3,7 @@ name: oci-live-iam-policy-compartment-guard
 description: Guard live OCI IAM policy and dynamic-group changes with statement-level review, verb hierarchy, compartment scope, broad-principal detection, rollback capture, and explicit approval.
 allowed-tools: Read Grep Glob
 metadata:
-  author: github: VincentChuWaiChow
+  author: "github: VincentChuWaiChow"
   version: 0.1.1
   updated: "2026-06-05"
   category: security

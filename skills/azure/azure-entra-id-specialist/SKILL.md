@@ -3,7 +3,7 @@ name: azure-entra-id-specialist
 description: Use this skill for Microsoft Entra ID specialist work, especially Conditional Access, authentication methods, MFA and SSPR registration, identity protection, workload identities, app registrations, external identities, agent identities, break-glass posture, and tenant identity control reviews.
 allowed-tools: Read Grep Glob
 metadata:
-  author: github: VincentChuWaiChow
+  author: "github: VincentChuWaiChow"
   version: 0.1.5
   updated: "2026-06-05"
   category: security

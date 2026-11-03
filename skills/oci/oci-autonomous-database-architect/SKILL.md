@@ -3,7 +3,7 @@ name: oci-autonomous-database-architect
 description: Design and review OCI Autonomous Database and Autonomous AI Database deployments with explicit workload fit, security, networking, backup, DR, migration, and multicloud boundary checks.
 allowed-tools: Read Grep Glob
 metadata:
-  author: github: VincentChuWaiChow
+  author: "github: VincentChuWaiChow"
   version: 0.1.1
   updated: "2026-06-05"
   category: data

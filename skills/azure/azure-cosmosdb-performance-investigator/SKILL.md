@@ -3,7 +3,7 @@ name: azure-cosmosdb-performance-investigator
 description: Use this skill for Azure Cosmos DB performance investigation, especially RU spikes, query latency, throttling, hot partitions, indexing inefficiency, partition-skew analysis, request-charge profiling, diagnostic-log review, and evidence-driven remediation planning.
 allowed-tools: Read Grep Glob WebFetch
 metadata:
-  author: github: VincentChuWaiChow
+  author: "github: VincentChuWaiChow"
   version: 0.1.3
   updated: "2026-06-05"
   category: data

@@ -3,7 +3,7 @@ name: azure-landing-zone-architect
 description: Use this skill for Azure landing-zone design, management-group and subscription hierarchy reviews, platform-versus-application boundary decisions, or multi-subscription Azure platform architecture critiques that span governance, identity, networking, security, and operations.
 allowed-tools: Read Grep Glob
 metadata:
-  author: github: VincentChuWaiChow
+  author: "github: VincentChuWaiChow"
   version: 0.1.3
   updated: "2026-06-05"
   category: compliance

@@ -3,7 +3,7 @@ name: oci-exadata-platform-architect
 description: Design and review OCI Exadata Database Service platforms, VM clusters, Exascale, Cloud@Customer, multicloud database placements, capacity, network, backup, patching, and DR without overstating readiness.
 allowed-tools: Read Grep Glob
 metadata:
-  author: github: VincentChuWaiChow
+  author: "github: VincentChuWaiChow"
   version: 0.1.1
   updated: "2026-06-05"
   category: platform

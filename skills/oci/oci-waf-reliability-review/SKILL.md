@@ -3,7 +3,7 @@ name: oci-waf-reliability-review
 description: Review OCI Well-Architected reliability posture across regions, availability domains, fault domains, backups, replication, monitoring, failover, and disaster recovery drills.
 allowed-tools: Read Grep Glob
 metadata:
-  author: github: VincentChuWaiChow
+  author: "github: VincentChuWaiChow"
   version: 0.1.1
   updated: "2026-06-05"
   category: resilience

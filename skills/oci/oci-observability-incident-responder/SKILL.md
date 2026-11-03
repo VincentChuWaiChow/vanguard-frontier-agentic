@@ -3,7 +3,7 @@ name: oci-observability-incident-responder
 description: Triage OCI Monitoring alarms, Logging, Events, Notifications, service health, metrics, runbooks, and responder permissions with scoped evidence and safe containment.
 allowed-tools: Read Grep Glob
 metadata:
-  author: github: VincentChuWaiChow
+  author: "github: VincentChuWaiChow"
   version: 0.1.1
   updated: "2026-06-05"
   category: observability

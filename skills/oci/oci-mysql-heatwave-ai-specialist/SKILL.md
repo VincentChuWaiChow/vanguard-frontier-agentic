@@ -3,7 +3,7 @@ name: oci-mysql-heatwave-ai-specialist
 description: Review OCI MySQL HeatWave, HeatWave clusters, Lakehouse, AutoML, GenAI, vector/RAG workflows, object storage ingestion, SQL safety, and operational readiness with source-grounded evidence.
 allowed-tools: Read Grep Glob
 metadata:
-  author: github: VincentChuWaiChow
+  author: "github: VincentChuWaiChow"
   version: 0.1.1
   updated: "2026-06-05"
   category: ai

@@ -3,7 +3,7 @@ name: oci-waf-cost-optimization-review
 description: Review OCI Well-Architected cost optimization posture across usage, budgets, tags, idle resources, rightsizing, quotas, forecasts, and Cloud Advisor recommendations.
 allowed-tools: Read Grep Glob
 metadata:
-  author: github: VincentChuWaiChow
+  author: "github: VincentChuWaiChow"
   version: 0.1.1
   updated: "2026-06-05"
   category: finops

@@ -1,6 +1,6 @@
 ---
 name: sap-procurement-ariba-value-leakage-review
-description: Review SAP Ariba and SAP S/4HANA source-to-pay processes for value leakage: maverick and off-contract spend, contract compliance rates, supplier risk exposure, three-way match exceptions (invoice/PO/GR), early payment discount capture, and guided buying adoption. Flags leakage patterns, control gaps in procurement compliance, supplier risk blind spots, and discount capture failures. Does not create purchase orders, approve invoices, or mutate any live procurement system.
+description: "Review SAP Ariba and SAP S/4HANA source-to-pay processes for value leakage: maverick and off-contract spend, contract compliance rates, supplier risk exposure, three-way match exceptions (invoice/PO/GR), early payment discount capture, and guided buying adoption. Flags leakage patterns, control gaps in procurement compliance, supplier risk blind spots, and discount capture failures. Does not create purchase orders, approve invoices, or mutate any live procurement system."
 allowed-tools: Read Grep Glob WebSearch WebFetch
 metadata:
   author: "github: VincentChuWaiChow"

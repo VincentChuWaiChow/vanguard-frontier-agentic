@@ -3,7 +3,7 @@ name: oci-fusion-apps-environment-operator
 description: Review OCI Fusion Applications environment families, environments, lifecycle status, maintenance, refresh, access, availability, and support evidence without claiming tenant readiness from docs alone.
 allowed-tools: Read Grep Glob
 metadata:
-  author: github: VincentChuWaiChow
+  author: "github: VincentChuWaiChow"
   version: 0.1.1
   updated: "2026-06-05"
   category: platform

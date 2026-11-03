@@ -3,7 +3,7 @@ name: oci-live-resource-manager-stack-guard
 description: Guard OCI Resource Manager stack plan, apply, destroy, import-state, drift, and state-version decisions with plan review, state-lock awareness, approval, rollback, and blast-radius evidence.
 allowed-tools: Read Grep Glob
 metadata:
-  author: github: VincentChuWaiChow
+  author: "github: VincentChuWaiChow"
   version: 0.1.1
   updated: "2026-06-05"
   category: delivery

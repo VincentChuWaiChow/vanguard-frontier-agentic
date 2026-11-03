@@ -1,6 +1,6 @@
 ---
 name: sap-testing-quality-gate-review
-description: Review SAP testing strategy and quality gate completeness for S/4HANA and SAP BTP programs: test scope and risk-based prioritization, SAP Cloud ALM test management configuration, automation coverage with Tricentis/CBTA, regression strategy for upgrades and transports, test data availability and masking, defect management workflow, and entry and exit criteria per test phase. Advisory only — does not execute tests, trigger automation runs, or mutate test management configuration.
+description: "Review SAP testing strategy and quality gate completeness for S/4HANA and SAP BTP programs: test scope and risk-based prioritization, SAP Cloud ALM test management configuration, automation coverage with Tricentis/CBTA, regression strategy for upgrades and transports, test data availability and masking, defect management workflow, and entry and exit criteria per test phase. Advisory only — does not execute tests, trigger automation runs, or mutate test management configuration."
 allowed-tools: Read Grep Glob WebSearch WebFetch
 metadata:
   author: "github: VincentChuWaiChow"

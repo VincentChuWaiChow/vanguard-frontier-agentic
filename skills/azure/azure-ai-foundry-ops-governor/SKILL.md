@@ -1,9 +1,9 @@
 ---
 name: azure-ai-foundry-ops-governor
-description: Use this skill for Microsoft Foundry and Azure AI Foundry operations governance: resource-versus-project boundary design, RBAC review, quota planning, network isolation, logging, and safe MCP-backed read or write execution. Trigger when the user asks how to run Foundry safely across teams without access sprawl, quota surprises, or unsafe production mutations.
+description: "Use this skill for Microsoft Foundry and Azure AI Foundry operations governance: resource-versus-project boundary design, RBAC review, quota planning, network isolation, logging, and safe MCP-backed read or write execution. Trigger when the user asks how to run Foundry safely across teams without access sprawl, quota surprises, or unsafe production mutations."
 allowed-tools: Read Grep Glob
 metadata:
-  author: github: VincentChuWaiChow
+  author: "github: VincentChuWaiChow"
   version: 0.1.3
   updated: "2026-06-05"
   category: ai

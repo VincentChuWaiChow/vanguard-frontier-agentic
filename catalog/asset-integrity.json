@@ -35939,7 +35939,7 @@
     },
     {
       "tree": "catalog",
-      "aggregate_sha256": "1d0d676063fceae88a3a36666529d12a6dd37a1fe88bc53280d4ed5101f865fa",
+      "aggregate_sha256": "0c8558b25ed9bd81d364d3d64166decb419a75fbdaffdf08caf50eaa09428045",
       "files": [
         {
           "path": "catalog/AGENTS.md",
@@ -35993,7 +35993,7 @@
         },
         {
           "path": "catalog/skill-manifest.json",
-          "sha256": "f641f0aadfdf80acb7326a5ebe78917c81da5a165d7c31bc0258ccbd077f4f91",
+          "sha256": "937eb3c15593f84f5796d015f6af0b31abde4a1814d6785360fa16202b0fc77e",
           "bytes": 1095120
         },
         {
@@ -37232,7 +37232,7 @@
     },
     {
       "tree": "tests",
-      "aggregate_sha256": "4b0952aa3e0c115374c4686ed2a70089cfd8617d2cba74973eec08335af7a0bf",
+      "aggregate_sha256": "2c98e73b63d471d8c708041db80f038d56df1dee2c54730f2d0aedf707402c69",
       "files": [
         {
           "path": "tests/AGENTS.md",
@@ -38261,7 +38261,7 @@
         },
         {
           "path": "tests/fixtures/README.md",
-          "sha256": "1bff07debfbb315e682a7a21891ae8eba637a290aed7bf882b8eacc7ce1876f5",
+          "sha256": "57efc8d43324c1161baeca54534080f627fb2bfa89c4f516a6978ab682dcfae7",
           "bytes": 3698
         },
         {
@@ -48740,6 +48740,11 @@
           "bytes": 3543
         },
         {
+          "path": "tests/validate-skill-yaml-strict.py",
+          "sha256": "619e8b9862e3062dad3929d63509898f7cbb6bde16cf5483aaaf9b4d7ac61831",
+          "bytes": 2307
+        },
+        {
           "path": "tests/validate-tracked-secrets.py",
           "sha256": "67694b0b9b7ecce99fb1fe43edced0350ac3bee3b6e2056ac9cb2e93e544afd1",
           "bytes": 6457
@@ -48775,8 +48780,8 @@
     },
     {
       "path": "CLAUDE.md",
-      "sha256": "9d71e4ba51fa313c079d34e8e25fe097821e42d36858d18cf3c557600ab265dd",
-      "bytes": 24906
+      "sha256": "2a010046ddfcf9f8f492334c7ad37b6bac996d079d968cea887fdd9ddf7cd9da",
+      "bytes": 24920
     },
     {
       "path": "AGENTS.md",
@@ -48790,8 +48795,8 @@
     },
     {
       "path": "package.json",
-      "sha256": "c9b8396b3ab342dcf7b59852f0cb1862bb404653b7f2dacb8bc5316ddb510fc6",
-      "bytes": 8411
+      "sha256": "b5790fbcb92ae653990b7f47fbd0591fe627385d4361c3ae6963c298e15a0f34",
+      "bytes": 8516
     },
     {
       "path": ".releaserc.js",
@@ -48799,5 +48804,5 @@
       "bytes": 9135
     }
   ],
-  "aggregate_sha256": "fd41934adddc4c3b8622823b7143119090b49f7d7a9dcf8079504575c38859f7"
+  "aggregate_sha256": "745c7b149d58a82e4e26de8b4037e1f5ea46a5e5e548caeb79694d404b384eb2"
 }

@@ -1,6 +1,6 @@
 ---
 name: sap-license-btp-consumption-finops-review
-description: Advisory FinOps review of SAP licensing and BTP consumption under CPEA and other commercial models: entitlement vs actual consumption, overage and underutilization patterns, cost allocation, commitment optimization, FUE and digital access licensing, and BTP service cost drivers. Does not touch or mutate any live system.
+description: "Advisory FinOps review of SAP licensing and BTP consumption under CPEA and other commercial models: entitlement vs actual consumption, overage and underutilization patterns, cost allocation, commitment optimization, FUE and digital access licensing, and BTP service cost drivers. Does not touch or mutate any live system."
 allowed-tools: Read Grep Glob WebSearch WebFetch
 metadata:
   author: "github: VincentChuWaiChow"

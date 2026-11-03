@@ -1,6 +1,6 @@
 ---
 name: sap-release-change-collision-review
-description: Review SAP release and change management for collision risk: transport sequencing and dependency analysis, overtake and overwrite risk between parallel tracks, parallel project conflict detection, retrofit strategy and dual landscape governance, downgrade protection assessment, and ChaRM and SAP Cloud ALM change governance completeness. Advisory only — does not import transports, modify transport requests, or mutate change management configuration.
+description: "Review SAP release and change management for collision risk: transport sequencing and dependency analysis, overtake and overwrite risk between parallel tracks, parallel project conflict detection, retrofit strategy and dual landscape governance, downgrade protection assessment, and ChaRM and SAP Cloud ALM change governance completeness. Advisory only — does not import transports, modify transport requests, or mutate change management configuration."
 allowed-tools: Read Grep Glob WebSearch WebFetch
 metadata:
   author: "github: VincentChuWaiChow"

@@ -1,6 +1,6 @@
 ---
 name: m365-defender-xdr-security-operations
-description: Review Microsoft Defender XDR security operations (SecOps) posture — unified incident queue, alert correlation, advanced hunting with KQL, automated investigation and response (AIR), Defender for Office 365 / Endpoint / Identity / Cloud Apps signal, incident triage and severity assessment, containment and response runbooks, and integration with Microsoft Sentinel. Apply Zero Trust assume-breach. Cert anchor: SC-200 Security Operations Analyst Associate. Static review and advisory only; containment actions (isolate device, disable user, block), automated-response policy changes, and live SecOps actions are live-guard gated. Escalate to SecOps owner before any containment action.
+description: "Review Microsoft Defender XDR security operations (SecOps) posture — unified incident queue, alert correlation, advanced hunting with KQL, automated investigation and response (AIR), Defender for Office 365 / Endpoint / Identity / Cloud Apps signal, incident triage and severity assessment, containment and response runbooks, and integration with Microsoft Sentinel. Apply Zero Trust assume-breach. Cert anchor: SC-200 Security Operations Analyst Associate. Static review and advisory only; containment actions (isolate device, disable user, block), automated-response policy changes, and live SecOps actions are live-guard gated. Escalate to SecOps owner before any containment action."
 allowed-tools: Read Grep Glob
 metadata:
   author: "github: VincentChuWaiChow"

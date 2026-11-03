@@ -1,6 +1,6 @@
 ---
 name: ovhcloud-live-kms-key-destruction-guard
-description: Gate and audit OVHcloud KMS key version destruction requests by enforcing five mandatory checks: confirmed key ID and KMS service URN, named approving identity, usage audit confirming zero active references within the retention window, documented waiting period, and a rollback or data-recovery plan. Use when a user requests destruction or rotation of an OVHcloud KMS key version. Hard-stop if any gate is absent or ambiguous.
+description: "Gate and audit OVHcloud KMS key version destruction requests by enforcing five mandatory checks: confirmed key ID and KMS service URN, named approving identity, usage audit confirming zero active references within the retention window, documented waiting period, and a rollback or data-recovery plan. Use when a user requests destruction or rotation of an OVHcloud KMS key version. Hard-stop if any gate is absent or ambiguous."
 allowed-tools: Read Grep Glob Bash
 metadata:
   author: "github: VincentChuWaiChow"

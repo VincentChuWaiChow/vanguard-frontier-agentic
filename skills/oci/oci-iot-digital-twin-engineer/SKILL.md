@@ -3,7 +3,7 @@ name: oci-iot-digital-twin-engineer
 description: Design and review OCI IoT domains, digital twin models, adapters, instances, relationships, telemetry paths, lifecycle, and safe topology changes without treating model edits as harmless.
 allowed-tools: Read Grep Glob
 metadata:
-  author: github: VincentChuWaiChow
+  author: "github: VincentChuWaiChow"
   version: 0.1.1
   updated: "2026-06-05"
   category: ai

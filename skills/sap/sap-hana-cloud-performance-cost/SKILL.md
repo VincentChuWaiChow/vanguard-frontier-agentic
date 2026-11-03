@@ -1,6 +1,6 @@
 ---
 name: sap-hana-cloud-performance-cost
-description: Review SAP HANA Cloud performance and cost posture: instance sizing and elasticity, performance modeling (column store, indexes, partitioning, query execution plans), cost management (compute and storage scaling, auto-stop, tier selection), and monitoring (expensive statements, thread sampling, workload classes). Flags sizing risks, modeling anti-patterns, cost governance gaps, and monitoring blind spots. Does not touch live systems.
+description: "Review SAP HANA Cloud performance and cost posture: instance sizing and elasticity, performance modeling (column store, indexes, partitioning, query execution plans), cost management (compute and storage scaling, auto-stop, tier selection), and monitoring (expensive statements, thread sampling, workload classes). Flags sizing risks, modeling anti-patterns, cost governance gaps, and monitoring blind spots. Does not touch live systems."
 allowed-tools: Read Grep Glob WebSearch WebFetch
 metadata:
   author: "github: VincentChuWaiChow"

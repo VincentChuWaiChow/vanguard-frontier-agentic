@@ -30,8 +30,9 @@ jobs:
         run: npm ci --no-audit --no-fund
 
       - name: Install Python validator dependencies
-        # validate:promotion-gatekeeper imports jsonschema and fails without it.
-        run: python3 -m pip install --quiet jsonschema
+        # validate:promotion-gatekeeper imports jsonschema and
+        # validate:skill-yaml imports PyYAML; both fail closed without them.
+        run: python3 -m pip install --quiet jsonschema pyyaml
 
       # Run the aggregate validation contract rather than a hand-picked subset.
       # CI previously invoked nine validators individually while `npm run

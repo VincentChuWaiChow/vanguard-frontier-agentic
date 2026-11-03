@@ -3,7 +3,7 @@ name: azure-key-vault-secret-lifecycle-auditor
 description: Audit Azure Key Vault secret lifecycle posture across RBAC, soft delete, purge protection, rotation, expiration, metadata hygiene, Event Grid notifications, and recovery readiness. Use when the question is whether secret management is actually safe, not just present.
 allowed-tools: Read Grep Glob
 metadata:
-  author: github: VincentChuWaiChow
+  author: "github: VincentChuWaiChow"
   version: 0.1.3
   updated: "2026-06-05"
   category: security

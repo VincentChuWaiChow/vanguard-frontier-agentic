@@ -3,7 +3,7 @@ name: oci-database-platform-dba
 description: Operate OCI Database service safely across DB systems, databases, DB homes, Autonomous Database, backups, Data Guard, patching, performance, capacity, and IAM-scoped DBA operations.
 allowed-tools: Read Grep Glob
 metadata:
-  author: github: VincentChuWaiChow
+  author: "github: VincentChuWaiChow"
   version: 0.1.1
   updated: "2026-06-05"
   category: data

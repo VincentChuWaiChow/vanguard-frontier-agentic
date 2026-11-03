@@ -1,6 +1,6 @@
 ---
 name: sap-security-iam-grc-sod-review
-description: Review SAP identity and access management posture: Cloud Identity Services (IAS/IPS), Authorization and Trust Management (XSUAA), role collections, GRC Access Control, and Segregation of Duties. Flags SoD conflicts, excessive privilege, orphaned accounts, and trust misconfigurations. Does not touch live systems.
+description: "Review SAP identity and access management posture: Cloud Identity Services (IAS/IPS), Authorization and Trust Management (XSUAA), role collections, GRC Access Control, and Segregation of Duties. Flags SoD conflicts, excessive privilege, orphaned accounts, and trust misconfigurations. Does not touch live systems."
 allowed-tools: Read Grep Glob WebSearch WebFetch
 metadata:
   author: "github: VincentChuWaiChow"

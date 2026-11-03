@@ -3,7 +3,7 @@ name: oci-compute-instance-agent-operator
 description: Operate and review OCI Compute instance-agent commands safely with scoped command payloads, target ownership, output handling, timeout controls, and mutation approval gates.
 allowed-tools: Read Grep Glob
 metadata:
-  author: github: VincentChuWaiChow
+  author: "github: VincentChuWaiChow"
   version: 0.1.1
   updated: "2026-06-05"
   category: platform

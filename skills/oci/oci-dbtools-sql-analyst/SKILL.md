@@ -3,7 +3,7 @@ name: oci-dbtools-sql-analyst
 description: Use OCI Database Tools and database documentation safely for connection inventory, metadata inspection, report review, and controlled read-only SQL analysis.
 allowed-tools: Read Grep Glob
 metadata:
-  author: github: VincentChuWaiChow
+  author: "github: VincentChuWaiChow"
   version: 0.1.1
   updated: "2026-06-05"
   category: data

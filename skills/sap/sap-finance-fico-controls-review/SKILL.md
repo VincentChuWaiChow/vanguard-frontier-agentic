@@ -1,6 +1,6 @@
 ---
 name: sap-finance-fico-controls-review
-description: Review SAP S/4HANA Finance (FI-CO) internal controls: document posting controls, account assignment validations and substitutions, period-end close governance, Financial Close Cockpit task management, segregation of duties in financial postings, parallel ledger configuration, and intercompany reconciliation controls. Flags control gaps, mis-configured validation rules, uncontrolled period management, and SoD exposures in financial processes. Does not post financial documents or mutate any live system.
+description: "Review SAP S/4HANA Finance (FI-CO) internal controls: document posting controls, account assignment validations and substitutions, period-end close governance, Financial Close Cockpit task management, segregation of duties in financial postings, parallel ledger configuration, and intercompany reconciliation controls. Flags control gaps, mis-configured validation rules, uncontrolled period management, and SoD exposures in financial processes. Does not post financial documents or mutate any live system."
 allowed-tools: Read Grep Glob WebSearch WebFetch
 metadata:
   author: "github: VincentChuWaiChow"

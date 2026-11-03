@@ -3,7 +3,7 @@ name: azure-aks-platform-operator
 description: Operate Azure Kubernetes Service with an adversarial production posture. Use for AKS architecture sanity checks, upgrade safety, node-pool strategy, workload identity, network policy, scaling, observability, and operator-readiness reviews.
 allowed-tools: Read Grep Glob
 metadata:
-  author: github: VincentChuWaiChow
+  author: "github: VincentChuWaiChow"
   version: 0.1.3
   updated: "2026-06-05"
   category: platform

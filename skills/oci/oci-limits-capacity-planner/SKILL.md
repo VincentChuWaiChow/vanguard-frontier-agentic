@@ -3,7 +3,7 @@ name: oci-limits-capacity-planner
 description: Review OCI service limits, quotas, subscribed regions, capacity evidence, and growth risk before deployments, migrations, DR expansion, shape changes, OKE scaling, database scaling, or quota requests.
 allowed-tools: Read Grep Glob
 metadata:
-  author: github: VincentChuWaiChow
+  author: "github: VincentChuWaiChow"
   version: 0.1.1
   updated: "2026-06-05"
   category: platform
