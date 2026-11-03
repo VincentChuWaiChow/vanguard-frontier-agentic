@@ -108,6 +108,39 @@ def finalize(doc: dict, recompute_digests: bool = True) -> dict:
     return doc
 
 
+FANOUT_RULE = "HO-ATTEN-FANOUT-BUDGET"
+BUDGET_DIMS = ("tool_calls", "tokens", "cost_minor")
+
+
+def conserve_fanout(doc: dict) -> dict:
+    """Split an over-allocated fan-out equally across its sibling delegates and cap their descendants.
+
+    Scenario builders copy one budget template, so a fan-out would otherwise hand each sibling the
+    whole pool. Runs top-down in message order (a parent precedes its children). A fan-out that
+    already fits its pool, and every fixture without fan-out, is left exactly as built.
+    """
+    by_id = {e["task_id"]: e for e in doc["messages"]}
+    adjusted: set[str] = set()
+    for e in doc["messages"]:
+        p = by_id.get(e["parent_task_id"]) if e["parent_task_id"] else None
+        if p is None:
+            continue
+        b = e["budget"]
+        sibs = [c for c in doc["messages"] if c["parent_task_id"] == p["task_id"]
+                and c["message_type"] == "delegate" and c["status"] != "stopped"]
+        if e in sibs and len(sibs) >= 2:
+            for d in BUDGET_DIMS:
+                pool = p["budget"][f"limit_{d}"] - max(c["budget"][f"spent_{d}"] for c in sibs)
+                if sum(c["budget"][f"limit_{d}"] - c["budget"][f"spent_{d}"] for c in sibs) > pool:
+                    b[f"limit_{d}"] = min(b[f"limit_{d}"], b[f"spent_{d}"] + pool // len(sibs))
+                    adjusted.add(e["task_id"])
+        elif p["task_id"] in adjusted:
+            for d in BUDGET_DIMS:
+                b[f"limit_{d}"] = min(b[f"limit_{d}"], p["budget"][f"limit_{d}"])
+            adjusted.add(e["task_id"])
+    return doc
+
+
 def nav_of(vc: dict) -> dict:
     costs = ("annual_run_cost", "annual_oversight_cost", "annualized_implementation_cost", "expected_risk_loss")
     b = vc["verified_annual_benefit"]
@@ -1065,7 +1098,11 @@ def _designated_challenge_first_answer_over_cap(doc):
                                ("v11-q2", "09:02:20", "Assess whether the session cache can leak credentials across tenants.")):
         q = copy.deepcopy(m(doc, 2))
         q.update({"task_id": tid, "sent_at": T(at), "objective": objective})
+        # Each sub-question gets a small share of the pool; the proposal keeps the rest.
+        q["budget"].update({"limit_tool_calls": 12, "limit_tokens": 60000, "limit_cost_minor": 240})
         subs.append(q)
+    for n in (2, 7, 8, 9, 10, 11):  # the proposal and its subtree
+        m(doc, n)["budget"].update({"limit_tool_calls": 32, "limit_tokens": 360000, "limit_cost_minor": 1840})
     first = m(doc, 7)
     first.update({"parent_task_id": "v11-m2", "hop_count": 2})
     first["challenge"] = dict(first["challenge"], proposal_task_id="v11-m2", round=3)
@@ -1437,6 +1474,20 @@ def _drop_single_agent_cf(doc):
     vc["counterfactuals"] = [c for c in vc["counterfactuals"] if c["kind"] != "single-agent"]
 
 
+def _v01_fanout(extra_tool_calls: int):
+    """ARCH fans two sub-questions out to SEC from m1 (spent 2 and 4). Pool = 40 - 4 = 36 tool calls;
+    headroom 18 + 18 fills it exactly, and extra_tool_calls > 0 over-allocates by that much."""
+    def mutate(doc):
+        for n, at, spent, add, objective in (
+                (3, "09:01:30", 2, 0, "Assess whether the retrieval index exposes documents across access groups."),
+                (4, "09:01:40", 4, extra_tool_calls, "Assess whether answer logging stores personal data beyond retention.")):
+            q = env("v01", n, "delegate", agent(ARCH), agent(SEC), objective, parent=1, spent=spent, hop=1, sent_at=T(at))
+            q["budget"].update({"limit_tool_calls": spent + 18 + add, "limit_tokens": spent * 5000 + 190000,
+                                "limit_cost_minor": spent * 20 + 960})
+            doc["messages"].append(q)
+    return mutate
+
+
 INVALID = [
     ("HO-SCHEMA", "unknown-credential-field", "v01", _set(lambda d: m(d, 2), "api_token", "<FAKE>redacted<FAKE>"), True),
     ("HO-ROOT-PARENT", "root-with-parent", "v01", _set(lambda d: m(d, 1), "parent_task_id", "v01-ghost"), True),
@@ -1525,6 +1576,7 @@ INVALID = [
     ("VC-RECOMMEND-INCREMENTAL", "recommend-non-incremental", "v03",
      lambda d: m(d, 4)["decision_request"].update({"recommended_outcome": "conditional-approve"}), True),
     # second fixtures for the other branch of multi-branch rules (kills branch-deletion mutants)
+    ("HO-ATTEN-FANOUT-BUDGET", "siblings-overdraw-pool", "v01", _v01_fanout(1), True),
     ("HO-ATTEN-BUDGET", "currency-changed", "v01", lambda d: m(d, 2)["budget"].update({"currency": "EUR"}), True),
     ("STOP-BUDGET", "return-overspent", "v01", lambda d: m(d, 2)["budget"].update({"spent_tool_calls": 41}), True),
     ("STOP-MISSING-EVIDENCE", "decision-request-blocking-gap", "v02",
@@ -1695,6 +1747,7 @@ VALID_VARIANTS = [
     ("challenge-after-record-same-second", "v02", _challenge_after_record_same_second),
     ("security-proposal-returned-to-its-delegator", "v02", _security_proposal_returned_to_delegator),
     ("designated-challenge-first-answer-over-cap", "v11", _designated_challenge_first_answer_over_cap),
+    ("fanout-fills-pool-exactly", "v01", _v01_fanout(0)),
     ("proposal-handed-to-the-challenger-capped", "v11", _takeover_capped_path),
 ]
 
@@ -1710,12 +1763,14 @@ def build() -> dict[str, str]:
     for slug, base, mutate in VALID_VARIANTS:
         doc = copy.deepcopy(bases[base])
         mutate(doc)
-        doc = finalize(doc)
+        doc = finalize(conserve_fanout(doc))
         doc["description"] = f"Valid variant of {base}: {slug.replace('-', ' ')}."
         files[f"valid/{base}x-{slug}.json"] = json.dumps(doc, indent=2, ensure_ascii=False) + "\n"
     for rule, slug, base, mutate, recompute in INVALID:
         doc = copy.deepcopy(bases[base])
         mutate(doc)
+        if rule != FANOUT_RULE:
+            conserve_fanout(doc)
         doc = finalize(doc, recompute_digests=recompute)
         doc["description"] = f"Sole violation of {rule}: {slug.replace('-', ' ')} (derived from {base})."
         doc["expected_violations"] = [rule]

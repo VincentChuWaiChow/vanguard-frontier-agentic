@@ -35,7 +35,7 @@ This is a record-keeping and review contract checked offline. It does not stop a
 - Trigger: on a delegate, spent at or above the limit in any of tool_calls, tokens or cost_minor, so a delegate with a limit of 0 in any dimension is exhausted on arrival. On every other message type, spent above the limit.
 - Declare: budget-exhausted.
 - Next: escalate. The decision owner may raise the budget in a new correlation, because limits only shrink down a chain.
-- Why: spend and tool-call loops are bounded along each chain. The gate checks budgets parent to child only: siblings each inherit the parent's limits, so a fan-out of many siblings can together spend far more than the parent's limit and still pass. As containment for ASI08 Cascading Failures this is therefore partial; carving one budget across siblings is the runtime's job.
+- Why: spend and tool-call loops are bounded along each chain, and a fan-out carves one pool: HO-ATTEN-FANOUT-BUDGET rejects sibling delegates whose summed headroom exceeds the parent's limit less the largest sibling spent counter. As containment for ASI08 Cascading Failures this is still partial. The gate checks the headroom handed out, not what is spent after hand-off: the sender's own spend after a fan-out, and challenges and returns, which carry counters but no allocation, are bounded only by STOP-BUDGET on each envelope. Enforcing one budget at runtime is the runtime's job.
 
 ### Missing evidence
 

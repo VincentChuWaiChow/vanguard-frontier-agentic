@@ -132,6 +132,7 @@ RULES: dict[str, str] = {
     "HO-MONO-DEADLINE": "deadline never extends from parent to child.",
     "HO-MONO-MAX-HOPS": "max_hops never increases from parent to child.",
     "HO-MONO-SPENT": "Budget spent counters are cumulative: they never decrease from parent to child.",
+    "HO-ATTEN-FANOUT-BUDGET": "When an envelope has two or more delegate children that are not stopped, their summed headroom (limit minus spent) fits in the parent's limit minus the largest child spent counter, per dimension.",
     "HO-DESTINATION-TIER": "Every agent destination is a catalog agent whose execution_tier is static-review or read-only-runtime.",
     # --- computed stop conditions -------------------------------------------------------------
     "STOP-DEPTH": "A delegate at hop_count >= max_hops declares delegation-depth-exceeded and is stopped/escalated.",
@@ -498,6 +499,29 @@ def _check_chain(env: dict, parent: dict) -> set[str]:
     return out
 
 
+def _check_fanout_budget(valid: list[dict], by_id: dict) -> set[str]:
+    """Sibling delegates carve their headroom out of one parent pool; they never each receive all of it.
+
+    The pool is the parent's limit less the largest spent counter among the siblings, which is the
+    sender's cumulative spend by its last hand-off. With one child this reduces to HO-ATTEN-BUDGET, so
+    the rule applies from two children. A stopped delegate was never delivered and holds no headroom.
+    To reuse headroom a child left unspent, chain the next delegate from that child's return.
+    """
+    kids: dict[str, list[dict]] = {}
+    for e in valid:
+        if e["message_type"] == "delegate" and e["status"] != "stopped" and e["parent_task_id"] in by_id:
+            kids.setdefault(e["parent_task_id"], []).append(e["budget"])
+    for pid, budgets in kids.items():
+        if len(budgets) < 2:
+            continue
+        pb = by_id[pid]["budget"]
+        for d in BUDGET_DIMENSIONS:
+            headroom = sum(b[f"limit_{d}"] - b[f"spent_{d}"] for b in budgets)
+            if headroom > pb[f"limit_{d}"] - max(b[f"spent_{d}"] for b in budgets):
+                return {"HO-ATTEN-FANOUT-BUDGET"}
+    return set()
+
+
 def _counted_rounds(challenges: list[dict], by_id: dict, order: _Order) -> dict[str, int]:
     """A round is one exchange received: the delegates, returns and challenges (not stopped) that the
     proposer of a challenge's target had sent to the challenger before the challenge (at least 1).
@@ -619,6 +643,7 @@ def check_record_set(doc) -> list[str]:
             violations |= _check_decision_record_links(env, ctx)
 
     violations |= _check_supersession(requests, by_id, order)
+    violations |= _check_fanout_budget(valid, by_id)
 
     # One decider's record per request, one co-signature per decider's record.
     primaries = Counter(r["decision_record"]["request_task_id"] for r in records if "co_signs_task_id" not in r["decision_record"])

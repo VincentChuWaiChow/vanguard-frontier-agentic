@@ -5,7 +5,7 @@ allowed-tools: Read Grep Glob
 metadata:
   author: "github: VincentChuWaiChow"
   version: "0.1.0"
-  updated: "2026-10-30"
+  updated: "2026-11-01"
   category: compliance
   lifecycle: experimental
 ---

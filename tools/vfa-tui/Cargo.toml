@@ -1,6 +1,6 @@
 [package]
 name = "vfa-tui"
-version = "0.0.26"
+version = "0.0.27"
 edition = "2021"
 rust-version = "1.97"
 description = "Enterprise-grade terminal UI for the Vanguard Frontier Agentic marketplace catalog"
@@ -32,7 +32,7 @@ thiserror = "2"
 anyhow = "1"
 nucleo-matcher = "0.3"
 uuid = { version = "1", features = ["v4"] }
-rusqlite = { version = "0.40", features = ["bundled"] }
+rusqlite = { version = "0.41", features = ["bundled"] }
 notify-debouncer-full = "0.7"
 toml = "1.1"
 sha2 = "0.11"

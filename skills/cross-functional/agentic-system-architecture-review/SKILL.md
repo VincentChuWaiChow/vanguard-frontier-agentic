@@ -2,10 +2,11 @@
 name: agentic-system-architecture-review
 description: Use this skill for a vendor-neutral or cross-vendor design review of an agentic system — when the question is "should this be multi-agent at all", which orchestration pattern is the lowest sufficient one (deterministic workflow, single agent with tools, or multi-agent), whether delegation and handoff boundaries hold, whether state, memory and durable execution are designed (checkpoints, idempotency, retries, compensation, replay), and whether cascading failures are contained (budgets, fan-out caps, circuit breakers, kill switch). Static review only; it reads supplied designs, code, configuration and traces and never executes, deploys or approves anything. Verdicts are proposals that must survive a designated security challenge and a human decision owner under the agentic-board-protocol skill.
 allowed-tools: Read Grep Glob
+disallowed-tools: Write Edit NotebookEdit Bash
 metadata:
   author: "github: VincentChuWaiChow"
   version: "0.1.0"
-  updated: "2026-10-30"
+  updated: "2026-11-01"
   category: architecture
   lifecycle: experimental
 ---
@@ -49,7 +50,7 @@ Do not use this skill for:
 - Label every claim with the envelope evidence vocabulary: `live-evidence`, `repo-evidence`, `user-provided-sanitized-evidence`, `context7-grounded`, `documentation-based`, `inference`.
 - Own pattern selection, durable execution and state lifecycle, and cascading-failure containment. Hand identity, delegated authorization, tool and memory poisoning, and provenance to the security agent; do not adjudicate them.
 - Emit handoffs per agentic-board-protocol: objectives phrased as review questions, one return envelope carrying the verdict, the designated challenger named. Never approve; a decision request always goes to a human principal.
-- State the tool-grant boundary plainly: claude-code `tools: "Read, Grep, Glob"` and gemini `tools:` are documented allowlists (an omitted list inherits every parent tool), cursor `readonly: true` blocks file edits and state-changing shell but not every tool, copilot `tools:` follows this repo's own gates, and the codex adapter sets `features.shell_tool = false` but cannot set its own sandbox (a Codex custom agent inherits the parent session's, per https://developers.openai.com/codex/subagents); under codex, kiro-ide and kiro-cli the no-write limit is prompt-level only. The per-harness table in [docs/execution-tiers.md](../../../docs/execution-tiers.md) is the single source for these claims. A SKILL.md `allowed-tools` line pre-approves tools; it does not restrict them (per https://code.claude.com/docs/en/skills).
+- State the tool-grant boundary plainly: claude-code `tools: "Read, Grep, Glob"` and gemini `tools:` are documented allowlists (an omitted list inherits every parent tool), cursor `readonly: true` blocks file edits and state-changing shell but not every tool, copilot `tools:` follows this repo's own gates, and the codex adapter sets `features.shell_tool = false` but cannot set its own sandbox (a Codex custom agent inherits the parent session's, per https://developers.openai.com/codex/subagents); under codex, kiro-ide and kiro-cli the no-write limit is prompt-level only. The per-harness table in [docs/execution-tiers.md](../../../docs/execution-tiers.md) is the single source for these claims. A SKILL.md `allowed-tools` line pre-approves tools; it does not restrict them (per https://code.claude.com/docs/en/skills). Under Claude Code this skill's `disallowed-tools` line removes Write, Edit, NotebookEdit and Bash while the skill is active, and the restriction clears with the next user message (same page); no other harness is known to read the field, so elsewhere the limit stays with the adapter or the prompt.
 - Never request, echo, or store credentials, tokens, tenant identifiers, or customer data; redact and flag any that appear. Never claim certification or that a framework mapping is satisfied.
 
 ## References

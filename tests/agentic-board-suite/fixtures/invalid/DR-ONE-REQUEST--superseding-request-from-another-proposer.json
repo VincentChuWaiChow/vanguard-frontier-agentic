@@ -111,11 +111,11 @@
       "missing_evidence": [],
       "budget": {
         "currency": "USD",
-        "limit_tool_calls": 40,
+        "limit_tool_calls": 24,
         "spent_tool_calls": 8,
-        "limit_tokens": 400000,
+        "limit_tokens": 220000,
         "spent_tokens": 40000,
-        "limit_cost_minor": 2000,
+        "limit_cost_minor": 1080,
         "spent_cost_minor": 160
       },
       "deadline": "2026-10-08T17:00:00Z",
@@ -170,11 +170,11 @@
       "missing_evidence": [],
       "budget": {
         "currency": "USD",
-        "limit_tool_calls": 40,
+        "limit_tool_calls": 24,
         "spent_tool_calls": 14,
-        "limit_tokens": 400000,
+        "limit_tokens": 220000,
         "spent_tokens": 70000,
-        "limit_cost_minor": 2000,
+        "limit_cost_minor": 1080,
         "spent_cost_minor": 280
       },
       "deadline": "2026-10-08T17:00:00Z",
@@ -237,11 +237,11 @@
       "missing_evidence": [],
       "budget": {
         "currency": "USD",
-        "limit_tool_calls": 40,
+        "limit_tool_calls": 24,
         "spent_tool_calls": 18,
-        "limit_tokens": 400000,
+        "limit_tokens": 220000,
         "spent_tokens": 90000,
-        "limit_cost_minor": 2000,
+        "limit_cost_minor": 1080,
         "spent_cost_minor": 360
       },
       "deadline": "2026-10-08T17:00:00Z",
@@ -318,11 +318,11 @@
       "missing_evidence": [],
       "budget": {
         "currency": "USD",
-        "limit_tool_calls": 40,
+        "limit_tool_calls": 24,
         "spent_tool_calls": 8,
-        "limit_tokens": 400000,
+        "limit_tokens": 220000,
         "spent_tokens": 40000,
-        "limit_cost_minor": 2000,
+        "limit_cost_minor": 1080,
         "spent_cost_minor": 160
       },
       "deadline": "2026-10-08T17:00:00Z",
@@ -377,11 +377,11 @@
       "missing_evidence": [],
       "budget": {
         "currency": "USD",
-        "limit_tool_calls": 40,
+        "limit_tool_calls": 24,
         "spent_tool_calls": 8,
-        "limit_tokens": 400000,
+        "limit_tokens": 220000,
         "spent_tokens": 40000,
-        "limit_cost_minor": 2000,
+        "limit_cost_minor": 1080,
         "spent_cost_minor": 160
       },
       "deadline": "2026-10-08T17:00:00Z",
@@ -436,11 +436,11 @@
       "missing_evidence": [],
       "budget": {
         "currency": "USD",
-        "limit_tool_calls": 40,
+        "limit_tool_calls": 24,
         "spent_tool_calls": 14,
-        "limit_tokens": 400000,
+        "limit_tokens": 220000,
         "spent_tokens": 70000,
-        "limit_cost_minor": 2000,
+        "limit_cost_minor": 1080,
         "spent_cost_minor": 280
       },
       "deadline": "2026-10-08T17:00:00Z",
@@ -503,11 +503,11 @@
       "missing_evidence": [],
       "budget": {
         "currency": "USD",
-        "limit_tool_calls": 40,
+        "limit_tool_calls": 24,
         "spent_tool_calls": 18,
-        "limit_tokens": 400000,
+        "limit_tokens": 220000,
         "spent_tokens": 90000,
-        "limit_cost_minor": 2000,
+        "limit_cost_minor": 1080,
         "spent_cost_minor": 360
       },
       "deadline": "2026-10-08T17:00:00Z",
@@ -587,11 +587,11 @@
       "missing_evidence": [],
       "budget": {
         "currency": "USD",
-        "limit_tool_calls": 40,
+        "limit_tool_calls": 24,
         "spent_tool_calls": 18,
-        "limit_tokens": 400000,
+        "limit_tokens": 220000,
         "spent_tokens": 90000,
-        "limit_cost_minor": 2000,
+        "limit_cost_minor": 1080,
         "spent_cost_minor": 360
       },
       "deadline": "2026-10-08T17:00:00Z",
@@ -602,7 +602,7 @@
       "synthetic": true,
       "decision_record": {
         "request_task_id": "v04-m9",
-        "request_digest": "sha256:c6897cfe9db3fe9dad88e5766b2b7f2ffd301b9927add08f6bd31599266b1d5f",
+        "request_digest": "sha256:3c243c65eca86bcdf1f09b41bc759cfe93b161b6ec183ad5432d801036702465",
         "outcome": "reject",
         "decided_by": {
           "kind": "principal",

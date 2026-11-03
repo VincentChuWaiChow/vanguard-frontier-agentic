@@ -34,6 +34,7 @@ Google Cloud Platform agent catalog for this marketplace. 😄
 | `gcp-cost-finops-analyst-agent` | Billing exports, CUDs, SUDs, label governance, budget alerts |
 | `gcp-gke-platform-operator-agent` | GKE Standard/Autopilot, node pools, Workload Identity, upgrades |
 | `gcp-vertex-ai-mlops-engineer-agent` | Vertex AI training cost governance, Pipelines, Feature Store |
+| `gcp-agent-runtime-review-agent` | static review of Agent Runtime (formerly Agent Engine) and ADK agents |
 | `gcp-network-architect-agent` | global VPC design, Shared VPC, Cloud Interconnect, Cloud NAT |
 | `gcp-resilience-bcdr-review-agent` | multi-region HA, Cloud SQL HA, Spanner global, RTO/RPO, runbook gaps |
 | `gcp-iac-change-safety-review-agent` | Terraform/Deployment Manager blast radius, deletion protection, plan safety |

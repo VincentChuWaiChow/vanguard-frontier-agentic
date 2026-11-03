@@ -1,0 +1,6 @@
+{
+  "route": [
+    "gcp-live-bigquery-dataset-deletion-guard-agent"
+  ],
+  "mode": "live-guard-gate"
+}
