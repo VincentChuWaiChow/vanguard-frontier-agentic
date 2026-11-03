@@ -35370,7 +35370,7 @@
     },
     {
       "tree": "rules",
-      "aggregate_sha256": "9bf4ce0bcc79d25f90d1a02ad2f8beb621d372eeb71b76f157f2afd1b708a90c",
+      "aggregate_sha256": "5d3bd3be2c9fe48bc9225fe4c4be53bc688f0ec6752681e72d059315ace234d7",
       "files": [
         {
           "path": "rules/AGENTS.md",
@@ -35379,8 +35379,8 @@
         },
         {
           "path": "rules/codex/cloud-provenance-rule.md",
-          "sha256": "73121c4e7f404773c8a413b7e5ddc4928fe4c0c37bfb8562afb4831cc9b66de4",
-          "bytes": 589
+          "sha256": "e64a8366f2848584fb6c5a10490eae41a46a2b1fb43b45255f26c5dc15ab08c4",
+          "bytes": 591
         },
         {
           "path": "rules/codex/cloud-provenance-rule.metadata.json",
@@ -48804,5 +48804,5 @@
       "bytes": 9135
     }
   ],
-  "aggregate_sha256": "745c7b149d58a82e4e26de8b4037e1f5ea46a5e5e548caeb79694d404b384eb2"
+  "aggregate_sha256": "9a13ff1ea6b99ef2292b1d30db18ee586f9bfe15d2f6e9657735b285db1c1efe"
 }
