@@ -37277,7 +37277,7 @@
     },
     {
       "tree": "tests",
-      "aggregate_sha256": "298b8f8e5391699738e01be7c7f5fae193740744d62b98827672feebb3a16732",
+      "aggregate_sha256": "acb9be86189be9906ba33d2a9bf071c347edc9c9e1259a6eea056208c0535f21",
       "files": [
         {
           "path": "tests/AGENTS.md",
@@ -48846,8 +48846,8 @@
         },
         {
           "path": "tests/validate-skill-yaml-strict.py",
-          "sha256": "619e8b9862e3062dad3929d63509898f7cbb6bde16cf5483aaaf9b4d7ac61831",
-          "bytes": 2307
+          "sha256": "4e44d7bc4b5742004a37fa107e7887f194dfa65df2157093cc443aa1db4d4c45",
+          "bytes": 3222
         },
         {
           "path": "tests/validate-tracked-secrets.py",
@@ -48909,5 +48909,5 @@
       "bytes": 9135
     }
   ],
-  "aggregate_sha256": "c77d3d6250e77ba072a3baf8f133a83a0c11674f2890c12dd5466914e037bfee"
+  "aggregate_sha256": "b9d6da0cfe1477ba8b5bb7d65ec3ea47a095bb59ce81df86b83b1e55366d097d"
 }

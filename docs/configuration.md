@@ -26,7 +26,7 @@ These <!-- count:global:gates -->32<!-- /count --> `validate:*` gates run sequen
 | 4 | `validate:allowed-tools` | `python3 tests/validate-skill-allowed-tools.py` | Skills only reference allowed tools |
 | 5 | `validate:skill-coherence` | `python3 tests/validate-skill-coherence.py` | Shell examples in a SKILL.md are covered by its declared `allowed-tools` |
 | 6 | `validate:skill-schema` | `python3 tests/validate-skill-frontmatter-schema.py` | Skill frontmatter matches schema |
-| 7 | `validate:skill-yaml` | `python3 tests/validate-skill-yaml-strict.py` | Skill frontmatter parses as strict YAML (what the `skills` CLI / skills.sh reads) |
+| 7 | `validate:skill-yaml` | `python3 tests/validate-skill-yaml-strict.py` | Every tracked Markdown frontmatter block (agents, harness variants, powers, rules, docs, skills) parses as strict YAML; SKILL.md also needs non-empty `name`/`description` (what the `skills` CLI, skills.sh and harness loaders read) |
 | 8 | `validate:agent-schema` | `python3 tests/validate-agent-frontmatter-schema.py` | Agent metadata matches schema |
 | 9 | `validate:model-policy` | `node scripts/model-policy.mjs check` | Model/effort assignments resolve against `catalog/model-registry.json` |
 | 10 | `validate:model-params` | `python3 tests/validate-model-params.py` | Model parameter groups behave as documented and the policy schema accepts every value the script does |
