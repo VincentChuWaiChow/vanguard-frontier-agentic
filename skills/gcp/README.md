@@ -8,8 +8,9 @@ This folder contains GCP-focused skills curated for this marketplace.
 
 ## Local marketplace portfolio
 
-As of **2026-05-09**, this folder contains **51** local GCP skills:
+As of **2026-11-01**, this folder contains **52** local GCP skills:
 
+- `gcp-agent-runtime-review`
 - `gcp-alloydb-ai-developer`
 - `gcp-alloydb-cloudsql-dba`
 - `gcp-anthos-multicloud-architect`

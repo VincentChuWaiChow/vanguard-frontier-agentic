@@ -1,6 +1,21 @@
 {
   "provider": "gcp",
   "domains": {
+    "agent-runtime-review": {
+      "keywords": [
+        "agent runtime",
+        "agent engine",
+        "reasoning engine",
+        "reasoningengine",
+        "adk",
+        "agent development kit",
+        "adk deploy",
+        "agentplatform",
+        "memory bank",
+        "agent identity"
+      ],
+      "agent": "gcp-agent-runtime-review-agent"
+    },
     "alloydb-ai-developer": {
       "keywords": [
         "alloydb",

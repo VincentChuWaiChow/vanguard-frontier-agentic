@@ -260,6 +260,7 @@
     "./agents/frontend/vue-specialist-agent/harnesses/claude-code.agent.md",
     "./agents/frontend/web-performance-core-vitals-agent/harnesses/claude-code.agent.md",
     "./agents/frontend/web-platform-foundation-agent/harnesses/claude-code.agent.md",
+    "./agents/gcp/gcp-agent-runtime-review-agent/harnesses/claude-code.agent.md",
     "./agents/gcp/gcp-alloydb-ai-developer-agent/harnesses/claude-code.agent.md",
     "./agents/gcp/gcp-alloydb-cloudsql-dba-agent/harnesses/claude-code.agent.md",
     "./agents/gcp/gcp-anthos-multicloud-architect-agent/harnesses/claude-code.agent.md",

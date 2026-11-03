@@ -1,0 +1,8 @@
+{
+  "name": "047-happy-agent-runtime-review-sdk-migration",
+  "task": "Migrate our deploy pipeline from vertexai agent_engines to the agentplatform runtimes SDK and check adk deploy flags.",
+  "tags": [
+    "happy-path",
+    "sdk-migration"
+  ]
+}

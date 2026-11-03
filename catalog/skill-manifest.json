@@ -45,11 +45,11 @@
     {
       "id": "agentic-board-protocol",
       "path": "skills/cross-functional/agentic-board-protocol",
-      "aggregate_sha256": "f0973983f39efbe3e2a3ec932c78c001e8abf6d0ea896c1b12ba9129f85b1de0",
+      "aggregate_sha256": "aeaf819eb94b95b0cdc2fdd4db2d4ccf9ba7d42cb0c7432ec762bf33721694e2",
       "files": [
         {
           "path": "skills/cross-functional/agentic-board-protocol/SKILL.md",
-          "sha256": "de434f9d30a028354e55e24935b8811aeda8df820283b8f0e4a6e3a335a98be0",
+          "sha256": "eefaf36a9af1e1409f9ec1d315b2a20a2d9a866c8fdd4dc8e1157784216c25c5",
           "bytes": 7648
         },
         {
@@ -64,8 +64,8 @@
         },
         {
           "path": "skills/cross-functional/agentic-board-protocol/references/handoff-envelope.md",
-          "sha256": "e84c4e02e799c823a0bab0eeabdb9ca18911dc6f6edbc15b64b2e10d91d7b2bb",
-          "bytes": 20279
+          "sha256": "3b14e7008f9423c6f63da09a271edafe6f28cc494d3f959bb86163b658898e08",
+          "bytes": 20723
         },
         {
           "path": "skills/cross-functional/agentic-board-protocol/references/risk-tier-crosswalk.md",
@@ -74,8 +74,8 @@
         },
         {
           "path": "skills/cross-functional/agentic-board-protocol/references/stop-conditions.md",
-          "sha256": "62f3759fe27e22adaa766452c9054b06ea589581ddd5c1c66d89322c02463b3c",
-          "bytes": 14881
+          "sha256": "40ef2dd3c9718c48b827319d0bd7c06753f1a67f40ac3cfeb0142315d7d938f5",
+          "bytes": 15089
         },
         {
           "path": "skills/cross-functional/agentic-board-protocol/references/value-case.md",
@@ -87,12 +87,12 @@
     {
       "id": "agentic-security-review",
       "path": "skills/cross-functional/agentic-security-review",
-      "aggregate_sha256": "a7181d9a82ea7dab64c35bd4a7ce6667fc7097469aa274b8154044360d0f78d1",
+      "aggregate_sha256": "dc70515bb90e29b6d3dd695a45be97cacf31b3ba296dd1dcedb2ffa168bd7f4c",
       "files": [
         {
           "path": "skills/cross-functional/agentic-security-review/SKILL.md",
-          "sha256": "0c9ab13965861c557d7daa3ae452202afa7df90d2d058b7b4253705562dbbf62",
-          "bytes": 10595
+          "sha256": "5902142e01bf9904255fb914a68821285732efca96d659d5732cadfd5ec1fae2",
+          "bytes": 10940
         },
         {
           "path": "skills/cross-functional/agentic-security-review/metadata.json",
@@ -129,12 +129,12 @@
     {
       "id": "agentic-system-architecture-review",
       "path": "skills/cross-functional/agentic-system-architecture-review",
-      "aggregate_sha256": "6d812c2808b140ba56558371ee49bbe29a5fe1675394c9874aff619036716d4f",
+      "aggregate_sha256": "0ed13d8a4acaad7d689c6c9b318d4ca44546e5d7d1afc0db4f66bbf8e96bd405",
       "files": [
         {
           "path": "skills/cross-functional/agentic-system-architecture-review/SKILL.md",
-          "sha256": "13ccad2b765a7a90650dc46b39e00b5172d3fce96327e9b4a558c629aff43954",
-          "bytes": 8534
+          "sha256": "a5ccd554134fb9c3d3c9e3106054267cb6904565fff414b276ec07000418a9c3",
+          "bytes": 8879
         },
         {
           "path": "skills/cross-functional/agentic-system-architecture-review/metadata.json",
@@ -8360,6 +8360,53 @@
       ]
     },
     {
+      "id": "gcp-agent-runtime-review",
+      "path": "skills/gcp/gcp-agent-runtime-review",
+      "aggregate_sha256": "411b7d531ace1f167512f2679e1d713388f56ded8d5cc6501fba3c33f85de0e4",
+      "files": [
+        {
+          "path": "skills/gcp/gcp-agent-runtime-review/SKILL.md",
+          "sha256": "866ddd2146e9f91ce1dacf2b0799d79671e3f18c1d404d73f00bfe11590f59ea",
+          "bytes": 7398
+        },
+        {
+          "path": "skills/gcp/gcp-agent-runtime-review/metadata.json",
+          "sha256": "0edd602789041a055762cab3cfb1aff445f341493646c5f96b8f3255e9edf445",
+          "bytes": 2383
+        },
+        {
+          "path": "skills/gcp/gcp-agent-runtime-review/references/adk-runtime-controls.md",
+          "sha256": "8e3ae8025dfa75e68a8b4f41531752b30106078bd29301750224135ef32d1039",
+          "bytes": 8549
+        },
+        {
+          "path": "skills/gcp/gcp-agent-runtime-review/references/deployment-and-lifecycle.md",
+          "sha256": "a532d04efde49598c77fda79b7a1b7de168914178c8aec1aefea353490d4319a",
+          "bytes": 7446
+        },
+        {
+          "path": "skills/gcp/gcp-agent-runtime-review/references/identity-and-network-boundaries.md",
+          "sha256": "75bf47d33e3aa7d42585ef97a74ae7f0e2a9ebf2c56606e7419551c59594197d",
+          "bytes": 7235
+        },
+        {
+          "path": "skills/gcp/gcp-agent-runtime-review/references/official-sources.md",
+          "sha256": "a2a02d36e830aa9f20cb07b582e42a6f0eb430ef1da7a56e6c2ec5d206bef0c2",
+          "bytes": 6727
+        },
+        {
+          "path": "skills/gcp/gcp-agent-runtime-review/references/verification-and-evaluations.md",
+          "sha256": "e3063f5cf5ccd75f65843efffaf00c3fd1be708e996db809f276ebb7e6e50572",
+          "bytes": 5134
+        },
+        {
+          "path": "skills/gcp/gcp-agent-runtime-review/references/workflow-and-output.md",
+          "sha256": "d4737cfefe98afd901928deba7be7e4a7ef5f9b02f5b609801033d96cfa08d4e",
+          "bytes": 5322
+        }
+      ]
+    },
+    {
       "id": "gcp-alloydb-ai-developer",
       "path": "skills/gcp/gcp-alloydb-ai-developer",
       "aggregate_sha256": "523629ffd33c22c557ac5645d5bf35a5a93a2be3714b2d6e3e738507fc553668",
@@ -9179,12 +9226,12 @@
     {
       "id": "gcp-maestro",
       "path": "skills/gcp/gcp-maestro",
-      "aggregate_sha256": "ed5848cc2c6d3fef6246c392872aba66e8e5f739c0fc7d51228b29eee17b5e2d",
+      "aggregate_sha256": "1b8400e91ebb6a58dc275b86b8dc893f22b8eec24ebcd38fb11a0e40d420e01f",
       "files": [
         {
           "path": "skills/gcp/gcp-maestro/SKILL.md",
-          "sha256": "5726bdea5fd58bdf8d02add0480c304f1d10e14e2893c683caf705d4e2b1b9f4",
-          "bytes": 13252
+          "sha256": "4f1aa6cc64b027adb11464fd7c106c3334eae966d426ead3ee63026a6f3e3c76",
+          "bytes": 13540
         },
         {
           "path": "skills/gcp/gcp-maestro/metadata.json",

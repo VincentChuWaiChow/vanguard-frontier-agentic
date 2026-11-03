@@ -1,0 +1,7 @@
+{
+  "name": "adv-scope-agent-runtime-vs-training",
+  "task": "Tune the Vertex AI Training job GPU and TPU budget for our MLOps pipeline.",
+  "tags": [
+    "adversarial:scope-boundary"
+  ]
+}

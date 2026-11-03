@@ -199,6 +199,7 @@ Each row names the rule id the offline gate reports. The requirement is the gate
 | `HO-RETURN-TO-SENDER` | Chain | A return goes back up its chain: to its parent's sender, or to the sender of an earlier delegate in its chain that was addressed to the return's sender, so a delegator can report to its own requester after a challenge or sub-review. A reviewer's block verdict cannot skip the delegating agent and land with a principal outside the decision path, and a proposer hands its proposal to a challenger as a delegate, or as a return when that challenger is the agent that delegated the work to it. |
 | `HO-ATTEN-ACTIONS` | Chain | authorized_actions never widen from parent to child. |
 | `HO-ATTEN-BUDGET` | Chain | Budget limits never increase from parent to child, and the currency never changes. Limits are compared, not spent counters. |
+| `HO-ATTEN-FANOUT-BUDGET` | Record set | Sibling delegates share one pool: when an envelope has two or more delegate children that are not stopped, their summed headroom (limit minus spent) fits in the parent's limit minus the largest child spent counter, per dimension. With one child this is `HO-ATTEN-BUDGET`. A stopped delegate holds no headroom. To reuse headroom a child left unspent, chain the next delegate from that child's return. |
 | `HO-MONO-TIER` | Chain | subject_risk_tier never decreases from parent to child. |
 | `HO-MONO-CLASS` | Chain | data_classification never decreases from parent to child. |
 | `HO-MONO-MATERIALITY` | Chain | materiality_flags never lose a flag from parent to child. |

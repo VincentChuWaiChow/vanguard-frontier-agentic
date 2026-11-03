@@ -302,6 +302,14 @@ class BoardInvariantTests(unittest.TestCase):
             with self.subTest(skill=skill_id):
                 text = (ROOT / f"skills/cross-functional/{skill_id}/SKILL.md").read_text(encoding="utf-8")
                 self.assertRegex(text, r"(?m)^allowed-tools: Read Grep Glob$")
+                # allowed-tools only pre-approves; disallowed-tools removes tools while the skill is active
+                # (https://code.claude.com/docs/en/skills). The protocol skill stays unrestricted because
+                # principals author record sets and run the offline gate under it.
+                restrict = r"(?m)^disallowed-tools: Write Edit NotebookEdit Bash$"
+                if skill_id == "agentic-board-protocol":
+                    self.assertNotRegex(text, r"(?m)^disallowed-tools:")
+                else:
+                    self.assertRegex(text, restrict)
                 refs = sorted((ROOT / f"skills/cross-functional/{skill_id}/references").glob("*.md"))
                 self.assertTrue(1 <= len(refs) <= 5, "progressive disclosure: 1-5 topic references")
                 for ref in refs:
@@ -410,6 +418,9 @@ class TargetedMutantTests(unittest.TestCase):
         ("spent monotonic", 'cb[f"spent_{d}"] < pb[f"spent_{d}"]', 'cb[f"spent_{d}"] <= pb[f"spent_{d}"]'),
         ("record after request", 'if env["sent_at"] < request["sent_at"] or', 'if env["sent_at"] <= request["sent_at"] or'),
         ("destination tier", "not in DISPATCHABLE_TIERS", "in DISPATCHABLE_TIERS"),
+        ("fan-out comparison", 'if headroom > pb[f"limit_{d}"]', 'if headroom >= pb[f"limit_{d}"]'),
+        ("fan-out pool", '- max(b[f"spent_{d}"] for b in budgets)', '- min(b[f"spent_{d}"] for b in budgets)'),
+        ("fan-out threshold", "if len(budgets) < 2:", "if len(budgets) < 3:"),
         ("one request", 'if len([r for r in requests if "supersedes_task_id" not in r["decision_request"]]) > 1:',
          'if len([r for r in requests if "supersedes_task_id" not in r["decision_request"]]) > 2:'),
         ("counted round", 'rounds[c["task_id"]] = max(1, sum(1 for e in received if order.precedes(e, c)))',
