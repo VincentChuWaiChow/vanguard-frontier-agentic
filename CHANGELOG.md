@@ -1,3 +1,95 @@
+## 🛡️ v3.18.0 — *Provenance · Policy · Portability*
+_Released 2026-11-03_
+
+> _Curated multi-cloud, zero-trust agent marketplace — `AWS` · `Azure` · `OCI` · `GCP` · `Terraform`._
+> Least privilege, live evidence, safe rollback paths.
+
+**Release type:** New capabilities — review the sections below before upgrading.
+
+### ✨ Features
+
+* **agentic-board:** conserve sibling fan-out budgets and restrict review-skill tools ([`bd89a0a`](https://github.com/VincentChuWaiChow/vanguard-frontier-agentic/commit/bd89a0a7516cbcfe36225b2339308fe4af69207a))
+  Close open item RB-18. Before this change every sibling delegate inherited the
+  parent's whole budget, so a fan-out of n siblings could allocate n times the
+  pool and still pass validate:agentic-board.
+
+  - New rule HO-ATTEN-FANOUT-BUDGET: with two or more non-stopped delegate
+    children, their summed headroom (limit - spent) must fit in the parent's
+    limit less the largest sibling spent counter, per dimension. With one child
+    it reduces to HO-ATTEN-BUDGET, so it never double-fires.
+  - Builder: conserve_fanout() splits an over-allocated fan-out equally; the
+    over-cap scenario gives its sub-questions explicit small shares. The four
+    invalid fixtures that fanned out still fail exactly their own rule.
+  - Boundary pair on v01 (pool filled exactly passes; one tool call over fails)
+    with unequal sibling spend, plus three targeted mutants (comparison, pool
+    max/min, sibling threshold), all killed.
+  - Adopt disallowed-tools (Write Edit NotebookEdit Bash) in the two static
+    review skills, verified at https://code.claude.com/docs/en/skills on
+    2026-11-01; the protocol skill stays unrestricted because principals author
+    record sets and run the offline gate under it. Pinned in
+    test_board_skills_least_privilege.
+  - Recheck D2: the OpenTelemetry GenAI agent-spans page still declares
+    Development status, so the observability reference stays deferred.
+* **gcp:** add Agent Runtime review agent and skill for ADK agents ([`5e92c90`](https://github.com/VincentChuWaiChow/vanguard-frontier-agentic/commit/5e92c9019a85839c2b7c49b9996d3a253c0cb6d3))
+  Close the Vertex AI Agent Engine and Google ADK gap recorded in the agentic
+  board backlog, under the existing gcp provider as the owner decided. The
+  product is now Agent Runtime on Gemini Enterprise Agent Platform; the API
+  resource stays ReasoningEngine.
+
+  - gcp-agent-runtime-review-agent (static-review tier, read-only adapters in
+    all seven harnesses) with companion skill gcp-agent-runtime-review and six
+    topic references: workflow and output, deployment and lifecycle, identity
+    and network boundaries, ADK runtime controls, verification and evaluations,
+    official sources.
+  - Every platform and ADK claim was verified on 2026-11-01 against
+    docs.cloud.google.com/gemini-enterprise-agent-platform, adk.dev, PyPI or the
+    adk-docs source; callback and deploy shapes were corroborated in Context7.
+    Claims that came only from page summaries were dropped or labelled.
+  - Key findings the skill encodes: ADK tool confirmation is not supported with
+    VertexAiSessionService or DatabaseSessionService; vertexai.agent_engines is
+    deprecated for agentplatform runtimes; adk deploy --staging_bucket,
+    --trace_to_cloud and --adk_app are deprecated; archived revisions cannot be
+    restored; deleting a runtime invalidates its agent identity; google-adk
+    1.27.0 was yanked for breaking Agent Engine deployments.
+  - gcp maestro routing: new agent-runtime-review domain, fixtures 045 to 047
+    (including legacy-name phrasing that previously went to Compute Engine and
+    MLOps in parallel), a scope-boundary case that still routes training to
+    MLOps, and a deletion case pinned as gated live intent.
+  - Wired into the cloud-ai-platform-engineer install role, the maestro routing
+    table and the gcp READMEs; catalogs and counts regenerated.
+
+### 🐛 Bug Fixes
+
+* **gcp:** require the ADK version only for ADK agents in Agent Runtime review ([`a7455b3`](https://github.com/VincentChuWaiChow/vanguard-frontier-agentic/commit/a7455b328dcb1dad50f3ce8e82742ee4714305a0))
+  The skill supports LangGraph, LangChain, AG2, LlamaIndex and custom-container
+  agents, but the contract made a missing google-adk version blocking for every
+  review, so a non-ADK agent could never receive a verdict. The blocking input is
+  now the framework and its pinned version, with google-adk required only when
+  the agent uses ADK; "session service" is generalized to session and memory
+  configuration. Applied to AGENT.md, all seven re-rendered harness adapters,
+  SKILL.md inputs and the workflow preconditions, version step, decision table
+  and output contract. Raised by the automated Codex review on PR 223.
+
+### 📚 Documentation
+
+* **agentic-board:** record owner decisions on the maestro and business agents ([`aa76d0c`](https://github.com/VincentChuWaiChow/vanguard-frontier-agentic/commit/aa76d0cf1f9dd9860c0c92cb217f4db7f2a49c14))
+  The owner accepted the recommendations on 2026-11-01: the board maestro stays
+  rejected because ADR-0003 criterion 1 (four board-owned leaves) is not met with
+  two, and business agents E1 to E7 stay rejected until a sponsor brings measured
+  baseline data. The Vertex AI Agent Engine and ADK gap is being built separately.
+
+---
+
+### 📥 Install
+```bash
+npm install @raishin/vanguard-frontier-agentic@3.18.0
+```
+
+### 🔐 Supply-chain provenance
+Every release ships a build attestation (SLSA provenance) and an SBOM. Verify the tag with `gh attestation verify` before installing.
+
+**Full changelog:** https://github.com/VincentChuWaiChow/vanguard-frontier-agentic/compare/v3.17.0...v3.18.0
+
 ## 🛡️ v3.17.0 — *Provenance · Policy · Portability*
 _Released 2026-10-30_
 
@@ -12181,7 +12273,7 @@ Collateral: regenerate asset-integrity.json, plugin manifests
 
 ## 🔴 v2.0.0 — *Zero-Trust Scope Enforcement* &mdash; 2026-05-16
 
-> _Provider-scoped exports are now strict and auditable. 737 agents · 764 skills · 45 providers · 76 roles_
+> _Provider-scoped exports are now strict and auditable. 738 agents · 765 skills · 45 providers · 76 roles_
 >
 > This release closes a class of privilege-escalation bugs in the export CLI and hardens the
 > entire provider-scope boundary from user input through to CI attestation.
