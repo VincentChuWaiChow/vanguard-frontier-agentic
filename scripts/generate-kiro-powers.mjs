@@ -638,8 +638,8 @@ function renderPower(provider, cfg) {
   const frontmatter = [
     "---",
     `name: "vanguard-${provider}"`,
-    `displayName: "${cfg.displayName}"`,
-    `description: "${cfg.description}"`,
+    `displayName: ${JSON.stringify(cfg.displayName)}`,
+    `description: ${JSON.stringify(cfg.description)}`,
     `keywords: [${cfg.keywords.map((k) => `"${k}"`).join(", ")}]`,
     `author: "VincentChuWaiChow"`,
     "---",

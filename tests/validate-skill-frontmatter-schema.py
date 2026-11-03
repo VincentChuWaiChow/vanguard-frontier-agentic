@@ -65,7 +65,13 @@ def _minimal_yaml_parse(block: str) -> dict:
         s = s.strip()
         if (s.startswith('"') and s.endswith('"')) or \
            (s.startswith("'") and s.endswith("'")):
-            return s[1:-1]
+            # YAML quoting: "..." uses backslash escapes, '...' doubles ''.
+            if s.startswith('"'):
+                try:
+                    return json.loads(s)
+                except ValueError:  # YAML-only escape; keep the legacy strip
+                    return s[1:-1]
+            return s[1:-1].replace("''", "'")
         if s.lower() == "true":
             return True
         if s.lower() == "false":

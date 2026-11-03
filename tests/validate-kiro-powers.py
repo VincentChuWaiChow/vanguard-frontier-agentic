@@ -17,6 +17,7 @@ Gates:
 
 from __future__ import annotations
 
+import json
 import re
 import subprocess
 import sys
@@ -55,7 +56,13 @@ def fail(msg: str) -> None:
 def _unquote(value: str) -> str:
     value = value.strip()
     if len(value) >= 2 and value[0] == value[-1] and value[0] in ("'", '"'):
-        return value[1:-1]
+        # YAML quoting: "..." uses backslash escapes, '...' doubles ''.
+        if value[0] == '"':
+            try:
+                return json.loads(value)
+            except ValueError:  # YAML-only escape; keep the legacy strip
+                return value[1:-1]
+        return value[1:-1].replace("''", "'")
     return value
 
 
