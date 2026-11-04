@@ -3,7 +3,7 @@ name: azure-waf-security-review
 description: "Review Azure workload security posture against the Well-Architected Framework Security pillar: identity and access, segmentation, data protection, threat detection, secure development lifecycle, incident response, and policy compliance."
 allowed-tools: Read Grep Glob
 metadata:
-  author: github: VincentChuWaiChow
+  author: "github: VincentChuWaiChow"
   version: 0.1.1
   updated: "2026-06-05"
   category: security

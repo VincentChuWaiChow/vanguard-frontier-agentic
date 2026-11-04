@@ -1,6 +1,6 @@
 ---
 name: sap-rise-sla-vendor-risk-review
-description: Advisory review of RISE with SAP and SAP cloud service contracts for SLA and vendor risk: responsibility split between SAP, customer, and partner; SLA tiers and credit mechanisms; availability and DR commitments; data residency; exit and portability obligations; shared security responsibilities; and audit rights. Does not touch or mutate any live system.
+description: "Advisory review of RISE with SAP and SAP cloud service contracts for SLA and vendor risk: responsibility split between SAP, customer, and partner; SLA tiers and credit mechanisms; availability and DR commitments; data residency; exit and portability obligations; shared security responsibilities; and audit rights. Does not touch or mutate any live system."
 allowed-tools: Read Grep Glob WebSearch WebFetch
 metadata:
   author: "github: VincentChuWaiChow"

@@ -1,6 +1,6 @@
 ---
 name: sap-btp-governance-review
-description: Review SAP BTP account model governance: global account, directories, subaccounts, entitlements, quotas, environments (Cloud Foundry, Kyma), role collections, and trust configuration. Flags entitlement sprawl, over-provisioning, missing guardrails, and trust misconfiguration. Does not touch live systems.
+description: "Review SAP BTP account model governance: global account, directories, subaccounts, entitlements, quotas, environments (Cloud Foundry, Kyma), role collections, and trust configuration. Flags entitlement sprawl, over-provisioning, missing guardrails, and trust misconfiguration. Does not touch live systems."
 allowed-tools: Read Grep Glob WebSearch WebFetch
 metadata:
   author: "github: VincentChuWaiChow"

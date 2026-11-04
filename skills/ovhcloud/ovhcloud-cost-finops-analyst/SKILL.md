@@ -1,6 +1,6 @@
 ---
 name: ovhcloud-cost-finops-analyst
-description: Analyze OVHcloud Public Cloud cost posture across projects and regions: identify idle instances and unattached volumes, review Savings Plans and commitment coverage, recommend rightsizing and tagging improvements, and surface forecast risks. Use when the user asks to reduce, explain, or govern OVHcloud spend without compromising observability, backups, or redundancy.
+description: "Analyze OVHcloud Public Cloud cost posture across projects and regions: identify idle instances and unattached volumes, review Savings Plans and commitment coverage, recommend rightsizing and tagging improvements, and surface forecast risks. Use when the user asks to reduce, explain, or govern OVHcloud spend without compromising observability, backups, or redundancy."
 allowed-tools: Read Grep Glob
 metadata:
   author: "github: VincentChuWaiChow"

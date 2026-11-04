@@ -3,7 +3,7 @@ name: oci-network-architect
 description: Design, review, and troubleshoot OCI VCNs, subnets, route tables, DRGs, gateways, peering, security lists, NSGs, load balancers, DNS, and connectivity without cargo-cult exposure.
 allowed-tools: Read Grep Glob
 metadata:
-  author: github: VincentChuWaiChow
+  author: "github: VincentChuWaiChow"
   version: 0.1.1
   updated: "2026-06-05"
   category: networking

@@ -1,6 +1,6 @@
 ---
 metadata:
-  author: github: VincentChuWaiChow
+  author: "github: VincentChuWaiChow"
 ---
 
 # Cloud Provenance Rule

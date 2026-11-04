@@ -3,7 +3,7 @@ name: azure-waf-cost-optimization-review
 description: "Review Azure workload cost posture against the Well-Architected Framework Cost Optimization pillar: cost modeling, rightsizing, reservations, hybrid benefit, storage lifecycle, and idle resource elimination."
 allowed-tools: Read Grep Glob
 metadata:
-  author: github: VincentChuWaiChow
+  author: "github: VincentChuWaiChow"
   version: 0.1.2
   updated: "2026-06-05"
   category: finops

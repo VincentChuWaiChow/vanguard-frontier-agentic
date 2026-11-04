@@ -1,6 +1,6 @@
 ---
 name: sap-treasury-cash-risk-review
-description: Review SAP Treasury and Risk Management (TRM) and Cash Management configurations: cash position and liquidity forecasting controls, bank account management (BAM) governance, in-house cash and payment factory design, hedge and exposure management controls, fraud prevention in payment processing, and segregation of duties across treasury operations. Flags control gaps in cash visibility, unauthorized payment release paths, hedge documentation deficiencies, bank account governance weaknesses, and fraud control bypass risks. Does not execute payments, trades, or hedges, and does not access any live treasury or banking system.
+description: "Review SAP Treasury and Risk Management (TRM) and Cash Management configurations: cash position and liquidity forecasting controls, bank account management (BAM) governance, in-house cash and payment factory design, hedge and exposure management controls, fraud prevention in payment processing, and segregation of duties across treasury operations. Flags control gaps in cash visibility, unauthorized payment release paths, hedge documentation deficiencies, bank account governance weaknesses, and fraud control bypass risks. Does not execute payments, trades, or hedges, and does not access any live treasury or banking system."
 allowed-tools: Read Grep Glob WebSearch WebFetch
 metadata:
   author: "github: VincentChuWaiChow"

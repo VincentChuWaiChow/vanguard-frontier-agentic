@@ -3,7 +3,7 @@ name: oci-compute-platform-operator
 description: Operate OCI Compute instances and platform capacity with compartment/region confirmation, lifecycle guardrails, least-privilege IAM, image/shape/network review, and rollback-aware changes.
 allowed-tools: Read Grep Glob
 metadata:
-  author: github: VincentChuWaiChow
+  author: "github: VincentChuWaiChow"
   version: 0.1.1
   updated: "2026-06-05"
   category: platform

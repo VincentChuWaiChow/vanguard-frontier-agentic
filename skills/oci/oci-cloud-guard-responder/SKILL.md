@@ -3,7 +3,7 @@ name: oci-cloud-guard-responder
 description: Triage OCI Cloud Guard problems, targets, detector recipes, responder recipes, suppression, and remediation plans with evidence labels and approval gates.
 allowed-tools: Read Grep Glob
 metadata:
-  author: github: VincentChuWaiChow
+  author: "github: VincentChuWaiChow"
   version: 0.1.1
   updated: "2026-06-05"
   category: security

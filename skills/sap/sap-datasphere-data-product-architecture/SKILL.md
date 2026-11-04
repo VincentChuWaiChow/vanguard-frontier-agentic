@@ -1,6 +1,6 @@
 ---
 name: sap-datasphere-data-product-architecture
-description: Review SAP Datasphere architecture: spaces, data flows and replication, semantic and analytic models, data products and sharing, data access controls, and integration with SAP Analytics Cloud and SAP HANA Cloud. Flags structural design gaps, access control weaknesses, and data product sharing anti-patterns. Does not touch live systems.
+description: "Review SAP Datasphere architecture: spaces, data flows and replication, semantic and analytic models, data products and sharing, data access controls, and integration with SAP Analytics Cloud and SAP HANA Cloud. Flags structural design gaps, access control weaknesses, and data product sharing anti-patterns. Does not touch live systems."
 allowed-tools: Read Grep Glob WebSearch WebFetch
 metadata:
   author: "github: VincentChuWaiChow"

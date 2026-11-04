@@ -3,7 +3,7 @@ name: oci-migration-cutover-architect
 description: Plan OCI migrations and cutovers with dependency discovery, waves, replication, DNS, identity, data validation, rollback, support readiness, and go/no-go evidence.
 allowed-tools: Read Grep Glob
 metadata:
-  author: github: VincentChuWaiChow
+  author: "github: VincentChuWaiChow"
   version: 0.1.1
   updated: "2026-06-05"
   category: delivery

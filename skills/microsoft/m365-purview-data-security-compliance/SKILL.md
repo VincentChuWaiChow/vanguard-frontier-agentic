@@ -1,6 +1,6 @@
 ---
 name: m365-purview-data-security-compliance
-description: Review Microsoft Purview data security and compliance posture — sensitivity labels and information protection, Data Loss Prevention (DLP including Endpoint DLP and Adaptive Protection), data lifecycle and retention policies, Insider Risk Management, eDiscovery and legal hold, Audit (Premium), and Data Security Posture Management (DSPM) for AI oversharing. Cert anchor: SC-401 Information Security Administrator Associate (replaced SC-400 on 2025-05-31). Static review and advisory only; production label, DLP, retention policy changes, eDiscovery holds, and Insider Risk policy changes are live-guard gated. Refuse to weaken DLP, retention, or legal-hold controls for convenience.
+description: "Review Microsoft Purview data security and compliance posture — sensitivity labels and information protection, Data Loss Prevention (DLP including Endpoint DLP and Adaptive Protection), data lifecycle and retention policies, Insider Risk Management, eDiscovery and legal hold, Audit (Premium), and Data Security Posture Management (DSPM) for AI oversharing. Cert anchor: SC-401 Information Security Administrator Associate (replaced SC-400 on 2025-05-31). Static review and advisory only; production label, DLP, retention policy changes, eDiscovery holds, and Insider Risk policy changes are live-guard gated. Refuse to weaken DLP, retention, or legal-hold controls for convenience."
 allowed-tools: Read Grep Glob
 metadata:
   author: "github: VincentChuWaiChow"

@@ -1,6 +1,6 @@
 ---
 name: sap-hypercare-incident-commander-review
-description: Review hypercare and go-live stabilization governance for SAP S/4HANA and SAP BTP programs: severity triage model, war-room governance and decision authority, incident and problem workflow during hypercare, root-cause investigation process, business impact classification, escalation paths to SAP support and internal leadership, and exit-from-hypercare criteria. Advisory only — does not create or close incident records, escalate to SAP, or mutate any live system or ITSM configuration.
+description: "Review hypercare and go-live stabilization governance for SAP S/4HANA and SAP BTP programs: severity triage model, war-room governance and decision authority, incident and problem workflow during hypercare, root-cause investigation process, business impact classification, escalation paths to SAP support and internal leadership, and exit-from-hypercare criteria. Advisory only — does not create or close incident records, escalate to SAP, or mutate any live system or ITSM configuration."
 allowed-tools: Read Grep Glob WebSearch WebFetch
 metadata:
   author: "github: VincentChuWaiChow"

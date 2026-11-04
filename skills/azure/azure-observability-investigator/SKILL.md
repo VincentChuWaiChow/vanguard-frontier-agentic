@@ -3,7 +3,7 @@ name: azure-observability-investigator
 description: Use this skill for Azure Monitor, Log Analytics, Application Insights, alerting, KQL triage, telemetry-gap analysis, workbooks, or operator-grade incident and posture investigations.
 allowed-tools: Read Grep Glob WebFetch
 metadata:
-  author: github: VincentChuWaiChow
+  author: "github: VincentChuWaiChow"
   version: 0.1.2
   updated: "2026-06-05"
   category: observability

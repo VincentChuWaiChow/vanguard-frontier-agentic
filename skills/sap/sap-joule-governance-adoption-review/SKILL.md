@@ -1,6 +1,6 @@
 ---
 name: sap-joule-governance-adoption-review
-description: Review SAP Joule generative AI copilot governance and adoption risk: scope grounding and boundary configuration, data access boundaries per business role, prompt and response auditability, role-aware answer configuration, hallucination and over-trust risk, and change management and adoption readiness. Does not access live Joule sessions or production data.
+description: "Review SAP Joule generative AI copilot governance and adoption risk: scope grounding and boundary configuration, data access boundaries per business role, prompt and response auditability, role-aware answer configuration, hallucination and over-trust risk, and change management and adoption readiness. Does not access live Joule sessions or production data."
 allowed-tools: Read Grep Glob WebSearch WebFetch
 metadata:
   author: "github: VincentChuWaiChow"

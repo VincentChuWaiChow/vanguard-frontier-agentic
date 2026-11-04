@@ -35415,7 +35415,7 @@
     },
     {
       "tree": "rules",
-      "aggregate_sha256": "9bf4ce0bcc79d25f90d1a02ad2f8beb621d372eeb71b76f157f2afd1b708a90c",
+      "aggregate_sha256": "5d3bd3be2c9fe48bc9225fe4c4be53bc688f0ec6752681e72d059315ace234d7",
       "files": [
         {
           "path": "rules/AGENTS.md",
@@ -35424,8 +35424,8 @@
         },
         {
           "path": "rules/codex/cloud-provenance-rule.md",
-          "sha256": "73121c4e7f404773c8a413b7e5ddc4928fe4c0c37bfb8562afb4831cc9b66de4",
-          "bytes": 589
+          "sha256": "e64a8366f2848584fb6c5a10490eae41a46a2b1fb43b45255f26c5dc15ab08c4",
+          "bytes": 591
         },
         {
           "path": "rules/codex/cloud-provenance-rule.metadata.json",
@@ -35984,7 +35984,7 @@
     },
     {
       "tree": "catalog",
-      "aggregate_sha256": "3efeff5a7f820b97ea58f3bcafad88e377b78fa0989b26bc1a79d836b28bf0aa",
+      "aggregate_sha256": "e9dd8fadc375ec3098c0030b1d64e5da32dab60a7bacf8835d7176b33267927a",
       "files": [
         {
           "path": "catalog/AGENTS.md",
@@ -36038,7 +36038,7 @@
         },
         {
           "path": "catalog/skill-manifest.json",
-          "sha256": "5df0738568369fbcfc149aed188b772e6989564a99acb30aaaa700f12c4634b3",
+          "sha256": "e799fa65bd612477ca63df7fa7dc4b4b8a1429bde06a189f4021a78811a31fd6",
           "bytes": 1097115
         },
         {
@@ -36055,7 +36055,7 @@
     },
     {
       "tree": "scripts",
-      "aggregate_sha256": "9033b842c405febc37a1d6cb7f625e3954f71c327ea5d28a172367ac4e699f4c",
+      "aggregate_sha256": "717c7c6156eeab017d7ea090ed0b75f7fcf09ee00c1d64902a0e239be066e228",
       "files": [
         {
           "path": "scripts/apply-skill-allowed-tools.py",
@@ -36239,8 +36239,8 @@
         },
         {
           "path": "scripts/generate-kiro-powers.mjs",
-          "sha256": "35ed0e096b5a9d7300e012f900aec0d6114a292e214ef1c20a07a8f421c25a01",
-          "bytes": 52337
+          "sha256": "31c6a421409d88e39fd9cb1e471fe55e416dbaef6340bafcad12ffeeb99a402b",
+          "bytes": 52365
         },
         {
           "path": "scripts/generate-mods.mjs",
@@ -37277,7 +37277,7 @@
     },
     {
       "tree": "tests",
-      "aggregate_sha256": "c7c4c0d68c6773ca8f3cec91751b62366e11fd0564aba89ad56909529dc0d586",
+      "aggregate_sha256": "acb9be86189be9906ba33d2a9bf071c347edc9c9e1259a6eea056208c0535f21",
       "files": [
         {
           "path": "tests/AGENTS.md",
@@ -38316,7 +38316,7 @@
         },
         {
           "path": "tests/fixtures/README.md",
-          "sha256": "acaf3d3c24397635ed5f3e69b3464bdb2cd75916a8daf95d476546cee9f0399c",
+          "sha256": "da634e9196a0db2c43eecdb50577914ce12dd6eabfd0df8429cb0f34dfc2f494",
           "bytes": 3698
         },
         {
@@ -48706,8 +48706,8 @@
         },
         {
           "path": "tests/test-marketplace-validators.py",
-          "sha256": "b31a457afe9d90bf9a97bb8fe27ea35a7d9184bb9cb8a6b7ba8da6e26e51db33",
-          "bytes": 22576
+          "sha256": "99ff80efbd3eedcdaaec25cd90f01bfebca1a673b6bf5d8aa5e80a58192b93a8",
+          "bytes": 22862
         },
         {
           "path": "tests/test-vfa-export-coverage.test.mjs",
@@ -48716,8 +48716,8 @@
         },
         {
           "path": "tests/validate-agent-frontmatter-schema.py",
-          "sha256": "89721ae20fe49ecd24486efb4a2c8e35333fa4066d21b9b5223955539dce39e1",
-          "bytes": 13818
+          "sha256": "abc237ec22d5d10042e1304f9101c9e618f194800ac7af081d44c75b49f989ef",
+          "bytes": 14122
         },
         {
           "path": "tests/validate-agent-tool-tiers.py",
@@ -48766,8 +48766,8 @@
         },
         {
           "path": "tests/validate-kiro-powers.py",
-          "sha256": "b983b285701e29bcf9ab72de5a138489049061eced933b38465ab48ddf5408b4",
-          "bytes": 7789
+          "sha256": "6500ebec9cd05dbc05d8cb06d69bacdea9e42ee7f5c08ba41e5b851dddb93a8c",
+          "bytes": 8087
         },
         {
           "path": "tests/validate-links.py",
@@ -48836,13 +48836,18 @@
         },
         {
           "path": "tests/validate-skill-frontmatter-schema.py",
-          "sha256": "c9b73fe4489adb1b25ea36bac98c68269fdd8474b9632c321892a02a99abf390",
-          "bytes": 11331
+          "sha256": "cdff661f7c2b3e633eed8d0de31079ba3a76f122932c0dee1b9080aa15603ab1",
+          "bytes": 11635
         },
         {
           "path": "tests/validate-skill-manifest.py",
           "sha256": "963e8499da6e991cf84a5d6602a79d625c4f861b9c927f11a45782b7a23878cc",
           "bytes": 3543
+        },
+        {
+          "path": "tests/validate-skill-yaml-strict.py",
+          "sha256": "4e44d7bc4b5742004a37fa107e7887f194dfa65df2157093cc443aa1db4d4c45",
+          "bytes": 3222
         },
         {
           "path": "tests/validate-tracked-secrets.py",
@@ -48880,8 +48885,8 @@
     },
     {
       "path": "CLAUDE.md",
-      "sha256": "9d71e4ba51fa313c079d34e8e25fe097821e42d36858d18cf3c557600ab265dd",
-      "bytes": 24906
+      "sha256": "2a010046ddfcf9f8f492334c7ad37b6bac996d079d968cea887fdd9ddf7cd9da",
+      "bytes": 24920
     },
     {
       "path": "AGENTS.md",
@@ -48895,8 +48900,8 @@
     },
     {
       "path": "package.json",
-      "sha256": "d97425f42580c0376f6df4ce22c0166d09a5c60363f07291cd5e43f096fe03fb",
-      "bytes": 8411
+      "sha256": "4e18af6d072154d7e7337945b64e93dd876dda9c7bbc4b25124d04ce7c0a69fc",
+      "bytes": 8516
     },
     {
       "path": ".releaserc.js",
@@ -48904,5 +48909,5 @@
       "bytes": 9135
     }
   ],
-  "aggregate_sha256": "ef07a0cd817cb9bff8ae7898ac1f3a83f6afeedc758828a3c25fd0024da2e327"
+  "aggregate_sha256": "30a3104e595181a17bbd2226b8d8bf937bd3ada8e4e140ae1ce5c0c25263420f"
 }

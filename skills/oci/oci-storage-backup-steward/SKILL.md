@@ -3,7 +3,7 @@ name: oci-storage-backup-steward
 description: Operate as an OCI storage and backup steward for Object Storage, Block Volume, File Storage, backup policies, retention, replication, lifecycle rules, restore readiness, and IAM-scoped storage operations.
 allowed-tools: Read Grep Glob
 metadata:
-  author: github: VincentChuWaiChow
+  author: "github: VincentChuWaiChow"
   version: 0.1.1
   updated: "2026-06-05"
   category: resilience

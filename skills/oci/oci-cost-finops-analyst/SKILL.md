@@ -3,7 +3,7 @@ name: oci-cost-finops-analyst
 description: Analyze OCI cost, usage, budgets, tagging, forecasts, commitments, rightsizing, and FinOps governance without turning savings into reliability or security risk.
 allowed-tools: Read Grep Glob
 metadata:
-  author: github: VincentChuWaiChow
+  author: "github: VincentChuWaiChow"
   version: 0.1.1
   updated: "2026-06-05"
   category: finops

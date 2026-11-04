@@ -3,7 +3,7 @@ name: oci-live-oke-rollout-guard
 description: Guard OCI OKE and DevOps deployment rollouts with approval-stage, canary, blue-green, workload health, rollback, and Kubernetes safety evidence before promotion or rollback.
 allowed-tools: Read Grep Glob
 metadata:
-  author: github: VincentChuWaiChow
+  author: "github: VincentChuWaiChow"
   version: 0.1.1
   updated: "2026-06-05"
   category: delivery

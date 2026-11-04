@@ -3,7 +3,7 @@ name: oci-identity-access-governor
 description: Govern OCI IAM policies, compartments, groups, dynamic groups, domains, federation, and least-privilege access changes without approving broad or destructive permissions on weak evidence.
 allowed-tools: Read Grep Glob
 metadata:
-  author: github: VincentChuWaiChow
+  author: "github: VincentChuWaiChow"
   version: 0.1.1
   updated: "2026-06-05"
   category: compliance

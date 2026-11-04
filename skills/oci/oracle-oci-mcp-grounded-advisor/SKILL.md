@@ -3,7 +3,7 @@ name: oracle-oci-mcp-grounded-advisor
 description: Ground Oracle, OCI, SQLcl, database, and Model Context Protocol recommendations in official Oracle sources and read-only evidence before advising.
 allowed-tools: Read Grep Glob
 metadata:
-  author: github: VincentChuWaiChow
+  author: "github: VincentChuWaiChow"
   version: 0.1.2
   updated: "2026-06-06"
   category: compliance

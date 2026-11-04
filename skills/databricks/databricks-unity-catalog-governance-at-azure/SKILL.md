@@ -1,6 +1,6 @@
 ---
 name: databricks-unity-catalog-governance-at-azure
-description: Review Databricks Unity Catalog governance on Azure: three-level namespace design, GRANT privilege model, identity federation with Microsoft Entra ID, service principal posture, workspace-catalog binding, account/workspace/metastore admin separation, audit via system tables, and least-privilege schema-scoped grant patterns. Static review only — never execute against live workspace.
+description: "Review Databricks Unity Catalog governance on Azure: three-level namespace design, GRANT privilege model, identity federation with Microsoft Entra ID, service principal posture, workspace-catalog binding, account/workspace/metastore admin separation, audit via system tables, and least-privilege schema-scoped grant patterns. Static review only — never execute against live workspace."
 allowed-tools: Read Grep Glob
 metadata:
   author: "github: VincentChuWaiChow"

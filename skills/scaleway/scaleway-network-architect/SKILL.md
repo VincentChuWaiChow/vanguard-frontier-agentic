@@ -1,6 +1,6 @@
 ---
 name: scaleway-network-architect
-description: Review and design Scaleway network topology for security and high availability: VPC layout, Private Network attachment across zones, security group rules, Load Balancer configuration, placement group policy selection (max_availability vs enforced), and multi-zone resilience patterns. Use when the user asks to design a Scaleway VPC, audit security group rules, configure a Load Balancer, or plan HA across zones fr-par-1/2/3, nl-ams-1, or pl-waw-1/2/3.
+description: "Review and design Scaleway network topology for security and high availability: VPC layout, Private Network attachment across zones, security group rules, Load Balancer configuration, placement group policy selection (max_availability vs enforced), and multi-zone resilience patterns. Use when the user asks to design a Scaleway VPC, audit security group rules, configure a Load Balancer, or plan HA across zones fr-par-1/2/3, nl-ams-1, or pl-waw-1/2/3."
 allowed-tools: Read Grep Glob
 metadata:
   author: "github: VincentChuWaiChow"

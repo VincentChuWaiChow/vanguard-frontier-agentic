@@ -16,7 +16,7 @@ The `package.json` defines all build, validation, and generation commands.
 
 ### Validation Gates (run via `npm run validate`)
 
-These <!-- count:global:gates -->31<!-- /count --> `validate:*` gates run sequentially in CI and must all pass, in the order `npm run validate` invokes them (the table also lists `manifest:check`, which runs in the same sequence but is not a `validate:*` script):
+These <!-- count:global:gates -->32<!-- /count --> `validate:*` gates run sequentially in CI and must all pass, in the order `npm run validate` invokes them (the table also lists `manifest:check`, which runs in the same sequence but is not a `validate:*` script):
 
 | # | Script | Command | Purpose |
 |---|--------|---------|---------|
@@ -26,30 +26,31 @@ These <!-- count:global:gates -->31<!-- /count --> `validate:*` gates run sequen
 | 4 | `validate:allowed-tools` | `python3 tests/validate-skill-allowed-tools.py` | Skills only reference allowed tools |
 | 5 | `validate:skill-coherence` | `python3 tests/validate-skill-coherence.py` | Shell examples in a SKILL.md are covered by its declared `allowed-tools` |
 | 6 | `validate:skill-schema` | `python3 tests/validate-skill-frontmatter-schema.py` | Skill frontmatter matches schema |
-| 7 | `validate:agent-schema` | `python3 tests/validate-agent-frontmatter-schema.py` | Agent metadata matches schema |
-| 8 | `validate:model-policy` | `node scripts/model-policy.mjs check` | Model/effort assignments resolve against `catalog/model-registry.json` |
-| 9 | `validate:model-params` | `python3 tests/validate-model-params.py` | Model parameter groups behave as documented and the policy schema accepts every value the script does |
-| 10 | `validate:links` | `python3 tests/validate-links.py --offline` | Internal links resolve |
-| 11 | `validate:asset-integrity` | `python3 tests/validate-asset-integrity.py` | SHA-256 hashes match |
-| 12 | `validate:tracked-secrets` | `python3 tests/validate-tracked-secrets.py` | No credential-shaped strings in tracked content |
-| 13 | `validate:mcp-trust-matrix` | `python3 tests/validate-mcp-trust-matrix.py` | MCP references are trusted |
-| 14 | `validate:no-lifecycle-scripts` | `python3 tests/validate-no-lifecycle-scripts.py` | No install/postinstall scripts |
-| 15 | `validate:promotion-gatekeeper` | `python3 tests/validate-nvidia-promotion-gatekeeper.py` | NVIDIA promotion rules |
-| 16 | `validate:install-coverage` | `node tests/test-vfa-export-coverage.test.mjs` | Export CLI covers all roles |
-| 17 | `validate:maestro-routing` | `python3 tests/validate-maestro-routing.py` | Maestro routing scenarios pass |
-| 18 | `validate:plugin-manifest` | `python3 tests/validate-plugin-manifest.py` | Plugin manifests current |
-| 19 | `validate:kiro-powers` | `python3 tests/validate-kiro-powers.py` | Kiro Powers valid |
-| 20 | `validate:multi-harness-marketplace` | `python3 tests/validate-multi-harness-marketplace.py` | Cross-harness consistency |
-| 21 | `validate:codex-marketplace` | `python3 tests/validate-codex-marketplace.py` | Codex marketplace valid |
-| 22 | `validate:finops-fixtures` | `python3 tests/validate-finops-price-fixtures.py` | FinOps price fixtures |
-| 23 | `validate:readme-counts` | `node tests/validate-readme-counts.mjs && node scripts/generate-readme-counts.mjs --check` | README stats accurate |
-| 24 | `validate:board-counts` | `node scripts/generate-board-counts.mjs --check` | Inline `<!-- count:… -->` markers in docs match the catalog |
-| 25 | `validate:qa-cluster` | `node tests/eval-qa-cluster.mjs` | QA cluster evaluation |
-| 26 | `validate:frontend-security-detection` | `python3 tests/validate-frontend-security-detection.py` | Frontend security skills still document their sink keywords and detect the fixture corpus |
-| 27 | `validate:agent-tool-tiers` | `python3 tests/validate-agent-tool-tiers.py` | Copilot tool grants match each agent's declared `execution_tier` |
-| 28 | `validate:istio-review-suite` | `python3 -m unittest discover -s tests/istio-review-suite -p "test_*.py" -v` | Istio review suite unit tests |
-| 29 | `validate:workflow-catalog` | `node scripts/generate-workflow-catalog.mjs --check` | `catalog/workflows.json` matches the `meta` literal in each `.claude/workflows/*.js` |
-| 30 | `validate:release-notes` | `node tests/validate-release-notes.mjs` | semantic-release renders notes with the configured preset |
+| 7 | `validate:skill-yaml` | `python3 tests/validate-skill-yaml-strict.py` | Every tracked Markdown frontmatter block (agents, harness variants, powers, rules, docs, skills) parses as strict YAML; SKILL.md also needs non-empty `name`/`description` (what the `skills` CLI, skills.sh and harness loaders read) |
+| 8 | `validate:agent-schema` | `python3 tests/validate-agent-frontmatter-schema.py` | Agent metadata matches schema |
+| 9 | `validate:model-policy` | `node scripts/model-policy.mjs check` | Model/effort assignments resolve against `catalog/model-registry.json` |
+| 10 | `validate:model-params` | `python3 tests/validate-model-params.py` | Model parameter groups behave as documented and the policy schema accepts every value the script does |
+| 11 | `validate:links` | `python3 tests/validate-links.py --offline` | Internal links resolve |
+| 12 | `validate:asset-integrity` | `python3 tests/validate-asset-integrity.py` | SHA-256 hashes match |
+| 13 | `validate:tracked-secrets` | `python3 tests/validate-tracked-secrets.py` | No credential-shaped strings in tracked content |
+| 14 | `validate:mcp-trust-matrix` | `python3 tests/validate-mcp-trust-matrix.py` | MCP references are trusted |
+| 15 | `validate:no-lifecycle-scripts` | `python3 tests/validate-no-lifecycle-scripts.py` | No install/postinstall scripts |
+| 16 | `validate:promotion-gatekeeper` | `python3 tests/validate-nvidia-promotion-gatekeeper.py` | NVIDIA promotion rules |
+| 17 | `validate:install-coverage` | `node tests/test-vfa-export-coverage.test.mjs` | Export CLI covers all roles |
+| 18 | `validate:maestro-routing` | `python3 tests/validate-maestro-routing.py` | Maestro routing scenarios pass |
+| 19 | `validate:plugin-manifest` | `python3 tests/validate-plugin-manifest.py` | Plugin manifests current |
+| 20 | `validate:kiro-powers` | `python3 tests/validate-kiro-powers.py` | Kiro Powers valid |
+| 21 | `validate:multi-harness-marketplace` | `python3 tests/validate-multi-harness-marketplace.py` | Cross-harness consistency |
+| 22 | `validate:codex-marketplace` | `python3 tests/validate-codex-marketplace.py` | Codex marketplace valid |
+| 23 | `validate:finops-fixtures` | `python3 tests/validate-finops-price-fixtures.py` | FinOps price fixtures |
+| 24 | `validate:readme-counts` | `node tests/validate-readme-counts.mjs && node scripts/generate-readme-counts.mjs --check` | README stats accurate |
+| 25 | `validate:board-counts` | `node scripts/generate-board-counts.mjs --check` | Inline `<!-- count:… -->` markers in docs match the catalog |
+| 26 | `validate:qa-cluster` | `node tests/eval-qa-cluster.mjs` | QA cluster evaluation |
+| 27 | `validate:frontend-security-detection` | `python3 tests/validate-frontend-security-detection.py` | Frontend security skills still document their sink keywords and detect the fixture corpus |
+| 28 | `validate:agent-tool-tiers` | `python3 tests/validate-agent-tool-tiers.py` | Copilot tool grants match each agent's declared `execution_tier` |
+| 29 | `validate:istio-review-suite` | `python3 -m unittest discover -s tests/istio-review-suite -p "test_*.py" -v` | Istio review suite unit tests |
+| 30 | `validate:workflow-catalog` | `node scripts/generate-workflow-catalog.mjs --check` | `catalog/workflows.json` matches the `meta` literal in each `.claude/workflows/*.js` |
+| 31 | `validate:release-notes` | `node tests/validate-release-notes.mjs` | semantic-release renders notes with the configured preset |
 
 ### Generation Scripts
 

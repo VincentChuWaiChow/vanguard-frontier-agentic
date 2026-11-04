@@ -3,7 +3,7 @@ name: oci-certificates-issuer-review
 description: Review OCI Certificates Service and OKE cert-manager issuer posture with CA hierarchy, issuance rules, workload identity, IAM scope, OCSP reachability, and certificate lifecycle safeguards.
 allowed-tools: Read Grep Glob
 metadata:
-  author: github: VincentChuWaiChow
+  author: "github: VincentChuWaiChow"
   version: 0.1.1
   updated: "2026-06-05"
   category: security

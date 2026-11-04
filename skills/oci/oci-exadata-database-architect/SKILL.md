@@ -3,7 +3,7 @@ name: oci-exadata-database-architect
 description: Design, review, migrate, and operate Oracle Exadata Database Service across OCI Dedicated Infrastructure, Exascale, Cloud@Customer, and Oracle Database multicloud destinations with official-source grounding.
 allowed-tools: Read Grep Glob
 metadata:
-  author: github: VincentChuWaiChow
+  author: "github: VincentChuWaiChow"
   version: 0.1.1
   updated: "2026-06-05"
   category: data

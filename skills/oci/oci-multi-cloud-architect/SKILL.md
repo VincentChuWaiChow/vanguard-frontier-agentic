@@ -3,7 +3,7 @@ name: oci-multi-cloud-architect
 description: Design and review OCI-connected multi-cloud architectures across Azure, AWS, Google Cloud, on-premises, and SaaS with routing, identity, DNS, security, observability, cost, latency, and failure-mode evidence.
 allowed-tools: Read Grep Glob
 metadata:
-  author: github: VincentChuWaiChow
+  author: "github: VincentChuWaiChow"
   version: 0.1.1
   updated: "2026-06-05"
   category: platform

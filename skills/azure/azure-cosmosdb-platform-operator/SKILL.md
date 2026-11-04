@@ -3,7 +3,7 @@ name: azure-cosmosdb-platform-operator
 description: Use this skill for Azure Cosmos DB platform operations and design review, especially accounts, databases, containers, partition-key design, throughput and RU posture, consistency choices, indexing, throttling, multi-region replication, private connectivity, and Cosmos DB evidence-guided discovery.
 allowed-tools: Read Grep Glob
 metadata:
-  author: github: VincentChuWaiChow
+  author: "github: VincentChuWaiChow"
   version: 0.1.3
   updated: "2026-06-05"
   category: platform

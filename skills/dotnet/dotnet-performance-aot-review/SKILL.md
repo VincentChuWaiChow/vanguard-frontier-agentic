@@ -1,6 +1,6 @@
 ---
 name: dotnet-performance-aot-review
-description: Use this skill when reviewing .NET performance posture, Native AOT, and trimming readiness — reflection and serialization hazards, hot-path allocations, async overhead, caching, trim warnings, and benchmark discipline. Trigger when a user provides a .csproj with PublishAot or PublishTrimmed enabled, BenchmarkDotNet results, trim-warning (IL2xxx) output, or hot-path source, asks whether their app is AOT-ready or trim-safe, or makes a performance claim and wants it checked. The central rule: a performance claim is only confirmed when a measured artifact backs it. This skill reviews project files, benchmark results, and source statically; it never runs the application, a benchmark, or a profiler.
+description: "Use this skill when reviewing .NET performance posture, Native AOT, and trimming readiness — reflection and serialization hazards, hot-path allocations, async overhead, caching, trim warnings, and benchmark discipline. Trigger when a user provides a .csproj with PublishAot or PublishTrimmed enabled, BenchmarkDotNet results, trim-warning (IL2xxx) output, or hot-path source, asks whether their app is AOT-ready or trim-safe, or makes a performance claim and wants it checked. The central rule: a performance claim is only confirmed when a measured artifact backs it. This skill reviews project files, benchmark results, and source statically; it never runs the application, a benchmark, or a profiler."
 allowed-tools: Read Grep Glob
 metadata:
   author: "github: VincentChuWaiChow"

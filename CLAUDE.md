@@ -6,7 +6,7 @@ This repository is a curated marketplace for **cloud**, **zero-trust**, and **co
 
 ```bash
 npm install                # one-time install
-pip install jsonschema     # one-time; validate:promotion-gatekeeper imports it and fails without it
+pip install jsonschema pyyaml  # one-time; validate:promotion-gatekeeper and validate:skill-yaml fail without them
 # ...make catalog/doc changes...
 npm run mods:write          # if mods changed; regenerate adapters, shared modules and catalog
 npm run validate:mods       # focused mod contracts and production-core tests

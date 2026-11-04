@@ -1,6 +1,6 @@
 ---
 name: databricks-lakehouse-engineering-at-azure
-description: Review and guide Databricks Lakehouse engineering on Azure: medallion architecture (bronze/silver/gold), Delta Lake pipelines, ADLS Gen2 access via Unity Catalog external locations and storage credentials, Access Connector managed identity, cluster access mode enforcement, AKV-backed secret scopes, VNet injection and Private Link network isolation, and credential passthrough deprecation. Static review only — never execute against live workspace.
+description: "Review and guide Databricks Lakehouse engineering on Azure: medallion architecture (bronze/silver/gold), Delta Lake pipelines, ADLS Gen2 access via Unity Catalog external locations and storage credentials, Access Connector managed identity, cluster access mode enforcement, AKV-backed secret scopes, VNet injection and Private Link network isolation, and credential passthrough deprecation. Static review only — never execute against live workspace."
 allowed-tools: Read Grep Glob
 metadata:
   author: "github: VincentChuWaiChow"

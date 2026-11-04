@@ -3,7 +3,7 @@ name: oci-live-autonomous-db-lifecycle-guard
 description: Guard Autonomous Database lifecycle changes such as scale, start, stop, clone, restore, wallet-impacting changes, and termination with backup, dependency, protection, approval, and rollback evidence.
 allowed-tools: Read Grep Glob
 metadata:
-  author: github: VincentChuWaiChow
+  author: "github: VincentChuWaiChow"
   version: 0.1.1
   updated: "2026-06-05"
   category: data

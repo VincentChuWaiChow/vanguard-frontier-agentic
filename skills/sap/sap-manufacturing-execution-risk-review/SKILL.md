@@ -1,6 +1,6 @@
 ---
 name: sap-manufacturing-execution-risk-review
-description: Review SAP manufacturing execution risk across SAP PP (Production Planning), S/4HANA Manufacturing, and Digital Manufacturing (DM/MES): production order governance, capacity planning and scheduling controls, MRP exception management, shop-floor integration quality, quality management integration controls, backflush and goods movement governance, and manufacturing execution exceptions. Flags control gaps in production order authorization, uncontrolled backflush paths, MRP exception backlogs, quality integration bypass risks, and shop-floor traceability failures. Does not release production orders, post goods movements, confirm operations, or mutate any live manufacturing or MES system.
+description: "Review SAP manufacturing execution risk across SAP PP (Production Planning), S/4HANA Manufacturing, and Digital Manufacturing (DM/MES): production order governance, capacity planning and scheduling controls, MRP exception management, shop-floor integration quality, quality management integration controls, backflush and goods movement governance, and manufacturing execution exceptions. Flags control gaps in production order authorization, uncontrolled backflush paths, MRP exception backlogs, quality integration bypass risks, and shop-floor traceability failures. Does not release production orders, post goods movements, confirm operations, or mutate any live manufacturing or MES system."
 allowed-tools: Read Grep Glob WebSearch WebFetch
 metadata:
   author: "github: VincentChuWaiChow"

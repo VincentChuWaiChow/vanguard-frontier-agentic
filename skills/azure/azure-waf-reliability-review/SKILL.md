@@ -3,7 +3,7 @@ name: azure-waf-reliability-review
 description: "Review Azure workload reliability against the Well-Architected Framework Reliability pillar: availability targets, AZ/region topology, health monitoring, data resilience, deployment safety, and chaos testing."
 allowed-tools: Read Grep Glob
 metadata:
-  author: github: VincentChuWaiChow
+  author: "github: VincentChuWaiChow"
   version: 0.1.2
   updated: "2026-06-05"
   category: resilience

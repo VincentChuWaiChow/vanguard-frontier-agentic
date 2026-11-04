@@ -3,7 +3,7 @@ name: oci-maestro
 description: Route OCI tasks to the narrowest specialist or explicitly approved team, enforce live-guard gates, preserve evidence labels, and refuse unsafe auto-dispatch for destructive or production-changing work.
 allowed-tools: Read Grep Glob
 metadata:
-  author: github: VincentChuWaiChow
+  author: "github: VincentChuWaiChow"
   version: 0.1.1
   updated: "2026-06-05"
   category: ai

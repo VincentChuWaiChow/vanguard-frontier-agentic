@@ -45,12 +45,12 @@
     {
       "id": "agentic-board-protocol",
       "path": "skills/cross-functional/agentic-board-protocol",
-      "aggregate_sha256": "aeaf819eb94b95b0cdc2fdd4db2d4ccf9ba7d42cb0c7432ec762bf33721694e2",
+      "aggregate_sha256": "646f27d27ef2f973042e2682eec548515d844bb926488e515c05a7fb9c46ec45",
       "files": [
         {
           "path": "skills/cross-functional/agentic-board-protocol/SKILL.md",
-          "sha256": "eefaf36a9af1e1409f9ec1d315b2a20a2d9a866c8fdd4dc8e1157784216c25c5",
-          "bytes": 7648
+          "sha256": "9c9cad954b54406acc52ba7542181937204a0bf3f5e58e4c1f43c2b226be7ba0",
+          "bytes": 7650
         },
         {
           "path": "skills/cross-functional/agentic-board-protocol/metadata.json",
@@ -1356,12 +1356,12 @@
     {
       "id": "analytics-data-minimization-review",
       "path": "skills/marketing/analytics-data-minimization-review",
-      "aggregate_sha256": "f7f3b7932ed977478e3bab4c03438d2d7ef8a0cb765427cfcad0684fcd128abc",
+      "aggregate_sha256": "71277d5087a3c604b0db1806f9d9843c2431fd59d5a647e34414868ee4b8cf44",
       "files": [
         {
           "path": "skills/marketing/analytics-data-minimization-review/SKILL.md",
-          "sha256": "54fe48342b692b2537bca2e353c60a0dffc43e392ef912e5b10527439280a1ba",
-          "bytes": 5680
+          "sha256": "aaff235a3ebbe03bdacf0b58030008ff14f21838fcda420ba65ab805a7b1647e",
+          "bytes": 5682
         },
         {
           "path": "skills/marketing/analytics-data-minimization-review/metadata.json",
@@ -3341,12 +3341,12 @@
     {
       "id": "azure-ai-foundry-ops-governor",
       "path": "skills/azure/azure-ai-foundry-ops-governor",
-      "aggregate_sha256": "d62505662bb0b8801895cc052cb565c2eaa1ec02e9b7261cc22d4e4629a02580",
+      "aggregate_sha256": "5f62f7374c78627504a0c509b00aa18adb9aecce1a7be34d2795af87a3b6557d",
       "files": [
         {
           "path": "skills/azure/azure-ai-foundry-ops-governor/SKILL.md",
-          "sha256": "9c001db5184da84d6f5ae262fe5cc6779f52d8820720d4414c1b44466e77db9c",
-          "bytes": 3425
+          "sha256": "903a0260004f9d8610bc417fa7f33ea14badf041795f7025e29985ca57490e2a",
+          "bytes": 3429
         },
         {
           "path": "skills/azure/azure-ai-foundry-ops-governor/metadata.json",
@@ -3383,12 +3383,12 @@
     {
       "id": "azure-aks-platform-operator",
       "path": "skills/azure/azure-aks-platform-operator",
-      "aggregate_sha256": "65ee7360ef9cbb823f3bf6b9a4ab155611c6b58a32ba1f190d6a261d61e917e0",
+      "aggregate_sha256": "1227704086a18f1eb628b1a8243106fb516dff1c3f9a0b4909d34f99bb6d16ed",
       "files": [
         {
           "path": "skills/azure/azure-aks-platform-operator/SKILL.md",
-          "sha256": "3a82155ce6ac079a53dcb8af9176cfec2a404d9896da940c94b74c7f0ca64232",
-          "bytes": 3602
+          "sha256": "c18bb1f3f21e6c756c3beb384097e4f2f6b98df79fee9282a8b7ca4074de77d0",
+          "bytes": 3604
         },
         {
           "path": "skills/azure/azure-aks-platform-operator/metadata.json",
@@ -3425,12 +3425,12 @@
     {
       "id": "azure-app-service-production-readiness",
       "path": "skills/azure/azure-app-service-production-readiness",
-      "aggregate_sha256": "9101c4b891c7cd6ed49606d1612aa670df9056d032a79ac70ab8a2fe7f8e542f",
+      "aggregate_sha256": "6b38f85b98cfb5e0cfaa606ccec38b0fd7d9cad9a3ab20e4cd8160b09d203027",
       "files": [
         {
           "path": "skills/azure/azure-app-service-production-readiness/SKILL.md",
-          "sha256": "ff459e1a09058404993083c3a4a8cc90f18663c3a1ef9713a24d399905a787bb",
-          "bytes": 4542
+          "sha256": "328fe4eb204689f155f3b5d140ccfd27d9c54ec2c9cb5f95fe5d0d9c3fb82b3b",
+          "bytes": 4544
         },
         {
           "path": "skills/azure/azure-app-service-production-readiness/metadata.json",
@@ -3467,12 +3467,12 @@
     {
       "id": "azure-cosmosdb-application-developer",
       "path": "skills/azure/azure-cosmosdb-application-developer",
-      "aggregate_sha256": "773e4a69eb9e97e9748109a55a218549ca155e2ca720db1e4a73bbba1b6bf61b",
+      "aggregate_sha256": "ac53c08b046eebd6fa57d749f44178ef58808bc91575562a271795c0192fc26d",
       "files": [
         {
           "path": "skills/azure/azure-cosmosdb-application-developer/SKILL.md",
-          "sha256": "5296a87e3ae0da0510b81738f18461db7e7fa63318caf7ba026cc66a3f797127",
-          "bytes": 3069
+          "sha256": "5634f691c3d52c72d46d898e8f907d58ca111ee7edb3ec18effd611034c4f48e",
+          "bytes": 3071
         },
         {
           "path": "skills/azure/azure-cosmosdb-application-developer/metadata.json",
@@ -3509,12 +3509,12 @@
     {
       "id": "azure-cosmosdb-performance-investigator",
       "path": "skills/azure/azure-cosmosdb-performance-investigator",
-      "aggregate_sha256": "1eb5584c170cad3326f18794b339f3bd6f6ff86d2805716b217b28cff4e118c5",
+      "aggregate_sha256": "d85df96feccdbafb1eedbf0171727eeaa92cbd5d641b0120fb8a18fc2a869f3e",
       "files": [
         {
           "path": "skills/azure/azure-cosmosdb-performance-investigator/SKILL.md",
-          "sha256": "8e5289bbd243b9bf36e141c8f8da93c6a7c83453d7ff81623b79157944e2c38d",
-          "bytes": 3525
+          "sha256": "0e9a356e7229f81fd100fdb98bdf24ea45786270a0f67b8bf3e03a5c6b093510",
+          "bytes": 3527
         },
         {
           "path": "skills/azure/azure-cosmosdb-performance-investigator/metadata.json",
@@ -3556,12 +3556,12 @@
     {
       "id": "azure-cosmosdb-platform-operator",
       "path": "skills/azure/azure-cosmosdb-platform-operator",
-      "aggregate_sha256": "56d590deeb7f178dd5157ef26fa925032e9aaf22309da6d171e6b708f0427819",
+      "aggregate_sha256": "d47b4c1071248589da82442697f85daaae6cf7b16dfb3b51702578d55527e312",
       "files": [
         {
           "path": "skills/azure/azure-cosmosdb-platform-operator/SKILL.md",
-          "sha256": "3019cc6ce825390b218dcbc1a350bf3f6e891d257bed1b04aae15bb80b2efd3a",
-          "bytes": 3086
+          "sha256": "5fc7f0bdae53aab53fc62618ae14010b76a4477c2c9f7756577f9cf71e6f10f1",
+          "bytes": 3088
         },
         {
           "path": "skills/azure/azure-cosmosdb-platform-operator/metadata.json",
@@ -3598,12 +3598,12 @@
     {
       "id": "azure-cost-estimation-review",
       "path": "skills/azure/azure-cost-estimation-review",
-      "aggregate_sha256": "5fb7a2ddd73a4e7c5bacd980ae0215c01d21204c1c7626b2be03d4c61db9ac7e",
+      "aggregate_sha256": "b4c25aca497bad3aca12311fa71cfd9e8abdc6d95589b069013ed5692e12efb5",
       "files": [
         {
           "path": "skills/azure/azure-cost-estimation-review/SKILL.md",
-          "sha256": "127181f0fe1449889e56df0b6354fadbce520f21d2b2637b3ddbd228380e418e",
-          "bytes": 3496
+          "sha256": "635b0396f5a00ae9febac511ef244883dca142f9b5f7f4eca75bdded70d7d7a9",
+          "bytes": 3498
         },
         {
           "path": "skills/azure/azure-cost-estimation-review/metadata.json",
@@ -3640,12 +3640,12 @@
     {
       "id": "azure-cost-optimization-governor",
       "path": "skills/azure/azure-cost-optimization-governor",
-      "aggregate_sha256": "2a401da8627358eec2a0f314a70656a6317d2c71ccfa103943fa63ca69f0f86f",
+      "aggregate_sha256": "dc8c6fdfbb861ed54945448b6024296511054b95fcd6097be5f6e01fa082ae5d",
       "files": [
         {
           "path": "skills/azure/azure-cost-optimization-governor/SKILL.md",
-          "sha256": "e2794fe639bdf6c83e92c7d47673adaec59312489d9d3f8bfcd2efe912970883",
-          "bytes": 3783
+          "sha256": "6e52f5ca22a6b232924ae06a904310618ab281c8e66f9711a7bf1a0998ef55ab",
+          "bytes": 3785
         },
         {
           "path": "skills/azure/azure-cost-optimization-governor/metadata.json",
@@ -3682,12 +3682,12 @@
     {
       "id": "azure-entra-id-specialist",
       "path": "skills/azure/azure-entra-id-specialist",
-      "aggregate_sha256": "3ce492af0a93a6cb3eca8911e49fabf4028132caaa64335c7f94973871545673",
+      "aggregate_sha256": "b6c5c7e0eea5868599a526973bb32f7bcaaa13e3a40d5a70812d4a092a64f994",
       "files": [
         {
           "path": "skills/azure/azure-entra-id-specialist/SKILL.md",
-          "sha256": "44f33197a5401066bfa29081b4f0c2e155598bccb6440878aab1f206b5749682",
-          "bytes": 5185
+          "sha256": "ec18e2b75f55610c398eede1bdedb222871bb68c5efa07537930ae220d184700",
+          "bytes": 5187
         },
         {
           "path": "skills/azure/azure-entra-id-specialist/metadata.json",
@@ -3734,12 +3734,12 @@
     {
       "id": "azure-governance-policy-guardrails",
       "path": "skills/azure/azure-governance-policy-guardrails",
-      "aggregate_sha256": "8ac281a95d1979845c8aa19e5abe6d7488c72bf56c191680f71bb32d5ab3b57d",
+      "aggregate_sha256": "87acfedc29ad538211b0719e5d59e8d72bfe4b1bc2b1d2796585b242878c376c",
       "files": [
         {
           "path": "skills/azure/azure-governance-policy-guardrails/SKILL.md",
-          "sha256": "73106b75419db20b8eecc1402e8cce223319425a5b8a9c2948600932a907e425",
-          "bytes": 2721
+          "sha256": "393bdc914e051752740f366cdc163ab3a959fa35aeb86358e3c6ec18cedaa441",
+          "bytes": 2723
         },
         {
           "path": "skills/azure/azure-governance-policy-guardrails/metadata.json",
@@ -3776,12 +3776,12 @@
     {
       "id": "azure-identity-governance-review",
       "path": "skills/azure/azure-identity-governance-review",
-      "aggregate_sha256": "b195bb23a901bf7fa72414825b1ade9899153fb84b63ad4698f631252c878cbd",
+      "aggregate_sha256": "dd6d69824fa7d47da0677cca7d015ec16b00b8946e1fa3d75ac81f45ced61d62",
       "files": [
         {
           "path": "skills/azure/azure-identity-governance-review/SKILL.md",
-          "sha256": "5f082dba419aec8e534c5475ee4c4f8ac292bb65706e6d48fe1328200e6d3ef3",
-          "bytes": 3787
+          "sha256": "badf6bb4ed7758052ece1ada2c9aaecbdf313973895e5ad007ed3c920cad41aa",
+          "bytes": 3789
         },
         {
           "path": "skills/azure/azure-identity-governance-review/metadata.json",
@@ -3818,12 +3818,12 @@
     {
       "id": "azure-key-vault-secret-lifecycle-auditor",
       "path": "skills/azure/azure-key-vault-secret-lifecycle-auditor",
-      "aggregate_sha256": "f69fa5c06bd0c5462649f6a4f34aa2098e647609482cc8410770f6e272b26190",
+      "aggregate_sha256": "02de63cbadf350dd1f535811f784a37d54704cdcd359135d9443ab3c70bb327e",
       "files": [
         {
           "path": "skills/azure/azure-key-vault-secret-lifecycle-auditor/SKILL.md",
-          "sha256": "6df2613e7665775611ad98d015fd328d854bc748eee49a2aed847947ce63ef31",
-          "bytes": 3746
+          "sha256": "19cfa5640064821dbc11e42b70609d5955f9c61ed31549c60de9f2b63a281a60",
+          "bytes": 3748
         },
         {
           "path": "skills/azure/azure-key-vault-secret-lifecycle-auditor/metadata.json",
@@ -3902,12 +3902,12 @@
     {
       "id": "azure-landing-zone-architect",
       "path": "skills/azure/azure-landing-zone-architect",
-      "aggregate_sha256": "dfe84b975da7edf0e715ee8e71f019b3f3cc39ddb179fcb66b5371407cdc581e",
+      "aggregate_sha256": "b80f02953fcee4ab141167ba2ef7a51a066cb62c56137a5999626ca15c7585c9",
       "files": [
         {
           "path": "skills/azure/azure-landing-zone-architect/SKILL.md",
-          "sha256": "4c540967a5f5ed35930f7a7e6e46bc8704f9058d4149ef9efb76902231515868",
-          "bytes": 3321
+          "sha256": "07060f264f0c4cfa416940f2b7f48aadbd4aeac6931a8f1d4f06d63e91697a63",
+          "bytes": 3323
         },
         {
           "path": "skills/azure/azure-landing-zone-architect/metadata.json",
@@ -4343,12 +4343,12 @@
     {
       "id": "azure-maestro",
       "path": "skills/azure/azure-maestro",
-      "aggregate_sha256": "79461f02aad3ec6411fb3ca9ea12a0ff2b278a158ca7a3dcad1a470a43f7c210",
+      "aggregate_sha256": "9a15340bedb532aee1893db7e41ca3f69b1472eefe18beff78261dcbc5f9ee9a",
       "files": [
         {
           "path": "skills/azure/azure-maestro/SKILL.md",
-          "sha256": "05036289f23e1b25efa9e669f5bad63ca68f81481e9dcdbe355e35b5cc1d41b2",
-          "bytes": 12507
+          "sha256": "a5cce6702bb137759e28133bf84d92789fa759b7a17eb7a5f9c03607653bd43a",
+          "bytes": 12509
         },
         {
           "path": "skills/azure/azure-maestro/metadata.json",
@@ -4385,12 +4385,12 @@
     {
       "id": "azure-migrate-landing-zone-cutover",
       "path": "skills/azure/azure-migrate-landing-zone-cutover",
-      "aggregate_sha256": "d352723fa5b7961fc1c5d441ec8287c955797c19cbb48148682ce1aca17098e0",
+      "aggregate_sha256": "59079726cc0e999a91fabe84457a1538591b379387679cc18036f1079a56f802",
       "files": [
         {
           "path": "skills/azure/azure-migrate-landing-zone-cutover/SKILL.md",
-          "sha256": "5d2a4b4136c7c2bcf0ad6c4ced4278302d355aa05cefe6f0c5ae3f635a05c111",
-          "bytes": 3491
+          "sha256": "ad00e2434119107367e6b21cd746579f701bd8e2e5a521d77efadbbbb805a6e8",
+          "bytes": 3493
         },
         {
           "path": "skills/azure/azure-migrate-landing-zone-cutover/metadata.json",
@@ -4427,12 +4427,12 @@
     {
       "id": "azure-network-topology-review",
       "path": "skills/azure/azure-network-topology-review",
-      "aggregate_sha256": "6bada9086f16d9bcb8a8caff9b74f87362855fb0b17cc65873d56ed290a75ff2",
+      "aggregate_sha256": "8321e6dcb83f7f1406d6371bd87066fc0be4105dc62425adbee926c5c7d771da",
       "files": [
         {
           "path": "skills/azure/azure-network-topology-review/SKILL.md",
-          "sha256": "cea07fd44fb2f716bbad7339175751b8f761cfe986816bcbbecee3fdafa9bf60",
-          "bytes": 3654
+          "sha256": "79cc2e084be089b5f4e6eb9c4d084396135854da67e2153a3c4dd28e286c0169",
+          "bytes": 3656
         },
         {
           "path": "skills/azure/azure-network-topology-review/metadata.json",
@@ -4469,12 +4469,12 @@
     {
       "id": "azure-observability-investigator",
       "path": "skills/azure/azure-observability-investigator",
-      "aggregate_sha256": "cce123b3e6dfbdec2fe4a4aa38f2e6e5c352df8dbc238edad5426915176c199c",
+      "aggregate_sha256": "94849d720094ef3d8c016a18b22033305ec70e8a4c2f6439d0a62b462ba9db14",
       "files": [
         {
           "path": "skills/azure/azure-observability-investigator/SKILL.md",
-          "sha256": "03e6bc98940c05975092f81cd4db21fdd97313299b7a8339ed8c3282805ff0f4",
-          "bytes": 3368
+          "sha256": "53c2125e5865fd92ff86dd88cc86f3c33fd6c4f0a9074532bdc0ed141109d189",
+          "bytes": 3370
         },
         {
           "path": "skills/azure/azure-observability-investigator/metadata.json",
@@ -4511,12 +4511,12 @@
     {
       "id": "azure-platform-automation-devops",
       "path": "skills/azure/azure-platform-automation-devops",
-      "aggregate_sha256": "e21e844c37f4bd80979c59b58a9e8edc6db69699b644aef8160fa3b458f621d8",
+      "aggregate_sha256": "5a48e5b3201ba36864949d9983fee1ce42d5f7012027923415180a8a14627f45",
       "files": [
         {
           "path": "skills/azure/azure-platform-automation-devops/SKILL.md",
-          "sha256": "c51ba11ab32360aefe9be2928a423d5f1e9b822cd83272023193e7e63530ec1b",
-          "bytes": 4083
+          "sha256": "931c3335f02c9c07397dc8f3ed9db268038e4d755b702a698bf8f5cae53e0a6d",
+          "bytes": 4085
         },
         {
           "path": "skills/azure/azure-platform-automation-devops/metadata.json",
@@ -4553,12 +4553,12 @@
     {
       "id": "azure-private-endpoint-adoption-planner",
       "path": "skills/azure/azure-private-endpoint-adoption-planner",
-      "aggregate_sha256": "01f037eae0de0151cfe4579555cbcd9d2bfcb31a98fd8fdfae255b50610f072c",
+      "aggregate_sha256": "ce5d28210ee259d76969646e2b709a22404a76e9c8ed6b773e56f976d9ad92a6",
       "files": [
         {
           "path": "skills/azure/azure-private-endpoint-adoption-planner/SKILL.md",
-          "sha256": "b92b6ff1767d46f5293236e5d4f4ebcba3c690c544a7d2b22d26ec525931753a",
-          "bytes": 3912
+          "sha256": "90abfa9efb55014ecab4fe771cc36e21bf2ea312f66a6ffb12029e03ef970aa6",
+          "bytes": 3914
         },
         {
           "path": "skills/azure/azure-private-endpoint-adoption-planner/metadata.json",
@@ -4595,12 +4595,12 @@
     {
       "id": "azure-rbac-review",
       "path": "skills/azure/azure-rbac-review",
-      "aggregate_sha256": "704250fe4560c7cc25ca6b1ffd08471b8142f49d33f17318e54711d93fc4a127",
+      "aggregate_sha256": "bda4cf73e41b97408be98a5fbabde0498b17e40a73e56c35f92c9769395105b2",
       "files": [
         {
           "path": "skills/azure/azure-rbac-review/SKILL.md",
-          "sha256": "7a8e7d3716a6833ed96cdaf0be51c70a37e8c7fdbc7c70f36c77f2d7886102e9",
-          "bytes": 2133
+          "sha256": "f3f9c90c198e7127f9fe19443e5ba420c09d5bd092d570ce12d54c66f26cdf0f",
+          "bytes": 2135
         },
         {
           "path": "skills/azure/azure-rbac-review/metadata.json",
@@ -4637,12 +4637,12 @@
     {
       "id": "azure-resilience-bcdr-review",
       "path": "skills/azure/azure-resilience-bcdr-review",
-      "aggregate_sha256": "def116f6a4d733b35433ca7ff687154abd2d416b5d4d537c56551e2bbcd23c0b",
+      "aggregate_sha256": "171539a933e4c6789e2c46dc195f533e157ac716d3617cc3a632af0814dc6c10",
       "files": [
         {
           "path": "skills/azure/azure-resilience-bcdr-review/SKILL.md",
-          "sha256": "d7748fa79fb012081c1bb66359d924c326e2f59bfbefbb5f721b06b324af2230",
-          "bytes": 3623
+          "sha256": "64b338afd33a829a09adfceaf1a7630807eac1303026956c0bebd37ce8c97e50",
+          "bytes": 3625
         },
         {
           "path": "skills/azure/azure-resilience-bcdr-review/metadata.json",
@@ -4679,12 +4679,12 @@
     {
       "id": "azure-resource-health-incident-triage",
       "path": "skills/azure/azure-resource-health-incident-triage",
-      "aggregate_sha256": "c99e0fd8a410859f4153bb10bbf0f80370604744e6620e092b0b5719c0ca405f",
+      "aggregate_sha256": "dc84ff3118fdec21f7a174d45cf56ac91a0efd5bbaef24223f669569a5a2cdc7",
       "files": [
         {
           "path": "skills/azure/azure-resource-health-incident-triage/SKILL.md",
-          "sha256": "bde61c6db9a8b9eae1d3d84a0ec1f997b277416ce07ff4f666d21830bfd0a0fe",
-          "bytes": 3877
+          "sha256": "79c9d798beb8cfc518835f07a0cbbd8743ca7fba3ff02c14a9437a0b0b17b8e5",
+          "bytes": 3879
         },
         {
           "path": "skills/azure/azure-resource-health-incident-triage/metadata.json",
@@ -4721,12 +4721,12 @@
     {
       "id": "azure-role-selector",
       "path": "skills/azure/azure-role-selector",
-      "aggregate_sha256": "6b8aa75e72439f868080e0bfa16a8ea28c1c6ef1e23032df85bd366855cbe1e8",
+      "aggregate_sha256": "59600b9a096500d7491b9065152b45fb8ae91cc8cbd7795635aa1eec83c86974",
       "files": [
         {
           "path": "skills/azure/azure-role-selector/SKILL.md",
-          "sha256": "e8fe92ce87170039565dea6186df5133f69c53cba4f354ad272a229f86b372c7",
-          "bytes": 2709
+          "sha256": "839e3dee6c3927c0388d948097a38afc1aba29fc045e8b3415d028ec87d46700",
+          "bytes": 2711
         },
         {
           "path": "skills/azure/azure-role-selector/metadata.json",
@@ -4763,12 +4763,12 @@
     {
       "id": "azure-security-posture-hardening",
       "path": "skills/azure/azure-security-posture-hardening",
-      "aggregate_sha256": "fb7b99bf5fc2a849a2058f5c752eb040fe5704f6d0669152001e580ecded1e2b",
+      "aggregate_sha256": "13e6662f799289e949faae41ce88c58819df25c00bda97352389e945ee99fd9b",
       "files": [
         {
           "path": "skills/azure/azure-security-posture-hardening/SKILL.md",
-          "sha256": "6ec64bed95e80cda3dd70af747eae26442f740ffd58347f68569fedf3857996c",
-          "bytes": 3094
+          "sha256": "71099cd5d4e4adc4f60e70090ba57eb99caf9d30824b2d67b5c209707dc461a1",
+          "bytes": 3096
         },
         {
           "path": "skills/azure/azure-security-posture-hardening/metadata.json",
@@ -4805,12 +4805,12 @@
     {
       "id": "azure-subscription-resource-organization",
       "path": "skills/azure/azure-subscription-resource-organization",
-      "aggregate_sha256": "671bbcd89deea14d5a21a63ff42d61fe11a050c1e2632fc15a028173116f3f0c",
+      "aggregate_sha256": "96a255e6b6736fc2c7e50238541fd1577578a675c0bdd24732b61d72e1c82ff4",
       "files": [
         {
           "path": "skills/azure/azure-subscription-resource-organization/SKILL.md",
-          "sha256": "ddd85b539dadf3237afaff005c8942545ae86a29ed59c0336d58f259d2471ec7",
-          "bytes": 3735
+          "sha256": "ef905ce94dd3d56f3ba09de489c59152a3ae2774cf6bcd12624032ef60b25a00",
+          "bytes": 3737
         },
         {
           "path": "skills/azure/azure-subscription-resource-organization/metadata.json",
@@ -4847,12 +4847,12 @@
     {
       "id": "azure-waf-cost-optimization-review",
       "path": "skills/azure/azure-waf-cost-optimization-review",
-      "aggregate_sha256": "800f95549cb5c056430ae7474530335ece8e7236033922d480bc7317318d9f65",
+      "aggregate_sha256": "d315e6ee86cf9558819ce5894a25492d5476ce86025e03eda94e6af338c19200",
       "files": [
         {
           "path": "skills/azure/azure-waf-cost-optimization-review/SKILL.md",
-          "sha256": "8fdd8b3128f28d9a0678eeb4d417671ef4373656b64cf896f04e2b3adb415870",
-          "bytes": 2400
+          "sha256": "450a953ac68daa312d535b768107bfce630ee6a6dbf7f58468783e5a9908e2b9",
+          "bytes": 2402
         },
         {
           "path": "skills/azure/azure-waf-cost-optimization-review/metadata.json",
@@ -4889,12 +4889,12 @@
     {
       "id": "azure-waf-reliability-review",
       "path": "skills/azure/azure-waf-reliability-review",
-      "aggregate_sha256": "3e2d3c5c766394c74faf5b0ad9c181b5b115a4cab007a30c97f47e6a4fedec2f",
+      "aggregate_sha256": "f6bfc4031aaa91f81886c05573c80cf937190d23002eadf7f2ce13ee1c9954b9",
       "files": [
         {
           "path": "skills/azure/azure-waf-reliability-review/SKILL.md",
-          "sha256": "b8354214cc1db0584580a2ff7f075df2da92d019c4ad294214ef85ed772c41c4",
-          "bytes": 2375
+          "sha256": "d9d5be46a3ffae3fcb6a6293afda589be08d6a570a707e86ff9170a79a31c980",
+          "bytes": 2377
         },
         {
           "path": "skills/azure/azure-waf-reliability-review/metadata.json",
@@ -4931,12 +4931,12 @@
     {
       "id": "azure-waf-security-review",
       "path": "skills/azure/azure-waf-security-review",
-      "aggregate_sha256": "4e015952e7f18b9b0c1d91cb4d55d7e281cd301047d1388518f4958af0ef81d9",
+      "aggregate_sha256": "ee5966ae7c5b18934bd162382400aaaf74e4f793179c64f0f5d0adb3bed84a1b",
       "files": [
         {
           "path": "skills/azure/azure-waf-security-review/SKILL.md",
-          "sha256": "54929cb2b5920168820d3614f5437b5a44aa9a2a1665ba3fd8d39313850ebb5a",
-          "bytes": 2857
+          "sha256": "30fc6e468b2208193459478d9b4ddd7134f5489eb5e05a0032b416377bf83d5b",
+          "bytes": 2859
         },
         {
           "path": "skills/azure/azure-waf-security-review/metadata.json",
@@ -5545,12 +5545,12 @@
     {
       "id": "contabo-security-hardening",
       "path": "skills/contabo/contabo-security-hardening",
-      "aggregate_sha256": "263e4a74396f7088cecc1f02d00ff98e713ce1069a86ee9efcd97bfbdfe36267",
+      "aggregate_sha256": "05721c468b3259b1c2aa51d8814ee2beadcf7e918b552db84168ca6548bb0dcc",
       "files": [
         {
           "path": "skills/contabo/contabo-security-hardening/SKILL.md",
-          "sha256": "dfa2442cdd7c680393a446736c79e39861f5434cdaa089ce36c7cfa7e9d3d3aa",
-          "bytes": 3378
+          "sha256": "e8ae308b779f9ebd516feb038014e6637622e0f4b7fb33de56fd5fbe20c5814a",
+          "bytes": 3380
         },
         {
           "path": "skills/contabo/contabo-security-hardening/metadata.json",
@@ -5577,12 +5577,12 @@
     {
       "id": "copilot-data-readiness-protocol",
       "path": "skills/cross-functional/copilot-data-readiness-protocol",
-      "aggregate_sha256": "455fda7e483e27f09fc74212bf9ba2ddd7ea168a9cc7f29ef9a0aeb5179331a2",
+      "aggregate_sha256": "410bc13903c266d3b6fca6b2af9e6fdec2026bf0062954a0756da43fac0a50eb",
       "files": [
         {
           "path": "skills/cross-functional/copilot-data-readiness-protocol/SKILL.md",
-          "sha256": "828affc24439f9d4184ee462c18e3cb0fef0b753db16b62f0d54bb5535b6edf9",
-          "bytes": 8383
+          "sha256": "8bbeb71b6e9a82f122ccc37b115e33e407100feafd01cd6122cb1517a16de636",
+          "bytes": 8385
         },
         {
           "path": "skills/cross-functional/copilot-data-readiness-protocol/metadata.json",
@@ -5801,12 +5801,12 @@
     {
       "id": "d365-customer-insights-journeys",
       "path": "skills/microsoft/d365-customer-insights-journeys",
-      "aggregate_sha256": "c5041b705707d0149688e09d9c35613a0de9d6aaee69ed5778b7f6891970734c",
+      "aggregate_sha256": "bc5a6dca839bad8eba482051e6a27f2c1f550bb71bd6b1a3fff3bf3f2a614b9d",
       "files": [
         {
           "path": "skills/microsoft/d365-customer-insights-journeys/SKILL.md",
-          "sha256": "24ee49afb85e4d293f82a4e0375220f00a82d4ab39298dc6260e39de5fbea80c",
-          "bytes": 3936
+          "sha256": "b05879089962fbde25523b9cf443cfc163f760d6d41ef9e547155daa3d8fd746",
+          "bytes": 3938
         },
         {
           "path": "skills/microsoft/d365-customer-insights-journeys/metadata.json",
@@ -6686,12 +6686,12 @@
     {
       "id": "databricks-lakehouse-engineering-at-azure",
       "path": "skills/databricks/databricks-lakehouse-engineering-at-azure",
-      "aggregate_sha256": "9524eb9854a98245f8721f3d9e84e7deaf8109c378f55c1aadf6de28b7e8e0be",
+      "aggregate_sha256": "80029703b40e4478f15dc02c965fa69575d0dd111f135f123b17400df38a9aed",
       "files": [
         {
           "path": "skills/databricks/databricks-lakehouse-engineering-at-azure/SKILL.md",
-          "sha256": "b22b922cc66b1174e02ec22f616edee423c5a32de2914b817841f247fb65e780",
-          "bytes": 3478
+          "sha256": "92ad355fd872cf1b49a6c98431fe5dda0c5b7e8f02eec2ee6a18ef23f833a707",
+          "bytes": 3480
         },
         {
           "path": "skills/databricks/databricks-lakehouse-engineering-at-azure/metadata.json",
@@ -7024,12 +7024,12 @@
     {
       "id": "databricks-unity-catalog-governance-at-azure",
       "path": "skills/databricks/databricks-unity-catalog-governance-at-azure",
-      "aggregate_sha256": "b992318b082f9637ea523d7c30bfd5f6c4fd146bb99923c7ca0ab019ba870c9a",
+      "aggregate_sha256": "914ab45bebda4c98c85df03ba3147af85b44ac3022a3d1ecd334a7b0e9c86336",
       "files": [
         {
           "path": "skills/databricks/databricks-unity-catalog-governance-at-azure/SKILL.md",
-          "sha256": "80893001517959451f1996ee5d34e712b34677d5e37443a6e2e4804f143bb96b",
-          "bytes": 3273
+          "sha256": "af1ad666c763317d865fe3b9425cd863193ab2515f33c7e9ed738906dd24a5b1",
+          "bytes": 3275
         },
         {
           "path": "skills/databricks/databricks-unity-catalog-governance-at-azure/metadata.json",
@@ -7296,12 +7296,12 @@
     {
       "id": "dotnet-performance-aot-review",
       "path": "skills/dotnet/dotnet-performance-aot-review",
-      "aggregate_sha256": "237ee879d9d874a54f26ae757f3713743ce7eb0bc1ff4bd53d0ef86a25be285b",
+      "aggregate_sha256": "f389792ea554528f373d5cb6a4ed8685c841a91ab89c15ee17f5c26c4f857629",
       "files": [
         {
           "path": "skills/dotnet/dotnet-performance-aot-review/SKILL.md",
-          "sha256": "8fabe64a6ca83615ab47251b3b2c172b0c17435370cd7c57f56fc71a4f315ef7",
-          "bytes": 5460
+          "sha256": "8d49ba259dab9efaf36f7bfd6d6f741a9c31d14b4ae7b02552f88a6147810ee2",
+          "bytes": 5462
         },
         {
           "path": "skills/dotnet/dotnet-performance-aot-review/metadata.json",
@@ -7590,12 +7590,12 @@
     {
       "id": "fabric-analytics-engineering",
       "path": "skills/microsoft/fabric-analytics-engineering",
-      "aggregate_sha256": "c51657ffdb95814531e295bfafb38bc83c12d7b8acf0f33fb5af9d63214f9bc6",
+      "aggregate_sha256": "22484445db9a797f0c49fcbe01607ce880ff9735fc6cdd7eb05813d49f9055de",
       "files": [
         {
           "path": "skills/microsoft/fabric-analytics-engineering/SKILL.md",
-          "sha256": "fd25866f93c6e0dd85321cdccfbe4ad0f4a411d5467f9d2672fa827a4f06d631",
-          "bytes": 5208
+          "sha256": "44928fcced62e8cde18401987c82f1d4d99bf6a885336f5644fc7df42ea66cf0",
+          "bytes": 5210
         },
         {
           "path": "skills/microsoft/fabric-analytics-engineering/metadata.json",
@@ -12052,12 +12052,12 @@
     {
       "id": "java-application-server-exit",
       "path": "skills/java/java-application-server-exit",
-      "aggregate_sha256": "01b029d8120465a3a07a0b6b427633c0b9ce39ce82c5eb4dd30a08bc9a651541",
+      "aggregate_sha256": "b024d80061d0bf1249a6b3c8c2096ef48b18f6325f166b08009617693970151f",
       "files": [
         {
           "path": "skills/java/java-application-server-exit/SKILL.md",
-          "sha256": "b3936bc6efd24ef0e2e56ee554fb6defcdbac90372bdcba69df90ff66d6247e8",
-          "bytes": 7852
+          "sha256": "c102cd26a67a08a7bf157e4faee582893e3e61599f31abc9f22d3a661e460558",
+          "bytes": 7854
         },
         {
           "path": "skills/java/java-application-server-exit/metadata.json",
@@ -12298,12 +12298,12 @@
     {
       "id": "java-jvm-performance-and-gc",
       "path": "skills/java/java-jvm-performance-and-gc",
-      "aggregate_sha256": "0226286e93495557a639faf7159f72dcae547953f0c97b56393bfbf18a09dad4",
+      "aggregate_sha256": "63a8709f3be287734b659cbfa1cd5b08795635e52c48c98b17318b5af2243ebe",
       "files": [
         {
           "path": "skills/java/java-jvm-performance-and-gc/SKILL.md",
-          "sha256": "db313cd9c42c5094ea55658979dbfd8a7186f9c158a5d349996c4b0d3d190358",
-          "bytes": 7220
+          "sha256": "2a19cd2aee833fa5008474f63e0a410cee475ac91bde2f5f45bb4fc713500119",
+          "bytes": 7222
         },
         {
           "path": "skills/java/java-jvm-performance-and-gc/metadata.json",
@@ -12379,12 +12379,12 @@
     {
       "id": "java-resilience-pattern",
       "path": "skills/java/java-resilience-pattern",
-      "aggregate_sha256": "2fe746b1dacc4a60b783297468e5959f283a6b7dd724d25469e69e35a9c92183",
+      "aggregate_sha256": "2f8261c0eeb2c8a09ccd08419667c8f8f380c6bb3ac872a92abee305d51ac7ef",
       "files": [
         {
           "path": "skills/java/java-resilience-pattern/SKILL.md",
-          "sha256": "ac83f11084e1f7501f46e226a2070d6a37c90547ff74b00f1db6c8a76c2a837b",
-          "bytes": 7949
+          "sha256": "68f2fcc69512b6fcbde84b806f7afdba3fbba1af6f6b50b8cbada4ec70035bf7",
+          "bytes": 7951
         },
         {
           "path": "skills/java/java-resilience-pattern/metadata.json",
@@ -12443,12 +12443,12 @@
     {
       "id": "java-test-architecture",
       "path": "skills/java/java-test-architecture",
-      "aggregate_sha256": "5ca18a3b70e3eed951bc9a217f8c26955995cafaf536f4d5ff7985ddb8abbe6e",
+      "aggregate_sha256": "225bd478ed49089074bf1459aab04f6694cc1b533a857626972b708e85749589",
       "files": [
         {
           "path": "skills/java/java-test-architecture/SKILL.md",
-          "sha256": "11b84ab128baa52be72e916ba02f6677296a5763ab9da024598af4ef4b800123",
-          "bytes": 9456
+          "sha256": "3c88609019828a84b969fd3f7f7c58c02e9d705897e59f7ad2578e609bd81c39",
+          "bytes": 9458
         },
         {
           "path": "skills/java/java-test-architecture/metadata.json",
@@ -12475,12 +12475,12 @@
     {
       "id": "java-transaction-and-consistency",
       "path": "skills/java/java-transaction-and-consistency",
-      "aggregate_sha256": "911acd2d1b77161e4ff7a19114c3979eccefb0dfaa187d9c259a773d3b07316e",
+      "aggregate_sha256": "d1e7aaad40980a50948749ec32862bde2156dac43b4e9c2615768338e0136744",
       "files": [
         {
           "path": "skills/java/java-transaction-and-consistency/SKILL.md",
-          "sha256": "e65bac3103d89d22fc014fe3e296dde9c732709a2338d881ee3d9fb2cac8b40e",
-          "bytes": 8298
+          "sha256": "c2d24b8aebf8b96a89b5a9ba9216e5ad433c74900663831ae2ebb191dab91116",
+          "bytes": 8300
         },
         {
           "path": "skills/java/java-transaction-and-consistency/metadata.json",
@@ -13464,12 +13464,12 @@
     {
       "id": "kubernetes-rbac-review",
       "path": "skills/kubernetes/kubernetes-rbac-review",
-      "aggregate_sha256": "b222e890a4040351bd19c481c3e618b0cab91ced5cc38a3fc26d089d10a9dfa3",
+      "aggregate_sha256": "3cd3c6496b2afafa051ef5b22b4f6b0b8bfe2a86bc04639f5355923866993713",
       "files": [
         {
           "path": "skills/kubernetes/kubernetes-rbac-review/SKILL.md",
-          "sha256": "1a7a33de4f88a7f06f8ebed79c701e59dd8552b8ae483b22c9193125590e7649",
-          "bytes": 2071
+          "sha256": "7a609dbb3811707b4899b9e556c135d185be3d60db05d098adb39bf7c37fbda8",
+          "bytes": 2073
         },
         {
           "path": "skills/kubernetes/kubernetes-rbac-review/metadata.json",
@@ -13899,12 +13899,12 @@
     {
       "id": "m365-defender-xdr-security-operations",
       "path": "skills/microsoft/m365-defender-xdr-security-operations",
-      "aggregate_sha256": "2d6c7334e90350c641beed92d5f8d61e94889c4621049e6ba62eff0a6715908e",
+      "aggregate_sha256": "99c6365d126a66886a0d85722367105331ab533a0a3dd260722aec34b15f93a8",
       "files": [
         {
           "path": "skills/microsoft/m365-defender-xdr-security-operations/SKILL.md",
-          "sha256": "65c8302ac34b3ede80062609b3ac73d457f00348724c05c6fa3c7aa53861eb5b",
-          "bytes": 5231
+          "sha256": "2ea182c58440e342a091e138a02bf93b0c645f5eebfaa055914d28054863f827",
+          "bytes": 5233
         },
         {
           "path": "skills/microsoft/m365-defender-xdr-security-operations/metadata.json",
@@ -14135,12 +14135,12 @@
     {
       "id": "m365-purview-data-security-compliance",
       "path": "skills/microsoft/m365-purview-data-security-compliance",
-      "aggregate_sha256": "9aa0b6fa9f4594e71176078637680424bfd402d39991b3ca42fb11d31cbf56ec",
+      "aggregate_sha256": "d008825c17fdf5b61658290f9f9ef6df902821ac868a4b61552d4b68117bb3a3",
       "files": [
         {
           "path": "skills/microsoft/m365-purview-data-security-compliance/SKILL.md",
-          "sha256": "2d6c971e03390dc8512f150d16696666c7be2a5c4e59f44ca25e2f1bbbfa8a29",
-          "bytes": 4721
+          "sha256": "d8fff6ac9592fbed5b53a1b8c8bdb744b579a1064bcc59dfebc50d763958ff00",
+          "bytes": 4723
         },
         {
           "path": "skills/microsoft/m365-purview-data-security-compliance/metadata.json",
@@ -15905,12 +15905,12 @@
     {
       "id": "oci-autonomous-database-architect",
       "path": "skills/oci/oci-autonomous-database-architect",
-      "aggregate_sha256": "006f572774d85f77165684df74009f7c5c07971918a40493a600af33dbcb8492",
+      "aggregate_sha256": "fa7e17a6ce6337cf39b3a62c963b551e18e148b756031fb7cb92c9a7cdd31523",
       "files": [
         {
           "path": "skills/oci/oci-autonomous-database-architect/SKILL.md",
-          "sha256": "af252d5c6da7031eba4dc7ddc9e56fb98977af1ab1067cc5830f87c4edd4c343",
-          "bytes": 2837
+          "sha256": "8ddb1b06d3ee4ae8e96165d0abcc38ef15f6e3ef35009220d8a5c912c9238937",
+          "bytes": 2839
         },
         {
           "path": "skills/oci/oci-autonomous-database-architect/metadata.json",
@@ -15957,12 +15957,12 @@
     {
       "id": "oci-certificates-issuer-review",
       "path": "skills/oci/oci-certificates-issuer-review",
-      "aggregate_sha256": "75248890158b0969ebe1776bd099993b82764aec68a4c4e866bc925b5c75b9e2",
+      "aggregate_sha256": "3b62607c00cb82b9961925aee7aa9cec2010ae29283e0b8ab487f9762580c752",
       "files": [
         {
           "path": "skills/oci/oci-certificates-issuer-review/SKILL.md",
-          "sha256": "82f93779807591e0d34da6789028ade9e5d0afb58340e47fd1638d5d8aaf90c3",
-          "bytes": 2741
+          "sha256": "7e1a829f38b7c562be6cc89484387d99b3d7e956ce407eced5ca63cca0e6ecb0",
+          "bytes": 2743
         },
         {
           "path": "skills/oci/oci-certificates-issuer-review/metadata.json",
@@ -15999,12 +15999,12 @@
     {
       "id": "oci-cloud-guard-responder",
       "path": "skills/oci/oci-cloud-guard-responder",
-      "aggregate_sha256": "bb12aa2cb4e3497cfcd27fa72a09429a20f1554bf1feb626f31f066531ab2abe",
+      "aggregate_sha256": "45cd56008ae78cb84ecf308fd272a454646d071fc3c6f0f3e0f111cc7d153fee",
       "files": [
         {
           "path": "skills/oci/oci-cloud-guard-responder/SKILL.md",
-          "sha256": "435bbd49c7861b404f0123535a87697749ddded9739d15e35d5265b92cb783ac",
-          "bytes": 2651
+          "sha256": "26bb71c893caf504b3430d1c109970c953a43892fe13eff006b328d372efac9a",
+          "bytes": 2653
         },
         {
           "path": "skills/oci/oci-cloud-guard-responder/metadata.json",
@@ -16041,12 +16041,12 @@
     {
       "id": "oci-compute-instance-agent-operator",
       "path": "skills/oci/oci-compute-instance-agent-operator",
-      "aggregate_sha256": "24bbdcc6b8e2e75342a369af97f2f6472ee840762c55d7ef912771fe9073e111",
+      "aggregate_sha256": "9781ea13035ace981b491cb98ccdc70d0cfc74ad0db53d53ba2f95adef4b5808",
       "files": [
         {
           "path": "skills/oci/oci-compute-instance-agent-operator/SKILL.md",
-          "sha256": "d9024e82a3787b51e02c1010be8093b3a48c75fc96ffa03405f54de8eab875c4",
-          "bytes": 2713
+          "sha256": "77eb64321402c8242806979b907b6a8fa85f257995b8ec590ab2d72b33cf78d9",
+          "bytes": 2715
         },
         {
           "path": "skills/oci/oci-compute-instance-agent-operator/metadata.json",
@@ -16083,12 +16083,12 @@
     {
       "id": "oci-compute-platform-operator",
       "path": "skills/oci/oci-compute-platform-operator",
-      "aggregate_sha256": "7fb859d3282d8f5cbac2ce09cc00e985bf1a841c24b48cb7e7e8900b25ff55c2",
+      "aggregate_sha256": "030896664bb6eacff05822ca38996738d01b9f12092e846bfafd4a9facf04134",
       "files": [
         {
           "path": "skills/oci/oci-compute-platform-operator/SKILL.md",
-          "sha256": "3e6817b9237795b07c3a50b9033adb3eb1839165a9871dc42c82be6bb3b53fb6",
-          "bytes": 2753
+          "sha256": "aeb0cb846448098b22bcd0cf5ed3c6c570ee80c359b9827daf5713882e2c5e8c",
+          "bytes": 2755
         },
         {
           "path": "skills/oci/oci-compute-platform-operator/metadata.json",
@@ -16125,12 +16125,12 @@
     {
       "id": "oci-cost-finops-analyst",
       "path": "skills/oci/oci-cost-finops-analyst",
-      "aggregate_sha256": "c91ce3e393a00744e7f265b57a1d0681567f8f1cec15814b1d99d96442523054",
+      "aggregate_sha256": "af3183999ae0370f3c490e2c293d83254ca27ffe6d5640b32f06d96e51d0f823",
       "files": [
         {
           "path": "skills/oci/oci-cost-finops-analyst/SKILL.md",
-          "sha256": "e89613077061ac675c5ebc3eb30bd5b277a45e43f9f914984edc14d89c496f5e",
-          "bytes": 2649
+          "sha256": "db9003ddaf56b61b1c801ab1f5a72ad02fc0b00970afd8f9f4100601c0e87cf6",
+          "bytes": 2651
         },
         {
           "path": "skills/oci/oci-cost-finops-analyst/metadata.json",
@@ -16167,12 +16167,12 @@
     {
       "id": "oci-database-platform-dba",
       "path": "skills/oci/oci-database-platform-dba",
-      "aggregate_sha256": "0c682415c9df2875c3e22f38d5f48c60a48fb5bb995749f826e7ac542b9d85ab",
+      "aggregate_sha256": "daa1e1b4bb7bf6148bd87d7b9e336f7df2dd483ecea6f14cef1d8d066879062f",
       "files": [
         {
           "path": "skills/oci/oci-database-platform-dba/SKILL.md",
-          "sha256": "ab360db503f02202ce7906c173c39eb6d62e50d3d2233d2a3c558e33d676630c",
-          "bytes": 2768
+          "sha256": "fd548ceba88789a241a6564a60931671453c04b364badb5a486dcced33d3eb10",
+          "bytes": 2770
         },
         {
           "path": "skills/oci/oci-database-platform-dba/metadata.json",
@@ -16209,12 +16209,12 @@
     {
       "id": "oci-dbtools-sql-analyst",
       "path": "skills/oci/oci-dbtools-sql-analyst",
-      "aggregate_sha256": "d29b6a647f5f129df138c65df90a537f68baca91b41700be391c973c9e4db019",
+      "aggregate_sha256": "d2d0c7cbc721c9b6ec5ea72201c8fe7c733afceb3d13ba719d7580c6b7239a54",
       "files": [
         {
           "path": "skills/oci/oci-dbtools-sql-analyst/SKILL.md",
-          "sha256": "41f96870fa34c325821abd3b146d2a573aa1955a0d6aad26b4b9f5c7539fe81c",
-          "bytes": 2680
+          "sha256": "11376384b8d22da87baf29a5158015cef7fec8781c7d6040b6c0487105a9bd71",
+          "bytes": 2682
         },
         {
           "path": "skills/oci/oci-dbtools-sql-analyst/metadata.json",
@@ -16251,12 +16251,12 @@
     {
       "id": "oci-devops-container-platform-engineer",
       "path": "skills/oci/oci-devops-container-platform-engineer",
-      "aggregate_sha256": "52d14026b83e24bfbd86618ed4ca4bf01b4395cb2f9905e804057a049eb0c96d",
+      "aggregate_sha256": "1dae8aa419dbcffeab56d547c5d81ab182626c6530be4f35f8c5b318e9039413",
       "files": [
         {
           "path": "skills/oci/oci-devops-container-platform-engineer/SKILL.md",
-          "sha256": "3282a4f3e313e10fba0aa6f6d581c9b59907972e91ccb8439d55ef7e4b8cfce9",
-          "bytes": 2873
+          "sha256": "c8d859303589b856e7408d26a665e6e72e8ab0a1b233db1f46d57bca3889f084",
+          "bytes": 2875
         },
         {
           "path": "skills/oci/oci-devops-container-platform-engineer/metadata.json",
@@ -16293,12 +16293,12 @@
     {
       "id": "oci-exadata-database-architect",
       "path": "skills/oci/oci-exadata-database-architect",
-      "aggregate_sha256": "d6a95f2b1ec4c4d1e9e80e18fc273fccfef97cb1ca2de09e94b2db1101f15b98",
+      "aggregate_sha256": "9a6cf08b327c62fd977f4baf3e6e4e65fd71c399a430345007c215b944cb3198",
       "files": [
         {
           "path": "skills/oci/oci-exadata-database-architect/SKILL.md",
-          "sha256": "439a1ddb705e9120025b18b77d653b37f4b933ca18ab6b4186edf6422cd50b0b",
-          "bytes": 2884
+          "sha256": "bac4005abbdfb33f89d6b275773087a2e2839aab77e7f469d2493a7919442ede",
+          "bytes": 2886
         },
         {
           "path": "skills/oci/oci-exadata-database-architect/metadata.json",
@@ -16335,12 +16335,12 @@
     {
       "id": "oci-exadata-platform-architect",
       "path": "skills/oci/oci-exadata-platform-architect",
-      "aggregate_sha256": "cf6d49018a98b164920bf9f36daa456c4af7369a5c80f3407f0506bdbc0232c2",
+      "aggregate_sha256": "d0cedf983784d26fc0964617418b6e6f119b812b2d800dd8ddf3542f6ee64b0d",
       "files": [
         {
           "path": "skills/oci/oci-exadata-platform-architect/SKILL.md",
-          "sha256": "6fa266c14f362516b7d3eca2b7c14e822363448b0ba9231cd7e9f01a629755e6",
-          "bytes": 2803
+          "sha256": "f11848a9f82d80ced28a555fcb2d7c009fb034af3840e0d8178b04ffab5aeb66",
+          "bytes": 2805
         },
         {
           "path": "skills/oci/oci-exadata-platform-architect/metadata.json",
@@ -16377,12 +16377,12 @@
     {
       "id": "oci-fusion-apps-environment-operator",
       "path": "skills/oci/oci-fusion-apps-environment-operator",
-      "aggregate_sha256": "e84f0fedec8a0bf1818cbfc4712940a54ae5d82bf164bd5e0cb55125c4ea278d",
+      "aggregate_sha256": "54771fb22e29f5ca67db31a512a45f9e09e426138a56b907e72ffe6b390d78e2",
       "files": [
         {
           "path": "skills/oci/oci-fusion-apps-environment-operator/SKILL.md",
-          "sha256": "c62257437303806756601daa8ad392a94e90b74d277be20200e3675c6e98b18a",
-          "bytes": 2768
+          "sha256": "75b2e9de310110ff6cb5e64a8838b41433b06046b46d0277231c000fad81c048",
+          "bytes": 2770
         },
         {
           "path": "skills/oci/oci-fusion-apps-environment-operator/metadata.json",
@@ -16419,12 +16419,12 @@
     {
       "id": "oci-goldengate-replication-operator",
       "path": "skills/oci/oci-goldengate-replication-operator",
-      "aggregate_sha256": "24f5f8595742c5dd82713dfc92be3a8bbb1dc38361aff0c7c120cb540fe05f3f",
+      "aggregate_sha256": "01419910bde31b9f60c80ad0923c47d8330ece38fa48a6790b645ad8dff8d778",
       "files": [
         {
           "path": "skills/oci/oci-goldengate-replication-operator/SKILL.md",
-          "sha256": "33d89577cb026f2c950c5d8175b5808dcb237e42686eef73076cb986368b8bee",
-          "bytes": 2740
+          "sha256": "dcdfe373a62acd10022db762730cbb3219dec90585915b6bb50c212750492dc6",
+          "bytes": 2742
         },
         {
           "path": "skills/oci/oci-goldengate-replication-operator/metadata.json",
@@ -16461,12 +16461,12 @@
     {
       "id": "oci-identity-access-governor",
       "path": "skills/oci/oci-identity-access-governor",
-      "aggregate_sha256": "8e939e4a4b5966e4e9fbdcd57261a6f70b50098ddee3ed3fdc6b867a1ff9812a",
+      "aggregate_sha256": "1fd46be36072365a3297e5e91c27ea7b918082d62d159ef22eacbb9eaf3eb2cb",
       "files": [
         {
           "path": "skills/oci/oci-identity-access-governor/SKILL.md",
-          "sha256": "78088e3cd65830c21309178a45ecd4fdb1a78b7e2ae9479a2e6fc7cf30683b2e",
-          "bytes": 2688
+          "sha256": "155027272528e3b6f7c2d3503ccfb66e47117b11a813da736dcd8af58ab56679",
+          "bytes": 2690
         },
         {
           "path": "skills/oci/oci-identity-access-governor/metadata.json",
@@ -16503,12 +16503,12 @@
     {
       "id": "oci-iot-digital-twin-engineer",
       "path": "skills/oci/oci-iot-digital-twin-engineer",
-      "aggregate_sha256": "90ac0bd1967dd427614e1137ca759328c921012e4ae7628af3d0633960b8e2c4",
+      "aggregate_sha256": "df9e6355b8c25a4d5de0f05daf685bbc8dfd0caf47816dcc671e36896dd1e115",
       "files": [
         {
           "path": "skills/oci/oci-iot-digital-twin-engineer/SKILL.md",
-          "sha256": "7de47b271c9c99f6db5e0878f0d5ba9ff92faac9825f48d911da7a411f5d903a",
-          "bytes": 2724
+          "sha256": "193df0b49a4755c56a9e6cf5345bbe896c92fd239c1646a1940ebe51afa60429",
+          "bytes": 2726
         },
         {
           "path": "skills/oci/oci-iot-digital-twin-engineer/metadata.json",
@@ -16545,12 +16545,12 @@
     {
       "id": "oci-limits-capacity-planner",
       "path": "skills/oci/oci-limits-capacity-planner",
-      "aggregate_sha256": "e1db5408260fbde2ee37270e2256ca544bc43b0d4f30c5b0e9405b50d2ee4913",
+      "aggregate_sha256": "707dfda085481a055b51676874b52bae071f1ff94095aa5f4580514e8c2d3259",
       "files": [
         {
           "path": "skills/oci/oci-limits-capacity-planner/SKILL.md",
-          "sha256": "9f8f7874d297d71f5bfe29fd0f14a932b14c7d142c9c01e94a98278b27eca580",
-          "bytes": 2723
+          "sha256": "587ad80be814b21f4f2d354774fc45b336f26505012c5d592718798b81814f28",
+          "bytes": 2725
         },
         {
           "path": "skills/oci/oci-limits-capacity-planner/metadata.json",
@@ -16587,12 +16587,12 @@
     {
       "id": "oci-live-autonomous-db-lifecycle-guard",
       "path": "skills/oci/oci-live-autonomous-db-lifecycle-guard",
-      "aggregate_sha256": "814f1f26500a543723a090186d29b8555db3b8d9149676042847ac366ac7392c",
+      "aggregate_sha256": "cecdd90b7f7d4b6cc6155f5ec1d4e62b6f4162ad5db39a4dde8fc4c725a708f1",
       "files": [
         {
           "path": "skills/oci/oci-live-autonomous-db-lifecycle-guard/SKILL.md",
-          "sha256": "7772792c4a5022867127f337e83914918e23332998b830aa018e231f4244a756",
-          "bytes": 2822
+          "sha256": "3563309f0da51721ecb8aaa624f5ee4416271ca27a15e16b6835e5c0ab54609f",
+          "bytes": 2824
         },
         {
           "path": "skills/oci/oci-live-autonomous-db-lifecycle-guard/metadata.json",
@@ -16629,12 +16629,12 @@
     {
       "id": "oci-live-cost-budget-runaway-guard",
       "path": "skills/oci/oci-live-cost-budget-runaway-guard",
-      "aggregate_sha256": "1b7e9d75a9e2dc276b10b41b1423a920f749605fd6c0214daef9ee42ff4cfa3e",
+      "aggregate_sha256": "1ad870074b8de89f00ed0cda106ebfc7e7a8d7de0734b235608362200e34ca9b",
       "files": [
         {
           "path": "skills/oci/oci-live-cost-budget-runaway-guard/SKILL.md",
-          "sha256": "98560efbce59217d9df42316a9d909f7c5dea3b517dc5e3f2b1ff692da224bcc",
-          "bytes": 2713
+          "sha256": "d63743b1e71868957cdb2064b2c4b66b79286f3b778b1a251617d5e86a5e84f3",
+          "bytes": 2715
         },
         {
           "path": "skills/oci/oci-live-cost-budget-runaway-guard/metadata.json",
@@ -16671,12 +16671,12 @@
     {
       "id": "oci-live-iam-policy-compartment-guard",
       "path": "skills/oci/oci-live-iam-policy-compartment-guard",
-      "aggregate_sha256": "4a8aa3780283ea4d975e1f5d17897bf6bba8403c7f4f744b7a5e540ec8fb114c",
+      "aggregate_sha256": "8a3a7ebb3dec10f7e2b4840bc0b59fb9c521f9219c9d92e1c29c5c55c99d6bdc",
       "files": [
         {
           "path": "skills/oci/oci-live-iam-policy-compartment-guard/SKILL.md",
-          "sha256": "edd95ab1f1d6601b491463e88a9f11be33d9f2db90446d35c27bebb34eba3e79",
-          "bytes": 2765
+          "sha256": "329eb1badcca3a873e720e3c9adf419e412f7fe3ce8c32540f491b5f60071a25",
+          "bytes": 2767
         },
         {
           "path": "skills/oci/oci-live-iam-policy-compartment-guard/metadata.json",
@@ -16713,12 +16713,12 @@
     {
       "id": "oci-live-network-security-rule-guard",
       "path": "skills/oci/oci-live-network-security-rule-guard",
-      "aggregate_sha256": "a731b2a155e4aa1a63965a55c1dacbf985d990b2126dece214d3fe9a4abbcfc2",
+      "aggregate_sha256": "294069fed374144c0c49e960ab3344982485617150a84eb19088630d7aa802f9",
       "files": [
         {
           "path": "skills/oci/oci-live-network-security-rule-guard/SKILL.md",
-          "sha256": "f4bbae915ba2894e454fee7d5f5bc6cf3500a794d7bef511a49bb7a92a83f871",
-          "bytes": 2786
+          "sha256": "753845142944ea5d0ca6272714d16d41abf18586ced90b6fdac1ab62d878caf1",
+          "bytes": 2788
         },
         {
           "path": "skills/oci/oci-live-network-security-rule-guard/metadata.json",
@@ -16755,12 +16755,12 @@
     {
       "id": "oci-live-oke-rollout-guard",
       "path": "skills/oci/oci-live-oke-rollout-guard",
-      "aggregate_sha256": "61d35af5068da75d85e94d5f697f7fe5ba7c13f39734cb948a5260144f5b951e",
+      "aggregate_sha256": "ca0fdbb14803cf08968c6cbb18c85b1707fb436bcc39df7a3fbd5fef88429918",
       "files": [
         {
           "path": "skills/oci/oci-live-oke-rollout-guard/SKILL.md",
-          "sha256": "9cededdc17ef88e9b851757d3cae196a075f29ac25480f21a790be47b624bade",
-          "bytes": 2751
+          "sha256": "7ad9555c163b37ef13903e12ba8e50dc8b488475f16204e5836d57412538c825",
+          "bytes": 2753
         },
         {
           "path": "skills/oci/oci-live-oke-rollout-guard/metadata.json",
@@ -16797,12 +16797,12 @@
     {
       "id": "oci-live-resource-manager-stack-guard",
       "path": "skills/oci/oci-live-resource-manager-stack-guard",
-      "aggregate_sha256": "93aac53d5034fe4f140ba7165f054de42211c5633f591cbabc2d8350bbd89b6d",
+      "aggregate_sha256": "8ed021f5926e895833ba06eae572edec66ed01c505a0f0d1aa9db27d14dd0aa3",
       "files": [
         {
           "path": "skills/oci/oci-live-resource-manager-stack-guard/SKILL.md",
-          "sha256": "a4b38babb797ea03b075583118b3ce345aec63a12d82c6c294456784775295ae",
-          "bytes": 2787
+          "sha256": "bf5dc6580fcdd79aea1645b5d7e051a3f0a6d40ad8d3b4554b572a3aee882dbc",
+          "bytes": 2789
         },
         {
           "path": "skills/oci/oci-live-resource-manager-stack-guard/metadata.json",
@@ -16839,12 +16839,12 @@
     {
       "id": "oci-live-vault-key-destruction-guard",
       "path": "skills/oci/oci-live-vault-key-destruction-guard",
-      "aggregate_sha256": "9fb930ebd0208ee901b9e5e68e5a140bf1e708e8dbd3dcfc3862f5f8adfa6935",
+      "aggregate_sha256": "26b115d51ae52e917310e1aa83b1b324773255838d46392850018d461fcd303f",
       "files": [
         {
           "path": "skills/oci/oci-live-vault-key-destruction-guard/SKILL.md",
-          "sha256": "c9cf18d645ff876401b83a3c2a7ea6f18e2a56cb32339cad7415bcbd8962a2d1",
-          "bytes": 2802
+          "sha256": "f39ca489a7d467e75c52c7da704fa1c011e09bf21e8d29856f486cd87ef6bbba",
+          "bytes": 2804
         },
         {
           "path": "skills/oci/oci-live-vault-key-destruction-guard/metadata.json",
@@ -16881,12 +16881,12 @@
     {
       "id": "oci-load-balancer-traffic-engineer",
       "path": "skills/oci/oci-load-balancer-traffic-engineer",
-      "aggregate_sha256": "c280fc1b031def0d70559b4ef2b9b92904ebb33fe78e4d1faf1aa845617f8797",
+      "aggregate_sha256": "2e86bdb3d940bcaa88d9da2777a7aa06d2f14fceb3dd2799026547fc84e84aa0",
       "files": [
         {
           "path": "skills/oci/oci-load-balancer-traffic-engineer/SKILL.md",
-          "sha256": "c165cc4f0c9afb23f7f04bb1da4a1b46dc7398a509e6ab87617d17dbccb30e94",
-          "bytes": 2852
+          "sha256": "bd8545c9d844bff454b87b7e1850778861882a7e7cdfcaf5724b881d76136cdf",
+          "bytes": 2854
         },
         {
           "path": "skills/oci/oci-load-balancer-traffic-engineer/metadata.json",
@@ -16923,12 +16923,12 @@
     {
       "id": "oci-maestro",
       "path": "skills/oci/oci-maestro",
-      "aggregate_sha256": "06fe999660f11a48178be47449883d4af40e69c0ea637d8926188165b78a7317",
+      "aggregate_sha256": "ff9eb1acc13a2289173749d42d82aae7f48b4e82616eb4c7c4a42558294fb489",
       "files": [
         {
           "path": "skills/oci/oci-maestro/SKILL.md",
-          "sha256": "b11d863c8edd31de78d0718854caaa8c426e802858b80a53f16b6587fe867052",
-          "bytes": 2754
+          "sha256": "91b377e23d4e48ff8ff445f8d91ff4bb8b922298fa230254c8070c373aa0092d",
+          "bytes": 2756
         },
         {
           "path": "skills/oci/oci-maestro/metadata.json",
@@ -16965,12 +16965,12 @@
     {
       "id": "oci-migration-cutover-architect",
       "path": "skills/oci/oci-migration-cutover-architect",
-      "aggregate_sha256": "fa2847b9720bb142b6779e036c56357a9a57d51a14d20dca66afbef961dd4104",
+      "aggregate_sha256": "203802d819a076d5bf6f31a8afe18a5a1d1c1d115c928fa7ea93a99dc2bc1721",
       "files": [
         {
           "path": "skills/oci/oci-migration-cutover-architect/SKILL.md",
-          "sha256": "c91089fa75919a825f623ec5621720e47d7c4c3a5ea8ed87edad34b7cb68dd08",
-          "bytes": 2907
+          "sha256": "5197ab31d5a919fad07b48583bd5be536a85bc616258cf4dbf1b3312afe33f72",
+          "bytes": 2909
         },
         {
           "path": "skills/oci/oci-migration-cutover-architect/metadata.json",
@@ -17007,12 +17007,12 @@
     {
       "id": "oci-multi-cloud-architect",
       "path": "skills/oci/oci-multi-cloud-architect",
-      "aggregate_sha256": "d2092e0917817f3b2a57fbcd67dec056efa46cadabedfa9117b95ec6788efdf2",
+      "aggregate_sha256": "bb65cc9f9d6949237ade9b2809f36905d34fd04774d60ad1c77c3d1257708954",
       "files": [
         {
           "path": "skills/oci/oci-multi-cloud-architect/SKILL.md",
-          "sha256": "53f926accba7bfbdad2fd297482d8ec4b31882e71aec2cfb5ab5039f35929d99",
-          "bytes": 3027
+          "sha256": "aeef2d98fe65343c860b7f59c8af66f839aca3700714f6f731df905d16fb562f",
+          "bytes": 3029
         },
         {
           "path": "skills/oci/oci-multi-cloud-architect/metadata.json",
@@ -17049,12 +17049,12 @@
     {
       "id": "oci-mysql-heatwave-ai-specialist",
       "path": "skills/oci/oci-mysql-heatwave-ai-specialist",
-      "aggregate_sha256": "01c8b72adbf715234d1c4b8b7f11301f31f4cbf928f2834f0097f53c570d23c1",
+      "aggregate_sha256": "6d25270c2745bc2c5eda1e6f73b72846ee09602e4569c364f2dde51d08cd5293",
       "files": [
         {
           "path": "skills/oci/oci-mysql-heatwave-ai-specialist/SKILL.md",
-          "sha256": "286380b32701842a579e77ed9ce451893ee2e77c9124d2b031db555a636c16ac",
-          "bytes": 2969
+          "sha256": "82a39d1199b7708c777e68b97ccd9ff8e94ef6075e2bad72ea36eda4f69bcfe0",
+          "bytes": 2971
         },
         {
           "path": "skills/oci/oci-mysql-heatwave-ai-specialist/metadata.json",
@@ -17091,12 +17091,12 @@
     {
       "id": "oci-network-architect",
       "path": "skills/oci/oci-network-architect",
-      "aggregate_sha256": "ad5bb7c1a50994b21a61293dc69c2e95b1d5a31b464e3ca58aeabf755cdfb6f4",
+      "aggregate_sha256": "54197b8b35f6cdcafb1faac5cffc287aad1c1ebc49bb7d7c5bfdb2f3822e9ebc",
       "files": [
         {
           "path": "skills/oci/oci-network-architect/SKILL.md",
-          "sha256": "16a04736bb888b91ae820596068802d576ecda409172c3722bc9e157b490993d",
-          "bytes": 2952
+          "sha256": "efd866de079d5737fa168c6dd6d80a4cd0f29ce7856e921d3001f8da730f1e9d",
+          "bytes": 2954
         },
         {
           "path": "skills/oci/oci-network-architect/metadata.json",
@@ -17133,12 +17133,12 @@
     {
       "id": "oci-observability-incident-responder",
       "path": "skills/oci/oci-observability-incident-responder",
-      "aggregate_sha256": "18936fb688d87f50a3249645918a45580d58f0841e41ec124bcd208a2c0e2b32",
+      "aggregate_sha256": "ab8620e9ddf601d486b160d31ba6f3bce0b7b12aff1f659ce5ebcbb27e808cfa",
       "files": [
         {
           "path": "skills/oci/oci-observability-incident-responder/SKILL.md",
-          "sha256": "fd8e04483204aaacb937028c6109c647b5b8057555180d7dcb84021c018319fc",
-          "bytes": 2951
+          "sha256": "8de07da6c3d81f306033706e3194919fa9ec0da7bc61b395405f7c3f229f26fa",
+          "bytes": 2953
         },
         {
           "path": "skills/oci/oci-observability-incident-responder/metadata.json",
@@ -17175,12 +17175,12 @@
     {
       "id": "oci-recovery-service-operator",
       "path": "skills/oci/oci-recovery-service-operator",
-      "aggregate_sha256": "202090882dec90412cf57de8a9d2a79f5fa4979dc41bc6f0603e6b7a9f6479c3",
+      "aggregate_sha256": "92a3360cda7914655b804a1201ff32a54ba0e6a01e9cb41a200c27bc37fe13d4",
       "files": [
         {
           "path": "skills/oci/oci-recovery-service-operator/SKILL.md",
-          "sha256": "e4389faf71cd76f6a0cebe0a648a55277da19d97d6756908212a13b921d5b783",
-          "bytes": 2849
+          "sha256": "4eb64880b9f0bd838b0435adaccd8b09c622a36cd7638f0ba6dcbe921f41684a",
+          "bytes": 2851
         },
         {
           "path": "skills/oci/oci-recovery-service-operator/metadata.json",
@@ -17217,12 +17217,12 @@
     {
       "id": "oci-registry-artifact-governor",
       "path": "skills/oci/oci-registry-artifact-governor",
-      "aggregate_sha256": "487bbc5ab60e00d26dfb1e859731b3b4f428d72934ce119289ded59c567fb31f",
+      "aggregate_sha256": "d25d5dd2832021e887d7d4c176775550576aa0efd359fe0d291f851adfdd4813",
       "files": [
         {
           "path": "skills/oci/oci-registry-artifact-governor/SKILL.md",
-          "sha256": "68e5a65703c3abec67784142d3aaf374d1aceb4cbdf12242f1b4bd7be0574ad5",
-          "bytes": 2793
+          "sha256": "f95bf4e7139ea94a9c6ce7d696efa5379b0ae8cff1ec1f0ff2734fad24ff534f",
+          "bytes": 2795
         },
         {
           "path": "skills/oci/oci-registry-artifact-governor/metadata.json",
@@ -17259,12 +17259,12 @@
     {
       "id": "oci-resource-search-inventory-analyst",
       "path": "skills/oci/oci-resource-search-inventory-analyst",
-      "aggregate_sha256": "01ebd58ecd0def89f914ec0b9d510145baaf51094272328b5c5dfef0e7f9db3c",
+      "aggregate_sha256": "323b0e7e052cc538b0e40972ab92ec3ff0fa038b5e9498b0d9a795083e02e508",
       "files": [
         {
           "path": "skills/oci/oci-resource-search-inventory-analyst/SKILL.md",
-          "sha256": "b30993208a221742d2ba9be54a5d38725c6562dd80d3d1154e96cef268ad6d1a",
-          "bytes": 2817
+          "sha256": "e7d774cb859bd3d9931dcfb3a7ad4ad8e35067e68c5f19f980a953c908a42c30",
+          "bytes": 2819
         },
         {
           "path": "skills/oci/oci-resource-search-inventory-analyst/metadata.json",
@@ -17301,12 +17301,12 @@
     {
       "id": "oci-security-compliance-reviewer",
       "path": "skills/oci/oci-security-compliance-reviewer",
-      "aggregate_sha256": "6b375f20784dd929a549d390920d5de8cd96301b85e756adc32c14bdf2dcbc02",
+      "aggregate_sha256": "2479b62cfe98308a7198910e1f9906faba6b7f8e8f01ed27c17f8cee2890ce10",
       "files": [
         {
           "path": "skills/oci/oci-security-compliance-reviewer/SKILL.md",
-          "sha256": "0aa3a7841ce3dd60f8b8e52fd1fb3719999fa7c784d273d64d49c5be7f174474",
-          "bytes": 2859
+          "sha256": "6f5909d3fcdb440df6882a06ddbc4b6afc5e857b5cfc72be4f13905924411ccd",
+          "bytes": 2861
         },
         {
           "path": "skills/oci/oci-security-compliance-reviewer/metadata.json",
@@ -17343,12 +17343,12 @@
     {
       "id": "oci-solution-architect",
       "path": "skills/oci/oci-solution-architect",
-      "aggregate_sha256": "25505e760b868731c77aab24e476a1460633c9cc2e7013da2084f24567979d39",
+      "aggregate_sha256": "388910ca698ccbc9e689f89ae513f4f0db99620788403261ebb447427780aa2d",
       "files": [
         {
           "path": "skills/oci/oci-solution-architect/SKILL.md",
-          "sha256": "6b6155f2b9d4b38b29b7771e9b4a8bd8d8437e92d4105414bace5c3a9cd90038",
-          "bytes": 2861
+          "sha256": "dd86bac74f28800d58988f49f2f514de9499ee2b9aa8bfe89450e0fdc8464da8",
+          "bytes": 2863
         },
         {
           "path": "skills/oci/oci-solution-architect/metadata.json",
@@ -17385,12 +17385,12 @@
     {
       "id": "oci-storage-backup-steward",
       "path": "skills/oci/oci-storage-backup-steward",
-      "aggregate_sha256": "4a970ec03e9c15dad980e5ae8d3a72796b71660558607018ccf191c482bd537f",
+      "aggregate_sha256": "7d38534e25cb776690b5f87a2ce1a5905ba3c386640ee99aaf6fd8a36e2e12ea",
       "files": [
         {
           "path": "skills/oci/oci-storage-backup-steward/SKILL.md",
-          "sha256": "2988048f915f3d8f50dcb13288292754dd3b8c7a476349d91864bbd6b8a84de7",
-          "bytes": 2392
+          "sha256": "5c87071fbc2cfd99d585c7008adc791dd0fcce03a021a3b73d860fe292208fdb",
+          "bytes": 2394
         },
         {
           "path": "skills/oci/oci-storage-backup-steward/metadata.json",
@@ -17427,12 +17427,12 @@
     {
       "id": "oci-support-incident-coordinator",
       "path": "skills/oci/oci-support-incident-coordinator",
-      "aggregate_sha256": "458b5a852051557d92dda7557b293fa29997ec8f3116b604d3135f86b0ed599f",
+      "aggregate_sha256": "173c32e7497cb5894c1ba4d9df41a37c33cff654ca3fba2639d0ed1bf90edcbb",
       "files": [
         {
           "path": "skills/oci/oci-support-incident-coordinator/SKILL.md",
-          "sha256": "e918697765b079553afeb389f80d6323dcd64ba48bf658dcc0adf7cefabffef4",
-          "bytes": 2351
+          "sha256": "3844f3eb11238a90b65c379a4d34212d86537983e65d3b277e5f40bf31118d76",
+          "bytes": 2353
         },
         {
           "path": "skills/oci/oci-support-incident-coordinator/metadata.json",
@@ -17469,12 +17469,12 @@
     {
       "id": "oci-waf-cost-optimization-review",
       "path": "skills/oci/oci-waf-cost-optimization-review",
-      "aggregate_sha256": "4f4b1172e185594497f72e67693aca7e3474553ee5a455dc4f9f5dc22081d111",
+      "aggregate_sha256": "d0ccca420a5554d6fa4b4190f332bae7f4cea72fb1bc1068849872aee46836d2",
       "files": [
         {
           "path": "skills/oci/oci-waf-cost-optimization-review/SKILL.md",
-          "sha256": "fd7228442a874a19c3456cdff00f216a813e0564630619548cf5eb5eea91574a",
-          "bytes": 2335
+          "sha256": "5de1f66cbb44e5828055f2724ee6fa07b60b4890ca888cf51cd05d1c725bd634",
+          "bytes": 2337
         },
         {
           "path": "skills/oci/oci-waf-cost-optimization-review/metadata.json",
@@ -17511,12 +17511,12 @@
     {
       "id": "oci-waf-reliability-review",
       "path": "skills/oci/oci-waf-reliability-review",
-      "aggregate_sha256": "be5132856af05dd6dc82af7bd4f8f89552bbd7846d6c2773a4241476bc342efe",
+      "aggregate_sha256": "0cc5dc0efa5fc3202958e872e61c0c4e6a28bcab2c28da2be955baa81352448d",
       "files": [
         {
           "path": "skills/oci/oci-waf-reliability-review/SKILL.md",
-          "sha256": "e424087764d4d5bba62c9b937698141c7b5e6a0b614e54c2f7b128e3c4ecd25a",
-          "bytes": 2347
+          "sha256": "16ffd88be95b389f5d3dfa90af7160258ca79d18e83dd100f3cca6fb4d4b981d",
+          "bytes": 2349
         },
         {
           "path": "skills/oci/oci-waf-reliability-review/metadata.json",
@@ -17553,12 +17553,12 @@
     {
       "id": "oci-waf-security-review",
       "path": "skills/oci/oci-waf-security-review",
-      "aggregate_sha256": "7491d4abced8c4d75436b82d205b217f9942b03d0a83f9d91f09b6d4366e7bac",
+      "aggregate_sha256": "011af49707e849117364b4a89ea4b612e66bc6c2e7bd5bc7d51809c4af5907d5",
       "files": [
         {
           "path": "skills/oci/oci-waf-security-review/SKILL.md",
-          "sha256": "0835ba3373698a8fa1994c485dd08dcf5dd6a3ec6dd42355a1619443540aea4f",
-          "bytes": 2362
+          "sha256": "59759f51f8817da9bb95bf5dd76687bbd15658567e234a39c621c249020a9d56",
+          "bytes": 2364
         },
         {
           "path": "skills/oci/oci-waf-security-review/metadata.json",
@@ -17627,12 +17627,12 @@
     {
       "id": "oracle-oci-mcp-grounded-advisor",
       "path": "skills/oci/oracle-oci-mcp-grounded-advisor",
-      "aggregate_sha256": "2661e8bb00a3da9bb3609eb48b7e45f9c8bd8d38cd231609265f35161a750848",
+      "aggregate_sha256": "fe6a5053d0354ebd682b4427974a7c0f06c69329209c37f88d7532be66f1b7a5",
       "files": [
         {
           "path": "skills/oci/oracle-oci-mcp-grounded-advisor/SKILL.md",
-          "sha256": "795c5d7600dbf45d28a7191489b02b7da48022fbe23fd446ec996cc2edaf3329",
-          "bytes": 2353
+          "sha256": "5a3e586b1e7c9b42a9ce6fc67e6c65ff69eefcbcb3eb5565665ad8c9f7765c08",
+          "bytes": 2355
         },
         {
           "path": "skills/oci/oracle-oci-mcp-grounded-advisor/metadata.json",
@@ -17691,12 +17691,12 @@
     {
       "id": "ovhcloud-cost-finops-analyst",
       "path": "skills/ovhcloud/ovhcloud-cost-finops-analyst",
-      "aggregate_sha256": "8992f342ff5c6db1dd882f228fdaab9b6dd4e0b9c2807f2793cf0cd9d7d48281",
+      "aggregate_sha256": "62cfdcc1b52f2f5e70db3be82e76314fde5be86dfe48c23ea0f9b8006f54fe53",
       "files": [
         {
           "path": "skills/ovhcloud/ovhcloud-cost-finops-analyst/SKILL.md",
-          "sha256": "376f5cdebed95ef1399817d1a993b8d3378baadd9b72d77c40975adbda0b0d87",
-          "bytes": 2625
+          "sha256": "96c5dc2155d48388a27106fd658eaecd62ad68c53d7d77a29ff1fa9e4cff8650",
+          "bytes": 2627
         },
         {
           "path": "skills/ovhcloud/ovhcloud-cost-finops-analyst/metadata.json",
@@ -17787,12 +17787,12 @@
     {
       "id": "ovhcloud-live-kms-key-destruction-guard",
       "path": "skills/ovhcloud/ovhcloud-live-kms-key-destruction-guard",
-      "aggregate_sha256": "1bfcc5b3af267985d5dfae8ed58aea626849c0e2fe66312817fc0d5d894ac7c4",
+      "aggregate_sha256": "6c06e3acfbe82ff4655e045b79d0b8af80658a84c2a2dc34a2e176ebeca92486",
       "files": [
         {
           "path": "skills/ovhcloud/ovhcloud-live-kms-key-destruction-guard/SKILL.md",
-          "sha256": "8f5d8c413e3d0f321dbf2bef8e896903bb74ec566ab5ff081b2b8aa1a49469a1",
-          "bytes": 3023
+          "sha256": "7a9eb57f350c89fc4e883394bd2affd55180dee57680a44d6f255fbf6696198c",
+          "bytes": 3025
         },
         {
           "path": "skills/ovhcloud/ovhcloud-live-kms-key-destruction-guard/metadata.json",
@@ -20360,12 +20360,12 @@
     {
       "id": "salesforce-agentforce-risk-review-skill",
       "path": "skills/salesforce/salesforce-agentforce-risk-review-skill",
-      "aggregate_sha256": "fa06896bb8d2a2886fd88cc842e7bb0eacc9a4182f5aa3e9d6b4fc43806e6fa1",
+      "aggregate_sha256": "9dcfa5222864d3491e1eb6e3a66ed6fb94871e983b9ec377b751f4d7a5a39ad7",
       "files": [
         {
           "path": "skills/salesforce/salesforce-agentforce-risk-review-skill/SKILL.md",
-          "sha256": "ed701024837117cd0166596a4fb935ff69ba305d9f45b06db9de289baad374cd",
-          "bytes": 11035
+          "sha256": "f710b94930dc6f8d86fc717301b1853f32a082f7bbbc5b197c625289825e28d2",
+          "bytes": 11037
         },
         {
           "path": "skills/salesforce/salesforce-agentforce-risk-review-skill/metadata.json",
@@ -20488,12 +20488,12 @@
     {
       "id": "salesforce-apex-lwc-code-review-skill",
       "path": "skills/salesforce/salesforce-apex-lwc-code-review-skill",
-      "aggregate_sha256": "86be7588dfe49591e66c392d7946c2a95ba06a2fd48f1550ae811c61413f6208",
+      "aggregate_sha256": "0e5ec490d48a77f59e960b026ee1a79dc23b379b2a3a443c45ede744a965517c",
       "files": [
         {
           "path": "skills/salesforce/salesforce-apex-lwc-code-review-skill/SKILL.md",
-          "sha256": "50bf2e95cd4a149b030ed1fb0874dea300d81e66dee9a33ace1074369f4ccd96",
-          "bytes": 9579
+          "sha256": "8cb8e0162a49b706730409191d1e055b6b14d975ba90510ec6e9347dabef0b8e",
+          "bytes": 9581
         },
         {
           "path": "skills/salesforce/salesforce-apex-lwc-code-review-skill/metadata.json",
@@ -20616,12 +20616,12 @@
     {
       "id": "salesforce-case-capsule",
       "path": "skills/cross-functional/salesforce-case-capsule",
-      "aggregate_sha256": "b9a0d0482d35d66e19f831caa26e35848a1dc789c2c6af1fadb38dd7f80a10c2",
+      "aggregate_sha256": "e6ccae912e87075dbc5db7ad9084b922d103c9ca018aa2ff0f0155f8242bd3d0",
       "files": [
         {
           "path": "skills/cross-functional/salesforce-case-capsule/SKILL.md",
-          "sha256": "870d14e8611e5b95aed70be5027ddf26b10b4c6b45fbfc02220dfc3b5410f297",
-          "bytes": 9118
+          "sha256": "7c75e3066e3aed297d171699c77e57f749b60b63eabcd8c2f3142e4764e9e74a",
+          "bytes": 9120
         },
         {
           "path": "skills/cross-functional/salesforce-case-capsule/metadata.json",
@@ -20633,12 +20633,12 @@
     {
       "id": "salesforce-data-exposure-escalation-protocol",
       "path": "skills/cross-functional/salesforce-data-exposure-escalation-protocol",
-      "aggregate_sha256": "6a0b4c515a027f9d1f2dec5896483e2611b735eba916442d0438ce8bb430e391",
+      "aggregate_sha256": "8d06d6997f0d5bfa2d7e787e665d1866c96772b84a489d294eaf053746923303",
       "files": [
         {
           "path": "skills/cross-functional/salesforce-data-exposure-escalation-protocol/SKILL.md",
-          "sha256": "7161560ec2acf501a40c31885b06e60542acee247d3aae9136bca9a72de42ce7",
-          "bytes": 9077
+          "sha256": "36b1c8e5ae60113cbe656f32bb9d8c5f268d0e36cc2f924afb9c46c7746f9623",
+          "bytes": 9079
         },
         {
           "path": "skills/cross-functional/salesforce-data-exposure-escalation-protocol/metadata.json",
@@ -20682,12 +20682,12 @@
     {
       "id": "salesforce-devsecops-pipeline-skill",
       "path": "skills/salesforce/salesforce-devsecops-pipeline-skill",
-      "aggregate_sha256": "82ece6a5d4835662de5bc3bac85c2fcdbb8c89930b92ac66b3c010bd9fd65039",
+      "aggregate_sha256": "35853d68cf3d84aeb406ea53da15569da34f8e03eb9fa396e30fe37296eeaa2c",
       "files": [
         {
           "path": "skills/salesforce/salesforce-devsecops-pipeline-skill/SKILL.md",
-          "sha256": "491254047f1313b90ccf337f8bc3659fe354b9c13c383f52fcff3013dcd207f9",
-          "bytes": 13354
+          "sha256": "e69f2dc8ac9c247d41fe7b281bd70399465d2393e99ca5449f7ff181351cbdf8",
+          "bytes": 13356
         },
         {
           "path": "skills/salesforce/salesforce-devsecops-pipeline-skill/metadata.json",
@@ -20746,12 +20746,12 @@
     {
       "id": "salesforce-flow-automation-review-skill",
       "path": "skills/salesforce/salesforce-flow-automation-review-skill",
-      "aggregate_sha256": "11606501c6947864c74e625a1410b2c1c100ffe9e78d8a9cdec4258b1f7e8256",
+      "aggregate_sha256": "419e82bf66e86110b799ae6b24d00cbf0cf7c127af5f6685992dda417adb54cc",
       "files": [
         {
           "path": "skills/salesforce/salesforce-flow-automation-review-skill/SKILL.md",
-          "sha256": "4351245ef13c2c83d6ace6691b78e2edb1c9d6bb2ff06e695f87a6ff8d59fd9e",
-          "bytes": 8510
+          "sha256": "8d8e86b6f8cdb9749700b33c1929872924458fc782125a56683c9e5fd992b5e0",
+          "bytes": 8512
         },
         {
           "path": "skills/salesforce/salesforce-flow-automation-review-skill/metadata.json",
@@ -20810,12 +20810,12 @@
     {
       "id": "salesforce-infrastructure-audit-skill",
       "path": "skills/salesforce/salesforce-infrastructure-audit-skill",
-      "aggregate_sha256": "fc40d5ffe6df60f514c335c1d8e34b32e5128fba0f18091475feac4c5db5597e",
+      "aggregate_sha256": "90c9b42892d178dc7369b6dcd44acec88492d11d45b73397ea3f1009a04e88aa",
       "files": [
         {
           "path": "skills/salesforce/salesforce-infrastructure-audit-skill/SKILL.md",
-          "sha256": "deb96c4d7465f6b278871485792fe5eab84642717c7ea6855043a0ea2e7fce02",
-          "bytes": 8884
+          "sha256": "aa71eb25cb029a53537caae447e7158bef6014f45a443d127324a2eff666d837",
+          "bytes": 8886
         },
         {
           "path": "skills/salesforce/salesforce-infrastructure-audit-skill/metadata.json",
@@ -20842,12 +20842,12 @@
     {
       "id": "salesforce-integration-review-skill",
       "path": "skills/salesforce/salesforce-integration-review-skill",
-      "aggregate_sha256": "877fb170c467ea592823bd5a4d6fb50c65f40de8e88c74e552468cf4e6ce2f00",
+      "aggregate_sha256": "672cbcba39404886690d7cedda0c7a6eb7733cf8476846de6302547f285825d7",
       "files": [
         {
           "path": "skills/salesforce/salesforce-integration-review-skill/SKILL.md",
-          "sha256": "fc15aa7bcedc9d951ab2b21f06bae19f358a805f3aafacdf2555f114cab767ac",
-          "bytes": 9375
+          "sha256": "c39ab1ca55b7115f08d157292743e8d8442bd8fc7fe31bbc8883ab9dcb8f6a7b",
+          "bytes": 9377
         },
         {
           "path": "skills/salesforce/salesforce-integration-review-skill/metadata.json",
@@ -20874,12 +20874,12 @@
     {
       "id": "salesforce-live-change-approval-protocol",
       "path": "skills/cross-functional/salesforce-live-change-approval-protocol",
-      "aggregate_sha256": "745920fa1275bf852d0f946085b8d74fd9fd8e5364d5ac1f50566db67854ab69",
+      "aggregate_sha256": "c0340f37d547dbd2b9fbd21b47c0e44e52294894524a85dd43e239f9b8e3e44a",
       "files": [
         {
           "path": "skills/cross-functional/salesforce-live-change-approval-protocol/SKILL.md",
-          "sha256": "56c801a0ec4b1ec884c32748bfef4cb9edfd7bc2777d22ff9729ae3e595b01e8",
-          "bytes": 8158
+          "sha256": "d8cfe358dc3dce97e85f53c77ec43d87f88261e2d6061d41688178bab0d0d927",
+          "bytes": 8160
         },
         {
           "path": "skills/cross-functional/salesforce-live-change-approval-protocol/metadata.json",
@@ -20891,12 +20891,12 @@
     {
       "id": "salesforce-marketing-consent-review-skill",
       "path": "skills/salesforce/salesforce-marketing-consent-review-skill",
-      "aggregate_sha256": "76c4254b733b407f9f53360b7f8454b3977584f90f6c9454b468a3efc5c37f6c",
+      "aggregate_sha256": "f81641ef5602051200ec8e95a91d5760e46e14bcd597950b5920fcd56ccd3f7f",
       "files": [
         {
           "path": "skills/salesforce/salesforce-marketing-consent-review-skill/SKILL.md",
-          "sha256": "b7f760fe910f3b797952be1fecb6bef5a673e5c0529c1c73fc26b69c154e20fb",
-          "bytes": 10592
+          "sha256": "3d1d7ae7c2078bdc025910417f8db7fc0481d58067183d487ac6d18dc09a3f84",
+          "bytes": 10594
         },
         {
           "path": "skills/salesforce/salesforce-marketing-consent-review-skill/metadata.json",
@@ -20955,12 +20955,12 @@
     {
       "id": "salesforce-metadata-review-skill",
       "path": "skills/salesforce/salesforce-metadata-review-skill",
-      "aggregate_sha256": "61e4c0de07f903e0dbe36cbff05655119103af72413e77b4e3aff1405a0bd5eb",
+      "aggregate_sha256": "d8b0adea025b02e31970948fa0b2b467a7f31aa85ab1d0a15fc6a215b21ad3e9",
       "files": [
         {
           "path": "skills/salesforce/salesforce-metadata-review-skill/SKILL.md",
-          "sha256": "3d679f042d3c234beb4fcfa79073c687ef4ba4795111ed6ebf6889420ac50c01",
-          "bytes": 7489
+          "sha256": "d757833491fbc72f55fd8975f7eecd6b7e3580dba5488de16dea129450785d41",
+          "bytes": 7491
         },
         {
           "path": "skills/salesforce/salesforce-metadata-review-skill/metadata.json",
@@ -20987,12 +20987,12 @@
     {
       "id": "salesforce-org-assessment-skill",
       "path": "skills/salesforce/salesforce-org-assessment-skill",
-      "aggregate_sha256": "881699fa4dcaed30264da797c21143e846abed43d9a868c1927502f495481731",
+      "aggregate_sha256": "f6bbdb3e431dbd28ba5a4c5e6d57894733f3aeac89b94f0d6bee6b2f69620153",
       "files": [
         {
           "path": "skills/salesforce/salesforce-org-assessment-skill/SKILL.md",
-          "sha256": "89c4f08926f9d6c28facb6a48308c07f68671bb55b378d36c67debf5367cc1b7",
-          "bytes": 7361
+          "sha256": "4198c7639c3505b4d3fa186fd080cdc2fc8b16115b5dfff6bbd99e9f57b3313d",
+          "bytes": 7364
         },
         {
           "path": "skills/salesforce/salesforce-org-assessment-skill/metadata.json",
@@ -21019,12 +21019,12 @@
     {
       "id": "salesforce-permission-model-review-skill",
       "path": "skills/salesforce/salesforce-permission-model-review-skill",
-      "aggregate_sha256": "f1b285fc279e00760fb253b5139472f3eedebcfed580d7ba2b2909656d038f89",
+      "aggregate_sha256": "93fd6449565d37948f5152a58f1f8514ac9531ccc4eeb814d8b12aa030c0002a",
       "files": [
         {
           "path": "skills/salesforce/salesforce-permission-model-review-skill/SKILL.md",
-          "sha256": "19ce8c905529348d25f55f520583ed41dc49b3188fb97057cb42a3a79a1c6748",
-          "bytes": 8886
+          "sha256": "1e1f43693727ac3c4b4e52d5f4f0a061d6f6feb3f56d4d9a246be76083b7bf62",
+          "bytes": 8888
         },
         {
           "path": "skills/salesforce/salesforce-permission-model-review-skill/metadata.json",
@@ -21051,12 +21051,12 @@
     {
       "id": "salesforce-release-readiness-skill",
       "path": "skills/salesforce/salesforce-release-readiness-skill",
-      "aggregate_sha256": "d6e138d4ab284f13f8fe4ce1c480f623ab4bfcd4cb1488bb371072ba56b2ac1c",
+      "aggregate_sha256": "02b9678a4c9359caf33c080c6f49017b8750ad0ccfadff210add0f5345bf8e2c",
       "files": [
         {
           "path": "skills/salesforce/salesforce-release-readiness-skill/SKILL.md",
-          "sha256": "bf92c489a4e177aed9881baacab26bd967dfffbf731a4a5509428ce1b05c8e05",
-          "bytes": 9134
+          "sha256": "cf98da8fe3f19ff5741f017c009db3037d622a52a5624fa19af5edc5254980c9",
+          "bytes": 9136
         },
         {
           "path": "skills/salesforce/salesforce-release-readiness-skill/metadata.json",
@@ -21083,12 +21083,12 @@
     {
       "id": "salesforce-risk-taxonomy",
       "path": "skills/cross-functional/salesforce-risk-taxonomy",
-      "aggregate_sha256": "a1605d8a733fbc1f37694954f0244f8255ef3e65f9e0899d120dda9ae0926553",
+      "aggregate_sha256": "9dd41417875a6c56afe70f959ba2b078993b0f381ae230242d48aa052f754f01",
       "files": [
         {
           "path": "skills/cross-functional/salesforce-risk-taxonomy/SKILL.md",
-          "sha256": "5a9658d97b32ca851d28729b11e536ee5a4526e2ff5a9b1f7cc265f122d5fa85",
-          "bytes": 9312
+          "sha256": "caa3f6ed61e4395b1ff4504e5ae2fb65fb77a68e340c537cd697e6edcf90ed0d",
+          "bytes": 9314
         },
         {
           "path": "skills/cross-functional/salesforce-risk-taxonomy/metadata.json",
@@ -21213,12 +21213,12 @@
     {
       "id": "salesforce-zero-trust-maturity-skill",
       "path": "skills/salesforce/salesforce-zero-trust-maturity-skill",
-      "aggregate_sha256": "eff1c1093e7eea87c90cecc428f22380e018936a4f59100b592ccde195f85177",
+      "aggregate_sha256": "bd0120ea755639f0d3bf4ab9436325cf2151afc0663d756c4ed34172bb5fc4d7",
       "files": [
         {
           "path": "skills/salesforce/salesforce-zero-trust-maturity-skill/SKILL.md",
-          "sha256": "82444906c7e50bbef49fcd3e4a41f947d2cb916990e64b92ca4b3c777e9cc98d",
-          "bytes": 10967
+          "sha256": "19f9a65feb4024592c6e067bf88d738b5b052155d94a34500737a4dd72f04505",
+          "bytes": 10969
         },
         {
           "path": "skills/salesforce/salesforce-zero-trust-maturity-skill/metadata.json",
@@ -21366,12 +21366,12 @@
     {
       "id": "sap-analytics-cloud-planning-governance",
       "path": "skills/sap/sap-analytics-cloud-planning-governance",
-      "aggregate_sha256": "43bad9fb0e977cc3f5fa57ebfdb63deaa4ef7922c8e963475f49a852bd340fdf",
+      "aggregate_sha256": "9a3c1b6126c6d389b953d0d1fdc8d7dc390c4a4e20c20405b27540528bba9bca",
       "files": [
         {
           "path": "skills/sap/sap-analytics-cloud-planning-governance/SKILL.md",
-          "sha256": "fa1f0a21564b0e115b12d5e73c6b0df092395214efbf85b119f8dc4a09e2e651",
-          "bytes": 8976
+          "sha256": "237479aa9ce61c315dded97739e2c8a3a8ac17f20142c346bb5fe5fa21f5eb02",
+          "bytes": 8978
         },
         {
           "path": "skills/sap/sap-analytics-cloud-planning-governance/agents/openai.yaml",
@@ -21440,12 +21440,12 @@
     {
       "id": "sap-btp-governance-review",
       "path": "skills/sap/sap-btp-governance-review",
-      "aggregate_sha256": "d63139e3e6aaa72bd5ddf90d28585a369f227aae718a0867f0b3b77057710d40",
+      "aggregate_sha256": "023141ee4dd433d4ee440979d48c8f9f475768ad96f6a441a92f859f2580a66e",
       "files": [
         {
           "path": "skills/sap/sap-btp-governance-review/SKILL.md",
-          "sha256": "0a62ee5375f2049cc5f1119ac0c2c1a20a9cc880784c7a09b5b64debf80f52ae",
-          "bytes": 6904
+          "sha256": "9a4507919c327c168e3ded691b297fbb50b48515266f188b9b74085f192afb7f",
+          "bytes": 6906
         },
         {
           "path": "skills/sap/sap-btp-governance-review/agents/openai.yaml",
@@ -21561,12 +21561,12 @@
     {
       "id": "sap-cloud-alm-sre-incident-review",
       "path": "skills/sap/sap-cloud-alm-sre-incident-review",
-      "aggregate_sha256": "55b1d381d47cb4012456f1754e499f54eac28a195d60d892cdde8154c16c8e15",
+      "aggregate_sha256": "03c041ea59c706be0f4cc80ef39808f47175ce9b874cd0a514b90b28e39abb6d",
       "files": [
         {
           "path": "skills/sap/sap-cloud-alm-sre-incident-review/SKILL.md",
-          "sha256": "a4d3ea1dd4d7e847bf2b81f23265f34f03cd85346055544b10cbf5f99f395c00",
-          "bytes": 12174
+          "sha256": "de217c1b0fd7fe3e96bf838a6db611e96da262cda41017c10556bbd02bed382b",
+          "bytes": 12176
         },
         {
           "path": "skills/sap/sap-cloud-alm-sre-incident-review/agents/openai.yaml",
@@ -21709,12 +21709,12 @@
     {
       "id": "sap-datasphere-data-product-architecture",
       "path": "skills/sap/sap-datasphere-data-product-architecture",
-      "aggregate_sha256": "36d6210a3020e53eb453d6cb2eac13fa6f754b6d4191c137d8a0aa25eced7559",
+      "aggregate_sha256": "65810c0260388259329c4ff14faf62ef5d3481cab0d2776b065293d80e0aa57f",
       "files": [
         {
           "path": "skills/sap/sap-datasphere-data-product-architecture/SKILL.md",
-          "sha256": "50ad8b42722756a2c9533024f23afa854acccf714841b2ca9acca0493c577ba5",
-          "bytes": 8585
+          "sha256": "9a0abadb5cc762ec16611ccb7a15d227def5c92e56cf40496e09f450353f28d3",
+          "bytes": 8587
         },
         {
           "path": "skills/sap/sap-datasphere-data-product-architecture/agents/openai.yaml",
@@ -21746,12 +21746,12 @@
     {
       "id": "sap-ewm-tm-logistics-execution-review",
       "path": "skills/sap/sap-ewm-tm-logistics-execution-review",
-      "aggregate_sha256": "271842c35def71c8b1ec84d297deefd50bfb038aa835f31770ae5814e16d5b85",
+      "aggregate_sha256": "6a8434b2d766e46d47e276ea5ce341ae2051762264b00c12aaf578c5119b9457",
       "files": [
         {
           "path": "skills/sap/sap-ewm-tm-logistics-execution-review/SKILL.md",
-          "sha256": "fe3c89ddc9881cb1a1c171559bb9bdb4ad7a6051f6c4f1cd6dc6558a29f358e0",
-          "bytes": 16242
+          "sha256": "cfe6c8f30b6b561a5a63d0ec9dff8a70212acda16439e805e1a15af91302bcba",
+          "bytes": 16244
         },
         {
           "path": "skills/sap/sap-ewm-tm-logistics-execution-review/agents/openai.yaml",
@@ -21783,12 +21783,12 @@
     {
       "id": "sap-finance-fico-controls-review",
       "path": "skills/sap/sap-finance-fico-controls-review",
-      "aggregate_sha256": "44252823b91d90f89647fbb630f301a1c8994842d1f31a197bb537fb0a7af69d",
+      "aggregate_sha256": "f861a026383902aef400f99fcb1ccc377704f55fe1651274a220d97fa243e05e",
       "files": [
         {
           "path": "skills/sap/sap-finance-fico-controls-review/SKILL.md",
-          "sha256": "a2fc1407adec235dfe516e4b6b6798d09ba1151b3741185e1d013401ac4f9a8f",
-          "bytes": 11701
+          "sha256": "6a627a776e302ed7220db8322eac3bb0fc339479f868d74ae55508437521e2c6",
+          "bytes": 11703
         },
         {
           "path": "skills/sap/sap-finance-fico-controls-review/agents/openai.yaml",
@@ -22030,12 +22030,12 @@
     {
       "id": "sap-hana-cloud-performance-cost",
       "path": "skills/sap/sap-hana-cloud-performance-cost",
-      "aggregate_sha256": "44b0e578140d921789e906e0cf1a9c1d8ce9474edf02082263a405f72cd5414b",
+      "aggregate_sha256": "300aa100bdf7431184935bff29321ebbe3218ec7d79f004f32d0687520bfa9d2",
       "files": [
         {
           "path": "skills/sap/sap-hana-cloud-performance-cost/SKILL.md",
-          "sha256": "a99ef34a27c5cc6183d86d90715ff6605783eba0f09ce3b76e2ac5e2ab1bab56",
-          "bytes": 9803
+          "sha256": "6e3e4aa0c2529e0f819f94942a5862bd422c5daa3c6d78f1c66389caac3f3c81",
+          "bytes": 9805
         },
         {
           "path": "skills/sap/sap-hana-cloud-performance-cost/agents/openai.yaml",
@@ -22072,12 +22072,12 @@
     {
       "id": "sap-hypercare-incident-commander-review",
       "path": "skills/sap/sap-hypercare-incident-commander-review",
-      "aggregate_sha256": "0e8414209026fc4993b44cc4b7788df5961c9e14e248074fb2872e84742a4773",
+      "aggregate_sha256": "71b85c2a6e519b493ce9841a455fd23a5c77375b9f619aaf5bc97cdd958020ea",
       "files": [
         {
           "path": "skills/sap/sap-hypercare-incident-commander-review/SKILL.md",
-          "sha256": "67c2384774c6d39f009cd2b37c22b11263d4a550138e2d58687526d6b034299b",
-          "bytes": 13107
+          "sha256": "b5542973b12332e66002db0a46d86a9721482da86761f7c7ee849507cdc242ff",
+          "bytes": 13109
         },
         {
           "path": "skills/sap/sap-hypercare-incident-commander-review/agents/openai.yaml",
@@ -22146,12 +22146,12 @@
     {
       "id": "sap-integration-suite-review",
       "path": "skills/sap/sap-integration-suite-review",
-      "aggregate_sha256": "9bff887b099e713c9394b2a90ac3cc1cd7ba976dac790efa5baa41447cf3f843",
+      "aggregate_sha256": "b917a40416f875f81942bd654e9c4fe89adf710cf10b8fe5bf7098b8ca54015e",
       "files": [
         {
           "path": "skills/sap/sap-integration-suite-review/SKILL.md",
-          "sha256": "d409012bb92e24b5227d614ec14f4f070328b1ce8519f541237865117d644e5f",
-          "bytes": 8253
+          "sha256": "1010065cd6023c66396976a571589b57f0dee83b9f1abefea35869fcf9ca9fab",
+          "bytes": 8255
         },
         {
           "path": "skills/sap/sap-integration-suite-review/agents/openai.yaml",
@@ -22188,12 +22188,12 @@
     {
       "id": "sap-joule-governance-adoption-review",
       "path": "skills/sap/sap-joule-governance-adoption-review",
-      "aggregate_sha256": "e19ad45bf27b3ad1e3f8ada4291ee08fba33887bcd8e3c2691d421836ef5bfc7",
+      "aggregate_sha256": "3539bcb2d6c546963787515da6cdc615045e6040954b9680e2f09e423c538138",
       "files": [
         {
           "path": "skills/sap/sap-joule-governance-adoption-review/SKILL.md",
-          "sha256": "65bf5cee960e9edcb8ab18d52839c18618a79cc7762a3862103b3ea2b6e09631",
-          "bytes": 11789
+          "sha256": "0ff87f3654096e2b8982833b845da5f4ffad7ef39067ce412188c804eaddf524",
+          "bytes": 11791
         },
         {
           "path": "skills/sap/sap-joule-governance-adoption-review/agents/openai.yaml",
@@ -22225,12 +22225,12 @@
     {
       "id": "sap-license-btp-consumption-finops-review",
       "path": "skills/sap/sap-license-btp-consumption-finops-review",
-      "aggregate_sha256": "26658961a7a7c9d5aa1f5e99b3b6964a1853f630470079e2fc263e8b0a2c7ea7",
+      "aggregate_sha256": "7e1ac5caa1ccbda8938e6b960b2d4388b51425615d3c9403322bc005ee7fd70e",
       "files": [
         {
           "path": "skills/sap/sap-license-btp-consumption-finops-review/SKILL.md",
-          "sha256": "fa335367cd8961bd98d9f5b26554932ef5c484057a50714f3c7b776abb22f976",
-          "bytes": 9239
+          "sha256": "41ed1a5b3b2bee9117f4017b769585d67f514bd746be16242090025e07c3af51",
+          "bytes": 9241
         },
         {
           "path": "skills/sap/sap-license-btp-consumption-finops-review/agents/openai.yaml",
@@ -22383,12 +22383,12 @@
     {
       "id": "sap-manufacturing-execution-risk-review",
       "path": "skills/sap/sap-manufacturing-execution-risk-review",
-      "aggregate_sha256": "6ace027703ba6a32abe4baab1199bcdddbeb52b101b3816894d53defb6220c87",
+      "aggregate_sha256": "b9f54566041ff07eddcac820bce7ee10bc89d44a452957fc8f1c15b23bb53036",
       "files": [
         {
           "path": "skills/sap/sap-manufacturing-execution-risk-review/SKILL.md",
-          "sha256": "666e66be7a5c4cd549e061b7f3641d78b4dbe0f41e53091ed30fcafbbf5056b5",
-          "bytes": 18784
+          "sha256": "7e105ef5ecb3016d7ba7629478ef42aaa1ce1cc0532af245bea449fdd09abd32",
+          "bytes": 18786
         },
         {
           "path": "skills/sap/sap-manufacturing-execution-risk-review/agents/openai.yaml",
@@ -22420,12 +22420,12 @@
     {
       "id": "sap-mdg-master-data-quality-review",
       "path": "skills/sap/sap-mdg-master-data-quality-review",
-      "aggregate_sha256": "ba410bf799bcb7323dd775835ebb27db732fe113c09c70013afa63ad1e1fac3d",
+      "aggregate_sha256": "43684df88b4a608234f2af38c5f55b47769d7226bed171e02862daa87c9faeaa",
       "files": [
         {
           "path": "skills/sap/sap-mdg-master-data-quality-review/SKILL.md",
-          "sha256": "e055fab29083bbcf8fde381b218a9d99a90b3542ae58572d5fedd1505fba1cb7",
-          "bytes": 10639
+          "sha256": "ea6118b60a335960052509a1cf42e88f61600b8a573563a5bd3744ebe8cd50f5",
+          "bytes": 10641
         },
         {
           "path": "skills/sap/sap-mdg-master-data-quality-review/agents/openai.yaml",
@@ -22457,12 +22457,12 @@
     {
       "id": "sap-order-to-cash-review",
       "path": "skills/sap/sap-order-to-cash-review",
-      "aggregate_sha256": "bf8dbcad3c03e8c256b57180c286d326e377b40764e12a60f8e8d1c9b59bf869",
+      "aggregate_sha256": "c507cf894d1b8414cbe1a0c5e9f9f9672cdca8146785e9e2ba7b155b68036e9e",
       "files": [
         {
           "path": "skills/sap/sap-order-to-cash-review/SKILL.md",
-          "sha256": "aa71ac608a56d7418a71122cf27b2d1704b1ff4122fe7f5dae0271edddf61db8",
-          "bytes": 15309
+          "sha256": "722d1bdabe27c982c18138efc07be16412fcf415c1a78a62bdc013be1e250e88",
+          "bytes": 15311
         },
         {
           "path": "skills/sap/sap-order-to-cash-review/agents/openai.yaml",
@@ -22494,12 +22494,12 @@
     {
       "id": "sap-procurement-ariba-value-leakage-review",
       "path": "skills/sap/sap-procurement-ariba-value-leakage-review",
-      "aggregate_sha256": "761bde1d102e02f54e1b9b3a61cab53aaa6d494b0dfa318bede5ac19f7a6d5b1",
+      "aggregate_sha256": "eafb14057d60a5ef7e7172871a4dbe3389b8c4cc59afc898e8e59b4f66eeb683",
       "files": [
         {
           "path": "skills/sap/sap-procurement-ariba-value-leakage-review/SKILL.md",
-          "sha256": "1f8b42a152f196d03e77992f99c26b707d8cc6d41040f361c0feee11d0bb1ec0",
-          "bytes": 13477
+          "sha256": "11846abca3cef13826c79684f44877fc4df55a714cbe44b661ed1699068fb45e",
+          "bytes": 13479
         },
         {
           "path": "skills/sap/sap-procurement-ariba-value-leakage-review/agents/openai.yaml",
@@ -22568,12 +22568,12 @@
     {
       "id": "sap-release-change-collision-review",
       "path": "skills/sap/sap-release-change-collision-review",
-      "aggregate_sha256": "f0f57f2a895ba0dd81eed20f09d2135531b90a158d162a45294eec09e32ba815",
+      "aggregate_sha256": "41c6ac8f3a8ae918f6864f91c5febcd0237b8caf063acb99c01bc077474258b1",
       "files": [
         {
           "path": "skills/sap/sap-release-change-collision-review/SKILL.md",
-          "sha256": "609a62a3e3fc3ef8e0c2914b356b280fd6fa9ae2970b9b7b71b5ef571486c4f7",
-          "bytes": 11530
+          "sha256": "6a4bb3b58e50f1b1b1429a4ff5d4e5c9c4b3101d1f9e92eaa61b2d5557e2f784",
+          "bytes": 11532
         },
         {
           "path": "skills/sap/sap-release-change-collision-review/agents/openai.yaml",
@@ -22642,12 +22642,12 @@
     {
       "id": "sap-rise-sla-vendor-risk-review",
       "path": "skills/sap/sap-rise-sla-vendor-risk-review",
-      "aggregate_sha256": "58849482bc1bf4ab695a4de1b55c92852fcdac5580ab54b58ca5a4d86bf2dda6",
+      "aggregate_sha256": "5d2be1cadf8905e9fd6bad9fcbe8eaa14c45dffe1acec88f4145c53a5efe2568",
       "files": [
         {
           "path": "skills/sap/sap-rise-sla-vendor-risk-review/SKILL.md",
-          "sha256": "2d12d6a279e787f5028682d3b6d21fc849984c6ff1a35756cb4d3fc418c1033a",
-          "bytes": 8759
+          "sha256": "463a6987169941fb2cedd05105fef2f78dea9dd0771508618e9adf3313bebb57",
+          "bytes": 8761
         },
         {
           "path": "skills/sap/sap-rise-sla-vendor-risk-review/agents/openai.yaml",
@@ -22753,12 +22753,12 @@
     {
       "id": "sap-security-iam-grc-sod-review",
       "path": "skills/sap/sap-security-iam-grc-sod-review",
-      "aggregate_sha256": "cf1c3a5d4efe3e42730b4214d54ef85e535406b4c671990d503fcfaca9ffc731",
+      "aggregate_sha256": "7abd9ca901159a9cff91d935b92998ee87794893159c884ce2da3d51fd936807",
       "files": [
         {
           "path": "skills/sap/sap-security-iam-grc-sod-review/SKILL.md",
-          "sha256": "6899f60a36c42948835cafc024f245434f6a6d293574e1e002e7276b60287feb",
-          "bytes": 8915
+          "sha256": "68a5ce882c11d68c54e25334313667ac9eab90d6057e63194b794bf046d6577f",
+          "bytes": 8917
         },
         {
           "path": "skills/sap/sap-security-iam-grc-sod-review/agents/openai.yaml",
@@ -22790,12 +22790,12 @@
     {
       "id": "sap-signavio-process-mining-value",
       "path": "skills/sap/sap-signavio-process-mining-value",
-      "aggregate_sha256": "6b15dc8042bf0a17fdfddfe62bdad3fe08bcaa1a0fb61ab593c7e85e00c8bcd8",
+      "aggregate_sha256": "3efe33ab9f270c7c557e6cd8e6bee63b33ec29a9074aeaea033f7922636931c7",
       "files": [
         {
           "path": "skills/sap/sap-signavio-process-mining-value/SKILL.md",
-          "sha256": "39a3b64a3a84b66aa4f11c963ffdda3c609dc0b1898f72c65b7e9647f27b1226",
-          "bytes": 11850
+          "sha256": "eee257463a8ebe1b3d78f0f0ebac3b065cd621406ceedecb9063a101c2dffc8a",
+          "bytes": 11852
         },
         {
           "path": "skills/sap/sap-signavio-process-mining-value/agents/openai.yaml",
@@ -22827,12 +22827,12 @@
     {
       "id": "sap-successfactors-hr-process-risk-review",
       "path": "skills/sap/sap-successfactors-hr-process-risk-review",
-      "aggregate_sha256": "e83869bef3a90b315c5577fbe942a67be8eb182ba005490778ed3f08e1ed68d4",
+      "aggregate_sha256": "4273e58ec00305208730afac9d9a2b70de07e39163e34b5bd6966456be8d87cd",
       "files": [
         {
           "path": "skills/sap/sap-successfactors-hr-process-risk-review/SKILL.md",
-          "sha256": "8f0e280ad44af226e4f806b12807ca70ddea04699ec39c64ce36cd1a13070e96",
-          "bytes": 11800
+          "sha256": "2f454bfe28779f413a66f645bc839ad43806346c1f2eb0548d9c5321989349cc",
+          "bytes": 11802
         },
         {
           "path": "skills/sap/sap-successfactors-hr-process-risk-review/agents/openai.yaml",
@@ -22864,12 +22864,12 @@
     {
       "id": "sap-supply-chain-ibp-resilience-review",
       "path": "skills/sap/sap-supply-chain-ibp-resilience-review",
-      "aggregate_sha256": "3ff59a8d075981a10eb2b422e15e8303c1d6d011c2159e0eefa598bc5d0a89dd",
+      "aggregate_sha256": "99aa2766938692c972b905466df7bd8f51c57c1adad0848172f9b86dc7df22e6",
       "files": [
         {
           "path": "skills/sap/sap-supply-chain-ibp-resilience-review/SKILL.md",
-          "sha256": "53778134977d9fbba70f9c90ea485f409d22f9990711ed95afd9afc3d3d9220c",
-          "bytes": 14511
+          "sha256": "51a38798776f264be5d8b8d31dc4a4122cade883ecae9ba65f7c28513ed8cad2",
+          "bytes": 14513
         },
         {
           "path": "skills/sap/sap-supply-chain-ibp-resilience-review/agents/openai.yaml",
@@ -22901,12 +22901,12 @@
     {
       "id": "sap-testing-quality-gate-review",
       "path": "skills/sap/sap-testing-quality-gate-review",
-      "aggregate_sha256": "1001972c398a104853efa7ae34c0c0f79292864d270aba261ed93e7043ff2516",
+      "aggregate_sha256": "2c6e1a05ed591b3d2fb407b012c64d2c6b56fc95846948129dbd8dcf3fdf314a",
       "files": [
         {
           "path": "skills/sap/sap-testing-quality-gate-review/SKILL.md",
-          "sha256": "8b2d9c69d750d9d39cb526ee282e2971c8cf4dcea07f23305e8c6a19b36856ae",
-          "bytes": 11315
+          "sha256": "ddb287ea80cb95c58d76cc91cce8bcab2661e70307cece202c44c8373bfb840d",
+          "bytes": 11317
         },
         {
           "path": "skills/sap/sap-testing-quality-gate-review/agents/openai.yaml",
@@ -22938,12 +22938,12 @@
     {
       "id": "sap-transformation-portfolio-triage-review",
       "path": "skills/sap/sap-transformation-portfolio-triage-review",
-      "aggregate_sha256": "89f121d8d0a234f47212d29043494f05e3cb418fefc67664aead8d5ea90799ce",
+      "aggregate_sha256": "df7977973750e0cdff61d9d5cd59f1aa52791bf05d6a651ad55605f126c7844f",
       "files": [
         {
           "path": "skills/sap/sap-transformation-portfolio-triage-review/SKILL.md",
-          "sha256": "b9c7e2a854d6d88979d993f5b4f8e231317ead528099162c787b2469464997b3",
-          "bytes": 7992
+          "sha256": "f871f1b29280d32589ad9e02e3c697f398e43d9b4fb4c51ec612352b52d23bcf",
+          "bytes": 7994
         },
         {
           "path": "skills/sap/sap-transformation-portfolio-triage-review/agents/openai.yaml",
@@ -22975,12 +22975,12 @@
     {
       "id": "sap-treasury-cash-risk-review",
       "path": "skills/sap/sap-treasury-cash-risk-review",
-      "aggregate_sha256": "e3d9de314c9ee0152702c2b462e2fd689632978098b62a9709d638ccee971ac5",
+      "aggregate_sha256": "a88eceadf3f8d3b6b7b8acf05d4e462dc8e74a8f6cbc7931fa074ddf0a95ad50",
       "files": [
         {
           "path": "skills/sap/sap-treasury-cash-risk-review/SKILL.md",
-          "sha256": "e1fc3ecd36c42610adcf1ea9b4d952aedf16c2c62bcc6d20964536c7007267af",
-          "bytes": 15992
+          "sha256": "d93afb824903a4a77f5a32c30b09ec9fedf268f20a93b003538594d52f67fb9d",
+          "bytes": 15994
         },
         {
           "path": "skills/sap/sap-treasury-cash-risk-review/agents/openai.yaml",
@@ -23076,12 +23076,12 @@
     {
       "id": "scaleway-kapsule-platform-operator",
       "path": "skills/scaleway/scaleway-kapsule-platform-operator",
-      "aggregate_sha256": "3f453c8a886f77e5c255b0d75fa9f493ed5c87c07e8fa28fea4c030695f3ae87",
+      "aggregate_sha256": "7def653444a89624887f57e446a9331b74ddd6e2ec81f1f84c233682c19e39c0",
       "files": [
         {
           "path": "skills/scaleway/scaleway-kapsule-platform-operator/SKILL.md",
-          "sha256": "03f811d6891ce157bc1baadade5cbd214c8ad34ab559f672491b703dd85ac8b5",
-          "bytes": 3535
+          "sha256": "834260103d2339683fdb996111bbf7f69a3edd524401c7ad81df8dc2d5ae0822",
+          "bytes": 3537
         },
         {
           "path": "skills/scaleway/scaleway-kapsule-platform-operator/metadata.json",
@@ -23172,12 +23172,12 @@
     {
       "id": "scaleway-network-architect",
       "path": "skills/scaleway/scaleway-network-architect",
-      "aggregate_sha256": "cc06664dfaeea0fd3fa44fcee723e8c3b94e2296ad51d5d4367c4f9cd4453cf3",
+      "aggregate_sha256": "28149f05981650a0c3890b4a07631f3f6a9706ff930e6f288ff7b2a129608fe2",
       "files": [
         {
           "path": "skills/scaleway/scaleway-network-architect/SKILL.md",
-          "sha256": "c841c3572ddfe42f6cc8dd597e1b418ad80b79f02784ef0cc093969e02880ee6",
-          "bytes": 3833
+          "sha256": "b2967156c3ec80828e0c6ed9ec237a8d8983bdd4825209af97b10bbb650ebe7b",
+          "bytes": 3835
         },
         {
           "path": "skills/scaleway/scaleway-network-architect/metadata.json",
@@ -25339,12 +25339,12 @@
     {
       "id": "vue-router-navigation-security-review",
       "path": "skills/frontend/vue-router-navigation-security-review",
-      "aggregate_sha256": "3e60f789b6e837ca31b64ee1e83766dc900e7bb39d1fb2752f5207bfc19bb86a",
+      "aggregate_sha256": "601d3296c61ef6a9db97baf87e343fdc43cf05f0073af3a5e1744c7c62f2e0b4",
       "files": [
         {
           "path": "skills/frontend/vue-router-navigation-security-review/SKILL.md",
-          "sha256": "ae097bb8a3712ea9c9f78f264606768fca6c8864dd66431d5bb1e5b7fd2d978b",
-          "bytes": 10327
+          "sha256": "fc7e3b06f30e203193d3db9a495ef935a36a14a25fe67c69a863e4f64c0dd885",
+          "bytes": 10329
         },
         {
           "path": "skills/frontend/vue-router-navigation-security-review/metadata.json",

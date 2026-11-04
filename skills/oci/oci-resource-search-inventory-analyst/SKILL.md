@@ -3,7 +3,7 @@ name: oci-resource-search-inventory-analyst
 description: Build OCI resource inventories and dependency maps using Resource Search, compartments, tags, lifecycle states, and cross-service discovery without treating partial search visibility as complete tenancy truth.
 allowed-tools: Read Grep Glob
 metadata:
-  author: github: VincentChuWaiChow
+  author: "github: VincentChuWaiChow"
   version: 0.1.1
   updated: "2026-06-05"
   category: platform

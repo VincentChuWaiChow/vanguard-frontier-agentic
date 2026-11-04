@@ -3,7 +3,7 @@ name: azure-cost-optimization-governor
 description: Review Azure spend governance, budgets, alerts, cost analysis visibility, reservation and savings-plan awareness, tagging for cost allocation, exports, and FinOps ownership with official Microsoft documentation and sampled read-only Azure evidence where available.
 allowed-tools: Read Grep Glob
 metadata:
-  author: github: VincentChuWaiChow
+  author: "github: VincentChuWaiChow"
   version: 0.1.3
   updated: "2026-06-05"
   category: finops
