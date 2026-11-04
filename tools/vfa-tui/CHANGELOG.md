@@ -5,6 +5,13 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [0.0.28](https://github.com/VincentChuWaiChow/vanguard-frontier-agentic/compare/vfa-tui-v0.0.27...vfa-tui-v0.0.28) - 2026-11-03
+
+### Other
+
+- Merge pull request #224 from VincentChuWaiChow/dependabot/cargo/tools/vfa-tui/cargo-086a11e8d1
+- *(cargo)* bump rusqlite in /tools/vfa-tui in the cargo group
+
 ## [0.0.27](https://github.com/VincentChuWaiChow/vanguard-frontier-agentic/compare/vfa-tui-v0.0.26...vfa-tui-v0.0.27) - 2026-10-27
 
 ### Other
