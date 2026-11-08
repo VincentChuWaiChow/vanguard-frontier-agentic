@@ -26,7 +26,9 @@ WU but which are not DynamoDB RCUs/WCUs or Cosmos DB Request Units; and
 | Backup / restore | CONDITIONAL | Customer-run, via Oracle's migrator tool to Object Storage | [OCI-NOSQL-E30] |
 | IAM | SUPPORTED | Verb-to-permission mapping on `nosql-rows`, `nosql-tables`, `nosql-indexes`; table-name scoping | [OCI-NOSQL-E13] [OCI-NOSQL-E29] |
 | SDKs | CONDITIONAL | Java, Python, Node.js, Go, .NET verified; Spring Data and Rust repos exist but details unverified | [OCI-NOSQL-E16] [OCI-NOSQL-E21] [OCI-NOSQL-E32] [OCI-NOSQL-E33] |
-| Private networking, CMK, pricing, quota increases | UNVERIFIED | Not retrieved this pass; do not assert | [OCI-NOSQL-E22] |
+| Private networking | CONDITIONAL | Service gateway path from a VCN (solution page); no NDCS-specific private endpoint found | [OCI-NOSQL-E34] [OCI-NOSQL-E22] |
+| Customer-managed keys | CONDITIONAL | Dedicated environment only; AES-256 in OCI KMS; single-version keys only | [OCI-NOSQL-E35] |
+| Pricing, quota increases | UNVERIFIED | Not found this pass; do not assert | [OCI-NOSQL-E22] |
 
 ## Key design
 
@@ -185,6 +187,8 @@ Rules:
   home-region write rule, or for a dedicated hosted environment
   [OCI-NOSQL-E30].
 - No backup schedule or untested restore [OCI-NOSQL-E30].
-- Any claim about private endpoints, CMK, pricing or quota increases without a
+- Any claim about an NDCS private endpoint, pricing or quota increases without a
   freshly retrieved source [OCI-NOSQL-E22].
+- CMEK planned on a shared (non-dedicated) environment, or a key rotation plan
+  that relies on multi-version keys [OCI-NOSQL-E35].
 - Confusing NDCS with Autonomous Database or Oracle Database JSON features.

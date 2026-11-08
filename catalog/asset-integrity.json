@@ -36164,7 +36164,7 @@
     },
     {
       "tree": "catalog",
-      "aggregate_sha256": "6445f2f79822fac3807ab07314c7326ad0e055685011a5bee8c2e2f68e3ece8e",
+      "aggregate_sha256": "d07b2399cd568d18cd86b97708780936ee48a85cb9ffe6fbe7fa46ff7a196c99",
       "files": [
         {
           "path": "catalog/AGENTS.md",
@@ -36218,7 +36218,7 @@
         },
         {
           "path": "catalog/skill-manifest.json",
-          "sha256": "f41d8a348e107649c85526e921e7a6f69506cb62ec104cb6079fe108dec49fb5",
+          "sha256": "5a945b4fee49ba9db1ebe15aec76a7d8675702b9629f25dcfbf97b61e7034d3a",
           "bytes": 1103328
         },
         {
@@ -37457,7 +37457,7 @@
     },
     {
       "tree": "tests",
-      "aggregate_sha256": "184b56ac5bbcb9c720ef91c01c8b86511ee22663ca7db3247b427c3a4cdf05d7",
+      "aggregate_sha256": "a96ba2eb3e4f8e0098d23017727364a63fca0e77ff897778a3b01a6e1b81f101",
       "files": [
         {
           "path": "tests/AGENTS.md",
@@ -45861,8 +45861,8 @@
         },
         {
           "path": "tests/fixtures/nosql-scenarios/scenarios.json",
-          "sha256": "03d0ca0cb57c6effa4c8daae80c6be4111d574fd8d199ff5f36aedf65c7bac84",
-          "bytes": 16693
+          "sha256": "6815a3d0709c851b5f48b1e27ce8730ac0d06872cac6399e9a76d574dc88561f",
+          "bytes": 18949
         },
         {
           "path": "tests/fixtures/nvidia-maestro-routing/README.md",
@@ -49234,5 +49234,5 @@
       "bytes": 9135
     }
   ],
-  "aggregate_sha256": "86b11402b279c08a53079c66895b9517f0fde696e5afbeb5beacb8013b19face"
+  "aggregate_sha256": "b24892e7df502edb44c2184ec361d794311c98a1531006b7c67f877d2d96fb81"
 }

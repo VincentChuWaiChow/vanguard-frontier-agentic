@@ -35,8 +35,8 @@ DynamoDB or Cosmos DB guarantees to NDCS.
 - Every material service claim must carry an evidence ID from
   `references/evidence-ledger.md`, or be labeled `inference`, `assumption` or
   `unverified`. Documentation never proves the user's live tenancy state.
-- If a needed fact is marked UNVERIFIED or CONFLICT in the ledger (private
-  networking, CMK, pricing, quota increases, hosted-environment totals,
+- If a needed fact is marked UNVERIFIED or CONFLICT in the ledger (an NDCS
+  private endpoint, pricing, quota increases, hosted-environment totals,
   Spring Data and Rust SDK details), say so. Use a web-fetch tool on the
   official Oracle page only if the harness grants one; otherwise ask the user
   for the official page or label the point unverified. Never fill the gap from

@@ -1278,12 +1278,12 @@
     {
       "id": "alibaba-tablestore-architect",
       "path": "skills/alibaba/alibaba-tablestore-architect",
-      "aggregate_sha256": "7acad529477e6e27d6193dc235611962978b91480b00d5b2390a8c834f7f422d",
+      "aggregate_sha256": "95c91870ac485b325fc5fb7ffcfc38b37744f0146a522e819524e5db7f1d367c",
       "files": [
         {
           "path": "skills/alibaba/alibaba-tablestore-architect/SKILL.md",
-          "sha256": "1a3c326d6ba5a7d878b495b1b8e67e772e670ebc4a5d549a083e7fc90bef6114",
-          "bytes": 3318
+          "sha256": "f36af58f46ee7c4929b46c09bf419e9d6cbbe63c6c1e7d5fb48fbe679603a159",
+          "bytes": 3282
         },
         {
           "path": "skills/alibaba/alibaba-tablestore-architect/metadata.json",
@@ -1292,13 +1292,13 @@
         },
         {
           "path": "skills/alibaba/alibaba-tablestore-architect/references/evidence-ledger.md",
-          "sha256": "698349ce6761d89bfb6e2c7e7da4519c64198fb7b3783ae543df9d8bd4722b51",
-          "bytes": 7860
+          "sha256": "139ddafc90865a26afb3f0861b03c6e3c0cf31e949908842352906d0c1e45c09",
+          "bytes": 9345
         },
         {
           "path": "skills/alibaba/alibaba-tablestore-architect/references/tablestore-design-guide.md",
-          "sha256": "2738af54dfde7bacc7cca84ddafa89fe33617404e39c19b43a9804c92a768449",
-          "bytes": 7365
+          "sha256": "8bb5444f856e8c91dcf7de87931364b7bd958737e56a83bffb18575e6a948820",
+          "bytes": 7955
         }
       ]
     },
@@ -8922,7 +8922,7 @@
     {
       "id": "gcp-firebase-developer",
       "path": "skills/gcp/gcp-firebase-developer",
-      "aggregate_sha256": "ac1c65f4d882a87697437cfc1be6dfff3c43c0a81beb6ceba455f716453f545b",
+      "aggregate_sha256": "62e43f8f76fc10ff725a671e6a968e4d4dfaaf38d595662f1297c41358b8b3ad",
       "files": [
         {
           "path": "skills/gcp/gcp-firebase-developer/SKILL.md",
@@ -8936,13 +8936,13 @@
         },
         {
           "path": "skills/gcp/gcp-firebase-developer/references/evidence-ledger.md",
-          "sha256": "027c3694d41c541deb75bcf49b41d0ec08057a96321eee38a5db5778515673ad",
-          "bytes": 6014
+          "sha256": "a829c8d209c89ef9d7c2e22639fb92700eca60282adc67a0e871f2b01e20d377",
+          "bytes": 6803
         },
         {
           "path": "skills/gcp/gcp-firebase-developer/references/firestore.md",
-          "sha256": "63b743b42a62fb93132ed64fb2869f53d1891e21166875b8eea6a3386bd25379",
-          "bytes": 5004
+          "sha256": "5029fc0f3702825f728fe1f2fbfa46875ba17437510b571c34b306240152c75e",
+          "bytes": 5798
         }
       ]
     },
@@ -17249,12 +17249,12 @@
     {
       "id": "oci-nosql-database-architect",
       "path": "skills/oci/oci-nosql-database-architect",
-      "aggregate_sha256": "189a6d45a8df9737937a6cfdd5d33034c885722658b06a4a14df854e3ee74377",
+      "aggregate_sha256": "3d84db3a132ced0b0f644a629097af37941cdd2bf12aceece16bfe15ba53f781",
       "files": [
         {
           "path": "skills/oci/oci-nosql-database-architect/SKILL.md",
-          "sha256": "c4d760b2ad6298c970ee99ccc8dcef1ce7dda93e186be4f51c54efb8c033bf43",
-          "bytes": 3598
+          "sha256": "b33637c82dab281fe23edb1e0ed2659c1a19e209561bf624ba491f8156fa4098",
+          "bytes": 3599
         },
         {
           "path": "skills/oci/oci-nosql-database-architect/metadata.json",
@@ -17263,13 +17263,13 @@
         },
         {
           "path": "skills/oci/oci-nosql-database-architect/references/evidence-ledger.md",
-          "sha256": "45c741cf051bb788e8039991313296f2f3cd6dadd29ca20aa2e5021423fd6ee2",
-          "bytes": 12962
+          "sha256": "e1e41a3257110cad92ba129540ff7888fcb280eee92f9fa1ce0e63bca7a61be8",
+          "bytes": 13964
         },
         {
           "path": "skills/oci/oci-nosql-database-architect/references/nosql-design-guide.md",
-          "sha256": "561a7c189fb4a5c9ffa658642bd0de51100ccb4fdef95f42d1a6de958945e64d",
-          "bytes": 11377
+          "sha256": "e55d4670f967be78f33b8cec1e55a08afd89c91f8ed2823a8cd258b38da1eb91",
+          "bytes": 11777
         },
         {
           "path": "skills/oci/oci-nosql-database-architect/references/sdk-matrix.md",

@@ -104,7 +104,7 @@ supported by this work.
 | --- | --- |
 | Amazon DocumentDB, Amazon Keyspaces | Different data models from DynamoDB. They need their own skills rather than an extension of the DynamoDB one. |
 | Cosmos DB API for MongoDB, Cassandra, Gremlin and Table | Different consistency mapping and feature sets. The Cosmos DB ledger is scoped to the API for NoSQL only. |
-| Firestore in Datastore mode; deeper Firestore with MongoDB compatibility | The Firestore reference covers Standard and Native mode and flags the Enterprise modes, but no design depth was added. |
+| Firestore in Datastore mode; deeper Firestore with MongoDB compatibility | The Firestore reference covers Standard and Native mode. It defines Datastore mode and flags the Enterprise modes, but adds no design depth for either. |
 | GeminiDB Redis, HBase and Influx APIs | The GeminiDB skill gives API selection and models only the Cassandra API in depth. |
 
 To add one, follow the same path: inventory, the official sources, a ledger,

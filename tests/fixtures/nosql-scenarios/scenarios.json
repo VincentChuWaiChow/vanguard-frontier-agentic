@@ -369,6 +369,48 @@
         "Never use it for read-after-write"
       ],
       "pass_criteria": "Corrects the premise: Bigtable supports asynchronous secondary indexes via continuous materialized views (eventually consistent, row key includes the source row key); warns they are not read-after-write; external indexing is not required by default."
+    },
+    {
+      "id": "oci-cmek-shared-env",
+      "skill": "skills/oci/oci-nosql-database-architect",
+      "reference": "references/nosql-design-guide.md",
+      "prompt": "Compliance wants our own keys on our existing NDCS tables in the shared service, rotated by adding new key versions every 90 days. Approve?",
+      "required_evidence": [
+        "OCI-NOSQL-E35"
+      ],
+      "must_mention": [
+        "Dedicated environment only",
+        "single-version keys only"
+      ],
+      "pass_criteria": "NOT READY: CMEK must be enabled in a dedicated environment, the key must be AES-256 in OCI KMS, and NDCS supports only single-version keys, so a rotation plan based on new key versions needs a different design."
+    },
+    {
+      "id": "ts-backup-secondary-index",
+      "skill": "skills/alibaba/alibaba-tablestore-architect",
+      "reference": "references/tablestore-design-guide.md",
+      "prompt": "Our DR plan for Tablestore is Cloud Backup of the instance, covering the data tables, their global secondary indexes, our time series tables and the table encryption. Good?",
+      "required_evidence": [
+        "TS-E20"
+      ],
+      "must_mention": [
+        "Data tables and search indexes only",
+        "no secondary indexes, time series tables or encryption settings"
+      ],
+      "pass_criteria": "NOT READY: Cloud Backup covers only data tables and search indexes; secondary indexes and time series tables are not backed up, encryption settings are not backed up, so the plan needs index rebuild, a separate time-series path and re-applied encryption."
+    },
+    {
+      "id": "fs-datastore-mode-listeners",
+      "skill": "skills/gcp/gcp-firebase-developer",
+      "reference": "references/firestore.md",
+      "prompt": "Our legacy database is Firestore in Datastore mode. Can the new web app use Firestore real-time listeners on it?",
+      "required_evidence": [
+        "FS-E19"
+      ],
+      "must_mention": [
+        "denies Firestore API requests",
+        "no Firestore real-time capabilities"
+      ],
+      "pass_criteria": "No: a Datastore-mode database accepts Datastore API requests and denies Firestore API requests, and Firestore real-time capabilities are unavailable; listeners need a Native-mode database."
     }
   ]
 }

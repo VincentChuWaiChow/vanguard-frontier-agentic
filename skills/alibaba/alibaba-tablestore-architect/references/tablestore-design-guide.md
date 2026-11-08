@@ -22,7 +22,9 @@ its guarantees differ. Its partition key is the **first primary key column** [TS
 | TTL / versions | CONDITIONAL | Expired data unreadable at once; strict rules when indexes exist | [TS-E08] [TS-E09] |
 | Instance type | SUPPORTED | High-performance or Capacity, permanent | [TS-E10] |
 | Access control | SUPPORTED | RAM + Control Policies + Network ACLs + Instance Policies, deny wins | [TS-E14] |
-| Tunnel/Stream, backup, pricing | UNVERIFIED | Not retrieved this pass | [TS-E16] |
+| Tunnel Service | CONDITIONAL | Ordered per partition only; logs kept up to 7 days; disabled tunnels deleted after 30 days | [TS-E19] |
+| Backup | CONDITIONAL | Data tables and search indexes only; no secondary indexes, time series tables or encryption settings | [TS-E20] |
+| Pricing | UNVERIFIED | Not retrieved this pass | [TS-E16] |
 
 ## Primary key and partition key
 
@@ -125,7 +127,9 @@ an allow alone. *(recommendation)*
 | --- | --- | --- |
 | Java | Maven `com.aliyun.openservices:tablestore` (Java 6+) | [TS-E15] |
 | Python | `tablestore` (Python 3 only from 6.0.0) | [TS-E17] |
-| Go, Node.js, .NET, PHP | not verified | [TS-E16] |
+| Go | `github.com/aliyun/aliyun-tablestore-go-sdk/tablestore` | [TS-E21] |
+| Node.js | `tablestore` | [TS-E22] |
+| .NET, PHP | not verified | [TS-E16] |
 
 Resolve the current version from the package registry. Look up method names in
 the SDK reference before writing code. Use RAM roles or STS credentials, never
@@ -141,5 +145,8 @@ embedded AccessKeys. *(rule)*
 - TTL increase treated as harmless, or TTL/versions changed on an indexed table
   without checking the index constraints.
 - An instance type change planned "later" [TS-E10].
-- Claims about Tunnel/Stream, backup or pricing without a fresh official source
-  [TS-E16].
+- A tunnel consumer that can lag more than the stream log retention (up to
+  7 days), or that assumes global ordering across partitions [TS-E19].
+- A recovery plan that counts on Cloud Backup for secondary indexes, time
+  series tables or encryption settings [TS-E20].
+- Pricing claims without a fresh official source [TS-E16].

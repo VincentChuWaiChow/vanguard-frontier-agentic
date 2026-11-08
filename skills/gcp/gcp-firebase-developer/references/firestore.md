@@ -96,7 +96,26 @@ TTL deletes typically within 24 hours, and expired documents still appear in
 queries until deleted [FS-E14]. Filter expired documents in queries. Never use
 TTL for exact-time deletion obligations. *(recommendation)*
 
+## Server libraries
+
+| Language | Install | Evidence |
+| --- | --- | --- |
+| Python | `pip install --upgrade google-cloud-firestore` | [FS-E18] |
+| Node.js | `npm install --save @google-cloud/firestore` | [FS-E18] |
+| Go | `go get cloud.google.com/go/firestore` | [FS-E18] |
+| Java | Maven `com.google.cloud:google-cloud-firestore` via `libraries-bom` | [FS-E18] |
+
+Resolve the current version from the package registry. *(rule)*
+
+## Datastore mode
+
+Datastore compatibility is a database-level setting chosen at creation. Such a
+database accepts Datastore API requests, denies Firestore API requests, and has
+no Firestore real-time capabilities [FS-E19]. The rules in this file do not
+apply to it. Confirm the mode before advising, and do not promise listeners or
+Firestore client SDK features on a Datastore-mode database. *(recommendation)*
+
 ## Not covered (unverified)
 
-Pricing, server library package names and Datastore mode were not retrieved
-[FS-E16]. Fetch the official page or label the answer an assumption.
+Pricing was not retrieved [FS-E16]. Fetch the official page or label the
+answer an assumption.
