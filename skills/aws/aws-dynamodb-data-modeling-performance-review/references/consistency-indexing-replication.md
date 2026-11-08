@@ -33,7 +33,7 @@ a standing write and storage cost [DDB-E08].
 | Any partition key value may exceed 10 GB (base + index items)? | — | **reject**: writes can be blocked [DDB-E04] | GSI collections are exempt, but any LSI on the table still caps the base collection [DDB-E04] |
 | Needs non-projected attributes? | — | fetches allowed, extra cost [DDB-E05] | cannot fetch: project them or read the table [DDB-E05] |
 | Only some items should be indexed? | — | — | sparse GSI [DDB-E06] |
-| Index headroom | — | at most 5 per table [DDB-E19] | default quota 20 per table; 100 projected attributes across all indexes [DDB-E19] |
+| Index headroom | — | at most 5 per table [DDB-E19] | default quota 20 per table; INCLUDE projections share a 100-attribute budget across all indexes, while ALL and KEYS_ONLY are exempt [DDB-E19] |
 | Multi-region strong consistency (MRSC) table? | — | **not supported** [DDB-E14] | supported, eventual [DDB-E14] |
 | Composite query on several natural attributes? | — | — | multi-attribute keys before synthetic concatenated keys [DDB-E09] |
 

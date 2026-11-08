@@ -154,9 +154,11 @@ Use for regional DR or local-latency reads with active-active writes
 
 Rules:
 
-- Application identities get `nosql-rows` verbs only. `use nosql-tables`
-  already allows ALTER TABLE and limit changes [OCI-NOSQL-E29], so keep it, and
-  every `manage` verb, off application identities. *(recommendation)*
+- Application identities get `nosql-rows` verbs only: `read`, `use`, or
+  `manage nosql-rows` when the application must delete rows [OCI-NOSQL-E13].
+  Keep every `nosql-tables` and `nosql-indexes` verb off application
+  identities, because even `use nosql-tables` allows ALTER TABLE and limit
+  changes [OCI-NOSQL-E29]. *(recommendation)*
 - Scope to a compartment, never the tenancy, and narrow to one table with
   `target.nosql-table.name` where possible [OCI-NOSQL-E29].
 - On Global Active tables, row permissions are **per region** and do not stop

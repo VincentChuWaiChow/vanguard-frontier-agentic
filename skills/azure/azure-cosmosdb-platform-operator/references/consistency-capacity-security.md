@@ -28,11 +28,17 @@ inference or recommendation. API for NoSQL only.
 
 ### Session tokens: where read-your-writes quietly breaks
 
-- Tokens are **partition-bound**. A client that never wrote to a physical
-  partition has no token for it and reads it as eventual [COSMOS-E03].
+- Tokens are **partition-bound**. Per the consistency-levels page, a client
+  that has not written to a physical partition has no cached token for it and
+  reads it as eventual [COSMOS-E03]. Read responses also return a session
+  token, which Microsoft's examples pass explicitly on later reads
+  [COSMOS-E21]. Whether a given SDK caches read-acquired tokens automatically
+  is not documented, so do not tell a read-only service that it must write to
+  get session behavior. Check that SDK's behavior first. *(inference)*
 - A **re-created client** (pod restart, per-request client construction,
-  serverless cold start) loses its token cache and reads as eventual until its
-  writes rebuild it [COSMOS-E03]. Per-request `CosmosClient` construction
+  serverless cold start) loses its token cache and reads as eventual until the
+  cache is rebuilt [COSMOS-E03]. To see writes made before the restart, carry
+  their session token forward explicitly [COSMOS-E03] [COSMOS-E21]. Per-request `CosmosClient` construction
   therefore also breaks session guarantees, on top of its connection cost.
   *(inference)*
 - Read-your-writes across services (a write in API A, then a read in worker B)
