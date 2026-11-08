@@ -15,7 +15,7 @@ its guarantees differ. Its partition key is the **first primary key column** [TS
 | --- | --- | --- | --- |
 | Primary key | SUPPORTED | 1-4 columns fixed at creation; first column is the partition key; rows sorted by PK | [TS-E01] |
 | Partitioning | CONDITIONAL | Auto split/merge, but one partition key value cannot split; keep it under 10 GB | [TS-E02] |
-| Transactions | CONDITIONAL | Local transactions within one partition key value only; must be enabled at creation | [TS-E04] |
+| Transactions | CONDITIONAL | Local transactions within one partition key value only; enabled at creation, or by support ticket for an existing table | [TS-E04] |
 | Optimistic concurrency | SUPPORTED | Row-existence and column-value conditions; billed as reads | [TS-E05] |
 | Secondary indexes | CONDITIONAL | Global = async, eventual; local = sync, strong, shares the partition key | [TS-E06] |
 | Search index | CONDITIONAL | Async, typically within 3 s; not real-time | [TS-E07] |
@@ -51,7 +51,8 @@ Partition key rules:
 ## Transactions and concurrency
 
 - Local transactions [TS-E04]:
-  - enabled only at table creation
+  - enabled at table creation, or for an existing table only through a support
+    ticket
   - one partition key value, pessimistic write lock on that value
   - 60-second lifetime, and 60 seconds maximum between operations
   - 4 MB of writes, one request at a time
@@ -134,8 +135,8 @@ embedded AccessKeys. *(rule)*
 
 - Partition key with unbounded growth per value (over 10 GB) or sequential
   values without a hash prefix.
-- Local transactions assumed across partition key values, or not enabled at
-  creation.
+- Local transactions assumed across partition key values, or assumed available on
+  an existing table without the support-ticket enablement step [TS-E04].
 - Read-after-write expected from a global secondary index or a search index.
 - TTL increase treated as harmless, or TTL/versions changed on an indexed table
   without checking the index constraints.

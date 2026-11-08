@@ -1278,7 +1278,7 @@
     {
       "id": "alibaba-tablestore-architect",
       "path": "skills/alibaba/alibaba-tablestore-architect",
-      "aggregate_sha256": "89d7a5cce0e908b9d555e877b5bea5bf2df8bdde0ac1e71423c231ce3742fd13",
+      "aggregate_sha256": "7acad529477e6e27d6193dc235611962978b91480b00d5b2390a8c834f7f422d",
       "files": [
         {
           "path": "skills/alibaba/alibaba-tablestore-architect/SKILL.md",
@@ -1292,13 +1292,13 @@
         },
         {
           "path": "skills/alibaba/alibaba-tablestore-architect/references/evidence-ledger.md",
-          "sha256": "dc2b84f862b617a5cf4ddc341be08a82030944f41e92f219c323dc8fb2b2645d",
-          "bytes": 7758
+          "sha256": "698349ce6761d89bfb6e2c7e7da4519c64198fb7b3783ae543df9d8bd4722b51",
+          "bytes": 7860
         },
         {
           "path": "skills/alibaba/alibaba-tablestore-architect/references/tablestore-design-guide.md",
-          "sha256": "26eb090a4bee89dca349e2e14c7baedc57f563d79f37b12d02bb6c4dc4a6a8ae",
-          "bytes": 7207
+          "sha256": "2738af54dfde7bacc7cca84ddafa89fe33617404e39c19b43a9804c92a768449",
+          "bytes": 7365
         }
       ]
     },
@@ -8581,7 +8581,7 @@
     {
       "id": "gcp-bigtable-architect",
       "path": "skills/gcp/gcp-bigtable-architect",
-      "aggregate_sha256": "e47911398e7be0f7f71dbe0e9dd56ebe6251cea765013a21c845a644f3488076",
+      "aggregate_sha256": "7e1c035f726f98461b4628f9495499501bcaf2e209535595e3f618c03daac9c7",
       "files": [
         {
           "path": "skills/gcp/gcp-bigtable-architect/SKILL.md",
@@ -8595,13 +8595,13 @@
         },
         {
           "path": "skills/gcp/gcp-bigtable-architect/references/bigtable-design-guide.md",
-          "sha256": "b3339c91e4874bfb2c06c29d1522a5c38b424cbfc9a4f18f1d01be312e97a228",
-          "bytes": 8223
+          "sha256": "b1c37510da52dee2d0ea81498b54a31f09dc4688085d569b8384ad711b2c306b",
+          "bytes": 8378
         },
         {
           "path": "skills/gcp/gcp-bigtable-architect/references/evidence-ledger.md",
-          "sha256": "6a44fcffba666d85c0ac4ae54c006d2a8384480d133ac7b1ad01e9f0fd7de8ae",
-          "bytes": 7608
+          "sha256": "7850bacf22991e2f20794f6e8751ab22f6dfd4bc587b2d77b11bcf599233b38b",
+          "bytes": 7710
         }
       ]
     },

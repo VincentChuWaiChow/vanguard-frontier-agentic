@@ -106,7 +106,9 @@ must never be used for compliance-deadline deletion. *(recommendation)*
   - minimum nodes at least 10% of maximum, and maximum at most 10x minimum
   - storage target defaults to 50% per node
   - with 2x node scaling (the Enterprise Plus default), node counts must be even
-- Storage per node is 5 TB on SSD and 16 TB on HDD; use at most 70% [BT-E10].
+- Storage per node is 5 TB on SSD without tiered storage and 16 TB on HDD. With
+  tiered storage an SSD node holds 32 TB (Enterprise) or 64 TB (Enterprise Plus),
+  of which at most 5 TB is SSD. Use at most 70% of the limit [BT-E10].
 - Per-node throughput and pricing were not verified [BT-E16]. A capacity
   estimate must come from a load test or a freshly fetched official page.
 
