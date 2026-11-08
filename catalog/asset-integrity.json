@@ -34,7 +34,7 @@
   "trees": [
     {
       "tree": "agents",
-      "aggregate_sha256": "564b00b12209898014c7ce3047ffbc8cc400c0004d97b9ac37f4b7d46f1f8bea",
+      "aggregate_sha256": "5892fa2e7df7d4046e76e28007b3452fb61479e27ece4bde1f99f1925af1f1ad",
       "files": [
         {
           "path": "agents/AGENTS.md",
@@ -5238,8 +5238,8 @@
         },
         {
           "path": "agents/azure/azure-cosmosdb-application-developer-agent/metadata.json",
-          "sha256": "a2ead3d7ca6c39158d0f187f11fc87e68b8ffd2d3f78c89a8310c29a6295ec14",
-          "bytes": 2133
+          "sha256": "b0959b31aa5619f16e73596d55409cee80b2e07c37e44f39375cc52f415221dd",
+          "bytes": 2245
         },
         {
           "path": "agents/azure/azure-cosmosdb-application-developer-agent/references/cosmosdb-application-agent-operations.md",
@@ -26228,43 +26228,43 @@
         },
         {
           "path": "agents/oci/oci-nosql-database-architect-agent/AGENT.md",
-          "sha256": "e1ab45376a0de37e79f8d102cf80ab2b49097b405e1459fe7ad6e27591ddd7d5",
-          "bytes": 2889
+          "sha256": "bd7bc54d6cbab8b4046837d4e6c4817e8fb17965bd75f7dd323eeb55b59f1e0a",
+          "bytes": 3034
         },
         {
           "path": "agents/oci/oci-nosql-database-architect-agent/harnesses/claude-code.agent.md",
-          "sha256": "c7cfe6391be1b781c474f5e12c163ad6efa0d8394e5b90b118f2314b06b2165e",
-          "bytes": 2303
+          "sha256": "5510e16fde3ddffc02c967c13f8d0fa7b21577b8321cf1b861e44c4643eb4333",
+          "bytes": 2448
         },
         {
           "path": "agents/oci/oci-nosql-database-architect-agent/harnesses/codex.toml",
-          "sha256": "f5627a20bc8fc31e0ce571f3fcaa8616b365c5df5e6ed8afcfe28c3da543169f",
-          "bytes": 1346
+          "sha256": "682221fa2c100d263c087cb0623220e41abf6bff724b08a1f1e64f57bf7feacb",
+          "bytes": 1415
         },
         {
           "path": "agents/oci/oci-nosql-database-architect-agent/harnesses/copilot.agent.md",
-          "sha256": "de7073844006aab46c509df1bf190a4d59d6956bd4d7709065b5c1050064b222",
-          "bytes": 2409
+          "sha256": "6686e5cb4d2a38b653fa93426f00f0dce9dd71a6c7de1e08326c7d743f8672bf",
+          "bytes": 2554
         },
         {
           "path": "agents/oci/oci-nosql-database-architect-agent/harnesses/cursor.agent.md",
-          "sha256": "70dba97b5066e346af1b25b80f0fa9c620bb0153ba31f9f43879cab65e8375a0",
-          "bytes": 2335
+          "sha256": "4a27e1a419f13ee3328566a1cb7bcaa0900185ecd322bd22476bd18ef4c6899c",
+          "bytes": 2480
         },
         {
           "path": "agents/oci/oci-nosql-database-architect-agent/harnesses/gemini.agent.md",
-          "sha256": "c71f2bd6f771d2a2f8349132ab0fee815e708a9a275af385c38430356d41f643",
-          "bytes": 2368
+          "sha256": "69be89a3d56923a3f808d97aa3d95f6a497deca7cc0e7558266f45d12e35fe9b",
+          "bytes": 2513
         },
         {
           "path": "agents/oci/oci-nosql-database-architect-agent/harnesses/kiro-cli.agent.json",
-          "sha256": "ac4c5ecc56c077c1c56b7a5dc059dfff2b56f595a44100f0dac70b2832247c5d",
-          "bytes": 2353
+          "sha256": "069e339e84fa4f1a1ea855c225b4d39271924ead3956f7c3c83c65dc9aa37349",
+          "bytes": 2498
         },
         {
           "path": "agents/oci/oci-nosql-database-architect-agent/harnesses/kiro-ide.agent.md",
-          "sha256": "c7cfe6391be1b781c474f5e12c163ad6efa0d8394e5b90b118f2314b06b2165e",
-          "bytes": 2303
+          "sha256": "5510e16fde3ddffc02c967c13f8d0fa7b21577b8321cf1b861e44c4643eb4333",
+          "bytes": 2448
         },
         {
           "path": "agents/oci/oci-nosql-database-architect-agent/metadata.json",
@@ -36029,7 +36029,7 @@
     },
     {
       "tree": "catalog",
-      "aggregate_sha256": "adec1233f2e5e36f8f3908b76022e6aa884111e163cf2d6c018f091cadbf1c0b",
+      "aggregate_sha256": "96596cd50828c13280f2ba0e1299af1d93deef34de08044cb77a3b89b30e9d1c",
       "files": [
         {
           "path": "catalog/AGENTS.md",
@@ -36038,8 +36038,8 @@
         },
         {
           "path": "catalog/agents.json",
-          "sha256": "6a19299e22128343260ce010f9287c5a041d121f3e791e67864585424dd60aec",
-          "bytes": 1280779
+          "sha256": "cf0ee342c3a129e3e0daed8a866cb583c119265b074095c078c2f49178bc3e2c",
+          "bytes": 1280869
         },
         {
           "path": "catalog/index.json",
@@ -36083,8 +36083,8 @@
         },
         {
           "path": "catalog/skill-manifest.json",
-          "sha256": "3c0100aac5505533f659149c63226e2fbf639474b521e3680019669ee29c2893",
-          "bytes": 1099401
+          "sha256": "33bf967200810aa880ac798fdec39423ba9384d4c93eba809271c7b139133248",
+          "bytes": 1099403
         },
         {
           "path": "catalog/skills.json",
@@ -37322,7 +37322,7 @@
     },
     {
       "tree": "tests",
-      "aggregate_sha256": "042a644a5e92d3801d7f5845a42f51f6b08c68f9088090a015b3714d9d49e7dd",
+      "aggregate_sha256": "121a1b249d920269037d42aeb8008b682576d82e625fed4794e88e3d633daf5f",
       "files": [
         {
           "path": "tests/AGENTS.md",
@@ -38361,7 +38361,7 @@
         },
         {
           "path": "tests/fixtures/README.md",
-          "sha256": "9d7f88e47256fbed5a5c4d6f0c6b7bf4b383dbe1912754606752da189fa34726",
+          "sha256": "9965cbb32e6ffcc96cbe44907c923ade8ea04287698866efd3a7e3eac3ece589",
           "bytes": 3698
         },
         {
@@ -39710,9 +39710,19 @@
           "bytes": 44
         },
         {
+          "path": "tests/fixtures/azure-maestro-routing/expected/adv-cosmos-hot-partition-not-key-vault.json",
+          "sha256": "bfbefc0fa384f154da4bea3381cffbff82c022567f6c8b42ea7c335efa5f1fca",
+          "bytes": 93
+        },
+        {
           "path": "tests/fixtures/azure-maestro-routing/expected/adv-cosmos-partition-key-not-key-vault.json",
           "sha256": "396a99f451d410ddbe9a07198e61bcbc9a3aabac1ce46d659a774dedfcb0ab81",
           "bytes": 90
+        },
+        {
+          "path": "tests/fixtures/azure-maestro-routing/expected/adv-cosmos-throttling-investigation.json",
+          "sha256": "bfbefc0fa384f154da4bea3381cffbff82c022567f6c8b42ea7c335efa5f1fca",
+          "bytes": 93
         },
         {
           "path": "tests/fixtures/azure-maestro-routing/expected/adv-instruction-injection.json",
@@ -39910,9 +39920,19 @@
           "bytes": 113
         },
         {
+          "path": "tests/fixtures/azure-maestro-routing/inputs/adv-cosmos-hot-partition-not-key-vault.json",
+          "sha256": "b756ae496b33b421fe2a118951aa2ab500ceaf65f854893515b8dcffc2caa2a4",
+          "bytes": 205
+        },
+        {
           "path": "tests/fixtures/azure-maestro-routing/inputs/adv-cosmos-partition-key-not-key-vault.json",
           "sha256": "34cb8303e6571fe7ccbb1ae71f91b04225aca382c6b58d19601e342aad5cad75",
           "bytes": 186
+        },
+        {
+          "path": "tests/fixtures/azure-maestro-routing/inputs/adv-cosmos-throttling-investigation.json",
+          "sha256": "654b7bd978b699d62c1263661967adf0c70011ed2534ae94b4eb04ea0db7498a",
+          "bytes": 189
         },
         {
           "path": "tests/fixtures/azure-maestro-routing/inputs/adv-instruction-injection.json",
@@ -39971,8 +39991,8 @@
         },
         {
           "path": "tests/fixtures/azure-maestro-routing/taxonomy.json",
-          "sha256": "c5fe5769b42edb0f846e869f30c5b49687575968dd4fd48671c8e0d8baa65ca7",
-          "bytes": 8789
+          "sha256": "23b8fba986923a7f0f846a8a414eee1b2bc1a2b299bc3aca86a1ab4f02ff9a8f",
+          "bytes": 8896
         },
         {
           "path": "tests/fixtures/contabo-maestro-routing/expected/001-happy-capacity-planner.json",
@@ -45645,6 +45665,11 @@
           "bytes": 5422
         },
         {
+          "path": "tests/fixtures/nosql-scenarios/scenarios.json",
+          "sha256": "c0db92b0b6ab57be5ec187e8851e32fdae31e1e9e6e7f5775a7297a47425f1ee",
+          "bytes": 8807
+        },
+        {
           "path": "tests/fixtures/nvidia-maestro-routing/README.md",
           "sha256": "8c9dd5947543294cea8764dacf563ec3e17d5de20fb613a782fccf3c3b180337",
           "bytes": 1524
@@ -48900,6 +48925,11 @@
           "bytes": 2607
         },
         {
+          "path": "tests/validate-nosql-scenarios.py",
+          "sha256": "b0f062683362adb3a15ca0ca24cc2402724d824314313a128c476b2f2c8b1e2e",
+          "bytes": 3868
+        },
+        {
           "path": "tests/validate-nvidia-promotion-gatekeeper.py",
           "sha256": "c7e60d6b83531e78385506766ee598c4acce2dcc5f2a30b48051821e795cdfbd",
           "bytes": 12585
@@ -49000,8 +49030,8 @@
     },
     {
       "path": "package.json",
-      "sha256": "cd5fe289a990a77e1ef44e137fc0f3925cc19c0b2cd26bc7256f18a90a6fa5b2",
-      "bytes": 8632
+      "sha256": "90a21c430ccfecab5354ec6f5fee2859968a6f13f3b74d595998d9a352086d6a",
+      "bytes": 8745
     },
     {
       "path": ".releaserc.js",
@@ -49009,5 +49039,5 @@
       "bytes": 9135
     }
   ],
-  "aggregate_sha256": "23a03e199cf060884e8612194850d752bb227f490a625aa80b4f0d5912e6e845"
+  "aggregate_sha256": "87da6cc33bf733bad03352088ac811363755f02fa0f20cb1a37998ba85984d15"
 }

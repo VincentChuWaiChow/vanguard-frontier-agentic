@@ -23,6 +23,10 @@
   "security_notes": "Use official Microsoft Learn documentation for documented behavior and sampled read-only configured-environment evidence for observed state. Enforce least privilege, credential boundaries, evidence labels, and explicit approval before production-impacting or secret-bearing operations.",
   "last_verified": "2026-06-06",
   "path": "agents/azure/azure-cosmosdb-application-developer-agent",
+  "companion_skills": [
+    "azure-cosmosdb-application-developer",
+    "azure-cosmosdb-platform-operator"
+  ],
   "harness_variants": {
     "codex": "agents/azure/azure-cosmosdb-application-developer-agent/harnesses/codex.toml",
     "copilot": "agents/azure/azure-cosmosdb-application-developer-agent/harnesses/copilot.agent.md",

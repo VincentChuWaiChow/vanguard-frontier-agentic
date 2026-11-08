@@ -3512,7 +3512,10 @@
     "last_verified": "2026-06-06",
     "path": "agents/azure/azure-cosmosdb-application-developer-agent",
     "author": "github: VincentChuWaiChow",
-    "companion_skills": null
+    "companion_skills": [
+      "azure-cosmosdb-application-developer",
+      "azure-cosmosdb-platform-operator"
+    ]
   },
   {
     "id": "azure-cosmosdb-performance-investigator-agent",

@@ -8,9 +8,10 @@ This folder contains OCI-focused skills curated for this marketplace.
 
 ## Local marketplace portfolio
 
-This folder contains **37** local OCI skills:
+This folder contains these local OCI skills (see `catalog/skills.json` for the authoritative inventory):
 
 - `oci-autonomous-database-architect`
+- `oci-certificates-issuer-review`
 - `oci-cloud-guard-responder`
 - `oci-compute-instance-agent-operator`
 - `oci-compute-platform-operator`
@@ -38,6 +39,7 @@ This folder contains **37** local OCI skills:
 - `oci-multi-cloud-architect`
 - `oci-mysql-heatwave-ai-specialist`
 - `oci-network-architect`
+- `oci-nosql-database-architect`
 - `oci-observability-incident-responder`
 - `oci-recovery-service-operator`
 - `oci-registry-artifact-governor`
@@ -46,6 +48,9 @@ This folder contains **37** local OCI skills:
 - `oci-solution-architect`
 - `oci-storage-backup-steward`
 - `oci-support-incident-coordinator`
+- `oci-waf-cost-optimization-review`
+- `oci-waf-reliability-review`
+- `oci-waf-security-review`
 - `oracle-oci-mcp-grounded-advisor`
 
 ## Portfolio posture

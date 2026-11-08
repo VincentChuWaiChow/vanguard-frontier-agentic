@@ -58,7 +58,12 @@
         "performance-investigator",
         "Investigate Azure Cosmos",
         "workload-level",
-        "step-by"
+        "step-by",
+        "hot partition",
+        "RU spike",
+        "429",
+        "throttling",
+        "request units"
       ],
       "agent": "azure-cosmosdb-performance-investigator-agent"
     },
