@@ -568,6 +568,7 @@
     "./agents/oci/oci-multi-cloud-architect-agent/harnesses/claude-code.agent.md",
     "./agents/oci/oci-mysql-heatwave-ai-specialist-agent/harnesses/claude-code.agent.md",
     "./agents/oci/oci-network-architect-agent/harnesses/claude-code.agent.md",
+    "./agents/oci/oci-nosql-database-architect-agent/harnesses/claude-code.agent.md",
     "./agents/oci/oci-observability-incident-responder-agent/harnesses/claude-code.agent.md",
     "./agents/oci/oci-recovery-service-operator-agent/harnesses/claude-code.agent.md",
     "./agents/oci/oci-registry-artifact-governor-agent/harnesses/claude-code.agent.md",

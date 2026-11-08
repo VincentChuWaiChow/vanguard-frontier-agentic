@@ -1929,13 +1929,17 @@
       "https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/data-modeling.html",
       "https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/bp-table-design.html",
       "https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/GSI.html",
-      "https://docs.aws.amazon.com/prescriptive-guidance/latest/dynamodb-data-modeling/best-practices.html"
+      "https://docs.aws.amazon.com/prescriptive-guidance/latest/dynamodb-data-modeling/best-practices.html",
+      "https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/HowItWorks.ReadConsistency.html",
+      "https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/LSI.html",
+      "https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/V2globaltables_HowItWorks.html",
+      "https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/DAX.consistency.html"
     ],
     "security_notes": "Do not recommend DynamoDB schemas without explicit access patterns, partition cardinality, index tradeoffs, capacity/cost implications, and migration or backfill safety.",
-    "last_verified": "2026-06-02",
+    "last_verified": "2026-11-08",
     "path": "skills/aws/aws-dynamodb-data-modeling-performance-review",
     "author": "github: VincentChuWaiChow",
-    "version": "0.1.4"
+    "version": "0.1.5"
   },
   {
     "id": "aws-ec2-compute-operations-steward",
@@ -2963,7 +2967,7 @@
   {
     "id": "azure-cosmosdb-application-developer",
     "name": "Azure Cosmos DB Application Developer",
-    "version": "0.1.3",
+    "version": "0.1.4",
     "type": "skill",
     "provider": "azure",
     "harnesses": [
@@ -3030,7 +3034,7 @@
   {
     "id": "azure-cosmosdb-platform-operator",
     "name": "Azure Cosmos DB Platform Operator",
-    "version": "0.1.3",
+    "version": "0.1.4",
     "type": "skill",
     "provider": "azure",
     "harnesses": [
@@ -3053,10 +3057,13 @@
       "https://learn.microsoft.com/en-us/azure/cosmos-db/hierarchical-partition-keys",
       "https://learn.microsoft.com/en-us/azure/reliability/reliability-cosmos-db",
       "https://learn.microsoft.com/en-us/azure/cosmos-db/hierarchical-partition-keys-unlimited-scale",
-      "https://learn.microsoft.com/en-us/azure/cosmos-db/failover-considerations-for-private-endpoints"
+      "https://learn.microsoft.com/en-us/azure/cosmos-db/failover-considerations-for-private-endpoints",
+      "https://learn.microsoft.com/en-us/azure/cosmos-db/integrated-cache",
+      "https://learn.microsoft.com/en-us/azure/cosmos-db/throughput-serverless",
+      "https://learn.microsoft.com/en-us/azure/cosmos-db/how-to-connect-role-based-access-control"
     ],
     "security_notes": "Do not approve a partition key, indexing posture, consistency change, or cross-partition query strategy without checking workload shape, RU impact, transactional scope, and least-privilege access implications.",
-    "last_verified": "2026-06-05",
+    "last_verified": "2026-11-08",
     "path": "skills/azure/azure-cosmosdb-platform-operator",
     "author": "github: VincentChuWaiChow"
   },
@@ -14804,6 +14811,34 @@
     "path": "skills/oci/oci-network-architect",
     "author": "github: VincentChuWaiChow",
     "version": "0.1.1"
+  },
+  {
+    "id": "oci-nosql-database-architect",
+    "name": "OCI NoSQL Database Architect",
+    "type": "skill",
+    "provider": "oci",
+    "harnesses": [
+      "codex",
+      "claude-code",
+      "cursor",
+      "gemini",
+      "kiro",
+      "other"
+    ],
+    "summary": "Design and review Oracle NoSQL Database Cloud Service tables: shard/primary keys, EVENTUAL vs ABSOLUTE consistency, read/write units, TTL, child tables, Global Active tables, IAM and official SDKs, with a provenance ledger per claim.",
+    "source_type": "original",
+    "official_docs": [
+      "https://docs.oracle.com/en/cloud/paas/nosql-cloud/dtddt/cloud-concepts.html",
+      "https://docs.oracle.com/en/cloud/paas/nosql-cloud/dtddt/designing-a-table-in-oracle-nosql-database-cloud-service.html",
+      "https://docs.oracle.com/en/cloud/paas/nosql-cloud/dtddt/global-active-tables-in-ndcs.html",
+      "https://docs.oracle.com/en/cloud/paas/nosql-cloud/dtddt/oracle-nosql-database-cloud-service-policies-reference.html",
+      "https://docs.oracle.com/en/cloud/paas/nosql-cloud/dtddt/plan-your-service.html"
+    ],
+    "security_notes": "Read-only by default. Shard and primary keys are permanent, so never approve DDL, capacity, replica or IAM changes without explicit target, blast radius, rollback and user approval; never request OCIDs, keys or config contents.",
+    "last_verified": "2026-11-08",
+    "path": "skills/oci/oci-nosql-database-architect",
+    "version": "0.1.0",
+    "author": "github: VincentChuWaiChow"
   },
   {
     "id": "oci-observability-incident-responder",

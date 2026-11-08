@@ -1,0 +1,7 @@
+{
+  "route": [
+    "oci-autonomous-database-architect-agent",
+    "oci-database-platform-dba-agent"
+  ],
+  "mode": "parallel (2)"
+}

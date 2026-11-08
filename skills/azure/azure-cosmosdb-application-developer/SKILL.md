@@ -4,8 +4,8 @@ description: Use this skill for Azure Cosmos DB application development work, es
 allowed-tools: Read Edit Write MultiEdit Grep Glob Bash
 metadata:
   author: "github: VincentChuWaiChow"
-  version: 0.1.3
-  updated: "2026-06-05"
+  version: 0.1.4
+  updated: "2026-11-08"
   category: data
 ---
 
@@ -48,6 +48,8 @@ Load these only when needed:
 - [Safety checklist](references/safety-checklist.md) — use for evidence labels, risk gates, mutation boundaries, approval rules, and credential boundaries.
 - [Workflow and output contract](references/workflow-and-output.md) — use when executing the full review, applying stress checks, or formatting the final answer.
 - [Official sources](references/official-sources.md) — use when you need the detailed Microsoft documentation list or source notes.
+
+Session-token behavior, request-level consistency overrides, the integrated cache and data-plane RBAC are maintained once, with source citations, in the `azure-cosmosdb-platform-operator` skill (`references/consistency-capacity-security.md`). Load that skill for those topics instead of answering from memory.
 
 ## Response minimum
 

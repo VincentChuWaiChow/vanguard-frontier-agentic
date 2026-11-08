@@ -1,0 +1,28 @@
+{
+  "id": "oci-nosql-database-architect",
+  "name": "OCI NoSQL Database Architect",
+  "type": "skill",
+  "provider": "oci",
+  "harnesses": [
+    "codex",
+    "claude-code",
+    "cursor",
+    "gemini",
+    "kiro",
+    "other"
+  ],
+  "summary": "Design and review Oracle NoSQL Database Cloud Service tables: shard/primary keys, EVENTUAL vs ABSOLUTE consistency, read/write units, TTL, child tables, Global Active tables, IAM and official SDKs, with a provenance ledger per claim.",
+  "source_type": "original",
+  "official_docs": [
+    "https://docs.oracle.com/en/cloud/paas/nosql-cloud/dtddt/cloud-concepts.html",
+    "https://docs.oracle.com/en/cloud/paas/nosql-cloud/dtddt/designing-a-table-in-oracle-nosql-database-cloud-service.html",
+    "https://docs.oracle.com/en/cloud/paas/nosql-cloud/dtddt/global-active-tables-in-ndcs.html",
+    "https://docs.oracle.com/en/cloud/paas/nosql-cloud/dtddt/oracle-nosql-database-cloud-service-policies-reference.html",
+    "https://docs.oracle.com/en/cloud/paas/nosql-cloud/dtddt/plan-your-service.html"
+  ],
+  "security_notes": "Read-only by default. Shard and primary keys are permanent, so never approve DDL, capacity, replica or IAM changes without explicit target, blast radius, rollback and user approval; never request OCIDs, keys or config contents.",
+  "last_verified": "2026-11-08",
+  "path": "skills/oci/oci-nosql-database-architect",
+  "author": "github: VincentChuWaiChow",
+  "version": "0.1.0"
+}

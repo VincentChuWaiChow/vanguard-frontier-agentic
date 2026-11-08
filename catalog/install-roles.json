@@ -142,6 +142,7 @@
         "oci-goldengate-replication-operator-agent",
         "oci-live-autonomous-db-lifecycle-guard-agent",
         "oci-mysql-heatwave-ai-specialist-agent",
+        "oci-nosql-database-architect-agent",
         "oci-recovery-service-operator-agent"
       ],
       "skills": [
@@ -171,6 +172,7 @@
         "oci-goldengate-replication-operator",
         "oci-live-autonomous-db-lifecycle-guard",
         "oci-mysql-heatwave-ai-specialist",
+        "oci-nosql-database-architect",
         "oci-recovery-service-operator"
       ]
     },

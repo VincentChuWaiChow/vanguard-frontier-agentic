@@ -36,7 +36,7 @@ Microsoft Learn describes Cosmos DB as an account containing databases and conta
 
 - Multi-region account configuration does not prove application failover unless SDK preferred regions, retries, conflict handling, and remaining-region capacity are verified.
 - Private endpoints can break regional resilience if DNS zones, VNet links, forwarding, and local regional endpoint paths are not designed deliberately.
-- Strong, bounded staleness, session, and eventual consistency have different availability, RPO, and throughput implications; do not treat consistency as a cosmetic setting.
+- Strong, bounded staleness, session, consistent prefix, and eventual consistency (all five levels; see `consistency-capacity-security.md`) have different availability, RPO, and throughput implications; do not treat consistency as a cosmetic setting.
 - Control-plane changes during an affected-region outage can delay recovery; do not mutate write region, consistency, throughput, networking, or failover priorities casually.
 - Backup protects data recovery scenarios; it is not a substitute for live availability, failover routing, or tested application DR.
 

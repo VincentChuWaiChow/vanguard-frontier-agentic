@@ -567,6 +567,7 @@
     "./agents/oci/oci-multi-cloud-architect-agent/harnesses/cursor.agent.md",
     "./agents/oci/oci-mysql-heatwave-ai-specialist-agent/harnesses/cursor.agent.md",
     "./agents/oci/oci-network-architect-agent/harnesses/cursor.agent.md",
+    "./agents/oci/oci-nosql-database-architect-agent/harnesses/cursor.agent.md",
     "./agents/oci/oci-observability-incident-responder-agent/harnesses/cursor.agent.md",
     "./agents/oci/oci-recovery-service-operator-agent/harnesses/cursor.agent.md",
     "./agents/oci/oci-registry-artifact-governor-agent/harnesses/cursor.agent.md",

@@ -16228,6 +16228,35 @@
     "companion_skills": null
   },
   {
+    "id": "oci-nosql-database-architect-agent",
+    "name": "OCI NoSQL Database Architect",
+    "type": "agent",
+    "provider": "oci",
+    "harnesses": [
+      "codex",
+      "copilot",
+      "claude-code",
+      "cursor",
+      "gemini",
+      "kiro"
+    ],
+    "summary": "Static reviewer for Oracle NoSQL Database Cloud Service table, shard-key, consistency, capacity, Global Active table, IAM and SDK decisions, citing a per-claim evidence ledger.",
+    "source_type": "original",
+    "official_docs": [
+      "https://docs.oracle.com/en/cloud/paas/nosql-cloud/dtddt/cloud-concepts.html",
+      "https://docs.oracle.com/en/cloud/paas/nosql-cloud/dtddt/global-active-tables-in-ndcs.html",
+      "https://docs.oracle.com/en/cloud/paas/nosql-cloud/dtddt/oracle-nosql-database-cloud-service-policies-reference.html"
+    ],
+    "security_notes": "Static review only. Never runs or instructs NDCS DDL, capacity, replica or IAM mutations without explicit target, blast radius, rollback and user approval; never requests OCIDs, keys or config contents.",
+    "last_verified": "2026-11-08",
+    "path": "agents/oci/oci-nosql-database-architect-agent",
+    "version": "0.1.0",
+    "execution_tier": "static-review",
+    "companion_skills": [
+      "oci-nosql-database-architect"
+    ]
+  },
+  {
     "id": "oci-observability-incident-responder-agent",
     "name": "OCI Observability Incident Responder",
     "type": "agent",

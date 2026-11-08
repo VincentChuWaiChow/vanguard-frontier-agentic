@@ -4,8 +4,8 @@ description: Review Amazon DynamoDB data modeling and performance across access 
 allowed-tools: Read Grep Glob
 metadata:
   author: "github: VincentChuWaiChow"
-  version: "0.1.4"
-  updated: "2026-06-02"
+  version: "0.1.5"
+  updated: "2026-11-08"
   category: data
 ---
 
@@ -40,6 +40,8 @@ Load these only when needed:
 - [Safety checklist](references/safety-checklist.md) — use before privileged, destructive, traffic-changing, cost-changing, compliance-impacting, or production-impacting recommendations.
 - [Official sources](references/official-sources.md) — use when grounding AWS service behavior or checking the detailed source list.
 - [DynamoDB Access Patterns and Capacity Guide](references/dynamodb-access-patterns-capacity.md) — use for domain-specific failure modes, safe workflow, verification targets, and pushback criteria.
+- [Consistency, indexing and replication decisions](references/consistency-indexing-replication.md) — use for GSI vs LSI (including when to add no index), strong vs eventual reads, MREC vs MRSC global tables, cross-Region transactions, and DAX consistency risk.
+- [Evidence ledger](references/evidence-ledger.md) — use when a claim must be traced to its AWS source or re-verified; cite its `[DDB-Exx]` IDs for material service claims.
 
 ## Response minimum
 

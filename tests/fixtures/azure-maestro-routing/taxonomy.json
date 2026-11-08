@@ -45,7 +45,8 @@
         "Guide Azure Cosmos",
         "NoSQL",
         "partition-aware",
-        "SDK"
+        "SDK",
+        "partition key"
       ],
       "agent": "azure-cosmosdb-application-developer-agent"
     },

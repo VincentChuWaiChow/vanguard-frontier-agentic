@@ -2046,22 +2046,32 @@
     {
       "id": "aws-dynamodb-data-modeling-performance-review",
       "path": "skills/aws/aws-dynamodb-data-modeling-performance-review",
-      "aggregate_sha256": "c4521be13818c644d67b3d62835467e9e00a9d8ad1a8a03972576ab176cec9f3",
+      "aggregate_sha256": "03867ad0f0e33dc4670e1a69ebb3982fb787e8a3f3bd729c221a1dc029872c80",
       "files": [
         {
           "path": "skills/aws/aws-dynamodb-data-modeling-performance-review/SKILL.md",
-          "sha256": "6f79f2a022bf6605a5ad6c1fbaecb528436a199f3f4591fdc608275f67da1c0b",
-          "bytes": 2904
+          "sha256": "1e87d8f4267c5a4957b2395a88685f7084c2fd092d4a59df32f14d74f2f5951f",
+          "bytes": 3343
         },
         {
           "path": "skills/aws/aws-dynamodb-data-modeling-performance-review/metadata.json",
-          "sha256": "03bc2122cb229c527506930f2ed7a78f86ad9d01652ee8270832845a8939323d",
-          "bytes": 1238
+          "sha256": "75d8d17a3e904df4b694c8fcc030938959c48df0b65252ebaffecbc8d7528119",
+          "bytes": 1619
+        },
+        {
+          "path": "skills/aws/aws-dynamodb-data-modeling-performance-review/references/consistency-indexing-replication.md",
+          "sha256": "5c480a2c67454d4ed8a31d37b100e13a8c926bd361fc879aa18c7c4f4dc17ee0",
+          "bytes": 4967
         },
         {
           "path": "skills/aws/aws-dynamodb-data-modeling-performance-review/references/dynamodb-access-patterns-capacity.md",
           "sha256": "2a778086457e3dc8bf011350173c33a90ce6168b3ccfdc102a9d455a9e5419de",
           "bytes": 3137
+        },
+        {
+          "path": "skills/aws/aws-dynamodb-data-modeling-performance-review/references/evidence-ledger.md",
+          "sha256": "df7ba7a4adff7e5dff90f46fb0ec2a1dad0d9cb600f30f5ffd56ee8fc0b2833d",
+          "bytes": 7117
         },
         {
           "path": "skills/aws/aws-dynamodb-data-modeling-performance-review/references/official-sources.md",
@@ -3467,16 +3477,16 @@
     {
       "id": "azure-cosmosdb-application-developer",
       "path": "skills/azure/azure-cosmosdb-application-developer",
-      "aggregate_sha256": "ac53c08b046eebd6fa57d749f44178ef58808bc91575562a271795c0192fc26d",
+      "aggregate_sha256": "e48d6dd65fb9a701977de9d4bc8da0dbfeec0c97128a1286b4e733efe99110ec",
       "files": [
         {
           "path": "skills/azure/azure-cosmosdb-application-developer/SKILL.md",
-          "sha256": "5634f691c3d52c72d46d898e8f907d58ca111ee7edb3ec18effd611034c4f48e",
-          "bytes": 3071
+          "sha256": "c641c8bcd449d4fbb7e29d5f4523fb9f2790d2b3591933a567a08c3debdffb0f",
+          "bytes": 3382
         },
         {
           "path": "skills/azure/azure-cosmosdb-application-developer/metadata.json",
-          "sha256": "193e0bfd11732dfe2a9bb2f42c26dea240ec579ee50f8138d772263a4e68301b",
+          "sha256": "b3b4a20d92905a228da30558a2f7e5b598bd477039b13dcc7114b07e64cc0e34",
           "bytes": 1818
         },
         {
@@ -3556,22 +3566,32 @@
     {
       "id": "azure-cosmosdb-platform-operator",
       "path": "skills/azure/azure-cosmosdb-platform-operator",
-      "aggregate_sha256": "d47b4c1071248589da82442697f85daaae6cf7b16dfb3b51702578d55527e312",
+      "aggregate_sha256": "7ce8c4796faee6201f2b394d80c8720dc8176b79baf7ebc9f029a144e890c557",
       "files": [
         {
           "path": "skills/azure/azure-cosmosdb-platform-operator/SKILL.md",
-          "sha256": "5fc7f0bdae53aab53fc62618ae14010b76a4477c2c9f7756577f9cf71e6f10f1",
-          "bytes": 3088
+          "sha256": "90700d8b30031c0e7a1a3445a5c683673352bfebcf143d27b71863801b23c9d8",
+          "bytes": 3571
         },
         {
           "path": "skills/azure/azure-cosmosdb-platform-operator/metadata.json",
-          "sha256": "001bf6a021d94d26a55092a68a4530b1f35d01fe3fc3c7e21c6d5cca6562b6a0",
-          "bytes": 1784
+          "sha256": "b9ab9491b733a61a1c7dd26eb5a0adafda175b2dde40ac098ed4fc488250c37b",
+          "bytes": 2035
+        },
+        {
+          "path": "skills/azure/azure-cosmosdb-platform-operator/references/consistency-capacity-security.md",
+          "sha256": "5e8c007507a2a3e611918fc3dfc4d68fd5c74e4cf792b18d644b7d57aaf4b97a",
+          "bytes": 5639
         },
         {
           "path": "skills/azure/azure-cosmosdb-platform-operator/references/cosmosdb-platform-operations.md",
-          "sha256": "c94acd1cacb2aa3b566db0f6353dfa01521b825dc2cfcf1a86d1145c7edbccb5",
-          "bytes": 4955
+          "sha256": "9a7ea9435c321d59c6e1624fd399de70c1c243a031c4076b886a837e106d314b",
+          "bytes": 5032
+        },
+        {
+          "path": "skills/azure/azure-cosmosdb-platform-operator/references/evidence-ledger.md",
+          "sha256": "7835744b392dbe40d3cc8de27b974785940ca03e0d565b141f7fc70008486069",
+          "bytes": 6479
         },
         {
           "path": "skills/azure/azure-cosmosdb-platform-operator/references/mcp-and-evidence.md",
@@ -17127,6 +17147,38 @@
           "path": "skills/oci/oci-network-architect/references/workflow-and-output.md",
           "sha256": "2f88983106e38a598df8346d2af5eea13d0db94eb32c2939a1e4c6587cc7b955",
           "bytes": 1457
+        }
+      ]
+    },
+    {
+      "id": "oci-nosql-database-architect",
+      "path": "skills/oci/oci-nosql-database-architect",
+      "aggregate_sha256": "2ea1af870e959c39fb1d514be0178c762b5ec890f8c710317bd3bb77d0e8c715",
+      "files": [
+        {
+          "path": "skills/oci/oci-nosql-database-architect/SKILL.md",
+          "sha256": "2889f56d0fa0303063b43463b2bc81433eb71558380f07a44ae6723ddbc835db",
+          "bytes": 3163
+        },
+        {
+          "path": "skills/oci/oci-nosql-database-architect/metadata.json",
+          "sha256": "4f1042dcddee71bec36b8212d1aae16259a609b7ff2d46fdbae665e184120715",
+          "bytes": 1449
+        },
+        {
+          "path": "skills/oci/oci-nosql-database-architect/references/evidence-ledger.md",
+          "sha256": "4aaa42805f91f7cda0e41e9ab3753177dd8cd0632291251e898532507e4f7b68",
+          "bytes": 8243
+        },
+        {
+          "path": "skills/oci/oci-nosql-database-architect/references/nosql-design-guide.md",
+          "sha256": "b8b14c60005d2ab73a8d8dde7647329aa06fd45595cddb360ff430146bd3a279",
+          "bytes": 7841
+        },
+        {
+          "path": "skills/oci/oci-nosql-database-architect/references/sdk-matrix.md",
+          "sha256": "70ef80a2609cf11d64fc4339f809b540371cb99c4de901a5852503f995f07471",
+          "bytes": 2721
         }
       ]
     },

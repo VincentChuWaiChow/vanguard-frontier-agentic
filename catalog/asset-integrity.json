@@ -34,16 +34,16 @@
   "trees": [
     {
       "tree": "agents",
-      "aggregate_sha256": "f3be391c8feabd0d4f6fa7190a4d2d3eb13348096364510a4f9e4c727ea01aa9",
+      "aggregate_sha256": "564b00b12209898014c7ce3047ffbc8cc400c0004d97b9ac37f4b7d46f1f8bea",
       "files": [
         {
           "path": "agents/AGENTS.md",
-          "sha256": "41fccdcf07f3aad8f1e0cc164cb3a2e314c279589cc30ce3cf85cb8d6bd36faf",
+          "sha256": "966d1beec5a87ce2a39295a3ed17c16b1e05a8d8cc2233a4a8e7a8c1daead7f0",
           "bytes": 28065
         },
         {
           "path": "agents/README.md",
-          "sha256": "2138077edebc7b25ac76784154106e8b70abf7505bfdab06c7748bad89341a29",
+          "sha256": "6ab0c79abd2484691d8e381872b3091d218f9ec0d0d3859d0d69cb454b2eddf4",
           "bytes": 10047
         },
         {
@@ -26227,6 +26227,51 @@
           "bytes": 1570
         },
         {
+          "path": "agents/oci/oci-nosql-database-architect-agent/AGENT.md",
+          "sha256": "e1ab45376a0de37e79f8d102cf80ab2b49097b405e1459fe7ad6e27591ddd7d5",
+          "bytes": 2889
+        },
+        {
+          "path": "agents/oci/oci-nosql-database-architect-agent/harnesses/claude-code.agent.md",
+          "sha256": "c7cfe6391be1b781c474f5e12c163ad6efa0d8394e5b90b118f2314b06b2165e",
+          "bytes": 2303
+        },
+        {
+          "path": "agents/oci/oci-nosql-database-architect-agent/harnesses/codex.toml",
+          "sha256": "f5627a20bc8fc31e0ce571f3fcaa8616b365c5df5e6ed8afcfe28c3da543169f",
+          "bytes": 1346
+        },
+        {
+          "path": "agents/oci/oci-nosql-database-architect-agent/harnesses/copilot.agent.md",
+          "sha256": "de7073844006aab46c509df1bf190a4d59d6956bd4d7709065b5c1050064b222",
+          "bytes": 2409
+        },
+        {
+          "path": "agents/oci/oci-nosql-database-architect-agent/harnesses/cursor.agent.md",
+          "sha256": "70dba97b5066e346af1b25b80f0fa9c620bb0153ba31f9f43879cab65e8375a0",
+          "bytes": 2335
+        },
+        {
+          "path": "agents/oci/oci-nosql-database-architect-agent/harnesses/gemini.agent.md",
+          "sha256": "c71f2bd6f771d2a2f8349132ab0fee815e708a9a275af385c38430356d41f643",
+          "bytes": 2368
+        },
+        {
+          "path": "agents/oci/oci-nosql-database-architect-agent/harnesses/kiro-cli.agent.json",
+          "sha256": "ac4c5ecc56c077c1c56b7a5dc059dfff2b56f595a44100f0dac70b2832247c5d",
+          "bytes": 2353
+        },
+        {
+          "path": "agents/oci/oci-nosql-database-architect-agent/harnesses/kiro-ide.agent.md",
+          "sha256": "c7cfe6391be1b781c474f5e12c163ad6efa0d8394e5b90b118f2314b06b2165e",
+          "bytes": 2303
+        },
+        {
+          "path": "agents/oci/oci-nosql-database-architect-agent/metadata.json",
+          "sha256": "fdaa39bdf83975ee2badf3ccfbfdaf6f8dfd6363efde883b2556dd017465653d",
+          "bytes": 1938
+        },
+        {
           "path": "agents/oci/oci-observability-incident-responder-agent/AGENT.md",
           "sha256": "f03a9da815b0573e9a3183345b3aaf6b9e6b83c8ada1e5a70fafe1ca1d0fd279",
           "bytes": 2497
@@ -35984,7 +36029,7 @@
     },
     {
       "tree": "catalog",
-      "aggregate_sha256": "e9dd8fadc375ec3098c0030b1d64e5da32dab60a7bacf8835d7176b33267927a",
+      "aggregate_sha256": "adec1233f2e5e36f8f3908b76022e6aa884111e163cf2d6c018f091cadbf1c0b",
       "files": [
         {
           "path": "catalog/AGENTS.md",
@@ -35993,8 +36038,8 @@
         },
         {
           "path": "catalog/agents.json",
-          "sha256": "226df3aa663261108ca23efd3c933c27fd1299e177626c12715bd313e39ebc6e",
-          "bytes": 1279490
+          "sha256": "6a19299e22128343260ce010f9287c5a041d121f3e791e67864585424dd60aec",
+          "bytes": 1280779
         },
         {
           "path": "catalog/index.json",
@@ -36003,8 +36048,8 @@
         },
         {
           "path": "catalog/install-roles.json",
-          "sha256": "2180fe8acd4736ff2a91186a97565f52998ef54a6b2b56240fc6b77123fa0ebf",
-          "bytes": 129007
+          "sha256": "4050c7f69523e29832459e06441bc87f3a50ebda3ebcca86ce288aecdc7b851c",
+          "bytes": 129093
         },
         {
           "path": "catalog/mcp-references.json",
@@ -36013,8 +36058,8 @@
         },
         {
           "path": "catalog/model-assignments.json",
-          "sha256": "c8189bcc2dac324e86a2629c7433d8530fed1f275a55f8e03eb68fb0c436c07b",
-          "bytes": 704444
+          "sha256": "f3ff795aa426f0a523a7ee7ac002264db357cefa99a1b5d7337e2b98b7c6b300",
+          "bytes": 705393
         },
         {
           "path": "catalog/model-policy.json",
@@ -36038,13 +36083,13 @@
         },
         {
           "path": "catalog/skill-manifest.json",
-          "sha256": "e799fa65bd612477ca63df7fa7dc4b4b8a1429bde06a189f4021a78811a31fd6",
-          "bytes": 1097115
+          "sha256": "3c0100aac5505533f659149c63226e2fbf639474b521e3680019669ee29c2893",
+          "bytes": 1099401
         },
         {
           "path": "catalog/skills.json",
-          "sha256": "085fed0ce7635951b3095f1a56d090745e58d226dca39c7a7e42aef41b03629f",
-          "bytes": 1246950
+          "sha256": "14fbcc30e5d4c09f5eaf4c33c1d405004532c55afd8f9f5c2de52488fa0b991f",
+          "bytes": 1249102
         },
         {
           "path": "catalog/workflows.json",
@@ -36926,7 +36971,7 @@
     },
     {
       "tree": "powers",
-      "aggregate_sha256": "e6a0356ab2873e96560ebbf702c6a280ded4f79fc566d00e5b8e2c1e07bf5da1",
+      "aggregate_sha256": "4cfbedc7ecc71dc3efeadeca7705b5c5942b1d8dd39e4ee998c4ebec0e1ef5c6",
       "files": [
         {
           "path": "powers/README.md",
@@ -37095,7 +37140,7 @@
         },
         {
           "path": "powers/vanguard-oci/POWER.md",
-          "sha256": "0c8f1eaf16b9063eccdf9eba91c573150257d131328e7ad22648755076a687ae",
+          "sha256": "b4dcdeba45734c858dac13a1dfa8b27b063c95fdfca01ed216980839a48832ba",
           "bytes": 3321
         },
         {
@@ -37208,7 +37253,7 @@
     },
     {
       "tree": ".claude-plugin",
-      "aggregate_sha256": "6406b18fd15f04d97a70c1cf83bd5ed86385cd60c901d6c8850cbb0d81fd4ab4",
+      "aggregate_sha256": "efc1ff87c42379e5e038616133da3a0f7e0429c7713019936c6c1a4aa3eea4a3",
       "files": [
         {
           "path": ".claude-plugin/README.md",
@@ -37217,19 +37262,19 @@
         },
         {
           "path": ".claude-plugin/marketplace.json",
-          "sha256": "517d6822d3916b80966168662e7af69cdfc54d922ebf988acaa5b15c164d7618",
+          "sha256": "917ca1f28bb0931e44b09d620a3ceacae45bea1d2674c7bdc407b1d27b554298",
           "bytes": 855
         },
         {
           "path": ".claude-plugin/plugin.json",
-          "sha256": "c0eb175a51c4bf08904711f1950337b5d4281ae40f006f57e1ede1434eca879e",
-          "bytes": 68185
+          "sha256": "2e1f50e67f4ec4aa45d185fded1c2b2b4ef799949788ef62027246e78626659d",
+          "bytes": 68271
         }
       ]
     },
     {
       "tree": ".cursor-plugin",
-      "aggregate_sha256": "4d5bc8544ca904704f633e2a4b487b460200888258c82ee5b285d3930b7538c0",
+      "aggregate_sha256": "a055807c9a1588c450fac1d8f8dcb2334f3cff0b6e891cabf91f31939caec8a2",
       "files": [
         {
           "path": ".cursor-plugin/README.md",
@@ -37238,8 +37283,8 @@
         },
         {
           "path": ".cursor-plugin/plugin.json",
-          "sha256": "bcea084dfa2548ff54f713ede72edd2665769e08d07b11f86ff5aab05ac45980",
-          "bytes": 64471
+          "sha256": "db6828478124169b9e6af0b1a77fb599cb4a422e124ec5b9add6ce41edc63833",
+          "bytes": 64552
         }
       ]
     },
@@ -37277,7 +37322,7 @@
     },
     {
       "tree": "tests",
-      "aggregate_sha256": "acb9be86189be9906ba33d2a9bf071c347edc9c9e1259a6eea056208c0535f21",
+      "aggregate_sha256": "042a644a5e92d3801d7f5845a42f51f6b08c68f9088090a015b3714d9d49e7dd",
       "files": [
         {
           "path": "tests/AGENTS.md",
@@ -37286,8 +37331,8 @@
         },
         {
           "path": "tests/_generate_maestro_routing_fixtures.py",
-          "sha256": "9b7b65a4e366c341a09dfe67d493b1de63d14b7a5a99a2fe1e4708ddcc907b4b",
-          "bytes": 40958
+          "sha256": "4f818482c6d5e747a222b230f88ad3d825bfed6b7026d4a51181b78fca51d557",
+          "bytes": 41295
         },
         {
           "path": "tests/agentic-board-suite/_build_fixtures.py",
@@ -38316,7 +38361,7 @@
         },
         {
           "path": "tests/fixtures/README.md",
-          "sha256": "da634e9196a0db2c43eecdb50577914ce12dd6eabfd0df8429cb0f34dfc2f494",
+          "sha256": "9d7f88e47256fbed5a5c4d6f0c6b7bf4b383dbe1912754606752da189fa34726",
           "bytes": 3698
         },
         {
@@ -39665,6 +39710,11 @@
           "bytes": 44
         },
         {
+          "path": "tests/fixtures/azure-maestro-routing/expected/adv-cosmos-partition-key-not-key-vault.json",
+          "sha256": "396a99f451d410ddbe9a07198e61bcbc9a3aabac1ce46d659a774dedfcb0ab81",
+          "bytes": 90
+        },
+        {
           "path": "tests/fixtures/azure-maestro-routing/expected/adv-instruction-injection.json",
           "sha256": "94808c89fe41da3a8f2a1d45587c1bf5c28316e4760c19a45b991113e2a05136",
           "bytes": 83
@@ -39860,6 +39910,11 @@
           "bytes": 113
         },
         {
+          "path": "tests/fixtures/azure-maestro-routing/inputs/adv-cosmos-partition-key-not-key-vault.json",
+          "sha256": "34cb8303e6571fe7ccbb1ae71f91b04225aca382c6b58d19601e342aad5cad75",
+          "bytes": 186
+        },
+        {
           "path": "tests/fixtures/azure-maestro-routing/inputs/adv-instruction-injection.json",
           "sha256": "86cd22dba6da98294ad54f2fea9c6ab20150b8fa0d1721d7980314fe435d2aa7",
           "bytes": 198
@@ -39916,8 +39971,8 @@
         },
         {
           "path": "tests/fixtures/azure-maestro-routing/taxonomy.json",
-          "sha256": "e394f8e3cfb6a4fdeeb14d5eb570a5ba128a5c926f9c2ba88bab9e3abf16199b",
-          "bytes": 8764
+          "sha256": "c5fe5769b42edb0f846e869f30c5b49687575968dd4fd48671c8e0d8baa65ca7",
+          "bytes": 8789
         },
         {
           "path": "tests/fixtures/contabo-maestro-routing/expected/001-happy-capacity-planner.json",
@@ -45985,6 +46040,16 @@
           "bytes": 77
         },
         {
+          "path": "tests/fixtures/oci-maestro-routing/expected/031-happy-nosql-database-architect.json",
+          "sha256": "db6d58cc196cb520e83b43448e3450d822d8235e7b30493705856ee5d13dbe01",
+          "bytes": 82
+        },
+        {
+          "path": "tests/fixtures/oci-maestro-routing/expected/032-happy-nosql-global-active-table.json",
+          "sha256": "db6d58cc196cb520e83b43448e3450d822d8235e7b30493705856ee5d13dbe01",
+          "bytes": 82
+        },
+        {
           "path": "tests/fixtures/oci-maestro-routing/expected/adv-ambiguous.json",
           "sha256": "93d7b7768c78f4f08a3d2d77a98110ba46316d589148f9778281b17d8bb9974e",
           "bytes": 44
@@ -46033,6 +46098,16 @@
           "path": "tests/fixtures/oci-maestro-routing/expected/adv-liveguard-08-live-vault-key-destruction-guard.json",
           "sha256": "24a68bc77cf06b80dd4bedac1d80da62e1a31e4392405faccb6a5d973df608f0",
           "bytes": 99
+        },
+        {
+          "path": "tests/fixtures/oci-maestro-routing/expected/adv-nosql-live-mutation.json",
+          "sha256": "db6d58cc196cb520e83b43448e3450d822d8235e7b30493705856ee5d13dbe01",
+          "bytes": 82
+        },
+        {
+          "path": "tests/fixtures/oci-maestro-routing/expected/adv-nosql-not-autonomous.json",
+          "sha256": "9a3ded8ef5e79aaab24ac689705e1d49e4abd74eb1f11ccfa29f75b1e5cd692d",
+          "bytes": 132
         },
         {
           "path": "tests/fixtures/oci-maestro-routing/expected/adv-persona-replacement.json",
@@ -46195,6 +46270,16 @@
           "bytes": 139
         },
         {
+          "path": "tests/fixtures/oci-maestro-routing/inputs/031-happy-nosql-database-architect.json",
+          "sha256": "3c97a48d4811ec6960464c9301f436ff6516ccfd644d05fb197fa83c2b4cf2ca",
+          "bytes": 186
+        },
+        {
+          "path": "tests/fixtures/oci-maestro-routing/inputs/032-happy-nosql-global-active-table.json",
+          "sha256": "c175ef1b6dfec07b00f2f2a81a68a9baed97ecfa71271daa61845e83db69d012",
+          "bytes": 175
+        },
+        {
           "path": "tests/fixtures/oci-maestro-routing/inputs/adv-ambiguous.json",
           "sha256": "719b82ca90bbc8d2f22dbfe237a98cd4e0cd50056835f5c65ca03aa21947c177",
           "bytes": 113
@@ -46245,6 +46330,16 @@
           "bytes": 241
         },
         {
+          "path": "tests/fixtures/oci-maestro-routing/inputs/adv-nosql-live-mutation.json",
+          "sha256": "e0001e664abbe415b24d264e40e341095b366b28ae93a7bd8287549f67b8911c",
+          "bytes": 174
+        },
+        {
+          "path": "tests/fixtures/oci-maestro-routing/inputs/adv-nosql-not-autonomous.json",
+          "sha256": "11b6b7606a6ee8e54e2003abe35c26c69ea1d02eec6afa06bd1a8a62eb2aad47",
+          "bytes": 187
+        },
+        {
           "path": "tests/fixtures/oci-maestro-routing/inputs/adv-persona-replacement.json",
           "sha256": "7689af4f5262aaebbd0f303ddc862a02cc54870d7f3bf825f88585e884e70b0e",
           "bytes": 190
@@ -46256,8 +46351,8 @@
         },
         {
           "path": "tests/fixtures/oci-maestro-routing/taxonomy.json",
-          "sha256": "b7db9bf08be333ab63d250f6d6131c9601378c8a52a81ab0f8af346e25bd7ad8",
-          "bytes": 9449
+          "sha256": "38f1d3aaf80842b9caf1b6334397df5d932403f33f892e8e0cdea29a3d17f42d",
+          "bytes": 9797
         },
         {
           "path": "tests/fixtures/ovhcloud-maestro-routing/expected/001-happy-cost-finops-analyst.json",
@@ -48845,6 +48940,11 @@
           "bytes": 3543
         },
         {
+          "path": "tests/validate-skill-references.py",
+          "sha256": "f13f9d75071672f04b6d3ceff50f02b86621c7f18f49f1a88c0decd863310189",
+          "bytes": 6074
+        },
+        {
           "path": "tests/validate-skill-yaml-strict.py",
           "sha256": "4e44d7bc4b5742004a37fa107e7887f194dfa65df2157093cc443aa1db4d4c45",
           "bytes": 3222
@@ -48860,7 +48960,7 @@
   "root_files": [
     {
       "path": "README.md",
-      "sha256": "987e4fad92260b7ae93372e8022579960b9f80cbfdd1d6cada99d539dd8cb9d0",
+      "sha256": "bfc99f29435cce2840d1c528b68552e7412017048feae38eb9b8c7fe76deaa2d",
       "bytes": 115723
     },
     {
@@ -48900,8 +49000,8 @@
     },
     {
       "path": "package.json",
-      "sha256": "4e18af6d072154d7e7337945b64e93dd876dda9c7bbc4b25124d04ce7c0a69fc",
-      "bytes": 8516
+      "sha256": "cd5fe289a990a77e1ef44e137fc0f3925cc19c0b2cd26bc7256f18a90a6fa5b2",
+      "bytes": 8632
     },
     {
       "path": ".releaserc.js",
@@ -48909,5 +49009,5 @@
       "bytes": 9135
     }
   ],
-  "aggregate_sha256": "30a3104e595181a17bbd2226b8d8bf937bd3ada8e4e140ae1ce5c0c25263420f"
+  "aggregate_sha256": "23a03e199cf060884e8612194850d752bb227f490a625aa80b4f0d5912e6e845"
 }

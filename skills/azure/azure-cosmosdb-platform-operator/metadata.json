@@ -1,7 +1,7 @@
 {
   "id": "azure-cosmosdb-platform-operator",
   "name": "Azure Cosmos DB Platform Operator",
-  "version": "0.1.3",
+  "version": "0.1.4",
   "type": "skill",
   "provider": "azure",
   "harnesses": [
@@ -24,10 +24,13 @@
     "https://learn.microsoft.com/en-us/azure/cosmos-db/hierarchical-partition-keys",
     "https://learn.microsoft.com/en-us/azure/reliability/reliability-cosmos-db",
     "https://learn.microsoft.com/en-us/azure/cosmos-db/hierarchical-partition-keys-unlimited-scale",
-    "https://learn.microsoft.com/en-us/azure/cosmos-db/failover-considerations-for-private-endpoints"
+    "https://learn.microsoft.com/en-us/azure/cosmos-db/failover-considerations-for-private-endpoints",
+    "https://learn.microsoft.com/en-us/azure/cosmos-db/integrated-cache",
+    "https://learn.microsoft.com/en-us/azure/cosmos-db/throughput-serverless",
+    "https://learn.microsoft.com/en-us/azure/cosmos-db/how-to-connect-role-based-access-control"
   ],
   "security_notes": "Do not approve a partition key, indexing posture, consistency change, or cross-partition query strategy without checking workload shape, RU impact, transactional scope, and least-privilege access implications.",
-  "last_verified": "2026-06-05",
+  "last_verified": "2026-11-08",
   "path": "skills/azure/azure-cosmosdb-platform-operator",
   "author": "github: VincentChuWaiChow"
 }

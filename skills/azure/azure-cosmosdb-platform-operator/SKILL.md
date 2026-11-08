@@ -4,8 +4,8 @@ description: Use this skill for Azure Cosmos DB platform operations and design r
 allowed-tools: Read Grep Glob
 metadata:
   author: "github: VincentChuWaiChow"
-  version: 0.1.3
-  updated: "2026-06-05"
+  version: 0.1.4
+  updated: "2026-11-08"
   category: platform
 ---
 
@@ -44,6 +44,8 @@ Do not use this skill as a substitute for:
 Load these only when needed:
 
 - [Operations guide](references/cosmosdb-platform-operations.md) — use for service-specific pitfalls, design rules, verification targets, and pushback criteria.
+- [Consistency, capacity and data-plane security](references/consistency-capacity-security.md) — use for the five consistency levels, session tokens, request-level overrides, integrated cache, serverless vs provisioned vs autoscale, logical-partition limits, and Entra ID data-plane vs control-plane RBAC.
+- [Evidence ledger](references/evidence-ledger.md) — use when a claim must be traced to its Microsoft Learn source; cite its `[COSMOS-Exx]` IDs for material service claims.
 - [MCP and evidence path](references/mcp-and-evidence.md) — use when choosing documentation-based evidence, sampled read-only Azure evidence, or sanitized user evidence.
 - [Safety checklist](references/safety-checklist.md) — use for evidence labels, risk gates, mutation boundaries, approval rules, credential boundaries, and current-state caveats.
 - [Workflow and output contract](references/workflow-and-output.md) — use when executing the full review, applying stress checks, or formatting the final answer.

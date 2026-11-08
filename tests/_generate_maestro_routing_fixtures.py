@@ -794,6 +794,11 @@ def main() -> int:
         "kotlin": "hand-curated fixtures",
         # adv-live-guard-gate, which no script produces.
         "marketing": "hand-curated fixtures",
+        # The nosql-database-architect domain carries hand-added phrase
+        # keywords ("shard key", "Global Active", "NoSQL Database Cloud
+        # Service") plus 031/032 and adv-nosql-* fixtures; a rebuild renumbers
+        # every happy-path fixture after it and drops the adversarial ones.
+        "oci": "hand-tuned taxonomy",
         # composer.lock, packagist, register_rest_route, php-fpm and 16 more
         # hand-added keywords; a rebuild drops "audit" and with it the reviewed
         # parallel route for adv-secrets-bait. Also 6 hand-authored fixtures.

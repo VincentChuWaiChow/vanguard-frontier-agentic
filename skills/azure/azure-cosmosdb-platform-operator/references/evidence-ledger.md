@@ -1,0 +1,32 @@
+# Evidence ledger — Azure Cosmos DB for NoSQL
+
+Every material claim in
+[consistency-capacity-security.md](consistency-capacity-security.md) cites one
+row below as `[COSMOS-Exx]`. `tests/validate-skill-references.py` fails the
+build if a citation has no row, a row is never cited, or a source is not on
+learn.microsoft.com.
+
+Scope: **Azure Cosmos DB for NoSQL** only. The MongoDB, Cassandra, Gremlin and
+Table APIs map consistency and features differently; do not apply these rows
+to them. `VERIFIED` = the section was retrieved on the retrieval date and
+supports the claim as worded; it is documentation verification, not a
+behavioral test.
+
+| ID | Claim | Source | Section | Retrieved | Status |
+| --- | --- | --- | --- | --- | --- |
+| COSMOS-E01 | Five consistency levels, strongest to weakest: Strong, Bounded staleness, Session, Consistent prefix, Eventual. Read consistency applies to a single read within a logical partition. | <https://learn.microsoft.com/azure/cosmos-db/consistency-levels> | Consistency levels; Scope of read consistency | 2026-11-08 | VERIFIED |
+| COSMOS-E02 | Strong and Bounded staleness read from two replicas (local minority), so their read RU cost is twice the weaker levels; write RU cost is identical across levels; Strong commits writes in every region (global majority). | <https://learn.microsoft.com/azure/cosmos-db/consistency-levels> | Consistency levels and throughput | 2026-11-08 | VERIFIED |
+| COSMOS-E03 | Session tokens are partition-bound; a client with no token for a physical partition, or a re-created client, reads with eventual behavior until its writes rebuild the token cache; tokens passed between clients must not be modified. | <https://learn.microsoft.com/azure/cosmos-db/consistency-levels> | Guarantees associated with consistency levels | 2026-11-08 | VERIFIED |
+| COSMOS-E04 | Under Consistent prefix, single-document writes see eventual consistency, while writes in one transactional batch become visible together. | <https://learn.microsoft.com/azure/cosmos-db/consistency-levels> | Consistent prefix consistency | 2026-11-08 | VERIFIED |
+| COSMOS-E05 | A `ConsistencyLevel` override can only relax below the account default; `ReadConsistencyStrategy` (Default, Session, Eventual, Latest Committed, Global Strong) can also strengthen above it, at client or request level, and takes precedence when both are set. | <https://learn.microsoft.com/azure/cosmos-db/how-to-manage-consistency> | Use Read Consistency Strategy | 2026-11-08 | VERIFIED |
+| COSMOS-E06 | The minimum SDK versions supporting `ReadConsistencyStrategy`, and its availability per SDK language, were not retrieved in this pass. | <https://learn.microsoft.com/azure/cosmos-db/how-to-manage-consistency> | Use Read Consistency Strategy | 2026-11-08 | UNVERIFIED |
+| COSMOS-E07 | The integrated cache serves only Session and Eventual reads; other levels bypass it; writes at any level still populate it. | <https://learn.microsoft.com/azure/cosmos-db/integrated-cache> | Integrated cache consistency | 2026-11-08 | VERIFIED |
+| COSMOS-E08 | A cache hit requires the dedicated gateway endpoint, gateway connection mode (.NET/Java default to direct and must override) and Session or Eventual consistency; `MaxIntegratedCacheStaleness` defaults to 5 minutes and 0 disables cache use. | <https://learn.microsoft.com/azure/cosmos-db/how-to-configure-integrated-cache> | Verify cache hits; Adjust MaxIntegratedCacheStaleness | 2026-11-08 | VERIFIED |
+| COSMOS-E09 | SLA coverage for the dedicated gateway needs at least three nodes; the dedicated gateway has no latency SLA; the integrated cache is available for the API for NoSQL only. | <https://learn.microsoft.com/azure/cosmos-db/integrated-cache-faq> | Frequently asked questions | 2026-11-08 | VERIFIED |
+| COSMOS-E10 | Serverless accounts run in a single region and regions cannot be added later; provisioned throughput supports unlimited regions and an SLA on point reads/writes, serverless only an SLO. | <https://learn.microsoft.com/azure/cosmos-db/throughput-serverless> | Detailed comparison | 2026-11-08 | VERIFIED |
+| COSMOS-E11 | Serverless containers start at 5,000 RU/s per physical partition, give no predictable throughput or latency guarantee, reject throughput settings and do not allow shared-throughput databases. | <https://learn.microsoft.com/azure/cosmos-db/serverless> | Use serverless resources | 2026-11-08 | VERIFIED |
+| COSMOS-E12 | Each logical partition is capped at 10,000 RU/s and 20 GB (data plus index); hierarchical partition keys allow up to three levels when one key value would exceed 20 GB. | <https://learn.microsoft.com/azure/cosmos-db/set-throughput> | Comparison of models | 2026-11-08 | VERIFIED |
+| COSMOS-E13 | Autoscale scales between 0.1 x Tmax and Tmax, bills the highest RU/s reached each hour (minimum 0.1 x Tmax), does not rate-limit within the configured range, and shared-database autoscale is not recommended for most workloads. | <https://learn.microsoft.com/azure/cosmos-db/provision-throughput-autoscale> | Comparison; Throughput and storage limits for autoscale | 2026-11-08 | VERIFIED |
+| COSMOS-E14 | Data-plane access (items, queries, change feed, stored procedures, conflicts) uses Cosmos DB native RBAC with built-in roles "Cosmos DB Built-in Data Reader" and "Cosmos DB Built-in Data Contributor"; it does not support `notDataActions`; it cannot be managed in the portal; creating its definitions and assignments needs control-plane `sqlRoleDefinitions`/`sqlRoleAssignments` permissions. | <https://learn.microsoft.com/azure/cosmos-db/how-to-connect-role-based-access-control> | Grant data plane role-based access | 2026-11-08 | VERIFIED |
+| COSMOS-E15 | Control-plane access (account keys and connection strings, backup and restore, database/container management, account properties) is separate from data-plane access and is granted through Azure RBAC role definitions. | <https://learn.microsoft.com/azure/cosmos-db/how-to-connect-role-based-access-control> | Grant control plane role-based access | 2026-11-08 | VERIFIED |
+| COSMOS-E16 | Key-based authentication is disabled by setting `properties.disableLocalAuth=true`, which needs at least `Microsoft.DocumentDb/databaseAccounts/*/write`; connecting with a key should then fail. | <https://learn.microsoft.com/azure/cosmos-db/how-to-connect-role-based-access-control> | Disable key-based authentication; Validate that key-based authentication is disabled | 2026-11-08 | VERIFIED |

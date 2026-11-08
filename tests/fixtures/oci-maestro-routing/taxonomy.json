@@ -363,6 +363,21 @@
         "Practices"
       ],
       "agent": "oci-waf-security-review-agent"
+    },
+    "nosql-database-architect": {
+      "keywords": [
+        "NoSQL",
+        "NDCS",
+        "Oracle NoSQL",
+        "NoSQL Database Cloud Service",
+        "shard key",
+        "shard",
+        "Global Active",
+        "nosql-rows",
+        "read units",
+        "write units"
+      ],
+      "agent": "oci-nosql-database-architect-agent"
     }
   },
   "live_guards": [
