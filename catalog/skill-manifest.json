@@ -2120,7 +2120,7 @@
     {
       "id": "aws-dynamodb-patterns",
       "path": "skills/aws/aws-dynamodb-patterns",
-      "aggregate_sha256": "9628fc0105f7886c524172d726aa949b8028320881eeb9a52a8d531e2d2bf806",
+      "aggregate_sha256": "03c8b630eb5afc5ade9016505a0b686d4ee4fa18b59dfefd3760760800aee52f",
       "files": [
         {
           "path": "skills/aws/aws-dynamodb-patterns/CHANGELOG.md",
@@ -2274,8 +2274,8 @@
         },
         {
           "path": "skills/aws/aws-dynamodb-patterns/evals/operations.test.py",
-          "sha256": "09b652ac22c05e80c5b9908d4ff6b9e70bde096cc122c27a54b0ef770d8dd2df",
-          "bytes": 14735
+          "sha256": "d7d94ba0f5dc3a393b1d8f440da734790edb66ec9a692a0dbc7a2a6f43ae7278",
+          "bytes": 14743
         },
         {
           "path": "skills/aws/aws-dynamodb-patterns/evals/query-pages.test.mjs",
@@ -2479,8 +2479,8 @@
         },
         {
           "path": "skills/aws/aws-dynamodb-patterns/references/vanguard-port.md",
-          "sha256": "1e7ad66455312c97ac18a340474d525f0a303c60d55fdb95a705c55037e816c6",
-          "bytes": 12171
+          "sha256": "ac82b703cd12956813f29e7ff34983c582210ce6c44d51918aebc98ec601e02e",
+          "bytes": 12424
         },
         {
           "path": "skills/aws/aws-dynamodb-patterns/references/workflow-and-output.md",
@@ -2494,8 +2494,8 @@
         },
         {
           "path": "skills/aws/aws-dynamodb-patterns/scripts/review_due.py",
-          "sha256": "42afb62d92e0e50faaa46798129bf0d03721d3d5ed4c0410f9b6c4cbee7c8530",
-          "bytes": 2336
+          "sha256": "eb0559bd91402b75a8ee597bdfc07656f19eb5dde792bb00fb66a0cc651a4dd1",
+          "bytes": 2350
         },
         {
           "path": "skills/aws/aws-dynamodb-patterns/scripts/select_mode.py",

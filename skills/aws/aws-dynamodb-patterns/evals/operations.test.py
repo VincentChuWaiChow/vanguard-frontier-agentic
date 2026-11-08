@@ -237,8 +237,8 @@ class OperationsTests(unittest.TestCase):
                 self.assertIn("--actions-enabled", args)
                 self.assertEqual(flag(args, "--treat-missing-data"), "ignore")
                 self.assertEqual(flag(args, "--statistic"), "Sum")
-        self.assertTrue({"ReadThrottleEvents", "WriteThrottleEvents", "SuccessfulRequestLatency",
-                         "SystemErrors", "ReplicationLatency", "IteratorAge", "ItemCacheHits"} <= metric_names)
+        self.assertLessEqual({"ReadThrottleEvents", "WriteThrottleEvents", "SuccessfulRequestLatency",
+                              "SystemErrors", "ReplicationLatency", "IteratorAge", "ItemCacheHits"}, metric_names)
 
     def test_wrong_or_inactive_index_stops_before_metric_or_alarm_calls(self):
         for response in ["[]", "null", '[{"IndexName":"Other","IndexStatus":"ACTIVE"}]',

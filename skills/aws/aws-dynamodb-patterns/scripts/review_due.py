@@ -53,7 +53,8 @@ def main():
         result = review_status(json.loads(SCHEDULE.read_text()), args.as_of)
     except (ValueError, KeyError, OSError) as error:
         parser.error(str(error))
-    print(json.dumps(result, indent=2))
+    else:
+        print(json.dumps(result, indent=2))
 
 
 if __name__ == "__main__":
