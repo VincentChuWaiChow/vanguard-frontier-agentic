@@ -90,6 +90,13 @@ five indexes uses six table slots *(inference)*. Budget them. *(recommendation)*
   - TTL must be -1, or updates must be disabled
   - Max Versions must be 1, and is locked once an index exists
   - the table's TTL must be at least each index's TTL
+- **Search-index TTL with updates:** the TableOptions reference allows
+  UpdateRow when `update_full_row=true` (whole-row replacement) with
+  `allow_update` left at true [TS-E23]. The Data versions and TTL page says
+  Allow Updates must be No for search-index TTL [TS-E24], so the sources
+  conflict. Do not reject a full-row-update design on that page alone, and do
+  not approve it without a test on the target SDK version. Partial-column
+  updates are not the documented path here. *(inference)*
 
   Decide TTL, versioning and indexes together, at design time.
   *(recommendation)*

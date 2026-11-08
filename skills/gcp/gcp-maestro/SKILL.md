@@ -39,7 +39,7 @@ If the task is not GCP-related (e.g., the user describes an AWS or Azure scenari
 | `containers` | GKE Standard/Autopilot, node pools, Workload Identity, Binary Authorization, node upgrades |
 | `serverless` | Cloud Run, Cloud Functions gen2, Eventarc, Cloud Endpoints |
 | `data-analytics` | BigQuery, Dataflow, Pub/Sub, Dataproc, Cloud Composer, Dataplex |
-| `database` | AlloyDB, Cloud SQL, Cloud Spanner, Firestore, Memorystore |
+| `database` | AlloyDB, Cloud SQL, Cloud Spanner, Bigtable, Firestore, Memorystore |
 | `ai-ml` | Vertex AI Training/Pipelines, Model Registry, Feature Store, Endpoints, Gemini API, Agent Runtime (formerly Agent Engine) agent review |
 | `security-iam` | IAM, Service Accounts, Workload Identity Federation, Org Policies, VPC Service Controls, Access Context Manager |
 | `networking` | Global VPC, Shared VPC, Cloud Interconnect, Cloud NAT, Cloud DNS, Traffic Director, Apigee, Cloud Armor |
@@ -64,6 +64,7 @@ If the task is not GCP-related (e.g., the user describes an AWS or Azure scenari
 | `gcp-data-pipeline-engineer-agent` | data-analytics | Building or troubleshooting Dataflow pipelines, Pub/Sub topics, Dataproc clusters, Cloud Composer DAGs, Dataplex zones |
 | `gcp-alloydb-cloudsql-dba-agent` | database | Operating AlloyDB clusters, Cloud SQL instances, HA configuration, read replicas, connection pooling, maintenance windows |
 | `gcp-spanner-architect-agent` | database | Designing Cloud Spanner schemas (hotspot avoidance, interleaving), index strategy, processing-unit sizing, global write patterns |
+| `gcp-bigtable-architect-agent` | database | Reviewing Bigtable row-key and hotspot design, column families and garbage collection, app profiles and single- vs multi-cluster routing, replication consistency, node sizing; static review only |
 | `gcp-vertex-ai-mlops-engineer-agent` | ai-ml | Managing Vertex AI training jobs (GPU/TPU cost governance), Pipelines, Model Registry, Feature Store, Endpoints, Gemini API integration |
 | `gcp-agent-runtime-review-agent` | ai-ml | Static review of agents on Agent Runtime (formerly Vertex AI Agent Engine; resource ReasoningEngine), ADK guardrails, runtime identity, revisions, traffic and deletion plans; never deploys |
 | `gcp-iam-least-privilege-review-agent` | security-iam | Auditing IAM bindings, reviewing Service Account key sprawl, designing Workload Identity Federation, evaluating org policy conditions |

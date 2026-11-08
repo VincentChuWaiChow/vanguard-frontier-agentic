@@ -36164,7 +36164,7 @@
     },
     {
       "tree": "catalog",
-      "aggregate_sha256": "d07b2399cd568d18cd86b97708780936ee48a85cb9ffe6fbe7fa46ff7a196c99",
+      "aggregate_sha256": "b8287b9d2ac90b6f159584005c80820a9464ccc22f276e56e85d97eed0c7eb76",
       "files": [
         {
           "path": "catalog/AGENTS.md",
@@ -36218,8 +36218,8 @@
         },
         {
           "path": "catalog/skill-manifest.json",
-          "sha256": "5a945b4fee49ba9db1ebe15aec76a7d8675702b9629f25dcfbf97b61e7034d3a",
-          "bytes": 1103328
+          "sha256": "3eee19cb9cfa68e5143ad579290e898db349ab8de0123de10c720fb162986214",
+          "bytes": 1103329
         },
         {
           "path": "catalog/skills.json",
@@ -49234,5 +49234,5 @@
       "bytes": 9135
     }
   ],
-  "aggregate_sha256": "b24892e7df502edb44c2184ec361d794311c98a1531006b7c67f877d2d96fb81"
+  "aggregate_sha256": "33ea29649247c14b0749655098a00c084fefcf2dbbf0e352a95f5dde699e52f4"
 }

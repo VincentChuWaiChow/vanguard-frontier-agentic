@@ -846,12 +846,12 @@
     {
       "id": "alibaba-maestro",
       "path": "skills/alibaba/alibaba-maestro",
-      "aggregate_sha256": "acf08d2edc8cf22a3c627fbaaf882e4fd0bf57518adfa23c561a186eafc1bb34",
+      "aggregate_sha256": "7e43e52056798493f81c045477cf19b59aa63432fa8c38d2f24e3c046163e58c",
       "files": [
         {
           "path": "skills/alibaba/alibaba-maestro/SKILL.md",
-          "sha256": "e0ac15bb7f4daa98bb0351eaf267d037cea0ea09fd84c3b4fb73023865a9cda2",
-          "bytes": 12761
+          "sha256": "88a10a4cf981f642e0e5cc9b5d4f349e8b5ad5a9d8b0172cfd85990257826b1a",
+          "bytes": 13015
         },
         {
           "path": "skills/alibaba/alibaba-maestro/metadata.json",
@@ -1278,7 +1278,7 @@
     {
       "id": "alibaba-tablestore-architect",
       "path": "skills/alibaba/alibaba-tablestore-architect",
-      "aggregate_sha256": "95c91870ac485b325fc5fb7ffcfc38b37744f0146a522e819524e5db7f1d367c",
+      "aggregate_sha256": "00166a86cd3fdeb50842b0471a0681c946a8bbcc46332978a47ce3b8f05b1b9d",
       "files": [
         {
           "path": "skills/alibaba/alibaba-tablestore-architect/SKILL.md",
@@ -1292,13 +1292,13 @@
         },
         {
           "path": "skills/alibaba/alibaba-tablestore-architect/references/evidence-ledger.md",
-          "sha256": "139ddafc90865a26afb3f0861b03c6e3c0cf31e949908842352906d0c1e45c09",
-          "bytes": 9345
+          "sha256": "441ca8f2e4fc531200c80c89eb6c1edf4a693fe1bf716ea9eca778703b4d59c7",
+          "bytes": 10230
         },
         {
           "path": "skills/alibaba/alibaba-tablestore-architect/references/tablestore-design-guide.md",
-          "sha256": "8bb5444f856e8c91dcf7de87931364b7bd958737e56a83bffb18575e6a948820",
-          "bytes": 7955
+          "sha256": "890110d6e7dd19521b42fc78a5cc1ce3fc8fc71965c792a3d12ff8849f393812",
+          "bytes": 8454
         }
       ]
     },
@@ -9310,12 +9310,12 @@
     {
       "id": "gcp-maestro",
       "path": "skills/gcp/gcp-maestro",
-      "aggregate_sha256": "1b8400e91ebb6a58dc275b86b8dc893f22b8eec24ebcd38fb11a0e40d420e01f",
+      "aggregate_sha256": "bf4de6fb8d28044761e7fd157deb1fd3df31cfcc5f9e946e22e6a61ca70973fa",
       "files": [
         {
           "path": "skills/gcp/gcp-maestro/SKILL.md",
-          "sha256": "4f1aa6cc64b027adb11464fd7c106c3334eae966d426ead3ee63026a6f3e3c76",
-          "bytes": 13540
+          "sha256": "fc6ef2874d766c15852d64c0377df8eec49958ade9112c3b6934e35aa3e001b3",
+          "bytes": 13793
         },
         {
           "path": "skills/gcp/gcp-maestro/metadata.json",
@@ -10891,12 +10891,12 @@
     {
       "id": "huawei-maestro",
       "path": "skills/huawei/huawei-maestro",
-      "aggregate_sha256": "60a7b1d6f1c0484045bc6ab1bd04d02518ccadb556d9de7eebeaf77ef5cd8eb0",
+      "aggregate_sha256": "955f93bebfc85ace7e5292bbec079bb3e1ce27b4fead4ad4d5d0294e794fd023",
       "files": [
         {
           "path": "skills/huawei/huawei-maestro/SKILL.md",
-          "sha256": "20a974cb2c083d69ef192d4846739dcffb076395ae8c38263f82484e2faf5047",
-          "bytes": 13072
+          "sha256": "2bcac7010ee1c8758872d0a1ea8a38258f112fc8ff1e6c7053574b13c45f28e5",
+          "bytes": 13357
         },
         {
           "path": "skills/huawei/huawei-maestro/metadata.json",

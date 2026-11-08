@@ -39,7 +39,7 @@ If the task is not Alibaba Cloud-related, direct the user to the appropriate pro
 | `compute` | ECS instances, Auto Scaling, ECI (serverless containers), Cloud Assistant O&M |
 | `containers` | ACK (managed/dedicated/serverless Kubernetes), ACR (registry), ASM (service mesh) |
 | `serverless` | Function Compute 3.0, SAE (Serverless App Engine), EDAS |
-| `database` | PolarDB, RDS (MySQL/PG/SQL Server), DAS (autonomous), proxy, Global Database Network |
+| `database` | PolarDB, RDS (MySQL/PG/SQL Server), DAS (autonomous), proxy, Global Database Network, Tablestore (NoSQL) |
 | `data-analytics` | MaxCompute, DataWorks, AnalyticDB, Hologres, Quick BI, PAI (AI/ML) |
 | `microservices` | MSE (Nacos/Sentinel/Seata), ARMS APM, EDAS, distributed tracing |
 | `security-iam` | RAM (users/groups/roles/policies), STS, Resource Directory, Control Policy |
@@ -63,6 +63,7 @@ If the task is not Alibaba Cloud-related, direct the user to the appropriate pro
 | `alibaba-ack-container-platform-operator-agent` | containers | Operating ACK clusters (managed/dedicated/serverless), ACR registries, ASM service mesh |
 | `alibaba-function-serverless-operator-agent` | serverless | Deploying or operating Function Compute 3.0, SAE applications, EDAS microservice apps |
 | `alibaba-polardb-rds-dba-agent` | database | Managing PolarDB (MySQL/PG/Oracle), RDS instances, DAS diagnostics, database proxy, Global Database Network |
+| `alibaba-tablestore-architect-agent` | database | Reviewing Tablestore (OTS) primary- and partition-key design, local transactions, secondary and search indexes, TTL and versions, instance type, access control; static review only |
 | `alibaba-maxcompute-dataworks-analyst-agent` | data-analytics | Managing MaxCompute CU packages, DataWorks scheduling, Quick BI, PAI, query cost governance |
 | `alibaba-analyticdb-realtime-agent` | data-analytics | Operating AnalyticDB for MySQL/PG, Hologres real-time analytics, DAS real-time diagnostics |
 | `alibaba-mse-microservice-engine-agent` | microservices | Configuring or troubleshooting MSE (Nacos/Sentinel/Seata), ARMS APM, EDAS service governance |
