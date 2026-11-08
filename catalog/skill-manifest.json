@@ -2120,7 +2120,7 @@
     {
       "id": "aws-dynamodb-patterns",
       "path": "skills/aws/aws-dynamodb-patterns",
-      "aggregate_sha256": "03c8b630eb5afc5ade9016505a0b686d4ee4fa18b59dfefd3760760800aee52f",
+      "aggregate_sha256": "c68c522edae04ed1854ca7c87e5ea90a64fd61cc9b2d651d83adb1b71e651eb7",
       "files": [
         {
           "path": "skills/aws/aws-dynamodb-patterns/CHANGELOG.md",
@@ -2229,8 +2229,8 @@
         },
         {
           "path": "skills/aws/aws-dynamodb-patterns/evals/backup-restore.test.py",
-          "sha256": "e81052944b2d387e6c41ece2f5e4a9910410a15b6c4c970f67ffdb2644c247b6",
-          "bytes": 8761
+          "sha256": "50795485cc5e124e6bcb5c007c4060fef5dbffa227ed67d525e63cc35fe7ede8",
+          "bytes": 9285
         },
         {
           "path": "skills/aws/aws-dynamodb-patterns/evals/commands.test.py",
@@ -2374,8 +2374,8 @@
         },
         {
           "path": "skills/aws/aws-dynamodb-patterns/references/commands/restore/on-demand.md",
-          "sha256": "9be5d54b8de3649bb51389e3bbb7fab5e7ec0cb7f30feabd9346d060118d6fff",
-          "bytes": 1205
+          "sha256": "79f371bec0b4daf504c26cbeb38466e2ad76ba373f04f1664468b5269e7802bb",
+          "bytes": 1628
         },
         {
           "path": "skills/aws/aws-dynamodb-patterns/references/commands/restore/pitr.md",
@@ -2409,8 +2409,8 @@
         },
         {
           "path": "skills/aws/aws-dynamodb-patterns/references/evidence-ledger.md",
-          "sha256": "ac424d56047ca1f0917001c0f8ad5a9b0584ce9f1e48362f05c1ea6285499591",
-          "bytes": 127921
+          "sha256": "c7e8d762be135f7110877e0df078d99138b0bdc38c6871df8908eb8a36aa6a88",
+          "bytes": 128760
         },
         {
           "path": "skills/aws/aws-dynamodb-patterns/references/iam-and-access.md",
@@ -2479,8 +2479,8 @@
         },
         {
           "path": "skills/aws/aws-dynamodb-patterns/references/vanguard-port.md",
-          "sha256": "ac82b703cd12956813f29e7ff34983c582210ce6c44d51918aebc98ec601e02e",
-          "bytes": 12424
+          "sha256": "a3b33f76e185c00addad25c6b87ccdc6ee36a57e95fe17c99b8c7310c25ee055",
+          "bytes": 12809
         },
         {
           "path": "skills/aws/aws-dynamodb-patterns/references/workflow-and-output.md",

@@ -34,7 +34,7 @@
   "trees": [
     {
       "tree": "agents",
-      "aggregate_sha256": "4e6f5b07e0c445d99222cf8c0c03fdf2da2122306d160fdb43b7f7627613c425",
+      "aggregate_sha256": "8e3b51f3576479e1921ab3d296031754602441d909b544594563dd5eba72a2c1",
       "files": [
         {
           "path": "agents/AGENTS.md",
@@ -3478,8 +3478,8 @@
         },
         {
           "path": "agents/aws/aws-dynamodb-patterns-agent/harnesses/codex.toml",
-          "sha256": "00c9029e0f9b29d7dda488fc87aedb6811d95066f2ab0b93b8f2240df2081142",
-          "bytes": 1650
+          "sha256": "bd39482673c4d83c8cc0accc527624fbd41fae7f7a9ed3ba6a9c379edc779351",
+          "bytes": 1644
         },
         {
           "path": "agents/aws/aws-dynamodb-patterns-agent/harnesses/copilot.agent.md",
@@ -36209,7 +36209,7 @@
     },
     {
       "tree": "catalog",
-      "aggregate_sha256": "ebfd62960a23175e9e31945b1ec5a62a5124cd29c02b09532114d03da0f248b2",
+      "aggregate_sha256": "a1a110960640de56c630a514532f6ecbbc04096ff0bc66fc107446b2ebe4ec58",
       "files": [
         {
           "path": "catalog/AGENTS.md",
@@ -36263,7 +36263,7 @@
         },
         {
           "path": "catalog/skill-manifest.json",
-          "sha256": "b91989f6e8273c6952d78272613b566bb8b63607ec2f4458e2ac2b86459e6a54",
+          "sha256": "2e78e5376a2dd8c82cc141fe2b457b0aad5bbbba17d5530f6885b5828863352c",
           "bytes": 1119921
         },
         {
@@ -49304,5 +49304,5 @@
       "bytes": 9135
     }
   ],
-  "aggregate_sha256": "82f2197d9abab2ee58cd055144d90d908201d2ae37986f33526e99f667f31ec2"
+  "aggregate_sha256": "8f8707f008e13aeef2989b4b25492d81e3e2f081467d05fb6443d51faa9f6860"
 }

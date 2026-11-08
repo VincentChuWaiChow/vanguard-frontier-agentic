@@ -23,7 +23,10 @@ if "sts" in a:
 else:
     op = a[a.index("dynamodb") + 1]
     if op == "describe-table":
-        print(json.dumps({"Table": {"TableArn": os.environ["SOURCE_ARN"], "TableStatus": "ACTIVE"}}))
+        table = {"TableArn": os.environ["SOURCE_ARN"], "TableStatus": "ACTIVE",
+                 "TableId": os.environ.get("SOURCE_TABLE_ID", "6f1c2a3b-0000-4000-8000-000000000001")}
+        if os.environ.get("OMIT_TABLE_ID") == "1": table.pop("TableId")
+        print(json.dumps({"Table": table}))
     elif op == "describe-continuous-backups":
         print(json.dumps({"ContinuousBackupsDescription": {"PointInTimeRecoveryDescription": {
             "PointInTimeRecoveryStatus": os.environ.get("PITR_STATUS", "ENABLED"), "RecoveryPeriodInDays": 35,
@@ -32,7 +35,8 @@ else:
         print(json.dumps({"BackupDetails": {"BackupArn": os.environ["BACKUP_ARN"]}}))
     elif op == "describe-backup":
         print(json.dumps({"BackupDescription": {"BackupDetails": {"BackupStatus": os.environ.get("BACKUP_STATUS", "AVAILABLE")},
-            "SourceTableDetails": {"TableArn": os.environ.get("BACKUP_SOURCE", os.environ["SOURCE_ARN"])}}}))
+            "SourceTableDetails": {"TableArn": os.environ.get("BACKUP_SOURCE", os.environ["SOURCE_ARN"]),
+                "TableId": os.environ.get("BACKUP_SOURCE_ID", "6f1c2a3b-0000-4000-8000-000000000001")}}}))
     elif op in {"restore-table-to-point-in-time", "restore-table-from-backup"}:
         if os.environ.get("RESTORE_FAIL") == "1": raise SystemExit("Existing target or unknown restore failure")
         print("{}")
@@ -115,7 +119,10 @@ class RecoveryTests(unittest.TestCase):
             self.assertNotIn("wait", operations(calls))
 
     def test_on_demand_requires_available_exact_source_before_restore(self):
-        for case in [{"BACKUP_STATUS": "CREATING"}, {"BACKUP_SOURCE": TABLE_ARN + "Wrong"}]:
+        for case in [{"BACKUP_STATUS": "CREATING"}, {"BACKUP_SOURCE": TABLE_ARN + "Wrong"},
+                     # Same name-based ARN, earlier incarnation of the table: must not restore.
+                     {"BACKUP_SOURCE_ID": "6f1c2a3b-0000-4000-8000-000000000002"},
+                     {"OMIT_TABLE_ID": "1"}]:
             result, calls = run("restore", "on-demand", **case)
             self.assertNotEqual(result.returncode, 0)
             self.assertNotIn("restore-table-from-backup", operations(calls))

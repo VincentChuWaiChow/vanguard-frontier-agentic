@@ -20,6 +20,11 @@ changes there first, then re-sync this directory and re-run the gates here.
 - Two CodeQL fixes, to apply upstream too: `scripts/review_due.py` prints its result
   in the `try` statement's `else` branch, so `result` is never read uninitialised, and
   `evals/operations.test.py` uses `assertLessEqual` for its metric-subset check.
+- `commands/restore/on-demand.md` matches the backup's source `TableId` as well as its
+  ARN [DP-E701] [DP-E702], and `evals/backup-restore.test.py` covers a backup from an
+  earlier incarnation of the table and a missing `TableId`. Apply upstream too: a table
+  deleted and recreated under the same name keeps its ARN, so the ARN check alone could
+  approve restoring the wrong data.
 - `streams-and-dax.md` adds .NET to the documented DAX clients [DP-E453]. The upstream
   text listed Java, Node.js, Python and Go; AWS also documents a .NET client. Apply the
   same fix upstream.
