@@ -5,9 +5,11 @@ garbage-collection, capacity, IAM, backup or client-library questions. Every
 bracketed ID resolves in [evidence-ledger.md](evidence-ledger.md). Text
 without an ID is labeled inference or recommendation.
 
-Bigtable is a wide-column store with **one index, the row key** [BT-E01]. It has no
-multi-row transactions [BT-E05], and the docs describe no secondary indexes
-*(inference)*. Do not transfer Firestore, DynamoDB or Cosmos DB concepts.
+Bigtable is a wide-column store whose base table has **one index, the row key**
+[BT-E01], and no multi-row transactions [BT-E05]. Alternate access paths come
+from **asynchronous secondary indexes** (continuous materialized views), which
+are eventually consistent [BT-E17]. Do not transfer Firestore, DynamoDB or
+Cosmos DB concepts.
 
 ## Capability matrix
 
@@ -15,6 +17,7 @@ multi-row transactions [BT-E05], and the docs describe no secondary indexes
 | --- | --- | --- | --- |
 | Data model | SUPPORTED | Sorted key-value map; row key is the only index; column families; timestamped cell versions; sparse | [BT-E01] |
 | Transactions | CONDITIONAL | Single-row atomicity only; no multi-row transactions | [BT-E05] |
+| Secondary indexes | CONDITIONAL | Asynchronous secondary indexes via continuous materialized views; eventually consistent; index row key must include the source row key | [BT-E17] |
 | Conditional writes / increments | CONDITIONAL | Single-row transactions; not allowed under multi-cluster routing | [BT-E05] [BT-E06] |
 | Consistency | CONDITIONAL | Strong only via single-cluster routing with no use of other clusters; replication is eventual | [BT-E08] |
 | TTL / versions | CONDITIONAL | Garbage collection by age or versions; asynchronous, up to a week | [BT-E09] |
@@ -46,6 +49,14 @@ mutation. Recommended limits [BT-E10]: about 100 column families per table,
 16 KB column qualifiers, cells at or below 10 MB and rows at or below 100 MB. Rows that grow without bound, such as one
 row per tenant holding all events, will cross those limits. Move growth into
 the key. *(recommendation)*
+
+## Alternate access paths
+
+When the row key cannot serve a query, use an asynchronous secondary index: a
+continuous materialized view with a different row key that must include the
+source row key. Applications don't write to it, and it is **eventually
+consistent** with the source table [BT-E17]. Never use it for read-after-write
+lookups. *(recommendation)*
 
 ## Atomicity
 
@@ -134,7 +145,8 @@ are not in this ledger. *(rule)*
 ## When to push back
 
 - A row key that starts with a timestamp, a sequential ID or a hash.
-- A design that needs multi-row atomicity or secondary indexes.
+- A design that needs multi-row atomicity, or read-after-write through an
+  asynchronous secondary index [BT-E17].
 - Increments or check-and-mutate on a multi-cluster-routing profile.
 - "Strong consistency" claimed while traffic uses multiple clusters.
 - GC rules used as the only filter for expired data, or as legal deletion.

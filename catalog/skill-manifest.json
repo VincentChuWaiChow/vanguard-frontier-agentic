@@ -8581,7 +8581,7 @@
     {
       "id": "gcp-bigtable-architect",
       "path": "skills/gcp/gcp-bigtable-architect",
-      "aggregate_sha256": "53f3a91cdcce4d10b537519a98c20069c603f397161bae866302d94f45762fbc",
+      "aggregate_sha256": "e47911398e7be0f7f71dbe0e9dd56ebe6251cea765013a21c845a644f3488076",
       "files": [
         {
           "path": "skills/gcp/gcp-bigtable-architect/SKILL.md",
@@ -8595,13 +8595,13 @@
         },
         {
           "path": "skills/gcp/gcp-bigtable-architect/references/bigtable-design-guide.md",
-          "sha256": "bfd0d888cd667a8a4e651dfa4a2680a973487322103733480be2b60160408857",
-          "bytes": 7530
+          "sha256": "b3339c91e4874bfb2c06c29d1522a5c38b424cbfc9a4f18f1d01be312e97a228",
+          "bytes": 8223
         },
         {
           "path": "skills/gcp/gcp-bigtable-architect/references/evidence-ledger.md",
-          "sha256": "fc2a4dd0474ed1eab3c55b49140019bb4e8ae7adfb845d944014f7f3d4ef613a",
-          "bytes": 7173
+          "sha256": "6a44fcffba666d85c0ac4ae54c006d2a8384480d133ac7b1ad01e9f0fd7de8ae",
+          "bytes": 7608
         }
       ]
     },

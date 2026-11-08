@@ -34,7 +34,7 @@
   "trees": [
     {
       "tree": "agents",
-      "aggregate_sha256": "2a75840ab61da6ec50d8bdbaab94cf71e75b2f1ccb687212cdc06f1121c63c6c",
+      "aggregate_sha256": "fef8548729a7aea6e3466fbad86ad0d5447889cd4ff88fc49255b88f26188e89",
       "files": [
         {
           "path": "agents/AGENTS.md",
@@ -12173,13 +12173,13 @@
         },
         {
           "path": "agents/gcp/gcp-bigtable-architect-agent/AGENT.md",
-          "sha256": "ebc655b953bc99c11ff76d2aa84af1ff2601ffda130697b3d28bff96a364baa9",
-          "bytes": 2974
+          "sha256": "358f13ff4ef8ed77209b7f8bfbfc384503ece5bf3619e2c0e8a4a98386a13955",
+          "bytes": 3041
         },
         {
           "path": "agents/gcp/gcp-bigtable-architect-agent/harnesses/claude-code.agent.md",
-          "sha256": "742afd8479883ae75a4bea2a0328eeca34f9194e011d68bf702083ff03ea4344",
-          "bytes": 2388
+          "sha256": "ece3c8d4ca735a904067aebe304de4462034f9ad498d1d5ee55738446aab99eb",
+          "bytes": 2455
         },
         {
           "path": "agents/gcp/gcp-bigtable-architect-agent/harnesses/codex.toml",
@@ -12188,28 +12188,28 @@
         },
         {
           "path": "agents/gcp/gcp-bigtable-architect-agent/harnesses/copilot.agent.md",
-          "sha256": "f6fcd507e79257f126bbb4c66c3a2377e20dc0f1925c80e93169f96ca47366f3",
-          "bytes": 2494
+          "sha256": "db192a542e2da4de0cd829cd4cd128f1c26534f18f17045b0f974c36ad5c572f",
+          "bytes": 2561
         },
         {
           "path": "agents/gcp/gcp-bigtable-architect-agent/harnesses/cursor.agent.md",
-          "sha256": "ef1d669214c5029baf6d69fbdba4b36fb702ed5dbfc59cdb8b29609ae4b5031d",
-          "bytes": 2403
+          "sha256": "5e9300036856eef8085e0d765d7720be00cf5a792008e17d0df5f7464c545357",
+          "bytes": 2470
         },
         {
           "path": "agents/gcp/gcp-bigtable-architect-agent/harnesses/gemini.agent.md",
-          "sha256": "ca37b316acf937df6b4aa96c4e22a02c6751a20941d4b81139ff31ef899e9986",
-          "bytes": 2447
+          "sha256": "302c3db7b72fb2627d30791e084b01830f9751069c8748167ef3d48df327bb05",
+          "bytes": 2514
         },
         {
           "path": "agents/gcp/gcp-bigtable-architect-agent/harnesses/kiro-cli.agent.json",
-          "sha256": "f487b1178ee03a6c37ffc36099899cc5dcf554d766c7e0da849e1787bdfabe9e",
-          "bytes": 2438
+          "sha256": "54288ea8890e1fc5c99fbbadb649507622e4d04120d258e05f5f928af323e772",
+          "bytes": 2505
         },
         {
           "path": "agents/gcp/gcp-bigtable-architect-agent/harnesses/kiro-ide.agent.md",
-          "sha256": "742afd8479883ae75a4bea2a0328eeca34f9194e011d68bf702083ff03ea4344",
-          "bytes": 2388
+          "sha256": "ece3c8d4ca735a904067aebe304de4462034f9ad498d1d5ee55738446aab99eb",
+          "bytes": 2455
         },
         {
           "path": "agents/gcp/gcp-bigtable-architect-agent/metadata.json",
@@ -36164,7 +36164,7 @@
     },
     {
       "tree": "catalog",
-      "aggregate_sha256": "020617d766b8a2bd541264bffc502c84f1f6ac060b14b04377f72af6b97a134a",
+      "aggregate_sha256": "438225480747d8f2b9c26a84aebb7058e4e64236c7db9dfdbe6336319dbc8eec",
       "files": [
         {
           "path": "catalog/AGENTS.md",
@@ -36218,7 +36218,7 @@
         },
         {
           "path": "catalog/skill-manifest.json",
-          "sha256": "3bf8581a66a54f81feea574e97edb01fe68c1a75aa2073e8b36b995dae35b2b6",
+          "sha256": "93bb79f9e6102a8d56c6ef2a225fef8364334ea7e9583921b47eeb4f2af154e2",
           "bytes": 1103328
         },
         {
@@ -37457,7 +37457,7 @@
     },
     {
       "tree": "tests",
-      "aggregate_sha256": "a68d2464ba9776947fc2fa555d19184fdfd1c4ceec2cb1677eba9c8051ae8f8a",
+      "aggregate_sha256": "184b56ac5bbcb9c720ef91c01c8b86511ee22663ca7db3247b427c3a4cdf05d7",
       "files": [
         {
           "path": "tests/AGENTS.md",
@@ -45861,8 +45861,8 @@
         },
         {
           "path": "tests/fixtures/nosql-scenarios/scenarios.json",
-          "sha256": "9ee270d34ebed86a3c09f99a6c46a6b3652e8f8632a685afda4432499981cabf",
-          "bytes": 15930
+          "sha256": "03d0ca0cb57c6effa4c8daae80c6be4111d574fd8d199ff5f36aedf65c7bac84",
+          "bytes": 16693
         },
         {
           "path": "tests/fixtures/nvidia-maestro-routing/README.md",
@@ -49234,5 +49234,5 @@
       "bytes": 9135
     }
   ],
-  "aggregate_sha256": "779c147a3e1d073970b29a15b31af5e2a811047e4017b3d80fc8d7dc57b2826f"
+  "aggregate_sha256": "de864bbcc06beceb4ef04fcaab92d908d681d98bcad952f959329e8a7a26d9ea"
 }

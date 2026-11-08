@@ -355,6 +355,20 @@
         "100,000 rows and 100 MB"
       ],
       "pass_criteria": "Flags the 100,000-row / 100 MB per-partition caps and BigKey risk; proposes a time-bucketed partition key plus TTL."
+    },
+    {
+      "id": "bt-alternate-key-lookup",
+      "skill": "skills/gcp/gcp-bigtable-architect",
+      "reference": "references/bigtable-design-guide.md",
+      "prompt": "We need to look up Bigtable rows by email as well as by user ID; Bigtable has no secondary indexes, so we'll add Elasticsearch, right?",
+      "required_evidence": [
+        "BT-E17"
+      ],
+      "must_mention": [
+        "asynchronous secondary index",
+        "Never use it for read-after-write"
+      ],
+      "pass_criteria": "Corrects the premise: Bigtable supports asynchronous secondary indexes via continuous materialized views (eventually consistent, row key includes the source row key); warns they are not read-after-write; external indexing is not required by default."
     }
   ]
 }
