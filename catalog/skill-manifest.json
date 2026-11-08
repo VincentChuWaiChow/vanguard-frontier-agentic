@@ -1278,12 +1278,12 @@
     {
       "id": "alibaba-tablestore-architect",
       "path": "skills/alibaba/alibaba-tablestore-architect",
-      "aggregate_sha256": "6643329866392d5a5767a868978fdd38a3a757b166f5414d9cc54ab70ca1e93b",
+      "aggregate_sha256": "89d7a5cce0e908b9d555e877b5bea5bf2df8bdde0ac1e71423c231ce3742fd13",
       "files": [
         {
           "path": "skills/alibaba/alibaba-tablestore-architect/SKILL.md",
-          "sha256": "235b86d4c517b97590015cf73c8feac76adc38f9958cecce9b85b153c508c71d",
-          "bytes": 3333
+          "sha256": "1a3c326d6ba5a7d878b495b1b8e67e772e670ebc4a5d549a083e7fc90bef6114",
+          "bytes": 3318
         },
         {
           "path": "skills/alibaba/alibaba-tablestore-architect/metadata.json",
@@ -1292,13 +1292,13 @@
         },
         {
           "path": "skills/alibaba/alibaba-tablestore-architect/references/evidence-ledger.md",
-          "sha256": "4d332ef9d69ac83d32ede6002fef376971cae9b27c169a966c35d56f0729c3ad",
-          "bytes": 7045
+          "sha256": "dc2b84f862b617a5cf4ddc341be08a82030944f41e92f219c323dc8fb2b2645d",
+          "bytes": 7758
         },
         {
           "path": "skills/alibaba/alibaba-tablestore-architect/references/tablestore-design-guide.md",
-          "sha256": "9548c32a0369302818e983953ffa697b05de76101146b9af3a82d494ecd6dfcd",
-          "bytes": 6752
+          "sha256": "26eb090a4bee89dca349e2e14c7baedc57f563d79f37b12d02bb6c4dc4a6a8ae",
+          "bytes": 7207
         }
       ]
     },
@@ -8581,7 +8581,7 @@
     {
       "id": "gcp-bigtable-architect",
       "path": "skills/gcp/gcp-bigtable-architect",
-      "aggregate_sha256": "7dba51f649b3c546c7390d63994a63a1728c4e927a0edad74aeb89c30fa361ff",
+      "aggregate_sha256": "53f3a91cdcce4d10b537519a98c20069c603f397161bae866302d94f45762fbc",
       "files": [
         {
           "path": "skills/gcp/gcp-bigtable-architect/SKILL.md",
@@ -8595,13 +8595,13 @@
         },
         {
           "path": "skills/gcp/gcp-bigtable-architect/references/bigtable-design-guide.md",
-          "sha256": "f381b93f8946b98784f20e7ae4d76bdbb903d725fbd88d3c4d03aef42fd9f989",
-          "bytes": 6666
+          "sha256": "bfd0d888cd667a8a4e651dfa4a2680a973487322103733480be2b60160408857",
+          "bytes": 7530
         },
         {
           "path": "skills/gcp/gcp-bigtable-architect/references/evidence-ledger.md",
-          "sha256": "7dfc98428cff8737b509c21548c7a0400a54d99ceb83102db820fe911512b0c2",
-          "bytes": 6396
+          "sha256": "fc2a4dd0474ed1eab3c55b49140019bb4e8ae7adfb845d944014f7f3d4ef613a",
+          "bytes": 7173
         }
       ]
     },
@@ -8922,7 +8922,7 @@
     {
       "id": "gcp-firebase-developer",
       "path": "skills/gcp/gcp-firebase-developer",
-      "aggregate_sha256": "d03ebbab702cae210fac15a4d48a91d060d725cf29e5fe0be6e6fd67cac959a6",
+      "aggregate_sha256": "ac1c65f4d882a87697437cfc1be6dfff3c43c0a81beb6ceba455f716453f545b",
       "files": [
         {
           "path": "skills/gcp/gcp-firebase-developer/SKILL.md",
@@ -8936,13 +8936,13 @@
         },
         {
           "path": "skills/gcp/gcp-firebase-developer/references/evidence-ledger.md",
-          "sha256": "e4e0be893c7de12e23a113530dd67c0255b2a95af001c931e0cbee5d6b0ac69b",
-          "bytes": 5694
+          "sha256": "027c3694d41c541deb75bcf49b41d0ec08057a96321eee38a5db5778515673ad",
+          "bytes": 6014
         },
         {
           "path": "skills/gcp/gcp-firebase-developer/references/firestore.md",
-          "sha256": "7e6f8906ba9bda692eec6152150f4f81d5ce6a03823c1be20359a062b84ae7fc",
-          "bytes": 4756
+          "sha256": "63b743b42a62fb93132ed64fb2869f53d1891e21166875b8eea6a3386bd25379",
+          "bytes": 5004
         }
       ]
     },
@@ -10535,12 +10535,12 @@
     {
       "id": "huawei-gaussdb-rds-dba",
       "path": "skills/huawei/huawei-gaussdb-rds-dba",
-      "aggregate_sha256": "41f8d321c1cf008f3857bfb3f909750767b70eb7cc4326552e64423643bb6af3",
+      "aggregate_sha256": "6e090cda13f63e4f8d3043d3751b748e871713565e3db382d2b25a6c0ae7d180",
       "files": [
         {
           "path": "skills/huawei/huawei-gaussdb-rds-dba/SKILL.md",
-          "sha256": "99d89a0720dc82110fc663dae497af17844b64f3516e88f86cd1a82a377e7121",
-          "bytes": 4510
+          "sha256": "485852510830306dbb8de6b5c860fe98434582fcf47a9033d1bbd47f1bf24eb9",
+          "bytes": 4629
         },
         {
           "path": "skills/huawei/huawei-gaussdb-rds-dba/metadata.json",
@@ -10567,12 +10567,12 @@
     {
       "id": "huawei-geminidb-architect",
       "path": "skills/huawei/huawei-geminidb-architect",
-      "aggregate_sha256": "7b5b9c2e0f52adb3411bb2ef2d1e346a42b35cd89f397a03673cf3069f869ddb",
+      "aggregate_sha256": "d35f00a49365f065e1efa3e5b4f3553f93e35278432ecc0fe9138047e333d8f7",
       "files": [
         {
           "path": "skills/huawei/huawei-geminidb-architect/SKILL.md",
-          "sha256": "e45a173e0a7b7ed739ac78ff4cce86e639308bbe3e8bcf97ab1097d7683dc5fe",
-          "bytes": 3102
+          "sha256": "333532178fd6019c7b59deae97a11d1f1d0db0bf6fbced621d97e6eef4dd2f6a",
+          "bytes": 3092
         },
         {
           "path": "skills/huawei/huawei-geminidb-architect/metadata.json",
@@ -10581,13 +10581,13 @@
         },
         {
           "path": "skills/huawei/huawei-geminidb-architect/references/evidence-ledger.md",
-          "sha256": "22955737cb89a04151d4ab0e8c247ee404b74769f9f7969f17ec4b0b0b3a4d13",
-          "bytes": 4804
+          "sha256": "81b0905938c4678311b929ecb38302a1ddaf2831665b0bc71c33f007cb9131c2",
+          "bytes": 5695
         },
         {
           "path": "skills/huawei/huawei-geminidb-architect/references/geminidb-design-guide.md",
-          "sha256": "d65c305eb2f49e113f1aae49cc531f654d6710ca55d0760e1a6bd04582437c2a",
-          "bytes": 5036
+          "sha256": "b3dc983a9e0385a9b3265e6e0ffbdcd667bb5cfc01d88aa513d3af5a6132fb32",
+          "bytes": 5675
         }
       ]
     },

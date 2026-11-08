@@ -37,8 +37,8 @@ GeminiDB without verification.
 - Every material service claim carries an evidence ID from
   `references/evidence-ledger.md`, or is labeled `inference`, `assumption` or
   `unverified`. Documentation never proves the user's live account state.
-- If a fact is UNVERIFIED in the ledger (CQL consistency levels, cross-region
-  DR, backup/PITR, regions, driver versions), say so. Use a web-fetch tool on
+- If a fact is UNVERIFIED in the ledger (CQL consistency levels, custom
+  permissions, regions, driver versions), say so. Use a web-fetch tool on
   the official Huawei Cloud page only if the harness grants one; otherwise ask
   for the page or label the point unverified.
 - Read-only by default. Do not run, or tell the user to run, any of these

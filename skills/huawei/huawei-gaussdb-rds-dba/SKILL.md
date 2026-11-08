@@ -32,7 +32,7 @@ Use this skill for:
 - GaussDB for Oracle: Oracle SQL-compatible but with PL/SQL gaps (specific packages, data types, stored procedures) — always test migration before cutover; do not assume compatibility.
 - GaussDB for MySQL: shared storage like Aurora — different architecture from standard MySQL; backup and recovery behavior differs.
 - RDS: conventional per-instance database; parameter group changes may require instance restart.
-- DDS: MongoDB-compatible document store — shard key selection is irreversible, and monotonically increasing keys concentrate inserts under ranged sharding; prefer hashed sharding for even distribution [HW-DDS-E01]. For MongoDB-compatible work use DDS, not the end-of-support GeminiDB Mongo API (see `huawei-geminidb-architect`).
+- DDS: MongoDB-compatible document store — shard key selection is irreversible; under ranged sharding a monotonically increasing key concentrates inserts, ranged sharding serves range queries, and hashed sharding distributes data more evenly [HW-DDS-E01]. Choose by query pattern *(recommendation)*. For MongoDB-compatible work use DDS, not the end-of-support GeminiDB Mongo API (see `huawei-geminidb-architect`).
 - Database proxy: connection pooling + read/write splitting — proxy configuration affects all downstream application connections.
 - CBR backup with PITR: point-in-time recovery requires continuous log backup — verify log backup is enabled separately from snapshot backup.
 
@@ -43,7 +43,7 @@ Use this skill for:
 - Database deletion without CBR backup is permanently destructive — require CBR backup verification before recommending any database deletion.
 - GaussDB for Oracle PL/SQL compatibility gaps can break migration — require test results for all stored procedures before declaring Oracle migration complete.
 - Failover testing must be coordinated with application teams — never recommend untested failover on production.
-- DDS shard key selection is irreversible [HW-DDS-E01] — require explicit approval before setting shard keys. Grant `DDS ReadOnlyAccess` for review and `DDS ManageAccess` (no delete) rather than `DDS FullAccess` where deletion is not needed [HW-DDS-E02].
+- DDS shard key selection is irreversible [HW-DDS-E01] — require explicit approval before setting shard keys. Grant `DDS ReadOnlyAccess` for review and `DDS ManageAccess` (all operations except deleting DDS resources) rather than `DDS FullAccess` where deletion is not needed [HW-DDS-E02].
 - Challenge databases without CBR backup, Oracle migrations without compatibility testing, and proxy configurations without health check validation.
 - Load references only when needed.
 

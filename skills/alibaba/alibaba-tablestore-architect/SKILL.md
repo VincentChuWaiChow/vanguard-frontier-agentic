@@ -37,7 +37,7 @@ transfer DynamoDB, Bigtable or HBase guarantees to Tablestore.
   `references/evidence-ledger.md`, or is labeled `inference`, `assumption` or
   `unverified`. Documentation never proves the user's live account state.
 - If a fact is UNVERIFIED in the ledger (Go/Node.js/.NET/PHP SDKs, Tunnel and
-  Stream, VPC endpoints, backup, pricing), say so. Use a web-fetch tool on the
+  Stream, backup, pricing), say so. Use a web-fetch tool on the
   official Alibaba Cloud page only if the harness grants one; otherwise ask for
   the page or label the point unverified.
 - Read-only by default. Do not run, or tell the user to run, any of these

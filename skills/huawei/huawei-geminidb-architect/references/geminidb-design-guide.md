@@ -5,9 +5,9 @@ consistency, deletion and capacity rules, IAM or billing questions. Every
 bracketed ID resolves in [evidence-ledger.md](evidence-ledger.md). Text without
 an ID is labeled inference or recommendation.
 
-GeminiDB is **one service with several wire-compatible APIs** on a
-decoupled storage/compute architecture [GDB-E01]. "Compatible" means the API
-and drivers. It does not mean that open-source Cassandra, MongoDB or AWS
+GeminiDB is **one service with several compatible APIs** on a decoupled
+storage/compute architecture [GDB-E01]. Treat "compatible" as API and driver
+compatibility to test *(inference)*. It does not mean that open-source Cassandra, MongoDB or AWS
 DynamoDB operational guarantees carry over. Verify each one.
 
 ## API selection
@@ -46,7 +46,8 @@ not a substitute. *(recommendation)*
   within one partition key, and never repeatedly delete large ranges in one
   partition, which causes tombstones [GDB-E07].
 - **Scale:** keep an instance at or below 50 nodes, then shard vertically (by
-  module) or horizontally (by table) [GDB-E07]. Guidance limits are about 50
+  functional module) or horizontally (splitting one large table's data across
+  databases) [GDB-E07]. Guidance limits are about 50
   billion records per table, 100 tables per database and 20-50 fields per table
   [GDB-E08].
 
@@ -84,10 +85,22 @@ rates), and public-network traffic. Billing is pay-per-use (hourly) or
 yearly/monthly, and the two can be switched [GDB-E10]. Prices are not in this
 ledger. Cost numbers need a freshly fetched price page.
 
+## Backup and recovery
+
+- Automated and manual backups exist, full and incremental are on by default,
+  and backup data **cannot be downloaded or exported** [GDB-E12]. Exports for
+  audit or offline copies need a separate data-export path. *(inference)*
+- Cross-region backups keep automated full backups in another region for
+  restore to a **new instance** there [GDB-E12]. That is the documented
+  regional DR path.
+- Point-in-time restore needs the automated backup policy enabled, and it
+  restores into a **new, independent instance** [GDB-E13]. Plan the client
+  cut-over. *(recommendation)*
+
 ## Not verified
 
-CQL consistency levels, cross-region DR, international-site backup retention
-and PITR, region availability, and driver versions [GDB-E11]. Fetch the
+CQL consistency levels, custom permissions, region availability and driver
+versions [GDB-E11]. Fetch the
 official page or label the point an assumption.
 
 ## When to push back

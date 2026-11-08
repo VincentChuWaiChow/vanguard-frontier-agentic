@@ -17,7 +17,8 @@ concepts to it.
 | Single-field indexes | automatic | not automatic; fully customizable | [FS-E10] [FS-E15] |
 | Server-library transaction default | PESSIMISTIC (locks read documents) | OPTIMISTIC | [FS-E07] |
 
-The mode is chosen at database creation [FS-E15]. Confirm the edition before
+In Enterprise, the mode (Native or MongoDB compatibility) is chosen at database
+creation [FS-E15]. Confirm the edition before
 giving any index or concurrency advice, because the defaults invert.
 *(recommendation)*
 
@@ -38,9 +39,8 @@ giving any index or concurrency advice, because the defaults invert.
 
 - Ramp new collections with **500/50/5**: start at no more than 500 ops/s and
   increase 50% every 5 minutes [FS-E04].
-- Use automatic document IDs. They are scattered and should not hotspot,
-  whereas monotonically increasing IDs or indexed fields concentrate writes
-  [FS-E05].
+- Use automatic document IDs. They are scattered and should not hotspot
+  [FS-E05]. Avoid monotonically increasing document IDs. *(recommendation)*
 - There is **no fixed per-document write rate**. It "depends highly on the
   workload" [FS-E05]. Do not quote a hard number. Counters and other
   single-document hot spots need sharding or aggregation designs, validated by
@@ -69,7 +69,7 @@ giving any index or concurrency advice, because the defaults invert.
 
 ## Security boundary
 
-- Firebase security rules protect **mobile/web SDK** traffic only. **Server
+- Firebase security rules are evaluated for **mobile/web SDK** traffic. **Server
   client libraries bypass rules entirely** and are governed by IAM [FS-E08].
 - A backend service account with broad IAM roles can read and write
   everything regardless of rules. Review IAM for every server path, and never
@@ -83,7 +83,9 @@ giving any index or concurrency advice, because the defaults invert.
 - PITR is **off by default**. When enabled it keeps one version per minute for
   7 days. Without it, you can read (not export) data from only the past hour
   [FS-E12]. Treat "PITR not enabled" as a finding on production databases.
-  *(recommendation)*
+  *(recommendation)* PITR has no free tier and needs billing enabled, reads or
+  exports in the PITR window are billed as reads, and up to one day of PITR
+  storage may be charged even if PITR is disabled within a day [FS-E17].
 - Scheduled backups allow one daily and one weekly schedule, keep backups up to
   14 weeks in the source location, and restore to a **new** database [FS-E13].
   The restore plan must cover repointing clients. *(inference)*
