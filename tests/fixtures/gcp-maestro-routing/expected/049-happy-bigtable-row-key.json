@@ -1,0 +1,6 @@
+{
+  "route": [
+    "gcp-bigtable-architect-agent"
+  ],
+  "mode": "single"
+}

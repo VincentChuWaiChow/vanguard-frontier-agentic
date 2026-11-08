@@ -8,7 +8,7 @@ This folder contains Alibaba Cloud-focused skills curated for this marketplace.
 
 ## Local marketplace portfolio
 
-As of **2026-05-09**, this folder contains **43** local Alibaba Cloud skills:
+This folder contains these local Alibaba Cloud skills (see `catalog/skills.json` for the authoritative inventory):
 
 - `alibaba-ack-container-platform-operator`
 - `alibaba-actiontrail-audit-analyst`
@@ -49,6 +49,7 @@ As of **2026-05-09**, this folder contains **43** local Alibaba Cloud skills:
 - `alibaba-serverless-production-readiness`
 - `alibaba-solution-architect`
 - `alibaba-support-incident-coordinator`
+- `alibaba-tablestore-architect`
 - `alibaba-ticket-triage-escalation-coordinator`
 - `alibaba-waf-cost-optimization-review`
 - `alibaba-waf-reliability-review`

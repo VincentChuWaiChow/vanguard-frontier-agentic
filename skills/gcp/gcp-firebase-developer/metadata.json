@@ -3,7 +3,14 @@
   "name": "GCP Firebase Developer",
   "type": "skill",
   "provider": "gcp",
-  "harnesses": ["codex", "claude-code", "cursor", "gemini", "kiro", "other"],
+  "harnesses": [
+    "codex",
+    "claude-code",
+    "cursor",
+    "gemini",
+    "kiro",
+    "other"
+  ],
   "summary": "Build, configure, and operate Firebase-powered web and mobile applications — covering Firestore, Firebase Auth, Firebase Hosting, Cloud Functions for Firebase, Firebase Storage, App Check, Remote Config, and Analytics.",
   "source_type": "original",
   "official_docs": [
@@ -12,11 +19,14 @@
     "https://firebase.google.com/docs/auth",
     "https://firebase.google.com/docs/hosting",
     "https://firebase.google.com/docs/functions",
-    "https://firebase.google.com/docs/app-check"
+    "https://firebase.google.com/docs/app-check",
+    "https://firebase.google.com/docs/firestore/quotas",
+    "https://firebase.google.com/docs/firestore/transaction-data-contention",
+    "https://firebase.google.com/docs/firestore/editions"
   ],
   "security_notes": "Read-only skill. Do not deploy to production, modify Firestore security rules, or change Firebase project settings without explicit approval. Client config (apiKey, projectId) is public — service account keys are private and must never be embedded in client code.",
-  "last_verified": "2026-05-09",
+  "last_verified": "2026-11-08",
   "path": "skills/gcp/gcp-firebase-developer",
   "author": "github: VincentChuWaiChow",
-  "version": "0.1.0"
+  "version": "0.1.1"
 }

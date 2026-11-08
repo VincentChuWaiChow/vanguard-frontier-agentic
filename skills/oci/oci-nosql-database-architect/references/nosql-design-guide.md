@@ -25,7 +25,7 @@ WU but which are not DynamoDB RCUs/WCUs or Cosmos DB Request Units; and
 | Multi-region | CONDITIONAL | Global Active tables: async active-active, latest-timestamp wins, frozen schema; not in dedicated hosted environments | [OCI-NOSQL-E09] [OCI-NOSQL-E10] [OCI-NOSQL-E12] [OCI-NOSQL-E30] |
 | Backup / restore | CONDITIONAL | Customer-run, via Oracle's migrator tool to Object Storage | [OCI-NOSQL-E30] |
 | IAM | SUPPORTED | Verb-to-permission mapping on `nosql-rows`, `nosql-tables`, `nosql-indexes`; table-name scoping | [OCI-NOSQL-E13] [OCI-NOSQL-E29] |
-| SDKs | CONDITIONAL | Java, Python, Node.js verified; Go, .NET, Spring, Rust repos exist but details unverified | [OCI-NOSQL-E16] [OCI-NOSQL-E21] |
+| SDKs | CONDITIONAL | Java, Python, Node.js, Go, .NET verified; Spring Data and Rust repos exist but details unverified | [OCI-NOSQL-E16] [OCI-NOSQL-E21] [OCI-NOSQL-E32] [OCI-NOSQL-E33] |
 | Private networking, CMK, pricing, quota increases | UNVERIFIED | Not retrieved this pass; do not assert | [OCI-NOSQL-E22] |
 
 ## Key design

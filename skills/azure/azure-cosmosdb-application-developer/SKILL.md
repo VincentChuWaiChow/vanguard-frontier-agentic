@@ -49,7 +49,7 @@ Load these only when needed:
 - [Workflow and output contract](references/workflow-and-output.md) — use when executing the full review, applying stress checks, or formatting the final answer.
 - [Official sources](references/official-sources.md) — use when you need the detailed Microsoft documentation list or source notes.
 
-Session-token behavior, request-level consistency overrides, the integrated cache and data-plane RBAC are maintained once, with source citations, in the `azure-cosmosdb-platform-operator` skill (`references/consistency-capacity-security.md`). Load that skill for those topics instead of answering from memory.
+Session-token behavior, request-level consistency overrides, the integrated cache and data-plane RBAC are maintained once, with source citations, in the `azure-cosmosdb-platform-operator` skill (`azure-cosmosdb-platform-operator/references/consistency-capacity-security.md`), which this agent bundles as a companion. Load that skill for those topics instead of answering from memory.
 
 ## Response minimum
 

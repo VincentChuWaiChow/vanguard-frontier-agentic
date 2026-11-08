@@ -1,0 +1,7 @@
+{
+  "name": "adv-geminidb-mongo-routes-dds",
+  "task": "Set up a DDS sharded cluster shard key for our MongoDB-compatible collection.",
+  "tags": [
+    "adversarial:cross-service-confusion"
+  ]
+}

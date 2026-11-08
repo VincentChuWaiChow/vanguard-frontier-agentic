@@ -62,7 +62,8 @@ deliberately; there is no migration path in place.
 | Strong read | latest only if last written locally [DDB-E11] | latest on any replica [DDB-E12] |
 | Conditional writes | evaluated against the local version [DDB-E11] | evaluated against the latest version [DDB-E12] |
 | Transactions | atomic only in the invoking Region [DDB-E15] | **not supported** [DDB-E14] |
-| TTL / LSIs | no restriction stated on the source page; not re-verified [DDB-E21] | **not supported** [DDB-E14] |
+| TTL | supported; TTL deletes replicate to every replica [DDB-E22] | **not supported** [DDB-E14] |
+| LSIs | no restriction stated on the source page; not verified [DDB-E21] | **not supported** [DDB-E14] |
 | Topology | add or remove replicas [DDB-E11] | exactly 3 Regions, fixed; empty table to convert [DDB-E12] [DDB-E13] |
 | Streams | always on; per-item order only, can differ between replicas [DDB-E16] | off by default, can be enabled; identical records and order on every replica [DDB-E16] |
 

@@ -8,7 +8,14 @@ Two checks, both deterministic (no network, no wall clock):
    depends on these links: a broken one silently drops guidance the entry point
    promised to load.
 
-2. Any skill or agent directory that ships ``references/evidence-ledger.md``
+2. Every plain-text ``references/<file>.md`` mention in a ``SKILL.md`` (for
+   example a routing table cell) names a file that exists. Skills often route
+   by path in prose rather than by Markdown link, and a promised reference
+   that does not exist is the same silent gap as a broken link. Pre-existing
+   gaps are listed in ``KNOWN_MISSING_REFERENCES`` so that no new one can be
+   added; fixing one forces its removal from the list.
+
+3. Any skill or agent directory that ships ``references/evidence-ledger.md``
    opts into claim-to-source traceability:
 
    * every ledger row has a unique evidence ID, an ``https`` URL on an
@@ -39,10 +46,43 @@ OFFICIAL_SOURCES: dict[str, tuple[str, ...]] = {
     "docs.oracle.com": ("",),
     "docs.aws.amazon.com": ("",),
     "learn.microsoft.com": ("",),
-    "github.com": ("/oracle/", "/aws/", "/awslabs/", "/Azure/"),
+    "firebase.google.com": ("/docs/",),
+    "cloud.google.com": ("/",),
+    "docs.cloud.google.com": ("/",),
+    "www.alibabacloud.com": ("/help/",),
+    "support.huaweicloud.com": ("/",),
+    "github.com": ("/oracle/", "/aws/", "/awslabs/", "/Azure/", "/googleapis/", "/aliyun/"),
+}
+
+# Pre-existing, unrelated debt: these SKILL.md files route to reference files
+# that were never written. Listed so the gate blocks *new* gaps today; remove an
+# entry when its file is written (the gate fails on stale entries). Do not add
+# to this list to get green - write the reference or drop the promise instead.
+KNOWN_MISSING_REFERENCES: dict[str, set[str]] = {
+    "skills/gcp/gcp-alloydb-ai-developer": {
+        "references/ai-functions.md", "references/alloydb-omni.md", "references/hybrid-search.md",
+        "references/iam-security.md", "references/model-endpoints.md", "references/vector-search.md",
+    },
+    "skills/gcp/gcp-firebase-developer": {
+        "references/app-check.md", "references/auth.md", "references/emulators.md",
+        "references/extensions.md", "references/functions.md", "references/hosting.md",
+        "references/security-rules.md",
+    },
+    "skills/gcp/gcp-gemini-api-developer": {
+        "references/batch.md", "references/caching.md", "references/embeddings.md",
+        "references/live-api.md", "references/migration.md", "references/safety.md",
+        "references/structured-output.md", "references/text-multimodal.md", "references/tools.md",
+        "references/tuning.md",
+    },
+    "skills/gcp/gcp-networking-observability": {
+        "references/cloud-nat-analysis.md", "references/connectivity-tests.md",
+        "references/firewall-analysis.md", "references/metrics-analysis.md",
+        "references/threat-analysis.md", "references/vpc-flow-analysis.md",
+    },
 }
 
 LINK_RE = re.compile(r"\]\(([^)\s]+)\)")
+PLAIN_REF_RE = re.compile(r"(?<![\w/.-])(references/[A-Za-z0-9._/-]+\.md)")
 EVIDENCE_ID = r"[A-Z][A-Z0-9]*(?:-[A-Z0-9]+)*-E\d{2,}"
 MARKER_RE = re.compile(r"\[(" + EVIDENCE_ID + r")\]")
 ROW_RE = re.compile(r"^\|\s*(" + EVIDENCE_ID + r")\s*\|(.*)\|\s*$")
@@ -77,6 +117,25 @@ def check_links(errors: list[str]) -> int:
             checked += 1
             if not (path.parent / target).exists():
                 errors.append(f"{path.relative_to(REPO)}: broken relative link '{target}'")
+    return checked
+
+
+def check_plain_references(errors: list[str]) -> int:
+    checked = 0
+    seen_dirs: set[str] = set()
+    for skill_md in sorted((REPO / "skills").rglob("SKILL.md")):
+        rel_dir = skill_md.parent.relative_to(REPO).as_posix()
+        seen_dirs.add(rel_dir)
+        known = KNOWN_MISSING_REFERENCES.get(rel_dir, set())
+        for ref in sorted(set(PLAIN_REF_RE.findall(skill_md.read_text(encoding="utf-8")))):
+            checked += 1
+            exists = (skill_md.parent / ref).exists()
+            if not exists and ref not in known:
+                errors.append(f"{rel_dir}/SKILL.md: names '{ref}', which does not exist")
+            elif exists and ref in known:
+                errors.append(f"{rel_dir}: '{ref}' now exists; remove it from KNOWN_MISSING_REFERENCES")
+    for rel_dir in sorted(set(KNOWN_MISSING_REFERENCES) - seen_dirs):
+        errors.append(f"KNOWN_MISSING_REFERENCES lists '{rel_dir}', which has no SKILL.md")
     return checked
 
 
@@ -133,6 +192,7 @@ def check_ledger(ledger: Path, errors: list[str]) -> int:
 def main() -> int:
     errors: list[str] = []
     links = check_links(errors)
+    plain = check_plain_references(errors)
     ledgers = sorted((REPO / "skills").rglob("references/evidence-ledger.md"))
     ledgers += sorted((REPO / "agents").rglob("references/evidence-ledger.md"))
     rows = sum(check_ledger(ledger, errors) for ledger in ledgers)
@@ -142,7 +202,7 @@ def main() -> int:
             print(f"  - {error}", file=sys.stderr)
         return 1
     print(
-        f"validate-skill-references: OK ({links} relative links resolved; "
+        f"validate-skill-references: OK ({links} relative links and {plain} plain-text reference paths resolved; "
         f"{len(ledgers)} evidence ledgers, {rows} rows traced)"
     )
     return 0

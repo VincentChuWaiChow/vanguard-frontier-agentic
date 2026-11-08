@@ -1768,6 +1768,35 @@
     ]
   },
   {
+    "id": "alibaba-tablestore-architect-agent",
+    "name": "Alibaba Tablestore Architect",
+    "type": "agent",
+    "provider": "alibaba",
+    "harnesses": [
+      "codex",
+      "copilot",
+      "claude-code",
+      "cursor",
+      "gemini",
+      "kiro"
+    ],
+    "summary": "Static reviewer for Alibaba Cloud Tablestore key, transaction, index, TTL/version, capacity and access-control decisions, citing a per-claim evidence ledger.",
+    "source_type": "original",
+    "official_docs": [
+      "https://www.alibabacloud.com/help/en/tablestore/table-store-service/overview-of-widecolumn/",
+      "https://www.alibabacloud.com/help/en/tablestore/table-store-service/overview-of-secondary-index/",
+      "https://www.alibabacloud.com/help/en/tablestore/table-store-service/data-versions-and-ttl"
+    ],
+    "security_notes": "Static review only. Never runs or instructs schema, capacity, replication, IAM, data or restore changes without explicit target, blast radius, rollback and user approval; never requests credentials or account identifiers.",
+    "last_verified": "2026-11-08",
+    "path": "agents/alibaba/alibaba-tablestore-architect-agent",
+    "version": "0.1.0",
+    "execution_tier": "static-review",
+    "companion_skills": [
+      "alibaba-tablestore-architect"
+    ]
+  },
+  {
     "id": "alibaba-ticket-triage-escalation-coordinator-agent",
     "name": "Alibaba Cloud Ticket Triage Escalation Coordinator",
     "type": "agent",
@@ -7645,6 +7674,35 @@
     ]
   },
   {
+    "id": "gcp-bigtable-architect-agent",
+    "name": "GCP Bigtable Architect",
+    "type": "agent",
+    "provider": "gcp",
+    "harnesses": [
+      "codex",
+      "copilot",
+      "claude-code",
+      "cursor",
+      "gemini",
+      "kiro"
+    ],
+    "summary": "Static reviewer for Cloud Bigtable row-key, atomicity, routing/consistency, garbage-collection, capacity, IAM and backup decisions, citing a per-claim evidence ledger.",
+    "source_type": "original",
+    "official_docs": [
+      "https://docs.cloud.google.com/bigtable/docs/schema-design",
+      "https://docs.cloud.google.com/bigtable/docs/replication-overview",
+      "https://docs.cloud.google.com/bigtable/docs/routing"
+    ],
+    "security_notes": "Static review only. Never runs or instructs schema, capacity, replication, IAM, data or restore changes without explicit target, blast radius, rollback and user approval; never requests credentials or account identifiers.",
+    "last_verified": "2026-11-08",
+    "path": "agents/gcp/gcp-bigtable-architect-agent",
+    "version": "0.1.0",
+    "execution_tier": "static-review",
+    "companion_skills": [
+      "gcp-bigtable-architect"
+    ]
+  },
+  {
     "id": "gcp-certificate-manager-issuer-review-agent",
     "name": "GCP Certificate Manager Issuer Review",
     "type": "agent",
@@ -10186,6 +10244,34 @@
     "version": "0.1.0",
     "companion_skills": [
       "huawei-gaussdb-rds-dba"
+    ]
+  },
+  {
+    "id": "huawei-geminidb-architect-agent",
+    "name": "Huawei GeminiDB Architect",
+    "type": "agent",
+    "provider": "huawei",
+    "harnesses": [
+      "codex",
+      "copilot",
+      "claude-code",
+      "cursor",
+      "gemini",
+      "kiro"
+    ],
+    "summary": "Static reviewer for Huawei Cloud GeminiDB API selection, Cassandra API modeling, deletion, capacity, IAM and billing decisions, citing a per-claim evidence ledger.",
+    "source_type": "original",
+    "official_docs": [
+      "https://support.huaweicloud.com/intl/en-us/productdesc-nosql/nosql_introduction.html",
+      "https://support.huaweicloud.com/intl/en-us/cassandraug-nosql/nosql_11_0205.html"
+    ],
+    "security_notes": "Static review only. Never runs or instructs schema, capacity, replication, IAM, data or restore changes without explicit target, blast radius, rollback and user approval; never requests credentials or account identifiers.",
+    "last_verified": "2026-11-08",
+    "path": "agents/huawei/huawei-geminidb-architect-agent",
+    "version": "0.1.0",
+    "execution_tier": "static-review",
+    "companion_skills": [
+      "huawei-geminidb-architect"
     ]
   },
   {

@@ -4,8 +4,8 @@ description: Manage Huawei GaussDB (MySQL, PostgreSQL, Oracle-compatible), RDS i
 allowed-tools: Read Grep Glob
 metadata:
   author: "github: VincentChuWaiChow"
-  version: "0.1.0"
-  updated: "2026-05-08"
+  version: "0.1.1"
+  updated: "2026-11-08"
   category: database
 ---
 
@@ -32,7 +32,7 @@ Use this skill for:
 - GaussDB for Oracle: Oracle SQL-compatible but with PL/SQL gaps (specific packages, data types, stored procedures) — always test migration before cutover; do not assume compatibility.
 - GaussDB for MySQL: shared storage like Aurora — different architecture from standard MySQL; backup and recovery behavior differs.
 - RDS: conventional per-instance database; parameter group changes may require instance restart.
-- DDS: MongoDB-compatible document store — WiredTiger storage engine; shard key selection is irreversible.
+- DDS: MongoDB-compatible document store — shard key selection is irreversible, and monotonically increasing keys concentrate inserts under ranged sharding; prefer hashed sharding for even distribution [HW-DDS-E01]. For MongoDB-compatible work use DDS, not the end-of-support GeminiDB Mongo API (see `huawei-geminidb-architect`).
 - Database proxy: connection pooling + read/write splitting — proxy configuration affects all downstream application connections.
 - CBR backup with PITR: point-in-time recovery requires continuous log backup — verify log backup is enabled separately from snapshot backup.
 
@@ -43,7 +43,7 @@ Use this skill for:
 - Database deletion without CBR backup is permanently destructive — require CBR backup verification before recommending any database deletion.
 - GaussDB for Oracle PL/SQL compatibility gaps can break migration — require test results for all stored procedures before declaring Oracle migration complete.
 - Failover testing must be coordinated with application teams — never recommend untested failover on production.
-- DDS shard key selection is irreversible — require explicit approval before setting shard keys.
+- DDS shard key selection is irreversible [HW-DDS-E01] — require explicit approval before setting shard keys. Grant `DDS ReadOnlyAccess` for review and `DDS ManageAccess` (no delete) rather than `DDS FullAccess` where deletion is not needed [HW-DDS-E02].
 - Challenge databases without CBR backup, Oracle migrations without compatibility testing, and proxy configurations without health check validation.
 - Load references only when needed.
 
@@ -51,6 +51,7 @@ Use this skill for:
 
 Load these only when needed:
 
+- [DDS evidence ledger](references/evidence-ledger.md) — use when a DDS claim must be traced to its Huawei Cloud source.
 - [Official sources](references/official-sources.md) — use when grounding GaussDB, RDS, or DDS service behavior or checking the detailed source list.
 - [Workflow and output contract](references/workflow-and-output.md) — use when executing a full database review or formatting the final answer.
 

@@ -4,8 +4,8 @@ description: "Build, configure, and operate Firebase-powered web and mobile appl
 allowed-tools: Read Grep Glob Bash(npm install:*) Bash(firebase:*)
 metadata:
   author: "github: VincentChuWaiChow"
-  version: "0.1.0"
-  updated: "2026-05-09"
+  version: "0.1.1"
+  updated: "2026-11-08"
   category: platform
 ---
 
@@ -37,7 +37,7 @@ Load only when needed:
 
 | Scenario | Trigger Keywords | Reference |
 |---|---|---|
-| Firestore data modeling | collection, document, subcollection, NoSQL schema, query design | references/firestore.md |
+| Firestore data modeling | collection, document, subcollection, NoSQL schema, query design, index, transaction, TTL, PITR | [references/firestore.md](references/firestore.md) (claims cite [references/evidence-ledger.md](references/evidence-ledger.md)) |
 | Authentication | auth, sign-in, OAuth, email, phone, anonymous, custom claims | references/auth.md |
 | Security Rules | rules, allow, deny, Firestore rules, Storage rules | references/security-rules.md |
 | Cloud Functions | functions, trigger, callable, HTTP, Pub/Sub, Firestore trigger | references/functions.md |

@@ -456,6 +456,21 @@
         "SOAR"
       ],
       "agent": "huawei-waf-security-review-agent"
+    },
+    "geminidb-architect": {
+      "keywords": [
+        "GeminiDB",
+        "GeminiDB Cassandra",
+        "Cassandra",
+        "CQL",
+        "GeminiDB Redis",
+        "DynamoDB-Compatible",
+        "Influx",
+        "BigKey",
+        "HotKey",
+        "tombstone"
+      ],
+      "agent": "huawei-geminidb-architect-agent"
     }
   },
   "live_guards": [

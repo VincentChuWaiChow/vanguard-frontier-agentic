@@ -1221,6 +1221,34 @@
     "author": "github: VincentChuWaiChow"
   },
   {
+    "id": "alibaba-tablestore-architect",
+    "name": "Alibaba Tablestore Architect",
+    "type": "skill",
+    "provider": "alibaba",
+    "harnesses": [
+      "codex",
+      "claude-code",
+      "cursor",
+      "gemini",
+      "kiro",
+      "other"
+    ],
+    "summary": "Design and review Alibaba Cloud Tablestore primary/partition keys, local transactions, conditional updates, secondary and search indexes, TTL and versions, instance type, capacity units, limits, access control and SDKs, with a provenance ledger per claim.",
+    "source_type": "original",
+    "official_docs": [
+      "https://www.alibabacloud.com/help/en/tablestore/table-store-service/overview-of-widecolumn/",
+      "https://www.alibabacloud.com/help/en/tablestore/table-store-service/use-cases/table-design",
+      "https://www.alibabacloud.com/help/en/tablestore/table-store-service/local-transactions",
+      "https://www.alibabacloud.com/help/en/tablestore/table-store-service/overview-of-secondary-index/",
+      "https://www.alibabacloud.com/help/en/tablestore/table-store-service/data-versions-and-ttl"
+    ],
+    "security_notes": "Read-only by default. Primary keys and instance type are permanent, so never approve table, index, TTL/version, throughput, access-policy or bulk-data changes without explicit target, blast radius, rollback and user approval; never request AccessKeys or STS tokens.",
+    "last_verified": "2026-11-08",
+    "path": "skills/alibaba/alibaba-tablestore-architect",
+    "version": "0.1.0",
+    "author": "github: VincentChuWaiChow"
+  },
+  {
     "id": "alibaba-ticket-triage-escalation-coordinator",
     "name": "Alibaba Cloud Ticket Triage Escalation Coordinator",
     "type": "skill",
@@ -7418,6 +7446,34 @@
     "version": "0.2.0"
   },
   {
+    "id": "gcp-bigtable-architect",
+    "name": "GCP Bigtable Architect",
+    "type": "skill",
+    "provider": "gcp",
+    "harnesses": [
+      "codex",
+      "claude-code",
+      "cursor",
+      "gemini",
+      "kiro",
+      "other"
+    ],
+    "summary": "Design and review Cloud Bigtable row keys, single-row atomicity, app-profile routing and replication consistency, garbage collection, SSD/HDD and autoscaling, IAM, backups and client libraries, with a provenance ledger per claim.",
+    "source_type": "original",
+    "official_docs": [
+      "https://docs.cloud.google.com/bigtable/docs/schema-design",
+      "https://docs.cloud.google.com/bigtable/docs/replication-overview",
+      "https://docs.cloud.google.com/bigtable/docs/app-profiles",
+      "https://docs.cloud.google.com/bigtable/docs/garbage-collection",
+      "https://docs.cloud.google.com/bigtable/quotas"
+    ],
+    "security_notes": "Read-only by default. Row keys and storage type are effectively permanent, so never approve schema, GC, cluster, replication, IAM, bulk-mutation or restore changes without explicit target, blast radius, rollback and user approval; never request service-account keys.",
+    "last_verified": "2026-11-08",
+    "path": "skills/gcp/gcp-bigtable-architect",
+    "version": "0.1.0",
+    "author": "github: VincentChuWaiChow"
+  },
+  {
     "id": "gcp-certificate-manager-issuer-review",
     "name": "GCP Certificate Manager Issuer Review",
     "type": "skill",
@@ -7768,13 +7824,16 @@
       "https://firebase.google.com/docs/auth",
       "https://firebase.google.com/docs/hosting",
       "https://firebase.google.com/docs/functions",
-      "https://firebase.google.com/docs/app-check"
+      "https://firebase.google.com/docs/app-check",
+      "https://firebase.google.com/docs/firestore/quotas",
+      "https://firebase.google.com/docs/firestore/transaction-data-contention",
+      "https://firebase.google.com/docs/firestore/editions"
     ],
     "security_notes": "Read-only skill. Do not deploy to production, modify Firestore security rules, or change Firebase project settings without explicit approval. Client config (apiKey, projectId) is public — service account keys are private and must never be embedded in client code.",
-    "last_verified": "2026-05-09",
+    "last_verified": "2026-11-08",
     "path": "skills/gcp/gcp-firebase-developer",
     "author": "github: VincentChuWaiChow",
-    "version": "0.1.0"
+    "version": "0.1.1"
   },
   {
     "id": "gcp-gcs-data-perimeter-governor",
@@ -9361,13 +9420,40 @@
     "official_docs": [
       "https://support.huaweicloud.com/intl/en-us/gaussdb_mysql/index.html",
       "https://support.huaweicloud.com/intl/en-us/rds/index.html",
-      "https://support.huaweicloud.com/intl/en-us/dds/index.html"
+      "https://support.huaweicloud.com/intl/en-us/dds/index.html",
+      "https://support.huaweicloud.com/intl/en-us/usermanual-dds/dds_01_0061.html"
     ],
     "security_notes": "Database deletion without CBR backup is permanently destructive. GaussDB for Oracle PL/SQL gaps can break migration — test all procedures before cutover. Failover testing must be coordinated with application teams.",
-    "last_verified": "2026-05-08",
+    "last_verified": "2026-11-08",
     "path": "skills/huawei/huawei-gaussdb-rds-dba",
     "author": "github: VincentChuWaiChow",
-    "version": "0.1.0"
+    "version": "0.1.1"
+  },
+  {
+    "id": "huawei-geminidb-architect",
+    "name": "Huawei GeminiDB Architect",
+    "type": "skill",
+    "provider": "huawei",
+    "harnesses": [
+      "codex",
+      "claude-code",
+      "cursor",
+      "gemini",
+      "kiro",
+      "other"
+    ],
+    "summary": "Design and review Huawei Cloud GeminiDB API selection (including the end-of-support Mongo API), GeminiDB Cassandra API partition-key, row-size, deletion and sharding rules, consistency, capacity headroom, IAM and billing, with a provenance ledger per claim.",
+    "source_type": "original",
+    "official_docs": [
+      "https://support.huaweicloud.com/intl/en-us/productdesc-nosql/nosql_introduction.html",
+      "https://support.huaweicloud.com/intl/en-us/cassandraug-nosql/nosql_11_0205.html",
+      "https://support.huaweicloud.com/intl/en-us/productdesc-nosql/nosql_01_0100.html"
+    ],
+    "security_notes": "Read-only by default. Never approve instance, scaling, schema, bulk-delete, restore, migration, IAM or billing-mode changes without explicit target, blast radius, rollback and user approval; never request AK/SK or passwords.",
+    "last_verified": "2026-11-08",
+    "path": "skills/huawei/huawei-geminidb-architect",
+    "version": "0.1.0",
+    "author": "github: VincentChuWaiChow"
   },
   {
     "id": "huawei-iac-change-safety-review",

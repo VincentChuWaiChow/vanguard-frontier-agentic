@@ -1276,6 +1276,33 @@
       ]
     },
     {
+      "id": "alibaba-tablestore-architect",
+      "path": "skills/alibaba/alibaba-tablestore-architect",
+      "aggregate_sha256": "6643329866392d5a5767a868978fdd38a3a757b166f5414d9cc54ab70ca1e93b",
+      "files": [
+        {
+          "path": "skills/alibaba/alibaba-tablestore-architect/SKILL.md",
+          "sha256": "235b86d4c517b97590015cf73c8feac76adc38f9958cecce9b85b153c508c71d",
+          "bytes": 3333
+        },
+        {
+          "path": "skills/alibaba/alibaba-tablestore-architect/metadata.json",
+          "sha256": "dc44ab20fd5b20915f8fc9384bcc91cb83fbf470e88fee77a0aae2655b411608",
+          "bytes": 1495
+        },
+        {
+          "path": "skills/alibaba/alibaba-tablestore-architect/references/evidence-ledger.md",
+          "sha256": "4d332ef9d69ac83d32ede6002fef376971cae9b27c169a966c35d56f0729c3ad",
+          "bytes": 7045
+        },
+        {
+          "path": "skills/alibaba/alibaba-tablestore-architect/references/tablestore-design-guide.md",
+          "sha256": "9548c32a0369302818e983953ffa697b05de76101146b9af3a82d494ecd6dfcd",
+          "bytes": 6752
+        }
+      ]
+    },
+    {
       "id": "alibaba-ticket-triage-escalation-coordinator",
       "path": "skills/alibaba/alibaba-ticket-triage-escalation-coordinator",
       "aggregate_sha256": "e12ef5242971a1c1c6ad08e4b79b50b5f8eb87addeec933aba1d813e7365a7d5",
@@ -2046,7 +2073,7 @@
     {
       "id": "aws-dynamodb-data-modeling-performance-review",
       "path": "skills/aws/aws-dynamodb-data-modeling-performance-review",
-      "aggregate_sha256": "d3dd9b3f1335df9e56517a121f5235216703d65e7a1d86e26bd4879e45fa43ab",
+      "aggregate_sha256": "0df497b244739cb0df34841fcf9fcac1fedae0e28f74a779a97ce8169cc57fa0",
       "files": [
         {
           "path": "skills/aws/aws-dynamodb-data-modeling-performance-review/SKILL.md",
@@ -2060,8 +2087,8 @@
         },
         {
           "path": "skills/aws/aws-dynamodb-data-modeling-performance-review/references/consistency-indexing-replication.md",
-          "sha256": "c14154900525291cd1109678cdce84ffcf7c6028411f25811bac4bd6d122e683",
-          "bytes": 6013
+          "sha256": "b52546a1d0c868350b22b7ff279642d80d12b8ddb5c9f69d7a37d6adcc6b0d22",
+          "bytes": 6104
         },
         {
           "path": "skills/aws/aws-dynamodb-data-modeling-performance-review/references/dynamodb-access-patterns-capacity.md",
@@ -2070,8 +2097,8 @@
         },
         {
           "path": "skills/aws/aws-dynamodb-data-modeling-performance-review/references/evidence-ledger.md",
-          "sha256": "48fbbb263d45285fcdb295f291b6dafae23729bc6afaf39ac647ba8b95d651ef",
-          "bytes": 8826
+          "sha256": "92a1d0573e5033e7f56a72e84dd0e963a775de7c02b766588c4e4051a7fa4b34",
+          "bytes": 9094
         },
         {
           "path": "skills/aws/aws-dynamodb-data-modeling-performance-review/references/official-sources.md",
@@ -3477,12 +3504,12 @@
     {
       "id": "azure-cosmosdb-application-developer",
       "path": "skills/azure/azure-cosmosdb-application-developer",
-      "aggregate_sha256": "e48d6dd65fb9a701977de9d4bc8da0dbfeec0c97128a1286b4e733efe99110ec",
+      "aggregate_sha256": "b6e5477e1ba8f058104dd601450bcfdb4ed011b4a57f5153eeda7a89042ce7d3",
       "files": [
         {
           "path": "skills/azure/azure-cosmosdb-application-developer/SKILL.md",
-          "sha256": "c641c8bcd449d4fbb7e29d5f4523fb9f2790d2b3591933a567a08c3debdffb0f",
-          "bytes": 3382
+          "sha256": "6626432274a96c7a829cd5cc26d2356200bc683249ba6ccb952695c924d9617d",
+          "bytes": 3456
         },
         {
           "path": "skills/azure/azure-cosmosdb-application-developer/metadata.json",
@@ -8552,6 +8579,33 @@
       ]
     },
     {
+      "id": "gcp-bigtable-architect",
+      "path": "skills/gcp/gcp-bigtable-architect",
+      "aggregate_sha256": "7dba51f649b3c546c7390d63994a63a1728c4e927a0edad74aeb89c30fa361ff",
+      "files": [
+        {
+          "path": "skills/gcp/gcp-bigtable-architect/SKILL.md",
+          "sha256": "b8b63227905d6780ef4b19bb771433e67c0550d5f7da3f9c99315d146980e2d6",
+          "bytes": 3193
+        },
+        {
+          "path": "skills/gcp/gcp-bigtable-architect/metadata.json",
+          "sha256": "3b7566d88601f7d6cf75a14f4b208c07f0e9a660a2500e6d3d0e00d0b877a5b7",
+          "bytes": 1276
+        },
+        {
+          "path": "skills/gcp/gcp-bigtable-architect/references/bigtable-design-guide.md",
+          "sha256": "f381b93f8946b98784f20e7ae4d76bdbb903d725fbd88d3c4d03aef42fd9f989",
+          "bytes": 6666
+        },
+        {
+          "path": "skills/gcp/gcp-bigtable-architect/references/evidence-ledger.md",
+          "sha256": "7dfc98428cff8737b509c21548c7a0400a54d99ceb83102db820fe911512b0c2",
+          "bytes": 6396
+        }
+      ]
+    },
+    {
       "id": "gcp-certificate-manager-issuer-review",
       "path": "skills/gcp/gcp-certificate-manager-issuer-review",
       "aggregate_sha256": "7d3707d3160680e2f135ddf2f8ab8a3781a739e8f7ab7c4bd7a4461d37b9b437",
@@ -8868,17 +8922,27 @@
     {
       "id": "gcp-firebase-developer",
       "path": "skills/gcp/gcp-firebase-developer",
-      "aggregate_sha256": "39cb615d05e7c93336ae46ee3174f410d841e2074ee17c4a2725e70f3fec66c0",
+      "aggregate_sha256": "d03ebbab702cae210fac15a4d48a91d060d725cf29e5fe0be6e6fd67cac959a6",
       "files": [
         {
           "path": "skills/gcp/gcp-firebase-developer/SKILL.md",
-          "sha256": "f104695f59a25472b11a7aaafbe5e930f8f7846bc296f150757657023693c033",
-          "bytes": 3988
+          "sha256": "db6fc845b1e115536f8ad45f303b0c3eff166e6685cbf7b02d478c53d24a0eab",
+          "bytes": 4123
         },
         {
           "path": "skills/gcp/gcp-firebase-developer/metadata.json",
-          "sha256": "afa1c98940da1b29767bb62f8f2139ea3dfb11b48a2314f135ea0bed3315f230",
-          "bytes": 1197
+          "sha256": "566c63abdc5b76d61b5db7b5ed59e96533f53b2f0123de8983b7e289ed59a327",
+          "bytes": 1419
+        },
+        {
+          "path": "skills/gcp/gcp-firebase-developer/references/evidence-ledger.md",
+          "sha256": "e4e0be893c7de12e23a113530dd67c0255b2a95af001c931e0cbee5d6b0ac69b",
+          "bytes": 5694
+        },
+        {
+          "path": "skills/gcp/gcp-firebase-developer/references/firestore.md",
+          "sha256": "7e6f8906ba9bda692eec6152150f4f81d5ce6a03823c1be20359a062b84ae7fc",
+          "bytes": 4756
         }
       ]
     },
@@ -10471,17 +10535,22 @@
     {
       "id": "huawei-gaussdb-rds-dba",
       "path": "skills/huawei/huawei-gaussdb-rds-dba",
-      "aggregate_sha256": "7f95a36611937e9320d3d7e9665e6d93e0bf798ef6ef1c8b7de493db0928fd6f",
+      "aggregate_sha256": "41f8d321c1cf008f3857bfb3f909750767b70eb7cc4326552e64423643bb6af3",
       "files": [
         {
           "path": "skills/huawei/huawei-gaussdb-rds-dba/SKILL.md",
-          "sha256": "2e58b09f40bec8d295a96ebcc6570e0cb9a96f3c33a63f08d3d9c5cb44a3507c",
-          "bytes": 4006
+          "sha256": "99d89a0720dc82110fc663dae497af17844b64f3516e88f86cd1a82a377e7121",
+          "bytes": 4510
         },
         {
           "path": "skills/huawei/huawei-gaussdb-rds-dba/metadata.json",
-          "sha256": "1196d20498437ab27c41d0ad60105aa9a89c8e573f8218d54da85a384dfd40da",
-          "bytes": 1016
+          "sha256": "07a8ba3963dc6db387b7e641d6ddd8b7bb2334c001ab0bc6f11e668e6bf4e100",
+          "bytes": 1126
+        },
+        {
+          "path": "skills/huawei/huawei-gaussdb-rds-dba/references/evidence-ledger.md",
+          "sha256": "53374717b10eab45b2e72ab8240e4ed20468531f2cf23a1770b4c75a3f1ba5b5",
+          "bytes": 1494
         },
         {
           "path": "skills/huawei/huawei-gaussdb-rds-dba/references/official-sources.md",
@@ -10492,6 +10561,33 @@
           "path": "skills/huawei/huawei-gaussdb-rds-dba/references/workflow-and-output.md",
           "sha256": "f4da8c5c989416c81d3ad02fdfaddf614aae57190b06bd2d3b4316b89d849441",
           "bytes": 1599
+        }
+      ]
+    },
+    {
+      "id": "huawei-geminidb-architect",
+      "path": "skills/huawei/huawei-geminidb-architect",
+      "aggregate_sha256": "7b5b9c2e0f52adb3411bb2ef2d1e346a42b35cd89f397a03673cf3069f869ddb",
+      "files": [
+        {
+          "path": "skills/huawei/huawei-geminidb-architect/SKILL.md",
+          "sha256": "e45a173e0a7b7ed739ac78ff4cce86e639308bbe3e8bcf97ab1097d7683dc5fe",
+          "bytes": 3102
+        },
+        {
+          "path": "skills/huawei/huawei-geminidb-architect/metadata.json",
+          "sha256": "0ab4e68bb41ce3296818d3e87fe77ad193e7511a2c146e8801e8c62ab7b3a7fc",
+          "bytes": 1219
+        },
+        {
+          "path": "skills/huawei/huawei-geminidb-architect/references/evidence-ledger.md",
+          "sha256": "22955737cb89a04151d4ab0e8c247ee404b74769f9f7969f17ec4b0b0b3a4d13",
+          "bytes": 4804
+        },
+        {
+          "path": "skills/huawei/huawei-geminidb-architect/references/geminidb-design-guide.md",
+          "sha256": "d65c305eb2f49e113f1aae49cc531f654d6710ca55d0760e1a6bd04582437c2a",
+          "bytes": 5036
         }
       ]
     },
@@ -17153,12 +17249,12 @@
     {
       "id": "oci-nosql-database-architect",
       "path": "skills/oci/oci-nosql-database-architect",
-      "aggregate_sha256": "eb25bb90f70dbebe45cab7a10403634a546f799887922ca2f0f88436716c26a8",
+      "aggregate_sha256": "189a6d45a8df9737937a6cfdd5d33034c885722658b06a4a14df854e3ee74377",
       "files": [
         {
           "path": "skills/oci/oci-nosql-database-architect/SKILL.md",
-          "sha256": "94d33f952e10ff2a3c1f0024020c6e4f2182a62b57833eb244fe3091b8f8f1e6",
-          "bytes": 3588
+          "sha256": "c4d760b2ad6298c970ee99ccc8dcef1ce7dda93e186be4f51c54efb8c033bf43",
+          "bytes": 3598
         },
         {
           "path": "skills/oci/oci-nosql-database-architect/metadata.json",
@@ -17167,18 +17263,18 @@
         },
         {
           "path": "skills/oci/oci-nosql-database-architect/references/evidence-ledger.md",
-          "sha256": "d5a7b56b66514eae283c42a3c266a32c9cf3cab4fd8b75416ba7cb7851ec0514",
-          "bytes": 12384
+          "sha256": "45c741cf051bb788e8039991313296f2f3cd6dadd29ca20aa2e5021423fd6ee2",
+          "bytes": 12962
         },
         {
           "path": "skills/oci/oci-nosql-database-architect/references/nosql-design-guide.md",
-          "sha256": "fd2cd02d486829e6990626f1f878bca54c81760a06debf5a3daf991050ed3eef",
-          "bytes": 11337
+          "sha256": "561a7c189fb4a5c9ffa658642bd0de51100ccb4fdef95f42d1a6de958945e64d",
+          "bytes": 11377
         },
         {
           "path": "skills/oci/oci-nosql-database-architect/references/sdk-matrix.md",
-          "sha256": "70ef80a2609cf11d64fc4339f809b540371cb99c4de901a5852503f995f07471",
-          "bytes": 2721
+          "sha256": "34557e6b13f91420947a58a9889bc75f6a6d0469102f48c67215c23998acbe6e",
+          "bytes": 3005
         }
       ]
     },

@@ -24,7 +24,7 @@ scope, consistency choice and replication rules will hold in production.
 - Provisioned vs on-demand capacity, read/write unit estimates, hot shards
 - TTL, Global Active tables (multi-region active-active), conflict handling
 - `nosql-rows` / `nosql-indexes` IAM policy review
-- Application code against the Oracle NoSQL SDKs (Java, Python, Node.js)
+- Application code against the Oracle NoSQL SDKs (Java, Python, Node.js, Go, .NET)
 
 Out of scope: Autonomous Database, Oracle Database JSON or SODA, and other
 clouds' NoSQL services. Route those to their own specialists. Never transfer
@@ -37,7 +37,7 @@ DynamoDB or Cosmos DB guarantees to NDCS.
   `unverified`. Documentation never proves the user's live tenancy state.
 - If a needed fact is marked UNVERIFIED or CONFLICT in the ledger (private
   networking, CMK, pricing, quota increases, hosted-environment totals,
-  non-Java/Python/Node SDK details), say so. Use a web-fetch tool on the
+  Spring Data and Rust SDK details), say so. Use a web-fetch tool on the
   official Oracle page only if the harness grants one; otherwise ask the user
   for the official page or label the point unverified. Never fill the gap from
   memory.

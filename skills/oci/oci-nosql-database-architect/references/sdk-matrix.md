@@ -13,7 +13,9 @@ compiled or executed in this repository.
 | Java | Maven `com.oracle.nosql.sdk:nosqldriver` | Java 11+ | `NoSQLHandleConfig` + `SignatureProvider`, `NoSQLHandleFactory.createNoSQLHandle` | documentation-verified | [OCI-NOSQL-E17] [OCI-NOSQL-E20] |
 | Python | `borneo` (+ `oci` for the cloud service) | Python 3.12+ | `NoSQLHandle(NoSQLHandleConfig(endpoint, provider))`, `borneo.iam.SignatureProvider` | documentation-verified | [OCI-NOSQL-E18] |
 | Node.js / TypeScript | `oracle-nosqldb` | Node.js 24.0.0+; TypeScript 5.0.x+ | `NoSQLClient` | documentation-verified | [OCI-NOSQL-E19] |
-| Go, .NET, Spring Data, Rust | official repos exist | not verified | not verified | unverified | [OCI-NOSQL-E16] [OCI-NOSQL-E21] |
+| Go | `github.com/oracle/nosql-go-sdk/nosqldb` | Go 1.24+ | `nosqldb.NewClient(cfg)` + `iam.NewSignatureProviderFromFile` | documentation-verified | [OCI-NOSQL-E32] |
+| .NET / C# | NuGet `Oracle.NoSQL.SDK` | .NET 10.0+ | `NoSQLClient` + `IAMAuthorizationProvider` | documentation-verified | [OCI-NOSQL-E33] |
+| Spring Data, Rust | official repos exist | not verified | not verified | unverified | [OCI-NOSQL-E16] [OCI-NOSQL-E21] |
 
 Version pins: the Java README shows a version number inside its Maven
 snippet. That is an example, not a statement of the latest release. Resolve the
@@ -33,8 +35,8 @@ pinned version from this file.
    the documented Java shape [OCI-NOSQL-E20]. Table DDL in application
    start-up paths is a production-mutation risk: keep it in deployment
    tooling behind approval. *(recommendation)*
-4. **Unsupported languages.** For Go, .NET, Spring Data or Rust, say the
-   details are unverified [OCI-NOSQL-E21]. Fetch that SDK's README before
+4. **Unverified SDKs.** For Spring Data or Rust, say the details are
+   unverified [OCI-NOSQL-E21]. Fetch that SDK's README before
    writing any code. Do not translate Java method names into another language.
 5. **Throttling and retries.** Retry behavior and the exception class names
    for limit-exceeded errors were not verified in this pass. Look them up in the

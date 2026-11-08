@@ -34,16 +34,16 @@
   "trees": [
     {
       "tree": "agents",
-      "aggregate_sha256": "5892fa2e7df7d4046e76e28007b3452fb61479e27ece4bde1f99f1925af1f1ad",
+      "aggregate_sha256": "2a75840ab61da6ec50d8bdbaab94cf71e75b2f1ccb687212cdc06f1121c63c6c",
       "files": [
         {
           "path": "agents/AGENTS.md",
-          "sha256": "966d1beec5a87ce2a39295a3ed17c16b1e05a8d8cc2233a4a8e7a8c1daead7f0",
+          "sha256": "5e0e3c02ed6b39bcec0e0a12f042050a016e691d29929952df0d92b33cbd018b",
           "bytes": 28065
         },
         {
           "path": "agents/README.md",
-          "sha256": "6ab0c79abd2484691d8e381872b3091d218f9ec0d0d3859d0d69cb454b2eddf4",
+          "sha256": "d06742f2b5ec306207d491d205170dc2e89ce815d756b913557d3efb85438f7d",
           "bytes": 10047
         },
         {
@@ -2550,6 +2550,51 @@
           "path": "agents/alibaba/alibaba-support-incident-coordinator-agent/metadata.json",
           "sha256": "b5da1515cd1ae6873e4f6a5ba65e8145f104579bd005664177dfefd000f33970",
           "bytes": 2167
+        },
+        {
+          "path": "agents/alibaba/alibaba-tablestore-architect-agent/AGENT.md",
+          "sha256": "bad59c85f6dedd7ed77d421a9d5ff821217e3bd00ba803eb83984a1536ef6ea8",
+          "bytes": 3105
+        },
+        {
+          "path": "agents/alibaba/alibaba-tablestore-architect-agent/harnesses/claude-code.agent.md",
+          "sha256": "fec61d14b408e67bff15d31f5fb6492f1dbbdd487777e54fbfabc60910de844e",
+          "bytes": 2519
+        },
+        {
+          "path": "agents/alibaba/alibaba-tablestore-architect-agent/harnesses/codex.toml",
+          "sha256": "ee5106b88cb642e6d52fc861af59896e41c59f2e72679ae9e62af5ce7e38b7e3",
+          "bytes": 1474
+        },
+        {
+          "path": "agents/alibaba/alibaba-tablestore-architect-agent/harnesses/copilot.agent.md",
+          "sha256": "ea3427f0e9c42cd9e6190d9f380861526ffbb7ef17998dbf0d27efef603789ad",
+          "bytes": 2625
+        },
+        {
+          "path": "agents/alibaba/alibaba-tablestore-architect-agent/harnesses/cursor.agent.md",
+          "sha256": "9a2332eeed51eb76a2cf17bd05a9216833da98a8a6d72e0193a88d1e877a70ff",
+          "bytes": 2534
+        },
+        {
+          "path": "agents/alibaba/alibaba-tablestore-architect-agent/harnesses/gemini.agent.md",
+          "sha256": "3f5e7ded43657dcbdc1b4b23175c34a28659236f8c07adbc05bb8f76a824e5c7",
+          "bytes": 2584
+        },
+        {
+          "path": "agents/alibaba/alibaba-tablestore-architect-agent/harnesses/kiro-cli.agent.json",
+          "sha256": "fc19ff66f379a253df25f0c769c54c47964c2ae5fe0bcfb1c2e56f1d06a28e1d",
+          "bytes": 2569
+        },
+        {
+          "path": "agents/alibaba/alibaba-tablestore-architect-agent/harnesses/kiro-ide.agent.md",
+          "sha256": "fec61d14b408e67bff15d31f5fb6492f1dbbdd487777e54fbfabc60910de844e",
+          "bytes": 2519
+        },
+        {
+          "path": "agents/alibaba/alibaba-tablestore-architect-agent/metadata.json",
+          "sha256": "5b7efd83d4ed8f18141008d344d3fdfa89d7089fc5a8cf762db7f2434de8086e",
+          "bytes": 1971
         },
         {
           "path": "agents/alibaba/alibaba-ticket-triage-escalation-coordinator-agent/AGENT.md",
@@ -12127,6 +12172,51 @@
           "bytes": 1953
         },
         {
+          "path": "agents/gcp/gcp-bigtable-architect-agent/AGENT.md",
+          "sha256": "ebc655b953bc99c11ff76d2aa84af1ff2601ffda130697b3d28bff96a364baa9",
+          "bytes": 2974
+        },
+        {
+          "path": "agents/gcp/gcp-bigtable-architect-agent/harnesses/claude-code.agent.md",
+          "sha256": "742afd8479883ae75a4bea2a0328eeca34f9194e011d68bf702083ff03ea4344",
+          "bytes": 2388
+        },
+        {
+          "path": "agents/gcp/gcp-bigtable-architect-agent/harnesses/codex.toml",
+          "sha256": "0bd5d949dcdcf037194c1c9a0d1878ee3a04d67cd976a8236c691b8cd1319704",
+          "bytes": 1402
+        },
+        {
+          "path": "agents/gcp/gcp-bigtable-architect-agent/harnesses/copilot.agent.md",
+          "sha256": "f6fcd507e79257f126bbb4c66c3a2377e20dc0f1925c80e93169f96ca47366f3",
+          "bytes": 2494
+        },
+        {
+          "path": "agents/gcp/gcp-bigtable-architect-agent/harnesses/cursor.agent.md",
+          "sha256": "ef1d669214c5029baf6d69fbdba4b36fb702ed5dbfc59cdb8b29609ae4b5031d",
+          "bytes": 2403
+        },
+        {
+          "path": "agents/gcp/gcp-bigtable-architect-agent/harnesses/gemini.agent.md",
+          "sha256": "ca37b316acf937df6b4aa96c4e22a02c6751a20941d4b81139ff31ef899e9986",
+          "bytes": 2447
+        },
+        {
+          "path": "agents/gcp/gcp-bigtable-architect-agent/harnesses/kiro-cli.agent.json",
+          "sha256": "f487b1178ee03a6c37ffc36099899cc5dcf554d766c7e0da849e1787bdfabe9e",
+          "bytes": 2438
+        },
+        {
+          "path": "agents/gcp/gcp-bigtable-architect-agent/harnesses/kiro-ide.agent.md",
+          "sha256": "742afd8479883ae75a4bea2a0328eeca34f9194e011d68bf702083ff03ea4344",
+          "bytes": 2388
+        },
+        {
+          "path": "agents/gcp/gcp-bigtable-architect-agent/metadata.json",
+          "sha256": "e80a93bdeed9a613e944003d06805a4a10e0ac3cd6c0744a687f362595a28ee7",
+          "bytes": 1775
+        },
+        {
           "path": "agents/gcp/gcp-certificate-manager-issuer-review-agent/AGENT.md",
           "sha256": "88cd36764784c7062bc31d3f17e1c700f6cf221747801f346dd1f17a610ba0c8",
           "bytes": 2953
@@ -15865,6 +15955,51 @@
           "path": "agents/huawei/huawei-gaussdb-rds-dba-agent/metadata.json",
           "sha256": "694d48a92f6a7e491363cedd547e90b3dbed3c090b7ad0120b465bc17bb74627",
           "bytes": 1683
+        },
+        {
+          "path": "agents/huawei/huawei-geminidb-architect-agent/AGENT.md",
+          "sha256": "0a1a1fc740a5ae0944c62b960d0ab032e9a27ad198a81d8a60a2e90ddc39b8aa",
+          "bytes": 3100
+        },
+        {
+          "path": "agents/huawei/huawei-geminidb-architect-agent/harnesses/claude-code.agent.md",
+          "sha256": "9d6f3da21955ecf5e855ccbe5e727faecb0a20da01d89d1e9a627eb7c206bab1",
+          "bytes": 2514
+        },
+        {
+          "path": "agents/huawei/huawei-geminidb-architect-agent/harnesses/codex.toml",
+          "sha256": "59d1cfa5b585ed597d9d4cabca8d618ea289238d1265a7b0d18f4793665ab391",
+          "bytes": 1428
+        },
+        {
+          "path": "agents/huawei/huawei-geminidb-architect-agent/harnesses/copilot.agent.md",
+          "sha256": "93390f8ffe11b90a3fc5ecca9a9b00cdbe34c64de005bf26def1e67aef5cc540",
+          "bytes": 2620
+        },
+        {
+          "path": "agents/huawei/huawei-geminidb-architect-agent/harnesses/cursor.agent.md",
+          "sha256": "4e62c0d4e9c9e468b86ae5c53c630ec516d6b51d6e00dc6f17366d9220fa6e41",
+          "bytes": 2529
+        },
+        {
+          "path": "agents/huawei/huawei-geminidb-architect-agent/harnesses/gemini.agent.md",
+          "sha256": "9d8a1858f570afd23df2d20e39a1aeda921fb6780829efeb4fb94fd5efff6123",
+          "bytes": 2576
+        },
+        {
+          "path": "agents/huawei/huawei-geminidb-architect-agent/harnesses/kiro-cli.agent.json",
+          "sha256": "1467adf06bdee44071bb008eb10658ae925a45dedd8272117e533ed275391bd0",
+          "bytes": 2564
+        },
+        {
+          "path": "agents/huawei/huawei-geminidb-architect-agent/harnesses/kiro-ide.agent.md",
+          "sha256": "9d6f3da21955ecf5e855ccbe5e727faecb0a20da01d89d1e9a627eb7c206bab1",
+          "bytes": 2514
+        },
+        {
+          "path": "agents/huawei/huawei-geminidb-architect-agent/metadata.json",
+          "sha256": "70f5ff59be7571e57f9b2b553ce24e9ab462ce9c452f73158ae96f2d0f971fd1",
+          "bytes": 1814
         },
         {
           "path": "agents/huawei/huawei-iac-change-safety-review-agent/AGENT.md",
@@ -36029,7 +36164,7 @@
     },
     {
       "tree": "catalog",
-      "aggregate_sha256": "4b085ce8a883d93648f3f59100cb353f2f07cf3684ce0b52239138d9beabebc7",
+      "aggregate_sha256": "01b727aee575c94fc97c3b7bdcd7fd47e9016d7c917d8715d0e8d4fb43c92f0a",
       "files": [
         {
           "path": "catalog/AGENTS.md",
@@ -36038,8 +36173,8 @@
         },
         {
           "path": "catalog/agents.json",
-          "sha256": "cf0ee342c3a129e3e0daed8a866cb583c119265b074095c078c2f49178bc3e2c",
-          "bytes": 1280869
+          "sha256": "7222dfe7340305f9abdbf7af62787625719d2a850090a56d0634217631beb3b3",
+          "bytes": 1284494
         },
         {
           "path": "catalog/index.json",
@@ -36048,8 +36183,8 @@
         },
         {
           "path": "catalog/install-roles.json",
-          "sha256": "4050c7f69523e29832459e06441bc87f3a50ebda3ebcca86ce288aecdc7b851c",
-          "bytes": 129093
+          "sha256": "725b7b980a83c9a98087a16921bc2f7b79660f47c7843c7c70bc6f332ebbb22a",
+          "bytes": 129333
         },
         {
           "path": "catalog/mcp-references.json",
@@ -36058,8 +36193,8 @@
         },
         {
           "path": "catalog/model-assignments.json",
-          "sha256": "f3ff795aa426f0a523a7ee7ac002264db357cefa99a1b5d7337e2b98b7c6b300",
-          "bytes": 705393
+          "sha256": "d5a2bb35e2e1e2352974fc8051c1a4f3a9c6349fb2802700b4486cb3cc284d11",
+          "bytes": 708183
         },
         {
           "path": "catalog/model-policy.json",
@@ -36083,13 +36218,13 @@
         },
         {
           "path": "catalog/skill-manifest.json",
-          "sha256": "68db3bc5f9b84379d5e8c3c1ef6d3ab0c8f093ebc4ac1854d5c4b4bbbfa87230",
-          "bytes": 1099403
+          "sha256": "15759fde4f6c50df3d0093ba9c83e02e30636e15f6dc1fa1721de478beb32846",
+          "bytes": 1103328
         },
         {
           "path": "catalog/skills.json",
-          "sha256": "14fbcc30e5d4c09f5eaf4c33c1d405004532c55afd8f9f5c2de52488fa0b991f",
-          "bytes": 1249102
+          "sha256": "35492e9720c90bdd4be9efb130df07ae2f77dcabc06b1f91c42a6988f057f082",
+          "bytes": 1253543
         },
         {
           "path": "catalog/workflows.json",
@@ -36971,7 +37106,7 @@
     },
     {
       "tree": "powers",
-      "aggregate_sha256": "4cfbedc7ecc71dc3efeadeca7705b5c5942b1d8dd39e4ee998c4ebec0e1ef5c6",
+      "aggregate_sha256": "2929694c343182d3132bd62d397e8617a140483378b1876b436f34c3cff08ab4",
       "files": [
         {
           "path": "powers/README.md",
@@ -36985,7 +37120,7 @@
         },
         {
           "path": "powers/vanguard-alibaba/POWER.md",
-          "sha256": "9e283e2f13444944843ed3a8e7ed0319d81232108a114ab30a1107247f665dc4",
+          "sha256": "4f422aeb22b71d4cda817fddc81ae41afabb7f94ae875e9b9b9b8de06af82695",
           "bytes": 3421
         },
         {
@@ -37055,7 +37190,7 @@
         },
         {
           "path": "powers/vanguard-gcp/POWER.md",
-          "sha256": "0fe89edd9f98061672d4c9aa58e8b1791e1c3eba746a6910ca64f1f865651073",
+          "sha256": "a051ff0c86ed9887e447427d452e822a3b66a97221e602ba4723f5711aebbf37",
           "bytes": 3147
         },
         {
@@ -37075,7 +37210,7 @@
         },
         {
           "path": "powers/vanguard-huawei/POWER.md",
-          "sha256": "766cd2b48c4c113b35e2fe0eecf95eca754e33d5c13f611847aa3e763decd6bf",
+          "sha256": "2e900df29e0a996cd91876197a14da263e91a0bfbe7b8fba2970a7f08fcaa99f",
           "bytes": 3360
         },
         {
@@ -37253,7 +37388,7 @@
     },
     {
       "tree": ".claude-plugin",
-      "aggregate_sha256": "efc1ff87c42379e5e038616133da3a0f7e0429c7713019936c6c1a4aa3eea4a3",
+      "aggregate_sha256": "8bca38cc132752f235f082e4322c47bc899ee8a4a48fe1846075af0564b35969",
       "files": [
         {
           "path": ".claude-plugin/README.md",
@@ -37262,19 +37397,19 @@
         },
         {
           "path": ".claude-plugin/marketplace.json",
-          "sha256": "917ca1f28bb0931e44b09d620a3ceacae45bea1d2674c7bdc407b1d27b554298",
+          "sha256": "6def7c41c84f78dc5dd334ac356684082cf037a8be13dc93d3d42a344c7f3d47",
           "bytes": 855
         },
         {
           "path": ".claude-plugin/plugin.json",
-          "sha256": "2e1f50e67f4ec4aa45d185fded1c2b2b4ef799949788ef62027246e78626659d",
-          "bytes": 68271
+          "sha256": "2b76d49d24a77f8b163a0057712ba94647e478a9530870fe0781613b438a2e90",
+          "bytes": 68527
         }
       ]
     },
     {
       "tree": ".cursor-plugin",
-      "aggregate_sha256": "a055807c9a1588c450fac1d8f8dcb2334f3cff0b6e891cabf91f31939caec8a2",
+      "aggregate_sha256": "87e3a7a3a6933f43a5b42a1cf9f2f3d5169a18b28a5e7f583ea3296741f09564",
       "files": [
         {
           "path": ".cursor-plugin/README.md",
@@ -37283,8 +37418,8 @@
         },
         {
           "path": ".cursor-plugin/plugin.json",
-          "sha256": "db6828478124169b9e6af0b1a77fb599cb4a422e124ec5b9add6ce41edc63833",
-          "bytes": 64552
+          "sha256": "aa519f05b967a1c8804fc7d60764e1bc9a056c83c11b4d751ab85402d2cddf6f",
+          "bytes": 64793
         }
       ]
     },
@@ -37322,7 +37457,7 @@
     },
     {
       "tree": "tests",
-      "aggregate_sha256": "121a1b249d920269037d42aeb8008b682576d82e625fed4794e88e3d633daf5f",
+      "aggregate_sha256": "a68d2464ba9776947fc2fa555d19184fdfd1c4ceec2cb1677eba9c8051ae8f8a",
       "files": [
         {
           "path": "tests/AGENTS.md",
@@ -37331,8 +37466,8 @@
         },
         {
           "path": "tests/_generate_maestro_routing_fixtures.py",
-          "sha256": "4f818482c6d5e747a222b230f88ad3d825bfed6b7026d4a51181b78fca51d557",
-          "bytes": 41295
+          "sha256": "935f4eca75a990054de604762a02f2ebfee66927a18ea677acf74614663abbf4",
+          "bytes": 41633
         },
         {
           "path": "tests/agentic-board-suite/_build_fixtures.py",
@@ -38361,7 +38496,7 @@
         },
         {
           "path": "tests/fixtures/README.md",
-          "sha256": "9965cbb32e6ffcc96cbe44907c923ade8ea04287698866efd3a7e3eac3ece589",
+          "sha256": "c7731b13d5a5500b034240839a23433b7847aa095162834a10d8c599dca2d485",
           "bytes": 3698
         },
         {
@@ -38780,6 +38915,11 @@
           "bytes": 81
         },
         {
+          "path": "tests/fixtures/alibaba-maestro-routing/expected/050-happy-tablestore-partition-key.json",
+          "sha256": "c683be5ee050856fb6caebfcd41b20c4b22623ad88f8fc779fa81432b8abfe9e",
+          "bytes": 82
+        },
+        {
           "path": "tests/fixtures/alibaba-maestro-routing/expected/adv-ambiguous.json",
           "sha256": "93d7b7768c78f4f08a3d2d77a98110ba46316d589148f9778281b17d8bb9974e",
           "bytes": 44
@@ -38828,6 +38968,11 @@
           "path": "tests/fixtures/alibaba-maestro-routing/expected/adv-secrets-bait.json",
           "sha256": "f7d0bdf5e09b1ba26777051d37c24f90f149a6df73285ca7a3b0d63d6ea03141",
           "bytes": 196
+        },
+        {
+          "path": "tests/fixtures/alibaba-maestro-routing/expected/adv-tablestore-not-polardb.json",
+          "sha256": "682c544f145d5f4fb418243180706ca0805ac9e8796bdf90a242ac2e93ef722d",
+          "bytes": 77
         },
         {
           "path": "tests/fixtures/alibaba-maestro-routing/inputs/001-happy-ack-container-platform-operator.json",
@@ -39010,6 +39155,11 @@
           "bytes": 147
         },
         {
+          "path": "tests/fixtures/alibaba-maestro-routing/inputs/050-happy-tablestore-partition-key.json",
+          "sha256": "4c607b0c268bbe6b351599f9006db47fc14399de375f0f19dfaeb65cd4cd8a1c",
+          "bytes": 175
+        },
+        {
           "path": "tests/fixtures/alibaba-maestro-routing/inputs/adv-ambiguous.json",
           "sha256": "719b82ca90bbc8d2f22dbfe237a98cd4e0cd50056835f5c65ca03aa21947c177",
           "bytes": 113
@@ -39060,9 +39210,14 @@
           "bytes": 179
         },
         {
+          "path": "tests/fixtures/alibaba-maestro-routing/inputs/adv-tablestore-not-polardb.json",
+          "sha256": "fe4e715ac640152eb7203ba1f6b695e9cd599cde49f85f5c775e47ada907637d",
+          "bytes": 181
+        },
+        {
           "path": "tests/fixtures/alibaba-maestro-routing/taxonomy.json",
-          "sha256": "c093d48c2a989fe42e70c68bf92dad3db96e79485f58cd72f971786d4c422eb6",
-          "bytes": 11430
+          "sha256": "702b6b59d505a80279721b340d79347907d5ce27cb5fad6fa02305f1f2bd63f9",
+          "bytes": 11726
         },
         {
           "path": "tests/fixtures/aws-maestro-routing/expected/001-happy-agentcore.json",
@@ -42365,9 +42520,19 @@
           "bytes": 78
         },
         {
+          "path": "tests/fixtures/gcp-maestro-routing/expected/049-happy-bigtable-row-key.json",
+          "sha256": "174b92ad6ccdf7a18396d926f152635c5d880bcf1ff1c0d595674eb202bc75eb",
+          "bytes": 76
+        },
+        {
           "path": "tests/fixtures/gcp-maestro-routing/expected/adv-ambiguous.json",
           "sha256": "93d7b7768c78f4f08a3d2d77a98110ba46316d589148f9778281b17d8bb9974e",
           "bytes": 44
+        },
+        {
+          "path": "tests/fixtures/gcp-maestro-routing/expected/adv-bigtable-not-firestore.json",
+          "sha256": "780fa40c9082c97e88e05494c20277ce07cef06e9207b58b39e71a45a545b5c4",
+          "bytes": 163
         },
         {
           "path": "tests/fixtures/gcp-maestro-routing/expected/adv-instruction-injection.json",
@@ -42660,9 +42825,19 @@
           "bytes": 247
         },
         {
+          "path": "tests/fixtures/gcp-maestro-routing/inputs/049-happy-bigtable-row-key.json",
+          "sha256": "35ec5ba6db5a0f0acda0d9cd081a0a3454d731c8f96a135c1306d356ef68cbbf",
+          "bytes": 168
+        },
+        {
           "path": "tests/fixtures/gcp-maestro-routing/inputs/adv-ambiguous.json",
           "sha256": "719b82ca90bbc8d2f22dbfe237a98cd4e0cd50056835f5c65ca03aa21947c177",
           "bytes": 113
+        },
+        {
+          "path": "tests/fixtures/gcp-maestro-routing/inputs/adv-bigtable-not-firestore.json",
+          "sha256": "7dfa433520bbda02a6cc5b299d412d7e8af0a940202a8b00e78dc468846e3ed2",
+          "bytes": 187
         },
         {
           "path": "tests/fixtures/gcp-maestro-routing/inputs/adv-instruction-injection.json",
@@ -42721,8 +42896,8 @@
         },
         {
           "path": "tests/fixtures/gcp-maestro-routing/taxonomy.json",
-          "sha256": "711bb81028bcab222386f7da60b2fa66a860c0321cb375a98e61433228e5ed1b",
-          "bytes": 13678
+          "sha256": "7550b5365a262a944433117507ca5b4833cef314e2fa7068919ce86f02e7393d",
+          "bytes": 14033
         },
         {
           "path": "tests/fixtures/hetzner-maestro-routing/expected/001-happy-capacity-planner.json",
@@ -43145,9 +43320,19 @@
           "bytes": 176
         },
         {
+          "path": "tests/fixtures/huawei-maestro-routing/expected/050-happy-geminidb-cassandra-partition.json",
+          "sha256": "08b22f774775740ea559c5080226c422f3bdfec4b3ff17d6cffe8dcd7714bb8b",
+          "bytes": 79
+        },
+        {
           "path": "tests/fixtures/huawei-maestro-routing/expected/adv-ambiguous.json",
           "sha256": "93d7b7768c78f4f08a3d2d77a98110ba46316d589148f9778281b17d8bb9974e",
           "bytes": 44
+        },
+        {
+          "path": "tests/fixtures/huawei-maestro-routing/expected/adv-geminidb-mongo-routes-dds.json",
+          "sha256": "d5ab76e2d27b8e5e3a6f0f85a44f06f0a784a66bff3db33ed6a222ef026d84f2",
+          "bytes": 125
         },
         {
           "path": "tests/fixtures/huawei-maestro-routing/expected/adv-instruction-injection.json",
@@ -43375,9 +43560,19 @@
           "bytes": 149
         },
         {
+          "path": "tests/fixtures/huawei-maestro-routing/inputs/050-happy-geminidb-cassandra-partition.json",
+          "sha256": "e4d635581d5fb85459c0d6183df083f6e170865f5747b9f7254dbd6966879a1c",
+          "bytes": 181
+        },
+        {
           "path": "tests/fixtures/huawei-maestro-routing/inputs/adv-ambiguous.json",
           "sha256": "719b82ca90bbc8d2f22dbfe237a98cd4e0cd50056835f5c65ca03aa21947c177",
           "bytes": 113
+        },
+        {
+          "path": "tests/fixtures/huawei-maestro-routing/inputs/adv-geminidb-mongo-routes-dds.json",
+          "sha256": "fa788cd6b878ac9d853cd7b1f9883f96e062f6c41a6892d0729073b002bda1ec",
+          "bytes": 196
         },
         {
           "path": "tests/fixtures/huawei-maestro-routing/inputs/adv-instruction-injection.json",
@@ -43426,8 +43621,8 @@
         },
         {
           "path": "tests/fixtures/huawei-maestro-routing/taxonomy.json",
-          "sha256": "79448ee0a6fa0162cca03ce5f18daab009efdc0d0ca98f8630cdc4a18e66f714",
-          "bytes": 11188
+          "sha256": "cb39313e88481de809b8779fb8d569ac9d2131b67a4fdb3f11099a401addd19c",
+          "bytes": 11518
         },
         {
           "path": "tests/fixtures/ionos-maestro-routing/expected/001-happy-cost-optimization-analyst.json",
@@ -45666,8 +45861,8 @@
         },
         {
           "path": "tests/fixtures/nosql-scenarios/scenarios.json",
-          "sha256": "c0db92b0b6ab57be5ec187e8851e32fdae31e1e9e6e7f5775a7297a47425f1ee",
-          "bytes": 8807
+          "sha256": "9ee270d34ebed86a3c09f99a6c46a6b3652e8f8632a685afda4432499981cabf",
+          "bytes": 15930
         },
         {
           "path": "tests/fixtures/nvidia-maestro-routing/README.md",
@@ -48971,8 +49166,8 @@
         },
         {
           "path": "tests/validate-skill-references.py",
-          "sha256": "f13f9d75071672f04b6d3ceff50f02b86621c7f18f49f1a88c0decd863310189",
-          "bytes": 6074
+          "sha256": "69e4e7e231d49f895baf3f97096ceaaa498c7db6fb75ce7222d5911fee8c70a3",
+          "bytes": 9375
         },
         {
           "path": "tests/validate-skill-yaml-strict.py",
@@ -48990,7 +49185,7 @@
   "root_files": [
     {
       "path": "README.md",
-      "sha256": "bfc99f29435cce2840d1c528b68552e7412017048feae38eb9b8c7fe76deaa2d",
+      "sha256": "834394be5bc060557c128196ed5dc2b359e9e03361ae66705e2d0c26bd52d884",
       "bytes": 115723
     },
     {
@@ -49039,5 +49234,5 @@
       "bytes": 9135
     }
   ],
-  "aggregate_sha256": "19cf81355a6e3b75851f36074dd2620c7ad11e13167c7f4145c51e1b24d7356b"
+  "aggregate_sha256": "a38209dec04a8c08027d0335adacd7c3ec6cf67fbcc7a01aa14b22c41028094b"
 }

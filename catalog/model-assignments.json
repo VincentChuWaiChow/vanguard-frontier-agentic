@@ -1944,6 +1944,39 @@
       "reasoning_source": "default"
     },
     {
+      "agent_id": "alibaba-tablestore-architect-agent",
+      "harness": "codex",
+      "model": "gpt-5.4",
+      "model_provider": null,
+      "model_fallback_from": null,
+      "model_warning": null,
+      "reasoning_effort": "high",
+      "model_source": "all",
+      "reasoning_source": "all"
+    },
+    {
+      "agent_id": "alibaba-tablestore-architect-agent",
+      "harness": "claude-code",
+      "model": null,
+      "model_provider": null,
+      "model_fallback_from": null,
+      "model_warning": null,
+      "reasoning_effort": null,
+      "model_source": "default",
+      "reasoning_source": "default"
+    },
+    {
+      "agent_id": "alibaba-tablestore-architect-agent",
+      "harness": "cursor",
+      "model": null,
+      "model_provider": null,
+      "model_fallback_from": null,
+      "model_warning": null,
+      "reasoning_effort": null,
+      "model_source": "default",
+      "reasoning_source": "default"
+    },
+    {
       "agent_id": "alibaba-ticket-triage-escalation-coordinator-agent",
       "harness": "codex",
       "model": "gpt-5.4",
@@ -8181,6 +8214,39 @@
       "reasoning_source": "default"
     },
     {
+      "agent_id": "gcp-bigtable-architect-agent",
+      "harness": "codex",
+      "model": "gpt-5.4",
+      "model_provider": null,
+      "model_fallback_from": null,
+      "model_warning": null,
+      "reasoning_effort": "high",
+      "model_source": "all",
+      "reasoning_source": "all"
+    },
+    {
+      "agent_id": "gcp-bigtable-architect-agent",
+      "harness": "claude-code",
+      "model": null,
+      "model_provider": null,
+      "model_fallback_from": null,
+      "model_warning": null,
+      "reasoning_effort": null,
+      "model_source": "default",
+      "reasoning_source": "default"
+    },
+    {
+      "agent_id": "gcp-bigtable-architect-agent",
+      "harness": "cursor",
+      "model": null,
+      "model_provider": null,
+      "model_fallback_from": null,
+      "model_warning": null,
+      "reasoning_effort": null,
+      "model_source": "default",
+      "reasoning_source": "default"
+    },
+    {
       "agent_id": "gcp-certificate-manager-issuer-review-agent",
       "harness": "codex",
       "model": "gpt-5.4",
@@ -10943,6 +11009,39 @@
     },
     {
       "agent_id": "huawei-gaussdb-rds-dba-agent",
+      "harness": "cursor",
+      "model": null,
+      "model_provider": null,
+      "model_fallback_from": null,
+      "model_warning": null,
+      "reasoning_effort": null,
+      "model_source": "default",
+      "reasoning_source": "default"
+    },
+    {
+      "agent_id": "huawei-geminidb-architect-agent",
+      "harness": "codex",
+      "model": "gpt-5.4",
+      "model_provider": null,
+      "model_fallback_from": null,
+      "model_warning": null,
+      "reasoning_effort": "high",
+      "model_source": "all",
+      "reasoning_source": "all"
+    },
+    {
+      "agent_id": "huawei-geminidb-architect-agent",
+      "harness": "claude-code",
+      "model": null,
+      "model_provider": null,
+      "model_fallback_from": null,
+      "model_warning": null,
+      "reasoning_effort": null,
+      "model_source": "default",
+      "reasoning_source": "default"
+    },
+    {
+      "agent_id": "huawei-geminidb-architect-agent",
       "harness": "cursor",
       "model": null,
       "model_provider": null,

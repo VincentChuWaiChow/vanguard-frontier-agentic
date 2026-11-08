@@ -464,6 +464,19 @@
         "HSM"
       ],
       "agent": "alibaba-waf-security-review-agent"
+    },
+    "tablestore-architect": {
+      "keywords": [
+        "Tablestore",
+        "OTS",
+        "partition key",
+        "wide column",
+        "search index",
+        "secondary index",
+        "local transaction",
+        "CU"
+      ],
+      "agent": "alibaba-tablestore-architect-agent"
     }
   },
   "live_guards": [

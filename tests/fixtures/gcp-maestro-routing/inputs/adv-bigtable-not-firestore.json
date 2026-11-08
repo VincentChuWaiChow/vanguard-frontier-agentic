@@ -1,0 +1,7 @@
+{
+  "name": "adv-bigtable-not-firestore",
+  "task": "Model Firestore collections and security rules for our mobile chat app.",
+  "tags": [
+    "adversarial:cross-service-confusion"
+  ]
+}
