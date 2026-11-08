@@ -99,6 +99,7 @@
     "./agents/aws/aws-deployment-hotfix-operator-agent/harnesses/cursor.agent.md",
     "./agents/aws/aws-devops-agent-skill-designer-agent/harnesses/cursor.agent.md",
     "./agents/aws/aws-dynamodb-data-modeling-performance-review-agent/harnesses/cursor.agent.md",
+    "./agents/aws/aws-dynamodb-patterns-agent/harnesses/cursor.agent.md",
     "./agents/aws/aws-ec2-compute-operations-steward-agent/harnesses/cursor.agent.md",
     "./agents/aws/aws-ecs-fargate-platform-operator-agent/harnesses/cursor.agent.md",
     "./agents/aws/aws-ecs-service-remediation-operator-agent/harnesses/cursor.agent.md",

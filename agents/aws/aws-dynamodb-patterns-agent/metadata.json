@@ -1,0 +1,39 @@
+{
+  "id": "aws-dynamodb-patterns-agent",
+  "name": "AWS DynamoDB Patterns",
+  "type": "agent",
+  "provider": "aws",
+  "harnesses": [
+    "codex",
+    "copilot",
+    "claude-code",
+    "cursor",
+    "gemini",
+    "kiro"
+  ],
+  "summary": "Builds and operates DynamoDB access patterns (design, refactor, runtime contract, backup/restore, audits, performance-test and feature plans, vectors, IAM, encryption, Streams, DAX, provisioning) as proposals gated on user approval, citing a per-claim evidence ledger.",
+  "source_type": "adapted",
+  "official_docs": [
+    "https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/bp-general-nosql-design.html",
+    "https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/Point-in-time-recovery.html",
+    "https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/VectorSearch.html"
+  ],
+  "security_notes": "Static by default. Produces code, IaC and CLI as proposals; never runs writes, deployment, backfill, deletion, restore, feature changes or load tests without confirmed target, blast radius, rollback and user approval. Restores go to a new table. Never requests credentials or prints customer items.",
+  "last_verified": "2026-11-08",
+  "path": "agents/aws/aws-dynamodb-patterns-agent",
+  "companion_skills": [
+    "aws-dynamodb-patterns"
+  ],
+  "execution_tier": "static-review",
+  "harness_variants": {
+    "codex": "agents/aws/aws-dynamodb-patterns-agent/harnesses/codex.toml",
+    "copilot": "agents/aws/aws-dynamodb-patterns-agent/harnesses/copilot.agent.md",
+    "claude-code": "agents/aws/aws-dynamodb-patterns-agent/harnesses/claude-code.agent.md",
+    "cursor": "agents/aws/aws-dynamodb-patterns-agent/harnesses/cursor.agent.md",
+    "gemini": "agents/aws/aws-dynamodb-patterns-agent/harnesses/gemini.agent.md",
+    "kiro-ide": "agents/aws/aws-dynamodb-patterns-agent/harnesses/kiro-ide.agent.md",
+    "kiro-cli": "agents/aws/aws-dynamodb-patterns-agent/harnesses/kiro-cli.agent.json"
+  },
+  "author": "github: VincentChuWaiChow",
+  "version": "0.1.0"
+}

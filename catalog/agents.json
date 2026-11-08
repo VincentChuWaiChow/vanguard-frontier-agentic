@@ -2465,6 +2465,35 @@
     "companion_skills": null
   },
   {
+    "id": "aws-dynamodb-patterns-agent",
+    "name": "AWS DynamoDB Patterns",
+    "type": "agent",
+    "provider": "aws",
+    "harnesses": [
+      "codex",
+      "copilot",
+      "claude-code",
+      "cursor",
+      "gemini",
+      "kiro"
+    ],
+    "summary": "Builds and operates DynamoDB access patterns (design, refactor, runtime contract, backup/restore, audits, performance-test and feature plans, vectors, IAM, encryption, Streams, DAX, provisioning) as proposals gated on user approval, citing a per-claim evidence ledger.",
+    "source_type": "adapted",
+    "official_docs": [
+      "https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/bp-general-nosql-design.html",
+      "https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/Point-in-time-recovery.html",
+      "https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/VectorSearch.html"
+    ],
+    "security_notes": "Static by default. Produces code, IaC and CLI as proposals; never runs writes, deployment, backfill, deletion, restore, feature changes or load tests without confirmed target, blast radius, rollback and user approval. Restores go to a new table. Never requests credentials or prints customer items.",
+    "last_verified": "2026-11-08",
+    "path": "agents/aws/aws-dynamodb-patterns-agent",
+    "version": "0.1.0",
+    "execution_tier": "static-review",
+    "companion_skills": [
+      "aws-dynamodb-patterns"
+    ]
+  },
+  {
     "id": "aws-ec2-compute-operations-steward-agent",
     "name": "AWS EC2 Compute Operations Steward",
     "type": "agent",

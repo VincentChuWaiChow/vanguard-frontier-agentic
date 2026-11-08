@@ -50,6 +50,7 @@ Use this reference when classifying a task or selecting the right specialist(s).
 |---|---|---|
 | `aws-rds-aurora-performance-investigator-agent` | data | Investigating RDS or Aurora performance issues, slow queries, wait events, or parameter tuning |
 | `aws-dynamodb-data-modeling-performance-review-agent` | data | Reviewing DynamoDB table design, access patterns, GSI/LSI choices, or throughput planning |
+| `aws-dynamodb-patterns-agent` | data | Building or changing DynamoDB tables and access code: design, refactor, runtime contract, PITR/on-demand backup and new-table restore, vector indexes and embeddings, performance-test and feature plans, provisioning; review-only questions stay with the review agent |
 | `aws-s3-data-perimeter-governor-agent` | data, security-iam | Auditing or enforcing S3 bucket policies, access points, and data perimeter controls |
 | `aws-data-protection-backup-steward-agent` | data | Reviewing backup strategy, AWS Backup vaults, retention policies, and restore readiness |
 

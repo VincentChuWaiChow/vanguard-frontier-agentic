@@ -1,0 +1,11 @@
+{
+  "Version": "2012-10-17",
+  "Statement": [
+    {
+      "Sid": "SearchOneVectorIndex",
+      "Effect": "Allow",
+      "Action": "dynamodb:SearchVectors",
+      "Resource": "arn:aws:dynamodb:us-east-1:111122223333:table/VectorDocuments/index/EmbeddingIndex"
+    }
+  ]
+}

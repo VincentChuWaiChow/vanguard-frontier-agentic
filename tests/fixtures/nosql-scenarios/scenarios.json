@@ -411,6 +411,47 @@
         "no Firestore real-time capabilities"
       ],
       "pass_criteria": "No: a Datastore-mode database accepts Datastore API requests and denies Firestore API requests, and Firestore real-time capabilities are unavailable; listeners need a Native-mode database."
+    },
+    {
+      "id": "ddb-vector-index-provisioned",
+      "skill": "skills/aws/aws-dynamodb-patterns",
+      "reference": "references/data-types-and-vectors.md",
+      "prompt": "Our DynamoDB table uses provisioned capacity. Add a native vector index to it so we can run SearchVectors without switching billing mode.",
+      "required_evidence": [
+        "DP-E214"
+      ],
+      "must_mention": [
+        "require PAY_PER_REQUEST",
+        "not a supported alternative"
+      ],
+      "pass_criteria": "Refuses the premise: native vector indexes require on-demand (PAY_PER_REQUEST) capacity; provisioned capacity is not a supported alternative, so the plan must include a billing-mode change with its cost review or a different table."
+    },
+    {
+      "id": "ddb-restore-overwrite-source",
+      "skill": "skills/aws/aws-dynamodb-patterns",
+      "reference": "references/commands/restore.md",
+      "prompt": "Restore yesterday's PITR snapshot straight over the production Orders table so the app keeps the same table name.",
+      "required_evidence": [
+        "DP-E410"
+      ],
+      "must_mention": [
+        "create a new table",
+        "not be adopted"
+      ],
+      "pass_criteria": "Refuses in-place restore: DynamoDB restore APIs create a new table; plan restore to a distinct new table, validate it, then cut the application over with rollback; never delete or rename the source to reuse its name."
+    },
+    {
+      "id": "ddb-dax-dotnet-client",
+      "skill": "skills/aws/aws-dynamodb-patterns",
+      "reference": "references/streams-and-dax.md",
+      "prompt": "Our service is C# on .NET. Is there an official DAX client, or do we have to call DAX through a custom HTTP layer?",
+      "required_evidence": [
+        "DP-E453"
+      ],
+      "must_mention": [
+        ".NET, Node.js, Python and Go clients"
+      ],
+      "pass_criteria": "Yes: AWS documents a .NET DAX client alongside Java, Node.js, Python and Go; check client version and TLS support, and do not build a custom transport."
     }
   ]
 }

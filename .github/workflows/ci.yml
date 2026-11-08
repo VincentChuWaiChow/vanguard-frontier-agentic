@@ -32,7 +32,10 @@ jobs:
       - name: Install Python validator dependencies
         # validate:promotion-gatekeeper imports jsonschema and
         # validate:skill-yaml imports PyYAML; both fail closed without them.
-        run: python3 -m pip install --quiet jsonschema pyyaml
+        # validate:aws-dynamodb-patterns runs the skill's evals, two of which lint
+        # CloudFormation with cfn-lint; pinned so rule updates cannot change CI
+        # results without a commit.
+        run: python3 -m pip install --quiet jsonschema pyyaml cfn-lint==1.60.0
 
       # Run the aggregate validation contract rather than a hand-picked subset.
       # CI previously invoked nine validators individually while `npm run

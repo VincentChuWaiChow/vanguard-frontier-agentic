@@ -1,6 +1,6 @@
 # AGENTS.md — Navigation Compass
 
-<!-- count:global:agents -->742<!-- /count --> agents across <!-- count:global:providers -->45<!-- /count --> providers. This file is the index; load provider files on demand.
+<!-- count:global:agents -->743<!-- /count --> agents across <!-- count:global:providers -->45<!-- /count --> providers. This file is the index; load provider files on demand.
 
 ## File structure
 
@@ -24,7 +24,7 @@ Live-guard agents refuse to proceed without: target confirmation (cluster/accoun
 
 ---
 
-## 🟧 AWS — <!-- count:dir:aws:agents -->47<!-- /count --> agents → [`agents/aws/AGENTS.md`](aws/AGENTS.md)
+## 🟧 AWS — <!-- count:dir:aws:agents -->48<!-- /count --> agents → [`agents/aws/AGENTS.md`](aws/AGENTS.md)
 
 **Entry point:** load `agents/aws/aws-maestro-agent/AGENT.md` for any AWS task; it routes to the right specialist and back.
 

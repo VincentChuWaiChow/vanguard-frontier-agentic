@@ -11,7 +11,7 @@
     "kiro",
     "other"
   ],
-  "summary": "Route AWS tasks to the narrowest specialist or team of specialists from the 42-agent catalog. Classifies by domain, dispatches single or parallel (max 4), and enforces live-guard gate for production-change agents.",
+  "summary": "Route AWS tasks to the narrowest specialist or team of specialists from the AWS agent catalog. Classifies by domain, dispatches single or parallel (max 4), and enforces live-guard gate for production-change agents.",
   "source_type": "adapted",
   "official_docs": [
     "https://docs.aws.amazon.com/wellarchitected/latest/operational-excellence-pillar/welcome.html",

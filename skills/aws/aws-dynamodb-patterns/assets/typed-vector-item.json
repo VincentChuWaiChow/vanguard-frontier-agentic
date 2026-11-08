@@ -1,0 +1,15 @@
+{
+  "PK": {"S": "doc#1"},
+  "Tenant": {"S": "example"},
+  "Status": {"S": "PUBLISHED"},
+  "Title": {"S": "Synthetic three-dimensional example"},
+  "Price": {"N": "12.50"},
+  "Content": {"B": "SGVsbG8="},
+  "Active": {"BOOL": true},
+  "DeletedAt": {"NULL": true},
+  "Embedding": {"L": [{"N": "0.1"}, {"N": "0.2"}, {"N": "0.3"}]},
+  "Metadata": {"M": {"source": {"S": "fixture"}}},
+  "Labels": {"SS": ["aws", "example"]},
+  "Scores": {"NS": ["1", "2"]},
+  "Chunks": {"BS": ["AQI=", "AwQ="]}
+}

@@ -1,0 +1,22 @@
+{
+  "Version": "2012-10-17",
+  "Statement": [
+    {
+      "Sid": "NamedExternalRoleReadItems",
+      "Effect": "Allow",
+      "Principal": {"AWS": "arn:aws:iam::444455556666:role/DynamoReader"},
+      "Action": ["dynamodb:GetItem"],
+      "Resource": "arn:aws:dynamodb:us-east-1:111122223333:table/Orders"
+    },
+    {
+      "Sid": "NamedExternalRoleQuery",
+      "Effect": "Allow",
+      "Principal": {"AWS": "arn:aws:iam::444455556666:role/DynamoReader"},
+      "Action": ["dynamodb:Query"],
+      "Resource": [
+        "arn:aws:dynamodb:us-east-1:111122223333:table/Orders",
+        "arn:aws:dynamodb:us-east-1:111122223333:table/Orders/index/GSI1"
+      ]
+    }
+  ]
+}

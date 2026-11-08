@@ -2073,12 +2073,12 @@
     {
       "id": "aws-dynamodb-data-modeling-performance-review",
       "path": "skills/aws/aws-dynamodb-data-modeling-performance-review",
-      "aggregate_sha256": "0df497b244739cb0df34841fcf9fcac1fedae0e28f74a779a97ce8169cc57fa0",
+      "aggregate_sha256": "6c38bd0355997bfbdc04eec1efce7191178a60df427f2b10f86bd0f2f0d56c93",
       "files": [
         {
           "path": "skills/aws/aws-dynamodb-data-modeling-performance-review/SKILL.md",
-          "sha256": "1e87d8f4267c5a4957b2395a88685f7084c2fd092d4a59df32f14d74f2f5951f",
-          "bytes": 3343
+          "sha256": "4c6708f65e4f3f5ad7d0dc215812dcc49620755cf3996c41b68259205b82242d",
+          "bytes": 3467
         },
         {
           "path": "skills/aws/aws-dynamodb-data-modeling-performance-review/metadata.json",
@@ -2114,6 +2114,393 @@
           "path": "skills/aws/aws-dynamodb-data-modeling-performance-review/references/workflow-and-output.md",
           "sha256": "545cad526e670d95ed64107e33cbb7e0313c089fb4b012798c0ed57c40e2702e",
           "bytes": 2204
+        }
+      ]
+    },
+    {
+      "id": "aws-dynamodb-patterns",
+      "path": "skills/aws/aws-dynamodb-patterns",
+      "aggregate_sha256": "9628fc0105f7886c524172d726aa949b8028320881eeb9a52a8d531e2d2bf806",
+      "files": [
+        {
+          "path": "skills/aws/aws-dynamodb-patterns/CHANGELOG.md",
+          "sha256": "eef859f5d23056b123b5f6db7e238f872c041299cf29c29b2aa5094ea57a79b0",
+          "bytes": 4663
+        },
+        {
+          "path": "skills/aws/aws-dynamodb-patterns/README.md",
+          "sha256": "067a4766806668328fad27ee9ec360b1c65d11e0e74cbf40774b1572a0c804ed",
+          "bytes": 10717
+        },
+        {
+          "path": "skills/aws/aws-dynamodb-patterns/SKILL.md",
+          "sha256": "6414af63cca7020b36ed4c552db21e6017f0457690c4fa65eaa6f6d15ef81b8a",
+          "bytes": 5270
+        },
+        {
+          "path": "skills/aws/aws-dynamodb-patterns/assets/bedrock-embedding-input.json",
+          "sha256": "d3aea9be65291990d8dd852f4afc9d198fd2dec8c66a8c58bdce912db739fabe",
+          "bytes": 159
+        },
+        {
+          "path": "skills/aws/aws-dynamodb-patterns/assets/content-review.json",
+          "sha256": "861bb8ba842889af89d0c424cae1b716e34c56ae161f48db4df977d860e29a14",
+          "bytes": 134
+        },
+        {
+          "path": "skills/aws/aws-dynamodb-patterns/assets/create-table-with-lsi.json",
+          "sha256": "e4ae68a6e9d2ea9f8ea09918b58ef13c919606c063d26c05dae6fdef4992081b",
+          "bytes": 1180
+        },
+        {
+          "path": "skills/aws/aws-dynamodb-patterns/assets/create-table.json",
+          "sha256": "2b72d4a4301d0e61872d9bbbc227a65b02adc568604ad5226a294e108b0e27a3",
+          "bytes": 797
+        },
+        {
+          "path": "skills/aws/aws-dynamodb-patterns/assets/create-table.sh",
+          "sha256": "2a86baade698cbb566d782b0b9f985bfdac32d973cd24c4894ba4b315fa332d0",
+          "bytes": 2046
+        },
+        {
+          "path": "skills/aws/aws-dynamodb-patterns/assets/embedding-flow.py",
+          "sha256": "23e9af8e3d4f996b41059c15be53e6d11652ce7695154a8008e35dfe27ad9015",
+          "bytes": 4314
+        },
+        {
+          "path": "skills/aws/aws-dynamodb-patterns/assets/query-input.json",
+          "sha256": "d4ba436d3cfa21eb36012a5f9916cc77d3d301f00dd279b6c6199bccd93d0866",
+          "bytes": 400
+        },
+        {
+          "path": "skills/aws/aws-dynamodb-patterns/assets/query-pages.mjs",
+          "sha256": "39fe90aaa3fb6aac927cb3da96c3a9d1e3a1b36633aef1649a491dd6b987a346",
+          "bytes": 2439
+        },
+        {
+          "path": "skills/aws/aws-dynamodb-patterns/assets/stream-read-policy.json",
+          "sha256": "0c1a17e1fc200abe1c80b69686278799caef4197e08f7c8e0485e24fcbb694b3",
+          "bytes": 333
+        },
+        {
+          "path": "skills/aws/aws-dynamodb-patterns/assets/table-index-read-policy.json",
+          "sha256": "6b36d0e022a0ac34e2a326b187dc28ab16c83d65eac7ba664251fb28789e46a5",
+          "bytes": 543
+        },
+        {
+          "path": "skills/aws/aws-dynamodb-patterns/assets/table-resource-policy.json",
+          "sha256": "bbf5d6af654ff7b3cd3693568af610acb01578403e64ca91a4c462484d573277",
+          "bytes": 672
+        },
+        {
+          "path": "skills/aws/aws-dynamodb-patterns/assets/table.cfn.yaml",
+          "sha256": "8265c102d605d7f30835ccb8dfd3956bd7824b9b2ddd87941384cd7345131100",
+          "bytes": 1508
+        },
+        {
+          "path": "skills/aws/aws-dynamodb-patterns/assets/typed-vector-item.json",
+          "sha256": "0cd96b9d789b6a1d1b44beabdc618453da2b6c4b30fe6f80f2f441217ec10ab9",
+          "bytes": 491
+        },
+        {
+          "path": "skills/aws/aws-dynamodb-patterns/assets/vector-create-table.json",
+          "sha256": "93538ce88150677c0de4ca01405eb881d1432b9c636059f5b7e05e21a052c499",
+          "bytes": 787
+        },
+        {
+          "path": "skills/aws/aws-dynamodb-patterns/assets/vector-search-policy.json",
+          "sha256": "49b6d246da65e93897ca306ddd2c117a51cd896ad5ebdb5df3f67d17c9463358",
+          "bytes": 271
+        },
+        {
+          "path": "skills/aws/aws-dynamodb-patterns/assets/vector-search.json",
+          "sha256": "c065513b6e5b82596cf6172f07d6f5a80fae85f314c59cc16a0bf8ce6852ea2e",
+          "bytes": 445
+        },
+        {
+          "path": "skills/aws/aws-dynamodb-patterns/assets/vector-table.cfn.yaml",
+          "sha256": "17ba522f1ce73d2a8150de3e93f65d4873c0a82a74b9e5046c89ccbadf5749e8",
+          "bytes": 1227
+        },
+        {
+          "path": "skills/aws/aws-dynamodb-patterns/evals/audit.test.py",
+          "sha256": "12936acdec413bf8d99d91b4326f51434e77beb0d001259b29aafaa2a5f3235d",
+          "bytes": 4276
+        },
+        {
+          "path": "skills/aws/aws-dynamodb-patterns/evals/backup-restore.test.py",
+          "sha256": "e81052944b2d387e6c41ece2f5e4a9910410a15b6c4c970f67ffdb2644c247b6",
+          "bytes": 8761
+        },
+        {
+          "path": "skills/aws/aws-dynamodb-patterns/evals/commands.test.py",
+          "sha256": "7e6c5c543e08e727452961f0a6f823102e1d415b01f089137f755e07292b147d",
+          "bytes": 9500
+        },
+        {
+          "path": "skills/aws/aws-dynamodb-patterns/evals/create-table.test.py",
+          "sha256": "2513560ce782ae9a257a6b822269cddfab3ad27b561a78d8d592ef11c72c963a",
+          "bytes": 4432
+        },
+        {
+          "path": "skills/aws/aws-dynamodb-patterns/evals/data-vectors-maintenance.test.py",
+          "sha256": "727562f21a5d831a8ed66b91d34f3cd03baa188e5105e94a6e271113b9dc1e07",
+          "bytes": 11536
+        },
+        {
+          "path": "skills/aws/aws-dynamodb-patterns/evals/embedding-commands.test.py",
+          "sha256": "bbca7d1cf479689a2f0a9524ffc952f690f5a047740812663dd25bf503fd76c3",
+          "bytes": 8960
+        },
+        {
+          "path": "skills/aws/aws-dynamodb-patterns/evals/embedding-flow.test.py",
+          "sha256": "bdf67a443c610bf3c0b945296921022081a364f611d3645d03a42f79678f6c71",
+          "bytes": 8222
+        },
+        {
+          "path": "skills/aws/aws-dynamodb-patterns/evals/eval.md",
+          "sha256": "3b60437814b8dfa1dc0898a962b137bdd9babd45d5f0fc20227bd799a0092633",
+          "bytes": 21595
+        },
+        {
+          "path": "skills/aws/aws-dynamodb-patterns/evals/evals.json",
+          "sha256": "fddba998bc7bec1bd376bebf0e2ddbab29da705d7dcddde01caa1869d38daaed",
+          "bytes": 20754
+        },
+        {
+          "path": "skills/aws/aws-dynamodb-patterns/evals/modes.test.py",
+          "sha256": "084a3d9249d9e09fdf2f349f7b1e525a6963965c61d32b8caa9c05314d91661d",
+          "bytes": 11789
+        },
+        {
+          "path": "skills/aws/aws-dynamodb-patterns/evals/operations.test.py",
+          "sha256": "09b652ac22c05e80c5b9908d4ff6b9e70bde096cc122c27a54b0ef770d8dd2df",
+          "bytes": 14735
+        },
+        {
+          "path": "skills/aws/aws-dynamodb-patterns/evals/query-pages.test.mjs",
+          "sha256": "df9bae9ea6213f23f4d6b88c7b31414b600b7c7c5a904f313461985edd2a98d2",
+          "bytes": 5764
+        },
+        {
+          "path": "skills/aws/aws-dynamodb-patterns/evals/readme-and-loading.test.py",
+          "sha256": "67ad8ef5453282b572102ba3b8171fefa05fd7794a44797f34ff578fa1c3975a",
+          "bytes": 3313
+        },
+        {
+          "path": "skills/aws/aws-dynamodb-patterns/evals/verify.py",
+          "sha256": "deb6e7a734540817f3b0ff76448fa113f8cd1a6649e147144539fcf2d93908d8",
+          "bytes": 8054
+        },
+        {
+          "path": "skills/aws/aws-dynamodb-patterns/metadata.json",
+          "sha256": "47c8451a19261edbcdccf1abfab19f4aa23c371e1f7f80b2049a314a91a87c1e",
+          "bytes": 1742
+        },
+        {
+          "path": "skills/aws/aws-dynamodb-patterns/references/commands/README.md",
+          "sha256": "c638be8686afd0c59d3d6c6b4a38369390ce763c9a6deb73d2ac0ee2ad0f60fc",
+          "bytes": 1811
+        },
+        {
+          "path": "skills/aws/aws-dynamodb-patterns/references/commands/audit/live.md",
+          "sha256": "70baaf469c59c2a89152988893b8a14fdefe0486ace4a9259f915ecc382647c3",
+          "bytes": 3636
+        },
+        {
+          "path": "skills/aws/aws-dynamodb-patterns/references/commands/audit/offline.md",
+          "sha256": "44f280b15c5ef9eeddf86f9d54d9acc6765d94976c922b7c07e9f632fe56bcba",
+          "bytes": 1682
+        },
+        {
+          "path": "skills/aws/aws-dynamodb-patterns/references/commands/audit.md",
+          "sha256": "934b0de34256b48725cfa31f8ea49c1cfde8c1501973c7cf9f177af3de1ec7db",
+          "bytes": 3812
+        },
+        {
+          "path": "skills/aws/aws-dynamodb-patterns/references/commands/aws-cli.md",
+          "sha256": "3b9373b10cf2120ed12a64c0c241a3379a271d35b0474a598ad6d8b261052cab",
+          "bytes": 11450
+        },
+        {
+          "path": "skills/aws/aws-dynamodb-patterns/references/commands/backup/on-demand.md",
+          "sha256": "deb67d15ff5e91e31bbe61b9e4708baa085da180030c1b537e9804eb68409e68",
+          "bytes": 2022
+        },
+        {
+          "path": "skills/aws/aws-dynamodb-patterns/references/commands/backup/pitr.md",
+          "sha256": "8b764e079acec8ab182a55656219c800035c9181db8fb0ab3eb0eb190022a876",
+          "bytes": 1663
+        },
+        {
+          "path": "skills/aws/aws-dynamodb-patterns/references/commands/backup.md",
+          "sha256": "289756c19ed9d9464bd2be177a5bb5b6a9afaf09531d239f1bc53126d38538b9",
+          "bytes": 1455
+        },
+        {
+          "path": "skills/aws/aws-dynamodb-patterns/references/commands/design.md",
+          "sha256": "5526e0e6fca432e79e3e62054b0b2ea7a1daf42ff12b652c7b1cd484d6c98e6c",
+          "bytes": 3082
+        },
+        {
+          "path": "skills/aws/aws-dynamodb-patterns/references/commands/embedding.md",
+          "sha256": "00335becd3de6a8899130450d259a3b4f1f2790efd69ccaa43c9429efc7a58c9",
+          "bytes": 10660
+        },
+        {
+          "path": "skills/aws/aws-dynamodb-patterns/references/commands/feature-plan.md",
+          "sha256": "423e5ed63109f6ecf3853fe5f8a6f2855e3b7e74994821a7d54d2aad0e8cd6b1",
+          "bytes": 3238
+        },
+        {
+          "path": "skills/aws/aws-dynamodb-patterns/references/commands/help.md",
+          "sha256": "71e0ef59629aaf3c975dfa2b764db47c210a43eb29b824d677e0dc4146c0400e",
+          "bytes": 1259
+        },
+        {
+          "path": "skills/aws/aws-dynamodb-patterns/references/commands/performance-test.md",
+          "sha256": "174ab4c6bac5ed6ec2f8780e8a71776a3aab7739d6c4d18028e6180fe045a8af",
+          "bytes": 6238
+        },
+        {
+          "path": "skills/aws/aws-dynamodb-patterns/references/commands/recovery-target.md",
+          "sha256": "839484eaa59ed215b4c83ab30990188887efa45ecc8fa96df6a25fa6467f10a7",
+          "bytes": 2724
+        },
+        {
+          "path": "skills/aws/aws-dynamodb-patterns/references/commands/refactor.md",
+          "sha256": "eec563f35c78e2788e87c79c62e5f5d08b7e80939447582e720d87d6d92b5963",
+          "bytes": 6285
+        },
+        {
+          "path": "skills/aws/aws-dynamodb-patterns/references/commands/restore/on-demand.md",
+          "sha256": "9be5d54b8de3649bb51389e3bbb7fab5e7ec0cb7f30feabd9346d060118d6fff",
+          "bytes": 1205
+        },
+        {
+          "path": "skills/aws/aws-dynamodb-patterns/references/commands/restore/pitr.md",
+          "sha256": "67f20634b8c8cf9ae7db2fca85644f5efb83e2733485980215ce2db1fa1d7172",
+          "bytes": 1953
+        },
+        {
+          "path": "skills/aws/aws-dynamodb-patterns/references/commands/restore.md",
+          "sha256": "ae404461ff5a5bd22e77381ef76cc5c631fa802029fc4e7eee9dfef427b5f5ab",
+          "bytes": 4663
+        },
+        {
+          "path": "skills/aws/aws-dynamodb-patterns/references/commands/select.md",
+          "sha256": "ab5fc3894c5210e1907eba83668bc86330df37d4bff9835cf61a6bb1f19c3e7e",
+          "bytes": 911
+        },
+        {
+          "path": "skills/aws/aws-dynamodb-patterns/references/data-types-and-vectors.md",
+          "sha256": "231969a5d77b04ca87ec6f2fc42dd0b5288fffe52ce7fbb5ac60fa5b5c32960f",
+          "bytes": 10901
+        },
+        {
+          "path": "skills/aws/aws-dynamodb-patterns/references/embedding-integrations.md",
+          "sha256": "60f8c86630a959f607a3ef4179e3b5720b6328de98a331e9819a711b968ae3bc",
+          "bytes": 14566
+        },
+        {
+          "path": "skills/aws/aws-dynamodb-patterns/references/encryption.md",
+          "sha256": "56f07370063241a444e38d3c3ac96be5b52d771cec2fa95afe22151ef1dfddb1",
+          "bytes": 7991
+        },
+        {
+          "path": "skills/aws/aws-dynamodb-patterns/references/evidence-ledger.md",
+          "sha256": "ac424d56047ca1f0917001c0f8ad5a9b0584ce9f1e48362f05c1ea6285499591",
+          "bytes": 127921
+        },
+        {
+          "path": "skills/aws/aws-dynamodb-patterns/references/iam-and-access.md",
+          "sha256": "8080b86963d33bddc8aa23f86b1e549ef69ff6e9e5ca57a99929e5307ac66516",
+          "bytes": 11248
+        },
+        {
+          "path": "skills/aws/aws-dynamodb-patterns/references/language-adapters.md",
+          "sha256": "296533977cda7633b5fe77fd505a1e28d6136dc5877a911fded49aab1342234c",
+          "bytes": 11967
+        },
+        {
+          "path": "skills/aws/aws-dynamodb-patterns/references/lsi-vs-gsi.md",
+          "sha256": "daa588a034ef8d460eed568774aa5672ab2b411d38f3685c1073d664e6569be8",
+          "bytes": 7215
+        },
+        {
+          "path": "skills/aws/aws-dynamodb-patterns/references/maintenance.md",
+          "sha256": "5cee63463ae381cc8eb09010eba9d2d28f4eb32b363191d7fa2ff09575a81b93",
+          "bytes": 3266
+        },
+        {
+          "path": "skills/aws/aws-dynamodb-patterns/references/modeling.md",
+          "sha256": "b9abeef0a13ad690c249bc1a6a1b11f3d7958171cfdcaf9fdd05fe7aecdad6d8",
+          "bytes": 7863
+        },
+        {
+          "path": "skills/aws/aws-dynamodb-patterns/references/monitoring.md",
+          "sha256": "fc1beed2b30faef16e6d23ee67fb5864156c297e42fd0655169053a24a531867",
+          "bytes": 9833
+        },
+        {
+          "path": "skills/aws/aws-dynamodb-patterns/references/official-sources.md",
+          "sha256": "955391d6f24240e41955efd4e02f2f3b2bc91566659932f60a42bd1b16e9e4eb",
+          "bytes": 1627
+        },
+        {
+          "path": "skills/aws/aws-dynamodb-patterns/references/provisioning.md",
+          "sha256": "5233ffae449d8f3c05ebb41c150b4571775190531c819839b3df341ededc62e1",
+          "bytes": 5852
+        },
+        {
+          "path": "skills/aws/aws-dynamodb-patterns/references/recovery-and-replicas.md",
+          "sha256": "47045f40d26be7745444d02643f72c3167c7e1583e5a466f4426aea2bc0c0fa2",
+          "bytes": 8711
+        },
+        {
+          "path": "skills/aws/aws-dynamodb-patterns/references/runtime-contract.md",
+          "sha256": "ff76023405cb3c1301d8863953720a1b24e3b5825069a217d9619f4709737730",
+          "bytes": 8880
+        },
+        {
+          "path": "skills/aws/aws-dynamodb-patterns/references/safety-checklist.md",
+          "sha256": "108f2705bd8953dec7ba76aa1f34ccced98e480bf1f07e09a26108dc35821a24",
+          "bytes": 1712
+        },
+        {
+          "path": "skills/aws/aws-dynamodb-patterns/references/sources.md",
+          "sha256": "a244bbedb47769e360daadc90607ef7b8161db62f9365694a888db5b29f236b7",
+          "bytes": 11778
+        },
+        {
+          "path": "skills/aws/aws-dynamodb-patterns/references/streams-and-dax.md",
+          "sha256": "3d163d6e4229a8fbdeab5bbd9ed2671171f525f9f04fbab9f6e0c6746ff8eec0",
+          "bytes": 9297
+        },
+        {
+          "path": "skills/aws/aws-dynamodb-patterns/references/vanguard-port.md",
+          "sha256": "1e7ad66455312c97ac18a340474d525f0a303c60d55fdb95a705c55037e816c6",
+          "bytes": 12171
+        },
+        {
+          "path": "skills/aws/aws-dynamodb-patterns/references/workflow-and-output.md",
+          "sha256": "1ac8c00d2e9a33698a84f7fa7222b1c8f341ae526a8fae3ac7e3b7f8a51f190c",
+          "bytes": 1719
+        },
+        {
+          "path": "skills/aws/aws-dynamodb-patterns/references/workflow.md",
+          "sha256": "11e7e82e8baedeee2ce967c1766da78763ea613fda0329cd9a289efcde6f3347",
+          "bytes": 8449
+        },
+        {
+          "path": "skills/aws/aws-dynamodb-patterns/scripts/review_due.py",
+          "sha256": "42afb62d92e0e50faaa46798129bf0d03721d3d5ed4c0410f9b6c4cbee7c8530",
+          "bytes": 2336
+        },
+        {
+          "path": "skills/aws/aws-dynamodb-patterns/scripts/select_mode.py",
+          "sha256": "d2cfc251833a15d34a012765cdce2976f0037ed394535cbdbb56f4e606f39114",
+          "bytes": 6476
         }
       ]
     },
@@ -2712,17 +3099,17 @@
     {
       "id": "aws-maestro",
       "path": "skills/aws/aws-maestro",
-      "aggregate_sha256": "c541286166ac1c039805a12b761c5bdce4d8aef5665975b80bfc52a77795d868",
+      "aggregate_sha256": "dae312b81d961f97c6ea4d2c2af11cc1f91d126848e536494efdd9eb06fe82db",
       "files": [
         {
           "path": "skills/aws/aws-maestro/SKILL.md",
-          "sha256": "6e4d1105787481f3aa04c7f616e77a1b98556a5084a6112386d1be9d8f801877",
-          "bytes": 3423
+          "sha256": "d2b443de7a8124f48d97b7d6ede9aee4e3b02123ccf5ebaf38514fa0c9d909b1",
+          "bytes": 3424
         },
         {
           "path": "skills/aws/aws-maestro/metadata.json",
-          "sha256": "b91c4ce33142ef41c2a8b06020128fa72fbb8ab0b9afb6087f29e34cb42545ce",
-          "bytes": 1402
+          "sha256": "a30a613f2617b72bea7331a10db7becaf21873e0f24ce51584b4d07de3adddd4",
+          "bytes": 1403
         },
         {
           "path": "skills/aws/aws-maestro/references/official-sources.md",
@@ -2741,8 +3128,8 @@
         },
         {
           "path": "skills/aws/aws-maestro/references/workflow-and-output.md",
-          "sha256": "00f0c98477d9d02674df9dbce91c4d9b84835a3aaf17862d39e845b945416df2",
-          "bytes": 9932
+          "sha256": "1c1180fd5534894e0d344b0245c91f3f8be1b6198468361a011e254d680df919",
+          "bytes": 10240
         }
       ]
     },

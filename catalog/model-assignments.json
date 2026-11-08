@@ -2703,6 +2703,39 @@
       "reasoning_source": "default"
     },
     {
+      "agent_id": "aws-dynamodb-patterns-agent",
+      "harness": "codex",
+      "model": "gpt-5.4",
+      "model_provider": null,
+      "model_fallback_from": null,
+      "model_warning": null,
+      "reasoning_effort": "high",
+      "model_source": "all",
+      "reasoning_source": "all"
+    },
+    {
+      "agent_id": "aws-dynamodb-patterns-agent",
+      "harness": "claude-code",
+      "model": null,
+      "model_provider": null,
+      "model_fallback_from": null,
+      "model_warning": null,
+      "reasoning_effort": null,
+      "model_source": "default",
+      "reasoning_source": "default"
+    },
+    {
+      "agent_id": "aws-dynamodb-patterns-agent",
+      "harness": "cursor",
+      "model": "inherit",
+      "model_provider": null,
+      "model_fallback_from": null,
+      "model_warning": null,
+      "reasoning_effort": null,
+      "model_source": "provider:aws",
+      "reasoning_source": "default"
+    },
+    {
       "agent_id": "aws-ec2-compute-operations-steward-agent",
       "harness": "codex",
       "model": "gpt-5.4",

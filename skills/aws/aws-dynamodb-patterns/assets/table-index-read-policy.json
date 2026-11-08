@@ -1,0 +1,20 @@
+{
+  "Version": "2012-10-17",
+  "Statement": [
+    {
+      "Sid": "ReadItemsOnNamedTable",
+      "Effect": "Allow",
+      "Action": ["dynamodb:GetItem", "dynamodb:BatchGetItem"],
+      "Resource": "arn:aws:dynamodb:us-east-1:111122223333:table/Orders"
+    },
+    {
+      "Sid": "QueryNamedTableAndIndex",
+      "Effect": "Allow",
+      "Action": ["dynamodb:Query"],
+      "Resource": [
+        "arn:aws:dynamodb:us-east-1:111122223333:table/Orders",
+        "arn:aws:dynamodb:us-east-1:111122223333:table/Orders/index/GSI1"
+      ]
+    }
+  ]
+}
