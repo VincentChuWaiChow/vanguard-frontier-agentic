@@ -76,6 +76,7 @@ review from a targeted update. This is not a background/calendar notification.
 
 Load these only when needed:
 
+- [Operations reference](references/operations.md) — one-page backup and restore, disaster recovery, billing dimensions, monitoring, performance, IAM, tagging, encryption, network isolation and audit logging.
 - [Workflow and output contract](references/workflow-and-output.md) — which workflow to load and the answer shape.
 - [Official sources](references/official-sources.md) — evidence ledger, port record and primary AWS pages.
 - [Safety checklist](references/safety-checklist.md) — before any live read or proposed change.

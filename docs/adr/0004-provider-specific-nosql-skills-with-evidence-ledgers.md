@@ -94,6 +94,33 @@ did not exist.
 - **Live-guard agents for NoSQL mutations.** Deferred. No verified demand
   exists, and the review-only agents refuse mutations instead.
 
+## Amendment: operational coverage for every NoSQL service
+
+The first version covered data modeling, consistency and capacity, but not the
+operational dimensions the original requirement listed. This amendment adds them.
+
+- **One operations reference per service**, with the same ten sections in the same
+  order: backup and restore, disaster recovery and replication, cost, monitoring,
+  performance, IAM, tagging, encryption, network isolation and audit logging. The
+  shape is `templates/nosql-operations-template.md`.
+- **Every section states a status** (VERIFIED, PARTIAL, UNSUPPORTED, UNVERIFIED or
+  NOT APPLICABLE) and cites ledger rows. UNSUPPORTED needs an explicit provider
+  statement; absence from documentation is UNVERIFIED.
+- **Cost records billing dimensions only.** Unit prices and currency amounts are
+  rejected, because they vary by Region and change over time.
+- **Coverage**: DynamoDB, DocumentDB, Keyspaces, Cosmos DB for NoSQL, for MongoDB and
+  for Apache Cassandra, Oracle NoSQL Database Cloud Service, Firestore in Native mode
+  and with MongoDB compatibility, Bigtable, Tablestore, GeminiDB and DDS.
+- **`tests/validate-nosql-operations.py`** enforces the sections, statuses,
+  citations, ledger status of cited rows and the no-prices rule.
+- **DynamoDB build and operate skill.** `aws-dynamodb-patterns` is ported from the
+  canonical copy in agentic-vantage, with its own ledger. It complements the
+  review-only DynamoDB skill.
+
+DocumentDB and Keyspaces get minimal new skills that hold only the operations
+reference. A shared AWS skill would have mixed three data models, and an extension
+of a DynamoDB skill would have broken the "do not combine services" rule.
+
 ## Services evaluated and not built
 
 These candidates were considered and deliberately left out. Each would add
@@ -102,9 +129,9 @@ supported by this work.
 
 | Candidate | Reason it is deferred |
 | --- | --- |
-| Amazon DocumentDB, Amazon Keyspaces | Different data models from DynamoDB. They need their own skills rather than an extension of the DynamoDB one. |
-| Cosmos DB API for MongoDB, Cassandra, Gremlin and Table | Different consistency mapping and feature sets. The Cosmos DB ledger is scoped to the API for NoSQL only. |
-| Firestore in Datastore mode; deeper Firestore with MongoDB compatibility | The Firestore reference covers Standard and Native mode. It defines Datastore mode and flags the Enterprise modes, but adds no design depth for either. |
+| Data-modeling depth for Amazon DocumentDB and Amazon Keyspaces | Operations are covered by their own minimal skills. Schema, index and query design are not. |
+| Cosmos DB API for Gremlin and Table; design depth for the MongoDB and Cassandra APIs | Different consistency mapping and feature sets. The MongoDB and Cassandra APIs have operations references only. |
+| Firestore in Datastore mode; design depth for Firestore with MongoDB compatibility | The Firestore reference covers Native mode. MongoDB compatibility has an operations reference only; Datastore mode is defined but not covered. |
 | GeminiDB Redis, HBase and Influx APIs | The GeminiDB skill gives API selection and models only the Cassandra API in depth. |
 
 To add one, follow the same path: inventory, the official sources, a ledger,

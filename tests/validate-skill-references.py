@@ -45,6 +45,9 @@ REPO = Path(__file__).resolve().parent.parent
 OFFICIAL_SOURCES: dict[str, tuple[str, ...]] = {
     "docs.oracle.com": ("",),
     "docs.aws.amazon.com": ("",),
+    # Provider-owned pricing pages are the authority for billing dimensions in the
+    # NoSQL operations references (Cost sections record dimensions, never prices).
+    "aws.amazon.com": ("/documentdb/pricing/", "/keyspaces/pricing/", "/dynamodb/pricing/"),
     "learn.microsoft.com": ("",),
     "firebase.google.com": ("/docs/",),
     "cloud.google.com": ("/",),

@@ -34,6 +34,8 @@ EXPECTED_KEYWORDS: dict[str, list[str]] = {
     "aws-devops-agent-skill-designer": ["devops agent", "skill", "learned", "tool-use", "frontmatter", "agent type"],
     "aws-dynamodb-data-modeling-performance-review": ["dynamodb", "partition", "gsi", "query", "scan", "hot"],
     "aws-dynamodb-patterns": ["dynamodb", "refactor", "backup", "restore", "vectors", "pitr"],
+    "aws-documentdb-architect": ["documentdb", "backup", "restore", "monitoring", "encryption"],
+    "aws-keyspaces-architect": ["keyspaces", "cassandra", "restore", "monitoring", "encryption"],
     "aws-ec2-compute-operations-steward": ["ec2", "auto scaling", "launch template", "systems manager", "patch", "instance"],
     "aws-ecs-fargate-platform-operator": ["ecs", "fargate", "task", "execution role", "circuit breaker", "service"],
     "aws-eks-platform-operator": ["eks", "kubernetes", "irsa", "node", "karpenter", "cluster"],

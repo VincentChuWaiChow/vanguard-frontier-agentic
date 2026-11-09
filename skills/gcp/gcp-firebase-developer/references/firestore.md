@@ -115,7 +115,8 @@ no Firestore real-time capabilities [FS-E19]. The rules in this file do not
 apply to it. Confirm the mode before advising, and do not promise listeners or
 Firestore client SDK features on a Datastore-mode database. *(recommendation)*
 
-## Not covered (unverified)
+## Not covered here
 
-Pricing was not retrieved [FS-E16]. Fetch the official page or label the
-answer an assumption.
+Billing dimensions (not prices) are in the Cost section of
+[the operations reference](firestore-operations.md). Prices are not encoded: fetch
+the official pricing page or label the answer an assumption.

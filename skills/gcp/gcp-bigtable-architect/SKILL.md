@@ -56,6 +56,7 @@ DynamoDB, Cosmos DB or Firestore guarantees to Bigtable.
 - [Design guide](references/bigtable-design-guide.md): row keys, atomicity,
   app profiles and consistency, garbage collection, capacity, IAM, backups,
   client libraries, pushback rules.
+- [Operations reference](references/operations.md): backup and restore, disaster recovery, billing dimensions, monitoring, performance, IAM, tagging, encryption, network isolation and audit logging.
 - [Evidence ledger](references/evidence-ledger.md): when a claim must be
   traced to its Google source or re-verified.
 

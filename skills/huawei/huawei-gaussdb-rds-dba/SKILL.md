@@ -51,6 +51,7 @@ Use this skill for:
 
 Load these only when needed:
 
+- [DDS operations](references/dds-operations.md) — DDS backup and restore, disaster recovery, billing dimensions, monitoring, performance, IAM, tagging, encryption, network isolation and audit logging.
 - [DDS evidence ledger](references/evidence-ledger.md) — use when a DDS claim must be traced to its Huawei Cloud source.
 - [Official sources](references/official-sources.md) — use when grounding GaussDB, RDS, or DDS service behavior or checking the detailed source list.
 - [Workflow and output contract](references/workflow-and-output.md) — use when executing a full database review or formatting the final answer.

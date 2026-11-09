@@ -1,0 +1,26 @@
+{
+  "id": "aws-keyspaces-architect",
+  "name": "AWS Keyspaces Architect",
+  "type": "skill",
+  "provider": "aws",
+  "harnesses": [
+    "codex",
+    "claude-code",
+    "cursor",
+    "gemini",
+    "kiro",
+    "other"
+  ],
+  "summary": "Plan and review Amazon Keyspaces (for Apache Cassandra) operations: point-in-time recovery and restore, multi-Region replication, billing dimensions for capacity modes and storage, CloudWatch monitoring, throttling and performance signals, IAM, tagging, encryption, VPC endpoints and audit logging, each with a provenance ledger row.",
+  "source_type": "original",
+  "official_docs": [
+    "https://docs.aws.amazon.com/keyspaces/latest/devguide/what-is-keyspaces.html",
+    "https://docs.aws.amazon.com/keyspaces/latest/devguide/PointInTimeRecovery.html",
+    "https://docs.aws.amazon.com/keyspaces/latest/devguide/multiRegion-replication.html"
+  ],
+  "security_notes": "Static review only. Never runs or instructs restore, failover, deletion, scaling, network, key or IAM changes without explicit target, blast radius, rollback and user approval; never requests credentials or customer data.",
+  "last_verified": "2026-11-08",
+  "path": "skills/aws/aws-keyspaces-architect",
+  "author": "github: VincentChuWaiChow",
+  "version": "0.1.0"
+}

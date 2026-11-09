@@ -54,6 +54,7 @@ transfer DynamoDB, Bigtable or HBase guarantees to Tablestore.
 
 - [Design guide](references/tablestore-design-guide.md): keys, transactions,
   indexes, TTL and versions, capacity, limits, access control, SDKs, pushback.
+- [Operations reference](references/operations.md): backup and restore, disaster recovery, billing dimensions, monitoring, performance, IAM, tagging, encryption, network isolation and audit logging.
 - [Evidence ledger](references/evidence-ledger.md): when a claim must be
   traced to its Alibaba Cloud source or re-verified.
 

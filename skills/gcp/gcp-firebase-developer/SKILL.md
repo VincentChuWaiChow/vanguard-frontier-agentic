@@ -38,6 +38,7 @@ Load only when needed:
 | Scenario | Trigger Keywords | Reference |
 |---|---|---|
 | Firestore data modeling | collection, document, subcollection, NoSQL schema, query design, index, transaction, TTL, PITR | [references/firestore.md](references/firestore.md) (claims cite [references/evidence-ledger.md](references/evidence-ledger.md)) |
+| Firestore operations | backup, PITR, DR, replication, cost, billing, monitoring, IAM, tags, CMEK, VPC Service Controls, audit logs | Native mode: [references/firestore-operations.md](references/firestore-operations.md); MongoDB compatibility: [references/firestore-mongodb-operations.md](references/firestore-mongodb-operations.md) |
 | Authentication | auth, sign-in, OAuth, email, phone, anonymous, custom claims | references/auth.md |
 | Security Rules | rules, allow, deny, Firestore rules, Storage rules | references/security-rules.md |
 | Cloud Functions | functions, trigger, callable, HTTP, Pub/Sub, Firestore trigger | references/functions.md |

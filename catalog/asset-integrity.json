@@ -36209,7 +36209,7 @@
     },
     {
       "tree": "catalog",
-      "aggregate_sha256": "a1a110960640de56c630a514532f6ecbbc04096ff0bc66fc107446b2ebe4ec58",
+      "aggregate_sha256": "289e6163e0f36bc1b1a16938cd35872f291583585aee082682f8e5595f19f51c",
       "files": [
         {
           "path": "catalog/AGENTS.md",
@@ -36228,8 +36228,8 @@
         },
         {
           "path": "catalog/install-roles.json",
-          "sha256": "2e84ca2a1a88e4bfa151fb439956f0eb225f42e433e2297bc818df30767a039a",
-          "bytes": 129405
+          "sha256": "9868d0b0c455d238f3bb0383a752a0f6ea89977e92f3339b3f27d50801609db2",
+          "bytes": 129476
         },
         {
           "path": "catalog/mcp-references.json",
@@ -36263,13 +36263,13 @@
         },
         {
           "path": "catalog/skill-manifest.json",
-          "sha256": "2e78e5376a2dd8c82cc141fe2b457b0aad5bbbba17d5530f6885b5828863352c",
-          "bytes": 1119921
+          "sha256": "01b2e59e03f21b7a240d0f3cf91a2d2759f74b3695c0b0b7cd70056ce66f02cf",
+          "bytes": 1125827
         },
         {
           "path": "catalog/skills.json",
-          "sha256": "fedbbdfeea86acd8cd4d6a3d1748d51df2a7aa3c664ce84f689588f3dbb6bc3e",
-          "bytes": 1255343
+          "sha256": "831664bc36c2b038ba20ddb6572604da7e849e164d65d0d5f7759824d66a6ebd",
+          "bytes": 1258000
         },
         {
           "path": "catalog/workflows.json",
@@ -37502,7 +37502,7 @@
     },
     {
       "tree": "tests",
-      "aggregate_sha256": "08e9f4dd93692b8d535767f80bf01a33d0190720927a94a6cb2e74c506bd2e40",
+      "aggregate_sha256": "1dd2c384f364f1b748eb53b55cd57f84e3b2cbb2d45ef56fe038fe50c447186b",
       "files": [
         {
           "path": "tests/AGENTS.md",
@@ -38541,7 +38541,7 @@
         },
         {
           "path": "tests/fixtures/README.md",
-          "sha256": "570e58154097519ae4288717e67872a0adda7ecacc6b76074ee8a2ca9d2d51da",
+          "sha256": "b3ab279ec6d6897cef25154acfe4df4f8bf85774bff7233551d10722c619272e",
           "bytes": 3698
         },
         {
@@ -49121,8 +49121,8 @@
         },
         {
           "path": "tests/validate-aws-skill-quality.py",
-          "sha256": "facd20f3fc60a329d373f169fd8c7c34e10526cc67c040ec16be6e773535ff91",
-          "bytes": 11157
+          "sha256": "0b21f9c88330557532c9321db4137bd9a9b67599b839aa50bbed49bee52d5088",
+          "bytes": 11352
         },
         {
           "path": "tests/validate-azure-oci-live-guards.sh",
@@ -49190,6 +49190,11 @@
           "bytes": 2607
         },
         {
+          "path": "tests/validate-nosql-operations.py",
+          "sha256": "18b739d7a056b33f021036eba3fc0be837464e311e47cc6a3f9916a9dde528ca",
+          "bytes": 6476
+        },
+        {
           "path": "tests/validate-nosql-scenarios.py",
           "sha256": "b0f062683362adb3a15ca0ca24cc2402724d824314313a128c476b2f2c8b1e2e",
           "bytes": 3868
@@ -49236,8 +49241,8 @@
         },
         {
           "path": "tests/validate-skill-references.py",
-          "sha256": "69e4e7e231d49f895baf3f97096ceaaa498c7db6fb75ce7222d5911fee8c70a3",
-          "bytes": 9375
+          "sha256": "dfc6f031bd89e07981bb1850e80d23968b50efbd996cb3a476685dba27c9ec77",
+          "bytes": 9634
         },
         {
           "path": "tests/validate-skill-yaml-strict.py",
@@ -49255,7 +49260,7 @@
   "root_files": [
     {
       "path": "README.md",
-      "sha256": "37768e5dc5bd2e00da12e29691311844a7061b4feeb1c0e90336a0134a833104",
+      "sha256": "801b0194df4ac95e42f45bc41c5305e7ae019134f4723698e9c53ca6a9a9f4d3",
       "bytes": 115723
     },
     {
@@ -49295,8 +49300,8 @@
     },
     {
       "path": "package.json",
-      "sha256": "07a3b21d80e6b6799f566082ab5718da23e5fcbb49f423f14604f92fdcb0c91b",
-      "bytes": 8882
+      "sha256": "eef4cf3149e883abe14f01fd0c92eaf239a3645fa3c066d5c6bc80b0a1737178",
+      "bytes": 8998
     },
     {
       "path": ".releaserc.js",
@@ -49304,5 +49309,5 @@
       "bytes": 9135
     }
   ],
-  "aggregate_sha256": "8f8707f008e13aeef2989b4b25492d81e3e2f081467d05fb6443d51faa9f6860"
+  "aggregate_sha256": "6662623f1225014a0eb23ebe913a0ae25afaa2f6d082f7cd2fc7e507ec528da5"
 }
