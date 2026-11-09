@@ -4027,7 +4027,7 @@
     {
       "id": "azure-cosmosdb-pattern",
       "path": "skills/azure/azure-cosmosdb-pattern",
-      "aggregate_sha256": "dbb90c7c170e429e1adda54a002da821543e6e42756521941ad225dcd0381342",
+      "aggregate_sha256": "31cdd769339ecc7758ff5ec413ca4193af6d8ae5e0f0531094c1eb6be4db60cd",
       "files": [
         {
           "path": "skills/azure/azure-cosmosdb-pattern/CHANGELOG.md",
@@ -4303,26 +4303,6 @@
           "path": "skills/azure/azure-cosmosdb-pattern/references/workflow.md",
           "sha256": "bbfe300e32aca2adbc8d119e6446f2e93e107a8b225792cf7d826cee4776fac9",
           "bytes": 1252
-        },
-        {
-          "path": "skills/azure/azure-cosmosdb-pattern/scripts/__pycache__/recovery_guard.cpython-313.pyc",
-          "sha256": "c71bb28db33cadbe3a0510ea09c3fcb7f36fe0ecf6c171e610da90cae4efb1aa",
-          "bytes": 7958
-        },
-        {
-          "path": "skills/azure/azure-cosmosdb-pattern/scripts/__pycache__/review_due.cpython-313.pyc",
-          "sha256": "aa35b9b0b17e07a7626847c23a2a48bbdcf0dc1394c6097ff102f30b40d682c3",
-          "bytes": 1910
-        },
-        {
-          "path": "skills/azure/azure-cosmosdb-pattern/scripts/__pycache__/select_mode.cpython-313.pyc",
-          "sha256": "7d9dca4c24be3335ee8806b35819999b9ba6b65912f8e9ac371f0ded37c583e3",
-          "bytes": 7179
-        },
-        {
-          "path": "skills/azure/azure-cosmosdb-pattern/scripts/__pycache__/validate_assets.cpython-313.pyc",
-          "sha256": "12ae087e3aa55a94396562598db3acef8808ad535e83da11054887b1e8b6ed47",
-          "bytes": 4739
         },
         {
           "path": "skills/azure/azure-cosmosdb-pattern/scripts/recovery_guard.py",
@@ -18139,7 +18119,7 @@
     {
       "id": "oci-nosql-pattern",
       "path": "skills/oci/oci-nosql-pattern",
-      "aggregate_sha256": "f4acd82c997d1dadf5a85a5f3c501e1f55648e559a01eb367974a7ecc9153e48",
+      "aggregate_sha256": "821277b43f703fadcc79dea7875b1f9c805ada80c5323964b86f9d845bf7d5ad",
       "files": [
         {
           "path": "skills/oci/oci-nosql-pattern/CHANGELOG.md",
@@ -18415,21 +18395,6 @@
           "path": "skills/oci/oci-nosql-pattern/references/vanguard-port.md",
           "sha256": "b943cbf086af0dc75f09228612be3b39da72d5c25a956cb52b9329d9b40fb0e5",
           "bytes": 4720
-        },
-        {
-          "path": "skills/oci/oci-nosql-pattern/scripts/__pycache__/check_recovery.cpython-313.pyc",
-          "sha256": "156a71e4d38ca6f0f1d4fe9552a3c9e1750de109bbf862de2afb8f595c2246e9",
-          "bytes": 5441
-        },
-        {
-          "path": "skills/oci/oci-nosql-pattern/scripts/__pycache__/review_due.cpython-313.pyc",
-          "sha256": "bbcfba61ea60e23642ad0fed5ec54c4cd1e17baafa7ad4aada6013939b3bc704",
-          "bytes": 2400
-        },
-        {
-          "path": "skills/oci/oci-nosql-pattern/scripts/__pycache__/select_mode.cpython-313.pyc",
-          "sha256": "5a7cb0e477e6db9dc7fa50c43b325a5f1b628f66eebff124d0b0fb3b504764bc",
-          "bytes": 6478
         },
         {
           "path": "skills/oci/oci-nosql-pattern/scripts/check_recovery.py",

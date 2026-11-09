@@ -36299,7 +36299,7 @@
     },
     {
       "tree": "catalog",
-      "aggregate_sha256": "7af6bb0d5a00bf1c9006b8f39775850e14f397840268f01fcbe2e84a434f9494",
+      "aggregate_sha256": "c74d8b85bc895891ac812fc7c105d97351014056155903169ab0e742c9748921",
       "files": [
         {
           "path": "catalog/AGENTS.md",
@@ -36353,8 +36353,8 @@
         },
         {
           "path": "catalog/skill-manifest.json",
-          "sha256": "fac11665575168c4b4139824c8fd50009c7c8c94a1729c1e27783ef9845e4e2d",
-          "bytes": 1156999
+          "sha256": "c2addff68636051446c52187c5ebe06d1eb884177a6e26ac538f6e0d82ee6adf",
+          "bytes": 1155346
         },
         {
           "path": "catalog/skills.json",
@@ -37592,7 +37592,7 @@
     },
     {
       "tree": "tests",
-      "aggregate_sha256": "8cc8ce4b201f3d5c22c90db558f2fd186e75d376ae3c1cb63938b8bc9ffe1961",
+      "aggregate_sha256": "79198fa19e3798f66ed019ee83d425bfa4b3825f408427b29852b67e57bdd360",
       "files": [
         {
           "path": "tests/AGENTS.md",
@@ -49321,8 +49321,8 @@
         },
         {
           "path": "tests/validate-nosql-pattern-evals.py",
-          "sha256": "b6fb1dd87d60cc04643a5ab8ce6bb598a71a970ae6779daf1ea0d403094fb324",
-          "bytes": 2491
+          "sha256": "349f2744b444b9bda1f51e898a8bc2a4b0f476b4ca89817b53a3f409400eecfd",
+          "bytes": 2589
         },
         {
           "path": "tests/validate-nosql-scenarios.py",
@@ -49366,8 +49366,8 @@
         },
         {
           "path": "tests/validate-skill-manifest.py",
-          "sha256": "963e8499da6e991cf84a5d6602a79d625c4f861b9c927f11a45782b7a23878cc",
-          "bytes": 3543
+          "sha256": "718546aa5e3377c8a9d90c8ea17a80679066322c08abadc132e7aa2d5af879c2",
+          "bytes": 3805
         },
         {
           "path": "tests/validate-skill-references.py",
@@ -49439,5 +49439,5 @@
       "bytes": 9135
     }
   ],
-  "aggregate_sha256": "e948aa88807eeab606222830a31fc7eeb793d0c8301d27d96dbe341f38bf8ca2"
+  "aggregate_sha256": "8b3d0abd024eb58f521d4881fc84501ce31a9f6d0fdba6ba3e4daa81ff82b316"
 }

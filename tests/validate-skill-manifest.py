@@ -29,7 +29,12 @@ def load_json(path: Path):
 
 def skill_files(skill_path: Path) -> list[dict]:
     files: list[dict] = []
-    for path in sorted(p for p in skill_path.rglob("*") if p.is_file()):
+    # Skip interpreter bytecode caches: they are git-ignored, so hashing them makes the
+    # manifest depend on whether a skill's scripts happened to run locally (CI never has them).
+    for path in sorted(
+        p for p in skill_path.rglob("*")
+        if p.is_file() and "__pycache__" not in p.parts and p.suffix != ".pyc"
+    ):
         rel = path.relative_to(ROOT).as_posix()
         data = path.read_bytes()
         files.append({

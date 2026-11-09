@@ -13,6 +13,7 @@ with ``cfn-lint`` (pinned in CI), and the Node eval needs ``node``. Install with
 """
 from __future__ import annotations
 
+import os
 import shutil
 import subprocess
 import sys
@@ -45,7 +46,8 @@ def main() -> int:
     for skill, command in commands:
         name = f"{skill.name}/{Path(command[-1]).name}"
         try:
-            result = subprocess.run(command, cwd=skill, capture_output=True, text=True, timeout=TIMEOUT)
+            result = subprocess.run(command, cwd=skill, capture_output=True, text=True, timeout=TIMEOUT,
+                                    env={**os.environ, "PYTHONDONTWRITEBYTECODE": "1"})
         except subprocess.TimeoutExpired:
             print(f"FAIL {name}: timed out after {TIMEOUT}s")
             failures += 1
