@@ -43,6 +43,13 @@
 #   - scripts/install-codex-home.mjs
 #                           spawnSync(cmd, argvArray) with no shell and no string
 #                           interpolation → false "shell injection" finding
+#   - skills/azure/azure-cosmosdb-pattern/evals/runtime.test.mjs
+#                           offline unit test (fake SDK only, never contacts Azure).
+#                           Alert #256 matched the mocked Cosmos response header
+#                           "x-ms-session-token": "session-v": a documented
+#                           session-consistency header with a placeholder value, not
+#                           a credential. Scoped to this one file so the skill's
+#                           scripts, assets and other evals stay secret-scanned.
 #   - plugins/**/.codex-plugin/plugin.json
 #                           Note-level "interface asset/URL invalid" hints for
 #                           optional fields (logo/screenshots/composerIcon/
@@ -63,4 +70,5 @@ ignore_paths = [
   "**/metadata.json",
   "**/references/*.md",
   "plugins/**/.codex-plugin/plugin.json",
+  "skills/azure/azure-cosmosdb-pattern/evals/runtime.test.mjs",
 ]
