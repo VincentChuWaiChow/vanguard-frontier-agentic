@@ -2,7 +2,6 @@
 import ast
 import builtins
 import contextlib
-import copy
 import importlib.util
 import io
 import json
@@ -104,7 +103,7 @@ class Package(unittest.TestCase):
         self.assertEqual(set(limits), set(commands[("nosql", "table", "create")]["tableLimits"]))
         query = json.loads((ROOT / "assets/query.json").read_text())
         self.assertTrue(query["isPrepared"])
-        self.assertTrue(set(query) <= set(commands[("nosql", "query", "execute")]))
+        self.assertLessEqual(set(query), set(commands[("nosql", "query", "execute")]))
         sql = (ROOT / "assets/query.sql").read_text()
         for variable in query["variables"]:
             self.assertIn(variable, sql)

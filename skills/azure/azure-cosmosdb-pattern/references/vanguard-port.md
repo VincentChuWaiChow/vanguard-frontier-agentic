@@ -11,6 +11,9 @@ re-sync this directory and re-run the gates here.
   helper scripts only) and `metadata.author`, `updated` and `category`, which this
   repository's skill schema requires.
 - `metadata.json`, this file and [the evidence ledger](evidence-ledger.md) exist only here.
+- `scripts/recovery_guard.py` rejects an in-account restore whose target resource group
+  differs from the source account's resource group (Codex review finding);
+  `evals/test_package.py` covers it. Apply upstream too.
 - Three corrections, to apply upstream too:
   - `commands/restore/continuous-deleted-resource.md` states Microsoft's limit of
     three active restore operations per account [CP-E354].

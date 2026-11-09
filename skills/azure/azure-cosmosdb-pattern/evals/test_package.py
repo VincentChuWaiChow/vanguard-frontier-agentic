@@ -226,13 +226,19 @@ class Recovery(unittest.TestCase):
     def test_deleted_resource_requires_delete_and_absent_scope(self):
         e = self.evidence(); e["method"] = "continuous-deleted-resource"
         e["target"]["account"] = e["source"]["account"]
+        e["target"]["resource_group"] = "source-rg"
         e.update(deletion_event="Delete", deleted_at="2026-11-08T08:40:00Z",
                  resource_kind="container", database="ordersdb", container="orders")
         p = GUARD.plan(e)
         self.assertEqual(p["argv_example"][:5], ["az", "cosmosdb", "sql", "container", "restore"])
+        argv = p["argv_example"]
+        self.assertEqual(argv[argv.index("--resource-group") + 1], "source-rg")
         for change in [{"deletion_event": "Update"}, {"deleted_at": "2026-11-08T08:20:00Z"}, {"resource_kind": "item"}]:
             bad = copy.deepcopy(e); bad.update(change)
             with self.assertRaises(ValueError): GUARD.plan(bad)
+        # Same account name in a different resource group is not the source account.
+        bad = copy.deepcopy(e); bad["target"]["resource_group"] = "recovery-rg"
+        with self.assertRaises(ValueError): GUARD.plan(bad)
 
     def test_periodic_is_support_only_no_fictional_cli(self):
         e = self.evidence(); e["method"] = "periodic-support"; e["source"]["backup_mode"] = "Periodic"

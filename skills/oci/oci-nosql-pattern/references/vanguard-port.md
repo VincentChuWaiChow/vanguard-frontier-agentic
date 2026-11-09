@@ -11,6 +11,8 @@ re-sync this directory and re-run the gates here.
   helper scripts only) and `metadata.author`, `updated` and `category`, which this
   repository's skill schema requires.
 - `metadata.json`, this file and [the evidence ledger](evidence-ledger.md) exist only here.
+- `evals/test_package.py` drops an unused `copy` import and uses `assertLessEqual` for
+  a subset check (CodeQL findings). Apply upstream too.
 
 ## Sync procedure
 

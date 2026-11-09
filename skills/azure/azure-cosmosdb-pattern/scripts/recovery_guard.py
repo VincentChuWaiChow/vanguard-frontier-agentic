@@ -45,6 +45,9 @@ def plan(e):
     if method == "continuous-deleted-resource":
         if s.get("backup_mode") != "Continuous" or t["account"] != s["account"]:
             raise ValueError("in-account restore requires same continuous source account")
+        source_group = re.search(r"/resourceGroups/([^/]+)/", s["resource_id"], re.IGNORECASE).group(1)
+        if t["resource_group"].lower() != source_group.lower():
+            raise ValueError("in-account restore must target the source account's resource group")
         if e.get("deletion_event") != "Delete" or not point < instant(e["deleted_at"]):
             raise ValueError("actual deletion event and pre-deletion point required")
         kind = e.get("resource_kind")

@@ -4027,7 +4027,7 @@
     {
       "id": "azure-cosmosdb-pattern",
       "path": "skills/azure/azure-cosmosdb-pattern",
-      "aggregate_sha256": "31cdd769339ecc7758ff5ec413ca4193af6d8ae5e0f0531094c1eb6be4db60cd",
+      "aggregate_sha256": "7ba5e08987962e11bea3f70d646042ce48b2d35afc6083868be48e544e9278d7",
       "files": [
         {
           "path": "skills/azure/azure-cosmosdb-pattern/CHANGELOG.md",
@@ -4116,8 +4116,8 @@
         },
         {
           "path": "skills/azure/azure-cosmosdb-pattern/evals/test_package.py",
-          "sha256": "acae6fcd273c55676c401a8b29bec8c8da49bca2dd662a118ec7c65fd33d64fa",
-          "bytes": 19690
+          "sha256": "4b006b7cba05e3bbeccd6fcd46902999352d413541fe9df9b7aa48478d2c34b3",
+          "bytes": 20080
         },
         {
           "path": "skills/azure/azure-cosmosdb-pattern/metadata.json",
@@ -4296,8 +4296,8 @@
         },
         {
           "path": "skills/azure/azure-cosmosdb-pattern/references/vanguard-port.md",
-          "sha256": "e62ce68325f6f575e3b4dfe35a4c8a4276ec93a78426014544c377511627141d",
-          "bytes": 10289
+          "sha256": "46840751c4291305900ea137ae0b2625d4179d0036c3fd1098f1dcdcda2e6ada",
+          "bytes": 10509
         },
         {
           "path": "skills/azure/azure-cosmosdb-pattern/references/workflow.md",
@@ -4306,8 +4306,8 @@
         },
         {
           "path": "skills/azure/azure-cosmosdb-pattern/scripts/recovery_guard.py",
-          "sha256": "2ffe9f02c8c2cdf3864a832003126213adb20ab5f83b83fa1bcfb8fbad657bb2",
-          "bytes": 5677
+          "sha256": "900a43c15c23b5010b21d62d57ed8e7f3b3b4147fa50a0ad55bb23fa702c1ff3",
+          "bytes": 5944
         },
         {
           "path": "skills/azure/azure-cosmosdb-pattern/scripts/review_due.py",
@@ -18119,7 +18119,7 @@
     {
       "id": "oci-nosql-pattern",
       "path": "skills/oci/oci-nosql-pattern",
-      "aggregate_sha256": "821277b43f703fadcc79dea7875b1f9c805ada80c5323964b86f9d845bf7d5ad",
+      "aggregate_sha256": "8d4cac374bbb03f9cf5d0449ba4f3dcdcf2bffafcdf6f1de22b67b8279aa8232",
       "files": [
         {
           "path": "skills/oci/oci-nosql-pattern/CHANGELOG.md",
@@ -18223,8 +18223,8 @@
         },
         {
           "path": "skills/oci/oci-nosql-pattern/evals/test_package.py",
-          "sha256": "ffda43b3d0c1f7d187e2e2bdb2618f54b858de542ec22412c02471c9945624d0",
-          "bytes": 20880
+          "sha256": "2b99b1a9c5ef591108bebcdec18f7ab7b40ae58c25c5d3d23648f4a9ba03eec5",
+          "bytes": 20871
         },
         {
           "path": "skills/oci/oci-nosql-pattern/evals/test_runtime.mjs",
@@ -18393,8 +18393,8 @@
         },
         {
           "path": "skills/oci/oci-nosql-pattern/references/vanguard-port.md",
-          "sha256": "b943cbf086af0dc75f09228612be3b39da72d5c25a956cb52b9329d9b40fb0e5",
-          "bytes": 4720
+          "sha256": "f34f5a250be00ee7df591f7648f65a4f27ec8993a9df4e620fd60288232fda18",
+          "bytes": 4863
         },
         {
           "path": "skills/oci/oci-nosql-pattern/scripts/check_recovery.py",
