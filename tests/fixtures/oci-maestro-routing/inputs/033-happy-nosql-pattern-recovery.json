@@ -1,0 +1,7 @@
+{
+  "name": "033-happy-nosql-pattern-recovery",
+  "task": "Plan an Oracle NoSQL export with the NoSQL Migrator and a nosql import into a new table using oci-nosql-pattern.",
+  "tags": [
+    "happy-path"
+  ]
+}

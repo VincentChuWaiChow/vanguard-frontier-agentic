@@ -117,6 +117,28 @@ operational dimensions the original requirement listed. This amendment adds them
   canonical copy in agentic-vantage, with its own ledger. It complements the
   review-only DynamoDB skill.
 
+### Smaller clouds and further pattern ports
+
+- **Managed MongoDB on the smaller clouds** gets the same ten-section operations
+  reference: Scaleway Managed MongoDB®, OVHcloud Public Cloud Databases for MongoDB and
+  IONOS Cloud DBaaS MongoDB. Scaleway and OVHcloud get minimal new skills, because they
+  had no database skill. IONOS uses its existing database lifecycle skill.
+- **Hetzner and Contabo offer no managed NoSQL service**, so neither has an operations
+  reference.
+  - Hetzner's managed servers provide MySQL/MariaDB, PostgreSQL and Redis, and MongoDB is
+    self-installed on bare metal
+    (<https://docs.hetzner.com/managed/managed-server/managed-vs-bare-metal-server/>).
+  - Contabo describes its database hosting as self-managed
+    (<https://contabo.com/en/database-hosting/>).
+  - Revisit if either launches a managed NoSQL product.
+- **Redis/Valkey in-memory stores are out of scope.** They are caches, not the document,
+  key-value or wide-column databases this ADR covers.
+- **`oci-nosql-pattern` and `azure-cosmosdb-pattern`** are ported from agentic-vantage,
+  which stays canonical. Each has its own ledger, port record and companion agent.
+  Maestro routing sends build-or-operate requests to them, and review stays with the
+  existing specialists. `validate:nosql-pattern-evals` runs all three pattern skills'
+  evals.
+
 DocumentDB and Keyspaces get minimal new skills that hold only the operations
 reference. A shared AWS skill would have mixed three data models, and an extension
 of a DynamoDB skill would have broken the "do not combine services" rule.

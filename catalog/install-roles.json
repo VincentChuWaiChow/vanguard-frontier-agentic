@@ -126,6 +126,7 @@
         "aws-dynamodb-patterns-agent",
         "aws-rds-aurora-performance-investigator-agent",
         "azure-cosmosdb-application-developer-agent",
+        "azure-cosmosdb-pattern-agent",
         "azure-cosmosdb-performance-investigator-agent",
         "azure-cosmosdb-platform-operator-agent",
         "gcp-alloydb-cloudsql-dba-agent",
@@ -147,6 +148,7 @@
         "oci-live-autonomous-db-lifecycle-guard-agent",
         "oci-mysql-heatwave-ai-specialist-agent",
         "oci-nosql-database-architect-agent",
+        "oci-nosql-pattern-agent",
         "oci-recovery-service-operator-agent"
       ],
       "skills": [
@@ -161,6 +163,7 @@
         "aws-keyspaces-architect",
         "aws-rds-aurora-performance-investigator",
         "azure-cosmosdb-application-developer",
+        "azure-cosmosdb-pattern",
         "azure-cosmosdb-performance-investigator",
         "azure-cosmosdb-platform-operator",
         "gcp-alloydb-cloudsql-dba",
@@ -183,7 +186,10 @@
         "oci-live-autonomous-db-lifecycle-guard",
         "oci-mysql-heatwave-ai-specialist",
         "oci-nosql-database-architect",
-        "oci-recovery-service-operator"
+        "oci-nosql-pattern",
+        "oci-recovery-service-operator",
+        "ovhcloud-mongodb-architect",
+        "scaleway-managed-mongodb-architect"
       ]
     },
     "cloud-devops-engineer": {

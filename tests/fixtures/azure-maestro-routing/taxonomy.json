@@ -339,6 +339,19 @@
         "DevSecOps"
       ],
       "agent": "azure-waf-security-review-agent"
+    },
+    "cosmosdb-pattern": {
+      "keywords": [
+        "azure-cosmosdb-pattern",
+        "cosmosdb-pattern",
+        "cosmos restore",
+        "point-in-time restore",
+        "in-account restore",
+        "cosmos refactor",
+        "cosmos performance-test",
+        "feature-plan"
+      ],
+      "agent": "azure-cosmosdb-pattern-agent"
     }
   },
   "live_guards": [

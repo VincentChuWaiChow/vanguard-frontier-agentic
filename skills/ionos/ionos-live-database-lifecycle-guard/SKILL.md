@@ -54,6 +54,7 @@ Load these only when needed:
 - [Workflow and output contract](references/workflow-and-output.md) — use when executing the full lifecycle operation or formatting the final answer.
 - [Safety checklist](references/safety-checklist.md) — use before any database mutation; contains the hard-stop conditions that must all be confirmed before proceeding.
 - [Official sources](references/official-sources.md) — use when grounding IONOS DBaaS service behavior or checking the source list.
+- [MongoDB operations](references/mongodb-operations.md) — MongoDB only: backup and restore, disaster recovery, billing dimensions, monitoring, performance, IAM, tagging, encryption, network isolation and audit logging, each cited to the evidence ledger.
 
 ## Response minimum
 

@@ -33,7 +33,7 @@ changes there first, then re-sync this directory and re-run the gates here.
 
 1. Copy the upstream directory over this one, keeping the local differences above.
 2. Re-check every changed claim against AWS documentation and update the ledger rows.
-3. Run the skill's evals (`npm run validate:aws-dynamodb-patterns`, which needs
+3. Run the skill's evals (`npm run validate:nosql-pattern-evals`, which needs
    `cfn-lint`), then the repository gates.
 
 ## Verification summary

@@ -1,0 +1,10 @@
+{
+  "tenantId": "tenant-demo",
+  "orderId": "order-demo",
+  "status": "OPEN",
+  "createdAt": "2026-11-08T00:00:00.000Z",
+  "amount": 12.5,
+  "document": {
+    "sourceId": "demo"
+  }
+}

@@ -1,0 +1,35 @@
+{
+  "schema_version": 1,
+  "source": {
+    "tenancy": "REPLACE_TENANCY",
+    "region": "REPLACE_REGION",
+    "compartment": "REPLACE_COMPARTMENT",
+    "table": "orders_v1",
+    "table_ocid": "REPLACE_SOURCE_OCID"
+  },
+  "destination": {
+    "region": "REPLACE_REGION",
+    "compartment": "REPLACE_COMPARTMENT",
+    "table": "orders_recovery",
+    "exists": null
+  },
+  "backup": {
+    "method": "migrator",
+    "namespace": "REPLACE_NAMESPACE",
+    "bucket": "REPLACE_BUCKET",
+    "prefix": "REPLACE_UNIQUE_PREFIX",
+    "object_versions": [],
+    "schema_sha256": "REPLACE_HASH",
+    "data_sha256": {},
+    "export_start": "2026-11-08T00:00:00Z",
+    "export_end": "2026-11-08T00:05:00Z",
+    "writes_quiesced": false,
+    "include_ttl": true,
+    "failed_records": null,
+    "verified": false
+  },
+  "ttl_policy": "preserve-absolute-expiration",
+  "rpo_seconds": null,
+  "rto_seconds": null,
+  "cutover_approved": false
+}

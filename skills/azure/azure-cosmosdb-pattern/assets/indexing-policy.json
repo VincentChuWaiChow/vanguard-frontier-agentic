@@ -1,0 +1,7 @@
+{
+  "indexingMode": "consistent",
+  "automatic": true,
+  "includedPaths": [{"path": "/*"}],
+  "excludedPaths": [{"path": "/_etag/?"}, {"path": "/payload/*"}],
+  "compositeIndexes": [[{"path": "/createdAt", "order": "descending"}, {"path": "/id", "order": "ascending"}]]
+}

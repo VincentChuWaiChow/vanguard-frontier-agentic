@@ -1,0 +1,29 @@
+{
+  "source": {
+    "type": "object_storage_oci",
+    "format": "json",
+    "endpoint": "REPLACE_REGION",
+    "namespace": "REPLACE_NAMESPACE",
+    "bucket": "REPLACE_BUCKET",
+    "prefix": "REPLACE_EXACT_EXPORT_PREFIX",
+    "useInstancePrincipal": true
+  },
+  "sink": {
+    "type": "nosqldb_cloud",
+    "endpoint": "REPLACE_REGION",
+    "table": "orders_recovery",
+    "compartment": "REPLACE_COMPARTMENT_OCID",
+    "useInstancePrincipal": true,
+    "includeTTL": true,
+    "schemaInfo": {
+      "readUnits": 50,
+      "writeUnits": 50,
+      "storageSize": 1,
+      "schemaPath": "REPLACE_REVIEWED_RENAMED_SCHEMA_PATH"
+    },
+    "writeUnitsPercent": 25,
+    "overwrite": false,
+    "requestTimeoutMs": 5000
+  },
+  "abortOnError": true
+}

@@ -378,6 +378,18 @@
         "write units"
       ],
       "agent": "oci-nosql-database-architect-agent"
+    },
+    "nosql-pattern": {
+      "keywords": [
+        "oci-nosql-pattern",
+        "nosql-pattern",
+        "NoSQL Migrator",
+        "nosql export",
+        "nosql import",
+        "nosql refactor",
+        "nosql performance-test"
+      ],
+      "agent": "oci-nosql-pattern-agent"
     }
   },
   "live_guards": [

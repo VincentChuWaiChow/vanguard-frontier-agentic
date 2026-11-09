@@ -1,0 +1,28 @@
+{
+  "checked_on": "2026-11-08",
+  "scope": "Public first-party documentation only; no Azure account access",
+  "context7": {
+    "resolve_tool": "mcp__context7__resolve_library_id",
+    "query_tool": "mcp__context7__query_docs",
+    "library": "/websites/learn_microsoft_en-us_azure_cosmos-db",
+    "resolve_query": "Azure Cosmos DB for NoSQL JavaScript SDK partition key transactional batch ETag continuation tokens session token",
+    "queries": [
+      "Azure Cosmos DB for NoSQL JavaScript items.query fetchNext continuationToken maxItemCount partitionKey sessionToken accessCondition IfMatch transactional batch API",
+      "Azure Cosmos DB Node.js SDK item replace accessCondition type IfMatch condition etag sessionToken RequestOptions"
+    ],
+    "returned_primary_urls": [
+      "https://learn.microsoft.com/en-us/azure/cosmos-db/performance-tips-query-sdk",
+      "https://learn.microsoft.com/en-us/azure/cosmos-db/how-to-javascript-query-items",
+      "https://learn.microsoft.com/en-us/azure/cosmos-db/transactional-batch"
+    ]
+  },
+  "provider_tools": [
+    {"tool": "mcp__microsoftdocs_mcp__microsoft_docs_search", "topics": ["native vector types/dimensions/indexing", "backup retention and recovery modes", "SDK language support", "CMK identity and restore", "ARM account/container schemas", "pagination", "Java query"]},
+    {"tool": "mcp__microsoftdocs_mcp__microsoft_docs_fetch", "topics": ["full vector, continuous, periodic, restore, Entra RBAC, CMK, SDK, ARM and CLI pages listed in references/sources.md"]},
+    {"tool": "mcp__azure__documentation", "command": "learn=true", "result": "Discovered documentation search/fetch/code-sample schemas only"},
+    {"tool": "mcp__azure__documentation", "command": "microsoft_code_sample_search", "query": "Azure Cosmos DB for NoSQL JavaScript query items partitionKey fetchNext continuationToken", "returned_primary_url": "https://learn.microsoft.com/javascript/api/overview/azure/cosmos-readme?view=azure-node-latest#examples"}
+  ],
+  "observed_drift": ["Continuous35Days newer than pinned CLI/ARM subset", "float16 newer than pinned ARM vector enum", "NoSQL vs unified vector policy mutability guidance differs", "Python streamable cross-partition continuation now supported", "ReadConsistencyStrategy preview can strengthen reads in supported Java/.NET direct mode", "ServerSideLatency deprecated; Direct/Gateway replacements"],
+  "tool_gaps": ["Azure extension and generic codegen-bestpractice helpers weren't exposed in active tools", "az not installed; no install attempted"],
+  "execution_evidence": "Documentation calls and offline tests only. No Azure resource discovery, deployment, data request, load or restore."
+}

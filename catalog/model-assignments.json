@@ -3990,6 +3990,39 @@
       "reasoning_source": "default"
     },
     {
+      "agent_id": "azure-cosmosdb-pattern-agent",
+      "harness": "codex",
+      "model": "gpt-5.4",
+      "model_provider": null,
+      "model_fallback_from": null,
+      "model_warning": null,
+      "reasoning_effort": "high",
+      "model_source": "all",
+      "reasoning_source": "all"
+    },
+    {
+      "agent_id": "azure-cosmosdb-pattern-agent",
+      "harness": "claude-code",
+      "model": null,
+      "model_provider": null,
+      "model_fallback_from": null,
+      "model_warning": null,
+      "reasoning_effort": null,
+      "model_source": "default",
+      "reasoning_source": "default"
+    },
+    {
+      "agent_id": "azure-cosmosdb-pattern-agent",
+      "harness": "cursor",
+      "model": null,
+      "model_provider": null,
+      "model_fallback_from": null,
+      "model_warning": null,
+      "reasoning_effort": null,
+      "model_source": "default",
+      "reasoning_source": "default"
+    },
+    {
       "agent_id": "azure-cosmosdb-performance-investigator-agent",
       "harness": "codex",
       "model": "gpt-5.4",
@@ -17532,6 +17565,39 @@
     },
     {
       "agent_id": "oci-nosql-database-architect-agent",
+      "harness": "cursor",
+      "model": "inherit",
+      "model_provider": null,
+      "model_fallback_from": null,
+      "model_warning": null,
+      "reasoning_effort": null,
+      "model_source": "provider:oci",
+      "reasoning_source": "default"
+    },
+    {
+      "agent_id": "oci-nosql-pattern-agent",
+      "harness": "codex",
+      "model": "gpt-5.4",
+      "model_provider": null,
+      "model_fallback_from": null,
+      "model_warning": null,
+      "reasoning_effort": "high",
+      "model_source": "all",
+      "reasoning_source": "all"
+    },
+    {
+      "agent_id": "oci-nosql-pattern-agent",
+      "harness": "claude-code",
+      "model": null,
+      "model_provider": null,
+      "model_fallback_from": null,
+      "model_warning": null,
+      "reasoning_effort": null,
+      "model_source": "default",
+      "reasoning_source": "default"
+    },
+    {
+      "agent_id": "oci-nosql-pattern-agent",
       "harness": "cursor",
       "model": "inherit",
       "model_provider": null,

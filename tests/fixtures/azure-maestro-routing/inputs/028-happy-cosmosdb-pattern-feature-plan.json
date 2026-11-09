@@ -1,0 +1,7 @@
+{
+  "name": "028-happy-cosmosdb-pattern-feature-plan",
+  "task": "Use azure-cosmosdb-pattern to write a feature-plan for adding a vector index to our container.",
+  "tags": [
+    "happy-path"
+  ]
+}

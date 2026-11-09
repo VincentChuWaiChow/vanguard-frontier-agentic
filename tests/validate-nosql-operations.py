@@ -38,6 +38,9 @@ SERVICES: dict[str, tuple[str, str]] = {
     "Alibaba Cloud Tablestore": ("skills/alibaba/alibaba-tablestore-architect", "references/operations.md"),
     "Huawei Cloud GeminiDB": ("skills/huawei/huawei-geminidb-architect", "references/operations.md"),
     "Huawei Cloud DDS": ("skills/huawei/huawei-gaussdb-rds-dba", "references/dds-operations.md"),
+    "Scaleway Managed MongoDB": ("skills/scaleway/scaleway-managed-mongodb-architect", "references/operations.md"),
+    "OVHcloud Public Cloud Databases for MongoDB": ("skills/ovhcloud/ovhcloud-mongodb-architect", "references/operations.md"),
+    "IONOS Cloud DBaaS MongoDB": ("skills/ionos/ionos-live-database-lifecycle-guard", "references/mongodb-operations.md"),
 }
 SECTIONS = [
     "Backup and restore",

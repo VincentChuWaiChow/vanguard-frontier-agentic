@@ -3107,6 +3107,31 @@
     "author": "github: VincentChuWaiChow"
   },
   {
+    "id": "azure-cosmosdb-pattern",
+    "name": "Azure Cosmos DB Pattern",
+    "type": "skill",
+    "provider": "azure",
+    "harnesses": [
+      "codex",
+      "claude-code",
+      "cursor",
+      "gemini",
+      "kiro",
+      "other"
+    ],
+    "summary": "Design, implement, refactor and audit Azure Cosmos DB for NoSQL access patterns: partition and id routing, indexing and RUs, consistency and session tokens, transactions and ETags, change feed, vectors, RBAC, encryption, continuous and periodic backup, new-account and in-account restore, monitoring and ARM/CLI provisioning, with command routes that load one guide at a time.",
+    "source_type": "adapted",
+    "official_docs": [
+      "https://learn.microsoft.com/azure/cosmos-db/continuous-backup-restore-introduction",
+      "https://learn.microsoft.com/azure/cosmos-db/how-to-restore-in-account-continuous-backup"
+    ],
+    "security_notes": "Not permission to access Azure. Live reads need a confirmed subscription, resource group, account and container; writes, restores, feature changes and load tests need exact approval. Bundled scripts are offline route selectors, a date-argument review reminder, an asset validator and a sanitized recovery guard.",
+    "last_verified": "2026-11-09",
+    "path": "skills/azure/azure-cosmosdb-pattern",
+    "version": "1.0.0",
+    "author": "github: VincentChuWaiChow"
+  },
+  {
     "id": "azure-cosmosdb-performance-investigator",
     "name": "Azure Cosmos DB Performance Investigator",
     "version": "0.1.3",
@@ -15007,6 +15032,31 @@
     "author": "github: VincentChuWaiChow"
   },
   {
+    "id": "oci-nosql-pattern",
+    "name": "OCI NoSQL Pattern",
+    "type": "skill",
+    "provider": "oci",
+    "harnesses": [
+      "codex",
+      "claude-code",
+      "cursor",
+      "gemini",
+      "kiro",
+      "other"
+    ],
+    "summary": "Design, implement, refactor and audit Oracle NoSQL Database Cloud Service access patterns: shard and primary keys, indexes, continuation, same-shard transactions, consistency, TTL, IAM, encryption, replicas, metrics, Terraform/DDL/OCI CLI and customer-owned export/import recovery, with command routes that load one guide at a time.",
+    "source_type": "adapted",
+    "official_docs": [
+      "https://docs.oracle.com/en/cloud/paas/nosql-cloud/dtddt/features-of-oracle-nosql-database-cloud-service.html",
+      "https://docs.oracle.com/en/cloud/paas/nosql-cloud/odsql/"
+    ],
+    "security_notes": "Not permission to access OCI. Live reads need a confirmed principal, tenancy, region, compartment and table; writes, load tests and export/import recovery need exact approval. Recovery targets a new table. Bundled scripts are offline route selectors, a date-argument review reminder and a sanitized recovery-manifest checker.",
+    "last_verified": "2026-11-09",
+    "path": "skills/oci/oci-nosql-pattern",
+    "version": "1.0.0",
+    "author": "github: VincentChuWaiChow"
+  },
+  {
     "id": "oci-observability-incident-responder",
     "name": "OCI Observability Incident Responder",
     "type": "skill",
@@ -15513,6 +15563,31 @@
     "security_notes": "Routing layer must stay read-only; never attempt live OVHcloud API mutations from the classification layer — hand off to approval-gated specialists.",
     "last_verified": "2026-05-10",
     "path": "skills/ovhcloud/ovhcloud-maestro",
+    "version": "0.1.0",
+    "author": "github: VincentChuWaiChow"
+  },
+  {
+    "id": "ovhcloud-mongodb-architect",
+    "name": "OVHcloud MongoDB Architect",
+    "type": "skill",
+    "provider": "ovhcloud",
+    "harnesses": [
+      "codex",
+      "claude-code",
+      "cursor",
+      "gemini",
+      "kiro",
+      "other"
+    ],
+    "summary": "Plan and review OVHcloud Public Cloud Databases for MongoDB operations: backups and restore, replication and availability per service plan, billing dimensions, monitoring, performance signals, IAM, tagging, encryption, private networking and audit logging, each with a provenance ledger row.",
+    "source_type": "original",
+    "official_docs": [
+      "https://docs.ovhcloud.com/en/guides/public-cloud/databases/mongodb-getting-started",
+      "https://www.ovhcloud.com/en/public-cloud/mongodb/"
+    ],
+    "security_notes": "Static review only. Never runs or instructs restore, failover, deletion, scaling, network, key or IAM changes without explicit target, blast radius, rollback and user approval; never requests credentials or customer data.",
+    "last_verified": "2026-11-09",
+    "path": "skills/ovhcloud/ovhcloud-mongodb-architect",
     "version": "0.1.0",
     "author": "github: VincentChuWaiChow"
   },
@@ -20301,6 +20376,30 @@
     "path": "skills/scaleway/scaleway-maestro",
     "author": "github: VincentChuWaiChow",
     "version": "0.1.0"
+  },
+  {
+    "id": "scaleway-managed-mongodb-architect",
+    "name": "Scaleway Managed MongoDB Architect",
+    "type": "skill",
+    "provider": "scaleway",
+    "harnesses": [
+      "codex",
+      "claude-code",
+      "cursor",
+      "gemini",
+      "kiro",
+      "other"
+    ],
+    "summary": "Plan and review Scaleway Managed MongoDB® operations: snapshots and restore, replication and availability, billing dimensions, Cockpit monitoring, performance signals, IAM permission sets, tagging, encryption, Private Networks and Audit Trail, each with a provenance ledger row.",
+    "source_type": "original",
+    "official_docs": [
+      "https://www.scaleway.com/en/docs/managed-mongodb-databases/"
+    ],
+    "security_notes": "Static review only. Never runs or instructs restore, failover, deletion, scaling, network, key or IAM changes without explicit target, blast radius, rollback and user approval; never requests credentials or customer data.",
+    "last_verified": "2026-11-09",
+    "path": "skills/scaleway/scaleway-managed-mongodb-architect",
+    "version": "0.1.0",
+    "author": "github: VincentChuWaiChow"
   },
   {
     "id": "scaleway-network-architect",

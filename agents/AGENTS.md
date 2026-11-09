@@ -1,6 +1,6 @@
 # AGENTS.md — Navigation Compass
 
-<!-- count:global:agents -->743<!-- /count --> agents across <!-- count:global:providers -->45<!-- /count --> providers. This file is the index; load provider files on demand.
+<!-- count:global:agents -->745<!-- /count --> agents across <!-- count:global:providers -->45<!-- /count --> providers. This file is the index; load provider files on demand.
 
 ## File structure
 
@@ -49,7 +49,7 @@ Live-guard agents refuse to proceed without: target confirmation (cluster/accoun
 
 ---
 
-## 🟦 Azure — <!-- count:dir:azure:agents -->36<!-- /count --> agents → [`agents/azure/AGENTS.md`](azure/AGENTS.md)
+## 🟦 Azure — <!-- count:dir:azure:agents -->37<!-- /count --> agents → [`agents/azure/AGENTS.md`](azure/AGENTS.md)
 
 **Entry point:** load `agents/azure/azure-maestro-agent/AGENT.md` for any Azure task.
 
@@ -74,7 +74,7 @@ Live-guard agents refuse to proceed without: target confirmation (cluster/accoun
 
 ---
 
-## 🟥 OCI — <!-- count:dir:oci:agents -->40<!-- /count --> agents → [`agents/oci/AGENTS.md`](oci/AGENTS.md)
+## 🟥 OCI — <!-- count:dir:oci:agents -->41<!-- /count --> agents → [`agents/oci/AGENTS.md`](oci/AGENTS.md)
 
 **Entry point:** load `agents/oci/oci-maestro-agent/AGENT.md` for any OCI task.
 

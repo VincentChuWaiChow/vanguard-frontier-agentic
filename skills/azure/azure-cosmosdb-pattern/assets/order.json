@@ -1,0 +1,10 @@
+{
+  "id": "order-42",
+  "tenantId": "tenant-a",
+  "createdAt": "2026-11-08T00:00:00Z",
+  "status": "open",
+  "schemaVersion": 1,
+  "totalMinorUnits": 12345,
+  "currency": "USD",
+  "payload": {"note": "Synthetic example; no real customer data"}
+}

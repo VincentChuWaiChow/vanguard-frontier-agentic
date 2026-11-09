@@ -54,7 +54,14 @@ OFFICIAL_SOURCES: dict[str, tuple[str, ...]] = {
     "docs.cloud.google.com": ("/",),
     "www.alibabacloud.com": ("/help/",),
     "support.huaweicloud.com": ("/",),
+    # Managed MongoDB documentation for the smaller clouds' NoSQL operations references.
+    "www.scaleway.com": ("/en/docs/",),
+    "help.ovhcloud.com": ("/csm/",),
+    "docs.ovhcloud.com": ("/",),
+    "docs.ionos.com": ("/cloud/",),
     "github.com": ("/oracle/", "/aws/", "/awslabs/", "/Azure/", "/googleapis/", "/aliyun/"),
+    # GitHub Pages of the github.com/oracle organisation (Oracle NoSQL Node.js SDK reference).
+    "oracle.github.io": ("/nosql-node-sdk/",),
 }
 
 # Pre-existing, unrelated debt: these SKILL.md files route to reference files

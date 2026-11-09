@@ -58,6 +58,7 @@ If the task is not Azure-related (e.g., the user describes an AWS or OCI scenari
 | `azure-cosmosdb-application-developer-agent` | `database` | Building applications on Cosmos DB: data modeling, SDK usage, consistency levels, or partitioning |
 | `azure-cosmosdb-performance-investigator-agent` | `database` | Investigating Cosmos DB RU consumption, throttling, latency, or indexing performance |
 | `azure-cosmosdb-platform-operator-agent` | `database` | Operating Cosmos DB accounts: backup, replication, diagnostics, or account-level configuration |
+| `azure-cosmosdb-pattern-agent` | `database` | Building or changing Cosmos DB for NoSQL access patterns with command routes: design, refactor, backup and restore plans, audits, bounded performance-test and feature plans, provisioning; review-only questions stay with the specialists above |
 | `azure-app-service-production-readiness-agent` | `app-platform` | Reviewing App Service production readiness: scaling, health checks, deployment slots, or configuration hardening |
 | `azure-entra-id-specialist-agent` | `security-iam` | Configuring or troubleshooting Entra ID: users, groups, app registrations, B2C, or federated identity |
 | `azure-identity-governance-review-agent` | `security-iam` | Reviewing identity governance: access reviews, entitlement management, lifecycle workflows, or PIM policies |

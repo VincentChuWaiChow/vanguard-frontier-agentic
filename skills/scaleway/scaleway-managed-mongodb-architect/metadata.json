@@ -1,0 +1,24 @@
+{
+  "id": "scaleway-managed-mongodb-architect",
+  "name": "Scaleway Managed MongoDB Architect",
+  "type": "skill",
+  "provider": "scaleway",
+  "harnesses": [
+    "codex",
+    "claude-code",
+    "cursor",
+    "gemini",
+    "kiro",
+    "other"
+  ],
+  "summary": "Plan and review Scaleway Managed MongoDB\u00ae operations: snapshots and restore, replication and availability, billing dimensions, Cockpit monitoring, performance signals, IAM permission sets, tagging, encryption, Private Networks and Audit Trail, each with a provenance ledger row.",
+  "source_type": "original",
+  "official_docs": [
+    "https://www.scaleway.com/en/docs/managed-mongodb-databases/"
+  ],
+  "security_notes": "Static review only. Never runs or instructs restore, failover, deletion, scaling, network, key or IAM changes without explicit target, blast radius, rollback and user approval; never requests credentials or customer data.",
+  "last_verified": "2026-11-09",
+  "path": "skills/scaleway/scaleway-managed-mongodb-architect",
+  "author": "github: VincentChuWaiChow",
+  "version": "0.1.0"
+}

@@ -3576,6 +3576,34 @@
     ]
   },
   {
+    "id": "azure-cosmosdb-pattern-agent",
+    "name": "Azure Cosmos DB Pattern",
+    "type": "agent",
+    "provider": "azure",
+    "harnesses": [
+      "codex",
+      "copilot",
+      "claude-code",
+      "cursor",
+      "gemini",
+      "kiro"
+    ],
+    "summary": "Builds and operates Azure Cosmos DB for NoSQL access patterns (partitioning, indexing, consistency, transactions, change feed, vectors, RBAC, encryption, backup and restore, provisioning) as proposals gated on user approval, citing a per-claim evidence ledger.",
+    "source_type": "adapted",
+    "official_docs": [
+      "https://learn.microsoft.com/azure/cosmos-db/continuous-backup-restore-introduction",
+      "https://learn.microsoft.com/azure/cosmos-db/how-to-restore-in-account-continuous-backup"
+    ],
+    "security_notes": "Static by default. Produces code, IaC and CLI as proposals; never runs writes, deployment, backfill, deletion, restore, feature changes or load tests without confirmed target, blast radius, rollback and user approval. Never requests credentials or prints customer data.",
+    "last_verified": "2026-11-09",
+    "path": "agents/azure/azure-cosmosdb-pattern-agent",
+    "version": "0.1.0",
+    "execution_tier": "static-review",
+    "companion_skills": [
+      "azure-cosmosdb-pattern"
+    ]
+  },
+  {
     "id": "azure-cosmosdb-performance-investigator-agent",
     "name": "Azure Cosmos DB Performance Investigator",
     "version": "0.2.2",
@@ -16372,6 +16400,34 @@
     "execution_tier": "static-review",
     "companion_skills": [
       "oci-nosql-database-architect"
+    ]
+  },
+  {
+    "id": "oci-nosql-pattern-agent",
+    "name": "OCI NoSQL Pattern",
+    "type": "agent",
+    "provider": "oci",
+    "harnesses": [
+      "codex",
+      "copilot",
+      "claude-code",
+      "cursor",
+      "gemini",
+      "kiro"
+    ],
+    "summary": "Builds and operates Oracle NoSQL Database Cloud Service access patterns (keys, indexes, transactions, consistency, TTL, IAM, encryption, replicas, provisioning, export/import recovery) as proposals gated on user approval, citing a per-claim evidence ledger.",
+    "source_type": "adapted",
+    "official_docs": [
+      "https://docs.oracle.com/en/cloud/paas/nosql-cloud/dtddt/features-of-oracle-nosql-database-cloud-service.html",
+      "https://docs.oracle.com/en/cloud/paas/nosql-cloud/odsql/"
+    ],
+    "security_notes": "Static by default. Produces code, IaC and CLI as proposals; never runs writes, deployment, backfill, deletion, restore, feature changes or load tests without confirmed target, blast radius, rollback and user approval. Never requests credentials or prints customer data.",
+    "last_verified": "2026-11-09",
+    "path": "agents/oci/oci-nosql-pattern-agent",
+    "version": "0.1.0",
+    "execution_tier": "static-review",
+    "companion_skills": [
+      "oci-nosql-pattern"
     ]
   },
   {

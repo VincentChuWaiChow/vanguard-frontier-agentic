@@ -1,0 +1,13 @@
+{
+  "compartmentId": "REPLACE_COMPARTMENT_OCID",
+  "statement": "REPLACE_BASE64_PREPARED_STATEMENT",
+  "variables": {
+    "$tenant": "tenant-demo",
+    "$status": "OPEN"
+  },
+  "consistency": "ABSOLUTE",
+  "limit": 25,
+  "maxReadInKbs": 64,
+  "timeoutInMs": 5000,
+  "isPrepared": true
+}

@@ -1,0 +1,6 @@
+{
+  "route": [
+    "oci-nosql-pattern-agent"
+  ],
+  "mode": "single"
+}

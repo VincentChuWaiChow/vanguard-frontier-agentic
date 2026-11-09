@@ -1,0 +1,222 @@
+{
+  "checked": "2026-11-08",
+  "cli_version": "3.95.0",
+  "evidence": [
+    {
+      "command": [
+        "oci",
+        "nosql",
+        "table",
+        "create"
+      ],
+      "input_shape": {
+        "compartmentId": "string",
+        "ddlStatement": "string",
+        "definedTags": {
+          "tagNamespace1": {
+            "tagKey1": "tagValue1",
+            "tagKey2": "tagValue2"
+          },
+          "tagNamespace2": {
+            "tagKey1": "tagValue1",
+            "tagKey2": "tagValue2"
+          }
+        },
+        "freeformTags": {
+          "tagKey1": "tagValue1",
+          "tagKey2": "tagValue2"
+        },
+        "isAutoReclaimable": true,
+        "maxWaitSeconds": 0,
+        "name": "string",
+        "tableLimits": {
+          "capacityMode": "string",
+          "maxReadUnits": 0,
+          "maxStorageInGBs": 0,
+          "maxWriteUnits": 0
+        },
+        "waitForState": [
+          "ACCEPTED|IN_PROGRESS|FAILED|SUCCEEDED|CANCELING|CANCELED"
+        ],
+        "waitIntervalSeconds": 0
+      },
+      "check": "offline generated input; no service call"
+    },
+    {
+      "command": [
+        "oci",
+        "nosql",
+        "table",
+        "get"
+      ],
+      "input_shape": {
+        "compartmentId": "string",
+        "tableNameOrId": "string"
+      },
+      "check": "offline generated input; no service call"
+    },
+    {
+      "command": [
+        "oci",
+        "nosql",
+        "index",
+        "create"
+      ],
+      "input_shape": {
+        "compartmentId": "string",
+        "indexName": "string",
+        "isIfNotExists": true,
+        "keys": [
+          {
+            "columnName": "string",
+            "jsonFieldType": "string",
+            "jsonPath": "string"
+          },
+          {
+            "columnName": "string",
+            "jsonFieldType": "string",
+            "jsonPath": "string"
+          }
+        ],
+        "maxWaitSeconds": 0,
+        "tableNameOrId": "string",
+        "waitForState": [
+          "ACCEPTED|IN_PROGRESS|FAILED|SUCCEEDED|CANCELING|CANCELED"
+        ],
+        "waitIntervalSeconds": 0
+      },
+      "check": "offline generated input; no service call"
+    },
+    {
+      "command": [
+        "oci",
+        "nosql",
+        "index",
+        "get"
+      ],
+      "input_shape": {
+        "compartmentId": "string",
+        "indexName": "string",
+        "tableNameOrId": "string"
+      },
+      "check": "offline generated input; no service call"
+    },
+    {
+      "command": [
+        "oci",
+        "nosql",
+        "row",
+        "get"
+      ],
+      "input_shape": {
+        "compartmentId": "string",
+        "consistency": "EVENTUAL|ABSOLUTE",
+        "key": [
+          "string",
+          "string"
+        ],
+        "tableNameOrId": "string",
+        "timeoutInMs": 0
+      },
+      "check": "offline generated input; no service call"
+    },
+    {
+      "command": [
+        "oci",
+        "nosql",
+        "row",
+        "update"
+      ],
+      "input_shape": {
+        "compartmentId": "string",
+        "identityCacheSize": 0,
+        "ifMatch": "string",
+        "isExactMatch": true,
+        "isGetReturnRow": true,
+        "option": "IF_ABSENT|IF_PRESENT",
+        "tableNameOrId": "string",
+        "timeoutInMs": 0,
+        "ttl": 0,
+        "ttlUseDefault": true,
+        "value": {
+          "string1": {
+            "string1": "string",
+            "string2": "string"
+          },
+          "string2": {
+            "string1": "string",
+            "string2": "string"
+          }
+        }
+      },
+      "check": "offline generated input; no service call"
+    },
+    {
+      "command": [
+        "oci",
+        "nosql",
+        "query",
+        "execute"
+      ],
+      "input_shape": {
+        "compartmentId": "string",
+        "consistency": "EVENTUAL|ABSOLUTE",
+        "isPrepared": true,
+        "limit": 0,
+        "maxReadInKbs": 0,
+        "page": "string",
+        "statement": "string",
+        "timeoutInMs": 0,
+        "variables": {
+          "string1": {
+            "string1": "string",
+            "string2": "string"
+          },
+          "string2": {
+            "string1": "string",
+            "string2": "string"
+          }
+        }
+      },
+      "check": "offline generated input; no service call"
+    },
+    {
+      "command": [
+        "oci",
+        "nosql",
+        "query",
+        "prepare"
+      ],
+      "input_shape": {
+        "compartmentId": "string",
+        "isGetQueryPlan": true,
+        "statement": "string"
+      },
+      "check": "offline generated input; no service call"
+    },
+    {
+      "command": [
+        "oci",
+        "iam",
+        "tenancy",
+        "get"
+      ],
+      "input_shape": {
+        "tenancyId": "string"
+      },
+      "check": "offline generated input; no service call"
+    },
+    {
+      "command": [
+        "oci",
+        "iam",
+        "compartment",
+        "get"
+      ],
+      "input_shape": {
+        "compartmentId": "string"
+      },
+      "check": "offline generated input; no service call"
+    }
+  ]
+}

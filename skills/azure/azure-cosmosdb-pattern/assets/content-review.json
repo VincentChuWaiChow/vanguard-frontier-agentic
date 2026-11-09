@@ -1,0 +1,9 @@
+{
+  "schema_version": 1,
+  "skill": "azure-cosmosdb-pattern",
+  "created": "2026-11-08",
+  "last_full_review": null,
+  "next_full_review_due": "2026-12-01",
+  "review_months": [6, 12],
+  "targeted_updates": [{"date": "2026-11-08", "scope": "initial provider documentation retrieval; not a scheduled full audit"}]
+}

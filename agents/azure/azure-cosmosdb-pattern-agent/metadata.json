@@ -1,0 +1,38 @@
+{
+  "id": "azure-cosmosdb-pattern-agent",
+  "name": "Azure Cosmos DB Pattern",
+  "type": "agent",
+  "provider": "azure",
+  "harnesses": [
+    "codex",
+    "copilot",
+    "claude-code",
+    "cursor",
+    "gemini",
+    "kiro"
+  ],
+  "summary": "Builds and operates Azure Cosmos DB for NoSQL access patterns (partitioning, indexing, consistency, transactions, change feed, vectors, RBAC, encryption, backup and restore, provisioning) as proposals gated on user approval, citing a per-claim evidence ledger.",
+  "source_type": "adapted",
+  "official_docs": [
+    "https://learn.microsoft.com/azure/cosmos-db/continuous-backup-restore-introduction",
+    "https://learn.microsoft.com/azure/cosmos-db/how-to-restore-in-account-continuous-backup"
+  ],
+  "security_notes": "Static by default. Produces code, IaC and CLI as proposals; never runs writes, deployment, backfill, deletion, restore, feature changes or load tests without confirmed target, blast radius, rollback and user approval. Never requests credentials or prints customer data.",
+  "last_verified": "2026-11-09",
+  "path": "agents/azure/azure-cosmosdb-pattern-agent",
+  "companion_skills": [
+    "azure-cosmosdb-pattern"
+  ],
+  "execution_tier": "static-review",
+  "harness_variants": {
+    "codex": "agents/azure/azure-cosmosdb-pattern-agent/harnesses/codex.toml",
+    "copilot": "agents/azure/azure-cosmosdb-pattern-agent/harnesses/copilot.agent.md",
+    "claude-code": "agents/azure/azure-cosmosdb-pattern-agent/harnesses/claude-code.agent.md",
+    "cursor": "agents/azure/azure-cosmosdb-pattern-agent/harnesses/cursor.agent.md",
+    "gemini": "agents/azure/azure-cosmosdb-pattern-agent/harnesses/gemini.agent.md",
+    "kiro-ide": "agents/azure/azure-cosmosdb-pattern-agent/harnesses/kiro-ide.agent.md",
+    "kiro-cli": "agents/azure/azure-cosmosdb-pattern-agent/harnesses/kiro-cli.agent.json"
+  },
+  "author": "github: VincentChuWaiChow",
+  "version": "0.1.0"
+}
