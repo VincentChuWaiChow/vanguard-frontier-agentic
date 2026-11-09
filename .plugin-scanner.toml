@@ -1,4 +1,12 @@
 # HOL AI Plugin Scanner configuration
+#
+# NOT APPLIED IN CI TODAY: the pinned scanner (plugin-scanner 3.58.0, action
+# 1f9b9bc) loads this file only when the workflow sets
+# `trust_repository_policy: "true"` (codex_plugin_scanner/action_runner.py), and
+# .github/workflows/hol-plugin-scanner.yml does not. The action defaults it off so
+# a pull request cannot suppress findings in its own diff by editing this file.
+# Until that is decided, false positives are handled by dismissing the alert in
+# code scanning, and the entries below document intent only.
 # (hashgraph-online/ai-plugin-scanner-action — see .github/workflows/hol-plugin-scanner.yml)
 #
 # Path-scoped suppression of confirmed false positives. Secret-detection and all
@@ -43,13 +51,6 @@
 #   - scripts/install-codex-home.mjs
 #                           spawnSync(cmd, argvArray) with no shell and no string
 #                           interpolation → false "shell injection" finding
-#   - skills/azure/azure-cosmosdb-pattern/evals/runtime.test.mjs
-#                           offline unit test (fake SDK only, never contacts Azure).
-#                           Alert #256 matched the mocked Cosmos response header
-#                           "x-ms-session-token": "session-v": a documented
-#                           session-consistency header with a placeholder value, not
-#                           a credential. Scoped to this one file so the skill's
-#                           scripts, assets and other evals stay secret-scanned.
 #   - plugins/**/.codex-plugin/plugin.json
 #                           Note-level "interface asset/URL invalid" hints for
 #                           optional fields (logo/screenshots/composerIcon/
@@ -70,5 +71,4 @@ ignore_paths = [
   "**/metadata.json",
   "**/references/*.md",
   "plugins/**/.codex-plugin/plugin.json",
-  "skills/azure/azure-cosmosdb-pattern/evals/runtime.test.mjs",
 ]
