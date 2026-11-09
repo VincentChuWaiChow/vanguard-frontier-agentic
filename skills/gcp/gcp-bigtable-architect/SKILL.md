@@ -59,6 +59,7 @@ DynamoDB, Cosmos DB or Firestore guarantees to Bigtable.
 - [Operations reference](references/operations.md): backup and restore, disaster recovery, billing dimensions, monitoring, performance, IAM, tagging, encryption, network isolation and audit logging.
 - [Evidence ledger](references/evidence-ledger.md): when a claim must be
   traced to its Google source or re-verified.
+- [Audit](references/commands/audit.md) — offline or live audit against the operations reference; load only when an audit is requested.
 
 ## Response minimum
 

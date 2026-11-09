@@ -40,3 +40,4 @@ Load these only when needed:
 - [Workflow and output contract](references/workflow-and-output.md) — answer shape and how to scope a review.
 - [Official sources](references/official-sources.md) — evidence ledger and primary AWS pages.
 - [Safety checklist](references/safety-checklist.md) — before recommending any change.
+- [Audit](references/commands/audit.md) — offline or live audit against the operations reference; load only when an audit is requested.

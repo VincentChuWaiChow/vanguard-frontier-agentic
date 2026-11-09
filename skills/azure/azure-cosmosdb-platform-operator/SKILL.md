@@ -48,6 +48,7 @@ Load these only when needed:
 - [Evidence ledger](references/evidence-ledger.md) — use when a claim must be traced to its Microsoft Learn source; cite its `[COSMOS-Exx]` IDs for material service claims.
 - [MCP and evidence path](references/mcp-and-evidence.md) — use when choosing documentation-based evidence, sampled read-only Azure evidence, or sanitized user evidence.
 - [Operations: NoSQL API](references/operations.md), [MongoDB API](references/operations-mongodb.md), [Cassandra API](references/operations-cassandra.md) — per-API backup and restore, disaster recovery, billing dimensions, monitoring, performance, IAM, tagging, encryption, network isolation and audit logging; load only the API in question.
+- [Audit](references/commands/audit.md) — offline or live audit against the operations reference; load only when an audit is requested.
 - [Safety checklist](references/safety-checklist.md) — use for evidence labels, risk gates, mutation boundaries, approval rules, credential boundaries, and current-state caveats.
 - [Workflow and output contract](references/workflow-and-output.md) — use when executing the full review, applying stress checks, or formatting the final answer.
 - [Official sources](references/official-sources.md) — use when you need the detailed Microsoft documentation list or source notes.

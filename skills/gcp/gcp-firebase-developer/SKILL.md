@@ -47,6 +47,8 @@ Load only when needed:
 | Emulator Suite | local testing, emulator, integration test | references/emulators.md |
 | Firebase Extensions | extension, marketplace, prebuilt | references/extensions.md |
 
+- [Audit](references/commands/audit.md) — offline or live audit against the operations reference; load only when an audit is requested.
+
 ## Core Operating Rules
 
 - Firebase SDKs come in Web (v9 modular), React Native, Flutter, iOS (Swift), and Android (Kotlin/Java) variants. Always confirm the platform before providing SDK code.

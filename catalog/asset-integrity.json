@@ -36299,7 +36299,7 @@
     },
     {
       "tree": "catalog",
-      "aggregate_sha256": "ba04b86890cce34069cc7839b7a696fbd9c95b74aa55ec58d97fbd5ec4a0467d",
+      "aggregate_sha256": "20cd6e32a96382a936b9955865067c3f24e774cd0ed7813054fff804f17912a7",
       "files": [
         {
           "path": "catalog/AGENTS.md",
@@ -36353,8 +36353,8 @@
         },
         {
           "path": "catalog/skill-manifest.json",
-          "sha256": "d162b24e19e00dc6fde4e8336671be965b7a8613f2da040749bfe54e910c5f03",
-          "bytes": 1155346
+          "sha256": "3e0f7088242375197bb4f03a0a1de7267f23c6560fc543b23650059a35c93ef2",
+          "bytes": 1163554
         },
         {
           "path": "catalog/skills.json",
@@ -37592,7 +37592,7 @@
     },
     {
       "tree": "tests",
-      "aggregate_sha256": "b969512cae50c09ab881b2cfc76a0675b62502d4cf77ee00c1d8cd57fd39b3a6",
+      "aggregate_sha256": "580ad700fda088a1a954267906f06c05263e51aeabdb2db7171f6cf72f162e2e",
       "files": [
         {
           "path": "tests/AGENTS.md",
@@ -38631,7 +38631,7 @@
         },
         {
           "path": "tests/fixtures/README.md",
-          "sha256": "5f87bc51c54875030b5359f5796f6e17d94f018daab948fc5765b9eafd0c73e3",
+          "sha256": "70a861c58840cee0d1187786bc54b6554f06459cca3f5663c7840fb7de3e122b",
           "bytes": 3698
         },
         {
@@ -49315,6 +49315,11 @@
           "bytes": 2607
         },
         {
+          "path": "tests/validate-nosql-audit.py",
+          "sha256": "fa214008b769504a953af0f7ca369567114f576a2c0179bc39c737ae61afba76",
+          "bytes": 11596
+        },
+        {
           "path": "tests/validate-nosql-operations.py",
           "sha256": "fc2be0b16d719f755ae4901d7a4ed19ac3881c5c91086f01f7e60dd9b20e08ac",
           "bytes": 6842
@@ -49371,8 +49376,8 @@
         },
         {
           "path": "tests/validate-skill-references.py",
-          "sha256": "a4ba0f4bab96bec2c9eeed99b5f7c6c70c0ddaadbe29e9364492f9aded4b4384",
-          "bytes": 10011
+          "sha256": "c34a351083a0c9c98510ea1000355144661db13367f3721882ab4cfe3aba11e6",
+          "bytes": 10254
         },
         {
           "path": "tests/validate-skill-yaml-strict.py",
@@ -49430,8 +49435,8 @@
     },
     {
       "path": "package.json",
-      "sha256": "2d9a7976c56c7c9e63dd2bdcb7621c28a9764ff9045c5133d2ed34b5d1c7d286",
-      "bytes": 8986
+      "sha256": "f1b95dce129e5b0abcd80446fc2402db4594fd69f011be95371f2a03e547234f",
+      "bytes": 9087
     },
     {
       "path": ".releaserc.js",
@@ -49439,5 +49444,5 @@
       "bytes": 9135
     }
   ],
-  "aggregate_sha256": "6a76bc06c51faab466595f69ed0e4629125e593f711a0b1db50e41010fa57fad"
+  "aggregate_sha256": "7073134a306064681b3731c96084841c6eeb4884246e5e114508b0a2b413de81"
 }

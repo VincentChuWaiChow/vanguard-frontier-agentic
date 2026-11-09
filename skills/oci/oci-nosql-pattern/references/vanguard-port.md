@@ -13,6 +13,9 @@ re-sync this directory and re-run the gates here.
 - `metadata.json`, this file and [the evidence ledger](evidence-ledger.md) exist only here.
 - `evals/test_package.py` drops an unused `copy` import and uses `assertLessEqual` for
   a subset check (CodeQL findings). Apply upstream too.
+- `references/commands/audit.md` links its two variants instead of naming them in
+  code spans, so an agent can follow the router to exactly one; `validate:nosql-audit`
+  requires the links. Apply upstream too.
 
 ## Sync procedure
 

@@ -56,6 +56,7 @@ GeminiDB without verification.
 - [Design guide](references/geminidb-design-guide.md): API selection,
   Cassandra API modeling, consistency, capacity, IAM, billing, pushback.
 - [Operations reference](references/operations.md): backup and restore, disaster recovery, billing dimensions, monitoring, performance, IAM, tagging, encryption, network isolation and audit logging.
+- [Audit](references/commands/audit.md) — offline or live audit against the operations reference; load only when an audit is requested.
 - [Evidence ledger](references/evidence-ledger.md): when a claim must be
   traced to its Huawei Cloud source or re-verified.
 

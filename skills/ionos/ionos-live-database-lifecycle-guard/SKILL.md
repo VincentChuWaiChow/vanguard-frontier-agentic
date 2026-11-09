@@ -55,6 +55,7 @@ Load these only when needed:
 - [Safety checklist](references/safety-checklist.md) — use before any database mutation; contains the hard-stop conditions that must all be confirmed before proceeding.
 - [Official sources](references/official-sources.md) — use when grounding IONOS DBaaS service behavior or checking the source list.
 - [MongoDB operations](references/mongodb-operations.md) — MongoDB only: backup and restore, disaster recovery, billing dimensions, monitoring, performance, IAM, tagging, encryption, network isolation and audit logging, each cited to the evidence ledger.
+- [Audit](references/commands/audit.md) — offline or live audit against the operations reference; load only when an audit is requested.
 
 ## Response minimum
 
