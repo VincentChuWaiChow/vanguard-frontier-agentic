@@ -1,13 +1,10 @@
 # HOL AI Plugin Scanner configuration
-#
-# NOT APPLIED IN CI TODAY: the pinned scanner (plugin-scanner 3.58.0, action
-# 1f9b9bc) loads this file only when the workflow sets
-# `trust_repository_policy: "true"` (codex_plugin_scanner/action_runner.py), and
-# .github/workflows/hol-plugin-scanner.yml does not. The action defaults it off so
-# a pull request cannot suppress findings in its own diff by editing this file.
-# Until that is decided, false positives are handled by dismissing the alert in
-# code scanning, and the entries below document intent only.
 # (hashgraph-online/ai-plugin-scanner-action — see .github/workflows/hol-plugin-scanner.yml)
+#
+# Applied in CI only because the marketplace-root job sets
+# `trust_repository_policy: "true"`; the pinned scanner (plugin-scanner 3.58.0)
+# ignores this file otherwise (codex_plugin_scanner/action_runner.py). Every change
+# here is a reviewable suppression: keep entries path-scoped and give each a reason.
 #
 # Path-scoped suppression of confirmed false positives. Secret-detection and all
 # other rules stay ACTIVE on executable agent/skill/plugin code. We only exclude
@@ -51,6 +48,12 @@
 #   - scripts/install-codex-home.mjs
 #                           spawnSync(cmd, argvArray) with no shell and no string
 #                           interpolation → false "shell injection" finding
+#   - skills/*/*/evals/**   offline evaluation suites for this repository's own
+#                           skills: they run against fake cloud binaries and
+#                           mocked SDK responses, so secret-shaped placeholders are
+#                           deliberate (alert #256: a fake Cosmos
+#                           "x-ms-session-token" header). Skill scripts, assets,
+#                           SKILL.md and references stay scanned.
 #   - plugins/**/.codex-plugin/plugin.json
 #                           Note-level "interface asset/URL invalid" hints for
 #                           optional fields (logo/screenshots/composerIcon/
@@ -71,4 +74,5 @@ ignore_paths = [
   "**/metadata.json",
   "**/references/*.md",
   "plugins/**/.codex-plugin/plugin.json",
+  "skills/*/*/evals/**",
 ]

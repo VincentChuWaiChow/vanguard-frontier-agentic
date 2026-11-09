@@ -148,6 +148,12 @@ jobs:
           # resolved relative to plugin_dir, which is the repo root (".") here.
           # See the file's header for the per-alert rationale.
           config: ".plugin-scanner.toml"
+          # The pinned scanner ignores `config` unless repository policy is trusted
+          # (codex_plugin_scanner/action_runner.py). Trusting it lets a PR edit
+          # .plugin-scanner.toml to change what is reported, the same reach a PR
+          # already has over this workflow file, so every suppression stays a
+          # reviewable, path-scoped diff. Owner decision on PR #228.
+          trust_repository_policy: "true"
           upload_sarif: true
           sarif_category: vfa-marketplace-root
           write_step_summary: "true"
