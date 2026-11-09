@@ -10,13 +10,20 @@ broken selector or asset reach every harness, so this gate runs them all.
 Fails closed when a prerequisite is missing: two eval files lint CloudFormation
 with ``cfn-lint`` (pinned in CI), and the Node eval needs ``node``. Install with
 ``python3 -m pip install cfn-lint==1.60.0``.
+
+Also fails if ``.plugin-scanner.toml`` excludes any file this gate executes or
+imports (evals, scripts, assets): code CI runs must stay visible to the HOL
+secret and injection scanner. Matching uses ``fnmatch`` on the repo-relative
+path, the same rule the scanner applies to ``ignore_paths``.
 """
 from __future__ import annotations
 
 import os
+import tomllib
 import shutil
 import subprocess
 import sys
+from fnmatch import fnmatch
 from pathlib import Path
 
 REPO = Path(__file__).resolve().parents[1]
@@ -26,6 +33,24 @@ SKILLS = [
     REPO / "skills/azure/azure-cosmosdb-pattern",
 ]
 TIMEOUT = 300
+SCANNER_CONFIG = REPO / ".plugin-scanner.toml"
+NON_EXECUTABLE = {".md", ".json"}
+
+
+def scanner_blind_spots() -> list[str]:
+    """Executable files of the pattern skills that the scanner config would skip."""
+    if not SCANNER_CONFIG.exists():
+        return []
+    with SCANNER_CONFIG.open("rb") as handle:
+        patterns = tomllib.load(handle).get("scanner", {}).get("ignore_paths", [])
+    hidden = []
+    for skill in SKILLS:
+        for path in sorted(skill.rglob("*")):
+            if not path.is_file() or path.suffix in NON_EXECUTABLE or "__pycache__" in path.parts:
+                continue
+            relative = path.relative_to(REPO).as_posix()
+            hidden += [f"{relative} (ignore_paths: {pattern})" for pattern in patterns if fnmatch(relative, pattern)]
+    return hidden
 
 
 def main() -> int:
@@ -33,6 +58,11 @@ def main() -> int:
     if missing:
         print(f"FAIL: missing prerequisite(s): {', '.join(missing)}. "
               "Install cfn-lint with: python3 -m pip install cfn-lint==1.60.0")
+        return 1
+    hidden = scanner_blind_spots()
+    if hidden:
+        print("FAIL: .plugin-scanner.toml hides code this gate executes from the scanner:")
+        print("\n".join(f"  {entry}" for entry in hidden))
         return 1
     commands = []
     for skill in SKILLS:

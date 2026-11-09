@@ -4027,7 +4027,7 @@
     {
       "id": "azure-cosmosdb-pattern",
       "path": "skills/azure/azure-cosmosdb-pattern",
-      "aggregate_sha256": "7ba5e08987962e11bea3f70d646042ce48b2d35afc6083868be48e544e9278d7",
+      "aggregate_sha256": "e54762c1b4870614b9030ddf901089b8add45ac71a8a4f0468d54f928e78436a",
       "files": [
         {
           "path": "skills/azure/azure-cosmosdb-pattern/CHANGELOG.md",
@@ -4106,8 +4106,8 @@
         },
         {
           "path": "skills/azure/azure-cosmosdb-pattern/evals/runtime.test.mjs",
-          "sha256": "880ec01f63684a0bc93b6871a313fc9104a36ca4db23b80a83ec88976b26c7ac",
-          "bytes": 7515
+          "sha256": "6a119d4a24731e5d5f39cd09bb3e160e57cddfea3691e742148e1b13202dbe70",
+          "bytes": 7810
         },
         {
           "path": "skills/azure/azure-cosmosdb-pattern/evals/source-evidence.json",
@@ -4376,7 +4376,7 @@
     {
       "id": "azure-cosmosdb-platform-operator",
       "path": "skills/azure/azure-cosmosdb-platform-operator",
-      "aggregate_sha256": "b9943f9eeffbe77d81e531ec8dd5023ab99f0d76c9fa0c216434890b5b0355f2",
+      "aggregate_sha256": "d05a77a40fcfbc0a63fc3aede5942d2e144be4a0ba50893fa60a97c788ebd55d",
       "files": [
         {
           "path": "skills/azure/azure-cosmosdb-platform-operator/SKILL.md",
@@ -4425,8 +4425,8 @@
         },
         {
           "path": "skills/azure/azure-cosmosdb-platform-operator/references/operations.md",
-          "sha256": "cf6efb957cc5e9dc9f198e7a7030edd6a5a1adfa32839dd659240706bb801ca5",
-          "bytes": 10219
+          "sha256": "302efa1d72dc07a4a8f31c13fb5b7b7fba58d241923c5edc792ce39aa56edb79",
+          "bytes": 10579
         },
         {
           "path": "skills/azure/azure-cosmosdb-platform-operator/references/safety-checklist.md",

@@ -36299,7 +36299,7 @@
     },
     {
       "tree": "catalog",
-      "aggregate_sha256": "13f3682a0e386897338602cae098455337be05905f73f8ea84c501d8cc9dd1d0",
+      "aggregate_sha256": "ba04b86890cce34069cc7839b7a696fbd9c95b74aa55ec58d97fbd5ec4a0467d",
       "files": [
         {
           "path": "catalog/AGENTS.md",
@@ -36353,7 +36353,7 @@
         },
         {
           "path": "catalog/skill-manifest.json",
-          "sha256": "6de49d187cb979d0d403f48b86e1376f3fb9e2e8550a56b3e55deb6f208c048b",
+          "sha256": "d162b24e19e00dc6fde4e8336671be965b7a8613f2da040749bfe54e910c5f03",
           "bytes": 1155346
         },
         {
@@ -37592,7 +37592,7 @@
     },
     {
       "tree": "tests",
-      "aggregate_sha256": "79198fa19e3798f66ed019ee83d425bfa4b3825f408427b29852b67e57bdd360",
+      "aggregate_sha256": "b969512cae50c09ab881b2cfc76a0675b62502d4cf77ee00c1d8cd57fd39b3a6",
       "files": [
         {
           "path": "tests/AGENTS.md",
@@ -46036,8 +46036,8 @@
         },
         {
           "path": "tests/fixtures/nosql-scenarios/scenarios.json",
-          "sha256": "62cb9c3eacb33076a92939a3b85d6a03a6b6411a7e3b0caeaffd99e6d6ad907d",
-          "bytes": 20972
+          "sha256": "d190a5e128205eae3272ccce41e00f977658483eee6afc9665a402866f08f3fb",
+          "bytes": 21782
         },
         {
           "path": "tests/fixtures/nvidia-maestro-routing/README.md",
@@ -49321,8 +49321,8 @@
         },
         {
           "path": "tests/validate-nosql-pattern-evals.py",
-          "sha256": "349f2744b444b9bda1f51e898a8bc2a4b0f476b4ca89817b53a3f409400eecfd",
-          "bytes": 2589
+          "sha256": "8c49448c3944355337d63e21aa3e2229fecae6f591d87bb38f395bb50f19408b",
+          "bytes": 3939
         },
         {
           "path": "tests/validate-nosql-scenarios.py",
@@ -49439,5 +49439,5 @@
       "bytes": 9135
     }
   ],
-  "aggregate_sha256": "0f91cb2dc90c7941cd156169eef13b9f8d4b8b31440edf91e4adc49912b27a95"
+  "aggregate_sha256": "6a76bc06c51faab466595f69ed0e4629125e593f711a0b1db50e41010fa57fad"
 }

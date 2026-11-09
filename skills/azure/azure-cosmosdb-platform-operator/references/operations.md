@@ -39,7 +39,7 @@ Statuses:
 - Per-partition automatic failover (PPAF) fails individual partitions over to a secondary region for single-write-region accounts. [COSMOS-E117]
 - Multi-write-region accounts route to healthy regions through SDK configuration with no manual intervention. [COSMOS-E116]
 - Documented RPO for multi-region accounts depends on the consistency level (Session, Consistent prefix and Eventual under 15 minutes; Strong zero); a single-region account has RPO under 240 minutes. Strong is unavailable with multiple write regions. [COSMOS-E17] [COSMOS-E18]
-- Serverless accounts are single-region and regions cannot be added later. [COSMOS-E10]
+- A serverless account is single-region and cannot add regions while in serverless mode. [COSMOS-E10] For geo-replication, plan the one-time, irreversible in-place conversion to provisioned throughput (no duration SLA; management operations are blocked while it runs), then evaluate region addition and its billing; the migration steps are in [Consistency, capacity and security](consistency-capacity-security.md). [COSMOS-E20]
 - Availability SLAs vary by configuration (zone redundancy, multi-region); read the current SLA document for figures. [COSMOS-E120]
 
 ## Cost
@@ -53,7 +53,7 @@ calculator: <https://azure.microsoft.com/pricing/calculator/>.
 
 - Meters: database operations (RU/s provisioned or consumed) and consumed storage, plus extra charges for backup storage, analytical storage, availability zones and multi-region writes. [COSMOS-E121]
 - Provisioned throughput bills hourly; autoscale bills the highest RU/s reached each hour with a floor of 0.1 x Tmax. [COSMOS-E122] [COSMOS-E13]
-- Serverless bills per request unit consumed and storage; it is single-region only. [COSMOS-E10]
+- Serverless bills per request unit consumed and storage; it is single-region while in serverless mode. [COSMOS-E10]
 - Backup: periodic mode includes two copies, extra copies bill as backup storage; continuous 30-day and 35-day tiers bill backup storage monthly, and every continuous restore is billed. [COSMOS-E123] [COSMOS-E111]
 - Zone-redundant regions carry a premium, waived for multi-region-write accounts and autoscale collections. [COSMOS-E119]
 - Reserved capacity is an upfront RU commitment; diagnostic logs to Log Analytics bill separately by ingested volume. [COSMOS-E124] [COSMOS-E125]

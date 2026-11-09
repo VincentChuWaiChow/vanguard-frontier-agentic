@@ -1,11 +1,6 @@
 # HOL AI Plugin Scanner configuration
 # (hashgraph-online/ai-plugin-scanner-action — see .github/workflows/hol-plugin-scanner.yml)
 #
-# Applied in CI only because the marketplace-root job sets
-# `trust_repository_policy: "true"`; the pinned scanner (plugin-scanner 3.58.0)
-# ignores this file otherwise (codex_plugin_scanner/action_runner.py). Every change
-# here is a reviewable suppression: keep entries path-scoped and give each a reason.
-#
 # Path-scoped suppression of confirmed false positives. Secret-detection and all
 # other rules stay ACTIVE on executable agent/skill/plugin code. We only exclude
 # structured data, generated manifests, documentation, and test fixtures where a
@@ -48,12 +43,6 @@
 #   - scripts/install-codex-home.mjs
 #                           spawnSync(cmd, argvArray) with no shell and no string
 #                           interpolation → false "shell injection" finding
-#   - skills/*/*/evals/**   offline evaluation suites for this repository's own
-#                           skills: they run against fake cloud binaries and
-#                           mocked SDK responses, so secret-shaped placeholders are
-#                           deliberate (alert #256: a fake Cosmos
-#                           "x-ms-session-token" header). Skill scripts, assets,
-#                           SKILL.md and references stay scanned.
 #   - plugins/**/.codex-plugin/plugin.json
 #                           Note-level "interface asset/URL invalid" hints for
 #                           optional fields (logo/screenshots/composerIcon/
@@ -74,5 +63,4 @@ ignore_paths = [
   "**/metadata.json",
   "**/references/*.md",
   "plugins/**/.codex-plugin/plugin.json",
-  "skills/*/*/evals/**",
 ]

@@ -103,6 +103,21 @@
       "pass_criteria": "Explains a serverless account cannot add regions while serverless; the only path is a one-time, irreversible in-place conversion to provisioned throughput with no duration SLA; recommends provisioned or autoscale from the start when DR is a known requirement."
     },
     {
+      "id": "cosmos-ops-serverless-dr",
+      "skill": "skills/azure/azure-cosmosdb-platform-operator",
+      "reference": "references/operations.md",
+      "prompt": "From the operations matrix only: our existing serverless account now needs a DR region. Do we have to recreate it?",
+      "required_evidence": [
+        "COSMOS-E10",
+        "COSMOS-E20"
+      ],
+      "must_mention": [
+        "cannot add regions while in serverless mode",
+        "irreversible in-place conversion"
+      ],
+      "pass_criteria": "States regions cannot be added while the account is serverless, and that the path is a one-time, irreversible in-place conversion to provisioned throughput (no recreation), with no duration SLA and blocked management operations; does not claim the account must be recreated."
+    },
+    {
       "id": "cosmos-contributor-403",
       "skill": "skills/azure/azure-cosmosdb-platform-operator",
       "reference": "references/consistency-capacity-security.md",
