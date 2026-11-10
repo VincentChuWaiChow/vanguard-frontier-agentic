@@ -1,0 +1,162 @@
+{
+  "objective": "Cross-platform GPUI Kit desktop alpha reusing vfa-tui, through requirements, analysis, design, tasks and evaluated implementation",
+  "branch": "feature/gpui-desktop-alpha",
+  "baseline": "6dda992a3dedd845731d795aaaed20d49346f57c",
+  "spec_directory": ".kiro/specs/gpui-desktop",
+  "phase": "task_breakdown",
+  "status": "awaiting_task_revision_feedback",
+  "requirements_approval": "approved",
+  "revision_basis": "User requested revision before design, then explicitly requested Context7 MCP; no functional scope changes specified",
+  "design": "ready_for_user_review",
+  "task_breakdown": "ready_for_user_review",
+  "implementation": "not_started",
+  "native_platform_verification": "not_run",
+  "checks": {
+    "requirements_structure_and_negative_mutants": "PASS",
+    "scope_local_links_and_whitespace": "PASS",
+    "manual_analysis_known_findings_dispositioned": "PASS",
+    "post_repair_npm_validate": "PASS_current_Context7_revision",
+    "context7_revision_structure_and_scope": "PASS",
+    "spell_check": "PASS_pre_push_repository_default_and_owned_hidden_files_temporary_codespell_2.4.3",
+    "markdown_lint": "PASS_pre_push_existing_CI_exclusions_plus_owned_hidden_specs",
+    "formal_smt_analysis": "UNVERIFIED_not_exposed"
+  },
+  "workers": {
+    "research_runs": 2,
+    "review_runs": 1,
+    "repair_passes": 1,
+    "max_concurrent": 3,
+    "max_depth": 1,
+    "design_research_runs": 2,
+    "design_review_runs": 1,
+    "design_repair_passes": 1,
+    "task_review_runs": 1,
+    "task_repair_passes": 1,
+    "task_drafting_runs": 3
+  },
+  "next_action": "Ask which task-plan changes are requested; preserve approved requirements/design and do not start implementation",
+  "validation_snapshot": {
+    "command": "npm run validate",
+    "wrapper": "rtk proxy bash",
+    "exit_code": 0,
+    "log": "/tmp/vfa-gpui-context7-validate.log",
+    "sha256": {
+      "evals.md": "4c931a13d6f5979cf309d0da8aaa97f369ecc4dc427637cc86269d7581302d90",
+      "requirements-analysis.md": "adfd3d59f8084c78bbeb6d3c4179fdd6ee156543cf44aedf1f19f8d880fc7b9a",
+      "requirements.md": "490b95ba21dcf9d6ec6ca803586afd785f1803287c38f0193bed053701e31160",
+      "research.md": "9ec4225da826276d31955eda6f119970945c8356fb87ba28ef3617dd2a7dec08",
+      "verify.py": "9d252c6c12dc83f7d73f384511964800067bec9e77a8febbaeb2faeb8178a511"
+    }
+  },
+  "approval_block_audit": {
+    "condition": "Explicit user approval of revised requirements has not been received",
+    "consecutive_goal_turns": 3,
+    "evidence": [
+      "Context7 revision turn ended with requirements awaiting approval",
+      "Following continuation completed full validation and requested reapproval; none received",
+      "Current continuation confirmed unchanged validated hashes, no live job and no approval"
+    ],
+    "previous_turn_classification": "progress: closed full-validation gap",
+    "current_turn_classification": "no further safe progress without user decision",
+    "resolved_by": "Explicit user approval of revised requirements; proceed to design",
+    "active": false
+  },
+  "approvals": {
+    "requirements": {
+      "decision": "approved",
+      "user_answer": "Approve revised requirements; proceed to design",
+      "sha256": "490b95ba21dcf9d6ec6ca803586afd785f1803287c38f0193bed053701e31160",
+      "date": "2026-11-10",
+      "scope": "design only; no design approval, task planning or implementation implied"
+    },
+    "design": {
+      "decision": "approved",
+      "user_answer": "Approve design; proceed to task breakdown",
+      "sha256": "33a22ec84e2c376dd1e6aa627b72bf1a209a1773832c7fc3e417e2aa583699d0",
+      "date": "2026-11-10",
+      "scope": "task breakdown only; implementation and external side effects not authorized"
+    }
+  },
+  "native_goal_status_at_design_start": "blocked; resumption controlled by client/user, not update_goal",
+  "design_checks": {
+    "approved_requirements_hash": "PASS",
+    "structural_traceability_and_negative_mutants": "PASS",
+    "independent_review": "PASS_process_five_findings_dispositioned_no_rereview",
+    "repository_validation": "PASS",
+    "native_runtime_proof": "UNVERIFIED",
+    "scope_links_json": "PASS"
+  },
+  "design_approval": "approved",
+  "design_validation_snapshot": {
+    "command": "npm run validate",
+    "wrapper": "rtk proxy bash",
+    "exit_code": 0,
+    "log": "/tmp/vfa-gpui-design-validate.log",
+    "sha256": {
+      "design-review.md": "2e22f46d1f18aacb2f5cd86f3fb3d7b98e7dff0dea053e56a491554260d3eb57",
+      "design.md": "33a22ec84e2c376dd1e6aa627b72bf1a209a1773832c7fc3e417e2aa583699d0",
+      "evals.md": "8808286dacde9164f4b903e6b95b2edeb0c1a79ec4a63fec962c4f8183d673af",
+      "requirements-analysis.md": "adfd3d59f8084c78bbeb6d3c4179fdd6ee156543cf44aedf1f19f8d880fc7b9a",
+      "requirements.md": "490b95ba21dcf9d6ec6ca803586afd785f1803287c38f0193bed053701e31160",
+      "research.md": "3f640812c260a90fbbbe2a1ea7d81b02b64758dda338aac01590110331bee14b",
+      "verify.py": "aff76b417afc4deb6772d7d72d2a3724c4d94ec6ce679adc56ddf5e9098f17b0"
+    }
+  },
+  "design_approval_block_audit": {
+    "condition": "Explicit user approval of design.md has not been received",
+    "consecutive_goal_turns": 3,
+    "previous_turn_classification": "no progress: unchanged validated design awaiting approval",
+    "current_turn_classification": "no progress: hashes unchanged, no live job or new user approval",
+    "next_safe_action": "User approves design or specifies revisions; do not start task-breakdown without approval",
+    "evidence": [
+      "Design delivery turn requested explicit approval",
+      "First continuation verified pending approval and unchanged hashes",
+      "Second continuation confirms same condition and no safe next phase without approval"
+    ],
+    "resolved_by": "Explicit user approval of design; proceed to task breakdown",
+    "active": false
+  },
+  "task_checks": {
+    "approved_input_hashes": "PASS",
+    "dag_and_all_criteria_anchors": "PASS",
+    "negative_mutants": "PASS",
+    "independent_review": "PASS_process_four_findings_dispositioned_no_rereview",
+    "repository_validation": "PASS",
+    "scope_links_json": "PASS",
+    "runtime_implementation": "UNVERIFIED"
+  },
+  "task_plan_approval": "revision_requested",
+  "task_validation_snapshot": {
+    "command": "npm run validate",
+    "wrapper": "rtk proxy bash",
+    "exit_code": 0,
+    "log": "/tmp/vfa-gpui-tasks-validate.log",
+    "sha256": {
+      "design-review.md": "2e22f46d1f18aacb2f5cd86f3fb3d7b98e7dff0dea053e56a491554260d3eb57",
+      "design.md": "33a22ec84e2c376dd1e6aa627b72bf1a209a1773832c7fc3e417e2aa583699d0",
+      "evals.md": "7054a958185c0307922d5145723a56c69e2bd1e6bce18b7a36df51fac46f35e4",
+      "requirements-analysis.md": "adfd3d59f8084c78bbeb6d3c4179fdd6ee156543cf44aedf1f19f8d880fc7b9a",
+      "requirements.md": "490b95ba21dcf9d6ec6ca803586afd785f1803287c38f0193bed053701e31160",
+      "research.md": "3f640812c260a90fbbbe2a1ea7d81b02b64758dda338aac01590110331bee14b",
+      "tasks-review.md": "144f08331cae5ccab88fcbdf9d2e03ad2f1d1ad267604bdf978b53b182cc338b",
+      "tasks.md": "028344627d1c4d170c5e4cb68f4eb1123e035f950a4b6e75802dfcdedaf21eba",
+      "verify.py": "de42b534ec1353768b4337eb0591243dc69be44e4ecf8bfd4cf157e390ca03f1"
+    }
+  },
+  "task_revision_request": {
+    "user_answer": "Revise task plan before implementation",
+    "reviewed_task_sha256": "028344627d1c4d170c5e4cb68f4eb1123e035f950a4b6e75802dfcdedaf21eba",
+    "specific_changes": "not_yet_specified"
+  },
+  "delivery_authorization": {
+    "user_request": "git commit and git push",
+    "branch": "feature/gpui-desktop-alpha",
+    "remote": "origin",
+    "scope": [
+      ".kiro/specs/gpui-desktop/",
+      ".workflow/ultracode/gpui-desktop/"
+    ],
+    "meaning": "Publish planning checkpoint only; task revision request remains open and implementation unstarted",
+    "verification": "Actual commit and remote SHA to be read back and reported in chat after this checkpoint is committed"
+  }
+}
