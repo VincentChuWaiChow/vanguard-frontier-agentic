@@ -1,8 +1,9 @@
 # GPUI Desktop task-breakdown report
 
-Status: TASK PLAN REVISION REQUESTED; AWAITING SPECIFIC FEEDBACK. Requirements and design
-were explicitly approved. This phase creates the task breakdown, not application
-implementation. The original complete cross-platform feature remains unfinished.
+Status: REVISED TASK PLAN READY FOR REVIEW; IMPLEMENTATION NOT STARTED. Requirements
+and design remain approved. The requested checkbox visibility, Impeccable visual
+audit/refinement and portable execution-path revision is incorporated. The complete
+cross-platform feature remains unfinished; approval to implement is still needed.
 
 ## Deliverables and scope
 
@@ -11,22 +12,26 @@ implementation. The original complete cross-platform feature remains unfinished.
   both lock graphs, honest evidence/approval gates and timebox estimates.
 - [Task review](../../../.kiro/specs/gpui-desktop/tasks-review.md): four independent
   findings and parent repairs; no independent rereview or runtime proof claimed.
-- Spec checker now validates task dependencies/coverage/check references and adds
-  five negative task mutants. Both approved source documents remain unchanged.
+- Spec checker validates task dependencies/coverage/check references and rejects
+  hidden/missing boxes, missing visual phases, fixed machine/install paths and a
+  bypassed final visual gate. Both approved source documents remain unchanged.
 - Only spec/workflow artifacts changed. No application, dependency, catalog,
-  database, CI, installation, Git-history, commit/push or publication action occurred.
+  database, CI, installation or Git-history changes occurred in this revision.
+  The earlier authorized planning checkpoint was committed/pushed separately.
 
 ## Checks
 
 | Criterion | Status | Evidence |
 | --- | --- | --- |
 | Frozen approved requirements/design | PASS | Recorded user answers and SHA-256 match both exact files |
-| Task DAG/coverage | PASS structural | `rtk python3 .kiro/specs/gpui-desktop/verify.py --tasks --self-test`: 42 tasks, all 121 criteria, D/V/C anchors and acyclic topological dependencies |
-| Negative spec tests | PASS | Five requirements, five design and five task mutants rejected; no reliability-rate inference |
-| Independent review | PASS process | Separate planner reviewed initial integrated draft; blocking-worker, second-lock behavior, human-evidence and packaging-barrier fixes recorded |
-| Scope/local links/whitespace/JSON | PASS | Owned-only additions; existing tracked/application files unchanged; both approval hashes preserved |
-| Repository validation | PASS | `npm run validate` through rtk proxy exits 0; `/tmp/vfa-gpui-tasks-validate.log` contains `OK: QA cluster eval green`; exact spec hashes recorded in state.json |
-| Spell/Markdown lint | PASS at pre-push checkpoint | Temporary codespell passes repository default and owned hidden-file scope; Markdown CI scope plus owned hidden specs reports zero issues |
+| Task DAG/coverage | PASS structural | `rtk proxy python3 .kiro/specs/gpui-desktop/verify.py --tasks --self-test`: 44 tasks, all 121 criteria, D/V/C anchors and acyclic topological dependencies |
+| Checkbox visibility | PASS source structure | All 52 epic/task boxes unchecked; live checklist is the first main section, outside code fences; no renderer-specific pixel claim |
+| Negative spec tests | PASS | Five requirements, five design and fourteen task mutants rejected; each task mutant must change its input |
+| Independent review | PASS process | Initial planner findings repaired; bounded UI specialist review identified mobile-only Impeccable scope, now explicitly excluded as desktop proof |
+| Scope/whitespace/JSON | PASS | Owned spec/workflow changes only; approval files byte-identical to checkpoint; no implementation or checked task |
+| Path portability | PASS spec only | Spec grader passes from unrelated CWD after copying to a Unicode/space-containing temporary root; future app/helper/evidence relocation remains UNVERIFIED |
+| Repository validation | PASS | `npm run validate` through `rtk proxy bash` exits 0; revision log ends with `OK: QA cluster eval green` |
+| Spell/Markdown lint | PASS revision scope | Temporary codespell passes owned changed text/code; offline markdownlint reports zero issues across all ten owned Markdown files |
 | Feature/runtime/native proof | UNVERIFIED | Every implementation task remains unchecked; no native UI/AT/performance/package proof fabricated |
 | Implementation authorization | UNVERIFIED | Latest authorization was task breakdown plus planning fanout, not code/dependency/remote side effects |
 
@@ -46,10 +51,44 @@ workspace-write is not read-only isolation, and cost/speed savings are not measu
 One integrated repair pass was used. Concrete task/role packets are selected anew
 at implementation dispatch, never inferred permission to launch the whole backlog.
 
+## Impeccable and portable paths
+
+Tasks 7.4/7.5 use the installed skill by name for native visual critique/audit and
+scoped polish, followed by at most one confirmation round. C13 defines scene,
+theme/window/scale/state evidence, impact-ranked findings and final-build freshness.
+Final readiness depends on the visual cycle; unresolved P0/P1 blocks acceptance.
+Refinement cannot silently reuse old AT, performance or package observations.
+
+The installed context launcher ran successfully and found no product/visual
+implementation. This planning revision creates no visual authority documents or
+UI code. The skill's mobile native references provide applicable heuristics only;
+its web detector/overlays do not validate GPUI. Desktop conformance, real native
+AT, performance and rendered evidence remain separate future obligations.
+
+Skill base, implementation/data checkout, Cargo manifests and evidence destination
+are discovered or explicitly selected at execution. Existing relative source paths
+remain task ownership hints, not runtime constants. Missing/ambiguous locations,
+unwritable output and relocation/Unicode failures cannot silently fall back.
+
+Parent owned edits and final checks; one existing `doc_updater`, configured
+`gpt-6-luna/medium`, provided a bounded read-only review. Actual serving identity
+is unobservable; read-only was a task boundary within the shared workspace sandbox.
+This was the smallest useful route: one narrow specialist challenge, no extra
+research, implementation workers, recursive fanout or repeated polish loop.
+
+## Changed files in this revision
+
+- `.kiro/specs/gpui-desktop/tasks.md`
+- `.kiro/specs/gpui-desktop/tasks-review.md`
+- `.kiro/specs/gpui-desktop/evals.md`
+- `.kiro/specs/gpui-desktop/verify.py`
+- `.workflow/ultracode/gpui-desktop/plan.md`
+- `.workflow/ultracode/gpui-desktop/state.json`
+- `.workflow/ultracode/gpui-desktop/final-report.md`
+
 ## Next action
 
-The user selected “Revise task plan before implementation” without specifying the
-changes. Ask for revision details rather than guess a new scope or start code.
+Review the revised task plan and explicitly authorize implementation if accepted.
 Requirements/design remain approved and frozen; implementation is unstarted.
 The previously proposed start was compatibility baseline, feature boundary, pure report
 service and pinned bootstrap, shared-contract second-graph runner, runtime/native

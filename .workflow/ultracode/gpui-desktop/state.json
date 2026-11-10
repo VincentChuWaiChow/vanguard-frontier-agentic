@@ -4,11 +4,11 @@
   "baseline": "6dda992a3dedd845731d795aaaed20d49346f57c",
   "spec_directory": ".kiro/specs/gpui-desktop",
   "phase": "task_breakdown",
-  "status": "awaiting_task_revision_feedback",
+  "status": "awaiting_task_plan_approval",
   "requirements_approval": "approved",
   "revision_basis": "User requested revision before design, then explicitly requested Context7 MCP; no functional scope changes specified",
   "design": "ready_for_user_review",
-  "task_breakdown": "ready_for_user_review",
+  "task_breakdown": "revised_ready_for_user_review",
   "implementation": "not_started",
   "native_platform_verification": "not_run",
   "checks": {
@@ -32,9 +32,10 @@
     "design_repair_passes": 1,
     "task_review_runs": 1,
     "task_repair_passes": 1,
-    "task_drafting_runs": 3
+    "task_drafting_runs": 3,
+    "task_revision_review_runs": 1
   },
-  "next_action": "Ask which task-plan changes are requested; preserve approved requirements/design and do not start implementation",
+  "next_action": "Present revised checkbox-first task plan with Impeccable native visual audit/refinement and portable paths; obtain implementation approval before code",
   "validation_snapshot": {
     "command": "npm run validate",
     "wrapper": "rtk proxy bash",
@@ -125,38 +126,61 @@
     "scope_links_json": "PASS",
     "runtime_implementation": "UNVERIFIED"
   },
-  "task_plan_approval": "revision_requested",
+  "task_plan_approval": "awaiting_review_of_requested_revision",
   "task_validation_snapshot": {
     "command": "npm run validate",
     "wrapper": "rtk proxy bash",
     "exit_code": 0,
-    "log": "/tmp/vfa-gpui-tasks-validate.log",
+    "log": "/tmp/vfa-gpui-visual-plan-validate.log",
+    "spec_command": "rtk proxy python3 .kiro/specs/gpui-desktop/verify.py --tasks --self-test",
+    "spec_log": "/tmp/vfa-gpui-visual-plan-spec.log",
     "sha256": {
       "design-review.md": "2e22f46d1f18aacb2f5cd86f3fb3d7b98e7dff0dea053e56a491554260d3eb57",
       "design.md": "33a22ec84e2c376dd1e6aa627b72bf1a209a1773832c7fc3e417e2aa583699d0",
-      "evals.md": "7054a958185c0307922d5145723a56c69e2bd1e6bce18b7a36df51fac46f35e4",
+      "evals.md": "6a7717192734e3eb4a5abb78be774a49a0ddf673edb1543dc7794ce407d7a6ee",
       "requirements-analysis.md": "adfd3d59f8084c78bbeb6d3c4179fdd6ee156543cf44aedf1f19f8d880fc7b9a",
       "requirements.md": "490b95ba21dcf9d6ec6ca803586afd785f1803287c38f0193bed053701e31160",
       "research.md": "3f640812c260a90fbbbe2a1ea7d81b02b64758dda338aac01590110331bee14b",
-      "tasks-review.md": "144f08331cae5ccab88fcbdf9d2e03ad2f1d1ad267604bdf978b53b182cc338b",
-      "tasks.md": "028344627d1c4d170c5e4cb68f4eb1123e035f950a4b6e75802dfcdedaf21eba",
-      "verify.py": "de42b534ec1353768b4337eb0591243dc69be44e4ecf8bfd4cf157e390ca03f1"
+      "tasks-review.md": "ddc10a6a8275f9209e01c4e5d42b2a80bdec0e83a4598c300b5118045e9ff2f3",
+      "tasks.md": "dbd447abb2a1e2c8e8b598311824db5413147ec8a49e4a7957baa2ef98eb3709",
+      "verify.py": "f9b2fa62dc616a2464c3d88971801bf76c959d853fca743c6daf8f8916f4cd7e"
     }
   },
   "task_revision_request": {
     "user_answer": "Revise task plan before implementation",
     "reviewed_task_sha256": "028344627d1c4d170c5e4cb68f4eb1123e035f950a4b6e75802dfcdedaf21eba",
-    "specific_changes": "not_yet_specified"
+    "specific_changes": "Expose the existing unchecked checklist near the top; add Impeccable native visual audit and scoped refinement tasks; discover skill, checkout, manifest and evidence locations rather than embed machine-specific paths"
   },
   "delivery_authorization": {
-    "user_request": "git commit and git push",
+    "user_request": "git commit all and git push; correct both commits on this feature branch using the GitHub no-reply identity from the referenced baseline commit",
     "branch": "feature/gpui-desktop-alpha",
     "remote": "origin",
     "scope": [
       ".kiro/specs/gpui-desktop/",
       ".workflow/ultracode/gpui-desktop/"
     ],
-    "meaning": "Publish planning checkpoint only; task revision request remains open and implementation unstarted",
-    "verification": "Actual commit and remote SHA to be read back and reported in chat after this checkpoint is committed"
+    "meaning": "Commit all reviewed planning changes; rewrite the prior feature checkpoint metadata only; push only the named feature branch with an exact remote-SHA lease; no develop mutation or implementation approval",
+    "verification": "Pending corrected-identity and remote-SHA readback, reported in chat after delivery; prior checkpoint tree and develop must remain unchanged",
+    "commit_identity": {
+      "name": "Raishin",
+      "email": "15792229+Raishin@users.noreply.github.com",
+      "source": "User-referenced baseline commit author; used for both author and committer through command-scoped environment"
+    },
+    "history_rewrite_approval": "Correct both commits on this feature branch"
+  },
+  "task_revision_checks": {
+    "red_baseline": "PASS_new_checker_rejected_old_plan_missing_portable_visual_workflow",
+    "unchecked_checkbox_visibility": "PASS_52_boxes_first_main_section_no_fences",
+    "dag_criteria_and_visual_dependency": "PASS_44_tasks_121_criteria",
+    "negative_mutants": "PASS_14_task_mutants_plus_10_existing_requirement_design_mutants",
+    "approved_input_bytes": "PASS_byte_identical_to_checkpoint_and_approval_hashes",
+    "relocated_spec_grader": "PASS_unrelated_CWD_Unicode_space_containing_root",
+    "native_runtime_path_portability": "UNVERIFIED_future_implementation",
+    "impeccable_context": "PASS_no_product_or_visual_implementation_found_no_audit_claimed",
+    "bounded_specialist_review": "PASS_mobile_native_scope_limitation_identified_and_addressed",
+    "repository_validation": "PASS_npm_run_validate_exit_0_QA_cluster_eval_green",
+    "spell_markdown": "PASS_owned_revision_scope",
+    "implementation_visual_AT_performance": "UNVERIFIED_not_started",
+    "commit_push": "authorized_pending_identity_correction_and_guarded_delivery"
   }
 }

@@ -157,9 +157,25 @@ def self_test_design(requirements: str, design: str) -> None:
 
 def check_tasks(requirements: str, design: str, tasks: str) -> int:
     for heading in ("# Implementation Plan: GPUI Desktop", "## Check Registry",
-                    "## Tasks", "## Admission and Completion Gates"):
+                    "## Tasks", "## Portable Visual Quality Workflow",
+                    "## Admission and Completion Gates"):
         if heading not in tasks.splitlines():
             raise ValueError(f"task plan missing heading: {heading}")
+    if tasks.index("## Tasks\n") > tasks.index("## Check Registry\n"):
+        raise ValueError("task checklist must precede the check registry")
+    fixed_path = r"(?<![\w.-])/(?:[\w.@{}$-]+/)+|[A-Za-z]:[\\/]|\\\\[^\\\s]+\\|(?:\.agents|\.codex)/skills/impeccable"
+    if re.search(fixed_path, tasks):
+        raise ValueError("task plan contains a fixed machine or skill-install path")
+    fence = None
+    for line in tasks.splitlines():
+        marker = re.match(r"^\s*(`{3,}|~{3,})", line)
+        if marker:
+            if fence is None:
+                fence = marker[1][0]
+            elif marker[1][0] == fence:
+                fence = None
+        elif fence and re.match(r"^- \[[ x]\] \d", line):
+            raise ValueError("task checkboxes must not be inside a code fence")
     for text in (requirements, design):
         if hashlib.sha256(text.encode()).hexdigest() not in tasks:
             raise ValueError("task plan missing frozen approved input hash")
@@ -182,6 +198,7 @@ def check_tasks(requirements: str, design: str, tasks: str) -> int:
     fields_required = {"Depends", "Paths", "Design", "Requirements", "Verification",
                        "Checks", "Positive", "Negative", "Estimate"}
     graph, covered, used_design, used_tests, used_checks = {}, set(), set(), set(), set()
+    methods = {}
     numbers = {}
     for index, match in enumerate(blocks):
         identity = match[2]
@@ -195,6 +212,10 @@ def check_tasks(requirements: str, design: str, tasks: str) -> int:
         if any(not data[key].strip() for key in fields_required):
             raise ValueError(f"{identity}: empty task field")
         graph[identity] = [] if data["Depends"] == "none" else data["Depends"].split(", ")
+        if "Method" in data:
+            if data["Method"] in methods:
+                raise ValueError("duplicate visual quality phase")
+            methods[data["Method"]] = identity
         for key, known, used in (("Design", design_ids, used_design),
                                  ("Verification", test_ids, used_tests),
                                  ("Checks", set(checks), used_checks)):
@@ -223,6 +244,11 @@ def check_tasks(requirements: str, design: str, tasks: str) -> int:
         raise ValueError(f"uncovered task criteria: {sorted(expected-covered)}")
     if used_design != design_ids or used_tests != test_ids or used_checks != set(checks):
         raise ValueError("uncovered design, verification or check anchors")
+    if not {"impeccable critique + audit", "impeccable polish"}.issubset(methods):
+        raise ValueError("missing Impeccable audit or refinement task")
+    audit, polish = methods["impeccable critique + audit"], methods["impeccable polish"]
+    if audit not in graph[polish] or polish not in graph.get("8.3", []):
+        raise ValueError("final readiness must depend on ordered visual audit/refinement")
     visiting, visited = set(), set()
 
     def visit(node: str) -> None:
@@ -263,8 +289,19 @@ def self_test_tasks(requirements: str, design: str, tasks: str) -> None:
         "unknown task check": re.sub(r"^  - Checks:.*$", "  - Checks: C999", tasks, count=1, flags=re.M),
         "missing task paths": re.sub(r"^  - Paths:.*\n", "", tasks, count=1, flags=re.M),
         "wrong task design hash": tasks.replace(hashlib.sha256(design.encode()).hexdigest(), "0"*64),
+        "missing task checkbox": tasks.replace("- [ ] 1.1 ", "- 1.1 ", 1),
+        "code-fenced checkboxes": tasks.replace("## Tasks\n", "## Tasks\n\n```text\n", 1).replace("## Execution Contract", "```\n\n## Execution Contract", 1),
+        "buried checklist": tasks.replace("## Tasks", "## Check Registry", 1).replace("## Check Registry\n\nCommands", "## Tasks\n\nCommands", 1),
+        "missing Impeccable audit": tasks.replace("  - Method: impeccable critique + audit\n", "", 1),
+        "missing Impeccable refinement": tasks.replace("  - Method: impeccable polish\n", "", 1),
+        "fixed Unix skill path": tasks + "\nSkill: /Users/example/skills/impeccable\n",
+        "fixed Windows output path": tasks + "\nEvidence: C:\\fixed\\evidence\n",
+        "fixed relative skill path": tasks + "\nSkill: .agents/skills/impeccable\n",
+        "missing final visual gate": tasks.replace("  - Depends: 7.1, 7.2, 7.3, 7.5, 8.1, 8.2", "  - Depends: 7.1, 7.2, 7.3, 8.1, 8.2", 1),
     }
     for label, mutant in mutants.items():
+        if mutant == tasks:
+            raise ValueError(f"task mutant did not change the input: {label}")
         try:
             check_tasks(requirements, design, mutant)
         except ValueError:

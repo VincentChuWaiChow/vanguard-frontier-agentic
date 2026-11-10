@@ -1,181 +1,12 @@
 # Implementation Plan: GPUI Desktop
 
-Status: TASK PLAN DRAFT; NOT IMPLEMENTED. The user approved the design and
-requested parallel task planning. All tasks below are unchecked future work.
+Status: TASK PLAN REVISED; AWAITING IMPLEMENTATION APPROVAL. The user approved the
+design, requested parallel task planning, then requested visible checkboxes and
+Impeccable visual audit/refinement with portable paths. All boxes are future work.
 Architecture and scope come from these frozen approved inputs:
 
 - Requirements SHA-256: `490b95ba21dcf9d6ec6ca803586afd785f1803287c38f0193bed053701e31160`.
 - Design SHA-256: `33a22ec84e2c376dd1e6aa627b72bf1a209a1773832c7fc3e417e2aa583699d0`.
-
-## Execution Contract
-
-Use a hybrid risk-first sequence. Numbering is a valid topological order, not a
-requirement to serialize independent work. A dependency must be complete with its
-actual evidence before a consumer starts. In particular, task 2.6 is the native
-feasibility barrier before extensive UI work; independent domain/service tasks may
-progress while native runs are pending. Missing target access is a prerequisite
-gap, not a passed test or permission to remove Windows/macOS/Wayland.
-
-Each task is a 2–4-hour focused-work estimate/timebox, excluding compiler/host/human
-waiting. If it exceeds that bound, stop and split the remaining implementation
-with preserved requirements/dependencies rather than mark an incomplete task done.
-Native access, dependency resolution/system packages and any external CI execution
-need appropriate authorization; no installs, remote runners, pushes or release
-uploads are granted merely by this task-planning document.
-
-The parent/integration owner controls shared manifests, module declarations and
-cross-file contracts, shared fixture registration and the `tests/ui.rs` aggregator.
-Leaf UI tests have separate modules so workers need not edit that shared file.
-At most three implementation workers, no recursive fanout.
-Never run two tasks concurrently if their actual write sets overlap (including
-Cargo.lock, module registration, exporter or shared fixtures), even if their graph
-dependencies permit it. Each worker owns only assigned paths, preserves others'
-changes, and does not commit/push/deploy. Sensitive authorization/evidence changes
-receive parent review. Select actual available specialist profiles at dispatch;
-the plan does not pretend to pin future serving models or isolate workers.
-
-TUI library/default compatibility and both consumer lock graphs stay protected.
-No target writes against real operator repositories in automated tests; use temp
-fixtures and controlled helper processes. No green skips, missing-fixture returns,
-copied expected values from production algorithms, or metadata-only UI assertions.
-Do not change approved requirements/design to simplify a failing implementation.
-
-## Check Registry
-
-Commands/targets below are **proposed acceptance interfaces** unless already
-present. Task owners implement their named harnesses before invoking them. Their
-names/checkboxes are not evidence of a passed test. Native commands run on the
-stated native host with explicit absolute evidence paths and record actual backend.
-All shell invocations use the repository's `rtk` wrapper.
-
-Check groups are stage-scoped: execute every target owned by the current task and
-its completed dependencies; do not require a future task's still-unimplemented
-test target. The completion gates explicitly run the full assembled suites. A
-missing target already owed by a completed task is a failure, not an allowed skip.
-
-### C1: Legacy Rust and compatibility
-
-Run default `cargo fmt --manifest-path tools/vfa-tui/Cargo.toml --check`,
-`cargo clippy --manifest-path tools/vfa-tui/Cargo.toml --all-targets --locked -- -D warnings`
-and `cargo test --manifest-path tools/vfa-tui/Cargo.toml --locked`, plus the new
-`--test core_contracts` golden/public-import checks. Preserve existing supported
-Linux/macOS targets; this does not claim Windows TUI support.
-
-### C2: Presentation-free engine boundary
-
-Run `cargo check --manifest-path tools/vfa-tui/Cargo.toml --no-default-features --lib --locked`
-and `cargo test --manifest-path tools/vfa-tui/Cargo.toml --no-default-features --lib --test core_contracts --locked`.
-The planned `tools/vfa-tui/tests/check_feature_boundary.py` checks the shared engine's
-normal dependency subtree, resolved under each consumer lock graph, for terminal/
-GPUI leakage. GPUI is expected in the whole Desktop graph, not forbidden there.
-Task 1.2 first checks the engine graph; task 1.6 adds behavioral checks under the
-Desktop graph once both consumer foundations exist.
-Port platform-dependent test helpers; do not gate domain tests away.
-
-### C3: Named engine contracts
-
-For each named task target run
-`cargo test --manifest-path tools/vfa-tui/Cargo.toml --no-default-features --locked --test <TARGET>`.
-Repeat relevant contract tests with default features and run C1/C2 before merging
-shared changes. Targets are named explicitly in each task's owned paths.
-From task 1.6 onward each shared-engine change also runs the C4 `engine_contracts`
-target under Desktop's lockfile; the parent wires its shared regression cases.
-
-### C4: Pinned GPUI build and in-process UI tests
-
-Run Desktop fmt/clippy/all-targets check and tests with
-`--manifest-path tools/vfa-desktop/Cargo.toml --locked`; UI target is
-`cargo test --manifest-path tools/vfa-desktop/Cargo.toml --test ui --locked`.
-Kit `test-support` is a same-version dev dependency. Assertions drive actual
-callbacks/state, not labels alone. Verify production dependency closure separately.
-From task 1.6 onward also run `cargo test --manifest-path tools/vfa-desktop/Cargo.toml --test engine_contracts --locked`.
-That target reuses independent shared-engine fixture cases, including every new
-portability regression, under Desktop's actual dependency resolution. C3 results
-under the TUI lockfile alone do not satisfy this second-graph behavioral check.
-
-### C5: Early native bootstrap and ownership admission
-
-Implement a main-thread `native_smoke` test target (`harness = false`, explicitly
-selected), then run `cargo test --manifest-path tools/vfa-desktop/Cargo.toml --test native_smoke --locked -- --scenario admission --backend <BACKEND> --evidence-dir <DIR>`.
-Admission covers actual bootstrap/bridge/process cleanup on Linux X11 and Wayland,
-macOS ARM64 and Windows x64 MSVC. Root-first exit, descendants, inherited Windows
-jobs, shutdown and missing prerequisites are negative scenarios. No compile-only
-or headless-only result passes this barrier.
-Task 1.4 runs the narrower `--scenario bootstrap`; task 2.6 later runs the full
-`--scenario admission`. Bootstrap success alone cannot complete task 2.6.
-Task 4.7 adds `--scenario worker_shutdown` using real governance/SQLite workers,
-which did not yet exist during the earlier process/bootstrap admission.
-
-### C6: Process/output/privacy stress contracts
-
-Run C3 targets `process_contracts`, `output_budget`, `streaming_redaction` and
-`lifecycle`; compile the std-only Rust helper into temporary test output with the
-test toolchain, not a published binary pointing inside excluded tests. Include
-64 MiB unterminated output, all-buffer high-water accounting ≤8 MiB, long/EOF PEM,
-slow/disconnected UI, protocol/display separation and reaped descendant evidence.
-Task 2.1 supplies `process_contracts`, task 2.4 supplies `output_budget`, task 2.5
-supplies `streaming_redaction`, and task 2.6 supplies `lifecycle`. Earlier owners
-are not blocked by later targets; C6 at final closure runs all four.
-
-### C7: Authoritative exporter and legacy modes
-
-Run `node --test tests/export-plan.test.mjs tests/export-apply.test.mjs` after
-those tests exist, plus existing `tests/test-vfa-export-coverage.test.mjs`,
-`tests/test-codex-plugin-marketplace-install.test.mjs` and
-`tests/export-cursor-kiro-skill-notice.test.mjs`. Test the actual Node planner and
-legacy output, Codex final bytes/transforms and per-path effects, not Rust copies.
-Task 5.1 runs planner plus existing legacy tests; task 5.2 adds apply tests. Later
-export integration and final closure run the complete set.
-
-### C8: Complete native workflows and assistive technology
-
-Extend `native_smoke` with `--scenario workflows`, running on the same four native
-backend configurations as C5. Separately run the planned `native_accessibility`
-target with explicit evidence directory and platform AT/version. Real keyboard,
-focus, screen-reader, IME/clipboard, theme and 200% scale observations are required;
-headless pixels/semantic trees are not substitutes. Missing human/native evidence
-is UNVERIFIED and blocks final acceptance, not a completed task.
-Accept provenance-bound human observation records with platform/AT versions,
-procedure, actual observations, exact source/build identity and reviewer
-attribution. Presence checks cannot attest that an observation actually happened;
-the parent reviews the underlying records rather than manufacture a PASS label.
-Task 7.1 implements/runs workflow scenarios; task 7.2 adds native AT capture. The
-complete C8 gate and task 8.3 require both, not an AT-only checklist or early stub.
-
-### C9: Fixed performance protocol
-
-Implement `tests/performance.rs` plus committed fixture/corpus and run
-`cargo test --manifest-path tools/vfa-desktop/Cargo.toml --test performance --locked -- --evidence-dir <DIR>`
-on approved reference configurations. Use the exact requirements protocol,
-sample counts/pacing/distribution, pressure overlap, raw samples and nearest-rank
-p95. Reject empty/changed fixtures, excluded slow samples and absent backend runs.
-
-### C10: Packages, licenses and clean-machine launch
-
-Implement `scripts/check-vfa-desktop-package.py` and packaging manifests to build,
-inventory, checksum and verify each target's relocatable artifact. Run C8 workflows
-from the unpacked artifact and unrelated CWD on a clean native target with a
-selected local checkout. Missing helpers/assets/notices/signing disclosure fail.
-Verify the existing TUI Cargo package/semver gate from a clean controlled source
-snapshot, without `--no-verify`, dirty-gate bypass or unauthorized Git commits.
-
-### C11: Cross-consumer CI and repository gates
-
-Run `node --test tests/gpui-ci-contracts.test.mjs` and validate local workflow definitions, dependency/source/license target
-policy and path-filter fixtures, then `npm run validate` and available local
-regression gates. Defining the pipeline is not executing its native jobs. At final
-closure also run spell/Markdown lint and all affected C1–C10 gates. Regenerate only actually affected catalog/integrity
-artifacts, integrity last on its own. Workflow edits are local code; running
-external CI, pushing or publishing requires separate authorization.
-
-### C12: Task structure and final evidence readiness
-
-Current plan check: `python3 .kiro/specs/gpui-desktop/verify.py --tasks --self-test`.
-Future `scripts/verify-gpui-desktop-readiness.py --evidence-dir <DIR>` checks exact
-commit/lock hashes and requirement-to-actual-test/native artifacts. Its own missing,
-stale, mismatched-target and fake-passed-skip fixtures must fail. It validates
-evidence provenance/coverage, not the truth of an arbitrary PASS label; parent
-reviews underlying assertions and native observations before completion.
 
 ## Tasks
 
@@ -490,12 +321,12 @@ reviews underlying assertions and native observations before completion.
 
 - [ ] 6.1 Build the native shell and explicit checkout picker
   - Depends: 1.4, 1.5, 2.6, 3.1, 4.1, 4.7
-  - Paths: tools/vfa-desktop/src/app.rs; tools/vfa-desktop/src/checkout_picker.rs; tools/vfa-desktop/tests/ui/context.rs
+  - Paths: tools/vfa-desktop/src/app.rs; tools/vfa-desktop/src/checkout_picker.rs; tools/vfa-desktop/tests/ui/context.rs; parent-approved Desktop-local product/surface context artifacts if absent
   - Design: D2, D3, D4
   - Requirements: R1.1-R1.6, R12.4, R15.1, R15.7
   - Verification: V3, V8, V11
   - Checks: C4, C5
-  - Positive: Canonical context, saved-source validation and unavailable/picker state are usable with keyboard and pointer through the real bridge.
+  - Positive: Resolve Impeccable context/visual direction and craft-floor prerequisites before UI edits without inventing facts; canonical context, saved-source validation and unavailable/picker state work with keyboard and pointer through the real bridge.
   - Negative: No implicit source/trust grant, telemetry, download, helper/network/target write, credential prompt or cloud action at launch/browse; obsolete results cannot repopulate a switched context.
   - Estimate: 2-4 hours; timebox, not a completion guarantee.
 
@@ -622,6 +453,30 @@ reviews underlying assertions and native observations before completion.
   - Negative: Empty/changed fixtures, missing overlap, excluded slow samples or another platforms results cannot pass; no unmeasured performance claim.
   - Estimate: 2-4 hours; timebox, not a completion guarantee.
 
+- [ ] 7.4 Audit native visual quality with Impeccable
+  - Depends: 7.1, 7.2, 7.3
+  - Paths: Read-only resolved Desktop source/tokens and native workflow evidence; write only the task-scoped audit report in the explicitly selected evidence bundle
+  - Method: impeccable critique + audit
+  - Design: D4, D11, D12
+  - Requirements: R13.1-R13.9, R16.7-R16.9
+  - Verification: V8, V9, V10, V12
+  - Checks: C8, C9, C13
+  - Positive: One batched native inspection produces scene-linked prioritized findings across the C13 matrix; paths are discovered and relocation/Unicode fixtures work; desktop-specific evidence and mobile-only exclusions are explicit.
+  - Negative: Mock/web-only or stale/wrong-backend captures, invented desktop support, fixed install/output paths or score-only findings fail; audit makes no UI edits and does not waive AT/performance proof.
+  - Estimate: 2-4 hours; timebox, not a completion guarantee.
+
+- [ ] 7.5 Refine the audited UI with Impeccable and confirm once
+  - Depends: 7.4
+  - Paths: Only resolved Desktop UI source/tests in the parent-approved audit remediation set; task-scoped confirmation report in the selected evidence bundle
+  - Method: impeccable polish
+  - Design: D4, D11, D12
+  - Requirements: R13.1-R13.9, R14.6, R16.7-R16.9
+  - Verification: V8, V9, V10, V12
+  - Checks: C4, C8, C9, C13
+  - Positive: One scoped fix batch preserves the established identity and safety behavior; at most one native confirmation round binds before/after findings and C4/C8/C9 results to the final build; lesser deferrals have rationale/owner.
+  - Negative: Unresolved P0/P1, stale AT/performance results, out-of-scope redesign/copy/behavior changes, unportable paths or repeated polishing cannot pass; stop and replan rather than mark unfinished work complete.
+  - Estimate: 2-4 hours; timebox, not a completion guarantee.
+
 - [ ] 8. Delivery and final readiness
 
 - [ ] 8.1 Implement verified per-target packaging and notices
@@ -647,15 +502,260 @@ reviews underlying assertions and native observations before completion.
   - Estimate: 2-4 hours; timebox, not a completion guarantee.
 
 - [ ] 8.3 Implement final evidence readiness and regression closure
-  - Depends: 7.1, 7.2, 7.3, 8.1, 8.2
+  - Depends: 7.1, 7.2, 7.3, 7.5, 8.1, 8.2
   - Paths: scripts/verify-gpui-desktop-readiness.py; tests/gpui-readiness/; .kiro/specs/gpui-desktop/evidence/; actually affected generated integrity artifacts
   - Design: D11, D12, D13
   - Requirements: R11.6, R12.5, R14.6, R16.3-R16.9
   - Verification: V1, V2, V3, V4, V5, V6, V7, V8, V9, V10, V11, V12
-  - Checks: C1, C2, C4, C6, C7, C8, C9, C10, C11, C12
+  - Checks: C1, C2, C4, C6, C7, C8, C9, C10, C11, C12, C13
   - Positive: Verifier binds every accepted criterion to underlying passing tests/native artifacts and exact source/lock identity; parent audits assertions, updates completion evidence and runs settled-tree gates.
-  - Negative: Missing/stale/mismatched evidence, unsupported self-attested PASS-only records and passed skips fail; missing required human observations block acceptance, while valid attributed native observations are accepted.
+  - Negative: Missing/stale/mismatched evidence, unsupported self-attested PASS-only records and passed skips fail; missing human observations, unresolved visual P0/P1 or stale post-refinement gates block acceptance, while valid attributed native observations are accepted.
   - Estimate: 2-4 hours; timebox, not a completion guarantee.
+
+## Execution Contract
+
+Use a hybrid risk-first sequence. Numbering is a valid topological order, not a
+requirement to serialize independent work. A dependency must be complete with its
+actual evidence before a consumer starts. In particular, task 2.6 is the native
+feasibility barrier before extensive UI work; independent domain/service tasks may
+progress while native runs are pending. Missing target access is a prerequisite
+gap, not a passed test or permission to remove Windows/macOS/Wayland.
+
+Each task is a 2–4-hour focused-work estimate/timebox, excluding compiler/host/human
+waiting. If it exceeds that bound, stop and split the remaining implementation
+with preserved requirements/dependencies rather than mark an incomplete task done.
+Native access, dependency resolution/system packages and any external CI execution
+need appropriate authorization; no installs, remote runners, pushes or release
+uploads are granted merely by this task-planning document.
+
+The parent/integration owner controls shared manifests, module declarations and
+cross-file contracts, shared fixture registration and the `tests/ui.rs` aggregator.
+Leaf UI tests have separate modules so workers need not edit that shared file.
+At most three implementation workers, no recursive fanout.
+Never run two tasks concurrently if their actual write sets overlap (including
+Cargo.lock, module registration, exporter or shared fixtures), even if their graph
+dependencies permit it. Each worker owns only assigned paths, preserves others'
+changes, and does not commit/push/deploy. Sensitive authorization/evidence changes
+receive parent review. Select actual available specialist profiles at dispatch;
+the plan does not pretend to pin future serving models or isolate workers.
+
+TUI library/default compatibility and both consumer lock graphs stay protected.
+No target writes against real operator repositories in automated tests; use temp
+fixtures and controlled helper processes. No green skips, missing-fixture returns,
+copied expected values from production algorithms, or metadata-only UI assertions.
+Do not change approved requirements/design to simplify a failing implementation.
+
+## Portable Visual Quality Workflow
+
+Use the installed `impeccable` skill by name, not a copied installation path.
+Discover its base directory/launcher from the active harness's skill metadata and
+follow its current instructions. Do not assume a home directory, repository-local
+skill folder, OS path separator or global executable. Missing skill/launcher is
+an explicit prerequisite failure, not permission to install/update it or use an
+unrelated fallback. Run its context setup once per implementation session against
+the resolved Desktop source target; follow its documented failure fallback if
+context loading fails. Do not repair skill/config drift as a side effect.
+
+Resolve the implementation source root from the explicitly chosen source checkout
+or trusted repository metadata. Resolve package manifests by package identity and
+Cargo metadata, validating membership in that source tree. In the commands below,
+`ENGINE_MANIFEST` and `DESKTOP_MANIFEST` are discovered native paths, not baked-in
+locations. Run repository-relative checks from the resolved source root. `Paths`
+fields identify proposed relative source ownership, not runtime path constants;
+each worker packet must resolve them to a concrete bounded write set at dispatch.
+Keep the app's operator-selected data checkout distinct from its source/build
+checkout. Never select either implicitly from CWD.
+
+The operator/test invocation supplies the evidence destination explicitly. Resolve
+native paths and pass them as structured arguments; do not assume a fixed output
+folder, user name, drive, temporary directory or file URL. Store report/image links
+relative to the selected evidence bundle where possible. Test a relocated source
+checkout and destinations containing spaces/Unicode; absent/ambiguous roots,
+missing skill, unwritable output and malformed arguments fail explicitly without
+silent fallback or writes elsewhere. Do not execute untrusted discovered helpers.
+
+This is a native Linux/macOS/Windows GPUI **Operate** surface. Impeccable provides
+design judgment, not GPUI platform support: its shipped native audit guidance is
+mobile-oriented, so adapt only applicable hierarchy, typography, spacing, theme,
+contrast, focus, scaling, state and window-resizing heuristics. Mark mobile-only
+checks not applicable with reasons; assess desktop-specific behavior using the
+approved desktop requirements and actual native evidence. Unsupported desktop
+assessments remain UNVERIFIED, never an inferred pass. Do not run web-only browser
+overlays, `live`, `generate` or the HTML/CSS detector against Rust/native windows.
+
+Before the first UI edit, follow Impeccable's context/new-surface prerequisites,
+resolve product/visual authority without inventing missing facts, and load its
+craft-floor guidance. Obtain any missing visual-direction decisions without
+altering the approved architecture. Later critique/audit is read-only; refinement
+preserves identity, factual copy, behavior, safety contracts and native affordances.
+Use one initial batched inspection across required backends/themes/window states,
+one prioritized fix batch, and at most one native confirmation round. Reuse fresh
+workflow captures instead of adding redundant screenshot passes. Unresolved
+blockers stop acceptance and require a reviewed replan, not an open-ended polish
+loop. Neither screenshots nor a visual score replace real AT or performance runs.
+
+## Check Registry
+
+Commands/targets below are **proposed acceptance interfaces** unless already
+present. Task owners implement their named harnesses before invoking them. Their
+names/checkboxes are not evidence of a passed test. Native commands run on the
+stated native host with explicit absolute evidence paths and record actual backend.
+All shell invocations use the repository's `rtk` wrapper.
+
+Check groups are stage-scoped: execute every target owned by the current task and
+its completed dependencies; do not require a future task's still-unimplemented
+test target. The completion gates explicitly run the full assembled suites. A
+missing target already owed by a completed task is a failure, not an allowed skip.
+
+### C1: Legacy Rust and compatibility
+
+Run default `cargo fmt --manifest-path "${ENGINE_MANIFEST}" --check`,
+`cargo clippy --manifest-path "${ENGINE_MANIFEST}" --all-targets --locked -- -D warnings`
+and `cargo test --manifest-path "${ENGINE_MANIFEST}" --locked`, plus the new
+`--test core_contracts` golden/public-import checks. Preserve existing supported
+Linux/macOS targets; this does not claim Windows TUI support.
+
+### C2: Presentation-free engine boundary
+
+Run `cargo check --manifest-path "${ENGINE_MANIFEST}" --no-default-features --lib --locked`
+and `cargo test --manifest-path "${ENGINE_MANIFEST}" --no-default-features --lib --test core_contracts --locked`.
+The planned `tools/vfa-tui/tests/check_feature_boundary.py` checks the shared engine's
+normal dependency subtree, resolved under each consumer lock graph, for terminal/
+GPUI leakage. GPUI is expected in the whole Desktop graph, not forbidden there.
+Task 1.2 first checks the engine graph; task 1.6 adds behavioral checks under the
+Desktop graph once both consumer foundations exist.
+Port platform-dependent test helpers; do not gate domain tests away.
+
+### C3: Named engine contracts
+
+For each named task target run
+`cargo test --manifest-path "${ENGINE_MANIFEST}" --no-default-features --locked --test <TARGET>`.
+Repeat relevant contract tests with default features and run C1/C2 before merging
+shared changes. Targets are named explicitly in each task's owned paths.
+From task 1.6 onward each shared-engine change also runs the C4 `engine_contracts`
+target under Desktop's lockfile; the parent wires its shared regression cases.
+
+### C4: Pinned GPUI build and in-process UI tests
+
+Run Desktop fmt/clippy/all-targets check and tests with
+`--manifest-path "${DESKTOP_MANIFEST}" --locked`; UI target is
+`cargo test --manifest-path "${DESKTOP_MANIFEST}" --test ui --locked`.
+Kit `test-support` is a same-version dev dependency. Assertions drive actual
+callbacks/state, not labels alone. Verify production dependency closure separately.
+From task 1.6 onward also run `cargo test --manifest-path "${DESKTOP_MANIFEST}" --test engine_contracts --locked`.
+That target reuses independent shared-engine fixture cases, including every new
+portability regression, under Desktop's actual dependency resolution. C3 results
+under the TUI lockfile alone do not satisfy this second-graph behavioral check.
+
+### C5: Early native bootstrap and ownership admission
+
+Implement a main-thread `native_smoke` test target (`harness = false`, explicitly
+selected), then run `cargo test --manifest-path "${DESKTOP_MANIFEST}" --test native_smoke --locked -- --scenario admission --backend <BACKEND> --evidence-dir <DIR>`.
+Admission covers actual bootstrap/bridge/process cleanup on Linux X11 and Wayland,
+macOS ARM64 and Windows x64 MSVC. Root-first exit, descendants, inherited Windows
+jobs, shutdown and missing prerequisites are negative scenarios. No compile-only
+or headless-only result passes this barrier.
+Task 1.4 runs the narrower `--scenario bootstrap`; task 2.6 later runs the full
+`--scenario admission`. Bootstrap success alone cannot complete task 2.6.
+Task 4.7 adds `--scenario worker_shutdown` using real governance/SQLite workers,
+which did not yet exist during the earlier process/bootstrap admission.
+
+### C6: Process/output/privacy stress contracts
+
+Run C3 targets `process_contracts`, `output_budget`, `streaming_redaction` and
+`lifecycle`; compile the std-only Rust helper into temporary test output with the
+test toolchain, not a published binary pointing inside excluded tests. Include
+64 MiB unterminated output, all-buffer high-water accounting ≤8 MiB, long/EOF PEM,
+slow/disconnected UI, protocol/display separation and reaped descendant evidence.
+Task 2.1 supplies `process_contracts`, task 2.4 supplies `output_budget`, task 2.5
+supplies `streaming_redaction`, and task 2.6 supplies `lifecycle`. Earlier owners
+are not blocked by later targets; C6 at final closure runs all four.
+
+### C7: Authoritative exporter and legacy modes
+
+Run `node --test tests/export-plan.test.mjs tests/export-apply.test.mjs` after
+those tests exist, plus existing `tests/test-vfa-export-coverage.test.mjs`,
+`tests/test-codex-plugin-marketplace-install.test.mjs` and
+`tests/export-cursor-kiro-skill-notice.test.mjs`. Test the actual Node planner and
+legacy output, Codex final bytes/transforms and per-path effects, not Rust copies.
+Task 5.1 runs planner plus existing legacy tests; task 5.2 adds apply tests. Later
+export integration and final closure run the complete set.
+
+### C8: Complete native workflows and assistive technology
+
+Extend `native_smoke` with `--scenario workflows`, running on the same four native
+backend configurations as C5. Separately run the planned `native_accessibility`
+target with explicit evidence directory and platform AT/version. Real keyboard,
+focus, screen-reader, IME/clipboard, theme and 200% scale observations are required;
+headless pixels/semantic trees are not substitutes. Missing human/native evidence
+is UNVERIFIED and blocks final acceptance, not a completed task.
+Accept provenance-bound human observation records with platform/AT versions,
+procedure, actual observations, exact source/build identity and reviewer
+attribution. Presence checks cannot attest that an observation actually happened;
+the parent reviews the underlying records rather than manufacture a PASS label.
+Task 7.1 implements/runs workflow scenarios; task 7.2 adds native AT capture. The
+complete C8 gate and task 8.3 require both, not an AT-only checklist or early stub.
+
+### C9: Fixed performance protocol
+
+Implement `tests/performance.rs` plus committed fixture/corpus and run
+`cargo test --manifest-path "${DESKTOP_MANIFEST}" --test performance --locked -- --evidence-dir <DIR>`
+on approved reference configurations. Use the exact requirements protocol,
+sample counts/pacing/distribution, pressure overlap, raw samples and nearest-rank
+p95. Reject empty/changed fixtures, excluded slow samples and absent backend runs.
+
+### C10: Packages, licenses and clean-machine launch
+
+Implement `scripts/check-vfa-desktop-package.py` and packaging manifests to build,
+inventory, checksum and verify each target's relocatable artifact. Run C8 workflows
+from the unpacked artifact and unrelated CWD on a clean native target with a
+selected local checkout. Missing helpers/assets/notices/signing disclosure fail.
+Verify the existing TUI Cargo package/semver gate from a clean controlled source
+snapshot, without `--no-verify`, dirty-gate bypass or unauthorized Git commits.
+
+### C11: Cross-consumer CI and repository gates
+
+Run `node --test tests/gpui-ci-contracts.test.mjs` and validate local workflow definitions, dependency/source/license target
+policy and path-filter fixtures, then `npm run validate` and available local
+regression gates. Defining the pipeline is not executing its native jobs. At final
+closure also run spell/Markdown lint and all affected C1–C10 gates. Regenerate only actually affected catalog/integrity
+artifacts, integrity last on its own. Workflow edits are local code; running
+external CI, pushing or publishing requires separate authorization.
+
+### C12: Task structure and final evidence readiness
+
+Current plan check: `python3 .kiro/specs/gpui-desktop/verify.py --tasks --self-test`.
+Future `scripts/verify-gpui-desktop-readiness.py --evidence-dir <DIR>` checks exact
+commit/lock hashes and requirement-to-actual-test/native artifacts. Its own missing,
+stale, mismatched-target and fake-passed-skip fixtures must fail. It validates
+evidence provenance/coverage, not the truth of an arbitrary PASS label; parent
+reviews underlying assertions and native observations before completion.
+
+### C13: Impeccable native visual audit and refinement
+
+Task 7.4 uses `impeccable critique` and `impeccable audit` guidance against actual
+native workflow captures/source; task 7.5 uses `impeccable polish` for the scoped
+remediation batch. Resolve the installed skill/targets/output as described above;
+these are skill workflows, not a claim of GPUI support in its mobile/web tooling.
+Record target/build/lock identity, OS/backend, theme, window size/scale, fixture
+state, procedure and image references. Cover catalog/search/details, governance,
+jobs, trust/confirmation, export and audit/report paths in light/dark themes,
+narrow/wide windows and 200-percent scale, including loading, empty, long-content,
+unavailable/stale, permission/disabled and partial/failure states.
+
+The report prioritizes P0-P3 findings by user impact and names the exact scene and
+owned source, applicable approved criterion, recommendation and supporting image
+or interaction observation. P0/P1 findings block acceptance; disposition lesser
+findings with rationale and owner. A score, clean detector or screenshot presence
+alone cannot close a finding. Parent reviews actual images and native interaction
+evidence, including desktop-specific keyboard/focus/modal behavior. Missing or
+stale captures, wrong-backend labels and hidden controls are negative fixtures.
+
+Task 7.5 records before/after evidence and reruns C4/C8/C9 on the final build; batch
+native confirmation with required AT/performance observations to avoid redundant
+inspection rounds. No stale pre-refinement acceptance transfers silently. C12's
+readiness verifier rejects unresolved P0/P1, missing dispositions, broken image
+links, missing relocation tests, source/build mismatch or a bypassed visual gate.
 
 ## Admission and Completion Gates
 
@@ -671,6 +771,10 @@ reviews underlying assertions and native observations before completion.
 - G4: final completion requires native visual/AT/performance/package evidence for
   every target, all criterion-specific tests and unchanged compatibility/data
   contracts. A missing host/tool/human observation remains a blocker, not PASS.
+- G5: tasks 7.4/7.5 require Impeccable-guided visual audit and one bounded refinement
+  cycle, portable path checks and final-build native evidence before 8.3. Packaging
+  may begin after 7.1, but any later UI change invalidates affected package evidence;
+  rebuild/recheck the final artifact before readiness rather than reuse old proof.
 - User implementation authorization is still required after review of this plan.
   This task list authorizes no commit/push/publication or external CI operation.
 

@@ -45,3 +45,30 @@ review or implementation success is claimed.
 - Native hosts, graphics sessions, installed helpers, reference hardware and human
   AT availability are execution prerequisites, not invented passing evidence or
   grounds to delete required platforms. Obtain implementation authorization next.
+
+## User-requested visual workflow revision
+
+The existing checkbox syntax was present but buried beneath the check registry.
+Parent moved the actual unchecked task list to the first main section, preserving
+existing IDs, and added tasks 7.4/7.5 plus C13 for Impeccable-guided native visual
+audit and bounded refinement. Final readiness now depends on the refinement gate.
+
+The parent read the installed `impeccable` instructions and ran its context setup;
+no product/visual implementation was found and no visual audit is claimed. A
+bounded read-only `doc_updater` (`gpt-6-luna/medium`, configured; serving identity
+unobservable) reviewed the proposed integration. It identified the key limitation:
+Impeccable's native audit reference is mobile-oriented, not evidence of GPUI
+desktop conformance. The plan now excludes mobile-only checks, prohibits the web
+detector as native proof, and ties desktop assessments to approved criteria and
+actual native observations. Independent AT/performance gates remain mandatory.
+
+Skill/checkout/manifest/output locations are resolved at execution, not copied
+from a developer machine. Existing relative source paths remain ownership hints;
+the integration owner resolves concrete worker write sets at dispatch. Relocation,
+spaces/Unicode and explicit failure cases are required future implementation
+checks. Source/build freshness is rechecked after refinement and packaging.
+
+This is one task-plan revision, not a new architecture or implementation phase.
+The structural grader adds rejection fixtures for missing/fenced/buried boxes,
+missing visual phases, fixed install/output locations and bypassed final visual
+dependencies. Those fixtures cannot prove runtime relocation or visual quality.

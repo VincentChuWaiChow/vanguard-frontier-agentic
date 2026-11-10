@@ -108,3 +108,24 @@ single task file/DAG and check registry. A separate `planner` (Astra/high) perfo
 the one independent review wave; drafting authors do not approve their own output.
 These are configured runtime profiles, not observed serving identities. No worker
 edits application files or shares write ownership; no recursive fanout.
+
+## Requested task-plan revision
+
+After rejecting the draft pending revision, the user requested visible task
+checkboxes and Impeccable for visual audit/refinement without fixed file paths.
+Parent revises only tasks, their evaluation/checker/review and workflow records.
+Approved requirements/design and all application/dependency/config files stay
+unchanged. The previously authorized Git checkpoint has already been delivered;
+this revision neither starts implementation nor creates another commit/push.
+
+The smallest route is parent-owned edits plus one bounded read-only review by the
+existing UI/documentation specialist (`doc_updater`, configured Luna/medium).
+Impeccable is referenced by installed skill name; paths are discovered at runtime.
+Its web detector/mobile audit cannot certify GPUI desktop behavior. Native visual
+audit/refinement, independent AT/performance and final-build evidence stay separate.
+Checks defined before editing are in `evals.md`: visible unchecked list, ordered
+visual phases, portable paths, frozen input hashes, complete DAG/coverage and
+negative mutants, then local lint/scope checks and repository validation.
+
+Exit: revised task plan ready for user review; obtain implementation approval
+before dispatching any backlog tasks. No new research or implementation fanout.

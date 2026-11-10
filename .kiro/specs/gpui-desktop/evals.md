@@ -128,3 +128,28 @@ user-approved requirements; no application implementation in this phase.
   `npm run validate`. Missing lint tools stay UNVERIFIED, not silently substituted.
 - Exit gate: present the task plan for review and obtain explicit implementation
   authorization; no task is complete merely because its checkbox/test name exists.
+
+## Task-plan revision checks
+
+- Capability: the live, unchecked Markdown task list precedes the long check
+  registry. Missing or code-fenced checkboxes must fail the structural grader.
+- Capability: explicit dependent tasks use the installed `impeccable` skill for
+  native visual critique/audit and scoped refinement, with one initial batched
+  inspection and at most one confirmation round. Final readiness requires both.
+- Portability: discover skill base, selected checkout, package manifests and
+  evidence destination at execution; never bake in a machine-specific location
+  or silently fall back to CWD. Relative source ownership hints are not runtime
+  path constants. Relocated checkout and Unicode/space-containing evidence paths
+  must work; unavailable skills or unwritable output must fail explicitly.
+- Native limits: Impeccable's web detector and mobile-specific guidance do not
+  validate GPUI desktop. Review actual native windows against the approved
+  desktop criteria; preserve independent AT/performance proof and freshness after
+  refinements. A score, mock screenshot or unsupported PASS label cannot pass.
+- Regression: preserve approved requirements/design hashes, existing task IDs and
+  coverage, acyclic dependencies, unstarted implementation and the prior Git
+  checkpoint. Only task/checker/evaluation/review/workflow artifacts may change.
+- Graders: `verify.py --tasks --self-test`, including negative fixtures for hidden
+  checkboxes, missing Impeccable phases, fixed machine paths and missing final
+  visual dependency; bounded read-only specialist review; scope/hash checks,
+  Markdown/spelling checks and `npm run validate`. Native visual quality remains
+  UNVERIFIED until the future implementation and observations actually exist.
