@@ -147,3 +147,20 @@ with that recorded baseline exception, without relabeling C1 green. Commit/push
 only reviewed task artifacts using the repository's GitHub no-reply identity;
 keep generated graph output uncommitted. Obtain separate scope approval before
 repairing production behavior or starting task 1.2.
+
+## Task 1.2 authorization and boundary
+
+The user then requested “go for next phase.” Parent explicitly interpreted this
+as task 1.2 only: default-terminal Cargo feature, narrow module/test gates and a
+normal engine-dependency boundary checker. Its lazy-loaded contract/evidence is
+`evals/task-1.2.md` under the spec directory; task 1.1 goldens remain frozen.
+Parent owns manifests/production wiring and serialized Cargo commands; one Rust
+specialist owns test gates/checker, followed by one bounded read-only review.
+
+Core no-default builds and normal closure pass without suppressing domain tests.
+The unchanged default inventory and remaining no-default domain inventory are
+compared explicitly. Full suites retain the reproduced baseline failure sets;
+record those failures rather than invent green regression gates. Task 1.2's scoped
+work is complete with verified baseline equivalence; no new failure is waived.
+No ReportRequest/ReportService extraction,
+provider/Unicode fix, task 1.3, new workspace/crate, commit, push or remote CI.

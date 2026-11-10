@@ -1,18 +1,20 @@
 #![deny(warnings)]
 
 // The library API is internal and not covered by semver guarantees (see README).
-// All modules are kept `pub`: integration/property tests (separate crates) import
-// 15 of them directly, and the remaining `logging`/`paths` are consumed by the
-// sibling binary crate. Narrowing them to `pub(crate)` makes their items dead
-// code in the library crate, which `#![deny(warnings)]` rejects — so the public
-// surface intentionally mirrors the full module set.
+// Enabled modules remain public for integration tests and the sibling binary.
+// Domain modules are always available; the default `terminal` feature preserves
+// the existing CLI/TUI surface without leaking its dependencies into consumers
+// that explicitly disable default features.
+#[cfg(feature = "terminal")]
 pub mod app;
 pub mod catalog;
+#[cfg(feature = "terminal")]
 pub mod cli;
 pub mod error;
 pub mod federation;
 pub mod gates;
 pub mod headless;
+#[cfg(feature = "terminal")]
 pub mod logging;
 pub mod models;
 pub mod paths;
@@ -21,6 +23,7 @@ pub mod policy;
 pub mod search;
 pub mod security;
 pub mod subprocess;
+#[cfg(feature = "terminal")]
 pub mod ui;
 pub mod workspace;
 

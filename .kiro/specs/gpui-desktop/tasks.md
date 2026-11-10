@@ -1,9 +1,9 @@
 # Implementation Plan: GPUI Desktop
 
-Status: TASK 1.1 DONE BY USER ACCEPTANCE; KNOWN C1 BASELINE FAILURES RECORDED. The
-user accepted the scoped fixture work despite the reproduced existing failures.
-All other boxes remain future work, not approval to execute the backlog. The
-Impeccable visual workflow and portable-path constraints remain unchanged.
+Status: TASK 1.2 DONE; KNOWN FULL-SUITE BASELINE GATES REMAIN NON-GREEN. Scoped
+boundary and compatibility checks pass with no new failures against the recorded
+baseline. Later tasks are not authorized by this request. Impeccable visual and
+portable-path constraints remain unchanged.
 Architecture and scope come from these frozen approved inputs:
 
 - Requirements SHA-256: `490b95ba21dcf9d6ec6ca803586afd785f1803287c38f0193bed053701e31160`.
@@ -25,7 +25,7 @@ Architecture and scope come from these frozen approved inputs:
   - Estimate: 2-4 hours; timebox, not a completion guarantee.
   - Evidence: evals/task-1.1.md; targeted fixtures pass. User requested completion with seventeen reproduced existing failures recorded; the full C1 gate is still not green.
 
-- [ ] 1.2 Introduce the default-terminal feature boundary
+- [x] 1.2 Introduce the default-terminal feature boundary
   - Depends: 1.1
   - Paths: tools/vfa-tui/Cargo.toml; tools/vfa-tui/Cargo.lock; tools/vfa-tui/src/lib.rs; tools/vfa-tui/tests/check_feature_boundary.py; terminal-dependent module/test gates
   - Design: D1, D12, D13
@@ -35,6 +35,7 @@ Architecture and scope come from these frozen approved inputs:
   - Positive: Default builds preserve public paths and CLI/TUI; no-default library excludes presentation dependencies and binary requires terminal.
   - Negative: Closure assertions detect terminal/GPUI leakage; do not hide domain tests or invalidate package contents to compile.
   - Estimate: 2-4 hours; timebox, not a completion guarantee.
+  - Evidence: evals/task-1.2.md; boundary checks and default compatibility pass; full suites retain the reproduced baseline failures, not a green C1/C2 claim.
 
 - [ ] 1.3 Separate pure report requests from the CLI wrapper
   - Depends: 1.1, 1.2

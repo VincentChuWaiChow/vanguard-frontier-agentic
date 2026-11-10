@@ -3,13 +3,18 @@
 //!
 //! # Pipeline
 //!
-//! 1. Load catalog from `workspace_root` using [`CatalogStore::load`].
-//! 2. Load workspace registry from the path in [`Cli::registry`].
-//! 3. Optionally filter workspaces by [`Cli::workspace_filter`].
-//! 4. Load policy config from [`Cli::policies`].
+//! 1. Load catalog using [`CatalogStore::load`](crate::catalog::store::CatalogStore::load).
+//! 2. Load workspace registry from the path in `Cli::registry`.
+//! 3. Optionally filter workspaces by `Cli::workspace_filter`.
+//! 4. Load policy config from `Cli::policies`.
 //! 5. For each requested [`ReportType`] call the corresponding report function.
 //! 6. Format and write to stdout.
 //! 7. Return the highest-severity exit code.
+//!
+//! The CLI-taking `run` entry point requires the default `terminal` feature.
+//! Formatters, severity and audit contracts remain available without it. Private
+//! report projections also stay compiled in test builds to retain their domain
+//! assertions until the separate pure report-service extraction.
 //!
 //! # No terminal manipulation
 //!
@@ -24,29 +29,44 @@
 
 #![deny(warnings)]
 
-use std::collections::HashMap;
-use std::path::{Path, PathBuf};
+#[cfg(any(feature = "terminal", test))]
+use std::{
+    collections::HashMap,
+    path::{Path, PathBuf},
+};
 
 use serde_json::{json, Value};
 
+#[cfg(any(feature = "terminal", test))]
 use crate::catalog::store::CatalogStore;
+#[cfg(feature = "terminal")]
 use crate::cli::Cli;
+#[cfg(any(feature = "terminal", test))]
 use crate::federation::coverage::CoverageEngine;
+#[cfg(any(feature = "terminal", test))]
 use crate::federation::dep_graph::DependencyGraph;
+#[cfg(any(feature = "terminal", test))]
 use crate::federation::drift::{detect_drift, DriftKind};
+#[cfg(any(feature = "terminal", test))]
 use crate::federation::integrity::{verify_integrity, IntegrityStatus};
+#[cfg(feature = "terminal")]
 use crate::federation::registry::{LoadResult, WorkspaceRegistry};
+#[cfg(any(feature = "terminal", test))]
 use crate::federation::versions::{
     extract_version, freshness_score, is_stale, version_delta, VersionStatus,
 };
 use crate::models::report::{OutputFormat, ReportType};
+#[cfg(feature = "terminal")]
 use crate::policy::engine::PolicyEngine;
+#[cfg(feature = "terminal")]
 use crate::policy::parser;
+#[cfg(feature = "terminal")]
 use crate::policy::violations::aggregate_violations;
 
+use super::formats::{format_json, format_markdown, format_table, ReportData};
+#[cfg(any(feature = "terminal", test))]
 use super::formats::{
-    format_json, format_markdown, format_table, with_status, ReportData, STATUS_DRIFT, STATUS_FAIL,
-    STATUS_MISSING, STATUS_PASS, STATUS_STALE, STATUS_WARN,
+    with_status, STATUS_DRIFT, STATUS_FAIL, STATUS_MISSING, STATUS_PASS, STATUS_STALE, STATUS_WARN,
 };
 
 // ---------------------------------------------------------------------------
@@ -112,6 +132,7 @@ impl HeadlessReporter {
     /// `workspace_root` is the root of the **catalog** repository (used to
     /// locate `catalog/`).  This is distinct from downstream workspaces listed
     /// in the registry.
+    #[cfg(feature = "terminal")]
     pub fn run(&self, cli: &Cli, workspace_root: &Path) -> (Value, u8) {
         if !self.quiet {
             eprintln!(
@@ -511,6 +532,7 @@ impl HeadlessReporter {
     // -----------------------------------------------------------------------
 
     #[allow(clippy::too_many_arguments)]
+    #[cfg(any(feature = "terminal", test))]
     fn build_section(
         &self,
         rt: &ReportType,
@@ -686,6 +708,7 @@ pub fn record_headless_audit(
 
 // ── Coverage ─────────────────────────────────────────────────────────────────
 
+#[cfg(any(feature = "terminal", test))]
 fn report_coverage(
     catalog: &CatalogStore,
     installed_per_workspace: &[(PathBuf, Vec<crate::federation::scanner::InstalledAsset>)],
@@ -727,6 +750,7 @@ fn report_coverage(
     (value, findings)
 }
 
+#[cfg(any(feature = "terminal", test))]
 fn compute_aggregate_coverage_score(matrix: &crate::models::coverage::CoverageMatrix) -> String {
     let scores: Vec<f64> = matrix.workspace_scores.values().copied().collect();
     if scores.is_empty() {
@@ -738,6 +762,7 @@ fn compute_aggregate_coverage_score(matrix: &crate::models::coverage::CoverageMa
 
 // ── Violations ───────────────────────────────────────────────────────────────
 
+#[cfg(any(feature = "terminal", test))]
 fn report_violations(
     all_violations: &[crate::models::policy::PolicyViolation],
     dashboard: &crate::policy::violations::ViolationsDashboard,
@@ -799,6 +824,7 @@ fn report_violations(
 
 // ── Drift ─────────────────────────────────────────────────────────────────────
 
+#[cfg(any(feature = "terminal", test))]
 fn report_drift(
     all_installed: &[crate::federation::scanner::InstalledAsset],
     canonical_hashes: &HashMap<String, String>,
@@ -857,10 +883,13 @@ fn report_drift(
 // ── Stale ─────────────────────────────────────────────────────────────────────
 
 /// Default stale-asset limit per workspace that triggers exit code 1 (Req 9.4).
+#[cfg(any(feature = "terminal", test))]
 const DEFAULT_STALE_ASSET_LIMIT: usize = 5;
 /// Default minor-version threshold for staleness (Req 9.1).
+#[cfg(any(feature = "terminal", test))]
 const DEFAULT_STALE_MINOR_THRESHOLD: u32 = 2;
 
+#[cfg(any(feature = "terminal", test))]
 fn report_stale(
     all_installed: &[crate::federation::scanner::InstalledAsset],
     canonical_versions: &HashMap<String, String>,
@@ -923,6 +952,7 @@ fn report_stale(
 
 // ── Gates ─────────────────────────────────────────────────────────────────────
 
+#[cfg(any(feature = "terminal", test))]
 fn report_gates(workspace_root: &Path) -> (Value, Vec<FindingSeverity>) {
     // Load the gate DAG definition (not executing gates — only reporting structure).
     // Running real gates is optional and heavy (Req 2.7 note in tasks).
@@ -973,6 +1003,7 @@ fn report_gates(workspace_root: &Path) -> (Value, Vec<FindingSeverity>) {
 
 // ── Integrity ────────────────────────────────────────────────────────────────
 
+#[cfg(any(feature = "terminal", test))]
 fn report_integrity(
     catalog: &CatalogStore,
     workspace_root: &Path,
@@ -1033,6 +1064,7 @@ fn report_integrity(
 
 // ── Versions ─────────────────────────────────────────────────────────────────
 
+#[cfg(any(feature = "terminal", test))]
 fn report_versions(
     all_installed: &[crate::federation::scanner::InstalledAsset],
     canonical_versions: &HashMap<String, String>,
@@ -1096,6 +1128,7 @@ fn report_versions(
 
 // ── Dependencies ─────────────────────────────────────────────────────────────
 
+#[cfg(any(feature = "terminal", test))]
 fn report_dependencies(catalog: &CatalogStore) -> (Value, Vec<FindingSeverity>) {
     let graph = DependencyGraph::build(catalog);
     let adjacency = graph.to_adjacency_json();
@@ -1129,6 +1162,7 @@ fn report_dependencies(catalog: &CatalogStore) -> (Value, Vec<FindingSeverity>) 
 
 // ── Lifecycle ─────────────────────────────────────────────────────────────────
 
+#[cfg(any(feature = "terminal", test))]
 fn report_lifecycle(catalog: &CatalogStore) -> (Value, Vec<FindingSeverity>) {
     use crate::models::agent::Lifecycle;
 
@@ -1184,6 +1218,7 @@ fn report_lifecycle(catalog: &CatalogStore) -> (Value, Vec<FindingSeverity>) {
 
 // ── Summary ──────────────────────────────────────────────────────────────────
 
+#[cfg(any(feature = "terminal", test))]
 fn report_summary(
     catalog: &CatalogStore,
     workspaces: &[crate::models::workspace::ResolvedWorkspace],

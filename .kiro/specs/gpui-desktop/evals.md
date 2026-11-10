@@ -160,3 +160,4 @@ Load only the evaluation file for the task being executed, not this directory as
 a whole. Create later task contracts when their work is authorized.
 
 - [Task 1.1: compatibility fixtures](evals/task-1.1.md)
+- [Task 1.2: default-terminal feature boundary](evals/task-1.2.md)

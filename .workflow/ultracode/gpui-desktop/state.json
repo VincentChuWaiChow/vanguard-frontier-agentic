@@ -3,13 +3,13 @@
   "branch": "feature/gpui-desktop-alpha",
   "baseline": "6dda992a3dedd845731d795aaaed20d49346f57c",
   "spec_directory": ".kiro/specs/gpui-desktop",
-  "phase": "implementation_task_1_1",
-  "status": "task_1_1_complete_by_explicit_user_acceptance",
+  "phase": "implementation_task_1_2",
+  "status": "task_1_2_complete_scoped_checks_pass_baseline_failures_unchanged",
   "requirements_approval": "approved",
   "revision_basis": "User requested revision before design, then explicitly requested Context7 MCP; no functional scope changes specified",
   "design": "ready_for_user_review",
   "task_breakdown": "revised_ready_for_user_review",
-  "implementation": "task_1_1_complete_with_recorded_baseline_exception",
+  "implementation": "task_1_2_complete_full_regression_gates_still_non_green",
   "native_platform_verification": "not_run",
   "checks": {
     "requirements_structure_and_negative_mutants": "PASS",
@@ -35,7 +35,7 @@
     "task_drafting_runs": 3,
     "task_revision_review_runs": 1
   },
-  "next_action": "Commit/push reviewed task 1.1 artifacts; verify remote SHA and GitHub no-reply identity. No task 1.2 or production repair without separate authorization.",
+  "next_action": "Commit/push explicitly authorized task1.2 artifacts with no-reply Git identity; verify remote SHA. No task1.3 or production repair authorization.",
   "validation_snapshot": {
     "command": "npm run validate",
     "wrapper": "rtk proxy bash",
@@ -152,35 +152,26 @@
     "specific_changes": "Expose the existing unchecked checklist near the top; add Impeccable native visual audit and scoped refinement tasks; discover skill, checkout, manifest and evidence locations rather than embed machine-specific paths"
   },
   "delivery_authorization": {
-    "user_request": "mark it as done and git commit and git push",
+    "user_request": "git commit and git push",
     "branch": "feature/gpui-desktop-alpha",
     "remote": "origin",
     "scope": [
-      "Task 1.1 tests/fixtures",
-      "Per-task eval folder/index and task evidence",
-      "Spec checker checked-checkbox negative fixture",
-      "Workflow progress records"
+      "Task1.2 Cargo feature/module/test wiring and dependency-boundary checker",
+      "Per-task eval/index and task/workflow evidence"
     ],
     "excluded": [
       "graphify-out/",
-      "Production Rust and dependency files",
-      "Other task implementation"
+      "Task1.3 or other implementation",
+      "Provider/Unicode repairs",
+      "Dependency version updates",
+      "develop mutation"
     ],
     "commit_identity": {
       "name": "Raishin",
       "email": "15792229+Raishin@users.noreply.github.com"
     },
-    "meaning": "Normal feature-branch commit/push of scoped fixture work with explicitly accepted baseline failures; no develop mutation or history rewrite",
-    "verification": "Pending actual commit and remote-SHA readback after delivery",
-    "prepush_checks": {
-      "spec_mutants": "PASS",
-      "targeted_Rust_19": "PASS",
-      "fmt_clippy": "PASS",
-      "npm_validate": "PASS",
-      "markdown": "PASS",
-      "spell": "PASS_delivery_tree_excluding_uncommitted_graph_only",
-      "full_C1": "MISS_existing_17_library_failures_explicitly_accepted_not_green"
-    }
+    "meaning": "Normal feature-branch commit/push of completed task1.2; existing 17 default/11 no-default baseline failures remain documented and non-green",
+    "verification": "Pending actual commit and remote-SHA readback after delivery; no success preclaimed"
   },
   "task_revision_checks": {
     "red_baseline": "PASS_new_checker_rejected_old_plan_missing_portable_visual_workflow",
@@ -220,7 +211,7 @@
         "spell_markdown": "PASS_owned_scope",
         "graphify_AST_update": "PASS_generated_local_graph; visualization_not_produced_size_limit",
         "production_fix": "not_authorized_not_started",
-        "commit_push": "explicitly_authorized_pending_delivery_readback",
+        "commit_push": "PASS_prior_delivery_0addce73_remotely_verified_with_no_reply_identity",
         "checked_completion": "PASS_user_explicitly_accepted_scoped_work_with_C1_baseline_exception"
       },
       "scope_limits": [
@@ -261,6 +252,81 @@
         "user_request": "mark it as done and git commit and git push",
         "meaning": "Scoped fixture work accepted; seventeen reproduced existing C1 failures remain MISS, not a green gate; no production repair or other task approval"
       }
+    },
+    "1.2": {
+      "user_request": "go for next phase",
+      "interpreted_scope": "Next unchecked task 1.2, as explicitly stated before work; no task 1.3 or GPUI implementation",
+      "eval": "evals/task-1.2.md",
+      "status": "complete_scoped_capabilities_verified_no_new_failures",
+      "scope": [
+        "Cargo optional/default terminal feature and binary requirement",
+        "Presentation-only module/CLI entry-point cfg gates",
+        "Narrow integration/property adapter test gates",
+        "Dependency-subtree checker and negative fixtures",
+        "Per-task evaluation/workflow evidence"
+      ],
+      "forbidden": [
+        "Task1.3 ReportRequest/ReportService extraction",
+        "Production provider/Unicode behavior fixes",
+        "Task1.1 golden expectation changes",
+        "Catalog/root workspace changes",
+        "System/global installs",
+        "Commit/push/remote CI"
+      ],
+      "checks": {
+        "no_default_library_check": "PASS",
+        "engine_dependency_boundary": "PASS_live_and_31_deterministic_self_tests",
+        "auto_discovered_bin_negative": "PASS_actual_Cargo_metadata_probe_rejected",
+        "default_test_inventory": "PASS_exact_1032_test_identities_unchanged",
+        "no_default_domain_inventory": "PASS_812_tests_only_presentation_adapters_removed",
+        "default_full_regression": "MISS_exact_same_17_baseline_failures",
+        "no_default_full_regression": "MISS_exact_remaining_11_domain_baseline_failures_no_new_failures",
+        "fmt_default_and_no_default_clippy": "PASS",
+        "package_verification": "PASS_exact_candidate_snapshot_no_dirty_bypass",
+        "packaged_no_default_check": "PASS",
+        "bin_without_terminal": "PASS_expected_Cargo_rejection",
+        "repository_validation": "PASS",
+        "extra_strict_documentation": "MISS_pre_existing_broken_links_confirmed_unmodified_HEAD_control",
+        "review": "PASS_process_autobin_oracle_gap_fixed_in_one_parent_repair",
+        "scope_links_json_spelling_markdown": "PASS",
+        "native_Desktop_graph": "UNVERIFIED_not_implemented",
+        "commit_push": "explicitly_authorized_pending_delivery_readback"
+      },
+      "baseline": "Seventeen existing SAP-provider library failures were reproduced and accepted separately during task1.1; never relabel full regression green",
+      "checkbox": "checked_scoped_work_complete_not_full_suite_green",
+      "logs": {
+        "boundary": "/tmp/vfa-task-1-2-boundary.log",
+        "autobin-mutant": "/tmp/vfa-task-1-2-autobin-mutant.log",
+        "no-default-check": "/tmp/vfa-task-1-2-no-default-check.log",
+        "default-full": "/tmp/vfa-task-1-2-default-full.log",
+        "no-default-full": "/tmp/vfa-task-1-2-no-default-full.log",
+        "default-clippy": "/tmp/vfa-task-1-2-default-clippy.log",
+        "no-default-clippy": "/tmp/vfa-task-1-2-no-default-clippy.log",
+        "fmt": "/tmp/vfa-task-1-2-fmt.log",
+        "package": "/tmp/vfa-task-1-2-package.log",
+        "packaged-core": "/tmp/vfa-task-1-2-packaged-core.log",
+        "bin-rejection": "/tmp/vfa-task-1-2-bin-rejection.log",
+        "no-default-doc": "/tmp/vfa-task-1-2-no-default-doc.log",
+        "clean-doc-control": "/tmp/vfa-task-1-2-clean-doc-control.log",
+        "npm-validate": "/tmp/vfa-task-1-2-npm-validate.log",
+        "spell": "/tmp/vfa-task-1-2-spell.log",
+        "markdown": "/tmp/vfa-task-1-2-markdown.log",
+        "graphify": "/tmp/vfa-task-1-2-graphify.log"
+      },
+      "artifact_sha256": {
+        ".kiro/specs/gpui-desktop/evals.md": "347ec3b1b26e19c9c1cc0f218bf2da1f41516c3c89d60e646eadb9410f64fff3",
+        ".kiro/specs/gpui-desktop/evals/task-1.2.md": "442047cf45fcad6194befa7736389cc041a8c0f0a8506adfcf030529448b860f",
+        ".kiro/specs/gpui-desktop/tasks.md": "211c9dcbdafbf27567c0c6717d29255709ca9f96307ac21e067654dc86bb4f01",
+        ".workflow/ultracode/gpui-desktop/final-report.md": "121a397f33e426bd52611f49b4412e6ba9d7d83cf8d43a7289c985c85b0410ce",
+        ".workflow/ultracode/gpui-desktop/plan.md": "a8723878d28d36dfee4163c6366326561e1f3336815e36d54ff3b032fc723289",
+        "tools/vfa-tui/Cargo.toml": "3eacc450f9cc0529183caf34436df5103b44308efb090c31af2ef0b2d6f5f876",
+        "tools/vfa-tui/src/headless/reporter.rs": "71ded89894c1dfac44face227c042c86a80f2cd3236af7228d9f0f02a667bf8d",
+        "tools/vfa-tui/src/lib.rs": "ace050748e681644c93b19c4d851c71e2b5c6ced701852344faf7970b64ba765",
+        "tools/vfa-tui/tests/check_feature_boundary.py": "6e2a2447443bb45ede30baed8dcd23bbc74ea3cec6707321617ca92c861a4f3c",
+        "tools/vfa-tui/tests/integration/mod.rs": "d0ce18cd54da819c073b84e14249134612b24da06d96fe71250f30db95febabc",
+        "tools/vfa-tui/tests/property/mod.rs": "da25e3a56c7ef1de08ba9d2b9cb50893aaca98fd4b729bfa416f67abafa676b2"
+      },
+      "completion_basis": "Authorized task1.2 boundary/compatibility criteria pass; exact default failing identities equal the recorded accepted baseline and no-default failures equal its retained domain subset. No blanket failure waiver or later-task authorization."
     }
   }
 }

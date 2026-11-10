@@ -1,6 +1,24 @@
 # GPUI Desktop progress report
 
-## Current task 1.1 implementation
+## Current task 1.2 implementation
+
+Status: TASK 1.2 DONE; KNOWN FULL-SUITE BASELINE FAILURES REMAIN. The user's “go for
+next phase” was scoped to task 1.2 only. Read the active
+[task 1.2 evaluation](../../../.kiro/specs/gpui-desktop/evals/task-1.2.md) for the
+exact changed files, default/no-default checks and limits; do not load every task
+eval as a single document.
+
+The default terminal feature preserves the existing CLI/TUI surface; opting out
+builds a presentation-free library. Pure domain tests remain active, and the
+default test inventory is unchanged. Package verification from a controlled
+candidate-source snapshot and both feature modes' strict clippy pass. The full
+default suite retains the same seventeen baseline failures; no-default retains
+the eleven non-presentation failures, not new failures. The checkbox records
+completion of scoped boundary work with that evidence, not green full regression
+gates. No task 1.3, provider repair, Git delivery or native/GPUI feasibility success
+is implied.
+
+## Previous task 1.1 implementation
 
 Status: TASK 1.1 DONE BY EXPLICIT USER ACCEPTANCE. The user requested completion
 and commit/push after the reproduced baseline failures were reported. The checked

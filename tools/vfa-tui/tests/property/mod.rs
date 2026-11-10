@@ -17,6 +17,7 @@ mod scanner;
 mod search;
 mod security;
 mod sort;
+#[cfg(feature = "terminal")]
 mod ui;
 mod versions;
 mod violations;
