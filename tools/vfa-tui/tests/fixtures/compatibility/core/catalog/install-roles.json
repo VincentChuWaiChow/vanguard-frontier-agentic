@@ -1,0 +1,1 @@
+{"version":"fixture-1","description":"Compatibility role catalog","roles":{"reviewer":{"label":"Reviewer","description":"Read only review","agents":["zeta-agent","alpha-agent"],"skills":["identity-skill"]}}}

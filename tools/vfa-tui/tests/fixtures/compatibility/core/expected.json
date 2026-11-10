@@ -1,0 +1,34 @@
+{
+  "collections": {
+    "agents": ["alpha-agent", "Beta-agent", "zeta-agent"],
+    "skills": ["identity-skill"], "mcp_refs": ["identity-mcp"], "rules": ["codex-rule"],
+    "roles": ["reviewer"], "providers": 2,
+    "all_assets": ["Beta-agent", "alpha-agent", "codex-rule", "identity-mcp", "identity-skill", "zeta-agent"]
+  },
+  "alpha_detail": {
+    "id":"alpha-agent","name":"Alpha IAM","type":"agent","provider":"aws","harnesses":["codex"],
+    "summary":"Identity review café","source_type":"adapted","official_docs":["https://example.invalid/identity"],
+    "security_notes":"Read only","last_verified":"2026-01-02","path":"agents/alpha/",
+    "companion_skills":["identity-skill"],"execution_tier":"static-review","lifecycle":"beta",
+    "harness_variants":{"codex":"identity-mcp"},"author":"github: fixture","version":"1.2.3",
+    "provider_coverage":{"regions":["fixture-region"]}
+  },
+  "default_agent_fields": {
+    "companion_skills":[],"execution_tier":null,"lifecycle":null,"harness_variants":{},
+    "author":null,"version":null,"provider_coverage":null
+  },
+  "role_members": ["alpha-agent","zeta-agent"],
+  "role_groups": [["aws",["alpha-agent"]],["azure",["zeta-agent"]]],
+  "edges": [
+    ["alpha-agent","codex-rule","AgentRule"],
+    ["alpha-agent","identity-mcp","AgentMcp"],
+    ["alpha-agent","identity-skill","AgentSkill"],
+    ["reviewer","alpha-agent","RoleAgent"],
+    ["reviewer","zeta-agent","RoleAgent"]
+  ],
+  "search": {
+    "combined":["alpha-agent"],"provider":["alpha-agent","Beta-agent"],
+    "harness":["Beta-agent","zeta-agent"],"unicode":["alpha-agent"],
+    "cleared":["alpha-agent","Beta-agent","zeta-agent"],"none":[],"skill":["identity-skill"]
+  }
+}

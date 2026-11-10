@@ -1,0 +1,1 @@
+[{"id":"codex-rule","name":"Codex rule","type":"rule","provider":"aws","harnesses":["codex"],"summary":"Read only rule","source_type":"original","official_docs":[],"security_notes":"Advisory","last_verified":"2026-01-02","path":"rules/codex/"}]

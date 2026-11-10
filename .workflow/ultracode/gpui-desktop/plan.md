@@ -129,3 +129,21 @@ negative mutants, then local lint/scope checks and repository validation.
 
 Exit: revised task plan ready for user review; obtain implementation approval
 before dispatching any backlog tasks. No new research or implementation fanout.
+
+## Task 1.1 authorization and boundary
+
+The user requested “do the first task 1.1,” then per-task evals for lazy loading.
+Only this task is authorized. Its active contract and evidence live in
+`evals/task-1.1.md` under the spec directory; the shared eval document links to it.
+Parent owns CLI/report tests and integration; one Rust implementation specialist
+owns core tests/fixtures in a disjoint subtree, followed by one bounded review.
+No production, dependency, catalog, Git-history or other implementation task edits.
+
+The compatibility fixtures are implemented and their targeted checks pass. Full
+C1 remains blocked by unchanged library tests rejecting the real catalog's `sap`
+provider; a clean tracked-HEAD control reproduces those failures. The user then
+explicitly requested “mark it as done and git commit and git push.” Mark 1.1 done
+with that recorded baseline exception, without relabeling C1 green. Commit/push
+only reviewed task artifacts using the repository's GitHub no-reply identity;
+keep generated graph output uncommitted. Obtain separate scope approval before
+repairing production behavior or starting task 1.2.

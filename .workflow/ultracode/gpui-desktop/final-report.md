@@ -1,4 +1,31 @@
-# GPUI Desktop task-breakdown report
+# GPUI Desktop progress report
+
+## Current task 1.1 implementation
+
+Status: TASK 1.1 DONE BY EXPLICIT USER ACCEPTANCE. The user requested completion
+and commit/push after the reproduced baseline failures were reported. The checked
+box accepts the scoped fixture work; the full C1 gate still has seventeen existing
+failures and is not marked green. The rest of the backlog remains unauthorized.
+
+Read the active [task 1.1 evaluation](../../../.kiro/specs/gpui-desktop/evals/task-1.1.md)
+for exact files, commands, results, review disposition and limitations. The shared
+eval document is an index rather than an inline copy of task-specific details.
+
+Library contracts and actual CLI/report/SQLite fixtures pass, as do fmt, strict
+clippy and repository validation. The unchanged library suite has seventeen
+failures caused by catalog `sap` entries rejected by the existing provider enum;
+a clean HEAD archive reproduces the identical failure set. Production Rust,
+manifests, lockfile, catalog and approved requirements/design remain untouched.
+The known non-ASCII registry-expansion bug is also documented, not silently fixed.
+No production repair or next-task implementation occurred. Commit/push is now
+explicitly authorized; actual commit/remote verification is reported in chat after
+delivery, not preclaimed here. Generated AST graph artifacts stay uncommitted as
+separate local tooling output, not feature code or visual acceptance evidence.
+
+## Historical task-planning report
+
+The following records describe the earlier planning-only phase, not the current
+task's authorization or completion status.
 
 Status: REVISED TASK PLAN READY FOR REVIEW; IMPLEMENTATION NOT STARTED. Requirements
 and design remain approved. The requested checkbox visibility, Impeccable visual

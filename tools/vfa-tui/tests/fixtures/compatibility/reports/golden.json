@@ -1,0 +1,74 @@
+{
+  "summary": {
+    "console_version": "<producer-version>",
+    "data": {
+      "aggregate_compliance_score": "100.0%",
+      "overall_status": "[PASS] all clear",
+      "total_agents": 5,
+      "total_mcp_refs": 2,
+      "total_rules": 2,
+      "total_skills": 3,
+      "total_violations": 0,
+      "total_workspaces": 0
+    },
+    "exit_code": 0,
+    "report_type": "summary",
+    "timestamp": "<timestamp>"
+  },
+  "coverage": {
+    "console_version": "<producer-version>",
+    "data": {
+      "aggregate_coverage_score": "N/A",
+      "total_assets": 12,
+      "total_workspaces": 0,
+      "workspace_scores": []
+    },
+    "exit_code": 0,
+    "report_type": "coverage",
+    "timestamp": "<timestamp>"
+  },
+  "logging": {
+    "timestamp": "<timestamp>",
+    "level": "INFO",
+    "fields": {
+      "message": "Logging initialized",
+      "session_id": "<session-id>",
+      "action": "session_start",
+      "outcome": "success"
+    },
+    "target": "vfa_tui::logging::audit"
+  },
+  "schema": {
+    "schema_version": "4",
+    "audit_log": [
+      ["id", "INTEGER", 0, null, 1],
+      ["timestamp", "TEXT", 1, null, 0],
+      ["event_type", "TEXT", 1, null, 0],
+      ["subject", "TEXT", 1, null, 0],
+      ["details", "TEXT", 1, null, 0],
+      ["operator", "TEXT", 1, null, 0],
+      ["entry_hash", "TEXT", 1, null, 0],
+      ["prev_hash", "TEXT", 1, null, 0]
+    ],
+    "coverage_cache": [
+      ["workspace_path", "TEXT", 0, null, 1],
+      ["workspace_name", "TEXT", 1, null, 0],
+      ["coverage_score", "REAL", 1, null, 0],
+      ["computed_at", "TEXT", 1, null, 0]
+    ],
+    "drift_history": [
+      ["id", "INTEGER", 0, null, 1],
+      ["workspace_path", "TEXT", 1, null, 0],
+      ["asset_id", "TEXT", 1, null, 0],
+      ["drift_type", "TEXT", 1, null, 0],
+      ["first_detected", "TEXT", 1, null, 0],
+      ["resolved_at", "TEXT", 0, null, 0],
+      ["expected_hash", "TEXT", 1, null, 0],
+      ["actual_hash", "TEXT", 1, null, 0]
+    ],
+    "audit_triggers": {
+      "audit_log_no_delete": "CREATE TRIGGER audit_log_no_delete\n    BEFORE DELETE ON audit_log\nBEGIN\n    SELECT RAISE(ABORT, 'audit_log is append-only: DELETE not permitted');\nEND",
+      "audit_log_no_update": "CREATE TRIGGER audit_log_no_update\n    BEFORE UPDATE ON audit_log\nBEGIN\n    SELECT RAISE(ABORT, 'audit_log is append-only: UPDATE not permitted');\nEND"
+    }
+  }
+}

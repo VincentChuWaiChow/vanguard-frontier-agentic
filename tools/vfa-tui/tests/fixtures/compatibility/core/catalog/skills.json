@@ -1,0 +1,1 @@
+[{"id":"identity-skill","name":"Identity","type":"skill","provider":"aws","harnesses":["codex"],"summary":"Identity workflow café","source_type":"original","official_docs":[],"security_notes":"Read only","last_verified":"2026-01-02","path":"skills/identity/","companion_agents":["alpha-agent"],"production_allowed":false}]

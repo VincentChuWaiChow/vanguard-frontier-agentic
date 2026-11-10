@@ -1,8 +1,9 @@
 # Implementation Plan: GPUI Desktop
 
-Status: TASK PLAN REVISED; AWAITING IMPLEMENTATION APPROVAL. The user approved the
-design, requested parallel task planning, then requested visible checkboxes and
-Impeccable visual audit/refinement with portable paths. All boxes are future work.
+Status: TASK 1.1 DONE BY USER ACCEPTANCE; KNOWN C1 BASELINE FAILURES RECORDED. The
+user accepted the scoped fixture work despite the reproduced existing failures.
+All other boxes remain future work, not approval to execute the backlog. The
+Impeccable visual workflow and portable-path constraints remain unchanged.
 Architecture and scope come from these frozen approved inputs:
 
 - Requirements SHA-256: `490b95ba21dcf9d6ec6ca803586afd785f1803287c38f0193bed053701e31160`.
@@ -12,7 +13,7 @@ Architecture and scope come from these frozen approved inputs:
 
 - [ ] 1. Compatibility foundation and native bootstrap
 
-- [ ] 1.1 Capture executable compatibility fixtures
+- [x] 1.1 Capture executable compatibility fixtures
   - Depends: none
   - Paths: tools/vfa-tui/tests/core_contracts.rs; tests/integration/headless_reports.rs; tests/fixtures/compatibility/ under tools/vfa-tui
   - Design: D1, D9, D12
@@ -22,6 +23,7 @@ Architecture and scope come from these frozen approved inputs:
   - Positive: Capture reviewed public imports, actual data envelopes, caller version, stdout/stderr, exit codes and legacy data effects.
   - Negative: Missing fixtures and wrong-envelope/exit/schema mutants fail; normalize only declared volatile fields.
   - Estimate: 2-4 hours; timebox, not a completion guarantee.
+  - Evidence: evals/task-1.1.md; targeted fixtures pass. User requested completion with seventeen reproduced existing failures recorded; the full C1 gate is still not green.
 
 - [ ] 1.2 Introduce the default-terminal feature boundary
   - Depends: 1.1

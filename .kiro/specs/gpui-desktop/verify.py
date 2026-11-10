@@ -289,7 +289,7 @@ def self_test_tasks(requirements: str, design: str, tasks: str) -> None:
         "unknown task check": re.sub(r"^  - Checks:.*$", "  - Checks: C999", tasks, count=1, flags=re.M),
         "missing task paths": re.sub(r"^  - Paths:.*\n", "", tasks, count=1, flags=re.M),
         "wrong task design hash": tasks.replace(hashlib.sha256(design.encode()).hexdigest(), "0"*64),
-        "missing task checkbox": tasks.replace("- [ ] 1.1 ", "- 1.1 ", 1),
+        "missing task checkbox": re.sub(r"^- \[[ x]\] (1\.1 )", r"- \1", tasks, count=1, flags=re.M),
         "code-fenced checkboxes": tasks.replace("## Tasks\n", "## Tasks\n\n```text\n", 1).replace("## Execution Contract", "```\n\n## Execution Contract", 1),
         "buried checklist": tasks.replace("## Tasks", "## Check Registry", 1).replace("## Check Registry\n\nCommands", "## Tasks\n\nCommands", 1),
         "missing Impeccable audit": tasks.replace("  - Method: impeccable critique + audit\n", "", 1),

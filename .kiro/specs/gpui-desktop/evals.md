@@ -153,3 +153,10 @@ user-approved requirements; no application implementation in this phase.
   visual dependency; bounded read-only specialist review; scope/hash checks,
   Markdown/spelling checks and `npm run validate`. Native visual quality remains
   UNVERIFIED until the future implementation and observations actually exist.
+
+## Task-specific evaluations
+
+Load only the evaluation file for the task being executed, not this directory as
+a whole. Create later task contracts when their work is authorized.
+
+- [Task 1.1: compatibility fixtures](evals/task-1.1.md)

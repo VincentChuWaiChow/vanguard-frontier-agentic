@@ -1,0 +1,5 @@
+[
+  {"id":"zeta-agent","name":"Zeta","type":"agent","provider":"azure","harnesses":["cursor"],"summary":"Storage advice","source_type":"original","official_docs":[],"security_notes":"Advisory only","last_verified":"2026-01-01","path":"agents/zeta/","companion_skills":null},
+  {"id":"Beta-agent","name":"Beta","type":"agent","provider":"aws","harnesses":["cursor"],"summary":"Storage advice","source_type":"original","official_docs":[],"security_notes":"Advisory only","last_verified":"2026-01-01","path":"agents/beta/"},
+  {"id":"alpha-agent","name":"Alpha IAM","type":"agent","provider":"aws","harnesses":["codex"],"summary":"Identity review café","source_type":"adapted","official_docs":["https://example.invalid/identity"],"security_notes":"Read only","last_verified":"2026-01-02","path":"agents/alpha/","companion_skills":["identity-skill"],"execution_tier":"static-review","lifecycle":"beta","harness_variants":{"codex":"identity-mcp"},"author":"github: fixture","version":"1.2.3","provider_coverage":{"regions":["fixture-region"]}}
+]
