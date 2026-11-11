@@ -1,7 +1,7 @@
 # Implementation Plan: GPUI Desktop
 
-Status: TASK 1.2 DONE; KNOWN FULL-SUITE BASELINE GATES REMAIN NON-GREEN. Scoped
-boundary and compatibility checks pass with no new failures against the recorded
+Status: TASK 1.3 DONE; KNOWN FULL-SUITE BASELINE GATES REMAIN NON-GREEN. Scoped
+service, boundary and compatibility checks pass with no new failures against the recorded
 baseline. Later tasks are not authorized by this request. Impeccable visual and
 portable-path constraints remain unchanged.
 Architecture and scope come from these frozen approved inputs:
@@ -37,7 +37,7 @@ Architecture and scope come from these frozen approved inputs:
   - Estimate: 2-4 hours; timebox, not a completion guarantee.
   - Evidence: evals/task-1.2.md; boundary checks and default compatibility pass; full suites retain the reproduced baseline failures, not a green C1/C2 claim.
 
-- [ ] 1.3 Separate pure report requests from the CLI wrapper
+- [x] 1.3 Separate pure report requests from the CLI wrapper
   - Depends: 1.1, 1.2
   - Paths: tools/vfa-tui/src/headless/; tools/vfa-tui/src/models/report.rs; tools/vfa-tui/tests/report_service_contracts.rs
   - Design: D1, D9, D12
@@ -47,6 +47,7 @@ Architecture and scope come from these frozen approved inputs:
   - Positive: ReportRequest/service returns owned results with explicit producer identity and preserves executable legacy format/persistence behavior.
   - Negative: Detect service stdout/global-subscriber side effects, changed producer/envelope, exit-code drift or silent data-policy changes.
   - Estimate: 2-4 hours; timebox, not a completion guarantee.
+  - Evidence: evals/task-1.3.md; owned service and preserved CLI effects verified in both feature modes; exact existing 17/11 full-suite failures remain non-green.
 
 - [ ] 1.4 Pin the GPUI bootstrap and native test entry points
   - Depends: 1.2

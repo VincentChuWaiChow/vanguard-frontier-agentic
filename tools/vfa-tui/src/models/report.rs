@@ -1,6 +1,87 @@
 //! Headless reporter data models — output format, report types, and structured output.
 
 use serde::Serialize;
+use std::path::PathBuf;
+
+/// Caller identity; the shared engine never substitutes its package version.
+#[derive(Debug, Clone, PartialEq, Eq, Serialize)]
+pub struct ReportProducer {
+    pub name: String,
+    pub version: String,
+}
+
+/// Owned, adapter-neutral inputs. Paths are selected by the caller, not CWD.
+#[derive(Debug, Clone)]
+pub struct ReportRequest {
+    pub catalog_root: PathBuf,
+    pub registry_path: PathBuf,
+    pub policy_path: PathBuf,
+    /// Recorded for provenance; generation never opens or writes this index.
+    pub index_path: PathBuf,
+    pub report_types: Vec<ReportType>,
+    pub format: OutputFormat,
+    pub workspace_filter: Option<String>,
+    pub producer: ReportProducer,
+}
+
+/// Source observation quality, independent of the legacy payload and exit code.
+#[derive(Debug, Clone, Copy, PartialEq, Eq, Serialize)]
+#[serde(rename_all = "SCREAMING_SNAKE_CASE")]
+pub enum ReportInputStatus {
+    Current,
+    NotConfigured,
+    Unavailable,
+    Partial,
+}
+
+#[derive(Debug, Clone, Serialize)]
+pub struct ReportQuality {
+    pub catalog: ReportInputStatus,
+    pub registry: ReportInputStatus,
+    pub policy: ReportInputStatus,
+    /// Registry resolution quality, not completeness of scanner file reads.
+    /// A valid registry with zero selected workspaces is current, not scan proof.
+    pub workspaces: ReportInputStatus,
+    pub expected_workspaces: usize,
+    pub available_workspaces: usize,
+}
+
+/// Registry resolution observation, not an assertion that every file was readable.
+#[derive(Debug, Clone, Serialize)]
+pub struct ReportWorkspaceProvenance {
+    pub path: PathBuf,
+    pub name: String,
+    pub status: ReportInputStatus,
+    pub diagnostic: Option<String>,
+}
+
+#[derive(Debug, Clone, Serialize)]
+pub struct ReportProvenance {
+    /// Selected paths are preserved as supplied, not claimed to be canonical.
+    pub catalog_root: PathBuf,
+    pub registry_path: PathBuf,
+    pub policy_path: PathBuf,
+    pub index_path: PathBuf,
+    pub observed_at: String,
+    pub workspaces: Vec<ReportWorkspaceProvenance>,
+}
+
+/// Owned report plus explicit evidence quality. Metadata is not injected into
+/// `payload`: doing so would change the existing executable JSON contract.
+#[derive(Debug)]
+pub struct ReportResult {
+    pub payload: serde_json::Value,
+    pub exit_code: u8,
+    pub producer: ReportProducer,
+    pub quality: ReportQuality,
+    pub provenance: ReportProvenance,
+    /// Ordered legacy progress/error messages; generation itself never prints.
+    pub diagnostics: Vec<String>,
+    // Only the terminal adapter consumes this write plan. Core generation has
+    // the identical public result but does not need to retain adapter cache data.
+    #[cfg(feature = "terminal")]
+    pub(crate) persistence: crate::headless::reporter::ReportPersistence,
+}
 
 /// Which kind of report to produce in headless mode.
 #[derive(Debug, Clone, PartialEq, Eq)]

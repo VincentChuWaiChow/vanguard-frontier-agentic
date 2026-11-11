@@ -3,13 +3,13 @@
   "branch": "feature/gpui-desktop-alpha",
   "baseline": "6dda992a3dedd845731d795aaaed20d49346f57c",
   "spec_directory": ".kiro/specs/gpui-desktop",
-  "phase": "implementation_task_1_2",
-  "status": "task_1_2_complete_scoped_checks_pass_baseline_failures_unchanged",
+  "phase": "implementation_task_1_3",
+  "status": "task_1_3_complete_scoped_checks_pass_baseline_failures_unchanged",
   "requirements_approval": "approved",
   "revision_basis": "User requested revision before design, then explicitly requested Context7 MCP; no functional scope changes specified",
   "design": "ready_for_user_review",
   "task_breakdown": "revised_ready_for_user_review",
-  "implementation": "task_1_2_complete_full_regression_gates_still_non_green",
+  "implementation": "task_1_3_complete_full_regression_gates_still_non_green",
   "native_platform_verification": "not_run",
   "checks": {
     "requirements_structure_and_negative_mutants": "PASS",
@@ -35,7 +35,7 @@
     "task_drafting_runs": 3,
     "task_revision_review_runs": 1
   },
-  "next_action": "Commit/push explicitly authorized task1.2 artifacts with no-reply Git identity; verify remote SHA. No task1.3 or production repair authorization.",
+  "next_action": "Deliver authorized task1.3 checkpoint with no-reply identities, then verify committed scope and remote SHA. No task1.4 authorization.",
   "validation_snapshot": {
     "command": "npm run validate",
     "wrapper": "rtk proxy bash",
@@ -156,22 +156,24 @@
     "branch": "feature/gpui-desktop-alpha",
     "remote": "origin",
     "scope": [
-      "Task1.2 Cargo feature/module/test wiring and dependency-boundary checker",
-      "Per-task eval/index and task/workflow evidence"
+      "Completed task1.3 shared report service, owned models and new contract tests",
+      "Per-task eval/index, task checkbox and workflow records"
     ],
     "excluded": [
       "graphify-out/",
-      "Task1.3 or other implementation",
-      "Provider/Unicode repairs",
-      "Dependency version updates",
-      "develop mutation"
+      "Unrelated files",
+      "Task1.4 or later implementation",
+      "develop mutation",
+      "History rewriting",
+      "Publication or remote CI dispatch"
     ],
     "commit_identity": {
       "name": "Raishin",
       "email": "15792229+Raishin@users.noreply.github.com"
     },
-    "meaning": "Normal feature-branch commit/push of completed task1.2; existing 17 default/11 no-default baseline failures remain documented and non-green",
-    "verification": "Pending actual commit and remote-SHA readback after delivery; no success preclaimed"
+    "meaning": "Normal feature-branch delivery of task1.3; known 17/11 baseline failures remain non-green",
+    "verification": "Actual commit identities, committed paths and remote feature SHA will be read back after delivery and reported in chat; no success preclaimed",
+    "status": "explicitly_authorized_task_1_3_delivery"
   },
   "task_revision_checks": {
     "red_baseline": "PASS_new_checker_rejected_old_plan_missing_portable_visual_workflow",
@@ -290,7 +292,7 @@
         "review": "PASS_process_autobin_oracle_gap_fixed_in_one_parent_repair",
         "scope_links_json_spelling_markdown": "PASS",
         "native_Desktop_graph": "UNVERIFIED_not_implemented",
-        "commit_push": "explicitly_authorized_pending_delivery_readback"
+        "commit_push": "PASS_historical_delivery_58cca6f28c6aaa40168ea3c4c01b09565c63aa45"
       },
       "baseline": "Seventeen existing SAP-provider library failures were reproduced and accepted separately during task1.1; never relabel full regression green",
       "checkbox": "checked_scoped_work_complete_not_full_suite_green",
@@ -327,6 +329,113 @@
         "tools/vfa-tui/tests/property/mod.rs": "da25e3a56c7ef1de08ba9d2b9cb50893aaca98fd4b729bfa416f67abafa676b2"
       },
       "completion_basis": "Authorized task1.2 boundary/compatibility criteria pass; exact default failing identities equal the recorded accepted baseline and no-default failures equal its retained domain subset. No blanket failure waiver or later-task authorization."
+    },
+    "1.3": {
+      "user_request": "let go for next task",
+      "interpreted_scope": "Next unchecked task 1.3 only, stated before work; no task1.4 or other implementation",
+      "eval": "evals/task-1.3.md",
+      "status": "complete_scoped_capabilities_verified_no_new_failures",
+      "scope": [
+        "Owned ReportRequest/ReportService and producer/result evidence models",
+        "Legacy CLI adapter printing/cache boundary",
+        "New fixed-oracle/effect integration contracts",
+        "Per-task evaluation and workflow records"
+      ],
+      "forbidden": [
+        "Task1.4 or Desktop implementation",
+        "Production provider/registry Unicode fixes",
+        "Manifest/dependency/lockfile or catalog changes",
+        "Task1.1 golden expectation changes",
+        "System/global installs",
+        "Commit/push/history rewrite/remote CI"
+      ],
+      "team": {
+        "implementation": "existing rust_beast_mode; configured gpt-6.1-sol/medium",
+        "review": "existing rust_reviewer; configured gpt-6.1-sol/high",
+        "integration": "parent; serialized Cargo; disjoint test/evidence writes",
+        "runtime_identity": "UNVERIFIED_unobservable",
+        "recursive_fanout": false,
+        "repair_passes": 1
+      },
+      "checks": {
+        "owned_api_and_explicit_producer": "PASS_default_11_no_default_10_contracts",
+        "legacy_cli_and_persistence": "PASS_existing_14_headless_report_2_persistence_5_core_contracts",
+        "negative_oracles": "PASS_9_mutations",
+        "direct_stdio_and_global_subscriber": "PASS_reexecuted_process_success_and_invalid_All_inputs_caller_tracing_remains_caller_owned",
+        "read_only_index": "PASS_absent_parent_and_existing_index_with_live_WAL_SHM_bytes",
+        "quality": "PASS_scoped_input_and_registry_resolution_not_complete_scanner_read_evidence",
+        "default_inventory": "PASS_1032_original_identities_unchanged_plus_11_service_cases",
+        "no_default_inventory": "PASS_812_original_identities_unchanged_plus_10_service_cases",
+        "default_full_regression": "MISS_exact_same_17_baseline_failures",
+        "no_default_full_regression": "MISS_exact_same_11_baseline_failures",
+        "engine_boundary": "PASS_actual_closure_and_31_deterministic_self_tests",
+        "fmt_and_both_all_target_clippy": "PASS",
+        "package_and_packaged_no_default": "PASS_candidate_source_snapshot_without_dirty_or_no_verify_bypass",
+        "repository_validation": "PASS",
+        "spec_scope_json_links_spelling_markdown": "PASS",
+        "graphify": "PASS_AST_update_only_HTML_size_limit_not_visual_proof",
+        "review": "PASS_bounded_source_review_no_blocking_defect_caller_tracing_caveat_documented",
+        "desktop_consumer_native_full_quality": "UNVERIFIED_not_implemented",
+        "git_delivery": "explicitly_authorized_actual_result_reported_after_delivery"
+      },
+      "checkbox": "checked_scoped_work_complete_not_full_suite_green",
+      "logs": {
+        "default-full": "/tmp/vfa-task-1-3-default-full.log",
+        "no-default-full": "/tmp/vfa-task-1-3-no-default-full.log",
+        "default-contracts": "/tmp/vfa-task-1-3-default-contracts.log",
+        "no-default-contracts": "/tmp/vfa-task-1-3-no-default-contracts.log",
+        "default-clippy": "/tmp/vfa-task-1-3-default-clippy.log",
+        "no-default-clippy": "/tmp/vfa-task-1-3-no-default-clippy.log",
+        "fmt": "/tmp/vfa-task-1-3-fmt.log",
+        "boundary": "/tmp/vfa-task-1-3-boundary.log",
+        "regression-comparison": "/tmp/vfa-task-1-3-regression-comparison.json",
+        "package": "/tmp/vfa-task-1-3-package.log",
+        "package-evidence": "/tmp/vfa-task-1-3-package-evidence.json",
+        "npm-validate": "/tmp/vfa-task-1-3-npm-validate.log",
+        "spec": "/tmp/vfa-task-1-3-spec.log",
+        "spell": "/tmp/vfa-task-1-3-spell.log",
+        "markdown": "/tmp/vfa-task-1-3-markdown.log",
+        "graphify": "/tmp/vfa-task-1-3-graphify.log",
+        "scope": "/tmp/vfa-task-1-3-scope.json"
+      },
+      "completion_basis": "All scoped task1.3 capabilities pass. Exact original test and failure identities match task1.2 in each feature mode. Full C1/C2 remain non-green; no new failure waiver or later-task/delivery authorization.",
+      "artifact_sha256": {
+        ".kiro/specs/gpui-desktop/evals.md": "6da18b229267fa91d87d493f9af2979eacdaede33e2857eef27ea0a28fc9a626",
+        ".kiro/specs/gpui-desktop/evals/task-1.3.md": "4d847b1153c6abc2690cb7a179df374f181574f60d3eaa31cb6173bcb05e829c",
+        ".kiro/specs/gpui-desktop/tasks.md": "497c024204a5943e2cdfdd3db43c4284a4377c9f1eddad640b7abc251c36ccc0",
+        ".workflow/ultracode/gpui-desktop/final-report.md": "cbcd3e76bcf6a1f6d1235c0b582c55fc8a4d7bb29329ff9f0d6542f26a9813f7",
+        ".workflow/ultracode/gpui-desktop/plan.md": "216300628bb22c97d3c5496f1f9eaaf010326d2203207928dba975c3a0a19cf7",
+        "tools/vfa-tui/src/headless/mod.rs": "9c73cea0f6092f715ad55428c1adab2fb45e80884a7b53bf321f9d03c5e68160",
+        "tools/vfa-tui/src/headless/reporter.rs": "3060fa2eb00937b03c5791641729f10f9b3efb37a29d10fd95b9ce2c7675329c",
+        "tools/vfa-tui/src/models/report.rs": "f05a72424a95e41972cccbed6066c1b7c1ece88e1e77f3179be3810a4dcce1f6",
+        "tools/vfa-tui/tests/report_service_contracts.rs": "eb3bcb1ea6dc61817bfe841ea913e292b40e8636a1ffa38a409412ee91d08097"
+      },
+      "delivery_exception": "Subsequent explicit git commit and git push request authorizes normal task1.3 delivery only; original implementation exclusions otherwise remain."
+    }
+  },
+  "delivery_history": {
+    "1.2": {
+      "user_request": "git commit and git push",
+      "branch": "feature/gpui-desktop-alpha",
+      "remote": "origin",
+      "scope": [
+        "Task1.2 Cargo feature/module/test wiring and dependency-boundary checker",
+        "Per-task eval/index and task/workflow evidence"
+      ],
+      "excluded": [
+        "graphify-out/",
+        "Task1.3 or other implementation",
+        "Provider/Unicode repairs",
+        "Dependency version updates",
+        "develop mutation"
+      ],
+      "commit_identity": {
+        "name": "Raishin",
+        "email": "15792229+Raishin@users.noreply.github.com"
+      },
+      "meaning": "Normal feature-branch commit/push of completed task1.2; existing 17 default/11 no-default baseline failures remain documented and non-green",
+      "verification": "Historical task1.2 delivery: 58cca6f28c6aaa40168ea3c4c01b09565c63aa45; prior-turn remote readback verified. This turn verifies unchanged local HEAD and origin tracking only, not fresh remote state. No new task1.3 delivery authorized.",
+      "status": "historical_complete_task_1_2_only"
     }
   }
 }

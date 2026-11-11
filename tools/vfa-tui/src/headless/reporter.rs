@@ -4,22 +4,22 @@
 //! # Pipeline
 //!
 //! 1. Load catalog using [`CatalogStore::load`](crate::catalog::store::CatalogStore::load).
-//! 2. Load workspace registry from the path in `Cli::registry`.
-//! 3. Optionally filter workspaces by `Cli::workspace_filter`.
-//! 4. Load policy config from `Cli::policies`.
+//! 2. Load the workspace registry selected by the request.
+//! 3. Optionally filter workspaces by the request's workspace filter.
+//! 4. Load the selected policy config.
 //! 5. For each requested [`ReportType`] call the corresponding report function.
-//! 6. Format and write to stdout.
-//! 7. Return the highest-severity exit code.
+//! 6. Return owned data, quality/provenance, diagnostics and exit code.
+//! 7. The CLI adapter alone persists, formats and writes the report.
 //!
 //! The CLI-taking `run` entry point requires the default `terminal` feature.
-//! Formatters, severity and audit contracts remain available without it. Private
-//! report projections also stay compiled in test builds to retain their domain
-//! assertions until the separate pure report-service extraction.
+//! Generation, formatters, severity and audit contracts remain available without
+//! it. Only the CLI adapter prints and performs best-effort cache writes.
 //!
 //! # No terminal manipulation
 //!
 //! This module **never** enters raw mode, uses an alternate screen, or
-//! manipulates the cursor — it only writes to stdout (Req 17.1).
+//! manipulates the cursor (Req 17.1). Shared generation owns no stream output or
+//! logging setup; existing domain tracing events follow the caller's subscriber.
 //!
 //! # Determinism (Req 27)
 //!
@@ -29,7 +29,6 @@
 
 #![deny(warnings)]
 
-#[cfg(any(feature = "terminal", test))]
 use std::{
     collections::HashMap,
     path::{Path, PathBuf},
@@ -37,34 +36,28 @@ use std::{
 
 use serde_json::{json, Value};
 
-#[cfg(any(feature = "terminal", test))]
 use crate::catalog::store::CatalogStore;
 #[cfg(feature = "terminal")]
 use crate::cli::Cli;
-#[cfg(any(feature = "terminal", test))]
 use crate::federation::coverage::CoverageEngine;
-#[cfg(any(feature = "terminal", test))]
 use crate::federation::dep_graph::DependencyGraph;
-#[cfg(any(feature = "terminal", test))]
 use crate::federation::drift::{detect_drift, DriftKind};
-#[cfg(any(feature = "terminal", test))]
 use crate::federation::integrity::{verify_integrity, IntegrityStatus};
-#[cfg(feature = "terminal")]
 use crate::federation::registry::{LoadResult, WorkspaceRegistry};
-#[cfg(any(feature = "terminal", test))]
 use crate::federation::versions::{
     extract_version, freshness_score, is_stale, version_delta, VersionStatus,
 };
-use crate::models::report::{OutputFormat, ReportType};
 #[cfg(feature = "terminal")]
+use crate::models::report::ReportProducer;
+use crate::models::report::{
+    OutputFormat, ReportInputStatus, ReportProvenance, ReportQuality, ReportRequest, ReportResult,
+    ReportType, ReportWorkspaceProvenance,
+};
 use crate::policy::engine::PolicyEngine;
-#[cfg(feature = "terminal")]
 use crate::policy::parser;
-#[cfg(feature = "terminal")]
 use crate::policy::violations::aggregate_violations;
 
 use super::formats::{format_json, format_markdown, format_table, ReportData};
-#[cfg(any(feature = "terminal", test))]
 use super::formats::{
     with_status, STATUS_DRIFT, STATUS_FAIL, STATUS_MISSING, STATUS_PASS, STATUS_STALE, STATUS_WARN,
 };
@@ -101,81 +94,90 @@ pub fn compute_exit_code(findings: &[FindingSeverity]) -> u8 {
     findings.iter().map(|f| *f as u8).max().unwrap_or(0)
 }
 
-// ---------------------------------------------------------------------------
-// HeadlessReporter
-// ---------------------------------------------------------------------------
+/// Adapter-neutral report generation. Reads selected inputs but never opens
+/// the index, prints, executes helpers or installs global tracing state.
+/// Existing domain tracing events are dispatched to the caller's subscriber.
+pub struct ReportService;
 
-/// Headless report pipeline.
-pub struct HeadlessReporter {
-    /// Output format requested by the caller.
-    pub format: OutputFormat,
-    /// When `true`, suppress progress messages; emit only the final report.
-    pub quiet: bool,
-}
-
-impl HeadlessReporter {
-    /// Create a new reporter.
-    pub fn new(format: OutputFormat, quiet: bool) -> Self {
-        Self { format, quiet }
-    }
-
-    // -----------------------------------------------------------------------
-    // Entry point
-    // -----------------------------------------------------------------------
-
-    /// Run the full report pipeline and return the final JSON payload plus exit code.
-    ///
-    /// This is the top-level function called from `main.rs` (or tests).  It
-    /// loads all data, evaluates the requested report types, formats the output,
-    /// writes it to stdout, and returns the exit code.
-    ///
-    /// `workspace_root` is the root of the **catalog** repository (used to
-    /// locate `catalog/`).  This is distinct from downstream workspaces listed
-    /// in the registry.
-    #[cfg(feature = "terminal")]
-    pub fn run(&self, cli: &Cli, workspace_root: &Path) -> (Value, u8) {
-        if !self.quiet {
-            eprintln!(
+impl ReportService {
+    pub fn generate(request: &ReportRequest) -> ReportResult {
+        let mut diagnostics = Vec::new();
+        {
+            diagnostics.push(format!(
                 "[vfa-tui] loading catalog from {}",
-                workspace_root.display()
-            );
+                request.catalog_root.display()
+            ));
         }
 
         // ── 1. Load catalog ──────────────────────────────────────────────────
-        let catalog = CatalogStore::load(workspace_root);
+        let catalog = CatalogStore::load(&request.catalog_root);
 
+        let failed_catalogs: std::collections::HashSet<_> = catalog
+            .load_errors
+            .iter()
+            .filter_map(|error| match error {
+                crate::error::TuiError::CatalogNotFound { path }
+                | crate::error::TuiError::CatalogParse { path, .. }
+                | crate::error::TuiError::TaintedEntry { path, .. } => Path::new(path)
+                    .file_name()
+                    .map(std::ffi::OsStr::to_os_string),
+                _ => None,
+            })
+            .collect();
+        let has_usable_catalog = catalog.content_hashes.keys().any(|path| {
+            path.file_name()
+                .is_some_and(|name| !failed_catalogs.contains(name))
+        }) || !catalog.agents.is_empty()
+            || !catalog.skills.is_empty()
+            || !catalog.roles.is_empty()
+            || !catalog.mcp_refs.is_empty()
+            || !catalog.rules.is_empty()
+            || catalog.integrity.is_some();
+        let catalog_status = if catalog.load_errors.is_empty() {
+            ReportInputStatus::Current
+        } else if has_usable_catalog {
+            ReportInputStatus::Partial
+        } else {
+            ReportInputStatus::Unavailable
+        };
         let mut findings: Vec<FindingSeverity> = Vec::new();
 
         // Catalog directory absent → exit 2 (operational error, Req 18.3 / 25.4).
-        if !workspace_root.join("catalog").exists() {
+        if !request.catalog_root.join("catalog").exists() {
             findings.push(FindingSeverity::Operational);
         }
 
         // Files loaded with errors → partial catalog failure → exit 3 (Req 18.4).
         if !catalog.load_errors.is_empty() {
             findings.push(FindingSeverity::PartialCatalog);
-            if !self.quiet {
+            {
                 for e in &catalog.load_errors {
-                    eprintln!("[vfa-tui] catalog error: {e}");
+                    diagnostics.push(format!("[vfa-tui] catalog error: {e}"));
                 }
             }
         }
 
         // ── 2. Load registry ─────────────────────────────────────────────────
-        let registry_path = PathBuf::from(&cli.registry);
+        let registry_path = request.registry_path.clone();
+        let registry_status;
         let registry = match WorkspaceRegistry::load(&registry_path) {
-            Ok(LoadResult::Loaded(r)) => r,
+            Ok(LoadResult::Loaded(r)) => {
+                registry_status = ReportInputStatus::Current;
+                r
+            }
             Ok(LoadResult::NotFound(r)) => {
-                if !self.quiet {
-                    eprintln!("[vfa-tui] workspace registry not found at {}; proceeding with 0 workspaces", registry_path.display());
+                registry_status = ReportInputStatus::NotConfigured;
+                {
+                    diagnostics.push(format!("[vfa-tui] workspace registry not found at {}; proceeding with 0 workspaces", registry_path.display()));
                 }
                 r
             }
             Err(e) => {
                 findings.push(FindingSeverity::Operational);
-                if !self.quiet {
-                    eprintln!("[vfa-tui] registry load error: {e}");
+                {
+                    diagnostics.push(format!("[vfa-tui] registry load error: {e}"));
                 }
+                registry_status = ReportInputStatus::Unavailable;
                 // Build an empty registry so we can still produce a report.
                 WorkspaceRegistry {
                     entries: Vec::new(),
@@ -188,7 +190,7 @@ impl HeadlessReporter {
         // ── 3. Filter workspaces ─────────────────────────────────────────────
         let all_resolved = registry.resolve();
         let workspaces: Vec<crate::models::workspace::ResolvedWorkspace> =
-            if let Some(filter) = &cli.workspace_filter {
+            if let Some(filter) = &request.workspace_filter {
                 registry
                     .filter(filter, &all_resolved)
                     .into_iter()
@@ -198,20 +200,70 @@ impl HeadlessReporter {
                 all_resolved
             };
 
-        if !self.quiet {
-            eprintln!("[vfa-tui] {} workspace(s) in scope", workspaces.len());
+        {
+            diagnostics.push(format!(
+                "[vfa-tui] {} workspace(s) in scope",
+                workspaces.len()
+            ));
         }
 
+        let workspace_provenance: Vec<_> = workspaces
+            .iter()
+            .map(|workspace| {
+                let (status, diagnostic) = match &workspace.status {
+                    crate::models::workspace::WorkspaceStatus::Available => {
+                        (ReportInputStatus::Current, None)
+                    }
+                    crate::models::workspace::WorkspaceStatus::Unavailable(reason) => {
+                        (ReportInputStatus::Unavailable, Some(reason.clone()))
+                    }
+                    crate::models::workspace::WorkspaceStatus::Scanning => (
+                        ReportInputStatus::Partial,
+                        Some("scan still in progress".to_owned()),
+                    ),
+                };
+                ReportWorkspaceProvenance {
+                    path: workspace.canonical_path.clone(),
+                    name: workspace.name.clone(),
+                    status,
+                    diagnostic,
+                }
+            })
+            .collect();
+        let available_workspaces = workspace_provenance
+            .iter()
+            .filter(|workspace| workspace.status == ReportInputStatus::Current)
+            .count();
+        let workspace_status = if registry_status != ReportInputStatus::Current {
+            registry_status
+        } else if available_workspaces == workspaces.len() {
+            ReportInputStatus::Current
+        } else if available_workspaces == 0 {
+            ReportInputStatus::Unavailable
+        } else {
+            ReportInputStatus::Partial
+        };
+
         // ── 4. Load policy config ────────────────────────────────────────────
-        let policy_path = PathBuf::from(&cli.policies);
+        let policy_path = request.policy_path.clone();
+        let mut policy_status;
         let policy_config = match parser::load(&policy_path) {
             Ok(pc) => {
+                policy_status = if pc.no_policies_file {
+                    ReportInputStatus::NotConfigured
+                } else if pc.parse_errors.is_empty() {
+                    ReportInputStatus::Current
+                } else if pc.rules.is_empty() && pc.suppressions.is_empty() {
+                    ReportInputStatus::Unavailable
+                } else {
+                    ReportInputStatus::Partial
+                };
                 // Check for parse errors and report them.
                 if !pc.parse_errors.is_empty() {
                     findings.push(FindingSeverity::Operational);
-                    if !self.quiet {
+                    {
                         for e in &pc.parse_errors {
-                            eprintln!("[vfa-tui] policy parse error: {e}");
+                            diagnostics.push(format!("[vfa-tui] policy parse error: {e}"));
                         }
                     }
                 }
@@ -219,9 +271,10 @@ impl HeadlessReporter {
             }
             Err(e) => {
                 findings.push(FindingSeverity::Operational);
-                if !self.quiet {
-                    eprintln!("[vfa-tui] policy load error: {e}");
+                {
+                    diagnostics.push(format!("[vfa-tui] policy load error: {e}"));
                 }
+                policy_status = ReportInputStatus::Unavailable;
                 crate::policy::parser::PolicyConfig::default()
             }
         };
@@ -232,25 +285,20 @@ impl HeadlessReporter {
             {
                 let role_agents = catalog.agents_for_role(role_id);
                 if role_agents.is_empty() {
+                    policy_status = ReportInputStatus::Partial;
                     // Unknown role reference — this is a semantic error.
                     findings.push(FindingSeverity::Operational);
-                    if !self.quiet {
-                        eprintln!(
+                    {
+                        diagnostics.push(format!(
                             "[vfa-tui] policy rule '{}': required_role '{}' not found in catalog",
                             rule.id, role_id
-                        );
+                        ));
                     }
                 }
             }
         }
 
-        // ── 5. Collect installed assets (stub — scanner needs tokio runtime) ─
-        // WorkspaceScanner is async.  For the headless pipeline the caller is
-        // expected to drive scanning asynchronously and pass results in.  In
-        // the current implementation we use an empty set per workspace so that
-        // format/coverage/violations still produce valid (though empty) output.
-        // A future integration (Task 11.2) will wire the actual scanner output
-        // through a tokio runtime.
+        // ── 5. Collect installed assets using the existing synchronous scanner ─
         use crate::federation::scanner::{CatalogIndex, WorkspaceScanner};
         let catalog_index = CatalogIndex::new(
             catalog
@@ -368,7 +416,7 @@ impl HeadlessReporter {
         let violations_dashboard = aggregate_violations(&per_workspace_evals, &all_violations);
 
         // ── 8. Evaluate per-report-type and collect findings ─────────────────
-        let report_types = cli.report_types();
+        let report_types = request.report_types.clone();
         let types_to_run: Vec<ReportType> = if report_types.is_empty() {
             vec![ReportType::Summary]
         } else {
@@ -393,7 +441,7 @@ impl HeadlessReporter {
         let mut combined: HashMap<String, Value> = HashMap::new();
 
         for rt in &expanded {
-            let (section_value, section_findings) = self.build_section(
+            let (section_value, section_findings) = Self::build_section(
                 rt,
                 &catalog,
                 &workspaces,
@@ -404,7 +452,7 @@ impl HeadlessReporter {
                 &per_workspace_evals,
                 &all_violations,
                 &violations_dashboard,
-                workspace_root,
+                &request.catalog_root,
                 &today,
             );
             findings.extend(section_findings);
@@ -417,84 +465,20 @@ impl HeadlessReporter {
         // the output envelope below.
         let timestamp = chrono::Utc::now().to_rfc3339_opts(chrono::SecondsFormat::Millis, true);
 
-        // ── 9. Best-effort persistence ────────────────────────────────────────
-        // Persist coverage scores and drift records to the SQLite index.  If the
-        // index cannot be opened (path not set, disk error, etc.) skip silently
-        // so that report output is never affected by persistence failures.
-        {
-            use crate::persistence::index::IndexManager;
-
-            let asset_ids = catalog.all_asset_ids();
-            // Ensure the index's parent directory exists — `IndexManager::open`
-            // (rusqlite) creates the DB file but not missing parent dirs, so on a
-            // clean install the default `~/.local/share/vfa/` would not exist.
-            if let Some(parent) = Path::new(&cli.index_path).parent() {
-                if !parent.as_os_str().is_empty() {
-                    let _ = std::fs::create_dir_all(parent);
-                }
-            }
-            if let Ok(mgr) = IndexManager::open(&cli.index_path) {
-                let conn = mgr.write_conn();
-
-                // Persist coverage scores keyed by the CANONICAL workspace path
-                // (not the display basename, which collides for same-named
-                // workspaces). `matrix.workspace_scores` is keyed by the basename
-                // build_matrix derives, so map each resolved workspace path back
-                // to its score.
-                let matrix = CoverageEngine::build_matrix(
-                    &asset_ids,
-                    &installed_per_workspace,
-                    &canonical_hashes,
-                    &canonical_versions,
-                );
-                for (ws_path_buf, _assets) in &installed_per_workspace {
-                    let ws_name = ws_path_buf
-                        .file_name()
-                        .and_then(|n| n.to_str())
-                        .map(|s| s.to_string())
-                        .unwrap_or_else(|| ws_path_buf.display().to_string());
-                    if let Some(score) = matrix.workspace_scores.get(&ws_name) {
-                        let _ = conn.execute(
-                            "INSERT OR REPLACE INTO coverage_cache \
-                             (workspace_path, workspace_name, coverage_score, computed_at) \
-                             VALUES (?1, ?2, ?3, ?4)",
-                            rusqlite::params![
-                                ws_path_buf.to_string_lossy().as_ref(),
-                                ws_name,
-                                score,
-                                &timestamp
-                            ],
-                        );
-                    }
-                }
-
-                // Persist drift records
-                let drift_records =
-                    detect_drift(&all_installed, &canonical_hashes, &canonical_versions);
-                for r in &drift_records {
-                    if r.kind == crate::federation::drift::DriftKind::None {
-                        continue;
-                    }
-                    let _ = conn.execute(
-                        "INSERT INTO drift_history \
-                         (workspace_path, asset_id, drift_type, first_detected, \
-                          resolved_at, expected_hash, actual_hash) \
-                         VALUES (?1, ?2, ?3, ?4, NULL, ?5, ?6)",
-                        rusqlite::params![
-                            r.workspace_path.to_string_lossy().as_ref(),
-                            &r.asset_id,
-                            crate::federation::drift::drift_kind_label(&r.kind),
-                            &today,
-                            &r.expected_hash,
-                            &r.actual_hash,
-                        ],
-                    );
-                }
-            }
-        }
+        // Cache facts are calculated once here; only the CLI adapter writes them.
+        #[cfg(feature = "terminal")]
+        let persistence = ReportPersistence::capture(
+            &catalog,
+            &installed_per_workspace,
+            &all_installed,
+            &canonical_hashes,
+            &canonical_versions,
+            &timestamp,
+            &today,
+        );
 
         // Build the envelope.
-        let console_version = env!("CARGO_PKG_VERSION");
+        let console_version = &request.producer.version;
 
         let output_value = if expanded.len() == 1 {
             // Single report type → flat envelope (Req 17.7 "each type as top-level key").
@@ -520,11 +504,30 @@ impl HeadlessReporter {
             Value::Object(obj)
         };
 
-        // Write to stdout.
-        let output_str = self.render(&output_value, &expanded);
-        println!("{output_str}");
-
-        (output_value, exit_code)
+        ReportResult {
+            payload: output_value,
+            exit_code,
+            producer: request.producer.clone(),
+            quality: ReportQuality {
+                catalog: catalog_status,
+                registry: registry_status,
+                policy: policy_status,
+                workspaces: workspace_status,
+                expected_workspaces: workspaces.len(),
+                available_workspaces,
+            },
+            provenance: ReportProvenance {
+                catalog_root: request.catalog_root.clone(),
+                registry_path: request.registry_path.clone(),
+                policy_path: request.policy_path.clone(),
+                index_path: request.index_path.clone(),
+                observed_at: timestamp,
+                workspaces: workspace_provenance,
+            },
+            diagnostics,
+            #[cfg(feature = "terminal")]
+            persistence,
+        }
     }
 
     // -----------------------------------------------------------------------
@@ -532,9 +535,7 @@ impl HeadlessReporter {
     // -----------------------------------------------------------------------
 
     #[allow(clippy::too_many_arguments)]
-    #[cfg(any(feature = "terminal", test))]
     fn build_section(
-        &self,
         rt: &ReportType,
         catalog: &CatalogStore,
         workspaces: &[crate::models::workspace::ResolvedWorkspace],
@@ -577,6 +578,163 @@ impl HeadlessReporter {
                 (json!({"note": "All expanded"}), vec![])
             }
         }
+    }
+}
+
+/// Owned facts for the existing CLI cache policy. Construction performs no I/O;
+/// the only write entry point is called explicitly by the terminal adapter.
+#[cfg(feature = "terminal")]
+#[derive(Debug)]
+pub(crate) struct ReportPersistence {
+    coverage: Vec<(PathBuf, String, f64)>,
+    drift: Vec<crate::federation::drift::DriftRecord>,
+    timestamp: String,
+    today: String,
+}
+
+#[cfg(feature = "terminal")]
+impl ReportPersistence {
+    fn capture(
+        catalog: &CatalogStore,
+        installed: &[(PathBuf, Vec<crate::federation::scanner::InstalledAsset>)],
+        all_installed: &[crate::federation::scanner::InstalledAsset],
+        hashes: &HashMap<String, String>,
+        versions: &HashMap<String, String>,
+        timestamp: &str,
+        today: &str,
+    ) -> Self {
+        let matrix =
+            CoverageEngine::build_matrix(&catalog.all_asset_ids(), installed, hashes, versions);
+        let coverage = installed
+            .iter()
+            .filter_map(|(path, _)| {
+                let name = path
+                    .file_name()
+                    .and_then(|name| name.to_str())
+                    .map(str::to_owned)
+                    .unwrap_or_else(|| path.display().to_string());
+                matrix
+                    .workspace_scores
+                    .get(&name)
+                    .map(|score| (path.clone(), name, *score))
+            })
+            .collect();
+        Self {
+            coverage,
+            drift: detect_drift(all_installed, hashes, versions),
+            timestamp: timestamp.to_owned(),
+            today: today.to_owned(),
+        }
+    }
+
+    /// Best-effort legacy behavior: cache failures must not change report status.
+    fn persist(&self, path: &Path) {
+        use crate::persistence::index::IndexManager;
+
+        // The legacy index API accepts UTF-8 only. The CLI constructs this path
+        // from a String; never redirect a native non-UTF-8 path via lossy text.
+        let Some(index_path) = path.to_str() else {
+            return;
+        };
+        if let Some(parent) = path.parent() {
+            if !parent.as_os_str().is_empty() {
+                let _ = std::fs::create_dir_all(parent);
+            }
+        }
+        if let Ok(manager) = IndexManager::open(index_path) {
+            let connection = manager.write_conn();
+            for (workspace_path, name, score) in &self.coverage {
+                let _ = connection.execute(
+                    "INSERT OR REPLACE INTO coverage_cache \
+                     (workspace_path, workspace_name, coverage_score, computed_at) \
+                     VALUES (?1, ?2, ?3, ?4)",
+                    rusqlite::params![
+                        workspace_path.to_string_lossy().as_ref(),
+                        name,
+                        score,
+                        &self.timestamp
+                    ],
+                );
+            }
+            for record in &self.drift {
+                if record.kind == DriftKind::None {
+                    continue;
+                }
+                let _ = connection.execute(
+                    "INSERT INTO drift_history \
+                     (workspace_path, asset_id, drift_type, first_detected, \
+                      resolved_at, expected_hash, actual_hash) \
+                     VALUES (?1, ?2, ?3, ?4, NULL, ?5, ?6)",
+                    rusqlite::params![
+                        record.workspace_path.to_string_lossy().as_ref(),
+                        &record.asset_id,
+                        crate::federation::drift::drift_kind_label(&record.kind),
+                        &self.today,
+                        &record.expected_hash,
+                        &record.actual_hash,
+                    ],
+                );
+            }
+        }
+    }
+}
+
+// ---------------------------------------------------------------------------
+// HeadlessReporter
+// ---------------------------------------------------------------------------
+
+/// Headless report pipeline.
+pub struct HeadlessReporter {
+    /// Output format requested by the caller.
+    pub format: OutputFormat,
+    /// When `true`, suppress progress messages; emit only the final report.
+    pub quiet: bool,
+}
+
+impl HeadlessReporter {
+    /// Create a new reporter.
+    pub fn new(format: OutputFormat, quiet: bool) -> Self {
+        Self { format, quiet }
+    }
+
+    // -----------------------------------------------------------------------
+    // Entry point
+    // -----------------------------------------------------------------------
+
+    /// Run the full report pipeline and return the final JSON payload plus exit code.
+    ///
+    /// This is the top-level function called from `main.rs` (or tests).  It
+    /// loads all data, evaluates the requested report types, formats the output,
+    /// writes it to stdout, and returns the exit code.
+    ///
+    /// `workspace_root` is the root of the **catalog** repository (used to
+    /// locate `catalog/`).  This is distinct from downstream workspaces listed
+    /// in the registry.
+    #[cfg(feature = "terminal")]
+    pub fn run(&self, cli: &Cli, workspace_root: &Path) -> (Value, u8) {
+        let request = ReportRequest {
+            catalog_root: workspace_root.to_path_buf(),
+            registry_path: PathBuf::from(&cli.registry),
+            policy_path: PathBuf::from(&cli.policies),
+            index_path: PathBuf::from(&cli.index_path),
+            report_types: cli.report_types(),
+            format: self.format.clone(),
+            workspace_filter: cli.workspace_filter.clone(),
+            producer: ReportProducer {
+                name: "vfa-tui".to_owned(),
+                version: env!("CARGO_PKG_VERSION").to_owned(),
+            },
+        };
+        let result = ReportService::generate(&request);
+        if !self.quiet {
+            for diagnostic in &result.diagnostics {
+                eprintln!("{diagnostic}");
+            }
+        }
+        result.persistence.persist(&request.index_path);
+        let output = self.render(&result.payload, &request.report_types);
+        println!("{output}");
+        (result.payload, result.exit_code)
     }
 
     // -----------------------------------------------------------------------
@@ -708,7 +866,6 @@ pub fn record_headless_audit(
 
 // ── Coverage ─────────────────────────────────────────────────────────────────
 
-#[cfg(any(feature = "terminal", test))]
 fn report_coverage(
     catalog: &CatalogStore,
     installed_per_workspace: &[(PathBuf, Vec<crate::federation::scanner::InstalledAsset>)],
@@ -750,7 +907,6 @@ fn report_coverage(
     (value, findings)
 }
 
-#[cfg(any(feature = "terminal", test))]
 fn compute_aggregate_coverage_score(matrix: &crate::models::coverage::CoverageMatrix) -> String {
     let scores: Vec<f64> = matrix.workspace_scores.values().copied().collect();
     if scores.is_empty() {
@@ -762,7 +918,6 @@ fn compute_aggregate_coverage_score(matrix: &crate::models::coverage::CoverageMa
 
 // ── Violations ───────────────────────────────────────────────────────────────
 
-#[cfg(any(feature = "terminal", test))]
 fn report_violations(
     all_violations: &[crate::models::policy::PolicyViolation],
     dashboard: &crate::policy::violations::ViolationsDashboard,
@@ -824,7 +979,6 @@ fn report_violations(
 
 // ── Drift ─────────────────────────────────────────────────────────────────────
 
-#[cfg(any(feature = "terminal", test))]
 fn report_drift(
     all_installed: &[crate::federation::scanner::InstalledAsset],
     canonical_hashes: &HashMap<String, String>,
@@ -883,13 +1037,10 @@ fn report_drift(
 // ── Stale ─────────────────────────────────────────────────────────────────────
 
 /// Default stale-asset limit per workspace that triggers exit code 1 (Req 9.4).
-#[cfg(any(feature = "terminal", test))]
 const DEFAULT_STALE_ASSET_LIMIT: usize = 5;
 /// Default minor-version threshold for staleness (Req 9.1).
-#[cfg(any(feature = "terminal", test))]
 const DEFAULT_STALE_MINOR_THRESHOLD: u32 = 2;
 
-#[cfg(any(feature = "terminal", test))]
 fn report_stale(
     all_installed: &[crate::federation::scanner::InstalledAsset],
     canonical_versions: &HashMap<String, String>,
@@ -952,7 +1103,6 @@ fn report_stale(
 
 // ── Gates ─────────────────────────────────────────────────────────────────────
 
-#[cfg(any(feature = "terminal", test))]
 fn report_gates(workspace_root: &Path) -> (Value, Vec<FindingSeverity>) {
     // Load the gate DAG definition (not executing gates — only reporting structure).
     // Running real gates is optional and heavy (Req 2.7 note in tasks).
@@ -1003,7 +1153,6 @@ fn report_gates(workspace_root: &Path) -> (Value, Vec<FindingSeverity>) {
 
 // ── Integrity ────────────────────────────────────────────────────────────────
 
-#[cfg(any(feature = "terminal", test))]
 fn report_integrity(
     catalog: &CatalogStore,
     workspace_root: &Path,
@@ -1064,7 +1213,6 @@ fn report_integrity(
 
 // ── Versions ─────────────────────────────────────────────────────────────────
 
-#[cfg(any(feature = "terminal", test))]
 fn report_versions(
     all_installed: &[crate::federation::scanner::InstalledAsset],
     canonical_versions: &HashMap<String, String>,
@@ -1128,7 +1276,6 @@ fn report_versions(
 
 // ── Dependencies ─────────────────────────────────────────────────────────────
 
-#[cfg(any(feature = "terminal", test))]
 fn report_dependencies(catalog: &CatalogStore) -> (Value, Vec<FindingSeverity>) {
     let graph = DependencyGraph::build(catalog);
     let adjacency = graph.to_adjacency_json();
@@ -1162,7 +1309,6 @@ fn report_dependencies(catalog: &CatalogStore) -> (Value, Vec<FindingSeverity>) 
 
 // ── Lifecycle ─────────────────────────────────────────────────────────────────
 
-#[cfg(any(feature = "terminal", test))]
 fn report_lifecycle(catalog: &CatalogStore) -> (Value, Vec<FindingSeverity>) {
     use crate::models::agent::Lifecycle;
 
@@ -1218,7 +1364,6 @@ fn report_lifecycle(catalog: &CatalogStore) -> (Value, Vec<FindingSeverity>) {
 
 // ── Summary ──────────────────────────────────────────────────────────────────
 
-#[cfg(any(feature = "terminal", test))]
 fn report_summary(
     catalog: &CatalogStore,
     workspaces: &[crate::models::workspace::ResolvedWorkspace],
@@ -1471,8 +1616,7 @@ mod tests {
             let violations: Vec<crate::models::policy::PolicyViolation> = vec![];
             let dashboard = crate::policy::violations::ViolationsDashboard::default();
 
-            let reporter = HeadlessReporter::new(OutputFormat::Json, true);
-            let (value, _findings) = reporter.build_section(
+            let (value, _findings) = ReportService::build_section(
                 &rt,
                 &catalog,
                 &[],

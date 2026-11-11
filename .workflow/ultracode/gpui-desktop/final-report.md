@@ -1,6 +1,38 @@
 # GPUI Desktop progress report
 
-## Current task 1.2 implementation
+## Current task 1.3 implementation
+
+Status: TASK 1.3 DONE; KNOWN FULL-SUITE BASELINE FAILURES REMAIN. The user's “let go
+for next task” was scoped to task 1.3 only. Read the active
+[task 1.3 evaluation](../../../.kiro/specs/gpui-desktop/evals/task-1.3.md) for the
+owned files, exact commands, independent review and remaining limits; load later
+task evals only when their tasks start.
+
+`ReportRequest` and `ReportService` now return owned payload, explicit producer,
+quality/provenance and diagnostics without owning printing, global logging or
+index writes. The existing CLI wrapper retains rendering, best-effort persistence
+and its original public entry point; main's audit append is unchanged. Existing
+domain tracing follows the caller's subscriber, not a service-installed console
+logger. Workspace quality is registry resolution, not complete scan-read proof.
+
+Both feature modes' new contracts pass (eleven default, ten no-default), including
+fixed goldens, nine oracle mutations, invalid/mixed inputs, non-UTF8 catalog paths,
+owned lifetime, all report routes, real SQLite WAL sidecars and subprocess stream/
+subscriber probes. All original test identities remain enabled in the correct
+feature modes. Full suites retain exactly seventeen default / eleven no-default
+baseline failures; they are still MISS, not new failures or green release gates.
+Strict clippy, package verification and packaged no-default build pass.
+
+Parent integrated one Rust implementation specialist (configured Sol/medium) and
+one source reviewer (configured Sol/high), with no recursive fanout or serving-
+identity claim. No new manifest/dependency, catalog, approved requirement/design,
+old fixture, global config or main edit. No task 1.4 or native proof is implied.
+The user subsequently authorized normal commit/push of task 1.3 using the GitHub
+no-reply author/committer identity. Actual commit and remote-SHA verification are
+reported after delivery, not preclaimed here. Develop, generated graph output,
+history rewrites, later implementation and remote CI dispatch remain excluded.
+
+## Previous task 1.2 implementation
 
 Status: TASK 1.2 DONE; KNOWN FULL-SUITE BASELINE FAILURES REMAIN. The user's “go for
 next phase” was scoped to task 1.2 only. Read the active

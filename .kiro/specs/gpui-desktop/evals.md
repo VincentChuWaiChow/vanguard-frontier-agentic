@@ -161,3 +161,4 @@ a whole. Create later task contracts when their work is authorized.
 
 - [Task 1.1: compatibility fixtures](evals/task-1.1.md)
 - [Task 1.2: default-terminal feature boundary](evals/task-1.2.md)
+- [Task 1.3: pure report service and legacy adapter](evals/task-1.3.md)

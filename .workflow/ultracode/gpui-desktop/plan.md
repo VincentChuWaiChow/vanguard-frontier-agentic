@@ -164,3 +164,23 @@ record those failures rather than invent green regression gates. Task 1.2's scop
 work is complete with verified baseline equivalence; no new failure is waived.
 No ReportRequest/ReportService extraction,
 provider/Unicode fix, task 1.3, new workspace/crate, commit, push or remote CI.
+
+## Task 1.3 authorization and boundary
+
+The user then requested “let go for next task.” Parent scoped that request to
+task 1.3 only, defining `evals/task-1.3.md` before implementation. One existing
+Rust specialist owned `src/headless/` and `src/models/report.rs`; parent owned the
+new contract tests, integration and serialized Cargo checks. One bounded source
+review and one integrated repair pass followed, not a recursive team.
+
+The owned request/result API separates shared report reads/calculation from CLI
+printing and legacy cache writes. Explicit caller version/name, quality/provenance,
+old envelopes, format/quiet behavior and main's single audit append are retained.
+Domain tracing still follows the caller's subscriber. Metadata records registry
+resolution, not a new assertion of complete workspace file-read evidence.
+
+Task 1.3 is complete with passing scoped capability, compatibility, boundary and
+package checks. Exact full-suite failure identities remain the accepted task 1.1
+baseline (seventeen default / eleven no-default), not green C1/C2 gates. No fixture
+expectation, manifest/lock, main, catalog or frozen approval changed. No task 1.4,
+provider/Unicode production repair, system install, remote CI, commit or push.
