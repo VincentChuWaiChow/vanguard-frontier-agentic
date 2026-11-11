@@ -19,7 +19,7 @@ Command safety is an allowlist, checked on every fenced block in either variant
 (only blocks tagged as data such as ``json`` or ``yaml`` are skipped; ``console``
 blocks are rejected). Each block is lexed with shell rules, so commands after
 ``if``/``then``/``!``/``{``, after ``&&``/``||``/``|``/``;``, inside ``$(...)``,
-backticks and process substitution are all checked, and ``"${name[@]}"`` heads are
+backticks, process substitution and ``${VAR:-$(...)}`` defaults are all checked, and ``"${name[@]}"`` heads are
 expanded from their array definition:
 
 * every command head must be on the mode's allowlist (``LIVE_HEADS`` or
@@ -290,10 +290,28 @@ class Lexer:
             chars.append("$(...)")
             return True
         if nxt == "{":
-            end = s.find("}", self.i)
-            end = len(s) - 1 if end < 0 else end
-            chars.append(s[self.i:end + 1])
-            self.i = end + 1
+            # Walk the body: ${X:-$(cmd)} and ${X:-`cmd`} run cmd, so nested
+            # substitutions are lexed like any other; nested ${ } keep depth.
+            body, depth = ["${"], 1
+            self.i += 2
+            while self.i < len(s) and depth:
+                d = s[self.i]
+                if d == "\\":
+                    body.append(s[self.i:self.i + 2])
+                    self.i += 2
+                elif s.startswith("${", self.i):
+                    body.append("${")
+                    depth += 1
+                    self.i += 2
+                elif d in "$`":
+                    self.expansion(body)
+                else:
+                    body.append(d)
+                    depth -= d == "}"
+                    self.i += 1
+            if depth:
+                self.problems.append("unterminated ${...} expansion")
+            chars.append("".join(body))
             return True
         match = re.match(r"\$(" + NAME + r"|[0-9@*#?$!-])", s[self.i:])
         if match:

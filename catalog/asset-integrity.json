@@ -37592,7 +37592,7 @@
     },
     {
       "tree": "tests",
-      "aggregate_sha256": "b774916acaa69a6b50a1dd27d5c7f935f3471d2c2d93a879efaed119433073fc",
+      "aggregate_sha256": "7a8caf31973b1f1241e06ff031458ce9a0b11bf4e09b755836afad5ca7b3e36b",
       "files": [
         {
           "path": "tests/AGENTS.md",
@@ -49321,8 +49321,8 @@
         },
         {
           "path": "tests/validate-nosql-audit.py",
-          "sha256": "cfdc632a075b09897461626b119b801bad577f62fddb39405bcecafe432b32e3",
-          "bytes": 31697
+          "sha256": "e5adbf2c942e23b73dd71760d67fb4f047c5b81f74f0bff4fee5ba88141325d3",
+          "bytes": 32454
         },
         {
           "path": "tests/validate-nosql-operations.py",
@@ -49449,5 +49449,5 @@
       "bytes": 9135
     }
   ],
-  "aggregate_sha256": "9cedcdafd487c173bb847646b32b21186587320fcf0731739bb8524ffb635f61"
+  "aggregate_sha256": "15fb3f5f5a9327171e4954259501e3e4c37f484a4ef1b9a7f2facdaf27aaa771"
 }
