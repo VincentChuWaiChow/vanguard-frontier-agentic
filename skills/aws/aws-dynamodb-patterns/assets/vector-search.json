@@ -1,0 +1,10 @@
+{
+  "TableName": "REPLACE_WITH_APPROVED_VECTOR_TABLE",
+  "IndexName": "EmbeddingIndex",
+  "SearchVector": [{"N": "0.1"}, {"N": "0.2"}, {"N": "0.3"}],
+  "TopK": 10,
+  "SearchConditionExpression": "#tenant = :tenant AND #status = :status",
+  "ExpressionAttributeNames": {"#tenant": "Tenant", "#status": "Status"},
+  "ExpressionAttributeValues": {":tenant": {"S": "example"}, ":status": {"S": "PUBLISHED"}},
+  "ReturnConsumedCapacity": "INDEXES"
+}

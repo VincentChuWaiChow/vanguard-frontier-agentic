@@ -1768,6 +1768,35 @@
     ]
   },
   {
+    "id": "alibaba-tablestore-architect-agent",
+    "name": "Alibaba Tablestore Architect",
+    "type": "agent",
+    "provider": "alibaba",
+    "harnesses": [
+      "codex",
+      "copilot",
+      "claude-code",
+      "cursor",
+      "gemini",
+      "kiro"
+    ],
+    "summary": "Static reviewer for Alibaba Cloud Tablestore key, transaction, index, TTL/version, capacity and access-control decisions, citing a per-claim evidence ledger.",
+    "source_type": "original",
+    "official_docs": [
+      "https://www.alibabacloud.com/help/en/tablestore/table-store-service/overview-of-widecolumn/",
+      "https://www.alibabacloud.com/help/en/tablestore/table-store-service/overview-of-secondary-index/",
+      "https://www.alibabacloud.com/help/en/tablestore/table-store-service/data-versions-and-ttl"
+    ],
+    "security_notes": "Static review only. Never runs or instructs schema, capacity, replication, IAM, data or restore changes without explicit target, blast radius, rollback and user approval; never requests credentials or account identifiers.",
+    "last_verified": "2026-11-08",
+    "path": "agents/alibaba/alibaba-tablestore-architect-agent",
+    "version": "0.1.0",
+    "execution_tier": "static-review",
+    "companion_skills": [
+      "alibaba-tablestore-architect"
+    ]
+  },
+  {
     "id": "alibaba-ticket-triage-escalation-coordinator-agent",
     "name": "Alibaba Cloud Ticket Triage Escalation Coordinator",
     "type": "agent",
@@ -2434,6 +2463,35 @@
     "author": "github: VincentChuWaiChow",
     "version": "0.2.0",
     "companion_skills": null
+  },
+  {
+    "id": "aws-dynamodb-patterns-agent",
+    "name": "AWS DynamoDB Patterns",
+    "type": "agent",
+    "provider": "aws",
+    "harnesses": [
+      "codex",
+      "copilot",
+      "claude-code",
+      "cursor",
+      "gemini",
+      "kiro"
+    ],
+    "summary": "Builds and operates DynamoDB access patterns (design, refactor, runtime contract, backup/restore, audits, performance-test and feature plans, vectors, IAM, encryption, Streams, DAX, provisioning) as proposals gated on user approval, citing a per-claim evidence ledger.",
+    "source_type": "adapted",
+    "official_docs": [
+      "https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/bp-general-nosql-design.html",
+      "https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/Point-in-time-recovery.html",
+      "https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/VectorSearch.html"
+    ],
+    "security_notes": "Static by default. Produces code, IaC and CLI as proposals; never runs writes, deployment, backfill, deletion, restore, feature changes or load tests without confirmed target, blast radius, rollback and user approval. Restores go to a new table. Never requests credentials or prints customer items.",
+    "last_verified": "2026-11-08",
+    "path": "agents/aws/aws-dynamodb-patterns-agent",
+    "version": "0.1.0",
+    "execution_tier": "static-review",
+    "companion_skills": [
+      "aws-dynamodb-patterns"
+    ]
   },
   {
     "id": "aws-ec2-compute-operations-steward-agent",
@@ -3512,7 +3570,38 @@
     "last_verified": "2026-06-06",
     "path": "agents/azure/azure-cosmosdb-application-developer-agent",
     "author": "github: VincentChuWaiChow",
-    "companion_skills": null
+    "companion_skills": [
+      "azure-cosmosdb-application-developer",
+      "azure-cosmosdb-platform-operator"
+    ]
+  },
+  {
+    "id": "azure-cosmosdb-pattern-agent",
+    "name": "Azure Cosmos DB Pattern",
+    "type": "agent",
+    "provider": "azure",
+    "harnesses": [
+      "codex",
+      "copilot",
+      "claude-code",
+      "cursor",
+      "gemini",
+      "kiro"
+    ],
+    "summary": "Builds and operates Azure Cosmos DB for NoSQL access patterns (partitioning, indexing, consistency, transactions, change feed, vectors, RBAC, encryption, backup and restore, provisioning) as proposals gated on user approval, citing a per-claim evidence ledger.",
+    "source_type": "adapted",
+    "official_docs": [
+      "https://learn.microsoft.com/azure/cosmos-db/continuous-backup-restore-introduction",
+      "https://learn.microsoft.com/azure/cosmos-db/how-to-restore-in-account-continuous-backup"
+    ],
+    "security_notes": "Static by default. Produces code, IaC and CLI as proposals; never runs writes, deployment, backfill, deletion, restore, feature changes or load tests without confirmed target, blast radius, rollback and user approval. Never requests credentials or prints customer data.",
+    "last_verified": "2026-11-09",
+    "path": "agents/azure/azure-cosmosdb-pattern-agent",
+    "version": "0.1.0",
+    "execution_tier": "static-review",
+    "companion_skills": [
+      "azure-cosmosdb-pattern"
+    ]
   },
   {
     "id": "azure-cosmosdb-performance-investigator-agent",
@@ -7642,6 +7731,35 @@
     ]
   },
   {
+    "id": "gcp-bigtable-architect-agent",
+    "name": "GCP Bigtable Architect",
+    "type": "agent",
+    "provider": "gcp",
+    "harnesses": [
+      "codex",
+      "copilot",
+      "claude-code",
+      "cursor",
+      "gemini",
+      "kiro"
+    ],
+    "summary": "Static reviewer for Cloud Bigtable row-key, atomicity, routing/consistency, garbage-collection, capacity, IAM and backup decisions, citing a per-claim evidence ledger.",
+    "source_type": "original",
+    "official_docs": [
+      "https://docs.cloud.google.com/bigtable/docs/schema-design",
+      "https://docs.cloud.google.com/bigtable/docs/replication-overview",
+      "https://docs.cloud.google.com/bigtable/docs/routing"
+    ],
+    "security_notes": "Static review only. Never runs or instructs schema, capacity, replication, IAM, data or restore changes without explicit target, blast radius, rollback and user approval; never requests credentials or account identifiers.",
+    "last_verified": "2026-11-08",
+    "path": "agents/gcp/gcp-bigtable-architect-agent",
+    "version": "0.1.0",
+    "execution_tier": "static-review",
+    "companion_skills": [
+      "gcp-bigtable-architect"
+    ]
+  },
+  {
     "id": "gcp-certificate-manager-issuer-review-agent",
     "name": "GCP Certificate Manager Issuer Review",
     "type": "agent",
@@ -10183,6 +10301,34 @@
     "version": "0.1.0",
     "companion_skills": [
       "huawei-gaussdb-rds-dba"
+    ]
+  },
+  {
+    "id": "huawei-geminidb-architect-agent",
+    "name": "Huawei GeminiDB Architect",
+    "type": "agent",
+    "provider": "huawei",
+    "harnesses": [
+      "codex",
+      "copilot",
+      "claude-code",
+      "cursor",
+      "gemini",
+      "kiro"
+    ],
+    "summary": "Static reviewer for Huawei Cloud GeminiDB API selection, Cassandra API modeling, deletion, capacity, IAM and billing decisions, citing a per-claim evidence ledger.",
+    "source_type": "original",
+    "official_docs": [
+      "https://support.huaweicloud.com/intl/en-us/productdesc-nosql/nosql_introduction.html",
+      "https://support.huaweicloud.com/intl/en-us/cassandraug-nosql/nosql_11_0205.html"
+    ],
+    "security_notes": "Static review only. Never runs or instructs schema, capacity, replication, IAM, data or restore changes without explicit target, blast radius, rollback and user approval; never requests credentials or account identifiers.",
+    "last_verified": "2026-11-08",
+    "path": "agents/huawei/huawei-geminidb-architect-agent",
+    "version": "0.1.0",
+    "execution_tier": "static-review",
+    "companion_skills": [
+      "huawei-geminidb-architect"
     ]
   },
   {
@@ -16226,6 +16372,63 @@
     "author": "github: VincentChuWaiChow",
     "version": "0.2.1",
     "companion_skills": null
+  },
+  {
+    "id": "oci-nosql-database-architect-agent",
+    "name": "OCI NoSQL Database Architect",
+    "type": "agent",
+    "provider": "oci",
+    "harnesses": [
+      "codex",
+      "copilot",
+      "claude-code",
+      "cursor",
+      "gemini",
+      "kiro"
+    ],
+    "summary": "Static reviewer for Oracle NoSQL Database Cloud Service table, shard-key, consistency, capacity, Global Active table, IAM and SDK decisions, citing a per-claim evidence ledger.",
+    "source_type": "original",
+    "official_docs": [
+      "https://docs.oracle.com/en/cloud/paas/nosql-cloud/dtddt/cloud-concepts.html",
+      "https://docs.oracle.com/en/cloud/paas/nosql-cloud/dtddt/global-active-tables-in-ndcs.html",
+      "https://docs.oracle.com/en/cloud/paas/nosql-cloud/dtddt/oracle-nosql-database-cloud-service-policies-reference.html"
+    ],
+    "security_notes": "Static review only. Never runs or instructs NDCS DDL, capacity, replica or IAM mutations without explicit target, blast radius, rollback and user approval; never requests OCIDs, keys or config contents.",
+    "last_verified": "2026-11-08",
+    "path": "agents/oci/oci-nosql-database-architect-agent",
+    "version": "0.1.0",
+    "execution_tier": "static-review",
+    "companion_skills": [
+      "oci-nosql-database-architect"
+    ]
+  },
+  {
+    "id": "oci-nosql-pattern-agent",
+    "name": "OCI NoSQL Pattern",
+    "type": "agent",
+    "provider": "oci",
+    "harnesses": [
+      "codex",
+      "copilot",
+      "claude-code",
+      "cursor",
+      "gemini",
+      "kiro"
+    ],
+    "summary": "Builds and operates Oracle NoSQL Database Cloud Service access patterns (keys, indexes, transactions, consistency, TTL, IAM, encryption, replicas, provisioning, export/import recovery) as proposals gated on user approval, citing a per-claim evidence ledger.",
+    "source_type": "adapted",
+    "official_docs": [
+      "https://docs.oracle.com/en/cloud/paas/nosql-cloud/dtddt/features-of-oracle-nosql-database-cloud-service.html",
+      "https://docs.oracle.com/en/cloud/paas/nosql-cloud/odsql/"
+    ],
+    "security_notes": "Static by default. Produces code, IaC and CLI as proposals; never runs writes, deployment, backfill, deletion, restore, feature changes or load tests without confirmed target, blast radius, rollback and user approval. Never requests credentials or prints customer data.",
+    "last_verified": "2026-11-09",
+    "path": "agents/oci/oci-nosql-pattern-agent",
+    "version": "0.1.0",
+    "execution_tier": "static-review",
+    "companion_skills": [
+      "oci-nosql-pattern"
+    ]
   },
   {
     "id": "oci-observability-incident-responder-agent",

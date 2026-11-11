@@ -1,0 +1,7 @@
+{
+  "name": "adv-cosmos-throttling-investigation",
+  "task": "Cosmos DB requests are throttling with 429 errors after the last release; find the cause.",
+  "tags": [
+    "happy-path"
+  ]
+}

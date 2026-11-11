@@ -1221,6 +1221,34 @@
     "author": "github: VincentChuWaiChow"
   },
   {
+    "id": "alibaba-tablestore-architect",
+    "name": "Alibaba Tablestore Architect",
+    "type": "skill",
+    "provider": "alibaba",
+    "harnesses": [
+      "codex",
+      "claude-code",
+      "cursor",
+      "gemini",
+      "kiro",
+      "other"
+    ],
+    "summary": "Design and review Alibaba Cloud Tablestore primary/partition keys, local transactions, conditional updates, secondary and search indexes, TTL and versions, instance type, capacity units, limits, access control and SDKs, with a provenance ledger per claim.",
+    "source_type": "original",
+    "official_docs": [
+      "https://www.alibabacloud.com/help/en/tablestore/table-store-service/overview-of-widecolumn/",
+      "https://www.alibabacloud.com/help/en/tablestore/table-store-service/use-cases/table-design",
+      "https://www.alibabacloud.com/help/en/tablestore/table-store-service/local-transactions",
+      "https://www.alibabacloud.com/help/en/tablestore/table-store-service/overview-of-secondary-index/",
+      "https://www.alibabacloud.com/help/en/tablestore/table-store-service/data-versions-and-ttl"
+    ],
+    "security_notes": "Read-only by default. Primary keys and instance type are permanent, so never approve table, index, TTL/version, throughput, access-policy or bulk-data changes without explicit target, blast radius, rollback and user approval; never request AccessKeys or STS tokens.",
+    "last_verified": "2026-11-08",
+    "path": "skills/alibaba/alibaba-tablestore-architect",
+    "version": "0.1.0",
+    "author": "github: VincentChuWaiChow"
+  },
+  {
     "id": "alibaba-ticket-triage-escalation-coordinator",
     "name": "Alibaba Cloud Ticket Triage Escalation Coordinator",
     "type": "skill",
@@ -1911,6 +1939,32 @@
     "version": "0.1.4"
   },
   {
+    "id": "aws-documentdb-architect",
+    "name": "AWS DocumentDB Architect",
+    "type": "skill",
+    "provider": "aws",
+    "harnesses": [
+      "codex",
+      "claude-code",
+      "cursor",
+      "gemini",
+      "kiro",
+      "other"
+    ],
+    "summary": "Plan and review Amazon DocumentDB (with MongoDB compatibility) operations: backup and restore, cluster snapshots and point-in-time restore, global clusters and failover, billing dimensions, CloudWatch monitoring, performance signals, IAM, tagging, encryption, VPC network isolation and audit logging, each with a provenance ledger row.",
+    "source_type": "original",
+    "official_docs": [
+      "https://docs.aws.amazon.com/documentdb/latest/developerguide/what-is.html",
+      "https://docs.aws.amazon.com/documentdb/latest/developerguide/backup_restore.html",
+      "https://docs.aws.amazon.com/documentdb/latest/developerguide/global-clusters.html"
+    ],
+    "security_notes": "Static review only. Never runs or instructs restore, failover, deletion, scaling, network, key or IAM changes without explicit target, blast radius, rollback and user approval; never requests credentials or customer data.",
+    "last_verified": "2026-11-08",
+    "path": "skills/aws/aws-documentdb-architect",
+    "version": "0.1.0",
+    "author": "github: VincentChuWaiChow"
+  },
+  {
     "id": "aws-dynamodb-data-modeling-performance-review",
     "name": "AWS DynamoDB Data Modeling Performance Review",
     "type": "skill",
@@ -1929,13 +1983,45 @@
       "https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/data-modeling.html",
       "https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/bp-table-design.html",
       "https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/GSI.html",
-      "https://docs.aws.amazon.com/prescriptive-guidance/latest/dynamodb-data-modeling/best-practices.html"
+      "https://docs.aws.amazon.com/prescriptive-guidance/latest/dynamodb-data-modeling/best-practices.html",
+      "https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/HowItWorks.ReadConsistency.html",
+      "https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/LSI.html",
+      "https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/V2globaltables_HowItWorks.html",
+      "https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/DAX.consistency.html"
     ],
     "security_notes": "Do not recommend DynamoDB schemas without explicit access patterns, partition cardinality, index tradeoffs, capacity/cost implications, and migration or backfill safety.",
-    "last_verified": "2026-06-02",
+    "last_verified": "2026-11-08",
     "path": "skills/aws/aws-dynamodb-data-modeling-performance-review",
     "author": "github: VincentChuWaiChow",
-    "version": "0.1.4"
+    "version": "0.1.5"
+  },
+  {
+    "id": "aws-dynamodb-patterns",
+    "name": "AWS DynamoDB Patterns",
+    "type": "skill",
+    "provider": "aws",
+    "harnesses": [
+      "codex",
+      "claude-code",
+      "cursor",
+      "gemini",
+      "kiro",
+      "other"
+    ],
+    "summary": "Design, implement, refactor, back up, restore, audit and load-test-plan Amazon DynamoDB access patterns in any language: keys and indexes, runtime contract, IAM and resource policies, encryption, PITR and on-demand recovery, Streams and DAX, native vector indexes and Bedrock/S3 embeddings, monitoring and CloudFormation/CLI provisioning, with command routes that load one guide at a time.",
+    "source_type": "adapted",
+    "official_docs": [
+      "https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/bp-general-nosql-design.html",
+      "https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/Query.Pagination.html",
+      "https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/Point-in-time-recovery.html",
+      "https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/VectorSearch.html",
+      "https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/access-control-resource-based.html"
+    ],
+    "security_notes": "Not permission to access AWS. Live reads need a confirmed account, role, Region and table; writes, deployment, backfill, deletion, restore and load tests need exact approval. Restores target a new table only. Never inspect credentials or print customer items. Bundled scripts are offline route selectors and a date-argument review reminder; example shell and SDK assets run only after explicit user approval.",
+    "last_verified": "2026-11-08",
+    "path": "skills/aws/aws-dynamodb-patterns",
+    "version": "1.8.0",
+    "author": "github: VincentChuWaiChow"
   },
   {
     "id": "aws-ec2-compute-operations-steward",
@@ -2181,6 +2267,32 @@
     "version": "0.1.4"
   },
   {
+    "id": "aws-keyspaces-architect",
+    "name": "AWS Keyspaces Architect",
+    "type": "skill",
+    "provider": "aws",
+    "harnesses": [
+      "codex",
+      "claude-code",
+      "cursor",
+      "gemini",
+      "kiro",
+      "other"
+    ],
+    "summary": "Plan and review Amazon Keyspaces (for Apache Cassandra) operations: point-in-time recovery and restore, multi-Region replication, billing dimensions for capacity modes and storage, CloudWatch monitoring, throttling and performance signals, IAM, tagging, encryption, VPC endpoints and audit logging, each with a provenance ledger row.",
+    "source_type": "original",
+    "official_docs": [
+      "https://docs.aws.amazon.com/keyspaces/latest/devguide/what-is-keyspaces.html",
+      "https://docs.aws.amazon.com/keyspaces/latest/devguide/PointInTimeRecovery.html",
+      "https://docs.aws.amazon.com/keyspaces/latest/devguide/multiRegion-replication.html"
+    ],
+    "security_notes": "Static review only. Never runs or instructs restore, failover, deletion, scaling, network, key or IAM changes without explicit target, blast radius, rollback and user approval; never requests credentials or customer data.",
+    "last_verified": "2026-11-08",
+    "path": "skills/aws/aws-keyspaces-architect",
+    "version": "0.1.0",
+    "author": "github: VincentChuWaiChow"
+  },
+  {
     "id": "aws-kms-secrets-lifecycle-steward",
     "name": "AWS KMS Secrets Lifecycle Steward",
     "type": "skill",
@@ -2382,7 +2494,7 @@
       "kiro",
       "other"
     ],
-    "summary": "Route AWS tasks to the narrowest specialist or team of specialists from the 42-agent catalog. Classifies by domain, dispatches single or parallel (max 4), and enforces live-guard gate for production-change agents.",
+    "summary": "Route AWS tasks to the narrowest specialist or team of specialists from the AWS agent catalog. Classifies by domain, dispatches single or parallel (max 4), and enforces live-guard gate for production-change agents.",
     "source_type": "adapted",
     "official_docs": [
       "https://docs.aws.amazon.com/wellarchitected/latest/operational-excellence-pillar/welcome.html",
@@ -2963,7 +3075,7 @@
   {
     "id": "azure-cosmosdb-application-developer",
     "name": "Azure Cosmos DB Application Developer",
-    "version": "0.1.3",
+    "version": "0.1.4",
     "type": "skill",
     "provider": "azure",
     "harnesses": [
@@ -2992,6 +3104,31 @@
     "security_notes": "Do not recommend data models, query patterns, transactional assumptions, or SDK usage that ignore partition scope, RU cost, consistency semantics, or least-privilege access boundaries.",
     "last_verified": "2026-06-05",
     "path": "skills/azure/azure-cosmosdb-application-developer",
+    "author": "github: VincentChuWaiChow"
+  },
+  {
+    "id": "azure-cosmosdb-pattern",
+    "name": "Azure Cosmos DB Pattern",
+    "type": "skill",
+    "provider": "azure",
+    "harnesses": [
+      "codex",
+      "claude-code",
+      "cursor",
+      "gemini",
+      "kiro",
+      "other"
+    ],
+    "summary": "Design, implement, refactor and audit Azure Cosmos DB for NoSQL access patterns: partition and id routing, indexing and RUs, consistency and session tokens, transactions and ETags, change feed, vectors, RBAC, encryption, continuous and periodic backup, new-account and in-account restore, monitoring and ARM/CLI provisioning, with command routes that load one guide at a time.",
+    "source_type": "adapted",
+    "official_docs": [
+      "https://learn.microsoft.com/azure/cosmos-db/continuous-backup-restore-introduction",
+      "https://learn.microsoft.com/azure/cosmos-db/how-to-restore-in-account-continuous-backup"
+    ],
+    "security_notes": "Not permission to access Azure. Live reads need a confirmed subscription, resource group, account and container; writes, restores, feature changes and load tests need exact approval. Bundled scripts are offline route selectors, a date-argument review reminder, an asset validator and a sanitized recovery guard.",
+    "last_verified": "2026-11-09",
+    "path": "skills/azure/azure-cosmosdb-pattern",
+    "version": "1.0.0",
     "author": "github: VincentChuWaiChow"
   },
   {
@@ -3030,7 +3167,7 @@
   {
     "id": "azure-cosmosdb-platform-operator",
     "name": "Azure Cosmos DB Platform Operator",
-    "version": "0.1.3",
+    "version": "0.1.4",
     "type": "skill",
     "provider": "azure",
     "harnesses": [
@@ -3053,10 +3190,13 @@
       "https://learn.microsoft.com/en-us/azure/cosmos-db/hierarchical-partition-keys",
       "https://learn.microsoft.com/en-us/azure/reliability/reliability-cosmos-db",
       "https://learn.microsoft.com/en-us/azure/cosmos-db/hierarchical-partition-keys-unlimited-scale",
-      "https://learn.microsoft.com/en-us/azure/cosmos-db/failover-considerations-for-private-endpoints"
+      "https://learn.microsoft.com/en-us/azure/cosmos-db/failover-considerations-for-private-endpoints",
+      "https://learn.microsoft.com/en-us/azure/cosmos-db/integrated-cache",
+      "https://learn.microsoft.com/en-us/azure/cosmos-db/throughput-serverless",
+      "https://learn.microsoft.com/en-us/azure/cosmos-db/how-to-connect-role-based-access-control"
     ],
     "security_notes": "Do not approve a partition key, indexing posture, consistency change, or cross-partition query strategy without checking workload shape, RU impact, transactional scope, and least-privilege access implications.",
-    "last_verified": "2026-06-05",
+    "last_verified": "2026-11-08",
     "path": "skills/azure/azure-cosmosdb-platform-operator",
     "author": "github: VincentChuWaiChow"
   },
@@ -7411,6 +7551,34 @@
     "version": "0.2.0"
   },
   {
+    "id": "gcp-bigtable-architect",
+    "name": "GCP Bigtable Architect",
+    "type": "skill",
+    "provider": "gcp",
+    "harnesses": [
+      "codex",
+      "claude-code",
+      "cursor",
+      "gemini",
+      "kiro",
+      "other"
+    ],
+    "summary": "Design and review Cloud Bigtable row keys, single-row atomicity, app-profile routing and replication consistency, garbage collection, SSD/HDD and autoscaling, IAM, backups and client libraries, with a provenance ledger per claim.",
+    "source_type": "original",
+    "official_docs": [
+      "https://docs.cloud.google.com/bigtable/docs/schema-design",
+      "https://docs.cloud.google.com/bigtable/docs/replication-overview",
+      "https://docs.cloud.google.com/bigtable/docs/app-profiles",
+      "https://docs.cloud.google.com/bigtable/docs/garbage-collection",
+      "https://docs.cloud.google.com/bigtable/quotas"
+    ],
+    "security_notes": "Read-only by default. Row keys and storage type are effectively permanent, so never approve schema, GC, cluster, replication, IAM, bulk-mutation or restore changes without explicit target, blast radius, rollback and user approval; never request service-account keys.",
+    "last_verified": "2026-11-08",
+    "path": "skills/gcp/gcp-bigtable-architect",
+    "version": "0.1.0",
+    "author": "github: VincentChuWaiChow"
+  },
+  {
     "id": "gcp-certificate-manager-issuer-review",
     "name": "GCP Certificate Manager Issuer Review",
     "type": "skill",
@@ -7761,13 +7929,16 @@
       "https://firebase.google.com/docs/auth",
       "https://firebase.google.com/docs/hosting",
       "https://firebase.google.com/docs/functions",
-      "https://firebase.google.com/docs/app-check"
+      "https://firebase.google.com/docs/app-check",
+      "https://firebase.google.com/docs/firestore/quotas",
+      "https://firebase.google.com/docs/firestore/transaction-data-contention",
+      "https://firebase.google.com/docs/firestore/editions"
     ],
     "security_notes": "Read-only skill. Do not deploy to production, modify Firestore security rules, or change Firebase project settings without explicit approval. Client config (apiKey, projectId) is public — service account keys are private and must never be embedded in client code.",
-    "last_verified": "2026-05-09",
+    "last_verified": "2026-11-08",
     "path": "skills/gcp/gcp-firebase-developer",
     "author": "github: VincentChuWaiChow",
-    "version": "0.1.0"
+    "version": "0.1.1"
   },
   {
     "id": "gcp-gcs-data-perimeter-governor",
@@ -9354,13 +9525,40 @@
     "official_docs": [
       "https://support.huaweicloud.com/intl/en-us/gaussdb_mysql/index.html",
       "https://support.huaweicloud.com/intl/en-us/rds/index.html",
-      "https://support.huaweicloud.com/intl/en-us/dds/index.html"
+      "https://support.huaweicloud.com/intl/en-us/dds/index.html",
+      "https://support.huaweicloud.com/intl/en-us/usermanual-dds/dds_01_0061.html"
     ],
     "security_notes": "Database deletion without CBR backup is permanently destructive. GaussDB for Oracle PL/SQL gaps can break migration — test all procedures before cutover. Failover testing must be coordinated with application teams.",
-    "last_verified": "2026-05-08",
+    "last_verified": "2026-11-08",
     "path": "skills/huawei/huawei-gaussdb-rds-dba",
     "author": "github: VincentChuWaiChow",
-    "version": "0.1.0"
+    "version": "0.1.1"
+  },
+  {
+    "id": "huawei-geminidb-architect",
+    "name": "Huawei GeminiDB Architect",
+    "type": "skill",
+    "provider": "huawei",
+    "harnesses": [
+      "codex",
+      "claude-code",
+      "cursor",
+      "gemini",
+      "kiro",
+      "other"
+    ],
+    "summary": "Design and review Huawei Cloud GeminiDB API selection (including the end-of-support Mongo API), GeminiDB Cassandra API partition-key, row-size, deletion and sharding rules, consistency, capacity headroom, IAM and billing, with a provenance ledger per claim.",
+    "source_type": "original",
+    "official_docs": [
+      "https://support.huaweicloud.com/intl/en-us/productdesc-nosql/nosql_introduction.html",
+      "https://support.huaweicloud.com/intl/en-us/cassandraug-nosql/nosql_11_0205.html",
+      "https://support.huaweicloud.com/intl/en-us/productdesc-nosql/nosql_01_0100.html"
+    ],
+    "security_notes": "Read-only by default. Never approve instance, scaling, schema, bulk-delete, restore, migration, IAM or billing-mode changes without explicit target, blast radius, rollback and user approval; never request AK/SK or passwords.",
+    "last_verified": "2026-11-08",
+    "path": "skills/huawei/huawei-geminidb-architect",
+    "version": "0.1.0",
+    "author": "github: VincentChuWaiChow"
   },
   {
     "id": "huawei-iac-change-safety-review",
@@ -14806,6 +15004,59 @@
     "version": "0.1.1"
   },
   {
+    "id": "oci-nosql-database-architect",
+    "name": "OCI NoSQL Database Architect",
+    "type": "skill",
+    "provider": "oci",
+    "harnesses": [
+      "codex",
+      "claude-code",
+      "cursor",
+      "gemini",
+      "kiro",
+      "other"
+    ],
+    "summary": "Design and review Oracle NoSQL Database Cloud Service tables: shard/primary keys, EVENTUAL vs ABSOLUTE consistency, read/write units, TTL, child tables, Global Active tables, IAM and official SDKs, with a provenance ledger per claim.",
+    "source_type": "original",
+    "official_docs": [
+      "https://docs.oracle.com/en/cloud/paas/nosql-cloud/dtddt/cloud-concepts.html",
+      "https://docs.oracle.com/en/cloud/paas/nosql-cloud/dtddt/designing-a-table-in-oracle-nosql-database-cloud-service.html",
+      "https://docs.oracle.com/en/cloud/paas/nosql-cloud/dtddt/global-active-tables-in-ndcs.html",
+      "https://docs.oracle.com/en/cloud/paas/nosql-cloud/dtddt/oracle-nosql-database-cloud-service-policies-reference.html",
+      "https://docs.oracle.com/en/cloud/paas/nosql-cloud/dtddt/plan-your-service.html"
+    ],
+    "security_notes": "Read-only by default. Shard and primary keys are permanent, so never approve DDL, capacity, replica or IAM changes without explicit target, blast radius, rollback and user approval; never request OCIDs, keys or config contents.",
+    "last_verified": "2026-11-08",
+    "path": "skills/oci/oci-nosql-database-architect",
+    "version": "0.1.0",
+    "author": "github: VincentChuWaiChow"
+  },
+  {
+    "id": "oci-nosql-pattern",
+    "name": "OCI NoSQL Pattern",
+    "type": "skill",
+    "provider": "oci",
+    "harnesses": [
+      "codex",
+      "claude-code",
+      "cursor",
+      "gemini",
+      "kiro",
+      "other"
+    ],
+    "summary": "Design, implement, refactor and audit Oracle NoSQL Database Cloud Service access patterns: shard and primary keys, indexes, continuation, same-shard transactions, consistency, TTL, IAM, encryption, replicas, metrics, Terraform/DDL/OCI CLI and customer-owned export/import recovery, with command routes that load one guide at a time.",
+    "source_type": "adapted",
+    "official_docs": [
+      "https://docs.oracle.com/en/cloud/paas/nosql-cloud/dtddt/features-of-oracle-nosql-database-cloud-service.html",
+      "https://docs.oracle.com/en/cloud/paas/nosql-cloud/odsql/"
+    ],
+    "security_notes": "Not permission to access OCI. Live reads need a confirmed principal, tenancy, region, compartment and table; writes, load tests and export/import recovery need exact approval. Recovery targets a new table. Bundled scripts are offline route selectors, a date-argument review reminder and a sanitized recovery-manifest checker.",
+    "last_verified": "2026-11-09",
+    "path": "skills/oci/oci-nosql-pattern",
+    "version": "1.0.0",
+    "author": "github: VincentChuWaiChow"
+  },
+  {
     "id": "oci-observability-incident-responder",
     "name": "OCI Observability Incident Responder",
     "type": "skill",
@@ -15312,6 +15563,31 @@
     "security_notes": "Routing layer must stay read-only; never attempt live OVHcloud API mutations from the classification layer — hand off to approval-gated specialists.",
     "last_verified": "2026-05-10",
     "path": "skills/ovhcloud/ovhcloud-maestro",
+    "version": "0.1.0",
+    "author": "github: VincentChuWaiChow"
+  },
+  {
+    "id": "ovhcloud-mongodb-architect",
+    "name": "OVHcloud MongoDB Architect",
+    "type": "skill",
+    "provider": "ovhcloud",
+    "harnesses": [
+      "codex",
+      "claude-code",
+      "cursor",
+      "gemini",
+      "kiro",
+      "other"
+    ],
+    "summary": "Plan and review OVHcloud Public Cloud Databases for MongoDB operations: backups and restore, replication and availability per service plan, billing dimensions, monitoring, performance signals, IAM, tagging, encryption, private networking and audit logging, each with a provenance ledger row.",
+    "source_type": "original",
+    "official_docs": [
+      "https://docs.ovhcloud.com/en/guides/public-cloud/databases/mongodb-getting-started",
+      "https://www.ovhcloud.com/en/public-cloud/mongodb/"
+    ],
+    "security_notes": "Static review only. Never runs or instructs restore, failover, deletion, scaling, network, key or IAM changes without explicit target, blast radius, rollback and user approval; never requests credentials or customer data.",
+    "last_verified": "2026-11-09",
+    "path": "skills/ovhcloud/ovhcloud-mongodb-architect",
     "version": "0.1.0",
     "author": "github: VincentChuWaiChow"
   },
@@ -20100,6 +20376,30 @@
     "path": "skills/scaleway/scaleway-maestro",
     "author": "github: VincentChuWaiChow",
     "version": "0.1.0"
+  },
+  {
+    "id": "scaleway-managed-mongodb-architect",
+    "name": "Scaleway Managed MongoDB Architect",
+    "type": "skill",
+    "provider": "scaleway",
+    "harnesses": [
+      "codex",
+      "claude-code",
+      "cursor",
+      "gemini",
+      "kiro",
+      "other"
+    ],
+    "summary": "Plan and review Scaleway Managed MongoDB® operations: snapshots and restore, replication and availability, billing dimensions, Cockpit monitoring, performance signals, IAM permission sets, tagging, encryption, Private Networks and Audit Trail, each with a provenance ledger row.",
+    "source_type": "original",
+    "official_docs": [
+      "https://www.scaleway.com/en/docs/managed-mongodb-databases/"
+    ],
+    "security_notes": "Static review only. Never runs or instructs restore, failover, deletion, scaling, network, key or IAM changes without explicit target, blast radius, rollback and user approval; never requests credentials or customer data.",
+    "last_verified": "2026-11-09",
+    "path": "skills/scaleway/scaleway-managed-mongodb-architect",
+    "version": "0.1.0",
+    "author": "github: VincentChuWaiChow"
   },
   {
     "id": "scaleway-network-architect",

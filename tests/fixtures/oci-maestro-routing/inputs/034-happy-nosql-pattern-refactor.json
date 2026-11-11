@@ -1,0 +1,7 @@
+{
+  "name": "034-happy-nosql-pattern-refactor",
+  "task": "Do a nosql refactor of our table access code with the nosql-pattern commands.",
+  "tags": [
+    "happy-path"
+  ]
+}

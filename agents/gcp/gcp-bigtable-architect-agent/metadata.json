@@ -1,0 +1,39 @@
+{
+  "id": "gcp-bigtable-architect-agent",
+  "name": "GCP Bigtable Architect",
+  "type": "agent",
+  "provider": "gcp",
+  "harnesses": [
+    "codex",
+    "copilot",
+    "claude-code",
+    "cursor",
+    "gemini",
+    "kiro"
+  ],
+  "summary": "Static reviewer for Cloud Bigtable row-key, atomicity, routing/consistency, garbage-collection, capacity, IAM and backup decisions, citing a per-claim evidence ledger.",
+  "source_type": "original",
+  "official_docs": [
+    "https://docs.cloud.google.com/bigtable/docs/schema-design",
+    "https://docs.cloud.google.com/bigtable/docs/replication-overview",
+    "https://docs.cloud.google.com/bigtable/docs/routing"
+  ],
+  "security_notes": "Static review only. Never runs or instructs schema, capacity, replication, IAM, data or restore changes without explicit target, blast radius, rollback and user approval; never requests credentials or account identifiers.",
+  "last_verified": "2026-11-08",
+  "path": "agents/gcp/gcp-bigtable-architect-agent",
+  "companion_skills": [
+    "gcp-bigtable-architect"
+  ],
+  "execution_tier": "static-review",
+  "harness_variants": {
+    "codex": "agents/gcp/gcp-bigtable-architect-agent/harnesses/codex.toml",
+    "copilot": "agents/gcp/gcp-bigtable-architect-agent/harnesses/copilot.agent.md",
+    "claude-code": "agents/gcp/gcp-bigtable-architect-agent/harnesses/claude-code.agent.md",
+    "cursor": "agents/gcp/gcp-bigtable-architect-agent/harnesses/cursor.agent.md",
+    "gemini": "agents/gcp/gcp-bigtable-architect-agent/harnesses/gemini.agent.md",
+    "kiro-ide": "agents/gcp/gcp-bigtable-architect-agent/harnesses/kiro-ide.agent.md",
+    "kiro-cli": "agents/gcp/gcp-bigtable-architect-agent/harnesses/kiro-cli.agent.json"
+  },
+  "author": "github: VincentChuWaiChow",
+  "version": "0.1.0"
+}

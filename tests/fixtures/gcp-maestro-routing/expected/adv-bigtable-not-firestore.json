@@ -1,0 +1,8 @@
+{
+  "route": [
+    "gcp-firebase-developer-agent",
+    "gcp-security-posture-hardening-agent",
+    "gcp-waf-security-review-agent"
+  ],
+  "mode": "parallel (3)"
+}

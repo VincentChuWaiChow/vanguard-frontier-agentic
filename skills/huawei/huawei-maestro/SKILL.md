@@ -40,7 +40,7 @@ If the task is not Huawei Cloud-related, direct the user to the appropriate prov
 | `compute` | ECS instances, AS (Auto Scaling), IMS (images), DeH (Dedicated Host), CSBS snapshots |
 | `containers` | CCE (Cloud Container Engine), SWR (registry), ASM (Service Mesh), IEF (Intelligent Edge Fabric) |
 | `serverless` | FunctionGraph, ServiceStage, CSE (Spring Cloud/ServiceComb) |
-| `database` | GaussDB (MySQL/PG/Oracle), RDS, DDS (MongoDB-compatible), database proxy, HA architecture |
+| `database` | GaussDB (MySQL/PG/Oracle), RDS, DDS (MongoDB-compatible), GeminiDB (NoSQL), database proxy, HA architecture |
 | `data-analytics` | DWS (GaussDB DWS), DLI (Spark/Flink), MRS, DataArts Studio |
 | `data-replication` | DRS (migration + real-time sync), CDM (batch ETL), DMS (Kafka) |
 | `ai-ml` | ModelArts training (GPU/NPU), Pangu foundation models, AI Gallery, MLOps pipelines |
@@ -66,6 +66,7 @@ If the task is not Huawei Cloud-related, direct the user to the appropriate prov
 | `huawei-cce-container-platform-operator-agent` | containers | Operating CCE clusters, SWR registries, ASM service mesh, IEF edge node management |
 | `huawei-functiongraph-serverless-operator-agent` | serverless | Deploying or operating FunctionGraph, ServiceStage applications, CSE microservice governance |
 | `huawei-gaussdb-rds-dba-agent` | database | Managing GaussDB (MySQL/PG/Oracle), RDS, DDS, database proxy, HA and backup architecture |
+| `huawei-geminidb-architect-agent` | database | Reviewing GeminiDB API choice (Redis, DynamoDB-Compatible, Cassandra, HBase, Influx; Mongo API end of support), Cassandra API partition-key, deletion and sharding rules, failure-headroom capacity; static review only |
 | `huawei-dws-dli-data-analyst-agent` | data-analytics | Operating DWS data warehouse, DLI serverless Spark/Flink, MRS, DataArts Studio pipelines |
 | `huawei-drs-data-replication-operator-agent` | data-replication | Planning or executing DRS migrations/sync, CDM batch ETL jobs, DMS Kafka cluster operations |
 | `huawei-modelarts-mlops-engineer-agent` | ai-ml | Managing ModelArts training jobs (GPU/NPU cost governance), Pangu model deployment, MLOps pipelines |

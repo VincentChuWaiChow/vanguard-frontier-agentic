@@ -1,0 +1,7 @@
+{
+  "name": "adv-cosmos-hot-partition-not-key-vault",
+  "task": "Our Cosmos DB container has a hot partition key and 429s — investigate RU spikes.",
+  "tags": [
+    "adversarial:keyword-collision"
+  ]
+}

@@ -1,0 +1,6 @@
+{
+  "capacityMode": "PROVISIONED",
+  "maxReadUnits": 50,
+  "maxWriteUnits": 50,
+  "maxStorageInGBs": 1
+}

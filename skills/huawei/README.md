@@ -8,7 +8,7 @@ This folder contains Huawei Cloud-focused skills curated for this marketplace.
 
 ## Local marketplace portfolio
 
-As of **2026-05-09**, this folder contains **43** local Huawei Cloud skills:
+This folder contains these local Huawei Cloud skills (see `catalog/skills.json` for the authoritative inventory):
 
 - `huawei-cce-container-platform-operator`
 - `huawei-certificate-manager-issuer-review`
@@ -25,6 +25,7 @@ As of **2026-05-09**, this folder contains **43** local Huawei Cloud skills:
 - `huawei-event-driven-architecture-review`
 - `huawei-functiongraph-serverless-operator`
 - `huawei-gaussdb-rds-dba`
+- `huawei-geminidb-architect`
 - `huawei-iac-change-safety-review`
 - `huawei-iam-least-privilege-review`
 - `huawei-ief-edge-computing-operator`

@@ -1,0 +1,28 @@
+{
+  "id": "alibaba-tablestore-architect",
+  "name": "Alibaba Tablestore Architect",
+  "type": "skill",
+  "provider": "alibaba",
+  "harnesses": [
+    "codex",
+    "claude-code",
+    "cursor",
+    "gemini",
+    "kiro",
+    "other"
+  ],
+  "summary": "Design and review Alibaba Cloud Tablestore primary/partition keys, local transactions, conditional updates, secondary and search indexes, TTL and versions, instance type, capacity units, limits, access control and SDKs, with a provenance ledger per claim.",
+  "source_type": "original",
+  "official_docs": [
+    "https://www.alibabacloud.com/help/en/tablestore/table-store-service/overview-of-widecolumn/",
+    "https://www.alibabacloud.com/help/en/tablestore/table-store-service/use-cases/table-design",
+    "https://www.alibabacloud.com/help/en/tablestore/table-store-service/local-transactions",
+    "https://www.alibabacloud.com/help/en/tablestore/table-store-service/overview-of-secondary-index/",
+    "https://www.alibabacloud.com/help/en/tablestore/table-store-service/data-versions-and-ttl"
+  ],
+  "security_notes": "Read-only by default. Primary keys and instance type are permanent, so never approve table, index, TTL/version, throughput, access-policy or bulk-data changes without explicit target, blast radius, rollback and user approval; never request AccessKeys or STS tokens.",
+  "last_verified": "2026-11-08",
+  "path": "skills/alibaba/alibaba-tablestore-architect",
+  "author": "github: VincentChuWaiChow",
+  "version": "0.1.0"
+}

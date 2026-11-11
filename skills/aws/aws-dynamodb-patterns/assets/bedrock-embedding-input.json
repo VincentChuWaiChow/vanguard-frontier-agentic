@@ -1,0 +1,6 @@
+{
+  "inputText": "Synthetic document chunk for an embedding format demonstration.",
+  "dimensions": 1024,
+  "normalize": true,
+  "embeddingTypes": ["float"]
+}

@@ -1944,6 +1944,39 @@
       "reasoning_source": "default"
     },
     {
+      "agent_id": "alibaba-tablestore-architect-agent",
+      "harness": "codex",
+      "model": "gpt-5.4",
+      "model_provider": null,
+      "model_fallback_from": null,
+      "model_warning": null,
+      "reasoning_effort": "high",
+      "model_source": "all",
+      "reasoning_source": "all"
+    },
+    {
+      "agent_id": "alibaba-tablestore-architect-agent",
+      "harness": "claude-code",
+      "model": null,
+      "model_provider": null,
+      "model_fallback_from": null,
+      "model_warning": null,
+      "reasoning_effort": null,
+      "model_source": "default",
+      "reasoning_source": "default"
+    },
+    {
+      "agent_id": "alibaba-tablestore-architect-agent",
+      "harness": "cursor",
+      "model": null,
+      "model_provider": null,
+      "model_fallback_from": null,
+      "model_warning": null,
+      "reasoning_effort": null,
+      "model_source": "default",
+      "reasoning_source": "default"
+    },
+    {
       "agent_id": "alibaba-ticket-triage-escalation-coordinator-agent",
       "harness": "codex",
       "model": "gpt-5.4",
@@ -2660,6 +2693,39 @@
     },
     {
       "agent_id": "aws-dynamodb-data-modeling-performance-review-agent",
+      "harness": "cursor",
+      "model": "inherit",
+      "model_provider": null,
+      "model_fallback_from": null,
+      "model_warning": null,
+      "reasoning_effort": null,
+      "model_source": "provider:aws",
+      "reasoning_source": "default"
+    },
+    {
+      "agent_id": "aws-dynamodb-patterns-agent",
+      "harness": "codex",
+      "model": "gpt-5.4",
+      "model_provider": null,
+      "model_fallback_from": null,
+      "model_warning": null,
+      "reasoning_effort": "high",
+      "model_source": "all",
+      "reasoning_source": "all"
+    },
+    {
+      "agent_id": "aws-dynamodb-patterns-agent",
+      "harness": "claude-code",
+      "model": null,
+      "model_provider": null,
+      "model_fallback_from": null,
+      "model_warning": null,
+      "reasoning_effort": null,
+      "model_source": "default",
+      "reasoning_source": "default"
+    },
+    {
+      "agent_id": "aws-dynamodb-patterns-agent",
       "harness": "cursor",
       "model": "inherit",
       "model_provider": null,
@@ -3921,6 +3987,39 @@
       "model_warning": null,
       "reasoning_effort": null,
       "model_source": "agent:azure-cosmosdb-application-developer-agent",
+      "reasoning_source": "default"
+    },
+    {
+      "agent_id": "azure-cosmosdb-pattern-agent",
+      "harness": "codex",
+      "model": "gpt-5.4",
+      "model_provider": null,
+      "model_fallback_from": null,
+      "model_warning": null,
+      "reasoning_effort": "high",
+      "model_source": "all",
+      "reasoning_source": "all"
+    },
+    {
+      "agent_id": "azure-cosmosdb-pattern-agent",
+      "harness": "claude-code",
+      "model": null,
+      "model_provider": null,
+      "model_fallback_from": null,
+      "model_warning": null,
+      "reasoning_effort": null,
+      "model_source": "default",
+      "reasoning_source": "default"
+    },
+    {
+      "agent_id": "azure-cosmosdb-pattern-agent",
+      "harness": "cursor",
+      "model": null,
+      "model_provider": null,
+      "model_fallback_from": null,
+      "model_warning": null,
+      "reasoning_effort": null,
+      "model_source": "default",
       "reasoning_source": "default"
     },
     {
@@ -8181,6 +8280,39 @@
       "reasoning_source": "default"
     },
     {
+      "agent_id": "gcp-bigtable-architect-agent",
+      "harness": "codex",
+      "model": "gpt-5.4",
+      "model_provider": null,
+      "model_fallback_from": null,
+      "model_warning": null,
+      "reasoning_effort": "high",
+      "model_source": "all",
+      "reasoning_source": "all"
+    },
+    {
+      "agent_id": "gcp-bigtable-architect-agent",
+      "harness": "claude-code",
+      "model": null,
+      "model_provider": null,
+      "model_fallback_from": null,
+      "model_warning": null,
+      "reasoning_effort": null,
+      "model_source": "default",
+      "reasoning_source": "default"
+    },
+    {
+      "agent_id": "gcp-bigtable-architect-agent",
+      "harness": "cursor",
+      "model": null,
+      "model_provider": null,
+      "model_fallback_from": null,
+      "model_warning": null,
+      "reasoning_effort": null,
+      "model_source": "default",
+      "reasoning_source": "default"
+    },
+    {
       "agent_id": "gcp-certificate-manager-issuer-review-agent",
       "harness": "codex",
       "model": "gpt-5.4",
@@ -10943,6 +11075,39 @@
     },
     {
       "agent_id": "huawei-gaussdb-rds-dba-agent",
+      "harness": "cursor",
+      "model": null,
+      "model_provider": null,
+      "model_fallback_from": null,
+      "model_warning": null,
+      "reasoning_effort": null,
+      "model_source": "default",
+      "reasoning_source": "default"
+    },
+    {
+      "agent_id": "huawei-geminidb-architect-agent",
+      "harness": "codex",
+      "model": "gpt-5.4",
+      "model_provider": null,
+      "model_fallback_from": null,
+      "model_warning": null,
+      "reasoning_effort": "high",
+      "model_source": "all",
+      "reasoning_source": "all"
+    },
+    {
+      "agent_id": "huawei-geminidb-architect-agent",
+      "harness": "claude-code",
+      "model": null,
+      "model_provider": null,
+      "model_fallback_from": null,
+      "model_warning": null,
+      "reasoning_effort": null,
+      "model_source": "default",
+      "reasoning_source": "default"
+    },
+    {
+      "agent_id": "huawei-geminidb-architect-agent",
       "harness": "cursor",
       "model": null,
       "model_provider": null,
@@ -17367,6 +17532,72 @@
     },
     {
       "agent_id": "oci-network-architect-agent",
+      "harness": "cursor",
+      "model": "inherit",
+      "model_provider": null,
+      "model_fallback_from": null,
+      "model_warning": null,
+      "reasoning_effort": null,
+      "model_source": "provider:oci",
+      "reasoning_source": "default"
+    },
+    {
+      "agent_id": "oci-nosql-database-architect-agent",
+      "harness": "codex",
+      "model": "gpt-5.4",
+      "model_provider": null,
+      "model_fallback_from": null,
+      "model_warning": null,
+      "reasoning_effort": "high",
+      "model_source": "all",
+      "reasoning_source": "all"
+    },
+    {
+      "agent_id": "oci-nosql-database-architect-agent",
+      "harness": "claude-code",
+      "model": null,
+      "model_provider": null,
+      "model_fallback_from": null,
+      "model_warning": null,
+      "reasoning_effort": null,
+      "model_source": "default",
+      "reasoning_source": "default"
+    },
+    {
+      "agent_id": "oci-nosql-database-architect-agent",
+      "harness": "cursor",
+      "model": "inherit",
+      "model_provider": null,
+      "model_fallback_from": null,
+      "model_warning": null,
+      "reasoning_effort": null,
+      "model_source": "provider:oci",
+      "reasoning_source": "default"
+    },
+    {
+      "agent_id": "oci-nosql-pattern-agent",
+      "harness": "codex",
+      "model": "gpt-5.4",
+      "model_provider": null,
+      "model_fallback_from": null,
+      "model_warning": null,
+      "reasoning_effort": "high",
+      "model_source": "all",
+      "reasoning_source": "all"
+    },
+    {
+      "agent_id": "oci-nosql-pattern-agent",
+      "harness": "claude-code",
+      "model": null,
+      "model_provider": null,
+      "model_fallback_from": null,
+      "model_warning": null,
+      "reasoning_effort": null,
+      "model_source": "default",
+      "reasoning_source": "default"
+    },
+    {
+      "agent_id": "oci-nosql-pattern-agent",
       "harness": "cursor",
       "model": "inherit",
       "model_provider": null,

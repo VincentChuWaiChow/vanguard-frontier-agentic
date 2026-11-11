@@ -32,7 +32,10 @@ jobs:
       - name: Install Python validator dependencies
         # validate:promotion-gatekeeper imports jsonschema and
         # validate:skill-yaml imports PyYAML; both fail closed without them.
-        run: python3 -m pip install --quiet jsonschema pyyaml
+        # validate:nosql-pattern-evals runs the NoSQL pattern skills' evals; two of them lint
+        # CloudFormation with cfn-lint, pinned in tests/requirements-ci.txt so rule
+        # updates cannot change CI results without a commit; Dependabot bumps the pin.
+        run: python3 -m pip install --quiet -r tests/requirements-ci.txt
 
       # Run the aggregate validation contract rather than a hand-picked subset.
       # CI previously invoked nine validators individually while `npm run

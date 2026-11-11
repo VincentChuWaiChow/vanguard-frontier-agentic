@@ -3,17 +3,25 @@
   "name": "Huawei GaussDB/RDS DBA",
   "type": "skill",
   "provider": "huawei",
-  "harnesses": ["codex", "claude-code", "cursor", "gemini", "kiro", "other"],
+  "harnesses": [
+    "codex",
+    "claude-code",
+    "cursor",
+    "gemini",
+    "kiro",
+    "other"
+  ],
   "summary": "Manage Huawei GaussDB, RDS instances, DDS MongoDB-compatible document store, database proxy connection pooling, and HA/backup architecture with CBR integration.",
   "source_type": "original",
   "official_docs": [
     "https://support.huaweicloud.com/intl/en-us/gaussdb_mysql/index.html",
     "https://support.huaweicloud.com/intl/en-us/rds/index.html",
-    "https://support.huaweicloud.com/intl/en-us/dds/index.html"
+    "https://support.huaweicloud.com/intl/en-us/dds/index.html",
+    "https://support.huaweicloud.com/intl/en-us/usermanual-dds/dds_01_0061.html"
   ],
   "security_notes": "Database deletion without CBR backup is permanently destructive. GaussDB for Oracle PL/SQL gaps can break migration — test all procedures before cutover. Failover testing must be coordinated with application teams.",
-  "last_verified": "2026-05-08",
+  "last_verified": "2026-11-08",
   "path": "skills/huawei/huawei-gaussdb-rds-dba",
   "author": "github: VincentChuWaiChow",
-  "version": "0.1.0"
+  "version": "0.1.1"
 }

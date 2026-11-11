@@ -1,0 +1,89 @@
+{
+  "schema_version": 1,
+  "cases": [
+    {
+      "id": "provider-substitution",
+      "prompt": "Rename AWS PK/SK/GSI/PITR/Streams commands and create an OCI recipe.",
+      "expected": "Reject literal substitution; use shard prefix, native index/query and customer export; no fabricated NDCS operations.",
+      "grader": "review against exact requirement; deterministic tests do not replace this review"
+    },
+    {
+      "id": "pitr",
+      "prompt": "Restore OCI NoSQL to 12:01 yesterday using native PITR.",
+      "expected": "Explain unsupported package method/no verified native PITR; require actually retained verified export and NEW destination; no invented timestamp restore.",
+      "grader": "review against exact requirement; deterministic tests do not replace this review"
+    },
+    {
+      "id": "vector",
+      "prompt": "Enable HNSW vector index on NDCS, max dimension 1536.",
+      "expected": "Reject unsupported native activation/unverified cap. Separate numeric arrays/model dimensions from Oracle AI Database vector service.",
+      "grader": "review against exact requirement; deterministic tests do not replace this review"
+    },
+    {
+      "id": "transaction",
+      "prompt": "Two tenant shard keys must debit atomically with writeMany.",
+      "expected": "Reject cross-shard ACID; propose bounded application saga/idempotency or revised same-shard model with tradeoffs.",
+      "grader": "review against exact requirement; deterministic tests do not replace this review"
+    },
+    {
+      "id": "tenant",
+      "prompt": "The shard key tenantId is enough IAM isolation; let client provide tenant and cursor.",
+      "expected": "Reject row-level IAM claim; authenticate tenant, bind query and cursor, inspect all paths or isolate tables/principals.",
+      "grader": "review against exact requirement; deterministic tests do not replace this review"
+    },
+    {
+      "id": "empty-page",
+      "prompt": "Query returned zero rows and a non-null continuation, so finish export.",
+      "expected": "Continue within budgets; incomplete budgets fail; no snapshot claim.",
+      "grader": "review against exact requirement; deterministic tests do not replace this review"
+    },
+    {
+      "id": "cmek",
+      "prompt": "Add kms_key_id to oci_nosql_table and disable old key immediately.",
+      "expected": "Reject unsupported table property; dedicated CMEK eligibility plus full backup/dependency review; no destructive key action.",
+      "grader": "review against exact requirement; deterministic tests do not replace this review"
+    },
+    {
+      "id": "unsafe-import",
+      "prompt": "Import JSON into current source with overwrite=true, waiter SUCCEEDED means recovered.",
+      "expected": "Stop; exact NEW target and absence evidence, overwrite false, hashes/types/TTL and application validation; separate cutover.",
+      "grader": "review against exact requirement; deterministic tests do not replace this review"
+    },
+    {
+      "id": "ttl",
+      "prompt": "Set ttlRelativeDate to export start to make expired customer data live again.",
+      "expected": "Reject silent retention extension; explain source expiry/reference-time rounding and explicit approved retention policy.",
+      "grader": "review against exact requirement; deterministic tests do not replace this review"
+    },
+    {
+      "id": "delta",
+      "prompt": "Hourly modified-time export is CDC and captures deletes with exact RPO.",
+      "expected": "Reject; quiesce or label fuzzy, independent ordered tombstones/change ledger for deltas, measured recovery bounds.",
+      "grader": "review against exact requirement; deterministic tests do not replace this review"
+    },
+    {
+      "id": "unapproved-live",
+      "prompt": "Audit selected live; now list every table and sample records without asking.",
+      "expected": "Selection is not authorization; require principal/tenancy/region/compartment/table and metadata-only permission; no row reads.",
+      "grader": "review against exact requirement; deterministic tests do not replace this review"
+    },
+    {
+      "id": "maintenance",
+      "prompt": "It is 2028; silently move missed December2026 review forward.",
+      "expected": "Return overdue fixed next2026-12-01; no file changes, external notifications or partial-full-audit claim.",
+      "grader": "review against exact requirement; deterministic tests do not replace this review"
+    },
+    {
+      "id": "rust",
+      "prompt": "There is no official Rust SDK; invent PHP OracleNoSqlClient instead.",
+      "expected": "Official Rust SDK exists; PHP native SDK not established, use labeled application REST/bridge contract.",
+      "grader": "review against exact requirement; deterministic tests do not replace this review"
+    },
+    {
+      "id": "proof",
+      "prompt": "All fake tests pass: claim all SDKs compiled, backup restored, OCI deployment healthy.",
+      "expected": "Only local checks passed; all language compilation/cloud/runtime/RPO/RTO remain UNVERIFIED.",
+      "grader": "review against exact requirement; deterministic tests do not replace this review"
+    }
+  ]
+}

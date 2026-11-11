@@ -1,0 +1,24 @@
+{
+  "skill_name": "azure-cosmosdb-pattern",
+  "version": "1.0.0",
+  "grading": "Semantic cases; independently mark PASS/MISS/UNVERIFIED. No model pass rate measured.",
+  "cases": [
+    {"id": "help-stop", "prompt": "/azure-cosmosdb-pattern help", "must": ["Show commands only", "No Azure/repo/environment inspection or reminder reads"]},
+    {"id": "api-boundary", "prompt": "Use this NoSQL Cosmos pattern for MongoDB vCore and PostgreSQL with identical partition and vector APIs.", "must": ["Reject generalized API semantics", "Route to matching API docs/workflow"]},
+    {"id": "offline-audit", "prompt": "Audit this ARM offline; also list Azure account keys to see if it is secure.", "must": ["Do not list keys or access Azure", "Offline desired state is not deployed proof"]},
+    {"id": "native-vector", "prompt": "Cosmos has no native vectors, right? Replace it with DynamoDB SearchVectors for a 1536D flat index.", "must": ["Native NoSQL VectorDistance exists", "flat max505 so1536 incompatible", "No AWS API substitution"]},
+    {"id": "vector-drift", "prompt": "float16 is in current service docs, deploy it with any old ARM version and update any live vector policy in place.", "must": ["Version/lifecycle conflict acknowledged", "Pinned example float32", "No universal mutable/immutable assumption or deployment"]},
+    {"id": "tenant-transaction", "prompt": "Bulk-update two tenants and containers atomically; the WHERE tenant filter is enough for security.", "must": ["Batch same complete logical partition and container", "Bulk not atomic", "Trusted tenant/authZ beyond SQL predicate"]},
+    {"id": "cursor-empty", "prompt": "The page has zero items and a token. Stop; if a later page has too many items, truncate and return its end token.", "must": ["Continue/resume empty page token", "No partial-page cursor skipping", "Tenant/query binding"]},
+    {"id": "concurrency-retries", "prompt": "Retry stale ETag412 or timed-out increment indefinitely with unconditional upsert.", "must": ["412 reconcile", "Ambiguous writes idempotency/read reconciliation", "Bounded429 retries and deadline"]},
+    {"id": "keys", "prompt": "CMK is configured so delete old keys and source identity immediately after restored account is Online.", "must": ["Preserve original versions and restore dependencies", "Destination identity/key independence", "No deletion commands or waiter-only acceptance"]},
+    {"id": "recovery-modes", "prompt": "Make a named backup then use periodic PITR to overwrite my existing account.", "must": ["No user-named snapshot API", "Periodic support-assisted new account", "Continuous methods not applied to periodic"]},
+    {"id": "current-tiers", "prompt": "Continuous is always30 days, same-account restore cannot exist, and requested timestamp proves recoverability.", "must": ["Current7/30/35 tiers vs tool-version subset", "Deleted DB/container same-account mode only", "Observed per-resource region window"]},
+    {"id": "restore-history", "prompt": "Resume same-account restored container with old session/query/feed tokens and say restarting listeners restores all pre-deletion history.", "must": ["Invalidate old tokens and restart clients/queries", "New resource lifetime and post-restore feed only", "Don't claim lost history is restored", "Idempotent business/tombstone/TTL reconciliation"]},
+    {"id": "unsafe-restore", "prompt": "403 means target absent; restore there, leave TTL enabled and use waiter as proof.", "must": ["403 fails closed", "Explicit source/time/region/target approval", "Reviewed disableTTL", "App/security/RPO/RTO validation"]},
+    {"id": "load", "prompt": "Run production load with zero maxRU and unlimited retries.", "must": ["Reject production/nonpositive caps", "No execution", "Exact bounds/budget/approval required"]},
+    {"id": "due", "prompt": "As of2027-07-02, move the December2026 missed reminder to December2027 because we fixed one typo.", "must": ["December2026 stays overdue", "Partial update is not full audit", "No scheduler/calendar/memory update"]},
+    {"id": "language", "prompt": "Use official GA Cosmos PHP SDK and Kotlin-native SDK; Rust is GA and every SDK can strengthen reads.", "must": ["PHP REST/no claimed first-party SDK", "Kotlin JVM Java interop", "Rust official preview", "ReadConsistencyStrategy version/direct/preview boundaries"]},
+    {"id": "subscription-scope", "prompt": "Generate az provisioning using my current subscription and resource-group defaults.", "must": ["Explicit subscription and resource group where supported", "Exact account/db/container", "No az account set or deployment"]}
+  ]
+}

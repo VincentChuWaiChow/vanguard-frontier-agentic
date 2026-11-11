@@ -34,16 +34,16 @@
   "trees": [
     {
       "tree": "agents",
-      "aggregate_sha256": "f3be391c8feabd0d4f6fa7190a4d2d3eb13348096364510a4f9e4c727ea01aa9",
+      "aggregate_sha256": "8d5c23f3fe0e89a7ecc6fc49fd602490aaa9eef7d9751d3cd39b10a89f49fb75",
       "files": [
         {
           "path": "agents/AGENTS.md",
-          "sha256": "41fccdcf07f3aad8f1e0cc164cb3a2e314c279589cc30ce3cf85cb8d6bd36faf",
+          "sha256": "e90d432b6ec897ef951bc0ec1136ff3e4467f564596708acefedb2632bd48812",
           "bytes": 28065
         },
         {
           "path": "agents/README.md",
-          "sha256": "2138077edebc7b25ac76784154106e8b70abf7505bfdab06c7748bad89341a29",
+          "sha256": "36864025594b35caeb1b84ef0a3b635b5743fbd18985a28bcb24602be576382b",
           "bytes": 10047
         },
         {
@@ -2552,6 +2552,51 @@
           "bytes": 2167
         },
         {
+          "path": "agents/alibaba/alibaba-tablestore-architect-agent/AGENT.md",
+          "sha256": "bad59c85f6dedd7ed77d421a9d5ff821217e3bd00ba803eb83984a1536ef6ea8",
+          "bytes": 3105
+        },
+        {
+          "path": "agents/alibaba/alibaba-tablestore-architect-agent/harnesses/claude-code.agent.md",
+          "sha256": "fec61d14b408e67bff15d31f5fb6492f1dbbdd487777e54fbfabc60910de844e",
+          "bytes": 2519
+        },
+        {
+          "path": "agents/alibaba/alibaba-tablestore-architect-agent/harnesses/codex.toml",
+          "sha256": "ee5106b88cb642e6d52fc861af59896e41c59f2e72679ae9e62af5ce7e38b7e3",
+          "bytes": 1474
+        },
+        {
+          "path": "agents/alibaba/alibaba-tablestore-architect-agent/harnesses/copilot.agent.md",
+          "sha256": "ea3427f0e9c42cd9e6190d9f380861526ffbb7ef17998dbf0d27efef603789ad",
+          "bytes": 2625
+        },
+        {
+          "path": "agents/alibaba/alibaba-tablestore-architect-agent/harnesses/cursor.agent.md",
+          "sha256": "9a2332eeed51eb76a2cf17bd05a9216833da98a8a6d72e0193a88d1e877a70ff",
+          "bytes": 2534
+        },
+        {
+          "path": "agents/alibaba/alibaba-tablestore-architect-agent/harnesses/gemini.agent.md",
+          "sha256": "3f5e7ded43657dcbdc1b4b23175c34a28659236f8c07adbc05bb8f76a824e5c7",
+          "bytes": 2584
+        },
+        {
+          "path": "agents/alibaba/alibaba-tablestore-architect-agent/harnesses/kiro-cli.agent.json",
+          "sha256": "fc19ff66f379a253df25f0c769c54c47964c2ae5fe0bcfb1c2e56f1d06a28e1d",
+          "bytes": 2569
+        },
+        {
+          "path": "agents/alibaba/alibaba-tablestore-architect-agent/harnesses/kiro-ide.agent.md",
+          "sha256": "fec61d14b408e67bff15d31f5fb6492f1dbbdd487777e54fbfabc60910de844e",
+          "bytes": 2519
+        },
+        {
+          "path": "agents/alibaba/alibaba-tablestore-architect-agent/metadata.json",
+          "sha256": "5b7efd83d4ed8f18141008d344d3fdfa89d7089fc5a8cf762db7f2434de8086e",
+          "bytes": 1971
+        },
+        {
           "path": "agents/alibaba/alibaba-ticket-triage-escalation-coordinator-agent/AGENT.md",
           "sha256": "cb0ed97b2d6d59243b07c934566573c59a3c614c0bb3cfec3bd1cce1bdd649d2",
           "bytes": 3901
@@ -3420,6 +3465,51 @@
           "path": "agents/aws/aws-dynamodb-data-modeling-performance-review-agent/metadata.json",
           "sha256": "becf418cb3e0549fdeb824e8c5cb148a2aeba550b668a00e82bc61af545872ba",
           "bytes": 2086
+        },
+        {
+          "path": "agents/aws/aws-dynamodb-patterns-agent/AGENT.md",
+          "sha256": "c12e0531baac8764525497e4d6fe791304016f3d52e5ec27955849c3ff69c520",
+          "bytes": 3249
+        },
+        {
+          "path": "agents/aws/aws-dynamodb-patterns-agent/harnesses/claude-code.agent.md",
+          "sha256": "cb248353755c78e0e15357500cc8905a3687d09d524ffa5230f484549dedc5b8",
+          "bytes": 2663
+        },
+        {
+          "path": "agents/aws/aws-dynamodb-patterns-agent/harnesses/codex.toml",
+          "sha256": "bd39482673c4d83c8cc0accc527624fbd41fae7f7a9ed3ba6a9c379edc779351",
+          "bytes": 1644
+        },
+        {
+          "path": "agents/aws/aws-dynamodb-patterns-agent/harnesses/copilot.agent.md",
+          "sha256": "d5454c99ad65ea5c6c02a75307388a097e49bd9342b04bf9addb51850be57348",
+          "bytes": 2769
+        },
+        {
+          "path": "agents/aws/aws-dynamodb-patterns-agent/harnesses/cursor.agent.md",
+          "sha256": "64d39d35d67d2ea1dba9a0fd268749fc4fa96cd19bb439cbb4ff38b729ddafd4",
+          "bytes": 2695
+        },
+        {
+          "path": "agents/aws/aws-dynamodb-patterns-agent/harnesses/gemini.agent.md",
+          "sha256": "2473f48f548539eb1f00624a295fedafd900ad00788778c5946b44cc7123d14e",
+          "bytes": 2721
+        },
+        {
+          "path": "agents/aws/aws-dynamodb-patterns-agent/harnesses/kiro-cli.agent.json",
+          "sha256": "257a106b6045ff02e841b7f749f87a58780472a87f14d05d5de59c5496c9dd6a",
+          "bytes": 2712
+        },
+        {
+          "path": "agents/aws/aws-dynamodb-patterns-agent/harnesses/kiro-ide.agent.md",
+          "sha256": "cb248353755c78e0e15357500cc8905a3687d09d524ffa5230f484549dedc5b8",
+          "bytes": 2663
+        },
+        {
+          "path": "agents/aws/aws-dynamodb-patterns-agent/metadata.json",
+          "sha256": "e8ac444377f183ece845ea0e8bc1689fd03d61d5208b0ced0c1a3b58581d1182",
+          "bytes": 2036
         },
         {
           "path": "agents/aws/aws-ec2-compute-operations-steward-agent/AGENT.md",
@@ -5238,8 +5328,8 @@
         },
         {
           "path": "agents/azure/azure-cosmosdb-application-developer-agent/metadata.json",
-          "sha256": "a2ead3d7ca6c39158d0f187f11fc87e68b8ffd2d3f78c89a8310c29a6295ec14",
-          "bytes": 2133
+          "sha256": "b0959b31aa5619f16e73596d55409cee80b2e07c37e44f39375cc52f415221dd",
+          "bytes": 2245
         },
         {
           "path": "agents/azure/azure-cosmosdb-application-developer-agent/references/cosmosdb-application-agent-operations.md",
@@ -5265,6 +5355,51 @@
           "path": "agents/azure/azure-cosmosdb-application-developer-agent/references/workflow-and-output.md",
           "sha256": "cdfe6b18a70a82eb85248bbaf4af78419b9758e4fb940ac5249ea1d2d56c165f",
           "bytes": 915
+        },
+        {
+          "path": "agents/azure/azure-cosmosdb-pattern-agent/AGENT.md",
+          "sha256": "3df7501c0974b992b1bcf6971935e455610a5ec9f6708eb5efb5262794b16d69",
+          "bytes": 3208
+        },
+        {
+          "path": "agents/azure/azure-cosmosdb-pattern-agent/harnesses/claude-code.agent.md",
+          "sha256": "44383a302e0dc1b302f4a60f2dd5f1630d091d2ca6283c3eb43c9f11d7443e04",
+          "bytes": 2622
+        },
+        {
+          "path": "agents/azure/azure-cosmosdb-pattern-agent/harnesses/codex.toml",
+          "sha256": "14694adcfcac593290aa619418004a76acd2ca77cd83650b78eba02f7e3066ca",
+          "bytes": 1609
+        },
+        {
+          "path": "agents/azure/azure-cosmosdb-pattern-agent/harnesses/copilot.agent.md",
+          "sha256": "c138a9850d640ad4adeca1f3e5fe06f9d7e767aef257bd69ebe3840cd41f6a47",
+          "bytes": 2728
+        },
+        {
+          "path": "agents/azure/azure-cosmosdb-pattern-agent/harnesses/cursor.agent.md",
+          "sha256": "70e4b401662741746e15187b8cbdecca5cc6068622a6a0016137348e8f5e847a",
+          "bytes": 2637
+        },
+        {
+          "path": "agents/azure/azure-cosmosdb-pattern-agent/harnesses/gemini.agent.md",
+          "sha256": "95b4242e8c3572ab5d9ec5eaa3910eca26d4335d0d15a75112e22c481cb2242a",
+          "bytes": 2681
+        },
+        {
+          "path": "agents/azure/azure-cosmosdb-pattern-agent/harnesses/kiro-cli.agent.json",
+          "sha256": "ddb74c60dda6b3653bbc922b8877f087f96ebf986af19b77a90fd87d4c1ac046",
+          "bytes": 2671
+        },
+        {
+          "path": "agents/azure/azure-cosmosdb-pattern-agent/harnesses/kiro-ide.agent.md",
+          "sha256": "44383a302e0dc1b302f4a60f2dd5f1630d091d2ca6283c3eb43c9f11d7443e04",
+          "bytes": 2622
+        },
+        {
+          "path": "agents/azure/azure-cosmosdb-pattern-agent/metadata.json",
+          "sha256": "c00228c9e51fc0c710381058661b698ad9d23c5aa8d4f767ddde3ade9ab2dcea",
+          "bytes": 1923
         },
         {
           "path": "agents/azure/azure-cosmosdb-performance-investigator-agent/AGENT.md",
@@ -12127,6 +12262,51 @@
           "bytes": 1953
         },
         {
+          "path": "agents/gcp/gcp-bigtable-architect-agent/AGENT.md",
+          "sha256": "358f13ff4ef8ed77209b7f8bfbfc384503ece5bf3619e2c0e8a4a98386a13955",
+          "bytes": 3041
+        },
+        {
+          "path": "agents/gcp/gcp-bigtable-architect-agent/harnesses/claude-code.agent.md",
+          "sha256": "ece3c8d4ca735a904067aebe304de4462034f9ad498d1d5ee55738446aab99eb",
+          "bytes": 2455
+        },
+        {
+          "path": "agents/gcp/gcp-bigtable-architect-agent/harnesses/codex.toml",
+          "sha256": "0bd5d949dcdcf037194c1c9a0d1878ee3a04d67cd976a8236c691b8cd1319704",
+          "bytes": 1402
+        },
+        {
+          "path": "agents/gcp/gcp-bigtable-architect-agent/harnesses/copilot.agent.md",
+          "sha256": "db192a542e2da4de0cd829cd4cd128f1c26534f18f17045b0f974c36ad5c572f",
+          "bytes": 2561
+        },
+        {
+          "path": "agents/gcp/gcp-bigtable-architect-agent/harnesses/cursor.agent.md",
+          "sha256": "5e9300036856eef8085e0d765d7720be00cf5a792008e17d0df5f7464c545357",
+          "bytes": 2470
+        },
+        {
+          "path": "agents/gcp/gcp-bigtable-architect-agent/harnesses/gemini.agent.md",
+          "sha256": "302c3db7b72fb2627d30791e084b01830f9751069c8748167ef3d48df327bb05",
+          "bytes": 2514
+        },
+        {
+          "path": "agents/gcp/gcp-bigtable-architect-agent/harnesses/kiro-cli.agent.json",
+          "sha256": "54288ea8890e1fc5c99fbbadb649507622e4d04120d258e05f5f928af323e772",
+          "bytes": 2505
+        },
+        {
+          "path": "agents/gcp/gcp-bigtable-architect-agent/harnesses/kiro-ide.agent.md",
+          "sha256": "ece3c8d4ca735a904067aebe304de4462034f9ad498d1d5ee55738446aab99eb",
+          "bytes": 2455
+        },
+        {
+          "path": "agents/gcp/gcp-bigtable-architect-agent/metadata.json",
+          "sha256": "e80a93bdeed9a613e944003d06805a4a10e0ac3cd6c0744a687f362595a28ee7",
+          "bytes": 1775
+        },
+        {
           "path": "agents/gcp/gcp-certificate-manager-issuer-review-agent/AGENT.md",
           "sha256": "88cd36764784c7062bc31d3f17e1c700f6cf221747801f346dd1f17a610ba0c8",
           "bytes": 2953
@@ -15865,6 +16045,51 @@
           "path": "agents/huawei/huawei-gaussdb-rds-dba-agent/metadata.json",
           "sha256": "694d48a92f6a7e491363cedd547e90b3dbed3c090b7ad0120b465bc17bb74627",
           "bytes": 1683
+        },
+        {
+          "path": "agents/huawei/huawei-geminidb-architect-agent/AGENT.md",
+          "sha256": "0a1a1fc740a5ae0944c62b960d0ab032e9a27ad198a81d8a60a2e90ddc39b8aa",
+          "bytes": 3100
+        },
+        {
+          "path": "agents/huawei/huawei-geminidb-architect-agent/harnesses/claude-code.agent.md",
+          "sha256": "9d6f3da21955ecf5e855ccbe5e727faecb0a20da01d89d1e9a627eb7c206bab1",
+          "bytes": 2514
+        },
+        {
+          "path": "agents/huawei/huawei-geminidb-architect-agent/harnesses/codex.toml",
+          "sha256": "59d1cfa5b585ed597d9d4cabca8d618ea289238d1265a7b0d18f4793665ab391",
+          "bytes": 1428
+        },
+        {
+          "path": "agents/huawei/huawei-geminidb-architect-agent/harnesses/copilot.agent.md",
+          "sha256": "93390f8ffe11b90a3fc5ecca9a9b00cdbe34c64de005bf26def1e67aef5cc540",
+          "bytes": 2620
+        },
+        {
+          "path": "agents/huawei/huawei-geminidb-architect-agent/harnesses/cursor.agent.md",
+          "sha256": "4e62c0d4e9c9e468b86ae5c53c630ec516d6b51d6e00dc6f17366d9220fa6e41",
+          "bytes": 2529
+        },
+        {
+          "path": "agents/huawei/huawei-geminidb-architect-agent/harnesses/gemini.agent.md",
+          "sha256": "9d8a1858f570afd23df2d20e39a1aeda921fb6780829efeb4fb94fd5efff6123",
+          "bytes": 2576
+        },
+        {
+          "path": "agents/huawei/huawei-geminidb-architect-agent/harnesses/kiro-cli.agent.json",
+          "sha256": "1467adf06bdee44071bb008eb10658ae925a45dedd8272117e533ed275391bd0",
+          "bytes": 2564
+        },
+        {
+          "path": "agents/huawei/huawei-geminidb-architect-agent/harnesses/kiro-ide.agent.md",
+          "sha256": "9d6f3da21955ecf5e855ccbe5e727faecb0a20da01d89d1e9a627eb7c206bab1",
+          "bytes": 2514
+        },
+        {
+          "path": "agents/huawei/huawei-geminidb-architect-agent/metadata.json",
+          "sha256": "70f5ff59be7571e57f9b2b553ce24e9ab462ce9c452f73158ae96f2d0f971fd1",
+          "bytes": 1814
         },
         {
           "path": "agents/huawei/huawei-iac-change-safety-review-agent/AGENT.md",
@@ -26227,6 +26452,96 @@
           "bytes": 1570
         },
         {
+          "path": "agents/oci/oci-nosql-database-architect-agent/AGENT.md",
+          "sha256": "bd7bc54d6cbab8b4046837d4e6c4817e8fb17965bd75f7dd323eeb55b59f1e0a",
+          "bytes": 3034
+        },
+        {
+          "path": "agents/oci/oci-nosql-database-architect-agent/harnesses/claude-code.agent.md",
+          "sha256": "5510e16fde3ddffc02c967c13f8d0fa7b21577b8321cf1b861e44c4643eb4333",
+          "bytes": 2448
+        },
+        {
+          "path": "agents/oci/oci-nosql-database-architect-agent/harnesses/codex.toml",
+          "sha256": "682221fa2c100d263c087cb0623220e41abf6bff724b08a1f1e64f57bf7feacb",
+          "bytes": 1415
+        },
+        {
+          "path": "agents/oci/oci-nosql-database-architect-agent/harnesses/copilot.agent.md",
+          "sha256": "6686e5cb4d2a38b653fa93426f00f0dce9dd71a6c7de1e08326c7d743f8672bf",
+          "bytes": 2554
+        },
+        {
+          "path": "agents/oci/oci-nosql-database-architect-agent/harnesses/cursor.agent.md",
+          "sha256": "4a27e1a419f13ee3328566a1cb7bcaa0900185ecd322bd22476bd18ef4c6899c",
+          "bytes": 2480
+        },
+        {
+          "path": "agents/oci/oci-nosql-database-architect-agent/harnesses/gemini.agent.md",
+          "sha256": "69be89a3d56923a3f808d97aa3d95f6a497deca7cc0e7558266f45d12e35fe9b",
+          "bytes": 2513
+        },
+        {
+          "path": "agents/oci/oci-nosql-database-architect-agent/harnesses/kiro-cli.agent.json",
+          "sha256": "069e339e84fa4f1a1ea855c225b4d39271924ead3956f7c3c83c65dc9aa37349",
+          "bytes": 2498
+        },
+        {
+          "path": "agents/oci/oci-nosql-database-architect-agent/harnesses/kiro-ide.agent.md",
+          "sha256": "5510e16fde3ddffc02c967c13f8d0fa7b21577b8321cf1b861e44c4643eb4333",
+          "bytes": 2448
+        },
+        {
+          "path": "agents/oci/oci-nosql-database-architect-agent/metadata.json",
+          "sha256": "fdaa39bdf83975ee2badf3ccfbfdaf6f8dfd6363efde883b2556dd017465653d",
+          "bytes": 1938
+        },
+        {
+          "path": "agents/oci/oci-nosql-pattern-agent/AGENT.md",
+          "sha256": "17425e4862a96621ad0fa209d8d4c5f7b391587a2148dd3b0405d7598449554e",
+          "bytes": 3124
+        },
+        {
+          "path": "agents/oci/oci-nosql-pattern-agent/harnesses/claude-code.agent.md",
+          "sha256": "e19907330c8e88429488effb379a5368d6b68058f20b7415d9aa902f83091cd4",
+          "bytes": 2538
+        },
+        {
+          "path": "agents/oci/oci-nosql-pattern-agent/harnesses/codex.toml",
+          "sha256": "1a8ae75417fd37a4b71059eb30a81cc1c6b7c7d9e758c12507b2baea3a517987",
+          "bytes": 1580
+        },
+        {
+          "path": "agents/oci/oci-nosql-pattern-agent/harnesses/copilot.agent.md",
+          "sha256": "247c75e5c556a5154f9663d7b5c2e8ded280713073f6090122289c2002187d89",
+          "bytes": 2644
+        },
+        {
+          "path": "agents/oci/oci-nosql-pattern-agent/harnesses/cursor.agent.md",
+          "sha256": "5aff7ac37054bb0b2594fa0dd9dc01a5095efacb76d74fe54ab46070d6eee8ed",
+          "bytes": 2570
+        },
+        {
+          "path": "agents/oci/oci-nosql-pattern-agent/harnesses/gemini.agent.md",
+          "sha256": "50541b302fa8423d7e8af9f2872476c06a20b1e6f631693a7abb932eafa4af36",
+          "bytes": 2592
+        },
+        {
+          "path": "agents/oci/oci-nosql-pattern-agent/harnesses/kiro-cli.agent.json",
+          "sha256": "ecd8306a536151e0f9cad11ef3f5186db2b075c9334679770b9457d55229a2d2",
+          "bytes": 2587
+        },
+        {
+          "path": "agents/oci/oci-nosql-pattern-agent/harnesses/kiro-ide.agent.md",
+          "sha256": "e19907330c8e88429488effb379a5368d6b68058f20b7415d9aa902f83091cd4",
+          "bytes": 2538
+        },
+        {
+          "path": "agents/oci/oci-nosql-pattern-agent/metadata.json",
+          "sha256": "f57db335a3de2bae0521995b6d3005ba4c2f4ff0aed0c255d24e2a1a99f7d803",
+          "bytes": 1841
+        },
+        {
           "path": "agents/oci/oci-observability-incident-responder-agent/AGENT.md",
           "sha256": "f03a9da815b0573e9a3183345b3aaf6b9e6b83c8ada1e5a70fafe1ca1d0fd279",
           "bytes": 2497
@@ -35984,7 +36299,7 @@
     },
     {
       "tree": "catalog",
-      "aggregate_sha256": "e9dd8fadc375ec3098c0030b1d64e5da32dab60a7bacf8835d7176b33267927a",
+      "aggregate_sha256": "e720f89ba07182b4d02ba4a3e8b487038a2fe2e2001d7f47699f00ccc15ece7c",
       "files": [
         {
           "path": "catalog/AGENTS.md",
@@ -35993,8 +36308,8 @@
         },
         {
           "path": "catalog/agents.json",
-          "sha256": "226df3aa663261108ca23efd3c933c27fd1299e177626c12715bd313e39ebc6e",
-          "bytes": 1279490
+          "sha256": "83ab49a7b069e462902af5cc140706fb0e2eb32d16e9224b0e67b188016def6c",
+          "bytes": 1288497
         },
         {
           "path": "catalog/index.json",
@@ -36003,8 +36318,8 @@
         },
         {
           "path": "catalog/install-roles.json",
-          "sha256": "2180fe8acd4736ff2a91186a97565f52998ef54a6b2b56240fc6b77123fa0ebf",
-          "bytes": 129007
+          "sha256": "8011417a09bce9e5e28301e6a8e4221144f40b37c0ca92abeaed3e71a1d94cb2",
+          "bytes": 129698
         },
         {
           "path": "catalog/mcp-references.json",
@@ -36013,8 +36328,8 @@
         },
         {
           "path": "catalog/model-assignments.json",
-          "sha256": "c8189bcc2dac324e86a2629c7433d8530fed1f275a55f8e03eb68fb0c436c07b",
-          "bytes": 704444
+          "sha256": "4e945a6d374496af038da009b83b30087539aa40bfec22ca153a839c84f78ef3",
+          "bytes": 710948
         },
         {
           "path": "catalog/model-policy.json",
@@ -36038,13 +36353,13 @@
         },
         {
           "path": "catalog/skill-manifest.json",
-          "sha256": "e799fa65bd612477ca63df7fa7dc4b4b8a1429bde06a189f4021a78811a31fd6",
-          "bytes": 1097115
+          "sha256": "b1ce8d0ade8a76a3b3fa5348e9f53b5e4148498039eb9f16eb025d47fd1b1d46",
+          "bytes": 1163556
         },
         {
           "path": "catalog/skills.json",
-          "sha256": "085fed0ce7635951b3095f1a56d090745e58d226dca39c7a7e42aef41b03629f",
-          "bytes": 1246950
+          "sha256": "86fd01bc171be3fdabcc629285d0f53b11a7c9f893b3018bd9ad1f5190566f7e",
+          "bytes": 1263021
         },
         {
           "path": "catalog/workflows.json",
@@ -36926,7 +37241,7 @@
     },
     {
       "tree": "powers",
-      "aggregate_sha256": "e6a0356ab2873e96560ebbf702c6a280ded4f79fc566d00e5b8e2c1e07bf5da1",
+      "aggregate_sha256": "df2103473a9a0d3aa77e24aee0502c8cc6d8c06d443d38ff1aff33bfd376fc4e",
       "files": [
         {
           "path": "powers/README.md",
@@ -36940,7 +37255,7 @@
         },
         {
           "path": "powers/vanguard-alibaba/POWER.md",
-          "sha256": "9e283e2f13444944843ed3a8e7ed0319d81232108a114ab30a1107247f665dc4",
+          "sha256": "4f422aeb22b71d4cda817fddc81ae41afabb7f94ae875e9b9b9b8de06af82695",
           "bytes": 3421
         },
         {
@@ -36950,12 +37265,12 @@
         },
         {
           "path": "powers/vanguard-aws/POWER.md",
-          "sha256": "8e9b294217451d79201dc7b72d1a42044a97f0497eb7301676954450e333a581",
+          "sha256": "960f7a49c856203b5bd633b08c3887833d0832edb8460d24a3067e93c8803eac",
           "bytes": 3050
         },
         {
           "path": "powers/vanguard-azure/POWER.md",
-          "sha256": "c81765887c22f7ef9ab78b92b701fe381b26cb94deb918f25d423d8b8c48fa2a",
+          "sha256": "8a5142b00caf4450eddd257ac4c687701dbdca42b7ddd4a532721023fa55fe76",
           "bytes": 3340
         },
         {
@@ -37010,7 +37325,7 @@
         },
         {
           "path": "powers/vanguard-gcp/POWER.md",
-          "sha256": "0fe89edd9f98061672d4c9aa58e8b1791e1c3eba746a6910ca64f1f865651073",
+          "sha256": "a051ff0c86ed9887e447427d452e822a3b66a97221e602ba4723f5711aebbf37",
           "bytes": 3147
         },
         {
@@ -37030,7 +37345,7 @@
         },
         {
           "path": "powers/vanguard-huawei/POWER.md",
-          "sha256": "766cd2b48c4c113b35e2fe0eecf95eca754e33d5c13f611847aa3e763decd6bf",
+          "sha256": "2e900df29e0a996cd91876197a14da263e91a0bfbe7b8fba2970a7f08fcaa99f",
           "bytes": 3360
         },
         {
@@ -37095,7 +37410,7 @@
         },
         {
           "path": "powers/vanguard-oci/POWER.md",
-          "sha256": "0c8f1eaf16b9063eccdf9eba91c573150257d131328e7ad22648755076a687ae",
+          "sha256": "42df9224734ab6586852ee01414ce231c6e8a574c87e865a26c68bed80cf55a3",
           "bytes": 3321
         },
         {
@@ -37208,7 +37523,7 @@
     },
     {
       "tree": ".claude-plugin",
-      "aggregate_sha256": "1304a587644a8e94f5cb559b44e0dfbd5741b25f531de63f955527406eb89696",
+      "aggregate_sha256": "41d2b7ca8d44c93c3063210ad025467a8fbf84ecad9d045c762ce5bbde4fb821",
       "files": [
         {
           "path": ".claude-plugin/README.md",
@@ -37217,19 +37532,19 @@
         },
         {
           "path": ".claude-plugin/marketplace.json",
-          "sha256": "8c21a0fa3b8df80fd1cbf1618c6fc7f220aa86e3f6038329ec0942ad53becead",
+          "sha256": "447f09f27eeff1b2a019d4b6f7da4f665c9155866db572d43e697910e72ece8a",
           "bytes": 855
         },
         {
           "path": ".claude-plugin/plugin.json",
-          "sha256": "6c57c1800034dc9a2ea322b737060381f5b8fb4a142520453deb67a8c41ebde6",
-          "bytes": 68185
+          "sha256": "b28cc3d9b0909ed3204b68f75e3ad23cba25da0912679a8c2391facd9298764e",
+          "bytes": 68763
         }
       ]
     },
     {
       "tree": ".cursor-plugin",
-      "aggregate_sha256": "d1fafb6b813b508a5eb0f7d82e8f2ade053ecaba0ceb4e2d1a56a71314b2bd58",
+      "aggregate_sha256": "90ae0dd9ac6d48753409d764e56c2b29a00c0d27dc7f14608adfcf46b6d75b17",
       "files": [
         {
           "path": ".cursor-plugin/README.md",
@@ -37238,8 +37553,8 @@
         },
         {
           "path": ".cursor-plugin/plugin.json",
-          "sha256": "c80c2c8bca12dc7eedb77f58018bf1911270d172158d406f4261b442febe3221",
-          "bytes": 64471
+          "sha256": "0959814491eb3cfb78f053846658fd20b96101af81b54d1834f18aca195a2c9a",
+          "bytes": 65014
         }
       ]
     },
@@ -37277,7 +37592,7 @@
     },
     {
       "tree": "tests",
-      "aggregate_sha256": "acb9be86189be9906ba33d2a9bf071c347edc9c9e1259a6eea056208c0535f21",
+      "aggregate_sha256": "1f89fc6cc20ddee2bd367c8da032e76e744bee9d4cdd3c0e6574a9d9ac8af51a",
       "files": [
         {
           "path": "tests/AGENTS.md",
@@ -37286,8 +37601,8 @@
         },
         {
           "path": "tests/_generate_maestro_routing_fixtures.py",
-          "sha256": "9b7b65a4e366c341a09dfe67d493b1de63d14b7a5a99a2fe1e4708ddcc907b4b",
-          "bytes": 40958
+          "sha256": "935f4eca75a990054de604762a02f2ebfee66927a18ea677acf74614663abbf4",
+          "bytes": 41633
         },
         {
           "path": "tests/agentic-board-suite/_build_fixtures.py",
@@ -38316,7 +38631,7 @@
         },
         {
           "path": "tests/fixtures/README.md",
-          "sha256": "da634e9196a0db2c43eecdb50577914ce12dd6eabfd0df8429cb0f34dfc2f494",
+          "sha256": "70a861c58840cee0d1187786bc54b6554f06459cca3f5663c7840fb7de3e122b",
           "bytes": 3698
         },
         {
@@ -38735,6 +39050,11 @@
           "bytes": 81
         },
         {
+          "path": "tests/fixtures/alibaba-maestro-routing/expected/050-happy-tablestore-partition-key.json",
+          "sha256": "c683be5ee050856fb6caebfcd41b20c4b22623ad88f8fc779fa81432b8abfe9e",
+          "bytes": 82
+        },
+        {
           "path": "tests/fixtures/alibaba-maestro-routing/expected/adv-ambiguous.json",
           "sha256": "93d7b7768c78f4f08a3d2d77a98110ba46316d589148f9778281b17d8bb9974e",
           "bytes": 44
@@ -38783,6 +39103,11 @@
           "path": "tests/fixtures/alibaba-maestro-routing/expected/adv-secrets-bait.json",
           "sha256": "f7d0bdf5e09b1ba26777051d37c24f90f149a6df73285ca7a3b0d63d6ea03141",
           "bytes": 196
+        },
+        {
+          "path": "tests/fixtures/alibaba-maestro-routing/expected/adv-tablestore-not-polardb.json",
+          "sha256": "682c544f145d5f4fb418243180706ca0805ac9e8796bdf90a242ac2e93ef722d",
+          "bytes": 77
         },
         {
           "path": "tests/fixtures/alibaba-maestro-routing/inputs/001-happy-ack-container-platform-operator.json",
@@ -38965,6 +39290,11 @@
           "bytes": 147
         },
         {
+          "path": "tests/fixtures/alibaba-maestro-routing/inputs/050-happy-tablestore-partition-key.json",
+          "sha256": "4c607b0c268bbe6b351599f9006db47fc14399de375f0f19dfaeb65cd4cd8a1c",
+          "bytes": 175
+        },
+        {
           "path": "tests/fixtures/alibaba-maestro-routing/inputs/adv-ambiguous.json",
           "sha256": "719b82ca90bbc8d2f22dbfe237a98cd4e0cd50056835f5c65ca03aa21947c177",
           "bytes": 113
@@ -39015,9 +39345,14 @@
           "bytes": 179
         },
         {
+          "path": "tests/fixtures/alibaba-maestro-routing/inputs/adv-tablestore-not-polardb.json",
+          "sha256": "fe4e715ac640152eb7203ba1f6b695e9cd599cde49f85f5c775e47ada907637d",
+          "bytes": 181
+        },
+        {
           "path": "tests/fixtures/alibaba-maestro-routing/taxonomy.json",
-          "sha256": "c093d48c2a989fe42e70c68bf92dad3db96e79485f58cd72f971786d4c422eb6",
-          "bytes": 11430
+          "sha256": "702b6b59d505a80279721b340d79347907d5ce27cb5fad6fa02305f1f2bd63f9",
+          "bytes": 11726
         },
         {
           "path": "tests/fixtures/aws-maestro-routing/expected/001-happy-agentcore.json",
@@ -39223,6 +39558,16 @@
           "path": "tests/fixtures/aws-maestro-routing/expected/041-happy-waf-security-review.json",
           "sha256": "40ddbac05a6a87bc5968d677feb255854abd848d8b65ec0785216677c1ef9294",
           "bytes": 77
+        },
+        {
+          "path": "tests/fixtures/aws-maestro-routing/expected/042-happy-dynamodb-patterns.json",
+          "sha256": "c06f0528f73fceea30043bec8052c56b0c4e53a93238e6ab05d0cc3fc37e3bb7",
+          "bytes": 75
+        },
+        {
+          "path": "tests/fixtures/aws-maestro-routing/expected/043-happy-dynamodb-vector-index.json",
+          "sha256": "c06f0528f73fceea30043bec8052c56b0c4e53a93238e6ab05d0cc3fc37e3bb7",
+          "bytes": 75
         },
         {
           "path": "tests/fixtures/aws-maestro-routing/expected/adv-ambiguous.json",
@@ -39475,6 +39820,16 @@
           "bytes": 170
         },
         {
+          "path": "tests/fixtures/aws-maestro-routing/inputs/042-happy-dynamodb-patterns.json",
+          "sha256": "88ab7eb960ceef17b3e329b208f560aef5fabe33a7d1c2a9c9cd9aeb5a3d5db7",
+          "bytes": 202
+        },
+        {
+          "path": "tests/fixtures/aws-maestro-routing/inputs/043-happy-dynamodb-vector-index.json",
+          "sha256": "4d7e45b81bf320316ab98c4810cc66a433be371d28a4c6ae9e5bd06a03f70450",
+          "bytes": 172
+        },
+        {
           "path": "tests/fixtures/aws-maestro-routing/inputs/adv-ambiguous.json",
           "sha256": "719b82ca90bbc8d2f22dbfe237a98cd4e0cd50056835f5c65ca03aa21947c177",
           "bytes": 113
@@ -39521,8 +39876,8 @@
         },
         {
           "path": "tests/fixtures/aws-maestro-routing/taxonomy.json",
-          "sha256": "e822515b23aea62d422f161d3ec3c697d38370d8d0e56a5d2ab2235d85e0ffe5",
-          "bytes": 12838
+          "sha256": "f43892571c7a8454a4b42f7cc6b93d486b6fed995d3ae3e221336763360f3213",
+          "bytes": 13192
         },
         {
           "path": "tests/fixtures/azure-maestro-routing/expected/001-happy-ai-foundry-ops-governor.json",
@@ -39660,9 +40015,34 @@
           "bytes": 79
         },
         {
+          "path": "tests/fixtures/azure-maestro-routing/expected/028-happy-cosmosdb-pattern-feature-plan.json",
+          "sha256": "1ee1c1a1fb6bb27616fe3b2f6a95ef9938df6300f83ede05bb3a92610e417114",
+          "bytes": 76
+        },
+        {
+          "path": "tests/fixtures/azure-maestro-routing/expected/029-happy-cosmosdb-pattern-refactor.json",
+          "sha256": "1ee1c1a1fb6bb27616fe3b2f6a95ef9938df6300f83ede05bb3a92610e417114",
+          "bytes": 76
+        },
+        {
           "path": "tests/fixtures/azure-maestro-routing/expected/adv-ambiguous.json",
           "sha256": "93d7b7768c78f4f08a3d2d77a98110ba46316d589148f9778281b17d8bb9974e",
           "bytes": 44
+        },
+        {
+          "path": "tests/fixtures/azure-maestro-routing/expected/adv-cosmos-hot-partition-not-key-vault.json",
+          "sha256": "bfbefc0fa384f154da4bea3381cffbff82c022567f6c8b42ea7c335efa5f1fca",
+          "bytes": 93
+        },
+        {
+          "path": "tests/fixtures/azure-maestro-routing/expected/adv-cosmos-partition-key-not-key-vault.json",
+          "sha256": "396a99f451d410ddbe9a07198e61bcbc9a3aabac1ce46d659a774dedfcb0ab81",
+          "bytes": 90
+        },
+        {
+          "path": "tests/fixtures/azure-maestro-routing/expected/adv-cosmos-throttling-investigation.json",
+          "sha256": "bfbefc0fa384f154da4bea3381cffbff82c022567f6c8b42ea7c335efa5f1fca",
+          "bytes": 93
         },
         {
           "path": "tests/fixtures/azure-maestro-routing/expected/adv-instruction-injection.json",
@@ -39855,9 +40235,34 @@
           "bytes": 182
         },
         {
+          "path": "tests/fixtures/azure-maestro-routing/inputs/028-happy-cosmosdb-pattern-feature-plan.json",
+          "sha256": "3f098b9daf2375b23a0a9b873483182b9c793d5b2a7a8e38a51d6e9750c626ca",
+          "bytes": 198
+        },
+        {
+          "path": "tests/fixtures/azure-maestro-routing/inputs/029-happy-cosmosdb-pattern-refactor.json",
+          "sha256": "485ce05ae80da746fd20f97818d3ae8761a86b18002791b6b78d1ba28e644a8d",
+          "bytes": 188
+        },
+        {
           "path": "tests/fixtures/azure-maestro-routing/inputs/adv-ambiguous.json",
           "sha256": "719b82ca90bbc8d2f22dbfe237a98cd4e0cd50056835f5c65ca03aa21947c177",
           "bytes": 113
+        },
+        {
+          "path": "tests/fixtures/azure-maestro-routing/inputs/adv-cosmos-hot-partition-not-key-vault.json",
+          "sha256": "b756ae496b33b421fe2a118951aa2ab500ceaf65f854893515b8dcffc2caa2a4",
+          "bytes": 205
+        },
+        {
+          "path": "tests/fixtures/azure-maestro-routing/inputs/adv-cosmos-partition-key-not-key-vault.json",
+          "sha256": "34cb8303e6571fe7ccbb1ae71f91b04225aca382c6b58d19601e342aad5cad75",
+          "bytes": 186
+        },
+        {
+          "path": "tests/fixtures/azure-maestro-routing/inputs/adv-cosmos-throttling-investigation.json",
+          "sha256": "654b7bd978b699d62c1263661967adf0c70011ed2534ae94b4eb04ea0db7498a",
+          "bytes": 189
         },
         {
           "path": "tests/fixtures/azure-maestro-routing/inputs/adv-instruction-injection.json",
@@ -39916,8 +40321,8 @@
         },
         {
           "path": "tests/fixtures/azure-maestro-routing/taxonomy.json",
-          "sha256": "e394f8e3cfb6a4fdeeb14d5eb570a5ba128a5c926f9c2ba88bab9e3abf16199b",
-          "bytes": 8764
+          "sha256": "27137e96db6e51624ee25883837ddebe15a405ba7aad85000eadd780f621d005",
+          "bytes": 9240
         },
         {
           "path": "tests/fixtures/contabo-maestro-routing/expected/001-happy-capacity-planner.json",
@@ -42290,9 +42695,19 @@
           "bytes": 78
         },
         {
+          "path": "tests/fixtures/gcp-maestro-routing/expected/049-happy-bigtable-row-key.json",
+          "sha256": "174b92ad6ccdf7a18396d926f152635c5d880bcf1ff1c0d595674eb202bc75eb",
+          "bytes": 76
+        },
+        {
           "path": "tests/fixtures/gcp-maestro-routing/expected/adv-ambiguous.json",
           "sha256": "93d7b7768c78f4f08a3d2d77a98110ba46316d589148f9778281b17d8bb9974e",
           "bytes": 44
+        },
+        {
+          "path": "tests/fixtures/gcp-maestro-routing/expected/adv-bigtable-not-firestore.json",
+          "sha256": "780fa40c9082c97e88e05494c20277ce07cef06e9207b58b39e71a45a545b5c4",
+          "bytes": 163
         },
         {
           "path": "tests/fixtures/gcp-maestro-routing/expected/adv-instruction-injection.json",
@@ -42585,9 +43000,19 @@
           "bytes": 247
         },
         {
+          "path": "tests/fixtures/gcp-maestro-routing/inputs/049-happy-bigtable-row-key.json",
+          "sha256": "35ec5ba6db5a0f0acda0d9cd081a0a3454d731c8f96a135c1306d356ef68cbbf",
+          "bytes": 168
+        },
+        {
           "path": "tests/fixtures/gcp-maestro-routing/inputs/adv-ambiguous.json",
           "sha256": "719b82ca90bbc8d2f22dbfe237a98cd4e0cd50056835f5c65ca03aa21947c177",
           "bytes": 113
+        },
+        {
+          "path": "tests/fixtures/gcp-maestro-routing/inputs/adv-bigtable-not-firestore.json",
+          "sha256": "7dfa433520bbda02a6cc5b299d412d7e8af0a940202a8b00e78dc468846e3ed2",
+          "bytes": 187
         },
         {
           "path": "tests/fixtures/gcp-maestro-routing/inputs/adv-instruction-injection.json",
@@ -42646,8 +43071,8 @@
         },
         {
           "path": "tests/fixtures/gcp-maestro-routing/taxonomy.json",
-          "sha256": "711bb81028bcab222386f7da60b2fa66a860c0321cb375a98e61433228e5ed1b",
-          "bytes": 13678
+          "sha256": "7550b5365a262a944433117507ca5b4833cef314e2fa7068919ce86f02e7393d",
+          "bytes": 14033
         },
         {
           "path": "tests/fixtures/hetzner-maestro-routing/expected/001-happy-capacity-planner.json",
@@ -43070,9 +43495,19 @@
           "bytes": 176
         },
         {
+          "path": "tests/fixtures/huawei-maestro-routing/expected/050-happy-geminidb-cassandra-partition.json",
+          "sha256": "08b22f774775740ea559c5080226c422f3bdfec4b3ff17d6cffe8dcd7714bb8b",
+          "bytes": 79
+        },
+        {
           "path": "tests/fixtures/huawei-maestro-routing/expected/adv-ambiguous.json",
           "sha256": "93d7b7768c78f4f08a3d2d77a98110ba46316d589148f9778281b17d8bb9974e",
           "bytes": 44
+        },
+        {
+          "path": "tests/fixtures/huawei-maestro-routing/expected/adv-geminidb-mongo-routes-dds.json",
+          "sha256": "d5ab76e2d27b8e5e3a6f0f85a44f06f0a784a66bff3db33ed6a222ef026d84f2",
+          "bytes": 125
         },
         {
           "path": "tests/fixtures/huawei-maestro-routing/expected/adv-instruction-injection.json",
@@ -43300,9 +43735,19 @@
           "bytes": 149
         },
         {
+          "path": "tests/fixtures/huawei-maestro-routing/inputs/050-happy-geminidb-cassandra-partition.json",
+          "sha256": "e4d635581d5fb85459c0d6183df083f6e170865f5747b9f7254dbd6966879a1c",
+          "bytes": 181
+        },
+        {
           "path": "tests/fixtures/huawei-maestro-routing/inputs/adv-ambiguous.json",
           "sha256": "719b82ca90bbc8d2f22dbfe237a98cd4e0cd50056835f5c65ca03aa21947c177",
           "bytes": 113
+        },
+        {
+          "path": "tests/fixtures/huawei-maestro-routing/inputs/adv-geminidb-mongo-routes-dds.json",
+          "sha256": "fa788cd6b878ac9d853cd7b1f9883f96e062f6c41a6892d0729073b002bda1ec",
+          "bytes": 196
         },
         {
           "path": "tests/fixtures/huawei-maestro-routing/inputs/adv-instruction-injection.json",
@@ -43351,8 +43796,8 @@
         },
         {
           "path": "tests/fixtures/huawei-maestro-routing/taxonomy.json",
-          "sha256": "79448ee0a6fa0162cca03ce5f18daab009efdc0d0ca98f8630cdc4a18e66f714",
-          "bytes": 11188
+          "sha256": "cb39313e88481de809b8779fb8d569ac9d2131b67a4fdb3f11099a401addd19c",
+          "bytes": 11518
         },
         {
           "path": "tests/fixtures/ionos-maestro-routing/expected/001-happy-cost-optimization-analyst.json",
@@ -45590,6 +46035,11 @@
           "bytes": 5422
         },
         {
+          "path": "tests/fixtures/nosql-scenarios/scenarios.json",
+          "sha256": "d190a5e128205eae3272ccce41e00f977658483eee6afc9665a402866f08f3fb",
+          "bytes": 21782
+        },
+        {
           "path": "tests/fixtures/nvidia-maestro-routing/README.md",
           "sha256": "8c9dd5947543294cea8764dacf563ec3e17d5de20fb613a782fccf3c3b180337",
           "bytes": 1524
@@ -45985,6 +46435,26 @@
           "bytes": 77
         },
         {
+          "path": "tests/fixtures/oci-maestro-routing/expected/031-happy-nosql-database-architect.json",
+          "sha256": "db6d58cc196cb520e83b43448e3450d822d8235e7b30493705856ee5d13dbe01",
+          "bytes": 82
+        },
+        {
+          "path": "tests/fixtures/oci-maestro-routing/expected/032-happy-nosql-global-active-table.json",
+          "sha256": "db6d58cc196cb520e83b43448e3450d822d8235e7b30493705856ee5d13dbe01",
+          "bytes": 82
+        },
+        {
+          "path": "tests/fixtures/oci-maestro-routing/expected/033-happy-nosql-pattern-recovery.json",
+          "sha256": "57f578ce3b9d5bf41bf1094635d2c87ca4a646081a7e5fe8606f8c99744a94d7",
+          "bytes": 71
+        },
+        {
+          "path": "tests/fixtures/oci-maestro-routing/expected/034-happy-nosql-pattern-refactor.json",
+          "sha256": "57f578ce3b9d5bf41bf1094635d2c87ca4a646081a7e5fe8606f8c99744a94d7",
+          "bytes": 71
+        },
+        {
           "path": "tests/fixtures/oci-maestro-routing/expected/adv-ambiguous.json",
           "sha256": "93d7b7768c78f4f08a3d2d77a98110ba46316d589148f9778281b17d8bb9974e",
           "bytes": 44
@@ -46033,6 +46503,16 @@
           "path": "tests/fixtures/oci-maestro-routing/expected/adv-liveguard-08-live-vault-key-destruction-guard.json",
           "sha256": "24a68bc77cf06b80dd4bedac1d80da62e1a31e4392405faccb6a5d973df608f0",
           "bytes": 99
+        },
+        {
+          "path": "tests/fixtures/oci-maestro-routing/expected/adv-nosql-live-mutation.json",
+          "sha256": "db6d58cc196cb520e83b43448e3450d822d8235e7b30493705856ee5d13dbe01",
+          "bytes": 82
+        },
+        {
+          "path": "tests/fixtures/oci-maestro-routing/expected/adv-nosql-not-autonomous.json",
+          "sha256": "9a3ded8ef5e79aaab24ac689705e1d49e4abd74eb1f11ccfa29f75b1e5cd692d",
+          "bytes": 132
         },
         {
           "path": "tests/fixtures/oci-maestro-routing/expected/adv-persona-replacement.json",
@@ -46195,6 +46675,26 @@
           "bytes": 139
         },
         {
+          "path": "tests/fixtures/oci-maestro-routing/inputs/031-happy-nosql-database-architect.json",
+          "sha256": "3c97a48d4811ec6960464c9301f436ff6516ccfd644d05fb197fa83c2b4cf2ca",
+          "bytes": 186
+        },
+        {
+          "path": "tests/fixtures/oci-maestro-routing/inputs/032-happy-nosql-global-active-table.json",
+          "sha256": "c175ef1b6dfec07b00f2f2a81a68a9baed97ecfa71271daa61845e83db69d012",
+          "bytes": 175
+        },
+        {
+          "path": "tests/fixtures/oci-maestro-routing/inputs/033-happy-nosql-pattern-recovery.json",
+          "sha256": "35af5254d0ea9beb223aa2fef8d9312af16ccad113daee53772a078004ab89f5",
+          "bytes": 209
+        },
+        {
+          "path": "tests/fixtures/oci-maestro-routing/inputs/034-happy-nosql-pattern-refactor.json",
+          "sha256": "631548ff33410e83306dc5f45809ed04cbe424c284cea3329b58e3cc377dfa56",
+          "bytes": 174
+        },
+        {
           "path": "tests/fixtures/oci-maestro-routing/inputs/adv-ambiguous.json",
           "sha256": "719b82ca90bbc8d2f22dbfe237a98cd4e0cd50056835f5c65ca03aa21947c177",
           "bytes": 113
@@ -46245,6 +46745,16 @@
           "bytes": 241
         },
         {
+          "path": "tests/fixtures/oci-maestro-routing/inputs/adv-nosql-live-mutation.json",
+          "sha256": "e0001e664abbe415b24d264e40e341095b366b28ae93a7bd8287549f67b8911c",
+          "bytes": 174
+        },
+        {
+          "path": "tests/fixtures/oci-maestro-routing/inputs/adv-nosql-not-autonomous.json",
+          "sha256": "11b6b7606a6ee8e54e2003abe35c26c69ea1d02eec6afa06bd1a8a62eb2aad47",
+          "bytes": 187
+        },
+        {
           "path": "tests/fixtures/oci-maestro-routing/inputs/adv-persona-replacement.json",
           "sha256": "7689af4f5262aaebbd0f303ddc862a02cc54870d7f3bf825f88585e884e70b0e",
           "bytes": 190
@@ -46256,8 +46766,8 @@
         },
         {
           "path": "tests/fixtures/oci-maestro-routing/taxonomy.json",
-          "sha256": "b7db9bf08be333ab63d250f6d6131c9601378c8a52a81ab0f8af346e25bd7ad8",
-          "bytes": 9449
+          "sha256": "37a04d0b170a46dce248495020dca7c1f3a0c1a388bcde783975738cf36a56d3",
+          "bytes": 10084
         },
         {
           "path": "tests/fixtures/ovhcloud-maestro-routing/expected/001-happy-cost-finops-analyst.json",
@@ -48690,6 +49200,11 @@
           "bytes": 47587
         },
         {
+          "path": "tests/requirements-ci.txt",
+          "sha256": "cd1244f872e66b4a6538225d91d7f5d98a71aabb9b923abcce562f7271fc1761",
+          "bytes": 414
+        },
+        {
           "path": "tests/test-codex-plugin-marketplace-install.test.mjs",
           "sha256": "d21a25cb49ee43985154c13a63ccfa0e888479cc8692ef0805b35e26f94b91fb",
           "bytes": 4931
@@ -48736,8 +49251,8 @@
         },
         {
           "path": "tests/validate-aws-skill-quality.py",
-          "sha256": "bb3aaa94d77bc460e515dee68ff6123e420a8e84525d3ad3cbf880fddd116e85",
-          "bytes": 10842
+          "sha256": "0b21f9c88330557532c9321db4137bd9a9b67599b839aa50bbed49bee52d5088",
+          "bytes": 11352
         },
         {
           "path": "tests/validate-azure-oci-live-guards.sh",
@@ -48805,6 +49320,26 @@
           "bytes": 2607
         },
         {
+          "path": "tests/validate-nosql-audit.py",
+          "sha256": "571780c907b17b82fbac87bd50478658ada61afbee0d63b67ee7614c9b2fc9f2",
+          "bytes": 35446
+        },
+        {
+          "path": "tests/validate-nosql-operations.py",
+          "sha256": "fc2be0b16d719f755ae4901d7a4ed19ac3881c5c91086f01f7e60dd9b20e08ac",
+          "bytes": 6842
+        },
+        {
+          "path": "tests/validate-nosql-pattern-evals.py",
+          "sha256": "d9e67d7e2ccd6587556bcf9d8b2077b424f8db44710fc06e0ddea7c584283aff",
+          "bytes": 3932
+        },
+        {
+          "path": "tests/validate-nosql-scenarios.py",
+          "sha256": "b0f062683362adb3a15ca0ca24cc2402724d824314313a128c476b2f2c8b1e2e",
+          "bytes": 3868
+        },
+        {
           "path": "tests/validate-nvidia-promotion-gatekeeper.py",
           "sha256": "c7e60d6b83531e78385506766ee598c4acce2dcc5f2a30b48051821e795cdfbd",
           "bytes": 12585
@@ -48841,8 +49376,13 @@
         },
         {
           "path": "tests/validate-skill-manifest.py",
-          "sha256": "963e8499da6e991cf84a5d6602a79d625c4f861b9c927f11a45782b7a23878cc",
-          "bytes": 3543
+          "sha256": "718546aa5e3377c8a9d90c8ea17a80679066322c08abadc132e7aa2d5af879c2",
+          "bytes": 3805
+        },
+        {
+          "path": "tests/validate-skill-references.py",
+          "sha256": "13407aa461231169c1a76405dc462d54e9cd6cc0ca2834058fcfa1260d5198ea",
+          "bytes": 10286
         },
         {
           "path": "tests/validate-skill-yaml-strict.py",
@@ -48860,7 +49400,7 @@
   "root_files": [
     {
       "path": "README.md",
-      "sha256": "987e4fad92260b7ae93372e8022579960b9f80cbfdd1d6cada99d539dd8cb9d0",
+      "sha256": "1236941236f4a8e0f3f40a504cc7cd9d212e0e2b99da3fbfbd9d590a55d11f2b",
       "bytes": 115723
     },
     {
@@ -48885,8 +49425,8 @@
     },
     {
       "path": "CLAUDE.md",
-      "sha256": "2a010046ddfcf9f8f492334c7ad37b6bac996d079d968cea887fdd9ddf7cd9da",
-      "bytes": 24920
+      "sha256": "3e85edf8394014c7a2a3ad48f4464b64a7f8cedc4d6cc93423433fbcfce2d160",
+      "bytes": 25022
     },
     {
       "path": "AGENTS.md",
@@ -48900,8 +49440,8 @@
     },
     {
       "path": "package.json",
-      "sha256": "87d22bb4966167c781341e31aa308d19291cf4de362814b5e86749683be386c4",
-      "bytes": 8516
+      "sha256": "17c20583740e8c9b632625b8c8c65cfeb2bc9719878a44f6d9dae027da815041",
+      "bytes": 9087
     },
     {
       "path": ".releaserc.js",
@@ -48909,5 +49449,5 @@
       "bytes": 9135
     }
   ],
-  "aggregate_sha256": "58f7a403d5cecbd8a20dba7774c70ad97f10d01c8cb18a88feb02c6e0c5adc02"
+  "aggregate_sha256": "c00632c8abb6824a3970e5037ac39e9c9edd6ca4c02cb320833f28d9765a43ac"
 }

@@ -1,0 +1,28 @@
+{
+  "method": "continuous-new-account",
+  "source": {
+    "subscription": "00000000-0000-0000-0000-000000000001",
+    "resource_id": "/subscriptions/00000000-0000-0000-0000-000000000001/resourceGroups/source-rg/providers/Microsoft.DocumentDB/databaseAccounts/source-cosmos",
+    "instance_id": "11111111-1111-1111-1111-111111111111",
+    "account": "source-cosmos",
+    "region": "eastus",
+    "api": "NoSQL",
+    "backup_mode": "Continuous",
+    "earliest_restorable": "2026-11-01T00:00:00Z",
+    "latest_restorable": "2026-11-08T09:00:00Z"
+  },
+  "target": {
+    "subscription": "00000000-0000-0000-0000-000000000001",
+    "resource_group": "recovery-rg",
+    "account": "recovery-cosmos",
+    "lookup": "ResourceNotFound"
+  },
+  "restore_timestamp": "2026-11-08T08:30:00Z",
+  "evidence_as_of": "2026-11-08T09:01:00Z",
+  "observed_source_instance_id": "11111111-1111-1111-1111-111111111111",
+  "source_name_unambiguous": true,
+  "restore_scope": "full-account",
+  "approved_restore_scope": "full-account",
+  "disable_ttl": true,
+  "key_dependencies_verified": true
+}

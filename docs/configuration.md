@@ -16,41 +16,48 @@ The `package.json` defines all build, validation, and generation commands.
 
 ### Validation Gates (run via `npm run validate`)
 
-These <!-- count:global:gates -->32<!-- /count --> `validate:*` gates run sequentially in CI and must all pass, in the order `npm run validate` invokes them (the table also lists `manifest:check`, which runs in the same sequence but is not a `validate:*` script):
+These <!-- count:global:gates -->37<!-- /count --> `validate:*` gates run sequentially in CI and must all pass, in the order `npm run validate` invokes them (the table also lists `manifest:check`, which runs in the same sequence but is not a `validate:*` script):
 
 | # | Script | Command | Purpose |
 |---|--------|---------|---------|
 | 1 | `validate:catalog` | `python3 tests/validate-catalog.py` | Catalog JSON matches filesystem |
 | 2 | `validate:aws` | `python3 tests/validate-aws-skill-quality.py && python3 tests/validate-aws-progressive-disclosure.py` | AWS skill quality + progressive disclosure |
 | 3 | `manifest:check` | `python3 tests/validate-skill-manifest.py` | Skill manifest is current |
-| 4 | `validate:allowed-tools` | `python3 tests/validate-skill-allowed-tools.py` | Skills only reference allowed tools |
-| 5 | `validate:skill-coherence` | `python3 tests/validate-skill-coherence.py` | Shell examples in a SKILL.md are covered by its declared `allowed-tools` |
-| 6 | `validate:skill-schema` | `python3 tests/validate-skill-frontmatter-schema.py` | Skill frontmatter matches schema |
-| 7 | `validate:skill-yaml` | `python3 tests/validate-skill-yaml-strict.py` | Every tracked Markdown frontmatter block (agents, harness variants, powers, rules, docs, skills) parses as strict YAML; SKILL.md also needs non-empty `name`/`description` (what the `skills` CLI, skills.sh and harness loaders read) |
-| 8 | `validate:agent-schema` | `python3 tests/validate-agent-frontmatter-schema.py` | Agent metadata matches schema |
-| 9 | `validate:model-policy` | `node scripts/model-policy.mjs check` | Model/effort assignments resolve against `catalog/model-registry.json` |
-| 10 | `validate:model-params` | `python3 tests/validate-model-params.py` | Model parameter groups behave as documented and the policy schema accepts every value the script does |
-| 11 | `validate:links` | `python3 tests/validate-links.py --offline` | Internal links resolve |
-| 12 | `validate:asset-integrity` | `python3 tests/validate-asset-integrity.py` | SHA-256 hashes match |
-| 13 | `validate:tracked-secrets` | `python3 tests/validate-tracked-secrets.py` | No credential-shaped strings in tracked content |
-| 14 | `validate:mcp-trust-matrix` | `python3 tests/validate-mcp-trust-matrix.py` | MCP references are trusted |
-| 15 | `validate:no-lifecycle-scripts` | `python3 tests/validate-no-lifecycle-scripts.py` | No install/postinstall scripts |
-| 16 | `validate:promotion-gatekeeper` | `python3 tests/validate-nvidia-promotion-gatekeeper.py` | NVIDIA promotion rules |
-| 17 | `validate:install-coverage` | `node tests/test-vfa-export-coverage.test.mjs` | Export CLI covers all roles |
-| 18 | `validate:maestro-routing` | `python3 tests/validate-maestro-routing.py` | Maestro routing scenarios pass |
-| 19 | `validate:plugin-manifest` | `python3 tests/validate-plugin-manifest.py` | Plugin manifests current |
-| 20 | `validate:kiro-powers` | `python3 tests/validate-kiro-powers.py` | Kiro Powers valid |
-| 21 | `validate:multi-harness-marketplace` | `python3 tests/validate-multi-harness-marketplace.py` | Cross-harness consistency |
-| 22 | `validate:codex-marketplace` | `python3 tests/validate-codex-marketplace.py` | Codex marketplace valid |
-| 23 | `validate:finops-fixtures` | `python3 tests/validate-finops-price-fixtures.py` | FinOps price fixtures |
-| 24 | `validate:readme-counts` | `node tests/validate-readme-counts.mjs && node scripts/generate-readme-counts.mjs --check` | README stats accurate |
-| 25 | `validate:board-counts` | `node scripts/generate-board-counts.mjs --check` | Inline `<!-- count:… -->` markers in docs match the catalog |
-| 26 | `validate:qa-cluster` | `node tests/eval-qa-cluster.mjs` | QA cluster evaluation |
-| 27 | `validate:frontend-security-detection` | `python3 tests/validate-frontend-security-detection.py` | Frontend security skills still document their sink keywords and detect the fixture corpus |
-| 28 | `validate:agent-tool-tiers` | `python3 tests/validate-agent-tool-tiers.py` | Copilot tool grants match each agent's declared `execution_tier` |
-| 29 | `validate:istio-review-suite` | `python3 -m unittest discover -s tests/istio-review-suite -p "test_*.py" -v` | Istio review suite unit tests |
-| 30 | `validate:workflow-catalog` | `node scripts/generate-workflow-catalog.mjs --check` | `catalog/workflows.json` matches the `meta` literal in each `.claude/workflows/*.js` |
-| 31 | `validate:release-notes` | `node tests/validate-release-notes.mjs` | semantic-release renders notes with the configured preset |
+| 4 | `validate:skill-references` | `python3 tests/validate-skill-references.py` | Relative links in skills and agents (including `references/commands/**`) resolve, external references use allowlisted official hosts, and evidence ledgers are traceable |
+| 5 | `validate:nosql-scenarios` | `python3 tests/validate-nosql-scenarios.py` | NoSQL behavioural scenarios are answerable from the exact reference file each skill loads |
+| 6 | `validate:nosql-pattern-evals` | `python3 tests/validate-nosql-pattern-evals.py` | Runs the NoSQL pattern skills' offline evals (needs `cfn-lint`, pinned in `tests/requirements-ci.txt`) and fails if the plugin-scanner config would hide their executable files |
+| 7 | `validate:nosql-operations` | `python3 tests/validate-nosql-operations.py` | Each NoSQL operations reference has the ten operations sections in order, one status each, valid citations, and no prices in Cost |
+| 8 | `validate:nosql-audit` | `python3 tests/validate-nosql-audit.py` | Each NoSQL skill ships a lazy-loaded offline and live audit; commands are checked against a per-mode allowlist (live: read-only control-plane calls citing VERIFIED ledger rows; offline: local tools only) |
+| 9 | `validate:allowed-tools` | `python3 tests/validate-skill-allowed-tools.py` | Skills only reference allowed tools |
+| 10 | `validate:skill-coherence` | `python3 tests/validate-skill-coherence.py` | Shell examples in a SKILL.md are covered by its declared `allowed-tools` |
+| 11 | `validate:skill-schema` | `python3 tests/validate-skill-frontmatter-schema.py` | Skill frontmatter matches schema |
+| 12 | `validate:skill-yaml` | `python3 tests/validate-skill-yaml-strict.py` | Every tracked Markdown frontmatter block (agents, harness variants, powers, rules, docs, skills) parses as strict YAML; SKILL.md also needs non-empty `name`/`description` (what the `skills` CLI, skills.sh and harness loaders read) |
+| 13 | `validate:agent-schema` | `python3 tests/validate-agent-frontmatter-schema.py` | Agent metadata matches schema |
+| 14 | `validate:model-policy` | `node scripts/model-policy.mjs check` | Model/effort assignments resolve against `catalog/model-registry.json` |
+| 15 | `validate:model-params` | `python3 tests/validate-model-params.py` | Model parameter groups behave as documented and the policy schema accepts every value the script does |
+| 16 | `validate:links` | `python3 tests/validate-links.py --offline` | Internal links resolve |
+| 17 | `validate:asset-integrity` | `python3 tests/validate-asset-integrity.py` | SHA-256 hashes match |
+| 18 | `validate:tracked-secrets` | `python3 tests/validate-tracked-secrets.py` | No credential-shaped strings in tracked content |
+| 19 | `validate:mcp-trust-matrix` | `python3 tests/validate-mcp-trust-matrix.py` | MCP references are trusted |
+| 20 | `validate:no-lifecycle-scripts` | `python3 tests/validate-no-lifecycle-scripts.py` | No install/postinstall scripts |
+| 21 | `validate:promotion-gatekeeper` | `python3 tests/validate-nvidia-promotion-gatekeeper.py` | NVIDIA promotion rules |
+| 22 | `validate:install-coverage` | `node tests/test-vfa-export-coverage.test.mjs` | Export CLI covers all roles |
+| 23 | `validate:maestro-routing` | `python3 tests/validate-maestro-routing.py` | Maestro routing scenarios pass |
+| 24 | `validate:plugin-manifest` | `python3 tests/validate-plugin-manifest.py` | Plugin manifests current |
+| 25 | `validate:kiro-powers` | `python3 tests/validate-kiro-powers.py` | Kiro Powers valid |
+| 26 | `validate:multi-harness-marketplace` | `python3 tests/validate-multi-harness-marketplace.py` | Cross-harness consistency |
+| 27 | `validate:codex-marketplace` | `python3 tests/validate-codex-marketplace.py` | Codex marketplace valid |
+| 28 | `validate:finops-fixtures` | `python3 tests/validate-finops-price-fixtures.py` | FinOps price fixtures |
+| 29 | `validate:readme-counts` | `node tests/validate-readme-counts.mjs && node scripts/generate-readme-counts.mjs --check` | README stats accurate |
+| 30 | `validate:board-counts` | `node scripts/generate-board-counts.mjs --check` | Inline `<!-- count:… -->` markers in docs match the catalog |
+| 31 | `validate:qa-cluster` | `node tests/eval-qa-cluster.mjs` | QA cluster evaluation |
+| 32 | `validate:frontend-security-detection` | `python3 tests/validate-frontend-security-detection.py` | Frontend security skills still document their sink keywords and detect the fixture corpus |
+| 33 | `validate:agent-tool-tiers` | `python3 tests/validate-agent-tool-tiers.py` | Copilot tool grants match each agent's declared `execution_tier` |
+| 34 | `validate:istio-review-suite` | `python3 -m unittest discover -s tests/istio-review-suite -p "test_*.py" -v` | Istio review suite unit tests |
+| 35 | `validate:agentic-board` | `python3 -m unittest discover -s tests/agentic-board-suite -p "test_*.py"` | Agentic-board handoff contract fixtures, rule coverage, schema parity and board invariants |
+| 36 | `validate:workflow-catalog` | `node scripts/generate-workflow-catalog.mjs --check` | `catalog/workflows.json` matches the `meta` literal in each `.claude/workflows/*.js` |
+| 37 | `validate:release-notes` | `node tests/validate-release-notes.mjs` | semantic-release renders notes with the configured preset |
+| 38 | `validate:mods` | `python3 tests/validate-mods.py` | Cross-harness mods match their `mod.toml` contract (declared footprint, generated adapters, production-core tests) |
 
 ### Generation Scripts
 

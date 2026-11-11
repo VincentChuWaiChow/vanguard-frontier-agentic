@@ -1,0 +1,7 @@
+{
+  "name": "050-happy-geminidb-cassandra-partition",
+  "task": "Review our GeminiDB Cassandra partition key design for BigKey and HotKey risk.",
+  "tags": [
+    "happy-path"
+  ]
+}

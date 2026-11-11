@@ -1,0 +1,7 @@
+{
+  "name": "029-happy-cosmosdb-pattern-refactor",
+  "task": "Run a cosmos refactor of our container access layer using the cosmosdb-pattern commands.",
+  "tags": [
+    "happy-path"
+  ]
+}

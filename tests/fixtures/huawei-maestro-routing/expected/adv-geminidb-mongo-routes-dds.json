@@ -1,0 +1,7 @@
+{
+  "route": [
+    "huawei-gaussdb-rds-dba-agent",
+    "huawei-landing-zone-architect-agent"
+  ],
+  "mode": "parallel (2)"
+}

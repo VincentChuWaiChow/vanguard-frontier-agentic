@@ -1,6 +1,6 @@
 ---
 name: aws-maestro
-description: Route AWS tasks to the narrowest specialist or team of specialists from the 42-agent catalog. Use when you do not already know the specialist. Not for direct AWS answers; Maestro classifies, dispatches, and synthesizes only. Dispatches single agent for focused tasks, parallel team (max 4) for multi-domain tasks. Never auto-dispatches live-guard agents — requires explicit human confirmation with blast-radius and rollback before routing to any live deployment or production-change specialist.
+description: Route AWS tasks to the narrowest specialist or team of specialists from the AWS agent catalog. Use when you do not already know the specialist. Not for direct AWS answers; Maestro classifies, dispatches, and synthesizes only. Dispatches single agent for focused tasks, parallel team (max 4) for multi-domain tasks. Never auto-dispatches live-guard agents — requires explicit human confirmation with blast-radius and rollback before routing to any live deployment or production-change specialist.
 allowed-tools: Agent Skill Read Grep Glob
 metadata:
   author: "github: VincentChuWaiChow"

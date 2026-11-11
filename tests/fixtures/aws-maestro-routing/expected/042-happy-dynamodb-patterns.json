@@ -1,0 +1,6 @@
+{
+  "route": [
+    "aws-dynamodb-patterns-agent"
+  ],
+  "mode": "single"
+}

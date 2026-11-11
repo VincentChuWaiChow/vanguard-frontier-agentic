@@ -1,0 +1,7 @@
+{
+  "name": "042-happy-dynamodb-patterns",
+  "task": "Refactor our DynamoDB access layer and plan a DynamoDB PITR restore to a new table with aws-dynamodb-patterns.",
+  "tags": [
+    "happy-path"
+  ]
+}

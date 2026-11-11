@@ -1,0 +1,7 @@
+{
+  "name": "adv-cosmos-partition-key-not-key-vault",
+  "task": "Choose a Cosmos DB partition key for our NoSQL orders container.",
+  "tags": [
+    "adversarial:keyword-collision"
+  ]
+}

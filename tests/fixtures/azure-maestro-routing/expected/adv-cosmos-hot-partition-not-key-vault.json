@@ -1,0 +1,6 @@
+{
+  "route": [
+    "azure-cosmosdb-performance-investigator-agent"
+  ],
+  "mode": "single"
+}

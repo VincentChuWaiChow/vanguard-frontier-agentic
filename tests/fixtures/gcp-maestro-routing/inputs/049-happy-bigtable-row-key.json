@@ -1,0 +1,7 @@
+{
+  "name": "049-happy-bigtable-row-key",
+  "task": "Design a Cloud Bigtable row key for time-series sensor data without hotspots.",
+  "tags": [
+    "happy-path"
+  ]
+}

@@ -1,0 +1,7 @@
+{
+  "name": "043-happy-dynamodb-vector-index",
+  "task": "Design a DynamoDB vector index and a SearchVectors query for our embeddings.",
+  "tags": [
+    "happy-path"
+  ]
+}

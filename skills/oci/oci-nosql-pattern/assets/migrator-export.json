@@ -1,0 +1,22 @@
+{
+  "source": {
+    "type": "nosqldb_cloud",
+    "endpoint": "REPLACE_REGION",
+    "table": "orders_v1",
+    "compartment": "REPLACE_COMPARTMENT_OCID",
+    "useInstancePrincipal": true,
+    "readUnitsPercent": 25,
+    "includeTTL": true,
+    "requestTimeoutMs": 5000
+  },
+  "sink": {
+    "type": "object_storage_oci",
+    "format": "json",
+    "endpoint": "REPLACE_REGION",
+    "namespace": "REPLACE_NAMESPACE",
+    "bucket": "REPLACE_BUCKET",
+    "prefix": "REPLACE_UNIQUE_EXPORT_PREFIX",
+    "useInstancePrincipal": true
+  },
+  "abortOnError": true
+}

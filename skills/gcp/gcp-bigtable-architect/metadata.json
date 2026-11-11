@@ -1,0 +1,28 @@
+{
+  "id": "gcp-bigtable-architect",
+  "name": "GCP Bigtable Architect",
+  "type": "skill",
+  "provider": "gcp",
+  "harnesses": [
+    "codex",
+    "claude-code",
+    "cursor",
+    "gemini",
+    "kiro",
+    "other"
+  ],
+  "summary": "Design and review Cloud Bigtable row keys, single-row atomicity, app-profile routing and replication consistency, garbage collection, SSD/HDD and autoscaling, IAM, backups and client libraries, with a provenance ledger per claim.",
+  "source_type": "original",
+  "official_docs": [
+    "https://docs.cloud.google.com/bigtable/docs/schema-design",
+    "https://docs.cloud.google.com/bigtable/docs/replication-overview",
+    "https://docs.cloud.google.com/bigtable/docs/app-profiles",
+    "https://docs.cloud.google.com/bigtable/docs/garbage-collection",
+    "https://docs.cloud.google.com/bigtable/quotas"
+  ],
+  "security_notes": "Read-only by default. Row keys and storage type are effectively permanent, so never approve schema, GC, cluster, replication, IAM, bulk-mutation or restore changes without explicit target, blast radius, rollback and user approval; never request service-account keys.",
+  "last_verified": "2026-11-08",
+  "path": "skills/gcp/gcp-bigtable-architect",
+  "author": "github: VincentChuWaiChow",
+  "version": "0.1.0"
+}

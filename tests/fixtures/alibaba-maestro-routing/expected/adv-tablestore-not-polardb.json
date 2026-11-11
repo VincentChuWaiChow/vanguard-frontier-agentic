@@ -1,0 +1,6 @@
+{
+  "route": [
+    "alibaba-polardb-rds-dba-agent"
+  ],
+  "mode": "single"
+}

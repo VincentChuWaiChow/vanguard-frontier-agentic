@@ -1,0 +1,59 @@
+{
+  "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentTemplate.json#",
+  "contentVersion": "1.0.0.0",
+  "parameters": {
+    "accountName": {"type": "string", "minLength": 3, "maxLength": 44},
+    "location": {"type": "string"}
+  },
+  "resources": [
+    {
+      "type": "Microsoft.DocumentDB/databaseAccounts",
+      "apiVersion": "2025-04-15",
+      "name": "[parameters('accountName')]",
+      "location": "[parameters('location')]",
+      "kind": "GlobalDocumentDB",
+      "properties": {
+        "databaseAccountOfferType": "Standard",
+        "locations": [{"locationName": "[parameters('location')]", "failoverPriority": 0, "isZoneRedundant": false}],
+        "consistencyPolicy": {"defaultConsistencyLevel": "Session"},
+        "enableAutomaticFailover": false,
+        "enableMultipleWriteLocations": false,
+        "disableLocalAuth": true,
+        "minimalTlsVersion": "Tls12",
+        "publicNetworkAccess": "Disabled",
+        "backupPolicy": {"type": "Continuous", "continuousModeProperties": {"tier": "Continuous7Days"}}
+      }
+    },
+    {
+      "type": "Microsoft.DocumentDB/databaseAccounts/sqlDatabases",
+      "apiVersion": "2025-04-15",
+      "name": "[concat(parameters('accountName'), '/ordersdb')]",
+      "dependsOn": ["[resourceId('Microsoft.DocumentDB/databaseAccounts', parameters('accountName'))]"],
+      "properties": {"resource": {"id": "ordersdb"}, "options": {}}
+    },
+    {
+      "type": "Microsoft.DocumentDB/databaseAccounts/sqlDatabases/containers",
+      "apiVersion": "2025-04-15",
+      "name": "[concat(parameters('accountName'), '/ordersdb/orders')]",
+      "dependsOn": ["[resourceId('Microsoft.DocumentDB/databaseAccounts/sqlDatabases', parameters('accountName'), 'ordersdb')]"],
+      "properties": {
+        "resource": {
+          "id": "orders",
+          "partitionKey": {"paths": ["/tenantId"], "kind": "Hash", "version": 2},
+          "defaultTtl": -1,
+          "indexingPolicy": {
+            "indexingMode": "consistent",
+            "automatic": true,
+            "includedPaths": [{"path": "/*"}],
+            "excludedPaths": [{"path": "/_etag/?"}, {"path": "/payload/*"}],
+            "compositeIndexes": [[{"path": "/createdAt", "order": "descending"}, {"path": "/id", "order": "ascending"}]]
+          }
+        },
+        "options": {"throughput": 400}
+      }
+    }
+  ],
+  "outputs": {
+    "accountId": {"type": "string", "value": "[resourceId('Microsoft.DocumentDB/databaseAccounts', parameters('accountName'))]"}
+  }
+}

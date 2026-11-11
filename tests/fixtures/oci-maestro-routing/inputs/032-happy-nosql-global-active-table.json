@@ -1,0 +1,7 @@
+{
+  "name": "032-happy-nosql-global-active-table",
+  "task": "Should our OCI NoSQL table become a Global Active table across two regions?",
+  "tags": [
+    "happy-path"
+  ]
+}

@@ -561,6 +561,21 @@
         "shift-left"
       ],
       "agent": "gcp-waf-security-review-agent"
+    },
+    "bigtable-architect": {
+      "keywords": [
+        "Bigtable",
+        "Cloud Bigtable",
+        "row key",
+        "app profile",
+        "column family",
+        "garbage collection",
+        "HBase",
+        "hotspot",
+        "single-cluster routing",
+        "multi-cluster routing"
+      ],
+      "agent": "gcp-bigtable-architect-agent"
     }
   },
   "live_guards": [

@@ -1,0 +1,185 @@
+{
+  "skill_name": "aws-dynamodb-patterns",
+  "evals": [
+    {
+      "id": 1,
+      "name": "model-and-provision",
+      "prompt": "Generate, do not deploy: a tenant/customer orders DynamoDB design. Inputs are tenantId+customerId to list newest orders and tenantId to list OPEN orders. We also want lookup by orderId alone. We have no peak/skew measurements. Show a compact access-pattern matrix, compare single vs multiple tables, and include actual CloudFormation or AWS CLI creation code with string PK/SK and a sparse GSI. Explain TTL/PITR and safe provisioning. Our backend is Kotlin; can we use the TypeScript DynamoDB Toolbox v2 library unchanged? Keep the response under 850 words.",
+      "expected_output": "A workload-qualified design, real creation snippet, honest orderId gap, separate Kotlin adapter and no deployment.",
+      "files": [],
+      "expectations": [
+        "Compares single-table versus multiple tables without an unconditional winner and labels missing load/skew evidence.",
+        "Maps both list patterns to concrete keys and identifies a necessary orderId-only access path or locator.",
+        "Provides valid creation code with only table/index key AttributeDefinitions and no provisioned throughput under PAY_PER_REQUEST.",
+        "States GSI reads are eventual and defines removing sparse index key attributes when an order closes.",
+        "Explains TTL is delayed cleanup and PITR is a separate protection, and does not execute or claim deployment.",
+        "Rejects unchanged Toolbox portability to Kotlin and uses or recommends its native AWS SDK or Java SDK adapter."
+      ]
+    },
+    {
+      "id": 2,
+      "name": "pagination-and-tenant-cursor",
+      "prompt": "Review and repair this JS logic: do { const p = await query(req); if (!p.Items.length) break; results.push(...p.Items); req.ExclusiveStartKey = p.LastEvaluatedKey; } while (req.ExclusiveStartKey). This queries a GSI with ConsistentRead=true, Limit=50 and a FilterExpression. The first response is Items=[] with a nonempty LastEvaluatedKey; the second has a matching order. We promise exactly 50 matches per HTTP page and accept a base64 JSON cursor from any tenant. Explain the actual capacity and page semantics, show corrected bounded pagination code, and say how Java/Rust/PHP should preserve its behavior. No cloud calls. Under 650 words.",
+      "expected_output": "Executable pagination continues on empty pages, ends on absent/empty LEK, bounds work, fixes GSI consistency, and rejects cross-tenant cursors.",
+      "files": [],
+      "expectations": [
+        "Continues after an empty Items page with a nonempty LastEvaluatedKey and terminates on absent or empty key.",
+        "States Limit and 1 MB apply before filtering and neither filter nor request projection reduces consumed read capacity.",
+        "Removes or rejects ConsistentRead=true on a GSI, rather than describing a strong-read workaround on that index.",
+        "Bounds requests/deadline, handles fewer than 50 matches, and does not discard surplus matches while advancing the service cursor (remaining-count Limit or buffered surplus).",
+        "Requires cursor integrity and binding to authenticated tenant/query/index/order, not base64 alone.",
+        "Preserves typed cursor values and exact numbers across Java/Rust/PHP adapters without claiming universal compilation."
+      ]
+    },
+    {
+      "id": 3,
+      "name": "write-failures-and-hot-index",
+      "prompt": "Stress-test our checkout plan, do not merely endorse it: Rust workers BatchWrite 30 conditional inventory updates atomically, retry the whole batch after timeout, and treat TransactWriteItems ClientRequestToken as permanent idempotency. A GSI with PK=OPEN should scale forever in on-demand mode. Email uniqueness is query-GSI-then-put; sessions are valid until TTL physically deletes them. An MREC global-table transaction must appear atomically in every Region. Correct the plan and give concrete failure tests, including how to handle an unknown committed decrement. Would MRSC make our existing TTL and transaction workflow a drop-in solution? No AWS execution. Under 750 words.",
+      "expected_output": "Rejects invalid batch and region guarantees, supplies bounded conditional/idempotent alternatives, explains hotspot and TTL risks and MRSC incompatibility.",
+      "files": [],
+      "expectations": [
+        "Rejects BatchWrite updates/conditions/whole-batch atomicity and the 30-item size; distinguishes unprocessed-subset retry.",
+        "Uses authoritative conditional writes or a valid transaction and identifies timeout-after-commit duplicate-decrement risk and reconciliation/durable identity.",
+        "States transaction token deduplication is limited to ten minutes, not permanent business idempotency.",
+        "Rejects unbounded on-demand global status GSI, noting index hotspot/back-pressure and fan-out/merge/cursor cost of sharding.",
+        "Rejects GSI uniqueness checks and TTL-as-authorization, with concurrent-claim and expired-still-present tests.",
+        "Rejects atomic MREC cross-Region transaction visibility and a drop-in MRSC migration with existing TTL/transaction APIs."
+      ]
+    },
+    {
+      "id": 4,
+      "name": "index-decision-and-commands",
+      "prompt": "We need strongly consistent recent-update ordering within a customer on an existing DynamoDB table without an LSI. One customer could grow to 12 GB including index entries. The team proposes adding an LSI online, giving it a tenant-wide partition key, and independently scaling its provisioned capacity. We also need an OPEN queue across customers. Choose LSI vs GSI or neither, explain unprojected-field behavior, and show one safe AWS CLI query and a new-table-only LSI alternative. Generate only, no cloud calls.",
+      "expected_output": "Rejects impossible online LSI and unsafe size/scope assumptions; distinguishes strong-authoritative redesign from eventual GSI; provides correctly scoped command examples.",
+      "files": [],
+      "expectations": [
+        "Rejects adding/deleting an LSI online and changing its partition key from the base table key.",
+        "Applies the 10 GB limit to base plus all LSI entries per item collection, irrespective of billing mode.",
+        "Rejects strong GSI discovery; proposes explicit base-key redesign or approved migration when freshness cannot relax.",
+        "Explains shared LSI versus independent provisioned GSI capacity, and GSI back-pressure despite that separation.",
+        "Distinguishes LSI base fetch of unprojected fields from explicit base reads needed for GSI results.",
+        "Provides bounded CLI query with correct key names/consistency, and labels optional LSI creation as a new-table alternative rather than an existing-table update."
+      ]
+    },
+    {
+      "id": 5,
+      "name": "encryption-owner-and-old-backup",
+      "prompt": "Our CloudFormation DynamoDB table omits SSESpecification, so is that AWS-managed aws/dynamodb or unencrypted? We want to compare that option with AWS-managed and customer-managed KMS keys, with CloudFormation and AWS CLI examples. SSEType=KMS should prove the key is ours, retargeting its alias should rotate the table to a new key, and after switching the table we can delete the old key even though an old on-demand backup uses it, right? Can the GSI use a separate key? Generate commands only; no deployment or key lifecycle operations.",
+      "expected_output": "Corrects AWS-owned default confusion, provides three distinct configurations and safe identity/readback guidance, rejects alias/backup/key-deletion assumptions.",
+      "files": [],
+      "expectations": [
+        "Distinguishes AWS-owned default from AWS-managed aws/dynamodb and customer-managed keys; encryption at rest cannot be disabled.",
+        "Provides correct CFN SSEEnabled/SSEType/KMSMasterKeyId and CLI Enabled/SSEType/KMSMasterKeyId variants without silently changing the default asset.",
+        "States both AWS-managed and customer-managed KMS choices can incur KMS charges and require appropriate effective permissions.",
+        "Checks the resolved table KMSMasterKeyArn and key metadata rather than treating SSEType=KMS as proof of customer ownership.",
+        "Rejects alias retargeting as a table-key switch and preserves old backup key dependencies before any separate approved key retirement.",
+        "Explains GSI/LSI inherit the table key, and refuses incidental disable/deletion commands or claims of live verification."
+      ]
+    },
+    {
+      "id": 6,
+      "name": "permission-scope-tags-resource-policy",
+      "prompt": "Our role can GetItem on the Orders table ARN, so Query on its GSI and GetRecords on its stream should work. Add dynamodb:TransactWriteItems and dynamodb:ExecuteStatement for transactions/PartiQL, allow Scan with LeadingKeys, and use inherited table tags for stream ABAC. For a named external role, attach a policy directly to the GSI; if put-resource-policy fails, retry with NO_POLICY and confirm-remove-self-resource-access. Correct this plan with an IAM action/resource matrix and group validation, tagging and policy commands separately. Do not execute cloud requests.",
+      "expected_output": "Rejects wrong action/resource scopes, unsafe ABAC and policy administration assumptions; gives scoped, revision-aware domain commands.",
+      "files": [],
+      "expectations": [
+        "Distinguishes table CRUD, table/index Query, and stream ARN consumption with the dynamodb IAM namespace.",
+        "Maps transactions to component actions and PartiQL to PartiQL permissions rather than inventing IAM names from API names.",
+        "Rejects Scan LeadingKeys protection, and distinguishes independent stream tags/ABAC from table-to-index tag inheritance.",
+        "Attaches index permissions through the table policy, requires owner/caller cross-account allows and checks encryption/support constraints.",
+        "Requires observed revision or confirmed absence; rejects blind NO_POLICY and lockout-confirmation fallback.",
+        "Groups scoped validation/tag/policy commands and reports local simulation versus effective live authorization as different evidence."
+      ]
+    },
+    {
+      "id": 7,
+      "name": "streams-and-cache-correctness",
+      "prompt": "Enable Streams and DAX for our Rust/Kotlin checkout. We assume the whole partition is globally ordered, Lambda delivers exactly once, LATEST catches every event during mapping setup, and changing stream images preserves its ARN. Our existing Lambda mapping operator needs PassRole, right? DAX should transparently support every SDK, make GSI reads strong, and invalidate every query result when an item is written through DAX. Explain separate permissions and provide grouped bounded read/setup commands, without deploying anything.",
+      "expected_output": "Separates stream delivery/order/checkpoints, mapping operator/execution role and optional DAX cache/client/network/service-role boundaries.",
+      "files": [],
+      "expectations": [
+        "States per-item stream ordering and bounded retention, at-least-once consumer processing and idempotent checkpointing.",
+        "Explains LATEST setup gaps and new stream ARN on image-type reconfiguration; does not silently disable MREC replication streams.",
+        "Separates existing-function mapping creation from function role changes that can require PassRole.",
+        "Distinguishes DAX item/query cache staleness and uncached strong/transactional pass-through without strong GSI claims.",
+        "Verifies supported DAX clients instead of promising every SDK; separates DAX caller rights, service-role table/index rights, TLS and VPC requirements.",
+        "Provides separately grouped stream/DAX examples with bounds, target scope, costs and explicit nonexecution/runtime limits."
+      ]
+    },
+    {
+      "id": 8,
+      "name": "recovery-replicas-and-monitoring",
+      "prompt": "Our backup status says ENABLED, so restore in-place to now and add a replica with create-global-table; PITR/tags/alarms/DAX will copy automatically. MRSC is just another replica flag. For CloudWatch create a SystemErrors alarm with TableName only and an index alarm using GSI1 even though our actual index is OrdersByStatus; missing data means healthy. Correct the PITR/replica/metric plan and provide domain-grouped commands. Use primary docs, note any source conflicts, and execute nothing.",
+      "expected_output": "Rejects false backup/failover/metric assumptions, shows new-target recovery and current MREC/MRSC boundaries, exact observed metric dimensions and notification verification.",
+      "files": [],
+      "expectations": [
+        "Inspects actual PITR status/window and restores only to a new distinct target, not wall-clock now or in place.",
+        "Rechecks restored and per-replica security/backup/tag/consumer/alarm settings rather than inferring all configuration from copied data.",
+        "Uses current-version UpdateTable replica syntax in the source Region and separates MREC from MRSC topology/features/availability.",
+        "Does not infer runtime failover/cache freshness from replica ACTIVE; retains explicit KMS/IAM and rollback requirements.",
+        "Uses TableName plus Operation for SystemErrors and an observed ACTIVE GSI name for index metrics/alarms; uses correct statistics and source/receiving dimensions.",
+        "Treats missing data, SNS wiring and notification delivery as separately verified; reports configured policy and documentation conflicts honestly."
+      ]
+    },
+    {
+      "id": 9,
+      "name": "native-vector-types-and-permissions",
+      "prompt": "I heard DynamoDB has a new VECTOR type. Store my embedding in a Number Set, add an on-demand native vector index with Tenant HASH and Status INLINE_FILTER, then use Query with ConsistentRead and a cursor for similarity results. Tenant filtering plus LeadingKeys must provide IAM isolation. Show the real types/schema/SearchVectors command and explain the CloudFormation attribute declarations, SDK and quota pitfalls. Generate only, do not deploy.",
+      "expected_output": "Distinguishes existing List-of-Number storage from native vector index/search capabilities and rejects inaccurate type, pagination, consistency and tenant-security assumptions.",
+      "files": [],
+      "expectations": [
+        "Lists current scalar/document/set families and stores embedding as ordered L of N, not NS or an invented VECTOR primitive.",
+        "Uses native VectorIndexes and SearchVectors with a bare typed-number array; does not require OpenSearch or emulate search with Query.",
+        "Declares scalar HASH and INLINE_FILTER SearchSchema attributes but not the embedding list in AttributeDefinitions.",
+        "Explains on-demand/eventual/immutable-index constraints, matching dimensions, TopK bounds and no search pagination or ConsistentRead.",
+        "Uses the documented SearchVectors index permission and rejects LeadingKeys/Attributes/Select or tenant routing as IAM-enforced row isolation.",
+        "Records installed-tool support, shared vector/GSI quotas, projection amplification and strict-lint compatibility issues without silently removing required declarations or claiming service acceptance."
+      ]
+    },
+    {
+      "id": 10,
+      "name": "semiannual-review-reminder",
+      "prompt": "Add a reminder in this DynamoDB skill to review AWS feature changes every June and December. Today is 2026-11-08. We do only a targeted vector update now, miss the December review, and invoke it in June 2027. When is it due, does the date automatically roll forward, and will this send an external calendar notification? Show a deterministic local due check and explain how a full completed review is recorded.",
+      "expected_output": "Calendar-aligned local on-use reminder, first due December 2026, missed review remains overdue, targeted work does not count as a full audit, no external notification claim.",
+      "files": [],
+      "expectations": [
+        "Schedules June/December windows rather than six months after the November edit; initial next window is 2026-12-01.",
+        "Shows read-only local due-status command with explicit client/local as-of date and no scheduler, network or file writes.",
+        "Treats the whole scheduled month as due and a missed December review as still overdue in June 2027.",
+        "Does not automatically advance the ledger on skill load, a partial review or a failed review.",
+        "Records a genuine full-review date separately from targeted research and advances to the next calendar window only after completion.",
+        "Clearly distinguishes an on-use skill reminder from an actual external calendar/background notification requiring separate setup."
+      ]
+    },
+    {
+      "id": 11,
+      "name": "embedding-precision-meaning-and-aws-integrations",
+      "prompt": "Use aws-dynamodb-patterns. I assume DynamoDB preserves float64 embeddings because Number has 38 digits, each coordinate points to a file in an S3 vector bucket, and identical dimensions make any two models compatible. Explain the actual numeric precision/range and source mapping; show a coherent Bedrock-to-DynamoDB flow and the alternative Knowledge Bases/S3 Vectors flow. Can Titan V2 use our three-dimensional example? What must be tested before deployment? Generate only, do not call AWS.",
+      "expected_output": "Corrects precision/source/model assumptions and separates native DynamoDB from S3 objects, S3 Vectors and documented managed KB support, with bounded examples and honest evidence.",
+      "files": [],
+      "expectations": [
+        "Distinguishes base Number decimal precision, f32 vector indexing, numeric range and dimensions; explains significant digits/rounding, finite values and underflow/zero policies rather than fixed decimal places.",
+        "Explains distributed model-dependent coordinates are not pointers/IDs or reliably named concepts; preserves explicit source/version/chunk/model mapping and rejects embeddings as encryption or truth guarantees.",
+        "Shows matching embedding model/configuration for ingestion/search, L/N storage vs bare SearchVector array, and Titan V2 1024/512/256 rather than the three-dimensional fixture.",
+        "Separates ordinary S3 objects, S3 vector bucket/index APIs and native DynamoDB; positively documents KB/S3 Vectors without inventing current DynamoDB managed KB support.",
+        "Covers authenticated tenant and source ACL checks, conditional/versioned ingestion, update/delete synchronization, async freshness and model migration/re-embedding.",
+        "Requires offline numeric/request checks and real authorized retrieval relevance, security, latency/cost tests separately; does not call AWS or claim runtime proof from mocks."
+      ]
+    },
+    {
+      "id": 12,
+      "name": "selective-modes-audit-performance-and-feature-state",
+      "prompt": "Use aws-dynamodb-patterns audit --features iam,encryption, then performance-test --features vectors --environment nonproduction. I assume these commands inspect AWS immediately, enable the selected features permanently, and a 30-second mock run proves production p99 and recall. Also feature-plan --features pitr,encryption --action enable should apply whichever part works. Correct these assumptions, show the real offline selector, load only selected guides, and explain what execution evidence and authorization are missing. Do not call AWS.",
+      "expected_output": "Selects lazy workflow routes, distinguishes plan from execution and actual state, rejects incompatible actions, and requires bounded authorized evidence before live audit/load or change.",
+      "files": [],
+      "expectations": [
+        "Shows real local selector commands and does not invent a registered slash command, activation profile, automatic AWS call or benchmark result.",
+        "Loads only requested mode/feature references, deduplicates shared guides and leaves other features out of scope.",
+        "Audit defaults to repo evidence; live metadata requires exact scoped authorization and must not scan data or remediate automatically.",
+        "Performance plans require real nonproduction identity, dataset/skew, rate/attempt/concurrency/duration/cost/stop bounds and an enforcing harness; mocks do not prove AWS latency or vector recall.",
+        "Separates client latency/errors/retries from successful service latency and evaluates vector recall against authorized filtered ground truth and freshness.",
+        "Rejects mixed unsupported enable/disable plans atomically, treats encryption as configuration and never reports a feature enabled or a test passing from intent alone."
+      ]
+    }
+  ]
+}

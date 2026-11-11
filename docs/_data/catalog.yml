@@ -2,18 +2,18 @@
 # Do NOT edit manually — run: node scripts/generate-docs-data.mjs
 # This file is the single source of truth for all catalog counts in Jekyll docs.
 
-agents: 738
-skills: 765
+agents: 745
+skills: 776
 providers: 45
 mcp_references: 3
 rules: 1
 workflows: 2
 install_roles: 76
-validation_gates: 31
+validation_gates: 37
 agent_directories: 49
 skill_directories: 49
 maestro_scenarios: 357
-version: "3.17.0"
+version: "3.19.0"
 
 # Provider list (flat)
 provider_list:
@@ -68,17 +68,17 @@ provider_taxonomy:
   - category: "Cloud Hyperscalers"
     providers:
       - name: "aws"
-        agents: 47
+        agents: 48
       - name: "azure"
-        agents: 36
+        agents: 37
       - name: "gcp"
-        agents: 52
+        agents: 53
       - name: "oci"
-        agents: 39
+        agents: 41
       - name: "alibaba"
-        agents: 43
+        agents: 44
       - name: "huawei"
-        agents: 43
+        agents: 44
   - category: "European Cloud"
     providers:
       - name: "ovhcloud"

@@ -1,0 +1,13 @@
+{
+  "TableName": "REPLACE_WITH_APPROVED_TABLE",
+  "KeyConditionExpression": "#pk = :pk AND begins_with(#sk, :prefix)",
+  "ExpressionAttributeNames": {"#pk": "PK", "#sk": "SK"},
+  "ExpressionAttributeValues": {
+    ":pk": {"S": "TENANT#acme#CUSTOMER#c42"},
+    ":prefix": {"S": "ORDER#"}
+  },
+  "ConsistentRead": true,
+  "ScanIndexForward": false,
+  "Limit": 50,
+  "ReturnConsumedCapacity": "TOTAL"
+}

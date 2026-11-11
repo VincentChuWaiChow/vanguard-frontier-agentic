@@ -1,0 +1,8 @@
+# Python dependencies of the validation gates, for CI and local runs:
+#   python3 -m pip install -r tests/requirements-ci.txt
+# cfn-lint stays pinned so a rule update cannot change CI results without a commit.
+# Dependabot (pip, weekly; .github/dependabot.yml) opens a pull request for every new
+# cfn-lint release, so the pin tracks the latest version through reviewed commits.
+jsonschema
+pyyaml
+cfn-lint==1.60.0

@@ -846,12 +846,12 @@
     {
       "id": "alibaba-maestro",
       "path": "skills/alibaba/alibaba-maestro",
-      "aggregate_sha256": "acf08d2edc8cf22a3c627fbaaf882e4fd0bf57518adfa23c561a186eafc1bb34",
+      "aggregate_sha256": "7e43e52056798493f81c045477cf19b59aa63432fa8c38d2f24e3c046163e58c",
       "files": [
         {
           "path": "skills/alibaba/alibaba-maestro/SKILL.md",
-          "sha256": "e0ac15bb7f4daa98bb0351eaf267d037cea0ea09fd84c3b4fb73023865a9cda2",
-          "bytes": 12761
+          "sha256": "88a10a4cf981f642e0e5cc9b5d4f349e8b5ad5a9d8b0172cfd85990257826b1a",
+          "bytes": 13015
         },
         {
           "path": "skills/alibaba/alibaba-maestro/metadata.json",
@@ -1272,6 +1272,53 @@
           "path": "skills/alibaba/alibaba-support-incident-coordinator/references/workflow-and-output.md",
           "sha256": "5e02657ee2c07a6dabcc720bf0cb82919cc4a2a24680cd226a31c3d2ca72dbc2",
           "bytes": 3361
+        }
+      ]
+    },
+    {
+      "id": "alibaba-tablestore-architect",
+      "path": "skills/alibaba/alibaba-tablestore-architect",
+      "aggregate_sha256": "5d5b9f4cd2e0e10c39f65efaa4477a983bc685efe97e5fb9eff69a138cc4c2f9",
+      "files": [
+        {
+          "path": "skills/alibaba/alibaba-tablestore-architect/SKILL.md",
+          "sha256": "59eb3fb7d7b66458db1e03b4ed56bae80fcda4308298fed5a978849b1b6b8b5e",
+          "bytes": 3619
+        },
+        {
+          "path": "skills/alibaba/alibaba-tablestore-architect/metadata.json",
+          "sha256": "dc44ab20fd5b20915f8fc9384bcc91cb83fbf470e88fee77a0aae2655b411608",
+          "bytes": 1495
+        },
+        {
+          "path": "skills/alibaba/alibaba-tablestore-architect/references/commands/audit/live.md",
+          "sha256": "7bd0ba493d8d4fa618c6fcd5da6443267f1db122434d41df2b5688eb9a379a1e",
+          "bytes": 5139
+        },
+        {
+          "path": "skills/alibaba/alibaba-tablestore-architect/references/commands/audit/offline.md",
+          "sha256": "1e78ffacf3a8c51c22d84af6d65d0e18f8a8f11201bce0a5ad1cbec387b9a1cb",
+          "bytes": 4156
+        },
+        {
+          "path": "skills/alibaba/alibaba-tablestore-architect/references/commands/audit.md",
+          "sha256": "662e985a25132fdcc364bcfd9e16a8ddf9c2a2e04a990085e75299c7b54ea811",
+          "bytes": 917
+        },
+        {
+          "path": "skills/alibaba/alibaba-tablestore-architect/references/evidence-ledger.md",
+          "sha256": "fbebcfb3f9b047c8c44f3bd025d96f4abb56be08abd82b4805dc95fe7c54169f",
+          "bytes": 32805
+        },
+        {
+          "path": "skills/alibaba/alibaba-tablestore-architect/references/operations.md",
+          "sha256": "7d11d25b3bb9f2e16f249082da4cc0950f5b8581bc338b0211c8adb974121100",
+          "bytes": 9942
+        },
+        {
+          "path": "skills/alibaba/alibaba-tablestore-architect/references/tablestore-design-guide.md",
+          "sha256": "890110d6e7dd19521b42fc78a5cc1ce3fc8fc71965c792a3d12ff8849f393812",
+          "bytes": 8454
         }
       ]
     },
@@ -2044,24 +2091,91 @@
       ]
     },
     {
+      "id": "aws-documentdb-architect",
+      "path": "skills/aws/aws-documentdb-architect",
+      "aggregate_sha256": "344b1ac87077cafd818063e7e857b07c76b47d75a2147def1104c9a642261281",
+      "files": [
+        {
+          "path": "skills/aws/aws-documentdb-architect/SKILL.md",
+          "sha256": "c8be45c4936953c7a13dbefc9198f748fdae3d806545c32fccd7ae5a43832ffd",
+          "bytes": 2275
+        },
+        {
+          "path": "skills/aws/aws-documentdb-architect/metadata.json",
+          "sha256": "b45676d338fa7ef2ce2699d303831225dd57796ce37a99528cefec4b8bd1f32d",
+          "bytes": 1277
+        },
+        {
+          "path": "skills/aws/aws-documentdb-architect/references/commands/audit/live.md",
+          "sha256": "f6a992429ba3884d3eac8869af2296dde5e72167f49185a801887bb87d8a3815",
+          "bytes": 5830
+        },
+        {
+          "path": "skills/aws/aws-documentdb-architect/references/commands/audit/offline.md",
+          "sha256": "db848336b388956febb32014e90709e92b09be5de2ce2dd6880d3ef09f0dea96",
+          "bytes": 5222
+        },
+        {
+          "path": "skills/aws/aws-documentdb-architect/references/commands/audit.md",
+          "sha256": "b54a77976308d723f84221501a7cd3fd19a564915a383406bbab7f2b5fe5cd0e",
+          "bytes": 1028
+        },
+        {
+          "path": "skills/aws/aws-documentdb-architect/references/evidence-ledger.md",
+          "sha256": "7f84afecda2789c4b3a90cb3df674899c539534b41b11d7e77078538648ad86b",
+          "bytes": 19345
+        },
+        {
+          "path": "skills/aws/aws-documentdb-architect/references/official-sources.md",
+          "sha256": "dac39bebd8ee88cb3fcdfa690691d2acf3eed1c03daab5cf451a157302762f72",
+          "bytes": 796
+        },
+        {
+          "path": "skills/aws/aws-documentdb-architect/references/operations.md",
+          "sha256": "d37caa854f10fcd05b7b3ef213b167cfd0fcf9cc2216d3e86bfa04c3004ead6a",
+          "bytes": 8163
+        },
+        {
+          "path": "skills/aws/aws-documentdb-architect/references/safety-checklist.md",
+          "sha256": "a3326a0e6495002261ec297451ebfffcc96dad78ecde6af98c7124c4d269d1d4",
+          "bytes": 965
+        },
+        {
+          "path": "skills/aws/aws-documentdb-architect/references/workflow-and-output.md",
+          "sha256": "743204b5d16e7b949b154c59830c4784ad8a4c2c3daf4a7b210c11ec6310ab27",
+          "bytes": 934
+        }
+      ]
+    },
+    {
       "id": "aws-dynamodb-data-modeling-performance-review",
       "path": "skills/aws/aws-dynamodb-data-modeling-performance-review",
-      "aggregate_sha256": "c4521be13818c644d67b3d62835467e9e00a9d8ad1a8a03972576ab176cec9f3",
+      "aggregate_sha256": "6c38bd0355997bfbdc04eec1efce7191178a60df427f2b10f86bd0f2f0d56c93",
       "files": [
         {
           "path": "skills/aws/aws-dynamodb-data-modeling-performance-review/SKILL.md",
-          "sha256": "6f79f2a022bf6605a5ad6c1fbaecb528436a199f3f4591fdc608275f67da1c0b",
-          "bytes": 2904
+          "sha256": "4c6708f65e4f3f5ad7d0dc215812dcc49620755cf3996c41b68259205b82242d",
+          "bytes": 3467
         },
         {
           "path": "skills/aws/aws-dynamodb-data-modeling-performance-review/metadata.json",
-          "sha256": "03bc2122cb229c527506930f2ed7a78f86ad9d01652ee8270832845a8939323d",
-          "bytes": 1238
+          "sha256": "75d8d17a3e904df4b694c8fcc030938959c48df0b65252ebaffecbc8d7528119",
+          "bytes": 1619
+        },
+        {
+          "path": "skills/aws/aws-dynamodb-data-modeling-performance-review/references/consistency-indexing-replication.md",
+          "sha256": "b52546a1d0c868350b22b7ff279642d80d12b8ddb5c9f69d7a37d6adcc6b0d22",
+          "bytes": 6104
         },
         {
           "path": "skills/aws/aws-dynamodb-data-modeling-performance-review/references/dynamodb-access-patterns-capacity.md",
           "sha256": "2a778086457e3dc8bf011350173c33a90ce6168b3ccfdc102a9d455a9e5419de",
           "bytes": 3137
+        },
+        {
+          "path": "skills/aws/aws-dynamodb-data-modeling-performance-review/references/evidence-ledger.md",
+          "sha256": "92a1d0573e5033e7f56a72e84dd0e963a775de7c02b766588c4e4051a7fa4b34",
+          "bytes": 9094
         },
         {
           "path": "skills/aws/aws-dynamodb-data-modeling-performance-review/references/official-sources.md",
@@ -2077,6 +2191,398 @@
           "path": "skills/aws/aws-dynamodb-data-modeling-performance-review/references/workflow-and-output.md",
           "sha256": "545cad526e670d95ed64107e33cbb7e0313c089fb4b012798c0ed57c40e2702e",
           "bytes": 2204
+        }
+      ]
+    },
+    {
+      "id": "aws-dynamodb-patterns",
+      "path": "skills/aws/aws-dynamodb-patterns",
+      "aggregate_sha256": "bac6eecca7d56641d5a8644a9f2b222b13d2345edfbe26e48b1b669dc1e2bf44",
+      "files": [
+        {
+          "path": "skills/aws/aws-dynamodb-patterns/CHANGELOG.md",
+          "sha256": "eef859f5d23056b123b5f6db7e238f872c041299cf29c29b2aa5094ea57a79b0",
+          "bytes": 4663
+        },
+        {
+          "path": "skills/aws/aws-dynamodb-patterns/README.md",
+          "sha256": "067a4766806668328fad27ee9ec360b1c65d11e0e74cbf40774b1572a0c804ed",
+          "bytes": 10717
+        },
+        {
+          "path": "skills/aws/aws-dynamodb-patterns/SKILL.md",
+          "sha256": "3e6c0a618c3e9981292a773c11e1d2255426c005285b0e86cc3b9302ccc66e34",
+          "bytes": 5484
+        },
+        {
+          "path": "skills/aws/aws-dynamodb-patterns/assets/bedrock-embedding-input.json",
+          "sha256": "d3aea9be65291990d8dd852f4afc9d198fd2dec8c66a8c58bdce912db739fabe",
+          "bytes": 159
+        },
+        {
+          "path": "skills/aws/aws-dynamodb-patterns/assets/content-review.json",
+          "sha256": "861bb8ba842889af89d0c424cae1b716e34c56ae161f48db4df977d860e29a14",
+          "bytes": 134
+        },
+        {
+          "path": "skills/aws/aws-dynamodb-patterns/assets/create-table-with-lsi.json",
+          "sha256": "e4ae68a6e9d2ea9f8ea09918b58ef13c919606c063d26c05dae6fdef4992081b",
+          "bytes": 1180
+        },
+        {
+          "path": "skills/aws/aws-dynamodb-patterns/assets/create-table.json",
+          "sha256": "2b72d4a4301d0e61872d9bbbc227a65b02adc568604ad5226a294e108b0e27a3",
+          "bytes": 797
+        },
+        {
+          "path": "skills/aws/aws-dynamodb-patterns/assets/create-table.sh",
+          "sha256": "2a86baade698cbb566d782b0b9f985bfdac32d973cd24c4894ba4b315fa332d0",
+          "bytes": 2046
+        },
+        {
+          "path": "skills/aws/aws-dynamodb-patterns/assets/embedding-flow.py",
+          "sha256": "23e9af8e3d4f996b41059c15be53e6d11652ce7695154a8008e35dfe27ad9015",
+          "bytes": 4314
+        },
+        {
+          "path": "skills/aws/aws-dynamodb-patterns/assets/query-input.json",
+          "sha256": "d4ba436d3cfa21eb36012a5f9916cc77d3d301f00dd279b6c6199bccd93d0866",
+          "bytes": 400
+        },
+        {
+          "path": "skills/aws/aws-dynamodb-patterns/assets/query-pages.mjs",
+          "sha256": "39fe90aaa3fb6aac927cb3da96c3a9d1e3a1b36633aef1649a491dd6b987a346",
+          "bytes": 2439
+        },
+        {
+          "path": "skills/aws/aws-dynamodb-patterns/assets/stream-read-policy.json",
+          "sha256": "0c1a17e1fc200abe1c80b69686278799caef4197e08f7c8e0485e24fcbb694b3",
+          "bytes": 333
+        },
+        {
+          "path": "skills/aws/aws-dynamodb-patterns/assets/table-index-read-policy.json",
+          "sha256": "6b36d0e022a0ac34e2a326b187dc28ab16c83d65eac7ba664251fb28789e46a5",
+          "bytes": 543
+        },
+        {
+          "path": "skills/aws/aws-dynamodb-patterns/assets/table-resource-policy.json",
+          "sha256": "bbf5d6af654ff7b3cd3693568af610acb01578403e64ca91a4c462484d573277",
+          "bytes": 672
+        },
+        {
+          "path": "skills/aws/aws-dynamodb-patterns/assets/table.cfn.yaml",
+          "sha256": "8265c102d605d7f30835ccb8dfd3956bd7824b9b2ddd87941384cd7345131100",
+          "bytes": 1508
+        },
+        {
+          "path": "skills/aws/aws-dynamodb-patterns/assets/typed-vector-item.json",
+          "sha256": "0cd96b9d789b6a1d1b44beabdc618453da2b6c4b30fe6f80f2f441217ec10ab9",
+          "bytes": 491
+        },
+        {
+          "path": "skills/aws/aws-dynamodb-patterns/assets/vector-create-table.json",
+          "sha256": "93538ce88150677c0de4ca01405eb881d1432b9c636059f5b7e05e21a052c499",
+          "bytes": 787
+        },
+        {
+          "path": "skills/aws/aws-dynamodb-patterns/assets/vector-search-policy.json",
+          "sha256": "49b6d246da65e93897ca306ddd2c117a51cd896ad5ebdb5df3f67d17c9463358",
+          "bytes": 271
+        },
+        {
+          "path": "skills/aws/aws-dynamodb-patterns/assets/vector-search.json",
+          "sha256": "c065513b6e5b82596cf6172f07d6f5a80fae85f314c59cc16a0bf8ce6852ea2e",
+          "bytes": 445
+        },
+        {
+          "path": "skills/aws/aws-dynamodb-patterns/assets/vector-table.cfn.yaml",
+          "sha256": "17ba522f1ce73d2a8150de3e93f65d4873c0a82a74b9e5046c89ccbadf5749e8",
+          "bytes": 1227
+        },
+        {
+          "path": "skills/aws/aws-dynamodb-patterns/evals/audit.test.py",
+          "sha256": "12936acdec413bf8d99d91b4326f51434e77beb0d001259b29aafaa2a5f3235d",
+          "bytes": 4276
+        },
+        {
+          "path": "skills/aws/aws-dynamodb-patterns/evals/backup-restore.test.py",
+          "sha256": "50795485cc5e124e6bcb5c007c4060fef5dbffa227ed67d525e63cc35fe7ede8",
+          "bytes": 9285
+        },
+        {
+          "path": "skills/aws/aws-dynamodb-patterns/evals/commands.test.py",
+          "sha256": "7e6c5c543e08e727452961f0a6f823102e1d415b01f089137f755e07292b147d",
+          "bytes": 9500
+        },
+        {
+          "path": "skills/aws/aws-dynamodb-patterns/evals/create-table.test.py",
+          "sha256": "2513560ce782ae9a257a6b822269cddfab3ad27b561a78d8d592ef11c72c963a",
+          "bytes": 4432
+        },
+        {
+          "path": "skills/aws/aws-dynamodb-patterns/evals/data-vectors-maintenance.test.py",
+          "sha256": "727562f21a5d831a8ed66b91d34f3cd03baa188e5105e94a6e271113b9dc1e07",
+          "bytes": 11536
+        },
+        {
+          "path": "skills/aws/aws-dynamodb-patterns/evals/embedding-commands.test.py",
+          "sha256": "bbca7d1cf479689a2f0a9524ffc952f690f5a047740812663dd25bf503fd76c3",
+          "bytes": 8960
+        },
+        {
+          "path": "skills/aws/aws-dynamodb-patterns/evals/embedding-flow.test.py",
+          "sha256": "bdf67a443c610bf3c0b945296921022081a364f611d3645d03a42f79678f6c71",
+          "bytes": 8222
+        },
+        {
+          "path": "skills/aws/aws-dynamodb-patterns/evals/eval.md",
+          "sha256": "3b60437814b8dfa1dc0898a962b137bdd9babd45d5f0fc20227bd799a0092633",
+          "bytes": 21595
+        },
+        {
+          "path": "skills/aws/aws-dynamodb-patterns/evals/evals.json",
+          "sha256": "fddba998bc7bec1bd376bebf0e2ddbab29da705d7dcddde01caa1869d38daaed",
+          "bytes": 20754
+        },
+        {
+          "path": "skills/aws/aws-dynamodb-patterns/evals/modes.test.py",
+          "sha256": "084a3d9249d9e09fdf2f349f7b1e525a6963965c61d32b8caa9c05314d91661d",
+          "bytes": 11789
+        },
+        {
+          "path": "skills/aws/aws-dynamodb-patterns/evals/operations.test.py",
+          "sha256": "d7d94ba0f5dc3a393b1d8f440da734790edb66ec9a692a0dbc7a2a6f43ae7278",
+          "bytes": 14743
+        },
+        {
+          "path": "skills/aws/aws-dynamodb-patterns/evals/query-pages.test.mjs",
+          "sha256": "df9bae9ea6213f23f4d6b88c7b31414b600b7c7c5a904f313461985edd2a98d2",
+          "bytes": 5764
+        },
+        {
+          "path": "skills/aws/aws-dynamodb-patterns/evals/readme-and-loading.test.py",
+          "sha256": "67ad8ef5453282b572102ba3b8171fefa05fd7794a44797f34ff578fa1c3975a",
+          "bytes": 3313
+        },
+        {
+          "path": "skills/aws/aws-dynamodb-patterns/evals/verify.py",
+          "sha256": "deb6e7a734540817f3b0ff76448fa113f8cd1a6649e147144539fcf2d93908d8",
+          "bytes": 8054
+        },
+        {
+          "path": "skills/aws/aws-dynamodb-patterns/metadata.json",
+          "sha256": "47c8451a19261edbcdccf1abfab19f4aa23c371e1f7f80b2049a314a91a87c1e",
+          "bytes": 1742
+        },
+        {
+          "path": "skills/aws/aws-dynamodb-patterns/references/commands/README.md",
+          "sha256": "c638be8686afd0c59d3d6c6b4a38369390ce763c9a6deb73d2ac0ee2ad0f60fc",
+          "bytes": 1811
+        },
+        {
+          "path": "skills/aws/aws-dynamodb-patterns/references/commands/audit/live.md",
+          "sha256": "70baaf469c59c2a89152988893b8a14fdefe0486ace4a9259f915ecc382647c3",
+          "bytes": 3636
+        },
+        {
+          "path": "skills/aws/aws-dynamodb-patterns/references/commands/audit/offline.md",
+          "sha256": "44f280b15c5ef9eeddf86f9d54d9acc6765d94976c922b7c07e9f632fe56bcba",
+          "bytes": 1682
+        },
+        {
+          "path": "skills/aws/aws-dynamodb-patterns/references/commands/audit.md",
+          "sha256": "934b0de34256b48725cfa31f8ea49c1cfde8c1501973c7cf9f177af3de1ec7db",
+          "bytes": 3812
+        },
+        {
+          "path": "skills/aws/aws-dynamodb-patterns/references/commands/aws-cli.md",
+          "sha256": "3b9373b10cf2120ed12a64c0c241a3379a271d35b0474a598ad6d8b261052cab",
+          "bytes": 11450
+        },
+        {
+          "path": "skills/aws/aws-dynamodb-patterns/references/commands/backup/on-demand.md",
+          "sha256": "deb67d15ff5e91e31bbe61b9e4708baa085da180030c1b537e9804eb68409e68",
+          "bytes": 2022
+        },
+        {
+          "path": "skills/aws/aws-dynamodb-patterns/references/commands/backup/pitr.md",
+          "sha256": "8b764e079acec8ab182a55656219c800035c9181db8fb0ab3eb0eb190022a876",
+          "bytes": 1663
+        },
+        {
+          "path": "skills/aws/aws-dynamodb-patterns/references/commands/backup.md",
+          "sha256": "289756c19ed9d9464bd2be177a5bb5b6a9afaf09531d239f1bc53126d38538b9",
+          "bytes": 1455
+        },
+        {
+          "path": "skills/aws/aws-dynamodb-patterns/references/commands/design.md",
+          "sha256": "5526e0e6fca432e79e3e62054b0b2ea7a1daf42ff12b652c7b1cd484d6c98e6c",
+          "bytes": 3082
+        },
+        {
+          "path": "skills/aws/aws-dynamodb-patterns/references/commands/embedding.md",
+          "sha256": "00335becd3de6a8899130450d259a3b4f1f2790efd69ccaa43c9429efc7a58c9",
+          "bytes": 10660
+        },
+        {
+          "path": "skills/aws/aws-dynamodb-patterns/references/commands/feature-plan.md",
+          "sha256": "423e5ed63109f6ecf3853fe5f8a6f2855e3b7e74994821a7d54d2aad0e8cd6b1",
+          "bytes": 3238
+        },
+        {
+          "path": "skills/aws/aws-dynamodb-patterns/references/commands/help.md",
+          "sha256": "71e0ef59629aaf3c975dfa2b764db47c210a43eb29b824d677e0dc4146c0400e",
+          "bytes": 1259
+        },
+        {
+          "path": "skills/aws/aws-dynamodb-patterns/references/commands/performance-test.md",
+          "sha256": "174ab4c6bac5ed6ec2f8780e8a71776a3aab7739d6c4d18028e6180fe045a8af",
+          "bytes": 6238
+        },
+        {
+          "path": "skills/aws/aws-dynamodb-patterns/references/commands/recovery-target.md",
+          "sha256": "839484eaa59ed215b4c83ab30990188887efa45ecc8fa96df6a25fa6467f10a7",
+          "bytes": 2724
+        },
+        {
+          "path": "skills/aws/aws-dynamodb-patterns/references/commands/refactor.md",
+          "sha256": "eec563f35c78e2788e87c79c62e5f5d08b7e80939447582e720d87d6d92b5963",
+          "bytes": 6285
+        },
+        {
+          "path": "skills/aws/aws-dynamodb-patterns/references/commands/restore/on-demand.md",
+          "sha256": "79f371bec0b4daf504c26cbeb38466e2ad76ba373f04f1664468b5269e7802bb",
+          "bytes": 1628
+        },
+        {
+          "path": "skills/aws/aws-dynamodb-patterns/references/commands/restore/pitr.md",
+          "sha256": "67f20634b8c8cf9ae7db2fca85644f5efb83e2733485980215ce2db1fa1d7172",
+          "bytes": 1953
+        },
+        {
+          "path": "skills/aws/aws-dynamodb-patterns/references/commands/restore.md",
+          "sha256": "ae404461ff5a5bd22e77381ef76cc5c631fa802029fc4e7eee9dfef427b5f5ab",
+          "bytes": 4663
+        },
+        {
+          "path": "skills/aws/aws-dynamodb-patterns/references/commands/select.md",
+          "sha256": "ab5fc3894c5210e1907eba83668bc86330df37d4bff9835cf61a6bb1f19c3e7e",
+          "bytes": 911
+        },
+        {
+          "path": "skills/aws/aws-dynamodb-patterns/references/data-types-and-vectors.md",
+          "sha256": "231969a5d77b04ca87ec6f2fc42dd0b5288fffe52ce7fbb5ac60fa5b5c32960f",
+          "bytes": 10901
+        },
+        {
+          "path": "skills/aws/aws-dynamodb-patterns/references/embedding-integrations.md",
+          "sha256": "60f8c86630a959f607a3ef4179e3b5720b6328de98a331e9819a711b968ae3bc",
+          "bytes": 14566
+        },
+        {
+          "path": "skills/aws/aws-dynamodb-patterns/references/encryption.md",
+          "sha256": "56f07370063241a444e38d3c3ac96be5b52d771cec2fa95afe22151ef1dfddb1",
+          "bytes": 7991
+        },
+        {
+          "path": "skills/aws/aws-dynamodb-patterns/references/evidence-index.md",
+          "sha256": "085bc7d77a9bc5f9858c040e583284f128ca1a1c241c090a19e46a11b61c51fd",
+          "bytes": 10722
+        },
+        {
+          "path": "skills/aws/aws-dynamodb-patterns/references/evidence-ledger.md",
+          "sha256": "78cb4f9fba1f97bbb69ae9bc3d1cf3933eabf45d997c11cadeaebca4c30d0ff2",
+          "bytes": 152932
+        },
+        {
+          "path": "skills/aws/aws-dynamodb-patterns/references/iam-and-access.md",
+          "sha256": "8080b86963d33bddc8aa23f86b1e549ef69ff6e9e5ca57a99929e5307ac66516",
+          "bytes": 11248
+        },
+        {
+          "path": "skills/aws/aws-dynamodb-patterns/references/language-adapters.md",
+          "sha256": "296533977cda7633b5fe77fd505a1e28d6136dc5877a911fded49aab1342234c",
+          "bytes": 11967
+        },
+        {
+          "path": "skills/aws/aws-dynamodb-patterns/references/lsi-vs-gsi.md",
+          "sha256": "daa588a034ef8d460eed568774aa5672ab2b411d38f3685c1073d664e6569be8",
+          "bytes": 7215
+        },
+        {
+          "path": "skills/aws/aws-dynamodb-patterns/references/maintenance.md",
+          "sha256": "5cee63463ae381cc8eb09010eba9d2d28f4eb32b363191d7fa2ff09575a81b93",
+          "bytes": 3266
+        },
+        {
+          "path": "skills/aws/aws-dynamodb-patterns/references/modeling.md",
+          "sha256": "b9abeef0a13ad690c249bc1a6a1b11f3d7958171cfdcaf9fdd05fe7aecdad6d8",
+          "bytes": 7863
+        },
+        {
+          "path": "skills/aws/aws-dynamodb-patterns/references/monitoring.md",
+          "sha256": "fc1beed2b30faef16e6d23ee67fb5864156c297e42fd0655169053a24a531867",
+          "bytes": 9833
+        },
+        {
+          "path": "skills/aws/aws-dynamodb-patterns/references/official-sources.md",
+          "sha256": "83ab701344b298e53b594dc40effa1ca9600045a1fa9adae6408bedba45a53a6",
+          "bytes": 1613
+        },
+        {
+          "path": "skills/aws/aws-dynamodb-patterns/references/operations.md",
+          "sha256": "631847890414298a345afb9fc8607f9c27e43ce9831d6dca723cb4016ae20c66",
+          "bytes": 14535
+        },
+        {
+          "path": "skills/aws/aws-dynamodb-patterns/references/provisioning.md",
+          "sha256": "5233ffae449d8f3c05ebb41c150b4571775190531c819839b3df341ededc62e1",
+          "bytes": 5852
+        },
+        {
+          "path": "skills/aws/aws-dynamodb-patterns/references/recovery-and-replicas.md",
+          "sha256": "47045f40d26be7745444d02643f72c3167c7e1583e5a466f4426aea2bc0c0fa2",
+          "bytes": 8711
+        },
+        {
+          "path": "skills/aws/aws-dynamodb-patterns/references/runtime-contract.md",
+          "sha256": "ff76023405cb3c1301d8863953720a1b24e3b5825069a217d9619f4709737730",
+          "bytes": 8880
+        },
+        {
+          "path": "skills/aws/aws-dynamodb-patterns/references/safety-checklist.md",
+          "sha256": "108f2705bd8953dec7ba76aa1f34ccced98e480bf1f07e09a26108dc35821a24",
+          "bytes": 1712
+        },
+        {
+          "path": "skills/aws/aws-dynamodb-patterns/references/sources.md",
+          "sha256": "a244bbedb47769e360daadc90607ef7b8161db62f9365694a888db5b29f236b7",
+          "bytes": 11778
+        },
+        {
+          "path": "skills/aws/aws-dynamodb-patterns/references/streams-and-dax.md",
+          "sha256": "3d163d6e4229a8fbdeab5bbd9ed2671171f525f9f04fbab9f6e0c6746ff8eec0",
+          "bytes": 9297
+        },
+        {
+          "path": "skills/aws/aws-dynamodb-patterns/references/workflow-and-output.md",
+          "sha256": "622726ff2c1e013952d0bb54ffb0f00aee0fc51adaec1b408fb759c2f1b28de9",
+          "bytes": 1710
+        },
+        {
+          "path": "skills/aws/aws-dynamodb-patterns/references/workflow.md",
+          "sha256": "11e7e82e8baedeee2ce967c1766da78763ea613fda0329cd9a289efcde6f3347",
+          "bytes": 8449
+        },
+        {
+          "path": "skills/aws/aws-dynamodb-patterns/scripts/review_due.py",
+          "sha256": "eb0559bd91402b75a8ee597bdfc07656f19eb5dde792bb00fb66a0cc651a4dd1",
+          "bytes": 2350
+        },
+        {
+          "path": "skills/aws/aws-dynamodb-patterns/scripts/select_mode.py",
+          "sha256": "d2cfc251833a15d34a012765cdce2976f0037ed394535cbdbb56f4e606f39114",
+          "bytes": 6476
         }
       ]
     },
@@ -2414,6 +2920,63 @@
       ]
     },
     {
+      "id": "aws-keyspaces-architect",
+      "path": "skills/aws/aws-keyspaces-architect",
+      "aggregate_sha256": "ec2928f3d0da054aba4918c2936a2ec7ea3eec99eec06d2e6fbb44103784a276",
+      "files": [
+        {
+          "path": "skills/aws/aws-keyspaces-architect/SKILL.md",
+          "sha256": "146f6077cc4bafb361f7a6d92b34717bc4d5bd59f1d8151d1a3966b23bcc2199",
+          "bytes": 2273
+        },
+        {
+          "path": "skills/aws/aws-keyspaces-architect/metadata.json",
+          "sha256": "0738026406ef48700537304f39d87535208d3f9a34db70a381c13650a548c0bd",
+          "bytes": 1274
+        },
+        {
+          "path": "skills/aws/aws-keyspaces-architect/references/commands/audit/live.md",
+          "sha256": "441d1b5978cbdfaf67607569a60a0d0410e89aece2d35f77e00a96ca243adb48",
+          "bytes": 4381
+        },
+        {
+          "path": "skills/aws/aws-keyspaces-architect/references/commands/audit/offline.md",
+          "sha256": "76671429fae7d6ec54a3d110e021daff2f60b7236f0235ab63b0647f53f447b9",
+          "bytes": 4952
+        },
+        {
+          "path": "skills/aws/aws-keyspaces-architect/references/commands/audit.md",
+          "sha256": "1687b40b476c5ea69dad411e2990b2466d128bc9bc0a316261028804deb73ceb",
+          "bytes": 940
+        },
+        {
+          "path": "skills/aws/aws-keyspaces-architect/references/evidence-ledger.md",
+          "sha256": "c6626eaf0e4c7fab6f4f6d8c275c4d14afc3b6270e3ce3724824fd396d5aaf87",
+          "bytes": 17892
+        },
+        {
+          "path": "skills/aws/aws-keyspaces-architect/references/official-sources.md",
+          "sha256": "57ec02c29380df4cce9841a39ee4c736915ee5e80d9537a33097f382f1c7dc2b",
+          "bytes": 791
+        },
+        {
+          "path": "skills/aws/aws-keyspaces-architect/references/operations.md",
+          "sha256": "5c5fec8e19c96caa69caa353ce87402c135c63e42fff5f7316e084928d706a51",
+          "bytes": 7251
+        },
+        {
+          "path": "skills/aws/aws-keyspaces-architect/references/safety-checklist.md",
+          "sha256": "a4e990cf34f2c64ac8ad6261c632df8eb5004120765239d6eacab8314d2ff85e",
+          "bytes": 963
+        },
+        {
+          "path": "skills/aws/aws-keyspaces-architect/references/workflow-and-output.md",
+          "sha256": "efafb7a02beaf8993ac573c1abf61475eb377781e22f1bef0ed82d6d77704c24",
+          "bytes": 927
+        }
+      ]
+    },
+    {
       "id": "aws-kms-secrets-lifecycle-steward",
       "path": "skills/aws/aws-kms-secrets-lifecycle-steward",
       "aggregate_sha256": "a0c2bc461e1624eb7d6372ae87775e5e313c735877777cef469f2222a08fee62",
@@ -2675,17 +3238,17 @@
     {
       "id": "aws-maestro",
       "path": "skills/aws/aws-maestro",
-      "aggregate_sha256": "c541286166ac1c039805a12b761c5bdce4d8aef5665975b80bfc52a77795d868",
+      "aggregate_sha256": "dae312b81d961f97c6ea4d2c2af11cc1f91d126848e536494efdd9eb06fe82db",
       "files": [
         {
           "path": "skills/aws/aws-maestro/SKILL.md",
-          "sha256": "6e4d1105787481f3aa04c7f616e77a1b98556a5084a6112386d1be9d8f801877",
-          "bytes": 3423
+          "sha256": "d2b443de7a8124f48d97b7d6ede9aee4e3b02123ccf5ebaf38514fa0c9d909b1",
+          "bytes": 3424
         },
         {
           "path": "skills/aws/aws-maestro/metadata.json",
-          "sha256": "b91c4ce33142ef41c2a8b06020128fa72fbb8ab0b9afb6087f29e34cb42545ce",
-          "bytes": 1402
+          "sha256": "a30a613f2617b72bea7331a10db7becaf21873e0f24ce51584b4d07de3adddd4",
+          "bytes": 1403
         },
         {
           "path": "skills/aws/aws-maestro/references/official-sources.md",
@@ -2704,8 +3267,8 @@
         },
         {
           "path": "skills/aws/aws-maestro/references/workflow-and-output.md",
-          "sha256": "00f0c98477d9d02674df9dbce91c4d9b84835a3aaf17862d39e845b945416df2",
-          "bytes": 9932
+          "sha256": "1c1180fd5534894e0d344b0245c91f3f8be1b6198468361a011e254d680df919",
+          "bytes": 10240
         }
       ]
     },
@@ -3467,16 +4030,16 @@
     {
       "id": "azure-cosmosdb-application-developer",
       "path": "skills/azure/azure-cosmosdb-application-developer",
-      "aggregate_sha256": "ac53c08b046eebd6fa57d749f44178ef58808bc91575562a271795c0192fc26d",
+      "aggregate_sha256": "b6e5477e1ba8f058104dd601450bcfdb4ed011b4a57f5153eeda7a89042ce7d3",
       "files": [
         {
           "path": "skills/azure/azure-cosmosdb-application-developer/SKILL.md",
-          "sha256": "5634f691c3d52c72d46d898e8f907d58ca111ee7edb3ec18effd611034c4f48e",
-          "bytes": 3071
+          "sha256": "6626432274a96c7a829cd5cc26d2356200bc683249ba6ccb952695c924d9617d",
+          "bytes": 3456
         },
         {
           "path": "skills/azure/azure-cosmosdb-application-developer/metadata.json",
-          "sha256": "193e0bfd11732dfe2a9bb2f42c26dea240ec579ee50f8138d772263a4e68301b",
+          "sha256": "b3b4a20d92905a228da30558a2f7e5b598bd477039b13dcc7114b07e64cc0e34",
           "bytes": 1818
         },
         {
@@ -3503,6 +4066,308 @@
           "path": "skills/azure/azure-cosmosdb-application-developer/references/workflow-and-output.md",
           "sha256": "97b9fcb46e5a3d4d6ca457f28d851412cff364557df17a11f67739acc1527eb0",
           "bytes": 1690
+        }
+      ]
+    },
+    {
+      "id": "azure-cosmosdb-pattern",
+      "path": "skills/azure/azure-cosmosdb-pattern",
+      "aggregate_sha256": "19f70f3d79688bae94c2f869877304bb50270cb1ef5977fe180bae0df359e9c9",
+      "files": [
+        {
+          "path": "skills/azure/azure-cosmosdb-pattern/CHANGELOG.md",
+          "sha256": "9596d40905f61f263963871d50c785004cf4637bdc82e94dbb81b4d8deae52c7",
+          "bytes": 490
+        },
+        {
+          "path": "skills/azure/azure-cosmosdb-pattern/README.md",
+          "sha256": "a1efbe2d6b6ec9fa4122bc2362ff0ce5af2e372f4e6a33a6b239c64b78ddf2c1",
+          "bytes": 7149
+        },
+        {
+          "path": "skills/azure/azure-cosmosdb-pattern/SKILL.md",
+          "sha256": "375d1e11b7870f4f4f04ec6b708e1a3310e2e155677700c7f3f0548ed580a47a",
+          "bytes": 5237
+        },
+        {
+          "path": "skills/azure/azure-cosmosdb-pattern/assets/account.arm.json",
+          "sha256": "b25ba4498e2399ac96ba91bc2ade35f0e0abd948741fb349c9ba30c3bef5c4e6",
+          "bytes": 2511
+        },
+        {
+          "path": "skills/azure/azure-cosmosdb-pattern/assets/content-review.json",
+          "sha256": "f28ae4ec70d7e17ec51f210ff36fd70bfd26f805c840e3c37c7277f64c4629c8",
+          "bytes": 315
+        },
+        {
+          "path": "skills/azure/azure-cosmosdb-pattern/assets/indexing-policy.json",
+          "sha256": "07a83612d648e113d1bd17b3c8324f767b9f50513e2298f63a839c39e494eadb",
+          "bytes": 272
+        },
+        {
+          "path": "skills/azure/azure-cosmosdb-pattern/assets/order.json",
+          "sha256": "d639906742c1eb022af14d921252ce3a8e983020b53f58974a0edfa105192b3d",
+          "bytes": 246
+        },
+        {
+          "path": "skills/azure/azure-cosmosdb-pattern/assets/provision.sh",
+          "sha256": "8edea82c2ee7a2e8d88687e69391163f7b6d6bd808c1b2966628abcf764ff6ca",
+          "bytes": 2475
+        },
+        {
+          "path": "skills/azure/azure-cosmosdb-pattern/assets/runtime.mjs",
+          "sha256": "8353865722ee829ccd8c3a7a4a7a3bd0773767cf94999727179624654f2d11e8",
+          "bytes": 5684
+        },
+        {
+          "path": "skills/azure/azure-cosmosdb-pattern/assets/vector-indexing-policy.json",
+          "sha256": "0d9c38640b935775bebfb225688194f51b1fc22ed8fe3dc1817e4b6aace792c4",
+          "bytes": 226
+        },
+        {
+          "path": "skills/azure/azure-cosmosdb-pattern/assets/vector-policy.json",
+          "sha256": "8ad84cbfb41491afe6a1187b8d1d53d55eee97dd749910f8fbaa56e43c4538e5",
+          "bytes": 124
+        },
+        {
+          "path": "skills/azure/azure-cosmosdb-pattern/evals/eval.md",
+          "sha256": "779f8632cf48fb2a6f928c5e3bc4de502a84a79b3bd59f8b0f73b845888bfa8b",
+          "bytes": 2159
+        },
+        {
+          "path": "skills/azure/azure-cosmosdb-pattern/evals/fixtures/recovery-continuous.json",
+          "sha256": "da0d988a5fd5bb085d10a2e61ba0434b4741677dcf53eac3e72acf82f2654e90",
+          "bytes": 1069
+        },
+        {
+          "path": "skills/azure/azure-cosmosdb-pattern/evals/prompts.json",
+          "sha256": "93a431505234ebdaf7e3e69d68a385f01d0dbde7e84dd6da7f59adeac5ebd617",
+          "bytes": 4605
+        },
+        {
+          "path": "skills/azure/azure-cosmosdb-pattern/evals/report.md",
+          "sha256": "f47bebe3368e0232b76aaacbe2ecb288f8c966e84d9550405c5d982a4bb631f8",
+          "bytes": 3988
+        },
+        {
+          "path": "skills/azure/azure-cosmosdb-pattern/evals/runtime.test.mjs",
+          "sha256": "6a119d4a24731e5d5f39cd09bb3e160e57cddfea3691e742148e1b13202dbe70",
+          "bytes": 7810
+        },
+        {
+          "path": "skills/azure/azure-cosmosdb-pattern/evals/source-evidence.json",
+          "sha256": "e60951ea7901bbc5b0e2860dee46c203297333d77fafe987fe121405aa71c17c",
+          "bytes": 2691
+        },
+        {
+          "path": "skills/azure/azure-cosmosdb-pattern/evals/test_package.py",
+          "sha256": "4b006b7cba05e3bbeccd6fcd46902999352d413541fe9df9b7aa48478d2c34b3",
+          "bytes": 20080
+        },
+        {
+          "path": "skills/azure/azure-cosmosdb-pattern/metadata.json",
+          "sha256": "e7d254a5065f7f382132c03e27b9cbe249fe3e0aa0c6bfbf0f8a9fa91c1569bf",
+          "bytes": 1333
+        },
+        {
+          "path": "skills/azure/azure-cosmosdb-pattern/references/access-control.md",
+          "sha256": "d3234ee43a739e235b966e5063c43aac02006335708f991cee5b79a0aa7d4923",
+          "bytes": 2904
+        },
+        {
+          "path": "skills/azure/azure-cosmosdb-pattern/references/change-feed-and-integrations.md",
+          "sha256": "6d86acb63abbb6e00c32fd4597750c210228107bcbd57960eb9158b60e649770",
+          "bytes": 2189
+        },
+        {
+          "path": "skills/azure/azure-cosmosdb-pattern/references/commands/audit/live.md",
+          "sha256": "ad0a3c1c55719704c8b2076946ff0de8db9f72ebc6b1035ee21f4a3c3c7db68a",
+          "bytes": 1049
+        },
+        {
+          "path": "skills/azure/azure-cosmosdb-pattern/references/commands/audit/offline.md",
+          "sha256": "f06485fb6bfd68472caa6ccb12abc86c244a69c5229cfc8e7e8c0f8a6104442f",
+          "bytes": 881
+        },
+        {
+          "path": "skills/azure/azure-cosmosdb-pattern/references/commands/audit.md",
+          "sha256": "ea756aedfdf99631e436b79a101ebb51b10f5a133b9be2dd92756b859d5d6fca",
+          "bytes": 487
+        },
+        {
+          "path": "skills/azure/azure-cosmosdb-pattern/references/commands/azure-cli.md",
+          "sha256": "83b95434f8e94300d384515c19fb8c56269b3180675fbeaabf2501b7938311d6",
+          "bytes": 1991
+        },
+        {
+          "path": "skills/azure/azure-cosmosdb-pattern/references/commands/backup/continuous.md",
+          "sha256": "f83dab69040a1ac21f106a50991d28edaa261546c654f13ec3ad9e2c2be3e9ad",
+          "bytes": 1857
+        },
+        {
+          "path": "skills/azure/azure-cosmosdb-pattern/references/commands/backup/periodic.md",
+          "sha256": "7d0e04bbcd1ce382dcdded8a99ed0fbb57fa82af6a77fa0fc3d63f2ac835371f",
+          "bytes": 1834
+        },
+        {
+          "path": "skills/azure/azure-cosmosdb-pattern/references/commands/backup.md",
+          "sha256": "0c21c264aae21da0965f0fdf328a06db3aaa77d7f7d6dc60a817e79977b80f3a",
+          "bytes": 658
+        },
+        {
+          "path": "skills/azure/azure-cosmosdb-pattern/references/commands/design.md",
+          "sha256": "38a3caaa6fe86c897bdda14bd3b3399ef6adf923c0568a6d22a00d1502b9e950",
+          "bytes": 910
+        },
+        {
+          "path": "skills/azure/azure-cosmosdb-pattern/references/commands/feature-plan.md",
+          "sha256": "110e58febec476a92fdef9c2d0b66078a0931f88c90084da9a5e5498907e03c4",
+          "bytes": 1227
+        },
+        {
+          "path": "skills/azure/azure-cosmosdb-pattern/references/commands/help.md",
+          "sha256": "357b7c8174f69bcc7ec9801ab1b7e02039eaf693f85d3ec2643ec8c8dcf3042a",
+          "bytes": 779
+        },
+        {
+          "path": "skills/azure/azure-cosmosdb-pattern/references/commands/performance-test.md",
+          "sha256": "64f2c1622d2c6c41ec5cf57e9d3d204150a5ffeba2d461175dc91c6ba454e42e",
+          "bytes": 1433
+        },
+        {
+          "path": "skills/azure/azure-cosmosdb-pattern/references/commands/recovery-target.md",
+          "sha256": "2481a7c0a2a8411eff3e79500dd74fba0b4adf775e54bdb97e125a1c168b725d",
+          "bytes": 1904
+        },
+        {
+          "path": "skills/azure/azure-cosmosdb-pattern/references/commands/refactor.md",
+          "sha256": "eda4a551f15345b5cd87a02c6c11787e2048f5c616473a7a566f8b56aa520a9f",
+          "bytes": 954
+        },
+        {
+          "path": "skills/azure/azure-cosmosdb-pattern/references/commands/restore/continuous-deleted-resource.md",
+          "sha256": "952b60bfe8052d5c19d8b92766184745dd6ada035bd31e505330a78a9228d65b",
+          "bytes": 3263
+        },
+        {
+          "path": "skills/azure/azure-cosmosdb-pattern/references/commands/restore/continuous-new-account.md",
+          "sha256": "ff2c9bf92637691d2e51912fe616755d40f20a21abe376b507d2614f1bb6c618",
+          "bytes": 3090
+        },
+        {
+          "path": "skills/azure/azure-cosmosdb-pattern/references/commands/restore/periodic-support.md",
+          "sha256": "e128436edf743d75444939f85d6aae747f932f2fcb63d7b97620351e011ff883",
+          "bytes": 1759
+        },
+        {
+          "path": "skills/azure/azure-cosmosdb-pattern/references/commands/restore.md",
+          "sha256": "d84dccb7cf2610dab433c6b044eebb905a7b3504f572ceb57e4e72d4dfb0c195",
+          "bytes": 856
+        },
+        {
+          "path": "skills/azure/azure-cosmosdb-pattern/references/commands/select.md",
+          "sha256": "7513830b21288f007fc3a0c3618bb45ae80d486529759895fdadb58493211415",
+          "bytes": 731
+        },
+        {
+          "path": "skills/azure/azure-cosmosdb-pattern/references/data-types-and-vectors.md",
+          "sha256": "a8bcb1e3e93a6e3be34f4b8c9c25f7e3330a4baada8f2c86c0045acc5a63aed9",
+          "bytes": 3831
+        },
+        {
+          "path": "skills/azure/azure-cosmosdb-pattern/references/embedding-integrations.md",
+          "sha256": "4d01ec141db623722be7604d83aa02033ebfe49afbbb326a85c279516a12d113",
+          "bytes": 4213
+        },
+        {
+          "path": "skills/azure/azure-cosmosdb-pattern/references/encryption.md",
+          "sha256": "6ab61e05e4d80ecb042ba39c824521c857bfe81d1cd66bb6875f2347d1667bf2",
+          "bytes": 3699
+        },
+        {
+          "path": "skills/azure/azure-cosmosdb-pattern/references/evidence-index.md",
+          "sha256": "5afa3a6864947b65685421d0d97915a1ddd8b52dfe54817c94156413a5384d8c",
+          "bytes": 9025
+        },
+        {
+          "path": "skills/azure/azure-cosmosdb-pattern/references/evidence-ledger.md",
+          "sha256": "01db8f77da5f51c5084efa7fd19893621fe0330319855362800006b4a9ec9730",
+          "bytes": 74581
+        },
+        {
+          "path": "skills/azure/azure-cosmosdb-pattern/references/indexing-and-capacity.md",
+          "sha256": "fcbfba2674b18d399367205d1ca28a943d4f0ccde278395be57b415ec78bc0e4",
+          "bytes": 2542
+        },
+        {
+          "path": "skills/azure/azure-cosmosdb-pattern/references/language-adapters.md",
+          "sha256": "69c248a80ea837da28e4c2366381b30c617e0700ec928fd14ba1845fc37482f4",
+          "bytes": 6376
+        },
+        {
+          "path": "skills/azure/azure-cosmosdb-pattern/references/maintenance.md",
+          "sha256": "56ce56417bc230cd7b08e0c06f711490f5480c09479e3dbc7c484459c6615f66",
+          "bytes": 1285
+        },
+        {
+          "path": "skills/azure/azure-cosmosdb-pattern/references/modeling.md",
+          "sha256": "78f6f1e31ed97f5b82c7d56c47b41d88e80cf1d5f1fbe013e74089e4cc514ea2",
+          "bytes": 3120
+        },
+        {
+          "path": "skills/azure/azure-cosmosdb-pattern/references/monitoring.md",
+          "sha256": "01a3e8a438404e6d87ecb23712e540cb56bfb7f69c57f62888d5776969f67124",
+          "bytes": 2084
+        },
+        {
+          "path": "skills/azure/azure-cosmosdb-pattern/references/provisioning.md",
+          "sha256": "9adb4fe7fff8eb0372076d26892ce68e31027d4a43d5f545f4cb24297be9f546",
+          "bytes": 3994
+        },
+        {
+          "path": "skills/azure/azure-cosmosdb-pattern/references/recovery.md",
+          "sha256": "19eed77c46ff7f01be268a2b065e2f6411f67e7c905034be4952c3d2f775c866",
+          "bytes": 1987
+        },
+        {
+          "path": "skills/azure/azure-cosmosdb-pattern/references/replication.md",
+          "sha256": "b82574fba1461e2e523d8084c3be705d01ec4ddf029dd525baaad5fd431c552f",
+          "bytes": 1424
+        },
+        {
+          "path": "skills/azure/azure-cosmosdb-pattern/references/runtime-contract.md",
+          "sha256": "f84cd0b4b21c73a811251cedbfa68d1d8bdbe4ed121cf2a2542b51053f5c082b",
+          "bytes": 4457
+        },
+        {
+          "path": "skills/azure/azure-cosmosdb-pattern/references/sources.md",
+          "sha256": "c3b3526c81db6de6243afc1145a90c14883a6ddf605dfb0676abfe73e8604473",
+          "bytes": 6991
+        },
+        {
+          "path": "skills/azure/azure-cosmosdb-pattern/references/workflow.md",
+          "sha256": "bbfe300e32aca2adbc8d119e6446f2e93e107a8b225792cf7d826cee4776fac9",
+          "bytes": 1252
+        },
+        {
+          "path": "skills/azure/azure-cosmosdb-pattern/scripts/recovery_guard.py",
+          "sha256": "900a43c15c23b5010b21d62d57ed8e7f3b3b4147fa50a0ad55bb23fa702c1ff3",
+          "bytes": 5944
+        },
+        {
+          "path": "skills/azure/azure-cosmosdb-pattern/scripts/review_due.py",
+          "sha256": "a28dd982e67db1b3bd6604e03f69e737ca6adad76d71c74ff73bd18cdf76c644",
+          "bytes": 985
+        },
+        {
+          "path": "skills/azure/azure-cosmosdb-pattern/scripts/select_mode.py",
+          "sha256": "a29f9a5032558e9de1a32fa2dc5f6b2791e98e195eba7559c071076f096d502f",
+          "bytes": 5496
+        },
+        {
+          "path": "skills/azure/azure-cosmosdb-pattern/scripts/validate_assets.py",
+          "sha256": "d7968b95e010529d8bc3816f452818663370fc9ccb17fd126f0fea0ec185d84e",
+          "bytes": 3307
         }
       ]
     },
@@ -3556,22 +4421,47 @@
     {
       "id": "azure-cosmosdb-platform-operator",
       "path": "skills/azure/azure-cosmosdb-platform-operator",
-      "aggregate_sha256": "d47b4c1071248589da82442697f85daaae6cf7b16dfb3b51702578d55527e312",
+      "aggregate_sha256": "7b51c889271f73ec1784475d8f56776d9997c834f695152e73ed2b8b94c0fce5",
       "files": [
         {
           "path": "skills/azure/azure-cosmosdb-platform-operator/SKILL.md",
-          "sha256": "5fc7f0bdae53aab53fc62618ae14010b76a4477c2c9f7756577f9cf71e6f10f1",
-          "bytes": 3088
+          "sha256": "172eef39430440899874abc78af70f8fc494ab1429d8190ca7500ce4758cbca1",
+          "bytes": 4053
         },
         {
           "path": "skills/azure/azure-cosmosdb-platform-operator/metadata.json",
-          "sha256": "001bf6a021d94d26a55092a68a4530b1f35d01fe3fc3c7e21c6d5cca6562b6a0",
-          "bytes": 1784
+          "sha256": "b9ab9491b733a61a1c7dd26eb5a0adafda175b2dde40ac098ed4fc488250c37b",
+          "bytes": 2035
+        },
+        {
+          "path": "skills/azure/azure-cosmosdb-platform-operator/references/commands/audit/live.md",
+          "sha256": "c825bacafb9dba11f603db9e8b68fda92ed3eaa4ab5d307dfae860eecc7ff8c5",
+          "bytes": 8569
+        },
+        {
+          "path": "skills/azure/azure-cosmosdb-platform-operator/references/commands/audit/offline.md",
+          "sha256": "b048cf10174e59da18328024f604110ded2e680f71b96f0be8288d4ea530b6de",
+          "bytes": 8164
+        },
+        {
+          "path": "skills/azure/azure-cosmosdb-platform-operator/references/commands/audit.md",
+          "sha256": "f040acd7dd10061b2164b82da2775a93c86ae7694e062586f717b647afa3b889",
+          "bytes": 1198
+        },
+        {
+          "path": "skills/azure/azure-cosmosdb-platform-operator/references/consistency-capacity-security.md",
+          "sha256": "559b50e79bf013009e9248b571e2a66ab7ccbb4f758e223e7af9c2e0caccc2ff",
+          "bytes": 8123
         },
         {
           "path": "skills/azure/azure-cosmosdb-platform-operator/references/cosmosdb-platform-operations.md",
-          "sha256": "c94acd1cacb2aa3b566db0f6353dfa01521b825dc2cfcf1a86d1145c7edbccb5",
-          "bytes": 4955
+          "sha256": "9a7ea9435c321d59c6e1624fd399de70c1c243a031c4076b886a837e106d314b",
+          "bytes": 5032
+        },
+        {
+          "path": "skills/azure/azure-cosmosdb-platform-operator/references/evidence-ledger.md",
+          "sha256": "298cb19ea869cb1492daba3446a9e77678fef4550601e3c96c12039a8ae61cb8",
+          "bytes": 95155
         },
         {
           "path": "skills/azure/azure-cosmosdb-platform-operator/references/mcp-and-evidence.md",
@@ -3582,6 +4472,21 @@
           "path": "skills/azure/azure-cosmosdb-platform-operator/references/official-sources.md",
           "sha256": "d5abfeba0451df28f5e9e54af833e5b6a418e598c3597f3531d407990b5e47cc",
           "bytes": 2494
+        },
+        {
+          "path": "skills/azure/azure-cosmosdb-platform-operator/references/operations-cassandra.md",
+          "sha256": "aee99af22ebf4a25eb9111633f22876011a88b9e6131c8baa110114be46bb9c1",
+          "bytes": 8421
+        },
+        {
+          "path": "skills/azure/azure-cosmosdb-platform-operator/references/operations-mongodb.md",
+          "sha256": "ea3670d4c67a56c5b857e02599f9356e3905cc99cd65166588f5efa80724a0d9",
+          "bytes": 10159
+        },
+        {
+          "path": "skills/azure/azure-cosmosdb-platform-operator/references/operations.md",
+          "sha256": "302efa1d72dc07a4a8f31c13fb5b7b7fba58d241923c5edc792ce39aa56edb79",
+          "bytes": 10579
         },
         {
           "path": "skills/azure/azure-cosmosdb-platform-operator/references/safety-checklist.md",
@@ -4343,12 +5248,12 @@
     {
       "id": "azure-maestro",
       "path": "skills/azure/azure-maestro",
-      "aggregate_sha256": "9a15340bedb532aee1893db7e41ca3f69b1472eefe18beff78261dcbc5f9ee9a",
+      "aggregate_sha256": "2576788db2700b6a510aa46cb6d1373b09bf2b8a19643251a01e962a9cc2f419",
       "files": [
         {
           "path": "skills/azure/azure-maestro/SKILL.md",
-          "sha256": "a5cce6702bb137759e28133bf84d92789fa759b7a17eb7a5f9c03607653bd43a",
-          "bytes": 12509
+          "sha256": "92d8fec26151ca1938099af4967967897312ce463cc99214ccfc0214ef3417ee",
+          "bytes": 12801
         },
         {
           "path": "skills/azure/azure-maestro/metadata.json",
@@ -8532,6 +9437,53 @@
       ]
     },
     {
+      "id": "gcp-bigtable-architect",
+      "path": "skills/gcp/gcp-bigtable-architect",
+      "aggregate_sha256": "a4273d9e9038a14d74c046f08f4571fa7a779c6c72309571177ab0756de71df2",
+      "files": [
+        {
+          "path": "skills/gcp/gcp-bigtable-architect/SKILL.md",
+          "sha256": "a21dbecbda8e388aaec526f29ced3b203a55ddc1c877ff3c92335437d4e0f8dd",
+          "bytes": 3530
+        },
+        {
+          "path": "skills/gcp/gcp-bigtable-architect/metadata.json",
+          "sha256": "3b7566d88601f7d6cf75a14f4b208c07f0e9a660a2500e6d3d0e00d0b877a5b7",
+          "bytes": 1276
+        },
+        {
+          "path": "skills/gcp/gcp-bigtable-architect/references/bigtable-design-guide.md",
+          "sha256": "b1c37510da52dee2d0ea81498b54a31f09dc4688085d569b8384ad711b2c306b",
+          "bytes": 8378
+        },
+        {
+          "path": "skills/gcp/gcp-bigtable-architect/references/commands/audit/live.md",
+          "sha256": "eb47013943473f2cb4bac342bb43597d72922a397ea7470176aae9c8bbfa9ea8",
+          "bytes": 5629
+        },
+        {
+          "path": "skills/gcp/gcp-bigtable-architect/references/commands/audit/offline.md",
+          "sha256": "cc5d2287534d3877a17a8eb19d3888c4766cdfaad5d54914c20f0ccc3cb9e6eb",
+          "bytes": 5894
+        },
+        {
+          "path": "skills/gcp/gcp-bigtable-architect/references/commands/audit.md",
+          "sha256": "a5ebe81cce797e31d27a0dc9b506bd7f36c4d063cc411e0d64668edb7260b804",
+          "bytes": 899
+        },
+        {
+          "path": "skills/gcp/gcp-bigtable-architect/references/evidence-ledger.md",
+          "sha256": "3133ebef56c45e864d9d9dd28afa7845e02b567b55fb778903cfdca58077b477",
+          "bytes": 27543
+        },
+        {
+          "path": "skills/gcp/gcp-bigtable-architect/references/operations.md",
+          "sha256": "952ccaa2bf7c2c67d61b760eea9a90c6e4fa54f70b4b73d3a0c36c4c395e8542",
+          "bytes": 7639
+        }
+      ]
+    },
+    {
       "id": "gcp-certificate-manager-issuer-review",
       "path": "skills/gcp/gcp-certificate-manager-issuer-review",
       "aggregate_sha256": "7d3707d3160680e2f135ddf2f8ab8a3781a739e8f7ab7c4bd7a4461d37b9b437",
@@ -8848,17 +9800,52 @@
     {
       "id": "gcp-firebase-developer",
       "path": "skills/gcp/gcp-firebase-developer",
-      "aggregate_sha256": "39cb615d05e7c93336ae46ee3174f410d841e2074ee17c4a2725e70f3fec66c0",
+      "aggregate_sha256": "d77721d53191084d07c276c18bd5a72681c816792996e299aa0abcbf9119ce0b",
       "files": [
         {
           "path": "skills/gcp/gcp-firebase-developer/SKILL.md",
-          "sha256": "f104695f59a25472b11a7aaafbe5e930f8f7846bc296f150757657023693c033",
-          "bytes": 3988
+          "sha256": "82dd2398f94dc3133413dbf0b289c466ab7006130169dc76db97ada024d235b0",
+          "bytes": 4598
         },
         {
           "path": "skills/gcp/gcp-firebase-developer/metadata.json",
-          "sha256": "afa1c98940da1b29767bb62f8f2139ea3dfb11b48a2314f135ea0bed3315f230",
-          "bytes": 1197
+          "sha256": "566c63abdc5b76d61b5db7b5ed59e96533f53b2f0123de8983b7e289ed59a327",
+          "bytes": 1419
+        },
+        {
+          "path": "skills/gcp/gcp-firebase-developer/references/commands/audit/live.md",
+          "sha256": "ffcca64be4ecbe61cc5449edc4007b84df04b33ee4c5cd4d45d0d172b635d59f",
+          "bytes": 5379
+        },
+        {
+          "path": "skills/gcp/gcp-firebase-developer/references/commands/audit/offline.md",
+          "sha256": "a860b772085eaebc9f901583d1d38093779306661721c0f551bc1004da92249f",
+          "bytes": 6585
+        },
+        {
+          "path": "skills/gcp/gcp-firebase-developer/references/commands/audit.md",
+          "sha256": "d0ef88ade1479c007daa1a824ad4ae1aad5ae9312f8c07887f1d1c2553441854",
+          "bytes": 1371
+        },
+        {
+          "path": "skills/gcp/gcp-firebase-developer/references/evidence-ledger.md",
+          "sha256": "4348d2705021d5e2c538e2a6407ee4f9ac7c856c2835ba565d4fa80a5ded9cf0",
+          "bytes": 60778
+        },
+        {
+          "path": "skills/gcp/gcp-firebase-developer/references/firestore-mongodb-operations.md",
+          "sha256": "cddeac9cf274189245658fb4ab91f26cbb343271afca5ba40067d35f66b25da5",
+          "bytes": 9596
+        },
+        {
+          "path": "skills/gcp/gcp-firebase-developer/references/firestore-operations.md",
+          "sha256": "1e28180583fb3ae6a5b5fa4108f2dc869a2f94d89c34e80305a94d5c0c18d83e",
+          "bytes": 10410
+        },
+        {
+          "path": "skills/gcp/gcp-firebase-developer/references/firestore.md",
+          "sha256": "2f4dd1b0909a89edebd91e61794225b7f92c7dda7304ba733e2e84baf4b132e6",
+          "bytes": 5898
         }
       ]
     },
@@ -9226,12 +10213,12 @@
     {
       "id": "gcp-maestro",
       "path": "skills/gcp/gcp-maestro",
-      "aggregate_sha256": "1b8400e91ebb6a58dc275b86b8dc893f22b8eec24ebcd38fb11a0e40d420e01f",
+      "aggregate_sha256": "bf4de6fb8d28044761e7fd157deb1fd3df31cfcc5f9e946e22e6a61ca70973fa",
       "files": [
         {
           "path": "skills/gcp/gcp-maestro/SKILL.md",
-          "sha256": "4f1aa6cc64b027adb11464fd7c106c3334eae966d426ead3ee63026a6f3e3c76",
-          "bytes": 13540
+          "sha256": "fc6ef2874d766c15852d64c0377df8eec49958ade9112c3b6934e35aa3e001b3",
+          "bytes": 13793
         },
         {
           "path": "skills/gcp/gcp-maestro/metadata.json",
@@ -10451,17 +11438,42 @@
     {
       "id": "huawei-gaussdb-rds-dba",
       "path": "skills/huawei/huawei-gaussdb-rds-dba",
-      "aggregate_sha256": "7f95a36611937e9320d3d7e9665e6d93e0bf798ef6ef1c8b7de493db0928fd6f",
+      "aggregate_sha256": "7f9de3913902ca40b6f088ae409a265b4e8eee5c0eddf5cf6611283c5b98d0d9",
       "files": [
         {
           "path": "skills/huawei/huawei-gaussdb-rds-dba/SKILL.md",
-          "sha256": "2e58b09f40bec8d295a96ebcc6570e0cb9a96f3c33a63f08d3d9c5cb44a3507c",
-          "bytes": 4006
+          "sha256": "cfdc36ea98a409d9e6a28d6feda28b646349b9b3b74cccb7ed8d64167a50729a",
+          "bytes": 4971
         },
         {
           "path": "skills/huawei/huawei-gaussdb-rds-dba/metadata.json",
-          "sha256": "1196d20498437ab27c41d0ad60105aa9a89c8e573f8218d54da85a384dfd40da",
-          "bytes": 1016
+          "sha256": "07a8ba3963dc6db387b7e641d6ddd8b7bb2334c001ab0bc6f11e668e6bf4e100",
+          "bytes": 1126
+        },
+        {
+          "path": "skills/huawei/huawei-gaussdb-rds-dba/references/commands/audit/live.md",
+          "sha256": "d9dcd4a1519679f081f6c73bde08559f758f3abe250e03075e8693f6dcbd6d42",
+          "bytes": 3543
+        },
+        {
+          "path": "skills/huawei/huawei-gaussdb-rds-dba/references/commands/audit/offline.md",
+          "sha256": "b21e7aa56cdd6cfe86fd7193abc033e29d2f602d459378a8f4822bd455fafe92",
+          "bytes": 4960
+        },
+        {
+          "path": "skills/huawei/huawei-gaussdb-rds-dba/references/commands/audit.md",
+          "sha256": "a430fe46206229febe80ddd61bc92344773629ce3f77c69036c81477ed579fc4",
+          "bytes": 1139
+        },
+        {
+          "path": "skills/huawei/huawei-gaussdb-rds-dba/references/dds-operations.md",
+          "sha256": "9dbedf9c4b2520fd1f6b5603ce50d65fa9eac340d10c3dfe6fcf99c0d49cfacb",
+          "bytes": 9943
+        },
+        {
+          "path": "skills/huawei/huawei-gaussdb-rds-dba/references/evidence-ledger.md",
+          "sha256": "55e657cfdf2e5f298be2d8864b5e6cf25a1f5ad1e99f4b8940715a33d4a70c15",
+          "bytes": 30810
         },
         {
           "path": "skills/huawei/huawei-gaussdb-rds-dba/references/official-sources.md",
@@ -10472,6 +11484,53 @@
           "path": "skills/huawei/huawei-gaussdb-rds-dba/references/workflow-and-output.md",
           "sha256": "f4da8c5c989416c81d3ad02fdfaddf614aae57190b06bd2d3b4316b89d849441",
           "bytes": 1599
+        }
+      ]
+    },
+    {
+      "id": "huawei-geminidb-architect",
+      "path": "skills/huawei/huawei-geminidb-architect",
+      "aggregate_sha256": "045a075ec4e8b00558de2cb79ba4a0f01b31bebda3bceee665cd49425ab9cfa6",
+      "files": [
+        {
+          "path": "skills/huawei/huawei-geminidb-architect/SKILL.md",
+          "sha256": "0fa980045c907b699ca5d8894c82c694bac3d50af29e9279630d561df2d0894c",
+          "bytes": 3429
+        },
+        {
+          "path": "skills/huawei/huawei-geminidb-architect/metadata.json",
+          "sha256": "0ab4e68bb41ce3296818d3e87fe77ad193e7511a2c146e8801e8c62ab7b3a7fc",
+          "bytes": 1219
+        },
+        {
+          "path": "skills/huawei/huawei-geminidb-architect/references/commands/audit/live.md",
+          "sha256": "9546b0e04a60bd9c09f1eaf9c413819676101f946a1581f5e21228514897c745",
+          "bytes": 3335
+        },
+        {
+          "path": "skills/huawei/huawei-geminidb-architect/references/commands/audit/offline.md",
+          "sha256": "09a28971971d85c35596a38d779432e974d3541c9af0b7f31f1db186b6375a27",
+          "bytes": 4822
+        },
+        {
+          "path": "skills/huawei/huawei-geminidb-architect/references/commands/audit.md",
+          "sha256": "cb7698bf99b6b27bc0154cc977cb213a514d9f7acfdb81ae5afa26f5bc1ffa79",
+          "bytes": 1062
+        },
+        {
+          "path": "skills/huawei/huawei-geminidb-architect/references/evidence-ledger.md",
+          "sha256": "8303235d49e2133ea26cb9dfaa0667cb974e2b136b52eb0da8f142530fd3f0ab",
+          "bytes": 29991
+        },
+        {
+          "path": "skills/huawei/huawei-geminidb-architect/references/geminidb-design-guide.md",
+          "sha256": "b3dc983a9e0385a9b3265e6e0ffbdcd667bb5cfc01d88aa513d3af5a6132fb32",
+          "bytes": 5675
+        },
+        {
+          "path": "skills/huawei/huawei-geminidb-architect/references/operations.md",
+          "sha256": "86110c68774b14760e35bf785cecd0e3a57536225f8afdc76f216e411086834f",
+          "bytes": 9970
         }
       ]
     },
@@ -10775,12 +11834,12 @@
     {
       "id": "huawei-maestro",
       "path": "skills/huawei/huawei-maestro",
-      "aggregate_sha256": "60a7b1d6f1c0484045bc6ab1bd04d02518ccadb556d9de7eebeaf77ef5cd8eb0",
+      "aggregate_sha256": "955f93bebfc85ace7e5292bbec079bb3e1ce27b4fead4ad4d5d0294e794fd023",
       "files": [
         {
           "path": "skills/huawei/huawei-maestro/SKILL.md",
-          "sha256": "20a974cb2c083d69ef192d4846739dcffb076395ae8c38263f82484e2faf5047",
-          "bytes": 13072
+          "sha256": "2bcac7010ee1c8758872d0a1ea8a38258f112fc8ff1e6c7053574b13c45f28e5",
+          "bytes": 13357
         },
         {
           "path": "skills/huawei/huawei-maestro/metadata.json",
@@ -11420,17 +12479,42 @@
     {
       "id": "ionos-live-database-lifecycle-guard",
       "path": "skills/ionos/ionos-live-database-lifecycle-guard",
-      "aggregate_sha256": "059f2ef076a827809ce0b8fb2863e9cc53d5f392e7be01256fe6ffa20061aa0b",
+      "aggregate_sha256": "6bdca174dd32b30ced4661570fd6b9909d8e45e661ecba8b366c2982fd8d06d0",
       "files": [
         {
           "path": "skills/ionos/ionos-live-database-lifecycle-guard/SKILL.md",
-          "sha256": "78dafd9925f862a2c4013db7bca23ebe389ed64b5f0f618493ff71561643b7f6",
-          "bytes": 4098
+          "sha256": "5cc953f3e8c837276c8ee88a7638478a9af79b85dc7a9ccea184b47ca583e9ec",
+          "bytes": 4493
         },
         {
           "path": "skills/ionos/ionos-live-database-lifecycle-guard/metadata.json",
           "sha256": "69a136c4367ac8dcdfd6293902579b49ba95b237413de66ce50752208690ed54",
           "bytes": 1376
+        },
+        {
+          "path": "skills/ionos/ionos-live-database-lifecycle-guard/references/commands/audit/live.md",
+          "sha256": "3acdd3207193678be1869a90ffb3df84be85a3e6ef60dbfb6485c5cfe177b2a7",
+          "bytes": 4106
+        },
+        {
+          "path": "skills/ionos/ionos-live-database-lifecycle-guard/references/commands/audit/offline.md",
+          "sha256": "0df97a4978b3fd77ee422d71522df3b040ca4ad6b57ff233806a2db8f9de38e1",
+          "bytes": 5448
+        },
+        {
+          "path": "skills/ionos/ionos-live-database-lifecycle-guard/references/commands/audit.md",
+          "sha256": "408f1fbdc7ba33f82b0e7965829e6fb96e34bdaa2fd5129b063437de6fe453c2",
+          "bytes": 1296
+        },
+        {
+          "path": "skills/ionos/ionos-live-database-lifecycle-guard/references/evidence-ledger.md",
+          "sha256": "75ae7d6cbc39bebb0b305437dd11c569d5a675e90658f080d536acaabc42f047",
+          "bytes": 21826
+        },
+        {
+          "path": "skills/ionos/ionos-live-database-lifecycle-guard/references/mongodb-operations.md",
+          "sha256": "e14f48412c635841d7f6f5c2b4eff7404c6a378740e24a7c3f4c98acc6078992",
+          "bytes": 11898
         },
         {
           "path": "skills/ionos/ionos-live-database-lifecycle-guard/references/official-sources.md",
@@ -17131,6 +18215,355 @@
       ]
     },
     {
+      "id": "oci-nosql-database-architect",
+      "path": "skills/oci/oci-nosql-database-architect",
+      "aggregate_sha256": "75f3917c54fc94e37d03e960673edf26cac70689f77adbeba2c2621d0dd6694a",
+      "files": [
+        {
+          "path": "skills/oci/oci-nosql-database-architect/SKILL.md",
+          "sha256": "6fc3b24b333f372d9b7e7b55ad5b357a2fef110fbb4a09fbd53f41854737b054",
+          "bytes": 3939
+        },
+        {
+          "path": "skills/oci/oci-nosql-database-architect/metadata.json",
+          "sha256": "4f1042dcddee71bec36b8212d1aae16259a609b7ff2d46fdbae665e184120715",
+          "bytes": 1449
+        },
+        {
+          "path": "skills/oci/oci-nosql-database-architect/references/commands/audit/live.md",
+          "sha256": "deefa0e5c31ae0320186de2d62d384ce64b028e633b6eefb7e8788ba6bd8a0e9",
+          "bytes": 6491
+        },
+        {
+          "path": "skills/oci/oci-nosql-database-architect/references/commands/audit/offline.md",
+          "sha256": "0f43be00cb2fb73d2c2ffaaf8759082fb389ef57cae37be216b5a04c071dcb39",
+          "bytes": 6936
+        },
+        {
+          "path": "skills/oci/oci-nosql-database-architect/references/commands/audit.md",
+          "sha256": "93a9f8af8291143eb62935492674bfc95b9591857c87594ff977fa22a182e248",
+          "bytes": 1409
+        },
+        {
+          "path": "skills/oci/oci-nosql-database-architect/references/evidence-ledger.md",
+          "sha256": "6d82dfc4045e7b7bc3990b3b7dd4a35b7ee587bc76b98cd081b198629496dab5",
+          "bytes": 31686
+        },
+        {
+          "path": "skills/oci/oci-nosql-database-architect/references/nosql-design-guide.md",
+          "sha256": "e55d4670f967be78f33b8cec1e55a08afd89c91f8ed2823a8cd258b38da1eb91",
+          "bytes": 11777
+        },
+        {
+          "path": "skills/oci/oci-nosql-database-architect/references/operations.md",
+          "sha256": "877f1bbcf5510400ad37f6e6fc3c91063808aafce8209c6803e5e55b5c9ef8cc",
+          "bytes": 10616
+        },
+        {
+          "path": "skills/oci/oci-nosql-database-architect/references/sdk-matrix.md",
+          "sha256": "34557e6b13f91420947a58a9889bc75f6a6d0469102f48c67215c23998acbe6e",
+          "bytes": 3005
+        }
+      ]
+    },
+    {
+      "id": "oci-nosql-pattern",
+      "path": "skills/oci/oci-nosql-pattern",
+      "aggregate_sha256": "163a5b69138e126c6972f5a4e27e50dcb831f7bdfe1662a5ff4bce16cb59594b",
+      "files": [
+        {
+          "path": "skills/oci/oci-nosql-pattern/CHANGELOG.md",
+          "sha256": "5afa51d342e413b78e2f7ba6ab319a1ca33bc0f8be37eb66398e4ca228b1cb9c",
+          "bytes": 355
+        },
+        {
+          "path": "skills/oci/oci-nosql-pattern/README.md",
+          "sha256": "a35382c68bc27cda1b1c66d0d8add456d60d7d88e388f72aca17d23b1de4413c",
+          "bytes": 5770
+        },
+        {
+          "path": "skills/oci/oci-nosql-pattern/SKILL.md",
+          "sha256": "d6ccdc3f084864f04784c0144ae14f99d2973f81d7289bb0a9bc795e99e6f2d3",
+          "bytes": 4402
+        },
+        {
+          "path": "skills/oci/oci-nosql-pattern/assets/content-review.json",
+          "sha256": "6df3dee2c969422ce37acecb7f76098a7b187a5f8bd13f708b8559ef01a7900c",
+          "bytes": 233
+        },
+        {
+          "path": "skills/oci/oci-nosql-pattern/assets/create-table.sh",
+          "sha256": "c442a04b2bc0dd55c2b7fdccc340ac5ac338f7ef0d0a6a8f20e8333606394bc2",
+          "bytes": 2498
+        },
+        {
+          "path": "skills/oci/oci-nosql-pattern/assets/index-keys.json",
+          "sha256": "68a588d797ece96e25a535cc55b16555d6c6f3a0804698e48f3594ebe998f925",
+          "bytes": 116
+        },
+        {
+          "path": "skills/oci/oci-nosql-pattern/assets/migrator-export.json",
+          "sha256": "4f548560bcc494b9a0b512e83500ea557c17540965fb78b62a5c3ae7f9daee19",
+          "bytes": 553
+        },
+        {
+          "path": "skills/oci/oci-nosql-pattern/assets/migrator-import.json",
+          "sha256": "8082055a94f2c3a17d130281aa15dd7ce2768dc9a116d1ac80e8bf5899207311",
+          "bytes": 740
+        },
+        {
+          "path": "skills/oci/oci-nosql-pattern/assets/orders.ddl",
+          "sha256": "75c7ed1949c75c5795cb405028147cd40d91fd03caed43077f94fc31a744d640",
+          "bytes": 199
+        },
+        {
+          "path": "skills/oci/oci-nosql-pattern/assets/orders.tf",
+          "sha256": "7b052eabde9f304390419bba40890deba532a4957dde32a49d4258c338a3c370",
+          "bytes": 1542
+        },
+        {
+          "path": "skills/oci/oci-nosql-pattern/assets/query-pages.mjs",
+          "sha256": "de7cd6e10c5bdb5a792f2bd4031e1fd78078a32537095c41cf758f998be07064",
+          "bytes": 2180
+        },
+        {
+          "path": "skills/oci/oci-nosql-pattern/assets/query.json",
+          "sha256": "a739c4e889701b569fe43e19f6ed15d926b9233eca23c6fedac6a06482660a99",
+          "bytes": 287
+        },
+        {
+          "path": "skills/oci/oci-nosql-pattern/assets/query.sql",
+          "sha256": "107577a08e3525cefee9e916a532100bed40044bc75dcd9fa3324cad91f9dbe4",
+          "bytes": 180
+        },
+        {
+          "path": "skills/oci/oci-nosql-pattern/assets/recovery-manifest.example.json",
+          "sha256": "05834402b23d16029bf377e06bc89b470ad6b4f88644dfbbd48f7b4e4306f739",
+          "bytes": 923
+        },
+        {
+          "path": "skills/oci/oci-nosql-pattern/assets/row.json",
+          "sha256": "3007365af4d4c8e34ddf85d54b2eef083cd349d682804194e022278411085de1",
+          "bytes": 184
+        },
+        {
+          "path": "skills/oci/oci-nosql-pattern/assets/table-limits.json",
+          "sha256": "7a4ac76fe8ee0a6f07d2fcf0a3aa4df82c249585ef9071e75570e3a640e5763d",
+          "bytes": 105
+        },
+        {
+          "path": "skills/oci/oci-nosql-pattern/evals/cli-shapes.json",
+          "sha256": "195767a17c6392711a6b18595943a111ea88e3ad7aa1e2836a1517348ed04af6",
+          "bytes": 5000
+        },
+        {
+          "path": "skills/oci/oci-nosql-pattern/evals/eval.md",
+          "sha256": "f2d8f9b7da334339e1a6fde0f2b51c013c2bf7adfe67923d5852ae2d56c12334",
+          "bytes": 2294
+        },
+        {
+          "path": "skills/oci/oci-nosql-pattern/evals/prompts.json",
+          "sha256": "03b4ba10bda0e743867aa28ef19a5d90b7912cb1daeb39ffbbe6b9dd2a54c084",
+          "bytes": 5133
+        },
+        {
+          "path": "skills/oci/oci-nosql-pattern/evals/report.md",
+          "sha256": "488f263f679c79b3ab990be6d2995fb2d912b95a0e637b6515fec44d6a677ee0",
+          "bytes": 4166
+        },
+        {
+          "path": "skills/oci/oci-nosql-pattern/evals/test_package.py",
+          "sha256": "2b99b1a9c5ef591108bebcdec18f7ab7b40ae58c25c5d3d23648f4a9ba03eec5",
+          "bytes": 20871
+        },
+        {
+          "path": "skills/oci/oci-nosql-pattern/evals/test_runtime.mjs",
+          "sha256": "5fc49aa9cea74c6b9e57836ace29e7302d6dec1ebc4fa185d2e10984202635ed",
+          "bytes": 3763
+        },
+        {
+          "path": "skills/oci/oci-nosql-pattern/metadata.json",
+          "sha256": "c6b1a1c0bd97256b91b198e2e4cc75ae7bec019a106fc2c2e70942d50cd18f31",
+          "bytes": 1278
+        },
+        {
+          "path": "skills/oci/oci-nosql-pattern/references/access.md",
+          "sha256": "23d13d08795715e5953509dcb4bf41923075a8f43f2355ff6a22ed3b2360dd9c",
+          "bytes": 1626
+        },
+        {
+          "path": "skills/oci/oci-nosql-pattern/references/commands/audit/live.md",
+          "sha256": "487007c2a74d1b90820ca3580296a7168bc45931ac4d4fe7f7851e03a711841e",
+          "bytes": 690
+        },
+        {
+          "path": "skills/oci/oci-nosql-pattern/references/commands/audit/offline.md",
+          "sha256": "0f64ca59039173050796139d4d10c6d91b6fb281ce6212b8bccfb4725e149b37",
+          "bytes": 506
+        },
+        {
+          "path": "skills/oci/oci-nosql-pattern/references/commands/audit.md",
+          "sha256": "5b8b41de4e473878edae1ae5f0cbb74ef7f04b2c857d01d7a83c8462cdad1c35",
+          "bytes": 364
+        },
+        {
+          "path": "skills/oci/oci-nosql-pattern/references/commands/backup/migrator.md",
+          "sha256": "b1410392b0b0f2c5ab52515a2a5b3851e82fed06facf9abe69bc928b661eff8b",
+          "bytes": 845
+        },
+        {
+          "path": "skills/oci/oci-nosql-pattern/references/commands/backup/sdk.md",
+          "sha256": "807b819e4953247a804c88810786103e5b10f48129fe3547508c8215ce219c06",
+          "bytes": 696
+        },
+        {
+          "path": "skills/oci/oci-nosql-pattern/references/commands/backup.md",
+          "sha256": "d26ab5d4f00b167d9a44b7deebdd2d02ab1cb056e0c1612deed1b2afff7282fc",
+          "bytes": 428
+        },
+        {
+          "path": "skills/oci/oci-nosql-pattern/references/commands/design.md",
+          "sha256": "6a4a96b33f507e1fd96a3d3b365774f63e7952eac00c944c34920b4348189c5b",
+          "bytes": 646
+        },
+        {
+          "path": "skills/oci/oci-nosql-pattern/references/commands/feature-plan.md",
+          "sha256": "f18626a0f069d318ad270144d23b31dfb94109cec0d1400b3deefcc1ad367a04",
+          "bytes": 666
+        },
+        {
+          "path": "skills/oci/oci-nosql-pattern/references/commands/help.md",
+          "sha256": "67e5e07eb52ec1f1a3c990c4ac2d2d07a300b7a587fded0834fcfa36fab697ce",
+          "bytes": 530
+        },
+        {
+          "path": "skills/oci/oci-nosql-pattern/references/commands/performance-test.md",
+          "sha256": "3abfe6f1973039cd0b548f3140540ed72e243f734152658fd33283badb062cdf",
+          "bytes": 860
+        },
+        {
+          "path": "skills/oci/oci-nosql-pattern/references/commands/refactor.md",
+          "sha256": "29d024e0e57ea4d9ddedcbc2b5ea08132c1615d8d7165674c4f79e545200db6a",
+          "bytes": 590
+        },
+        {
+          "path": "skills/oci/oci-nosql-pattern/references/commands/restore/migrator.md",
+          "sha256": "41bdc350460226f7a3dfa35cde0f57f9a16f540a40a4a0eab08077d246e42143",
+          "bytes": 943
+        },
+        {
+          "path": "skills/oci/oci-nosql-pattern/references/commands/restore/sdk.md",
+          "sha256": "7204a5a7cafcb9e6fe2d1f356bbbd6ef957c6c04ab6aab2ddf5487d41656c041",
+          "bytes": 774
+        },
+        {
+          "path": "skills/oci/oci-nosql-pattern/references/commands/restore.md",
+          "sha256": "0a06b4ceae8514b5da64bfce3207b8f1461de3a6d6bb0dea7dee1d4cbf183e63",
+          "bytes": 542
+        },
+        {
+          "path": "skills/oci/oci-nosql-pattern/references/commands/select.md",
+          "sha256": "3b8396bf75f8e1d7f29d104be1903e1c695afd924a43e66855cd6b02d5a196cd",
+          "bytes": 526
+        },
+        {
+          "path": "skills/oci/oci-nosql-pattern/references/embedding-integrations.md",
+          "sha256": "edb6a217d79602f4bf62b481890c8a62a2fcaba19f744246b0180845408a3aeb",
+          "bytes": 1775
+        },
+        {
+          "path": "skills/oci/oci-nosql-pattern/references/encryption.md",
+          "sha256": "4fc7a3bcad0764329fb3da8df1a5a48762c0ea8535cb209105daef605c19b7e1",
+          "bytes": 1350
+        },
+        {
+          "path": "skills/oci/oci-nosql-pattern/references/evidence-index.md",
+          "sha256": "c66b2f74d29da0c8d7c2c57fda136e14520bece9bc8b2578a5f4bccbc81025b1",
+          "bytes": 3930
+        },
+        {
+          "path": "skills/oci/oci-nosql-pattern/references/evidence-ledger.md",
+          "sha256": "c828102f35271d3828d52145f4f9c5ba7c8cb8ba5ad464f150b315e43ac94e7e",
+          "bytes": 28258
+        },
+        {
+          "path": "skills/oci/oci-nosql-pattern/references/indexes.md",
+          "sha256": "91b18a5cc3aa91117336aa862b2e446c55f4e9a63d8e3be7718d57ad1af83165",
+          "bytes": 1315
+        },
+        {
+          "path": "skills/oci/oci-nosql-pattern/references/language-adapters.md",
+          "sha256": "de092236eb52039bb2287c4a744cf20b5cd4a07e042b879ea294aadf254e1715",
+          "bytes": 7523
+        },
+        {
+          "path": "skills/oci/oci-nosql-pattern/references/maintenance.md",
+          "sha256": "582a8a40b410438d2e1b6391f8b06616c43f30b0152cc6b48eb4388000f5cc85",
+          "bytes": 988
+        },
+        {
+          "path": "skills/oci/oci-nosql-pattern/references/modeling.md",
+          "sha256": "17ee704aa213350f72187fe1c013d56e6bce3dc8d47b386edc7905f1172c5bcd",
+          "bytes": 1860
+        },
+        {
+          "path": "skills/oci/oci-nosql-pattern/references/monitoring.md",
+          "sha256": "b9e50093befd689ab59aa2c2f8f67d3352508dbcb1ef32620a68bc499737e958",
+          "bytes": 1573
+        },
+        {
+          "path": "skills/oci/oci-nosql-pattern/references/provisioning.md",
+          "sha256": "580fe2e6b39ed0c4ca817f9f4a8d619319daba035b91ee661b77be5f84b8469a",
+          "bytes": 3372
+        },
+        {
+          "path": "skills/oci/oci-nosql-pattern/references/recovery-boundary.md",
+          "sha256": "02d74d2c939b1170c9b1607f49769c0bcd32dbc5229d4777b346de37412a6f3f",
+          "bytes": 2281
+        },
+        {
+          "path": "skills/oci/oci-nosql-pattern/references/replicas.md",
+          "sha256": "050b42414e645a2191f59b879b9584a21586e49d21251af51ea26f15e2db189b",
+          "bytes": 1231
+        },
+        {
+          "path": "skills/oci/oci-nosql-pattern/references/runtime-contract.md",
+          "sha256": "469d63adb5856f4d4ba54e3dfe1bb0e090d2f1f323fcf02f840447f2c47e517d",
+          "bytes": 2308
+        },
+        {
+          "path": "skills/oci/oci-nosql-pattern/references/sources.md",
+          "sha256": "d98d364c27b32bfe1a4c8435041856de6ccaf9a09d8d48e7961ee591d4d5863d",
+          "bytes": 6732
+        },
+        {
+          "path": "skills/oci/oci-nosql-pattern/references/ttl.md",
+          "sha256": "4539e49914920faaeaf6f00073967232d845b39bfa68777ef1bc95e900e91b67",
+          "bytes": 1305
+        },
+        {
+          "path": "skills/oci/oci-nosql-pattern/references/types-and-vectors.md",
+          "sha256": "1141bbd6759453efbb7d12a873def306be03b3c4b16bea7135f38ea814a0951f",
+          "bytes": 2012
+        },
+        {
+          "path": "skills/oci/oci-nosql-pattern/scripts/check_recovery.py",
+          "sha256": "4010e3940fc0ec0e1049ac836f7eb1074bbbe04b7401701d6631992efbd0c703",
+          "bytes": 2918
+        },
+        {
+          "path": "skills/oci/oci-nosql-pattern/scripts/review_due.py",
+          "sha256": "e10239961a406c371fe1f6c96739ee29849e9945f34e88927ac479e9b5234030",
+          "bytes": 1229
+        },
+        {
+          "path": "skills/oci/oci-nosql-pattern/scripts/select_mode.py",
+          "sha256": "e9f906e724cabc51e7bebe515234eff68227cc779c3a818aeda040ae455e2dc6",
+          "bytes": 4720
+        }
+      ]
+    },
+    {
       "id": "oci-observability-incident-responder",
       "path": "skills/oci/oci-observability-incident-responder",
       "aggregate_sha256": "ab8620e9ddf601d486b160d31ba6f3bce0b7b12aff1f659ce5ebcbb27e808cfa",
@@ -17845,6 +19278,63 @@
           "path": "skills/ovhcloud/ovhcloud-maestro/references/workflow-and-output.md",
           "sha256": "220bda451735694e4082e3257ba3551eb994724e54e0752d0142822c3a563a4e",
           "bytes": 2493
+        }
+      ]
+    },
+    {
+      "id": "ovhcloud-mongodb-architect",
+      "path": "skills/ovhcloud/ovhcloud-mongodb-architect",
+      "aggregate_sha256": "0f0fb0dacd6dcb4af82db8bcec35068898ecb0f9d1153f9d3fa75363c79a73f0",
+      "files": [
+        {
+          "path": "skills/ovhcloud/ovhcloud-mongodb-architect/SKILL.md",
+          "sha256": "54163418e2cbcb83f0fb7e6205ceea6fa3f1853dc64444e3097ddfa7148b661a",
+          "bytes": 2250
+        },
+        {
+          "path": "skills/ovhcloud/ovhcloud-mongodb-architect/metadata.json",
+          "sha256": "4ca2e334e01575a3a39d4d38106d9ac50e24dd928b5f4d832129be88052bfb23",
+          "bytes": 1138
+        },
+        {
+          "path": "skills/ovhcloud/ovhcloud-mongodb-architect/references/commands/audit/live.md",
+          "sha256": "9dda555ab5027e8f46a2eb7e21438d4a99c9bf9b394b8855bc9d7adc1ee9351c",
+          "bytes": 4170
+        },
+        {
+          "path": "skills/ovhcloud/ovhcloud-mongodb-architect/references/commands/audit/offline.md",
+          "sha256": "ba65f650d4d24bb512e8173183c3c29c6362f1da50c8efefd1d39f2f00a9f318",
+          "bytes": 5792
+        },
+        {
+          "path": "skills/ovhcloud/ovhcloud-mongodb-architect/references/commands/audit.md",
+          "sha256": "6d87d859e2e2f2f011af66735bcf1c3d9ef49b81ab793201f64bd8616950a080",
+          "bytes": 1084
+        },
+        {
+          "path": "skills/ovhcloud/ovhcloud-mongodb-architect/references/evidence-ledger.md",
+          "sha256": "7ad92c81dd912e9f74bcc77d79fa5a8cae1e73711426f1e7df3a59ec0d5d6558",
+          "bytes": 34487
+        },
+        {
+          "path": "skills/ovhcloud/ovhcloud-mongodb-architect/references/official-sources.md",
+          "sha256": "aa64d27c4c8bcbe03a2a72c999231d6c57074957ba5ba8b2ed167e18a4c4cead",
+          "bytes": 715
+        },
+        {
+          "path": "skills/ovhcloud/ovhcloud-mongodb-architect/references/operations.md",
+          "sha256": "ed6892465801667e82b7695d46aaf4a91abc44aeefd5303a650bc3edb4319b96",
+          "bytes": 12509
+        },
+        {
+          "path": "skills/ovhcloud/ovhcloud-mongodb-architect/references/safety-checklist.md",
+          "sha256": "1a8b85f67c2a3faec108dc171d5f92a2bda1b80c221dccbd05d6491229fa752d",
+          "bytes": 992
+        },
+        {
+          "path": "skills/ovhcloud/ovhcloud-mongodb-architect/references/workflow-and-output.md",
+          "sha256": "354736f1533dac53f31e83dcdebcfb7e3c4df6b87fbdf1f98dc8468e53c85806",
+          "bytes": 944
         }
       ]
     },
@@ -23166,6 +24656,63 @@
           "path": "skills/scaleway/scaleway-maestro/references/workflow-and-output.md",
           "sha256": "c4cb515cb6443873e1a0dd7cfcf14ebc33561d67e0cad89b59b70dbcd70a9a16",
           "bytes": 2436
+        }
+      ]
+    },
+    {
+      "id": "scaleway-managed-mongodb-architect",
+      "path": "skills/scaleway/scaleway-managed-mongodb-architect",
+      "aggregate_sha256": "453dddfc6cf3bbb55b9794f045ceefa21e7cd6611e769de18305d456b1c0bd32",
+      "files": [
+        {
+          "path": "skills/scaleway/scaleway-managed-mongodb-architect/SKILL.md",
+          "sha256": "6d87a9757fe31dc3a5a86087be823113679638d77887cc1cf36dc241f3c0f3e0",
+          "bytes": 2233
+        },
+        {
+          "path": "skills/scaleway/scaleway-managed-mongodb-architect/metadata.json",
+          "sha256": "b48747151bf33729c9256f75273c2948ae36a3d0f172217a1b55bf368c37a469",
+          "bytes": 1074
+        },
+        {
+          "path": "skills/scaleway/scaleway-managed-mongodb-architect/references/commands/audit/live.md",
+          "sha256": "7ed54fc45c66f2e8cc7abf9c38f752538b7a4274b21acb5dd2c67af5b683dcef",
+          "bytes": 4135
+        },
+        {
+          "path": "skills/scaleway/scaleway-managed-mongodb-architect/references/commands/audit/offline.md",
+          "sha256": "869a945264fde22ba720b55c35f97ca58f03166778d4056d50e324993cd77e90",
+          "bytes": 5916
+        },
+        {
+          "path": "skills/scaleway/scaleway-managed-mongodb-architect/references/commands/audit.md",
+          "sha256": "3d9787b9f5cb8ea5c97ff619286ac77ccb6061ab8cd2f472c0bfb6d93fdd141c",
+          "bytes": 1060
+        },
+        {
+          "path": "skills/scaleway/scaleway-managed-mongodb-architect/references/evidence-ledger.md",
+          "sha256": "d869252077763c1d12c3c73422393eba1e4d0cf8f77a90ef0f07b3011ed7632b",
+          "bytes": 14065
+        },
+        {
+          "path": "skills/scaleway/scaleway-managed-mongodb-architect/references/official-sources.md",
+          "sha256": "875a1bc266c410f81061e456545cb416329c9de37c94572016e27ed998ad6c9c",
+          "bytes": 619
+        },
+        {
+          "path": "skills/scaleway/scaleway-managed-mongodb-architect/references/operations.md",
+          "sha256": "2a83863839e7b483e0e700b98ed79933c8563a824ade1d2c0321932725c9a28f",
+          "bytes": 7247
+        },
+        {
+          "path": "skills/scaleway/scaleway-managed-mongodb-architect/references/safety-checklist.md",
+          "sha256": "18a6a15a27928b0d2af7099c60e8417223095a8a9f946eb8b1ac750e6451b4ff",
+          "bytes": 977
+        },
+        {
+          "path": "skills/scaleway/scaleway-managed-mongodb-architect/references/workflow-and-output.md",
+          "sha256": "f0d785b4398ff5bff5d6c2efcee08efa8b2a314d02386178dc4192928deb8b46",
+          "bytes": 921
         }
       ]
     },

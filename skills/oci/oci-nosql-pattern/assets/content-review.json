@@ -1,0 +1,10 @@
+{
+  "schema_version": 1,
+  "last_full_review": "2026-11-08",
+  "next_review": "2026-12-01",
+  "cadence_months": [
+    6,
+    12
+  ],
+  "scope": "Initial official-documentation review and local package checks; no OCI runtime proof"
+}

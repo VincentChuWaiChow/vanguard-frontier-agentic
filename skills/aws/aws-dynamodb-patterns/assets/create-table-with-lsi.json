@@ -1,0 +1,41 @@
+{
+  "BillingMode": "PAY_PER_REQUEST",
+  "DeletionProtectionEnabled": true,
+  "AttributeDefinitions": [
+    {"AttributeName": "PK", "AttributeType": "S"},
+    {"AttributeName": "SK", "AttributeType": "S"},
+    {"AttributeName": "GSI1PK", "AttributeType": "S"},
+    {"AttributeName": "GSI1SK", "AttributeType": "S"},
+    {"AttributeName": "LSI1SK", "AttributeType": "S"}
+  ],
+  "KeySchema": [
+    {"AttributeName": "PK", "KeyType": "HASH"},
+    {"AttributeName": "SK", "KeyType": "RANGE"}
+  ],
+  "GlobalSecondaryIndexes": [
+    {
+      "IndexName": "GSI1",
+      "KeySchema": [
+        {"AttributeName": "GSI1PK", "KeyType": "HASH"},
+        {"AttributeName": "GSI1SK", "KeyType": "RANGE"}
+      ],
+      "Projection": {
+        "ProjectionType": "INCLUDE",
+        "NonKeyAttributes": ["status", "orderId", "totalMinor", "currency"]
+      }
+    }
+  ],
+  "LocalSecondaryIndexes": [
+    {
+      "IndexName": "LSI1",
+      "KeySchema": [
+        {"AttributeName": "PK", "KeyType": "HASH"},
+        {"AttributeName": "LSI1SK", "KeyType": "RANGE"}
+      ],
+      "Projection": {
+        "ProjectionType": "INCLUDE",
+        "NonKeyAttributes": ["status", "orderId"]
+      }
+    }
+  ]
+}

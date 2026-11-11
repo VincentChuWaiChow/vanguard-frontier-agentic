@@ -1,0 +1,38 @@
+{
+  "id": "huawei-geminidb-architect-agent",
+  "name": "Huawei GeminiDB Architect",
+  "type": "agent",
+  "provider": "huawei",
+  "harnesses": [
+    "codex",
+    "copilot",
+    "claude-code",
+    "cursor",
+    "gemini",
+    "kiro"
+  ],
+  "summary": "Static reviewer for Huawei Cloud GeminiDB API selection, Cassandra API modeling, deletion, capacity, IAM and billing decisions, citing a per-claim evidence ledger.",
+  "source_type": "original",
+  "official_docs": [
+    "https://support.huaweicloud.com/intl/en-us/productdesc-nosql/nosql_introduction.html",
+    "https://support.huaweicloud.com/intl/en-us/cassandraug-nosql/nosql_11_0205.html"
+  ],
+  "security_notes": "Static review only. Never runs or instructs schema, capacity, replication, IAM, data or restore changes without explicit target, blast radius, rollback and user approval; never requests credentials or account identifiers.",
+  "last_verified": "2026-11-08",
+  "path": "agents/huawei/huawei-geminidb-architect-agent",
+  "companion_skills": [
+    "huawei-geminidb-architect"
+  ],
+  "execution_tier": "static-review",
+  "harness_variants": {
+    "codex": "agents/huawei/huawei-geminidb-architect-agent/harnesses/codex.toml",
+    "copilot": "agents/huawei/huawei-geminidb-architect-agent/harnesses/copilot.agent.md",
+    "claude-code": "agents/huawei/huawei-geminidb-architect-agent/harnesses/claude-code.agent.md",
+    "cursor": "agents/huawei/huawei-geminidb-architect-agent/harnesses/cursor.agent.md",
+    "gemini": "agents/huawei/huawei-geminidb-architect-agent/harnesses/gemini.agent.md",
+    "kiro-ide": "agents/huawei/huawei-geminidb-architect-agent/harnesses/kiro-ide.agent.md",
+    "kiro-cli": "agents/huawei/huawei-geminidb-architect-agent/harnesses/kiro-cli.agent.json"
+  },
+  "author": "github: VincentChuWaiChow",
+  "version": "0.1.0"
+}

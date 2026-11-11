@@ -1,0 +1,25 @@
+{
+  "id": "oci-nosql-pattern",
+  "name": "OCI NoSQL Pattern",
+  "type": "skill",
+  "provider": "oci",
+  "harnesses": [
+    "codex",
+    "claude-code",
+    "cursor",
+    "gemini",
+    "kiro",
+    "other"
+  ],
+  "summary": "Design, implement, refactor and audit Oracle NoSQL Database Cloud Service access patterns: shard and primary keys, indexes, continuation, same-shard transactions, consistency, TTL, IAM, encryption, replicas, metrics, Terraform/DDL/OCI CLI and customer-owned export/import recovery, with command routes that load one guide at a time.",
+  "source_type": "adapted",
+  "official_docs": [
+    "https://docs.oracle.com/en/cloud/paas/nosql-cloud/dtddt/features-of-oracle-nosql-database-cloud-service.html",
+    "https://docs.oracle.com/en/cloud/paas/nosql-cloud/odsql/"
+  ],
+  "security_notes": "Not permission to access OCI. Live reads need a confirmed principal, tenancy, region, compartment and table; writes, load tests and export/import recovery need exact approval. Recovery targets a new table. Bundled scripts are offline route selectors, a date-argument review reminder and a sanitized recovery-manifest checker.",
+  "last_verified": "2026-11-09",
+  "path": "skills/oci/oci-nosql-pattern",
+  "author": "github: VincentChuWaiChow",
+  "version": "1.0.0"
+}

@@ -1,0 +1,39 @@
+{
+  "id": "alibaba-tablestore-architect-agent",
+  "name": "Alibaba Tablestore Architect",
+  "type": "agent",
+  "provider": "alibaba",
+  "harnesses": [
+    "codex",
+    "copilot",
+    "claude-code",
+    "cursor",
+    "gemini",
+    "kiro"
+  ],
+  "summary": "Static reviewer for Alibaba Cloud Tablestore key, transaction, index, TTL/version, capacity and access-control decisions, citing a per-claim evidence ledger.",
+  "source_type": "original",
+  "official_docs": [
+    "https://www.alibabacloud.com/help/en/tablestore/table-store-service/overview-of-widecolumn/",
+    "https://www.alibabacloud.com/help/en/tablestore/table-store-service/overview-of-secondary-index/",
+    "https://www.alibabacloud.com/help/en/tablestore/table-store-service/data-versions-and-ttl"
+  ],
+  "security_notes": "Static review only. Never runs or instructs schema, capacity, replication, IAM, data or restore changes without explicit target, blast radius, rollback and user approval; never requests credentials or account identifiers.",
+  "last_verified": "2026-11-08",
+  "path": "agents/alibaba/alibaba-tablestore-architect-agent",
+  "companion_skills": [
+    "alibaba-tablestore-architect"
+  ],
+  "execution_tier": "static-review",
+  "harness_variants": {
+    "codex": "agents/alibaba/alibaba-tablestore-architect-agent/harnesses/codex.toml",
+    "copilot": "agents/alibaba/alibaba-tablestore-architect-agent/harnesses/copilot.agent.md",
+    "claude-code": "agents/alibaba/alibaba-tablestore-architect-agent/harnesses/claude-code.agent.md",
+    "cursor": "agents/alibaba/alibaba-tablestore-architect-agent/harnesses/cursor.agent.md",
+    "gemini": "agents/alibaba/alibaba-tablestore-architect-agent/harnesses/gemini.agent.md",
+    "kiro-ide": "agents/alibaba/alibaba-tablestore-architect-agent/harnesses/kiro-ide.agent.md",
+    "kiro-cli": "agents/alibaba/alibaba-tablestore-architect-agent/harnesses/kiro-cli.agent.json"
+  },
+  "author": "github: VincentChuWaiChow",
+  "version": "0.1.0"
+}

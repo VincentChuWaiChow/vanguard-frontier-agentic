@@ -45,7 +45,8 @@
         "Guide Azure Cosmos",
         "NoSQL",
         "partition-aware",
-        "SDK"
+        "SDK",
+        "partition key"
       ],
       "agent": "azure-cosmosdb-application-developer-agent"
     },
@@ -57,7 +58,12 @@
         "performance-investigator",
         "Investigate Azure Cosmos",
         "workload-level",
-        "step-by"
+        "step-by",
+        "hot partition",
+        "RU spike",
+        "429",
+        "throttling",
+        "request units"
       ],
       "agent": "azure-cosmosdb-performance-investigator-agent"
     },
@@ -333,6 +339,19 @@
         "DevSecOps"
       ],
       "agent": "azure-waf-security-review-agent"
+    },
+    "cosmosdb-pattern": {
+      "keywords": [
+        "azure-cosmosdb-pattern",
+        "cosmosdb-pattern",
+        "cosmos restore",
+        "point-in-time restore",
+        "in-account restore",
+        "cosmos refactor",
+        "cosmos performance-test",
+        "feature-plan"
+      ],
+      "agent": "azure-cosmosdb-pattern-agent"
     }
   },
   "live_guards": [

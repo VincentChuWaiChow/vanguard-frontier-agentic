@@ -1,0 +1,28 @@
+{
+  "id": "aws-dynamodb-patterns",
+  "name": "AWS DynamoDB Patterns",
+  "type": "skill",
+  "provider": "aws",
+  "harnesses": [
+    "codex",
+    "claude-code",
+    "cursor",
+    "gemini",
+    "kiro",
+    "other"
+  ],
+  "summary": "Design, implement, refactor, back up, restore, audit and load-test-plan Amazon DynamoDB access patterns in any language: keys and indexes, runtime contract, IAM and resource policies, encryption, PITR and on-demand recovery, Streams and DAX, native vector indexes and Bedrock/S3 embeddings, monitoring and CloudFormation/CLI provisioning, with command routes that load one guide at a time.",
+  "source_type": "adapted",
+  "official_docs": [
+    "https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/bp-general-nosql-design.html",
+    "https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/Query.Pagination.html",
+    "https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/Point-in-time-recovery.html",
+    "https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/VectorSearch.html",
+    "https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/access-control-resource-based.html"
+  ],
+  "security_notes": "Not permission to access AWS. Live reads need a confirmed account, role, Region and table; writes, deployment, backfill, deletion, restore and load tests need exact approval. Restores target a new table only. Never inspect credentials or print customer items. Bundled scripts are offline route selectors and a date-argument review reminder; example shell and SDK assets run only after explicit user approval.",
+  "last_verified": "2026-11-08",
+  "path": "skills/aws/aws-dynamodb-patterns",
+  "author": "github: VincentChuWaiChow",
+  "version": "1.8.0"
+}

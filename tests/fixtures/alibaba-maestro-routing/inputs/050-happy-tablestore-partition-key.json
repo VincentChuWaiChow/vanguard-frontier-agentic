@@ -1,0 +1,7 @@
+{
+  "name": "050-happy-tablestore-partition-key",
+  "task": "Design the Tablestore partition key and secondary index for our order table.",
+  "tags": [
+    "happy-path"
+  ]
+}

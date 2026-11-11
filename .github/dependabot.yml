@@ -35,6 +35,18 @@ updates:
     reviewers:
       - VincentChuWaiChow
 
+  - package-ecosystem: pip
+    # tests/requirements-ci.txt pins cfn-lint for the gates; a weekly PR keeps it at
+    # the latest release without letting CI change color between commits.
+    directory: /tests
+    schedule:
+      interval: weekly
+    commit-message:
+      prefix: "chore(deps-py)"
+    open-pull-requests-limit: 5
+    reviewers:
+      - VincentChuWaiChow
+
   - package-ecosystem: cargo
     directory: /tools/vfa-tui
     schedule:

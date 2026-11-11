@@ -1,0 +1,6 @@
+{
+  "route": [
+    "oci-nosql-database-architect-agent"
+  ],
+  "mode": "single"
+}

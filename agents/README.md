@@ -1,6 +1,6 @@
 # Agents
 
-Role definitions for repeatable review, architecture, operations, and bounded execution work. **<!-- count:global:agents -->738<!-- /count --> enterprise-grade, audit-ready agents** organized in a three-layer ecosystem: maestro routers, domain specialists, and cross-functional protocols.
+Role definitions for repeatable review, architecture, operations, and bounded execution work. **<!-- count:global:agents -->745<!-- /count --> enterprise-grade, audit-ready agents** organized in a three-layer ecosystem: maestro routers, domain specialists, and cross-functional protocols.
 
 ## Three-layer agentic architecture
 
@@ -51,12 +51,12 @@ Vanguard Frontier's cloud agent portfolios are organized by execution tier: advi
 
 | Provider | Current status | Agents | Notes |
 | --- | --- | ---: | --- |
-| 🟧 AWS | active | <!-- count:board:aws:agents -->47<!-- /count --> | advisory, repo-write execution, and guarded live-AWS operator agents |
-| 🟥 OCI | active | <!-- count:board:oci:agents -->39<!-- /count --> | advisory and guarded live-OCI operator agents |
-| 🟩 GCP | active | <!-- count:board:gcp:agents -->52<!-- /count --> | advisory, live-guard operators, maestro router |
-| 🟦 Azure | active | <!-- count:board:azure:agents -->36<!-- /count --> | advisory and guarded live-Azure operator agents |
-| 🟠 Alibaba Cloud | active | <!-- count:board:alibaba:agents -->43<!-- /count --> | advisory, live-guard operators, maestro router |
-| 🔴 Huawei Cloud | active | <!-- count:board:huawei:agents -->43<!-- /count --> | advisory, live-guard operators, maestro router |
+| 🟧 AWS | active | <!-- count:board:aws:agents -->48<!-- /count --> | advisory, repo-write execution, and guarded live-AWS operator agents |
+| 🟥 OCI | active | <!-- count:board:oci:agents -->41<!-- /count --> | advisory and guarded live-OCI operator agents |
+| 🟩 GCP | active | <!-- count:board:gcp:agents -->53<!-- /count --> | advisory, live-guard operators, maestro router |
+| 🟦 Azure | active | <!-- count:board:azure:agents -->37<!-- /count --> | advisory and guarded live-Azure operator agents |
+| 🟠 Alibaba Cloud | active | <!-- count:board:alibaba:agents -->44<!-- /count --> | advisory, live-guard operators, maestro router |
+| 🔴 Huawei Cloud | active | <!-- count:board:huawei:agents -->44<!-- /count --> | advisory, live-guard operators, maestro router |
 | ☁️ OVHcloud | active | <!-- count:board:ovhcloud:agents -->6<!-- /count --> | maestro router, IAM, FinOps, MCK, network architect, KMS live-guard |
 | 🌐 IONOS Cloud | active | <!-- count:board:ionos:agents -->6<!-- /count --> | maestro router, DCD review, GDPR/compliance, K8s, FinOps, DBaaS live-guard |
 | 🇫🇷 Scaleway | active | <!-- count:board:scaleway:agents -->6<!-- /count --> | maestro router, IAM, Kapsule, FinOps, network, Kapsule rollout live-guard |

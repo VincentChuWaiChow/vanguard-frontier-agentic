@@ -1,0 +1,7 @@
+{
+  "name": "031-happy-nosql-database-architect",
+  "task": "Design an OCI NoSQL Database Cloud Service table and shard key for our orders workload.",
+  "tags": [
+    "happy-path"
+  ]
+}

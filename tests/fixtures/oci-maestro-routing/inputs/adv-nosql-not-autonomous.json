@@ -1,0 +1,7 @@
+{
+  "name": "adv-nosql-not-autonomous",
+  "task": "Review our OCI Autonomous Database backup and Autonomous Data Guard plan.",
+  "tags": [
+    "adversarial:cross-service-confusion"
+  ]
+}

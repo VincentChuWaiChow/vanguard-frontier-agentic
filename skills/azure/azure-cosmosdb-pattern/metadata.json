@@ -1,0 +1,25 @@
+{
+  "id": "azure-cosmosdb-pattern",
+  "name": "Azure Cosmos DB Pattern",
+  "type": "skill",
+  "provider": "azure",
+  "harnesses": [
+    "codex",
+    "claude-code",
+    "cursor",
+    "gemini",
+    "kiro",
+    "other"
+  ],
+  "summary": "Design, implement, refactor and audit Azure Cosmos DB for NoSQL access patterns: partition and id routing, indexing and RUs, consistency and session tokens, transactions and ETags, change feed, vectors, RBAC, encryption, continuous and periodic backup, new-account and in-account restore, monitoring and ARM/CLI provisioning, with command routes that load one guide at a time.",
+  "source_type": "adapted",
+  "official_docs": [
+    "https://learn.microsoft.com/azure/cosmos-db/continuous-backup-restore-introduction",
+    "https://learn.microsoft.com/azure/cosmos-db/how-to-restore-in-account-continuous-backup"
+  ],
+  "security_notes": "Not permission to access Azure. Live reads need a confirmed subscription, resource group, account and container; writes, restores, feature changes and load tests need exact approval. Bundled scripts are offline route selectors, a date-argument review reminder, an asset validator and a sanitized recovery guard.",
+  "last_verified": "2026-11-09",
+  "path": "skills/azure/azure-cosmosdb-pattern",
+  "author": "github: VincentChuWaiChow",
+  "version": "1.0.0"
+}

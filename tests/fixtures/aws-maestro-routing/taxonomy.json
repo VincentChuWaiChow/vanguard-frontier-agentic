@@ -522,6 +522,20 @@
         "Pillar"
       ],
       "agent": "aws-waf-security-review-agent"
+    },
+    "dynamodb-patterns": {
+      "keywords": [
+        "aws-dynamodb-patterns",
+        "dynamodb-patterns",
+        "dynamodb refactor",
+        "dynamodb pitr",
+        "dynamodb restore",
+        "SearchVectors",
+        "dynamodb vector",
+        "performance-test",
+        "feature-plan"
+      ],
+      "agent": "aws-dynamodb-patterns-agent"
     }
   },
   "live_guards": [

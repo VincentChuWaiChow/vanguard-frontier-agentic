@@ -1,0 +1,7 @@
+{
+  "name": "adv-tablestore-not-polardb",
+  "task": "Tune PolarDB MySQL slow queries and parameter groups for our ERP.",
+  "tags": [
+    "adversarial:cross-service-confusion"
+  ]
+}

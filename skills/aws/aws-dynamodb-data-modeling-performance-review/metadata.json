@@ -17,11 +17,15 @@
     "https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/data-modeling.html",
     "https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/bp-table-design.html",
     "https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/GSI.html",
-    "https://docs.aws.amazon.com/prescriptive-guidance/latest/dynamodb-data-modeling/best-practices.html"
+    "https://docs.aws.amazon.com/prescriptive-guidance/latest/dynamodb-data-modeling/best-practices.html",
+    "https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/HowItWorks.ReadConsistency.html",
+    "https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/LSI.html",
+    "https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/V2globaltables_HowItWorks.html",
+    "https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/DAX.consistency.html"
   ],
   "security_notes": "Do not recommend DynamoDB schemas without explicit access patterns, partition cardinality, index tradeoffs, capacity/cost implications, and migration or backfill safety.",
-  "last_verified": "2026-06-02",
+  "last_verified": "2026-11-08",
   "path": "skills/aws/aws-dynamodb-data-modeling-performance-review",
   "author": "github: VincentChuWaiChow",
-  "version": "0.1.4"
+  "version": "0.1.5"
 }
