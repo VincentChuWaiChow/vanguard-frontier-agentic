@@ -1,3 +1,52 @@
+## 🛡️ v3.19.0 — *Provenance · Policy · Portability*
+_Released 2026-11-10_
+
+> _Curated multi-cloud, zero-trust agent marketplace — `AWS` · `Azure` · `OCI` · `GCP` · `Terraform`._
+> Least privilege, live evidence, safe rollback paths.
+
+**Release type:** New capabilities — review the sections below before upgrading.
+
+### ✨ Features
+
+* **validation:** extend strict-YAML frontmatter gate to all tracked Markdown ([`23daab7`](https://github.com/VincentChuWaiChow/vanguard-frontier-agentic/commit/23daab742e466a14bd04efd3381b3f99089e1725))
+  validate:skill-yaml now parses every git-tracked .md/.mdc frontmatter block
+  (agents, harness variants, powers, rules, docs, skills) with PyYAML's safe
+  loader, not only SKILL.md. SKILL.md keeps its non-empty name/description check.
+
+### 🐛 Bug Fixes
+
+* **rules:** quote author in cloud-provenance-rule frontmatter so it parses as strict YAML ([`474e3ce`](https://github.com/VincentChuWaiChow/vanguard-frontier-agentic/commit/474e3ce966ed1c3ea8006c12737b3f06da9a9b42))
+* **skills:** make all SKILL.md frontmatter strict-YAML so the skills CLI indexes every skill ([`f181109`](https://github.com/VincentChuWaiChow/vanguard-frontier-agentic/commit/f1811091ac2807d95e497a584cec48a0db75d1d2))
+  The `skills` CLI (npx skills add, the install path that feeds skills.sh)
+  silently skipped 131 of 768 skills: their frontmatter had unquoted ': '
+  inside scalar values (70 `author: github: ...`, 61 descriptions), which
+  real YAML parsers reject. The repo's lenient hand-rolled parser accepted
+  them, so every gate stayed green.
+
+  - Quote the offending values (content unchanged; verified by re-parsing).
+  - Add validate:skill-yaml, a PyYAML strict-parse gate over skills/ and
+    .claude/skills/, wired into `npm run validate`; CI installs pyyaml.
+  - Regenerate skill manifest, gate counts and asset integrity.
+* **validators:** decode YAML quote escapes in hand-rolled frontmatter parsers ([`131063e`](https://github.com/VincentChuWaiChow/vanguard-frontier-agentic/commit/131063e01a9029f9ac9ee77c6a39a8feaf3e40b7))
+  The lenient parsers stripped only the outer quotes, so a single-quoted
+  '' escape read as two apostrophes and a double-quoted \" kept the
+  backslash. Decode both per YAML (json.loads for double-quoted, falling
+  back to the legacy strip on YAML-only escapes). The Kiro powers
+  generator now emits displayName/description via JSON.stringify so an
+  embedded quote cannot break POWER.md; current output is byte-identical.
+
+---
+
+### 📥 Install
+```bash
+npm install @raishin/vanguard-frontier-agentic@3.19.0
+```
+
+### 🔐 Supply-chain provenance
+Every release ships a build attestation (SLSA provenance) and an SBOM. Verify the tag with `gh attestation verify` before installing.
+
+**Full changelog:** https://github.com/VincentChuWaiChow/vanguard-frontier-agentic/compare/v3.18.0...v3.19.0
+
 ## 🛡️ v3.18.0 — *Provenance · Policy · Portability*
 _Released 2026-11-03_
 
