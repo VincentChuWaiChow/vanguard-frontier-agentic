@@ -1,29 +1,7 @@
-# Port record and evidence index
+# Evidence index
 
-This skill is ported from the canonical copy in the private repository
-`VincentChuWaiChow/agentic-vantage` (`skills/oci-nosql-pattern`, commit `728a4aa`, version 1.0.0).
-**agentic-vantage is the source of truth**: make content changes there first, then
-re-sync this directory and re-run the gates here.
-
-## Local differences from upstream
-
-- `SKILL.md` frontmatter adds `allowed-tools` (Read, Grep, Glob and the two offline
-  helper scripts only) and `metadata.author`, `updated` and `category`, which this
-  repository's skill schema requires.
-- `metadata.json`, this file and [the evidence ledger](evidence-ledger.md) exist only here.
-- `evals/test_package.py` drops an unused `copy` import and uses `assertLessEqual` for
-  a subset check (CodeQL findings). Apply upstream too.
-- `references/commands/audit.md` links its two variants instead of naming them in
-  code spans, so an agent can follow the router to exactly one; `validate:nosql-audit`
-  requires the links. Apply upstream too.
-
-## Sync procedure
-
-1. Copy the upstream directory over this one, keeping the local differences above.
-2. Re-check every changed claim against the provider documentation and update the
-   ledger rows.
-3. Run the skill's evals (`npm run validate:nosql-pattern-evals`), then the
-   repository gates.
+This index maps the rows of [the evidence ledger](evidence-ledger.md) to the skill
+files they support, and lists every claim that is unconfirmed or conflicting.
 
 ## Verification summary
 

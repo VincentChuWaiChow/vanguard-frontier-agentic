@@ -1,40 +1,7 @@
-# Port record and evidence index
+# Evidence index
 
-This skill is ported from the canonical copy in the private repository
-`VincentChuWaiChow/agentic-vantage` (`skills/aws-dynamodb-patterns`, commit
-`a317609`, version 1.8.0). **agentic-vantage is the source of truth**: make content
-changes there first, then re-sync this directory and re-run the gates here.
-
-## Local differences from upstream
-
-- `SKILL.md` frontmatter adds `allowed-tools` (Read, Grep, Glob and the two offline
-  helper scripts only) and `metadata.author`, `updated` and `category`, which this
-  repository's skill schema requires.
-- `metadata.json`, this file, [the evidence ledger](evidence-ledger.md) and three
-  repository adapters (`workflow-and-output.md`, `official-sources.md`,
-  `safety-checklist.md`, linked from a short "Repository references" section at the
-  end of `SKILL.md`) exist only here. The AWS skill gates require them.
-- Three inline evidence citations ([DP-E214] in `data-types-and-vectors.md`, [DP-E410] in
-  `commands/restore.md`, [DP-E453] in `streams-and-dax.md`) ground this repository's
-  behavioural scenarios. Keep them when re-syncing.
-- Two CodeQL fixes, to apply upstream too: `scripts/review_due.py` prints its result
-  in the `try` statement's `else` branch, so `result` is never read uninitialised, and
-  `evals/operations.test.py` uses `assertLessEqual` for its metric-subset check.
-- `commands/restore/on-demand.md` matches the backup's source `TableId` as well as its
-  ARN [DP-E701] [DP-E702], and `evals/backup-restore.test.py` covers a backup from an
-  earlier incarnation of the table and a missing `TableId`. Apply upstream too: a table
-  deleted and recreated under the same name keeps its ARN, so the ARN check alone could
-  approve restoring the wrong data.
-- `streams-and-dax.md` adds .NET to the documented DAX clients [DP-E453]. The upstream
-  text listed Java, Node.js, Python and Go; AWS also documents a .NET client. Apply the
-  same fix upstream.
-
-## Sync procedure
-
-1. Copy the upstream directory over this one, keeping the local differences above.
-2. Re-check every changed claim against AWS documentation and update the ledger rows.
-3. Run the skill's evals (`npm run validate:nosql-pattern-evals`, which needs
-   `cfn-lint`), then the repository gates.
+This index maps the rows of [the evidence ledger](evidence-ledger.md) to the skill
+files they support, and lists every claim that is unconfirmed or conflicting.
 
 ## Verification summary
 

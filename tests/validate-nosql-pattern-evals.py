@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
-"""Gate: run the offline evals shipped with the ported NoSQL pattern skills.
+"""Gate: run the offline evals shipped with the NoSQL pattern skills.
 
-The pattern skills (ported from the canonical agentic-vantage copies) ship
+The pattern skills ship
 executable helpers (route selectors, review reminders, recovery checks) and example
 assets (shell, Python, Node). Their own evals check them with fake cloud binaries
 and never contact a cloud. Shipping code without running its tests would let a

@@ -36299,7 +36299,7 @@
     },
     {
       "tree": "catalog",
-      "aggregate_sha256": "42936ef56fe21072dbb1578973b7d42e9e8f27885bcc48e2bb9116dc91a14bad",
+      "aggregate_sha256": "e720f89ba07182b4d02ba4a3e8b487038a2fe2e2001d7f47699f00ccc15ece7c",
       "files": [
         {
           "path": "catalog/AGENTS.md",
@@ -36353,8 +36353,8 @@
         },
         {
           "path": "catalog/skill-manifest.json",
-          "sha256": "097d52d56ba1d7bc792e0afa544f8b040d72f36cf431db7c69024f15c909144f",
-          "bytes": 1163554
+          "sha256": "b1ce8d0ade8a76a3b3fa5348e9f53b5e4148498039eb9f16eb025d47fd1b1d46",
+          "bytes": 1163556
         },
         {
           "path": "catalog/skills.json",
@@ -37592,7 +37592,7 @@
     },
     {
       "tree": "tests",
-      "aggregate_sha256": "3812328d964d0b2557ca1f5fe350232c3adc8f9dd283e32ca23ada114ffac54c",
+      "aggregate_sha256": "3d836a262adb4c5f63a81525711d43412f6701e625da1f77f030a56eb6b3da4b",
       "files": [
         {
           "path": "tests/AGENTS.md",
@@ -49331,8 +49331,8 @@
         },
         {
           "path": "tests/validate-nosql-pattern-evals.py",
-          "sha256": "c483577376d8d1499632556ac0056efdf15a18ebfa0e24e271ed7cb4944b15fc",
-          "bytes": 3990
+          "sha256": "d9e67d7e2ccd6587556bcf9d8b2077b424f8db44710fc06e0ddea7c584283aff",
+          "bytes": 3932
         },
         {
           "path": "tests/validate-nosql-scenarios.py",
@@ -49449,5 +49449,5 @@
       "bytes": 9135
     }
   ],
-  "aggregate_sha256": "66232244f9f785c1727ba86850b5eac416764dcd2fc5dd4d367dd3323148353d"
+  "aggregate_sha256": "84c458dfd8ee2d94e5f0b0b429701ad5759b58e13f2cef93a819decce2b70b91"
 }

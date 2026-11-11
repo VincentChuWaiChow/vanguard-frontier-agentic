@@ -33,10 +33,9 @@ task needs.
 Hetzner and Contabo offer no managed NoSQL service; ADR-0004's amendment records the
 sources. Redis and Valkey in-memory stores are out of scope.
 
-The three **pattern skills** are copied from the private `agentic-vantage` repository,
-which stays their source of truth. Each records its provenance and every local
-difference in `references/vanguard-port.md`. Their agents are static reviewers: they
-propose changes and never run them.
+The three **pattern skills** build and operate their service through commands that
+each load one guide. Each keeps an evidence index in `references/evidence-index.md`.
+Their agents are static reviewers: they propose changes and never run them.
 
 ## How evidence works
 

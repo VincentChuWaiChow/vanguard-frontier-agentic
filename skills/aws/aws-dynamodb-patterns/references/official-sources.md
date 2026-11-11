@@ -8,9 +8,9 @@ blogs and model memory are leads, not evidence.
 - [The evidence ledger](evidence-ledger.md) traces each material AWS claim in this
   skill to the AWS page that was fetched on its retrieval date, with its status
   (VERIFIED, UNVERIFIED or CONFLICT).
-- [The port record](vanguard-port.md) maps ledger rows to the skill files they cover
+- [The evidence index](evidence-index.md) maps ledger rows to the skill files they cover
   and lists every unconfirmed or conflicting claim.
-- [The upstream source log](sources.md) records how each upstream release was
+- [The source log](sources.md) records how each release was
   researched, including the third-party skills that were read for inspiration only.
 
 ## Primary AWS documentation

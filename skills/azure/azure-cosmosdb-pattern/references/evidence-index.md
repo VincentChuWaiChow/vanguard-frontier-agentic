@@ -1,34 +1,7 @@
-# Port record and evidence index
+# Evidence index
 
-This skill is ported from the canonical copy in the private repository
-`VincentChuWaiChow/agentic-vantage` (`skills/azure-cosmosdb-pattern`, commit `728a4aa`, version 1.0.0).
-**agentic-vantage is the source of truth**: make content changes there first, then
-re-sync this directory and re-run the gates here.
-
-## Local differences from upstream
-
-- `SKILL.md` frontmatter adds `allowed-tools` (Read, Grep, Glob and the two offline
-  helper scripts only) and `metadata.author`, `updated` and `category`, which this
-  repository's skill schema requires.
-- `metadata.json`, this file and [the evidence ledger](evidence-ledger.md) exist only here.
-- `scripts/recovery_guard.py` rejects an in-account restore whose target resource group
-  differs from the source account's resource group (Codex review finding);
-  `evals/test_package.py` covers it. Apply upstream too.
-- Three corrections, to apply upstream too:
-  - `commands/restore/continuous-deleted-resource.md` states Microsoft's limit of
-    three active restore operations per account [CP-E354].
-  - `runtime-contract.md` notes that Microsoft pages disagree on whether
-    ReadConsistencyStrategy is direct-mode only [CP-E124].
-  - `language-adapters.md` names the documented Python method `query_items`; the
-    upstream text named `query_iterable`, a sample variable [CP-E174].
-
-## Sync procedure
-
-1. Copy the upstream directory over this one, keeping the local differences above.
-2. Re-check every changed claim against the provider documentation and update the
-   ledger rows.
-3. Run the skill's evals (`npm run validate:nosql-pattern-evals`), then the
-   repository gates.
+This index maps the rows of [the evidence ledger](evidence-ledger.md) to the skill
+files they support, and lists every claim that is unconfirmed or conflicting.
 
 ## Verification summary
 

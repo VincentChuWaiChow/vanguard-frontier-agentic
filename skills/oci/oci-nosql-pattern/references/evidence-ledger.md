@@ -1,7 +1,7 @@
 # Evidence ledger — Oracle NoSQL Database Cloud Service patterns
 
 Rows trace material provider claims in this skill to the official page that was
-fetched and read on the retrieval date. [vanguard-port.md](vanguard-port.md) maps every
+fetched and read on the retrieval date. [The evidence index](evidence-index.md) maps every
 row to the skill files it covers; `tests/validate-skill-references.py` fails the build
 if a citation has no row, a row is never cited, or a source is not an allow-listed
 host.

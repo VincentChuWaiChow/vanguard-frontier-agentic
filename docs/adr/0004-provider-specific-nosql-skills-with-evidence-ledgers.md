@@ -113,11 +113,10 @@ operational dimensions the original requirement listed. This amendment adds them
   and with MongoDB compatibility, Bigtable, Tablestore, GeminiDB and DDS.
 - **`tests/validate-nosql-operations.py`** enforces the sections, statuses,
   citations, ledger status of cited rows and the no-prices rule.
-- **DynamoDB build and operate skill.** `aws-dynamodb-patterns` is ported from the
-  canonical copy in agentic-vantage, with its own ledger. It complements the
-  review-only DynamoDB skill.
+- **DynamoDB build and operate skill.** `aws-dynamodb-patterns` has its own ledger
+  and evidence index. It complements the review-only DynamoDB skill.
 
-### Smaller clouds and further pattern ports
+### Smaller clouds and further pattern skills
 
 - **Managed MongoDB on the smaller clouds** gets the same ten-section operations
   reference: Scaleway Managed MongoDB®, OVHcloud Public Cloud Databases for MongoDB and
@@ -133,8 +132,8 @@ operational dimensions the original requirement listed. This amendment adds them
   - Revisit if either launches a managed NoSQL product.
 - **Redis/Valkey in-memory stores are out of scope.** They are caches, not the document,
   key-value or wide-column databases this ADR covers.
-- **`oci-nosql-pattern` and `azure-cosmosdb-pattern`** are ported from agentic-vantage,
-  which stays canonical. Each has its own ledger, port record and companion agent.
+- **`oci-nosql-pattern` and `azure-cosmosdb-pattern`** are build-and-operate pattern
+  skills. Each has its own ledger, evidence index and companion agent.
   Maestro routing sends build-or-operate requests to them, and review stays with the
   existing specialists. `validate:nosql-pattern-evals` runs all three pattern skills'
   evals.

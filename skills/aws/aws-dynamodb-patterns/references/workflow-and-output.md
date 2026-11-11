@@ -1,7 +1,7 @@
 # Workflow and output contract (repository adapter)
 
 This file exists so this repository's AWS skill contract can find the workflow and
-output rules in a fixed place. It adds no new procedure. The upstream skill keeps
+output rules in a fixed place. It adds no new procedure. The skill keeps
 the substance in route-specific files; load only the one the request selects.
 
 ## Which workflow to load

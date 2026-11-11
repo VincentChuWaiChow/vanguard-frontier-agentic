@@ -2197,7 +2197,7 @@
     {
       "id": "aws-dynamodb-patterns",
       "path": "skills/aws/aws-dynamodb-patterns",
-      "aggregate_sha256": "a7eb023674d1d74faf0d6c5604b45a1eeebbfbc7f9d872a8f776df86cffc8063",
+      "aggregate_sha256": "bac6eecca7d56641d5a8644a9f2b222b13d2345edfbe26e48b1b669dc1e2bf44",
       "files": [
         {
           "path": "skills/aws/aws-dynamodb-patterns/CHANGELOG.md",
@@ -2211,8 +2211,8 @@
         },
         {
           "path": "skills/aws/aws-dynamodb-patterns/SKILL.md",
-          "sha256": "4c862ecd51ffe638482728770428de50330b682d1e6d92f82b47a0a31d32aec0",
-          "bytes": 5481
+          "sha256": "3e6c0a618c3e9981292a773c11e1d2255426c005285b0e86cc3b9302ccc66e34",
+          "bytes": 5484
         },
         {
           "path": "skills/aws/aws-dynamodb-patterns/assets/bedrock-embedding-input.json",
@@ -2485,9 +2485,14 @@
           "bytes": 7991
         },
         {
+          "path": "skills/aws/aws-dynamodb-patterns/references/evidence-index.md",
+          "sha256": "085bc7d77a9bc5f9858c040e583284f128ca1a1c241c090a19e46a11b61c51fd",
+          "bytes": 10722
+        },
+        {
           "path": "skills/aws/aws-dynamodb-patterns/references/evidence-ledger.md",
-          "sha256": "a338d091ddd0b1d1a7c9e6729e1b2acdc21e08d569ca8e3024b4dafd88e80786",
-          "bytes": 152947
+          "sha256": "78cb4f9fba1f97bbb69ae9bc3d1cf3933eabf45d997c11cadeaebca4c30d0ff2",
+          "bytes": 152932
         },
         {
           "path": "skills/aws/aws-dynamodb-patterns/references/iam-and-access.md",
@@ -2521,8 +2526,8 @@
         },
         {
           "path": "skills/aws/aws-dynamodb-patterns/references/official-sources.md",
-          "sha256": "955391d6f24240e41955efd4e02f2f3b2bc91566659932f60a42bd1b16e9e4eb",
-          "bytes": 1627
+          "sha256": "83ab701344b298e53b594dc40effa1ca9600045a1fa9adae6408bedba45a53a6",
+          "bytes": 1613
         },
         {
           "path": "skills/aws/aws-dynamodb-patterns/references/operations.md",
@@ -2560,14 +2565,9 @@
           "bytes": 9297
         },
         {
-          "path": "skills/aws/aws-dynamodb-patterns/references/vanguard-port.md",
-          "sha256": "cd27e8460ce261a1946c8650f4b89d033db7bf53561ab9505c1d4e652bad6e41",
-          "bytes": 12807
-        },
-        {
           "path": "skills/aws/aws-dynamodb-patterns/references/workflow-and-output.md",
-          "sha256": "1ac8c00d2e9a33698a84f7fa7222b1c8f341ae526a8fae3ac7e3b7f8a51f190c",
-          "bytes": 1719
+          "sha256": "622726ff2c1e013952d0bb54ffb0f00aee0fc51adaec1b408fb759c2f1b28de9",
+          "bytes": 1710
         },
         {
           "path": "skills/aws/aws-dynamodb-patterns/references/workflow.md",
@@ -4072,7 +4072,7 @@
     {
       "id": "azure-cosmosdb-pattern",
       "path": "skills/azure/azure-cosmosdb-pattern",
-      "aggregate_sha256": "e54762c1b4870614b9030ddf901089b8add45ac71a8a4f0468d54f928e78436a",
+      "aggregate_sha256": "19f70f3d79688bae94c2f869877304bb50270cb1ef5977fe180bae0df359e9c9",
       "files": [
         {
           "path": "skills/azure/azure-cosmosdb-pattern/CHANGELOG.md",
@@ -4285,9 +4285,14 @@
           "bytes": 3699
         },
         {
+          "path": "skills/azure/azure-cosmosdb-pattern/references/evidence-index.md",
+          "sha256": "5afa3a6864947b65685421d0d97915a1ddd8b52dfe54817c94156413a5384d8c",
+          "bytes": 9025
+        },
+        {
           "path": "skills/azure/azure-cosmosdb-pattern/references/evidence-ledger.md",
-          "sha256": "1668a17921c8fddd391037afb225814a427316a4a73bb4066492a812632ff6bc",
-          "bytes": 74611
+          "sha256": "01db8f77da5f51c5084efa7fd19893621fe0330319855362800006b4a9ec9730",
+          "bytes": 74581
         },
         {
           "path": "skills/azure/azure-cosmosdb-pattern/references/indexing-and-capacity.md",
@@ -4338,11 +4343,6 @@
           "path": "skills/azure/azure-cosmosdb-pattern/references/sources.md",
           "sha256": "c3b3526c81db6de6243afc1145a90c14883a6ddf605dfb0676abfe73e8604473",
           "bytes": 6991
-        },
-        {
-          "path": "skills/azure/azure-cosmosdb-pattern/references/vanguard-port.md",
-          "sha256": "46840751c4291305900ea137ae0b2625d4179d0036c3fd1098f1dcdcda2e6ada",
-          "bytes": 10509
         },
         {
           "path": "skills/azure/azure-cosmosdb-pattern/references/workflow.md",
@@ -18269,7 +18269,7 @@
     {
       "id": "oci-nosql-pattern",
       "path": "skills/oci/oci-nosql-pattern",
-      "aggregate_sha256": "2bdfba73eb478cc5959b0004594c216f9b15a299903be477341e9cf871748245",
+      "aggregate_sha256": "163a5b69138e126c6972f5a4e27e50dcb831f7bdfe1662a5ff4bce16cb59594b",
       "files": [
         {
           "path": "skills/oci/oci-nosql-pattern/CHANGELOG.md",
@@ -18477,9 +18477,14 @@
           "bytes": 1350
         },
         {
+          "path": "skills/oci/oci-nosql-pattern/references/evidence-index.md",
+          "sha256": "c66b2f74d29da0c8d7c2c57fda136e14520bece9bc8b2578a5f4bccbc81025b1",
+          "bytes": 3930
+        },
+        {
           "path": "skills/oci/oci-nosql-pattern/references/evidence-ledger.md",
-          "sha256": "90171b97d8f3ab861f862f6078372ab3a3876973fe65507de6cce6ff4ccaa1eb",
-          "bytes": 28255
+          "sha256": "c828102f35271d3828d52145f4f9c5ba7c8cb8ba5ad464f150b315e43ac94e7e",
+          "bytes": 28258
         },
         {
           "path": "skills/oci/oci-nosql-pattern/references/indexes.md",
@@ -18540,11 +18545,6 @@
           "path": "skills/oci/oci-nosql-pattern/references/types-and-vectors.md",
           "sha256": "1141bbd6759453efbb7d12a873def306be03b3c4b16bea7135f38ea814a0951f",
           "bytes": 2012
-        },
-        {
-          "path": "skills/oci/oci-nosql-pattern/references/vanguard-port.md",
-          "sha256": "f477b69d2c4988da7606b0487f30aa6d4c52df090ec957219a9fd7fdfabde483",
-          "bytes": 5074
         },
         {
           "path": "skills/oci/oci-nosql-pattern/scripts/check_recovery.py",
