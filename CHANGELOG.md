@@ -1,3 +1,450 @@
+## 🛡️ v3.20.0 — *Provenance · Policy · Portability*
+_Released 2026-11-11_
+
+> _Curated multi-cloud, zero-trust agent marketplace — `AWS` · `Azure` · `OCI` · `GCP` · `Terraform`._
+> Least privilege, live evidence, safe rollback paths.
+
+**Release type:** New capabilities — review the sections below before upgrading.
+
+### ✨ Features
+
+* **aws:** port aws-dynamodb-patterns skill and companion agent with evidence ledger ([`8cbd2ac`](https://github.com/VincentChuWaiChow/vanguard-frontier-agentic/commit/8cbd2ac13b0777c6d3423969cc9580c5ea1b479c))
+  Port the build-and-operate DynamoDB skill from agentic-vantage (canonical
+  upstream, commit a317609, v1.8.0): command routes for design, refactor,
+  backup, restore, audit, performance-test and feature-plan, plus runtime
+  contract, vectors and embeddings, IAM, encryption, recovery, Streams/DAX,
+  monitoring and provisioning references, assets, scripts and evals.
+
+  - Evidence: 291-row ledger from per-file verification against AWS docs
+    (257 VERIFIED, 32 UNVERIFIED, 2 CONFLICT). Quoted sentences were
+    mechanically re-checked on the cited pages. One contradiction fixed:
+    AWS documents a .NET DAX client, which the upstream text omitted.
+  - references/vanguard-port.md records provenance, sync procedure, local
+    differences and the evidence index; three repository adapters satisfy
+    the AWS skill contract.
+  - aws-dynamodb-patterns-agent (static-review) with aws-maestro routing,
+    two routing fixtures and cloud-dba role membership; the review skill's
+    description now disambiguates review from build.
+  - New gate validate:aws-dynamodb-patterns runs the skill's 12 eval files;
+    CI pins cfn-lint==1.60.0. Three NoSQL scenarios added.
+* **nosql:** add Bigtable, Tablestore and GeminiDB architects; ledger Firestore and DDS ([`7596227`](https://github.com/VincentChuWaiChow/vanguard-frontier-agentic/commit/7596227b66500ddd7f4ee84b6fed30812e1616b9))
+  Waves 2 and 3 of the multi-cloud NoSQL work. Every fact was retrieved by the
+  orchestrator from the provider's own documentation before encoding; gaps are
+  recorded as UNVERIFIED rows rather than asserted.
+
+  - GCP Firestore: write the references/firestore.md that gcp-firebase-developer
+    already routed to but never shipped (limits, 500/50/5, no fixed per-document
+    write rate, Standard-edition pessimistic server transactions, server
+    libraries bypass security rules, permanent location, PITR off by default,
+    TTL delay, Enterprise/MongoDB-compatibility editions) with a 16-row ledger.
+  - GCP Bigtable: new skill + static-review agent (row-key hotspots,
+    single-row atomicity, routing vs consistency, default app-profile trap,
+    asynchronous GC, permanent SSD/HDD, autoscaling bounds, table-level IAM,
+    restore-to-new-table, client libraries).
+  - Alibaba Tablestore: new skill + agent (unsplittable 10 GB partition-key
+    ceiling, hash prefix vs range reads, single-partition-key local
+    transactions, conditional updates billed as reads, GSI eventual vs LSI
+    strong vs search index, TTL resurrection and index constraints, permanent
+    instance type, 4 KB CUs, layered access control).
+  - Huawei GeminiDB: new skill + agent; GeminiDB Mongo API is End of Support, so
+    MongoDB-compatible work routes to DDS. DDS shard-key and IAM claims in
+    huawei-gaussdb-rds-dba are now ledgered.
+  - Close Wave 1 gaps: Oracle NoSQL Go and .NET SDKs verified; DynamoDB MREC
+    TTL support verified.
+  - validate:skill-references now also checks plain-text references/*.md
+    mentions, with a documented baseline of 29 pre-existing GCP gaps that can
+    only shrink; allow-list extended to provider-owned Google, Alibaba and
+    Huawei documentation hosts.
+  - Routing domains + fixtures for gcp, alibaba, huawei maestros (marked
+    hand-tuned in the fixture generator); 11 new behavioral scenarios.
+  - Provider skill READMEs list every skill; stale hand-written counts dropped.
+* **nosql:** add OCI NoSQL architect and provenance-ledgered NoSQL references ([`df44b2b`](https://github.com/VincentChuWaiChow/vanguard-frontier-agentic/commit/df44b2bc562456347b602fed6411d06f28eb66b0))
+  Wave 1 of the multi-cloud NoSQL work: extend existing DynamoDB and Cosmos DB
+  assets where verified gaps existed, and add the one missing service family.
+
+  - skills/oci/oci-nosql-database-architect + companion static-review agent
+    (7 harness variants, install-role "database", OCI maestro routing domain).
+    No existing OCI asset covered NoSQL Database Cloud Service.
+  - DynamoDB: consistency/indexing/replication reference (GSI vs LSI matrix incl.
+    "no index", strong vs eventual per target, MREC vs MRSC, MREC transaction
+    scope, DAX consistency risk).
+  - Cosmos DB platform-operator: consistency/capacity/security reference (all five
+    levels, session-token failure modes, ReadConsistencyStrategy, integrated
+    cache preconditions, serverless/autoscale limits, data- vs control-plane
+    RBAC); fixes the operations guide listing four levels instead of five.
+  - Every material claim cites an evidence-ledger row (official URL, section,
+    retrieval date, status); unverified gaps are recorded, not asserted.
+  - New gate validate:skill-references: relative links in SKILL.md/AGENT.md/
+    references resolve repo-wide, and ledgers are traceable (no dangling or
+    orphan citations, provider-owned hosts only).
+  - Routing: Azure "partition key" no longer fans out to the Key Vault auditor;
+    OCI taxonomy marked hand-tuned so fixture regeneration cannot drop it.
+* **nosql:** close verified OCI, Tablestore and Firestore evidence gaps ([`07a49c1`](https://github.com/VincentChuWaiChow/vanguard-frontier-agentic/commit/07a49c1e00348b1ab442dfaaca525903a457d34b))
+  - OCI NoSQL: add service-gateway networking (E34, solution page) and
+    dedicated-environment CMEK limits (E35); narrow E22 to the NDCS private
+    endpoint, pricing and quota increases.
+  - Tablestore: add Tunnel Service retention and ordering (TS-E19), Cloud
+    Backup scope (TS-E20), and Go and Node.js SDK install (TS-E21, TS-E22);
+    narrow TS-E16 to .NET/PHP SDKs and pricing.
+  - Firestore: add server-library install commands (FS-E18) and the
+    Datastore-mode definition (FS-E19); narrow FS-E16 to pricing.
+  - Add three grounded behavioral scenarios for the new rows.
+* **nosql:** lazy-loaded offline and live audit for every NoSQL skill ([`ae5efaa`](https://github.com/VincentChuWaiChow/vanguard-frontier-agentic/commit/ae5efaacce0aab1e6cfac600b661283bb15105e6))
+  Each NoSQL skill in the operations matrix now ships an audit:
+  references/commands/audit.md (router, linked from SKILL.md) loads
+  exactly one of audit/offline.md or audit/live.md. Both variants follow
+  the ten operations sections.
+
+  - Offline: repository and sanitized evidence, local commands only
+    (rg, grep, jq, terraform show on a saved plan).
+  - Live: read-only control-plane commands for an authorized operator,
+    each citing a VERIFIED ledger row (new E9xx rows) for the provider's
+    CLI reference; sections without a documented command say so with
+    **No live command:** and the reason.
+  - New gate validate:nosql-audit enforces the lazy-load links, the
+    section order, read-only verbs (hyphen and PascalCase actions),
+    no secret reads, GET-only curl, no data-plane shells, no cloud or
+    network calls offline, and VERIFIED citations on live commands.
+    Template: templates/nosql-audit-template.md.
+  - Allowlist adds provider-owned CLI references: api.alibabacloud.com
+    /api-tools/cli/, github.com/scaleway/ and github.com/ovh/.
+  - oci-nosql-pattern audit router links its variants (recorded for
+    upstream in vanguard-port.md).
+
+  Huawei GeminiDB and DDS: no official page names the KooCLI operations,
+  so their live audits hold a local profile check and documented gaps.
+* **nosql:** operations coverage for 13 NoSQL services with an enforcing gate ([`d7ef3f7`](https://github.com/VincentChuWaiChow/vanguard-frontier-agentic/commit/d7ef3f753cce1aa051477602e1bda311be3131cc))
+  Every NoSQL service now has an operations reference with the same ten
+* **nosql:** port OCI NoSQL and Cosmos DB pattern skills; small-cloud MongoDB ops ([`a528e8d`](https://github.com/VincentChuWaiChow/vanguard-frontier-agentic/commit/a528e8da11c14185dc89f2211ad695d75b2d5b00))
+  Port oci-nosql-pattern and azure-cosmosdb-pattern from agentic-vantage
+  (canonical upstream, commit 728a4aa) with companion agents, routing,
+  evidence ledgers and port records, and extend operations coverage to the
+  managed MongoDB services of Scaleway, OVHcloud and IONOS.
+
+  Pattern ports
+  - Evidence: 58 OCI and 159 Cosmos claims checked against Oracle and
+    Microsoft docs; none contradicted. Every VERIFIED quote was re-checked
+    mechanically; 18 rows the re-check could not confirm (dynamic pages,
+    code blocks) were downgraded to UNVERIFIED rather than trusted.
+  - Corrections made here, recorded for upstream: Cosmos restore guide now
+    states Microsoft's limit of three active restores per account;
+    ReadConsistencyStrategy's direct-mode-only claim is hedged because
+    Microsoft pages disagree; the Python adapter names the documented
+    query_items method instead of a sample variable.
+  - oci-nosql-pattern-agent and azure-cosmosdb-pattern-agent (static
+    review); Azure maestro table row and fixtures; OCI fixtures; cloud-dba
+    role membership. Review-only questions stay with the existing
+    specialists (routing probes leave all prior fixtures unchanged).
+  - validate:aws-dynamodb-patterns becomes validate:nosql-pattern-evals and
+    runs all three pattern skills' evals (16 files); a broken Cosmos
+    selector fails it.
+
+  Small-cloud MongoDB operations
+  - New minimal skills scaleway-managed-mongodb-architect and
+    ovhcloud-mongodb-architect; IONOS uses ionos-live-database-lifecycle-
+    guard. validate:nosql-operations now covers 16 services.
+  - Scaleway IAM and network sections are PARTIAL: their sources sit
+    behind bot protection and could not be re-confirmed.
+  - Hetzner and Contabo offer no managed NoSQL service (sourced in the ADR
+    amendment); Redis/Valkey caches stay out of scope.
+  - Allowlist adds the Scaleway, OVHcloud and IONOS docs hosts and Oracle's
+    NoSQL Node SDK pages; two Rust SDK rows are re-sourced from Oracle's
+    own repository instead of docs.rs.
+
+### 🐛 Bug Fixes
+
+* **aws:** match backup TableId on DynamoDB restore; TOML multiline agent instructions ([`0f499ec`](https://github.com/VincentChuWaiChow/vanguard-frontier-agentic/commit/0f499ec3a89f30305c4f702f14284e72b32fee03))
+  - restore --method on-demand now requires the backup's
+    SourceTableDetails.TableId to equal the live table's TableId, and fails
+    closed when TableId is absent. A table deleted and recreated under the
+    same name keeps its name-based ARN, so the ARN check alone could approve
+    restoring an earlier incarnation's data. Evidence rows DP-E701/E702 from
+    the API reference; two new eval cases (earlier incarnation, missing
+    TableId) and a negative probe confirm the gate.
+  - aws-dynamodb-patterns-agent codex.toml uses a TOML multiline string for
+    developer_instructions, as agents/aws/AGENTS.md requires; the decoded
+    value is unchanged.
+* **aws:** resolve CodeQL alerts in ported aws-dynamodb-patterns helper and eval ([`06a3f09`](https://github.com/VincentChuWaiChow/vanguard-frontier-agentic/commit/06a3f09169016495f777142d2d3266318bc1d8de))
+  - scripts/review_due.py prints its result in the try statement's else
+    branch, so CodeQL no longer sees `result` read before assignment
+    (parser.error exits, but the analyzer cannot know that).
+  - evals/operations.test.py uses assertLessEqual for the metric-subset
+    check so a failure names the missing metrics.
+
+  Both are recorded in references/vanguard-port.md as local differences
+  to apply in the canonical agentic-vantage copy.
+* **azure:** bind in-account Cosmos restore to the source resource group ([`1991cd1`](https://github.com/VincentChuWaiChow/vanguard-frontier-agentic/commit/1991cd110e33f35edc3b25ced4d4bae5e2a2704f))
+  Codex review on a528e8da: in continuous-deleted-resource mode the
+  recovery guard accepted a target resource group different from the one
+  in source.resource_id and emitted `az cosmosdb sql ... restore` against
+  it. In-account restore acts on the source account, so that command
+  cannot reach it. Reproduced with the shipped fixture (source-rg vs
+  recovery-rg was accepted).
+
+  - recovery_guard.py derives the source group from source.resource_id and
+    rejects a mismatched target group in this mode; new-account restore
+    keeps an independent destination group.
+  - evals: the happy path asserts the emitted --resource-group, and a
+    mismatched group must raise; removing the check fails the test.
+  - CodeQL on the OCI evals: drop an unused import, use assertLessEqual.
+  - Both recorded in the skills' vanguard-port.md for the canonical
+    agentic-vantage copies.
+* **bigtable:** document asynchronous secondary indexes ([`fccb879`](https://github.com/VincentChuWaiChow/vanguard-frontier-agentic/commit/fccb87934a9f0a7ed6cac896e34a86f6711a670e))
+  Codex review on #228 correctly flagged that the guide inferred Bigtable has no
+  secondary indexes. The official page documents asynchronous secondary indexes
+  built from continuous materialized views: a different row key that must
+  include the source row key, synchronized automatically with eventual
+  consistency, never written by applications. Recorded as BT-E17 (fetched live),
+  added to the capability matrix and a new alternate-access-path section, the
+  pushback rule now targets read-after-write through such an index, the agent
+  rule no longer forbids secondary indexes, and a regression scenario
+  (bt-alternate-key-lookup) keeps the correction from regressing.
+* **manifest:** ignore Python bytecode caches when hashing skills ([`5b45628`](https://github.com/VincentChuWaiChow/vanguard-frontier-agentic/commit/5b45628302f9ec50ee440e2d3eb3adff89e62977))
+  CI's manifest:check failed on a528e8da while it passed locally. The skill
+  manifest hashed every file under a skill, including git-ignored
+  __pycache__/*.pyc that the pattern skills' evals create when they import
+  their scripts. The committed manifest therefore listed seven cache files
+  that never exist in a CI checkout.
+
+  - tests/validate-skill-manifest.py skips __pycache__ directories and .pyc
+    files, so the manifest depends only on committed content.
+  - tests/validate-nosql-pattern-evals.py runs evals with
+    PYTHONDONTWRITEBYTECODE=1, so the gate no longer litters skill folders.
+  - Manifest and asset integrity regenerated.
+
+  Reproduced by deleting the caches locally (manifest:check failed as in
+  CI); after the fix, a planted .pyc is ignored while a real skill change
+  is still detected.
+* **nosql-audit:** allowlist gate with a shell lexer; enforce identity checks ([`9c51c3c`](https://github.com/VincentChuWaiChow/vanguard-frontier-agentic/commit/9c51c3c833cdb50eb00389df2470bd60135dfb72))
+  Gate (tests/validate-nosql-audit.py), from the code review of PR #228:
+  - Lex every block with shell rules (quotes, escapes, comments, heredocs,
+    $(...), backticks, <(...), operators and redirections), so commands after
+    if/then/!/{ and &&/||/|, and inside substitutions, are all checked;
+    "${name[@]}" heads expand from their array definition.
+  - Command heads are an allowlist per mode: env, xargs, bash -c, eval,
+    absolute paths and heads from variables are rejected.
+  - Scan every fenced block (any tag, ~~~, indented); data tags skipped;
+    console blocks rejected.
+  - Live CLI calls: the action (last subcommand word) must be a read verb;
+    path words may not be mutating, secret-reading (incl. connection strings)
+    or data-plane (query, get-item, read-rows, lookup); decryption and
+    confirmation-bypass flags rejected.
+  - curl takes only allowlisted options and GET (attached, = and combined
+    short forms parsed); wget is not allowed live.
+  - python3 live runs only a quoted heredoc importing json/sys; offline only
+    the skill's scripts/*.py. Unquoted heredocs, $((...)) and $'...' rejected.
+  - Offline: no rg --pre, find -exec/-delete, git -c or non-read git; rg/grep
+    credential searches must list files only (-l).
+
+  Skill audits:
+  - Credential searches use rg -l; .env searches print only the match (-o).
+  - Live setup blocks start with set -euo pipefail and stop on a mismatch:
+    Scaleway org/project/region, OVHcloud service, OCI tenancy, IONOS
+    principal and cluster location, Cosmos location, Tablestore RegionId,
+    GCP core.project (exact jq comparison, replacing a substring grep).
+  - OCI: START_TIME/END_TIME guarded, grep no longer aborts under pipefail,
+    audit event list uses --all. Cosmos per-API blocks carry only their own
+    guards. Alibaba calls pass --region "$TS_REGION".
+  - Seven new VERIFIED ledger rows for the flags and fields compared.
+* **nosql-audit:** check substitutions nested in ${...} expansions ([`f62e3c1`](https://github.com/VincentChuWaiChow/vanguard-frontier-agentic/commit/f62e3c1673081f6926c6e3ecabae06c1fcedd3f7))
+  The lexer skipped a parameter expansion to its first "}", so
+  "${UNSET:-$(aws dynamodb delete-table ...)}" and the backtick form passed
+  the read-only gate although bash runs the default when UNSET is empty.
+  Walk the expansion body, lexing nested ${, $(...) and backticks, and report
+  an unterminated ${. Reported by the Codex review of PR #228.
+* **nosql-audit:** expand arrays at invocation; lock down live python heredocs ([`87932ad`](https://github.com/VincentChuWaiChow/vanguard-frontier-agentic/commit/87932ad38a8eda10609c0f2ca8958db13edaa3c7))
+  From the Codex review of PR #228:
+  - Array-backed command heads expanded from the final definition, so
+    cmd=(rm x); "${cmd[@]}"; cmd=(echo safe) passed. Snapshot the definitions
+    in force at each command, and reject an array defined twice.
+  - The python3 heredoc check only caught literal open(...) calls: f = open
+    aliases passed, and sys.modules['os'] reached os with only sys imported.
+    open may only be called directly; sys/json are limited to listed
+    attributes and may not be used as values; import aliases and
+    from-imports are rejected.
+* **nosql-audit:** Firestore audit service name, gcloud overrides, Cosmos aggregations ([`ffbdd0d`](https://github.com/VincentChuWaiChow/vanguard-frontier-agentic/commit/ffbdd0da4ad3d53780a5c5ab5fcd59a118f4d1ba))
+  From the Codex review of PR #228:
+  - gcp-firebase-developer: emitted Firestore audit entries use
+    firestore.googleapis.com (datastore.googleapis.com only configures
+    logging), so the logging read filter now matches them [FS-E914].
+  - gcp-firebase-developer and gcp-bigtable-architect: the preflight stops
+    when auth/impersonate_service_account or auth/access_token_file is set,
+    since either makes requests run as an identity other than the checked
+    account (probed with env-var overrides) [FS-E912/E913, BT-E919/E920].
+  - azure-cosmosdb-platform-operator: TotalRequests supports only Count, so
+    Monitoring reads it separately from NormalizedRUConsumption (Maximum)
+    [COSMOS-E921].
+* **nosql-audit:** freeze command arrays after their one definition ([`87b3554`](https://github.com/VincentChuWaiChow/vanguard-frontier-agentic/commit/87b35546d161dc3a047036108e84062b7f29c518))
+  cmd=(echo safe); cmd=rm; "${cmd[@]}" x passed the gate although bash runs
+  rm. Rather than track each mutation form, a command array may now appear
+  only in its one definition and as whole "${name[@]}" heads; any other
+  mention (scalar/indexed assignment, +=, ${name[N]:=...}, loop or printf -v
+  target) is rejected. Also reject for/select/case, printf -v and ${!...},
+  none of which the audit files use. Reported by the Codex review of PR #228.
+* **nosql-audit:** reject argument unpacking in live python heredocs ([`638094c`](https://github.com/VincentChuWaiChow/vanguard-frontier-agentic/commit/638094c7e6977b93e11d8ac13d6bd2496b0664b9))
+  open(*['orders.json', 'w']) passed the read-only open(path) check because
+  the starred list is one AST argument. Reject *args and **kwargs anywhere in
+  a live heredoc so every argument is visible to the check. Reported by the
+  Codex review of PR #228.
+* **nosql:** apply independent red-team and review findings; add scenario gate ([`d245919`](https://github.com/VincentChuWaiChow/vanguard-frontier-agentic/commit/d24591936bf07a4ee876a716d6f96be698d60a90))
+  Independent per-service red-team reviews re-checked every ledger row against
+  its live source (no row contradicted). Every new fact below was re-fetched by
+  the orchestrator from the provider's own docs before encoding.
+
+  - OCI NoSQL: add verified service limits (On-Demand 10k/5k units per table,
+    3 On-Demand tables per region, mode switch once per day, 4 decreases/24h,
+    5 indexes, 512 KB rows), read-unit cost of conditional/UPDATE/DELETE writes,
+    billed replicated writes, Global Active schema-change procedure (drop all
+    replicas, alter, re-add), child-table and replica IAM rules, replication
+    bypassing per-region permissions, nosql-tables verbs and table-name scoping,
+    customer-owned backup; record a self-contradicting hosted-limit row as
+    CONFLICT. Extend the mutation gate to DML and migrator restores, and stop
+    instructing a fetch the skill's allowed-tools cannot perform.
+  - DynamoDB: promote "add a GSI to an existing table" (UpdateTable, one per
+    call), add index quotas, MREC/MRSC RPO, unsynchronized PITR/deletion
+    protection, DAX bypass on global tables, MRSC stream ordering; fix the
+    GSI 10 GB cell and the uncited MREC TTL/LSI cell.
+  - Cosmos DB: Strong is unavailable with multiple write regions and blocked
+    over 5,000 miles; per-level RPO; ReadConsistencyStrategy is preview,
+    direct-mode only, Java 4.69+/.NET 3.46+; serverless can convert in place to
+    provisioned (one-time, irreversible), correcting "can never add regions";
+    keys bridge control and data planes.
+  - Export: azure-cosmosdb-application-developer-agent now bundles the platform
+    skill its SKILL.md points to (companion_skills).
+  - Routing: Cosmos throttling/hot-partition tasks go to the performance
+    investigator, not the Key Vault auditor.
+  - New gate validate:nosql-scenarios: 15 behavioral scenarios must stay
+    answerable from the exact reference each skill loads.
+  - skills/oci/README.md: list all skills; drop the stale hand-written count.
+* **nosql:** apply wave 2-3 independent red-team findings ([`6b7dc56`](https://github.com/VincentChuWaiChow/vanguard-frontier-agentic/commit/6b7dc56615afb15fa6f3a0fe83f2769d321d0c39))
+  Four independent per-service reviews re-fetched every ledger row; none was
+  contradicted. Each new fact below was re-fetched by the orchestrator before
+  encoding; two reviewer claims were rejected because the orchestrator's own
+  fetch quoted the disputed text verbatim (Tablestore TTL default -1 and
+  unlimited row size; Firestore pessimistic-lock wording).
+
+  - Bigtable: separate recommended from hard limits (add 200 MB per mutation),
+    read-your-writes alternatives under multi-cluster routing, storage-type
+    change via backup/restore, conditional restore network charges, per-node
+    storage (5 TB SSD / 16 TB HDD, 70% practice), backup retention 6 h to
+    90/365 days, even node counts with 2x scaling, HBase 2.x line.
+  - Tablestore: tail-hotspot rule scoped to sequential keys with reorder and
+    bucketing alternatives, auto-increment exclusion for local transactions,
+    VPC endpoint row, deny-wins scoped to Instance vs RAM policy, uncited
+    Capacity-instance pushback removed, DynamoDB comparison removed.
+  - GeminiDB: backup (no export, cross-region full backups) and point-in-time
+    restore rows; horizontal sharding wording; BLOB and sizing wording softened
+    to match the source. DDS: hashed vs ranged trade-off, ManageAccess scope.
+  - Firestore: PITR billing caveat, edition/mode wording, uncited hotspot
+    clause removed.
+* **nosql:** keep eval suites scanned; qualify Cosmos serverless DR ([`b101b0c`](https://github.com/VincentChuWaiChow/vanguard-frontier-agentic/commit/b101b0c0ab0c2c1b81390608d07d140128c4ee69))
+  Owner review on PR #228:
+
+  - Revert the plugin-scanner trust and the skills/*/*/evals/** exclusion.
+    The pinned scanner can only suppress by rule (repo-wide) or by path
+    (all rules), so no narrower suppression exists. Instead the Cosmos
+    runtime eval now holds its mock continuation and session values in
+    named constants, so the file no longer matches the secret pattern and
+    stays fully scanned. The real trigger was
+    continuationToken:"opaque-token", not the x-ms-session-token header.
+  - validate:nosql-pattern-evals now fails if .plugin-scanner.toml would
+    hide any executable file of a pattern skill (evals, scripts, assets)
+    from the scanner, using the scanner's own fnmatch rule.
+  - Azure NoSQL operations: serverless cannot add regions while in
+    serverless mode; name the one-time irreversible in-place conversion to
+    provisioned throughput [COSMOS-E20]. New scenario
+    cosmos-ops-serverless-dr asserts both.
+* **nosql:** route new NoSQL specialists from maestro tables; qualify search-index TTL ([`4d2559d`](https://github.com/VincentChuWaiChow/vanguard-frontier-agentic/commit/4d2559daf9236aef64976d9a16705c71ad4f6a83))
+  - Add the Bigtable, Tablestore and GeminiDB architects to the GCP, Alibaba
+    and Huawei maestro routing tables, which the runtime adapters route
+    from (the test taxonomies alone did not make them selectable).
+  - Tablestore: record the TableOptions full-row-update path for
+    search-index TTL (TS-E23) and its conflict with the Data versions and
+    TTL page (TS-E24) instead of a blanket updates-disabled rule.
+* **nosql:** scope DynamoDB projection quota, OCI manage verbs, Cosmos read tokens ([`d16734d`](https://github.com/VincentChuWaiChow/vanguard-frontier-agentic/commit/d16734d23c9d0da97ef65a68fe2b9749b1e94895))
+  Address three Codex review findings on #228, each re-verified against the
+  provider's own documentation:
+
+  - DynamoDB: the 100 projected-attribute quota counts only INCLUDE
+    NonKeyAttributes; ALL and KEYS_ONLY projections are exempt (ServiceQuotas).
+  - OCI NoSQL: remove the contradiction that barred `manage nosql-rows` from
+    apps that delete rows; keep nosql-tables/nosql-indexes verbs off app
+    identities instead.
+  - Cosmos DB: read responses also carry session tokens (Microsoft's example);
+    do not tell read-only services they must write to get session behavior.
+    Recorded as COSMOS-E21 alongside the consistency-levels statement.
+* **nosql:** Tablestore transaction enablement path; Bigtable tiered storage ([`d11dde0`](https://github.com/VincentChuWaiChow/vanguard-frontier-agentic/commit/d11dde00376f1021323344644e25f844b9d286c1))
+  Two Codex findings on #228, both re-verified against the live pages:
+
+  - Tablestore: local transactions are enabled at table creation, or for an
+    existing table by submitting a support ticket (local-transactions, "Before
+    you begin"). TS-E04, the capability matrix, the transaction checklist and
+    the pushback rule no longer imply table recreation is required.
+  - Bigtable: the 5 TB/node SSD figure applies without tiered storage; with
+    tiered storage an SSD node holds 32 TB (Enterprise) or 64 TB (Enterprise
+    Plus), at most 5 TB of it SSD (quotas, storage per node). Guide and BT-E10
+    now carry the qualification.
+* **plugin-scanner:** revert inert suppression; document config is not applied in CI ([`38579d2`](https://github.com/VincentChuWaiChow/vanguard-frontier-agentic/commit/38579d2d99f76dbe69a98c640d1c100bf9c7dbe1))
+  71cc488d added a file-scoped ignore_paths entry for alert #256, but it
+  could never take effect: the pinned scanner (plugin-scanner 3.58.0)
+  loads .plugin-scanner.toml only when the action input
+  trust_repository_policy is "true" (codex_plugin_scanner/action_runner.py),
+  and hol-plugin-scanner.yml leaves it at the default false. The CI log
+  for that head shows TRUST_REPOSITORY_POLICY: false.
+
+  - Remove the no-op entry so the file does not imply a suppression.
+  - Add a header note: none of this file's ignore_paths are applied in CI
+    today (a pre-existing gap); false positives are handled by dismissing
+    the alert in code scanning until trusting repo policy is decided.
+
+  The repository owner will dismiss alert #256 as a false positive.
+* **validation:** link-check commands guides; pin gate deps with Dependabot ([`71ed546`](https://github.com/VincentChuWaiChow/vanguard-frontier-agentic/commit/71ed546b54a16b7c53f6dffd0d39cabd710ada54))
+  - validate-skill-references: markdown_files() used rglob("references/*.md"), so
+    links in references/commands/** (audit routers and variants) were never checked;
+    use references/**/*.md (131 more links, all resolve).
+  - tests/requirements-ci.txt holds the gates' Python deps; CI, CLAUDE.md and the
+    NoSQL evals gate install from it. cfn-lint stays pinned (1.60.0, the latest
+    release) so CI cannot change color without a commit; a weekly Dependabot pip
+    entry opens a PR for each new release.
+
+### 📚 Documentation
+
+* **adr:** ADR-0004 provider-specific NoSQL skills with evidence ledgers ([`a74a221`](https://github.com/VincentChuWaiChow/vanguard-frontier-agentic/commit/a74a221840a22aecfde3ef819d1792d2adb45401))
+  Records the decisions behind the NoSQL work on #228: one skill per service
+  (extend before create), per-claim evidence ledgers, two offline deterministic
+  gates (skill references, NoSQL scenarios), review-only agents, freshness as a
+  review duty rather than a clock-based gate, the alternatives rejected, the
+  candidate services evaluated and deliberately deferred (DocumentDB,
+  Keyspaces, Cosmos DB non-NoSQL APIs, Firestore Datastore mode, GeminiDB
+  Redis/HBase/Influx depth), and the known limits. Status: Proposed.
+* **nosql:** give the pattern skills evidence indexes ([`21b7247`](https://github.com/VincentChuWaiChow/vanguard-frontier-agentic/commit/21b72479ebc667da43bd33ea2d4eb49635380ecf))
+  Each pattern skill's reference record becomes references/evidence-index.md,
+  keeping the verification summary, evidence by topic and unconfirmed claims.
+  Ledger intros, official-sources, SKILL.md, ADR-0004, the Pages NoSQL page
+  and the pattern-evals gate docstring now describe the skills on their own.
+* **pages:** add NoSQL skills page; refresh catalog data and gate table ([`528abae`](https://github.com/VincentChuWaiChow/vanguard-frontier-agentic/commit/528abaeed4d5ebc28302d05cdfc6e31b712a0a21))
+  - docs/_data/catalog.yml was stale (manifest:write:all does not run
+    docs-data:write): regenerate it for the new agents, skills, gate count
+    and version.
+  - docs/configuration.md: the gate table listed 30 of the 37 validate:*
+    gates. Add skill-references, the four nosql-* gates, agentic-board and
+    mods, in the order npm run validate runs them.
+  - New docs/nosql-skills.md: services, skills and agents, how evidence
+    ledgers work, operations references, offline and live audits, the gates
+    and what is not verified. Linked, with ADR-0004, from docs/index.md.
+
+---
+
+### 📥 Install
+```bash
+npm install @raishin/vanguard-frontier-agentic@3.20.0
+```
+
+### 🔐 Supply-chain provenance
+Every release ships a build attestation (SLSA provenance) and an SBOM. Verify the tag with `gh attestation verify` before installing.
+
+**Full changelog:** https://github.com/VincentChuWaiChow/vanguard-frontier-agentic/compare/v3.19.0...v3.20.0
+
 ## 🛡️ v3.19.0 — *Provenance · Policy · Portability*
 _Released 2026-11-10_
 
@@ -12322,7 +12769,7 @@ Collateral: regenerate asset-integrity.json, plugin manifests
 
 ## 🔴 v2.0.0 — *Zero-Trust Scope Enforcement* &mdash; 2026-05-16
 
-> _Provider-scoped exports are now strict and auditable. 738 agents · 765 skills · 45 providers · 76 roles_
+> _Provider-scoped exports are now strict and auditable. 745 agents · 776 skills · 45 providers · 76 roles_
 >
 > This release closes a class of privilege-escalation bugs in the export CLI and hardens the
 > entire provider-scope boundary from user input through to CI attestation.
