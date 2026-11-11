@@ -30,7 +30,7 @@ expanded from their array definition:
   ``connection strings``, ...) or a data-plane read (``query``, ``get-item``,
   ``read-rows``, ...); no confirmation-bypass or decryption flag; ``curl`` takes only
   allowlisted options and GET; ``python3`` runs only a quoted heredoc that imports
-  ``json``/``sys`` and opens files read-only;
+  ``json``/``sys`` (listed attributes only) and calls ``open(path)`` directly, read-only;
 * offline: no cloud CLI, network tool or data shell; ``terraform``/``tofu`` only
   ``show``; ``rg --pre``, ``find -exec``/``-delete``, ``git -c`` and non-read git
   subcommands are rejected; ``python3`` only runs the skill's own ``scripts/*.py``;
@@ -102,6 +102,8 @@ CURL_SHORT = {"s": False, "S": False, "f": False, "L": False, "g": False, "H": T
 GIT_READ = {"log", "show", "grep", "ls-files", "diff", "blame", "rev-parse", "status"}
 FIND_BANNED = {"-exec", "-execdir", "-ok", "-okdir", "-delete", "-fprint", "-fprint0", "-fprintf", "-fls"}
 PY_IMPORTS = {"json", "sys"}
+PY_ATTRS = {"sys": {"argv", "exit", "stdin", "stdout", "stderr"},
+            "json": {"load", "loads", "dump", "dumps", "JSONDecodeError"}}  # sys.modules would reach os
 PY_BANNED_NAMES = {"__import__", "exec", "eval", "compile", "getattr", "setattr", "globals", "locals", "vars",
                    "breakpoint", "input", "__builtins__"}
 CREDENTIAL_PATTERN = re.compile(r"accountkey|sharedaccesskey|passw|secret|private.?key|api.?key|token|"
@@ -134,6 +136,7 @@ class Token:
 class Command:
     words: list[Word]
     heredocs: list[dict] = field(default_factory=list)
+    aliases: dict = field(default_factory=dict)  # array definitions in force where it runs
 
 
 class Lexer:
@@ -348,6 +351,8 @@ def split_commands(tokens: list[Token], aliases: dict[str, list[Word]], problems
     for token in tokens:
         if array_name is not None:
             if token.kind == "op" and token.text == ")":
+                if array_name in aliases:
+                    problems.append(f"array '{array_name}' is defined twice; define each command array once")
                 aliases[array_name] = array_words
                 array_name, array_words = None, []
             elif token.kind == "word":
@@ -357,7 +362,7 @@ def split_commands(tokens: list[Token], aliases: dict[str, list[Word]], problems
             if token.text == "(" and current and re.fullmatch(NAME + "=", current[-1].raw):
                 array_name = current.pop().raw[:-1]
                 continue
-            commands.append(Command(current, heredocs))
+            commands.append(Command(current, heredocs, dict(aliases)))
             current, heredocs = [], []
             continue
         if token.kind == "redir":
@@ -369,7 +374,7 @@ def split_commands(tokens: list[Token], aliases: dict[str, list[Word]], problems
             skip_next = False
             continue
         current.append(token.word)
-    commands.append(Command(current, heredocs))
+    commands.append(Command(current, heredocs, dict(aliases)))
     result = []
     for command in commands:
         words = command.words
@@ -387,10 +392,10 @@ def split_commands(tokens: list[Token], aliases: dict[str, list[Word]], problems
         if words:
             alias = re.fullmatch(r'"?\$\{(' + NAME + r')\[@\]\}"?', words[0].raw)
             if alias:
-                if alias.group(1) not in aliases:
+                if alias.group(1) not in command.aliases:
                     problems.append(f"array '{alias.group(1)}' is used before it is defined")
                     continue
-                words = aliases[alias.group(1)] + words[1:]
+                words = command.aliases[alias.group(1)] + words[1:]
             result.append(Command(words, command.heredocs))
     return result
 
@@ -536,11 +541,23 @@ def python_problems(command: Command, mode: str, skill: Path) -> list[str]:
     except SyntaxError as error:
         return [f"python3 heredoc does not parse ({error.msg}): '{text}'"]
     problems = []
+    direct = {id(node.func) for node in ast.walk(tree) if isinstance(node, ast.Call)}
+    attr_bases = {id(node.value) for node in ast.walk(tree) if isinstance(node, ast.Attribute)}
     for node in ast.walk(tree):
-        if isinstance(node, (ast.Import, ast.ImportFrom)):
-            names = [alias.name for alias in node.names] if isinstance(node, ast.Import) else [node.module or ""]
-            problems += [f"python3 heredoc imports '{n}'; only {sorted(PY_IMPORTS)}" for n in names
-                         if n.split(".")[0] not in PY_IMPORTS]
+        if isinstance(node, ast.ImportFrom):
+            problems.append(f"python3 heredoc uses 'from {node.module} import'; use 'import json' or 'import sys'")
+        elif isinstance(node, ast.Import):
+            problems += [f"python3 heredoc imports '{a.name}'{' as ' + a.asname if a.asname else ''}; "
+                         f"only {sorted(PY_IMPORTS)}, unaliased" for a in node.names
+                         if a.name not in PY_IMPORTS or a.asname]
+        elif isinstance(node, ast.Name) and node.id == "open" and id(node) not in direct:
+            problems.append("python3 heredoc refers to 'open' without calling it; call open(path) directly")
+        elif isinstance(node, ast.Name) and node.id in PY_ATTRS and id(node) not in attr_bases:
+            problems.append(f"python3 heredoc uses module '{node.id}' as a value; use only its listed attributes")
+        elif isinstance(node, ast.Attribute) and isinstance(node.value, ast.Name) and node.value.id in PY_ATTRS \
+                and node.attr not in PY_ATTRS[node.value.id]:
+            problems.append(f"python3 heredoc uses '{node.value.id}.{node.attr}'; allowed: "
+                            f"{sorted(PY_ATTRS[node.value.id])}")
         elif isinstance(node, ast.Name) and node.id in PY_BANNED_NAMES:
             problems.append(f"python3 heredoc uses '{node.id}'")
         elif isinstance(node, ast.Attribute) and node.attr.startswith("__"):
