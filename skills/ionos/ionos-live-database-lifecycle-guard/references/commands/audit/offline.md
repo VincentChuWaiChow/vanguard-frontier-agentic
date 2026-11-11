@@ -87,7 +87,7 @@ rg -n -i 'tags?\s*[=:]' --glob '*.tf' --glob '*.json' --glob '*.yaml' --glob '*.
 - At-rest encryption is documented for Business and Enterprise data volumes; customer-managed keys are unconfirmed [IONOS-MDB-E46] [IONOS-MDB-E47] [IONOS-MDB-E48].
 
 ```bash
-rg -n -i 'tlsInsecure|tlsAllowInvalid|tls=false|ssl=false|tlsCAFile' --glob '*.env*' --glob '*.json' --glob '*.yaml' --glob '*.yml' --glob '*.js' --glob '*.ts' --glob '*.py'
+rg -n -o -i 'tlsInsecure|tlsAllowInvalid|tls=false|ssl=false|tlsCAFile' --glob '*.env*' --glob '*.json' --glob '*.yaml' --glob '*.yml' --glob '*.js' --glob '*.ts' --glob '*.py'
 ```
 
 ## Network isolation

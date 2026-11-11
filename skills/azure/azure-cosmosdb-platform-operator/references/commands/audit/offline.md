@@ -99,9 +99,12 @@ rg -n -i 'partition.?key|shard.?key|indexing.?policy|composite.?indexes|included
   from Azure RBAC; check their scope and that built-in roles are preferred.
 - MongoDB: native role-based access (`EnableMongoRoleBasedAccessControl` capability
   per the operations file). Cassandra: confirm identity options in its file.
+- The second command looks for account keys and credentialed connection strings; it
+  lists files only. Never print the matching line.
 
 ```bash
-rg -n -i 'disable.?local.?auth|disable.?key.?based.?metadata.?write.?access|sqlRoleAssignments|sqlRoleDefinitions|role.?definition.?id|principal.?id|EnableMongoRoleBasedAccessControl|AccountEndpoint=|AccountKey=|mongodb(\+srv)?://[^ ]*@' --glob '!node_modules' .
+rg -n -i 'disable.?local.?auth|disable.?key.?based.?metadata.?write.?access|sqlRoleAssignments|sqlRoleDefinitions|role.?definition.?id|principal.?id|EnableMongoRoleBasedAccessControl' --glob '!node_modules' .
+rg -l -i 'AccountEndpoint=|AccountKey=|mongodb(\+srv)?://[^ ]*@' --glob '!node_modules' .
 ```
 
 ## Tagging

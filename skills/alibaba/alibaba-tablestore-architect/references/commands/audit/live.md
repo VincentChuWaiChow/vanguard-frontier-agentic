@@ -17,29 +17,32 @@ set -euo pipefail
   "${TS_INSTANCE:?Approved instance name}"
 umask 077
 audit_dir=$(mktemp -d)
-aliyun sts get-caller-identity > "$audit_dir/identity.json" # [TS-E901]
+aliyun sts get-caller-identity --region "$TS_REGION" > "$audit_dir/identity.json" # [TS-E901] [TS-E914]
 jq -e --arg a "$TS_EXPECTED_ACCOUNT_ID" '.AccountId == $a' "$audit_dir/identity.json"
 ```
 
 Commands use the plugin-based CLI (3.3.0 or later), which names commands and flags
 in kebab-case derived from the API action and parameter names [TS-E913]. Flags below
 follow that rule from the cited API pages; confirm each with
-`aliyun <product> <command> --help` before running. Run every command with the CLI
-profile whose Region equals `$TS_REGION`; stop if it differs.
+`aliyun <product> <command> --help` before running. Every command passes the global
+`--region "$TS_REGION"` option, which overrides the profile Region [TS-E914]; the
+instance read below also stops unless the instance's `RegionId` equals `$TS_REGION`.
 
 ## Backup and restore
 
 ```bash
 : "${TS_REGION:?Approved Region}" "${audit_dir:?Private temp dir}"
-aliyun hbr describe-vaults --vault-type OTS_BACKUP > "$audit_dir/hbr-vaults.json" # [TS-E904] [TS-E905]
-aliyun hbr describe-backup-plans > "$audit_dir/hbr-plans.json" # [TS-E904]
+aliyun hbr describe-vaults --region "$TS_REGION" --vault-type OTS_BACKUP > "$audit_dir/hbr-vaults.json" # [TS-E904] [TS-E905] [TS-E914]
+aliyun hbr describe-backup-plans --region "$TS_REGION" > "$audit_dir/hbr-plans.json" # [TS-E904] [TS-E914]
 ```
 
 ## Disaster recovery and replication
 
 ```bash
-: "${TS_INSTANCE:?Approved instance name}" "${audit_dir:?Private temp dir}"
-aliyun tablestore get-instance --instance-name "$TS_INSTANCE" > "$audit_dir/instance.json" # [TS-E902] [TS-E903]
+: "${TS_INSTANCE:?Approved instance name}" "${audit_dir:?Private temp dir}" "${TS_REGION:?Approved Region}"
+aliyun tablestore get-instance --region "$TS_REGION" --instance-name "$TS_INSTANCE" > "$audit_dir/instance.json" # [TS-E902] [TS-E903] [TS-E914]
+jq -e --arg r "$TS_REGION" '.RegionId == $r' "$audit_dir/instance.json" >/dev/null \
+  || { echo "Instance Region mismatch; stop" >&2; exit 1; } # RegionId [TS-E903]
 jq '{InstanceName, RegionId, IsMultiAZ}' "$audit_dir/instance.json"
 ```
 
@@ -55,10 +58,10 @@ Tablestore resource API; no cited read-only billing command was found. Use
 ## Monitoring
 
 ```bash
-: "${audit_dir:?Private temp dir}" "${TS_INSTANCE:?Approved instance name}"
-aliyun cms describe-metric-rule-list --namespace acs_ots_new > "$audit_dir/cms-rules.json" # [TS-E908] [TS-E910]
-aliyun cms describe-metric-list --namespace acs_ots_new --metric-name InstanceCU \
-  --dimensions "[{\"instanceName\":\"$TS_INSTANCE\"}]" > "$audit_dir/cms-instancecu.json" # [TS-E908] [TS-E909]
+: "${audit_dir:?Private temp dir}" "${TS_INSTANCE:?Approved instance name}" "${TS_REGION:?Approved Region}"
+aliyun cms describe-metric-rule-list --region "$TS_REGION" --namespace acs_ots_new > "$audit_dir/cms-rules.json" # [TS-E908] [TS-E910] [TS-E914]
+aliyun cms describe-metric-list --region "$TS_REGION" --namespace acs_ots_new --metric-name InstanceCU \
+  --dimensions "[{\"instanceName\":\"$TS_INSTANCE\"}]" > "$audit_dir/cms-instancecu.json" # [TS-E908] [TS-E909] [TS-E914]
 ```
 
 ## Performance
@@ -72,8 +75,8 @@ Use the CloudMonitor output from the Monitoring section and client error logs.
 ```bash
 : "${TS_INSTANCE:?Approved instance name}" "${audit_dir:?Private temp dir}"
 jq '{Policy, PolicyVersion}' "$audit_dir/instance.json" # [TS-E903]
-: "${RAM_POLICY_NAME:?Approved custom RAM policy name}"
-aliyun ram get-policy --policy-type Custom --policy-name "$RAM_POLICY_NAME" > "$audit_dir/ram-policy.json" # [TS-E911] [TS-E912]
+: "${RAM_POLICY_NAME:?Approved custom RAM policy name}" "${TS_REGION:?Approved Region}"
+aliyun ram get-policy --region "$TS_REGION" --policy-type Custom --policy-name "$RAM_POLICY_NAME" > "$audit_dir/ram-policy.json" # [TS-E911] [TS-E912] [TS-E914]
 ```
 
 ## Tagging
@@ -92,15 +95,16 @@ Tablestore CLI command list [TS-E902]. Use the offline audit of table definition
 ## Network isolation
 
 ```bash
-: "${TS_INSTANCE:?Approved instance name}" "${audit_dir:?Private temp dir}"
+: "${TS_INSTANCE:?Approved instance name}" "${audit_dir:?Private temp dir}" "${TS_REGION:?Approved Region}"
 jq '{Network, NetworkTypeACL, NetworkSourceACL}' "$audit_dir/instance.json" # [TS-E903]
-aliyun tablestore list-vpc-info-by-instance --instance-name "$TS_INSTANCE" > "$audit_dir/vpc.json" # [TS-E902]
+aliyun tablestore list-vpc-info-by-instance --region "$TS_REGION" --instance-name "$TS_INSTANCE" > "$audit_dir/vpc.json" # [TS-E902] [TS-E914]
 ```
 
 ## Audit logging
 
 ```bash
-: "${audit_dir:?Private temp dir}" "${TS_START:?Start time, UTC ISO 8601}" "${TS_END:?End time, UTC ISO 8601}"
-aliyun actiontrail describe-trails > "$audit_dir/trails.json" # [TS-E906]
-aliyun actiontrail lookup-events --start-time "$TS_START" --end-time "$TS_END" --max-results 20 > "$audit_dir/events.json" # [TS-E906] [TS-E907]
+: "${audit_dir:?Private temp dir}" "${TS_START:?Start time, UTC ISO 8601}" "${TS_END:?End time, UTC ISO 8601}" \
+  "${TS_REGION:?Approved Region}"
+aliyun actiontrail describe-trails --region "$TS_REGION" > "$audit_dir/trails.json" # [TS-E906] [TS-E914]
+aliyun actiontrail lookup-events --region "$TS_REGION" --start-time "$TS_START" --end-time "$TS_END" --max-results 20 > "$audit_dir/events.json" # [TS-E906] [TS-E907] [TS-E914]
 ```

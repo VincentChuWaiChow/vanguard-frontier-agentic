@@ -15,12 +15,21 @@ them. They read control-plane metadata only. Expectations come from
   connection details, so review saved output before sharing.
 
 ```bash
+set -euo pipefail
 umask 077
 : "${OVH_CLOUD_PROJECT_SERVICE:?Approved Public Cloud project ID}"
 : "${OVH_MDB_SERVICE_ID:?Approved MongoDB service (cluster) ID}"
 OUT="$(mktemp -d)"
-ovhcloud cloud project get "$OVH_CLOUD_PROJECT_SERVICE" # [OVH-MDB-E903]
+ovhcloud cloud project get "$OVH_CLOUD_PROJECT_SERVICE" --output json > "$OUT/project.json" # [OVH-MDB-E903]
+ovhcloud cloud managed-database get "$OVH_MDB_SERVICE_ID" --cloud-project "$OVH_CLOUD_PROJECT_SERVICE" --output json > "$OUT/service-target.json" # [OVH-MDB-E901] [OVH-MDB-E904] [OVH-MDB-E905]
+jq -e --arg s "$OVH_MDB_SERVICE_ID" '.id == $s' "$OUT/service-target.json" >/dev/null \
+  || { echo "Service mismatch; stop" >&2; exit 1; }
 ```
+
+The service is read through the approved project, so a match confirms it belongs
+there. The project response fields and the calling principal are not documented on
+the CLI pages; the project read only confirms access, so confirm the principal in
+the Console before running.
 
 ## Backup and restore
 

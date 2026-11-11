@@ -88,7 +88,7 @@ rg -n -i 'tags?\s*[=:]' --glob '*.tf' --glob '*.json' --glob '*.yaml' --glob '*.
 - Encryption at rest and customer-managed keys are undocumented for this product; do not accept claims of either without a Scaleway source.
 
 ```bash
-rg -n -i 'tlsCAFile|tlsInsecure|tlsAllowInvalid|tls=false|ssl=false' --glob '*.env*' --glob '*.json' --glob '*.yaml' --glob '*.yml' --glob '*.js' --glob '*.ts' --glob '*.py'
+rg -n -o -i 'tlsCAFile|tlsInsecure|tlsAllowInvalid|tls=false|ssl=false' --glob '*.env*' --glob '*.json' --glob '*.yaml' --glob '*.yml' --glob '*.js' --glob '*.ts' --glob '*.py'
 ```
 
 ## Network isolation
@@ -96,9 +96,11 @@ rg -n -i 'tlsCAFile|tlsInsecure|tlsAllowInvalid|tls=false|ssl=false' --glob '*.e
 - Prefer Private Network attachment; an Instance attaches to one Private Network in the same Region [SCW-MDB-E19] [SCW-MDB-E20].
 - Public connectivity is visible by default; require a written reason for it [SCW-MDB-E21].
 - After an engine upgrade the new Instance has a public endpoint by default, so check upgrade runbooks for an exposure review [SCW-MDB-E22].
+- The second command finds connection strings; it lists files only. Never print the matching line, which can hold credentials.
 
 ```bash
-rg -n -i 'private.?network|public.?(endpoint|connectivity)|mongodb\+srv' --glob '*.tf' --glob '*.json' --glob '*.yaml' --glob '*.yml'
+rg -n -i 'private.?network|public.?(endpoint|connectivity)' --glob '*.tf' --glob '*.json' --glob '*.yaml' --glob '*.yml'
+rg -l -i 'mongodb\+srv' --glob '*.tf' --glob '*.json' --glob '*.yaml' --glob '*.yml'
 ```
 
 ## Audit logging

@@ -73,7 +73,7 @@ rg -n -i 'firestore\.googleapis\.com|request_latencies|request_count|billable_(r
 - Both: check transaction code against the 270-second limit and contention retries.
 
 ```bash
-rg -n -i 'retry.?writes|tls=|ssl=|serverTimeout|runTransaction|BulkWriter|batch.?write' \
+rg -n -o -i 'retry.?writes|tls=|ssl=|serverTimeout|runTransaction|BulkWriter|batch.?write' \
   --glob '*.ts' --glob '*.js' --glob '*.py' --glob '*.java' --glob '*.go' --glob '*.env*'
 ```
 
@@ -108,9 +108,13 @@ rg -n -i '\btags\b|tag.?binding|tag.?value' --glob '*.tf' --glob '*.json' --glob
   the database; check `cmekConfig` and `kmsKeyName` [FS-E910].
 - MongoDB compatibility: the CMEK quota is allowlisted; check access was requested.
 - Both: check client config for plaintext transport (non-TLS connection strings).
+  The second command lists files only; never print the matching line, which can
+  hold a connection string with credentials.
 
 ```bash
-rg -n -i 'cmek.?config|kms.?key.?name|mongodb://|tls=false|ssl=false' \
+rg -n -o -i 'cmek.?config|kms.?key.?name' \
+  --glob '*.tf' --glob '*.json' --glob '*.yaml' --glob '*.env*' --glob '*.ts' --glob '*.py'
+rg -l -i 'mongodb://|tls=false|ssl=false' \
   --glob '*.tf' --glob '*.json' --glob '*.yaml' --glob '*.env*' --glob '*.ts' --glob '*.py'
 ```
 

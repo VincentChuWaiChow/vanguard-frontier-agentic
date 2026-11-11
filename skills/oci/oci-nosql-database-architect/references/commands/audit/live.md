@@ -17,12 +17,19 @@ They read control-plane metadata only. Never read rows or table contents.
 set -euo pipefail
 : "${OCI_CLI_PROFILE:?Approved profile}" "${OCI_REGION:?Approved region}" \
   "${TENANCY_ID:?Approved tenancy OCID}" "${COMPARTMENT_ID:?Approved compartment OCID}" \
-  "${TABLE_NAME:?Approved table name}"
+  "${TABLE_NAME:?Approved table name}" "${START_TIME:?Approved window start, RFC 3339}" \
+  "${END_TIME:?Approved window end, RFC 3339}"
 umask 077
 audit_dir=$(mktemp -d)
 oci_target=(oci --profile "$OCI_CLI_PROFILE" --region "$OCI_REGION" --output json)
 "${oci_target[@]}" iam tenancy get --tenancy-id "$TENANCY_ID" > "$audit_dir/tenancy.json" # [OCI-NOSQL-E901]
+jq -e --arg t "$TENANCY_ID" '.data.id == $t' "$audit_dir/tenancy.json" >/dev/null \
+  || { echo "Tenancy mismatch; stop" >&2; exit 1; } # [OCI-NOSQL-E915] [OCI-NOSQL-E916]
 ```
+
+The tenancy read confirms the profile reaches the approved tenancy. The OCI CLI has
+no documented command that returns the calling principal; confirm the profile's user
+or instance principal before running.
 
 ## Backup and restore
 
@@ -86,7 +93,8 @@ reference. Usage records do not prove client latency.
 
 ```bash
 "${oci_target[@]}" iam policy list --compartment-id "$COMPARTMENT_ID" --all > "$audit_dir/policies.json" # [OCI-NOSQL-E910]
-jq -r '.data[].statements[]' "$audit_dir/policies.json" | grep -i 'nosql'
+jq -r '.data[].statements[]' "$audit_dir/policies.json" > "$audit_dir/policy-statements.txt"
+grep -i 'nosql' "$audit_dir/policy-statements.txt" || echo "No policy statement mentions nosql"
 ```
 
 The page notes there is no automatic way to learn which policies apply to a group;
@@ -120,7 +128,7 @@ or any NDCS private endpoint, none of which is documented.
 
 ```bash
 "${oci_target[@]}" audit event list --compartment-id "$COMPARTMENT_ID" \
-  --start-time "$START_TIME" --end-time "$END_TIME" > "$audit_dir/audit-events.json" # [OCI-NOSQL-E909]
+  --start-time "$START_TIME" --end-time "$END_TIME" --all > "$audit_dir/audit-events.json" # [OCI-NOSQL-E909]
 "${oci_target[@]}" nosql work-request list --compartment-id "$COMPARTMENT_ID" --all > "$audit_dir/work-requests.json" # [OCI-NOSQL-E907]
 ```
 

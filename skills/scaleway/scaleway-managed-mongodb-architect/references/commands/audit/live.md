@@ -12,6 +12,7 @@ connection. Expectations come from [the operations reference](../../operations.m
   print keys, connection strings or customer data; review saved output before sharing.
 
 ```bash
+set -euo pipefail
 umask 077
 : "${SCW_ORGANIZATION_ID:?Approved Scaleway Organization ID}"
 : "${SCW_PROJECT_ID:?Approved Scaleway Project ID}"
@@ -20,7 +21,16 @@ umask 077
 OUT="$(mktemp -d)"
 # Show the active profile values and keep only the identity fields [SCW-MDB-E903]
 scw config info | grep -i -E 'organization|project|region|profile'
+# Compare the Instance's Organization, Project and Region with the approved values [SCW-MDB-E901] [SCW-MDB-E905] [SCW-MDB-E906]
+scw mongodb instance get "$SCW_MDB_INSTANCE_ID" region="$SCW_REGION" --output json > "$OUT/instance-target.json"
+jq -e --arg o "$SCW_ORGANIZATION_ID" --arg p "$SCW_PROJECT_ID" --arg r "$SCW_REGION" \
+  '.organization_id == $o and .project_id == $p and .region == $r' "$OUT/instance-target.json" >/dev/null \
+  || { echo "Organization, Project or Region mismatch; stop" >&2; exit 1; }
 ```
+
+The `scw config info` output format is not documented, so it is displayed, not
+compared. No documented `scw` command returns the calling principal; confirm the
+API key owner in the Console before running.
 
 ## Backup and restore
 

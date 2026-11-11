@@ -60,7 +60,7 @@ rg -n -i 'prometheus|alert|logs.?data.?platform|replication.?lag|oplog' --glob '
 - Storage growth plans must keep headroom, since disk full makes MongoDB refuse writes [OVH-MDB-E49] [OVH-MDB-E50].
 
 ```bash
-rg -n -i 'readPreference|w=1|writeConcern|analytics' --glob '*.env*' --glob '*.tf' --glob '*.json' --glob '*.yaml' --glob '*.yml' --glob '*.js' --glob '*.ts' --glob '*.py'
+rg -n -o -i 'readPreference|w=1|writeConcern|analytics' --glob '*.env*' --glob '*.tf' --glob '*.json' --glob '*.yaml' --glob '*.yml' --glob '*.js' --glob '*.ts' --glob '*.py'
 ```
 
 ## IAM
@@ -88,7 +88,7 @@ rg -n -i 'tags?\s*[=:]' --glob '*.tf' --glob '*.json' --glob '*.yaml' --glob '*.
 - Clients must use TLS 1.2 or 1.3 with certificate verification left on [OVH-MDB-E66] [OVH-MDB-E67].
 
 ```bash
-rg -n -i 'tlsInsecure|tlsAllowInvalid|tls=false|ssl=false|tlsCAFile' --glob '*.env*' --glob '*.json' --glob '*.yaml' --glob '*.yml' --glob '*.js' --glob '*.ts' --glob '*.py'
+rg -n -o -i 'tlsInsecure|tlsAllowInvalid|tls=false|ssl=false|tlsCAFile' --glob '*.env*' --glob '*.json' --glob '*.yaml' --glob '*.yml' --glob '*.js' --glob '*.ts' --glob '*.py'
 ```
 
 ## Network isolation

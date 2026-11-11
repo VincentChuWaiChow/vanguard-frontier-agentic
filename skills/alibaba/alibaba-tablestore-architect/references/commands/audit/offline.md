@@ -103,7 +103,7 @@ rg -n -i 'encrypt|kms|byok|tls' \
 - Check client endpoints use the VPC endpoint rather than the public one.
 
 ```bash
-rg -n -i 'network.?(type|acl)|vpc|tablestore\.aliyuncs\.com|internet' \
+rg -n -o -i 'network.?(type|acl)|vpc|tablestore\.aliyuncs\.com|internet' \
   --glob '*.tf' --glob '*.json' --glob '*.yaml' --glob '*.yml' --glob '*.env*'
 ```
 

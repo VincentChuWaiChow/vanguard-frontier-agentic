@@ -1278,7 +1278,7 @@
     {
       "id": "alibaba-tablestore-architect",
       "path": "skills/alibaba/alibaba-tablestore-architect",
-      "aggregate_sha256": "522bfd974e4720f360f254f6efd90e270872a2f8f33077c2155b5398c1b1cd60",
+      "aggregate_sha256": "5d5b9f4cd2e0e10c39f65efaa4477a983bc685efe97e5fb9eff69a138cc4c2f9",
       "files": [
         {
           "path": "skills/alibaba/alibaba-tablestore-architect/SKILL.md",
@@ -1292,13 +1292,13 @@
         },
         {
           "path": "skills/alibaba/alibaba-tablestore-architect/references/commands/audit/live.md",
-          "sha256": "a4d92bb9e6e96fa01b62edb2b39600cc5d77140dbd3a82914d2161a47c6defdf",
-          "bytes": 4383
+          "sha256": "7bd0ba493d8d4fa618c6fcd5da6443267f1db122434d41df2b5688eb9a379a1e",
+          "bytes": 5139
         },
         {
           "path": "skills/alibaba/alibaba-tablestore-architect/references/commands/audit/offline.md",
-          "sha256": "c706a137afa83fe3e4a0020772b4087be3f5fcdcc088dc0239be976feec28d09",
-          "bytes": 4153
+          "sha256": "1e78ffacf3a8c51c22d84af6d65d0e18f8a8f11201bce0a5ad1cbec387b9a1cb",
+          "bytes": 4156
         },
         {
           "path": "skills/alibaba/alibaba-tablestore-architect/references/commands/audit.md",
@@ -1307,8 +1307,8 @@
         },
         {
           "path": "skills/alibaba/alibaba-tablestore-architect/references/evidence-ledger.md",
-          "sha256": "96c62d52b8a1e6f3c03ad349ca8fd22f862f1c7e5fdd63f3f7b5965bca38b7cc",
-          "bytes": 32429
+          "sha256": "fbebcfb3f9b047c8c44f3bd025d96f4abb56be08abd82b4805dc95fe7c54169f",
+          "bytes": 32805
         },
         {
           "path": "skills/alibaba/alibaba-tablestore-architect/references/operations.md",
@@ -4421,7 +4421,7 @@
     {
       "id": "azure-cosmosdb-platform-operator",
       "path": "skills/azure/azure-cosmosdb-platform-operator",
-      "aggregate_sha256": "2ff45884e8bf1baa2ff2cb2da4f2f52c9422c7a0d145f12f3ed281bc20294fe4",
+      "aggregate_sha256": "90a26e9114a21693cd637f185050b42282fb43cd5b2ec1aacfafc78d76eae98f",
       "files": [
         {
           "path": "skills/azure/azure-cosmosdb-platform-operator/SKILL.md",
@@ -4435,13 +4435,13 @@
         },
         {
           "path": "skills/azure/azure-cosmosdb-platform-operator/references/commands/audit/live.md",
-          "sha256": "ddadb9f0fa4d148affc1b847d9b8689d99935c5717ffe447e2950b4285e6862e",
-          "bytes": 7948
+          "sha256": "108c45cee1788e63a708049aa594195a81b27fc6cdaa3cb107a1d9d751304b3f",
+          "bytes": 8402
         },
         {
           "path": "skills/azure/azure-cosmosdb-platform-operator/references/commands/audit/offline.md",
-          "sha256": "e2031c030076bed8770cd70ec8148b928eb0a8ecb06d90d8d2367515a4e69eb2",
-          "bytes": 7993
+          "sha256": "b048cf10174e59da18328024f604110ded2e680f71b96f0be8288d4ea530b6de",
+          "bytes": 8164
         },
         {
           "path": "skills/azure/azure-cosmosdb-platform-operator/references/commands/audit.md",
@@ -4460,8 +4460,8 @@
         },
         {
           "path": "skills/azure/azure-cosmosdb-platform-operator/references/evidence-ledger.md",
-          "sha256": "59c9378ca8d319d16f86a297420fed3ad62e1f020020c7ccc9f5e30e1f967fa3",
-          "bytes": 94401
+          "sha256": "ada6efea02eefeda38fbddd1900f587b984f99694ef9db729b83484c0a501dc1",
+          "bytes": 94774
         },
         {
           "path": "skills/azure/azure-cosmosdb-platform-operator/references/mcp-and-evidence.md",
@@ -9439,7 +9439,7 @@
     {
       "id": "gcp-bigtable-architect",
       "path": "skills/gcp/gcp-bigtable-architect",
-      "aggregate_sha256": "1234984cf097101536391108cf0cdaf3bff8a3314703c61ac3875ad0189d90fb",
+      "aggregate_sha256": "6fa450b700a8f29d1b6eca5194f7556cb11dc144e4931a3fd52b1fa6766698e7",
       "files": [
         {
           "path": "skills/gcp/gcp-bigtable-architect/SKILL.md",
@@ -9458,8 +9458,8 @@
         },
         {
           "path": "skills/gcp/gcp-bigtable-architect/references/commands/audit/live.md",
-          "sha256": "28164644aceda7d1bad2a9c38a6d72d868a59275631d3c135db8bafc07378696",
-          "bytes": 5263
+          "sha256": "75b641e3d29692e39f44c8c1cdd38ef1e1d11590eb5dcfed7cd28c387448a9b0",
+          "bytes": 5335
         },
         {
           "path": "skills/gcp/gcp-bigtable-architect/references/commands/audit/offline.md",
@@ -9800,7 +9800,7 @@
     {
       "id": "gcp-firebase-developer",
       "path": "skills/gcp/gcp-firebase-developer",
-      "aggregate_sha256": "adb944a2699e0f67dffbdb1bbe79318845f9c9c7cf1b21b576bf6185a3e9bbe8",
+      "aggregate_sha256": "5d02e73fc956191f37619669c094b0ca2518eefac9bd4c25e2ffd682c53eafe1",
       "files": [
         {
           "path": "skills/gcp/gcp-firebase-developer/SKILL.md",
@@ -9814,13 +9814,13 @@
         },
         {
           "path": "skills/gcp/gcp-firebase-developer/references/commands/audit/live.md",
-          "sha256": "956b9e794ae9dfe1d02dec1e768910b9d20528392bdf1f1dae2ff6dc57b7fd60",
-          "bytes": 5001
+          "sha256": "05ae0ba0f6600e99b663959d8639cdbb5a73d9a77b5006e14ecfc463a320583a",
+          "bytes": 5073
         },
         {
           "path": "skills/gcp/gcp-firebase-developer/references/commands/audit/offline.md",
-          "sha256": "689c3ed5e1259655db5f9910de4d4ec54395a3a13728f42ea16c61db7e98a476",
-          "bytes": 6349
+          "sha256": "a860b772085eaebc9f901583d1d38093779306661721c0f551bc1004da92249f",
+          "bytes": 6585
         },
         {
           "path": "skills/gcp/gcp-firebase-developer/references/commands/audit.md",
@@ -11438,7 +11438,7 @@
     {
       "id": "huawei-gaussdb-rds-dba",
       "path": "skills/huawei/huawei-gaussdb-rds-dba",
-      "aggregate_sha256": "5044fcebe2c3939c0217b39fa2bb3275e7bae7b052ebafcfa468ffda9249bed6",
+      "aggregate_sha256": "7f9de3913902ca40b6f088ae409a265b4e8eee5c0eddf5cf6611283c5b98d0d9",
       "files": [
         {
           "path": "skills/huawei/huawei-gaussdb-rds-dba/SKILL.md",
@@ -11452,8 +11452,8 @@
         },
         {
           "path": "skills/huawei/huawei-gaussdb-rds-dba/references/commands/audit/live.md",
-          "sha256": "ac00869ef917279efadcc8eba580c1a6b6c04d7107d4ac6940a4c94b323c88d3",
-          "bytes": 3525
+          "sha256": "d9dcd4a1519679f081f6c73bde08559f758f3abe250e03075e8693f6dcbd6d42",
+          "bytes": 3543
         },
         {
           "path": "skills/huawei/huawei-gaussdb-rds-dba/references/commands/audit/offline.md",
@@ -11490,7 +11490,7 @@
     {
       "id": "huawei-geminidb-architect",
       "path": "skills/huawei/huawei-geminidb-architect",
-      "aggregate_sha256": "f6957da420d9b679ff08922388c399bf95beff15377a07bbc8b5452ebd0be3a3",
+      "aggregate_sha256": "045a075ec4e8b00558de2cb79ba4a0f01b31bebda3bceee665cd49425ab9cfa6",
       "files": [
         {
           "path": "skills/huawei/huawei-geminidb-architect/SKILL.md",
@@ -11504,8 +11504,8 @@
         },
         {
           "path": "skills/huawei/huawei-geminidb-architect/references/commands/audit/live.md",
-          "sha256": "57b35f8bc160a18d641efa208b2d6de31782a73edbe3152afef0c93d3ac7c015",
-          "bytes": 3317
+          "sha256": "9546b0e04a60bd9c09f1eaf9c413819676101f946a1581f5e21228514897c745",
+          "bytes": 3335
         },
         {
           "path": "skills/huawei/huawei-geminidb-architect/references/commands/audit/offline.md",
@@ -12479,7 +12479,7 @@
     {
       "id": "ionos-live-database-lifecycle-guard",
       "path": "skills/ionos/ionos-live-database-lifecycle-guard",
-      "aggregate_sha256": "c7c8e6e0d4bc116a2bd855b300cdfb60d17b6e60f332ae9970326c2a28644694",
+      "aggregate_sha256": "6bdca174dd32b30ced4661570fd6b9909d8e45e661ecba8b366c2982fd8d06d0",
       "files": [
         {
           "path": "skills/ionos/ionos-live-database-lifecycle-guard/SKILL.md",
@@ -12493,13 +12493,13 @@
         },
         {
           "path": "skills/ionos/ionos-live-database-lifecycle-guard/references/commands/audit/live.md",
-          "sha256": "d7d9883cb33f671b251b3b01c7f4102c5ca5c11fa90fd02abf06576cb7412665",
-          "bytes": 3426
+          "sha256": "3acdd3207193678be1869a90ffb3df84be85a3e6ef60dbfb6485c5cfe177b2a7",
+          "bytes": 4106
         },
         {
           "path": "skills/ionos/ionos-live-database-lifecycle-guard/references/commands/audit/offline.md",
-          "sha256": "18c3b6d4b04204ae1d50118e17a4cab8ccc56f7f4dae907fcafaf6ff90256fe5",
-          "bytes": 5445
+          "sha256": "0df97a4978b3fd77ee422d71522df3b040ca4ad6b57ff233806a2db8f9de38e1",
+          "bytes": 5448
         },
         {
           "path": "skills/ionos/ionos-live-database-lifecycle-guard/references/commands/audit.md",
@@ -18217,7 +18217,7 @@
     {
       "id": "oci-nosql-database-architect",
       "path": "skills/oci/oci-nosql-database-architect",
-      "aggregate_sha256": "13725b860b49fce9febbaa0478736802673dca26e82eb5d04d07fc149fa20ccb",
+      "aggregate_sha256": "75f3917c54fc94e37d03e960673edf26cac70689f77adbeba2c2621d0dd6694a",
       "files": [
         {
           "path": "skills/oci/oci-nosql-database-architect/SKILL.md",
@@ -18231,8 +18231,8 @@
         },
         {
           "path": "skills/oci/oci-nosql-database-architect/references/commands/audit/live.md",
-          "sha256": "62398fa9d8cdc6ec372068439faa4e01dc97a5a0c4ace47c4dafba12dff8fce0",
-          "bytes": 5892
+          "sha256": "deefa0e5c31ae0320186de2d62d384ce64b028e633b6eefb7e8788ba6bd8a0e9",
+          "bytes": 6491
         },
         {
           "path": "skills/oci/oci-nosql-database-architect/references/commands/audit/offline.md",
@@ -18246,8 +18246,8 @@
         },
         {
           "path": "skills/oci/oci-nosql-database-architect/references/evidence-ledger.md",
-          "sha256": "abafa5b6107a676f89743187d7706b031edce45d04359283d6ec67fe7f5a0d30",
-          "bytes": 31078
+          "sha256": "6d82dfc4045e7b7bc3990b3b7dd4a35b7ee587bc76b98cd081b198629496dab5",
+          "bytes": 31686
         },
         {
           "path": "skills/oci/oci-nosql-database-architect/references/nosql-design-guide.md",
@@ -19284,7 +19284,7 @@
     {
       "id": "ovhcloud-mongodb-architect",
       "path": "skills/ovhcloud/ovhcloud-mongodb-architect",
-      "aggregate_sha256": "4477777353b33717341f6b7d5a570859297d5b7b5ce40e6b6859d49ee578b38e",
+      "aggregate_sha256": "0f0fb0dacd6dcb4af82db8bcec35068898ecb0f9d1153f9d3fa75363c79a73f0",
       "files": [
         {
           "path": "skills/ovhcloud/ovhcloud-mongodb-architect/SKILL.md",
@@ -19298,13 +19298,13 @@
         },
         {
           "path": "skills/ovhcloud/ovhcloud-mongodb-architect/references/commands/audit/live.md",
-          "sha256": "ce3affaa2ebcca4829166ce93fa073f05bb0afd32ac37eddfe16fa10eac3d5f1",
-          "bytes": 3508
+          "sha256": "9dda555ab5027e8f46a2eb7e21438d4a99c9bf9b394b8855bc9d7adc1ee9351c",
+          "bytes": 4170
         },
         {
           "path": "skills/ovhcloud/ovhcloud-mongodb-architect/references/commands/audit/offline.md",
-          "sha256": "db5f403c7b3de1600d2e76c4b1b3e961fad3858be13d7d2cd63f73f721ba0da3",
-          "bytes": 5786
+          "sha256": "ba65f650d4d24bb512e8173183c3c29c6362f1da50c8efefd1d39f2f00a9f318",
+          "bytes": 5792
         },
         {
           "path": "skills/ovhcloud/ovhcloud-mongodb-architect/references/commands/audit.md",
@@ -19313,8 +19313,8 @@
         },
         {
           "path": "skills/ovhcloud/ovhcloud-mongodb-architect/references/evidence-ledger.md",
-          "sha256": "7b12111756342f1589fff68e001edf7ff073c71a9f216a375f45e275c20bb22e",
-          "bytes": 34140
+          "sha256": "7ad92c81dd912e9f74bcc77d79fa5a8cae1e73711426f1e7df3a59ec0d5d6558",
+          "bytes": 34487
         },
         {
           "path": "skills/ovhcloud/ovhcloud-mongodb-architect/references/official-sources.md",
@@ -24662,7 +24662,7 @@
     {
       "id": "scaleway-managed-mongodb-architect",
       "path": "skills/scaleway/scaleway-managed-mongodb-architect",
-      "aggregate_sha256": "cba7b8812533938b0ea782852aefab405fbfce38b20d3d4b3a7b0123a2392b41",
+      "aggregate_sha256": "453dddfc6cf3bbb55b9794f045ceefa21e7cd6611e769de18305d456b1c0bd32",
       "files": [
         {
           "path": "skills/scaleway/scaleway-managed-mongodb-architect/SKILL.md",
@@ -24676,13 +24676,13 @@
         },
         {
           "path": "skills/scaleway/scaleway-managed-mongodb-architect/references/commands/audit/live.md",
-          "sha256": "39d8b40d3a4c78013d89a69c9d229c607340409cc4c8e38db08734150240b7cb",
-          "bytes": 3399
+          "sha256": "7ed54fc45c66f2e8cc7abf9c38f752538b7a4274b21acb5dd2c67af5b683dcef",
+          "bytes": 4135
         },
         {
           "path": "skills/scaleway/scaleway-managed-mongodb-architect/references/commands/audit/offline.md",
-          "sha256": "e533bc4da6d0aca86f93e0c58b0f904ad7b7d3c2e03fd4c09333715597e3c514",
-          "bytes": 5714
+          "sha256": "869a945264fde22ba720b55c35f97ca58f03166778d4056d50e324993cd77e90",
+          "bytes": 5916
         },
         {
           "path": "skills/scaleway/scaleway-managed-mongodb-architect/references/commands/audit.md",
@@ -24691,8 +24691,8 @@
         },
         {
           "path": "skills/scaleway/scaleway-managed-mongodb-architect/references/evidence-ledger.md",
-          "sha256": "270bfa5f14600a4429523df89715ca5d3f1f675cbcc1e76e7d2a4e3f2c51b793",
-          "bytes": 13360
+          "sha256": "d869252077763c1d12c3c73422393eba1e4d0cf8f77a90ef0f07b3011ed7632b",
+          "bytes": 14065
         },
         {
           "path": "skills/scaleway/scaleway-managed-mongodb-architect/references/official-sources.md",

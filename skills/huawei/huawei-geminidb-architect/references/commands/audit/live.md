@@ -18,6 +18,7 @@ official reference page in this pass, so the resource sections below record
   account and IAM user manually in the console and stop on mismatch.
 
 ```bash
+set -euo pipefail
 : "${HCLOUD_PROFILE:?Approved KooCLI profile name}"
 : "${EXPECTED_REGION:?Approved Region}"
 umask 077

@@ -13,18 +13,28 @@ metadata only and never open a MongoDB connection. Expectations come from
   or print it. Write output to a private directory (`umask 077`). The cluster
   columns below omit the connection string (URL); never print keys, connection
   strings or customer data.
-- The documented identity command is `ionosctl config whoami` [IONOS-MDB-E905]. It
-  is described in prose, not in a command block, because the gate's read-verb list
-  has no word matching `whoami`.
+- The identity command `ionosctl config whoami` prints the email of the logged-in
+  user [IONOS-MDB-E905]; the block stops unless that line equals the approved email.
 
 ```bash
+set -euo pipefail
 umask 077
 : "${IONOS_TOKEN:?Approved IONOS token in the environment}"
+: "${IONOS_EXPECTED_USER:?Approved principal email}"
 : "${IONOS_MDB_CLUSTER_ID:?Approved MongoDB cluster ID}"
+: "${IONOS_MDB_LOCATION:?Approved cluster location}"
 OUT="$(mktemp -d)"
+ionosctl config whoami > "$OUT/whoami.txt" # [IONOS-MDB-E905]
+grep -qxF "$IONOS_EXPECTED_USER" "$OUT/whoami.txt" || { echo "Principal mismatch; stop" >&2; exit 1; }
 COLS="ClusterId,Name,Edition,Type,Instances,Shards,Health,State,MongoVersion,MaintenanceWindow,Location,DatacenterId,LanId,Cidr,TemplateId,Cores,RAM,StorageSize,StorageType"
-ionosctl dbaas mongo cluster list --cols "$COLS" # [IONOS-MDB-E902]
+ionosctl dbaas mongo cluster list --cols "$COLS" > "$OUT/clusters.txt" # [IONOS-MDB-E902]
+grep -F "$IONOS_MDB_CLUSTER_ID" "$OUT/clusters.txt" | grep -wF "$IONOS_MDB_LOCATION" >/dev/null \
+  || { echo "Cluster or location mismatch; stop" >&2; exit 1; }
 ```
+
+The `whoami` page describes its output as the email, not an exact line format; if
+the check stops on a correct principal, confirm it by hand rather than loosening it.
+The cluster check reads the documented text columns, not a JSON field.
 
 ## Backup and restore
 

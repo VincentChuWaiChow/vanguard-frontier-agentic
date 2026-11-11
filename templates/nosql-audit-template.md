@@ -100,14 +100,28 @@ row for the CLI reference page, or a `**No live command:**` line giving the reas
 ## Audit logging
 ~~~
 
-Command rules the gate enforces in live files:
+Command rules the gate enforces. It checks every fenced block (use `bash` fences;
+`console` blocks are rejected) with shell rules, so a command after `if`, `!`, `{`,
+`&&`, `||` or `|`, or inside `$(...)`, backticks or `<(...)`, is checked like any other:
 
-- every cloud CLI call uses a read verb (`describe`, `get`, `list`, `show`, ...) and
-  no mutating verb (`create`, `update`, `delete`, `modify`, `restore`, `export`, ...);
-- no secret-reading words (`keys`, `secret`, `password`, `credentials`, `token`) and
-  no `--force` or `--yes`;
-- `curl` is GET only, with no request body;
-- no data-plane shells (`mongosh`, `cqlsh`, ...) in either variant.
+- every command head is on the mode's allowlist; `env`, `xargs`, `bash -c`, `eval`,
+  absolute paths and heads taken from a variable are rejected (`"${aws_target[@]}"`
+  is expanded from its array definition);
+- live: a cloud CLI's action, the last word of its subcommand path, starts with a read
+  verb (`describe`, `get`, `list`, `show`, ...); no path word is mutating (`create`,
+  `update`, `delete`, `modify`, `restore`, `export`, ...), secret-reading (`keys`,
+  `secret`, `password`, `credentials`, `token`, connection strings) or a data-plane
+  read (`query`, `get-item`, `read-rows`, `lookup`, ...); no `--force`, `--yes` or
+  decryption flag;
+- live: `curl` takes only allowlisted options and GET, with no request body; `python3`
+  runs only a quoted heredoc importing `json`/`sys` and opening files read-only;
+- offline: local tools only; `terraform show` on a saved plan; no `rg --pre`,
+  `find -exec`/`-delete`, `git -c` or non-read git subcommand;
+- heredocs use a quoted delimiter; no data-plane shells (`mongosh`, `cqlsh`, ...) in
+  either variant.
+
+Search commands that look for credentials list file names only (`rg -l`); never
+print the matching line.
 
 Ledger rows for audit commands use IDs `<PREFIX>-E901` upward and cite the
 provider's official CLI or API reference page with an exact quote.

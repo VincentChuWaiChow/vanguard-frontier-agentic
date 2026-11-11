@@ -26,8 +26,13 @@ az account show --output json > "$audit_dir/identity.json"   # [COSMOS-E901]
 jq -e --arg s "$EXPECTED_SUBSCRIPTION_ID" '.id == $s' "$audit_dir/identity.json" > /dev/null \
   || { echo "Subscription mismatch; stop" >&2; exit 1; }
 az cosmosdb show --name "$COSMOS_ACCOUNT" --resource-group "$COSMOS_RG" --output json > "$audit_dir/account.json"   # [COSMOS-E902]
+jq -e --arg l "$COSMOS_LOCATION" '(.location|ascii_downcase|gsub(" ";"")) == ($l|ascii_downcase|gsub(" ";""))' \
+  "$audit_dir/account.json" > /dev/null || { echo "Region mismatch; stop" >&2; exit 1; }   # [COSMOS-E920]
 COSMOS_ACCOUNT_ID=$(jq -r '.id' "$audit_dir/account.json")
 ```
+
+The Region check compares the account's `location` with `COSMOS_LOCATION`, ignoring
+case and spaces, so `West US` and `westus` match.
 
 The account JSON written above is reused by the sections below with local `jq`.
 Fields absent from it are UNVERIFIED, not off.
@@ -81,18 +86,27 @@ az monitor metrics list --resource "$account_id" --metrics NormalizedRUConsumpti
 - MongoDB: set `COSMOS_MONGO_DATABASE`, `COSMOS_MONGO_COLLECTION`.
 - Cassandra: set `COSMOS_CASSANDRA_KEYSPACE`, `COSMOS_CASSANDRA_TABLE`.
 
+**NoSQL:**
+
 ```bash
-### NoSQL
 : "${COSMOS_SQL_DATABASE:?Approved database}" "${COSMOS_SQL_CONTAINER:?Approved container}"
 az cosmosdb sql database list --account-name "$COSMOS_ACCOUNT" --resource-group "$COSMOS_RG" --output table   # [COSMOS-E909]
 az cosmosdb sql container show --account-name "$COSMOS_ACCOUNT" --resource-group "$COSMOS_RG" --database-name "$COSMOS_SQL_DATABASE" --name "$COSMOS_SQL_CONTAINER" --output json   # [COSMOS-E910]
 az cosmosdb sql container throughput show --account-name "$COSMOS_ACCOUNT" --resource-group "$COSMOS_RG" --database-name "$COSMOS_SQL_DATABASE" --name "$COSMOS_SQL_CONTAINER" --output json   # [COSMOS-E911]
-### MongoDB (RU-based)
+```
+
+**MongoDB (RU-based):**
+
+```bash
 : "${COSMOS_MONGO_DATABASE:?Approved database}" "${COSMOS_MONGO_COLLECTION:?Approved collection}"
 az cosmosdb mongodb database list --account-name "$COSMOS_ACCOUNT" --resource-group "$COSMOS_RG" --output table   # [COSMOS-E913]
 az cosmosdb mongodb collection show --account-name "$COSMOS_ACCOUNT" --resource-group "$COSMOS_RG" --database-name "$COSMOS_MONGO_DATABASE" --name "$COSMOS_MONGO_COLLECTION" --output json   # [COSMOS-E914]
 az cosmosdb mongodb collection throughput show --account-name "$COSMOS_ACCOUNT" --resource-group "$COSMOS_RG" --database-name "$COSMOS_MONGO_DATABASE" --name "$COSMOS_MONGO_COLLECTION" --output json   # [COSMOS-E915]
-### Cassandra
+```
+
+**Cassandra:**
+
+```bash
 : "${COSMOS_CASSANDRA_KEYSPACE:?Approved keyspace}" "${COSMOS_CASSANDRA_TABLE:?Approved table}"
 az cosmosdb cassandra keyspace list --account-name "$COSMOS_ACCOUNT" --resource-group "$COSMOS_RG" --output table   # [COSMOS-E917]
 az cosmosdb cassandra table show --account-name "$COSMOS_ACCOUNT" --resource-group "$COSMOS_RG" --keyspace-name "$COSMOS_CASSANDRA_KEYSPACE" --name "$COSMOS_CASSANDRA_TABLE" --output json   # [COSMOS-E918]
@@ -107,9 +121,21 @@ az cosmosdb cassandra table throughput show --account-name "$COSMOS_ACCOUNT" --r
   found are extension commands; not covered here, so check identity settings from
   the account JSON and the operations file.
 
+**All APIs:**
+
 ```bash
 jq '{disableLocalAuth, disableKeyBasedMetadataWriteAccess}' "$audit_dir/account.json"   # [COSMOS-E902]
+```
+
+**NoSQL:**
+
+```bash
 az cosmosdb sql role definition list --account-name "$COSMOS_ACCOUNT" --resource-group "$COSMOS_RG" --output json   # [COSMOS-E912]
+```
+
+**MongoDB:**
+
+```bash
 az cosmosdb mongodb role definition list --account-name "$COSMOS_ACCOUNT" --resource-group "$COSMOS_RG" --output json   # [COSMOS-E916]
 ```
 

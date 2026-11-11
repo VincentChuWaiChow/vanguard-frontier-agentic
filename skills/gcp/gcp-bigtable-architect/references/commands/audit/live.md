@@ -23,7 +23,8 @@ audit_dir=$(mktemp -d)
 gcloud auth list --filter=status:ACTIVE --format="value(account)" > "$audit_dir/account.txt"
 gcloud config list --format=json > "$audit_dir/config.json"
 grep -qxF "$EXPECTED_ACCOUNT" "$audit_dir/account.txt" || { echo "Principal mismatch; stop" >&2; exit 1; }
-grep -qF "\"$GCP_PROJECT\"" "$audit_dir/config.json" || { echo "Project mismatch; stop" >&2; exit 1; }
+jq -e --arg p "$GCP_PROJECT" '.core.project == $p' "$audit_dir/config.json" >/dev/null \
+  || { echo "Project mismatch; stop" >&2; exit 1; } # core/project property [BT-E902]
 ```
 
 The blocks below assume the variables and `audit_dir` from this block.
