@@ -38,10 +38,12 @@ Supported harnesses: Claude Code, Codex, GitHub Copilot, Cursor, Gemini CLI, Kir
 | [Architecture](architecture/) | Three-layer system, Mermaid diagrams, design rationale |
 | [Language and Stack Boards](language-stack-boards/) | Topical boards, role bundles, execution-tier contract |
 | [The Databricks Board](databricks-board/) | Cloud-neutral lakehouse and AI board, routing, roles, safety posture |
+| [NoSQL Skills](nosql-skills/) | Provider-specific NoSQL skills, evidence ledgers, operations references, offline and live audits |
 | [Governance](governance/) | ADR process, maintainer responsibilities, quality gates |
 | [ADR-0001: Initial Architecture](adr/0001-initial-architecture/) | Three-layer Maestro decision record |
 | [ADR-0002: Jekyll + GitHub Pages](adr/0002-documentation-site-with-jekyll-github-pages/) | Documentation platform choice |
 | [ADR-0003: Agentic AI Board](adr/0003-agentic-ai-board/) | Vendor-neutral agentic board (proposed) |
+| [ADR-0004: Provider-Specific NoSQL Skills](adr/0004-provider-specific-nosql-skills-with-evidence-ledgers/) | NoSQL skills with evidence ledgers (proposed) |
 
 ### 📋 Operations
 
