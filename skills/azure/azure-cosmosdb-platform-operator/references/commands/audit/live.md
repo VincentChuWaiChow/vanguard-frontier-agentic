@@ -75,7 +75,8 @@ command. Use the throughput commands in Performance for provisioned RU/s only.
 ```bash
 account_id="$COSMOS_ACCOUNT_ID"
 az monitor metrics list-definitions --resource "$account_id" --output table   # [COSMOS-E908]
-az monitor metrics list --resource "$account_id" --metrics NormalizedRUConsumption TotalRequests --offset 1d --interval PT1H --aggregation Maximum --output json   # [COSMOS-E907] [COSMOS-E126]
+az monitor metrics list --resource "$account_id" --metrics NormalizedRUConsumption --offset 1d --interval PT1H --aggregation Maximum --output json   # [COSMOS-E907] [COSMOS-E126] [COSMOS-E921]
+az monitor metrics list --resource "$account_id" --metrics TotalRequests --offset 1d --interval PT1H --aggregation Count --output json   # [COSMOS-E907] [COSMOS-E921]
 ```
 
 ## Performance

@@ -4421,7 +4421,7 @@
     {
       "id": "azure-cosmosdb-platform-operator",
       "path": "skills/azure/azure-cosmosdb-platform-operator",
-      "aggregate_sha256": "90a26e9114a21693cd637f185050b42282fb43cd5b2ec1aacfafc78d76eae98f",
+      "aggregate_sha256": "7b51c889271f73ec1784475d8f56776d9997c834f695152e73ed2b8b94c0fce5",
       "files": [
         {
           "path": "skills/azure/azure-cosmosdb-platform-operator/SKILL.md",
@@ -4435,8 +4435,8 @@
         },
         {
           "path": "skills/azure/azure-cosmosdb-platform-operator/references/commands/audit/live.md",
-          "sha256": "108c45cee1788e63a708049aa594195a81b27fc6cdaa3cb107a1d9d751304b3f",
-          "bytes": 8402
+          "sha256": "c825bacafb9dba11f603db9e8b68fda92ed3eaa4ab5d307dfae860eecc7ff8c5",
+          "bytes": 8569
         },
         {
           "path": "skills/azure/azure-cosmosdb-platform-operator/references/commands/audit/offline.md",
@@ -4460,8 +4460,8 @@
         },
         {
           "path": "skills/azure/azure-cosmosdb-platform-operator/references/evidence-ledger.md",
-          "sha256": "ada6efea02eefeda38fbddd1900f587b984f99694ef9db729b83484c0a501dc1",
-          "bytes": 94774
+          "sha256": "298cb19ea869cb1492daba3446a9e77678fef4550601e3c96c12039a8ae61cb8",
+          "bytes": 95155
         },
         {
           "path": "skills/azure/azure-cosmosdb-platform-operator/references/mcp-and-evidence.md",
@@ -9439,7 +9439,7 @@
     {
       "id": "gcp-bigtable-architect",
       "path": "skills/gcp/gcp-bigtable-architect",
-      "aggregate_sha256": "6fa450b700a8f29d1b6eca5194f7556cb11dc144e4931a3fd52b1fa6766698e7",
+      "aggregate_sha256": "a4273d9e9038a14d74c046f08f4571fa7a779c6c72309571177ab0756de71df2",
       "files": [
         {
           "path": "skills/gcp/gcp-bigtable-architect/SKILL.md",
@@ -9458,8 +9458,8 @@
         },
         {
           "path": "skills/gcp/gcp-bigtable-architect/references/commands/audit/live.md",
-          "sha256": "75b641e3d29692e39f44c8c1cdd38ef1e1d11590eb5dcfed7cd28c387448a9b0",
-          "bytes": 5335
+          "sha256": "eb47013943473f2cb4bac342bb43597d72922a397ea7470176aae9c8bbfa9ea8",
+          "bytes": 5629
         },
         {
           "path": "skills/gcp/gcp-bigtable-architect/references/commands/audit/offline.md",
@@ -9473,8 +9473,8 @@
         },
         {
           "path": "skills/gcp/gcp-bigtable-architect/references/evidence-ledger.md",
-          "sha256": "cfb5c86b89a19973692379cd97e2e5284a8fe07e9132f07cd5900718dbdcb9aa",
-          "bytes": 26680
+          "sha256": "3133ebef56c45e864d9d9dd28afa7845e02b567b55fb778903cfdca58077b477",
+          "bytes": 27543
         },
         {
           "path": "skills/gcp/gcp-bigtable-architect/references/operations.md",
@@ -9800,7 +9800,7 @@
     {
       "id": "gcp-firebase-developer",
       "path": "skills/gcp/gcp-firebase-developer",
-      "aggregate_sha256": "5d02e73fc956191f37619669c094b0ca2518eefac9bd4c25e2ffd682c53eafe1",
+      "aggregate_sha256": "d77721d53191084d07c276c18bd5a72681c816792996e299aa0abcbf9119ce0b",
       "files": [
         {
           "path": "skills/gcp/gcp-firebase-developer/SKILL.md",
@@ -9814,8 +9814,8 @@
         },
         {
           "path": "skills/gcp/gcp-firebase-developer/references/commands/audit/live.md",
-          "sha256": "05ae0ba0f6600e99b663959d8639cdbb5a73d9a77b5006e14ecfc463a320583a",
-          "bytes": 5073
+          "sha256": "ffcca64be4ecbe61cc5449edc4007b84df04b33ee4c5cd4d45d0d172b635d59f",
+          "bytes": 5379
         },
         {
           "path": "skills/gcp/gcp-firebase-developer/references/commands/audit/offline.md",
@@ -9829,8 +9829,8 @@
         },
         {
           "path": "skills/gcp/gcp-firebase-developer/references/evidence-ledger.md",
-          "sha256": "e14b50c031c09857dcd650333f375f2ab933061022d5628b81ecf2178bb05e82",
-          "bytes": 59547
+          "sha256": "4348d2705021d5e2c538e2a6407ee4f9ac7c856c2835ba565d4fa80a5ded9cf0",
+          "bytes": 60778
         },
         {
           "path": "skills/gcp/gcp-firebase-developer/references/firestore-mongodb-operations.md",

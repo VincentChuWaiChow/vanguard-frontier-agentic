@@ -29,6 +29,9 @@ gcloud config list --format=json > "$audit_dir/config.json"
 grep -qxF "$EXPECTED_ACCOUNT" "$audit_dir/account.txt" || { echo "Principal mismatch; stop" >&2; exit 1; }
 jq -e --arg p "$GCP_PROJECT" '.core.project == $p' "$audit_dir/config.json" >/dev/null \
   || { echo "Project mismatch; stop" >&2; exit 1; } # core/project property [FS-E902]
+# Impersonation or an access-token file makes requests run as another identity [FS-E912] [FS-E913]
+jq -e '(.auth.impersonate_service_account // "") == "" and (.auth.access_token_file // "") == ""' \
+  "$audit_dir/config.json" >/dev/null || { echo "Credential override set; stop" >&2; exit 1; }
 ```
 
 The blocks below assume the variables and `audit_dir` from this block.
@@ -117,5 +120,5 @@ Recent audit log entries for the Firestore service name; the format keeps only t
 method and caller, not request payloads [FS-E907]:
 
 ```bash
-gcloud logging read 'protoPayload.serviceName="datastore.googleapis.com"' --project="$GCP_PROJECT" --freshness=7d --limit=50 --format="value(timestamp,protoPayload.methodName,protoPayload.authenticationInfo.principalEmail)" > "$audit_dir/audit-log.txt"
+gcloud logging read 'protoPayload.serviceName="firestore.googleapis.com"' --project="$GCP_PROJECT" --freshness=7d --limit=50 --format="value(timestamp,protoPayload.methodName,protoPayload.authenticationInfo.principalEmail)" > "$audit_dir/audit-log.txt" # [FS-E914]
 ```

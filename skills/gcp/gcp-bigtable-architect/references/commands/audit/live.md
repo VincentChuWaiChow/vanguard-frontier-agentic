@@ -25,6 +25,9 @@ gcloud config list --format=json > "$audit_dir/config.json"
 grep -qxF "$EXPECTED_ACCOUNT" "$audit_dir/account.txt" || { echo "Principal mismatch; stop" >&2; exit 1; }
 jq -e --arg p "$GCP_PROJECT" '.core.project == $p' "$audit_dir/config.json" >/dev/null \
   || { echo "Project mismatch; stop" >&2; exit 1; } # core/project property [BT-E902]
+# Impersonation or an access-token file makes requests run as another identity [BT-E919] [BT-E920]
+jq -e '(.auth.impersonate_service_account // "") == "" and (.auth.access_token_file // "") == ""' \
+  "$audit_dir/config.json" >/dev/null || { echo "Credential override set; stop" >&2; exit 1; }
 ```
 
 The blocks below assume the variables and `audit_dir` from this block.
