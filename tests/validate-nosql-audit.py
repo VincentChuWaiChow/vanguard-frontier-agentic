@@ -560,6 +560,8 @@ def python_problems(command: Command, mode: str, skill: Path) -> list[str]:
                 and node.attr not in PY_ATTRS[node.value.id]:
             problems.append(f"python3 heredoc uses '{node.value.id}.{node.attr}'; allowed: "
                             f"{sorted(PY_ATTRS[node.value.id])}")
+        elif isinstance(node, ast.Starred) or (isinstance(node, ast.keyword) and node.arg is None):
+            problems.append("python3 heredoc unpacks arguments (*/**); pass them literally so the check sees them")
         elif isinstance(node, ast.Name) and node.id in PY_BANNED_NAMES:
             problems.append(f"python3 heredoc uses '{node.id}'")
         elif isinstance(node, ast.Attribute) and node.attr.startswith("__"):
