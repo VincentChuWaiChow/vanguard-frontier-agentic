@@ -20,7 +20,8 @@ Command safety is an allowlist, checked on every fenced block in either variant
 blocks are rejected). Each block is lexed with shell rules, so commands after
 ``if``/``then``/``!``/``{``, after ``&&``/``||``/``|``/``;``, inside ``$(...)``,
 backticks, process substitution and ``${VAR:-$(...)}`` defaults are all checked, and ``"${name[@]}"`` heads are
-expanded from their array definition:
+expanded from their array definition, which is frozen: the array may appear
+nowhere else in the file:
 
 * every command head must be on the mode's allowlist (``LIVE_HEADS`` or
   ``OFFLINE_HEADS``); wrappers such as ``env``, ``xargs``, ``bash -c``, ``eval``,
@@ -292,6 +293,8 @@ class Lexer:
             self.nested.append(self.run(close=True))
             chars.append("$(...)")
             return True
+        if s.startswith("${!", self.i):
+            self.problems.append("indirect expansion ${!...} is not allowed")
         if nxt == "{":
             # Walk the body: ${X:-$(cmd)} and ${X:-`cmd`} run cmd, so nested
             # substitutions are lexed like any other; nested ${ } keep depth.
@@ -386,9 +389,8 @@ def split_commands(tokens: list[Token], aliases: dict[str, list[Word]], problems
                 continue
             break
         if words and words[0].raw in {"for", "select", "case"}:
-            if words[0].raw == "case":
-                problems.append("'case' is not allowed in an audit block")
-            continue  # loop word lists hold no command; their substitutions are checked
+            problems.append(f"'{words[0].raw}' is not allowed in an audit block; write the commands out")
+            continue
         if words:
             alias = re.fullmatch(r'"?\$\{(' + NAME + r')\[@\]\}"?', words[0].raw)
             if alias:
@@ -587,6 +589,8 @@ def command_problems(command: Command, mode: str, skill: Path) -> list[str]:
     if head == "python3":
         return python_problems(command, mode, skill)
     values = [word.value for word in words]
+    if head == "printf" and any(v == "-v" or v.startswith("-v") for v in values[1:2]):
+        return [f"'printf -v' assigns a variable: '{text}'"]
     if head in {"terraform", "tofu"} and (len(values) < 2 or values[1] != "show"):
         return [f"'{text}' can reach a provider; offline allows only '{head} show' on a saved plan"]
     if head in {"rg", "grep"} and any(CREDENTIAL_PATTERN.search(v) for v in values[1:]) \
@@ -639,6 +643,21 @@ def shell_blocks(text: str, where: str, errors: list[str]) -> list[str]:
     return found
 
 
+def array_problems(blocks: list[str], aliases: dict[str, list[Word]]) -> list[str]:
+    """A command array may appear only in its one definition and as a whole "${name[@]}"
+    head. Any other mention (name=x, name[0]=, name+=, ${name:=...}, ${name[0]}, a loop
+    or printf -v target) could change what runs, so it is rejected outright."""
+    text = "\n".join(re.sub(r"(^|\s)#.*$", r"\1", block, flags=re.MULTILINE) for block in blocks)
+    problems = []
+    for name in aliases:
+        mentions = len(re.findall(r"(?<![\w])" + name + r"(?!\w)", text))
+        allowed = text.count(name + "=(") + text.count("${" + name + "[@]}")
+        if mentions != allowed:
+            problems.append(f"array '{name}' is mentioned outside its one definition and \"${{{name}[@]}}\" "
+                            "uses; command arrays may not be assigned, indexed or modified")
+    return problems
+
+
 def sections(text: str) -> dict[str, str]:
     starts = [m.start() for m in re.finditer(r"^## ", text, re.MULTILINE)] + [len(text)]
     found = {}
@@ -680,6 +699,7 @@ def check(skill_rel: str, errors: list[str]) -> None:
             errors += [f"{where}: {p}" for p in problems]
             for command in parsed:
                 errors += [f"{where}: {p}" for p in command_problems(command, mode, skill)]
+        errors += [f"{where}: {p}" for p in array_problems(blocks, aliases)]
         for evidence in _ops.MARKER_RE.findall(text):
             if evidence not in rows:
                 errors.append(f"{where}: {evidence} has no row in the skill's evidence ledger")
