@@ -110,7 +110,7 @@ def markdown_files() -> list[Path]:
         base = REPO / root
         files += base.rglob("SKILL.md")
         files += base.rglob("AGENT.md")
-        files += (p for p in base.rglob("references/*.md"))
+        files += base.rglob("references/**/*.md")  # includes references/commands/** guides
     return sorted(set(files))
 
 

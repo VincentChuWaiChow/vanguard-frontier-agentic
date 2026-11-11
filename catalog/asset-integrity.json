@@ -37592,7 +37592,7 @@
     },
     {
       "tree": "tests",
-      "aggregate_sha256": "580ad700fda088a1a954267906f06c05263e51aeabdb2db7171f6cf72f162e2e",
+      "aggregate_sha256": "9d0711c2214273fc9a6f10b0b6a82f9d374ce685a7a9238515e5719ba72175d5",
       "files": [
         {
           "path": "tests/AGENTS.md",
@@ -49200,6 +49200,11 @@
           "bytes": 47587
         },
         {
+          "path": "tests/requirements-ci.txt",
+          "sha256": "cd1244f872e66b4a6538225d91d7f5d98a71aabb9b923abcce562f7271fc1761",
+          "bytes": 414
+        },
+        {
           "path": "tests/test-codex-plugin-marketplace-install.test.mjs",
           "sha256": "d21a25cb49ee43985154c13a63ccfa0e888479cc8692ef0805b35e26f94b91fb",
           "bytes": 4931
@@ -49326,8 +49331,8 @@
         },
         {
           "path": "tests/validate-nosql-pattern-evals.py",
-          "sha256": "8c49448c3944355337d63e21aa3e2229fecae6f591d87bb38f395bb50f19408b",
-          "bytes": 3939
+          "sha256": "c483577376d8d1499632556ac0056efdf15a18ebfa0e24e271ed7cb4944b15fc",
+          "bytes": 3990
         },
         {
           "path": "tests/validate-nosql-scenarios.py",
@@ -49376,8 +49381,8 @@
         },
         {
           "path": "tests/validate-skill-references.py",
-          "sha256": "c34a351083a0c9c98510ea1000355144661db13367f3721882ab4cfe3aba11e6",
-          "bytes": 10254
+          "sha256": "13407aa461231169c1a76405dc462d54e9cd6cc0ca2834058fcfa1260d5198ea",
+          "bytes": 10286
         },
         {
           "path": "tests/validate-skill-yaml-strict.py",
@@ -49420,8 +49425,8 @@
     },
     {
       "path": "CLAUDE.md",
-      "sha256": "dc4b04ddfe9625390e0fc72d3066751d83e956faeeeb3ac59ec78835d616e99b",
-      "bytes": 24967
+      "sha256": "3e85edf8394014c7a2a3ad48f4464b64a7f8cedc4d6cc93423433fbcfce2d160",
+      "bytes": 25022
     },
     {
       "path": "AGENTS.md",
@@ -49444,5 +49449,5 @@
       "bytes": 9135
     }
   ],
-  "aggregate_sha256": "7073134a306064681b3731c96084841c6eeb4884246e5e114508b0a2b413de81"
+  "aggregate_sha256": "7d501405e625eb043a7e716a7c5f71ee455eba7d09627e1666e3272f9b82d471"
 }

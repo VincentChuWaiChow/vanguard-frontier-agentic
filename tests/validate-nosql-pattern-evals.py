@@ -8,8 +8,8 @@ and never contact a cloud. Shipping code without running its tests would let a
 broken selector or asset reach every harness, so this gate runs them all.
 
 Fails closed when a prerequisite is missing: two eval files lint CloudFormation
-with ``cfn-lint`` (pinned in CI), and the Node eval needs ``node``. Install with
-``python3 -m pip install cfn-lint==1.60.0``.
+with ``cfn-lint`` (pinned in ``tests/requirements-ci.txt``), and the Node eval needs ``node``.
+Install with ``python3 -m pip install -r tests/requirements-ci.txt``.
 
 Also fails if ``.plugin-scanner.toml`` excludes any file this gate executes or
 imports (evals, scripts, assets): code CI runs must stay visible to the HOL
@@ -57,7 +57,7 @@ def main() -> int:
     missing = [tool for tool in ("cfn-lint", "node", "bash") if shutil.which(tool) is None]
     if missing:
         print(f"FAIL: missing prerequisite(s): {', '.join(missing)}. "
-              "Install cfn-lint with: python3 -m pip install cfn-lint==1.60.0")
+              "Install cfn-lint with: python3 -m pip install -r tests/requirements-ci.txt")
         return 1
     hidden = scanner_blind_spots()
     if hidden:
