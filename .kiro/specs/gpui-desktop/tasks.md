@@ -520,6 +520,7 @@ Architecture and scope come from these frozen approved inputs:
   - Negative: Filtered-out required consumer, green skipped jobs, incompatible toolkit snapshots or altered authoritative validation semantics fail; no external run/push/upload without approval.
   - Estimate: 2-4 hours; timebox, not a completion guarantee.
   - Installation-free preparation: Guard actual TUI/Desktop path filters and add explicitly static-only Desktop checks using existing tools. No install/setup steps, native acceptance claim, new runner labels or license-policy fiction. Full native jobs, supply-chain policy and both-graph execution remain deferred.
+  - Preparation evidence: evals/task-8.2.md; static-only workflow and local mutation checks, not native or supply-chain acceptance. Full task unchecked.
 
 - [ ] 8.3 Implement final evidence readiness and regression closure
   - Depends: 7.1, 7.2, 7.3, 7.5, 8.1, 8.2

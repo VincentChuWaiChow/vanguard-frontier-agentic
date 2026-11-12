@@ -656,7 +656,14 @@
       "1.6": {
         "status": "preparation_verified_full_task_pending",
         "tests": "5 default and 5 no-default; both crate formats; both engine subtrees",
-        "desktop_execution": "unverified"
+        "desktop_execution": "unverified",
+        "commit": "3425d4f9cf18977bc4a83ee7c7980d2e2eee5341"
+      },
+      "8.2": {
+        "status": "static_preparation_verified_full_task_pending",
+        "tests": "27 Node checks; 18 bootstrap documents mutants; 31 boundary self-tests",
+        "native_execution": "unverified",
+        "repository_gate": "npm run validate exit 0; final integrity readback exit 0"
       }
     }
   }

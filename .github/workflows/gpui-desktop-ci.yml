@@ -1,0 +1,57 @@
+name: Desktop static contracts—not native acceptance
+
+# Installation-free preparation only. This does not compile or launch Desktop,
+# inspect live dependency graphs, or establish native/platform acceptance.
+on:
+  pull_request:
+    paths:
+      - 'tools/vfa-desktop/**'
+      - 'tools/vfa-tui/**'
+      - 'scripts/**'
+      - 'schemas/**'
+      - 'catalog/**'
+      - 'package.json'
+      - 'tests/export-plan.test.mjs'
+      - 'tests/fixtures/export-plan/**'
+      - 'tests/gpui-ci-contracts.test.mjs'
+      - '.github/workflows/vfa-tui-ci.yml'
+      - '.github/workflows/gpui-desktop-ci.yml'
+  push:
+    branches: [develop]
+    paths:
+      - 'tools/vfa-desktop/**'
+      - 'tools/vfa-tui/**'
+      - 'scripts/**'
+      - 'schemas/**'
+      - 'catalog/**'
+      - 'package.json'
+      - 'tests/export-plan.test.mjs'
+      - 'tests/fixtures/export-plan/**'
+      - 'tests/gpui-ci-contracts.test.mjs'
+      - '.github/workflows/vfa-tui-ci.yml'
+      - '.github/workflows/gpui-desktop-ci.yml'
+
+permissions:
+  contents: read
+
+concurrency:
+  group: gpui-desktop-static-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  static-contracts:
+    name: Desktop static contracts—not native acceptance
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@df4cb1c069e1874edd31b4311f1884172cec0e10 # v6.0.3
+        with:
+          persist-credentials: false
+
+      - name: Declared bootstrap contracts (documents only)
+        run: python3 tools/vfa-desktop/tests/check_bootstrap.py --manifest-path tools/vfa-desktop/Cargo.toml --documents-only --self-test
+
+      - name: Feature-boundary negative fixtures (offline self-test)
+        run: python3 tools/vfa-tui/tests/check_feature_boundary.py --self-test
+
+      - name: Workflow trigger and static-command contracts
+        run: node --test tests/gpui-ci-contracts.test.mjs

@@ -27920,7 +27920,7 @@
     },
     {
       "tree": "tests",
-      "aggregate_sha256": "ac25cc7b95cf4ab70fdf3f58caf7d81ebcc7808cd34f264722aec260eff4fa6f",
+      "aggregate_sha256": "8381c6edccdc2193b26add61c44f3e8e77a69f30eaaa0fe76974d2d405e7d3a2",
       "files": [
         {
           "path": "tests/AGENTS.md",
@@ -34403,6 +34403,11 @@
           "bytes": 6920
         },
         {
+          "path": "tests/gpui-ci-contracts.test.mjs",
+          "sha256": "47186e9f4ded65d49302f410431dd6ae25e6e459e1bdd8c0db8f156eefeb2a6f",
+          "bytes": 11119
+        },
+        {
           "path": "tests/integration/rbac-pre-flight/README.md",
           "sha256": "0fec3721db245762f4c7b2a45aa47d1c28693cccb9d14996136ea1c7ea683950",
           "bytes": 5500
@@ -34633,8 +34638,8 @@
     },
     {
       "path": "package.json",
-      "sha256": "93f55018c5f3b906db28f23b388113e67569676f85c1a1dd9ca3a2ef623f9512",
-      "bytes": 5834
+      "sha256": "e766f042075162f9d825830ddbad5b91f9973c0bc8ca24ac2f179140a5bda9f9",
+      "bytes": 5934
     },
     {
       "path": ".releaserc.js",
@@ -34642,5 +34647,5 @@
       "bytes": 4578
     }
   ],
-  "aggregate_sha256": "674b377b280fed99cfa8abbc4671ce138593b3d2b536086117a59c30be91f2a6"
+  "aggregate_sha256": "0d9cf5853265f0696ca8e1b810bb4a8efaa7b8de98bdb853f75a8cb2d8b477c2"
 }

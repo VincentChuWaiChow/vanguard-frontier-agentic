@@ -8,7 +8,7 @@ providers: 39
 mcp_references: 3
 rules: 2
 install_roles: 30
-validation_gates: 19
+validation_gates: 20
 agent_directories: 42
 skill_directories: 43
 maestro_scenarios: 357

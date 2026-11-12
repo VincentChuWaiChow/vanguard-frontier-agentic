@@ -266,3 +266,14 @@ Task 1.6 preparation: shared fixed cases now have both consumer wrappers. Parent
 verified five actual TUI tests per feature mode, both crate format traversals,
 unchanged oracle/fixture bytes and both normal engine dependency subtrees. Desktop
 execution/parity remains unverified. No full task-completion claim.
+
+Task 8.2 preparation adds explicitly static-only Desktop CI and guards both
+consumer path filters without changing TUI job steps. Independent review found
+an alternate-shell bypass in the grader; parent reproduced RED and repaired the
+root-key boundary. All 27 Node checks, 18 bootstrap-document mutants and 31
+boundary self-tests pass locally. Full repository validation is running; native
+jobs, license/source policy and complete task acceptance remain unverified.
+
+Task 8.2 local repository validation completed successfully including the repaired
+27-check grader. Final covered integrity was regenerated/rechecked after repair.
+No external CI was dispatched and full task 8.2 remains unchecked.

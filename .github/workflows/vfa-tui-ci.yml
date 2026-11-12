@@ -11,11 +11,25 @@ on:
   pull_request:
     paths:
       - 'tools/vfa-tui/**'
+      - 'scripts/**'
+      - 'schemas/**'
+      - 'catalog/**'
+      - 'package.json'
+      - 'tests/export-plan.test.mjs'
+      - 'tests/fixtures/export-plan/**'
+      - 'tests/gpui-ci-contracts.test.mjs'
       - '.github/workflows/vfa-tui-ci.yml'
   push:
     branches: [develop]
     paths:
       - 'tools/vfa-tui/**'
+      - 'scripts/**'
+      - 'schemas/**'
+      - 'catalog/**'
+      - 'package.json'
+      - 'tests/export-plan.test.mjs'
+      - 'tests/fixtures/export-plan/**'
+      - 'tests/gpui-ci-contracts.test.mjs'
       - '.github/workflows/vfa-tui-ci.yml'
 
 permissions:
