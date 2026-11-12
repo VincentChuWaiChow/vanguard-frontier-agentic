@@ -673,8 +673,27 @@
         "full_suite": "exact existing 17/11 failures; non-green",
         "package_sha256": "300ea70e0b6e9349248e8c4b13d73c679381fc59e7417a5b539911802b8c8c34",
         "native_execution": "unverified",
-        "poison_cleanup": "unverified"
+        "poison_cleanup": "initially unverified; fail-closed cleanup PASS in offline follow-up"
       }
     }
+  },
+  "offline_scenario_followup": {
+    "user_request": "run next scenarios",
+    "scope": "tests only; no installs or full task completion",
+    "eval": ".kiro/specs/gpui-desktop/evals/task-1.5-scenarios.md",
+    "status": "test_scenarios_verified_full_native_tasks_pending",
+    "push": false,
+    "results": {
+      "runtime_per_feature_mode": 10,
+      "new_runtime_cases": 2,
+      "export_plan": 14,
+      "static_ci": 27,
+      "cursor_kiro_notice_groups": 4,
+      "relocated_core_per_feature_mode": 5,
+      "full_regression": "MISS exact existing 17/11 failures; sole failed Cargo target --lib",
+      "native_install": "UNVERIFIED",
+      "production": "byte-identical; only two unit tests appended"
+    },
+    "review": "configured Rust reviewer source review: no blockers"
   }
 }

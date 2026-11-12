@@ -952,4 +952,169 @@ mod tests {
         dropping_thread.join().unwrap();
         block_on(client.request_shutdown(ShutdownChoice::Wait).wait()).unwrap();
     }
+
+    #[test]
+    fn poisoned_registry_shutdown_preserves_started_result_and_reports_failed_cleanup() {
+        let (host, client) = EngineHost::start().unwrap();
+        let (active, gate) = held(&client);
+        let active_observer = client.observe(active.id()).unwrap();
+        let queued_gate = TestGate::new();
+        queued_gate.release();
+        let (queued_started, observed_queued_start) = std_mpsc::channel();
+        let queued = client
+            .submit(Work::Probe(Probe::Blocking {
+                started: queued_started,
+                gate: queued_gate,
+            }))
+            .unwrap();
+        let queued_observer = client.observe(queued.id()).unwrap();
+        let shared = client.shared.clone();
+        let poisoner = thread::spawn(move || {
+            let _registry = shared.registry.lock().unwrap();
+            panic!("controlled registry mutex poisoning");
+        });
+        assert!(poisoner.join().is_err());
+        assert!(client.shared.registry.is_poisoned());
+
+        // Existing owned tickets remain usable; poisoned registry lookups are
+        // not a recovery mechanism and are deliberately not used here.
+        let stopped = client.request_shutdown(ShutdownChoice::Cancel);
+        assert!(stopped.wait().now_or_never().is_none());
+        assert!(host
+            .request_shutdown(ShutdownChoice::Wait)
+            .wait()
+            .now_or_never()
+            .is_none());
+        assert!(active.outcome.borrow().is_none());
+        assert!(matches!(
+            client.submit(Work::Probe(Probe::Timer)),
+            Err(EngineError::Stopped)
+        ));
+        gate.0.release();
+        let active_outcome = block_on(active.wait()).unwrap();
+        let queued_outcome = block_on(queued.wait()).unwrap();
+        assert_eq!(
+            block_on(client.request_shutdown(ShutdownChoice::Wait).wait()),
+            Err(EngineError::StatePoisoned)
+        );
+        assert_eq!(host.join(), Err(EngineError::StatePoisoned));
+        assert!(matches!(
+            &active_outcome.completion,
+            ReportCompletion::Probe {
+                kind: "blocking",
+                cancellation_requested: true
+            }
+        ));
+        assert!(matches!(
+            &queued_outcome.completion,
+            ReportCompletion::CancelledBeforeStart
+        ));
+        assert!(Arc::ptr_eq(
+            &active_outcome,
+            &block_on(active_observer.wait()).unwrap()
+        ));
+        assert!(Arc::ptr_eq(
+            &queued_outcome,
+            &block_on(queued_observer.wait()).unwrap()
+        ));
+        assert_eq!(
+            observed_queued_start.try_recv(),
+            Err(std_mpsc::TryRecvError::Disconnected)
+        );
+        assert!(matches!(
+            client.submit(Work::Probe(Probe::Timer)),
+            Err(EngineError::Stopped)
+        ));
+    }
+
+    #[test]
+    fn concurrent_cloned_admission_and_global_cancel_preserve_bounded_owned_outcomes() {
+        const SUBMITTERS: usize = 8;
+        const ATTEMPTS: usize = 8;
+        let (host, client) = EngineHost::start().unwrap();
+        let (active, gate) = held(&client);
+        // Ensure this scenario always has queued work, even if Cancel wins
+        // every concurrently scheduled admission attempt.
+        let mut accepted = vec![client.submit(Work::Probe(Probe::Timer)).unwrap()];
+        let start = Arc::new(std::sync::Barrier::new(SUBMITTERS + 2));
+        let mut submitters = Vec::new();
+        for _ in 0..SUBMITTERS {
+            let client = client.clone();
+            let start = start.clone();
+            submitters.push(thread::spawn(move || {
+                start.wait();
+                (0..ATTEMPTS)
+                    .map(|_| client.submit(Work::Probe(Probe::Timer)))
+                    .collect::<Vec<_>>()
+            }));
+        }
+        let (cancel_returned, observed_cancel_return) = std_mpsc::channel();
+        let cancelling_client = client.clone();
+        let cancel_start = start.clone();
+        let canceller = thread::spawn(move || {
+            cancel_start.wait();
+            let stopped = cancelling_client.request_shutdown(ShutdownChoice::Cancel);
+            cancel_returned.send(()).unwrap();
+            stopped
+        });
+        start.wait();
+        observed_cancel_return
+            .recv_timeout(Duration::from_secs(10))
+            .expect("global Cancel returned independently of ordinary saturation");
+        let stopped = canceller.join().unwrap();
+        let admission_results = submitters
+            .into_iter()
+            .flat_map(|submitter| submitter.join().unwrap())
+            .collect::<Vec<_>>();
+        for result in admission_results {
+            match result {
+                Ok(ticket) => accepted.push(ticket),
+                Err(EngineError::Busy | EngineError::ShuttingDown | EngineError::Stopped) => {}
+                Err(error) => panic!("unexpected admission outcome: {error}"),
+            }
+        }
+        let mut ids = std::collections::BTreeSet::new();
+        assert!(ids.insert(active.id()));
+        for ticket in &accepted {
+            assert!(ids.insert(ticket.id()), "accepted IDs must remain unique");
+        }
+        assert!(ids.len() <= MAX_RETAINED_REQUESTS);
+        assert_eq!(
+            client.shared.registry.lock().unwrap().requests.len(),
+            ids.len()
+        );
+        for _ in 0..ATTEMPTS {
+            assert!(matches!(
+                client.submit(Work::Probe(Probe::Timer)),
+                Err(EngineError::ShuttingDown | EngineError::Stopped)
+            ));
+        }
+        assert!(stopped.wait().now_or_never().is_none());
+        assert!(active.outcome.borrow().is_none());
+        gate.0.release();
+        let active_outcome = block_on(active.wait()).unwrap();
+        let mut queued_outcomes = Vec::new();
+        for ticket in accepted {
+            queued_outcomes.push(block_on(ticket.wait()).unwrap());
+        }
+        block_on(client.request_shutdown(ShutdownChoice::Wait).wait()).unwrap();
+        host.join().unwrap();
+        assert!(matches!(
+            &active_outcome.completion,
+            ReportCompletion::Probe {
+                kind: "blocking",
+                cancellation_requested: true
+            }
+        ));
+        for outcome in queued_outcomes {
+            assert!(matches!(
+                &outcome.completion,
+                ReportCompletion::CancelledBeforeStart
+            ));
+            assert!(Arc::ptr_eq(
+                &outcome,
+                &client.outcome(outcome.request_id).unwrap().unwrap()
+            ));
+        }
+    }
 }

@@ -63,7 +63,7 @@ Task 5.2 later adds apply-plan/outcome protocol tests; no premature apply claim.
 | No-write preview and failures | PASS | Missing Unicode/space target remains absent; existing tree/mode/mtime snapshots unchanged; links, malformed inputs, collisions and limits fail explicitly |
 | Legacy compatibility | PASS | Eight fixed scenarios captured before modification; parent reran the original exporter against the new independent fixtures and matched outputs/bytes/modes, including seven forced-overwrite cases |
 | Planner tests | PASS | Fourteen named tests; real subprocesses, not source-string checks; fixed expectations are not recomputed by the production renderer |
-| Full C7 CLI regression | PASS | Parent combined Node run: seventeen passed, zero failed/skipped; coverage/provider-role matrix and Codex/Cursor/Kiro contracts retained |
+| Full C7 CLI regression | PASS aggregate; E2E UNVERIFIED | Historical combined Node tally: seventeen process passes; the opt-in Codex marketplace file may exit zero without executing E2E. Do not infer native marketplace installation from that tally; see follow-up audit |
 | Review repair | PASS | Actual RED for metadata/catalog/script/outside-target hard-link aliases and machine-help stdout; both repaired, then fourteen planner tests passed |
 | Repository validation | PASS | Required integrity manifest regenerated last after final covered code; full gate exits 0 on stable exporter bytes |
 | Later apply/native behavior | UNVERIFIED | No apply-plan mode, authorization race-proofing, native marketplace installation or desktop execution claimed |
@@ -124,3 +124,12 @@ The fixed binary/newline oracle intentionally includes CRLF Markdown fixtures.
 Commit whitespace checking recognizes CR-at-EOL explicitly while retaining
 blank-at-EOL/EOF and space-before-tab checks; no fixture normalization, persistent
 Git setting or ordinary trailing-space waiver was used.
+
+### Follow-up evidence clarification
+
+The [offline scenario audit](task-1.5-scenarios.md) identifies the current opt-in
+Codex marketplace script's explicit SKIP/exit-zero branches. The earlier combined
+Node process tally alone cannot prove that E2E ran. Actual marketplace-add/install
+acceptance is UNVERIFIED without a log of enabled execution; no installation or
+network attempt is authorized in this follow-up. Export-plan's fourteen actual
+fixture tests and the four Cursor/Kiro notice assertions were freshly executed.

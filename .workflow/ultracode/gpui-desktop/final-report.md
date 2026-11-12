@@ -276,3 +276,19 @@ Three built-in writers have unobservable serving model/effort; configured Rust
 and TypeScript read-only reviewers use gpt-6.1-sol/high, with serving identities
 unobservable. Parent serialized Cargo and owns integration and no-reply commits.
 No installation, external mutation, push or additional backlog work was performed.
+
+## Offline scenario follow-up
+
+PASS: real poisoned-registry cleanup and concurrent admission/Cancel scenarios,
+ten runtime tests per feature mode, all targeted contracts, both formats/strict
+clippy modes, exporter14/static27/notice4 groups and relocated core5 per mode.
+MISS: exact existing 17/11 full failures; no additional failed Cargo target.
+UNVERIFIED: native/foreground/Desktop execution, old MSRV, other OS and opt-in
+Codex marketplace installation E2E. Aggregate process passes cannot prove an
+opt-in file actually executed; the older evidence row is clarified accordingly.
+
+Only two appended Rust unit tests plus lazy eval/workflow records changed;
+production, old tests, fixtures, manifests/locks and frozen approvals unchanged.
+One built-in writer and one configured Sol/high Rust reviewer (serving identities
+unobservable), parent actual graders/integration. No production repair needed.
+No installs, push, remote CI or global settings changes; full task boxes unchanged.

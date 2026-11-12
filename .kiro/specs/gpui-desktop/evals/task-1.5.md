@@ -44,7 +44,7 @@ started spawn_blocking work cannot be aborted. Its shutdown timeout allows work
 to continue and is not cleanup. Verify selected cached source and actual tests.
 Initial status before work: checks defined; implementation not yet graded.
 
-## Results: engine-only preparation
+## Initial results: engine-only preparation
 
 | Criterion | Result | Evidence |
 | --- | --- | --- |
@@ -121,3 +121,11 @@ The full repository gate was already run for the CI slice; all covered inputs
 remain byte-identical and final integrity readback passes. The final AST graph
 update completed; HTML visualization exceeds its size limit and is not visual
 or native evidence. No extra task checkbox was marked complete.
+
+Load [follow-up offline scenarios](task-1.5-scenarios.md) only for the later
+poison/concurrent-admission and relocation scenario run.
+
+The table above records the initial preparation wave, including its then-unrun
+poison branch and package bytes. The later follow-up now verifies fail-closed
+poison cleanup through two new test-only scenarios; it does not claim recovery,
+new package verification, native execution or full task completion.

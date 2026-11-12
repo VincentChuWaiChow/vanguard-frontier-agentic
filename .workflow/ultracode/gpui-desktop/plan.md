@@ -286,3 +286,16 @@ contracts and normal verified package/archive checks pass. Full suites retain
 exact 17/11 baseline failure identities; native/full task acceptance remains
 unverified. Stop this bounded wave after its separate no-reply local commit; no
 install, push, remote CI or extra backlog work.
+
+## Offline scenario follow-up
+
+User requested the next scenarios. A single worker added only two runtime unit
+tests for real registry poison and concurrent cloned admission/global Cancel.
+Independent Rust review found no blockers; parent verified unchanged production
+and previous tests, actual ten runtime cases per feature mode, targeted contracts,
+strict lint/format, exporter/static scenarios and relocated fixed fixtures. Full
+regression runs preserve exact 17/11 baseline identities and only --lib fails.
+The opt-in Codex marketplace file is not installation proof when it exits zero
+with SKIP; historical aggregate evidence was qualified, not upgraded to E2E.
+Save a separate no-reply test/evidence commit; no push, installs, full task
+completion or new feature implementation.
