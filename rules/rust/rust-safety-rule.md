@@ -5,7 +5,7 @@ metadata:
 
 # Rust Safety Rule
 
-When Codex implements, reviews, refactors or tests Rust, its Cargo configuration,
+When implementing, reviewing, refactoring or testing Rust, its Cargo configuration,
 or an FFI/native boundary, apply these rules. Discover the selected checkout,
 manifests, toolchain and fixture/evidence roots; never assume fixed host paths.
 

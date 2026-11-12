@@ -25,7 +25,7 @@
     "harnesses": [
       "codex"
     ],
-    "summary": "Codex Rust guardrails for unsafe invariants, panic paths, untrusted callbacks, OS state, cleanup and evidence.",
+    "summary": "Rust language guardrails for unsafe invariants, panic paths, untrusted callbacks, OS state, cleanup and evidence.",
     "source_type": "original",
     "official_docs": [
       "https://doc.rust-lang.org/nomicon/safe-unsafe-meaning.html",
@@ -37,7 +37,7 @@
     ],
     "security_notes": "Requires explicit safety invariants and honest reachability/runtime evidence; cataloging does not activate global policy or prove program soundness.",
     "last_verified": "2026-11-12",
-    "path": "rules/codex/rust-safety-rule.md",
+    "path": "rules/rust/rust-safety-rule.md",
     "author": "github: Raishin"
   }
 ]

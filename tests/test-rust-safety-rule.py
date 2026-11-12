@@ -9,7 +9,7 @@ import unittest
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
-RULE_PATH = "rules/codex/rust-safety-rule.md"
+RULE_PATH = "rules/rust/rust-safety-rule.md"
 RULE_ID = "rust-safety-rule"
 SECTION_IDS = [f"RUST-{number}" for number in range(1, 9)]
 
@@ -22,12 +22,12 @@ def check_contract(body: str, metadata: dict, entry: dict, guidance: str) -> Non
     assert metadata["harnesses"] == ["codex"]
     assert metadata["author"] == "github: Raishin"
     assert f"  author: {json.dumps(metadata['author'])}\n" in body
-    assert "When Codex" in body and "Rust" in body
+    assert "When implementing, reviewing, refactoring or testing Rust" in body and "Rust" in body
     assert re.findall(r"^## (RUST-\d+):", body, re.MULTILINE) == SECTION_IDS
     assert len(body.split()) <= 700, "keep the on-demand rule compact"
     assert not re.search(r"/(?:home|Users|tmp)/|[A-Za-z]:\\", body), "no fixed host paths"
     assert "rust-safety-rule.evals.md" in body
-    conditional = rf"- Rust work in Codex (?:→|->) `{re.escape(RULE_PATH)}`"
+    conditional = rf"- Rust work (?:→|->) `{re.escape(RULE_PATH)}`"
     assert any(re.fullmatch(conditional, line) for line in guidance.splitlines())
     assert metadata["official_docs"]
     for source in metadata["official_docs"]:
@@ -86,7 +86,7 @@ class RustSafetyRuleTests(unittest.TestCase):
 
     def test_rejects_unconditional_load_hint(self) -> None:
         guidance = self.guidance.replace(
-            f"- Rust work in Codex → `{RULE_PATH}`",
+            f"- Rust work → `{RULE_PATH}`",
             f"- Always load Rust `{RULE_PATH}`",
         )
         self.assertNotEqual(guidance, self.guidance)
@@ -94,7 +94,7 @@ class RustSafetyRuleTests(unittest.TestCase):
             self.check(guidance=guidance)
 
     def test_rejects_unscoped_or_oversized_rule(self) -> None:
-        for body in [self.body.replace("When Codex", "Always"), self.body + " word" * 701]:
+        for body in [self.body.replace("When implementing, reviewing, refactoring or testing Rust", "Always"), self.body + " word" * 701]:
             with self.subTest(), self.assertRaises(AssertionError):
                 self.check(body=body)
 

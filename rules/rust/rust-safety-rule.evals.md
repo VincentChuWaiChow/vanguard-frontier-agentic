@@ -6,7 +6,7 @@ global installation or unrequested compiler/dependency changes.
 
 ## Acceptance contract
 
-- One compact Codex rule applies only to Rust work; catalog and adjacent metadata
+- One compact language-scoped rule applies only to Rust work; catalog and adjacent metadata
   agree exactly, with a conditional repository guidance link and primary sources.
 - Cover unsafe invariants, unwinding, caller-controlled behavior, process-global
   state, cleanup ownership, observable outcomes, patch triage and honest testing.

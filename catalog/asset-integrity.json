@@ -27224,12 +27224,12 @@
     },
     {
       "tree": "rules",
-      "aggregate_sha256": "a0cebaac2345b0b4d55af4d0d6e78d4b5f0c777e813c7cbc2a6f702553aae413",
+      "aggregate_sha256": "0d987d11038295875c25a8e1fefc54f1e7e32049e61d1281c917e15e63a24c0b",
       "files": [
         {
           "path": "rules/AGENTS.md",
-          "sha256": "36dd7495c3e072a8592afe7c4305b2ed575cfa2baa1f45f989357098f5daaeea",
-          "bytes": 426
+          "sha256": "042b724730146fe92b835f76dc915210bd04768b3168bdfa0674e94a0b6c4497",
+          "bytes": 639
         },
         {
           "path": "rules/codex/cloud-provenance-rule.md",
@@ -27242,19 +27242,19 @@
           "bytes": 556
         },
         {
-          "path": "rules/codex/rust-safety-rule.evals.md",
-          "sha256": "45d1d0a276e8c74598c1bbe44a54ce3e2f8a808c52501195d896b926f5442302",
-          "bytes": 3557
+          "path": "rules/rust/rust-safety-rule.evals.md",
+          "sha256": "6f6e90aa389befb9cc66b6017a73eccd222c194582e08faf236198194ac327b1",
+          "bytes": 3567
         },
         {
-          "path": "rules/codex/rust-safety-rule.md",
-          "sha256": "68b3ab0c7c45e011729837b956065fb80ec61a237e0b713c6e7cd5f85809d01d",
-          "bytes": 4928
+          "path": "rules/rust/rust-safety-rule.md",
+          "sha256": "c1ad92521654965b4c1b93a47e6ce17f3f8a49f874ecf224824c98c8a99ba320",
+          "bytes": 4930
         },
         {
-          "path": "rules/codex/rust-safety-rule.metadata.json",
-          "sha256": "d884af8ec7e75807baf57ea8e15c100902351ff406c8f4e1b60a7691bd54dba1",
-          "bytes": 949
+          "path": "rules/rust/rust-safety-rule.metadata.json",
+          "sha256": "a6387f8acb1cef18480ff1e18e6da23127d8877b4155ffa8d44351277164df31",
+          "bytes": 951
         }
       ]
     },
@@ -27362,7 +27362,7 @@
     },
     {
       "tree": "catalog",
-      "aggregate_sha256": "f2481b3cdbde476e40b9ade6a3fe0e0f94721132f1e8bc3f679072a25683f961",
+      "aggregate_sha256": "332ae700399efe75bd7944551d4db10fc449ac3577f761aff6865fc3594addd6",
       "files": [
         {
           "path": "catalog/AGENTS.md",
@@ -27391,8 +27391,8 @@
         },
         {
           "path": "catalog/rules.json",
-          "sha256": "e47189ef44daf1015f9e4939213c70c9ea69950da5cd4b44f7044aeb63aa98b7",
-          "bytes": 1592
+          "sha256": "8a8484fc38ce006e8a93122870b11f5360502be1ec2abc879ede50b89dfc0532",
+          "bytes": 1594
         },
         {
           "path": "catalog/skill-manifest.json",
@@ -27920,7 +27920,7 @@
     },
     {
       "tree": "tests",
-      "aggregate_sha256": "fb5aabf7a790a3600d505d9e47a32369102334459672ae3ccb5b8cd0f664e04d",
+      "aggregate_sha256": "ac25cc7b95cf4ab70fdf3f58caf7d81ebcc7808cd34f264722aec260eff4fa6f",
       "files": [
         {
           "path": "tests/AGENTS.md",
@@ -34479,8 +34479,8 @@
         },
         {
           "path": "tests/test-rust-safety-rule.py",
-          "sha256": "ef0c3b0c85db02e69dfb4f262a337389f8740b31d7bc3d0ab6f1b1e34a62599d",
-          "bytes": 5513
+          "sha256": "4e4b917a63bebeb44179a2f4fa542c0f5c94d898c5d35cc2be1a34e06e014bd2",
+          "bytes": 5588
         },
         {
           "path": "tests/test-vfa-export-coverage.test.mjs",
@@ -34623,8 +34623,8 @@
     },
     {
       "path": "AGENTS.md",
-      "sha256": "f57920abda28be8d77cc47c857c2ca6893a744654ed30138643c2759ae956733",
-      "bytes": 16306
+      "sha256": "cd5160b1916d909e9515320dc9c4d8406c3be6550d32bb04ce0a92f4ffa18c64",
+      "bytes": 16296
     },
     {
       "path": "GEMINI.md",
@@ -34642,5 +34642,5 @@
       "bytes": 4578
     }
   ],
-  "aggregate_sha256": "a8163bdb5e0624510a755df840e5088af0ed553c13d74aa0cd9572e216012e8b"
+  "aggregate_sha256": "674b377b280fed99cfa8abbc4671ce138593b3d2b536086117a59c30be91f2a6"
 }

@@ -185,7 +185,7 @@ Pipeline enforcement — pushing role installs into CI/CD so guardrails run with
 Evidence output — how the structured verdict response from every live-guard and review agent satisfies SOC 2, PCI DSS, NIS2, NIST CSF, and ISO 27001 controls — is documented in `docs/evidence-output-spec.md`.
 
 ## Load When
-- Rust work in Codex → `rules/codex/rust-safety-rule.md`
+- Rust work → `rules/rust/rust-safety-rule.md`
 - editing `agents/` → `agents/AGENTS.md`
 - editing `catalog/` → `catalog/AGENTS.md`
 - editing `docs/` → `docs/AGENTS.md`
