@@ -1,8 +1,8 @@
 # Implementation Plan: GPUI Desktop
 
-Status: TASK 1.3 DONE; KNOWN FULL-SUITE BASELINE GATES REMAIN NON-GREEN. Scoped
-service, boundary and compatibility checks pass with no new failures against the recorded
-baseline. Later tasks are not authorized by this request. Impeccable visual and
+Status: TASK 1.4 BLOCKED ON HOST PREREQUISITES; NATIVE BUILD/EXECUTION UNVERIFIED.
+Tasks 1.1-1.3 are complete within their scoped checks; known full-suite baseline
+gates remain non-green. No later task is authorized. Impeccable visual and
 portable-path constraints remain unchanged.
 Architecture and scope come from these frozen approved inputs:
 
@@ -59,6 +59,7 @@ Architecture and scope come from these frozen approved inputs:
   - Positive: Record exact Kit/snapshot/source/checksum and verified toolchain graph; compile Root/assets and same-version test imports with actual backend metadata.
   - Negative: Normal graph excludes Fast/WebView/shell/test-support; renderer/prerequisite absence is diagnostic, not a successful skipped native launch.
   - Estimate: 2-4 hours; timebox, not a completion guarantee.
+  - Evidence: evals/task-1.4.md; pinning/provenance and normal dependency checks pass; compilation stopped at missing host prerequisites. Native/UI checks remain unverified and this task stays unchecked.
 
 - [ ] 1.5 Implement the persistent engine host and foreground bridge
   - Depends: 1.2, 1.3, 1.4

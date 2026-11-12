@@ -3,13 +3,13 @@
   "branch": "feature/gpui-desktop-alpha",
   "baseline": "6dda992a3dedd845731d795aaaed20d49346f57c",
   "spec_directory": ".kiro/specs/gpui-desktop",
-  "phase": "implementation_task_1_3",
-  "status": "task_1_3_complete_scoped_checks_pass_baseline_failures_unchanged",
+  "phase": "implementation_task_1_4",
+  "status": "task_1_4_blocked_missing_host_prerequisites_sudo_refused",
   "requirements_approval": "approved",
   "revision_basis": "User requested revision before design, then explicitly requested Context7 MCP; no functional scope changes specified",
   "design": "ready_for_user_review",
   "task_breakdown": "revised_ready_for_user_review",
-  "implementation": "task_1_3_complete_full_regression_gates_still_non_green",
+  "implementation": "task_1_4_sources_and_graph_checks_present_compile_ui_native_incomplete",
   "native_platform_verification": "not_run",
   "checks": {
     "requirements_structure_and_negative_mutants": "PASS",
@@ -35,7 +35,7 @@
     "task_drafting_runs": 3,
     "task_revision_review_runs": 1
   },
-  "next_action": "Deliver authorized task1.3 checkpoint with no-reply identities, then verify committed scope and remote SHA. No task1.4 authorization.",
+  "next_action": "Host installs approved build prerequisites, then user resumes task1.4. Verify real compilation/UI/native behavior before checking task complete. No Git delivery or later task authorized.",
   "validation_snapshot": {
     "command": "npm run validate",
     "wrapper": "rtk proxy bash",
@@ -152,28 +152,8 @@
     "specific_changes": "Expose the existing unchecked checklist near the top; add Impeccable native visual audit and scoped refinement tasks; discover skill, checkout, manifest and evidence locations rather than embed machine-specific paths"
   },
   "delivery_authorization": {
-    "user_request": "git commit and git push",
-    "branch": "feature/gpui-desktop-alpha",
-    "remote": "origin",
-    "scope": [
-      "Completed task1.3 shared report service, owned models and new contract tests",
-      "Per-task eval/index, task checkbox and workflow records"
-    ],
-    "excluded": [
-      "graphify-out/",
-      "Unrelated files",
-      "Task1.4 or later implementation",
-      "develop mutation",
-      "History rewriting",
-      "Publication or remote CI dispatch"
-    ],
-    "commit_identity": {
-      "name": "Raishin",
-      "email": "15792229+Raishin@users.noreply.github.com"
-    },
-    "meaning": "Normal feature-branch delivery of task1.3; known 17/11 baseline failures remain non-green",
-    "verification": "Actual commit identities, committed paths and remote feature SHA will be read back after delivery and reported in chat; no success preclaimed",
-    "status": "explicitly_authorized_task_1_3_delivery"
+    "status": "not_authorized_for_task_1_4",
+    "meaning": "Prior commit/push requests applied only to earlier verified checkpoints"
   },
   "task_revision_checks": {
     "red_baseline": "PASS_new_checker_rejected_old_plan_missing_portable_visual_workflow",
@@ -411,6 +391,107 @@
         "tools/vfa-tui/tests/report_service_contracts.rs": "eb3bcb1ea6dc61817bfe841ea913e292b40e8636a1ffa38a409412ee91d08097"
       },
       "delivery_exception": "Subsequent explicit git commit and git push request authorizes normal task1.3 delivery only; original implementation exclusions otherwise remain."
+    },
+    "1.4": {
+      "user_request": "go on for task 1.4 with ultracode and codex-agent-teams",
+      "eval": "evals/task-1.4.md",
+      "status": "blocked_native_compile_ui_and_runtime_incomplete",
+      "checkbox": "unchecked",
+      "scope": [
+        "Standalone private Desktop crate/lock/toolchain",
+        "Pinned Kit/bootstrap/UI/native targets",
+        "Actual source provenance and feature graders",
+        "Existing spec/workflow progress records"
+      ],
+      "forbidden": [
+        "Task1.5 or later workflows",
+        "Root Cargo workspace",
+        "TUI manifest/lock/source changes",
+        "Frozen requirements/design changes",
+        "Commit/push/publication/remote CI dispatch"
+      ],
+      "team": {
+        "parent": "all implementation/integration and serialized Cargo checks",
+        "specialist": "rust_reviewer; checked user profile Sol/high; bounded research and independent source review",
+        "serving_identity": "UNVERIFIED",
+        "recursive_fanout": false,
+        "repair_passes": 1
+      },
+      "host_packages": {
+        "authorization": "User explicitly approved required build tools and Fontconfig/Wayland/XKB/X11 libraries, no WebKit/speech",
+        "attempt": "sudo -n apt-get update followed by approved install list",
+        "result": "MISS_sudo_policy_refused_before_apt_execution_no_packages_changed",
+        "next": "Host-side install requested; no privilege workaround"
+      },
+      "checks": {
+        "registry_archive_vcs_immutable_facade_agreement": "PASS",
+        "provenance_and_feature_target_mutants": "PASS_18_deterministic_cases",
+        "actual_compiler_archive_normal_graph": "PASS",
+        "engine_boundary": "PASS_engine_and_Desktop_graphs_31_self_tests",
+        "engine_core_and_report_regressions": "PASS_5_core_both_modes_11_default_10_no_default_report_contracts",
+        "desktop_compile": "MISS_missing_pkg_config_build_dependency",
+        "desktop_ui_callbacks": "UNVERIFIED_not_compiled",
+        "desktop_strict_all_target_clippy": "UNVERIFIED_not_compiled",
+        "native_bootstrap": "UNVERIFIED_no_launch",
+        "other_native_hosts_pixels_AT_IME_clipboard": "UNVERIFIED",
+        "task_completion": "UNVERIFIED_incomplete",
+        "relocation": "PASS_actual_provenance_and_consumer_boundary_from_unrelated_CWD_Unicode_space_root",
+        "fmt": "PASS_all_new_Rust_targets_parse_and_format_not_type_check",
+        "spec_spelling_markdown": "PASS",
+        "repository_validation": "PASS_QA_cluster_green",
+        "graphify": "PASS_AST_updated_HTML_size_limit_not_native_evidence",
+        "scope_approvals_git": "PASS_frozen_existing_engine_and_approvals_no_Git_mutation"
+      },
+      "review": {
+        "findings": [
+          "First frame callback precedes draw/present; native source now waits through intervening turn with nonempty scene/Linux renderer",
+          "Provenance accepted false facade claim/wrong GPUI source commit/redirected native target; checks and mutants added"
+        ],
+        "result": "Parent repaired source/grader findings; actual Rust/native verification still owed"
+      },
+      "logs": {
+        "lock": "/tmp/vfa-task-1-4-lock.log",
+        "check": "/tmp/vfa-task-1-4-check.log",
+        "provenance": "/tmp/vfa-task-1-4-provenance.log",
+        "engine-boundary": "/tmp/vfa-task-1-4-engine-boundary.log",
+        "engine-contracts": "/tmp/vfa-task-1-4-engine-contracts.log",
+        "host-prerequisites": "/tmp/vfa-task-1-4-host-prerequisites.log",
+        "npm-validate": "/tmp/vfa-task-1-4-npm-validate.log",
+        "graphify": "/tmp/vfa-task-1-4-graphify.log",
+        "relocation": "/tmp/vfa-task-1-4-relocation.log",
+        "spec": "/tmp/vfa-task-1-4-spec.log",
+        "spell": "/tmp/vfa-task-1-4-spell.log",
+        "markdown": "/tmp/vfa-task-1-4-markdown.log",
+        "scope": "/tmp/vfa-task-1-4-scope.json",
+        "prerequisite-recheck-2": "/tmp/vfa-task-1-4-recheck-2.log"
+      },
+      "goal_block_audit": {
+        "blocking_condition": "Required host build prerequisites absent; approved installation refused by sudo policy",
+        "consecutive_goal_turns": 3,
+        "previous_goal_turn": "no_progress_same_external_prerequisites_absent",
+        "current_goal_turn": "no_progress_same_verified_blocker_threshold_met",
+        "authoritative_recheck": "pkg-config/clang/cmake absent; candidate hashes and HEAD unchanged; approved sudo install refused; last locked compile exit101",
+        "live_processes": "none; native build ended exit101 and specialist completed",
+        "next_safe_action": "Host installs the already-approved prerequisites; no sudo retry or privilege workaround",
+        "threshold_met": true
+      },
+      "artifact_sha256": {
+        ".kiro/specs/gpui-desktop/evals.md": "40091abeac1fed5c9c82f67ca0fe48ced5c9d63e07c0ec6f2bdbe6686d1e1e73",
+        ".kiro/specs/gpui-desktop/evals/task-1.4.md": "4f0cc18040ce7b5b19608ccf3c81ed90136857c62e86cf7c7ee99aaba7550af8",
+        ".kiro/specs/gpui-desktop/tasks.md": "8392ee091aaa5d30d10d90536864408aae1916e6ebcd636d79fb06d999e7ec1f",
+        ".workflow/ultracode/gpui-desktop/final-report.md": "c796016926df9b22d2974050d88562dc9d51f14b677221f1098822c3afb0144a",
+        ".workflow/ultracode/gpui-desktop/plan.md": "13a3538a682334f3d390bf265d8102910d35ba212e06c1f76ddc45ee6e5ed0ef",
+        "tools/vfa-desktop/Cargo.lock": "ad0d4636a673227c70b22165b354e2ff6d6f7fd77c47a68e6b3c8029317b2b75",
+        "tools/vfa-desktop/Cargo.toml": "911db4f0cb3d9392ffae8701bc9808ff2115f15ff6e77cdc65f87e37ad823135",
+        "tools/vfa-desktop/README.md": "42b1d177088b9c44d55659b613b9cb943628e9a5464e6621a1fac29882802788",
+        "tools/vfa-desktop/provenance/toolkit.json": "005bba072e67cdd15d699aed140c304580aae0553b9c8e5a6bd8ea900496d566",
+        "tools/vfa-desktop/rust-toolchain.toml": "d13306be0ecda81ce779baa290ffb417380d525928477f16200884b5169cca33",
+        "tools/vfa-desktop/src/lib.rs": "4212aeb66be0fcaa4d73470e7b74dce5a9e65a7ff253677331b282a9ea4369a5",
+        "tools/vfa-desktop/src/main.rs": "cd50179bed27a0715f752509358055fc7f780839778f2106c0428b0a9c14af9b",
+        "tools/vfa-desktop/tests/check_bootstrap.py": "9c9443ce2b9f2e572d803fd07a958936469974222d81872c643f1e50beb5f543",
+        "tools/vfa-desktop/tests/native_smoke.rs": "95a368150aa899c5c53a5c57a1ab3bce70ed7154e21f9d615a920cf2dad800f1",
+        "tools/vfa-desktop/tests/ui.rs": "0b5d6b63ba116fd39e3d97860a05926c8768799ac7c2c3962562e372de1cf33d"
+      }
     }
   },
   "delivery_history": {
@@ -436,6 +517,30 @@
       "meaning": "Normal feature-branch commit/push of completed task1.2; existing 17 default/11 no-default baseline failures remain documented and non-green",
       "verification": "Historical task1.2 delivery: 58cca6f28c6aaa40168ea3c4c01b09565c63aa45; prior-turn remote readback verified. This turn verifies unchanged local HEAD and origin tracking only, not fresh remote state. No new task1.3 delivery authorized.",
       "status": "historical_complete_task_1_2_only"
+    },
+    "1.3": {
+      "user_request": "git commit and git push",
+      "branch": "feature/gpui-desktop-alpha",
+      "remote": "origin",
+      "scope": [
+        "Completed task1.3 shared report service, owned models and new contract tests",
+        "Per-task eval/index, task checkbox and workflow records"
+      ],
+      "excluded": [
+        "graphify-out/",
+        "Unrelated files",
+        "Task1.4 or later implementation",
+        "develop mutation",
+        "History rewriting",
+        "Publication or remote CI dispatch"
+      ],
+      "commit_identity": {
+        "name": "Raishin",
+        "email": "15792229+Raishin@users.noreply.github.com"
+      },
+      "meaning": "Normal feature-branch delivery of task1.3; known 17/11 baseline failures remain non-green",
+      "verification": "bedd0bb5d024f626255164d543a6977bab622302; preceding delivery turn verified both no-reply identities, remote SHA, clean worktree and unchanged develop.",
+      "status": "historical_complete"
     }
   }
 }

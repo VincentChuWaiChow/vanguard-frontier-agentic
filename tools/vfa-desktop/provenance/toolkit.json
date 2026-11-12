@@ -1,0 +1,244 @@
+{
+  "schema_version": 1,
+  "kit": {
+    "package": "gpui-kit",
+    "version": "0.9.1",
+    "repository": "https://github.com/longbridge/gpui-kit",
+    "tag": "v0.9.1",
+    "commit": "39ab849a93b5f15507b969164d49891db8d5b470",
+    "path_in_vcs": "crates/kit",
+    "archive_sha256": "aca1dedfea73645b60b5893c9c16de0b1396f2cf4251d19e5f03a295c1b61879",
+    "archive_url": "https://static.crates.io/crates/gpui-kit/gpui-kit-0.9.1.crate",
+    "immutable_facade_source_matches_archive": true,
+    "facade_sha256": "9f6a8305221bc87e1c345a60f9685dde6fad71aa0bc22615ea7dad4bb2f0f2fd"
+  },
+  "gpui_snapshot": {
+    "version": "0.3.12",
+    "upstream_repository": "https://github.com/zed-industries/zed",
+    "upstream_commit": "d2a4fb6ded7c470be25d1541281da3882495b65b",
+    "reqwest_fork_version": "0.12.15"
+  },
+  "packages": [
+    {
+      "name": "gpui-base",
+      "version": "0.9.1",
+      "source": "registry+https://github.com/rust-lang/crates.io-index",
+      "checksum": "f3e9ae5237737cfd110d0ff513fcd9c20f97d98ebabd0a73164068177f0aca4f"
+    },
+    {
+      "name": "gpui-component",
+      "version": "0.9.1",
+      "source": "registry+https://github.com/rust-lang/crates.io-index",
+      "checksum": "e155c4914bd809d966660610d596f7b57c5cd38979ca2c132215057a91f23f03"
+    },
+    {
+      "name": "gpui-component-macros",
+      "version": "0.9.1",
+      "source": "registry+https://github.com/rust-lang/crates.io-index",
+      "checksum": "9676a5d12c59ce295b5c82cc18365ad8b96cb683682e2e74668a56fb92544300"
+    },
+    {
+      "name": "gpui-kit",
+      "version": "0.9.1",
+      "source": "registry+https://github.com/rust-lang/crates.io-index",
+      "checksum": "aca1dedfea73645b60b5893c9c16de0b1396f2cf4251d19e5f03a295c1b61879"
+    },
+    {
+      "name": "gpui-kit-assets",
+      "version": "0.9.1",
+      "source": "registry+https://github.com/rust-lang/crates.io-index",
+      "checksum": "cb5abe0bbd8f9226170c8726e529f6574519e297e9ed1bde86d5fd4d3536079a"
+    },
+    {
+      "name": "gpui-pre",
+      "version": "0.3.12",
+      "source": "registry+https://github.com/rust-lang/crates.io-index",
+      "checksum": "29db89613527079737f53752eab27fb65c9a7dd94979256c65a0e590c9fd34d8"
+    },
+    {
+      "name": "gpui-pre-apple",
+      "version": "0.3.12",
+      "source": "registry+https://github.com/rust-lang/crates.io-index",
+      "checksum": "a460605ec4e8cbcc9b213462a84b1d6cc3efe4ed8f0e18669659f07b2d5c6aec"
+    },
+    {
+      "name": "gpui-pre-bench-metrics",
+      "version": "0.3.12",
+      "source": "registry+https://github.com/rust-lang/crates.io-index",
+      "checksum": "db6a8ff719fdc3da4f5f497b5d39c5545634424073f94943b003c818fc95e1d5"
+    },
+    {
+      "name": "gpui-pre-collections",
+      "version": "0.3.12",
+      "source": "registry+https://github.com/rust-lang/crates.io-index",
+      "checksum": "cb60ece401b399fd5ec13911915b407b0c6efa1f6c9a9f66201aaac56c7ec39d"
+    },
+    {
+      "name": "gpui-pre-derive-refineable",
+      "version": "0.3.12",
+      "source": "registry+https://github.com/rust-lang/crates.io-index",
+      "checksum": "aeb2a3f5e6c9f300f432ae7989a81b262953ccfb3f9385be51cdc3303aef8858"
+    },
+    {
+      "name": "gpui-pre-http-client",
+      "version": "0.3.12",
+      "source": "registry+https://github.com/rust-lang/crates.io-index",
+      "checksum": "55245de7e3b6e219596fd98bb29555d6e3fe44c055d025960affeb11b894c048"
+    },
+    {
+      "name": "gpui-pre-ios",
+      "version": "0.3.12",
+      "source": "registry+https://github.com/rust-lang/crates.io-index",
+      "checksum": "10656f6db4bbedb60bd7fcbb8a70f7c7eeee45bc4582fb8933ca807d2ddf52ad"
+    },
+    {
+      "name": "gpui-pre-linux",
+      "version": "0.3.12",
+      "source": "registry+https://github.com/rust-lang/crates.io-index",
+      "checksum": "54bab418d0b7c027af9495f278619b46887362b3bd6446e246c87c5b0fa167df"
+    },
+    {
+      "name": "gpui-pre-macos",
+      "version": "0.3.12",
+      "source": "registry+https://github.com/rust-lang/crates.io-index",
+      "checksum": "2de7d3f4ad51ac387e822495db363fcc1188d349793365731d054444c4cb06ee"
+    },
+    {
+      "name": "gpui-pre-macros",
+      "version": "0.3.12",
+      "source": "registry+https://github.com/rust-lang/crates.io-index",
+      "checksum": "1c7f67904eced61ed42ae3320a9b4b388aed893f8547fffe9161ec425ad162eb"
+    },
+    {
+      "name": "gpui-pre-platform",
+      "version": "0.3.12",
+      "source": "registry+https://github.com/rust-lang/crates.io-index",
+      "checksum": "d2b785bdcbd229f762096aebf4f9ae913bdaa9db49794907cabaf516eb55227b"
+    },
+    {
+      "name": "gpui-pre-refineable",
+      "version": "0.3.12",
+      "source": "registry+https://github.com/rust-lang/crates.io-index",
+      "checksum": "4d197569e3b1fd84170f574bb866e95ecbc2625e7ae9443c877150eaf7d53374"
+    },
+    {
+      "name": "gpui-pre-reqwest",
+      "version": "0.12.15",
+      "source": "registry+https://github.com/rust-lang/crates.io-index",
+      "checksum": "05be23908e707966824f8c51a609904b7f30739e8d915e120a53c1b995ba964c"
+    },
+    {
+      "name": "gpui-pre-scheduler",
+      "version": "0.3.12",
+      "source": "registry+https://github.com/rust-lang/crates.io-index",
+      "checksum": "b1d3fa97eeb4ea233635b756684affe96db9e29fc2af8cdc269268bd7ff649fc"
+    },
+    {
+      "name": "gpui-pre-shared-string",
+      "version": "0.3.12",
+      "source": "registry+https://github.com/rust-lang/crates.io-index",
+      "checksum": "63c2ed1e44195079d4461b83a99845aa9a52ce8fcf1516410816670a03d32d94"
+    },
+    {
+      "name": "gpui-pre-sum-tree",
+      "version": "0.3.12",
+      "source": "registry+https://github.com/rust-lang/crates.io-index",
+      "checksum": "6085e61458366decd21491396b0b90b3adf928f2ec27e170c4d3c9fba455d536"
+    },
+    {
+      "name": "gpui-pre-util",
+      "version": "0.3.12",
+      "source": "registry+https://github.com/rust-lang/crates.io-index",
+      "checksum": "52ead57ff96b5a34e71d64758080347066d667e0c4bd4ff71e85f3a50643fa3e"
+    },
+    {
+      "name": "gpui-pre-web",
+      "version": "0.3.12",
+      "source": "registry+https://github.com/rust-lang/crates.io-index",
+      "checksum": "a85e775c6874257c63f9cf51d99f0aba13b3bc615ed8d47e7d5338e3b5941f6a"
+    },
+    {
+      "name": "gpui-pre-wgpu",
+      "version": "0.3.12",
+      "source": "registry+https://github.com/rust-lang/crates.io-index",
+      "checksum": "dc76608d385f6d0dcbad44504b1bf669dac3b7d7ffa2885acdb7c1c358caf852"
+    },
+    {
+      "name": "gpui-pre-windows",
+      "version": "0.3.12",
+      "source": "registry+https://github.com/rust-lang/crates.io-index",
+      "checksum": "7201762420222d5b5ce5bdf0056996199212a3349bfb2457a3a0238c688681f3"
+    },
+    {
+      "name": "gpui-pre-ztracing",
+      "version": "0.3.12",
+      "source": "registry+https://github.com/rust-lang/crates.io-index",
+      "checksum": "1043bbe8d711baf03e774b03bae6521155f017450b866dcaa987a07d978d660a"
+    },
+    {
+      "name": "gpui-pre-ztracing-macro",
+      "version": "0.3.12",
+      "source": "registry+https://github.com/rust-lang/crates.io-index",
+      "checksum": "85701631a9bbecf47e6d19f145e85e57767e7c50f7192d5b1bf65b5ef43cb373"
+    }
+  ],
+  "lockfile_sha256": "ad0d4636a673227c70b22165b354e2ff6d6f7fd77c47a68e6b3c8029317b2b75",
+  "compiler": {
+    "release": "1.99.1",
+    "commit-hash": "58cf8f9c35b355199727627d07ae34a4e2846d67",
+    "commit-date": "2026-10-13",
+    "LLVM version": "23.1.1"
+  },
+  "compiler_observed_host": "x86_64-unknown-linux-gnu",
+  "toolchain_invocation": "Existing stable toolchain selected explicitly; rustc bits must equal numeric rust-toolchain.toml pin. Numeric rustup alias is not installed on this host.",
+  "normal_kit_features": [
+    "assets",
+    "component"
+  ],
+  "dev_only_kit_features": [
+    "test-support"
+  ],
+  "forbidden_normal_layers": [
+    "gpui-fast",
+    "gpui-shell",
+    "gpui-webview",
+    "test-support"
+  ],
+  "facilities": {
+    "ui_tests": {
+      "source": "gpui-kit 0.9.1 src/test.rs",
+      "provides": [
+        "headless pointer/key dispatch",
+        "application state callbacks",
+        "layout and semantics"
+      ],
+      "does_not_prove": [
+        "native renderer",
+        "OS clipboard",
+        "OS IME",
+        "screen-reader announcements",
+        "packaged launch"
+      ]
+    },
+    "offscreen_pixels": {
+      "linux_x11": "documented WGPU; unverified",
+      "linux_wayland": "documented WGPU; unverified",
+      "macos_arm64": "documented Metal; unverified",
+      "windows_x64_msvc": "unavailable upstream; a skip is not PASS"
+    },
+    "native_bootstrap": {
+      "linux_x11": "UNVERIFIED",
+      "linux_wayland": "UNVERIFIED",
+      "macos_arm64": "UNVERIFIED",
+      "windows_x64_msvc": "UNVERIFIED"
+    },
+    "upstream_testing_prose_caveat": "A tagged testing paragraph still says GPUI 0.3.8; acquired manifests/archives select 0.3.12."
+  },
+  "verification": {
+    "source_identity": "PASS_archive_index_vcs_and_immutable_facade_agree",
+    "compile": "UNVERIFIED",
+    "ui_callbacks": "UNVERIFIED",
+    "normal_dependency_boundary": "UNVERIFIED",
+    "native_bootstrap": "UNVERIFIED"
+  }
+}

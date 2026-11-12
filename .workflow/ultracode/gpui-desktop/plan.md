@@ -184,3 +184,27 @@ package checks. Exact full-suite failure identities remain the accepted task 1.1
 baseline (seventeen default / eleven no-default), not green C1/C2 gates. No fixture
 expectation, manifest/lock, main, catalog or frozen approval changed. No task 1.4,
 provider/Unicode production repair, system install, remote CI, commit or push.
+
+## Task 1.4 authorization and boundary
+
+The user explicitly requested task 1.4 with Ultracode and Codex Agent Teams.
+Its before-implementation contract is `evals/task-1.4.md`. Parent owns the new
+standalone private Desktop crate, lock/toolchain/source provenance, bootstrap,
+UI/native entry points, graders and integration. One checked Rust reviewer
+(configured Sol/high) provided bounded read-only facility research and a separate
+source review. Incomplete disk profiles were not dispatched; serving identity
+is not observable. No recursive fanout or new workflow directory.
+
+Registry archive checksum/VCS and immutable facade bytes identify Kit's selected
+release. Normal features and the engine subtree are checked separately from dev
+unification. The first native-frame callback was found to execute before draw,
+despite its API comment; the repaired probe requires an intervening native draw
+turn, nonempty scene and Linux renderer, without claiming pixels/compositor proof.
+Provenance/target mutants cover the independently found false-positive cases.
+
+Compilation reached a missing `pkg-config` prerequisite. The user approved the
+required Linux build packages, excluding WebKit/speech, but this environment's
+sudo policy refused the attempted installation. No packages were installed.
+Host-side installation was requested; source/graph checks continue meanwhile.
+Do not mark the task done or native/UI/compile checks PASS without actual results.
+No task 1.5, root workspace/TUI changes, commit, push, publication or CI dispatch.

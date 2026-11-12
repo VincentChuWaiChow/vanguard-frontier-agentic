@@ -1,6 +1,30 @@
 # GPUI Desktop progress report
 
-## Current task 1.3 implementation
+## Current task 1.4 implementation
+
+Status: BLOCKED ON HOST PREREQUISITES; NATIVE BUILD/UI/EXECUTION INCOMPLETE.
+The user authorized task 1.4 only with Ultracode and Codex Agent Teams. Read the
+lazy-loaded [task 1.4 eval](../../../.kiro/specs/gpui-desktop/evals/task-1.4.md)
+for the original criteria, source evidence, exact checks and outstanding work.
+
+The new private Desktop crate selects the exact Kit release, separate lockfile,
+numeric compiler pin, shared no-default engine, Root/assets bootstrap, an actual
+callback-state UI test and explicit main-thread native smoke target. Provenance
+records registry checksums, source identities and facility limits. Deterministic
+pin/target mutants and actual normal dependency checks pass; these are not compile
+or launch evidence. The native smoke source review caught an early-frame false
+positive, repaired without claiming rendered pixels or native AT/IME/clipboard.
+
+Compilation stopped in Fontconfig's build script because `pkg-config` is absent.
+The user approved the required build packages, but sudo refused installation.
+No package mutation occurred; host-side installation is requested. UI callbacks,
+strict Desktop clippy/all-target build and real X11/Wayland launch remain owed.
+The task stays unchecked. Three consecutive goal turns confirm the same missing
+prerequisite and refused install; no worker/build remains live. The goal is blocked
+until host-side installation permits the remaining checks. No host is certified.
+No later task, frozen approval/TUI change, Git delivery or publication is implied.
+
+## Previous task 1.3 implementation
 
 Status: TASK 1.3 DONE; KNOWN FULL-SUITE BASELINE FAILURES REMAIN. The user's “let go
 for next task” was scoped to task 1.3 only. Read the active
