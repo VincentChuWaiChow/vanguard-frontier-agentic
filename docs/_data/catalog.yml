@@ -2,17 +2,17 @@
 # Do NOT edit manually — run: node scripts/generate-docs-data.mjs
 # This file is the single source of truth for all catalog counts in Jekyll docs.
 
-agents: 473
-skills: 451
-providers: 35
+agents: 559
+skills: 558
+providers: 39
 mcp_references: 3
-rules: 1
-install_roles: 23
+rules: 2
+install_roles: 30
 validation_gates: 19
-agent_directories: 38
-skill_directories: 39
+agent_directories: 42
+skill_directories: 43
 maestro_scenarios: 357
-version: "3.0.0-alpha.2"
+version: "3.0.0-alpha.7"
 
 # Provider list (flat)
 provider_list:
@@ -25,6 +25,7 @@ provider_list:
   - "cert-manager"
   - "cilium"
   - "contabo"
+  - "databricks"
   - "dotnet"
   - "falco"
   - "finance"
@@ -40,6 +41,7 @@ provider_list:
   - "kyverno"
   - "legal"
   - "marketing"
+  - "microsoft"
   - "multi-cloud"
   - "netsuite"
   - "nvidia"
@@ -48,8 +50,10 @@ provider_list:
   - "ovhcloud"
   - "prometheus"
   - "salesforce"
+  - "sap"
   - "scaleway"
   - "sigstore"
+  - "snowflake"
   - "terraform"
 
 # Provider taxonomy (grouped by category with agent counts)
@@ -134,6 +138,8 @@ provider_taxonomy:
         agents: 14
       - name: "finance"
         agents: 8
+      - name: "sap"
+        agents: 40
   - category: "Business Functions"
     providers:
       - name: "salesforce"
@@ -144,10 +150,22 @@ provider_taxonomy:
         agents: 15
       - name: "marketing"
         agents: 14
+  - category: "Microsoft 365 & Dynamics 365"
+    providers:
+      - name: "microsoft"
+        agents: 40
+  - category: "Data & Analytics Platforms"
+    providers:
+      - name: "databricks"
+        agents: 3
+      - name: "snowflake"
+        agents: 3
 
 # Role list
 role_list:
   - "accounting-finance-advisor"
+  - "azure-databricks-platform-engineer"
+  - "azure-snowflake-platform-engineer"
   - "cloud-ai-platform-engineer"
   - "cloud-dba"
   - "cloud-devops-engineer"
@@ -167,9 +185,14 @@ role_list:
   - "kubernetes-supply-chain-security-engineer"
   - "legal-hr-risk-reviewer"
   - "marketing-governance-reviewer"
+  - "microsoft-365-d365-platform-advisor"
+  - "microsoft-collaboration-endpoint-admin"
+  - "microsoft-data-analytics-engineer"
+  - "microsoft-security-compliance-engineer"
   - "netsuite-platform-advisor"
   - "qa-test-quality-engineer"
   - "salesforce-portfolio-architect"
+  - "sap-transformation-operations"
 
 # Harness list
 harness_list:

@@ -1,0 +1,23 @@
+{
+  "id": "rust-safety-rule",
+  "name": "Rust Safety Rule",
+  "type": "rule",
+  "provider": "generic",
+  "harnesses": [
+    "codex"
+  ],
+  "summary": "Codex Rust guardrails for unsafe invariants, panic paths, untrusted callbacks, OS state, cleanup and evidence.",
+  "source_type": "original",
+  "official_docs": [
+    "https://doc.rust-lang.org/nomicon/safe-unsafe-meaning.html",
+    "https://doc.rust-lang.org/nomicon/exception-safety.html",
+    "https://doc.rust-lang.org/std/panic/fn.catch_unwind.html",
+    "https://doc.rust-lang.org/std/env/fn.set_var.html",
+    "https://doc.rust-lang.org/std/process/fn.exit.html",
+    "https://github.com/rust-lang/miri"
+  ],
+  "security_notes": "Requires explicit safety invariants and honest reachability/runtime evidence; cataloging does not activate global policy or prove program soundness.",
+  "last_verified": "2026-11-12",
+  "path": "rules/codex/rust-safety-rule.md",
+  "author": "github: Raishin"
+}

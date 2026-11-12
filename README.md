@@ -63,7 +63,7 @@ operates in. Coordination, governance, and escalation are the product.
 | Agents | 559 |
 | Providers | 39 |
 | Install roles | 30 |
-| Rules | 1 |
+| Rules | 2 |
 | MCP references | 3 |
 <!-- readme-counts:end -->
 

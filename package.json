@@ -42,7 +42,7 @@
     "docs-data:write": "node scripts/generate-docs-data.mjs",
     "manifest:check": "python3 tests/validate-skill-manifest.py",
     "validate:aws": "python3 tests/validate-aws-skill-quality.py && python3 tests/validate-aws-progressive-disclosure.py",
-    "validate:catalog": "python3 tests/validate-catalog.py",
+    "validate:catalog": "python3 tests/validate-catalog.py && python3 tests/test-rust-safety-rule.py",
     "validate:links": "python3 tests/validate-links.py --offline",
     "validate:allowed-tools": "python3 tests/validate-skill-allowed-tools.py",
     "validate:skill-schema": "python3 tests/validate-skill-frontmatter-schema.py",
