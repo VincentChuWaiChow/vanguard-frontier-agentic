@@ -4,12 +4,12 @@
   "baseline": "6dda992a3dedd845731d795aaaed20d49346f57c",
   "spec_directory": ".kiro/specs/gpui-desktop",
   "phase": "implementation_ready_wave_4_1_5_1_then_4_2",
-  "status": "task_4_1_complete_task_5_1_in_validation_task_1_4_pending",
+  "status": "tasks_4_1_5_1_complete_task_4_2_in_progress_task_1_4_pending",
   "requirements_approval": "approved",
   "revision_basis": "User requested revision before design, then explicitly requested Context7 MCP; no functional scope changes specified",
   "design": "ready_for_user_review",
   "task_breakdown": "revised_ready_for_user_review",
-  "implementation": "task_4_1_scoped_complete_export_planner_in_progress_journal_next",
+  "implementation": "profile_and_export_planner_scoped_complete_journal_in_progress",
   "native_platform_verification": "not_run",
   "checks": {
     "requirements_structure_and_negative_mutants": "PASS",
@@ -35,7 +35,7 @@
     "task_drafting_runs": 3,
     "task_revision_review_runs": 1
   },
-  "next_action": "Commit task4.1 locally; finish task5.1 and implement task4.2 after the task4.1 gate. No push. Task1.4 remains pending with its existing blocked goal unchanged.",
+  "next_action": "Commit task5.1 locally; complete independent journal review and actual task4.2 graders before its separate commit. No push; task1.4 remains pending.",
   "validation_snapshot": {
     "command": "npm run validate",
     "wrapper": "rtk proxy bash",
@@ -521,6 +521,26 @@
         "/tmp/vfa-task-4-1-baseline-comparison.json",
         "/tmp/vfa-task-4-1-package-evidence.json"
       ]
+    },
+    "5.1": {
+      "status": "complete_scoped_checks",
+      "eval": "evals/task-5.1.md",
+      "checks": {
+        "plan_contracts": "PASS_14",
+        "C7": "PASS_17_no_failures_or_skips",
+        "legacy_independent_oracle": "PASS_original_exporter_executed_eight_scenarios_and_seven_forced_overwrites",
+        "syntax": "PASS",
+        "integrity": "PASS_41_covered_files_only",
+        "repository_validation": "PASS_exit_0",
+        "apply_or_native_install": "UNVERIFIED"
+      },
+      "review": "Configured TypeScript reviewer Sol/high; parent RED reproduced hard-link and plan-help findings, then fixed and reran",
+      "worker": "builtin worker inherited serving model and effort unobservable",
+      "logs": [
+        "/tmp/vfa-task-5-1-c7.log",
+        "/tmp/vfa-task-5-1-legacy-evidence.json",
+        "/tmp/vfa-task-5-1-npm-validate.log"
+      ]
     }
   },
   "delivery_history": {
@@ -570,6 +590,12 @@
       "meaning": "Normal feature-branch delivery of task1.3; known 17/11 baseline failures remain non-green",
       "verification": "bedd0bb5d024f626255164d543a6977bab622302; preceding delivery turn verified both no-reply identities, remote SHA, clean worktree and unchanged develop.",
       "status": "historical_complete"
+    },
+    "4.1": {
+      "status": "local_commit_verified_not_pushed",
+      "sha": "5bbe9bf921f9799e9e6a62fa2403a1a45845de91",
+      "identity": "Raishin <15792229+Raishin@users.noreply.github.com> author and committer",
+      "scope": "14 task4.1 files only; no journal/export files"
     }
   },
   "ready_wave": {

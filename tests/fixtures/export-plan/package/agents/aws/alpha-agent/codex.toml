@@ -1,0 +1,5 @@
+name = "alpha-agent"
+# café 東京
+[[skills.config]]
+path = "skills/aws/alpha/SKILL.md"
+enabled = true

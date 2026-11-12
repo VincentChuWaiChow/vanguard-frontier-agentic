@@ -1,0 +1,512 @@
+[
+  {
+    "name": "claude",
+    "args": [
+      "--platform",
+      "claude",
+      "--agents",
+      "alpha-agent"
+    ],
+    "stdout": "installed\talpha-agent\tclaude-code\t.claude/agents/alpha-agent.md\ninstalled\tskill:alpha\tclaude-code\t.claude/skills/alpha\ninstalled\tskill:rival\tclaude-code\t.claude/skills/rival\ninstalled\tskill:shared-ref\tclaude-code\t.claude/skills/shared-ref\n",
+    "stderr": "[vfa] Bundled 3 companion skill(s) alongside 1 agent(s). Use --no-skills to opt out.\n",
+    "files": {
+      ".claude/agents/alpha-agent.md": {
+        "base64": "YWxwaGEtYWdlbnQg4oCUIGNhZsOpIOadseS6rA0KY2xhdWRlLWNvZGUNCg==",
+        "mode": 420
+      },
+      ".claude/skills/alpha/SKILL.md": {
+        "base64": "IyBhbHBoYSDigJQgY2Fmw6kg5p2x5LqsDQpCb2R5DQo=",
+        "mode": 420
+      },
+      ".claude/skills/alpha/blob.bin": {
+        "base64": "AP8KgEE=",
+        "mode": 420
+      },
+      ".claude/skills/alpha/metadata.json": {
+        "base64": "eyJpZCI6ImFscGhhIiwicHJvdmlkZXIiOiJhd3MifQo=",
+        "mode": 420
+      },
+      ".claude/skills/rival/SKILL.md": {
+        "base64": "IyByaXZhbCDigJQgY2Fmw6kg5p2x5LqsDQpCb2R5DQo=",
+        "mode": 420
+      },
+      ".claude/skills/rival/metadata.json": {
+        "base64": "eyJpZCI6InJpdmFsIiwicHJvdmlkZXIiOiJhenVyZSJ9Cg==",
+        "mode": 420
+      },
+      ".claude/skills/shared-ref/SKILL.md": {
+        "base64": "IyBzaGFyZWQtcmVmIOKAlCBjYWbDqSDmnbHkuqwNCkJvZHkNCg==",
+        "mode": 420
+      },
+      ".claude/skills/shared-ref/metadata.json": {
+        "base64": "eyJpZCI6InNoYXJlZC1yZWYiLCJwcm92aWRlciI6InNoYXJlZCJ9Cg==",
+        "mode": 420
+      },
+      ".claude/skills/alpha/scripts/helper.sh": {
+        "base64": "IyEvYmluL3NoCnByaW50ZiAiY2Fmw6lcbiIK",
+        "mode": 493
+      },
+      ".claude/skills/alpha/references/nested/note.txt": {
+        "base64": "cmVmZXJlbmNlIOKAlCDmnbHkuqw=",
+        "mode": 420
+      }
+    },
+    "overwrite": {
+      "stdout": "installed\talpha-agent\tclaude-code\t.claude/agents/alpha-agent.md\ninstalled\tskill:alpha\tclaude-code\t.claude/skills/alpha\ninstalled\tskill:rival\tclaude-code\t.claude/skills/rival\ninstalled\tskill:shared-ref\tclaude-code\t.claude/skills/shared-ref\n",
+      "stderr": "[vfa] Bundled 3 companion skill(s) alongside 1 agent(s). Use --no-skills to opt out.\n",
+      "files": {
+        ".claude/agents/alpha-agent.md": {
+          "base64": "YWxwaGEtYWdlbnQg4oCUIGNhZsOpIOadseS6rA0KY2xhdWRlLWNvZGUNCg==",
+          "mode": 420
+        },
+        ".claude/skills/alpha/SKILL.md": {
+          "base64": "IyBhbHBoYSDigJQgY2Fmw6kg5p2x5LqsDQpCb2R5DQo=",
+          "mode": 420
+        },
+        ".claude/skills/alpha/blob.bin": {
+          "base64": "AP8KgEE=",
+          "mode": 420
+        },
+        ".claude/skills/alpha/metadata.json": {
+          "base64": "eyJpZCI6ImFscGhhIiwicHJvdmlkZXIiOiJhd3MifQo=",
+          "mode": 420
+        },
+        ".claude/skills/rival/SKILL.md": {
+          "base64": "IyByaXZhbCDigJQgY2Fmw6kg5p2x5LqsDQpCb2R5DQo=",
+          "mode": 420
+        },
+        ".claude/skills/rival/metadata.json": {
+          "base64": "eyJpZCI6InJpdmFsIiwicHJvdmlkZXIiOiJhenVyZSJ9Cg==",
+          "mode": 420
+        },
+        ".claude/skills/shared-ref/SKILL.md": {
+          "base64": "IyBzaGFyZWQtcmVmIOKAlCBjYWbDqSDmnbHkuqwNCkJvZHkNCg==",
+          "mode": 420
+        },
+        ".claude/skills/shared-ref/metadata.json": {
+          "base64": "eyJpZCI6InNoYXJlZC1yZWYiLCJwcm92aWRlciI6InNoYXJlZCJ9Cg==",
+          "mode": 420
+        },
+        ".claude/skills/alpha/scripts/helper.sh": {
+          "base64": "IyEvYmluL3NoCnByaW50ZiAiY2Fmw6lcbiIK",
+          "mode": 493
+        },
+        ".claude/skills/alpha/references/nested/note.txt": {
+          "base64": "cmVmZXJlbmNlIOKAlCDmnbHkuqw=",
+          "mode": 420
+        }
+      }
+    }
+  },
+  {
+    "name": "codex",
+    "args": [
+      "--platform",
+      "codex",
+      "--agents",
+      "alpha-agent"
+    ],
+    "stdout": "installed\talpha-agent\tcodex\t.codex/agents/alpha-agent.toml\ninstalled\tskill:alpha\tcodex\t.codex/skills/alpha\ninstalled\tskill:rival\tcodex\t.codex/skills/rival\ninstalled\tskill:shared-ref\tcodex\t.codex/skills/shared-ref\n",
+    "stderr": "[vfa] Bundled 3 companion skill(s) alongside 1 agent(s). Use --no-skills to opt out.\n",
+    "files": {
+      ".codex/agents/alpha-agent.toml": {
+        "base64": "bmFtZSA9ICJhbHBoYS1hZ2VudCIKIyBjYWbDqSDmnbHkuqwKW1tza2lsbHMuY29uZmlnXV0KcGF0aCA9ICI8VEFSR0VUPi8uY29kZXgvc2tpbGxzL2FscGhhIgplbmFibGVkID0gdHJ1ZQo=",
+        "mode": 420
+      },
+      ".codex/skills/alpha/SKILL.md": {
+        "base64": "IyBhbHBoYSDigJQgY2Fmw6kg5p2x5LqsDQpCb2R5DQo=",
+        "mode": 420
+      },
+      ".codex/skills/alpha/blob.bin": {
+        "base64": "AP8KgEE=",
+        "mode": 420
+      },
+      ".codex/skills/alpha/metadata.json": {
+        "base64": "eyJpZCI6ImFscGhhIiwicHJvdmlkZXIiOiJhd3MifQo=",
+        "mode": 420
+      },
+      ".codex/skills/rival/SKILL.md": {
+        "base64": "IyByaXZhbCDigJQgY2Fmw6kg5p2x5LqsDQpCb2R5DQo=",
+        "mode": 420
+      },
+      ".codex/skills/rival/metadata.json": {
+        "base64": "eyJpZCI6InJpdmFsIiwicHJvdmlkZXIiOiJhenVyZSJ9Cg==",
+        "mode": 420
+      },
+      ".codex/skills/shared-ref/SKILL.md": {
+        "base64": "IyBzaGFyZWQtcmVmIOKAlCBjYWbDqSDmnbHkuqwNCkJvZHkNCg==",
+        "mode": 420
+      },
+      ".codex/skills/shared-ref/metadata.json": {
+        "base64": "eyJpZCI6InNoYXJlZC1yZWYiLCJwcm92aWRlciI6InNoYXJlZCJ9Cg==",
+        "mode": 420
+      },
+      ".codex/skills/alpha/scripts/helper.sh": {
+        "base64": "IyEvYmluL3NoCnByaW50ZiAiY2Fmw6lcbiIK",
+        "mode": 493
+      },
+      ".codex/skills/alpha/references/nested/note.txt": {
+        "base64": "cmVmZXJlbmNlIOKAlCDmnbHkuqw=",
+        "mode": 420
+      }
+    },
+    "overwrite": {
+      "stdout": "installed\talpha-agent\tcodex\t.codex/agents/alpha-agent.toml\ninstalled\tskill:alpha\tcodex\t.codex/skills/alpha\ninstalled\tskill:rival\tcodex\t.codex/skills/rival\ninstalled\tskill:shared-ref\tcodex\t.codex/skills/shared-ref\n",
+      "stderr": "[vfa] Bundled 3 companion skill(s) alongside 1 agent(s). Use --no-skills to opt out.\n",
+      "files": {
+        ".codex/agents/alpha-agent.toml": {
+          "base64": "bmFtZSA9ICJhbHBoYS1hZ2VudCIKIyBjYWbDqSDmnbHkuqwKW1tza2lsbHMuY29uZmlnXV0KcGF0aCA9ICI8VEFSR0VUPi8uY29kZXgvc2tpbGxzL2FscGhhIgplbmFibGVkID0gdHJ1ZQo=",
+          "mode": 420
+        },
+        ".codex/skills/alpha/SKILL.md": {
+          "base64": "IyBhbHBoYSDigJQgY2Fmw6kg5p2x5LqsDQpCb2R5DQo=",
+          "mode": 420
+        },
+        ".codex/skills/alpha/blob.bin": {
+          "base64": "AP8KgEE=",
+          "mode": 420
+        },
+        ".codex/skills/alpha/metadata.json": {
+          "base64": "eyJpZCI6ImFscGhhIiwicHJvdmlkZXIiOiJhd3MifQo=",
+          "mode": 420
+        },
+        ".codex/skills/rival/SKILL.md": {
+          "base64": "IyByaXZhbCDigJQgY2Fmw6kg5p2x5LqsDQpCb2R5DQo=",
+          "mode": 420
+        },
+        ".codex/skills/rival/metadata.json": {
+          "base64": "eyJpZCI6InJpdmFsIiwicHJvdmlkZXIiOiJhenVyZSJ9Cg==",
+          "mode": 420
+        },
+        ".codex/skills/shared-ref/SKILL.md": {
+          "base64": "IyBzaGFyZWQtcmVmIOKAlCBjYWbDqSDmnbHkuqwNCkJvZHkNCg==",
+          "mode": 420
+        },
+        ".codex/skills/shared-ref/metadata.json": {
+          "base64": "eyJpZCI6InNoYXJlZC1yZWYiLCJwcm92aWRlciI6InNoYXJlZCJ9Cg==",
+          "mode": 420
+        },
+        ".codex/skills/alpha/scripts/helper.sh": {
+          "base64": "IyEvYmluL3NoCnByaW50ZiAiY2Fmw6lcbiIK",
+          "mode": 493
+        },
+        ".codex/skills/alpha/references/nested/note.txt": {
+          "base64": "cmVmZXJlbmNlIOKAlCDmnbHkuqw=",
+          "mode": 420
+        }
+      }
+    }
+  },
+  {
+    "name": "no-skills",
+    "args": [
+      "--platform",
+      "claude-code",
+      "--agents",
+      "alpha-agent",
+      "--no-skills"
+    ],
+    "stdout": "installed\talpha-agent\tclaude-code\t.claude/agents/alpha-agent.md\n",
+    "stderr": "[vfa] --no-skills: companion skills not bundled.\n",
+    "files": {
+      ".claude/agents/alpha-agent.md": {
+        "base64": "YWxwaGEtYWdlbnQg4oCUIGNhZsOpIOadseS6rA0KY2xhdWRlLWNvZGUNCg==",
+        "mode": 420
+      }
+    },
+    "overwrite": {
+      "stdout": "installed\talpha-agent\tclaude-code\t.claude/agents/alpha-agent.md\n",
+      "stderr": "[vfa] --no-skills: companion skills not bundled.\n",
+      "files": {
+        ".claude/agents/alpha-agent.md": {
+          "base64": "YWxwaGEtYWdlbnQg4oCUIGNhZsOpIOadseS6rA0KY2xhdWRlLWNvZGUNCg==",
+          "mode": 420
+        }
+      }
+    }
+  },
+  {
+    "name": "role-provider",
+    "args": [
+      "--platform",
+      "claude-code",
+      "--role",
+      "reviewers",
+      "--provider",
+      "aws"
+    ],
+    "stdout": "installed\talpha-agent\tclaude-code\t.claude/agents/alpha-agent.md\ninstalled\tskill:alpha\tclaude-code\t.claude/skills/alpha\ninstalled\tskill:gamma\tclaude-code\t.claude/skills/gamma\ninstalled\tskill:shared-ref\tclaude-code\t.claude/skills/shared-ref\n",
+    "stderr": "[vfa] Bundled 3 companion skill(s) alongside 1 agent(s). Use --no-skills to opt out.\n",
+    "files": {
+      ".claude/agents/alpha-agent.md": {
+        "base64": "YWxwaGEtYWdlbnQg4oCUIGNhZsOpIOadseS6rA0KY2xhdWRlLWNvZGUNCg==",
+        "mode": 420
+      },
+      ".claude/skills/alpha/SKILL.md": {
+        "base64": "IyBhbHBoYSDigJQgY2Fmw6kg5p2x5LqsDQpCb2R5DQo=",
+        "mode": 420
+      },
+      ".claude/skills/alpha/blob.bin": {
+        "base64": "AP8KgEE=",
+        "mode": 420
+      },
+      ".claude/skills/alpha/metadata.json": {
+        "base64": "eyJpZCI6ImFscGhhIiwicHJvdmlkZXIiOiJhd3MifQo=",
+        "mode": 420
+      },
+      ".claude/skills/gamma/SKILL.md": {
+        "base64": "IyBnYW1tYSDigJQgY2Fmw6kg5p2x5LqsDQpCb2R5DQo=",
+        "mode": 420
+      },
+      ".claude/skills/gamma/metadata.json": {
+        "base64": "eyJpZCI6ImdhbW1hIiwicHJvdmlkZXIiOiJhd3MifQo=",
+        "mode": 420
+      },
+      ".claude/skills/shared-ref/SKILL.md": {
+        "base64": "IyBzaGFyZWQtcmVmIOKAlCBjYWbDqSDmnbHkuqwNCkJvZHkNCg==",
+        "mode": 420
+      },
+      ".claude/skills/shared-ref/metadata.json": {
+        "base64": "eyJpZCI6InNoYXJlZC1yZWYiLCJwcm92aWRlciI6InNoYXJlZCJ9Cg==",
+        "mode": 420
+      },
+      ".claude/skills/alpha/scripts/helper.sh": {
+        "base64": "IyEvYmluL3NoCnByaW50ZiAiY2Fmw6lcbiIK",
+        "mode": 493
+      },
+      ".claude/skills/alpha/references/nested/note.txt": {
+        "base64": "cmVmZXJlbmNlIOKAlCDmnbHkuqw=",
+        "mode": 420
+      }
+    },
+    "overwrite": {
+      "stdout": "installed\talpha-agent\tclaude-code\t.claude/agents/alpha-agent.md\ninstalled\tskill:alpha\tclaude-code\t.claude/skills/alpha\ninstalled\tskill:gamma\tclaude-code\t.claude/skills/gamma\ninstalled\tskill:shared-ref\tclaude-code\t.claude/skills/shared-ref\n",
+      "stderr": "[vfa] Bundled 3 companion skill(s) alongside 1 agent(s). Use --no-skills to opt out.\n",
+      "files": {
+        ".claude/agents/alpha-agent.md": {
+          "base64": "YWxwaGEtYWdlbnQg4oCUIGNhZsOpIOadseS6rA0KY2xhdWRlLWNvZGUNCg==",
+          "mode": 420
+        },
+        ".claude/skills/alpha/SKILL.md": {
+          "base64": "IyBhbHBoYSDigJQgY2Fmw6kg5p2x5LqsDQpCb2R5DQo=",
+          "mode": 420
+        },
+        ".claude/skills/alpha/blob.bin": {
+          "base64": "AP8KgEE=",
+          "mode": 420
+        },
+        ".claude/skills/alpha/metadata.json": {
+          "base64": "eyJpZCI6ImFscGhhIiwicHJvdmlkZXIiOiJhd3MifQo=",
+          "mode": 420
+        },
+        ".claude/skills/gamma/SKILL.md": {
+          "base64": "IyBnYW1tYSDigJQgY2Fmw6kg5p2x5LqsDQpCb2R5DQo=",
+          "mode": 420
+        },
+        ".claude/skills/gamma/metadata.json": {
+          "base64": "eyJpZCI6ImdhbW1hIiwicHJvdmlkZXIiOiJhd3MifQo=",
+          "mode": 420
+        },
+        ".claude/skills/shared-ref/SKILL.md": {
+          "base64": "IyBzaGFyZWQtcmVmIOKAlCBjYWbDqSDmnbHkuqwNCkJvZHkNCg==",
+          "mode": 420
+        },
+        ".claude/skills/shared-ref/metadata.json": {
+          "base64": "eyJpZCI6InNoYXJlZC1yZWYiLCJwcm92aWRlciI6InNoYXJlZCJ9Cg==",
+          "mode": 420
+        },
+        ".claude/skills/alpha/scripts/helper.sh": {
+          "base64": "IyEvYmluL3NoCnByaW50ZiAiY2Fmw6lcbiIK",
+          "mode": 493
+        },
+        ".claude/skills/alpha/references/nested/note.txt": {
+          "base64": "cmVmZXJlbmNlIOKAlCDmnbHkuqw=",
+          "mode": 420
+        }
+      }
+    }
+  },
+  {
+    "name": "provider",
+    "args": [
+      "--platform",
+      "claude-code",
+      "--provider",
+      "aws",
+      "--all"
+    ],
+    "stdout": "installed\talpha-agent\tclaude-code\t.claude/agents/alpha-agent.md\ninstalled\tgamma-agent\tclaude-code\t.claude/agents/gamma-agent.md\ninstalled\tskill:alpha\tclaude-code\t.claude/skills/alpha\ninstalled\tskill:gamma\tclaude-code\t.claude/skills/gamma\ninstalled\tskill:shared-ref\tclaude-code\t.claude/skills/shared-ref\n",
+    "stderr": "[vfa] Bundled 3 companion skill(s) alongside 2 agent(s). Use --no-skills to opt out.\n",
+    "files": {
+      ".claude/agents/alpha-agent.md": {
+        "base64": "YWxwaGEtYWdlbnQg4oCUIGNhZsOpIOadseS6rA0KY2xhdWRlLWNvZGUNCg==",
+        "mode": 420
+      },
+      ".claude/agents/gamma-agent.md": {
+        "base64": "Z2FtbWEtYWdlbnQg4oCUIGNhZsOpIOadseS6rA0KY2xhdWRlLWNvZGUNCg==",
+        "mode": 420
+      },
+      ".claude/skills/alpha/SKILL.md": {
+        "base64": "IyBhbHBoYSDigJQgY2Fmw6kg5p2x5LqsDQpCb2R5DQo=",
+        "mode": 420
+      },
+      ".claude/skills/alpha/blob.bin": {
+        "base64": "AP8KgEE=",
+        "mode": 420
+      },
+      ".claude/skills/alpha/metadata.json": {
+        "base64": "eyJpZCI6ImFscGhhIiwicHJvdmlkZXIiOiJhd3MifQo=",
+        "mode": 420
+      },
+      ".claude/skills/gamma/SKILL.md": {
+        "base64": "IyBnYW1tYSDigJQgY2Fmw6kg5p2x5LqsDQpCb2R5DQo=",
+        "mode": 420
+      },
+      ".claude/skills/gamma/metadata.json": {
+        "base64": "eyJpZCI6ImdhbW1hIiwicHJvdmlkZXIiOiJhd3MifQo=",
+        "mode": 420
+      },
+      ".claude/skills/shared-ref/SKILL.md": {
+        "base64": "IyBzaGFyZWQtcmVmIOKAlCBjYWbDqSDmnbHkuqwNCkJvZHkNCg==",
+        "mode": 420
+      },
+      ".claude/skills/shared-ref/metadata.json": {
+        "base64": "eyJpZCI6InNoYXJlZC1yZWYiLCJwcm92aWRlciI6InNoYXJlZCJ9Cg==",
+        "mode": 420
+      },
+      ".claude/skills/alpha/scripts/helper.sh": {
+        "base64": "IyEvYmluL3NoCnByaW50ZiAiY2Fmw6lcbiIK",
+        "mode": 493
+      },
+      ".claude/skills/alpha/references/nested/note.txt": {
+        "base64": "cmVmZXJlbmNlIOKAlCDmnbHkuqw=",
+        "mode": 420
+      }
+    },
+    "overwrite": {
+      "stdout": "installed\talpha-agent\tclaude-code\t.claude/agents/alpha-agent.md\ninstalled\tgamma-agent\tclaude-code\t.claude/agents/gamma-agent.md\ninstalled\tskill:alpha\tclaude-code\t.claude/skills/alpha\ninstalled\tskill:gamma\tclaude-code\t.claude/skills/gamma\ninstalled\tskill:shared-ref\tclaude-code\t.claude/skills/shared-ref\n",
+      "stderr": "[vfa] Bundled 3 companion skill(s) alongside 2 agent(s). Use --no-skills to opt out.\n",
+      "files": {
+        ".claude/agents/alpha-agent.md": {
+          "base64": "YWxwaGEtYWdlbnQg4oCUIGNhZsOpIOadseS6rA0KY2xhdWRlLWNvZGUNCg==",
+          "mode": 420
+        },
+        ".claude/agents/gamma-agent.md": {
+          "base64": "Z2FtbWEtYWdlbnQg4oCUIGNhZsOpIOadseS6rA0KY2xhdWRlLWNvZGUNCg==",
+          "mode": 420
+        },
+        ".claude/skills/alpha/SKILL.md": {
+          "base64": "IyBhbHBoYSDigJQgY2Fmw6kg5p2x5LqsDQpCb2R5DQo=",
+          "mode": 420
+        },
+        ".claude/skills/alpha/blob.bin": {
+          "base64": "AP8KgEE=",
+          "mode": 420
+        },
+        ".claude/skills/alpha/metadata.json": {
+          "base64": "eyJpZCI6ImFscGhhIiwicHJvdmlkZXIiOiJhd3MifQo=",
+          "mode": 420
+        },
+        ".claude/skills/gamma/SKILL.md": {
+          "base64": "IyBnYW1tYSDigJQgY2Fmw6kg5p2x5LqsDQpCb2R5DQo=",
+          "mode": 420
+        },
+        ".claude/skills/gamma/metadata.json": {
+          "base64": "eyJpZCI6ImdhbW1hIiwicHJvdmlkZXIiOiJhd3MifQo=",
+          "mode": 420
+        },
+        ".claude/skills/shared-ref/SKILL.md": {
+          "base64": "IyBzaGFyZWQtcmVmIOKAlCBjYWbDqSDmnbHkuqwNCkJvZHkNCg==",
+          "mode": 420
+        },
+        ".claude/skills/shared-ref/metadata.json": {
+          "base64": "eyJpZCI6InNoYXJlZC1yZWYiLCJwcm92aWRlciI6InNoYXJlZCJ9Cg==",
+          "mode": 420
+        },
+        ".claude/skills/alpha/scripts/helper.sh": {
+          "base64": "IyEvYmluL3NoCnByaW50ZiAiY2Fmw6lcbiIK",
+          "mode": 493
+        },
+        ".claude/skills/alpha/references/nested/note.txt": {
+          "base64": "cmVmZXJlbmNlIOKAlCDmnbHkuqw=",
+          "mode": 420
+        }
+      }
+    }
+  },
+  {
+    "name": "dry-run",
+    "args": [
+      "--platform",
+      "claude-code",
+      "--agents",
+      "alpha-agent",
+      "--dry-run"
+    ],
+    "stdout": "export agent: alpha-agent [provider=aws]\nexport skill: alpha\nexport skill: rival\nexport skill: shared-ref\n",
+    "stderr": "[vfa] --dry-run: 1 agent(s), 3 skill(s) planned, no files written.\n",
+    "files": {}
+  },
+  {
+    "name": "cursor",
+    "args": [
+      "--platform",
+      "cursor",
+      "--agents",
+      "alpha-agent"
+    ],
+    "stdout": "installed\talpha-agent\tcursor\t.cursor/agents/alpha-agent.md\n",
+    "stderr": "[vfa] Skill export is not supported on Cursor. Cursor uses Project Rules (.cursor/rules/*.mdc), not skills. The semantics (style guides, glob-based triggers) differ significantly from our multi-section operating playbooks; this is a permanent design decision, not a pending TODO. See docs/cross-harness-skills.md for the full rationale.\n",
+    "files": {
+      ".cursor/agents/alpha-agent.md": {
+        "base64": "YWxwaGEtYWdlbnQg4oCUIGNhZsOpIOadseS6rA0KY3Vyc29yDQo=",
+        "mode": 420
+      }
+    },
+    "overwrite": {
+      "stdout": "installed\talpha-agent\tcursor\t.cursor/agents/alpha-agent.md\n",
+      "stderr": "[vfa] Skill export is not supported on Cursor. Cursor uses Project Rules (.cursor/rules/*.mdc), not skills. The semantics (style guides, glob-based triggers) differ significantly from our multi-section operating playbooks; this is a permanent design decision, not a pending TODO. See docs/cross-harness-skills.md for the full rationale.\n",
+      "files": {
+        ".cursor/agents/alpha-agent.md": {
+          "base64": "YWxwaGEtYWdlbnQg4oCUIGNhZsOpIOadseS6rA0KY3Vyc29yDQo=",
+          "mode": 420
+        }
+      }
+    }
+  },
+  {
+    "name": "kiro",
+    "args": [
+      "--platform",
+      "kiro",
+      "--agents",
+      "alpha-agent"
+    ],
+    "stdout": "installed\talpha-agent\tkiro-ide\t.kiro/agents/alpha-agent.md\ninstalled\talpha-agent\tkiro-cli\t.kiro/agents/alpha-agent.json\n",
+    "stderr": "[vfa] Skill export is not supported on Kiro. Kiro uses Steering files (.kiro/steering/*.md), not skills. Steering is single-file guidance with plural-by-default inclusion; our SKILL packages bundle scripts/ and references/ siblings that Steering cannot accommodate. This is a permanent design decision, not a pending TODO. See docs/cross-harness-skills.md for the full rationale.\n",
+    "files": {
+      ".kiro/agents/alpha-agent.json": {
+        "base64": "YWxwaGEtYWdlbnQg4oCUIGNhZsOpIOadseS6rA0Ka2lyby1jbGkNCg==",
+        "mode": 420
+      },
+      ".kiro/agents/alpha-agent.md": {
+        "base64": "YWxwaGEtYWdlbnQg4oCUIGNhZsOpIOadseS6rA0Ka2lyby1pZGUNCg==",
+        "mode": 420
+      }
+    },
+    "overwrite": {
+      "stdout": "installed\talpha-agent\tkiro-ide\t.kiro/agents/alpha-agent.md\ninstalled\talpha-agent\tkiro-cli\t.kiro/agents/alpha-agent.json\n",
+      "stderr": "[vfa] Skill export is not supported on Kiro. Kiro uses Steering files (.kiro/steering/*.md), not skills. Steering is single-file guidance with plural-by-default inclusion; our SKILL packages bundle scripts/ and references/ siblings that Steering cannot accommodate. This is a permanent design decision, not a pending TODO. See docs/cross-harness-skills.md for the full rationale.\n",
+      "files": {
+        ".kiro/agents/alpha-agent.json": {
+          "base64": "YWxwaGEtYWdlbnQg4oCUIGNhZsOpIOadseS6rA0Ka2lyby1jbGkNCg==",
+          "mode": 420
+        },
+        ".kiro/agents/alpha-agent.md": {
+          "base64": "YWxwaGEtYWdlbnQg4oCUIGNhZsOpIOadseS6rA0Ka2lyby1pZGUNCg==",
+          "mode": 420
+        }
+      }
+    }
+  }
+]

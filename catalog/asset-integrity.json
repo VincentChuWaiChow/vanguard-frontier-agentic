@@ -27393,7 +27393,7 @@
     },
     {
       "tree": "scripts",
-      "aggregate_sha256": "5ba6ab458f2b46d975312bebf72e147c1ff93b8d6d4b8763bef8550599e18114",
+      "aggregate_sha256": "30f1633bfcbd41f1be8ed9fd7a52bd7bdb40c0d0d877d660d5e4dfc74d66b708",
       "files": [
         {
           "path": "scripts/apply-skill-allowed-tools.py",
@@ -27407,8 +27407,8 @@
         },
         {
           "path": "scripts/export-marketplace-agents.mjs",
-          "sha256": "c79e3e7decbb3b9ba77f33e05145a22892bcfbf6a15231a74191a1d60e47cbac",
-          "bytes": 27654
+          "sha256": "6c4675491059e5f30ae30e756b685acda34c266e717c7fbfd8ca92af81aa4f33",
+          "bytes": 39121
         },
         {
           "path": "scripts/gen_azure_live_guards.py",
@@ -27905,7 +27905,7 @@
     },
     {
       "tree": "tests",
-      "aggregate_sha256": "fe8976adb66a38d09bb3dbe09454ebbdcb0bc6fa873fd1fcf12a3809e1a71c93",
+      "aggregate_sha256": "be8ffb9378d90c6990eff7c20e21d9e6760bf283d9d3fdaa6c25f8512d080364",
       "files": [
         {
           "path": "tests/AGENTS.md",
@@ -27926,6 +27926,11 @@
           "path": "tests/export-cursor-kiro-skill-notice.test.mjs",
           "sha256": "01302802a31a99e5919bbc3a0225440bf650fd90bd196fa4739c4256b3b464b8",
           "bytes": 3275
+        },
+        {
+          "path": "tests/export-plan.test.mjs",
+          "sha256": "0e2db67a62fd085b01169072d95bb63890df355f3de51dfbed24d46431e96dbe",
+          "bytes": 22782
         },
         {
           "path": "tests/fixtures/README.md",
@@ -29801,6 +29806,201 @@
           "path": "tests/fixtures/dotnet-maestro-routing/taxonomy.json",
           "sha256": "90c175018d6f234be87ef48edc8706b67c3fc8598f54d4388a275f14a2590edd",
           "bytes": 2769
+        },
+        {
+          "path": "tests/fixtures/export-plan/legacy-contracts.json",
+          "sha256": "b4fdc9a1fcc6c3bdde58f27e4226034e9b31845851aafed580091a3c4639763f",
+          "bytes": 20352
+        },
+        {
+          "path": "tests/fixtures/export-plan/package/agents/aws/alpha-agent/claude.md",
+          "sha256": "d0ba25b7396b988c85f28d29a6e84082f358ef5d20db7a21327f4c4d7c434f4e",
+          "bytes": 43
+        },
+        {
+          "path": "tests/fixtures/export-plan/package/agents/aws/alpha-agent/codex.toml",
+          "sha256": "a660f9d35198a1ec766155a285c2f891d654f646ad65c446ea0f000441ec038d",
+          "bytes": 104
+        },
+        {
+          "path": "tests/fixtures/export-plan/package/agents/aws/alpha-agent/copilot.agent.md",
+          "sha256": "ef7bad978d5b731316b17a01858e97982a834917ecaf05163a43b78b028151b0",
+          "bytes": 39
+        },
+        {
+          "path": "tests/fixtures/export-plan/package/agents/aws/alpha-agent/cursor.md",
+          "sha256": "6cb320da10a92df26b6105b5772c9eb29e7b554f6a08c498248ac18b2dd3c4b5",
+          "bytes": 38
+        },
+        {
+          "path": "tests/fixtures/export-plan/package/agents/aws/alpha-agent/gemini.md",
+          "sha256": "aa67b171fdd2ec4c5f1038d9a9e45f4ea00ff1ba2c34c0575d0eb6a7dfd1ea8c",
+          "bytes": 38
+        },
+        {
+          "path": "tests/fixtures/export-plan/package/agents/aws/alpha-agent/kiro.json",
+          "sha256": "41b149b5a4961c6c5b99b3b365a31630ac0405dd15c124a9f2a6d0dc5c6d2c16",
+          "bytes": 40
+        },
+        {
+          "path": "tests/fixtures/export-plan/package/agents/aws/alpha-agent/kiro.md",
+          "sha256": "a20a0e848003f1861822d022ca2a7ee7b74880351d46094128176a1953e96d36",
+          "bytes": 40
+        },
+        {
+          "path": "tests/fixtures/export-plan/package/agents/aws/alpha-agent/metadata.json",
+          "sha256": "98c026bcd6aa48729ef79cf59a47c7fa9ea37d4577078cb017bdd3c6297d7060",
+          "bytes": 479
+        },
+        {
+          "path": "tests/fixtures/export-plan/package/agents/aws/gamma-agent/claude.md",
+          "sha256": "0b3ea306b4692785e6812f4703cb6866a86910fcd1864356fd7321a159b33e54",
+          "bytes": 43
+        },
+        {
+          "path": "tests/fixtures/export-plan/package/agents/aws/gamma-agent/codex.toml",
+          "sha256": "9062728e88f696c3acc1c18a8878a20f87e5b1fa2e44ef7adb72135731188a81",
+          "bytes": 104
+        },
+        {
+          "path": "tests/fixtures/export-plan/package/agents/aws/gamma-agent/copilot.agent.md",
+          "sha256": "9f4ef39ede00a64f4754ba9840014db3e3509b6110cb7abdb3d9439f2a19bfef",
+          "bytes": 39
+        },
+        {
+          "path": "tests/fixtures/export-plan/package/agents/aws/gamma-agent/cursor.md",
+          "sha256": "797fe3f0960ff9d6cd9fe929cdc111eb439aa8482ad0fb0a0135d911793ba892",
+          "bytes": 38
+        },
+        {
+          "path": "tests/fixtures/export-plan/package/agents/aws/gamma-agent/gemini.md",
+          "sha256": "16aef3b117fac5e1012b7153d5bb90c1a3897f4257351fc45d643409ff527fe9",
+          "bytes": 38
+        },
+        {
+          "path": "tests/fixtures/export-plan/package/agents/aws/gamma-agent/kiro.json",
+          "sha256": "f6ba9a8f1b04d1a829ad462822cfde26ee5f78e84eca2e801ac9fb5d0214ce99",
+          "bytes": 40
+        },
+        {
+          "path": "tests/fixtures/export-plan/package/agents/aws/gamma-agent/kiro.md",
+          "sha256": "780c81f9e8cc24734a2afe213e604929d133fc85be5627a9df578249f825514d",
+          "bytes": 40
+        },
+        {
+          "path": "tests/fixtures/export-plan/package/agents/aws/gamma-agent/metadata.json",
+          "sha256": "0f446a688900b44b8119ba1f211a23104b762aaffec94117f0e2e25cf2ef463a",
+          "bytes": 429
+        },
+        {
+          "path": "tests/fixtures/export-plan/package/agents/azure/beta-agent/claude.md",
+          "sha256": "0bc2f24b2e89b928f4136df747e429a693fca2a9628c01ed85f1ed4dfed3dd38",
+          "bytes": 42
+        },
+        {
+          "path": "tests/fixtures/export-plan/package/agents/azure/beta-agent/codex.toml",
+          "sha256": "5e3591c831f557e337031540b8705de5400ed7f5bfa57ac814427908f64819ea",
+          "bytes": 103
+        },
+        {
+          "path": "tests/fixtures/export-plan/package/agents/azure/beta-agent/copilot.agent.md",
+          "sha256": "5dc26d6c361a4a1398038c081244a3ecebfee8a044449fc69718c27435233347",
+          "bytes": 38
+        },
+        {
+          "path": "tests/fixtures/export-plan/package/agents/azure/beta-agent/cursor.md",
+          "sha256": "9554435be0dcfe9a4550ff3102185a399c059ab12c31e57cc0be01283cd921f5",
+          "bytes": 37
+        },
+        {
+          "path": "tests/fixtures/export-plan/package/agents/azure/beta-agent/gemini.md",
+          "sha256": "8df8104f058428a364f30a0536370b78f41ba1e317d37f9cc8b842da3947f181",
+          "bytes": 37
+        },
+        {
+          "path": "tests/fixtures/export-plan/package/agents/azure/beta-agent/kiro.json",
+          "sha256": "d06f449fcfe5ca59aa4f67ed62d4d7f898ef7dd46483766c7b91a7dae79cc14b",
+          "bytes": 39
+        },
+        {
+          "path": "tests/fixtures/export-plan/package/agents/azure/beta-agent/kiro.md",
+          "sha256": "0d3db8cd512a91746d56b1ae871ba6bee53977c2c467315057bb79d1f7f68515",
+          "bytes": 39
+        },
+        {
+          "path": "tests/fixtures/export-plan/package/agents/azure/beta-agent/metadata.json",
+          "sha256": "b752e3e319b33b02eeb9f9f6716328a932f7f1aaf331841297922b4cc4b908c8",
+          "bytes": 458
+        },
+        {
+          "path": "tests/fixtures/export-plan/package/catalog/agents.json",
+          "sha256": "60c4444500ab9377f5cbf5b878bae216d862bfd8d5cc6cb81492ae0e9c37eb6a",
+          "bytes": 1368
+        },
+        {
+          "path": "tests/fixtures/export-plan/package/catalog/install-roles.json",
+          "sha256": "db00425255f8210c76c3de145107a275f6ab73279611b308fa2ed732ce7a2f8e",
+          "bytes": 116
+        },
+        {
+          "path": "tests/fixtures/export-plan/package/catalog/skills.json",
+          "sha256": "e94da682065593566560706087c7325ce3c8eff5384686980219aab3be812639",
+          "bytes": 140
+        },
+        {
+          "path": "tests/fixtures/export-plan/package/skills/aws/alpha/SKILL.md",
+          "sha256": "f87c1c2f0f55aa5098235041e45226b90c68229b5807303e4d4aaf20b4ffef7d",
+          "bytes": 32
+        },
+        {
+          "path": "tests/fixtures/export-plan/package/skills/aws/alpha/blob.bin",
+          "sha256": "04710751e08cc93d01f35a07fcfb007f3484d3b0959eb7bcb8b63e4642d728a5",
+          "bytes": 5
+        },
+        {
+          "path": "tests/fixtures/export-plan/package/skills/aws/alpha/metadata.json",
+          "sha256": "01c71d314e409c750a3aa126d048959499e9495c0bac65310862ffe914a3128d",
+          "bytes": 32
+        },
+        {
+          "path": "tests/fixtures/export-plan/package/skills/aws/alpha/references/nested/note.txt",
+          "sha256": "512cd2b848c031e1084b3f0f45f357e00e149642cf85f5e61472fd33b9ff378d",
+          "bytes": 20
+        },
+        {
+          "path": "tests/fixtures/export-plan/package/skills/aws/alpha/scripts/helper.sh",
+          "sha256": "2ccfc106b2d18f2788e78929d0c5568a42739b87871cffc8edbee74154ff5ba2",
+          "bytes": 27
+        },
+        {
+          "path": "tests/fixtures/export-plan/package/skills/aws/gamma/SKILL.md",
+          "sha256": "0056938cd44f89385bb6b3306b4b9a6b11441336d8924c695a4eff02827f5744",
+          "bytes": 32
+        },
+        {
+          "path": "tests/fixtures/export-plan/package/skills/aws/gamma/metadata.json",
+          "sha256": "09b0cebce23135b80667472b3ef020463ced09e75c8f6996423e15883ed8a221",
+          "bytes": 32
+        },
+        {
+          "path": "tests/fixtures/export-plan/package/skills/azure/rival/SKILL.md",
+          "sha256": "ba431cebef6c695707d9fc9729bfdc5df96d4e1c82cf5fef2f5a11ccb0d7e47f",
+          "bytes": 32
+        },
+        {
+          "path": "tests/fixtures/export-plan/package/skills/azure/rival/metadata.json",
+          "sha256": "4828ec845df806c6d6ab99a5541b0dadc5d98d72ce9f3fe15931e3dc0866d787",
+          "bytes": 34
+        },
+        {
+          "path": "tests/fixtures/export-plan/package/skills/shared/shared-ref/SKILL.md",
+          "sha256": "2df32ad0a7cff8e4d1968b1f41107106a5c39256a275b810929492607a0ea70d",
+          "bytes": 37
+        },
+        {
+          "path": "tests/fixtures/export-plan/package/skills/shared/shared-ref/metadata.json",
+          "sha256": "b57637b321e2f0fb5ad8024542d2b3d453845c7a9fe174080e2c2666e999618b",
+          "bytes": 40
         },
         {
           "path": "tests/fixtures/finance-maestro-routing/expected/01-variance-analysis.json",
@@ -34422,5 +34622,5 @@
       "bytes": 4578
     }
   ],
-  "aggregate_sha256": "8cc493769c57493e7ce9ae6ca1c10bdf2accdc69f436058af48832d40bff4c01"
+  "aggregate_sha256": "2f71f681e3d8fda112b499157b8054eea27c615a886171c9959b33dde2fff6cb"
 }

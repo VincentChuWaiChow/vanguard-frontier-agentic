@@ -2,8 +2,8 @@
 
 ## Current ready-wave status
 
-Task 4.1 is complete in scoped Linux checks; task 5.1 validation and then 4.2
-implementation are authorized. See the lazy-loaded task evals for current
+Tasks 4.1 and 5.1 are complete in scoped checks; task 4.2 implementation and
+independent review are in progress. See the lazy-loaded task evals for current
 commands/evidence; the older phase reports below are historical. Full Rust
 regression gates remain non-green with unchanged 17/11 baseline failures.
 Task 1.4 remains unchecked and native verification pending, as requested.
@@ -229,3 +229,13 @@ The literal Markdown command reported 13 issues only in generated CHANGELOG.md;
 existing CI/npm lint configuration already excludes that file. The unchanged
 CI exclusions plus the new hidden specs/workflow documents passed across 6198
 Markdown files with zero issues. No lint configuration or changelog was edited.
+
+## Ready-wave export planner evidence
+
+Task 5.1: PASS canonical protocol/final renderer, no-write/invalid-input cases,
+fixed legacy bytes/modes and all seventeen C7 CLI regressions. Parent reproduced
+and repaired the review's unplanned hard-link overwrite and machine-help stdout
+findings. Required asset integrity and full repository validation pass. Actual
+apply-plan/native execution remain UNVERIFIED and task 1.4 is still pending.
+The task 4.1 local commit is `5bbe9bf921f9799e9e6a62fa2403a1a45845de91`,
+with both no-reply identities verified. No push has occurred in this ready wave.

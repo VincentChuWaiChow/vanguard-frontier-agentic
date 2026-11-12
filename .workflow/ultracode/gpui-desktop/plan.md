@@ -227,3 +227,14 @@ clippy, packaging and isolated repository validation. Its full failure sets are
 identical to the established 17/11 baseline; other native hosts remain unverified.
 Task-specific evidence is in `evals/task-4.1.md`. Separate local no-reply commits
 are authorized, not push, publication, native setup or the rest of the backlog.
+
+## Task 5.1 completion
+
+The authoritative Node planner and final renderer now serve both preview and
+legacy execution. Parent verified the original exporter against independent
+fixed output/byte/mode fixtures. All seventeen combined C7 cases pass, including
+new hard-link alias and machine-help regression tests added for review findings.
+Required integrity regeneration changed only the 41 covered task files; complete
+repository validation exits zero. The scoped no-write preview is not apply-plan
+or native installation acceptance. Commit this task separately, excluding the
+active journal files. Task 4.2 began only after task 4.1's verified local commit.

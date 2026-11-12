@@ -1,7 +1,7 @@
 # Implementation Plan: GPUI Desktop
 
-Status: TASK 4.1 COMPLETE IN SCOPED CHECKS; TASKS 5.1 AND THEN 4.2 AUTHORIZED.
-Tasks 1.1-1.3 and 4.1 are complete within their scoped checks; known full-suite
+Status: TASKS 4.1 AND 5.1 COMPLETE IN SCOPED CHECKS; TASK 4.2 IN PROGRESS.
+Tasks 1.1-1.3, 4.1 and 5.1 are complete within their scoped checks; known full-suite
 baseline gates remain non-green. Task 1.4 stays unchecked: native verification
 is pending at the user's request. The current ready wave permits 4.1/5.1, then
 4.2 after 4.1; separate no-reply local commits, no push. Impeccable visual and
@@ -282,7 +282,7 @@ Architecture and scope come from these frozen approved inputs:
 
 - [ ] 5. Authoritative export and gate integration
 
-- [ ] 5.1 Build one authoritative final-artifact export planner
+- [x] 5.1 Build one authoritative final-artifact export planner
   - Depends: none
   - Paths: scripts/export-marketplace-agents.mjs; tests/export-plan.test.mjs
   - Design: D6
@@ -292,6 +292,8 @@ Architecture and scope come from these frozen approved inputs:
   - Positive: One Node planner/renderer serves legacy and plan-json modes with identities, collisions, companions, transforms and final-content digests.
   - Negative: Preview creates no target file/directory/lock; unknown effects fail; Codex destination-dependent bytes and existing export modes match fixed expectations.
   - Estimate: 2-4 hours; timebox, not a completion guarantee.
+  - Evidence: evals/task-5.1.md; actual canonical plans, no-write preview, fixed legacy bytes/modes, hard-link refusal and all seventeen C7 CLI tests pass; no apply-mode/native proof claimed.
+
 
 - [ ] 5.2 Implement verified apply and reliable protocol outcomes
   - Depends: 2.4, 2.5, 2.6, 4.3, 5.1

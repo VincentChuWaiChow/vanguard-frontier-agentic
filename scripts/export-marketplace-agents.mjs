@@ -5,8 +5,140 @@ import path from "node:path";
 import process from "node:process";
 import { fileURLToPath } from "node:url";
 import { parseArgs as utilParseArgs } from "node:util";
+import { createHash } from "node:crypto";
 
 const repoRoot = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "..");
+const MAX_PLAN_BYTES = 8 * 1024 * 1024;
+const MAX_FILE_BYTES = 64 * 1024 * 1024;
+const MAX_RENDER_BYTES = 256 * 1024 * 1024;
+const MAX_FILES = 10000;
+const sourceInputs = new Map();
+const validId = (value) => typeof value === "string" && /^[a-z0-9][a-z0-9-]*$/.test(value);
+const sha256 = (bytes) => createHash("sha256").update(bytes).digest("hex");
+const relativePath = (root, file) => path.relative(root, file).split(path.sep).join("/");
+
+// Protocol canonicalization: recursive object-key UTF-16 ordering, array order
+// retained, compact JSON UTF-8. The digest excludes only the top-level digest.
+function canonicalJson(value) {
+  if (Array.isArray(value)) return `[${value.map(canonicalJson).join(",")}]`;
+  if (value !== null && typeof value === "object") {
+    return `{${Object.keys(value).sort().map((key) => `${JSON.stringify(key)}:${canonicalJson(value[key])}`).join(",")}}`;
+  }
+  return JSON.stringify(value);
+}
+
+function identity(stat) {
+  return {
+    device: String(stat.dev), inode: String(stat.ino), size: String(stat.size),
+    mode: Number(stat.mode & 0o7777n), mtime_ns: String(stat.mtimeNs), links: String(stat.nlink),
+  };
+}
+
+// Inspect every existing component, including ancestors outside the selected
+// root. Missing suffixes are valid; links and non-directory ancestors are not.
+// This is preflight, not protection against a malicious same-user filesystem race.
+function checkPath(file, kind, label) {
+  const absolute = path.resolve(file);
+  const root = path.parse(absolute).root;
+  const parts = absolute.slice(root.length).split(path.sep).filter(Boolean);
+  let cursor = root;
+  let anchor = { path: root, identity: identity(fs.lstatSync(root, { bigint: true })) };
+  for (let index = 0; index < parts.length; index += 1) {
+    cursor = path.join(cursor, parts[index]);
+    let stat;
+    try { stat = fs.lstatSync(cursor, { bigint: true }); }
+    catch (error) {
+      if (error.code !== "ENOENT") throw error;
+      return { exists: false, identity: null, anchor, missing: parts.slice(index) };
+    }
+    if (stat.isSymbolicLink()) throw new Error(`Refusing to ${label}: symbolic link ${cursor}`);
+    const last = index === parts.length - 1;
+    if ((!last || kind === "directory") && !stat.isDirectory()) throw new Error(`Refusing to ${label}: non-directory path ${cursor}`);
+    if (last && kind === "file" && !stat.isFile()) throw new Error(`Refusing to ${label}: non-regular file ${cursor}`);
+    anchor = { path: cursor, identity: identity(stat) };
+  }
+  return { exists: true, identity: anchor.identity, anchor, missing: [] };
+}
+
+function readSource(file, input = false) {
+  assertWithin(repoRoot, file, "read source");
+  const state = checkPath(file, "file", "read source");
+  if (!state.exists) throw new Error(`Missing source file: ${file}`);
+  if (Number(state.identity.size) > MAX_FILE_BYTES) throw new Error(`PLAN_LIMIT: source file exceeds 64 MiB: ${file}`);
+  const bytes = fs.readFileSync(file);
+  const after = checkPath(file, "file", "read source");
+  if (canonicalJson(state.identity) !== canonicalJson(after.identity)) throw new Error(`Source changed while reading: ${file}`);
+  const record = { path: relativePath(repoRoot, file), identity: state.identity, sha256: sha256(bytes) };
+  if (input) {
+    sourceInputs.set(record.path, record);
+    if (sourceInputs.size > MAX_FILES) throw new Error(`PLAN_LIMIT: source manifest exceeds ${MAX_FILES} inputs.`);
+  }
+  return { bytes, record };
+}
+
+function destinationState(file, skill = false) {
+  // Retain the established skill-link diagnostic for legacy callers.
+  const state = checkPath(file, "file", skill ? "write to symbolic link destination in skill tree" : "write destination");
+  // Truncating a multiply-linked file also changes paths outside this plan,
+  // including source metadata/executables or unrelated external sentinels.
+  if (state.exists && state.identity.links !== "1") {
+    throw new Error(`Destination collision: aliased hard-link file ${file}`);
+  }
+  if (state.exists && Number(state.identity.size) > MAX_FILE_BYTES) throw new Error(`PLAN_LIMIT: destination file exceeds 64 MiB: ${file}`);
+  const digest = state.exists ? sha256(fs.readFileSync(file)) : null;
+  const after = checkPath(file, "file", "inspect destination");
+  if (canonicalJson(state.identity) !== canonicalJson(after.identity)) throw new Error(`Destination changed while reading: ${file}`);
+  return { exists: state.exists, identity: state.identity, sha256: digest };
+}
+
+// Render the exact final buffer once. Identity artifacts remain binary-safe;
+// Codex's historical UTF-8/newline behavior is retained, without an intermediate
+// unrewritten destination file. copyFile historically drops setuid/setgid bits.
+function renderArtifact(source, platform, kind, targetRoot) {
+  const { bytes, record } = readSource(source);
+  let content = bytes;
+  const transformation = { id: "identity/v1", options: {} };
+  if (platform === "codex" && kind === "agent") {
+    const original = bytes.toString("utf8");
+    const rewritten = original.replace(
+      /^path = "skills\/[^"\n]+\/([^/"\n]+)\/SKILL\.md"$/gm,
+      (_match, skillName) => `path = ${JSON.stringify(path.join(targetRoot, SKILLS_PLATFORM_CONFIG.codex, skillName))}`
+    );
+    if (rewritten !== original) content = Buffer.from(rewritten, "utf8");
+    transformation.id = "codex-skill-paths/v1";
+    transformation.options = { targetRoot, skillsDirectory: SKILLS_PLATFORM_CONFIG.codex };
+  }
+  return {
+    content, source: record, transformation,
+    final: { sha256: sha256(content), size: content.length, mode: record.identity.mode & 0o1777 },
+  };
+}
+
+function writeArtifact(artifact) {
+  const file = artifact.file;
+  const source = path.join(repoRoot, file.source.path);
+  const currentSource = readSource(source).record;
+  if (canonicalJson(currentSource) !== canonicalJson(file.source)) throw new Error(`Source changed before write: ${source}`);
+  const destination = file.destination.path;
+  const currentDestination = destinationState(destination, file.kind === "skill");
+  const expected = file.destination;
+  if (canonicalJson(currentDestination) !== canonicalJson({ exists: expected.exists, identity: expected.identity, sha256: expected.sha256 })) {
+    throw new Error(`Destination changed before write: ${destination}`);
+  }
+  fs.mkdirSync(path.dirname(destination), { recursive: true });
+  checkPath(destination, "file", "write destination");
+  const flags = fs.constants.O_WRONLY | fs.constants.O_CREAT |
+    (file.action === "create" ? fs.constants.O_EXCL : fs.constants.O_TRUNC) |
+    (fs.constants.O_NOFOLLOW ?? 0);
+  const descriptor = fs.openSync(destination, flags, file.final.mode);
+  try {
+    fs.writeFileSync(descriptor, artifact.content);
+    fs.fchmodSync(descriptor, file.final.mode);
+  } finally {
+    fs.closeSync(descriptor);
+  }
+}
+
 
 const PLATFORM_CONFIG = {
   codex: {
@@ -127,6 +259,7 @@ Options:
   --force                Overwrite existing files without prompting.
   --list-providers        List all providers with agent counts; then exit.
   --dry-run              Print the export plan without writing files.
+  --plan-json             Emit a bounded vfa-export/1 plan; never write targets.
   --no-skills            Skip companion skill bundling.
 
 Companion skills:
@@ -173,6 +306,7 @@ function parseArgs(argv) {
         force:            { type: "boolean", default: false },
         all:              { type: "boolean", default: false },
         "dry-run":        { type: "boolean", default: false },
+        "plan-json":      { type: "boolean", default: false },
         "no-skills":      { type: "boolean", default: false },
         platform:         { type: "string" },
         role:             { type: "string" },
@@ -188,6 +322,9 @@ function parseArgs(argv) {
   }
 
   const v = parsed.values;
+  if (v["plan-json"] && v.help) {
+    throw new Error("--plan-json cannot be combined with --help.");
+  }
   if (v.help) usage(0);
 
   // Validate --provider: empty string and whitespace-only are rejected.
@@ -204,6 +341,19 @@ function parseArgs(argv) {
     }
   }
 
+  if (v["plan-json"] && (v["dry-run"] || v.list || v["list-roles"] || v["list-providers"])) {
+    throw new Error("--plan-json cannot be combined with --dry-run or listing modes.");
+  }
+  if ((v.role && (v.agents !== undefined || v.all)) || (v.agents !== undefined && (v.provider !== undefined || v.all))) {
+    throw new Error("Ambiguous selection: use --agents, --role [--provider], --provider [--all], or --all.");
+  }
+  if (v.agents !== undefined && (!v.agents.trim() || v.agents.split(",").some((id) => !id.trim()) || new Set(v.agents.split(",").map((id) => id.trim())).size !== v.agents.split(",").length)) {
+    throw new Error("--agents requires non-empty, unique comma-separated agent ids.");
+  }
+  if (v.role !== undefined && !/^[a-z0-9][a-z0-9-]*$/.test(v.role)) {
+    throw new Error("Invalid --role value.");
+  }
+
   return {
     repo:          v.repo ? path.resolve(v.repo) : process.cwd(),
     force:         v.force ?? false,
@@ -212,6 +362,7 @@ function parseArgs(argv) {
     listProviders: v["list-providers"] ?? false,
     all:           v.all ?? false,
     dryRun:        v["dry-run"] ?? false,
+    planJson:      v["plan-json"] ?? false,
     noSkills:      v["no-skills"] ?? false,
     platform:      v.platform ?? null,
     role:          v.role ?? null,
@@ -223,8 +374,10 @@ function parseArgs(argv) {
 }
 
 function walk(dir, matcher, results = []) {
-  for (const entry of fs.readdirSync(dir, { withFileTypes: true })) {
+  checkPath(dir, "directory", "read source directory");
+  for (const entry of fs.readdirSync(dir, { withFileTypes: true }).sort((a, b) => a.name < b.name ? -1 : a.name > b.name ? 1 : 0)) {
     const fullPath = path.join(dir, entry.name);
+    if (entry.isSymbolicLink()) throw new Error(`Refusing symbolic link in source tree: ${fullPath}`);
     if (entry.isDirectory()) {
       walk(fullPath, matcher, results);
       continue;
@@ -240,8 +393,12 @@ function loadAgents() {
   );
 
   const agents = metadataPaths.map((metadataPath) => {
-    const raw = fs.readFileSync(metadataPath, "utf8");
-    const metadata = JSON.parse(raw);
+    const metadata = JSON.parse(readSource(metadataPath, true).bytes.toString("utf8"));
+    if (!metadata || !validId(metadata.id) || !validId(metadata.provider) ||
+        !metadata.harness_variants || typeof metadata.harness_variants !== "object" || Array.isArray(metadata.harness_variants) ||
+        (metadata.companion_skills !== undefined && (!Array.isArray(metadata.companion_skills) || metadata.companion_skills.some((id) => !validId(id))))) {
+      throw new Error(`Malformed agent metadata: ${metadataPath}`);
+    }
     return {
       id: metadata.id,
       name: metadata.name,
@@ -254,6 +411,7 @@ function loadAgents() {
   });
 
   const byId = new Map(agents.map((agent) => [agent.id, agent]));
+  if (byId.size !== agents.length) throw new Error("Duplicate agent id in metadata.");
   return { agents, byId };
 }
 
@@ -273,16 +431,8 @@ function ensurePlatform(platform) {
 }
 
 function assertWithin(parent, child, label) {
-  // Lexical containment check — path.resolve() is purely string-based and does
-  // NOT follow symlinks. This guards against traversal strings (../../) and
-  // metadata.json with absolute paths outside the repo.
-  //
-  // Residual TOCTOU: if an adversary races to create a symlink at `child`
-  // AFTER this check but BEFORE the actual write, the symlink target would be
-  // written to. copyFile()/copySkillTree() use lstatSync on source AND
-  // destination to detect pre-existing symlinks, which closes the window for
-  // the common case. A fully TOCTOU-proof solution requires O_NOFOLLOW at the
-  // kernel level, which is not exposed by Node.js fs APIs.
+  // Lexical containment complements checkPath's ancestor inspection; neither
+  // promises atomicity against concurrent malicious same-user modifications.
   const resolvedParent = path.resolve(parent);
   const resolvedChild = path.resolve(child);
   const sep = path.sep;
@@ -297,61 +447,32 @@ function assertWithin(parent, child, label) {
 
 function loadSkills() {
   const skillsRoot = path.join(repoRoot, "skills");
-  if (!fs.existsSync(skillsRoot)) return new Map();
+  const rootState = checkPath(skillsRoot, "directory", "read skill directory");
+  if (!rootState.exists) return new Map();
   const byName = new Map();
   for (const provider of fs.readdirSync(skillsRoot, { withFileTypes: true })) {
+    if (provider.isSymbolicLink()) throw new Error(`Refusing symbolic link in skill source: ${provider.name}`);
     if (!provider.isDirectory()) continue;
     const providerDir = path.join(skillsRoot, provider.name);
     for (const skill of fs.readdirSync(providerDir, { withFileTypes: true })) {
+      if (skill.isSymbolicLink()) throw new Error(`Refusing symbolic link in skill source: ${skill.name}`);
       if (!skill.isDirectory()) continue;
       const skillDir = path.join(providerDir, skill.name);
+      const skillFile = path.join(skillDir, "SKILL.md");
+      if (!checkPath(skillFile, "file", "read skill source").exists) continue;
+      if (!validId(skill.name)) throw new Error(`Malformed skill directory name: ${skill.name}`);
       const metaFile = path.join(skillDir, "metadata.json");
-      if (fs.existsSync(path.join(skillDir, "SKILL.md"))) {
-        let skillProvider = provider.name;
-        if (fs.existsSync(metaFile)) {
-          try {
-            const meta = JSON.parse(fs.readFileSync(metaFile, "utf8"));
-            if (meta.provider) {
-              skillProvider = meta.provider;
-            }
-          } catch (err) {
-            // Fall back to directory name if metadata.json is invalid.
-          }
-        }
-        byName.set(skill.name, { dir: skillDir, provider: skillProvider });
+      let skillProvider = provider.name;
+      if (checkPath(metaFile, "file", "read skill metadata").exists) {
+        const meta = JSON.parse(readSource(metaFile, true).bytes.toString("utf8"));
+        if (!meta || typeof meta !== "object" || Array.isArray(meta) || (meta.provider !== undefined && !validId(meta.provider))) throw new Error(`Malformed skill metadata: ${metaFile}`);
+        skillProvider = meta.provider || provider.name;
       }
+      if (byName.has(skill.name)) throw new Error(`Duplicate skill name: ${skill.name}`);
+      byName.set(skill.name, { dir: skillDir, provider: skillProvider });
     }
   }
   return byName;
-}
-
-function copySkillTree(sourceDir, destDir, force) {
-  assertWithin(repoRoot, sourceDir, "read skill source");
-  for (const entry of fs.readdirSync(sourceDir, { withFileTypes: true })) {
-    const src = path.join(sourceDir, entry.name);
-    const dst = path.join(destDir, entry.name);
-    if (entry.isSymbolicLink()) {
-      throw new Error(`Refusing to copy symbolic link in skill tree: ${src}`);
-    }
-    let dstLstat = null;
-    try { dstLstat = fs.lstatSync(dst); } catch { /* dst does not exist – fine */ }
-    if (dstLstat && dstLstat.isSymbolicLink()) {
-      throw new Error(
-        `Refusing to write to symbolic link destination in skill tree: ${dst}. ` +
-        `Remove the symlink and retry.`
-      );
-    }
-    if (entry.isDirectory()) {
-      copySkillTree(src, dst, force);
-      continue;
-    }
-    if (!entry.isFile()) continue;
-    if (!force && fs.existsSync(dst)) {
-      throw new Error(`Refusing to overwrite existing file without --force: ${dst}`);
-    }
-    fs.mkdirSync(path.dirname(dst), { recursive: true });
-    fs.copyFileSync(src, dst);
-  }
 }
 
 function resolveCompanionSkills(selectedAgents, skillsByName, role, includeAll, selectedProvider) {
@@ -404,51 +525,14 @@ function resolveCompanionSkills(selectedAgents, skillsByName, role, includeAll, 
   return { skillNames: [...skillNames].sort(), orphans };
 }
 
-function copyFile(source, destination, force) {
-  const sourceStat = fs.lstatSync(source);
-  if (sourceStat.isSymbolicLink()) {
-    throw new Error(`Refusing to copy symbolic link as harness source: ${source}`);
-  }
-  if (fs.existsSync(destination)) {
-    // Reject symlink destinations regardless of --force. A symlink at the
-    // destination would redirect the write outside the repo tree, bypassing
-    // assertWithin(). lstatSync does not follow the symlink — exactly what we
-    // want here to detect the link itself.
-    const destStat = fs.lstatSync(destination);
-    if (destStat.isSymbolicLink()) {
-      throw new Error(
-        `Refusing to write to symbolic link destination: ${destination}. ` +
-        `Remove the symlink and retry.`
-      );
-    }
-    if (!force) {
-      throw new Error(`Refusing to overwrite existing file without --force: ${destination}`);
-    }
-  }
-  fs.mkdirSync(path.dirname(destination), { recursive: true });
-  fs.copyFileSync(source, destination);
-}
-
-function rewriteCodexAgentSkillPaths(agentFile, targetRoot) {
-  const text = fs.readFileSync(agentFile, "utf8");
-  const rewritten = text.replace(
-    /^path = "skills\/[^"\n]+\/([^/"\n]+)\/SKILL\.md"$/gm,
-    (_match, skillName) => {
-      const skillDir = path.join(targetRoot, SKILLS_PLATFORM_CONFIG.codex, skillName);
-      return `path = ${JSON.stringify(skillDir)}`;
-    }
-  );
-  if (rewritten !== text) {
-    fs.writeFileSync(agentFile, rewritten);
-  }
-}
-
 function loadRoles() {
   const rolesPath = path.join(repoRoot, "catalog", "install-roles.json");
-  if (!fs.existsSync(rolesPath)) {
+  if (!checkPath(rolesPath, "file", "read roles metadata").exists) {
     throw new Error("catalog/install-roles.json not found. Ensure the package is correctly installed.");
   }
-  return JSON.parse(fs.readFileSync(rolesPath, "utf8"));
+  const data = JSON.parse(readSource(rolesPath, true).bytes.toString("utf8"));
+  if (!data || !data.roles || typeof data.roles !== "object" || Array.isArray(data.roles)) throw new Error("Malformed install roles metadata.");
+  return data;
 }
 
 function listAgents(agents) {
@@ -485,7 +569,7 @@ function buildDestinations(agent, platform) {
     if (!relativeSource) {
       throw new Error(`Agent ${agent.id} does not have a ${variantKey} harness variant.`);
     }
-    if (typeof relativeSource !== "string" || /[\\/]\.\.[\\/]|^\.\.[\\/]|[\\/]\.\.$|^\.\.$/.test(relativeSource) || path.isAbsolute(relativeSource)) {
+    if (typeof relativeSource !== "string" || /[\\/]\.\.[\\/]|^\.\.[\\/]|[\\/]\.\.$|^\.\.$/.test(relativeSource) || path.isAbsolute(relativeSource) || path.win32.isAbsolute(relativeSource)) {
       throw new Error(
         `Agent ${agent.id} ${variantKey} harness path '${relativeSource}' is invalid: ` +
         `must be a relative path within the repository, no '..' traversal, no absolute paths.`
@@ -509,38 +593,8 @@ function buildDestinations(agent, platform) {
   return destinations;
 }
 
-function main() {
-  const args = parseArgs(process.argv.slice(2));
-
-  const cwd = process.cwd();
-  const cwdWithSep = cwd.endsWith(path.sep) ? cwd : cwd + path.sep;
-  if (args.repo !== cwd && !args.repo.startsWith(cwdWithSep)) {
-    process.stderr.write(
-      `[vfa] Warning: --repo '${args.repo}' is outside the current working directory.\n` +
-      `[vfa] Verify this is the intended target before continuing.\n`
-    );
-  }
-
-  const { agents, byId } = loadAgents();
-
-  if (args.list) {
-    listAgents(agents);
-    return;
-  }
-
-  if (args.listRoles) {
-    const rolesData = loadRoles();
-    listRoles(rolesData);
-    return;
-  }
-
-  if (args.listProviders) {
-    listProviders(agents);
-    return;
-  }
-
-  const platform = ensurePlatform(args.platform);
-
+function planExport(args, agents, byId, platform) {
+  const notices = [];
   // Validate --provider early so the standalone path and the role-filter path
   // share the same error surface.
   if (args.provider && !/^[a-z0-9][a-z0-9-]*$/.test(args.provider)) {
@@ -564,6 +618,13 @@ function main() {
     if (!role) {
       const validRoles = Object.keys(rolesData.roles).join(", ");
       throw new Error(`Unknown role: ${args.role}. Valid roles: ${validRoles}`);
+    }
+    if (!Array.isArray(role.agents) || role.agents.some((id) => !validId(id)) || new Set(role.agents).size !== role.agents.length ||
+        (role.skills !== undefined && (!Array.isArray(role.skills) || role.skills.some((id) => !validId(id))))) {
+      throw new Error(`Malformed role metadata: ${args.role}`);
+    }
+    for (const id of role.agents) {
+      if (!byId.has(id)) throw new Error(`Role '${args.role}' references unknown agent id: ${id}. Run npm run validate to check catalog integrity.`);
     }
     let roleAgentIds = role.agents;
     if (args.provider) {
@@ -601,7 +662,7 @@ function main() {
     selectedAgents = agents.filter(supports);
     const skipped = agents.length - selectedAgents.length;
     if (skipped > 0) {
-      process.stderr.write(
+      notices.push(
         `[vfa] --all on platform '${platform}': skipped ${skipped} agent(s) ` +
         `without ${requiredVariants.join("+")} harness variant(s).\n`
       );
@@ -620,104 +681,188 @@ function main() {
     throw new Error("No agents selected. Use --agents, --role, --provider, or --all.");
   }
 
-  if (args.dryRun) {
-    for (const agent of selectedAgents) {
-      console.log(`export agent: ${agent.id} [provider=${agent.provider}]`);
+  const rootState = checkPath(args.repo, "directory", "use destination root");
+  const targetRoot = path.join(fs.realpathSync(rootState.anchor.path), ...rootState.missing);
+  const skillsDestRoot = SKILLS_PLATFORM_CONFIG[platform];
+  let skillsByName = new Map();
+  let skillNames = [];
+  let orphans = [];
+  if (!args.noSkills && skillsDestRoot) {
+    skillsByName = loadSkills();
+    ({ skillNames, orphans } = resolveCompanionSkills(
+      selectedAgents, skillsByName, selectedRole, args.all && !args.provider, args.provider ?? null
+    ));
+  }
+
+  const files = [];
+  const groups = [];
+  const conflicts = [];
+  const destinations = new Set();
+  let renderedBytes = 0;
+  function addArtifact(source, destRelative, kind, id, variant, group) {
+    const dest = path.join(targetRoot, destRelative);
+    assertWithin(targetRoot, dest, "write destination");
+    const collisionKey = process.platform === "win32" ? dest.toLowerCase() : dest;
+    if (destinations.has(collisionKey)) throw new Error(`Destination collision: ${dest}`);
+    destinations.add(collisionKey);
+    if (files.length >= MAX_FILES) throw new Error(`PLAN_LIMIT: export exceeds ${MAX_FILES} files.`);
+    const rendered = renderArtifact(source, platform, kind, targetRoot);
+    renderedBytes += rendered.content.length;
+    if (renderedBytes > MAX_RENDER_BYTES) throw new Error("PLAN_LIMIT: rendered artifacts exceed 256 MiB.");
+    const destination = { path: dest, relative: relativePath(targetRoot, dest), ...destinationState(dest, kind === "skill") };
+    const action = destination.exists ? (args.force ? "overwrite" : "conflict") : "create";
+    if (action === "conflict") conflicts.push({
+      code: "EXISTS_WITHOUT_FORCE", path: destination.relative,
+      message: `Refusing to overwrite existing file without --force: ${dest}`,
+    });
+    const file = {
+      kind, id, variant, source: rendered.source, destination, action,
+      transformation: rendered.transformation, final: rendered.final,
+    };
+    files.push(file);
+    group.artifacts.push({ file, content: rendered.content });
+  }
+  for (const agent of selectedAgents) {
+    for (const operation of buildDestinations(agent, platform)) {
+      const group = { kind: "agent", artifacts: [], message: `installed\t${agent.id}\t${operation.variantKey}\t${operation.destRelative}` };
+      addArtifact(operation.source, operation.destRelative, "agent", agent.id, operation.variantKey, group);
+      groups.push(group);
     }
-    const skillsDestRoot = SKILLS_PLATFORM_CONFIG[platform];
-    let dryRunSkillCount = 0;
-    if (!args.noSkills && skillsDestRoot) {
-      const skillsByName = loadSkills();
-      const includeAllSkills = args.all && !args.provider;
-      const { skillNames } = resolveCompanionSkills(
-        selectedAgents,
-        skillsByName,
-        selectedRole,
-        includeAllSkills,
-        args.provider ?? null
-      );
-      for (const skillName of skillNames) {
-        console.log(`export skill: ${skillName}`);
-        dryRunSkillCount += 1;
+  }
+  for (const skillName of skillNames) {
+    const sourceDir = skillsByName.get(skillName).dir;
+    const destRelative = path.join(skillsDestRoot, skillName);
+    const group = { kind: "skill", artifacts: [], message: `installed\tskill:${skillName}\t${platform}\t${destRelative}` };
+    function visit(dir) {
+      checkPath(dir, "directory", "read skill source");
+      for (const entry of fs.readdirSync(dir, { withFileTypes: true }).sort((a, b) => a.name < b.name ? -1 : a.name > b.name ? 1 : 0)) {
+        const source = path.join(dir, entry.name);
+        if (entry.isSymbolicLink()) throw new Error(`Refusing to copy symbolic link in skill tree: ${source}`);
+        if (entry.isDirectory()) visit(source);
+        else if (entry.isFile()) addArtifact(source, path.join(destRelative, path.relative(sourceDir, source)), "skill", skillName, platform, group);
+        else throw new Error(`Refusing non-regular file in skill tree: ${source}`);
       }
     }
+    visit(sourceDir);
+    groups.push(group);
+  }
+  const sourceIdentities = new Set(files.map((file) => `${file.source.identity.device}:${file.source.identity.inode}`));
+  const existingDestinations = new Set();
+  for (const file of files.filter((item) => item.destination.exists)) {
+    const key = `${file.destination.identity.device}:${file.destination.identity.inode}`;
+    if (sourceIdentities.has(key) || existingDestinations.has(key)) {
+      throw new Error(`Destination collision through an aliased file: ${file.destination.path}`);
+    }
+    existingDestinations.add(key);
+  }
+
+  const skillNoticesBefore = [];
+  const skillNoticesAfter = [];
+  if (args.noSkills) skillNoticesBefore.push(`[vfa] --no-skills: companion skills not bundled.\n`);
+  else if (!skillsDestRoot) skillNoticesBefore.push(SKIP_SKILLS_PLATFORM_NOTICES[platform] ??
+    `[vfa] Note: skills bundling is not yet supported on platform '${platform}'. Agents exported only. Pass --no-skills to silence.\n`);
+  else {
+    skillNoticesAfter.push(
+      `[vfa] Bundled ${skillNames.length} companion skill(s) alongside ${selectedAgents.length} agent(s)` +
+      (orphans.length ? ` (no-skill agents: ${orphans.length})` : "") + `. Use --no-skills to opt out.\n`
+    );
+    if (orphans.length && orphans.length <= 10) skillNoticesAfter.push(`[vfa] Agents without companion skill: ${orphans.join(", ")}\n`);
+  }
+
+  // Bind the actual package/catalog and metadata used by selection, not a Git
+  // branch label. Absent optional manifests are recorded rather than invented.
+  readSource(fileURLToPath(import.meta.url), true);
+  const catalogs = [];
+  for (const name of ["agents.json", "skills.json", "install-roles.json", "skill-manifest.json"]) {
+    const file = path.join(repoRoot, "catalog", name);
+    if (checkPath(file, "file", "read catalog").exists) {
+      const record = readSource(file, true).record;
+      catalogs.push({ ...record, exists: true });
+    } else catalogs.push({ path: `catalog/${name}`, exists: false });
+  }
+  const inputs = [...sourceInputs.values()].sort((a, b) => a.path < b.path ? -1 : a.path > b.path ? 1 : 0);
+  const selection = {
+    kind: args.role ? "role" : args.provider ? "provider" : args.all ? "all" : "agents",
+    role: args.role, provider: args.provider, all: args.all,
+    agents: selectedAgents.map((agent) => agent.id), skills: skillNames,
+  };
+  const options = { platform, force: args.force, noSkills: args.noSkills };
+  const source = { root: fs.realpathSync(repoRoot), catalogs, inputs, sha256: sha256(canonicalJson(inputs)) };
+  const plan = {
+    protocol: "vfa-export/1", type: "export-plan", canonicalization: "sorted-keys-json/v1",
+    source, selection, selection_sha256: sha256(canonicalJson(selection)),
+    options, options_sha256: sha256(canonicalJson(options)),
+    destination: { root: targetRoot, ...rootState },
+    files, conflicts, confirmable: conflicts.length === 0,
+  };
+  plan.digest = sha256(canonicalJson(plan));
+  return { plan, groups, selectedAgents, skillNames, notices, skillNoticesBefore, skillNoticesAfter };
+}
+
+function main() {
+  const args = parseArgs(process.argv.slice(2));
+
+  const cwd = process.cwd();
+  const cwdWithSep = cwd.endsWith(path.sep) ? cwd : cwd + path.sep;
+  if (args.repo !== cwd && !args.repo.startsWith(cwdWithSep)) {
     process.stderr.write(
-      `[vfa] --dry-run: ${selectedAgents.length} agent(s)` +
-      (dryRunSkillCount > 0 ? `, ${dryRunSkillCount} skill(s)` : "") +
+      `[vfa] Warning: --repo '${args.repo}' is outside the current working directory.\n` +
+      `[vfa] Verify this is the intended target before continuing.\n`
+    );
+  }
+
+  const { agents, byId } = loadAgents();
+
+  if (args.list) {
+    listAgents(agents);
+    return;
+  }
+
+  if (args.listRoles) {
+    const rolesData = loadRoles();
+    listRoles(rolesData);
+    return;
+  }
+
+  if (args.listProviders) {
+    listProviders(agents);
+    return;
+  }
+
+  const platform = ensurePlatform(args.platform);
+
+  const result = planExport(args, agents, byId, platform);
+  for (const notice of result.notices) process.stderr.write(notice);
+  if (args.planJson) {
+    const output = canonicalJson(result.plan);
+    if (Buffer.byteLength(output + "\n") > MAX_PLAN_BYTES) throw new Error("PLAN_LIMIT: export plan exceeds 8 MiB.");
+    process.stdout.write(output + "\n");
+    if (!result.plan.confirmable) {
+      process.stderr.write(result.plan.conflicts.map((conflict) => conflict.message).join("\n") + "\n");
+      process.exitCode = 1;
+    }
+    return;
+  }
+  if (args.dryRun) {
+    for (const agent of result.selectedAgents) console.log(`export agent: ${agent.id} [provider=${agent.provider}]`);
+    for (const skillName of result.skillNames) console.log(`export skill: ${skillName}`);
+    process.stderr.write(
+      `[vfa] --dry-run: ${result.selectedAgents.length} agent(s)` +
+      (result.skillNames.length > 0 ? `, ${result.skillNames.length} skill(s)` : "") +
       ` planned, no files written.\n`
     );
     return;
   }
-
-  const operations = [];
-  for (const agent of selectedAgents) {
-    for (const destination of buildDestinations(agent, platform)) {
-      operations.push({
-        ...destination,
-        dest: path.join(args.repo, destination.destRelative),
-        agentId: agent.id,
-      });
+  if (!result.plan.confirmable) throw new Error(result.plan.conflicts[0].message);
+  const lastAgentGroup = result.groups.findLast((group) => group.kind === "agent");
+  for (const group of result.groups) {
+    for (const artifact of group.artifacts) writeArtifact(artifact);
+    console.log(group.message);
+    if (group === lastAgentGroup) {
+      for (const notice of result.skillNoticesBefore) process.stderr.write(notice);
     }
   }
-
-  for (const operation of operations) {
-    assertWithin(args.repo, operation.dest, "write destination");
-    copyFile(operation.source, operation.dest, args.force);
-    if (platform === "codex") {
-      rewriteCodexAgentSkillPaths(operation.dest, args.repo);
-    }
-    console.log(
-      `installed\t${operation.agentId}\t${operation.variantKey}\t${path.relative(args.repo, operation.dest)}`
-    );
-  }
-
-  const skillsDestRoot = SKILLS_PLATFORM_CONFIG[platform];
-  if (args.noSkills) {
-    process.stderr.write(`[vfa] --no-skills: companion skills not bundled.\n`);
-  } else if (!skillsDestRoot) {
-    const specificNotice = SKIP_SKILLS_PLATFORM_NOTICES[platform];
-    if (specificNotice) {
-      process.stderr.write(specificNotice);
-    } else {
-      process.stderr.write(
-        `[vfa] Note: skills bundling is not yet supported on platform '${platform}'. ` +
-        `Agents exported only. Pass --no-skills to silence.\n`
-      );
-    }
-  } else {
-    const skillsByName = loadSkills();
-    // includeAll bundles every skill in the catalog. When --provider is set,
-    // selectedAgents is already scoped to that provider — bundling every
-    // skill would mix in hundreds of unrelated provider skills, violating
-    // the documented "provider install" contract. Scope skills to the
-    // selected agents' companion_skills in that case.
-    const includeAllSkills = args.all && !args.provider;
-    const { skillNames, orphans } = resolveCompanionSkills(
-      selectedAgents,
-      skillsByName,
-      selectedRole,
-      includeAllSkills,
-      args.provider ?? null
-    );
-    let bundled = 0;
-    for (const skillName of skillNames) {
-      const sourceDir = skillsByName.get(skillName)?.dir;
-      if (!sourceDir) continue;
-      const destDir = path.join(args.repo, skillsDestRoot, skillName);
-      assertWithin(args.repo, destDir, "write skill destination");
-      copySkillTree(sourceDir, destDir, args.force);
-      console.log(`installed\tskill:${skillName}\t${platform}\t${path.relative(args.repo, destDir)}`);
-      bundled += 1;
-    }
-    process.stderr.write(
-      `[vfa] Bundled ${bundled} companion skill(s) alongside ${selectedAgents.length} agent(s)` +
-      (orphans.length ? ` (no-skill agents: ${orphans.length})` : "") +
-      `. Use --no-skills to opt out.\n`
-    );
-    if (orphans.length && orphans.length <= 10) {
-      process.stderr.write(`[vfa] Agents without companion skill: ${orphans.join(", ")}\n`);
-    }
-  }
+  for (const notice of result.skillNoticesAfter) process.stderr.write(notice);
 }
 
 try {
