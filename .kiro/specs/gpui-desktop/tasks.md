@@ -1,8 +1,10 @@
 # Implementation Plan: GPUI Desktop
 
-Status: TASK 1.4 BLOCKED ON HOST PREREQUISITES; NATIVE BUILD/EXECUTION UNVERIFIED.
-Tasks 1.1-1.3 are complete within their scoped checks; known full-suite baseline
-gates remain non-green. No later task is authorized. Impeccable visual and
+Status: TASK 4.1 COMPLETE IN SCOPED CHECKS; TASKS 5.1 AND THEN 4.2 AUTHORIZED.
+Tasks 1.1-1.3 and 4.1 are complete within their scoped checks; known full-suite
+baseline gates remain non-green. Task 1.4 stays unchecked: native verification
+is pending at the user's request. The current ready wave permits 4.1/5.1, then
+4.2 after 4.1; separate no-reply local commits, no push. Impeccable visual and
 portable-path constraints remain unchanged.
 Architecture and scope come from these frozen approved inputs:
 
@@ -199,7 +201,7 @@ Architecture and scope come from these frozen approved inputs:
 
 - [ ] 4. Profile, evidence and execution safety
 
-- [ ] 4.1 Implement private profile paths and exclusive ownership
+- [x] 4.1 Implement private profile paths and exclusive ownership
   - Depends: 1.2
   - Paths: tools/vfa-tui/src/engine/profile.rs; tools/vfa-tui/tests/profile_ownership.rs
   - Design: D8, D11
@@ -209,6 +211,8 @@ Architecture and scope come from these frozen approved inputs:
   - Positive: OS-appropriate private roots or explicit overrides use native identity and an OS owner lock held for the session; test two native processes.
   - Negative: A second instance cannot recover live jobs or write the owned profile; no temporary fallback, PID-file inference or active-lock unlink.
   - Estimate: 2-4 hours; timebox, not a completion guarantee.
+  - Evidence: evals/task-4.1.md; real Linux process exclusion, normal release and crash recovery pass; other native hosts remain unverified. Existing 17/11 full-suite failures are unchanged.
+
 
 - [ ] 4.2 Implement the isolated journal and real commit receipts
   - Depends: 4.1

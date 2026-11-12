@@ -1,5 +1,22 @@
 # GPUI Desktop progress report
 
+## Current ready-wave status
+
+Task 4.1 is complete in scoped Linux checks; task 5.1 validation and then 4.2
+implementation are authorized. See the lazy-loaded task evals for current
+commands/evidence; the older phase reports below are historical. Full Rust
+regression gates remain non-green with unchanged 17/11 baseline failures.
+Task 1.4 remains unchecked and native verification pending, as requested.
+
+The user authorized frequent separate local commits using Raishin and GitHub
+no-reply author/committer identity; no push. A clearly labelled task 1.4 WIP
+checkpoint was saved first without claiming native acceptance. Task 4.1 changed
+only profile ownership, required engine/consumer dependency wiring and evidence.
+Two disjoint builtin workers plus bounded configured Rust/TypeScript reviews
+(Sol/high) are the smallest useful parallel route; actual worker model/effort
+are inherited and unobservable. Parent owns final checks, integration and Git.
+
+
 ## Current task 1.4 implementation
 
 Status: BLOCKED ON HOST PREREQUISITES; NATIVE BUILD/UI/EXECUTION INCOMPLETE.

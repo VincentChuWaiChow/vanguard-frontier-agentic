@@ -208,3 +208,22 @@ sudo policy refused the attempted installation. No packages were installed.
 Host-side installation was requested; source/graph checks continue meanwhile.
 Do not mark the task done or native/UI/compile checks PASS without actual results.
 No task 1.5, root workspace/TUI changes, commit, push, publication or CI dispatch.
+
+## Ready-wave authorization: 4.1, 5.1, then 4.2
+
+The user requested remaining unblocked tasks, then authorized implementation and
+frequent per-task commits. The bounded wave is independent profile ownership
+(4.1) and export planning (5.1), then the journal (4.2) after 4.1 passes. Contracts
+are created lazily before each task. Two disjoint builtin workers own source/test
+subtrees; parent owns shared wiring, serialized integration and Git. Configured
+Rust and TypeScript reviewers (Sol/high) provide one bounded review per task,
+followed by one parent repair pass. Inherited worker serving identity is unknown.
+
+Task 1.4 remains unchecked, with no native-prerequisite retry; the user requested
+leaving native verification pending. Its existing WIP was saved as checkpoint
+`4b8111110a3bffd12e283577e753a6039b2ba93a`, not a completion claim. Task 4.1
+passes scoped Linux process/profile tests, both feature-mode contracts, strict
+clippy, packaging and isolated repository validation. Its full failure sets are
+identical to the established 17/11 baseline; other native hosts remain unverified.
+Task-specific evidence is in `evals/task-4.1.md`. Separate local no-reply commits
+are authorized, not push, publication, native setup or the rest of the backlog.

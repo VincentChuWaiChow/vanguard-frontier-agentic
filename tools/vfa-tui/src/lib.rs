@@ -10,6 +10,7 @@ pub mod app;
 pub mod catalog;
 #[cfg(feature = "terminal")]
 pub mod cli;
+pub mod engine;
 pub mod error;
 pub mod federation;
 pub mod gates;

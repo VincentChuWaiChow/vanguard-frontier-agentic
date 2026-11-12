@@ -163,3 +163,4 @@ a whole. Create later task contracts when their work is authorized.
 - [Task 1.2: default-terminal feature boundary](evals/task-1.2.md)
 - [Task 1.3: pure report service and legacy adapter](evals/task-1.3.md)
 - [Task 1.4: pinned GPUI bootstrap and native test entry points](evals/task-1.4.md)
+- [Task 4.1: private profile paths and exclusive ownership](evals/task-4.1.md)

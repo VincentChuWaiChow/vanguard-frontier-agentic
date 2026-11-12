@@ -3,13 +3,13 @@
   "branch": "feature/gpui-desktop-alpha",
   "baseline": "6dda992a3dedd845731d795aaaed20d49346f57c",
   "spec_directory": ".kiro/specs/gpui-desktop",
-  "phase": "implementation_task_1_4",
-  "status": "task_1_4_blocked_missing_host_prerequisites_sudo_refused",
+  "phase": "implementation_ready_wave_4_1_5_1_then_4_2",
+  "status": "task_4_1_complete_task_5_1_in_validation_task_1_4_pending",
   "requirements_approval": "approved",
   "revision_basis": "User requested revision before design, then explicitly requested Context7 MCP; no functional scope changes specified",
   "design": "ready_for_user_review",
   "task_breakdown": "revised_ready_for_user_review",
-  "implementation": "task_1_4_sources_and_graph_checks_present_compile_ui_native_incomplete",
+  "implementation": "task_4_1_scoped_complete_export_planner_in_progress_journal_next",
   "native_platform_verification": "not_run",
   "checks": {
     "requirements_structure_and_negative_mutants": "PASS",
@@ -35,7 +35,7 @@
     "task_drafting_runs": 3,
     "task_revision_review_runs": 1
   },
-  "next_action": "Host installs approved build prerequisites, then user resumes task1.4. Verify real compilation/UI/native behavior before checking task complete. No Git delivery or later task authorized.",
+  "next_action": "Commit task4.1 locally; finish task5.1 and implement task4.2 after the task4.1 gate. No push. Task1.4 remains pending with its existing blocked goal unchanged.",
   "validation_snapshot": {
     "command": "npm run validate",
     "wrapper": "rtk proxy bash",
@@ -152,8 +152,18 @@
     "specific_changes": "Expose the existing unchecked checklist near the top; add Impeccable native visual audit and scoped refinement tasks; discover skill, checkout, manifest and evidence locations rather than embed machine-specific paths"
   },
   "delivery_authorization": {
-    "status": "not_authorized_for_task_1_4",
-    "meaning": "Prior commit/push requests applied only to earlier verified checkpoints"
+    "status": "local_per_task_commits_authorized_no_push",
+    "user_request": "go ahead and git commit frequently per task",
+    "identity": {
+      "name": "Raishin",
+      "email": "15792229+Raishin@users.noreply.github.com"
+    },
+    "scope": [
+      "pending-native task1.4 checkpoint",
+      "verified task4.1",
+      "verified task5.1",
+      "task4.2 after task4.1 passes"
+    ]
   },
   "task_revision_checks": {
     "red_baseline": "PASS_new_checker_rejected_old_plan_missing_portable_visual_workflow",
@@ -492,6 +502,25 @@
         "tools/vfa-desktop/tests/native_smoke.rs": "95a368150aa899c5c53a5c57a1ab3bce70ed7154e21f9d615a920cf2dad800f1",
         "tools/vfa-desktop/tests/ui.rs": "0b5d6b63ba116fd39e3d97860a05926c8768799ac7c2c3962562e372de1cf33d"
       }
+    },
+    "4.1": {
+      "status": "complete_scoped_Linux_checks",
+      "eval": "evals/task-4.1.md",
+      "checks": {
+        "profile": "PASS_8_each_feature_mode",
+        "core_report": "PASS_5_core_11_default_10_no_default_reports",
+        "fmt_clippy_boundaries_package": "PASS",
+        "repository_validation": "PASS_controlled_task_only_snapshot_exit_0",
+        "baseline": "MISS_unchanged_17_default_11_no_default_library_failures",
+        "other_native_and_MSRV": "UNVERIFIED"
+      },
+      "review": "Configured rust_reviewer Sol/high read-only; parent repaired Windows second-handle test assumption and bounded child waits",
+      "worker": "builtin worker inherited serving model and effort unobservable",
+      "logs": [
+        "/tmp/vfa-task-4-1-validation-snapshot.json",
+        "/tmp/vfa-task-4-1-baseline-comparison.json",
+        "/tmp/vfa-task-4-1-package-evidence.json"
+      ]
     }
   },
   "delivery_history": {
@@ -542,5 +571,17 @@
       "verification": "bedd0bb5d024f626255164d543a6977bab622302; preceding delivery turn verified both no-reply identities, remote SHA, clean worktree and unchanged develop.",
       "status": "historical_complete"
     }
+  },
+  "ready_wave": {
+    "user_request": "go ahead and git commit frequently per task",
+    "tasks": [
+      "4.1",
+      "5.1",
+      "4.2 after 4.1 passes"
+    ],
+    "push": false,
+    "task_1_4": "pending_user_requested_no_package_retry",
+    "checkpoint": "4b8111110a3bffd12e283577e753a6039b2ba93a",
+    "checkpoint_meaning": "WIP saved; not task1.4 completion"
   }
 }
