@@ -27408,7 +27408,7 @@
     },
     {
       "tree": "scripts",
-      "aggregate_sha256": "30f1633bfcbd41f1be8ed9fd7a52bd7bdb40c0d0d877d660d5e4dfc74d66b708",
+      "aggregate_sha256": "0e0b6c6b286d813382e12e8113c68f61beb1cb2cae67ae8554f67d3e0396873d",
       "files": [
         {
           "path": "scripts/apply-skill-allowed-tools.py",
@@ -27422,8 +27422,8 @@
         },
         {
           "path": "scripts/export-marketplace-agents.mjs",
-          "sha256": "6c4675491059e5f30ae30e756b685acda34c266e717c7fbfd8ca92af81aa4f33",
-          "bytes": 39121
+          "sha256": "9dcdc12a41e080e2c2422b747f5bf24ce60ddbbf42b0219698943a462630adbf",
+          "bytes": 57055
         },
         {
           "path": "scripts/gen_azure_live_guards.py",
@@ -27920,7 +27920,7 @@
     },
     {
       "tree": "tests",
-      "aggregate_sha256": "8381c6edccdc2193b26add61c44f3e8e77a69f30eaaa0fe76974d2d405e7d3a2",
+      "aggregate_sha256": "c255f1fb8bae40b0b51659dec0067916b690b1902f1203265acf52151fc7d055",
       "files": [
         {
           "path": "tests/AGENTS.md",
@@ -27936,6 +27936,11 @@
           "path": "tests/eval-qa-cluster.mjs",
           "sha256": "4d079ff0f707be64b46ec411f4fbbc941e7e5a1d09f654e47e5b6ef168cb7abc",
           "bytes": 4051
+        },
+        {
+          "path": "tests/export-apply.test.mjs",
+          "sha256": "0c438482dd5dd7ec7585a967edd1259c423e15421c2e580464f2f0cee984f320",
+          "bytes": 24126
         },
         {
           "path": "tests/export-cursor-kiro-skill-notice.test.mjs",
@@ -34638,8 +34643,8 @@
     },
     {
       "path": "package.json",
-      "sha256": "e766f042075162f9d825830ddbad5b91f9973c0bc8ca24ac2f179140a5bda9f9",
-      "bytes": 5934
+      "sha256": "76e001a6e0e9f047047d3c0df55bdd37d98b04e86c3e6614b4fb81a722c90385",
+      "bytes": 6074
     },
     {
       "path": ".releaserc.js",
@@ -34647,5 +34652,5 @@
       "bytes": 4578
     }
   ],
-  "aggregate_sha256": "0d9cf5853265f0696ca8e1b810bb4a8efaa7b8de98bdb853f75a8cb2d8b477c2"
+  "aggregate_sha256": "85159077d651193876d6a2778b2d2320820f127bf74b33a79bb640d970ef8b77"
 }

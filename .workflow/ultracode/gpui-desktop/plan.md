@@ -320,3 +320,12 @@ Rust source review found no production blocker; parent allocated helper artifact
 under ignored target storage and confirmed old capture-body bytes unchanged.
 Commit this engine slice separately; the Node apply candidate and its covered
 metadata remain outside that commit while final repository validation runs.
+
+Task5.2 Node preparation verified: strict complete-plan comparison, stable parent
+identities/exclusive owned directory creation, ordered bounded records and real
+pipe/partial-effect failures. Independent review's two blockers were reproduced
+RED; one two-line production repair and two regression cases now pass, including
+actual64MiB rendering above the source limit. New29-case exporter gate runs in
+full root validation (exit0); combined planner/apply/notices run passes30. Existing
+full Rust17/11 failures stay non-green. Commit this producer and covered generated
+metadata separately, then stop; no native, consumer/journal completion or push.

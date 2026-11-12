@@ -9,6 +9,8 @@ import { createHash } from "node:crypto";
 
 const repoRoot = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "..");
 const MAX_PLAN_BYTES = 8 * 1024 * 1024;
+const MAX_RECORD_BYTES = 64 * 1024;
+const MAX_PROTOCOL_BYTES = 8 * 1024 * 1024;
 const MAX_FILE_BYTES = 64 * 1024 * 1024;
 const MAX_RENDER_BYTES = 256 * 1024 * 1024;
 const MAX_FILES = 10000;
@@ -114,7 +116,7 @@ function renderArtifact(source, platform, kind, targetRoot) {
   };
 }
 
-function writeArtifact(artifact) {
+function writeArtifact(artifact, prepareParents = null) {
   const file = artifact.file;
   const source = path.join(repoRoot, file.source.path);
   const currentSource = readSource(source).record;
@@ -125,7 +127,8 @@ function writeArtifact(artifact) {
   if (canonicalJson(currentDestination) !== canonicalJson({ exists: expected.exists, identity: expected.identity, sha256: expected.sha256 })) {
     throw new Error(`Destination changed before write: ${destination}`);
   }
-  fs.mkdirSync(path.dirname(destination), { recursive: true });
+  if (prepareParents) prepareParents(destination);
+  else fs.mkdirSync(path.dirname(destination), { recursive: true });
   checkPath(destination, "file", "write destination");
   const flags = fs.constants.O_WRONLY | fs.constants.O_CREAT |
     (file.action === "create" ? fs.constants.O_EXCL : fs.constants.O_TRUNC) |
@@ -233,6 +236,7 @@ Usage:
   vfa-export-agents --platform <platform> --role <role-id> [--provider <provider>] [--repo <path>] [--force]
   vfa-export-agents --platform <platform> --provider <provider> [--repo <path>] [--force]
   vfa-export-agents --platform <platform> --all [--repo <path>] [--force]
+  vfa-export-agents --apply-plan <file>
   vfa-export-agents --list
   vfa-export-agents --list-roles
   vfa-export-agents --list-providers
@@ -288,6 +292,15 @@ Examples:
 }
 
 function parseArgs(argv) {
+  if (argv.some((arg) => arg === "--apply-plan" || arg.startsWith("--apply-plan="))) {
+    const inline = argv.length === 1 && argv[0].startsWith("--apply-plan=");
+    const separate = argv.length === 2 && argv[0] === "--apply-plan";
+    const file = inline ? argv[0].slice("--apply-plan=".length) : separate ? argv[1] : "";
+    if (!file || file.startsWith("--") || !(inline || separate)) {
+      throw applyError("PLAN_INVALID", "--apply-plan must be the sole option with one file value.");
+    }
+    return { applyPlan: path.resolve(file) };
+  }
   // Use Node.js built-in util.parseArgs (stable since v18.3, available in v22):
   // - handles --key=value inline form natively
   // - returns null-prototype values object (prototype pollution safe)
@@ -709,7 +722,7 @@ function planExport(args, agents, byId, platform) {
     const rendered = renderArtifact(source, platform, kind, targetRoot);
     renderedBytes += rendered.content.length;
     if (renderedBytes > MAX_RENDER_BYTES) throw new Error("PLAN_LIMIT: rendered artifacts exceed 256 MiB.");
-    const destination = { path: dest, relative: relativePath(targetRoot, dest), ...destinationState(dest, kind === "skill") };
+    const destination = { path: dest, relative: relativePath(targetRoot, dest), ...destinationState(dest, kind === "skill"), parent_chain: directoryBindings(dest) };
     const action = destination.exists ? (args.force ? "overwrite" : "conflict") : "create";
     if (action === "conflict") conflicts.push({
       code: "EXISTS_WITHOUT_FORCE", path: destination.relative,
@@ -792,15 +805,343 @@ function planExport(args, agents, byId, platform) {
     protocol: "vfa-export/1", type: "export-plan", canonicalization: "sorted-keys-json/v1",
     source, selection, selection_sha256: sha256(canonicalJson(selection)),
     options, options_sha256: sha256(canonicalJson(options)),
-    destination: { root: targetRoot, ...rootState },
+    destination: {
+      root: targetRoot, ...rootState,
+      identity: rootState.exists ? stableDirectoryIdentity(rootState.identity) : null,
+      anchor: { path: rootState.anchor.path, identity: stableDirectoryIdentity(rootState.anchor.identity) },
+    },
     files, conflicts, confirmable: conflicts.length === 0,
   };
   plan.digest = sha256(canonicalJson(plan));
   return { plan, groups, selectedAgents, skillNames, notices, skillNoticesBefore, skillNoticesAfter };
 }
 
-function main() {
+// Directory bindings deliberately exclude mutable times/size/link counts:
+// writing children (or unrelated sibling activity) must not invalidate them.
+function stableDirectoryIdentity(value) {
+  return { device: value.device, inode: value.inode, type: "directory", mode: value.mode };
+}
+
+function directoryIdentity(stat) {
+  if (!stat.isDirectory() || stat.isSymbolicLink()) throw applyError("PLAN_STALE", "A destination parent is not a regular directory.");
+  return stableDirectoryIdentity(identity(stat));
+}
+
+function parentPaths(file) {
+  const parent = path.dirname(path.resolve(file));
+  const root = path.parse(parent).root;
+  const paths = [root];
+  for (const part of parent.slice(root.length).split(path.sep).filter(Boolean)) paths.push(path.join(paths.at(-1), part));
+  return paths;
+}
+
+function directoryBindings(file) {
+  const bindings = [];
+  for (const directory of parentPaths(file)) {
+    let stat;
+    try { stat = fs.lstatSync(directory, { bigint: true }); }
+    catch (error) { if (error.code === "ENOENT") break; throw error; }
+    bindings.push({ path: directory, identity: directoryIdentity(stat) });
+  }
+  return bindings;
+}
+
+function applyDirectories(plan) {
+  const known = new Map();
+  for (const file of plan.files) {
+    for (const binding of file.destination.parent_chain) {
+      const previous = known.get(binding.path);
+      if (previous && canonicalJson(previous) !== canonicalJson(binding.identity)) throw applyError("PLAN_STALE", "Destination parent bindings disagree.");
+      known.set(binding.path, binding.identity);
+    }
+  }
+  return (destination) => {
+    // Earlier successful paths depend on their owned/bound parents too. Detect
+    // their replacement before recording any further effects.
+    for (const [directory, expected] of known) {
+      const current = directoryIdentity(fs.lstatSync(directory, { bigint: true }));
+      if (canonicalJson(current) !== canonicalJson(expected)) throw applyError("PLAN_STALE", "A bound destination parent changed before write.");
+    }
+    for (const directory of parentPaths(destination)) {
+      const expected = known.get(directory);
+      if (expected) {
+        const current = directoryIdentity(fs.lstatSync(directory, { bigint: true }));
+        if (canonicalJson(current) !== canonicalJson(expected)) throw applyError("PLAN_STALE", "A bound destination parent changed before write.");
+      } else {
+        // EEXIST is external/unexpected creation, never an identity to adopt.
+        // Only a successful exclusive component mkdir becomes apply-owned.
+        fs.mkdirSync(directory);
+        known.set(directory, directoryIdentity(fs.lstatSync(directory, { bigint: true })));
+      }
+    }
+  };
+}
+
+function applyError(code, message) {
+  const error = new Error(`[vfa] ${code}: ${message}`);
+  error.code = code;
+  return error;
+}
+
+function planCheck(condition, message = "Invalid export plan shape.") {
+  if (!condition) throw applyError("PLAN_INVALID", message);
+}
+
+function exactFields(value, fields) {
+  planCheck(value !== null && typeof value === "object" && !Array.isArray(value));
+  planCheck(canonicalJson(Object.keys(value).sort()) === canonicalJson([...fields].sort()));
+}
+
+function validateIdentity(value) {
+  exactFields(value, ["device", "inode", "size", "mode", "mtime_ns", "links"]);
+  for (const field of ["device", "inode", "size", "links"]) planCheck(typeof value[field] === "string" && /^\d+$/.test(value[field]));
+  planCheck(typeof value.mtime_ns === "string" && /^-?\d+$/.test(value.mtime_ns));
+  planCheck(Number.isSafeInteger(value.mode) && value.mode >= 0 && value.mode <= 0o7777);
+}
+
+function validateDirectoryIdentity(value) {
+  exactFields(value, ["device", "inode", "type", "mode"]);
+  planCheck(value.type === "directory" && typeof value.device === "string" && /^\d+$/.test(value.device) && typeof value.inode === "string" && /^\d+$/.test(value.inode));
+  planCheck(Number.isSafeInteger(value.mode) && value.mode >= 0 && value.mode <= 0o7777);
+}
+
+function validateSourceRecord(value) {
+  exactFields(value, ["path", "identity", "sha256"]);
+  planCheck(typeof value.path === "string" && value.path.length > 0 && !path.isAbsolute(value.path) && !path.win32.isAbsolute(value.path) && !value.path.split(/[\\/]/).includes(".."));
+  validateIdentity(value.identity);
+  planCheck(typeof value.sha256 === "string" && /^[a-f0-9]{64}$/.test(value.sha256));
+}
+
+function validateApprovedPlan(plan) {
+  exactFields(plan, ["protocol", "type", "canonicalization", "source", "selection", "selection_sha256", "options", "options_sha256", "destination", "files", "conflicts", "confirmable", "digest"]);
+  planCheck(plan.protocol === "vfa-export/1" && plan.type === "export-plan" && plan.canonicalization === "sorted-keys-json/v1");
+  planCheck(plan.confirmable === true && Array.isArray(plan.conflicts) && plan.conflicts.length === 0, "Plan is not confirmable.");
+  planCheck(typeof plan.digest === "string" && /^[a-f0-9]{64}$/.test(plan.digest));
+  const { digest, ...body } = plan;
+  planCheck(sha256(canonicalJson(body)) === digest, "Plan digest mismatch.");
+  exactFields(plan.options, ["platform", "force", "noSkills"]);
+  planCheck(typeof plan.options.platform === "string" && Object.hasOwn(PLATFORM_CONFIG, plan.options.platform) && typeof plan.options.force === "boolean" && typeof plan.options.noSkills === "boolean");
+  planCheck(sha256(canonicalJson(plan.options)) === plan.options_sha256);
+  const selection = plan.selection;
+  exactFields(selection, ["kind", "role", "provider", "all", "agents", "skills"]);
+  planCheck(["agents", "role", "provider", "all"].includes(selection.kind));
+  planCheck(selection.role === null || validId(selection.role));
+  planCheck(selection.provider === null || validId(selection.provider));
+  planCheck(typeof selection.all === "boolean");
+  for (const field of ["agents", "skills"]) {
+    planCheck(Array.isArray(selection[field]) && selection[field].length <= MAX_FILES && selection[field].every(validId));
+    planCheck(new Set(selection[field]).size === selection[field].length);
+  }
+  planCheck(selection.agents.length > 0);
+  planCheck(selection.kind === "role" ? selection.role !== null && !selection.all : selection.role === null);
+  planCheck(selection.kind === "provider" ? selection.provider !== null : selection.kind === "role" || selection.provider === null);
+  planCheck(selection.kind === "all" ? selection.all : selection.kind === "provider" || !selection.all);
+  planCheck(sha256(canonicalJson(selection)) === plan.selection_sha256);
+  exactFields(plan.source, ["root", "catalogs", "inputs", "sha256"]);
+  planCheck(plan.source.root === fs.realpathSync(repoRoot), "Plan belongs to another source package.");
+  planCheck(Array.isArray(plan.source.inputs) && plan.source.inputs.length <= MAX_FILES);
+  for (const input of plan.source.inputs) validateSourceRecord(input);
+  planCheck(sha256(canonicalJson(plan.source.inputs)) === plan.source.sha256);
+  planCheck(Array.isArray(plan.source.catalogs) && plan.source.catalogs.length === 4);
+  for (const catalog of plan.source.catalogs) {
+    planCheck(catalog && typeof catalog.exists === "boolean");
+    if (catalog.exists) {
+      const { exists: _exists, ...record } = catalog;
+      validateSourceRecord(record);
+    } else exactFields(catalog, ["path", "exists"]);
+  }
+  exactFields(plan.destination, ["root", "exists", "identity", "anchor", "missing"]);
+  planCheck(typeof plan.destination.root === "string" && path.isAbsolute(plan.destination.root));
+  planCheck(typeof plan.destination.exists === "boolean");
+  if (plan.destination.exists) validateDirectoryIdentity(plan.destination.identity);
+  else planCheck(plan.destination.identity === null);
+  exactFields(plan.destination.anchor, ["path", "identity"]);
+  planCheck(typeof plan.destination.anchor.path === "string" && path.isAbsolute(plan.destination.anchor.path));
+  validateDirectoryIdentity(plan.destination.anchor.identity);
+  planCheck(Array.isArray(plan.destination.missing) && plan.destination.missing.every((part) => typeof part === "string" && part.length > 0 && part !== ".." && !/[\\/]/.test(part)));
+  planCheck(Array.isArray(plan.files) && plan.files.length > 0 && plan.files.length <= MAX_FILES);
+  for (const file of plan.files) {
+    exactFields(file, ["kind", "id", "variant", "source", "destination", "action", "transformation", "final"]);
+    planCheck(["agent", "skill"].includes(file.kind) && validId(file.id) && typeof file.variant === "string");
+    validateSourceRecord(file.source);
+    exactFields(file.destination, ["path", "relative", "exists", "identity", "sha256", "parent_chain"]);
+    planCheck(Array.isArray(file.destination.parent_chain) && file.destination.parent_chain.length > 0);
+    for (const binding of file.destination.parent_chain) {
+      exactFields(binding, ["path", "identity"]);
+      planCheck(typeof binding.path === "string" && path.isAbsolute(binding.path));
+      validateDirectoryIdentity(binding.identity);
+    }
+    planCheck(typeof file.destination.path === "string" && typeof file.destination.relative === "string" && typeof file.destination.exists === "boolean");
+    if (file.destination.exists) {
+      validateIdentity(file.destination.identity);
+      planCheck(typeof file.destination.sha256 === "string" && /^[a-f0-9]{64}$/.test(file.destination.sha256));
+    } else planCheck(file.destination.identity === null && file.destination.sha256 === null);
+    planCheck(["create", "overwrite"].includes(file.action));
+    exactFields(file.transformation, ["id", "options"]);
+    planCheck(["identity/v1", "codex-skill-paths/v1"].includes(file.transformation.id));
+    exactFields(file.transformation.options, file.transformation.id === "identity/v1" ? [] : ["targetRoot", "skillsDirectory"]);
+    exactFields(file.final, ["sha256", "size", "mode"]);
+    planCheck(typeof file.final.sha256 === "string" && /^[a-f0-9]{64}$/.test(file.final.sha256));
+    planCheck(Number.isSafeInteger(file.final.size) && file.final.size >= 0 && file.final.size <= MAX_RENDER_BYTES);
+    planCheck(Number.isSafeInteger(file.final.mode) && file.final.mode >= 0 && file.final.mode <= 0o1777);
+  }
+}
+
+function readApprovedPlan(file) {
+  const before = checkPath(file, "file", "read approved plan");
+  planCheck(before.exists && before.identity.links === "1", "Plan must be a regular, non-aliased file.");
+  if (Number(before.identity.size) > MAX_PLAN_BYTES) throw applyError("PLAN_LIMIT", "Approved plan exceeds 8 MiB.");
+  const descriptor = fs.openSync(file, fs.constants.O_RDONLY | (fs.constants.O_NOFOLLOW ?? 0));
+  try {
+    const stat = fs.fstatSync(descriptor, { bigint: true });
+    planCheck(stat.isFile() && stat.nlink === 1n && canonicalJson(identity(stat)) === canonicalJson(before.identity), "Plan identity changed while opening.");
+    const buffer = Buffer.alloc(Number(stat.size) + 1);
+    let count = 0;
+    for (;;) {
+      const read = fs.readSync(descriptor, buffer, count, buffer.length - count, null);
+      if (read === 0) break;
+      count += read;
+      if (count > MAX_PLAN_BYTES) throw applyError("PLAN_LIMIT", "Approved plan exceeds 8 MiB.");
+      planCheck(count < buffer.length, "Plan grew while reading.");
+    }
+    const after = fs.fstatSync(descriptor, { bigint: true });
+    planCheck(canonicalJson(identity(stat)) === canonicalJson(identity(after)) && count === Number(stat.size), "Plan changed while reading.");
+    return JSON.parse(new TextDecoder("utf-8", { fatal: true }).decode(buffer.subarray(0, count)));
+  } finally {
+    fs.closeSync(descriptor);
+  }
+}
+
+function applyRecord(digest, seq, type, fields) {
+  return { protocol: "vfa-export/1", plan_digest: digest, seq, type, ...fields };
+}
+
+function outcomeRecord(plan, index) {
+  const file = plan.files[index];
+  return applyRecord(plan.digest, index + 2, "file-outcome", {
+    file_index: index, path: file.destination.relative, status: "WRITTEN", final: file.final,
+  });
+}
+
+function encodeRecord(record) {
+  const line = JSON.stringify(record) + "\n";
+  const size = Buffer.byteLength(line);
+  if (size > MAX_RECORD_BYTES) throw applyError("PROTOCOL_LIMIT", "Protocol record exceeds 64 KiB.");
+  return { line, size };
+}
+
+function protocolPreflight(plan) {
+  let bytes = encodeRecord(applyRecord(plan.digest, 1, "apply-start", { file_count: plan.files.length })).size;
+  for (let index = 0; index < plan.files.length; index += 1) bytes += encodeRecord(outcomeRecord(plan, index)).size;
+  // Reserve a full record for the one terminal outcome; never retain all lines.
+  if (bytes + MAX_RECORD_BYTES > MAX_PROTOCOL_BYTES) throw applyError("PROTOCOL_LIMIT", "Protocol plus terminal reserve exceeds 8 MiB.");
+}
+
+function protocolOutput() {
+  const stream = process.stdout;
+  let failure = null;
+  let pending = null;
+  let bytes = 0;
+  const fail = () => {
+    failure ??= applyError("OUTPUT_FAILED", "Protocol stdout is unavailable.");
+    pending?.(failure);
+  };
+  // Node invokes a failed write callback before emitting error. Keep these
+  // listeners for the CLI lifetime, including after a rejected callback.
+  stream.on("error", fail);
+  stream.on("close", fail);
+  return {
+    usable: () => !failure && !stream.destroyed && !stream.writableEnded,
+    async emit(record) {
+      if (failure || stream.destroyed || stream.writableEnded) throw failure ?? applyError("OUTPUT_FAILED", "Protocol stdout is unavailable.");
+      const { line, size } = encodeRecord(record);
+      if (bytes + size > MAX_PROTOCOL_BYTES) throw applyError("PROTOCOL_LIMIT", "Protocol exceeds 8 MiB.");
+      await new Promise((resolve, reject) => {
+        let callbackDone = false;
+        let drainDone = false;
+        let returned = false;
+        let settled = false;
+        const cleanup = () => { stream.off("drain", onDrain); pending = null; };
+        const rejectWrite = (error) => { if (!settled) { settled = true; cleanup(); reject(error); } };
+        const finish = () => {
+          if (!settled && returned && callbackDone && drainDone) {
+            settled = true; cleanup(); bytes += size; resolve();
+          }
+        };
+        const onDrain = () => { drainDone = true; finish(); };
+        pending = rejectWrite;
+        stream.once("drain", onDrain);
+        try {
+          const accepted = stream.write(line, "utf8", (error) => {
+            if (error) { fail(); return; }
+            callbackDone = true; finish();
+          });
+          returned = true;
+          if (accepted) drainDone = true;
+          finish();
+        } catch {
+          fail();
+        }
+      });
+    },
+  };
+}
+
+async function applyPlan(file) {
+  let approved;
+  let result;
+  try {
+    approved = readApprovedPlan(file);
+    validateApprovedPlan(approved);
+    const selected = approved.selection;
+    const args = {
+      repo: approved.destination.root, ...approved.options,
+      role: selected.role, provider: selected.provider, all: selected.all,
+      agents: selected.kind === "agents" ? selected.agents : [],
+    };
+    const { agents, byId } = loadAgents();
+    result = planExport(args, agents, byId, approved.options.platform);
+    if (canonicalJson(result.plan) !== canonicalJson(approved)) throw applyError("PLAN_STALE", "Current export plan differs from the approved plan.");
+    protocolPreflight(approved);
+  } catch (error) {
+    throw ["PLAN_INVALID", "PLAN_STALE", "PLAN_LIMIT", "PROTOCOL_LIMIT"].includes(error.code) ? error : applyError("PLAN_INVALID", "Cannot validate the approved export plan.");
+  }
+  const output = protocolOutput();
+  const artifacts = result.groups.flatMap((group) => group.artifacts);
+  const prepareParents = applyDirectories(approved);
+  let written = 0;
+  let attempted = null;
+  let uncertain = false;
+  let failure = null;
+  try {
+    await output.emit(applyRecord(approved.digest, 1, "apply-start", { file_count: artifacts.length }));
+    for (let index = 0; index < artifacts.length; index += 1) {
+      attempted = index;
+      uncertain = true;
+      writeArtifact(artifacts[index], prepareParents);
+      await output.emit(outcomeRecord(approved, index));
+      written += 1;
+      uncertain = false;
+      attempted = null;
+    }
+  } catch (error) {
+    failure = ["OUTPUT_FAILED", "PROTOCOL_LIMIT"].includes(error.code) ? error.code : "WRITE_FAILED";
+  }
+  if (output.usable()) {
+    const summary = applyRecord(approved.digest, written + 2, "apply-summary", {
+      status: failure ? "FAILED" : "SUCCEEDED", planned: artifacts.length, written,
+      failed_index: attempted, unattempted: artifacts.length - written - (attempted === null ? 0 : 1),
+      uncertain, code: failure,
+    });
+    try { await output.emit(summary); }
+    catch (error) { failure = error.code === "PROTOCOL_LIMIT" ? "PROTOCOL_LIMIT" : "OUTPUT_FAILED"; }
+  } else failure ??= "OUTPUT_FAILED";
+  if (failure) throw applyError(failure, "Export apply did not finish with a flushed success summary; effects may be partial.");
+}
+
+async function main() {
   const args = parseArgs(process.argv.slice(2));
+  if (args.applyPlan) return applyPlan(args.applyPlan);
 
   const cwd = process.cwd();
   const cwdWithSep = cwd.endsWith(path.sep) ? cwd : cwd + path.sep;
@@ -866,8 +1207,8 @@ function main() {
 }
 
 try {
-  main();
+  await main();
 } catch (error) {
   console.error(error.message);
-  process.exit(1);
+  process.exitCode = 1;
 }

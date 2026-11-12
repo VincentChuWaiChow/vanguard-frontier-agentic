@@ -170,3 +170,4 @@ a whole. Create later task contracts when their work is authorized.
 - [Task 1.6: shared cases preparation; Desktop execution pending](evals/task-1.6.md)
 - [Task 8.2: static CI preparation; native acceptance pending](evals/task-8.2.md)
 - [Task 2.1: typed process/helper preparation; native obligations pending](evals/task-2.1.md)
+- [Task 5.2: verified Node apply preparation; engine/native obligations pending](evals/task-5.2.md)

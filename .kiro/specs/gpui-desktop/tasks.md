@@ -1,6 +1,6 @@
 # Implementation Plan: GPUI Desktop
 
-Status: NEXT INSTALLATION-FREE PROCESS/EXPORT PREPARATION AUTHORIZED.
+Status: PROCESS/EXPORT PREPARATION VERIFIED; FULL NATIVE TASKS PENDING.
 Tasks 1.1-1.3, 4.1, 4.2 and 5.1 retain their scoped completion evidence;
 known full-suite baseline gates remain non-green. The user authorized preparation
 that requires no installation: engine-core portions of 1.5, reusable cases for 1.6
@@ -319,6 +319,7 @@ Architecture and scope come from these frozen approved inputs:
   - Negative: Changed identities, malformed/oversized frames, missing summary and evidence failure stop writes with retained effects plus uncertainty; zero-exit truncation cannot pass.
   - Estimate: 2-4 hours; timebox, not a completion guarantee.
   - Installation-free preparation: Node-only verified apply/protocol producer may proceed after 5.1; Rust parser/redaction, lifecycle/journal integration and full task dependencies remain pending.
+  - Preparation evidence: evals/task-5.2.md; strict Node apply/ordered producer, real failure/pipe/limit tests and root validation pass; Rust consumer/journal/native and full task remain pending.
 
 - [ ] 5.3 Wire single-use preview authorization to execution
   - Depends: 1.5, 3.1, 3.2, 4.3, 4.4, 4.5, 5.2

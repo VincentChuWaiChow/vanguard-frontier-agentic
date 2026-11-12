@@ -307,3 +307,47 @@ One reused built-in writer (serving identity/effort unobservable), configured
 Sol/high read-only Rust review and parent integration/actual graders. Process
 source, helper/tests and lazy eval/workflow records only in this separate commit;
 Node5.2 code/covered metadata are excluded. Full task checkboxes remain unchanged.
+
+## Task5.2 Node apply preparation
+
+PASS: fifteen apply scenarios, all fourteen planner oracles, four Cursor/Kiro
+notice groups, one thirty-test combined run, new twenty-nine-case root export
+gate and full repository validation. Reproduced/repaired strict platform coercion
+and renderer-size validation; actual64MiB source boundary verifies final bytes.
+Ordered bounded outcomes await stdout delivery; actual partial writes/pipe failure
+never become verified full success. Existing legacy oracles unchanged.
+
+MISS: exact known17/11 Rust full failures, only --lib. UNVERIFIED: native task1.4,
+full2.1/5.2 dependency gates, Rust protocol/framing/redaction, operation/journal
+authorization and Desktop/native acceptance. Full task checkboxes unchanged.
+
+One additional reused writer plus configured Sol/high TypeScript source review
+(serving identities unobservable), parent independent RED/GREEN and integrated
+two-line repair. Combined with the disjoint process track this is two writers
+and one review wave, no recursive fanout or extra implementation wave.
+No system/dependency installs, real operator targets, push or external CI.
+
+### Current wave changed paths
+
+- tools/vfa-tui/src/subprocess/mod.rs
+- tools/vfa-tui/src/subprocess/executor.rs
+- tools/vfa-tui/src/subprocess/program.rs
+- tools/vfa-tui/tests/process_contracts.rs
+- tools/vfa-tui/tests/support/process_helper.rs
+- scripts/export-marketplace-agents.mjs
+- tests/export-apply.test.mjs
+- package.json
+- catalog/asset-integrity.json
+- docs/_data/catalog.yml
+- .kiro/specs/gpui-desktop/evals/task-2.1.md
+- .kiro/specs/gpui-desktop/evals/task-5.2.md
+- .kiro/specs/gpui-desktop/evals.md
+- .kiro/specs/gpui-desktop/tasks.md
+- .workflow/ultracode/gpui-desktop/plan.md
+- .workflow/ultracode/gpui-desktop/state.json
+- .workflow/ultracode/gpui-desktop/final-report.md
+
+Exact grader commands/results are in the two lazy task evaluations. Final npm
+dry-run includes the exporter and excludes private build/evidence artifacts.
+Slow-pipe observations are local bounded timing evidence, not every interleaving.
+Scope is READY FOR REVIEW; the overall native feature remains unverified.
