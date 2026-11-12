@@ -1,6 +1,6 @@
 # Implementation Plan: GPUI Desktop
 
-Status: INSTALLATION-FREE PREPARATION AUTHORIZED.
+Status: INSTALLATION-FREE SLICES VERIFIED; FULL NATIVE TASKS PENDING.
 Tasks 1.1-1.3, 4.1, 4.2 and 5.1 retain their scoped completion evidence;
 known full-suite baseline gates remain non-green. The user authorized preparation
 that requires no installation: engine-core portions of 1.5, reusable cases for 1.6
@@ -77,6 +77,7 @@ Architecture and scope come from these frozen approved inputs:
   - Negative: Saturated/disconnected queues cannot starve cancel; no per-click runtime, UI-thread join or dropped-future-as-cleanup assertion.
   - Estimate: 2-4 hours; timebox, not a completion guarantee.
   - Installation-free preparation: Engine-only host/report bridge and its core tests may proceed after 1.2/1.3. GPUI foreground wiring, native round trip, broader D10/session models and full task completion still require 1.4 and subsequent integration.
+  - Preparation evidence: evals/task-1.5.md; engine-only runtime/report contracts, strict lint and package checks pass; exact baseline failures remain and full task/native foreground stay pending.
 
 - [ ] 1.6 Run shared behavioral contracts under both consumer lock graphs
   - Depends: 1.1, 1.3, 1.4

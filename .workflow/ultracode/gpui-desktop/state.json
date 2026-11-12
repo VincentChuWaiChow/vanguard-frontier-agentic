@@ -3,13 +3,13 @@
   "branch": "feature/gpui-desktop-alpha",
   "baseline": "6dda992a3dedd845731d795aaaed20d49346f57c",
   "spec_directory": ".kiro/specs/gpui-desktop",
-  "phase": "implementation_ready_wave_complete",
-  "status": "tasks_4_1_5_1_4_2_scoped_complete_task_1_4_pending",
+  "phase": "installation_free_preparation_complete",
+  "status": "preparatory_slices_1_5_1_6_8_2_verified_full_tasks_native_pending",
   "requirements_approval": "approved",
   "revision_basis": "User requested revision before design, then explicitly requested Context7 MCP; no functional scope changes specified",
   "design": "ready_for_user_review",
   "task_breakdown": "revised_ready_for_user_review",
-  "implementation": "profile_export_planner_and_isolated_journal_scoped_complete",
+  "implementation": "prior_scoped_tasks_complete_and_installation_free_engine_cases_ci_prepared",
   "native_platform_verification": "not_run",
   "checks": {
     "requirements_structure_and_negative_mutants": "PASS",
@@ -35,7 +35,7 @@
     "task_drafting_runs": 3,
     "task_revision_review_runs": 1
   },
-  "next_action": "Implement only authorized installation-free slices; verify locally and commit each partial slice separately.",
+  "next_action": "Stop this preparation wave. Native task 1.4 remains user-deferred; full 1.5/1.6/8.2 completion requires native prerequisites and deferred acceptance. No push authorized.",
   "validation_snapshot": {
     "command": "npm run validate",
     "wrapper": "rtk proxy bash",
@@ -651,7 +651,7 @@
     "full_task_checkboxes": "remain unchecked",
     "push": false,
     "install": false,
-    "status": "evals_defined_before_implementation",
+    "status": "scoped_preparation_verified_not_full_task_completion",
     "results": {
       "1.6": {
         "status": "preparation_verified_full_task_pending",
@@ -663,7 +663,17 @@
         "status": "static_preparation_verified_full_task_pending",
         "tests": "27 Node checks; 18 bootstrap documents mutants; 31 boundary self-tests",
         "native_execution": "unverified",
-        "repository_gate": "npm run validate exit 0; final integrity readback exit 0"
+        "repository_gate": "npm run validate exit 0; final integrity readback exit 0",
+        "commit": "5f57ac4d237c34910cc6693801337a27e133ac16"
+      },
+      "1.5": {
+        "status": "engine_preparation_verified_full_task_pending",
+        "unit_tests_per_mode": 8,
+        "integration_tests_per_mode": 2,
+        "full_suite": "exact existing 17/11 failures; non-green",
+        "package_sha256": "300ea70e0b6e9349248e8c4b13d73c679381fc59e7417a5b539911802b8c8c34",
+        "native_execution": "unverified",
+        "poison_cleanup": "unverified"
       }
     }
   }

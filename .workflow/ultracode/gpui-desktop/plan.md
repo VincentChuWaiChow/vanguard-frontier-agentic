@@ -277,3 +277,12 @@ jobs, license/source policy and complete task acceptance remain unverified.
 Task 8.2 local repository validation completed successfully including the repaired
 27-check grader. Final covered integrity was regenerated/rechecked after repair.
 No external CI was dispatched and full task 8.2 remains unchecked.
+
+Task 1.5 engine preparation now passes eight deterministic unit and two real
+report integration tests in each engine feature mode. Independent review's
+global-Cancel launch race was reproduced RED and repaired with synchronized cell
+cancellation/admission. Both strict clippy modes, formats, targeted regression
+contracts and normal verified package/archive checks pass. Full suites retain
+exact 17/11 baseline failure identities; native/full task acceptance remains
+unverified. Stop this bounded wave after its separate no-reply local commit; no
+install, push, remote CI or extra backlog work.

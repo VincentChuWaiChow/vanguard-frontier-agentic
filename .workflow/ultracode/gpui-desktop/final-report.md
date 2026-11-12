@@ -259,3 +259,20 @@ after task 4.1. Task 5.1 local commit is
 `1c9331192d7294b62fae6435d5b57774e408bfbf`; both no-reply identities verified.
 Commit the journal separately, then stop this bounded wave. No push, additional
 backlog task or native setup. Task 1.4 remains unchecked/native pending.
+
+## Installation-free preparation wave
+
+Three disjoint implementation tracks delivered shared cases (local commit
+3425d4f9), static CI guards (5f57ac4d) and the engine-only persistent report host.
+Parent independently reproduced and fixed one CI grader bypass and one global
+cancellation race. Local capability, strict lint, package and repository checks
+pass; full Rust suites remain non-green with exact known 17/11 failures.
+
+Lazy evidence: task-1.5.md, task-1.6.md and task-8.2.md in the spec's evals
+directory. Those are partial preparations, not completion of the full tasks.
+Native GPUI/foreground, Desktop behavioral execution, source/license policy,
+other native platforms and full lifecycle/journal integration remain unverified.
+Three built-in writers have unobservable serving model/effort; configured Rust
+and TypeScript read-only reviewers use gpt-6.1-sol/high, with serving identities
+unobservable. Parent serialized Cargo and owns integration and no-reply commits.
+No installation, external mutation, push or additional backlog work was performed.
