@@ -8,6 +8,7 @@ use tokio::sync::mpsc;
 
 use crate::security::redact::sanitized_child_env;
 
+use super::program::ProgramSpec;
 use super::stream::{OutputLine, OutputStream};
 use super::SubprocessHandle;
 
@@ -38,8 +39,26 @@ impl SubprocessExecutor {
         cmd.args(args)
             .current_dir(working_dir)
             .env_clear()
-            .envs(env)
-            .kill_on_drop(true)
+            .envs(env);
+
+        Self::spawn_command(cmd, timeout).await
+    }
+
+    /// Execute resolved native argv and only its explicitly selected environment.
+    /// Uses legacy capture/handle behavior: this is not D7 stream-budget or
+    /// descendant cleanup acceptance. Typed launch defaults stdin to null.
+    pub async fn spawn_spec(
+        program: &ProgramSpec,
+        timeout: Duration,
+    ) -> anyhow::Result<SubprocessHandle> {
+        Self::spawn_command(Command::from(program.command()?), timeout).await
+    }
+
+    async fn spawn_command(
+        mut cmd: Command,
+        timeout: Duration,
+    ) -> anyhow::Result<SubprocessHandle> {
+        cmd.kill_on_drop(true)
             .stdout(Stdio::piped())
             .stderr(Stdio::piped());
 

@@ -35,7 +35,7 @@
     "task_drafting_runs": 3,
     "task_revision_review_runs": 1
   },
-  "next_action": "Stop this preparation wave. Native task 1.4 remains user-deferred; full 1.5/1.6/8.2 completion requires native prerequisites and deferred acceptance. No push authorized.",
+  "next_action": "Implement and verify only declared installation-free process and Node apply slices; full/native acceptance remains pending.",
   "validation_snapshot": {
     "command": "npm run validate",
     "wrapper": "rtk proxy bash",
@@ -695,5 +695,45 @@
       "production": "byte-identical; only two unit tests appended"
     },
     "review": "configured Rust reviewer source review: no blockers"
+  },
+  "next_implementation_wave": {
+    "user_request": "run next tasks that we can do; Ultracode and Codex Agent Teams",
+    "full_ready": [
+      "1.4"
+    ],
+    "host_missing": [
+      "pkg-config",
+      "clang",
+      "cmake"
+    ],
+    "partial_slices": [
+      "2.1 process/helper",
+      "5.2 Node apply/protocol"
+    ],
+    "full_dependencies": "unchanged; full checkboxes pending",
+    "status": "process_preparation_verified_node_final_repository_gate_running",
+    "push": false,
+    "install": false,
+    "limits": {
+      "implementation_waves": 1,
+      "review_waves": 1,
+      "integrated_repair_passes": 1,
+      "parallel_writers": 2
+    },
+    "results": {
+      "2.1": {
+        "status": "scoped_preparation_verified_full_task_pending",
+        "process_tests_per_mode": 6,
+        "legacy_process_tests_per_mode": 3,
+        "runtime_tests_per_mode": 10,
+        "full_rust": "exact existing17/11 failures; sole --lib target",
+        "package_sha256": "e7d904a45d8cd0e8906b90f76ee9d2cd157d56488ad166b2881eff1bb8185fd4",
+        "native": "unverified"
+      },
+      "5.2": {
+        "status": "node_candidate_single_repair_passes_repository_gate_running",
+        "full_task": "pending"
+      }
+    }
   }
 }

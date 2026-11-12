@@ -299,3 +299,24 @@ The opt-in Codex marketplace file is not installation proof when it exits zero
 with SKIP; historical aggregate evidence was qualified, not upgraded to E2E.
 Save a separate no-reply test/evidence commit; no push, installs, full task
 completion or new feature implementation.
+
+## Next implementation wave: process and Node apply preparation
+
+Latest user request authorizes implementable next tasks, not another scenario-only
+round. Full DAG still has only 1.4 ready and host prerequisites are absent. Admit
+explicit partial slices2.1 (native ProgramSpec, literal launcher, finite helper)
+and5.2 (Node apply/protocol producer after5.1), preserving full dependencies and
+checkboxes. Grade B/shared security surface; exact before-work evals are lazy
+task-2.1.md and task-5.2.md. Two disjoint writers, one read-only review wave and
+one integrated repair; parent owns all wiring/generation and serialized Cargo.
+No installs, dependency/toolchain changes, native claims, external targets, push
+or unrelated implementation. Local per-task no-reply commits remain authorized.
+
+Task 2.1 preparation verified: six actual typed-process tests, three unchanged
+legacy subprocess tests and ten runtime cases per feature mode, targeted domain
+contracts, strict lint/format, actual both-lock engine metadata and normal verified
+package/archive pass. Exact full 17/11 baseline remains non-green. Independent
+Rust source review found no production blocker; parent allocated helper artifacts
+under ignored target storage and confirmed old capture-body bytes unchanged.
+Commit this engine slice separately; the Node apply candidate and its covered
+metadata remain outside that commit while final repository validation runs.

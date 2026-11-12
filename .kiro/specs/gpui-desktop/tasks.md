@@ -1,6 +1,6 @@
 # Implementation Plan: GPUI Desktop
 
-Status: INSTALLATION-FREE SLICES VERIFIED; FULL NATIVE TASKS PENDING.
+Status: NEXT INSTALLATION-FREE PROCESS/EXPORT PREPARATION AUTHORIZED.
 Tasks 1.1-1.3, 4.1, 4.2 and 5.1 retain their scoped completion evidence;
 known full-suite baseline gates remain non-green. The user authorized preparation
 that requires no installation: engine-core portions of 1.5, reusable cases for 1.6
@@ -9,6 +9,8 @@ or completion of those tasks. Full dependencies below remain unchanged; task 1.4
 and native/foreground/both-lock execution remain pending. Separate local no-reply
 commits are authorized; no push, installation or remote CI execution. Impeccable
 visual and portable-path constraints remain unchanged.
+The current wave separately admits typed process/helper preparation for 2.1 and
+Node apply/protocol preparation for 5.2. These do not complete their full tasks.
 Architecture and scope come from these frozen approved inputs:
 
 - Requirements SHA-256: `490b95ba21dcf9d6ec6ca803586afd785f1803287c38f0193bed053701e31160`.
@@ -104,6 +106,8 @@ Architecture and scope come from these frozen approved inputs:
   - Positive: Typed ProgramSpec and owned handles/control use a portable std-only helper for descendants, delayed exits and output modes.
   - Negative: Injection-like argv stays literal and invalid encoding fails; temporary helper compilation cannot create publish-invalid binary targets.
   - Estimate: 2-4 hours; timebox, not a completion guarantee.
+  - Installation-free preparation: Typed ProgramSpec/additive launcher and finite std-only helper may proceed using verified core/runtime portions; native/both-consumer and full task dependencies remain pending.
+  - Preparation evidence: evals/task-2.1.md; real typed launches/finite helper and package checks pass in engine modes; native/full dependencies remain pending and full task unchecked.
 
 - [ ] 2.2 Implement and verify Unix descendant ownership
   - Depends: 2.1
@@ -314,6 +318,7 @@ Architecture and scope come from these frozen approved inputs:
   - Positive: Revalidate whole plan then writes; derive final bytes once and parse bounded ordered outcomes before lossy/redacted projections.
   - Negative: Changed identities, malformed/oversized frames, missing summary and evidence failure stop writes with retained effects plus uncertainty; zero-exit truncation cannot pass.
   - Estimate: 2-4 hours; timebox, not a completion guarantee.
+  - Installation-free preparation: Node-only verified apply/protocol producer may proceed after 5.1; Rust parser/redaction, lifecycle/journal integration and full task dependencies remain pending.
 
 - [ ] 5.3 Wire single-use preview authorization to execution
   - Depends: 1.5, 3.1, 3.2, 4.3, 4.4, 4.5, 5.2

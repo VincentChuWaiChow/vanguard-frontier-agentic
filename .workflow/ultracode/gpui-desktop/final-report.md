@@ -292,3 +292,18 @@ production, old tests, fixtures, manifests/locks and frozen approvals unchanged.
 One built-in writer and one configured Sol/high Rust reviewer (serving identities
 unobservable), parent actual graders/integration. No production repair needed.
 No installs, push, remote CI or global settings changes; full task boxes unchanged.
+
+## Task 2.1 process/helper preparation checkpoint
+
+PASS Linux: actual typed argv/cwd/environment launches, finite std-only helper,
+stdin gate, exits/streams, invalid inputs, redacted Debug and strict JSON encoding;
+six process plus three legacy subprocess cases per feature mode. Both formats,
+strict clippy, targeted contracts, normal package bytes and both normal engine
+metadata subtrees pass. MISS: exact known17/11 full Rust failures, only --lib.
+UNVERIFIED: native Windows/macOS, descendant ownership, safe reader lifecycle/output
+budgets, trust grants, Desktop parity and full2.1 acceptance.
+
+One reused built-in writer (serving identity/effort unobservable), configured
+Sol/high read-only Rust review and parent integration/actual graders. Process
+source, helper/tests and lazy eval/workflow records only in this separate commit;
+Node5.2 code/covered metadata are excluded. Full task checkboxes remain unchanged.
