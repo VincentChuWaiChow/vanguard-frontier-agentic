@@ -1,11 +1,14 @@
 # Implementation Plan: GPUI Desktop
 
-Status: READY WAVE 4.1, 5.1 AND 4.2 COMPLETE IN SCOPED CHECKS.
-Tasks 1.1-1.3, 4.1, 4.2 and 5.1 are complete within their scoped checks; known full-suite
-baseline gates remain non-green. Task 1.4 stays unchecked: native verification
-is pending at the user's request. The current ready wave permits 4.1/5.1, then
-4.2 after 4.1; separate no-reply local commits, no push. Impeccable visual and
-portable-path constraints remain unchanged.
+Status: INSTALLATION-FREE PREPARATION AUTHORIZED.
+Tasks 1.1-1.3, 4.1, 4.2 and 5.1 retain their scoped completion evidence;
+known full-suite baseline gates remain non-green. The user authorized preparation
+that requires no installation: engine-core portions of 1.5, reusable cases for 1.6
+and static CI contracts for 8.2. These are partial slices, not dependency bypasses
+or completion of those tasks. Full dependencies below remain unchanged; task 1.4
+and native/foreground/both-lock execution remain pending. Separate local no-reply
+commits are authorized; no push, installation or remote CI execution. Impeccable
+visual and portable-path constraints remain unchanged.
 Architecture and scope come from these frozen approved inputs:
 
 - Requirements SHA-256: `490b95ba21dcf9d6ec6ca803586afd785f1803287c38f0193bed053701e31160`.
@@ -73,6 +76,7 @@ Architecture and scope come from these frozen approved inputs:
   - Positive: Define shared D10 IDs/events and typed commands/results; one long-lived Tokio host serves bounded commands and priority cancellation with actual GPUI foreground round trip.
   - Negative: Saturated/disconnected queues cannot starve cancel; no per-click runtime, UI-thread join or dropped-future-as-cleanup assertion.
   - Estimate: 2-4 hours; timebox, not a completion guarantee.
+  - Installation-free preparation: Engine-only host/report bridge and its core tests may proceed after 1.2/1.3. GPUI foreground wiring, native round trip, broader D10/session models and full task completion still require 1.4 and subsequent integration.
 
 - [ ] 1.6 Run shared behavioral contracts under both consumer lock graphs
   - Depends: 1.1, 1.3, 1.4
@@ -84,6 +88,8 @@ Architecture and scope come from these frozen approved inputs:
   - Positive: Reuse fixed independent engine cases under TUI and Desktop lockfiles with explicit fixture roots; each subsequent shared portability fix adds its regression to both runs.
   - Negative: Compile-only graph checks or only-TUI test results cannot pass parity; missing fixtures, different producer/schema semantics and missing second-graph regressions fail.
   - Estimate: 2-4 hours; timebox, not a completion guarantee.
+  - Installation-free preparation: Extract the existing independent core cases and add both consumer wrappers after 1.1/1.3. Execute TUI default/no-default cases locally; Desktop execution under its own lock remains unverified until 1.4. Syntax or metadata checks do not prove parity.
+  - Preparation evidence: evals/task-1.6.md; five shared cases pass in both TUI modes; Desktop wrapper added but second-graph execution remains unverified. Full task unchecked.
 
 - [ ] 2. Native process and runtime feasibility
 
@@ -513,6 +519,7 @@ Architecture and scope come from these frozen approved inputs:
   - Positive: Path-filter fixtures require shared-engine/exporter changes to exercise both graphs and native gates; validate target/source/license policy without weakening TUI policy.
   - Negative: Filtered-out required consumer, green skipped jobs, incompatible toolkit snapshots or altered authoritative validation semantics fail; no external run/push/upload without approval.
   - Estimate: 2-4 hours; timebox, not a completion guarantee.
+  - Installation-free preparation: Guard actual TUI/Desktop path filters and add explicitly static-only Desktop checks using existing tools. No install/setup steps, native acceptance claim, new runner labels or license-policy fiction. Full native jobs, supply-chain policy and both-graph execution remain deferred.
 
 - [ ] 8.3 Implement final evidence readiness and regression closure
   - Depends: 7.1, 7.2, 7.3, 7.5, 8.1, 8.2

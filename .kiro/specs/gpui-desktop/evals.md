@@ -166,3 +166,4 @@ a whole. Create later task contracts when their work is authorized.
 - [Task 4.1: private profile paths and exclusive ownership](evals/task-4.1.md)
 - [Task 4.2: isolated journal and actual commit receipts](evals/task-4.2.md)
 - [Task 5.1: authoritative final-artifact export planner](evals/task-5.1.md)
+- [Task 1.6: shared cases preparation; Desktop execution pending](evals/task-1.6.md)

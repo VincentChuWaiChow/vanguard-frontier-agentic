@@ -253,3 +253,16 @@ baseline failures; native and action/lifecycle integration remain unverified.
 Save a separate local no-reply task 4.2 commit, then stop. No push or unrelated
 backlog work is authorized by this bounded ready wave. Task 1.4 remains unchecked
 and native pending as requested; no package/privilege retry or goal-status change.
+
+## Installation-free preparation wave
+
+Latest user authorization permits only partial slices: 1.5 engine host/report
+contracts, 1.6 shared cases and 8.2 static CI guards. Full DAG dependencies and
+checkboxes remain unchanged. No installs, native acceptance, remote CI or push.
+Three disjoint writers; parent serializes Cargo, owns integration/evals and
+separate local no-reply commits. Existing task 1.4 native deferral remains.
+
+Task 1.6 preparation: shared fixed cases now have both consumer wrappers. Parent
+verified five actual TUI tests per feature mode, both crate format traversals,
+unchanged oracle/fixture bytes and both normal engine dependency subtrees. Desktop
+execution/parity remains unverified. No full task-completion claim.

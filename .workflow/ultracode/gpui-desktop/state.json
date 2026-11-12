@@ -35,7 +35,7 @@
     "task_drafting_runs": 3,
     "task_revision_review_runs": 1
   },
-  "next_action": "Commit completed task4.2 locally with no-reply identities, then stop at the ready-wave boundary. No push or additional backlog task. Task1.4 remains unchecked/native pending at user request; its existing blocked goal is unchanged.",
+  "next_action": "Implement only authorized installation-free slices; verify locally and commit each partial slice separately.",
   "validation_snapshot": {
     "command": "npm run validate",
     "wrapper": "rtk proxy bash",
@@ -640,5 +640,24 @@
     "checkpoint": "4b8111110a3bffd12e283577e753a6039b2ba93a",
     "checkpoint_meaning": "WIP saved; not task1.4 completion",
     "status": "scoped_tasks_complete_local_commits_only"
+  },
+  "installation_free_slices": {
+    "authorization": "go ahead for these which deos not need installation",
+    "tasks": [
+      "1.5 engine preparation",
+      "1.6 shared cases preparation",
+      "8.2 static CI preparation"
+    ],
+    "full_task_checkboxes": "remain unchecked",
+    "push": false,
+    "install": false,
+    "status": "evals_defined_before_implementation",
+    "results": {
+      "1.6": {
+        "status": "preparation_verified_full_task_pending",
+        "tests": "5 default and 5 no-default; both crate formats; both engine subtrees",
+        "desktop_execution": "unverified"
+      }
+    }
   }
 }
