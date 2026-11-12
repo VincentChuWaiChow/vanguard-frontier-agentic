@@ -238,3 +238,18 @@ Required integrity regeneration changed only the 41 covered task files; complete
 repository validation exits zero. The scoped no-write preview is not apply-plan
 or native installation acceptance. Commit this task separately, excluding the
 active journal files. Task 4.2 began only after task 4.1's verified local commit.
+
+## Task 4.2 completion and stop boundary
+
+The isolated dedicated journal worker retains profile ownership through actual
+connection close. Receipts follow COMMIT, with transactional projection/event
+updates, retry identity, forward-only fixture migration and store-preservation
+negatives. The one bounded Rust review found a false-success projection/retry
+path; parent reproduced it, repaired consistency validation and passed all
+thirteen journal tests in both feature modes. Strict clippy, boundaries, normal
+packaging and repository validation pass. Full suites preserve exact 17/11
+baseline failures; native and action/lifecycle integration remain unverified.
+
+Save a separate local no-reply task 4.2 commit, then stop. No push or unrelated
+backlog work is authorized by this bounded ready wave. Task 1.4 remains unchecked
+and native pending as requested; no package/privilege retry or goal-status change.

@@ -3,13 +3,13 @@
   "branch": "feature/gpui-desktop-alpha",
   "baseline": "6dda992a3dedd845731d795aaaed20d49346f57c",
   "spec_directory": ".kiro/specs/gpui-desktop",
-  "phase": "implementation_ready_wave_4_1_5_1_then_4_2",
-  "status": "tasks_4_1_5_1_complete_task_4_2_in_progress_task_1_4_pending",
+  "phase": "implementation_ready_wave_complete",
+  "status": "tasks_4_1_5_1_4_2_scoped_complete_task_1_4_pending",
   "requirements_approval": "approved",
   "revision_basis": "User requested revision before design, then explicitly requested Context7 MCP; no functional scope changes specified",
   "design": "ready_for_user_review",
   "task_breakdown": "revised_ready_for_user_review",
-  "implementation": "profile_and_export_planner_scoped_complete_journal_in_progress",
+  "implementation": "profile_export_planner_and_isolated_journal_scoped_complete",
   "native_platform_verification": "not_run",
   "checks": {
     "requirements_structure_and_negative_mutants": "PASS",
@@ -35,7 +35,7 @@
     "task_drafting_runs": 3,
     "task_revision_review_runs": 1
   },
-  "next_action": "Commit task5.1 locally; complete independent journal review and actual task4.2 graders before its separate commit. No push; task1.4 remains pending.",
+  "next_action": "Commit completed task4.2 locally with no-reply identities, then stop at the ready-wave boundary. No push or additional backlog task. Task1.4 remains unchecked/native pending at user request; its existing blocked goal is unchanged.",
   "validation_snapshot": {
     "command": "npm run validate",
     "wrapper": "rtk proxy bash",
@@ -541,6 +541,30 @@
         "/tmp/vfa-task-5-1-legacy-evidence.json",
         "/tmp/vfa-task-5-1-npm-validate.log"
       ]
+    },
+    "4.2": {
+      "status": "complete_scoped_Linux_checks",
+      "eval": "evals/task-4.2.md",
+      "checks": {
+        "journal": "PASS_13_each_feature_mode",
+        "profile_core_reports": "PASS_both_modes_8_profile_5_core_11_default_10_no_default_reports",
+        "actual_SQL_COMMIT_migration_failures": "PASS_real_transactions_rollback",
+        "projection_consistency": "PASS_parent_RED_then_eight_SQL_mutation_classes",
+        "legacy_and_foreign_preservation": "PASS_actual_populated_v4_WAL_sidecar_hashes",
+        "fmt_strict_clippy_boundaries_package": "PASS",
+        "repository_validation": "PASS_exit_0",
+        "full_regression": "MISS_exact_existing_17_default_11_no_default_failure_names",
+        "native_action_recovery_redaction_lifecycle_MSRV": "UNVERIFIED"
+      },
+      "review": "Reused configured rust_reviewer Sol/high read-only; parent repaired projection retry/read consistency and Windows lock-file snapshot oracle",
+      "worker": "Reused builtin implementation worker, inherited serving model and effort unobservable",
+      "environment_control": "Original task4.1 binary reproduced extra workspace failures under in-checkout temp root; final full suites restored baseline outside-checkout root with no assertion or production waiver",
+      "logs": [
+        "/tmp/vfa-task-4-2-grade-evidence.json",
+        "/tmp/vfa-task-4-2-review-red.log",
+        "/tmp/vfa-task-4-2-temp-context-control.log",
+        "/tmp/vfa-task-4-2-npm-validate.log"
+      ]
     }
   },
   "delivery_history": {
@@ -596,6 +620,12 @@
       "sha": "5bbe9bf921f9799e9e6a62fa2403a1a45845de91",
       "identity": "Raishin <15792229+Raishin@users.noreply.github.com> author and committer",
       "scope": "14 task4.1 files only; no journal/export files"
+    },
+    "5.1": {
+      "status": "local_commit_verified_not_pushed",
+      "sha": "1c9331192d7294b62fae6435d5b57774e408bfbf",
+      "identity": "Raishin <15792229+Raishin@users.noreply.github.com> author and committer",
+      "scope": "48 task5.1 files only; journal excluded"
     }
   },
   "ready_wave": {
@@ -608,6 +638,7 @@
     "push": false,
     "task_1_4": "pending_user_requested_no_package_retry",
     "checkpoint": "4b8111110a3bffd12e283577e753a6039b2ba93a",
-    "checkpoint_meaning": "WIP saved; not task1.4 completion"
+    "checkpoint_meaning": "WIP saved; not task1.4 completion",
+    "status": "scoped_tasks_complete_local_commits_only"
   }
 }

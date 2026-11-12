@@ -2,8 +2,7 @@
 
 ## Current ready-wave status
 
-Tasks 4.1 and 5.1 are complete in scoped checks; task 4.2 implementation and
-independent review are in progress. See the lazy-loaded task evals for current
+Tasks 4.1, 5.1 and 4.2 are complete in scoped checks. See the lazy-loaded task evals for current
 commands/evidence; the older phase reports below are historical. Full Rust
 regression gates remain non-green with unchanged 17/11 baseline failures.
 Task 1.4 remains unchecked and native verification pending, as requested.
@@ -13,7 +12,7 @@ no-reply author/committer identity; no push. A clearly labelled task 1.4 WIP
 checkpoint was saved first without claiming native acceptance. Task 4.1 changed
 only profile ownership, required engine/consumer dependency wiring and evidence.
 Two disjoint builtin workers plus bounded configured Rust/TypeScript reviews
-(Sol/high) are the smallest useful parallel route; actual worker model/effort
+(`gpt-6.1-sol/high`) are the smallest useful parallel route; actual worker model/effort
 are inherited and unobservable. Parent owns final checks, integration and Git.
 
 
@@ -239,3 +238,24 @@ findings. Required asset integrity and full repository validation pass. Actual
 apply-plan/native execution remain UNVERIFIED and task 1.4 is still pending.
 The task 4.1 local commit is `5bbe9bf921f9799e9e6a62fa2403a1a45845de91`,
 with both no-reply identities verified. No push has occurred in this ready wave.
+
+## Ready-wave journal evidence and final boundary
+
+Task 4.2: PASS thirteen journal tests per feature mode, profile/core/report
+contracts, real SQL and COMMIT rollback, retry/readback/reopen, isolated legacy-v4
+WAL sidecar preservation and real forward migration rollback. Parent reproduced
+and repaired the independent Rust review's inconsistent projection/retry success
+path; eight actual SQL mutation classes now fail closed without history repair.
+Both strict clippy modes, normal engine closures, package bytes and complete
+repository validation pass. AST updated; HTML graph remains above its size limit.
+
+Full Rust regression remains MISS with exact unchanged seventeen default and
+eleven no-default failures. Native/ACL/MSRV, caller redaction, action/recovery and
+real lifecycle integration remain UNVERIFIED. Details and exact commands are in
+`evals/task-4.2.md`; no empty/missing fixture or native skip is treated as PASS.
+
+The one implementation worker and reused configured Rust reviewer were sufficient
+after task 4.1. Task 5.1 local commit is
+`1c9331192d7294b62fae6435d5b57774e408bfbf`; both no-reply identities verified.
+Commit the journal separately, then stop this bounded wave. No push, additional
+backlog task or native setup. Task 1.4 remains unchecked/native pending.

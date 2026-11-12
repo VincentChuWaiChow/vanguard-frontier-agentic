@@ -5,3 +5,6 @@ pub mod audit;
 pub mod index;
 pub mod schema;
 pub mod writer;
+
+mod operation_schema;
+pub mod operations;

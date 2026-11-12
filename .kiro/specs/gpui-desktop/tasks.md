@@ -1,7 +1,7 @@
 # Implementation Plan: GPUI Desktop
 
-Status: TASKS 4.1 AND 5.1 COMPLETE IN SCOPED CHECKS; TASK 4.2 IN PROGRESS.
-Tasks 1.1-1.3, 4.1 and 5.1 are complete within their scoped checks; known full-suite
+Status: READY WAVE 4.1, 5.1 AND 4.2 COMPLETE IN SCOPED CHECKS.
+Tasks 1.1-1.3, 4.1, 4.2 and 5.1 are complete within their scoped checks; known full-suite
 baseline gates remain non-green. Task 1.4 stays unchecked: native verification
 is pending at the user's request. The current ready wave permits 4.1/5.1, then
 4.2 after 4.1; separate no-reply local commits, no push. Impeccable visual and
@@ -214,7 +214,7 @@ Architecture and scope come from these frozen approved inputs:
   - Evidence: evals/task-4.1.md; real Linux process exclusion, normal release and crash recovery pass; other native hosts remain unverified. Existing 17/11 full-suite failures are unchanged.
 
 
-- [ ] 4.2 Implement the isolated journal and real commit receipts
+- [x] 4.2 Implement the isolated journal and real commit receipts
   - Depends: 4.1
   - Paths: tools/vfa-tui/src/persistence/operations.rs; tools/vfa-tui/src/persistence/operation_schema.rs; tools/vfa-tui/tests/journal_commits.rs
   - Design: D8, D10
@@ -224,6 +224,8 @@ Architecture and scope come from these frozen approved inputs:
   - Positive: Distinct schema identity and transactional event/projection updates return a receipt only after successful COMMIT; query actual persisted records.
   - Negative: Injected SQL/commit failures are errors, conflicting duplicate payloads reject, foreign/newer stores stay intact and legacy v4 fixture hashes never change.
   - Estimate: 2-4 hours; timebox, not a completion guarantee.
+  - Evidence: evals/task-4.2.md; thirteen real journal tests pass per feature mode, including actual commit failure/rollback, store preservation, ownership and projection-consistency regressions. Full failures remain exactly 17/11; native/lifecycle integration remains unverified.
+
 
 - [ ] 4.3 Implement evidence admission, recovery and idempotence
   - Depends: 1.5, 2.6, 4.2
