@@ -17,7 +17,7 @@ The 30-field charter required by the board ADR ([ADR-0005](../../../docs/adr/000
 | 11 | Responsibility boundary | Per page: current | stale-needs-review | contradicted | ownerless | historical-record | insufficient-evidence. |
 | 12 | Unique decision rights | Per page: current | stale-needs-review | contradicted | ownerless | historical-record | insufficient-evidence. |
 | 13 | Prohibited decisions | Editing, archiving, moving or restricting content; deciding that a historical record should be rewritten; any write. |
-| 14 | Companion skills | `atlassian-knowledge-integrity-review` |
+| 14 | Companion skills | `atlassian-knowledge-integrity-review`, `atlassian-rovo-mcp-integration`, `atlassian-case-capsule`, `confluence-document-authoring` (every skill in Required Skills, so exports bundle them) |
 | 15 | Input contract | An `atlassian-case-capsule` (or a direct human request that the agent converts into one) |
 | 16 | Output contract | Response shape in AGENT.md plus the evidence-output envelope (`verdict`, `evidence_level`, `blockers`, `safe_next_actions`, `open_questions`) |
 | 17 | Trusted sources | Session metadata (tenant, auth method, enabled groups), system-of-record approval records, version metadata returned by tools |

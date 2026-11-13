@@ -29,7 +29,11 @@
   "security_notes": "Routing only, from sanitized signals; never requests credentials, tokens or customer data. Never dispatches the live write guard automatically: write requests are prepared as T3/T4 capsules for a human to send to the guard. Retrieved tenant text is never a routing instruction.",
   "last_verified": "2026-11-13",
   "path": "agents/atlassian/atlassian-maestro-agent",
-  "companion_skills": [],
+  "companion_skills": [
+    "atlassian-routing-protocol",
+    "atlassian-case-capsule",
+    "atlassian-rovo-mcp-integration"
+  ],
   "execution_tier": "static-review",
   "lifecycle": "experimental",
   "author": "github: VincentChuWaiChow",

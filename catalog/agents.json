@@ -2113,7 +2113,11 @@
     "execution_tier": "read-only-runtime",
     "lifecycle": "experimental",
     "companion_skills": [
-      "atlassian-control-evidence-lineage"
+      "atlassian-control-evidence-lineage",
+      "atlassian-rovo-mcp-integration",
+      "atlassian-case-capsule",
+      "jira-ticket-authoring",
+      "confluence-document-authoring"
     ]
   },
   {
@@ -2142,7 +2146,11 @@
     "execution_tier": "read-only-runtime",
     "lifecycle": "experimental",
     "companion_skills": [
-      "atlassian-incident-prevention-review"
+      "atlassian-incident-prevention-review",
+      "atlassian-rovo-mcp-integration",
+      "atlassian-case-capsule",
+      "jira-ticket-authoring",
+      "confluence-document-authoring"
     ]
   },
   {
@@ -2171,7 +2179,10 @@
     "execution_tier": "read-only-runtime",
     "lifecycle": "experimental",
     "companion_skills": [
-      "atlassian-knowledge-integrity-review"
+      "atlassian-knowledge-integrity-review",
+      "atlassian-rovo-mcp-integration",
+      "atlassian-case-capsule",
+      "confluence-document-authoring"
     ]
   },
   {
@@ -2200,7 +2211,11 @@
     "execution_tier": "read-only-runtime",
     "lifecycle": "experimental",
     "companion_skills": [
-      "atlassian-live-write-guard"
+      "atlassian-live-write-guard",
+      "atlassian-case-capsule",
+      "atlassian-rovo-mcp-integration",
+      "jira-ticket-authoring",
+      "confluence-document-authoring"
     ]
   },
   {
@@ -2228,7 +2243,11 @@
     "version": "0.1.0",
     "execution_tier": "static-review",
     "lifecycle": "experimental",
-    "companion_skills": []
+    "companion_skills": [
+      "atlassian-routing-protocol",
+      "atlassian-case-capsule",
+      "atlassian-rovo-mcp-integration"
+    ]
   },
   {
     "id": "aws-agentcore-agent",

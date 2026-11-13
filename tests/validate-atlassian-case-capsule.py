@@ -295,7 +295,8 @@ def check(capsule: dict, validator) -> list[tuple[str, str]]:
         out.append(("CAP-WRITE-ROUTE", f"writes are handed only to {GUARD}, not {capsule['target_agent']}"))
 
     if writes:
-        if capsule["user_identity_context"]["principal_type"] != "human":
+        requester_ref = capsule["user_identity_context"]
+        if requester_ref["principal_type"] != "human" or _is_agent_ref(requester_ref["account_ref"]):
             out.append(("CAP-REQUESTER-HUMAN", "a write must be requested by a human principal"))
         # Terminal records (rejected, expired, failed, escalated) authorize nothing, so their
         # approval state is recorded as-is. Executable capsules are checked at as_of. A

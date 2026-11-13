@@ -522,7 +522,10 @@ function resolveCompanionSkills(selectedAgents, skillsByName, role, includeAll, 
         const meta = skillsByName.get(skillId);
         // Apply the same provider scope gate used for role.skills — prevents a
         // cross-provider companion_skills declaration from leaking rival skills.
-        if (meta && (!selectedProvider || meta.provider === selectedProvider || meta.provider === "shared")) {
+        // A declared "generic" companion (a cross-functional protocol or capsule the
+        // agent requires) belongs to no rival provider, so it passes the gate;
+        // otherwise --provider would export agents without their required protocols.
+        if (meta && (!selectedProvider || meta.provider === selectedProvider || meta.provider === "shared" || meta.provider === "generic")) {
           skillNames.add(skillId);
         }
       }

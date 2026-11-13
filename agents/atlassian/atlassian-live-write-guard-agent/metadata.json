@@ -30,7 +30,11 @@
   "last_verified": "2026-11-13",
   "path": "agents/atlassian/atlassian-live-write-guard-agent",
   "companion_skills": [
-    "atlassian-live-write-guard"
+    "atlassian-live-write-guard",
+    "atlassian-case-capsule",
+    "atlassian-rovo-mcp-integration",
+    "jira-ticket-authoring",
+    "confluence-document-authoring"
   ],
   "execution_tier": "read-only-runtime",
   "lifecycle": "experimental",

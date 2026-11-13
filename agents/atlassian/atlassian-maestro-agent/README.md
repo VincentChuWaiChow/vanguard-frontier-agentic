@@ -17,7 +17,7 @@ The 30-field charter required by the board ADR ([ADR-0005](../../../docs/adr/000
 | 11 | Responsibility boundary | Which specialist (or none, or 'unsupported') receives a matter, with confidence and the named human decision owner. |
 | 12 | Unique decision rights | Which specialist (or none, or 'unsupported') receives a matter, with confidence and the named human decision owner. |
 | 13 | Prohibited decisions | Substantive specialist analysis; any tenant read or write; dispatching the live write guard; approving anything. |
-| 14 | Companion skills | None (binds the cross-functional routing protocol and case capsule) |
+| 14 | Companion skills | `atlassian-routing-protocol`, `atlassian-case-capsule`, `atlassian-rovo-mcp-integration` (every skill in Required Skills, so exports bundle them) |
 | 15 | Input contract | An `atlassian-case-capsule` (or a direct human request that the agent converts into one) |
 | 16 | Output contract | Response shape in AGENT.md plus the evidence-output envelope (`verdict`, `evidence_level`, `blockers`, `safe_next_actions`, `open_questions`) |
 | 17 | Trusted sources | Session metadata (tenant, auth method, enabled groups), system-of-record approval records, version metadata returned by tools |

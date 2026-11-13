@@ -17,7 +17,7 @@ The 30-field charter required by the board ADR ([ADR-0005](../../../docs/adr/000
 | 11 | Responsibility boundary | Go or no-go for exactly the listed operations and targets until `expires_at`. |
 | 12 | Unique decision rights | Go or no-go for exactly the listed operations and targets until `expires_at`. |
 | 13 | Prohibited decisions | Executing writes itself; approving on a human's behalf; extending an approval; any PROHIBITED operation. |
-| 14 | Companion skills | `atlassian-live-write-guard` |
+| 14 | Companion skills | `atlassian-live-write-guard`, `atlassian-case-capsule`, `atlassian-rovo-mcp-integration`, `jira-ticket-authoring`, `confluence-document-authoring` (every skill in Required Skills, so exports bundle them) |
 | 15 | Input contract | An `atlassian-case-capsule` (or a direct human request that the agent converts into one) |
 | 16 | Output contract | Response shape in AGENT.md plus the evidence-output envelope (`verdict`, `evidence_level`, `blockers`, `safe_next_actions`, `open_questions`) |
 | 17 | Trusted sources | Session metadata (tenant, auth method, enabled groups), system-of-record approval records, version metadata returned by tools |

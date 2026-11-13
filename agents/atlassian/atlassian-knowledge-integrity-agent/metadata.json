@@ -30,7 +30,10 @@
   "last_verified": "2026-11-13",
   "path": "agents/atlassian/atlassian-knowledge-integrity-agent",
   "companion_skills": [
-    "atlassian-knowledge-integrity-review"
+    "atlassian-knowledge-integrity-review",
+    "atlassian-rovo-mcp-integration",
+    "atlassian-case-capsule",
+    "confluence-document-authoring"
   ],
   "execution_tier": "read-only-runtime",
   "lifecycle": "experimental",
