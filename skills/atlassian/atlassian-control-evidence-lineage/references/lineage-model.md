@@ -46,7 +46,7 @@ Apply in order; the first match wins.
 1. Framework, control, or period not supplied by the human: stop, `needs-review`.
 2. Search returned zero results for a link: `insufficient-evidence` and say which query was run. Absence of results is not absence of the artifact.
 3. Two artifacts state incompatible facts, or author equals approver: `conflicting`.
-4. All artifacts exist but fall outside the period, or the reviewed version is older than the period start: `evidence-stale`.
+4. Execution, technical, or approval evidence (links 5 to 8) falls outside the period, or the policy or procedure version reviewed was not the one in force for the whole period (it was superseded during the period, or took effect after the period started): `evidence-stale`. A version created before the period that stayed in force throughout it is current, not stale; record the version and its effective dates.
 5. Policy and procedure exist, links 5 to 8 absent: `intent-only`.
 6. Any of links 1 to 8 absent otherwise: `chain-broken`, naming each missing link.
 7. All eight links present, provenance checks VERIFIED: `chain-complete`.

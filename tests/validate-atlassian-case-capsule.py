@@ -273,10 +273,10 @@ def check(capsule: dict, validator) -> list[tuple[str, str]]:
         if capsule["user_identity_context"]["principal_type"] != "human":
             out.append(("CAP-REQUESTER-HUMAN", "a write must be requested by a human principal"))
         # Terminal records (rejected, expired, failed, escalated) authorize nothing, so their
-        # approval state is recorded as-is. Executable capsules are checked at as_of; a
-        # completed record is checked at its first read-back, which follows the write.
-        reads_at = [_ts(r["read_at"]) for r in capsule["verification_evidence"]]
-        check_at = as_of if status in EXECUTABLE else (min(reads_at) if reads_at else as_of)
+        # approval state is recorded as-is. Executable capsules are checked at as_of. A
+        # completed record is checked at every read-back, one per write, so a write made
+        # after the approval lapsed is not masked by an earlier one made in time.
+        check_times = [as_of] if status in EXECUTABLE else ([_ts(r["read_at"]) for r in capsule["verification_evidence"]] or [as_of])
         if status not in EXECUTABLE and status != "completed":
             pass
         elif approval["status"] == "approved":
@@ -295,8 +295,8 @@ def check(capsule: dict, validator) -> list[tuple[str, str]]:
                 out.append(("CAP-APPROVAL-WINDOW", "approved requires approved_at and expires_at"))
             else:
                 a, e = _ts(approved_at), _ts(expires_at)
-                if not (a <= check_at < e) or e - a > cap:
-                    out.append(("CAP-APPROVAL-WINDOW", f"need approved_at <= {'as_of' if status in EXECUTABLE else 'first read-back'} < expires_at and a lifetime of at most {cap}"))
+                if any(not (a <= t < e) for t in check_times) or e - a > cap:
+                    out.append(("CAP-APPROVAL-WINDOW", f"need approved_at <= {'as_of' if status in EXECUTABLE else 'every read-back'} < expires_at and a lifetime of at most {cap}"))
             if high:
                 requester = _norm(capsule["user_identity_context"]["account_ref"])
                 humans = {_norm(a["account_ref"]) for a in approvers if a["principal_type"] == "human"}

@@ -1,0 +1,9 @@
+{
+  "base": "04-t3-completed-with-readback.json",
+  "rule": "CAP-APPROVAL-WINDOW",
+  "why": "Codex review: one write read back in time must not mask a later write made after the approval expired.",
+  "set": {
+    "verification_evidence.1.read_at": "2026-11-13T12:31:00Z",
+    "as_of": "2026-11-13T13:00:00Z"
+  }
+}

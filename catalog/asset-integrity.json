@@ -34,7 +34,7 @@
   "trees": [
     {
       "tree": "agents",
-      "aggregate_sha256": "d7922cc2b11bceac8a407d42fa4dc4b2f7faf8e259f85a5fe87ae06798774640",
+      "aggregate_sha256": "269999f80204b015c400b250793d87a5c619fa571ca3a03d92f10a48a009c87d",
       "files": [
         {
           "path": "agents/AGENTS.md",
@@ -2878,8 +2878,8 @@
         },
         {
           "path": "agents/atlassian/atlassian-control-evidence-lineage-agent/LEAST-PRIVILEGES.md",
-          "sha256": "c71a3fc11029f0bf3b3b608e819d21486dcaf5202f4dead6ffab0b7518e4153d",
-          "bytes": 2229
+          "sha256": "ebd4ca0ca7cefec3c1c6fc86cb7b337d8710295a38adfc9375765db697dfd082",
+          "bytes": 2377
         },
         {
           "path": "agents/atlassian/atlassian-control-evidence-lineage-agent/README.md",
@@ -2888,8 +2888,8 @@
         },
         {
           "path": "agents/atlassian/atlassian-control-evidence-lineage-agent/harnesses/claude-code.agent.md",
-          "sha256": "a491e42079dde3d34106dd3d1fb36e0d869b9bec7034c8798b39277a99ea7eeb",
-          "bytes": 4648
+          "sha256": "f3514c7b30db11bc102ee95bb2f6069e61ccf07413ad6a5542debe545fb5080b",
+          "bytes": 4677
         },
         {
           "path": "agents/atlassian/atlassian-control-evidence-lineage-agent/harnesses/codex.toml",
@@ -2933,8 +2933,8 @@
         },
         {
           "path": "agents/atlassian/atlassian-incident-prevention-agent/LEAST-PRIVILEGES.md",
-          "sha256": "c3da909ad636d7d69dafc6775a7e9d6b1a8e000779ab896066610e76c1e0679a",
-          "bytes": 2224
+          "sha256": "8d7e0b2ded2fc36088921423c772f004311afd00eaf45d9313235e7a0b225598",
+          "bytes": 2372
         },
         {
           "path": "agents/atlassian/atlassian-incident-prevention-agent/README.md",
@@ -2943,8 +2943,8 @@
         },
         {
           "path": "agents/atlassian/atlassian-incident-prevention-agent/harnesses/claude-code.agent.md",
-          "sha256": "cded22dac89794dad4c10f862575451c7f9d19acb8c0716732b7b6c6ef2b4480",
-          "bytes": 4932
+          "sha256": "be97089e3f92a574110972e2ec1e921efb0f5405277e7f2c6dbdaf032b4dd118",
+          "bytes": 4961
         },
         {
           "path": "agents/atlassian/atlassian-incident-prevention-agent/harnesses/codex.toml",
@@ -2988,8 +2988,8 @@
         },
         {
           "path": "agents/atlassian/atlassian-knowledge-integrity-agent/LEAST-PRIVILEGES.md",
-          "sha256": "52c07697103ba7de4334f624f732ef5f67d63435276cd1f6fed32629aa48ed2d",
-          "bytes": 2224
+          "sha256": "2fbe539f8bb21044c68973fb0f7d92351a4a37e1e0df3b640f130aef22c12b19",
+          "bytes": 2372
         },
         {
           "path": "agents/atlassian/atlassian-knowledge-integrity-agent/README.md",
@@ -2998,8 +2998,8 @@
         },
         {
           "path": "agents/atlassian/atlassian-knowledge-integrity-agent/harnesses/claude-code.agent.md",
-          "sha256": "f6ea42584e2dbd04a3a9e1a0b30d6d7becd0d80ed5a85dfed3056868a979cead",
-          "bytes": 4442
+          "sha256": "683b1b4ef85bbc4b284e11b81eaf7328065e8d5b5ca721c80e825951dba7e6f3",
+          "bytes": 4471
         },
         {
           "path": "agents/atlassian/atlassian-knowledge-integrity-agent/harnesses/codex.toml",
@@ -3043,8 +3043,8 @@
         },
         {
           "path": "agents/atlassian/atlassian-live-write-guard-agent/LEAST-PRIVILEGES.md",
-          "sha256": "89310201c503a9d7832c5ef538c96b6fa531fa992f4d379943bde363c1785bcf",
-          "bytes": 2221
+          "sha256": "b7c8d494b25c0ae9d97cccbb9483fd3bcc02d948c1a9de99573559f95c6a69da",
+          "bytes": 2369
         },
         {
           "path": "agents/atlassian/atlassian-live-write-guard-agent/README.md",
@@ -3053,8 +3053,8 @@
         },
         {
           "path": "agents/atlassian/atlassian-live-write-guard-agent/harnesses/claude-code.agent.md",
-          "sha256": "bdd5ab522fb92a5fd97abd9eee7ab3587f042dfa4a5f4806fd99599a700d10db",
-          "bytes": 4901
+          "sha256": "24c9347ada992593052e083baa45009be1b858b2a6f4757f192bab0bcc9fda81",
+          "bytes": 4930
         },
         {
           "path": "agents/atlassian/atlassian-live-write-guard-agent/harnesses/codex.toml",
@@ -36579,7 +36579,7 @@
     },
     {
       "tree": "catalog",
-      "aggregate_sha256": "f6327300fe3011fb4b64553e06ea840f8be4ee601bfecc2805c0af3a48e6bbd4",
+      "aggregate_sha256": "e5265b6948309f74b763a7f50c9f212684723205f7a8fe59bb6712236a0a28c4",
       "files": [
         {
           "path": "catalog/AGENTS.md",
@@ -36633,7 +36633,7 @@
         },
         {
           "path": "catalog/skill-manifest.json",
-          "sha256": "c1c0ee60106559674d4e9e01f1bca2df7edfa7c5452be56b12ef572ecc6843ab",
+          "sha256": "690948de645dd51ef419ea855563b08eada799a1845044e7a1c4db965d2a95a1",
           "bytes": 1193704
         },
         {
@@ -37877,7 +37877,7 @@
     },
     {
       "tree": "tests",
-      "aggregate_sha256": "03b9be87a472066d296338ec8798a8ec5d40d42a306906273d03360c34a6f663",
+      "aggregate_sha256": "aa2fe72797314a2f7348669951fcfa56160c22c4fb50dec531b42537fc717803",
       "files": [
         {
           "path": "tests/AGENTS.md",
@@ -40033,6 +40033,11 @@
           "path": "tests/fixtures/atlassian-case-capsule/invalid/79-readback-verifies-unknown-write.json",
           "sha256": "2816b99584d3b8b01d37d75c0a7f8d08640d166098c8d093367d9d1260d62590",
           "bytes": 229
+        },
+        {
+          "path": "tests/fixtures/atlassian-case-capsule/invalid/80-completed-mixed-before-after-expiry.json",
+          "sha256": "07ac902a7d57a5ba054d1e4fca47384a9a9af6c7119a9598d80609a27946d33f",
+          "bytes": 314
         },
         {
           "path": "tests/fixtures/atlassian-case-capsule/valid/01-t1-read-incident-review.json",
@@ -50241,8 +50246,8 @@
         },
         {
           "path": "tests/validate-atlassian-case-capsule.py",
-          "sha256": "364b6c3b4035fce01a9cbd6163904a8d1e8968eb3c820643320f2056c055a21a",
-          "bytes": 23541
+          "sha256": "3320004d544cdfbb5142628c924d86140fb32061ec39c8f6335b9cde9aaeea71",
+          "bytes": 23604
         },
         {
           "path": "tests/validate-aws-progressive-disclosure.py",
@@ -50449,5 +50454,5 @@
       "bytes": 9135
     }
   ],
-  "aggregate_sha256": "245eb7ea8a1f0670f50fd79d191a260848ddd5ebb716644958a5c11f36568b3c"
+  "aggregate_sha256": "a93cb4176512a59c1239a7e862f88cb3a3c0497ded0eecc7612cac2b9d9c9d67"
 }
