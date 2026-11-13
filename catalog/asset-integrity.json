@@ -36493,7 +36493,7 @@
     },
     {
       "tree": "schemas",
-      "aggregate_sha256": "0ea785b8102664e8e26fa6e0937b73637487a5222dea360aab4c4582d8acb04e",
+      "aggregate_sha256": "7175cda1f3398433eeeeefb3d1db01147f06901c4ede6e529a9f0a091b7cffb3",
       "files": [
         {
           "path": "schemas/AGENTS.md",
@@ -36517,8 +36517,8 @@
         },
         {
           "path": "schemas/atlassian-case-capsule.schema.json",
-          "sha256": "bf85e24941df1ab41cbd30cf8df72e219c6c97a536a376d5432a8dd7d53ce87f",
-          "bytes": 11387
+          "sha256": "1f5be1f475863a38d2cc4aa8f9661151ef6b935b30cafbd8b682b837e1436fc8",
+          "bytes": 11707
         },
         {
           "path": "schemas/attestation.schema.json",
@@ -36579,7 +36579,7 @@
     },
     {
       "tree": "catalog",
-      "aggregate_sha256": "d20eb0e54957cc6f8468a74cf5df3e54df33527d3b3f1d69522ffca8f4bfe9fd",
+      "aggregate_sha256": "f6327300fe3011fb4b64553e06ea840f8be4ee601bfecc2805c0af3a48e6bbd4",
       "files": [
         {
           "path": "catalog/AGENTS.md",
@@ -36633,7 +36633,7 @@
         },
         {
           "path": "catalog/skill-manifest.json",
-          "sha256": "7ecc63f54625ff12ac9723e570005b83b31152d3fbbd1995314cb1493a156043",
+          "sha256": "c1c0ee60106559674d4e9e01f1bca2df7edfa7c5452be56b12ef572ecc6843ab",
           "bytes": 1193704
         },
         {
@@ -37877,7 +37877,7 @@
     },
     {
       "tree": "tests",
-      "aggregate_sha256": "d43c2a029ad8ec0a570662d41f460e400cf342c0ad288d878571154bccc7da53",
+      "aggregate_sha256": "03b9be87a472066d296338ec8798a8ec5d40d42a306906273d03360c34a6f663",
       "files": [
         {
           "path": "tests/AGENTS.md",
@@ -39906,8 +39906,8 @@
         },
         {
           "path": "tests/fixtures/atlassian-case-capsule/invalid/54-completion-readback-wrong-target.json",
-          "sha256": "837379d925b750511a6b718b18c6d76434ae5df46d352b7ac567e7003962a701",
-          "bytes": 224
+          "sha256": "c0a256944f6780b05add2f845b3cef9c7a3f29fa45ab61329a60767102f63ddb",
+          "bytes": 235
         },
         {
           "path": "tests/fixtures/atlassian-case-capsule/invalid/55-completion-readback-by-write-tool.json",
@@ -40020,6 +40020,21 @@
           "bytes": 223
         },
         {
+          "path": "tests/fixtures/atlassian-case-capsule/invalid/77-readback-by-discover.json",
+          "sha256": "b7da879247c50ac7973cd712b0c200c979f9f5033a3bf3259d53ab987d6204b8",
+          "bytes": 280
+        },
+        {
+          "path": "tests/fixtures/atlassian-case-capsule/invalid/78-readback-by-other-product-tool.json",
+          "sha256": "b5d204ac5aa1a8abf8138d0df8278bef9389485e626ee5aef8c3b0343ad86d33",
+          "bytes": 320
+        },
+        {
+          "path": "tests/fixtures/atlassian-case-capsule/invalid/79-readback-verifies-unknown-write.json",
+          "sha256": "2816b99584d3b8b01d37d75c0a7f8d08640d166098c8d093367d9d1260d62590",
+          "bytes": 229
+        },
+        {
           "path": "tests/fixtures/atlassian-case-capsule/valid/01-t1-read-incident-review.json",
           "sha256": "d32ba18d2bb874e288c7e1b24d20d586bee455fc47ad403630923cd87a889276",
           "bytes": 3269
@@ -40036,8 +40051,8 @@
         },
         {
           "path": "tests/fixtures/atlassian-case-capsule/valid/04-t3-completed-with-readback.json",
-          "sha256": "f711f335e9dbdb6d0fdcf4316310cbd702a8055a06c7df156b994deceb844170",
-          "bytes": 4430
+          "sha256": "851cfe3ec73912454bf619c919375db2c0d879ac8f6684653aaf16c278913a9c",
+          "bytes": 4473
         },
         {
           "path": "tests/fixtures/atlassian-case-capsule/valid/05-t1-injection-flagged-as-untrusted.json",
@@ -40061,8 +40076,8 @@
         },
         {
           "path": "tests/fixtures/atlassian-case-capsule/valid/09-t3-completed-return-to-delegator.json",
-          "sha256": "32670da8382793e4d02f4ccc8d19c289068704f0cab1ae2e4c91c627a1d20cca",
-          "bytes": 4427
+          "sha256": "71f5d606754ce50452f0dcb2e1a989dea26683254f82b09dfdcb98767b4bf1ca",
+          "bytes": 4470
         },
         {
           "path": "tests/fixtures/atlassian-case-capsule/valid/10-t3-safety-prose-and-atlassian-named-owner.json",
@@ -50226,8 +50241,8 @@
         },
         {
           "path": "tests/validate-atlassian-case-capsule.py",
-          "sha256": "b47a2a62cd2564fc1cefd2285f8914cb9dcbeea95154e484b2dbc203a64f2e84",
-          "bytes": 21917
+          "sha256": "364b6c3b4035fce01a9cbd6163904a8d1e8968eb3c820643320f2056c055a21a",
+          "bytes": 23541
         },
         {
           "path": "tests/validate-aws-progressive-disclosure.py",
@@ -50434,5 +50449,5 @@
       "bytes": 9135
     }
   ],
-  "aggregate_sha256": "6597832efe60cbf4e32a250ad23fd4f24dad23c7b3a55647828df97473e4f929"
+  "aggregate_sha256": "245eb7ea8a1f0670f50fd79d191a260848ddd5ebb716644958a5c11f36568b3c"
 }

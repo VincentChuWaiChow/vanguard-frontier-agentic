@@ -1597,12 +1597,12 @@
     {
       "id": "atlassian-case-capsule",
       "path": "skills/cross-functional/atlassian-case-capsule",
-      "aggregate_sha256": "e0098333d4d3c40a05e749f46b6bbb301fca9d6e98513d176be5b20f04d561d7",
+      "aggregate_sha256": "291c9e5e5308769862ba7756ecc7f500d1861ca3f85adfa0768930808eca12f3",
       "files": [
         {
           "path": "skills/cross-functional/atlassian-case-capsule/SKILL.md",
-          "sha256": "ef3647bec6ae34cad513af994975911b6cc12fa71c750ec7ed94db5f8d4954bf",
-          "bytes": 6863
+          "sha256": "b586958319b43e9e347ea5611ea767aae1533e38e9133c1fc9dbd33b61c57aea",
+          "bytes": 7138
         },
         {
           "path": "skills/cross-functional/atlassian-case-capsule/metadata.json",

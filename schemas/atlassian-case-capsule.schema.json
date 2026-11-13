@@ -386,17 +386,23 @@
     },
     "verification_evidence": {
       "type": "array",
-      "description": "Read-back observations, one or more per written target. Free text is not evidence.",
+      "description": "Read-back observations. Each names the permitted write target it verifies and the item actually read: the same item for an edit, or the item a create returned. Free text is not evidence.",
       "items": {
         "type": "object",
         "additionalProperties": false,
         "required": [
+          "verifies",
           "target",
           "tool",
           "observed_state",
           "read_at"
         ],
         "properties": {
+          "verifies": {
+            "type": "string",
+            "minLength": 1,
+            "description": "The permitted_operations target of the write this read-back verifies."
+          },
           "target": {
             "type": "string",
             "minLength": 1

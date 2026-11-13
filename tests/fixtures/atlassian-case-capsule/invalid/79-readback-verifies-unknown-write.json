@@ -1,0 +1,8 @@
+{
+  "base": "04-t3-completed-with-readback.json",
+  "rule": "CAP-COMPLETION-EVIDENCE",
+  "why": "A read-back naming a write the capsule does not contain.",
+  "set": {
+    "verification_evidence.0.verifies": "project:OTHER"
+  }
+}

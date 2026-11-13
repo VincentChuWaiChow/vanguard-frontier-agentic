@@ -123,6 +123,19 @@ APPROVAL_MAX = {3: timedelta(hours=24), 4: timedelta(hours=8)}
 ITEM_TARGET = re.compile(r"^(?:[A-Z][A-Z0-9]{1,9}-\d+|page:\d+|request:[A-Z][A-Z0-9]{1,9}-\d+|alert:[A-Za-z0-9-]+)$")
 CONTAINER_TARGET = re.compile(r"^(?:project:[A-Z][A-Z0-9]{1,9}|space:[A-Za-z0-9~_-]+(?: parent:page:\d+)?)$")
 CREATE_TOOLS = frozenset({"createJiraIssue", "createConfluenceContent", "createJsmRequest"})
+# Read-back tools that actually read the resource a write changed, per write tool. `discover`,
+# screen lookups and other-product reads cannot verify state.
+_JIRA_READ = frozenset({"getJiraIssue"})
+_CONF_READ = frozenset({"getConfluenceContent", "diffConfluenceContentVersions"})
+READBACK_TOOLS = {
+    **{t: _JIRA_READ for t in ("createJiraIssue", "editJiraIssue", "addOrEditJiraIssueComment", "transitionJiraIssue", "convertJiraIssueHierarchy")},
+    **{t: _CONF_READ for t in ("createConfluenceContent", "updateConfluenceContent", "addLabelsToConfluenceContent",
+                               "moveConfluenceContent", "archiveConfluenceContent", "unarchiveConfluenceContent",
+                               "restoreConfluenceContentVersion", "setConfluenceContentStatus")},
+    **{t: _CONF_READ | {"listConfluenceComments"} for t in ("createConfluenceComment", "updateConfluenceComment")},
+    "createJsmRequest": frozenset({"getJsmRequest"}), "transitionJsmRequest": frozenset({"getJsmRequest"}),
+    "updateJsmOpsAlert": frozenset({"getJsmOpsAlerts"}),
+}
 URL_HOST = re.compile(r"https?://([^/\s?#:]+)", re.I)
 ATLASSIAN_HOST = re.compile(r"\b([a-z0-9][a-z0-9.-]*\.atlassian\.net)\b", re.I)
 # Evidence kinds whose bodies are tenant-authored text. Only jira-issue field metadata,
@@ -321,14 +334,23 @@ def check(capsule: dict, validator) -> list[tuple[str, str]]:
 
     if status == "completed":
         reads = capsule["verification_evidence"]
-        write_targets = {o["target"] for o in ops if o["tool"] in WRITE_TOOLS | HIGH_RISK_TOOLS}
-        # Read-back before the approval is caught by CAP-APPROVAL-WINDOW, which checks the
-        # approval at the first read-back of a completed record.
-        bad = [r for r in reads if r["tool"] not in READ_TOOLS or r["target"] not in {o["target"] for o in ops}
-               or _ts(r["read_at"]) > as_of]
-        missing = write_targets - {r["target"] for r in reads}
-        if not reads or bad or missing:
-            out.append(("CAP-COMPLETION-EVIDENCE", "completed needs read-back of every written target by a read tool, no later than as_of"))
+        write_ops = [o for o in ops if o["tool"] in READBACK_TOOLS]
+        by_target = {o["target"]: o for o in write_ops}
+        reads_allowed = [{"tool": o["tool"], "target": o["target"]} for o in ops if o["tool"] in READ_TOOLS]
+        missing = []
+        for o in write_ops:
+            # A create is verified by reading the item it returned; anything else by
+            # re-reading the very item it changed. Either way, with a tool that reads that
+            # product's resource.
+            ok = [r for r in reads if r["verifies"] == o["target"] and r["tool"] in READBACK_TOOLS[o["tool"]]
+                  and {"tool": r["tool"], "target": r["target"]} in reads_allowed
+                  and (ITEM_TARGET.match(r["target"]) if o["tool"] in CREATE_TOOLS else r["target"] == o["target"])
+                  and _ts(r["read_at"]) <= as_of]
+            if not ok:
+                missing.append(o["target"])
+        stray = [r["verifies"] for r in reads if r["verifies"] not in by_target]
+        if not reads or missing or stray:
+            out.append(("CAP-COMPLETION-EVIDENCE", f"completed needs a resource read-back of every written item, no later than as_of; unverified {missing}, unmatched {stray}"))
     if status in {"proposed", "accepted"} and _ts(capsule["deadline_or_expiry"]) <= as_of:
         out.append(("CAP-EXPIRED", f"deadline_or_expiry {capsule['deadline_or_expiry']} is not after as_of; status must be expired"))
     if _is_agent_ref(capsule["decision_owner"]):

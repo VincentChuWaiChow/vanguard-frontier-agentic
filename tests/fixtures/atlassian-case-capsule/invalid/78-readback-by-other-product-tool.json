@@ -1,0 +1,9 @@
+{
+  "base": "04-t3-completed-with-readback.json",
+  "rule": "CAP-COMPLETION-EVIDENCE",
+  "why": "Codex review: a Jira screen lookup, even one the capsule permits, cannot verify a Confluence write.",
+  "set": {
+    "permitted_operations.3.tool": "getJiraScreen",
+    "verification_evidence.1.tool": "getJiraScreen"
+  }
+}
