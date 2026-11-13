@@ -349,7 +349,10 @@ def check(capsule: dict, validator) -> list[tuple[str, str]]:
             if not ok:
                 missing.append(o["target"])
         stray = [r["verifies"] for r in reads if r["verifies"] not in by_target]
-        if not reads or missing or stray:
+        # Read-back proves writes. A completed read-only capsule (an analysis or a draft)
+        # has nothing to read back and needs no entries; any entry it does carry must still
+        # name a write, so stray entries fail.
+        if (write_ops and not reads) or missing or stray:
             out.append(("CAP-COMPLETION-EVIDENCE", f"completed needs a resource read-back of every written item, no later than as_of; unverified {missing}, unmatched {stray}"))
     if status in {"proposed", "accepted"} and _ts(capsule["deadline_or_expiry"]) <= as_of:
         out.append(("CAP-EXPIRED", f"deadline_or_expiry {capsule['deadline_or_expiry']} is not after as_of; status must be expired"))

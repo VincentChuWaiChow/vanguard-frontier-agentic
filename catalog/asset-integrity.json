@@ -36579,7 +36579,7 @@
     },
     {
       "tree": "catalog",
-      "aggregate_sha256": "e5265b6948309f74b763a7f50c9f212684723205f7a8fe59bb6712236a0a28c4",
+      "aggregate_sha256": "772805f34c2499a9ab2787b3e202a238858bb940b5238626701b3a4bfebbca98",
       "files": [
         {
           "path": "catalog/AGENTS.md",
@@ -36633,7 +36633,7 @@
         },
         {
           "path": "catalog/skill-manifest.json",
-          "sha256": "690948de645dd51ef419ea855563b08eada799a1845044e7a1c4db965d2a95a1",
+          "sha256": "4f721b86806cf551f494180101ad7a6a77249abb580c371162a3d5a91fb27b30",
           "bytes": 1193704
         },
         {
@@ -37877,7 +37877,7 @@
     },
     {
       "tree": "tests",
-      "aggregate_sha256": "aa2fe72797314a2f7348669951fcfa56160c22c4fb50dec531b42537fc717803",
+      "aggregate_sha256": "e02e7464ef74a8f3c17e698f701338acf36d920e3f9d13faa839b9da215cec12",
       "files": [
         {
           "path": "tests/AGENTS.md",
@@ -40040,6 +40040,11 @@
           "bytes": 314
         },
         {
+          "path": "tests/fixtures/atlassian-case-capsule/invalid/81-completed-read-only-with-stray-readback.json",
+          "sha256": "6649f48db6fa5667f9cb1dce56e90153eedaa5e7cd6249ba8c6b8bf4bea2f032",
+          "bytes": 487
+        },
+        {
           "path": "tests/fixtures/atlassian-case-capsule/valid/01-t1-read-incident-review.json",
           "sha256": "d32ba18d2bb874e288c7e1b24d20d586bee455fc47ad403630923cd87a889276",
           "bytes": 3269
@@ -40088,6 +40093,11 @@
           "path": "tests/fixtures/atlassian-case-capsule/valid/10-t3-safety-prose-and-atlassian-named-owner.json",
           "sha256": "584a5bfb9c24edcf701dc93a5b3c8acb6dfbe45f89749988e34fe6a38dd4605e",
           "bytes": 3732
+        },
+        {
+          "path": "tests/fixtures/atlassian-case-capsule/valid/11-t1-completed-read-only-review.json",
+          "sha256": "d4ffbdd00c5788c562854d20e9f49ca1cd1679dcc14d5276434980588b91abe0",
+          "bytes": 3283
         },
         {
           "path": "tests/fixtures/atlassian-maestro-routing/expected/01-happy-incident-prevention.json",
@@ -50246,8 +50256,8 @@
         },
         {
           "path": "tests/validate-atlassian-case-capsule.py",
-          "sha256": "3320004d544cdfbb5142628c924d86140fb32061ec39c8f6335b9cde9aaeea71",
-          "bytes": 23604
+          "sha256": "35b4204a9a9884e84875e9f8ec4584e9d822f65aa40f4288741703e63e7fab62",
+          "bytes": 23849
         },
         {
           "path": "tests/validate-aws-progressive-disclosure.py",
@@ -50454,5 +50464,5 @@
       "bytes": 9135
     }
   ],
-  "aggregate_sha256": "a93cb4176512a59c1239a7e862f88cb3a3c0497ded0eecc7612cac2b9d9c9d67"
+  "aggregate_sha256": "89e99912f94550f2ebfe794f3239021d1a0d2af6ea11ffbc9c2358f2498ed56f"
 }
