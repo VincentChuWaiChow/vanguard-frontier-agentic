@@ -20,14 +20,14 @@ Use the search tools listed in [tool risk tiers](../../atlassian-rovo-mcp-integr
 
 Jira (JQL), described generically:
 
-- Incident issue types in the same project or linked project, created after the original incident's resolution date.
+- Incident issue types in the same project or linked project, created on or after the window start: the corrective action's implementation date from implementation evidence, not the original incident's resolution date. An action deployed before the incident was resolved can be followed by a recurrence before that resolution, and that recurrence counts.
 - Same component or service field, or same label used by the organization for the service.
 - Issues linked to the original incident through a duplicate, relates-to or caused-by link type.
 - Free-text match on symptom terms, used only as a lead.
 
 Confluence (CQL), described generically:
 
-- Postmortem pages carrying the postmortem label, restricted to the service's space, created or modified after the original resolution. Date semantics differ between operators; check [CQL patterns](../../confluence-document-authoring/references/cql-patterns.md) before relying on a date filter.
+- Postmortem pages carrying the postmortem label, restricted to the service's space, created or modified on or after the window start (the action's implementation date). Date semantics differ between operators; check [CQL patterns](../../confluence-document-authoring/references/cql-patterns.md) before relying on a date filter.
 - Pages whose title or text names the service and the symptom.
 
 Rules for results:

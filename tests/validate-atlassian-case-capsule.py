@@ -138,8 +138,8 @@ READBACK_TOOLS = {
     "updateJsmOpsAlert": frozenset({"getJsmOpsAlerts"}),
 }
 URL_RE = re.compile(r"[a-z][a-z0-9+.-]*://\S+", re.I)
-# Whole dotted hostnames; any that mention atlassian.net must equal the site exactly, so a
-# lookalike such as "site.atlassian.net.evil.example" is read in full, not cut at ".net".
+# Whole dotted hostnames, scheme or not; every one must equal the site exactly, so a lookalike
+# such as "site.atlassian.net.evil.example" is read in full, and a bare "evil.example/x" counts.
 HOSTNAME = re.compile(r"\b[a-z0-9](?:[a-z0-9-]*[a-z0-9])?(?:\.[a-z0-9](?:[a-z0-9-]*[a-z0-9])?)+\b", re.I)
 # Evidence kinds whose bodies are tenant-authored text. Only jira-issue field metadata,
 # external system records, and user statements may claim another trust level.
@@ -179,7 +179,7 @@ def _is_agent_ref(value: str) -> bool:
 
 
 def _target_hosts(target: str) -> set[str]:
-    """Hosts a target names: each URL's real hostname, plus bare *.atlassian.net hosts.
+    """Hosts a target names: each URL's real hostname, plus every bare dotted hostname.
 
     URLs are parsed with urlsplit, so userinfo ("site.atlassian.net:443@other.example") cannot
     pose as the host; a URL that carries userinfo at all yields a marker that never equals the
@@ -193,8 +193,27 @@ def _target_hosts(target: str) -> set[str]:
         else:
             hosts.add(parts.hostname.casefold())
     stripped = URL_RE.sub(" ", target)
-    hosts |= {h.casefold() for h in HOSTNAME.findall(stripped) if "atlassian.net" in h.casefold()}
+    hosts |= {h.casefold() for h in HOSTNAME.findall(stripped)}
     return hosts
+
+
+def _created_in(op: dict, item: str) -> bool:
+    """Whether a create's read-back item has the right type and sits in the authorized container.
+
+    Jira and JSM keys carry their project, so membership is checked here. A Confluence page id
+    carries no space, so only the type is checked; the guard confirms the space and parent by
+    reading the page (recorded in observed_state). That residual gap is documented, not hidden.
+    """
+    container = op["target"]
+    if op["tool"] == "createJiraIssue":
+        m = re.fullmatch(r"project:([A-Z][A-Z0-9]{1,9})", container)
+        return bool(m) and re.fullmatch(rf"{m.group(1)}-\d+", item) is not None
+    if op["tool"] == "createJsmRequest":
+        m = re.fullmatch(r"project:([A-Z][A-Z0-9]{1,9})", container)
+        return bool(m) and re.fullmatch(rf"request:{m.group(1)}-\d+", item) is not None
+    if op["tool"] == "createConfluenceContent":
+        return re.fullmatch(r"page:\d+", item) is not None
+    return False
 
 
 def _ts(value: str) -> datetime:
@@ -374,6 +393,7 @@ def check(capsule: dict, validator) -> list[tuple[str, str]]:
                   and (ITEM_TARGET.match(r["target"]) if o["tool"] in CREATE_TOOLS else r["target"] == o["target"])
                   and _ts(r["read_at"]) <= as_of]
             if o["tool"] in CREATE_TOOLS:
+                ok = [r for r in ok if _created_in(o, r["target"])]
                 # Two creates cannot be proven by one returned item.
                 ok = [r for r in ok if created_items.get(r["target"], o["op_id"]) == o["op_id"]]
                 if ok:

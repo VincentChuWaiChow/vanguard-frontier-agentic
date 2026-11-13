@@ -36579,7 +36579,7 @@
     },
     {
       "tree": "catalog",
-      "aggregate_sha256": "22e96386470a478010bb8e7d6047ede7fdb346b5aac5df51399ea6660d46744b",
+      "aggregate_sha256": "8a0feeb883f3078d33415608f124ec6b5288c730ed15ba1f659ec3e6e1c3e983",
       "files": [
         {
           "path": "catalog/AGENTS.md",
@@ -36633,7 +36633,7 @@
         },
         {
           "path": "catalog/skill-manifest.json",
-          "sha256": "e95f740b6a331294a5eb007053df0a4204c1e0f3eb7b734a39dcb9f3d5d83534",
+          "sha256": "a2f9ed2e9e15ecb7bb19b4328c2d7f1d987ab520dbe39ee2f74ea011ab8b8128",
           "bytes": 1193704
         },
         {
@@ -37877,7 +37877,7 @@
     },
     {
       "tree": "tests",
-      "aggregate_sha256": "4e705860d188d34cb3954056aa7f66555f0cf7c8ff6d2129d9a678b34a3edfd1",
+      "aggregate_sha256": "656117046b29a879802bfea0123182350ca624ff1d20ebd1f23b0aa9562fa017",
       "files": [
         {
           "path": "tests/AGENTS.md",
@@ -40073,6 +40073,21 @@
           "path": "tests/fixtures/atlassian-case-capsule/invalid/87-agent-id-labelled-human-requester.json",
           "sha256": "69630b4acff1bdda00e4c90a38e23862712b17b7caa2a6f1b3cb226d8f053202",
           "bytes": 277
+        },
+        {
+          "path": "tests/fixtures/atlassian-case-capsule/invalid/88-create-readback-other-project.json",
+          "sha256": "cc6bfce76e360dc8df1c377c71101597887268ab15c95d01aa6a1e2c810da060",
+          "bytes": 301
+        },
+        {
+          "path": "tests/fixtures/atlassian-case-capsule/invalid/89-create-readback-wrong-type.json",
+          "sha256": "fd5d7c258a901c94664348261d3cff2183d0a30e880fd729d1039a55a1ed2a4b",
+          "bytes": 339
+        },
+        {
+          "path": "tests/fixtures/atlassian-case-capsule/invalid/90-bare-foreign-host.json",
+          "sha256": "1ebe960ed0a123960e50251ebcf40ca83287497e6f9896056fcb49b1e5c158eb",
+          "bytes": 231
         },
         {
           "path": "tests/fixtures/atlassian-case-capsule/valid/01-t1-read-incident-review.json",
@@ -50286,8 +50301,8 @@
         },
         {
           "path": "tests/validate-atlassian-case-capsule.py",
-          "sha256": "ad395296c40cfa563e5da48536e56470686ac8ed73080ff427d9162be05ad849",
-          "bytes": 25502
+          "sha256": "454058b2f5e357cb2a9583d5902131468d2b89691f9e040b448ce4c22c856951",
+          "bytes": 26526
         },
         {
           "path": "tests/validate-aws-progressive-disclosure.py",
@@ -50494,5 +50509,5 @@
       "bytes": 9135
     }
   ],
-  "aggregate_sha256": "56d1a86c03f232699f50e21eae405c447b71098ccfce1b1ed8fb05d4ea100d2a"
+  "aggregate_sha256": "3a011d1dc67fa31920c686050c3e81de2e4e5250d3b064e0421fd79f496aefac"
 }
