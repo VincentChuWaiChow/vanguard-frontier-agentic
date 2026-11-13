@@ -1597,12 +1597,12 @@
     {
       "id": "atlassian-case-capsule",
       "path": "skills/cross-functional/atlassian-case-capsule",
-      "aggregate_sha256": "1479035fa957e928744c8374045eddee69c86fc26ddf7dc45f709ed943202f31",
+      "aggregate_sha256": "e3bbba1a4bff4cc4052d6d4882d32c67281b05795ddf6a90b58f40e51fb7ccfd",
       "files": [
         {
           "path": "skills/cross-functional/atlassian-case-capsule/SKILL.md",
-          "sha256": "431aae8317bed601e24b1b791d32c17c6002bef88da8beb2878feb8d3220a49d",
-          "bytes": 4835
+          "sha256": "a16a3e789e5925673a8724cfb81889c5fb1a72b6b9e1f641bb7713df0b88bcde",
+          "bytes": 6087
         },
         {
           "path": "skills/cross-functional/atlassian-case-capsule/metadata.json",
@@ -1695,12 +1695,12 @@
     {
       "id": "atlassian-live-write-guard",
       "path": "skills/atlassian/atlassian-live-write-guard",
-      "aggregate_sha256": "cebb085c97b909050156b70e46f0e86d98a0a9be8ac1ffc922bdb979a45503f8",
+      "aggregate_sha256": "96b832c107d6c6c66eeef58b80a1f61325e99a28476404de4f7c077eef559903",
       "files": [
         {
           "path": "skills/atlassian/atlassian-live-write-guard/SKILL.md",
-          "sha256": "0eb8cde046fa7b98fa74bbb070a922a204efd9276d9919e394a1854175aa1d7c",
-          "bytes": 4608
+          "sha256": "2a534d34fc8911354d652eeb54e43013961db1a52cf056ef05a9ec74ee5ade53",
+          "bytes": 4857
         },
         {
           "path": "skills/atlassian/atlassian-live-write-guard/metadata.json",
@@ -1709,8 +1709,8 @@
         },
         {
           "path": "skills/atlassian/atlassian-live-write-guard/references/authorization-checklist.md",
-          "sha256": "2c7d8410a19ab90d0a1cae679f1940615f6b1704814eca41be55654d7d7e7962",
-          "bytes": 3759
+          "sha256": "bb85d72e3d7ecad6dc94d13c3bd598a3857d6f3f6a2b9ae514e65dca6390c916",
+          "bytes": 3877
         },
         {
           "path": "skills/atlassian/atlassian-live-write-guard/references/write-verification.md",
@@ -1739,7 +1739,7 @@
     {
       "id": "atlassian-rovo-mcp-integration",
       "path": "skills/atlassian/atlassian-rovo-mcp-integration",
-      "aggregate_sha256": "9d2bb98021da2904a98772f30dfbb02277f6ad4c04cc925b331994c375d8ae9e",
+      "aggregate_sha256": "21d510c9d6eb610ee396db6677a48ac8c35dd77b322e255882d7fcce26dfea0d",
       "files": [
         {
           "path": "skills/atlassian/atlassian-rovo-mcp-integration/SKILL.md",
@@ -1758,8 +1758,8 @@
         },
         {
           "path": "skills/atlassian/atlassian-rovo-mcp-integration/references/evidence-ledger.md",
-          "sha256": "ecf16ce8c2741dee0d3b7e8696240d1b6d272b72c472a85205c69b84ad246f7a",
-          "bytes": 6842
+          "sha256": "a39241e71eb913f64db7219b734e22a895ff3762eaa27af2cfd24fabb6c79e11",
+          "bytes": 7984
         },
         {
           "path": "skills/atlassian/atlassian-rovo-mcp-integration/references/failure-and-recovery.md",
@@ -1768,8 +1768,8 @@
         },
         {
           "path": "skills/atlassian/atlassian-rovo-mcp-integration/references/tool-risk-tiers.md",
-          "sha256": "28b5d6741a652e768208f905630e631e5a8925ef4a0dfd2d3c379dfe2fce6c9d",
-          "bytes": 8188
+          "sha256": "74cbd915e2d0a33d476b36de42a39e110080956c83975294dcd446b43bcaaae5",
+          "bytes": 9455
         }
       ]
     },

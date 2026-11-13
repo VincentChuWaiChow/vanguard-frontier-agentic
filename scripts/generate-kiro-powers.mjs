@@ -217,7 +217,7 @@ const PROVIDERS = {
   atlassian: {
     displayName: "Vanguard Frontier — Atlassian",
     description:
-      "Curated Atlassian agents for Jira, Jira Service Management, and Confluence evidence questions — whether incident corrective actions are evidenced as preventive, whether a control's evidence chain is complete, and whether critical pages are stale, contradicted, or preserved history — plus the owner's Jira and Confluence authoring skills. Routes via atlassian-maestro-agent. Read-only by contract; a gate-only write guard decides go or no-go for a prepared write and holds no write tools.",
+      "Curated Atlassian agents for Jira, Jira Service Management, and Confluence evidence questions — whether incident corrective actions are evidenced as preventive, whether a control's evidence chain is complete, and whether critical pages are stale, contradicted, or preserved history — plus the owner's Jira and Confluence authoring skills. Routes via atlassian-maestro-agent. Read-only by contract; a gate-only write guard decides go or no-go for a prepared write and declares no write tools.",
     // Product names and terms that only appear in Atlassian work; no generic
     // "audit" or "documentation" terms, which would activate this Power for
     // unrelated reviews.

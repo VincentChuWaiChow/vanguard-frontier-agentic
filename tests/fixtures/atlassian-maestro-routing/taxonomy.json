@@ -63,6 +63,6 @@
     "atlassian-live-write-guard-agent"
   ],
   "gate_mode": "live-guard-gate",
-  "live_guard_intent": "\\b(create|file|raise|update|edit|transition|move|archive|restore|publish|close|resolve|delete|approve|decline|restrict|unrestrict|bulk[- ]?(?:edit|update|close))\\b[^.]{0,80}\\b(jira|confluence|jsm|service desk)\\b",
+  "live_guard_intent": "\\b(?:create|file|raise|update|edit|change|modify|transition|move|archive|unarchive|restore|revert|publish|close|resolve|reopen|delete|purge|remove|approve|decline|grant|revoke|restrict|unrestrict|acknowledge|ack|escalate|assign|reassign|label|relabel|comment|set|mark|bulk[- ]?(?:edit|update|close))\\b[^.]{0,80}\\b(?:jira|confluence|jsm|service desk|page|pages|ticket|tickets|issue|issues|alert|alerts|request|requests|runbook|runbooks|space|restriction|restrictions|permission|permissions|instruction|instructions|knowledge base|[a-z][a-z0-9]{1,9}-\\d+)\\b",
   "parallel_threshold": 0.6
 }

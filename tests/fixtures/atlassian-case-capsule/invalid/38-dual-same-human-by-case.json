@@ -1,0 +1,8 @@
+{
+  "base": "03-t4-archive-superseded-runbook.json",
+  "rule": "CAP-DUAL-CONTROL",
+  "why": "Refuter H1: one person counted twice through letter case.",
+  "set": {
+    "approval_state.approvers.1.account_ref": "ACCT-REF-SPACE-OWNER"
+  }
+}

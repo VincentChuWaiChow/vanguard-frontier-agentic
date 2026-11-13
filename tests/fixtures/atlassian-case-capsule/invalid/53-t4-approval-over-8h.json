@@ -1,0 +1,8 @@
+{
+  "base": "03-t4-archive-superseded-runbook.json",
+  "rule": "CAP-APPROVAL-WINDOW",
+  "why": "T4 approvals expire within 8 hours (board policy).",
+  "set": {
+    "approval_state.expires_at": "2026-11-14T09:50:00Z"
+  }
+}

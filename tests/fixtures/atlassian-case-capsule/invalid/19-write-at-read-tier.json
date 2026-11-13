@@ -15,10 +15,11 @@
       ],
       "approval_record": {
         "kind": "out-of-band-human-record",
-        "locator": "change-record CR-1"
+        "locator": "change-record:CR-1"
       },
       "approved_at": "2026-11-13T09:55:00Z",
       "expires_at": "2026-11-13T12:00:00Z"
-    }
+    },
+    "target_agent": "atlassian-live-write-guard-agent"
   }
 }

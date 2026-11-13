@@ -1,0 +1,8 @@
+{
+  "base": "01-t1-read-incident-review.json",
+  "rule": "CAP-BUDGET-EXCEEDED",
+  "why": "Third review round must escalate.",
+  "set": {
+    "budget_consumed.review_rounds": 3
+  }
+}

@@ -1,0 +1,9 @@
+{
+  "base": "02-t3-create-remediation.json",
+  "rule": "CAP-WRITE-TARGET",
+  "why": "Refuter H3: a saved filter as a write target.",
+  "set": {
+    "permitted_operations.0.tool": "editJiraIssue",
+    "permitted_operations.0.target": "filter:10001"
+  }
+}

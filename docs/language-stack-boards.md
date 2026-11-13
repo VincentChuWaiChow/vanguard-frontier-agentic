@@ -659,7 +659,7 @@ Atlassian Rovo MCP Server. It is deliberately small: three read-only specialists
 evidence question each (is a corrective action evidenced as preventive, is a control's evidence
 chain complete, is a page stale or a preserved historical record), the owner's
 `jira-ticket-authoring` and `confluence-document-authoring` skills do all authoring, and a
-gate-only live write guard decides go or no-go for a prepared write without holding write tools.
+gate-only live write guard decides go or no-go for a prepared write without declaring write tools.
 Approval decisions, permission and restriction changes, space AI instructions and deletes are
 prohibited for every agent. Handoffs are `atlassian-case-capsule` records checked by
 `npm run validate:atlassian-capsule`. Design record: `docs/adr/0005-atlassian-agent-board.md`.

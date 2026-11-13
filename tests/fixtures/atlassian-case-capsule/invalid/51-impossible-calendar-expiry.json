@@ -1,0 +1,8 @@
+{
+  "base": "02-t3-create-remediation.json",
+  "rule": "CAP-TIMESTAMP",
+  "why": "Refuter M2: an impossible date that sorts after as_of.",
+  "set": {
+    "approval_state.expires_at": "2026-99-99T99:99:99Z"
+  }
+}

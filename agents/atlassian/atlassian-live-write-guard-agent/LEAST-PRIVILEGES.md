@@ -10,7 +10,8 @@ The Rovo MCP Server acts with the authenticated human's existing permissions, so
 
 ## Permission groups and scopes
 
-- Enable only read groups for the identity used (for example `read_jira`, `search_jira`, `read_confluence`, `search_confluence`, `read_jsm`) and scopes such as `read:jira:agent-interface`, `read:confluence:agent-interface`, `read:jsm:agent-interface`.
+- Enable only read groups for the identity used (for example `read_jira`, `read_confluence`, `search_confluence`, `read_jsm`, `read_teamwork_graph`) with scopes such as `read:jira:agent-interface`, `read:confluence:agent-interface`, `read:jsm:agent-interface`, `read:all:twg` (ledger rows ATL-E08, ATL-E18, ATL-E19; Jira search group naming is not recorded there, so read it from the admin console).
+- The Claude Code adapter (`harnesses/claude-code.agent.md`) carries a `tools:` allowlist of read tools by exact name, so that harness cannot call Atlassian write tools through this agent. Other adapters have no equivalent per-agent MCP allowlist in this repository.
 - Keep write, delete and manage groups disabled for this identity. Group names and defaults must be read from the live admin console; this repo records them as of 2026-11-13 in the integration skill's evidence ledger.
 - Client side, deny every write and prohibited tool name (illustrative deny-list in `skills/atlassian/atlassian-rovo-mcp-integration/references/tool-risk-tiers.md`). Without both controls, report read-only as `unenforced`.
 

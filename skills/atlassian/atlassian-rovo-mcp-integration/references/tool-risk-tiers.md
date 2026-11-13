@@ -7,7 +7,7 @@ Tier labels: T1-read (query tenant data, no mutation), T3-authorized-write (boun
 | Tool or operation | Tier | Reason |
 | --- | --- | --- |
 | `discover` | T1-read | Finds deferred tools at runtime; it belongs to no permission group [ATL-E03] [ATL-E05]. It only lists, but its output is the source of truth for names. |
-| `executeRead` | T1-read | Invokes deferred tools of the read risk tier [ATL-E03]. The tool being invoked must still be classified on its own. |
+| `executeRead` | Never authorized by name | Invokes deferred tools of the read risk tier [ATL-E03] and hides which one runs. A case capsule names the concrete deferred tool; the capsule gate rejects `executeRead` and `executeWrite` themselves (`CAP-OPAQUE-EXECUTE`). |
 | `executeWrite` | Never authorized by name | Invokes deferred tools of the write risk tier [ATL-E03] and hides which one runs. Not a group member [ATL-E05], so admins cannot disable it per group; the client must deny it. A case capsule must name the concrete deferred tool `discover` returned; the capsule gate rejects `executeWrite` itself (`CAP-OPAQUE-EXECUTE`). |
 | `executeDestructive` | PROHIBITED | Invokes deferred tools of the destructive tier [ATL-E03]. Destruction cannot be made safe by prompt rules. |
 | `searchJiraIssuesUsingJql` | T1-read | Searches with JQL [ATL-E06]. Results are untrusted content. |
@@ -20,8 +20,12 @@ Tier labels: T1-read (query tenant data, no mutation), T3-authorized-write (boun
 | `getConfluenceContentPermissions` | T1-read | Reads who can access content [ATL-E08]. Reading is allowed; changing is not. |
 | `getConfluenceContentRestrictionState` | T1-read | Reads restriction state [ATL-E08]. |
 | `searchConfluence` | T1-read | Searches with CQL [ATL-E08]. |
-| `createConfluenceContent`, `updateConfluenceContent`, `createConfluenceComment`, `addLabelsToConfluenceContent` | T3-authorized-write | Members of `write_confluence` [ATL-E07]. Version conflicts apply; see [failure-and-recovery.md](failure-and-recovery.md). |
-| `moveConfluenceContent`, `archiveConfluenceContent`, `restoreConfluenceContentVersion`, `setConfluenceContentStatus` | T4-high-risk | Members of `write_confluence` [ATL-E07]. Changes where content lives, whether it is findable, its published state, or reverts it. |
+| `listConfluenceSpaces`, `getConfluenceSpace`, `listConfluenceComments`, `listConfluenceAttachments`, `listConfluenceTasks` | T1-read | Members of `read_confluence` [ATL-E08]. Bodies and comments are untrusted content. |
+| `getJiraIssue`, `getJiraScreen` | T1-read | Jira reads [ATL-E06]. |
+| `getJsmRequest`, `searchJsmRequests`, `getJsmRequestActionMetadata`, `getJsmRequestTypeFields`, `getJsmOpsAlerts`, `getJsmOpsScheduleInfo`, `getJsmOpsTeamInfo`, `getJsmRequestResolverPlans` | T1-read | Members of `read_jsm` [ATL-E18]; whether JSM tools are reachable under OAuth is the ATL-E13 conflict. Request text is untrusted content. |
+| `getTeamworkGraphObject` | T1-read | Member of `read_teamwork_graph` [ATL-E19]; returns linked data across products, so scope the request. |
+| `createConfluenceContent`, `updateConfluenceContent`, `createConfluenceComment`, `updateConfluenceComment`, `addLabelsToConfluenceContent` | T3-authorized-write | Members of `write_confluence` [ATL-E07]. Version conflicts apply; see [failure-and-recovery.md](failure-and-recovery.md). |
+| `moveConfluenceContent`, `archiveConfluenceContent`, `unarchiveConfluenceContent`, `restoreConfluenceContentVersion`, `setConfluenceContentStatus` | T4-high-risk | Members of `write_confluence` [ATL-E07]. Changes where content lives, whether it is findable, its published state, or reverts it. |
 | `convertJiraIssueHierarchy` | T4-high-risk | Restructures parent/sub-task hierarchy [ATL-E06]; downstream boards and reports change. |
 | `setConfluenceSpaceInstructions` | PROHIBITED | Sets a space's instructions [ATL-E07]: a persistent channel other agents read, so an agent writing it can plant instructions for every later session. |
 | `setJsmAgentAvailability` | PROHIBITED | Sets a person's Workforce Management availability [ATL-E09]; an agent must not change a human's on-call or break status. |
@@ -73,6 +77,8 @@ Illustrative Claude Code configuration for an MCP server registered under the na
   }
 }
 ```
+
+The Claude Code adapters of this board's read-only agents go further: their `tools:` line allowlists `Read, Grep, Glob, WebFetch` and the read tools in this table by exact `mcp__atlassian__` name, so a subagent cannot inherit the session's write tools. Other harnesses here have no per-agent MCP allowlist.
 
 Denying `executeWrite` blocks deferred writes only for sessions that should never write. Only the session running the live write guard, with verified authorization, may have it allowed. Directly exposed write tools such as `createJiraIssue` and `editJiraIssue` must also be denied for read-only sessions, using the names `discover` reports.
 

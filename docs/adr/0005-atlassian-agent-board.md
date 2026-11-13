@@ -50,9 +50,9 @@ supports. Four findings from the repository audit and primary-source research de
 | `atlassian-incident-prevention-agent` | read-only-runtime | Whether each corrective action is *evidenced as preventive* |
 | `atlassian-control-evidence-lineage-agent` | read-only-runtime | Whether a control's evidence chain is complete, broken, stale or intent-only (never "compliant") |
 | `atlassian-knowledge-integrity-agent` | read-only-runtime | Whether a page is current, stale, contradicted, ownerless or a preserved historical record |
-| `atlassian-live-write-guard-agent` | read-only-runtime, gate-only | Go or no-go for one prepared write; holds no write tools |
+| `atlassian-live-write-guard-agent` | read-only-runtime, gate-only | Go or no-go for one prepared write; declares no write tools |
 
-No agent on this board declares `mutating-runtime`. On "go", the write runs in the human's
+No agent on this board declares `mutating-runtime` or a write tool. The Claude Code adapters of the four tenant-reading agents carry a `tools:` allowlist of read tools by exact name, and the maestro's allows no MCP tools; in other harnesses the runtime control is the client deny-list plus admin permission groups. On "go", the write runs in the human's
 interactive session under the client's permission prompts, using the authoring skills'
 mechanics, and the guard verifies the read-back. This follows `salesforce-live-guard-agent`
 (static-review, never executes) and changes the first draft of this design, which made the
@@ -73,18 +73,54 @@ workflows need, and nothing in the accepted workflows requires unattended writes
 ### Deterministic controls (the part that is code, not prose)
 
 - `schemas/atlassian-case-capsule.schema.json` plus `tests/validate-atlassian-case-capsule.py`
-  (`npm run validate:atlassian-capsule`, in `npm run validate`): human-only out-of-band approval,
-  approval window against the capsule's own `as_of` (no wall clock), prohibited tools at every
-  tier, opaque `executeWrite` rejected, unknown tools fail closed, tier/tool consistency, dual
-  control for T4 with neither approver the requester, tenant binding, enumerated (non-query) write
-  targets, delegation cycles and depth, instruction-bearing evidence marked untrusted, completion
-  requires read-back evidence, expiry, human decision owner, credential-shaped strings. Each rule
-  is proven by a negative fixture that must trip exactly that rule; five hand-made gate mutants
-  were each killed by the fixtures on 2026-11-13.
-- `tests/fixtures/atlassian-maestro-routing/`: 16 cases, including prompt injection quoted from a
-  comment, a forged approval request, a bulk delete and a restriction change (all to the gate,
-  never auto-dispatched), an ambiguous request, a deferred use case, a direct authoring request,
-  and a draft-only request that must not gate.
+  (`npm run validate:atlassian-capsule`, in `npm run validate`): 27 declared rules, including
+  human-only approval with typed out-of-band approval locators, approval lifetime capped against
+  the capsule's own `as_of` (no wall clock), prohibited tools at every tier, opaque
+  `executeRead`/`executeWrite` rejected, unknown tools and unknown agents fail closed, writes
+  routed only to the guard, dual control for T4 with neither approver the requester
+  (case-insensitive), tenant binding, an enumerated-item grammar for write targets, tenant
+  content forced to untrusted, delegation and budget limits, structured read-back for
+  completion, expiry and a human decision owner. The suite fails unless every declared rule is
+  proven by a negative fixture that trips exactly that rule. Gate mutants were run by hand on
+  2026-11-13 (not committed); one survivor exposed a fixture gap, which was closed.
+- `tests/fixtures/atlassian-maestro-routing/`: prompt injection quoted from a comment or keyed to
+  an issue, forged approval, bulk delete and purge, restriction and permission changes, alert
+  acknowledgement and space AI instructions (all to the gate, never auto-dispatched), an
+  ambiguous request, a deferred use case, a direct authoring request, a draft-only request that
+  must not gate, and a negated write request that still gates (accepted over-gating).
+
+## Corrections after independent review (2026-11-13)
+
+An independent refuter reviewed commit 1e493596 (5 High, 7 Medium, 7 Low findings, each
+reproduced; no Critical). Where this section conflicts with earlier wording, this section is
+current. All findings below were fixed in the following commit and each now has a negative
+fixture or routing case:
+
+- **Approver identity.** Dual control compared `account_ref` strings exactly, so trailing spaces,
+  letter case or an agent id typed as a human passed. Refs now have a schema grammar, compare
+  case-insensitively, and agent-like refs are rejected; a write must be requested by a human.
+- **Approval provenance.** "Approval never points at tenant content" only checked membership in
+  the untrusted-locator set, so a relabelled comment or a URL variant passed. Locators now follow
+  a typed approval-system grammar, and tenant-authored evidence kinds are untrusted whatever
+  their label.
+- **Bulk writes.** The write-target check was a denylist that missed bare JQL, filters, ranges
+  and "every page". It is now an allowlist grammar of single items.
+- **Unledgered tool names.** Fifteen read tools and two write tools in the gate had no ledger
+  row, although the orchestrator had retrieved them. The ledger now records them (ATL-E06, E07,
+  E08, E18, E19); `search_jira`, which no row backs, was removed from the agents' guidance.
+- **Write routing.** Write capsules could be addressed to analysis agents or to agents not on
+  the board. Writes now go only to the guard, and unknown agents fail.
+- **"Holds no write tools" was unenforced.** No adapter restricted tools; a Claude Code subagent
+  inherits the session's tools. The Claude Code adapters now allowlist read tools by name, and the
+  wording elsewhere says "declares".
+- **Smaller fixes.** A pre-approval go/no-go request could never pass (now `proposed` + `pending`
+  is valid); impossible dates and unbounded approval lifetimes passed; "completed" accepted any
+  text; credential patterns had gaps; `executeRead` was not treated as opaque; another tenant's
+  URL inside a target passed; agent ids in other cases passed as decision owners; consumed budget
+  was not recorded; and a rule could lose its only fixture silently. The write-intent routing
+  pattern missed grant, purge, remove, acknowledge, set and mark, and issue-key-only targets.
+- **Open, not fixable in this repository:** a delegation cycle split across separate capsules
+  (needs a capsule store), and the keyword routing grader's general limits.
 
 ### PROHIBITED for every agent
 
@@ -144,7 +180,7 @@ gave directly; do not add confirmation steps) is unchanged and compatible with t
 ## Consequences
 
 - Positive: two enforcement points that exist as code (capsule gate, routing gate); no agent
-  holds write or mutation authority; the owner's skills stay canonical and independently usable.
+  declares write or mutation authority, and the Claude Code adapters enforce that by allowlist; the owner's skills stay canonical and independently usable.
 - Negative: the gate validates records, not live sessions. A harness that never emits a capsule
   is ungoverned by it; runtime enforcement is still the admin's permission groups and the
   client's deny-list, which this repository can document but not install.
@@ -161,7 +197,7 @@ gave directly; do not add confirmation steps) is unchanged and compatible with t
 | D-1 | Knowledge integrity and control lineage could be one agent with two modes; two agents add routing surface. | Chief Enterprise Architect | Open: kept separate because control evidence carries audit-grade provenance rules (author/approver separation, period) that would bleed into documentation hygiene. Revisit after the pilot. |
 | D-2 | Deterministic JQL/CQL reports plus page verification may deliver most of workflow E without an agent. | Chief Financial Value Analyst | Open: the pilot must run the deterministic baseline first and compare (dossier, counterfactuals). |
 | D-3 | A gate-only guard without write tools makes agent-initiated writes slower. | Principal Agentic Systems Architect | Accepted risk, owner: repository owner. Speed is not a goal of the accepted workflows. |
-| D-4 | JSM authentication is contradictory between two official pages (ATL-E13). | Atlassian Platform Architect | Open: verify in the pilot session; nothing JSM-specific may be encoded as fact until then. |
+| D-4 | JSM authentication is contradictory between two official pages (ATL-E13). | Atlassian Platform Architect | Open: verify in the pilot session. JSM tool names are verified (ATL-E09, ATL-E18); whether they are reachable under OAuth is not, so no JSM-reachability claim may be encoded as fact until then. |
 | D-5 | Without a live tenant there is no behavioral evidence that agents follow these contracts. | Principal AI Evaluation Engineer | Open, blocking production: see the verdicts below. |
 
 ## Independent verdicts (Deliverables M and N)

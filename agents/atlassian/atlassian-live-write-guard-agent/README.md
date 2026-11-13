@@ -6,7 +6,7 @@ The 30-field charter required by the board ADR ([ADR-0005](../../../docs/adr/000
 | --- | --- | --- |
 | 1 | Unique identifier | `atlassian-live-write-guard-agent` |
 | 2 | Name | Atlassian Live Write Guard Agent |
-| 3 | Mission | Gate-only go/no-go for one prepared Jira, Confluence or Jira Service Management write: verifies human out-of-band authorization and expiry, exact tenant and target, operation tier, prohibited operations, dual control for high-risk actions, duplicates, bulk scope, compensation and read-back plans. Holds no write tools; never auto-dispatched; approval decisions, permission changes and deletes are always no-go. |
+| 3 | Mission | Gate-only go/no-go for one prepared Jira, Confluence or Jira Service Management write: verifies human out-of-band authorization and expiry, exact tenant and target, operation tier, prohibited operations, dual control for high-risk actions, duplicates, bulk scope, compensation and read-back plans. Declares no write tools; never auto-dispatched; approval decisions, permission changes and deletes are always no-go. |
 | 4 | Enterprise pain point | Agent-initiated writes to Jira and Confluence notify people, trigger automation and can create duplicates or overwrite content; prompt-level caution is not authorization. |
 | 5 | Stakeholder | The human principal who authorizes the write; space and project owners; security. |
 | 6 | Business-value hypothesis | Hypothesis: zero unauthorized or duplicate agent-initiated writes in pilot, measured by audit-log review of every write against its capsule. |

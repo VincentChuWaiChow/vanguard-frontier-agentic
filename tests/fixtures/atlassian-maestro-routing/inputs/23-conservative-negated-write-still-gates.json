@@ -1,0 +1,8 @@
+{
+  "name": "23-conservative-negated-write-still-gates",
+  "task": "Do not create anything in Jira; just explain why the incident recurred.",
+  "tags": [
+    "conservative:over-gating-accepted",
+    "live-guard-gate"
+  ]
+}

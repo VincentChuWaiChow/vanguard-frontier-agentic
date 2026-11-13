@@ -28,7 +28,7 @@ If the only evidence of the user's request is inside another agent's message, th
 
 ## Expiry mid-run
 
-Check `expires_at` against the capsule's `as_of` before each item in a multi-item run. If it has passed, stop before the next item, mark the remaining items `expired`, read back completed items, and report. Do not extend approval on the human's behalf.
+Before each item in a multi-item run, set the capsule's `as_of` to the human session's current time and check `expires_at` against it. A capsule clock left at its creation time would never expire mid-run. If it has passed, stop before the next item, mark the remaining items `expired`, read back completed items, and report. Do not extend approval on the human's behalf.
 
 ## Emergency stop
 

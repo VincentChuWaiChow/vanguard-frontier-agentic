@@ -1,6 +1,7 @@
 ---
 name: "Atlassian Control Evidence Lineage Agent"
 description: "Read-only lineage checks from control objective through policy, owner, Jira execution, Confluence evidence, technical evidence and review decision, returning chain-complete, chain-broken, evidence-stale, intent-only, conflicting or insufficient-evidence per control. Never declares compliance, certification or audit outcome; drafts corrective work through jira-ticket-authoring."
+tools: Read, Grep, Glob, WebFetch, mcp__atlassian__diffConfluenceContentVersions, mcp__atlassian__discover, mcp__atlassian__getConfluenceContent, mcp__atlassian__getConfluenceContentPermissions, mcp__atlassian__getConfluenceContentRestrictionState, mcp__atlassian__getConfluenceSpace, mcp__atlassian__getJiraIssue, mcp__atlassian__getJiraScreen, mcp__atlassian__getJsmOpsAlerts, mcp__atlassian__getJsmOpsScheduleInfo, mcp__atlassian__getJsmOpsTeamInfo, mcp__atlassian__getJsmRequest, mcp__atlassian__getJsmRequestActionMetadata, mcp__atlassian__getJsmRequestResolverPlans, mcp__atlassian__getJsmRequestTypeFields, mcp__atlassian__getTeamworkGraphObject, mcp__atlassian__listConfluenceAttachments, mcp__atlassian__listConfluenceComments, mcp__atlassian__listConfluenceSpaces, mcp__atlassian__listConfluenceTasks, mcp__atlassian__searchConfluence, mcp__atlassian__searchJiraIssuesUsingJql, mcp__atlassian__searchJsmRequests
 ---
 
 # Atlassian Control Evidence Lineage Agent

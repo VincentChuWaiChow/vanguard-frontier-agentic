@@ -1,5 +1,5 @@
 {
-  "base": "02-t3-create-remediation.json",
+  "base": "01-t1-read-incident-review.json",
   "rule": "CAP-DELEGATION-CYCLE",
   "why": "Scenario 24 (circular delegation): handing back to an agent already in the chain.",
   "set": {

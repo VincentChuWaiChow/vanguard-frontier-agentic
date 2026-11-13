@@ -34,7 +34,7 @@
   "trees": [
     {
       "tree": "agents",
-      "aggregate_sha256": "8bea0fe527f677bd89bb3b44714101353f5ba3e452a24e0fff1f52f32d0769fa",
+      "aggregate_sha256": "b905dc2c855e8bba7a11dc08b81e86612cafd8027732c9defe1dd08721fc2f5c",
       "files": [
         {
           "path": "agents/AGENTS.md",
@@ -2878,8 +2878,8 @@
         },
         {
           "path": "agents/atlassian/atlassian-control-evidence-lineage-agent/LEAST-PRIVILEGES.md",
-          "sha256": "b4047d5a8002f740576a029323137b7b8ca8b962a5d5f0da393cfbe6050179c0",
-          "bytes": 1517
+          "sha256": "6cd84f8ef8d829453efbb82f1a1c1cfd773dae7840e9adc29d3fbdd81001f136",
+          "bytes": 1932
         },
         {
           "path": "agents/atlassian/atlassian-control-evidence-lineage-agent/README.md",
@@ -2888,8 +2888,8 @@
         },
         {
           "path": "agents/atlassian/atlassian-control-evidence-lineage-agent/harnesses/claude-code.agent.md",
-          "sha256": "ac2c05a2110cf83db8b8970725a1cf4aff47c45a2aa76f26bd23a02d59b0205b",
-          "bytes": 3736
+          "sha256": "5fa689767ceba601c5808791b52f111c3d50bddfd288d62b0294f3f28911195d",
+          "bytes": 4658
         },
         {
           "path": "agents/atlassian/atlassian-control-evidence-lineage-agent/harnesses/codex.toml",
@@ -2933,8 +2933,8 @@
         },
         {
           "path": "agents/atlassian/atlassian-incident-prevention-agent/LEAST-PRIVILEGES.md",
-          "sha256": "89d6b8448aedb6cee13fe147c5c8b0a97e23c5e7a19c52f039cf0e04021db34a",
-          "bytes": 1512
+          "sha256": "f67fba916025257b662d6202d9de01a4c61544400e005c16588e207112c7692e",
+          "bytes": 1927
         },
         {
           "path": "agents/atlassian/atlassian-incident-prevention-agent/README.md",
@@ -2943,8 +2943,8 @@
         },
         {
           "path": "agents/atlassian/atlassian-incident-prevention-agent/harnesses/claude-code.agent.md",
-          "sha256": "4be8b3718b41fb392f6ec28436ce6d8d27e453884221d80d30580b36d611c0de",
-          "bytes": 4020
+          "sha256": "19f0e5bdfa8cc9c0daa1d20541515b226f1403220f90d4615b60c0e4cfe6d2db",
+          "bytes": 4942
         },
         {
           "path": "agents/atlassian/atlassian-incident-prevention-agent/harnesses/codex.toml",
@@ -2988,8 +2988,8 @@
         },
         {
           "path": "agents/atlassian/atlassian-knowledge-integrity-agent/LEAST-PRIVILEGES.md",
-          "sha256": "1a351feda3c13e4871db89f47ccb957dfde7ecf9b8e437cf638fb3dfa3b7a397",
-          "bytes": 1512
+          "sha256": "89072508e98ef8296455635f0e5fa1b0def87cffeb7ecbcfa03073e577645dae",
+          "bytes": 1927
         },
         {
           "path": "agents/atlassian/atlassian-knowledge-integrity-agent/README.md",
@@ -2998,8 +2998,8 @@
         },
         {
           "path": "agents/atlassian/atlassian-knowledge-integrity-agent/harnesses/claude-code.agent.md",
-          "sha256": "c5f433a0ad6a38a4080931a3d811c7d2713941b0767a2672c1fc4ad52351174d",
-          "bytes": 3530
+          "sha256": "dfe6e9674207f490efa1eb2b8352b958d6155f4fcd159f26be6ecb8bded02443",
+          "bytes": 4452
         },
         {
           "path": "agents/atlassian/atlassian-knowledge-integrity-agent/harnesses/codex.toml",
@@ -3038,63 +3038,63 @@
         },
         {
           "path": "agents/atlassian/atlassian-live-write-guard-agent/AGENT.md",
-          "sha256": "041757e3c169f769a410960a21a83591bccfc155a2596283da3ae8810f553d01",
-          "bytes": 3914
+          "sha256": "effeadfe1ce9b2f65a0d0f21899479241b6b2067de293fd8c4bcc076808921ea",
+          "bytes": 4062
         },
         {
           "path": "agents/atlassian/atlassian-live-write-guard-agent/LEAST-PRIVILEGES.md",
-          "sha256": "e1f7084ab5899d97f7eec84ba0330af93bc26c54edefc265bb02bbcdcd42b885",
-          "bytes": 1509
+          "sha256": "8b6ed0553798620143413124183180c986624ea9bdbf4234a1e58c04ca20c5b5",
+          "bytes": 1924
         },
         {
           "path": "agents/atlassian/atlassian-live-write-guard-agent/README.md",
-          "sha256": "65148b930bac944646166b6b6ec87ce7fa9012983ba74b53bf4c4dfac18f541c",
-          "bytes": 4773
+          "sha256": "6a0c0963b5441e2e549c1f579aed41ac0a3204d2924d629ccbb642a3c6965c11",
+          "bytes": 4776
         },
         {
           "path": "agents/atlassian/atlassian-live-write-guard-agent/harnesses/claude-code.agent.md",
-          "sha256": "c4eb0de1485477fac9edce3f0578ce82da6570dc613a039f37c0e5c66dbc9f21",
-          "bytes": 3841
+          "sha256": "31bebe099309747b4834ff1c670331127f0a770598f42e06281d71a195ea8dd3",
+          "bytes": 4911
         },
         {
           "path": "agents/atlassian/atlassian-live-write-guard-agent/harnesses/codex.toml",
-          "sha256": "17fcd99d0e7f7716467b959207f9c7a3747c1ef7b891cbf3f57c1d0c8b031bfa",
-          "bytes": 3988
+          "sha256": "5b69fd1ddc04adb3b5254dc436999bbecfcfe95f5435105ae16dd41c86cdefc6",
+          "bytes": 4136
         },
         {
           "path": "agents/atlassian/atlassian-live-write-guard-agent/harnesses/copilot.agent.md",
-          "sha256": "e820ea0c2fcdf1b4165de57c78381e8600c91722754023002d6436bdf11324f2",
-          "bytes": 3894
+          "sha256": "682b42f1359d837860963b032d24f0d8f1e29947d3981e2d0aa0bb1a002d62ad",
+          "bytes": 4042
         },
         {
           "path": "agents/atlassian/atlassian-live-write-guard-agent/harnesses/cursor.agent.md",
-          "sha256": "c4eb0de1485477fac9edce3f0578ce82da6570dc613a039f37c0e5c66dbc9f21",
-          "bytes": 3841
+          "sha256": "ae172ab588a89f0baa31a2a346569b7b744de80cecf9ec7fc40b1c05ab22bfab",
+          "bytes": 3989
         },
         {
           "path": "agents/atlassian/atlassian-live-write-guard-agent/harnesses/gemini.agent.md",
-          "sha256": "51a4f72ab2d650e782d6ad86e07bd621d4af962d422f8dd028912a21c8e6c822",
-          "bytes": 3890
+          "sha256": "45dda853ec0e9ce73c022fc6b23fd2477f3682c53b8741c6b856d739c219aa63",
+          "bytes": 4038
         },
         {
           "path": "agents/atlassian/atlassian-live-write-guard-agent/harnesses/kiro-cli.agent.json",
-          "sha256": "45ffadf64efa88eca61f0922a746b25f9dbb0e845b1027a99cad340e8b4ce06a",
-          "bytes": 3900
+          "sha256": "b222413a31232050fc7fef2cb838ab3948d8d5a2ba2253939cadc3056f60dc0b",
+          "bytes": 4048
         },
         {
           "path": "agents/atlassian/atlassian-live-write-guard-agent/harnesses/kiro-ide.agent.md",
-          "sha256": "c4eb0de1485477fac9edce3f0578ce82da6570dc613a039f37c0e5c66dbc9f21",
-          "bytes": 3841
+          "sha256": "ae172ab588a89f0baa31a2a346569b7b744de80cecf9ec7fc40b1c05ab22bfab",
+          "bytes": 3989
         },
         {
           "path": "agents/atlassian/atlassian-live-write-guard-agent/metadata.json",
-          "sha256": "2aba1a5918fcd5370c16e77967cc755c3e9f569aaf7d2eaae3308abeb8821121",
-          "bytes": 2229
+          "sha256": "15477707bbedf634d597dc6fb6967507eb6324c62c96411174a2c3bab2eb9d43",
+          "bytes": 2365
         },
         {
           "path": "agents/atlassian/atlassian-maestro-agent/AGENT.md",
-          "sha256": "f1a601973d05d6a8e7c71d562ba1ff833a374c38631cb5c9b396408ea903f95d",
-          "bytes": 3878
+          "sha256": "c9f1db5dc22e5e3bf507fbf8d21aa763786aa794d88b848f4d27b0d6ceaee72c",
+          "bytes": 3981
         },
         {
           "path": "agents/atlassian/atlassian-maestro-agent/LEAST-PRIVILEGES.md",
@@ -3108,38 +3108,38 @@
         },
         {
           "path": "agents/atlassian/atlassian-maestro-agent/harnesses/claude-code.agent.md",
-          "sha256": "3393fb486652d927a2f0c78767fc36a4124556b257047d0e408c7ee8fa30007f",
-          "bytes": 3805
+          "sha256": "0057754f5c5986adeef9b5d07fdb054970c77a5763a818a2dd304d0e978e53ce",
+          "bytes": 3932
         },
         {
           "path": "agents/atlassian/atlassian-maestro-agent/harnesses/codex.toml",
-          "sha256": "05bba0daa732c181180cd219e595b52689d0f9be9a4dac29ef687039635c3762",
-          "bytes": 3724
+          "sha256": "e5fb0a8e56ba1581b5fb8e23b9c0df2729ac6a69a1f0db0cd541e64e55f9b954",
+          "bytes": 3827
         },
         {
           "path": "agents/atlassian/atlassian-maestro-agent/harnesses/copilot.agent.md",
-          "sha256": "6efefc855bca95bef006ebae5b720d18d48291d3a7de1ae3f4c0f5ce8b7eb0df",
-          "bytes": 3858
+          "sha256": "0de18faae89326627cda9793844602cceab7cfad6660b5b82e269425ba020721",
+          "bytes": 3961
         },
         {
           "path": "agents/atlassian/atlassian-maestro-agent/harnesses/cursor.agent.md",
-          "sha256": "3393fb486652d927a2f0c78767fc36a4124556b257047d0e408c7ee8fa30007f",
-          "bytes": 3805
+          "sha256": "652cc0b386fd43cca7491ae4d1223b2fbcf2d26d710b42d5462232224991f814",
+          "bytes": 3908
         },
         {
           "path": "agents/atlassian/atlassian-maestro-agent/harnesses/gemini.agent.md",
-          "sha256": "eeea19bce40f19bbe90ef8006ab8bab6d833c9258d985d98c7af5077969ac5b9",
-          "bytes": 3845
+          "sha256": "8d6c658a58606acee89948ff32f0c5d37c9bf7d6fefb5fdc7cd72c79c43c36fe",
+          "bytes": 3948
         },
         {
           "path": "agents/atlassian/atlassian-maestro-agent/harnesses/kiro-cli.agent.json",
-          "sha256": "4d06cfe49cb31c3ac07edae4c10faaa19e5c1dcb08a16416bd1da557faec1162",
-          "bytes": 3862
+          "sha256": "4e7969817b3f83ac941a0906da2a98b455f73e6b82748f8eafc6f64dd5659740",
+          "bytes": 3965
         },
         {
           "path": "agents/atlassian/atlassian-maestro-agent/harnesses/kiro-ide.agent.md",
-          "sha256": "3393fb486652d927a2f0c78767fc36a4124556b257047d0e408c7ee8fa30007f",
-          "bytes": 3805
+          "sha256": "652cc0b386fd43cca7491ae4d1223b2fbcf2d26d710b42d5462232224991f814",
+          "bytes": 3908
         },
         {
           "path": "agents/atlassian/atlassian-maestro-agent/metadata.json",
@@ -36493,7 +36493,7 @@
     },
     {
       "tree": "schemas",
-      "aggregate_sha256": "fa98f9d3d08cb06e303d4278ebf3350da7a84ca8d381f56d2e565a9d42067327",
+      "aggregate_sha256": "49933624ddd56a50591544ba8d15caa0d2cd617f130bec854ffbb3c90d0c570e",
       "files": [
         {
           "path": "schemas/AGENTS.md",
@@ -36517,8 +36517,8 @@
         },
         {
           "path": "schemas/atlassian-case-capsule.schema.json",
-          "sha256": "52897c3c5ffee5cc6bb8608c4f70bb87184de09f90d3a2088d46698689cdc4f0",
-          "bytes": 6945
+          "sha256": "88bde76026a805dae3bfd1755710a558aa531fd0ccd4e92c9648a43103870bfe",
+          "bytes": 11131
         },
         {
           "path": "schemas/attestation.schema.json",
@@ -36579,7 +36579,7 @@
     },
     {
       "tree": "catalog",
-      "aggregate_sha256": "6c457a6dce0ad327ef133342c067ccd2bea53e4f6f27851423e6abf836863c55",
+      "aggregate_sha256": "ffa962ad308cdb43b3cde252636cd1b13cf3651d4e2a5f86e465e71dba58864b",
       "files": [
         {
           "path": "catalog/AGENTS.md",
@@ -36588,8 +36588,8 @@
         },
         {
           "path": "catalog/agents.json",
-          "sha256": "99c2523dcb198f340c218e92c7c3f088340f0e26b2aaead37baccd91c9b040b0",
-          "bytes": 1296096
+          "sha256": "b113f2f4d43bf1796bc8f83a5d2f57c9841f94a67b64b733f93d99e2b8491787",
+          "bytes": 1296232
         },
         {
           "path": "catalog/index.json",
@@ -36633,7 +36633,7 @@
         },
         {
           "path": "catalog/skill-manifest.json",
-          "sha256": "2af653d110d32d9b7d385c10dad7ba327c44d8087be6f202905f4b5eb13198b2",
+          "sha256": "e3e743897babd5070de4b426079c777e50194bb42d426a299ed027d0612a3c53",
           "bytes": 1193704
         },
         {
@@ -36650,7 +36650,7 @@
     },
     {
       "tree": "scripts",
-      "aggregate_sha256": "e78b53a18f7bc5613071522cdc6db1eed72558dfc2baec363423f2bf8f40d230",
+      "aggregate_sha256": "42a2adec170dceaf709f4d37d2417ee7dcfb557a21690d025975f15c83a2498d",
       "files": [
         {
           "path": "scripts/apply-skill-allowed-tools.py",
@@ -36834,8 +36834,8 @@
         },
         {
           "path": "scripts/generate-kiro-powers.mjs",
-          "sha256": "3b57d72c75e11d06064001b85ca7a268739ba8b8002908bd698b257624d1f834",
-          "bytes": 54025
+          "sha256": "948fd2d1c2e9e325418ef62979990434ada9506afced085e47f6cabfaeae8946",
+          "bytes": 54028
         },
         {
           "path": "scripts/generate-mods.mjs",
@@ -37521,7 +37521,7 @@
     },
     {
       "tree": "powers",
-      "aggregate_sha256": "1585eae9eaef32e1cdb8f2e4be815c24bbd3b2fe5860b74bc1acdce07aaf5580",
+      "aggregate_sha256": "5545feea0e1b61e4cd3e7dab8590676c67bf5dd620d9392a99e3949f78de90eb",
       "files": [
         {
           "path": "powers/README.md",
@@ -37545,8 +37545,8 @@
         },
         {
           "path": "powers/vanguard-atlassian/POWER.md",
-          "sha256": "b2e9b44515cb83a83288db448143b81dcb4154b7b45e21d3b47302d3634e2c4f",
-          "bytes": 3560
+          "sha256": "a920574ce23da6cc611b5803957f89baac8c7806b4b42c3b066da45af5ec034f",
+          "bytes": 3566
         },
         {
           "path": "powers/vanguard-aws/POWER.md",
@@ -37877,7 +37877,7 @@
     },
     {
       "tree": "tests",
-      "aggregate_sha256": "695bc44dc9b933487bd6520bbf95692d77885f5019e211243d2b472a1128ccde",
+      "aggregate_sha256": "cb9c19f2ec9b20b28f718883785c19a6e6ba74e77ad87817c06a281250e6bb11",
       "files": [
         {
           "path": "tests/AGENTS.md",
@@ -38916,7 +38916,7 @@
         },
         {
           "path": "tests/fixtures/README.md",
-          "sha256": "dabc7dc742940e036e914e6bed6e0a6fefc2048723b878fd0eb0e9a6789a76c0",
+          "sha256": "3f6f86a28bff228155ed613a6dcdef125d47fb448eff1ef06ebeeebfd731fd88",
           "bytes": 3698
         },
         {
@@ -39731,8 +39731,8 @@
         },
         {
           "path": "tests/fixtures/atlassian-case-capsule/invalid/19-write-at-read-tier.json",
-          "sha256": "a448c835719d25dbf20ef6909b5022d2f3b671ddd921559e8bcba9becf7c5ff8",
-          "bytes": 683
+          "sha256": "437784d0ce86f41844fbb5c442f0c39c53fce519c12a84e425dd9689143cbea0",
+          "bytes": 739
         },
         {
           "path": "tests/fixtures/atlassian-case-capsule/invalid/20-high-risk-at-t3.json",
@@ -39756,18 +39756,18 @@
         },
         {
           "path": "tests/fixtures/atlassian-case-capsule/invalid/24-bulk-jql-write.json",
-          "sha256": "932d4dfb2bbd3d3a6844eaf216d5b0f76f68bbd50f378cbfa43625b4f84def11",
-          "bytes": 307
+          "sha256": "095c52db1073a94c7646fae4987a2db47e80d96e82891a5313febe431b4524a4",
+          "bytes": 308
         },
         {
           "path": "tests/fixtures/atlassian-case-capsule/invalid/25-bulk-wildcard-write.json",
-          "sha256": "e54f8d9891fb65c6b6b0d9bd02a16ec7b023d884b8e6f348e15fc9fad81920b7",
-          "bytes": 179
+          "sha256": "3071b155a9429632173ce5bfd42db08f254d443738c68b5acaf420528db2d5ad",
+          "bytes": 180
         },
         {
           "path": "tests/fixtures/atlassian-case-capsule/invalid/26-circular-delegation.json",
-          "sha256": "5fc903c66d92c785c9caef3170c521973d1b2699f4c5af7414938d12444c35b4",
-          "bytes": 236
+          "sha256": "941c41a5da745bc411caa1ef49457886d1500f382c9d09657416c28a706eeb31",
+          "bytes": 238
         },
         {
           "path": "tests/fixtures/atlassian-case-capsule/invalid/27-delegation-depth-exceeded.json",
@@ -39801,8 +39801,8 @@
         },
         {
           "path": "tests/fixtures/atlassian-case-capsule/invalid/33-instructions-labeled-trusted.json",
-          "sha256": "1b2c92c1ea4e4bcab384670ccb559d5a4ddc0f66a0170567676c519ccf141ed5",
-          "bytes": 234
+          "sha256": "df0fbd279488da5c6971e98d44709c432efa2c4c521d3aed175b136c37ee5a0c",
+          "bytes": 313
         },
         {
           "path": "tests/fixtures/atlassian-case-capsule/invalid/34-unknown-field-token.json",
@@ -39820,28 +39820,193 @@
           "bytes": 161
         },
         {
+          "path": "tests/fixtures/atlassian-case-capsule/invalid/37-dual-requester-whitespace-is-schema.json",
+          "sha256": "3572b473e11bdf7ff0ad37db2cd689d0d85b6f14fdd15fbe5a3b4199588d5b70",
+          "bytes": 242
+        },
+        {
+          "path": "tests/fixtures/atlassian-case-capsule/invalid/38-dual-same-human-by-case.json",
+          "sha256": "86d471a76b7d34395062a3003eb8a2f1ebadb58fb75957cdd6b4cadb4bcdb7f7",
+          "bytes": 239
+        },
+        {
+          "path": "tests/fixtures/atlassian-case-capsule/invalid/39-dual-requester-by-case.json",
+          "sha256": "3737305015c7878bcffe6583b2c98ea45e5d43abbfd19bd0ddcf68ad7c9d8783",
+          "bytes": 239
+        },
+        {
+          "path": "tests/fixtures/atlassian-case-capsule/invalid/40-agent-id-labelled-human-approver.json",
+          "sha256": "2208d57a86ed922c2c75ad7cbf564ecafa6838d3b682c434c696ccd73c147839",
+          "bytes": 238
+        },
+        {
+          "path": "tests/fixtures/atlassian-case-capsule/invalid/41-service-account-requests-write.json",
+          "sha256": "900ec309ea0679f727d2b0ce486e11a585cd5e63e7286513582c30fa004c5f2a",
+          "bytes": 216
+        },
+        {
+          "path": "tests/fixtures/atlassian-case-capsule/invalid/42-comment-relabelled-user-supplied.json",
+          "sha256": "83801b26d9fac23dc0dee40457024da4c7dfaca0dc592e10b747b42e63f84bf7",
+          "bytes": 223
+        },
+        {
+          "path": "tests/fixtures/atlassian-case-capsule/invalid/43-approval-locator-is-comment-case-variant.json",
+          "sha256": "2fc618950bbc5aab092c102944f561b04effc248e5a9a3eefe9c2a35fc073d39",
+          "bytes": 239
+        },
+        {
+          "path": "tests/fixtures/atlassian-case-capsule/invalid/44-approval-locator-is-tenant-url.json",
+          "sha256": "31cf355f32497abcaf8239ee3f74d54de02ae25e6486d32e290a455e68c781d5",
+          "bytes": 274
+        },
+        {
+          "path": "tests/fixtures/atlassian-case-capsule/invalid/45-approval-locator-typed-but-comment.json",
+          "sha256": "08bab478f0937ef5897602bbedc3672509ffd6449562ba3e93d26896669f3240",
+          "bytes": 235
+        },
+        {
+          "path": "tests/fixtures/atlassian-case-capsule/invalid/46-bare-jql-write-target.json",
+          "sha256": "1a6374b0279c534ec38daa32ad452d280a485fb2e96379006e4fb8e0d12a7053",
+          "bytes": 261
+        },
+        {
+          "path": "tests/fixtures/atlassian-case-capsule/invalid/47-filter-write-target.json",
+          "sha256": "73014e501744052cfbf34058c88510b68db1fe3285065339ab2ac2d8f897eb30",
+          "bytes": 254
+        },
+        {
+          "path": "tests/fixtures/atlassian-case-capsule/invalid/48-range-write-target.json",
+          "sha256": "648b925cb56b20ba8135507dc9bede2a66b409bf35d66e5546b2deff7fc1e6c0",
+          "bytes": 235
+        },
+        {
+          "path": "tests/fixtures/atlassian-case-capsule/invalid/49-t4-capsule-to-analysis-agent.json",
+          "sha256": "55ae47691dc6459ea859862a6dae87cc490abbc888e098ec5c5756a89df838b8",
+          "bytes": 221
+        },
+        {
+          "path": "tests/fixtures/atlassian-case-capsule/invalid/50-non-board-origin.json",
+          "sha256": "c09bfc1549946c8de18804575e813ba0e32a436b3cd6be365c7e7ba5b4362586",
+          "bytes": 248
+        },
+        {
+          "path": "tests/fixtures/atlassian-case-capsule/invalid/51-impossible-calendar-expiry.json",
+          "sha256": "95360ca4e5c27dff864d82c0cd560d1b32e3c8d2ecaf829f07c3a473f9e4e3c9",
+          "bytes": 212
+        },
+        {
+          "path": "tests/fixtures/atlassian-case-capsule/invalid/52-unbounded-approval-lifetime.json",
+          "sha256": "d110fe0b5735789a1ca17c9c42cb424590b104b3928ee7195f864a2526c0a39d",
+          "bytes": 264
+        },
+        {
+          "path": "tests/fixtures/atlassian-case-capsule/invalid/53-t4-approval-over-8h.json",
+          "sha256": "5a0e33e267b2ecf808045677a06055262e777752ac38b194de88d8df0b8cf953",
+          "bytes": 222
+        },
+        {
+          "path": "tests/fixtures/atlassian-case-capsule/invalid/54-completion-readback-wrong-target.json",
+          "sha256": "837379d925b750511a6b718b18c6d76434ae5df46d352b7ac567e7003962a701",
+          "bytes": 224
+        },
+        {
+          "path": "tests/fixtures/atlassian-case-capsule/invalid/55-completion-readback-by-write-tool.json",
+          "sha256": "10f1b076d808e94e6cca3aa2a7654ecd9e376caab7fe5ce4f9bd0aadc680555a",
+          "bytes": 200
+        },
+        {
+          "path": "tests/fixtures/atlassian-case-capsule/invalid/56-completion-readback-before-approval.json",
+          "sha256": "20091563fbb4a2b37ef24f259ff59e1acbbbb7a7b9c80c7793a1266b114805a4",
+          "bytes": 243
+        },
+        {
+          "path": "tests/fixtures/atlassian-case-capsule/invalid/57-bearer-token-value.json",
+          "sha256": "52fc0cd610ed0fa75188b8716c147922730a427f7c2cbb958b4440a5830c3d8b",
+          "bytes": 232
+        },
+        {
+          "path": "tests/fixtures/atlassian-case-capsule/invalid/59-secret-colon-form.json",
+          "sha256": "41e132ab4df33dfd301a6c19cf9299c6a9cf77c4bdfc9b83d1703197f821b084",
+          "bytes": 178
+        },
+        {
+          "path": "tests/fixtures/atlassian-case-capsule/invalid/60-opaque-execute-read.json",
+          "sha256": "a27f1ff6e4929bb359ca658d4316f0dd700751f4674ec4706db065aa6a9b1c77",
+          "bytes": 206
+        },
+        {
+          "path": "tests/fixtures/atlassian-case-capsule/invalid/61-cross-tenant-url-in-target.json",
+          "sha256": "42483669eba338725aeb10ede9d20693ad0c73cf6239e367d8b2f598d66b479e",
+          "bytes": 249
+        },
+        {
+          "path": "tests/fixtures/atlassian-case-capsule/invalid/62-decision-owner-agent-uppercase.json",
+          "sha256": "c57c94698baefaaf9c29cbd2808b1a45403552d029b320d0ff0e68d065510b93",
+          "bytes": 194
+        },
+        {
+          "path": "tests/fixtures/atlassian-case-capsule/invalid/63-decision-owner-agent-without-suffix.json",
+          "sha256": "c0dac03cb4999493328db5965deb359b9a48a08897151cbdf764da1fce005055",
+          "bytes": 207
+        },
+        {
+          "path": "tests/fixtures/atlassian-case-capsule/invalid/64-budget-tool-calls-exceeded.json",
+          "sha256": "08497c446729a4be33e13b30c35cfcfdc53df4eab7950647dedd4a2a429ec661",
+          "bytes": 194
+        },
+        {
+          "path": "tests/fixtures/atlassian-case-capsule/invalid/65-budget-review-rounds-exceeded.json",
+          "sha256": "e8bd13b6dac64d88f29d3fafda910770418a3caad3e7004d4714bd1f1b6b7caf",
+          "bytes": 182
+        },
+        {
+          "path": "tests/fixtures/atlassian-case-capsule/invalid/66-approved-but-proposed-pending-elsewhere.json",
+          "sha256": "f78090eb68daabb9c56439c842ea5da0d0e9c1fca33ae4a1a254fa20e94bd445",
+          "bytes": 199
+        },
+        {
+          "path": "tests/fixtures/atlassian-case-capsule/invalid/67-approval-locator-is-a-page.json",
+          "sha256": "dbc4b07eebeae264f91f97c6492449a5c242955429196a95d46032e5684f4da6",
+          "bytes": 222
+        },
+        {
+          "path": "tests/fixtures/atlassian-case-capsule/invalid/68-approval-locator-is-plain-url.json",
+          "sha256": "c99f1cb49da9f409226bb686f8498235fb4016da52f1cac9bbdd9bd6c45df59f",
+          "bytes": 257
+        },
+        {
+          "path": "tests/fixtures/atlassian-case-capsule/invalid/69-approval-locator-free-text.json",
+          "sha256": "e2b5ad443b9a643dcdacd007e2a41d712f98ee0601f3b8dd1200551d7f978ee4",
+          "bytes": 228
+        },
+        {
           "path": "tests/fixtures/atlassian-case-capsule/valid/01-t1-read-incident-review.json",
-          "sha256": "9235c0f93c190d982cba507b47e20cce194919f870c6a6fafb6a2ba972e064e9",
-          "bytes": 3127
+          "sha256": "2a8caca1091d88d6948bcd6f3e2731ba7ba6acea545f000e9ab058838b489d1a",
+          "bytes": 3243
         },
         {
           "path": "tests/fixtures/atlassian-case-capsule/valid/02-t3-create-remediation.json",
-          "sha256": "9cc4f98161eeeb1cc4e95293208c7e4acf94617a8b9be6cdb6ad2d106c4306f9",
-          "bytes": 3545
+          "sha256": "d441265536d23f98a7dc3697be0a6a786e2c03952b8f3a3e7c827a5afb444aea",
+          "bytes": 3652
         },
         {
           "path": "tests/fixtures/atlassian-case-capsule/valid/03-t4-archive-superseded-runbook.json",
-          "sha256": "627562c0c0430e08d0b523cfbfb9436926776cb8ec72adaa340746b5914242c5",
-          "bytes": 2591
+          "sha256": "de9d52e78a469f10fbf9bfb14fba9b531aadad39eb84bda57d7818630c5f2881",
+          "bytes": 2707
         },
         {
           "path": "tests/fixtures/atlassian-case-capsule/valid/04-t3-completed-with-readback.json",
-          "sha256": "cb04a0c412a5116d505d44e5ec6f64b864bf5ab5f936540e159e73ff22fe7bd6",
-          "bytes": 3701
+          "sha256": "e2a11c384c5f72a5e7d02408e91a39d50d9979f2e986ab0759065be50daa2a5e",
+          "bytes": 4404
         },
         {
           "path": "tests/fixtures/atlassian-case-capsule/valid/05-t1-injection-flagged-as-untrusted.json",
-          "sha256": "bd755c62612fffae91e7779771eb5cd6de24030c4494263984ad477befcb7d86",
+          "sha256": "70c7be9282e5f3c29d7798e0ee30280fef5e1d9385feb61b57212c54aaa798be",
+          "bytes": 3541
+        },
+        {
+          "path": "tests/fixtures/atlassian-case-capsule/valid/06-t3-proposed-awaiting-approval.json",
+          "sha256": "695e478fb3125cf1701e623910ad420af058f25a5dea0f20468dd45458a1841d",
           "bytes": 3425
         },
         {
@@ -39925,6 +40090,41 @@
           "bytes": 83
         },
         {
+          "path": "tests/fixtures/atlassian-maestro-routing/expected/17-adv-restriction-change-no-product-word.json",
+          "sha256": "c9e8f58de097f3bef6eaa813631da346b5d80cdb9b11cacb206bec64801fd7a1",
+          "bytes": 89
+        },
+        {
+          "path": "tests/fixtures/atlassian-maestro-routing/expected/18-adv-permission-grant.json",
+          "sha256": "c9e8f58de097f3bef6eaa813631da346b5d80cdb9b11cacb206bec64801fd7a1",
+          "bytes": 89
+        },
+        {
+          "path": "tests/fixtures/atlassian-maestro-routing/expected/19-adv-alert-acknowledge.json",
+          "sha256": "c9e8f58de097f3bef6eaa813631da346b5d80cdb9b11cacb206bec64801fd7a1",
+          "bytes": 89
+        },
+        {
+          "path": "tests/fixtures/atlassian-maestro-routing/expected/20-adv-purge-without-product-word.json",
+          "sha256": "c9e8f58de097f3bef6eaa813631da346b5d80cdb9b11cacb206bec64801fd7a1",
+          "bytes": 89
+        },
+        {
+          "path": "tests/fixtures/atlassian-maestro-routing/expected/21-adv-space-ai-instructions.json",
+          "sha256": "c9e8f58de097f3bef6eaa813631da346b5d80cdb9b11cacb206bec64801fd7a1",
+          "bytes": 89
+        },
+        {
+          "path": "tests/fixtures/atlassian-maestro-routing/expected/22-adv-injection-by-issue-key.json",
+          "sha256": "c9e8f58de097f3bef6eaa813631da346b5d80cdb9b11cacb206bec64801fd7a1",
+          "bytes": 89
+        },
+        {
+          "path": "tests/fixtures/atlassian-maestro-routing/expected/23-conservative-negated-write-still-gates.json",
+          "sha256": "c9e8f58de097f3bef6eaa813631da346b5d80cdb9b11cacb206bec64801fd7a1",
+          "bytes": 89
+        },
+        {
           "path": "tests/fixtures/atlassian-maestro-routing/inputs/01-happy-incident-prevention.json",
           "sha256": "36b2163c2a17f557a655950c6640814c8a347596700c3c34e87be9327dfdc26d",
           "bytes": 241
@@ -40005,9 +40205,44 @@
           "bytes": 175
         },
         {
+          "path": "tests/fixtures/atlassian-maestro-routing/inputs/17-adv-restriction-change-no-product-word.json",
+          "sha256": "5726c1d6d296cd855e1ef4e145af30b6cfabc76a9605c43c103c9935c1fe2fdc",
+          "bytes": 205
+        },
+        {
+          "path": "tests/fixtures/atlassian-maestro-routing/inputs/18-adv-permission-grant.json",
+          "sha256": "3edd29d7e5b88717c4f993b5b8997f4294eed99f1522e13aaad5843ebc98b0f8",
+          "bytes": 207
+        },
+        {
+          "path": "tests/fixtures/atlassian-maestro-routing/inputs/19-adv-alert-acknowledge.json",
+          "sha256": "1f2dfc5fa0e0e4cac135696b10febd32ee060ecf2c18bd6301a63be4ef1c2863",
+          "bytes": 214
+        },
+        {
+          "path": "tests/fixtures/atlassian-maestro-routing/inputs/20-adv-purge-without-product-word.json",
+          "sha256": "00f269c78105b4044d27c972e8dc48cfaa6e52f1181425fd374215b6d1055e0f",
+          "bytes": 165
+        },
+        {
+          "path": "tests/fixtures/atlassian-maestro-routing/inputs/21-adv-space-ai-instructions.json",
+          "sha256": "4aad05e697a1bc0b4be62736fd9999cf115a021750fde4ff25f945adc455b6fb",
+          "bytes": 220
+        },
+        {
+          "path": "tests/fixtures/atlassian-maestro-routing/inputs/22-adv-injection-by-issue-key.json",
+          "sha256": "9e10e83dcfa232118de708f60b30d0d7f3092e7d2b6c743869c284a657fe8921",
+          "bytes": 253
+        },
+        {
+          "path": "tests/fixtures/atlassian-maestro-routing/inputs/23-conservative-negated-write-still-gates.json",
+          "sha256": "92671599a846a8ec14c9f343298c3d100931c44020a9f164b2fd30f9a7ce455f",
+          "bytes": 223
+        },
+        {
           "path": "tests/fixtures/atlassian-maestro-routing/taxonomy.json",
-          "sha256": "db370f7d186e8d3ac034108ba87e2a9f40984063518691bd922ac6b02a5d086b",
-          "bytes": 1738
+          "sha256": "af5aa4fc603e3285f8d5de933d856ae6ca87e2ebd18ab4ad114ab8e69ab59fb7",
+          "bytes": 2082
         },
         {
           "path": "tests/fixtures/aws-maestro-routing/expected/001-happy-agentcore.json",
@@ -49901,8 +50136,8 @@
         },
         {
           "path": "tests/validate-atlassian-case-capsule.py",
-          "sha256": "316f68586a3bfffe07bcb592862af1936ab2b1098a7c2b196f1088d0857a358e",
-          "bytes": 13087
+          "sha256": "713731a236921f4e113718c5ad327b79947fc1025d0601a9bbcea60f07ce09e4",
+          "bytes": 19847
         },
         {
           "path": "tests/validate-aws-progressive-disclosure.py",
@@ -50060,8 +50295,8 @@
   "root_files": [
     {
       "path": "README.md",
-      "sha256": "4b838e79e21f3d3de002ebcb70a459cc250b8c6632a51cedbf3f27d0476405a9",
-      "bytes": 116089
+      "sha256": "b8781201fb6a09dc7e4c40583dff8c601b7eeaf25749bb7f401380fa83fdb95e",
+      "bytes": 116095
     },
     {
       "path": "SECURITY.md",
@@ -50109,5 +50344,5 @@
       "bytes": 9135
     }
   ],
-  "aggregate_sha256": "026a479e6f3d2d52529960fe5d656eea31caa1cebd6e5881219c11df52b92029"
+  "aggregate_sha256": "efeafe6a226eaf8877d4cb6354da1c47f290f293dce50b5f4468fbfea7d8ea0d"
 }

@@ -10,7 +10,7 @@ This document records why the Atlassian board ships what it ships, what it defer
 
 Evidence vocabulary. "VERIFIED" means a row in the evidence ledger (`skills/atlassian/atlassian-rovo-mcp-integration/references/evidence-ledger.md`), cited by ID such as ATL-E07. The ledger is documentation verification, not a live tenant test. "Delegate-reported" means a research delegate read it from an Atlassian-hosted page or a search snippet and the orchestrator did not independently verify it. "UNVERIFIED" means no source read supports it. "CONFLICT" means two official pages disagree.
 
-Board members: `atlassian-maestro-agent` (routing only), three read-only specialists (`atlassian-incident-prevention-agent`, `atlassian-control-evidence-lineage-agent`, `atlassian-knowledge-integrity-agent`) and `atlassian-live-write-guard-agent`. The guard is `read-only-runtime`, holds no write tools and is gate-only: on a go, the write runs in the human's interactive session under client permission prompts, and the guard then reads back the result. No agent on this board is `mutating-runtime`. The decision record for the board is ADR-0005, referenced by the agent charters.
+Board members: `atlassian-maestro-agent` (routing only), three read-only specialists (`atlassian-incident-prevention-agent`, `atlassian-control-evidence-lineage-agent`, `atlassian-knowledge-integrity-agent`) and `atlassian-live-write-guard-agent`. The guard is `read-only-runtime`, declares no write tools (enforced by allowlist only in its Claude Code adapter) and is gate-only: on a go, the write runs in the human's interactive session under client permission prompts, and the guard then reads back the result. No agent on this board is `mutating-runtime`. The decision record for the board is ADR-0005, referenced by the agent charters.
 
 ## 1. Atlassian capability matrix (Deliverable D)
 
@@ -137,7 +137,7 @@ Read-only is not enforced by an agent prompt. The server acts with the authentic
 | Audit | Required audit events named in each blueprint | An audit log store; the capsule gate proves record shape, not that an approval exists |
 | Evaluation | Handcrafted capsule and routing cases | Live-tenant evaluation, seeded-defect corpora, usage metering |
 
-As of this record there are 5 valid and 36 invalid capsule fixtures (each invalid fixture names the one rule it must trip) and 16 routing cases. The gate validates records, not live sessions: a harness that never produces a capsule is not governed by it.
+Each invalid capsule fixture names the one rule it must trip, and the suite fails unless every declared rule has one; fixture counts are not maintained here (`npm run validate:atlassian-capsule` prints them). The gate validates records, not live sessions: a harness that never produces a capsule is not governed by it.
 
 ## 4. Three end-to-end blueprints (Deliverable 18 fields)
 
@@ -337,7 +337,7 @@ Evidence type "executable fixture" means a capsule or routing fixture that the r
 | 8 | Cross-project unauthorized access | Server acts with user permissions (ATL-E12); no board-side control | H | Not covered |
 | 9 | Agent impersonation | `CAP-APPROVAL-RECORD` (03), `CAP-DELEGATION-CHAIN` (28), `CAP-DECISION-OWNER` (31) | H | Executable fixture; identity authentication in a real harness not built |
 | 10 | Permission escalation | `CAP-PROHIBITED-TOOL` (12, 13); admin groups; client deny-list | H | Executable fixture; deny-list is client configuration |
-| 11 | Unauthorized bulk writes | `CAP-BULK-TARGET` (24, 25) | H | Executable fixture |
+| 11 | Unauthorized bulk writes | `CAP-WRITE-TARGET` (24, 25 and later range, filter and bare-JQL fixtures) | H | Executable fixture |
 | 12 | Destructive operations without approval | `CAP-PROHIBITED-TOOL` (15, 16), `CAP-APPROVAL-REQUIRED` (09); routing case 11 | H | Executable fixture |
 | 13 | Fabricated references | Locator and version required per evidence item; nothing checks that a locator resolves | M | Documented contract only |
 | 14 | Stale API permissions | Session contract re-established on resume (failure-and-recovery reference) | M | Documented contract only |

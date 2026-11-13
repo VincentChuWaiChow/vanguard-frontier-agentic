@@ -1,6 +1,6 @@
 {
   "base": "02-t3-create-remediation.json",
-  "rule": "CAP-BULK-TARGET",
+  "rule": "CAP-WRITE-TARGET",
   "why": "Scenario 11 (unauthorized bulk write): a query is not an approved item list.",
   "set": {
     "permitted_operations.0.tool": "editJiraIssue",

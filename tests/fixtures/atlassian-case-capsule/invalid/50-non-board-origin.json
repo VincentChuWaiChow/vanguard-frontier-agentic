@@ -1,0 +1,11 @@
+{
+  "base": "01-t1-read-incident-review.json",
+  "rule": "CAP-UNKNOWN-AGENT",
+  "why": "Refuter H5 / scenario 9: an unknown agent in the chain.",
+  "set": {
+    "origin_agent": "evil-agent",
+    "delegation_chain": [
+      "evil-agent"
+    ]
+  }
+}

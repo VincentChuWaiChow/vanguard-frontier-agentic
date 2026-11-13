@@ -63,10 +63,10 @@
     ],
     "approval_record": {
       "kind": "out-of-band-human-record",
-      "locator": "approval-workflow AW-5531"
+      "locator": "approval-workflow:AW-5531"
     },
     "approved_at": "2026-11-13T09:50:00Z",
-    "expires_at": "2026-11-13T18:00:00Z"
+    "expires_at": "2026-11-13T17:00:00Z"
   },
   "execution_budget": {
     "max_delegation_depth": 3,
@@ -85,5 +85,11 @@
   "do_not_do": [
     "Do not archive any page other than page:445566.",
     "Do not change restrictions or permissions."
-  ]
+  ],
+  "parent_task_id": null,
+  "budget_consumed": {
+    "tool_calls": 0,
+    "retries": 0,
+    "review_rounds": 0
+  }
 }

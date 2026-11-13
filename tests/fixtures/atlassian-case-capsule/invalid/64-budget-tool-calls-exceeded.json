@@ -1,0 +1,8 @@
+{
+  "base": "02-t3-create-remediation.json",
+  "rule": "CAP-BUDGET-EXCEEDED",
+  "why": "Refuter M7: consumed tool calls above the budget.",
+  "set": {
+    "budget_consumed.tool_calls": 41
+  }
+}

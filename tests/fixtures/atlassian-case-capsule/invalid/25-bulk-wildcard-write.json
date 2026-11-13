@@ -1,6 +1,6 @@
 {
   "base": "02-t3-create-remediation.json",
-  "rule": "CAP-BULK-TARGET",
+  "rule": "CAP-WRITE-TARGET",
   "why": "Wildcard target.",
   "set": {
     "permitted_operations.0.target": "project:OPS issue:*"
