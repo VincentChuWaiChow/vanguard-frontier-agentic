@@ -1,0 +1,8 @@
+{
+  "base": "02-t3-create-remediation.json",
+  "rule": "CAP-APPROVAL-WINDOW",
+  "why": "Scenario 22 (approval expiration).",
+  "set": {
+    "approval_state.expires_at": "2026-11-13T09:59:59Z"
+  }
+}

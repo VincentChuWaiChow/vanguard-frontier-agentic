@@ -1,6 +1,6 @@
 # AGENTS.md — Navigation Compass
 
-<!-- count:global:agents -->745<!-- /count --> agents across <!-- count:global:providers -->45<!-- /count --> providers. This file is the index; load provider files on demand.
+<!-- count:global:agents -->750<!-- /count --> agents across <!-- count:global:providers -->46<!-- /count --> providers. This file is the index; load provider files on demand.
 
 ## File structure
 

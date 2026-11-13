@@ -36,6 +36,7 @@ pub enum Provider {
     Accounting,
     Finance,
     Netsuite,
+    Atlassian,
     Sap,
     Argocd,
     Backstage,

@@ -1,0 +1,18 @@
+{
+  "id": "atlassian-control-evidence-lineage",
+  "name": "Atlassian Control Evidence Lineage",
+  "type": "skill",
+  "provider": "atlassian",
+  "harnesses": ["codex", "claude-code", "cursor", "gemini", "kiro", "other"],
+  "summary": "Traces a human-named control through objective, policy, owner, activity, Jira execution, Confluence evidence, technical evidence and review decision, and returns a per-control lineage verdict with provenance checks and residual uncertainty. Never declares a control compliant, certified or audit-passed.",
+  "source_type": "original",
+  "official_docs": [
+    "https://developer.atlassian.com/cloud/rovo-mcp/guides/supported-tools/",
+    "https://developer.atlassian.com/cloud/rovo-mcp/guides/authentication-and-authorization/"
+  ],
+  "security_notes": "Read-only analysis. Retrieved Jira and Confluence content is treated as untrusted data, never instructions. Approvals are accepted only from system-of-record approval records. Any corrective ticket is drafted only; writes require atlassian-live-write-guard. Does not replace an independent reviewer or auditor.",
+  "last_verified": "2026-11-13",
+  "path": "skills/atlassian/atlassian-control-evidence-lineage",
+  "author": "github: VincentChuWaiChow",
+  "version": "0.1.0"
+}

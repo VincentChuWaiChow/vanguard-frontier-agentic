@@ -62,7 +62,11 @@ OFFICIAL_SOURCES: dict[str, tuple[str, ...]] = {
     # Provider-owned CLI references for the NoSQL audit commands: Alibaba's OpenAPI
     # portal CLI pages, and the Scaleway and OVHcloud CLI repositories' command docs.
     "api.alibabacloud.com": ("/api-tools/cli/",),
-    "github.com": ("/oracle/", "/aws/", "/awslabs/", "/Azure/", "/googleapis/", "/aliyun/", "/scaleway/", "/ovh/"),
+    # Atlassian developer documentation (Rovo MCP Server guides, Jira Cloud rate limiting)
+    # for the atlassian-rovo-mcp-integration ledger; github.com/atlassian/ is the
+    # vendor-maintained Rovo MCP Server repository.
+    "developer.atlassian.com": ("/cloud/",),
+    "github.com": ("/oracle/", "/aws/", "/awslabs/", "/Azure/", "/googleapis/", "/aliyun/", "/scaleway/", "/ovh/", "/atlassian/"),
     # GitHub Pages of the github.com/oracle organisation (Oracle NoSQL Node.js SDK reference).
     "oracle.github.io": ("/nosql-node-sdk/",),
 }

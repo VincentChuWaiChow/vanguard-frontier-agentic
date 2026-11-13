@@ -44,6 +44,7 @@ export const uncovered = [
   "alibaba-live-oss-bucket-policy-guard-agent",
   "alibaba-live-ram-policy-change-guard-agent",
   "alibaba-live-rds-polardb-mutation-guard-agent",
+  "atlassian-live-write-guard-agent",
   "contabo-live-instance-lifecycle-guard-agent",
   "contabo-live-storage-operations-guard-agent",
   "d365-live-record-field-update-guard-agent",

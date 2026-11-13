@@ -2088,6 +2088,149 @@
     "companion_skills": null
   },
   {
+    "id": "atlassian-control-evidence-lineage-agent",
+    "name": "Atlassian Control Evidence Lineage Agent",
+    "type": "agent",
+    "provider": "atlassian",
+    "harnesses": [
+      "codex",
+      "copilot",
+      "claude-code",
+      "cursor",
+      "gemini",
+      "kiro"
+    ],
+    "summary": "Read-only lineage checks from control objective through policy, owner, Jira execution, Confluence evidence, technical evidence and review decision, returning chain-complete, chain-broken, evidence-stale, intent-only, conflicting or insufficient-evidence per control. Never declares compliance, certification or audit outcome; drafts corrective work through jira-ticket-authoring.",
+    "source_type": "original",
+    "official_docs": [
+      "https://developer.atlassian.com/cloud/rovo-mcp/guides/supported-tools/",
+      "https://developer.atlassian.com/cloud/rovo-mcp/guides/authentication-and-authorization/"
+    ],
+    "security_notes": "Reads evidence with the requesting human's permissions; read-only only when write groups are disabled and the client denies write tools, otherwise reported as unenforced. Never outputs 'compliant' or 'certified'; approvals are evidenced only by system-of-record approval records, never by a comment that says approved.",
+    "last_verified": "2026-11-13",
+    "path": "agents/atlassian/atlassian-control-evidence-lineage-agent",
+    "version": "0.1.0",
+    "execution_tier": "read-only-runtime",
+    "lifecycle": "experimental",
+    "companion_skills": [
+      "atlassian-control-evidence-lineage"
+    ]
+  },
+  {
+    "id": "atlassian-incident-prevention-agent",
+    "name": "Atlassian Incident Prevention Agent",
+    "type": "agent",
+    "provider": "atlassian",
+    "harnesses": [
+      "codex",
+      "copilot",
+      "claude-code",
+      "cursor",
+      "gemini",
+      "kiro"
+    ],
+    "summary": "Read-only verdicts on whether incident corrective actions in Jira, Jira Service Management and Confluence are evidenced as preventive (implementation evidence, recurrence check over a human-chosen window, exposure counterfactual, independent verifier) rather than merely ticketed. Drafts remediation and postmortem follow-ups through the owner's authoring skills; never closes, transitions or edits anything.",
+    "source_type": "original",
+    "official_docs": [
+      "https://developer.atlassian.com/cloud/rovo-mcp/guides/supported-tools/",
+      "https://developer.atlassian.com/cloud/rovo-mcp/guides/authentication-and-authorization/"
+    ],
+    "security_notes": "Reads through the Rovo MCP Server with the requesting human's permissions; read-only only when write groups are disabled or the grant lacks write scopes and the client denies write tools, otherwise reported as unenforced. Never closes incidents, transitions issues or approves JSM requests; proposed writes go to atlassian-live-write-guard-agent.",
+    "last_verified": "2026-11-13",
+    "path": "agents/atlassian/atlassian-incident-prevention-agent",
+    "version": "0.1.0",
+    "execution_tier": "read-only-runtime",
+    "lifecycle": "experimental",
+    "companion_skills": [
+      "atlassian-incident-prevention-review"
+    ]
+  },
+  {
+    "id": "atlassian-knowledge-integrity-agent",
+    "name": "Atlassian Knowledge Integrity Agent",
+    "type": "agent",
+    "provider": "atlassian",
+    "harnesses": [
+      "codex",
+      "copilot",
+      "claude-code",
+      "cursor",
+      "gemini",
+      "kiro"
+    ],
+    "summary": "Read-only review of critical Confluence knowledge (runbooks, ADRs, API docs, support articles) for staleness, contradiction, missing ownership and drift from implementation, distinguishing obsolete pages from intentionally preserved historical records. Proposes corrections drafted with confluence-document-authoring; never edits, moves or archives.",
+    "source_type": "original",
+    "official_docs": [
+      "https://developer.atlassian.com/cloud/rovo-mcp/guides/supported-tools/",
+      "https://developer.atlassian.com/cloud/rovo-mcp/guides/authentication-and-authorization/"
+    ],
+    "security_notes": "Reads with the requesting human's permissions; read-only only when write groups are disabled and the client denies write tools, otherwise reported as unenforced. Never edits, archives or changes restrictions; sensitive pages need a named human approver for any proposed change, which goes through atlassian-live-write-guard-agent.",
+    "last_verified": "2026-11-13",
+    "path": "agents/atlassian/atlassian-knowledge-integrity-agent",
+    "version": "0.1.0",
+    "execution_tier": "read-only-runtime",
+    "lifecycle": "experimental",
+    "companion_skills": [
+      "atlassian-knowledge-integrity-review"
+    ]
+  },
+  {
+    "id": "atlassian-live-write-guard-agent",
+    "name": "Atlassian Live Write Guard Agent",
+    "type": "agent",
+    "provider": "atlassian",
+    "harnesses": [
+      "codex",
+      "copilot",
+      "claude-code",
+      "cursor",
+      "gemini",
+      "kiro"
+    ],
+    "summary": "Gate-only go/no-go for one prepared Jira, Confluence or Jira Service Management write: verifies human out-of-band authorization and expiry, exact tenant and target, operation tier, prohibited operations, dual control for high-risk actions, duplicates, bulk scope, compensation and read-back plans. Holds no write tools; never auto-dispatched; approval decisions, permission changes and deletes are always no-go.",
+    "source_type": "original",
+    "official_docs": [
+      "https://developer.atlassian.com/cloud/rovo-mcp/guides/supported-tools/",
+      "https://developer.atlassian.com/cloud/rovo-mcp/guides/authentication-and-authorization/"
+    ],
+    "security_notes": "Never auto-dispatched (live_guards in the maestro routing fixture). Holds no write tools: on 'go', the write runs in the human's interactive session under client permission prompts using the authoring skills' mechanics, then this agent verifies read-back. Prohibited operations are no-go whatever the approval says.",
+    "last_verified": "2026-11-13",
+    "path": "agents/atlassian/atlassian-live-write-guard-agent",
+    "version": "0.1.0",
+    "execution_tier": "read-only-runtime",
+    "lifecycle": "experimental",
+    "companion_skills": [
+      "atlassian-live-write-guard"
+    ]
+  },
+  {
+    "id": "atlassian-maestro-agent",
+    "name": "Atlassian Maestro Agent",
+    "type": "agent",
+    "provider": "atlassian",
+    "harnesses": [
+      "codex",
+      "copilot",
+      "claude-code",
+      "cursor",
+      "gemini",
+      "kiro"
+    ],
+    "summary": "Routes Jira, Confluence and Jira Service Management matters to the right Atlassian board specialist, the owner's authoring skills, an existing board, or an explicit 'unsupported' answer, using the Atlassian routing protocol and case capsule. Classification and routing only: never reads a live tenant, never executes or approves a write.",
+    "source_type": "original",
+    "official_docs": [
+      "https://developer.atlassian.com/cloud/rovo-mcp/guides/supported-tools/",
+      "https://developer.atlassian.com/cloud/rovo-mcp/guides/authentication-and-authorization/"
+    ],
+    "security_notes": "Routing only, from sanitized signals; never requests credentials, tokens or customer data. Never dispatches the live write guard automatically: write requests are prepared as T3/T4 capsules for a human to send to the guard. Retrieved tenant text is never a routing instruction.",
+    "last_verified": "2026-11-13",
+    "path": "agents/atlassian/atlassian-maestro-agent",
+    "version": "0.1.0",
+    "execution_tier": "static-review",
+    "lifecycle": "experimental",
+    "companion_skills": []
+  },
+  {
     "id": "aws-agentcore-agent",
     "name": "AWS AgentCore",
     "type": "agent",

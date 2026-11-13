@@ -1,0 +1,7 @@
+{
+  "name": "01-happy-incident-prevention",
+  "task": "Our payment-retry incident happened again twice this quarter; review whether the corrective actions from the postmortem actually prevent recurrence.",
+  "tags": [
+    "happy-path"
+  ]
+}

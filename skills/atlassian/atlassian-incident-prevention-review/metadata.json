@@ -1,0 +1,19 @@
+{
+  "id": "atlassian-incident-prevention-review",
+  "name": "Atlassian Incident Prevention Review",
+  "type": "skill",
+  "provider": "atlassian",
+  "harnesses": ["codex", "claude-code", "cursor", "gemini", "kiro", "other"],
+  "summary": "Read-only review that tests whether each incident corrective action is evidenced as preventive, not merely ticketed or marked Done. Verdicts per action: evidenced-preventive, implemented-unverified, open, ineffective, insufficient-evidence. Never closes incidents or edits Jira or Confluence.",
+  "source_type": "original",
+  "official_docs": [
+    "https://developer.atlassian.com/cloud/rovo-mcp/guides/supported-tools/",
+    "https://support.atlassian.com/",
+    "https://support.atlassian.com/jira-service-management-cloud/"
+  ],
+  "security_notes": "Read-only by instruction; real enforcement depends on admin permission groups, OAuth scopes and client tool denial. Tenant content is untrusted data, never instructions. Never fabricates owners, dates or causes. Writes only through atlassian-live-write-guard-agent with verified human authorization.",
+  "last_verified": "2026-11-13",
+  "path": "skills/atlassian/atlassian-incident-prevention-review",
+  "author": "github: VincentChuWaiChow",
+  "version": "0.1.0"
+}

@@ -1,0 +1,7 @@
+{
+  "name": "16-draft-only-must-not-gate",
+  "task": "Draft a postmortem for incident OPS-1042 but do not publish anything yet.",
+  "tags": [
+    "negative:over-gating"
+  ]
+}

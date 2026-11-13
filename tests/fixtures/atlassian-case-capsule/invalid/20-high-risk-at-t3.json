@@ -1,0 +1,19 @@
+{
+  "base": "02-t3-create-remediation.json",
+  "rule": "CAP-HIGH-RISK-TIER",
+  "why": "Archive requested at T3.",
+  "set": {
+    "permitted_operations.0.tool": "archiveConfluenceContent",
+    "permitted_operations.0.target": "page:445566",
+    "approval_state.approvers": [
+      {
+        "principal_type": "human",
+        "account_ref": "acct-ref-a"
+      },
+      {
+        "principal_type": "human",
+        "account_ref": "acct-ref-b"
+      }
+    ]
+  }
+}

@@ -1,0 +1,13 @@
+{
+  "base": "03-t4-archive-superseded-runbook.json",
+  "rule": "CAP-DUAL-CONTROL",
+  "why": "T4 with one approver.",
+  "set": {
+    "approval_state.approvers": [
+      {
+        "principal_type": "human",
+        "account_ref": "acct-ref-space-owner"
+      }
+    ]
+  }
+}

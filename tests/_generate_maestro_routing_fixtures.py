@@ -775,6 +775,10 @@ def main() -> int:
     # enforced for every provider by claimed_elsewhere() in plan_provider.)
     skip = {
         "nvidia": "hand-curated fixtures",
+        # Adversarial prose (prompt injection quoted from a ticket, prohibited approval
+        # and delete requests, a draft-only request that must NOT gate) that no script
+        # derives from the catalog; expected/ is produced by evaluate() and reviewed.
+        "atlassian": "hand-curated fixtures",
         "accounting": "hand-curated fixtures",
         "dotnet": "hand-curated fixtures",
         # A rebuild drops 41 taxonomy keywords (disaster-recovery, control-plane,

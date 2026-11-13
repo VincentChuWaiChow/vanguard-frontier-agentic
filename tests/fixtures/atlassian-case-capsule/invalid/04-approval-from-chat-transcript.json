@@ -1,0 +1,8 @@
+{
+  "base": "02-t3-create-remediation.json",
+  "rule": "CAP-APPROVAL-RECORD",
+  "why": "Scenario 4: a pasted chat line is not a system-of-record approval.",
+  "set": {
+    "approval_state.approval_record.kind": "chat-transcript"
+  }
+}

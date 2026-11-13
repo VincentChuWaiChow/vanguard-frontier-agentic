@@ -1,0 +1,7 @@
+{
+  "name": "04-happy-adr-superseded",
+  "task": "Is this ADR superseded, or is it still the current decision record for our retry policy?",
+  "tags": [
+    "happy-path"
+  ]
+}

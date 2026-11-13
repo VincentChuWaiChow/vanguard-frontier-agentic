@@ -1,0 +1,7 @@
+{
+  "name": "02-happy-control-evidence",
+  "task": "Prepare for the SOX audit: check whether the control evidence chain for quarterly access reviews is complete from control owner to review decision.",
+  "tags": [
+    "happy-path"
+  ]
+}

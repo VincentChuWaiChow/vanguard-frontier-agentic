@@ -38,6 +38,7 @@
 - `legal`
 - `salesforce`
 - `netsuite`
+- `atlassian`
 - `accounting`
 - `finance`
 - `sap`
@@ -53,7 +54,7 @@
 `provider` is a faceting axis. Cloud and platform boards (`aws`, `azure`,
 `kubernetes`, ...) are the original members, but the axis also carries
 non-cloud **topical and language/stack boards**: `frontend`, `marketing`, `dotnet`, `hr`,
-`legal`, `salesforce`, `netsuite`, `accounting`, `finance`, `sap`,
+`legal`, `salesforce`, `netsuite`, `atlassian`, `accounting`, `finance`, `sap`,
 `microsoft`, `databricks`, `snowflake`, `php`, and `python` each have a dedicated `provider`
 enum value, a shared ID prefix (`dotnet-*`, `hr-*`, `legal-*`, `salesforce-*`,
 `netsuite-*`, `sap-*`, `microsoft-*`, `databricks-*`, `snowflake-*`, etc.),

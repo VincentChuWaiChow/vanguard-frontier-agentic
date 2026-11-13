@@ -2,16 +2,16 @@
 # Do NOT edit manually — run: node scripts/generate-docs-data.mjs
 # This file is the single source of truth for all catalog counts in Jekyll docs.
 
-agents: 745
-skills: 776
-providers: 45
+agents: 750
+skills: 785
+providers: 46
 mcp_references: 3
 rules: 1
 workflows: 2
-install_roles: 76
-validation_gates: 37
-agent_directories: 49
-skill_directories: 49
+install_roles: 77
+validation_gates: 38
+agent_directories: 50
+skill_directories: 50
 maestro_scenarios: 357
 version: "3.19.0"
 
@@ -20,6 +20,7 @@ provider_list:
   - "accounting"
   - "alibaba"
   - "argocd"
+  - "atlassian"
   - "aws"
   - "azure"
   - "backstage"
@@ -171,6 +172,10 @@ provider_taxonomy:
         agents: 15
       - name: "marketing"
         agents: 14
+  - category: "Work Management & Collaboration"
+    providers:
+      - name: "atlassian"
+        agents: 5
   - category: "Microsoft 365 & Dynamics 365"
     providers:
       - name: "microsoft"
@@ -193,6 +198,7 @@ workflow_list:
 role_list:
   - "accounting-finance-advisor"
   - "android-kotlin-engineer"
+  - "atlassian-work-intelligence"
   - "azure-databricks-platform-engineer"
   - "azure-snowflake-platform-engineer"
   - "cloud-ai-platform-engineer"

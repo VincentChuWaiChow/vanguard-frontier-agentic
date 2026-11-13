@@ -2552,6 +2552,28 @@
         "snowflake-analytics-semantic-data-product",
         "snowflake-governance-privacy"
       ]
+    },
+    "atlassian-work-intelligence": {
+      "label": "Atlassian Work Intelligence",
+      "description": "Evidence-backed review of Jira, Jira Service Management and Confluence work: whether incident corrective actions are evidenced as preventive, whether control evidence chains are complete, and whether critical knowledge is stale, contradicted or historical; plus the owner's Jira and Confluence authoring skills and a gate-only live write guard. Read-only by contract: agents never approve, delete, change permissions, or write without verified human out-of-band authorization.",
+      "agents": [
+        "atlassian-maestro-agent",
+        "atlassian-incident-prevention-agent",
+        "atlassian-control-evidence-lineage-agent",
+        "atlassian-knowledge-integrity-agent",
+        "atlassian-live-write-guard-agent"
+      ],
+      "skills": [
+        "atlassian-routing-protocol",
+        "atlassian-case-capsule",
+        "atlassian-rovo-mcp-integration",
+        "atlassian-incident-prevention-review",
+        "atlassian-control-evidence-lineage",
+        "atlassian-knowledge-integrity-review",
+        "atlassian-live-write-guard",
+        "jira-ticket-authoring",
+        "confluence-document-authoring"
+      ]
     }
   }
 }

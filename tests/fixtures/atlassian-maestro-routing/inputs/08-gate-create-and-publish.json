@@ -1,0 +1,7 @@
+{
+  "name": "08-gate-create-and-publish",
+  "task": "Create the three remediation tickets in Jira and publish the postmortem to Confluence.",
+  "tags": [
+    "live-guard-gate"
+  ]
+}

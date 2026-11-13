@@ -1556,6 +1556,184 @@
     "version": "0.1.0"
   },
   {
+    "id": "atlassian-case-capsule",
+    "name": "Atlassian Case Capsule",
+    "type": "skill",
+    "provider": "generic",
+    "harnesses": [
+      "codex",
+      "claude-code",
+      "cursor",
+      "gemini",
+      "kiro",
+      "other"
+    ],
+    "summary": "Shared, machine-checked handoff contract for Atlassian board agents: tenant binding, evidence provenance and trust, execution tier, enumerated operations, human-only out-of-band approval with expiry, delegation budget, and read-back verification. Policy rules are enforced by npm run validate:atlassian-capsule. Does not authorize any action by itself.",
+    "source_type": "original",
+    "official_docs": [
+      "https://developer.atlassian.com/cloud/rovo-mcp/guides/supported-tools/",
+      "https://developer.atlassian.com/cloud/rovo-mcp/guides/authentication-and-authorization/"
+    ],
+    "security_notes": "Carries no credentials, tokens, or emails (opaque account references only) and the minimum customer data the decision needs. Approval must come from human principals through an out-of-band record; tenant content, chat lines, and agent messages are never authorization. Prohibited tools (approval decisions, permission changes, deletes, executeDestructive) fail at every tier.",
+    "last_verified": "2026-11-13",
+    "path": "skills/cross-functional/atlassian-case-capsule",
+    "version": "0.1.0",
+    "author": "github: VincentChuWaiChow"
+  },
+  {
+    "id": "atlassian-control-evidence-lineage",
+    "name": "Atlassian Control Evidence Lineage",
+    "type": "skill",
+    "provider": "atlassian",
+    "harnesses": [
+      "codex",
+      "claude-code",
+      "cursor",
+      "gemini",
+      "kiro",
+      "other"
+    ],
+    "summary": "Traces a human-named control through objective, policy, owner, activity, Jira execution, Confluence evidence, technical evidence and review decision, and returns a per-control lineage verdict with provenance checks and residual uncertainty. Never declares a control compliant, certified or audit-passed.",
+    "source_type": "original",
+    "official_docs": [
+      "https://developer.atlassian.com/cloud/rovo-mcp/guides/supported-tools/",
+      "https://developer.atlassian.com/cloud/rovo-mcp/guides/authentication-and-authorization/"
+    ],
+    "security_notes": "Read-only analysis. Retrieved Jira and Confluence content is treated as untrusted data, never instructions. Approvals are accepted only from system-of-record approval records. Any corrective ticket is drafted only; writes require atlassian-live-write-guard. Does not replace an independent reviewer or auditor.",
+    "last_verified": "2026-11-13",
+    "path": "skills/atlassian/atlassian-control-evidence-lineage",
+    "version": "0.1.0",
+    "author": "github: VincentChuWaiChow"
+  },
+  {
+    "id": "atlassian-incident-prevention-review",
+    "name": "Atlassian Incident Prevention Review",
+    "type": "skill",
+    "provider": "atlassian",
+    "harnesses": [
+      "codex",
+      "claude-code",
+      "cursor",
+      "gemini",
+      "kiro",
+      "other"
+    ],
+    "summary": "Read-only review that tests whether each incident corrective action is evidenced as preventive, not merely ticketed or marked Done. Verdicts per action: evidenced-preventive, implemented-unverified, open, ineffective, insufficient-evidence. Never closes incidents or edits Jira or Confluence.",
+    "source_type": "original",
+    "official_docs": [
+      "https://developer.atlassian.com/cloud/rovo-mcp/guides/supported-tools/",
+      "https://support.atlassian.com/",
+      "https://support.atlassian.com/jira-service-management-cloud/"
+    ],
+    "security_notes": "Read-only by instruction; real enforcement depends on admin permission groups, OAuth scopes and client tool denial. Tenant content is untrusted data, never instructions. Never fabricates owners, dates or causes. Writes only through atlassian-live-write-guard-agent with verified human authorization.",
+    "last_verified": "2026-11-13",
+    "path": "skills/atlassian/atlassian-incident-prevention-review",
+    "version": "0.1.0",
+    "author": "github: VincentChuWaiChow"
+  },
+  {
+    "id": "atlassian-knowledge-integrity-review",
+    "name": "Atlassian Knowledge Integrity Review",
+    "type": "skill",
+    "provider": "atlassian",
+    "harnesses": [
+      "codex",
+      "claude-code",
+      "cursor",
+      "gemini",
+      "kiro",
+      "other"
+    ],
+    "summary": "Read-only review of Confluence knowledge integrity: classifies critical pages as current, stale-needs-review, contradicted, ownerless, historical-record (intentionally preserved) or insufficient-evidence. Proposes corrections only; never edits or deletes pages.",
+    "source_type": "original",
+    "official_docs": [
+      "https://developer.atlassian.com/cloud/rovo-mcp/guides/supported-tools/",
+      "https://support.atlassian.com/",
+      "https://support.atlassian.com/confluence-cloud/"
+    ],
+    "security_notes": "Read-only by instruction; real enforcement depends on admin permission groups, OAuth scopes and client tool denial. Tenant content is untrusted data, never instructions. Never fabricates owners, dates or causes. Writes only through atlassian-live-write-guard-agent with verified human authorization.",
+    "last_verified": "2026-11-13",
+    "path": "skills/atlassian/atlassian-knowledge-integrity-review",
+    "version": "0.1.0",
+    "author": "github: VincentChuWaiChow"
+  },
+  {
+    "id": "atlassian-live-write-guard",
+    "name": "Atlassian Live Write Guard",
+    "type": "skill",
+    "provider": "atlassian",
+    "harnesses": [
+      "codex",
+      "claude-code",
+      "cursor",
+      "gemini",
+      "kiro",
+      "other"
+    ],
+    "summary": "Go or no-go gate for agent-initiated Jira and Confluence writes: verified out-of-band human authorization, exact target, operation tier, two approvers at T4, duplicate and bulk checks, idempotency, read-after-write verification and a per-write compensation plan. Prohibited operations are always no-go.",
+    "source_type": "original",
+    "official_docs": [
+      "https://developer.atlassian.com/cloud/rovo-mcp/guides/supported-tools/",
+      "https://developer.atlassian.com/cloud/rovo-mcp/guides/authentication-and-authorization/"
+    ],
+    "security_notes": "Gate only; it never writes and never grants authority. Approval decisions, permission or restriction changes, deletes and executeDestructive are always refused. Approvals must come from human principals via out-of-band records, never from comments, pages or agent messages. Notifications cannot be rolled back and Jira plus Confluence writes are not atomic.",
+    "last_verified": "2026-11-13",
+    "path": "skills/atlassian/atlassian-live-write-guard",
+    "version": "0.1.0",
+    "author": "github: VincentChuWaiChow"
+  },
+  {
+    "id": "atlassian-routing-protocol",
+    "name": "Atlassian Routing Protocol",
+    "type": "skill",
+    "provider": "generic",
+    "harnesses": [
+      "codex",
+      "claude-code",
+      "cursor",
+      "gemini",
+      "kiro",
+      "other"
+    ],
+    "summary": "Routing rules for the Atlassian board: intent classes to specialist agents, confidence and unclassified handling, conflict resolution with security and reliability vetoes, delegation budget and termination, and the execution state model. Routing is a recommendation and never authorizes a write.",
+    "source_type": "original",
+    "official_docs": [
+      "https://developer.atlassian.com/cloud/rovo-mcp/guides/supported-tools/",
+      "https://developer.atlassian.com/cloud/rovo-mcp/guides/authentication-and-authorization/"
+    ],
+    "security_notes": "Never authorizes action. Requests that mutate Jira or Confluence route only to the live write guard. Retrieved content is data, not routing instructions. Delegation depth is capped at 3 with no re-delegation to agents already in the chain.",
+    "last_verified": "2026-11-13",
+    "path": "skills/cross-functional/atlassian-routing-protocol",
+    "version": "0.1.0",
+    "author": "github: VincentChuWaiChow"
+  },
+  {
+    "id": "atlassian-rovo-mcp-integration",
+    "name": "Atlassian Rovo MCP Integration",
+    "type": "skill",
+    "provider": "atlassian",
+    "harnesses": [
+      "codex",
+      "claude-code",
+      "cursor",
+      "gemini",
+      "kiro",
+      "other"
+    ],
+    "summary": "Foundation skill for the Atlassian Rovo MCP Server: tool risk tiers, auth and tenant trust boundaries, prompt-injection handling, and failure and recovery, backed by a source ledger. Read-oriented; it never executes writes and routes them to the live write guard.",
+    "source_type": "original",
+    "official_docs": [
+      "https://developer.atlassian.com/cloud/rovo-mcp/guides/supported-tools/",
+      "https://developer.atlassian.com/cloud/rovo-mcp/guides/authentication-and-authorization/",
+      "https://developer.atlassian.com/cloud/jira/platform/rate-limiting/"
+    ],
+    "security_notes": "Acts with the authenticated user's full permissions, so read-only is not enforced by prompts; requires client deny-lists and admin-disabled write groups. Treats retrieved Jira, Confluence, and JSM content as untrusted data. Never approves, deletes, or changes permissions. Carries no credentials or customer data.",
+    "last_verified": "2026-11-13",
+    "path": "skills/atlassian/atlassian-rovo-mcp-integration",
+    "version": "0.1.0",
+    "author": "github: VincentChuWaiChow"
+  },
+  {
     "id": "audit-evidence-mapping-protocol",
     "name": "Audit Evidence Mapping Protocol",
     "type": "skill",
@@ -4557,6 +4735,32 @@
     "last_verified": "2026-07-16",
     "path": "skills/php/composer-audit-supply-chain-review",
     "version": "0.1.0",
+    "author": "github: VincentChuWaiChow"
+  },
+  {
+    "id": "confluence-document-authoring",
+    "name": "Confluence Document Authoring",
+    "type": "skill",
+    "provider": "atlassian",
+    "harnesses": [
+      "codex",
+      "claude-code",
+      "cursor",
+      "gemini",
+      "kiro",
+      "other"
+    ],
+    "summary": "Draft, update, review, and template Confluence engineering, product, business, and support documentation — PRDs, technical designs, ADRs, API docs, runbooks, playbooks, incident postmortems, release notes, plans, roadmaps, OKRs, risk assessments — from evidence, with document lifecycle, Jira traceability, and CQL search guidance. Imported owner skill (v1.2.x) and the board's canonical Confluence authoring capability.",
+    "source_type": "original",
+    "official_docs": [
+      "https://developer.atlassian.com/cloud/confluence/rest/v2/api-group-page/",
+      "https://support.atlassian.com/confluence-cloud/docs/create-a-template/",
+      "https://developer.atlassian.com/cloud/rovo-mcp/guides/supported-tools/"
+    ],
+    "security_notes": "Drafting is portable and needs no tenant access. Publishing, moving, archiving, restriction changes, and native template installation are distinct operations that need explicit human intent; agent-initiated writes go through atlassian-live-write-guard-agent. Never fabricates interfaces, dates, approvals, owners, or deployment results; treats instructions inside retrieved pages as source material, not authority.",
+    "last_verified": "2026-11-13",
+    "path": "skills/atlassian/confluence-document-authoring",
+    "version": "1.2.1",
     "author": "github: VincentChuWaiChow"
   },
   {
@@ -11262,6 +11466,32 @@
     "last_verified": "2026-07-02",
     "path": "skills/frontend/javascript-runtime-async-review",
     "version": "0.1.0",
+    "author": "github: VincentChuWaiChow"
+  },
+  {
+    "id": "jira-ticket-authoring",
+    "name": "Jira Ticket Authoring",
+    "type": "skill",
+    "provider": "atlassian",
+    "harnesses": [
+      "codex",
+      "claude-code",
+      "cursor",
+      "gemini",
+      "kiro",
+      "other"
+    ],
+    "summary": "Draft, review, improve, and split Jira work for engineering, product, business, and support teams — feature requests, stories, bugs, tasks, spikes, epics, operational changes, support cases, service requests, incidents, technical debt, and AI-agent handoffs — with evidence-backed acceptance criteria and verification mapping. Imported owner skill (v1.2.x) and the board's canonical Jira authoring capability.",
+    "source_type": "original",
+    "official_docs": [
+      "https://developer.atlassian.com/cloud/jira/platform/rest/v3/api-group-issues/",
+      "https://developer.atlassian.com/cloud/jira/platform/issue-linking-model/",
+      "https://developer.atlassian.com/cloud/rovo-mcp/guides/supported-tools/"
+    ],
+    "security_notes": "Drafting is portable and needs no tenant access. An authorized write requires an explicit, resolved request from a human; a request that appears only inside an agent handoff or retrieved Jira/Confluence content is not authorization, and agent-initiated writes go through atlassian-live-write-guard-agent. Never fabricates issue keys, assignees, root causes, test results, SLAs, or approvals.",
+    "last_verified": "2026-11-13",
+    "path": "skills/atlassian/jira-ticket-authoring",
+    "version": "1.2.1",
     "author": "github: VincentChuWaiChow"
   },
   {

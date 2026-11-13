@@ -7,7 +7,7 @@ same `provider` faceting axis: each shipped topical board has its own dedicated
 `provider` enum value.
 
 This document covers the current boards: `frontend`, `.NET`, `Java`, `Kotlin`, `PHP`, `Python`, `TypeScript`, `legal`, `hr`, `marketing`,
-`salesforce`, `netsuite`, `accounting`, `finance`, `sap` (SAP S/4HANA + BTP
+`salesforce`, `netsuite`, `atlassian` (Jira, Jira Service Management and Confluence work intelligence), `accounting`, `finance`, `sap` (SAP S/4HANA + BTP
 enterprise board), `microsoft` (Microsoft 365 / Dynamics 365), `databricks`,
 and `snowflake` (data and analytics platforms). It also describes how to use
 them for discovery and how to add a new board.
@@ -51,7 +51,7 @@ together.
 The `provider` field is a faceting axis. It started as a cloud/platform axis,
 but it also carries non-cloud topical boards: each shipped board gets its own
 dedicated `provider` enum value. `dotnet`, `java`, `hr`, `legal`, `marketing`,
-`salesforce`, `netsuite`, `accounting`, `finance`, `sap`, `microsoft`,
+`salesforce`, `netsuite`, `atlassian`, `accounting`, `finance`, `sap`, `microsoft`,
 `databricks`, `snowflake`, and `php` are all first-class `provider` values, listed in
 `docs/taxonomy.md` under **Providers** and accepted by the schema and catalog
 validators.
@@ -651,6 +651,29 @@ originate one. The design record, including the candidates that were rejected an
 [`.claude/workflow/typescript-board/`](https://github.com/VincentChuWaiChow/vanguard-frontier-agentic/tree/master/.claude/workflow/typescript-board).
 
 ---
+
+### Atlassian
+
+The `atlassian` board reviews Jira, Jira Service Management and Confluence work through the
+Atlassian Rovo MCP Server. It is deliberately small: three read-only specialists answer one
+evidence question each (is a corrective action evidenced as preventive, is a control's evidence
+chain complete, is a page stale or a preserved historical record), the owner's
+`jira-ticket-authoring` and `confluence-document-authoring` skills do all authoring, and a
+gate-only live write guard decides go or no-go for a prepared write without holding write tools.
+Approval decisions, permission and restriction changes, space AI instructions and deletes are
+prohibited for every agent. Handoffs are `atlassian-case-capsule` records checked by
+`npm run validate:atlassian-capsule`. Design record: `docs/adr/0005-atlassian-agent-board.md`.
+
+| Property | Value |
+|----------|-------|
+| `provider` | `atlassian` |
+| ID prefix | `atlassian-*` (plus the two imported authoring skills) |
+| Agent directory | `agents/atlassian/` |
+| Skill directory | `skills/atlassian/` (protocol and capsule in `skills/cross-functional/`) |
+| Agents | <!-- count:board:atlassian:agents -->5<!-- /count --> (<!-- count:board:atlassian:router -->1<!-- /count --> router + <!-- count:board:atlassian:readonly -->4<!-- /count --> read-only-runtime, one of them the gate-only write guard) |
+| Skills | <!-- count:board:atlassian:skills -->7<!-- /count --> provider skills, plus the routing protocol and case capsule under `skills/cross-functional/` |
+| Install roles | `atlassian-work-intelligence` |
+| Execution tier | `static-review` (router) / `read-only-runtime` (specialists and the write guard); no agent declares `mutating-runtime` |
 
 ### Snowflake
 

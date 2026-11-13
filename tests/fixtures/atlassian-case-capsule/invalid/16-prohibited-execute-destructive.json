@@ -1,0 +1,8 @@
+{
+  "base": "02-t3-create-remediation.json",
+  "rule": "CAP-PROHIBITED-TOOL",
+  "why": "Destructive tier through the generic entry point.",
+  "set": {
+    "permitted_operations.0.tool": "executeDestructive"
+  }
+}

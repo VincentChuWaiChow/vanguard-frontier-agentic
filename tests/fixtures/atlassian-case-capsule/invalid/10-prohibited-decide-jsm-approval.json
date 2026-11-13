@@ -1,0 +1,8 @@
+{
+  "base": "02-t3-create-remediation.json",
+  "rule": "CAP-PROHIBITED-TOOL",
+  "why": "An agent deciding a JSM approval on a human's behalf.",
+  "set": {
+    "permitted_operations.0.tool": "decideJsmRequestApproval"
+  }
+}

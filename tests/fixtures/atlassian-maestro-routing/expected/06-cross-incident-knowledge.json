@@ -1,0 +1,7 @@
+{
+  "route": [
+    "atlassian-incident-prevention-agent",
+    "atlassian-knowledge-integrity-agent"
+  ],
+  "mode": "parallel (2)"
+}

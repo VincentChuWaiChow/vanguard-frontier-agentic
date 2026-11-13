@@ -1,0 +1,8 @@
+{
+  "base": "02-t3-create-remediation.json",
+  "rule": "CAP-APPROVAL-WINDOW",
+  "why": "Approval timestamp in the capsule's future.",
+  "set": {
+    "approval_state.approved_at": "2026-11-13T10:30:00Z"
+  }
+}

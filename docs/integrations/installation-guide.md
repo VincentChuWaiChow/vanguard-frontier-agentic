@@ -306,6 +306,7 @@ This repo ships **{{ site.data.catalog.providers }} Powers** under `powers/`, on
 | `powers/vanguard-marketing` | Marketing (professional function) |
 | `powers/vanguard-salesforce` | Salesforce (CRM) |
 | `powers/vanguard-netsuite` | Oracle NetSuite (ERP) |
+| `powers/vanguard-atlassian` | Atlassian (Jira, Jira Service Management, Confluence) |
 | `powers/vanguard-accounting` | Accounting (professional function) |
 | `powers/vanguard-finance` | Finance (professional function) |
 | `powers/vanguard-sap` | SAP (S/4HANA, BTP, enterprise) |

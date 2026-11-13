@@ -1,0 +1,7 @@
+{
+  "route": [
+    "atlassian-control-evidence-lineage-agent",
+    "atlassian-incident-prevention-agent"
+  ],
+  "mode": "parallel (2)"
+}

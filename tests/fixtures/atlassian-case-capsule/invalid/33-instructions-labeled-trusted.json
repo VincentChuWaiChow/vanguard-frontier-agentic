@@ -1,0 +1,8 @@
+{
+  "base": "05-t1-injection-flagged-as-untrusted.json",
+  "rule": "CAP-INSTRUCTION-TRUST",
+  "why": "Scenario 1/2/28: injected text promoted to system metadata.",
+  "set": {
+    "evidence_references.2.trust": "system-metadata"
+  }
+}

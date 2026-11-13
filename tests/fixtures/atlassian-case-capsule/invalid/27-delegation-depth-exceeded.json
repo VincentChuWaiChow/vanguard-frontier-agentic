@@ -1,0 +1,8 @@
+{
+  "base": "02-t3-create-remediation.json",
+  "rule": "CAP-DELEGATION-DEPTH",
+  "why": "Delegation deeper than the budget.",
+  "set": {
+    "execution_budget.max_delegation_depth": 1
+  }
+}

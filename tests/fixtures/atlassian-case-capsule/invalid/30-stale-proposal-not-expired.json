@@ -1,0 +1,8 @@
+{
+  "base": "01-t1-read-incident-review.json",
+  "rule": "CAP-EXPIRED",
+  "why": "Scenario 19/22: acting on a handoff past its deadline.",
+  "set": {
+    "deadline_or_expiry": "2026-11-13T09:00:00Z"
+  }
+}

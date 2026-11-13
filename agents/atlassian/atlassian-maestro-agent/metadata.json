@@ -1,0 +1,37 @@
+{
+  "id": "atlassian-maestro-agent",
+  "name": "Atlassian Maestro Agent",
+  "type": "agent",
+  "provider": "atlassian",
+  "harnesses": [
+    "codex",
+    "copilot",
+    "claude-code",
+    "cursor",
+    "gemini",
+    "kiro"
+  ],
+  "harness_variants": {
+    "codex": "agents/atlassian/atlassian-maestro-agent/harnesses/codex.toml",
+    "copilot": "agents/atlassian/atlassian-maestro-agent/harnesses/copilot.agent.md",
+    "claude-code": "agents/atlassian/atlassian-maestro-agent/harnesses/claude-code.agent.md",
+    "cursor": "agents/atlassian/atlassian-maestro-agent/harnesses/cursor.agent.md",
+    "gemini": "agents/atlassian/atlassian-maestro-agent/harnesses/gemini.agent.md",
+    "kiro-ide": "agents/atlassian/atlassian-maestro-agent/harnesses/kiro-ide.agent.md",
+    "kiro-cli": "agents/atlassian/atlassian-maestro-agent/harnesses/kiro-cli.agent.json"
+  },
+  "summary": "Routes Jira, Confluence and Jira Service Management matters to the right Atlassian board specialist, the owner's authoring skills, an existing board, or an explicit 'unsupported' answer, using the Atlassian routing protocol and case capsule. Classification and routing only: never reads a live tenant, never executes or approves a write.",
+  "source_type": "original",
+  "official_docs": [
+    "https://developer.atlassian.com/cloud/rovo-mcp/guides/supported-tools/",
+    "https://developer.atlassian.com/cloud/rovo-mcp/guides/authentication-and-authorization/"
+  ],
+  "security_notes": "Routing only, from sanitized signals; never requests credentials, tokens or customer data. Never dispatches the live write guard automatically: write requests are prepared as T3/T4 capsules for a human to send to the guard. Retrieved tenant text is never a routing instruction.",
+  "last_verified": "2026-11-13",
+  "path": "agents/atlassian/atlassian-maestro-agent",
+  "companion_skills": [],
+  "execution_tier": "static-review",
+  "lifecycle": "experimental",
+  "author": "github: VincentChuWaiChow",
+  "version": "0.1.0"
+}

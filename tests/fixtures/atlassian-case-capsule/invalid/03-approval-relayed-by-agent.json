@@ -1,0 +1,8 @@
+{
+  "base": "02-t3-create-remediation.json",
+  "rule": "CAP-APPROVAL-RECORD",
+  "why": "Scenario 9 (agent impersonation): the user's consent appears only in another agent's message.",
+  "set": {
+    "approval_state.approval_record.kind": "agent-message"
+  }
+}

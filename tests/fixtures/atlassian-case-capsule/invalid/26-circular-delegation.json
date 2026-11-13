@@ -1,0 +1,8 @@
+{
+  "base": "02-t3-create-remediation.json",
+  "rule": "CAP-DELEGATION-CYCLE",
+  "why": "Scenario 24 (circular delegation): handing back to an agent already in the chain.",
+  "set": {
+    "target_agent": "atlassian-maestro-agent"
+  }
+}

@@ -1,0 +1,8 @@
+{
+  "base": "04-t3-completed-with-readback.json",
+  "rule": "CAP-COMPLETION-EVIDENCE",
+  "why": "Scenario 26 (fabricated completion).",
+  "set": {
+    "verification_evidence": []
+  }
+}

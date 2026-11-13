@@ -1,0 +1,8 @@
+{
+  "base": "02-t3-create-remediation.json",
+  "rule": "CAP-APPROVAL-REQUIRED",
+  "why": "Scenario 12/28: absence of rejection is not approval.",
+  "set": {
+    "approval_state.status": "pending"
+  }
+}

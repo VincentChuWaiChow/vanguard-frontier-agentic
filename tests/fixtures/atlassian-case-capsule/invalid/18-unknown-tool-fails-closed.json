@@ -1,0 +1,8 @@
+{
+  "base": "02-t3-create-remediation.json",
+  "rule": "CAP-UNKNOWN-TOOL",
+  "why": "Scenario 6/14: an unlisted tool from discover is not promoted to read.",
+  "set": {
+    "permitted_operations.0.tool": "refreshJiraIssueView"
+  }
+}
