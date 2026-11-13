@@ -1739,7 +1739,7 @@
     {
       "id": "atlassian-rovo-mcp-integration",
       "path": "skills/atlassian/atlassian-rovo-mcp-integration",
-      "aggregate_sha256": "5152de04b647dab73179e0356413a04aa8fb127aa181e6f2ad5f913a1b360389",
+      "aggregate_sha256": "032baab1f782ab53e4c8e475055f39cdbf5bf17ebb9a05a88d886e5b980ee7d8",
       "files": [
         {
           "path": "skills/atlassian/atlassian-rovo-mcp-integration/SKILL.md",
@@ -1768,8 +1768,8 @@
         },
         {
           "path": "skills/atlassian/atlassian-rovo-mcp-integration/references/tool-risk-tiers.md",
-          "sha256": "ae40e4922391792ce551ea690f45f198109775b5ed61cf19d7895832cd5ecabf",
-          "bytes": 9843
+          "sha256": "5c7d7eda878900db8ff1069176157b9ec610d0598db3ea93df37e298e4d6d6ae",
+          "bytes": 10304
         }
       ]
     },

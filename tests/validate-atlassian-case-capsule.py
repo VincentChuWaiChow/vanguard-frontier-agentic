@@ -137,6 +137,7 @@ READBACK_TOOLS = {
     "createJsmRequest": frozenset({"getJsmRequest"}), "transitionJsmRequest": frozenset({"getJsmRequest"}),
     "updateJsmOpsAlert": frozenset({"getJsmOpsAlerts"}),
 }
+QUERY_TARGET = re.compile(r"^\s*(jql|cql):", re.I)
 URL_RE = re.compile(r"[a-z][a-z0-9+.-]*://\S+", re.I)
 # Whole dotted hostnames, scheme or not; every one must equal the site exactly, so a lookalike
 # such as "site.atlassian.net.evil.example" is read in full, and a bare "evil.example/x" counts.
@@ -179,7 +180,8 @@ def _is_agent_ref(value: str) -> bool:
 
 
 def _target_hosts(target: str) -> set[str]:
-    """Hosts a target names: each URL's real hostname, plus every bare dotted hostname.
+    """Hosts a target names: each URL's real hostname, plus every bare dotted hostname
+    outside JQL/CQL query text.
 
     URLs are parsed with urlsplit, so userinfo ("site.atlassian.net:443@other.example") cannot
     pose as the host; a URL that carries userinfo at all yields a marker that never equals the
@@ -192,6 +194,10 @@ def _target_hosts(target: str) -> set[str]:
             hosts.add("<userinfo-or-unparseable>")
         else:
             hosts.add(parts.hostname.casefold())
+    # JQL/CQL query text legitimately holds dotted literals (fixVersion = "1.2.3",
+    # java.lang.NullPointerException); only URLs inside a query are host evidence there.
+    if QUERY_TARGET.match(target):
+        return hosts
     stripped = URL_RE.sub(" ", target)
     hosts |= {h.casefold() for h in HOSTNAME.findall(stripped)}
     return hosts
