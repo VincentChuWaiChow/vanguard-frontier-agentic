@@ -13,7 +13,7 @@ validation_gates: 38
 agent_directories: 50
 skill_directories: 50
 maestro_scenarios: 357
-version: "3.19.0"
+version: "3.20.0"
 
 # Provider list (flat)
 provider_list:
