@@ -15,7 +15,7 @@ metadata:
 
 The only channel between Atlassian board agents. A capsule records what is asked, of whom, on which tenant, at which tier, with which evidence, under which human authorization and budget. It never confers authority by itself: authority comes from the human approval it references.
 
-Shape: [`schemas/atlassian-case-capsule.schema.json`](../../../schemas/atlassian-case-capsule.schema.json). Policy: [`tests/validate-atlassian-case-capsule.py`](../../../tests/validate-atlassian-case-capsule.py), with positive and negative fixtures under `tests/fixtures/atlassian-case-capsule/`.
+Shape: [`assets/atlassian-case-capsule.schema.json`](assets/atlassian-case-capsule.schema.json). Policy: [`scripts/validate_capsule.py`](scripts/validate_capsule.py). Both ship with this skill, so an exported copy can validate capsules without the source repository; that repository's gate (`npm run validate:atlassian-capsule`) runs its positive and negative fixtures through the same validator.
 
 ## Rules the gate enforces (rule IDs in brackets)
 
@@ -34,7 +34,7 @@ Shape: [`schemas/atlassian-case-capsule.schema.json`](../../../schemas/atlassian
 3. Set the lowest tier that serves the requested decision. Analysis is T1; drafts are T2; writes go to `atlassian-live-write-guard-agent` at T3/T4.
 4. Name concrete tools and targets from `discover` output, classified per the integration skill's tool risk tiers.
 5. Keep customer data to the minimum the decision needs. `account_ref` values are opaque references, not emails.
-6. Fill a non-empty `do_not_do` list. Validate with `python3 tests/validate-atlassian-case-capsule.py <capsule.json>` when a file exists.
+6. Fill a non-empty `do_not_do` list. Validate with `python3 scripts/validate_capsule.py <capsule.json>` (from this skill's directory; needs the `jsonschema` package) when a file exists.
 
 ## Limits (do not overclaim)
 

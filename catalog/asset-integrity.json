@@ -36493,7 +36493,7 @@
     },
     {
       "tree": "schemas",
-      "aggregate_sha256": "f6d08d2ae0a8d0f7236c126a9ce6bce24ec98ff85cc13271197e1d17b9090a72",
+      "aggregate_sha256": "2d4791bfe68911b4538d4f1103cc0acb9ef488551ab763a3bffca5d3893cb3aa",
       "files": [
         {
           "path": "schemas/AGENTS.md",
@@ -36514,11 +36514,6 @@
           "path": "schemas/agentic-handoff.schema.json",
           "sha256": "db172067e8816022d597d5e014c8a3bdcfbf072da1e9eba919836ed7c882efa6",
           "bytes": 19510
-        },
-        {
-          "path": "schemas/atlassian-case-capsule.schema.json",
-          "sha256": "7bd8416bbb75c448937c1ddeb87c3c9b574422c11e1cccffaad76aa43c6d6736",
-          "bytes": 11915
         },
         {
           "path": "schemas/attestation.schema.json",
@@ -36579,7 +36574,7 @@
     },
     {
       "tree": "catalog",
-      "aggregate_sha256": "dacc8959eab4522e3eba9a2c53d469647f0ff9703e6a5cf753fb4f48eb55fb25",
+      "aggregate_sha256": "078ecf54df976228c97acaf7bcda7f3bda572bf6a5c886dfd7c9600145dbf0f9",
       "files": [
         {
           "path": "catalog/AGENTS.md",
@@ -36633,8 +36628,8 @@
         },
         {
           "path": "catalog/skill-manifest.json",
-          "sha256": "503d4b1a254cdfa4442b41bf7a258b2621df02346171e84d37ad867d20b02919",
-          "bytes": 1193705
+          "sha256": "16353b12bde7ded56a88af210ff341ffeb0bba439bb5bc0484ebbe03deb080c4",
+          "bytes": 1194179
         },
         {
           "path": "catalog/skills.json",
@@ -37877,7 +37872,7 @@
     },
     {
       "tree": "tests",
-      "aggregate_sha256": "eaa8ffdbb1af56ff97545a01a5ba6f303a2f92d4cc032636691a2f6b36331fd6",
+      "aggregate_sha256": "c268d1028a6d0691bf40e32c43f0d1a81f09e8df3a893c813257691ab5fd0f27",
       "files": [
         {
           "path": "tests/AGENTS.md",
@@ -50311,8 +50306,8 @@
         },
         {
           "path": "tests/validate-atlassian-case-capsule.py",
-          "sha256": "0628945a9584120eb8549acbf8e9d61549db90cd1f1d09841d7ddc877e176405",
-          "bytes": 26836
+          "sha256": "c41b30ad06f231015101873a3b93143745c0ac3c8f553f36a14078769851a3b2",
+          "bytes": 1001
         },
         {
           "path": "tests/validate-aws-progressive-disclosure.py",
@@ -50519,5 +50514,5 @@
       "bytes": 9135
     }
   ],
-  "aggregate_sha256": "5c75b4bb53eb6511f5702b4149816c05497e0a03e2aa9608cc5e0775175b6d48"
+  "aggregate_sha256": "2a29f223aa41dbaf7e0c8989c13c374eb60660e872f712c77dcd92daf614204d"
 }

@@ -1597,17 +1597,27 @@
     {
       "id": "atlassian-case-capsule",
       "path": "skills/cross-functional/atlassian-case-capsule",
-      "aggregate_sha256": "1ea8c75883e057f827b4f0e387c14b9fc463894e742c016373cc6ac76b266d52",
+      "aggregate_sha256": "b7f719dc79456f4936afda63a11e97aae2badfa75289a5f6853bfdb56b8adf77",
       "files": [
         {
           "path": "skills/cross-functional/atlassian-case-capsule/SKILL.md",
-          "sha256": "65d4f6b0f5a3d67781487f06d365cd4dbb3ecf9ca58164f7f3786eb4ffc18eed",
-          "bytes": 7428
+          "sha256": "caed422c163e09f4021e3248cf107a62b1d3142b0bde2a363a209617423a2c19",
+          "bytes": 7577
+        },
+        {
+          "path": "skills/cross-functional/atlassian-case-capsule/assets/atlassian-case-capsule.schema.json",
+          "sha256": "6d8c2b12443fccfcc9c18a6fa7317438c820e36b4e95715e29e0eeb08862725c",
+          "bytes": 11962
         },
         {
           "path": "skills/cross-functional/atlassian-case-capsule/metadata.json",
           "sha256": "1bc2f67e8b7934bc11dd92f8e40e7a204edc0ddc7d1fe1474ea3508595d4e9a9",
           "bytes": 1374
+        },
+        {
+          "path": "skills/cross-functional/atlassian-case-capsule/scripts/validate_capsule.py",
+          "sha256": "174b0aed4fac59922a57690c3b1f7e7dc8aae78e6616f1c5a67359de7307f369",
+          "bytes": 27414
         }
       ]
     },
@@ -1739,7 +1749,7 @@
     {
       "id": "atlassian-rovo-mcp-integration",
       "path": "skills/atlassian/atlassian-rovo-mcp-integration",
-      "aggregate_sha256": "032baab1f782ab53e4c8e475055f39cdbf5bf17ebb9a05a88d886e5b980ee7d8",
+      "aggregate_sha256": "ff428d92b4f5c4fee717e5b6ab1c394a2cdb65a9a75b4a5f9d6c904ace5ebe1f",
       "files": [
         {
           "path": "skills/atlassian/atlassian-rovo-mcp-integration/SKILL.md",
@@ -1768,8 +1778,8 @@
         },
         {
           "path": "skills/atlassian/atlassian-rovo-mcp-integration/references/tool-risk-tiers.md",
-          "sha256": "5c7d7eda878900db8ff1069176157b9ec610d0598db3ea93df37e298e4d6d6ae",
-          "bytes": 10304
+          "sha256": "f031cb19a4a751eb118274e168cef1dbca3213e6063d7ebb2c3ba9fbdd3da74b",
+          "bytes": 10423
         }
       ]
     },

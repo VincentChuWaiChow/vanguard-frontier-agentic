@@ -1,8 +1,8 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
-  "$id": "https://github.com/VincentChuWaiChow/vanguard-frontier-agentic/schemas/atlassian-case-capsule.schema.json",
+  "$id": "https://github.com/VincentChuWaiChow/vanguard-frontier-agentic/skills/cross-functional/atlassian-case-capsule/assets/atlassian-case-capsule.schema.json",
   "title": "Atlassian Case Capsule",
-  "description": "The only handoff record between Atlassian board agents (skills/cross-functional/atlassian-case-capsule). Shape only: policy rules that JSON Schema cannot express (human-only approval, prohibited tools, tenant binding, expiry against as_of, delegation cycles, completion evidence, credential-shaped strings) are enforced by tests/validate-atlassian-case-capsule.py. A capsule never carries credentials and never confers authority by itself.",
+  "description": "The only handoff record between Atlassian board agents (skills/cross-functional/atlassian-case-capsule). Shape only: policy rules that JSON Schema cannot express (human-only approval, prohibited tools, tenant binding, expiry against as_of, delegation cycles, completion evidence, credential-shaped strings) are enforced by scripts/validate_capsule.py in this skill. A capsule never carries credentials and never confers authority by itself.",
   "type": "object",
   "additionalProperties": false,
   "required": [

@@ -40,7 +40,7 @@ Tier labels: T1-read (query tenant data, no mutation), T3-authorized-write (boun
 | `approveJsmRequestResolverPlans` | PROHIBITED | Approval decision [ATL-E09]. |
 | Any tool whose name starts with `delete` | PROHIBITED | Destroys data; fail closed even if the name is not listed here. |
 
-These tiers are enforced for handoffs by `npm run validate:atlassian-capsule` (`tests/validate-atlassian-case-capsule.py`); if this table and that gate ever disagree, the gate is the contract and this table is the defect.
+These tiers are enforced for handoffs by the case-capsule validator ([`validate_capsule.py`](../../../cross-functional/atlassian-case-capsule/scripts/validate_capsule.py), run in the source repository as `npm run validate:atlassian-capsule`); if this table and that gate ever disagree, the gate is the contract and this table is the defect.
 
 ## Classifying a tool found via `discover`
 

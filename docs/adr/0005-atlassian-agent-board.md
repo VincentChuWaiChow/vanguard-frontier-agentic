@@ -72,7 +72,8 @@ workflows need, and nothing in the accepted workflows requires unattended writes
 
 ### Deterministic controls (the part that is code, not prose)
 
-- `schemas/atlassian-case-capsule.schema.json` plus `tests/validate-atlassian-case-capsule.py`
+- `skills/cross-functional/atlassian-case-capsule/{assets/atlassian-case-capsule.schema.json,scripts/validate_capsule.py}`
+  (moved into the skill so exports are self-contained), run over fixtures by `tests/validate-atlassian-case-capsule.py`
   (`npm run validate:atlassian-capsule`, in `npm run validate`): 27 declared rules, including
   human-only approval with typed out-of-band approval locators, approval lifetime capped against
   the capsule's own `as_of` (no wall clock), prohibited tools at every tier, opaque
