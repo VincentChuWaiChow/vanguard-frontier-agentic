@@ -41,6 +41,7 @@ import json
 import re
 import sys
 from datetime import datetime, timedelta, timezone
+from urllib.parse import urlsplit
 from pathlib import Path
 
 try:
@@ -136,8 +137,10 @@ READBACK_TOOLS = {
     "createJsmRequest": frozenset({"getJsmRequest"}), "transitionJsmRequest": frozenset({"getJsmRequest"}),
     "updateJsmOpsAlert": frozenset({"getJsmOpsAlerts"}),
 }
-URL_HOST = re.compile(r"https?://([^/\s?#:]+)", re.I)
-ATLASSIAN_HOST = re.compile(r"\b([a-z0-9][a-z0-9.-]*\.atlassian\.net)\b", re.I)
+URL_RE = re.compile(r"[a-z][a-z0-9+.-]*://\S+", re.I)
+# Whole dotted hostnames; any that mention atlassian.net must equal the site exactly, so a
+# lookalike such as "site.atlassian.net.evil.example" is read in full, not cut at ".net".
+HOSTNAME = re.compile(r"\b[a-z0-9](?:[a-z0-9-]*[a-z0-9])?(?:\.[a-z0-9](?:[a-z0-9-]*[a-z0-9])?)+\b", re.I)
 # Evidence kinds whose bodies are tenant-authored text. Only jira-issue field metadata,
 # external system records, and user statements may claim another trust level.
 TENANT_CONTENT_KINDS = frozenset({
@@ -173,6 +176,25 @@ def _is_agent_ref(value: str) -> bool:
     """True when a principal reference or owner names an agent rather than a human."""
     n = _norm(value)
     return n in KNOWN_AGENTS or f"{n}-agent" in KNOWN_AGENTS or re.search(r"-agent\b", n) is not None
+
+
+def _target_hosts(target: str) -> set[str]:
+    """Hosts a target names: each URL's real hostname, plus bare *.atlassian.net hosts.
+
+    URLs are parsed with urlsplit, so userinfo ("site.atlassian.net:443@other.example") cannot
+    pose as the host; a URL that carries userinfo at all yields a marker that never equals the
+    site, because a tenant target has no reason to embed credentials or a decoy user part.
+    """
+    hosts: set[str] = set()
+    for url in URL_RE.findall(target):
+        parts = urlsplit(url)
+        if "@" in parts.netloc or not parts.hostname:
+            hosts.add("<userinfo-or-unparseable>")
+        else:
+            hosts.add(parts.hostname.casefold())
+    stripped = URL_RE.sub(" ", target)
+    hosts |= {h.casefold() for h in HOSTNAME.findall(stripped) if "atlassian.net" in h.casefold()}
+    return hosts
 
 
 def _ts(value: str) -> datetime:
@@ -248,8 +270,7 @@ def check(capsule: dict, validator) -> list[tuple[str, str]]:
         if tool in OPAQUE_TOOLS:
             out.append(("CAP-OPAQUE-EXECUTE", f"{tool} hides the deferred tool; name the concrete tool from discover"))
             continue
-        hosts = {h.casefold() for h in URL_HOST.findall(target)} | {h.casefold() for h in ATLASSIAN_HOST.findall(target)}
-        if op["cloud_id"] != tenant or hosts - {site_host}:
+        if op["cloud_id"] != tenant or _target_hosts(target) - {site_host}:
             out.append(("CAP-TENANT-BINDING", f"{tool} on {target!r} is outside tenant {tenant!r} ({site_host})"))
         if tool in READ_TOOLS:
             continue

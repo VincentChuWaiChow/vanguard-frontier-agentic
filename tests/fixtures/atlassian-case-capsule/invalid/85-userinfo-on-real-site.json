@@ -1,0 +1,8 @@
+{
+  "base": "01-t1-read-incident-review.json",
+  "rule": "CAP-TENANT-BINDING",
+  "why": "Userinfo in a tenant target is rejected even when the host is the site.",
+  "set": {
+    "permitted_operations.0.target": "https://someone@example-tenant.atlassian.net/browse/OPS-1"
+  }
+}

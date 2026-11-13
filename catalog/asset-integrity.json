@@ -37877,7 +37877,7 @@
     },
     {
       "tree": "tests",
-      "aggregate_sha256": "98c20e0aca942059e2d0dfd6f49482ed290b94e3f7dddd69bfcaf12e33f26de9",
+      "aggregate_sha256": "fe4d76c2e853d1c2d99358ab0784ec01ea72c1395a0d6522609e72ed837eef57",
       "files": [
         {
           "path": "tests/AGENTS.md",
@@ -40053,6 +40053,21 @@
           "path": "tests/fixtures/atlassian-case-capsule/invalid/83-duplicate-op-id.json",
           "sha256": "5d7d8a9e006341553d033e14ea679b44735af5813111343e0559b42464e2ee28",
           "bytes": 203
+        },
+        {
+          "path": "tests/fixtures/atlassian-case-capsule/invalid/84-userinfo-host-spoof.json",
+          "sha256": "62d6bd1b11ad54eb5047faa63473822a5189b7194e6ca33031c8ff1d3cfe3a8a",
+          "bytes": 272
+        },
+        {
+          "path": "tests/fixtures/atlassian-case-capsule/invalid/85-userinfo-on-real-site.json",
+          "sha256": "dba00df3648f2c8b43a7e4bc2b0ead0c37166fcddd7c5a3177250d1a78f67728",
+          "bytes": 277
+        },
+        {
+          "path": "tests/fixtures/atlassian-case-capsule/invalid/86-bare-lookalike-host.json",
+          "sha256": "847c0ccb959ce95c53c8e29e61aac1cb2385bb66d355632a39b438a8fdc39b02",
+          "bytes": 270
         },
         {
           "path": "tests/fixtures/atlassian-case-capsule/valid/01-t1-read-incident-review.json",
@@ -50266,8 +50281,8 @@
         },
         {
           "path": "tests/validate-atlassian-case-capsule.py",
-          "sha256": "3ad737a83a288147694f11fbb9038e911e9f466b65a26b71c1e6d1699b6baef4",
-          "bytes": 24438
+          "sha256": "b2098d6dbb7edc858636b7830969285f0aa7101870623eda7932efbdfcbf9ea1",
+          "bytes": 25417
         },
         {
           "path": "tests/validate-aws-progressive-disclosure.py",
@@ -50474,5 +50489,5 @@
       "bytes": 9135
     }
   ],
-  "aggregate_sha256": "d06b68fe0380ca474b55b005ade07dc5e06a37cf025d83b38eb56549b8083096"
+  "aggregate_sha256": "5287da0224d885143bebedd8d9d9c45937aff17b40683af20d8ce037bc997a0a"
 }
