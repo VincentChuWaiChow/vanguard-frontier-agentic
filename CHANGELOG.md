@@ -1,3 +1,189 @@
+## 🛡️ v3.21.0 — *Provenance · Policy · Portability*
+_Released 2026-11-13_
+
+> _Curated multi-cloud, zero-trust agent marketplace — `AWS` · `Azure` · `OCI` · `GCP` · `Terraform`._
+> Least privilege, live evidence, safe rollback paths.
+
+**Release type:** New capabilities — review the sections below before upgrading.
+
+### ✨ Features
+
+* **atlassian:** add read-only Atlassian board, capsule gate, and owner authoring skills ([`1e49359`](https://github.com/VincentChuWaiChow/vanguard-frontier-agentic/commit/1e493596474915b901258f94aed52cd591b2c684))
+  Adds the atlassian provider: a static-review maestro, three read-only specialists
+  (incident prevention, control evidence lineage, knowledge integrity) and a
+  gate-only live write guard that holds no write tools; the Rovo MCP integration
+  skill with a 17-row evidence ledger verified 2026-11-13; the routing protocol and
+  case capsule; and the owner's jira-ticket-authoring and
+  confluence-document-authoring skills imported at 1.2.1 (allowed-tools and
+  metadata only; content unchanged, manifest hashes refreshed).
+
+  The case capsule is enforced by schemas/atlassian-case-capsule.schema.json and
+  npm run validate:atlassian-capsule (5 valid, 36 negative fixtures). An
+  independent refuter review found gate bypasses (approver normalization, approval
+  locator provenance, bulk-target denylist, unledgered tool names, write routing);
+  they are fixed in the next commit. ADR-0005 and docs/architecture/atlassian-board.md
+  record the decision, rejected candidates, threat model and pilot roadmap.
+
+### 🐛 Bug Fixes
+
+* **atlassian:** apply code-review findings to capsule gate, routing and adapters ([`39bdfb6`](https://github.com/VincentChuWaiChow/vanguard-frontier-agentic/commit/39bdfb66bd194241b06aeb26e28b7ca7875bc46a))
+  - Terminal records (rejected, expired, failed, escalated) are recorded as-is;
+    a completed record's approval is checked at its first read-back.
+  - Capsules carry hop_type; a return goes exactly one hop back
+    (CAP-RETURN-TARGET) instead of failing as a delegation cycle.
+  - project:/space: write targets are allowed only for create tools.
+  - Tenant binding compares parsed URL and *.atlassian.net hosts exactly.
+  - The credential detector needs a value, not a label; one shared
+    agent-reference predicate replaces three overlapping checks and drops the
+    atlassian- prefix false positive.
+  - Write-intent routing requires a clause-opening verb, so "change request"
+    and "comment on whether" are analysis; negated requests no longer gate.
+  - WebFetch removed from the tenant-reading agents' Claude Code allowlist and
+    companion skills (exfiltration channel).
+  - The imported skills' manifests list the repository-added metadata.json.
+
+  Every change has a negative fixture or routing case; new-rule mutants killed.
+* **atlassian:** bundle required skills on export; reject agent ids as requesters ([`e707b0c`](https://github.com/VincentChuWaiChow/vanguard-frontier-agentic/commit/e707b0cb83713d350d274c95e3f11e7e34adfee3))
+  Codex review on #234:
+  - Exporting atlassian-maestro-agent installed no skills (companion_skills: []
+    reads as "intentional no-pair"), and --provider atlassian dropped the two
+    cross-functional skills (provider "generic"). Every Atlassian agent now
+    declares all of its Required Skills as companion_skills, and the export
+    script lets an agent's explicitly declared "generic" companions through the
+    provider gate (generic skills belong to no rival provider). Dry runs: the
+    maestro exports 3 skills, --provider atlassian exports 9, and a salesforce
+    export pulls in no Atlassian skill.
+  - A write requester labelled human but carrying a known agent id passed
+    CAP-REQUESTER-HUMAN; _is_agent_ref now applies to the requester too, with a
+    new negative fixture.
+* **atlassian:** close capsule-gate bypasses found by independent review ([`27cc03d`](https://github.com/VincentChuWaiChow/vanguard-frontier-agentic/commit/27cc03d1c76b72b3198cf7a6153e7de71e5c9b56))
+  An independent refuter reproduced 5 High and 7 Medium bypasses against the
+  case-capsule gate and board contracts. Fixes:
+
+  - Approver identity: account_ref grammar, case-insensitive dual control,
+    agent ids rejected as approvers, writes must be requested by a human.
+  - Approval provenance: typed approval-system locator grammar; tenant-authored
+    evidence kinds are untrusted whatever their label.
+  - Write targets: enumerated-item allowlist grammar replaces the bulk denylist.
+  - Write routing: T3/T4 capsules go only to the live write guard; unknown
+    agents fail closed. executeRead is opaque like executeWrite.
+  - Time and completion: real timestamp parsing, approval lifetime caps (board
+    policy: 24 h T3, 8 h T4), structured read-back evidence, budget_consumed and
+    parent_task_id fields, proposed+pending pre-approval capsules allowed.
+  - Ledger now backs every tool name the gate tiers (ATL-E18, ATL-E19 and
+    expanded rows); unbacked search_jira guidance removed.
+  - Claude Code adapters allowlist read tools by exact name, so "declares no
+    write tools" is enforced there; wording elsewhere no longer overclaims.
+  - Routing write-intent pattern covers grant, purge, remove, acknowledge, set,
+    mark and issue-key targets, with seven new routing fixtures.
+  - The suite now fails unless every one of the 27 declared rules is proven by
+    a negative fixture; ADR-0005 records the corrections.
+* **atlassian:** Copilot MCP read grants; no host scan of JQL/CQL literals ([`9e52d45`](https://github.com/VincentChuWaiChow/vanguard-frontier-agentic/commit/9e52d45bd5aff4ad95e86c15c37058a967ad5cc7))
+  Codex review of 15940454 on #234:
+  - The Copilot adapters' tools list held only local read/search tools, and a
+    Copilot tools list enables only the tools it names, MCP tools included
+    (docs.github.com/en/copilot/reference/custom-agents-configuration, "Tools").
+    The four tenant-reading adapters now list the read tools and executeRead as
+    atlassian/<tool>; atlassian/executeWrite and executeDestructive stay absent.
+    validate:agent-tool-tiers still passes.
+  - The bare-hostname scan rejected dotted literals in queries
+    (fixVersion = "1.2.3", java.lang.NullPointerException). JQL/CQL query text is
+    no longer scanned for bare hosts; URLs inside a query are still parsed and
+    checked. New valid fixture and a foreign-URL-in-JQL negative fixture.
+* **atlassian:** exact hostname checks, create read-back in its container, recurrence window ([`1594045`](https://github.com/VincentChuWaiChow/vanguard-frontier-agentic/commit/15940454b1216c353405d57e3cd6a32f85bbf0fc))
+  - CodeQL (py/incomplete-url-substring-sanitization, high) flagged the
+    "atlassian.net" substring filter on bare hostnames. The filter is gone:
+    every bare dotted hostname in a target, scheme or not, must now equal the
+    site exactly, which also closes scheme-less foreign hosts such as
+    evil.example/x (new negative fixture).
+  - Codex: a create's read-back could name an item outside the authorized
+    container (OTHER-99 for project:OPS). Jira and JSM read-backs must now carry
+    the authorized project key, and every create read-back must be the right
+    resource type; Confluence page ids carry no space, so that membership stays
+    with the guard's page read (documented).
+  - Codex: the incident-prevention recurrence search started at the original
+    incident's resolution, missing recurrences between implementation and
+    resolution; it now starts at the action's implementation date.
+* **atlassian:** let read-only capsules reach completed status ([`77c9701`](https://github.com/VincentChuWaiChow/vanguard-frontier-agentic/commit/77c970119a928d97b6ba4ddc8992274a6713755e))
+  Codex review of 0e2273a7 on #234: a completed read-only review or draft
+  failed CAP-COMPLETION-EVIDENCE because read-back was required even with no
+  writes, and any entry added was rejected as stray. Read-back is now required
+  only when the capsule contains writes; stray entries still fail. New valid
+  read-only completion fixture and a stray-read-back negative fixture.
+* **atlassian:** parse target hostnames instead of pattern-matching them ([`133128a`](https://github.com/VincentChuWaiChow/vanguard-frontier-agentic/commit/133128a1d3290f5093e76d6ec528cf70c095b866))
+  Codex review of 77c97011 on #234: a target such as
+  https://example-tenant.atlassian.net:443@foreign.example/... passed tenant
+  binding because the host regex stopped at the colon and read the userinfo as
+  the host. URLs are now parsed with urllib.parse.urlsplit; any URL carrying
+  userinfo is rejected; and bare hostnames are captured whole, so
+  site.atlassian.net.evil.example is not cut at ".net". Three new negative
+  fixtures.
+* **atlassian:** per-write approval timing, deferred-read pathway, policy-version staleness ([`20e75c7`](https://github.com/VincentChuWaiChow/vanguard-frontier-agentic/commit/20e75c7821709a6703955151bb61c6eaeab44062))
+  Codex review of 08c01128 on #234:
+  - A completed capsule checked only its earliest read-back against the
+    approval window, so a write made after expiry was masked by an earlier
+    timely one. Every read-back is now checked; new mixed before/after-expiry
+    negative fixture.
+  - The tenant-reading Claude Code adapters listed deferred read tools by name
+    but not executeRead, the documented entry point for deferred read-tier
+    tools, so those reads were unreachable. executeRead is now allowed;
+    executeWrite and executeDestructive remain absent, and capsules still name
+    the concrete tool.
+  - The control-evidence lineage rule marked a policy version created before the
+    audit period as stale even when it stayed in force throughout; staleness is
+    now judged by the version in force during the period.
+* **atlassian:** require resource read-back tied to each write in completed capsules ([`0e2273a`](https://github.com/VincentChuWaiChow/vanguard-frontier-agentic/commit/0e2273a78ed4760364e0fa842878df0c06e0cab0))
+  Codex review on #234: a completed capsule passed with `discover` (or another
+  product's read tool) as its only "read-back", and a correct read-back of the
+  item a create returned (OPS-1107) failed against the container target
+  (project:OPS).
+
+  Each verification_evidence entry now names the write target it `verifies`
+  and the item read; the read tool must read that product's resource
+  (READBACK_TOOLS), the read must be a permitted operation, and for creates the
+  item read is the returned item rather than the container. Three new negative
+  fixtures; mutants of both new conditions are killed.
+* **atlassian:** ship the capsule schema and validator inside the skill ([`b0a1a29`](https://github.com/VincentChuWaiChow/vanguard-frontier-agentic/commit/b0a1a29403417acc35f99010995c8c4d2c2216f6))
+  Codex review of 9e52d45b on #234: exporting an Atlassian agent installed the
+  atlassian-case-capsule skill without its schema (schemas/) or validator
+  (tests/), so installed agents could not load the contract or run the
+  validation the skill prescribes.
+
+  The schema now lives at skills/cross-functional/atlassian-case-capsule/
+  assets/atlassian-case-capsule.schema.json and the validator at
+  scripts/validate_capsule.py, as single sources of truth.
+  tests/validate-atlassian-case-capsule.py is a thin repository gate that runs
+  the committed fixtures through that validator (same 28 rules, 12 valid and 91
+  negative fixtures). A real export of atlassian-maestro-agent now installs both
+  files, and the installed validator checks a capsule standalone.
+* **atlassian:** tie completion evidence to each operation by op_id ([`6e8d19e`](https://github.com/VincentChuWaiChow/vanguard-frontier-agentic/commit/6e8d19e240ccdfe7c5fe15ce27219f0a1178c524))
+  Codex review of 20e75c78 on #234: two creates in the same project or space
+  shared a container target, so one read-back satisfied both and a
+  half-finished batch could be reported as completed.
+
+  Every permitted operation now carries a unique op_id; verification_evidence
+  references it in `verifies`, and two creates cannot be proven by the same
+  returned item. New negative fixtures: two creates with one read-back, and a
+  duplicate op_id.
+
+### 📚 Documentation
+
+* **prompts:** save Atlassian agentic ecosystem master prompt ([`e5244ee`](https://github.com/VincentChuWaiChow/vanguard-frontier-agentic/commit/e5244ee5105eef0fe1844e5a822af6e2e9da6275))
+  Verbatim operator brief for the Atlassian agentic ecosystem work, stored
+  as an input only; nothing in it is implemented or verified by its presence.
+
+---
+
+### 📥 Install
+```bash
+npm install @raishin/vanguard-frontier-agentic@3.21.0
+```
+
+### 🔐 Supply-chain provenance
+Every release ships a build attestation (SLSA provenance) and an SBOM. Verify the tag with `gh attestation verify` before installing.
+
+**Full changelog:** https://github.com/VincentChuWaiChow/vanguard-frontier-agentic/compare/v3.20.0...v3.21.0
+
 ## 🛡️ v3.20.0 — *Provenance · Policy · Portability*
 _Released 2026-11-11_
 
@@ -12769,7 +12955,7 @@ Collateral: regenerate asset-integrity.json, plugin manifests
 
 ## 🔴 v2.0.0 — *Zero-Trust Scope Enforcement* &mdash; 2026-05-16
 
-> _Provider-scoped exports are now strict and auditable. 745 agents · 776 skills · 45 providers · 76 roles_
+> _Provider-scoped exports are now strict and auditable. 750 agents · 785 skills · 46 providers · 77 roles_
 >
 > This release closes a class of privilege-escalation bugs in the export CLI and hardens the
 > entire provider-scope boundary from user input through to CI attestation.
