@@ -5,7 +5,7 @@
   "set": {
     "verification_evidence": [
       {
-        "verifies": "OPS-1042",
+        "verifies": "op-1",
         "target": "OPS-1042",
         "tool": "getJiraIssue",
         "observed_state": "claims a write was verified",

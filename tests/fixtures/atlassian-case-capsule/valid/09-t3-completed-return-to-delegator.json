@@ -67,21 +67,25 @@
   "execution_tier": "T3-authorized-write",
   "permitted_operations": [
     {
+      "op_id": "op-1",
       "tool": "createJiraIssue",
       "target": "project:OPS",
       "cloud_id": "11111111-2222-3333-4444-555555555555"
     },
     {
+      "op_id": "op-2",
       "tool": "createConfluenceContent",
       "target": "space:SRE parent:page:778899",
       "cloud_id": "11111111-2222-3333-4444-555555555555"
     },
     {
+      "op_id": "op-3",
       "tool": "getJiraIssue",
       "target": "OPS-1107",
       "cloud_id": "11111111-2222-3333-4444-555555555555"
     },
     {
+      "op_id": "op-4",
       "tool": "getConfluenceContent",
       "target": "page:991245",
       "cloud_id": "11111111-2222-3333-4444-555555555555"
@@ -116,14 +120,14 @@
   ],
   "verification_evidence": [
     {
-      "verifies": "project:OPS",
+      "verifies": "op-1",
       "target": "OPS-1107",
       "tool": "getJiraIssue",
       "observed_state": "OPS-1107 exists; summary, AC-01..AC-03 and link to OPS-1042 match the approved draft",
       "read_at": "2026-11-13T09:58:40Z"
     },
     {
-      "verifies": "space:SRE parent:page:778899",
+      "verifies": "op-2",
       "target": "page:991245",
       "tool": "getConfluenceContent",
       "observed_state": "page:991245 version 1 exists under page:778899 with the approved body",

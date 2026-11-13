@@ -213,6 +213,10 @@ def check(capsule: dict, validator) -> list[tuple[str, str]]:
     if bad_ts:
         return [("CAP-TIMESTAMP", f"not a real UTC timestamp: {sorted(set(bad_ts))}")]
 
+    op_ids = [o["op_id"] for o in capsule["permitted_operations"]]
+    if len(set(op_ids)) != len(op_ids):
+        return [("CAP-SCHEMA", f"permitted_operations op_id values must be unique: {sorted(op_ids)}")]
+
     out: list[tuple[str, str]] = []
     tier = capsule["execution_tier"]
     rank = TIER_RANK[tier]
@@ -335,20 +339,26 @@ def check(capsule: dict, validator) -> list[tuple[str, str]]:
     if status == "completed":
         reads = capsule["verification_evidence"]
         write_ops = [o for o in ops if o["tool"] in READBACK_TOOLS]
-        by_target = {o["target"]: o for o in write_ops}
+        by_id = {o["op_id"]: o for o in write_ops}
         reads_allowed = [{"tool": o["tool"], "target": o["target"]} for o in ops if o["tool"] in READ_TOOLS]
         missing = []
+        created_items: dict[str, str] = {}
         for o in write_ops:
-            # A create is verified by reading the item it returned; anything else by
-            # re-reading the very item it changed. Either way, with a tool that reads that
-            # product's resource.
-            ok = [r for r in reads if r["verifies"] == o["target"] and r["tool"] in READBACK_TOOLS[o["tool"]]
+            # Each write is verified by its own entry (matched by op_id), with a tool that
+            # reads that product's resource, of the same item for an edit or of the item a
+            # create returned; that read must itself be a permitted operation.
+            ok = [r for r in reads if r["verifies"] == o["op_id"] and r["tool"] in READBACK_TOOLS[o["tool"]]
                   and {"tool": r["tool"], "target": r["target"]} in reads_allowed
                   and (ITEM_TARGET.match(r["target"]) if o["tool"] in CREATE_TOOLS else r["target"] == o["target"])
                   and _ts(r["read_at"]) <= as_of]
+            if o["tool"] in CREATE_TOOLS:
+                # Two creates cannot be proven by one returned item.
+                ok = [r for r in ok if created_items.get(r["target"], o["op_id"]) == o["op_id"]]
+                if ok:
+                    created_items[ok[0]["target"]] = o["op_id"]
             if not ok:
-                missing.append(o["target"])
-        stray = [r["verifies"] for r in reads if r["verifies"] not in by_target]
+                missing.append(o["op_id"])
+        stray = [r["verifies"] for r in reads if r["verifies"] not in by_id]
         # Read-back proves writes. A completed read-only capsule (an analysis or a draft)
         # has nothing to read back and needs no entries; any entry it does carry must still
         # name a write, so stray entries fail.

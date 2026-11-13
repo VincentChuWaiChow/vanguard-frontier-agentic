@@ -65,21 +65,25 @@
   "execution_tier": "T1-read",
   "permitted_operations": [
     {
+      "op_id": "op-1",
       "tool": "getJiraIssue",
       "target": "OPS-1042",
       "cloud_id": "11111111-2222-3333-4444-555555555555"
     },
     {
+      "op_id": "op-2",
       "tool": "searchJiraIssuesUsingJql",
       "target": "jql:project = OPS AND labels = payment-retry",
       "cloud_id": "11111111-2222-3333-4444-555555555555"
     },
     {
+      "op_id": "op-3",
       "tool": "getConfluenceContent",
       "target": "page:778899",
       "cloud_id": "11111111-2222-3333-4444-555555555555"
     },
     {
+      "op_id": "op-4",
       "tool": "diffConfluenceContentVersions",
       "target": "page:778899",
       "cloud_id": "11111111-2222-3333-4444-555555555555"

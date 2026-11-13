@@ -45,6 +45,7 @@
   "execution_tier": "T4-high-risk",
   "permitted_operations": [
     {
+      "op_id": "op-1",
       "tool": "archiveConfluenceContent",
       "target": "page:445566",
       "cloud_id": "11111111-2222-3333-4444-555555555555"

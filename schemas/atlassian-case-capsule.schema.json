@@ -244,11 +244,17 @@
         "type": "object",
         "additionalProperties": false,
         "required": [
+          "op_id",
           "tool",
           "target",
           "cloud_id"
         ],
         "properties": {
+          "op_id": {
+            "type": "string",
+            "pattern": "^op-[a-z0-9-]{1,32}$",
+            "description": "Unique within the capsule; verification_evidence entries reference it."
+          },
           "tool": {
             "type": "string",
             "pattern": "^[A-Za-z][A-Za-z0-9]*$"
@@ -401,7 +407,7 @@
           "verifies": {
             "type": "string",
             "minLength": 1,
-            "description": "The permitted_operations target of the write this read-back verifies."
+            "description": "The op_id of the write this read-back verifies."
           },
           "target": {
             "type": "string",

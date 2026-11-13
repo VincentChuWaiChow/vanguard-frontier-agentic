@@ -66,11 +66,13 @@
   "execution_tier": "T3-authorized-write",
   "permitted_operations": [
     {
+      "op_id": "op-1",
       "tool": "createJiraIssue",
       "target": "project:OPS",
       "cloud_id": "11111111-2222-3333-4444-555555555555"
     },
     {
+      "op_id": "op-2",
       "tool": "createConfluenceContent",
       "target": "space:SRE parent:page:778899",
       "cloud_id": "11111111-2222-3333-4444-555555555555"

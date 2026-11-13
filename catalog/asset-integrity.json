@@ -36493,7 +36493,7 @@
     },
     {
       "tree": "schemas",
-      "aggregate_sha256": "7175cda1f3398433eeeeefb3d1db01147f06901c4ede6e529a9f0a091b7cffb3",
+      "aggregate_sha256": "f6d08d2ae0a8d0f7236c126a9ce6bce24ec98ff85cc13271197e1d17b9090a72",
       "files": [
         {
           "path": "schemas/AGENTS.md",
@@ -36517,8 +36517,8 @@
         },
         {
           "path": "schemas/atlassian-case-capsule.schema.json",
-          "sha256": "1f5be1f475863a38d2cc4aa8f9661151ef6b935b30cafbd8b682b837e1436fc8",
-          "bytes": 11707
+          "sha256": "7bd8416bbb75c448937c1ddeb87c3c9b574422c11e1cccffaad76aa43c6d6736",
+          "bytes": 11915
         },
         {
           "path": "schemas/attestation.schema.json",
@@ -36579,7 +36579,7 @@
     },
     {
       "tree": "catalog",
-      "aggregate_sha256": "772805f34c2499a9ab2787b3e202a238858bb940b5238626701b3a4bfebbca98",
+      "aggregate_sha256": "3d8403aaedceba7413a3a8def1dfa1c523946000de6a6cc97a9f51dd1d67a8d4",
       "files": [
         {
           "path": "catalog/AGENTS.md",
@@ -36633,7 +36633,7 @@
         },
         {
           "path": "catalog/skill-manifest.json",
-          "sha256": "4f721b86806cf551f494180101ad7a6a77249abb580c371162a3d5a91fb27b30",
+          "sha256": "e95f740b6a331294a5eb007053df0a4204c1e0f3eb7b734a39dcb9f3d5d83534",
           "bytes": 1193704
         },
         {
@@ -37877,7 +37877,7 @@
     },
     {
       "tree": "tests",
-      "aggregate_sha256": "e02e7464ef74a8f3c17e698f701338acf36d920e3f9d13faa839b9da215cec12",
+      "aggregate_sha256": "98c20e0aca942059e2d0dfd6f49482ed290b94e3f7dddd69bfcaf12e33f26de9",
       "files": [
         {
           "path": "tests/AGENTS.md",
@@ -40031,8 +40031,8 @@
         },
         {
           "path": "tests/fixtures/atlassian-case-capsule/invalid/79-readback-verifies-unknown-write.json",
-          "sha256": "2816b99584d3b8b01d37d75c0a7f8d08640d166098c8d093367d9d1260d62590",
-          "bytes": 229
+          "sha256": "a2ced1a4094fe64cd83b6c3916dbb28acfb25d39f99f8c31d5b22a4ba17d754a",
+          "bytes": 221
         },
         {
           "path": "tests/fixtures/atlassian-case-capsule/invalid/80-completed-mixed-before-after-expiry.json",
@@ -40041,63 +40041,73 @@
         },
         {
           "path": "tests/fixtures/atlassian-case-capsule/invalid/81-completed-read-only-with-stray-readback.json",
-          "sha256": "6649f48db6fa5667f9cb1dce56e90153eedaa5e7cd6249ba8c6b8bf4bea2f032",
-          "bytes": 487
+          "sha256": "b8352b78f2fc5e9c6a9e93dc9c97becb12f2ebdebcc80955b4f6b597c6c8902b",
+          "bytes": 483
+        },
+        {
+          "path": "tests/fixtures/atlassian-case-capsule/invalid/82-two-creates-one-readback.json",
+          "sha256": "f528f413ac5fc74c95d95281079f5798a7fc69695404ecd94d916c988f556de9",
+          "bytes": 665
+        },
+        {
+          "path": "tests/fixtures/atlassian-case-capsule/invalid/83-duplicate-op-id.json",
+          "sha256": "5d7d8a9e006341553d033e14ea679b44735af5813111343e0559b42464e2ee28",
+          "bytes": 203
         },
         {
           "path": "tests/fixtures/atlassian-case-capsule/valid/01-t1-read-incident-review.json",
-          "sha256": "d32ba18d2bb874e288c7e1b24d20d586bee455fc47ad403630923cd87a889276",
-          "bytes": 3269
+          "sha256": "995f1731ec4b0e70a54e0cda4b6ad87a15bedbc7fa22d69fd2e400405c5c048b",
+          "bytes": 3361
         },
         {
           "path": "tests/fixtures/atlassian-case-capsule/valid/02-t3-create-remediation.json",
-          "sha256": "942b7ff07604c532f86977a9a279751e3d741a214d21c3e7a6187175f90f73c0",
-          "bytes": 3678
+          "sha256": "28f4cfcc697a52c537bd453fe9504660d3825a6ced94f3c16b9591c6df167a41",
+          "bytes": 3724
         },
         {
           "path": "tests/fixtures/atlassian-case-capsule/valid/03-t4-archive-superseded-runbook.json",
-          "sha256": "a7e7d58fabcc7141a5b92dd48a867726ffcb2753a1d641f67063a097e0b2b027",
-          "bytes": 2733
+          "sha256": "2c084cb508fde2f246e817f2057b86c95e0fb765fa7a29a43bca6cbfebec0f1e",
+          "bytes": 2756
         },
         {
           "path": "tests/fixtures/atlassian-case-capsule/valid/04-t3-completed-with-readback.json",
-          "sha256": "851cfe3ec73912454bf619c919375db2c0d879ac8f6684653aaf16c278913a9c",
-          "bytes": 4473
+          "sha256": "973e168427e6221613067040bdb3e36c6782415cfb8f08f17c21ce64c8cfae37",
+          "bytes": 4534
         },
         {
           "path": "tests/fixtures/atlassian-case-capsule/valid/05-t1-injection-flagged-as-untrusted.json",
-          "sha256": "122562522c6cccc10ca43d2a76183126c7c54b1e2817142068175028c35271ca",
-          "bytes": 3567
+          "sha256": "cbad59ee53ecdd4aba3ed39e313ab10b76f701c3f272d4609700b12ff03148cf",
+          "bytes": 3659
         },
         {
           "path": "tests/fixtures/atlassian-case-capsule/valid/06-t3-proposed-awaiting-approval.json",
-          "sha256": "1f090de3c75e382cec29bc9f7620367cacd739b4eeab2133a79f1b7330a24052",
-          "bytes": 3451
+          "sha256": "c561baa69b1a6b0eca2de1ca01e826b874248fb5af37d08f80c1af7d157133a5",
+          "bytes": 3497
         },
         {
           "path": "tests/fixtures/atlassian-case-capsule/valid/07-t3-no-go-rejected-record.json",
-          "sha256": "c19695f2b2b7691b3cd738071bbf1cc7278e6f1f2e8750d759d5cfc2c3dcda27",
-          "bytes": 3377
+          "sha256": "894a047a39009cbc3bb2e249759b34c4c00d6ec4d4ae1e1d2ed3592d1f9bc06b",
+          "bytes": 3423
         },
         {
           "path": "tests/fixtures/atlassian-case-capsule/valid/08-t3-expired-record.json",
-          "sha256": "028cc9cce007b18db6430295c7bd0c645b4558b34da7c61f5d2fc74de0d28409",
-          "bytes": 3677
+          "sha256": "5c87a818f05b21dc4096467d70c92355815178046a0455f070b4499191f078de",
+          "bytes": 3723
         },
         {
           "path": "tests/fixtures/atlassian-case-capsule/valid/09-t3-completed-return-to-delegator.json",
-          "sha256": "71f5d606754ce50452f0dcb2e1a989dea26683254f82b09dfdcb98767b4bf1ca",
-          "bytes": 4470
+          "sha256": "a28688f6c910bc1976f8b730c0255b10ff0b02bbab3755c7a53afc4c64368b5c",
+          "bytes": 4531
         },
         {
           "path": "tests/fixtures/atlassian-case-capsule/valid/10-t3-safety-prose-and-atlassian-named-owner.json",
-          "sha256": "584a5bfb9c24edcf701dc93a5b3c8acb6dfbe45f89749988e34fe6a38dd4605e",
-          "bytes": 3732
+          "sha256": "160f23c71044dceb138a16c718481cf3d9b84f9cef99724d84eed7afd62e6887",
+          "bytes": 3778
         },
         {
           "path": "tests/fixtures/atlassian-case-capsule/valid/11-t1-completed-read-only-review.json",
-          "sha256": "d4ffbdd00c5788c562854d20e9f49ca1cd1679dcc14d5276434980588b91abe0",
-          "bytes": 3283
+          "sha256": "62edda65083d0bc197133b197a706222f15a7dc64375bf84cca15ac56b7b7315",
+          "bytes": 3375
         },
         {
           "path": "tests/fixtures/atlassian-maestro-routing/expected/01-happy-incident-prevention.json",
@@ -50256,8 +50266,8 @@
         },
         {
           "path": "tests/validate-atlassian-case-capsule.py",
-          "sha256": "35b4204a9a9884e84875e9f8ec4584e9d822f65aa40f4288741703e63e7fab62",
-          "bytes": 23849
+          "sha256": "3ad737a83a288147694f11fbb9038e911e9f466b65a26b71c1e6d1699b6baef4",
+          "bytes": 24438
         },
         {
           "path": "tests/validate-aws-progressive-disclosure.py",
@@ -50464,5 +50474,5 @@
       "bytes": 9135
     }
   ],
-  "aggregate_sha256": "89e99912f94550f2ebfe794f3239021d1a0d2af6ea11ffbc9c2358f2498ed56f"
+  "aggregate_sha256": "d06b68fe0380ca474b55b005ade07dc5e06a37cf025d83b38eb56549b8083096"
 }
