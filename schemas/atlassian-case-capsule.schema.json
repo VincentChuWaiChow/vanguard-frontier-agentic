@@ -11,6 +11,7 @@
     "as_of",
     "origin_agent",
     "target_agent",
+    "hop_type",
     "delegation_chain",
     "requested_decision",
     "business_context",
@@ -83,6 +84,13 @@
     },
     "target_agent": {
       "$ref": "#/$defs/agentId"
+    },
+    "hop_type": {
+      "enum": [
+        "delegate",
+        "return"
+      ],
+      "description": "delegate: hand work onward to an agent not yet in the chain. return: send a result back exactly one hop, to delegation_chain[-2]."
     },
     "delegation_chain": {
       "type": "array",

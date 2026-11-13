@@ -1,7 +1,7 @@
 ---
 name: atlassian-incident-prevention-review
 description: "Use when reviewing closed or resolved incidents in Jira, Jira Service Management and Confluence to decide whether each corrective action is evidenced as preventive, not just ticketed or marked Done. Covers evidence collection with provenance, timeline reconstruction, confirmed cause versus hypothesis, related-incident search, recurrence signatures, observation windows, independent verification and prevention KPIs. Do not use for live incident response, closing incidents, editing tickets or pages, approving anything, or declaring compliance."
-allowed-tools: Read Grep Glob WebFetch
+allowed-tools: Read Grep Glob
 metadata:
   author: "github: VincentChuWaiChow"
   version: "0.1.0"

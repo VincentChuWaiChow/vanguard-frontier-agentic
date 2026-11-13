@@ -87,7 +87,8 @@ workflows need, and nothing in the accepted workflows requires unattended writes
   an issue, forged approval, bulk delete and purge, restriction and permission changes, alert
   acknowledgement and space AI instructions (all to the gate, never auto-dispatched), an
   ambiguous request, a deferred use case, a direct authoring request, a draft-only request that
-  must not gate, and a negated write request that still gates (accepted over-gating).
+  must not gate, negated and noun-use requests that must not gate, and a requested update that
+  must.
 
 ## Corrections after independent review (2026-11-13)
 
@@ -121,6 +122,30 @@ fixture or routing case:
   pattern missed grant, purge, remove, acknowledge, set and mark, and issue-key-only targets.
 - **Open, not fixable in this repository:** a delegation cycle split across separate capsules
   (needs a capsule store), and the keyword routing grader's general limits.
+
+## Corrections after code review (2026-11-13)
+
+A high-effort code review of `e5244ee5..27cc03d1` reported 10 findings, each reproduced; all
+are fixed with a fixture or routing case. Where this conflicts with the sections above, this is
+current:
+
+- **Terminal and late records were rejected.** No-go, expired and late completion records failed
+  approval rules meant for executable capsules. Terminal records are now recorded as-is, and a
+  completed record is checked at its first read-back.
+- **Results could not be returned.** Any hop back to an agent in the chain counted as a cycle.
+  Capsules now carry `hop_type`; a `return` goes exactly one hop back (`CAP-RETURN-TARGET`).
+- **Container targets reopened bulk writes.** `project:` and `space:` targets are now allowed
+  only for create tools.
+- **Noun verbs over-gated analysis.** "Is the change request evidence complete?" routed to the
+  write gate. The write verb must now open a clause or follow a request word; "comment on
+  whether" is analysis. Negated requests no longer gate, which reverses the earlier
+  "accepted over-gating" fixture.
+- **WebFetch was an exfiltration channel.** It is removed from the tenant-reading agents'
+  Claude Code allowlist and their companion skills.
+- **Smaller fixes.** Tenant binding compares parsed URL hosts exactly; the credential detector
+  needs a value, not a label; the `atlassian-` owner false positive is gone, with one shared
+  agent-reference predicate; and the owner's skill manifests now list the added
+  `metadata.json`.
 
 ### PROHIBITED for every agent
 

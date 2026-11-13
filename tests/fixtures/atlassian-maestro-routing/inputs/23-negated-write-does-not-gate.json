@@ -1,0 +1,7 @@
+{
+  "name": "23-negated-write-does-not-gate",
+  "task": "Do not create anything in Jira; just explain why the incident recurred.",
+  "tags": [
+    "negative:negated-write"
+  ]
+}

@@ -1,0 +1,8 @@
+{
+  "name": "24-noun-change-request-not-a-write",
+  "task": "Is the change request evidence chain complete for the SOX audit control?",
+  "tags": [
+    "negative:noun-not-verb",
+    "happy-path"
+  ]
+}

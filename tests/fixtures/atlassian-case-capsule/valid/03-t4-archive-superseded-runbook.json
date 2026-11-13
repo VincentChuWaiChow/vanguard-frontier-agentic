@@ -4,6 +4,7 @@
   "as_of": "2026-11-13T10:00:00Z",
   "origin_agent": "atlassian-knowledge-integrity-agent",
   "target_agent": "atlassian-live-write-guard-agent",
+  "hop_type": "delegate",
   "delegation_chain": [
     "atlassian-maestro-agent",
     "atlassian-knowledge-integrity-agent"

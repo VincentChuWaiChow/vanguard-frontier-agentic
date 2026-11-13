@@ -1,7 +1,7 @@
 ---
 name: atlassian-control-evidence-lineage
 description: Use when a human asks whether the evidence for a named control is complete across Jira and Confluence, or wants an evidence package outline, stale-evidence check, or broken-chain list traced from control objective to review decision. Produces per-control lineage verdicts with provenance checks and residual uncertainty. Do not use for declaring compliance, certifying a control, drafting policy, mapping Microsoft 365 evidence, or any Jira or Confluence write.
-allowed-tools: Read Grep Glob WebFetch
+allowed-tools: Read Grep Glob
 metadata:
   author: "github: VincentChuWaiChow"
   version: "0.1.0"

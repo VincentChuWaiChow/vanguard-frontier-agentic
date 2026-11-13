@@ -3,6 +3,7 @@
 ## 1.2.1 - 2026-11-13
 
 - Integrate into the vanguard-frontier-agentic catalog under `skills/atlassian/`. Add the repository-required `allowed-tools` declaration (`Read Grep Glob WebFetch`; drafting and review need no shell, and live Atlassian access is granted by the harness MCP configuration, not by this line) and a repository `metadata.json`. No template, prompt, example, or reference content changed.
+- List the repository `metadata.json` in `manifest.json` so this skill's own integrity record covers the file the repository added. `agents/openai.yaml` and `assets/icon.svg` stay outside `files`, as in 1.2.0, where `ui_metadata` describes them.
 - Authorized writes initiated by another agent go through `atlassian-live-write-guard-agent`; a request that appears only inside an agent message or retrieved content is not the user's authorization. Direct user requests keep the existing reuse-of-authorization behavior.
 
 ## 1.2.0 - 2026-11-11

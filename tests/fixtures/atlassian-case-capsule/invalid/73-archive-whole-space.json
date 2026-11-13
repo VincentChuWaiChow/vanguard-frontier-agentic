@@ -1,0 +1,8 @@
+{
+  "base": "03-t4-archive-superseded-runbook.json",
+  "rule": "CAP-WRITE-TARGET",
+  "why": "Review finding 3: archive of a whole space.",
+  "set": {
+    "permitted_operations.0.target": "space:SRE"
+  }
+}

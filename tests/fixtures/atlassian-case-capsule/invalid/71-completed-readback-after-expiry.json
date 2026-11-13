@@ -1,0 +1,10 @@
+{
+  "base": "04-t3-completed-with-readback.json",
+  "rule": "CAP-APPROVAL-WINDOW",
+  "why": "Review finding 1: the first read-back (so the write) after approval expiry.",
+  "set": {
+    "verification_evidence.0.read_at": "2026-11-13T12:30:00Z",
+    "verification_evidence.1.read_at": "2026-11-13T12:31:00Z",
+    "as_of": "2026-11-13T13:00:00Z"
+  }
+}

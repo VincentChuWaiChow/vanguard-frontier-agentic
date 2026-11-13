@@ -78,7 +78,7 @@ Illustrative Claude Code configuration for an MCP server registered under the na
 }
 ```
 
-The Claude Code adapters of this board's read-only agents go further: their `tools:` line allowlists `Read, Grep, Glob, WebFetch` and the read tools in this table by exact `mcp__atlassian__` name, so a subagent cannot inherit the session's write tools. Other harnesses here have no per-agent MCP allowlist.
+The Claude Code adapters of this board's read-only agents go further: their `tools:` line allowlists `Read, Grep, Glob` and the read tools in this table by exact `mcp__atlassian__` name, so a subagent cannot inherit the session's write tools. WebFetch is deliberately absent: an agent holding tenant data gets no outbound channel an injected instruction could use for exfiltration. Other harnesses here have no per-agent MCP allowlist.
 
 Denying `executeWrite` blocks deferred writes only for sessions that should never write. Only the session running the live write guard, with verified authorization, may have it allowed. Directly exposed write tools such as `createJiraIssue` and `editJiraIssue` must also be denied for read-only sessions, using the names `discover` reports.
 

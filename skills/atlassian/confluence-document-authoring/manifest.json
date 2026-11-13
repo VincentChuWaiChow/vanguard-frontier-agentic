@@ -32,7 +32,7 @@
   "files": [
     {
       "path": "CHANGELOG.md",
-      "sha256": "84ef416ef28714329f6142cdc380575319dc09174985c5ea05f03cf0e3034e06"
+      "sha256": "8d233e27edb4b428449fe8952c0220eed45670af7e581e3641647d773675a744"
     },
     {
       "path": "SKILL.md",
@@ -149,6 +149,10 @@
     {
       "path": "assets/templates/team-working-agreement.md",
       "sha256": "76a82d58a7d77054e8fd32c2bc5ba617f34b08906b3f101d7f1501f7e6e3c485"
+    },
+    {
+      "path": "metadata.json",
+      "sha256": "8413653903962fef5e5ac13722f1c93d0b3d4e1d2190cceee882f21b313dea8c"
     },
     {
       "path": "prompts/README.md",

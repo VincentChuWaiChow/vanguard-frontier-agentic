@@ -22,7 +22,7 @@
   "files": [
     {
       "path": "CHANGELOG.md",
-      "sha256": "20d65edf6fe88a97c076b226dd2fa2e94133d700d8472414587b0e18e2bcf37d"
+      "sha256": "36aa84fd708c497b94d326f51e694ab71705b26b6a6cf8e41c7535eb0cda16d3"
     },
     {
       "path": "SKILL.md",
@@ -95,6 +95,10 @@
     {
       "path": "assets/templates/tech-debt.md",
       "sha256": "614d403f9487fb5d3f93294b982b1e4ea00b10adb225f556bbce6cd9db413916"
+    },
+    {
+      "path": "metadata.json",
+      "sha256": "e01c58200815082415d83ac1b7bc98b3822369a83330ec6be56e6218e0416bed"
     },
     {
       "path": "prompts/README.md",

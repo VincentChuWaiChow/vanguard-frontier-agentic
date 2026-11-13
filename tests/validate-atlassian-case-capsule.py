@@ -59,6 +59,7 @@ RULES = frozenset({
     "CAP-WRITE-TIER", "CAP-HIGH-RISK-TIER", "CAP-WRITE-TARGET", "CAP-REQUESTER-HUMAN",
     "CAP-APPROVAL-REQUIRED", "CAP-APPROVER-HUMAN", "CAP-APPROVAL-RECORD", "CAP-APPROVAL-WINDOW",
     "CAP-DUAL-CONTROL", "CAP-DELEGATION-CYCLE", "CAP-DELEGATION-CHAIN", "CAP-DELEGATION-DEPTH",
+    "CAP-RETURN-TARGET",
     "CAP-BUDGET-EXCEEDED", "CAP-CONTENT-TRUST", "CAP-INSTRUCTION-TRUST",
     "CAP-COMPLETION-EVIDENCE", "CAP-EXPIRED", "CAP-DECISION-OWNER",
 })
@@ -116,11 +117,14 @@ OPAQUE_TOOLS = frozenset({"executeRead", "executeWrite"})
 TIER_RANK = {"T0-research": 0, "T1-read": 1, "T2-draft": 2, "T3-authorized-write": 3, "T4-high-risk": 4}
 APPROVAL_MAX = {3: timedelta(hours=24), 4: timedelta(hours=8)}
 # Write targets are enumerated identifiers. Anything else (JQL, filters, ranges, wildcards,
-# "every page") is a query and needs a human-approved item list first.
-WRITE_TARGET = re.compile(
-    r"^(?:[A-Z][A-Z0-9]{1,9}-\d+|project:[A-Z][A-Z0-9]{1,9}|page:\d+"
-    r"|space:[A-Za-z0-9~_-]+(?: parent:page:\d+)?|request:[A-Z][A-Z0-9]{1,9}-\d+|alert:[A-Za-z0-9-]+)$"
-)
+# "every page") is a query and needs a human-approved item list first. A container
+# (project:/space:) is a valid target only for tools that create one new item inside it;
+# for every other write it would mean "everything in the project or space".
+ITEM_TARGET = re.compile(r"^(?:[A-Z][A-Z0-9]{1,9}-\d+|page:\d+|request:[A-Z][A-Z0-9]{1,9}-\d+|alert:[A-Za-z0-9-]+)$")
+CONTAINER_TARGET = re.compile(r"^(?:project:[A-Z][A-Z0-9]{1,9}|space:[A-Za-z0-9~_-]+(?: parent:page:\d+)?)$")
+CREATE_TOOLS = frozenset({"createJiraIssue", "createConfluenceContent", "createJsmRequest"})
+URL_HOST = re.compile(r"https?://([^/\s?#:]+)", re.I)
+ATLASSIAN_HOST = re.compile(r"\b([a-z0-9][a-z0-9.-]*\.atlassian\.net)\b", re.I)
 # Evidence kinds whose bodies are tenant-authored text. Only jira-issue field metadata,
 # external system records, and user statements may claim another trust level.
 TENANT_CONTENT_KINDS = frozenset({
@@ -133,18 +137,29 @@ TENANT_CONTENT_KINDS = frozenset({
 # (jsm-approval:<request>:<approval-id>), which the guard reads as structured approval
 # metadata, not as a comment that claims approval.
 APPROVAL_LOCATOR = re.compile(r"^(change-record|approval-workflow|jsm-approval|signed-record):[A-Za-z0-9][A-Za-z0-9._:-]{0,127}$")
-AGENT_LIKE = re.compile(r"(-agent\b|^atlassian-)", re.I)
+# A credential label followed by a value-shaped string: a placeholder (<...>) or a token of
+# six or more non-space characters containing a digit. Prose such as "never paste an API
+# token: ask the human" names a credential without carrying one and is not flagged.
+_SECRET_VALUE = r"\s*[:=]\s*[\"']?(?:<[^>\s]+>|(?=[^\s\"']*\d)[^\s\"']{6,})"
 SECRET_RE = re.compile(
     r"(authorization\s*:\s*(basic|bearer)\s|\bbearer\s+[A-Za-z0-9._~+/=-]{16,}|\bATATT[A-Za-z0-9_=-]{10,}"
-    r"|-----BEGIN [A-Z ]*PRIVATE KEY-----|\b(api[ _-]?(token|key)|x-api-key|client[_-]?secret|secret|token|password|passwd|pwd)\s*[:=]"
+    r"|-----BEGIN [A-Z ]*PRIVATE KEY-----"
+    r"|\b(api[ _-]?(token|key)|x-api-key|client[_-]?secret|secret|token|password|passwd|pwd)" + _SECRET_VALUE +
     r"|\bx-api-key\s+\S{8,})",
     re.IGNORECASE,
 )
+EXECUTABLE = frozenset({"proposed", "accepted"})
 DELETE = "__delete__"
 
 
 def _norm(ref: str) -> str:
     return ref.strip().casefold()
+
+
+def _is_agent_ref(value: str) -> bool:
+    """True when a principal reference or owner names an agent rather than a human."""
+    n = _norm(value)
+    return n in KNOWN_AGENTS or f"{n}-agent" in KNOWN_AGENTS or re.search(r"-agent\b", n) is not None
 
 
 def _ts(value: str) -> datetime:
@@ -216,7 +231,8 @@ def check(capsule: dict, validator) -> list[tuple[str, str]]:
         if tool in OPAQUE_TOOLS:
             out.append(("CAP-OPAQUE-EXECUTE", f"{tool} hides the deferred tool; name the concrete tool from discover"))
             continue
-        if op["cloud_id"] != tenant or ("atlassian.net" in target.casefold() and site_host not in target.casefold()):
+        hosts = {h.casefold() for h in URL_HOST.findall(target)} | {h.casefold() for h in ATLASSIAN_HOST.findall(target)}
+        if op["cloud_id"] != tenant or hosts - {site_host}:
             out.append(("CAP-TENANT-BINDING", f"{tool} on {target!r} is outside tenant {tenant!r} ({site_host})"))
         if tool in READ_TOOLS:
             continue
@@ -231,21 +247,28 @@ def check(capsule: dict, validator) -> list[tuple[str, str]]:
         else:
             out.append(("CAP-UNKNOWN-TOOL", f"{tool} is not a recognized tool; unknown tools fail closed"))
             continue
-        if not WRITE_TARGET.match(target):
-            out.append(("CAP-WRITE-TARGET", f"{tool} target {target!r} is not one enumerated item; queries need an approved item list"))
+        if not (ITEM_TARGET.match(target) or (tool in CREATE_TOOLS and CONTAINER_TARGET.match(target))):
+            out.append(("CAP-WRITE-TARGET", f"{tool} target {target!r} is not one enumerated item; queries and containers need an approved item list"))
 
     writes = writes or rank >= 3
     high = high or rank >= 4
 
-    if writes and capsule["target_agent"] != GUARD and status in {"proposed", "accepted"}:
+    if writes and capsule["target_agent"] != GUARD and status in EXECUTABLE:
         out.append(("CAP-WRITE-ROUTE", f"writes are handed only to {GUARD}, not {capsule['target_agent']}"))
 
     if writes:
         if capsule["user_identity_context"]["principal_type"] != "human":
             out.append(("CAP-REQUESTER-HUMAN", "a write must be requested by a human principal"))
-        if approval["status"] == "approved":
+        # Terminal records (rejected, expired, failed, escalated) authorize nothing, so their
+        # approval state is recorded as-is. Executable capsules are checked at as_of; a
+        # completed record is checked at its first read-back, which follows the write.
+        reads_at = [_ts(r["read_at"]) for r in capsule["verification_evidence"]]
+        check_at = as_of if status in EXECUTABLE else (min(reads_at) if reads_at else as_of)
+        if status not in EXECUTABLE and status != "completed":
+            pass
+        elif approval["status"] == "approved":
             approvers = approval["approvers"]
-            if not approvers or any(a["principal_type"] != "human" or AGENT_LIKE.search(a["account_ref"]) or _norm(a["account_ref"]) in KNOWN_AGENTS for a in approvers):
+            if not approvers or any(a["principal_type"] != "human" or _is_agent_ref(a["account_ref"]) for a in approvers):
                 out.append(("CAP-APPROVER-HUMAN", "every approver must be a human principal; agent or service approvals are not authorization"))
             record = approval["approval_record"]
             evidence_locators = {_norm(e["locator"]) for e in capsule["evidence_references"]}
@@ -259,8 +282,8 @@ def check(capsule: dict, validator) -> list[tuple[str, str]]:
                 out.append(("CAP-APPROVAL-WINDOW", "approved requires approved_at and expires_at"))
             else:
                 a, e = _ts(approved_at), _ts(expires_at)
-                if not (a <= as_of < e) or e - a > cap:
-                    out.append(("CAP-APPROVAL-WINDOW", f"need approved_at <= as_of < expires_at and a lifetime of at most {cap}"))
+                if not (a <= check_at < e) or e - a > cap:
+                    out.append(("CAP-APPROVAL-WINDOW", f"need approved_at <= {'as_of' if status in EXECUTABLE else 'first read-back'} < expires_at and a lifetime of at most {cap}"))
             if high:
                 requester = _norm(capsule["user_identity_context"]["account_ref"])
                 humans = {_norm(a["account_ref"]) for a in approvers if a["principal_type"] == "human"}
@@ -270,8 +293,14 @@ def check(capsule: dict, validator) -> list[tuple[str, str]]:
             out.append(("CAP-APPROVAL-REQUIRED", f"a write needs approval 'approved' (or 'pending' while 'proposed'); got {approval['status']!r} while {status!r}"))
 
     chain = capsule["delegation_chain"]
-    if len(set(chain)) != len(chain) or capsule["target_agent"] in chain:
-        out.append(("CAP-DELEGATION-CYCLE", "delegation chain repeats an agent or hands back to an agent already in it"))
+    if capsule["hop_type"] == "return":
+        # A return goes back exactly one hop, to the agent that delegated to the origin.
+        if len(chain) < 2 or capsule["target_agent"] != chain[-2]:
+            out.append(("CAP-RETURN-TARGET", "a return goes only to the agent that delegated to origin_agent (delegation_chain[-2])"))
+        if len(set(chain)) != len(chain):
+            out.append(("CAP-DELEGATION-CYCLE", "delegation chain repeats an agent"))
+    elif len(set(chain)) != len(chain) or capsule["target_agent"] in chain:
+        out.append(("CAP-DELEGATION-CYCLE", "delegation chain repeats an agent or delegates to an agent already in it"))
     if chain[-1] != capsule["origin_agent"]:
         out.append(("CAP-DELEGATION-CHAIN", "delegation_chain must end with origin_agent"))
     if len(chain) > budget["max_delegation_depth"]:
@@ -293,16 +322,16 @@ def check(capsule: dict, validator) -> list[tuple[str, str]]:
     if status == "completed":
         reads = capsule["verification_evidence"]
         write_targets = {o["target"] for o in ops if o["tool"] in WRITE_TOOLS | HIGH_RISK_TOOLS}
-        floor = _ts(approval["approved_at"]) if approval["approved_at"] else None
+        # Read-back before the approval is caught by CAP-APPROVAL-WINDOW, which checks the
+        # approval at the first read-back of a completed record.
         bad = [r for r in reads if r["tool"] not in READ_TOOLS or r["target"] not in {o["target"] for o in ops}
-               or _ts(r["read_at"]) > as_of or (floor and _ts(r["read_at"]) < floor)]
+               or _ts(r["read_at"]) > as_of]
         missing = write_targets - {r["target"] for r in reads}
         if not reads or bad or missing:
-            out.append(("CAP-COMPLETION-EVIDENCE", "completed needs read-back of every written target by a read tool, after approval and before as_of"))
+            out.append(("CAP-COMPLETION-EVIDENCE", "completed needs read-back of every written target by a read tool, no later than as_of"))
     if status in {"proposed", "accepted"} and _ts(capsule["deadline_or_expiry"]) <= as_of:
         out.append(("CAP-EXPIRED", f"deadline_or_expiry {capsule['deadline_or_expiry']} is not after as_of; status must be expired"))
-    owner = capsule["decision_owner"]
-    if AGENT_LIKE.search(owner.strip()) or _norm(owner) in KNOWN_AGENTS or _norm(owner).removesuffix("-agent") + "-agent" in KNOWN_AGENTS:
+    if _is_agent_ref(capsule["decision_owner"]):
         out.append(("CAP-DECISION-OWNER", "decision_owner must be a named human role, not an agent"))
     return out
 

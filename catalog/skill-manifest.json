@@ -1597,12 +1597,12 @@
     {
       "id": "atlassian-case-capsule",
       "path": "skills/cross-functional/atlassian-case-capsule",
-      "aggregate_sha256": "e3bbba1a4bff4cc4052d6d4882d32c67281b05795ddf6a90b58f40e51fb7ccfd",
+      "aggregate_sha256": "e0098333d4d3c40a05e749f46b6bbb301fca9d6e98513d176be5b20f04d561d7",
       "files": [
         {
           "path": "skills/cross-functional/atlassian-case-capsule/SKILL.md",
-          "sha256": "a16a3e789e5925673a8724cfb81889c5fb1a72b6b9e1f641bb7713df0b88bcde",
-          "bytes": 6087
+          "sha256": "ef3647bec6ae34cad513af994975911b6cc12fa71c750ec7ed94db5f8d4954bf",
+          "bytes": 6863
         },
         {
           "path": "skills/cross-functional/atlassian-case-capsule/metadata.json",
@@ -1614,12 +1614,12 @@
     {
       "id": "atlassian-control-evidence-lineage",
       "path": "skills/atlassian/atlassian-control-evidence-lineage",
-      "aggregate_sha256": "bc558f6f2c58d0db591e79708f46020d83ca1647e9859402dc515a0ab6f62966",
+      "aggregate_sha256": "dc589c5b875f46ed8445ee9f1b375b236b3d3d32ea264e5581528521af657024",
       "files": [
         {
           "path": "skills/atlassian/atlassian-control-evidence-lineage/SKILL.md",
-          "sha256": "8fa034c2f04296eeaebcdecc72fb6fa97042b6c515e23c72ec3676ba27c21726",
-          "bytes": 4478
+          "sha256": "02368f803679504a94c4490ab8fa8fa8c5d2a1809daaeb8f65b2bf650ad36c3a",
+          "bytes": 4469
         },
         {
           "path": "skills/atlassian/atlassian-control-evidence-lineage/metadata.json",
@@ -1641,12 +1641,12 @@
     {
       "id": "atlassian-incident-prevention-review",
       "path": "skills/atlassian/atlassian-incident-prevention-review",
-      "aggregate_sha256": "47f65d4c4d41e0ae26cccacb9a1d1320126f6bde97eeeae430f97648266870db",
+      "aggregate_sha256": "5c6275ee10003d0057a72b81a3f15cc1b3d8551ad79f1cab4eeaa918c0c45cc9",
       "files": [
         {
           "path": "skills/atlassian/atlassian-incident-prevention-review/SKILL.md",
-          "sha256": "84a6438ae4c6ca89c6e40b3e4634280bc8911fb16efdcf204e774611e3453c5f",
-          "bytes": 4847
+          "sha256": "8050cc1d64377b06d0095946743ffe0701f1482a67d39de27cc32d0006696322",
+          "bytes": 4838
         },
         {
           "path": "skills/atlassian/atlassian-incident-prevention-review/metadata.json",
@@ -1668,12 +1668,12 @@
     {
       "id": "atlassian-knowledge-integrity-review",
       "path": "skills/atlassian/atlassian-knowledge-integrity-review",
-      "aggregate_sha256": "271fd0793860b506a6475ed49b5be94c9433e4ca784841552c2d7595f37c15c2",
+      "aggregate_sha256": "d9805e3b9f312894b572f409776de257affd68fdb0a1871b0761e12c8faf2713",
       "files": [
         {
           "path": "skills/atlassian/atlassian-knowledge-integrity-review/SKILL.md",
-          "sha256": "43e93280554c8eb46563a6d84b9f6da6e9aa91594824f47cabe03890f0b272e2",
-          "bytes": 4642
+          "sha256": "cb599febeaa62b65bccb5951658957a75c7f0e58b67ae8b5fd4a99e23c8a4192",
+          "bytes": 4633
         },
         {
           "path": "skills/atlassian/atlassian-knowledge-integrity-review/metadata.json",
@@ -1739,7 +1739,7 @@
     {
       "id": "atlassian-rovo-mcp-integration",
       "path": "skills/atlassian/atlassian-rovo-mcp-integration",
-      "aggregate_sha256": "21d510c9d6eb610ee396db6677a48ac8c35dd77b322e255882d7fcce26dfea0d",
+      "aggregate_sha256": "57d0eb4d78b9131762a718653785db9df027a88084d9727d65bd9173957359e4",
       "files": [
         {
           "path": "skills/atlassian/atlassian-rovo-mcp-integration/SKILL.md",
@@ -1768,8 +1768,8 @@
         },
         {
           "path": "skills/atlassian/atlassian-rovo-mcp-integration/references/tool-risk-tiers.md",
-          "sha256": "74cbd915e2d0a33d476b36de42a39e110080956c83975294dcd446b43bcaaae5",
-          "bytes": 9455
+          "sha256": "42276344d2666a3825602d2d34dc279b6fc7ea78fb5875e35d36fbe4e85458a2",
+          "bytes": 9584
         }
       ]
     },
@@ -6447,12 +6447,12 @@
     {
       "id": "confluence-document-authoring",
       "path": "skills/atlassian/confluence-document-authoring",
-      "aggregate_sha256": "14c37c0e9a8e0778ef5dcf1287654fe01587e4ecd3eaa70a10bd0c7690a6412f",
+      "aggregate_sha256": "d707be0852fee20d6a05058d1206c35259f08e961bf76d6387c9d3ccdf54fce6",
       "files": [
         {
           "path": "skills/atlassian/confluence-document-authoring/CHANGELOG.md",
-          "sha256": "84ef416ef28714329f6142cdc380575319dc09174985c5ea05f03cf0e3034e06",
-          "bytes": 2308
+          "sha256": "8d233e27edb4b428449fe8952c0220eed45670af7e581e3641647d773675a744",
+          "bytes": 2554
         },
         {
           "path": "skills/atlassian/confluence-document-authoring/SKILL.md",
@@ -6611,8 +6611,8 @@
         },
         {
           "path": "skills/atlassian/confluence-document-authoring/manifest.json",
-          "sha256": "aa7511f197374f750d19881656e4a080c009302c0892725b348e803debe6d52c",
-          "bytes": 9414
+          "sha256": "b147a420f56c8ba64d2738d54ab5732f7a3fbf788d3292d22b5f2b5d897da8f0",
+          "bytes": 9541
         },
         {
           "path": "skills/atlassian/confluence-document-authoring/metadata.json",
@@ -14099,12 +14099,12 @@
     {
       "id": "jira-ticket-authoring",
       "path": "skills/atlassian/jira-ticket-authoring",
-      "aggregate_sha256": "694249f26b3d080e1b7e6db5f5a440b7997218856ea2cfb5902b185ad5a2b541",
+      "aggregate_sha256": "0e5f5e82b310480e56b22b2474c9af172e7afb2a646ecde5a9d5cfd9ae5e98ca",
       "files": [
         {
           "path": "skills/atlassian/jira-ticket-authoring/CHANGELOG.md",
-          "sha256": "20d65edf6fe88a97c076b226dd2fa2e94133d700d8472414587b0e18e2bcf37d",
-          "bytes": 1943
+          "sha256": "36aa84fd708c497b94d326f51e694ab71705b26b6a6cf8e41c7535eb0cda16d3",
+          "bytes": 2189
         },
         {
           "path": "skills/atlassian/jira-ticket-authoring/SKILL.md",
@@ -14208,8 +14208,8 @@
         },
         {
           "path": "skills/atlassian/jira-ticket-authoring/manifest.json",
-          "sha256": "e4a2cb7f39ad5e3fa49d21650f7f4fb864ddd4d8bd6880d52a6442535a6fb7c9",
-          "bytes": 6095
+          "sha256": "771a19dec44ce9f51114241b6c889b7884f3ca1595bed0f81fbeffbc4917462f",
+          "bytes": 6222
         },
         {
           "path": "skills/atlassian/jira-ticket-authoring/metadata.json",

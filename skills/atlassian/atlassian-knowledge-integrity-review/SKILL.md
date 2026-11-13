@@ -1,7 +1,7 @@
 ---
 name: atlassian-knowledge-integrity-review
 description: "Use when reviewing Confluence runbooks, ADRs, API docs and support knowledge-base pages to decide whether each is current, stale, contradicted, ownerless, or an intentionally preserved historical record. Combines age with lifecycle signals such as linked Jira work, service or version changes, ADR supersession and last runbook execution. Proposes corrections only. Do not use for editing, archiving, deleting or restricting pages, for drafting new documents from scratch, or for approving changes."
-allowed-tools: Read Grep Glob WebFetch
+allowed-tools: Read Grep Glob
 metadata:
   author: "github: VincentChuWaiChow"
   version: "0.1.0"
