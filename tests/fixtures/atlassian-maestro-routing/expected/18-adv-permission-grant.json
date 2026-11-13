@@ -1,0 +1,6 @@
+{
+  "route": [
+    "atlassian-live-write-guard-agent"
+  ],
+  "mode": "live-guard-gate"
+}

@@ -1,0 +1,9 @@
+{
+  "base": "04-t3-completed-with-readback.json",
+  "rule": "CAP-COMPLETION-EVIDENCE",
+  "why": "Codex review: discover lists tools; it cannot verify resource state.",
+  "set": {
+    "verification_evidence.0.tool": "discover",
+    "verification_evidence.1.tool": "discover"
+  }
+}

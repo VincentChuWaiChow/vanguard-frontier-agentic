@@ -1,0 +1,7 @@
+{
+  "name": "14-unsupported-delivery-bottleneck",
+  "task": "Which teams are the delivery bottleneck this quarter based on Jira cycle time?",
+  "tags": [
+    "unsupported:deferred"
+  ]
+}

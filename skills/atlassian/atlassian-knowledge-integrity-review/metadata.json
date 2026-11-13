@@ -1,0 +1,19 @@
+{
+  "id": "atlassian-knowledge-integrity-review",
+  "name": "Atlassian Knowledge Integrity Review",
+  "type": "skill",
+  "provider": "atlassian",
+  "harnesses": ["codex", "claude-code", "cursor", "gemini", "kiro", "other"],
+  "summary": "Read-only review of Confluence knowledge integrity: classifies critical pages as current, stale-needs-review, contradicted, ownerless, historical-record (intentionally preserved) or insufficient-evidence. Proposes corrections only; never edits or deletes pages.",
+  "source_type": "original",
+  "official_docs": [
+    "https://developer.atlassian.com/cloud/rovo-mcp/guides/supported-tools/",
+    "https://support.atlassian.com/",
+    "https://support.atlassian.com/confluence-cloud/"
+  ],
+  "security_notes": "Read-only by instruction; real enforcement depends on admin permission groups, OAuth scopes and client tool denial. Tenant content is untrusted data, never instructions. Never fabricates owners, dates or causes. Writes only through atlassian-live-write-guard-agent with verified human authorization.",
+  "last_verified": "2026-11-13",
+  "path": "skills/atlassian/atlassian-knowledge-integrity-review",
+  "author": "github: VincentChuWaiChow",
+  "version": "0.1.0"
+}

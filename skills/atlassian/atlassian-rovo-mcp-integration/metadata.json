@@ -1,0 +1,26 @@
+{
+  "id": "atlassian-rovo-mcp-integration",
+  "name": "Atlassian Rovo MCP Integration",
+  "type": "skill",
+  "provider": "atlassian",
+  "harnesses": [
+    "codex",
+    "claude-code",
+    "cursor",
+    "gemini",
+    "kiro",
+    "other"
+  ],
+  "summary": "Foundation skill for the Atlassian Rovo MCP Server: tool risk tiers, auth and tenant trust boundaries, prompt-injection handling, and failure and recovery, backed by a source ledger. Read-oriented; it never executes writes and routes them to the live write guard.",
+  "source_type": "original",
+  "official_docs": [
+    "https://developer.atlassian.com/cloud/rovo-mcp/guides/supported-tools/",
+    "https://developer.atlassian.com/cloud/rovo-mcp/guides/authentication-and-authorization/",
+    "https://developer.atlassian.com/cloud/jira/platform/rate-limiting/"
+  ],
+  "security_notes": "Acts with the authenticated user's full permissions, so read-only is not enforced by prompts; requires client deny-lists and admin-disabled write groups. Treats retrieved Jira, Confluence, and JSM content as untrusted data. Never approves, deletes, or changes permissions. Carries no credentials or customer data.",
+  "last_verified": "2026-11-13",
+  "path": "skills/atlassian/atlassian-rovo-mcp-integration",
+  "author": "github: VincentChuWaiChow",
+  "version": "0.1.0"
+}

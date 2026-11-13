@@ -1,0 +1,8 @@
+{
+  "name": "25-comment-on-whether-not-a-write",
+  "task": "Review the incident and comment on whether the corrective actions in the postmortem page are preventive.",
+  "tags": [
+    "negative:noun-not-verb",
+    "happy-path"
+  ]
+}

@@ -1,0 +1,8 @@
+{
+  "base": "01-t1-read-incident-review.json",
+  "rule": "CAP-TENANT-BINDING",
+  "why": "A scheme-less foreign host in a target is checked too.",
+  "set": {
+    "permitted_operations.0.target": "evil.example/collect?d=OPS-1"
+  }
+}

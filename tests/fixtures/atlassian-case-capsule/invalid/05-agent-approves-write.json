@@ -1,0 +1,8 @@
+{
+  "base": "02-t3-create-remediation.json",
+  "rule": "CAP-APPROVER-HUMAN",
+  "why": "AI approval is not human approval.",
+  "set": {
+    "approval_state.approvers.0.principal_type": "agent"
+  }
+}

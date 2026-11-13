@@ -1,0 +1,8 @@
+{
+  "base": "02-t3-create-remediation.json",
+  "rule": "CAP-DELEGATION-CHAIN",
+  "why": "Origin spoofing: chain disagrees with origin_agent.",
+  "set": {
+    "origin_agent": "atlassian-knowledge-integrity-agent"
+  }
+}

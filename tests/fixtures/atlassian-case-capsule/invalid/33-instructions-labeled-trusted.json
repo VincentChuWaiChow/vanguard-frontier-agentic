@@ -1,0 +1,9 @@
+{
+  "base": "05-t1-injection-flagged-as-untrusted.json",
+  "rule": "CAP-INSTRUCTION-TRUST",
+  "why": "Scenario 27/28: an external record carrying instructions promoted to system metadata.",
+  "set": {
+    "evidence_references.2.kind": "external-record",
+    "evidence_references.2.trust": "system-metadata"
+  }
+}

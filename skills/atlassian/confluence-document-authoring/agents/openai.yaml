@@ -1,0 +1,15 @@
+interface:
+  display_name: Confluence Document Authoring
+  short_description: Templates for engineering, product, business, and support
+  default_prompt: Use $confluence-document-authoring to choose a suitable template
+    and draft clear, sourced documentation for its business, engineering, or support
+    audience.
+  icon_small: assets/icon.svg
+  icon_large: assets/icon.svg
+policy:
+  products:
+  - chatgpt
+  - codex
+  - api
+  - atlas
+  allow_implicit_invocation: true

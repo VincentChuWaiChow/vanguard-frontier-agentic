@@ -1,0 +1,9 @@
+{
+  "base": "04-t3-completed-with-readback.json",
+  "rule": "CAP-COMPLETION-EVIDENCE",
+  "why": "Codex review: a create in project:OPS cannot be proven by an issue in another project.",
+  "set": {
+    "permitted_operations.2.target": "OTHER-99",
+    "verification_evidence.0.target": "OTHER-99"
+  }
+}

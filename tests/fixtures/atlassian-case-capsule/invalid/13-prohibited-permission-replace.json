@@ -1,0 +1,8 @@
+{
+  "base": "02-t3-create-remediation.json",
+  "rule": "CAP-PROHIBITED-TOOL",
+  "why": "Scenario 10/23: replacing content grants.",
+  "set": {
+    "permitted_operations.0.tool": "replaceConfluenceContentPermissions"
+  }
+}

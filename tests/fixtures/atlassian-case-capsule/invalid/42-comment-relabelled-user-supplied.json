@@ -1,0 +1,8 @@
+{
+  "base": "02-t3-create-remediation.json",
+  "rule": "CAP-CONTENT-TRUST",
+  "why": "Refuter H2: a Jira comment relabelled to escape untrusted-content.",
+  "set": {
+    "evidence_references.2.trust": "user-supplied"
+  }
+}

@@ -1,0 +1,8 @@
+{
+  "base": "02-t3-create-remediation.json",
+  "rule": "CAP-APPROVAL-RECORD",
+  "why": "Refuter H2: a tenant URL with no comment marker.",
+  "set": {
+    "approval_state.approval_record.locator": "https://example-tenant.atlassian.net/browse/OPS-1042"
+  }
+}

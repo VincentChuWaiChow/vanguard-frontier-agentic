@@ -58,6 +58,7 @@ ALLOWED_PROVIDERS = {
     "legal",
     "salesforce",
     "netsuite",
+    "atlassian",
     "accounting",
     "finance",
     "sap",

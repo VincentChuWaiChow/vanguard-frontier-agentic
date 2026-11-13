@@ -1,0 +1,174 @@
+{
+  "schema_version": 1,
+  "name": "jira-ticket-authoring",
+  "version": "1.2.1",
+  "reviewed_on": "2026-11-13",
+  "template_format": "Markdown authoring assets",
+  "templates": [
+    "assets/templates/agent-handoff.md",
+    "assets/templates/bug.md",
+    "assets/templates/epic.md",
+    "assets/templates/feature-request.md",
+    "assets/templates/finding.md",
+    "assets/templates/implementation.md",
+    "assets/templates/incident.md",
+    "assets/templates/operational-change.md",
+    "assets/templates/service-request.md",
+    "assets/templates/spike.md",
+    "assets/templates/story.md",
+    "assets/templates/support-case.md",
+    "assets/templates/tech-debt.md"
+  ],
+  "files": [
+    {
+      "path": "CHANGELOG.md",
+      "sha256": "36aa84fd708c497b94d326f51e694ab71705b26b6a6cf8e41c7535eb0cda16d3"
+    },
+    {
+      "path": "SKILL.md",
+      "sha256": "d2983e779a62068bc1bdadade5ad245527a6e9908d9421ed4d7873a1df80d2f4"
+    },
+    {
+      "path": "assets/examples/customer-export-support.md",
+      "sha256": "65709828b6a9d0e1a0c5ce91dc45b6924be2eeef09503c523fbc36bdd2206737"
+    },
+    {
+      "path": "assets/examples/implementation-example.md",
+      "sha256": "ee6cd63f2fe4f7af15f35ba4c1823823e2c742cce081fce6b25e8854a70cc411"
+    },
+    {
+      "path": "assets/examples/invoice-retry-bug.md",
+      "sha256": "4de9ab107436a6f312b8e2deeee0df68c9af6473ccc6b7a42da366f04bb2f2fe"
+    },
+    {
+      "path": "assets/examples/sparse-request-triage.md",
+      "sha256": "4ada5cb953150a4a7f24402c671d41af3c07874385189cb79d332b1854da475b"
+    },
+    {
+      "path": "assets/templates/agent-handoff.md",
+      "sha256": "e5ae6e1df812f68998a2d1041835ea21ec23bdb952f59f946703c1c4675218be"
+    },
+    {
+      "path": "assets/templates/bug.md",
+      "sha256": "2049add279221225182c386928d28b4c350c9e3580299955fb57058dc6553db7"
+    },
+    {
+      "path": "assets/templates/epic.md",
+      "sha256": "ebc04317a7ab7b93013388650d51f0cc3df740075fe036bdb2569430b12e0895"
+    },
+    {
+      "path": "assets/templates/feature-request.md",
+      "sha256": "4b8f013fbacd54c7fe9849fa0ff03e66fc7036cc80f0bbf942466fa5566c3af3"
+    },
+    {
+      "path": "assets/templates/finding.md",
+      "sha256": "7bced43448595256489829ae0752994e08677282916be35aa8159e123d9edba7"
+    },
+    {
+      "path": "assets/templates/implementation.md",
+      "sha256": "31c9c6f7c8c42cff7faecc0b6570e1f6bcdbadaaed1e760a6916d012ebfe7554"
+    },
+    {
+      "path": "assets/templates/incident.md",
+      "sha256": "f84b8abcb2a77f4f2c069c5d659adcbb52ca54b0fe32536344c06379212f33e7"
+    },
+    {
+      "path": "assets/templates/operational-change.md",
+      "sha256": "e3e8b5b31a9199d829cc121562b3d1f690e2446cfbe68480c43dcf60620b47c3"
+    },
+    {
+      "path": "assets/templates/service-request.md",
+      "sha256": "ab975ed28a11702784301381b499b91d8f92d77b15ce1ce42ca767117b9696f8"
+    },
+    {
+      "path": "assets/templates/spike.md",
+      "sha256": "0b7cc943c8fcf7fa050b8be361836bd188eae53d96ef37ebf1f451fea08fe0f6"
+    },
+    {
+      "path": "assets/templates/story.md",
+      "sha256": "55f8a405e3ae17d0e8bf67e2e710f5302881f53aee71333b056b4a09550a004e"
+    },
+    {
+      "path": "assets/templates/support-case.md",
+      "sha256": "72c4ca9652440a6eb2fb576bc24f0c4043066252a269c036a7ac9b09bf78ed11"
+    },
+    {
+      "path": "assets/templates/tech-debt.md",
+      "sha256": "614d403f9487fb5d3f93294b982b1e4ea00b10adb225f556bbce6cd9db413916"
+    },
+    {
+      "path": "metadata.json",
+      "sha256": "e01c58200815082415d83ac1b7bc98b3822369a83330ec6be56e6218e0416bed"
+    },
+    {
+      "path": "prompts/README.md",
+      "sha256": "2ac2376383d1cae12b97dba7f703f70e4ae38b50242cc09dfdfd0fe7af716a3c"
+    },
+    {
+      "path": "prompts/access-or-service-request.md",
+      "sha256": "6f5a60bc4d65af719b1155d0f7cba968ec0a715379f611c3670089dd9652802d"
+    },
+    {
+      "path": "prompts/bug-report.md",
+      "sha256": "b8b6d88627b5fcb1289e39f0300ecb1c7185f818ac96d8bcbe305e871dd55fd9"
+    },
+    {
+      "path": "prompts/customer-support-case.md",
+      "sha256": "3d2adbde520dd297d88e8e454ac7c21a89bff27d955de5fc284f513bcc5e9333"
+    },
+    {
+      "path": "prompts/epic-breakdown.md",
+      "sha256": "04a827460e604ca20c249316e25650b1ff44595cdc6182f1c5e2992be53f5bd4"
+    },
+    {
+      "path": "prompts/new-feature-request.md",
+      "sha256": "e21b4303995b827a8a743ef798b09816935d99cdb7bb5a786cea9f90eadd71b5"
+    },
+    {
+      "path": "prompts/product-idea-to-prd-and-backlog.md",
+      "sha256": "2957b6fd955818ee0d8f5a974364930bbe00f2ee549cf753b9b3ca7ada06cece"
+    },
+    {
+      "path": "prompts/user-story.md",
+      "sha256": "5a53dced4d803aff5577c641ceb492ecea58ecd21a584d0378ee1e872939ffa5"
+    },
+    {
+      "path": "references/adversarial-review.md",
+      "sha256": "30c7768c79d1c38b98e8de32dde444d72e09098b4391442f10639afc6ff389c7"
+    },
+    {
+      "path": "references/jira-confluence-traceability.md",
+      "sha256": "dc6950122c1640a6d2d821e805ed2a230d17654040aa65f3011984b65467aeb2"
+    },
+    {
+      "path": "references/jira-integration.md",
+      "sha256": "c5d6f2965024cd96d09d2572c440adbcf3a14287ee0f1d301efa83bf7bb2b453"
+    },
+    {
+      "path": "references/planning-patterns.md",
+      "sha256": "7533d8e3781105ef0382ec5c4fd8c74554b1cf45546b187cc992e3afd97f3c2f"
+    },
+    {
+      "path": "references/quality-review.md",
+      "sha256": "5f5413f416319150de94a5465d9cfa0b530a2e242d642bb3bc84a0a369c522b8"
+    },
+    {
+      "path": "references/service-routing.md",
+      "sha256": "c68b28175fd4c8344eaea13d423a16bc816f720774f7412459cf2419e621573b"
+    },
+    {
+      "path": "references/sources.md",
+      "sha256": "21d6e62d34b28d7f28056fd21212880fc42c0f37b7bd13b0b0bd12753a274593"
+    },
+    {
+      "path": "references/template-adaptation.md",
+      "sha256": "49844a45350e4a890763a50cd8c56fa03cc0c7123a12989da5acb82dd7263f3c"
+    }
+  ],
+  "ui_metadata": {
+    "path": "agents/openai.yaml",
+    "validation": "semantic; host may normalize formatting and add icons or product policy",
+    "expected_display_name": "Jira Ticket Authoring",
+    "expected_default_prompt": "Use $jira-ticket-authoring to choose a suitable template and draft clear, sourced Jira work with bounded scope and verifiable outcomes."
+  }
+}

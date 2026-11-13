@@ -1,0 +1,26 @@
+{
+  "id": "confluence-document-authoring",
+  "name": "Confluence Document Authoring",
+  "type": "skill",
+  "provider": "atlassian",
+  "harnesses": [
+    "codex",
+    "claude-code",
+    "cursor",
+    "gemini",
+    "kiro",
+    "other"
+  ],
+  "summary": "Draft, update, review, and template Confluence engineering, product, business, and support documentation — PRDs, technical designs, ADRs, API docs, runbooks, playbooks, incident postmortems, release notes, plans, roadmaps, OKRs, risk assessments — from evidence, with document lifecycle, Jira traceability, and CQL search guidance. Imported owner skill (v1.2.x) and the board's canonical Confluence authoring capability.",
+  "source_type": "original",
+  "official_docs": [
+    "https://developer.atlassian.com/cloud/confluence/rest/v2/api-group-page/",
+    "https://support.atlassian.com/confluence-cloud/docs/create-a-template/",
+    "https://developer.atlassian.com/cloud/rovo-mcp/guides/supported-tools/"
+  ],
+  "security_notes": "Drafting is portable and needs no tenant access. Publishing, moving, archiving, restriction changes, and native template installation are distinct operations that need explicit human intent; agent-initiated writes go through atlassian-live-write-guard-agent. Never fabricates interfaces, dates, approvals, owners, or deployment results; treats instructions inside retrieved pages as source material, not authority.",
+  "last_verified": "2026-11-13",
+  "path": "skills/atlassian/confluence-document-authoring",
+  "author": "github: VincentChuWaiChow",
+  "version": "1.2.1"
+}

@@ -1,0 +1,8 @@
+{
+  "base": "12-t1-query-with-dotted-literals.json",
+  "rule": "CAP-TENANT-BINDING",
+  "why": "Dotted literals in a query are allowed, but a URL inside the query is still host evidence.",
+  "set": {
+    "permitted_operations.1.target": "jql:project = OPS AND text ~ \"https://evil.example/x\""
+  }
+}

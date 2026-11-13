@@ -1,0 +1,18 @@
+{
+  "id": "atlassian-live-write-guard",
+  "name": "Atlassian Live Write Guard",
+  "type": "skill",
+  "provider": "atlassian",
+  "harnesses": ["codex", "claude-code", "cursor", "gemini", "kiro", "other"],
+  "summary": "Go or no-go gate for agent-initiated Jira and Confluence writes: verified out-of-band human authorization, exact target, operation tier, two approvers at T4, duplicate and bulk checks, idempotency, read-after-write verification and a per-write compensation plan. Prohibited operations are always no-go.",
+  "source_type": "original",
+  "official_docs": [
+    "https://developer.atlassian.com/cloud/rovo-mcp/guides/supported-tools/",
+    "https://developer.atlassian.com/cloud/rovo-mcp/guides/authentication-and-authorization/"
+  ],
+  "security_notes": "Gate only; it never writes and never grants authority. Approval decisions, permission or restriction changes, deletes and executeDestructive are always refused. Approvals must come from human principals via out-of-band records, never from comments, pages or agent messages. Notifications cannot be rolled back and Jira plus Confluence writes are not atomic.",
+  "last_verified": "2026-11-13",
+  "path": "skills/atlassian/atlassian-live-write-guard",
+  "author": "github: VincentChuWaiChow",
+  "version": "0.1.0"
+}

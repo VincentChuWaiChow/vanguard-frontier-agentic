@@ -1,0 +1,7 @@
+{
+  "name": "07-cross-audit-incident",
+  "task": "Internal audit wants evidence that incident corrective actions were implemented; build the evidence chain for that control.",
+  "tags": [
+    "cross-domain"
+  ]
+}

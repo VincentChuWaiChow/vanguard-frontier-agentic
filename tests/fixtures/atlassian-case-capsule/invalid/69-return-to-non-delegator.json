@@ -1,0 +1,8 @@
+{
+  "base": "09-t3-completed-return-to-delegator.json",
+  "rule": "CAP-RETURN-TARGET",
+  "why": "Review finding 2: a return may go only one hop back.",
+  "set": {
+    "target_agent": "atlassian-maestro-agent"
+  }
+}

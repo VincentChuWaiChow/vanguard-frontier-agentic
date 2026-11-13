@@ -1,0 +1,43 @@
+{
+  "id": "atlassian-live-write-guard-agent",
+  "name": "Atlassian Live Write Guard Agent",
+  "type": "agent",
+  "provider": "atlassian",
+  "harnesses": [
+    "codex",
+    "copilot",
+    "claude-code",
+    "cursor",
+    "gemini",
+    "kiro"
+  ],
+  "harness_variants": {
+    "codex": "agents/atlassian/atlassian-live-write-guard-agent/harnesses/codex.toml",
+    "copilot": "agents/atlassian/atlassian-live-write-guard-agent/harnesses/copilot.agent.md",
+    "claude-code": "agents/atlassian/atlassian-live-write-guard-agent/harnesses/claude-code.agent.md",
+    "cursor": "agents/atlassian/atlassian-live-write-guard-agent/harnesses/cursor.agent.md",
+    "gemini": "agents/atlassian/atlassian-live-write-guard-agent/harnesses/gemini.agent.md",
+    "kiro-ide": "agents/atlassian/atlassian-live-write-guard-agent/harnesses/kiro-ide.agent.md",
+    "kiro-cli": "agents/atlassian/atlassian-live-write-guard-agent/harnesses/kiro-cli.agent.json"
+  },
+  "summary": "Gate-only go/no-go for one prepared Jira, Confluence or Jira Service Management write: verifies human out-of-band authorization and expiry, exact tenant and target, operation tier, prohibited operations, dual control for high-risk actions, duplicates, bulk scope, compensation and read-back plans. Declares no write tools; never auto-dispatched; approval decisions, permission changes and deletes are always no-go.",
+  "source_type": "original",
+  "official_docs": [
+    "https://developer.atlassian.com/cloud/rovo-mcp/guides/supported-tools/",
+    "https://developer.atlassian.com/cloud/rovo-mcp/guides/authentication-and-authorization/"
+  ],
+  "security_notes": "Never auto-dispatched (live_guards in the maestro routing fixture). Declares no write tools (the Claude Code adapter allowlists read tools by name; other harnesses rely on the client deny-list and admin permission groups): on 'go', the write runs in the human's interactive session under client permission prompts using the authoring skills' mechanics, then this agent verifies read-back. Prohibited operations are no-go whatever the approval says.",
+  "last_verified": "2026-11-13",
+  "path": "agents/atlassian/atlassian-live-write-guard-agent",
+  "companion_skills": [
+    "atlassian-live-write-guard",
+    "atlassian-case-capsule",
+    "atlassian-rovo-mcp-integration",
+    "jira-ticket-authoring",
+    "confluence-document-authoring"
+  ],
+  "execution_tier": "read-only-runtime",
+  "lifecycle": "experimental",
+  "author": "github: VincentChuWaiChow",
+  "version": "0.1.0"
+}

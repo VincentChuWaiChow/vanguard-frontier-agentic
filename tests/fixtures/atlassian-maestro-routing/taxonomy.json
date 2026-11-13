@@ -1,0 +1,68 @@
+{
+  "provider": "atlassian",
+  "domains": {
+    "incident-prevention": {
+      "keywords": [
+        "incident",
+        "postmortem",
+        "post-incident",
+        "corrective action",
+        "recurrence",
+        "recurring",
+        "root cause",
+        "problem management",
+        "preventive"
+      ],
+      "agent": "atlassian-incident-prevention-agent"
+    },
+    "control-evidence-lineage": {
+      "keywords": [
+        "audit",
+        "control objective",
+        "control evidence",
+        "evidence chain",
+        "compliance evidence",
+        "sox",
+        "iso 27001",
+        "attestation",
+        "control owner",
+        "evidence package"
+      ],
+      "agent": "atlassian-control-evidence-lineage-agent"
+    },
+    "knowledge-integrity": {
+      "keywords": [
+        "stale",
+        "outdated",
+        "out of date",
+        "contradictory",
+        "contradiction",
+        "contradicts",
+        "ownerless",
+        "no owner",
+        "documentation drift",
+        "knowledge base",
+        "decision record",
+        "adr",
+        "superseded"
+      ],
+      "agent": "atlassian-knowledge-integrity-agent"
+    },
+    "ai-cost": {
+      "keywords": [
+        "rovo credits",
+        "ai cost",
+        "token cost",
+        "cost per outcome",
+        "llm spend"
+      ],
+      "agent": "finops-ai-economist-agent"
+    }
+  },
+  "live_guards": [
+    "atlassian-live-write-guard-agent"
+  ],
+  "gate_mode": "live-guard-gate",
+  "live_guard_intent": "(?:^|[.;:,!?'\\\"]\\s*|\\b(?:please|then|and|also|to|you|should|must|let's|lets|bulk)\\s+)(?:create|file|raise|update|edit|change|modify|transition|move|archive|unarchive|restore|revert|publish|close|resolve|reopen|delete|purge|remove|approve|decline|grant|revoke|restrict|unrestrict|acknowledge|ack|escalate|assign|reassign|label|relabel|comment(?!\\s+on\\s+(?:whether|how|why|if|what)\\b)|set|mark|bulk[- ]?(?:edit|update|close))\\b[^.]{0,80}\\b(?:jira|confluence|jsm|service desk|page|pages|ticket|tickets|issue|issues|alert|alerts|request|requests|runbook|runbooks|space|restriction|restrictions|permission|permissions|instruction|instructions|knowledge base|[a-z][a-z0-9]{1,9}-\\d+)\\b",
+  "parallel_threshold": 0.6
+}

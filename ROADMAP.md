@@ -115,7 +115,11 @@ or inspecting the named artifact:
    the M1 gates. Candidates: shortlist from author (entry criterion: author names 2–4
    providers); each addition follows CLAUDE.md "Adding a new provider" end-to-end incl.
    maestro fixture; parity pass so every provider with agents has ≥1 skill and vice versa
-   where sensible.
+   where sensible. Done so far: `atlassian` (author-named in the brief at
+   `docs/prompts/atlassian-agentic-ecosystem-master-prompt.md`; ADR-0005). Its pilot stages
+   3–8 (read-only tenant pilot, draft-and-review, controlled writes, measured pilot) are
+   gated in `docs/architecture/atlassian-board.md` and need a named tenant and baseline
+   from the author before they start.
 4. **M4 — Distribution & adoption** (outline): make the verified catalog findable and
    installable. Candidates: docs-site search; per-harness quickstart funnels; release
    notes automation from conventional commits; marketplace listing copy refresh sourced

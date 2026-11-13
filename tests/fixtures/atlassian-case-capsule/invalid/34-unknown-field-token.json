@@ -1,0 +1,8 @@
+{
+  "base": "01-t1-read-incident-review.json",
+  "rule": "CAP-SCHEMA",
+  "why": "Credential field smuggled in an extra property.",
+  "set": {
+    "oauth_token": "<FAKE>"
+  }
+}

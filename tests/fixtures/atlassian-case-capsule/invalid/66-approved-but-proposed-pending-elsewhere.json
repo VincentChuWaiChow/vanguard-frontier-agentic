@@ -1,0 +1,8 @@
+{
+  "base": "06-t3-proposed-awaiting-approval.json",
+  "rule": "CAP-APPROVAL-REQUIRED",
+  "why": "Pending approval is allowed only while proposed.",
+  "set": {
+    "handoff_status": "accepted"
+  }
+}

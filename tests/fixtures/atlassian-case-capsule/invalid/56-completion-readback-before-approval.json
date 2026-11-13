@@ -1,0 +1,8 @@
+{
+  "base": "04-t3-completed-with-readback.json",
+  "rule": "CAP-APPROVAL-WINDOW",
+  "why": "Read-back predating the approval proves nothing about the write.",
+  "set": {
+    "verification_evidence.0.read_at": "2026-11-13T09:00:00Z"
+  }
+}

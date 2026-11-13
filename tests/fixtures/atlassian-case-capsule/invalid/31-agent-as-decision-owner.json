@@ -1,0 +1,8 @@
+{
+  "base": "01-t1-read-incident-review.json",
+  "rule": "CAP-DECISION-OWNER",
+  "why": "An agent named as accountable owner.",
+  "set": {
+    "decision_owner": "atlassian-maestro-agent"
+  }
+}

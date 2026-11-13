@@ -1,0 +1,8 @@
+{
+  "base": "09-t3-completed-return-to-delegator.json",
+  "rule": "CAP-DELEGATION-CYCLE",
+  "why": "A delegate hop back to an agent already in the chain is still a cycle.",
+  "set": {
+    "hop_type": "delegate"
+  }
+}

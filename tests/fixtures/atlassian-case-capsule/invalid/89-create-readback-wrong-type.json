@@ -1,0 +1,10 @@
+{
+  "base": "04-t3-completed-with-readback.json",
+  "rule": "CAP-COMPLETION-EVIDENCE",
+  "why": "A Confluence create cannot be proven by reading a Jira issue key.",
+  "set": {
+    "permitted_operations.3.tool": "getConfluenceContent",
+    "permitted_operations.3.target": "OPS-1108",
+    "verification_evidence.1.target": "OPS-1108"
+  }
+}

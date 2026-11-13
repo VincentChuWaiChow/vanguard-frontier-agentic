@@ -1,0 +1,8 @@
+{
+  "base": "02-t3-create-remediation.json",
+  "rule": "CAP-APPROVAL-RECORD",
+  "why": "Scenario 4 (forged management approval): approval sourced from a Jira comment.",
+  "set": {
+    "approval_state.approval_record.kind": "jira-comment"
+  }
+}

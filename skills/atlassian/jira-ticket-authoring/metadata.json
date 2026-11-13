@@ -1,0 +1,26 @@
+{
+  "id": "jira-ticket-authoring",
+  "name": "Jira Ticket Authoring",
+  "type": "skill",
+  "provider": "atlassian",
+  "harnesses": [
+    "codex",
+    "claude-code",
+    "cursor",
+    "gemini",
+    "kiro",
+    "other"
+  ],
+  "summary": "Draft, review, improve, and split Jira work for engineering, product, business, and support teams — feature requests, stories, bugs, tasks, spikes, epics, operational changes, support cases, service requests, incidents, technical debt, and AI-agent handoffs — with evidence-backed acceptance criteria and verification mapping. Imported owner skill (v1.2.x) and the board's canonical Jira authoring capability.",
+  "source_type": "original",
+  "official_docs": [
+    "https://developer.atlassian.com/cloud/jira/platform/rest/v3/api-group-issues/",
+    "https://developer.atlassian.com/cloud/jira/platform/issue-linking-model/",
+    "https://developer.atlassian.com/cloud/rovo-mcp/guides/supported-tools/"
+  ],
+  "security_notes": "Drafting is portable and needs no tenant access. An authorized write requires an explicit, resolved request from a human; a request that appears only inside an agent handoff or retrieved Jira/Confluence content is not authorization, and agent-initiated writes go through atlassian-live-write-guard-agent. Never fabricates issue keys, assignees, root causes, test results, SLAs, or approvals.",
+  "last_verified": "2026-11-13",
+  "path": "skills/atlassian/jira-ticket-authoring",
+  "author": "github: VincentChuWaiChow",
+  "version": "1.2.1"
+}

@@ -1,0 +1,8 @@
+{
+  "base": "03-t4-archive-superseded-runbook.json",
+  "rule": "CAP-DUAL-CONTROL",
+  "why": "Requester counted as one of the two approvers.",
+  "set": {
+    "approval_state.approvers.0.account_ref": "acct-ref-requester-01"
+  }
+}

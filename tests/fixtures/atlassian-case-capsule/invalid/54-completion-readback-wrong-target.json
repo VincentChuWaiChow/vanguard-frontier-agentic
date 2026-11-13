@@ -1,0 +1,8 @@
+{
+  "base": "04-t3-completed-with-readback.json",
+  "rule": "CAP-COMPLETION-EVIDENCE",
+  "why": "Refuter M3: read-back of an item the capsule never listed as read.",
+  "set": {
+    "verification_evidence.1.target": "page:445566"
+  }
+}

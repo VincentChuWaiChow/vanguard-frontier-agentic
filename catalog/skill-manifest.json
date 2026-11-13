@@ -1595,6 +1595,195 @@
       ]
     },
     {
+      "id": "atlassian-case-capsule",
+      "path": "skills/cross-functional/atlassian-case-capsule",
+      "aggregate_sha256": "b7f719dc79456f4936afda63a11e97aae2badfa75289a5f6853bfdb56b8adf77",
+      "files": [
+        {
+          "path": "skills/cross-functional/atlassian-case-capsule/SKILL.md",
+          "sha256": "caed422c163e09f4021e3248cf107a62b1d3142b0bde2a363a209617423a2c19",
+          "bytes": 7577
+        },
+        {
+          "path": "skills/cross-functional/atlassian-case-capsule/assets/atlassian-case-capsule.schema.json",
+          "sha256": "6d8c2b12443fccfcc9c18a6fa7317438c820e36b4e95715e29e0eeb08862725c",
+          "bytes": 11962
+        },
+        {
+          "path": "skills/cross-functional/atlassian-case-capsule/metadata.json",
+          "sha256": "1bc2f67e8b7934bc11dd92f8e40e7a204edc0ddc7d1fe1474ea3508595d4e9a9",
+          "bytes": 1374
+        },
+        {
+          "path": "skills/cross-functional/atlassian-case-capsule/scripts/validate_capsule.py",
+          "sha256": "174b0aed4fac59922a57690c3b1f7e7dc8aae78e6616f1c5a67359de7307f369",
+          "bytes": 27414
+        }
+      ]
+    },
+    {
+      "id": "atlassian-control-evidence-lineage",
+      "path": "skills/atlassian/atlassian-control-evidence-lineage",
+      "aggregate_sha256": "6cf64fc789631bd5f3afadd47d8ce78e56f2c80d3426f18cb99b37cc9ca7d30b",
+      "files": [
+        {
+          "path": "skills/atlassian/atlassian-control-evidence-lineage/SKILL.md",
+          "sha256": "02368f803679504a94c4490ab8fa8fa8c5d2a1809daaeb8f65b2bf650ad36c3a",
+          "bytes": 4469
+        },
+        {
+          "path": "skills/atlassian/atlassian-control-evidence-lineage/metadata.json",
+          "sha256": "e540c2a2669342ba51ae3c47ca7797d4d49ea75f59aa0fdd804cf99f270fc282",
+          "bytes": 1263
+        },
+        {
+          "path": "skills/atlassian/atlassian-control-evidence-lineage/references/lineage-model.md",
+          "sha256": "ca8c00b0c6583a3ebc7905789a7dea4b58aebd9452d9db79c1d48f654012e3c5",
+          "bytes": 4708
+        },
+        {
+          "path": "skills/atlassian/atlassian-control-evidence-lineage/references/workflow-and-output.md",
+          "sha256": "cdb0f69d794db3fb68ab6b668c44bd537dba702e1db814d0f6d9cb0d5b26c32a",
+          "bytes": 4021
+        }
+      ]
+    },
+    {
+      "id": "atlassian-incident-prevention-review",
+      "path": "skills/atlassian/atlassian-incident-prevention-review",
+      "aggregate_sha256": "2a1a31b05a82eef3bb59893da636483ba8a0ce51a6cc731df9bc09424da06c35",
+      "files": [
+        {
+          "path": "skills/atlassian/atlassian-incident-prevention-review/SKILL.md",
+          "sha256": "8050cc1d64377b06d0095946743ffe0701f1482a67d39de27cc32d0006696322",
+          "bytes": 4838
+        },
+        {
+          "path": "skills/atlassian/atlassian-incident-prevention-review/metadata.json",
+          "sha256": "1d308c0375ebb75fa0c05cd758fa1c532c1ff3b6be9ca4f8d3e9bb7dfefa848a",
+          "bytes": 1258
+        },
+        {
+          "path": "skills/atlassian/atlassian-incident-prevention-review/references/recurrence-evidence.md",
+          "sha256": "6e83fa1e4ba28abb592edf675d196316a6cf3fc2e8f6e8a2a92102d9eda37105",
+          "bytes": 6804
+        },
+        {
+          "path": "skills/atlassian/atlassian-incident-prevention-review/references/workflow-and-output.md",
+          "sha256": "f7828cad2ad60aaa9b5dd6e26feac19880448bc67c42a080807120d4f70dd4dc",
+          "bytes": 6575
+        }
+      ]
+    },
+    {
+      "id": "atlassian-knowledge-integrity-review",
+      "path": "skills/atlassian/atlassian-knowledge-integrity-review",
+      "aggregate_sha256": "d9805e3b9f312894b572f409776de257affd68fdb0a1871b0761e12c8faf2713",
+      "files": [
+        {
+          "path": "skills/atlassian/atlassian-knowledge-integrity-review/SKILL.md",
+          "sha256": "cb599febeaa62b65bccb5951658957a75c7f0e58b67ae8b5fd4a99e23c8a4192",
+          "bytes": 4633
+        },
+        {
+          "path": "skills/atlassian/atlassian-knowledge-integrity-review/metadata.json",
+          "sha256": "34ca6571145d89f8cb72e46decd0baf76af49cfe30c9aee66e98d1a4643283db",
+          "bytes": 1214
+        },
+        {
+          "path": "skills/atlassian/atlassian-knowledge-integrity-review/references/staleness-and-history.md",
+          "sha256": "a0241c595db59e313cc4564dbc92cf577dfc1f8c445334659239c4941e0f16d4",
+          "bytes": 6638
+        },
+        {
+          "path": "skills/atlassian/atlassian-knowledge-integrity-review/references/workflow-and-output.md",
+          "sha256": "c00d125b26bca9c1ecedc231f42e90b2f0517d04f6915abf5f31375434128748",
+          "bytes": 5467
+        }
+      ]
+    },
+    {
+      "id": "atlassian-live-write-guard",
+      "path": "skills/atlassian/atlassian-live-write-guard",
+      "aggregate_sha256": "96b832c107d6c6c66eeef58b80a1f61325e99a28476404de4f7c077eef559903",
+      "files": [
+        {
+          "path": "skills/atlassian/atlassian-live-write-guard/SKILL.md",
+          "sha256": "2a534d34fc8911354d652eeb54e43013961db1a52cf056ef05a9ec74ee5ade53",
+          "bytes": 4857
+        },
+        {
+          "path": "skills/atlassian/atlassian-live-write-guard/metadata.json",
+          "sha256": "0a10067b4e3739cba01ebf0f9ed98e6ab9e4e2b5293edc7434dd9ed27348d134",
+          "bytes": 1285
+        },
+        {
+          "path": "skills/atlassian/atlassian-live-write-guard/references/authorization-checklist.md",
+          "sha256": "bb85d72e3d7ecad6dc94d13c3bd598a3857d6f3f6a2b9ae514e65dca6390c916",
+          "bytes": 3877
+        },
+        {
+          "path": "skills/atlassian/atlassian-live-write-guard/references/write-verification.md",
+          "sha256": "750cd0f4415966f31fee886bf6ea1a36598d3ef6ba46517447a1b31654bf3c61",
+          "bytes": 2952
+        }
+      ]
+    },
+    {
+      "id": "atlassian-routing-protocol",
+      "path": "skills/cross-functional/atlassian-routing-protocol",
+      "aggregate_sha256": "119e5f3d2b52da75860a60313f795c869cf27cde7913171625f0473f71b86789",
+      "files": [
+        {
+          "path": "skills/cross-functional/atlassian-routing-protocol/SKILL.md",
+          "sha256": "a616eeb8846a498fa231c688178fe736de30368a7aa5b47a0f4f690b37482494",
+          "bytes": 4596
+        },
+        {
+          "path": "skills/cross-functional/atlassian-routing-protocol/metadata.json",
+          "sha256": "11e4839e6c6716d2b252f61b9da904ca06fab01a738dd29f9f11779d16719267",
+          "bytes": 1165
+        }
+      ]
+    },
+    {
+      "id": "atlassian-rovo-mcp-integration",
+      "path": "skills/atlassian/atlassian-rovo-mcp-integration",
+      "aggregate_sha256": "ff428d92b4f5c4fee717e5b6ab1c394a2cdb65a9a75b4a5f9d6c904ace5ebe1f",
+      "files": [
+        {
+          "path": "skills/atlassian/atlassian-rovo-mcp-integration/SKILL.md",
+          "sha256": "43d9217efb82268ad25887faeeca6044a698d9cfc5201df689405ffe4f0c1f2d",
+          "bytes": 5226
+        },
+        {
+          "path": "skills/atlassian/atlassian-rovo-mcp-integration/metadata.json",
+          "sha256": "a68832fbc25c67a92f84c9f54d9d1f2e5162957e058429480c655696d3194e1c",
+          "bytes": 1316
+        },
+        {
+          "path": "skills/atlassian/atlassian-rovo-mcp-integration/references/auth-tenant-and-trust-boundaries.md",
+          "sha256": "f2a3715a81e1038168674698e43ecaf01daca3e5430e39d412d9bc2b185bf947",
+          "bytes": 4082
+        },
+        {
+          "path": "skills/atlassian/atlassian-rovo-mcp-integration/references/evidence-ledger.md",
+          "sha256": "a39241e71eb913f64db7219b734e22a895ff3762eaa27af2cfd24fabb6c79e11",
+          "bytes": 7984
+        },
+        {
+          "path": "skills/atlassian/atlassian-rovo-mcp-integration/references/failure-and-recovery.md",
+          "sha256": "51de9934562025eb269283b2df750f8ded07e2836689c5520553499cca6a0981",
+          "bytes": 3981
+        },
+        {
+          "path": "skills/atlassian/atlassian-rovo-mcp-integration/references/tool-risk-tiers.md",
+          "sha256": "f031cb19a4a751eb118274e168cef1dbca3213e6063d7ebb2c3ba9fbdd3da74b",
+          "bytes": 10423
+        }
+      ]
+    },
+    {
       "id": "audit-evidence-mapping-protocol",
       "path": "skills/cross-functional/audit-evidence-mapping-protocol",
       "aggregate_sha256": "e0133f196aa46cc38d7b5f8992a794bfc396c424bfac72398db3ec94309de73c",
@@ -6262,6 +6451,303 @@
           "path": "skills/php/composer-audit-supply-chain-review/references/lockfile-integrity.md",
           "sha256": "b54f9ae05130466abebe8f60f1ae10985c95e964ee1ec2bf92401bd1e304f045",
           "bytes": 3899
+        }
+      ]
+    },
+    {
+      "id": "confluence-document-authoring",
+      "path": "skills/atlassian/confluence-document-authoring",
+      "aggregate_sha256": "d707be0852fee20d6a05058d1206c35259f08e961bf76d6387c9d3ccdf54fce6",
+      "files": [
+        {
+          "path": "skills/atlassian/confluence-document-authoring/CHANGELOG.md",
+          "sha256": "8d233e27edb4b428449fe8952c0220eed45670af7e581e3641647d773675a744",
+          "bytes": 2554
+        },
+        {
+          "path": "skills/atlassian/confluence-document-authoring/SKILL.md",
+          "sha256": "ea7f6c4827a0e74e31142c8ffd15104b7c97af237763de847998eca5855f4884",
+          "bytes": 8322
+        },
+        {
+          "path": "skills/atlassian/confluence-document-authoring/agents/openai.yaml",
+          "sha256": "f20052992e30ed93ca0a209f990faf0f42d49484bf1bbe7cfa3c6343c9691a9b",
+          "bytes": 472
+        },
+        {
+          "path": "skills/atlassian/confluence-document-authoring/assets/examples/adr-example.md",
+          "sha256": "a3380e78e73796a04aed926b005441f18b5beb283e7f15aee4728f6f7faa455e",
+          "bytes": 7149
+        },
+        {
+          "path": "skills/atlassian/confluence-document-authoring/assets/examples/business-product-explainer.md",
+          "sha256": "d3a95579e969fffeaf7b252b1861bcace23fd4d62979b8b2a19c04b04f493d1d",
+          "bytes": 8440
+        },
+        {
+          "path": "skills/atlassian/confluence-document-authoring/assets/examples/feature-rollout-brief.md",
+          "sha256": "18c5dee461d78fcb6d5bb0bf47673f461b4bdcb8cee033046f60cb38da57fe16",
+          "bytes": 9367
+        },
+        {
+          "path": "skills/atlassian/confluence-document-authoring/assets/examples/queue-backlog-runbook.md",
+          "sha256": "089be0f7f672cc2683b1fa9f73aa25f84a9cd768b7b22e43d2501b65d169733f",
+          "bytes": 13701
+        },
+        {
+          "path": "skills/atlassian/confluence-document-authoring/assets/examples/retry-contract-adr.md",
+          "sha256": "24faf1a877bfcf2d2d1b9722397681d6451f836be5aa1de0c5126cb70ea1f4e4",
+          "bytes": 10665
+        },
+        {
+          "path": "skills/atlassian/confluence-document-authoring/assets/icon.svg",
+          "sha256": "49315dda7125ec5fc77ef5f2b96126d8b2121c6e72944b4702972e90f321d3ee",
+          "bytes": 1210
+        },
+        {
+          "path": "skills/atlassian/confluence-document-authoring/assets/templates/adr.md",
+          "sha256": "f530a0c80ff67174e6602b8829baa054f0de0952cef55d9f6be1d346652fe9f8",
+          "bytes": 3789
+        },
+        {
+          "path": "skills/atlassian/confluence-document-authoring/assets/templates/api-documentation.md",
+          "sha256": "29723b4bc1db5530000c6eb8957899f033fd99f6b4dd07b1b254aed4291876e5",
+          "bytes": 3951
+        },
+        {
+          "path": "skills/atlassian/confluence-document-authoring/assets/templates/customer-impact-assessment.md",
+          "sha256": "86fd7c47faca404f9a28ddcd6de63a8e5aa6a23dc3dec5977c7d65f5e8d0cf75",
+          "bytes": 2374
+        },
+        {
+          "path": "skills/atlassian/confluence-document-authoring/assets/templates/experiment-plan-results.md",
+          "sha256": "e233f0cceb15c715d74a1ae19ea2f8285852a03cd30cd0e4fb6d8b7e42118515",
+          "bytes": 2401
+        },
+        {
+          "path": "skills/atlassian/confluence-document-authoring/assets/templates/feature-overview.md",
+          "sha256": "1f4b892c69c9bcf4e5d13f44c5b52217c8fc35ec82bb7c73186d1749a155f912",
+          "bytes": 4545
+        },
+        {
+          "path": "skills/atlassian/confluence-document-authoring/assets/templates/how-to.md",
+          "sha256": "641fe5f043d341fecb745c5da04b8c02e716c4b66ba2eef4246ec94f6b1b6e5d",
+          "bytes": 3552
+        },
+        {
+          "path": "skills/atlassian/confluence-document-authoring/assets/templates/incident-playbook.md",
+          "sha256": "f65d6864ebd6f9449a9050882b05f0fcdcbbf6e50fabfc5a9210652d0a79b114",
+          "bytes": 4361
+        },
+        {
+          "path": "skills/atlassian/confluence-document-authoring/assets/templates/incident-postmortem.md",
+          "sha256": "57f7cbb01f0b5079c67597884911165aea9c069e9bd212af5ce386fe0e16c253",
+          "bytes": 5617
+        },
+        {
+          "path": "skills/atlassian/confluence-document-authoring/assets/templates/meeting-notes.md",
+          "sha256": "ede761ca728814177d76905374a8df2ca0b34077cc9a0ecae90f7a15ab724f36",
+          "bytes": 3646
+        },
+        {
+          "path": "skills/atlassian/confluence-document-authoring/assets/templates/okrs.md",
+          "sha256": "19d53117714069fb6ae09ce6b6de216c7b7584a83baac9a519cffe9d38567176",
+          "bytes": 2814
+        },
+        {
+          "path": "skills/atlassian/confluence-document-authoring/assets/templates/prd.md",
+          "sha256": "124c21a43b70fcfc14b278ce38196b787b6bc54c49e2ce973e13036de1b29f35",
+          "bytes": 4633
+        },
+        {
+          "path": "skills/atlassian/confluence-document-authoring/assets/templates/product-explainer.md",
+          "sha256": "6c54c4d740bb8afbebdd3ad2abdc89a470a50a6d693de37c8ec67393f87a2262",
+          "bytes": 4340
+        },
+        {
+          "path": "skills/atlassian/confluence-document-authoring/assets/templates/product-roadmap.md",
+          "sha256": "c1a90aec43503691b27bd8d60671100e9704c3c159b8c5f596904713eecf1207",
+          "bytes": 3007
+        },
+        {
+          "path": "skills/atlassian/confluence-document-authoring/assets/templates/project-charter.md",
+          "sha256": "bb2988e9acb9161f07706376073bc4d9623cf955c476d092be70edf1c3dd92f9",
+          "bytes": 3302
+        },
+        {
+          "path": "skills/atlassian/confluence-document-authoring/assets/templates/project-plan.md",
+          "sha256": "422a0a48ee241ea00b4b70eef7f02ef3558539d6d4ec6c2c1205e8ca5089a950",
+          "bytes": 2556
+        },
+        {
+          "path": "skills/atlassian/confluence-document-authoring/assets/templates/project-status-report.md",
+          "sha256": "dd8f702579301a1c5a3c4a1fe0d259ae8324979159c01062283f66be9067010a",
+          "bytes": 2234
+        },
+        {
+          "path": "skills/atlassian/confluence-document-authoring/assets/templates/release-notes.md",
+          "sha256": "17d621238da76d70540e2576b06ddc6fe1713b49b2f1e9d1c5301fda008c1471",
+          "bytes": 5353
+        },
+        {
+          "path": "skills/atlassian/confluence-document-authoring/assets/templates/risk-assessment.md",
+          "sha256": "abe49532ba79724ad042076021566517ffadafc70628b0d544f28c27ff9179ac",
+          "bytes": 2260
+        },
+        {
+          "path": "skills/atlassian/confluence-document-authoring/assets/templates/runbook.md",
+          "sha256": "4b37dcd16adf7fa0372aed4a64693fdc14633f0f330380f0cc521022d89a6f32",
+          "bytes": 4108
+        },
+        {
+          "path": "skills/atlassian/confluence-document-authoring/assets/templates/sprint-retrospective.md",
+          "sha256": "e236b75fadda3aacb9aa0c6023901a83c167b97359e53eb9a04b72888d9f92e6",
+          "bytes": 4111
+        },
+        {
+          "path": "skills/atlassian/confluence-document-authoring/assets/templates/support-knowledge-base.md",
+          "sha256": "f4578c9a54982c7e8feae5d7e01e1f113cdf5915541e75246bd9343852946c25",
+          "bytes": 5365
+        },
+        {
+          "path": "skills/atlassian/confluence-document-authoring/assets/templates/tdd.md",
+          "sha256": "95014774fb3a43c01e8ca4acbd16407ad9afe5c5fd318cf05e978d59d78506ab",
+          "bytes": 4071
+        },
+        {
+          "path": "skills/atlassian/confluence-document-authoring/assets/templates/team-working-agreement.md",
+          "sha256": "76a82d58a7d77054e8fd32c2bc5ba617f34b08906b3f101d7f1501f7e6e3c485",
+          "bytes": 2263
+        },
+        {
+          "path": "skills/atlassian/confluence-document-authoring/manifest.json",
+          "sha256": "b147a420f56c8ba64d2738d54ab5732f7a3fbf788d3292d22b5f2b5d897da8f0",
+          "bytes": 9541
+        },
+        {
+          "path": "skills/atlassian/confluence-document-authoring/metadata.json",
+          "sha256": "8413653903962fef5e5ac13722f1c93d0b3d4e1d2190cceee882f21b313dea8c",
+          "bytes": 1564
+        },
+        {
+          "path": "skills/atlassian/confluence-document-authoring/prompts/README.md",
+          "sha256": "fe72062d99f7b2ec307a6afdebf03d06fdf2431333038f0cf9f4f832bab6a15a",
+          "bytes": 1090
+        },
+        {
+          "path": "skills/atlassian/confluence-document-authoring/prompts/customer-impact-assessment.md",
+          "sha256": "f95bbf226d1c74fcbc6c86eb8e01d72b68927ebedb0d296c5d1469d3f76d0ce8",
+          "bytes": 1092
+        },
+        {
+          "path": "skills/atlassian/confluence-document-authoring/prompts/experiment-plan-results.md",
+          "sha256": "d6f3c6e5fbe9ffeca77b6c2fd671c5707318cd488e43ad59c89fc76502c8d6e6",
+          "bytes": 1041
+        },
+        {
+          "path": "skills/atlassian/confluence-document-authoring/prompts/feature-overview.md",
+          "sha256": "1596437efb87aaef593d50292c335e5bde575440bfed3541711a17e3251014a6",
+          "bytes": 975
+        },
+        {
+          "path": "skills/atlassian/confluence-document-authoring/prompts/okrs.md",
+          "sha256": "ff971c0611c49202193b61ee2f01562b928411086d8c927d0510316c4183c47f",
+          "bytes": 915
+        },
+        {
+          "path": "skills/atlassian/confluence-document-authoring/prompts/product-explainer.md",
+          "sha256": "c5bc91cca31e4569c1a16e923a1eb0394e1c462fc5423c647b84d9c9e2a097df",
+          "bytes": 948
+        },
+        {
+          "path": "skills/atlassian/confluence-document-authoring/prompts/product-idea-to-prd-and-backlog.md",
+          "sha256": "2957b6fd955818ee0d8f5a974364930bbe00f2ee549cf753b9b3ca7ada06cece",
+          "bytes": 1193
+        },
+        {
+          "path": "skills/atlassian/confluence-document-authoring/prompts/product-roadmap.md",
+          "sha256": "7c99e654dbc248198b9abad31d76fb672043bf918ad0ff634a4d3199bd088a67",
+          "bytes": 960
+        },
+        {
+          "path": "skills/atlassian/confluence-document-authoring/prompts/project-charter.md",
+          "sha256": "7ae50dcc8f4d64f6eebc005bc6d242d042ab450da47129910bf4d4b31ce5dfee",
+          "bytes": 1118
+        },
+        {
+          "path": "skills/atlassian/confluence-document-authoring/prompts/project-plan.md",
+          "sha256": "85bb9b4692436ff256b04fd3faa01acfa94df8dc578ff151fd7f596fb6417c72",
+          "bytes": 942
+        },
+        {
+          "path": "skills/atlassian/confluence-document-authoring/prompts/project-status-report.md",
+          "sha256": "b3be2e3e6803cbc4195aa78d199cef65c6694e7d11e581c5cbc97815c90725d7",
+          "bytes": 921
+        },
+        {
+          "path": "skills/atlassian/confluence-document-authoring/prompts/release-notes.md",
+          "sha256": "1f05941487a44fac0c97d0e05af87deeb2241c8d46800b2be04a952f1337dbab",
+          "bytes": 976
+        },
+        {
+          "path": "skills/atlassian/confluence-document-authoring/prompts/risk-assessment.md",
+          "sha256": "24e195c61885ecbc4ed47f8f729754cc99af1201b2d0a9915a7c0cc06f75409b",
+          "bytes": 1019
+        },
+        {
+          "path": "skills/atlassian/confluence-document-authoring/prompts/support-knowledge-base.md",
+          "sha256": "521a1f84be7533c47a3a688636dbfc5d451c3e819e2cdc5111a51e2d79ead5dd",
+          "bytes": 996
+        },
+        {
+          "path": "skills/atlassian/confluence-document-authoring/prompts/team-working-agreement.md",
+          "sha256": "f4a01bc400e14ac5f96561309f2d406d9a0790cc6521e15ab118d5afd5d52e4e",
+          "bytes": 1047
+        },
+        {
+          "path": "skills/atlassian/confluence-document-authoring/references/audience-patterns.md",
+          "sha256": "67db9342eae5a02ebd39b4c852afc330628711ba9217c62c8df366bc7c9f6f18",
+          "bytes": 4335
+        },
+        {
+          "path": "skills/atlassian/confluence-document-authoring/references/cql-patterns.md",
+          "sha256": "f327124ca589a7c7553988990446713fd3b9eb8ebb34dd45291fefdb6a1227a4",
+          "bytes": 5258
+        },
+        {
+          "path": "skills/atlassian/confluence-document-authoring/references/jira-integration.md",
+          "sha256": "55081ed55abe8ef52df91ba96600c5e0f900dfb5c4e18370af1df7c4932596df",
+          "bytes": 4232
+        },
+        {
+          "path": "skills/atlassian/confluence-document-authoring/references/lifecycle.md",
+          "sha256": "2a9e07096c62c07bcc0271634a207676a24f7b7f327fcbf5277101394732844c",
+          "bytes": 4990
+        },
+        {
+          "path": "skills/atlassian/confluence-document-authoring/references/publishing.md",
+          "sha256": "aaa1217f3e7f4bf196d0c406a6c1c41df34ab43e58beb7827f81bb83851eaa0c",
+          "bytes": 5749
+        },
+        {
+          "path": "skills/atlassian/confluence-document-authoring/references/quality-review.md",
+          "sha256": "b5e350f7ff087806990954d1df7d8420533d22ad76d421ef539b0cb01e0b3efe",
+          "bytes": 5714
+        },
+        {
+          "path": "skills/atlassian/confluence-document-authoring/references/sources.md",
+          "sha256": "b5093ccdafd0b56d7e0107c33c2575f45d77b2936e79cb31f7bdbdb00c068c0b",
+          "bytes": 6652
+        },
+        {
+          "path": "skills/atlassian/confluence-document-authoring/references/template-catalogue.md",
+          "sha256": "692699f1ce43ecdba1707bf21afda0f80d98695f1215f457c8d561496f91acf6",
+          "bytes": 4658
+        },
+        {
+          "path": "skills/atlassian/confluence-document-authoring/references/template-maintenance.md",
+          "sha256": "c67aa93ec71f972e2792b7de103306b91084413f911fb454c0d772c43b723528",
+          "bytes": 3193
         }
       ]
     },
@@ -13617,6 +14103,208 @@
           "path": "skills/frontend/javascript-runtime-async-review/references/rejection-audit.md",
           "sha256": "fb1e72db9e92a6331379c6a6d1e07d7e19d3028ad8d7d5ff2e15aa07a60e3292",
           "bytes": 6930
+        }
+      ]
+    },
+    {
+      "id": "jira-ticket-authoring",
+      "path": "skills/atlassian/jira-ticket-authoring",
+      "aggregate_sha256": "0e5f5e82b310480e56b22b2474c9af172e7afb2a646ecde5a9d5cfd9ae5e98ca",
+      "files": [
+        {
+          "path": "skills/atlassian/jira-ticket-authoring/CHANGELOG.md",
+          "sha256": "36aa84fd708c497b94d326f51e694ab71705b26b6a6cf8e41c7535eb0cda16d3",
+          "bytes": 2189
+        },
+        {
+          "path": "skills/atlassian/jira-ticket-authoring/SKILL.md",
+          "sha256": "d2983e779a62068bc1bdadade5ad245527a6e9908d9421ed4d7873a1df80d2f4",
+          "bytes": 8463
+        },
+        {
+          "path": "skills/atlassian/jira-ticket-authoring/agents/openai.yaml",
+          "sha256": "159d1dcdaccf4d3c24b7466e8fe907749423e831b297a24afe64d1c22e23b710",
+          "bytes": 440
+        },
+        {
+          "path": "skills/atlassian/jira-ticket-authoring/assets/examples/customer-export-support.md",
+          "sha256": "65709828b6a9d0e1a0c5ce91dc45b6924be2eeef09503c523fbc36bdd2206737",
+          "bytes": 7509
+        },
+        {
+          "path": "skills/atlassian/jira-ticket-authoring/assets/examples/implementation-example.md",
+          "sha256": "ee6cd63f2fe4f7af15f35ba4c1823823e2c742cce081fce6b25e8854a70cc411",
+          "bytes": 5145
+        },
+        {
+          "path": "skills/atlassian/jira-ticket-authoring/assets/examples/invoice-retry-bug.md",
+          "sha256": "4de9ab107436a6f312b8e2deeee0df68c9af6473ccc6b7a42da366f04bb2f2fe",
+          "bytes": 11393
+        },
+        {
+          "path": "skills/atlassian/jira-ticket-authoring/assets/examples/sparse-request-triage.md",
+          "sha256": "4ada5cb953150a4a7f24402c671d41af3c07874385189cb79d332b1854da475b",
+          "bytes": 7689
+        },
+        {
+          "path": "skills/atlassian/jira-ticket-authoring/assets/icon.svg",
+          "sha256": "49315dda7125ec5fc77ef5f2b96126d8b2121c6e72944b4702972e90f321d3ee",
+          "bytes": 1210
+        },
+        {
+          "path": "skills/atlassian/jira-ticket-authoring/assets/templates/agent-handoff.md",
+          "sha256": "e5ae6e1df812f68998a2d1041835ea21ec23bdb952f59f946703c1c4675218be",
+          "bytes": 3101
+        },
+        {
+          "path": "skills/atlassian/jira-ticket-authoring/assets/templates/bug.md",
+          "sha256": "2049add279221225182c386928d28b4c350c9e3580299955fb57058dc6553db7",
+          "bytes": 4726
+        },
+        {
+          "path": "skills/atlassian/jira-ticket-authoring/assets/templates/epic.md",
+          "sha256": "ebc04317a7ab7b93013388650d51f0cc3df740075fe036bdb2569430b12e0895",
+          "bytes": 4986
+        },
+        {
+          "path": "skills/atlassian/jira-ticket-authoring/assets/templates/feature-request.md",
+          "sha256": "4b8f013fbacd54c7fe9849fa0ff03e66fc7036cc80f0bbf942466fa5566c3af3",
+          "bytes": 4342
+        },
+        {
+          "path": "skills/atlassian/jira-ticket-authoring/assets/templates/finding.md",
+          "sha256": "7bced43448595256489829ae0752994e08677282916be35aa8159e123d9edba7",
+          "bytes": 4521
+        },
+        {
+          "path": "skills/atlassian/jira-ticket-authoring/assets/templates/implementation.md",
+          "sha256": "31c9c6f7c8c42cff7faecc0b6570e1f6bcdbadaaed1e760a6916d012ebfe7554",
+          "bytes": 6322
+        },
+        {
+          "path": "skills/atlassian/jira-ticket-authoring/assets/templates/incident.md",
+          "sha256": "f84b8abcb2a77f4f2c069c5d659adcbb52ca54b0fe32536344c06379212f33e7",
+          "bytes": 4863
+        },
+        {
+          "path": "skills/atlassian/jira-ticket-authoring/assets/templates/operational-change.md",
+          "sha256": "e3e8b5b31a9199d829cc121562b3d1f690e2446cfbe68480c43dcf60620b47c3",
+          "bytes": 6274
+        },
+        {
+          "path": "skills/atlassian/jira-ticket-authoring/assets/templates/service-request.md",
+          "sha256": "ab975ed28a11702784301381b499b91d8f92d77b15ce1ce42ca767117b9696f8",
+          "bytes": 4754
+        },
+        {
+          "path": "skills/atlassian/jira-ticket-authoring/assets/templates/spike.md",
+          "sha256": "0b7cc943c8fcf7fa050b8be361836bd188eae53d96ef37ebf1f451fea08fe0f6",
+          "bytes": 3968
+        },
+        {
+          "path": "skills/atlassian/jira-ticket-authoring/assets/templates/story.md",
+          "sha256": "55f8a405e3ae17d0e8bf67e2e710f5302881f53aee71333b056b4a09550a004e",
+          "bytes": 3808
+        },
+        {
+          "path": "skills/atlassian/jira-ticket-authoring/assets/templates/support-case.md",
+          "sha256": "72c4ca9652440a6eb2fb576bc24f0c4043066252a269c036a7ac9b09bf78ed11",
+          "bytes": 4653
+        },
+        {
+          "path": "skills/atlassian/jira-ticket-authoring/assets/templates/tech-debt.md",
+          "sha256": "614d403f9487fb5d3f93294b982b1e4ea00b10adb225f556bbce6cd9db413916",
+          "bytes": 3160
+        },
+        {
+          "path": "skills/atlassian/jira-ticket-authoring/manifest.json",
+          "sha256": "771a19dec44ce9f51114241b6c889b7884f3ca1595bed0f81fbeffbc4917462f",
+          "bytes": 6222
+        },
+        {
+          "path": "skills/atlassian/jira-ticket-authoring/metadata.json",
+          "sha256": "e01c58200815082415d83ac1b7bc98b3822369a83330ec6be56e6218e0416bed",
+          "bytes": 1513
+        },
+        {
+          "path": "skills/atlassian/jira-ticket-authoring/prompts/README.md",
+          "sha256": "2ac2376383d1cae12b97dba7f703f70e4ae38b50242cc09dfdfd0fe7af716a3c",
+          "bytes": 617
+        },
+        {
+          "path": "skills/atlassian/jira-ticket-authoring/prompts/access-or-service-request.md",
+          "sha256": "6f5a60bc4d65af719b1155d0f7cba968ec0a715379f611c3670089dd9652802d",
+          "bytes": 961
+        },
+        {
+          "path": "skills/atlassian/jira-ticket-authoring/prompts/bug-report.md",
+          "sha256": "b8b6d88627b5fcb1289e39f0300ecb1c7185f818ac96d8bcbe305e871dd55fd9",
+          "bytes": 932
+        },
+        {
+          "path": "skills/atlassian/jira-ticket-authoring/prompts/customer-support-case.md",
+          "sha256": "3d2adbde520dd297d88e8e454ac7c21a89bff27d955de5fc284f513bcc5e9333",
+          "bytes": 1067
+        },
+        {
+          "path": "skills/atlassian/jira-ticket-authoring/prompts/epic-breakdown.md",
+          "sha256": "04a827460e604ca20c249316e25650b1ff44595cdc6182f1c5e2992be53f5bd4",
+          "bytes": 1094
+        },
+        {
+          "path": "skills/atlassian/jira-ticket-authoring/prompts/new-feature-request.md",
+          "sha256": "e21b4303995b827a8a743ef798b09816935d99cdb7bb5a786cea9f90eadd71b5",
+          "bytes": 988
+        },
+        {
+          "path": "skills/atlassian/jira-ticket-authoring/prompts/product-idea-to-prd-and-backlog.md",
+          "sha256": "2957b6fd955818ee0d8f5a974364930bbe00f2ee549cf753b9b3ca7ada06cece",
+          "bytes": 1193
+        },
+        {
+          "path": "skills/atlassian/jira-ticket-authoring/prompts/user-story.md",
+          "sha256": "5a53dced4d803aff5577c641ceb492ecea58ecd21a584d0378ee1e872939ffa5",
+          "bytes": 985
+        },
+        {
+          "path": "skills/atlassian/jira-ticket-authoring/references/adversarial-review.md",
+          "sha256": "30c7768c79d1c38b98e8de32dde444d72e09098b4391442f10639afc6ff389c7",
+          "bytes": 1959
+        },
+        {
+          "path": "skills/atlassian/jira-ticket-authoring/references/jira-confluence-traceability.md",
+          "sha256": "dc6950122c1640a6d2d821e805ed2a230d17654040aa65f3011984b65467aeb2",
+          "bytes": 2497
+        },
+        {
+          "path": "skills/atlassian/jira-ticket-authoring/references/jira-integration.md",
+          "sha256": "c5d6f2965024cd96d09d2572c440adbcf3a14287ee0f1d301efa83bf7bb2b453",
+          "bytes": 5265
+        },
+        {
+          "path": "skills/atlassian/jira-ticket-authoring/references/planning-patterns.md",
+          "sha256": "7533d8e3781105ef0382ec5c4fd8c74554b1cf45546b187cc992e3afd97f3c2f",
+          "bytes": 4780
+        },
+        {
+          "path": "skills/atlassian/jira-ticket-authoring/references/quality-review.md",
+          "sha256": "5f5413f416319150de94a5465d9cfa0b530a2e242d642bb3bc84a0a369c522b8",
+          "bytes": 5473
+        },
+        {
+          "path": "skills/atlassian/jira-ticket-authoring/references/service-routing.md",
+          "sha256": "c68b28175fd4c8344eaea13d423a16bc816f720774f7412459cf2419e621573b",
+          "bytes": 4695
+        },
+        {
+          "path": "skills/atlassian/jira-ticket-authoring/references/sources.md",
+          "sha256": "21d6e62d34b28d7f28056fd21212880fc42c0f37b7bd13b0b0bd12753a274593",
+          "bytes": 4041
+        },
+        {
+          "path": "skills/atlassian/jira-ticket-authoring/references/template-adaptation.md",
+          "sha256": "49844a45350e4a890763a50cd8c56fa03cc0c7123a12989da5acb82dd7263f3c",
+          "bytes": 2834
         }
       ]
     },

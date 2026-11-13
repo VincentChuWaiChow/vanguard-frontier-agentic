@@ -1,0 +1,16 @@
+{
+  "base": "11-t1-completed-read-only-review.json",
+  "rule": "CAP-COMPLETION-EVIDENCE",
+  "why": "A read-only completion may omit read-back, but an entry claiming to verify a write that does not exist is still rejected.",
+  "set": {
+    "verification_evidence": [
+      {
+        "verifies": "op-1",
+        "target": "OPS-1042",
+        "tool": "getJiraIssue",
+        "observed_state": "claims a write was verified",
+        "read_at": "2026-11-13T09:50:00Z"
+      }
+    ]
+  }
+}

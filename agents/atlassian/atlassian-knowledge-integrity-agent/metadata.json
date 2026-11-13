@@ -1,0 +1,42 @@
+{
+  "id": "atlassian-knowledge-integrity-agent",
+  "name": "Atlassian Knowledge Integrity Agent",
+  "type": "agent",
+  "provider": "atlassian",
+  "harnesses": [
+    "codex",
+    "copilot",
+    "claude-code",
+    "cursor",
+    "gemini",
+    "kiro"
+  ],
+  "harness_variants": {
+    "codex": "agents/atlassian/atlassian-knowledge-integrity-agent/harnesses/codex.toml",
+    "copilot": "agents/atlassian/atlassian-knowledge-integrity-agent/harnesses/copilot.agent.md",
+    "claude-code": "agents/atlassian/atlassian-knowledge-integrity-agent/harnesses/claude-code.agent.md",
+    "cursor": "agents/atlassian/atlassian-knowledge-integrity-agent/harnesses/cursor.agent.md",
+    "gemini": "agents/atlassian/atlassian-knowledge-integrity-agent/harnesses/gemini.agent.md",
+    "kiro-ide": "agents/atlassian/atlassian-knowledge-integrity-agent/harnesses/kiro-ide.agent.md",
+    "kiro-cli": "agents/atlassian/atlassian-knowledge-integrity-agent/harnesses/kiro-cli.agent.json"
+  },
+  "summary": "Read-only review of critical Confluence knowledge (runbooks, ADRs, API docs, support articles) for staleness, contradiction, missing ownership and drift from implementation, distinguishing obsolete pages from intentionally preserved historical records. Proposes corrections drafted with confluence-document-authoring; never edits, moves or archives.",
+  "source_type": "original",
+  "official_docs": [
+    "https://developer.atlassian.com/cloud/rovo-mcp/guides/supported-tools/",
+    "https://developer.atlassian.com/cloud/rovo-mcp/guides/authentication-and-authorization/"
+  ],
+  "security_notes": "Reads with the requesting human's permissions; read-only only when write groups are disabled and the client denies write tools, otherwise reported as unenforced. Never edits, archives or changes restrictions; sensitive pages need a named human approver for any proposed change, which goes through atlassian-live-write-guard-agent.",
+  "last_verified": "2026-11-13",
+  "path": "agents/atlassian/atlassian-knowledge-integrity-agent",
+  "companion_skills": [
+    "atlassian-knowledge-integrity-review",
+    "atlassian-rovo-mcp-integration",
+    "atlassian-case-capsule",
+    "confluence-document-authoring"
+  ],
+  "execution_tier": "read-only-runtime",
+  "lifecycle": "experimental",
+  "author": "github: VincentChuWaiChow",
+  "version": "0.1.0"
+}

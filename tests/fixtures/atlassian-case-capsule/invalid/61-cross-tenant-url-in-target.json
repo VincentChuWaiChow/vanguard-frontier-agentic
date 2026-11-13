@@ -1,0 +1,8 @@
+{
+  "base": "01-t1-read-incident-review.json",
+  "rule": "CAP-TENANT-BINDING",
+  "why": "Refuter L6: another tenant's URL inside a read target.",
+  "set": {
+    "permitted_operations.0.target": "https://evil-tenant.atlassian.net/browse/OPS-1"
+  }
+}

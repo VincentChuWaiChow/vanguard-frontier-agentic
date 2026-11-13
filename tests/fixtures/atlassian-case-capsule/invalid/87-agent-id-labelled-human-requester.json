@@ -1,0 +1,8 @@
+{
+  "base": "02-t3-create-remediation.json",
+  "rule": "CAP-REQUESTER-HUMAN",
+  "why": "Codex review: an agent id typed as a human requester is still an agent-originated request.",
+  "set": {
+    "user_identity_context.account_ref": "atlassian-incident-prevention-agent"
+  }
+}

@@ -1,0 +1,260 @@
+{
+  "schema_version": 1,
+  "name": "confluence-document-authoring",
+  "version": "1.2.1",
+  "reviewed_on": "2026-11-13",
+  "template_format": "Markdown authoring assets",
+  "templates": [
+    "assets/templates/adr.md",
+    "assets/templates/api-documentation.md",
+    "assets/templates/customer-impact-assessment.md",
+    "assets/templates/experiment-plan-results.md",
+    "assets/templates/feature-overview.md",
+    "assets/templates/how-to.md",
+    "assets/templates/incident-playbook.md",
+    "assets/templates/incident-postmortem.md",
+    "assets/templates/meeting-notes.md",
+    "assets/templates/okrs.md",
+    "assets/templates/prd.md",
+    "assets/templates/product-explainer.md",
+    "assets/templates/product-roadmap.md",
+    "assets/templates/project-charter.md",
+    "assets/templates/project-plan.md",
+    "assets/templates/project-status-report.md",
+    "assets/templates/release-notes.md",
+    "assets/templates/risk-assessment.md",
+    "assets/templates/runbook.md",
+    "assets/templates/sprint-retrospective.md",
+    "assets/templates/support-knowledge-base.md",
+    "assets/templates/tdd.md",
+    "assets/templates/team-working-agreement.md"
+  ],
+  "files": [
+    {
+      "path": "CHANGELOG.md",
+      "sha256": "8d233e27edb4b428449fe8952c0220eed45670af7e581e3641647d773675a744"
+    },
+    {
+      "path": "SKILL.md",
+      "sha256": "ea7f6c4827a0e74e31142c8ffd15104b7c97af237763de847998eca5855f4884"
+    },
+    {
+      "path": "assets/examples/adr-example.md",
+      "sha256": "a3380e78e73796a04aed926b005441f18b5beb283e7f15aee4728f6f7faa455e"
+    },
+    {
+      "path": "assets/examples/business-product-explainer.md",
+      "sha256": "d3a95579e969fffeaf7b252b1861bcace23fd4d62979b8b2a19c04b04f493d1d"
+    },
+    {
+      "path": "assets/examples/feature-rollout-brief.md",
+      "sha256": "18c5dee461d78fcb6d5bb0bf47673f461b4bdcb8cee033046f60cb38da57fe16"
+    },
+    {
+      "path": "assets/examples/queue-backlog-runbook.md",
+      "sha256": "089be0f7f672cc2683b1fa9f73aa25f84a9cd768b7b22e43d2501b65d169733f"
+    },
+    {
+      "path": "assets/examples/retry-contract-adr.md",
+      "sha256": "24faf1a877bfcf2d2d1b9722397681d6451f836be5aa1de0c5126cb70ea1f4e4"
+    },
+    {
+      "path": "assets/templates/adr.md",
+      "sha256": "f530a0c80ff67174e6602b8829baa054f0de0952cef55d9f6be1d346652fe9f8"
+    },
+    {
+      "path": "assets/templates/api-documentation.md",
+      "sha256": "29723b4bc1db5530000c6eb8957899f033fd99f6b4dd07b1b254aed4291876e5"
+    },
+    {
+      "path": "assets/templates/customer-impact-assessment.md",
+      "sha256": "86fd7c47faca404f9a28ddcd6de63a8e5aa6a23dc3dec5977c7d65f5e8d0cf75"
+    },
+    {
+      "path": "assets/templates/experiment-plan-results.md",
+      "sha256": "e233f0cceb15c715d74a1ae19ea2f8285852a03cd30cd0e4fb6d8b7e42118515"
+    },
+    {
+      "path": "assets/templates/feature-overview.md",
+      "sha256": "1f4b892c69c9bcf4e5d13f44c5b52217c8fc35ec82bb7c73186d1749a155f912"
+    },
+    {
+      "path": "assets/templates/how-to.md",
+      "sha256": "641fe5f043d341fecb745c5da04b8c02e716c4b66ba2eef4246ec94f6b1b6e5d"
+    },
+    {
+      "path": "assets/templates/incident-playbook.md",
+      "sha256": "f65d6864ebd6f9449a9050882b05f0fcdcbbf6e50fabfc5a9210652d0a79b114"
+    },
+    {
+      "path": "assets/templates/incident-postmortem.md",
+      "sha256": "57f7cbb01f0b5079c67597884911165aea9c069e9bd212af5ce386fe0e16c253"
+    },
+    {
+      "path": "assets/templates/meeting-notes.md",
+      "sha256": "ede761ca728814177d76905374a8df2ca0b34077cc9a0ecae90f7a15ab724f36"
+    },
+    {
+      "path": "assets/templates/okrs.md",
+      "sha256": "19d53117714069fb6ae09ce6b6de216c7b7584a83baac9a519cffe9d38567176"
+    },
+    {
+      "path": "assets/templates/prd.md",
+      "sha256": "124c21a43b70fcfc14b278ce38196b787b6bc54c49e2ce973e13036de1b29f35"
+    },
+    {
+      "path": "assets/templates/product-explainer.md",
+      "sha256": "6c54c4d740bb8afbebdd3ad2abdc89a470a50a6d693de37c8ec67393f87a2262"
+    },
+    {
+      "path": "assets/templates/product-roadmap.md",
+      "sha256": "c1a90aec43503691b27bd8d60671100e9704c3c159b8c5f596904713eecf1207"
+    },
+    {
+      "path": "assets/templates/project-charter.md",
+      "sha256": "bb2988e9acb9161f07706376073bc4d9623cf955c476d092be70edf1c3dd92f9"
+    },
+    {
+      "path": "assets/templates/project-plan.md",
+      "sha256": "422a0a48ee241ea00b4b70eef7f02ef3558539d6d4ec6c2c1205e8ca5089a950"
+    },
+    {
+      "path": "assets/templates/project-status-report.md",
+      "sha256": "dd8f702579301a1c5a3c4a1fe0d259ae8324979159c01062283f66be9067010a"
+    },
+    {
+      "path": "assets/templates/release-notes.md",
+      "sha256": "17d621238da76d70540e2576b06ddc6fe1713b49b2f1e9d1c5301fda008c1471"
+    },
+    {
+      "path": "assets/templates/risk-assessment.md",
+      "sha256": "abe49532ba79724ad042076021566517ffadafc70628b0d544f28c27ff9179ac"
+    },
+    {
+      "path": "assets/templates/runbook.md",
+      "sha256": "4b37dcd16adf7fa0372aed4a64693fdc14633f0f330380f0cc521022d89a6f32"
+    },
+    {
+      "path": "assets/templates/sprint-retrospective.md",
+      "sha256": "e236b75fadda3aacb9aa0c6023901a83c167b97359e53eb9a04b72888d9f92e6"
+    },
+    {
+      "path": "assets/templates/support-knowledge-base.md",
+      "sha256": "f4578c9a54982c7e8feae5d7e01e1f113cdf5915541e75246bd9343852946c25"
+    },
+    {
+      "path": "assets/templates/tdd.md",
+      "sha256": "95014774fb3a43c01e8ca4acbd16407ad9afe5c5fd318cf05e978d59d78506ab"
+    },
+    {
+      "path": "assets/templates/team-working-agreement.md",
+      "sha256": "76a82d58a7d77054e8fd32c2bc5ba617f34b08906b3f101d7f1501f7e6e3c485"
+    },
+    {
+      "path": "metadata.json",
+      "sha256": "8413653903962fef5e5ac13722f1c93d0b3d4e1d2190cceee882f21b313dea8c"
+    },
+    {
+      "path": "prompts/README.md",
+      "sha256": "fe72062d99f7b2ec307a6afdebf03d06fdf2431333038f0cf9f4f832bab6a15a"
+    },
+    {
+      "path": "prompts/customer-impact-assessment.md",
+      "sha256": "f95bbf226d1c74fcbc6c86eb8e01d72b68927ebedb0d296c5d1469d3f76d0ce8"
+    },
+    {
+      "path": "prompts/experiment-plan-results.md",
+      "sha256": "d6f3c6e5fbe9ffeca77b6c2fd671c5707318cd488e43ad59c89fc76502c8d6e6"
+    },
+    {
+      "path": "prompts/feature-overview.md",
+      "sha256": "1596437efb87aaef593d50292c335e5bde575440bfed3541711a17e3251014a6"
+    },
+    {
+      "path": "prompts/okrs.md",
+      "sha256": "ff971c0611c49202193b61ee2f01562b928411086d8c927d0510316c4183c47f"
+    },
+    {
+      "path": "prompts/product-explainer.md",
+      "sha256": "c5bc91cca31e4569c1a16e923a1eb0394e1c462fc5423c647b84d9c9e2a097df"
+    },
+    {
+      "path": "prompts/product-idea-to-prd-and-backlog.md",
+      "sha256": "2957b6fd955818ee0d8f5a974364930bbe00f2ee549cf753b9b3ca7ada06cece"
+    },
+    {
+      "path": "prompts/product-roadmap.md",
+      "sha256": "7c99e654dbc248198b9abad31d76fb672043bf918ad0ff634a4d3199bd088a67"
+    },
+    {
+      "path": "prompts/project-charter.md",
+      "sha256": "7ae50dcc8f4d64f6eebc005bc6d242d042ab450da47129910bf4d4b31ce5dfee"
+    },
+    {
+      "path": "prompts/project-plan.md",
+      "sha256": "85bb9b4692436ff256b04fd3faa01acfa94df8dc578ff151fd7f596fb6417c72"
+    },
+    {
+      "path": "prompts/project-status-report.md",
+      "sha256": "b3be2e3e6803cbc4195aa78d199cef65c6694e7d11e581c5cbc97815c90725d7"
+    },
+    {
+      "path": "prompts/release-notes.md",
+      "sha256": "1f05941487a44fac0c97d0e05af87deeb2241c8d46800b2be04a952f1337dbab"
+    },
+    {
+      "path": "prompts/risk-assessment.md",
+      "sha256": "24e195c61885ecbc4ed47f8f729754cc99af1201b2d0a9915a7c0cc06f75409b"
+    },
+    {
+      "path": "prompts/support-knowledge-base.md",
+      "sha256": "521a1f84be7533c47a3a688636dbfc5d451c3e819e2cdc5111a51e2d79ead5dd"
+    },
+    {
+      "path": "prompts/team-working-agreement.md",
+      "sha256": "f4a01bc400e14ac5f96561309f2d406d9a0790cc6521e15ab118d5afd5d52e4e"
+    },
+    {
+      "path": "references/audience-patterns.md",
+      "sha256": "67db9342eae5a02ebd39b4c852afc330628711ba9217c62c8df366bc7c9f6f18"
+    },
+    {
+      "path": "references/cql-patterns.md",
+      "sha256": "f327124ca589a7c7553988990446713fd3b9eb8ebb34dd45291fefdb6a1227a4"
+    },
+    {
+      "path": "references/jira-integration.md",
+      "sha256": "55081ed55abe8ef52df91ba96600c5e0f900dfb5c4e18370af1df7c4932596df"
+    },
+    {
+      "path": "references/lifecycle.md",
+      "sha256": "2a9e07096c62c07bcc0271634a207676a24f7b7f327fcbf5277101394732844c"
+    },
+    {
+      "path": "references/publishing.md",
+      "sha256": "aaa1217f3e7f4bf196d0c406a6c1c41df34ab43e58beb7827f81bb83851eaa0c"
+    },
+    {
+      "path": "references/quality-review.md",
+      "sha256": "b5e350f7ff087806990954d1df7d8420533d22ad76d421ef539b0cb01e0b3efe"
+    },
+    {
+      "path": "references/sources.md",
+      "sha256": "b5093ccdafd0b56d7e0107c33c2575f45d77b2936e79cb31f7bdbdb00c068c0b"
+    },
+    {
+      "path": "references/template-catalogue.md",
+      "sha256": "692699f1ce43ecdba1707bf21afda0f80d98695f1215f457c8d561496f91acf6"
+    },
+    {
+      "path": "references/template-maintenance.md",
+      "sha256": "c67aa93ec71f972e2792b7de103306b91084413f911fb454c0d772c43b723528"
+    }
+  ],
+  "ui_metadata": {
+    "path": "agents/openai.yaml",
+    "validation": "semantic; host may normalize formatting and add icons or product policy",
+    "expected_display_name": "Confluence Document Authoring",
+    "expected_default_prompt": "Use $confluence-document-authoring to choose a suitable template and draft clear, sourced documentation for its business, engineering, or support audience."
+  }
+}

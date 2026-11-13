@@ -1,0 +1,7 @@
+{
+  "name": "03-happy-knowledge-integrity",
+  "task": "Find stale or contradictory runbooks in our SRE Confluence space, and pages with no owner.",
+  "tags": [
+    "happy-path"
+  ]
+}

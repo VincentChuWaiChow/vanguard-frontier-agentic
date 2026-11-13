@@ -1,0 +1,8 @@
+{
+  "base": "04-t3-completed-with-readback.json",
+  "rule": "CAP-SCHEMA",
+  "why": "op_id must be unique so each write has its own evidence.",
+  "set": {
+    "permitted_operations.1.op_id": "op-1"
+  }
+}

@@ -1,0 +1,97 @@
+{
+  "schema_version": "1.0",
+  "task_id": "KNOW-0007",
+  "as_of": "2026-11-13T10:00:00Z",
+  "origin_agent": "atlassian-knowledge-integrity-agent",
+  "target_agent": "atlassian-live-write-guard-agent",
+  "hop_type": "delegate",
+  "delegation_chain": [
+    "atlassian-maestro-agent",
+    "atlassian-knowledge-integrity-agent"
+  ],
+  "requested_decision": "Go or no-go: archive one stale runbook page confirmed superseded by page:991100.",
+  "business_context": "A superseded runbook still ranks first in search and was followed during an incident.",
+  "scope": {
+    "products": [
+      "confluence"
+    ],
+    "containers": [
+      "SRE-space"
+    ]
+  },
+  "tenant_context": {
+    "cloud_id": "11111111-2222-3333-4444-555555555555",
+    "site_url": "https://example-tenant.atlassian.net"
+  },
+  "user_identity_context": {
+    "principal_type": "human",
+    "account_ref": "acct-ref-requester-01"
+  },
+  "evidence_references": [
+    {
+      "id": "EV-9",
+      "kind": "confluence-page",
+      "locator": "page:445566",
+      "retrieved_at": "2026-11-13T09:30:00Z",
+      "version": "v12",
+      "trust": "untrusted-content",
+      "contains_instructions": false
+    }
+  ],
+  "assumptions": [
+    "The observation window is chosen by the service owner, not the agent."
+  ],
+  "confidence": "high",
+  "execution_tier": "T4-high-risk",
+  "permitted_operations": [
+    {
+      "op_id": "op-1",
+      "tool": "archiveConfluenceContent",
+      "target": "page:445566",
+      "cloud_id": "11111111-2222-3333-4444-555555555555"
+    }
+  ],
+  "approval_state": {
+    "status": "approved",
+    "approvers": [
+      {
+        "principal_type": "human",
+        "account_ref": "acct-ref-space-owner"
+      },
+      {
+        "principal_type": "human",
+        "account_ref": "acct-ref-sre-lead"
+      }
+    ],
+    "approval_record": {
+      "kind": "out-of-band-human-record",
+      "locator": "approval-workflow:AW-5531"
+    },
+    "approved_at": "2026-11-13T09:50:00Z",
+    "expires_at": "2026-11-13T17:00:00Z"
+  },
+  "execution_budget": {
+    "max_delegation_depth": 3,
+    "max_tool_calls": 40,
+    "max_retries": 2,
+    "max_review_rounds": 2
+  },
+  "deadline_or_expiry": "2026-11-14T10:00:00Z",
+  "expected_output": "Go/no-go with compensation plan (unarchive) and read-back of archive state.",
+  "verification_requirements": [
+    "Read back archive state of page:445566 and that page:991100 is current."
+  ],
+  "verification_evidence": [],
+  "handoff_status": "accepted",
+  "decision_owner": "SRE space owner (human)",
+  "do_not_do": [
+    "Do not archive any page other than page:445566.",
+    "Do not change restrictions or permissions."
+  ],
+  "parent_task_id": null,
+  "budget_consumed": {
+    "tool_calls": 0,
+    "retries": 0,
+    "review_rounds": 0
+  }
+}

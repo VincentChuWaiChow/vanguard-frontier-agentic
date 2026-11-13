@@ -1,0 +1,20 @@
+{
+  "base": "04-t3-completed-with-readback.json",
+  "rule": "CAP-COMPLETION-EVIDENCE",
+  "why": "Codex review: two creates in one project cannot both be proven by the same returned item; a half-finished batch must not read as completed.",
+  "set": {
+    "permitted_operations.1": {
+      "op_id": "op-2",
+      "tool": "createJiraIssue",
+      "target": "project:OPS",
+      "cloud_id": "11111111-2222-3333-4444-555555555555"
+    },
+    "verification_evidence.1": {
+      "verifies": "op-2",
+      "target": "OPS-1107",
+      "tool": "getJiraIssue",
+      "observed_state": "reuses the first create's read-back",
+      "read_at": "2026-11-13T09:59:10Z"
+    }
+  }
+}

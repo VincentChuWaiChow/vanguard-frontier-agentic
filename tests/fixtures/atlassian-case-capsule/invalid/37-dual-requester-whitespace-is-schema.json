@@ -1,0 +1,8 @@
+{
+  "base": "03-t4-archive-superseded-runbook.json",
+  "rule": "CAP-SCHEMA",
+  "why": "Refuter H1: whitespace-padded requester ref used as an approver.",
+  "set": {
+    "approval_state.approvers.0.account_ref": "acct-ref-requester-01 "
+  }
+}

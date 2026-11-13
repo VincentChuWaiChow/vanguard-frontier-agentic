@@ -1,0 +1,8 @@
+{
+  "base": "02-t3-create-remediation.json",
+  "rule": "CAP-APPROVER-HUMAN",
+  "why": "Refuter H1: an agent id typed as a human approver.",
+  "set": {
+    "approval_state.approvers.0.account_ref": "atlassian-live-write-guard-agent"
+  }
+}

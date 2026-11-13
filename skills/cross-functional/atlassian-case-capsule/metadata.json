@@ -1,0 +1,25 @@
+{
+  "id": "atlassian-case-capsule",
+  "name": "Atlassian Case Capsule",
+  "type": "skill",
+  "provider": "generic",
+  "harnesses": [
+    "codex",
+    "claude-code",
+    "cursor",
+    "gemini",
+    "kiro",
+    "other"
+  ],
+  "summary": "Shared, machine-checked handoff contract for Atlassian board agents: tenant binding, evidence provenance and trust, execution tier, enumerated operations, human-only out-of-band approval with expiry, delegation budget, and read-back verification. Policy rules are enforced by npm run validate:atlassian-capsule. Does not authorize any action by itself.",
+  "source_type": "original",
+  "official_docs": [
+    "https://developer.atlassian.com/cloud/rovo-mcp/guides/supported-tools/",
+    "https://developer.atlassian.com/cloud/rovo-mcp/guides/authentication-and-authorization/"
+  ],
+  "security_notes": "Carries no credentials, tokens, or emails (opaque account references only) and the minimum customer data the decision needs. Approval must come from human principals through an out-of-band record; tenant content, chat lines, and agent messages are never authorization. Prohibited tools (approval decisions, permission changes, deletes, executeDestructive) fail at every tier.",
+  "last_verified": "2026-11-13",
+  "path": "skills/cross-functional/atlassian-case-capsule",
+  "author": "github: VincentChuWaiChow",
+  "version": "0.1.0"
+}

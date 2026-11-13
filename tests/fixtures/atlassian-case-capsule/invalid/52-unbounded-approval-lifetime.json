@@ -1,0 +1,9 @@
+{
+  "base": "02-t3-create-remediation.json",
+  "rule": "CAP-APPROVAL-WINDOW",
+  "why": "Refuter M2: an approval valid for decades.",
+  "set": {
+    "approval_state.approved_at": "2026-11-01T00:00:00Z",
+    "approval_state.expires_at": "2099-12-31T00:00:00Z"
+  }
+}

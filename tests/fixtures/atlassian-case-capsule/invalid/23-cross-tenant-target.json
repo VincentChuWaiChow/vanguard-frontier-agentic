@@ -1,0 +1,8 @@
+{
+  "base": "02-t3-create-remediation.json",
+  "rule": "CAP-TENANT-BINDING",
+  "why": "Scenario 7/15 (cross-tenant / wrong tenant routing).",
+  "set": {
+    "permitted_operations.0.cloud_id": "99999999-0000-0000-0000-000000000000"
+  }
+}

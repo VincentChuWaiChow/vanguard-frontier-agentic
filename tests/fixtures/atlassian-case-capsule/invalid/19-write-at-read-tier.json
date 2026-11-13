@@ -1,0 +1,25 @@
+{
+  "base": "01-t1-read-incident-review.json",
+  "rule": "CAP-WRITE-TIER",
+  "why": "A read-tier capsule smuggling a write, even with an approval attached.",
+  "set": {
+    "permitted_operations.0.tool": "createJiraIssue",
+    "permitted_operations.0.target": "project:OPS",
+    "approval_state": {
+      "status": "approved",
+      "approvers": [
+        {
+          "principal_type": "human",
+          "account_ref": "acct-ref-requester-01"
+        }
+      ],
+      "approval_record": {
+        "kind": "out-of-band-human-record",
+        "locator": "change-record:CR-1"
+      },
+      "approved_at": "2026-11-13T09:55:00Z",
+      "expires_at": "2026-11-13T12:00:00Z"
+    },
+    "target_agent": "atlassian-live-write-guard-agent"
+  }
+}

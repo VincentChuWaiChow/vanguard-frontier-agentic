@@ -1,0 +1,8 @@
+{
+  "base": "01-t1-read-incident-review.json",
+  "rule": "CAP-SECRETS",
+  "why": "Refuter M4: a raw bearer value.",
+  "set": {
+    "business_context": "Retry with Bearer eyJhbGciOiJIUzI1NiJ9FAKEFAKEFAKE if the session drops."
+  }
+}

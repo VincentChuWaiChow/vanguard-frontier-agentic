@@ -1,6 +1,6 @@
 # Agents
 
-Role definitions for repeatable review, architecture, operations, and bounded execution work. **<!-- count:global:agents -->745<!-- /count --> enterprise-grade, audit-ready agents** organized in a three-layer ecosystem: maestro routers, domain specialists, and cross-functional protocols.
+Role definitions for repeatable review, architecture, operations, and bounded execution work. **<!-- count:global:agents -->750<!-- /count --> enterprise-grade, audit-ready agents** organized in a three-layer ecosystem: maestro routers, domain specialists, and cross-functional protocols.
 
 ## Three-layer agentic architecture
 

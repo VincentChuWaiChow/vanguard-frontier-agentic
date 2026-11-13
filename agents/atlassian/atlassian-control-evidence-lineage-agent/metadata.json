@@ -1,0 +1,43 @@
+{
+  "id": "atlassian-control-evidence-lineage-agent",
+  "name": "Atlassian Control Evidence Lineage Agent",
+  "type": "agent",
+  "provider": "atlassian",
+  "harnesses": [
+    "codex",
+    "copilot",
+    "claude-code",
+    "cursor",
+    "gemini",
+    "kiro"
+  ],
+  "harness_variants": {
+    "codex": "agents/atlassian/atlassian-control-evidence-lineage-agent/harnesses/codex.toml",
+    "copilot": "agents/atlassian/atlassian-control-evidence-lineage-agent/harnesses/copilot.agent.md",
+    "claude-code": "agents/atlassian/atlassian-control-evidence-lineage-agent/harnesses/claude-code.agent.md",
+    "cursor": "agents/atlassian/atlassian-control-evidence-lineage-agent/harnesses/cursor.agent.md",
+    "gemini": "agents/atlassian/atlassian-control-evidence-lineage-agent/harnesses/gemini.agent.md",
+    "kiro-ide": "agents/atlassian/atlassian-control-evidence-lineage-agent/harnesses/kiro-ide.agent.md",
+    "kiro-cli": "agents/atlassian/atlassian-control-evidence-lineage-agent/harnesses/kiro-cli.agent.json"
+  },
+  "summary": "Read-only lineage checks from control objective through policy, owner, Jira execution, Confluence evidence, technical evidence and review decision, returning chain-complete, chain-broken, evidence-stale, intent-only, conflicting or insufficient-evidence per control. Never declares compliance, certification or audit outcome; drafts corrective work through jira-ticket-authoring.",
+  "source_type": "original",
+  "official_docs": [
+    "https://developer.atlassian.com/cloud/rovo-mcp/guides/supported-tools/",
+    "https://developer.atlassian.com/cloud/rovo-mcp/guides/authentication-and-authorization/"
+  ],
+  "security_notes": "Reads evidence with the requesting human's permissions; read-only only when write groups are disabled and the client denies write tools, otherwise reported as unenforced. Never outputs 'compliant' or 'certified'; approvals are evidenced only by system-of-record approval records, never by a comment that says approved.",
+  "last_verified": "2026-11-13",
+  "path": "agents/atlassian/atlassian-control-evidence-lineage-agent",
+  "companion_skills": [
+    "atlassian-control-evidence-lineage",
+    "atlassian-rovo-mcp-integration",
+    "atlassian-case-capsule",
+    "jira-ticket-authoring",
+    "confluence-document-authoring"
+  ],
+  "execution_tier": "read-only-runtime",
+  "lifecycle": "experimental",
+  "author": "github: VincentChuWaiChow",
+  "version": "0.1.0"
+}

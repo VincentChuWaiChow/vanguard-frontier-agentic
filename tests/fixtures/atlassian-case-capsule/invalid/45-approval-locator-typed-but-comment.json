@@ -1,0 +1,8 @@
+{
+  "base": "02-t3-create-remediation.json",
+  "rule": "CAP-APPROVAL-RECORD",
+  "why": "A typed prefix wrapping a comment reference.",
+  "set": {
+    "approval_state.approval_record.locator": "jsm-approval:OPS-1042:comment-5521"
+  }
+}

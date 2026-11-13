@@ -1,0 +1,7 @@
+{
+  "name": "06-cross-incident-knowledge",
+  "task": "The postmortem says responders followed an outdated runbook; check whether that runbook is stale and whether the corrective actions are preventive.",
+  "tags": [
+    "cross-domain"
+  ]
+}
