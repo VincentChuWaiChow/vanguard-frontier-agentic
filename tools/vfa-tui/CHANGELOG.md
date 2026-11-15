@@ -5,6 +5,12 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [0.0.31](https://github.com/VincentChuWaiChow/vanguard-frontier-agentic/compare/vfa-tui-v0.0.30...vfa-tui-v0.0.31) - 2026-11-13
+
+### Added
+
+- *(atlassian)* add read-only Atlassian board, capsule gate, and owner authoring skills
+
 ## [0.0.30](https://github.com/VincentChuWaiChow/vanguard-frontier-agentic/compare/vfa-tui-v0.0.29...vfa-tui-v0.0.30) - 2026-11-11
 
 ### Other
