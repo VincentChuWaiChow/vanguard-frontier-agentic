@@ -5,4 +5,4 @@
 # cfn-lint release, so the pin tracks the latest version through reviewed commits.
 jsonschema
 pyyaml
-cfn-lint==1.60.0
+cfn-lint==1.60.1
