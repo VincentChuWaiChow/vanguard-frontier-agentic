@@ -119,3 +119,11 @@ rust-full-early.json, per-mode process/legacy/runtime/contracts/clippy/full logs
 package-results.json, process-source-hashes.json and boundary-*.log.
 
 Verified crate SHA-256: `e7d904a45d8cd0e8906b90f76ee9d2cd157d56488ad166b2881eff1bb8185fd4`.
+
+## Later no-install finite-tree continuation
+
+[Finite joined descendant fixture](task-2.1-finite-tree.md) extends only the
+already permitted helper/tests with bounded, fully waited self-spawn chains. It
+does not change production control, native acceptance or the unchecked full task.
+The prior17/11 failure reports above are historical: task3.1 catalog compatibility
+subsequently cleared them; current suite results live in the newer leaf.

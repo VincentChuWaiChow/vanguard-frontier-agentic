@@ -3,8 +3,8 @@
   "branch": "feature/gpui-desktop-alpha",
   "baseline": "6dda992a3dedd845731d795aaaed20d49346f57c",
   "spec_directory": ".kiro/specs/gpui-desktop",
-  "phase": "installation_free_preparation_complete",
-  "status": "preparatory_slices_1_5_1_6_8_2_verified_full_tasks_native_pending",
+  "phase": "task2_4_engine_output_preparation_verified_full_native_gates_pending",
+  "status": "verified_scoped_output_wave_no_full_task_or_git_publication",
   "requirements_approval": "approved",
   "revision_basis": "User requested revision before design, then explicitly requested Context7 MCP; no functional scope changes specified",
   "design": "ready_for_user_review",
@@ -35,7 +35,7 @@
     "task_drafting_runs": 3,
     "task_revision_review_runs": 1
   },
-  "next_action": "Stop this bounded wave after separate no-reply Node preparation commit. Native1.4 and full process/export integration dependencies remain pending; no installs or push authorized.",
+  "next_action": "Preserve verified task2.4 preparation and known environment misses; full tasks/dependencies remain uncompleted. No installs or Git publication. A subsequent implementation wave needs its own bounded admission; do not equate raw transport or root-only stop with full native lifecycle/redaction/trust completion.",
   "validation_snapshot": {
     "command": "npm run validate",
     "wrapper": "rtk proxy bash",
@@ -741,5 +741,364 @@
         "native_and_consumer": "unverified"
       }
     }
+  },
+  "rust_consumer_preparation": {
+    "date": "2026-11-19",
+    "request": "Focus on executable GPUI tasks using Ultracode, Codex Agent Teams, TDD and Context7",
+    "source_tasks": ".kiro/specs/gpui-desktop/tasks.md",
+    "supplied_path_note": "tasks.mda does not exist; used existing tasks.md",
+    "scope": "Task5.2 isolated Rust byte-framing/expected-plan consumer only; full task unchecked",
+    "eval": "evals/task-5.2-consumer.md",
+    "contract": ".workflow/ultracode/gpui-desktop/eval-contract.md",
+    "implementation_owner": "parent",
+    "team": {
+      "role": "rust_reviewer",
+      "configured_model": "gpt-6.1-sol",
+      "configured_effort": "high",
+      "configured_sandbox": "read-only",
+      "effective_inherited_sandbox": "workspace-write",
+      "serving_identity": "UNVERIFIED",
+      "discovery_runs": 1,
+      "review_runs": 1,
+      "parent_repair_passes": 1,
+      "total_tokens": null
+    },
+    "checks": {
+      "tdd_missing_module_red": "PASS_exit101_E0432_before_production_edits",
+      "initial_offline_attempt": "setup_failure_not_TDD_RED",
+      "review_filename_red": "PASS_real_Node_apply_then_InvalidPlan_exit101",
+      "parser_default": "PASS_15",
+      "parser_no_default": "PASS_15",
+      "focused_contracts_default": "PASS_60",
+      "focused_contracts_no_default": "PASS_59",
+      "full_library_default": "MISS_baseline_only_735_pass_17_fail_exact_preproduction_identities",
+      "full_library_no_default": "MISS_baseline_only_558_pass_11_fail_exact_preproduction_identities",
+      "clippy_both_modes": "PASS_exit0",
+      "fmt": "PASS_exit0",
+      "node_regressions": "PASS_30_exit0",
+      "spec_structure": "PASS_exit0",
+      "repository_validation": "PASS_npm_run_validate_exit0",
+      "coverage": "UNVERIFIED_no_installed_tooling_no_80_percent_claim",
+      "native_and_integrated_acceptance": "UNVERIFIED",
+      "asset_integrity": "PASS_read_only_verifier_exit0_no_regeneration_needed",
+      "graphify": "PASS_AST_update_exit0_HTML_size_limit_not_runtime_evidence",
+      "local_links_state_scope_whitespace": "PASS_exact10_files_exit0",
+      "frozen_inputs_locks_and_producer": "PASS_unchanged"
+    },
+    "context7": {
+      "library_id": "/serde-rs/json",
+      "topic": "Strict from_slice end-of-input, UTF-8 and schema validation",
+      "use": "read-only documentation, no configuration change"
+    },
+    "artifacts": "tools/vfa-tui/target/export-consumer-wave/",
+    "forbidden_changes_preserved": [
+      "dependency and lock changes",
+      "Node producer changes",
+      "launcher/UI/journal/configuration changes",
+      "installation",
+      "commit",
+      "push",
+      "remote CI"
+    ],
+    "status": "READY_FOR_REVIEW_scoped_parser_only"
+  },
+  "next_wave_discovery": {
+    "previous_goal_turn": "progress_verified_parser_implementation_and_graders",
+    "current_goal_turn": "progress_read_only_discovery_confirmed_current_prerequisite_absence_and_next_scope",
+    "native_prerequisites": "UNAVAILABLE_command_v_pkg_config_cmake_clang_returns_no_paths",
+    "coverage_tools": "UNAVAILABLE_command_v_and_usr_lib_search_found_no_llvm_cov_profdata",
+    "candidate": "task3.1_engine_source_session_snapshot_preparation_not_full_task_completion",
+    "owned_candidate_paths": [
+      "tools/vfa-tui/src/engine/session.rs",
+      "tools/vfa-tui/src/engine/snapshot.rs",
+      "tools/vfa-tui/src/engine/mod.rs",
+      "tools/vfa-tui/tests/session_contracts.rs"
+    ],
+    "implementation": "not_started_awaiting_fresh_wave_approval",
+    "complexity": "provisional_B_native_identity_and_operation_state_boundary",
+    "approval_question": "Approve scoped task3.1 engine preparation, resolve native prerequisites first, or review current parser?",
+    "consecutive_impasse_goal_turns": 0,
+    "no_live_build_or_worker": true
+  },
+  "next_wave_approval_audit": {
+    "condition": "Fresh user approval required before a second Ultracode implementation/review wave; specific task3.1 preparation approval not received",
+    "previous_goal_turn": "no_progress_revalidated_same_approval_boundary",
+    "current_goal_turn": "no_progress_third_consecutive_impasse_confirmed",
+    "consecutive_impasse_goal_turns": 3,
+    "evidence": [
+      "Specific next-wave approval requested; no user decision received",
+      "Native collaboration inventory confirms reviewer completed; no live delegated work",
+      "Candidate session/snapshot/test files remain absent",
+      "Third consecutive impasse: specific approval still absent, candidate files absent, reviewer terminal, pkg-config still unavailable"
+    ],
+    "next_safe_action": "User approves scoped task3.1 preparation or selects native-prerequisite/review path",
+    "active": false,
+    "resolution": "Mark active goal blocked pending explicit next-wave approval; do not mark complete",
+    "resolved_by": "Explicit user approval: Approve task 3.1 engine preparation (Recommended)"
+  },
+  "task3_1_preparation": {
+    "authorization": "explicit_user_approval_of_task3_1_engine_preparation",
+    "full_task_completion": "pending_native_and_full_dependencies",
+    "eval": "evals/task-3.1.md",
+    "implementation_owner": "parent",
+    "review_role": "rust_reviewer",
+    "discovery_runs": 1,
+    "review_runs": 1,
+    "repair_passes": 1,
+    "additional_loader_store_scope": "approved_by_explicit_user_reply_Approve_the_two_file_consistency_fix",
+    "checks": {
+      "identity_compile_time_red": "PASS_E0432_missing_session_before_production_exit101",
+      "identity_default": "PASS_5",
+      "identity_no_default": "PASS_5",
+      "focused_default": "PASS_79_serial_test_threads_1",
+      "focused_no_default": "PASS_78_serial_test_threads_1",
+      "clippy_both_modes": "PASS_exit0",
+      "fmt": "PASS_exit0",
+      "prior_parser_bytes": "PASS_unchanged",
+      "snapshot_and_operation_coordination": "PASS_scoped_models_not_real_lifecycle_or_authorization",
+      "final_wave_review": "PASS_process_one_blocker_reproduced_repaired_by_parent_no_rereview_claim",
+      "full_library_and_npm_for_complete_wave": "SEE_exact_baseline_MISS_and_root_npm_PASS",
+      "coverage": "UNVERIFIED_no_tooling",
+      "native_other_platforms": "UNVERIFIED",
+      "spec_structure": "PASS_exit0",
+      "asset_integrity": "PASS_exit0_no_regeneration",
+      "scope_links_state_whitespace": "PASS_exact16_cumulative_files",
+      "graphify": "PASS_final_AST_exit0_HTML_size_limit_not_native_evidence",
+      "capture_compile_time_red": "PASS_E0599_before_loader_store_production_edits",
+      "capture_reader_consistency": "PASS_actual_replace_after_capture_one_read_per_file_both_modes",
+      "snapshot_session_compile_time_red": "PASS_missing_APIs_before_implementation",
+      "session_default": "PASS_19_ordinary_parallel_harness",
+      "session_no_default": "PASS_19_ordinary_parallel_harness",
+      "full_library_default": "MISS_baseline_only_737_pass_17_fail_exact_old_failure_names",
+      "full_library_no_default": "MISS_baseline_only_560_pass_11_fail_exact_old_failure_names",
+      "parallel_profile_attempt": "MISS_one_observed_failure_in_unchanged_two_process_exclusion_test",
+      "profile_isolated": "PASS_exact_test_alone_and_full_serial_runs",
+      "parallel_profile_stability": "UNVERIFIED_root_cause_not_established",
+      "review_fifo_runtime_red": "PASS_real_child_timeout_kill_reap_before_repair",
+      "review_fifo_green": "PASS_actual_FIFO_rejected_promptly",
+      "npm_validation": "PASS_exit0",
+      "immutability_doctest": "PASS_new_compile_fail_one_preexisting_ignored_MockRunner_case",
+      "loader_store_scope": "PASS_explicitly_approved_two_file_extension",
+      "reload_body_preserved": "PASS_exact_HEAD_bytes"
+    },
+    "preserved_parser_sha256": {
+      "tools/vfa-tui/src/engine/export_protocol.rs": "01e7ba79eeb78b2e3a26afe6fe5feca7b699002fb89462fb501511c31566b918",
+      "tools/vfa-tui/tests/export_protocol.rs": "47e110b855aeb68b6a4b1f69494a1c14c54b56f847e9bec553be094ba5d54a78"
+    },
+    "status": "READY_FOR_REVIEW_engine_preparation_only_with_regression_limits",
+    "context7": {
+      "library": "/websites/doc_rust-lang_stable_std",
+      "sources": [
+        "Unix MetadataExt dev/ino",
+        "Windows MetadataExt windows_by_handle unstable"
+      ],
+      "implementation_limit": "Unix native backend; explicit IdentityUnavailable elsewhere"
+    },
+    "publication": {
+      "authorization": "git commit and git push when task 3.1 is marked and verified as done",
+      "condition": "full_task3_1_verified_and_marked_done_under_existing_criteria",
+      "condition_met": false,
+      "current_delivery_state": "held_until_full_verified_completion",
+      "scope": "task3.1-owned changes only; preserve earlier uncommitted task5.2 work",
+      "branch": "feature/gpui-desktop-alpha",
+      "origin": "git@github.com:VincentChuWaiChow/vanguard-frontier-agentic.git",
+      "completion_blockers": [
+        "tasks1.5_and2.1_full_dependencies_unchecked",
+        "Desktop_native_test_compilation_blocked_by_pkg_config_fontconfig_prerequisites",
+        "Windows_native_identity_unavailable",
+        "coverage_and_historical_parallel_profile_stability_unverified"
+      ],
+      "future_preflight": [
+        "verify_all_full_completion_criteria_before_checking_task",
+        "isolate_mixed_module_and_evidence_hunks_from_task5.2",
+        "verify_exact_staged_and_committed_snapshot",
+        "recheck_branch_identity_outgoing_history_and_remote",
+        "ordinary_fast_forward_push_only"
+      ],
+      "user_decision": "Wait for full task 3.1 completion (Recommended)",
+      "preparation_only_publication": "not_authorized_user_explicitly_chose_to_wait",
+      "resolved_previous_blockers": [
+        "17_default_11_engine_only_library_failures_fixed_by_catalog_SAP_compatibility"
+      ]
+    }
+  },
+  "task3_1_catalog_compatibility": {
+    "user_request": "goal resumed active; focus on the work continue",
+    "scope": "accept existing canonical sap provider via one enum variant; shared consumer and actual-catalog regressions",
+    "production_paths": [
+      "tools/vfa-tui/src/models/provider.rs"
+    ],
+    "test_paths": [
+      "tools/vfa-tui/tests/support/engine_cases.rs",
+      "tools/vfa-tui/tests/core_contracts.rs",
+      "tools/vfa-desktop/tests/engine_contracts.rs",
+      "tools/vfa-tui/tests/session_contracts.rs"
+    ],
+    "eval": "evals/task-3.1-catalog-compatibility.md",
+    "checks": {
+      "known_provider_runtime_RED": "PASS_unknown_variant_sap_exit101_before_production",
+      "real_snapshot_runtime_RED": "PASS_Unavailable_instead_of_Current_exit101_before_production",
+      "shared_and_real_snapshot_GREEN": "PASS_6_core_and20_session_engine_only",
+      "independent_review": "PASS_no_blockers_source_only",
+      "full_default": "PASS_exit0_1121_pass_0_fail_1_preexisting_ignored_754_library",
+      "full_no_default": "PASS_exit0_900_pass_0_fail_1_preexisting_ignored_571_library",
+      "clippy_default": "PASS_exit0",
+      "clippy_no_default": "PASS_exit0",
+      "root_npm_validation": "PASS_exit0",
+      "native_prerequisites": "MISSING_current_tool_header_and_alternative_executable_checks",
+      "desktop_lock_graph_execution": "MISS_build_exit101_yeslogic_fontconfig_sys_missing_pkg_config_no_test_execution",
+      "coverage": "UNVERIFIED_no_tooling",
+      "previous_17_11_failures": "RESOLVED_all_previous_failure_identities_pass",
+      "fmt_both_manifests": "PASS_exit0",
+      "engine_boundary": "PASS_engine_and_desktop_lock_normal_subtrees_31_self_tests",
+      "bootstrap_provenance": "PASS_actual_compiler_cached_archive_VCS_normal_features_18_mutants",
+      "desktop_initial_cache_attempt": "FAIL_missing_offline_gpui_cache_then_resolved_by_locked_cache_restore",
+      "prior_profile_parallel_case": "PASS_in_current_full_parallel_suites_historical_stability_unverified"
+    },
+    "team": {
+      "implementation": "parent",
+      "reviewer": "rust_reviewer",
+      "configured_model_effort": "gpt-6.1-sol/high",
+      "serving_identity": "UNVERIFIED",
+      "review_runs": 1,
+      "repair_passes": 0,
+      "total_tokens": null
+    },
+    "publication": "HELD_user_explicitly_chose_full_task_completion_not_preparation_publication",
+    "status": "REVIEWED_local_catalog_and_regressions_closed_native_prerequisites_pending",
+    "native_host_setup_decision": "User explicitly declined installation: skip we cant install. No native prerequisite installation attempted; native execution gate remains unmet, not waived.",
+    "evidence_artifact": "tools/vfa-tui/target/session-preparation-wave/catalog-compatibility/final-results.json"
+  },
+  "task2_1_finite_tree": {
+    "authority": "continued no-install goal; existing task2.1 eval explicitly admits finite fully joined self-spawn trees",
+    "eval": "evals/task-2.1-finite-tree.md",
+    "owned_source_paths": [
+      "tools/vfa-tui/tests/support/process_helper.rs",
+      "tools/vfa-tui/tests/process_contracts.rs"
+    ],
+    "production_changes": false,
+    "installs": false,
+    "full_task_checked": false,
+    "checks": {
+      "runtime_RED": "PASS_unknown_helper_mode_exit64_vs_expected0",
+      "targeted_GREEN_default": "PASS_8",
+      "targeted_GREEN_engine_only": "PASS_8",
+      "independent_review": "PASS_no_blockers_source_only",
+      "spec_integrity_graph": "PASS_structural_AST_only",
+      "cargo_helper_target": "PASS_none",
+      "full_default": "PASS_1123_failed0_ignored1_preexisting",
+      "full_engine_only": "PASS_902_failed0_ignored1_preexisting",
+      "strict_clippy_both_modes": "PASS_exit0",
+      "formats_and_helper_warnings": "PASS_exit0",
+      "source_scope": "PASS_all_existing10186_files_preserved_outside_admitted_test_evidence_set",
+      "closed_output_fault_injection": "UNVERIFIED",
+      "coverage": "UNVERIFIED"
+    },
+    "team": {
+      "implementation": "parent",
+      "reviewer": "rust_reviewer",
+      "configured_model_effort": "gpt-6.1-sol/high",
+      "serving_identity": "UNVERIFIED",
+      "review_runs": 1,
+      "repair_passes": 0,
+      "total_tokens": null
+    },
+    "remaining_gates": [
+      "native Desktop compilation and foreground bridge",
+      "Unix/macOS/Windows owned descendant cancellation",
+      "bounded production output/redaction",
+      "full tasks2.1 and3.1 remain incomplete"
+    ],
+    "publication": "HELD_user_requires_full3.1_verified_done",
+    "status": "REVIEWED_fixture_verified_not_full_task",
+    "evidence_artifact": "tools/vfa-tui/target/finite-tree-wave/final-results.json"
+  },
+  "no_install_readiness_audit": {
+    "previous_goal_turn": "PROGRESS_finite_helper_and_regressions_verified",
+    "full_tasks_examined": 44,
+    "completed_tasks": 6,
+    "full_ready_tasks": [
+      "1.4"
+    ],
+    "current_missing_executables": [
+      "pkg-config",
+      "pkgconf",
+      "cmake",
+      "clang",
+      "ninja"
+    ],
+    "user_install_decision": "skip we cant install; no retry or workaround",
+    "candidate": "task2.4 additive bounded engine output; not unused primitives or replacement legacy capture",
+    "candidate_admission": "APPROVED_explicit_user_reply_Approve_task2.4_engine_output_wave",
+    "candidate_review": "Rust reviewer confirms meaningful additive no-install path, but outside exhausted finite2.1 scope; no implementation before admission",
+    "candidate_required_checks": [
+      "shared8MiB peak accounting across both pipes/readers/queues/framing/tail",
+      "real64MiB unterminated dual-pipe fixture",
+      "slow/disconnected display keeps draining with loss counters",
+      "protocol before display loss; reliable terminal/status",
+      "retained readers joined before completion",
+      "unchanged legacy capture"
+    ],
+    "publication": "HELD_full3.1_condition_not_met",
+    "fresh_blocked_audit": {
+      "consecutive_goal_turns": 3,
+      "condition": "native prerequisite environment unavailable and further no-install implementation requires new bounded scope admission",
+      "threshold_met": true,
+      "previous_goal_turn": "NO_PROGRESS_same_native_and_scope_admission_blocker",
+      "current_goal_turn": "NO_PROGRESS_same_condition_current_tools_headers_DAG_and_source_hashes_revalidated",
+      "retired_by": "new_explicit_task2.4_scope_admission; fresh blocker audit only if later genuinely required"
+    },
+    "implementation_started": false
+  },
+  "task2_4_engine_output": {
+    "approval": "Approve task 2.4 engine-output wave (Recommended)",
+    "full_task_dependencies": "unchanged; full2.4 and3.1 stay unchecked",
+    "installs": false,
+    "publication": false,
+    "status": "READY_FOR_REVIEW_verified_engine_preparation_full_task_unchecked",
+    "scope": [
+      "additive bounded output path",
+      "tests/output_budget.rs",
+      "controlled finite helper output fixtures",
+      "existing spec/workflow evidence"
+    ],
+    "limits": {
+      "implementation_waves": 1,
+      "independent_review_waves": 1,
+      "repair_passes_max": 1,
+      "integrated_repair_passes_used": 1
+    },
+    "team": {
+      "implementation": "rust_beast_mode /root/bounded_output",
+      "configured_writer_model_effort": "gpt-6.1-sol/medium",
+      "writer_sandbox": "workspace-write",
+      "reviewer": "rust_reviewer /root/feasibility_review",
+      "configured_reviewer_model_effort": "gpt-6.1-sol/high",
+      "reviewer_read_only": "behavioral under inherited workspace-write",
+      "serving_identity": "UNVERIFIED",
+      "parent": "contract/integration/independent graders",
+      "maximum_depth": 1,
+      "writer_count": 1,
+      "review_runs": 1
+    },
+    "checks": {
+      "initial_runtime_RED": "PASS_8_failures_exit101_before_implementation",
+      "final_contracts": "PASS_10_output_and8_process_each_mode",
+      "review": "MISS_counter_overlap_then_one_verified_repair",
+      "review_runtime_RED": "PASS_67104768_truncated_instead_of0_before_repair",
+      "full_default": "PASS_1133_failed0_preexisting_ignored1",
+      "full_engine": "PASS_912_failed0_preexisting_ignored1",
+      "strict_clippy_formats_helper": "PASS_both_modes_and_manifests",
+      "normal_boundaries": "PASS_TUI_and_Desktop_lock_subtrees_31_negative_self_tests",
+      "normal_package": "PASS_locked_offline_normal_verify_96_exact_sources_packaged_engine_check",
+      "root_npm_checkout": "MISS_ignored_Cargo_cache_workflow_secret_pattern",
+      "root_npm_source_snapshot_restricted": "MISS_32_CLI_checks_direct_probe_EPERM",
+      "root_npm_source_snapshot_tool_approved": "PASS_exit0_no_scanner_changes",
+      "checkout_exporter_control": "PASS_later_exit0_transient_restriction_not_claimed_fixed",
+      "spec_integrity_graph": "PASS_structural_AST_only",
+      "coverage": "UNVERIFIED",
+      "native_descendant_redaction_UI_audit_full_tasks": "UNVERIFIED"
+    },
+    "artifacts": "tools/vfa-tui/target/output-budget-wave/final-results.json"
   }
 }

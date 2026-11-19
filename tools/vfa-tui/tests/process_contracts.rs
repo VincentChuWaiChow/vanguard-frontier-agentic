@@ -7,7 +7,7 @@ use std::time::Duration;
 
 use serde_json::{json, Value};
 use tempfile::TempDir;
-use tokio::io::{AsyncBufReadExt, AsyncWriteExt, BufReader};
+use tokio::io::{AsyncBufReadExt, AsyncReadExt, AsyncWriteExt, BufReader};
 use vfa_tui::subprocess::program::{ProgramError, ProgramSpec};
 use vfa_tui::subprocess::{SubprocessExecutor, SubprocessHandle};
 
@@ -219,6 +219,150 @@ async fn controlled_stdin_gate_proves_delay_and_child_is_reaped() {
     assert_eq!(released, "RELEASED");
     assert_eq!(code, 23);
     assert!(child.try_wait().unwrap().is_some());
+}
+
+// This driver deliberately bypasses legacy line queues: these tests establish
+// the finite fixture contract, not reader ownership or bounded-output semantics.
+async fn finite_helper_output(helper: &Helper, arguments: &[&str]) -> (u32, i32, Vec<u8>, Vec<u8>) {
+    let spec = helper.spec(arguments.iter().map(OsString::from).collect(), Vec::new());
+    let mut command = spec.command().unwrap();
+    command.stdout(Stdio::piped()).stderr(Stdio::piped());
+    let mut child = tokio::process::Command::from(command).spawn().unwrap();
+    let pid = child.id().unwrap();
+    let mut stdout = child.stdout.take().unwrap();
+    let mut stderr = child.stderr.take().unwrap();
+    let mut out = Vec::new();
+    let mut err = Vec::new();
+    let result = tokio::time::timeout(Duration::from_secs(10), async {
+        tokio::try_join!(
+            stdout.read_to_end(&mut out),
+            stderr.read_to_end(&mut err),
+            child.wait(),
+        )
+    })
+    .await;
+    if !matches!(&result, Ok(Ok(_))) {
+        let _ = child.kill().await;
+        child
+            .wait()
+            .await
+            .expect("failed fixture must still be reaped");
+    }
+    let (_, _, status) = result
+        .expect("finite helper must complete within the observation bound")
+        .expect("finite fixture reads and wait must succeed");
+    assert!(child.try_wait().unwrap().is_some());
+    (
+        pid,
+        status.code().expect("fixture must exit normally"),
+        out,
+        err,
+    )
+}
+
+#[tokio::test]
+async fn controlled_tree_observes_every_join_before_parent_exit() {
+    let helper = Helper::compile();
+    for depth in [0, 2, 3] {
+        for code in [0, 37] {
+            let (pid, status, stdout, stderr) =
+                finite_helper_output(&helper, &["tree", &depth.to_string(), &code.to_string()])
+                    .await;
+            assert_eq!(
+                status,
+                code,
+                "helper stderr: {}",
+                String::from_utf8_lossy(&stderr)
+            );
+            assert!(stderr.is_empty());
+            let records: Vec<Value> = std::str::from_utf8(&stdout)
+                .unwrap()
+                .lines()
+                .map(|line| serde_json::from_str(line).unwrap())
+                .collect();
+            assert_eq!(records.len(), (4 * depth + 2) as usize);
+            let starts: Vec<_> = records.iter().filter(|r| r["event"] == "started").collect();
+            assert_eq!(starts.len(), (depth + 1) as usize);
+            let pids: std::collections::HashSet<_> =
+                starts.iter().map(|r| r["pid"].as_u64().unwrap()).collect();
+            assert_eq!(
+                pids.len(),
+                starts.len(),
+                "each level must be a real distinct process"
+            );
+            assert!(!pids.contains(&u64::from(std::process::id())));
+            assert_eq!(
+                records.first().unwrap(),
+                &json!({"event":"started","pid":pid,"depth":depth})
+            );
+            assert_eq!(
+                records.last().unwrap(),
+                &json!({"event":"exiting","pid":pid,"depth":depth,"code":code})
+            );
+            for level in 0..=depth {
+                let start = starts.iter().find(|r| r["depth"] == level).unwrap();
+                let id = start["pid"].as_u64().unwrap();
+                let own: Vec<_> = records
+                    .iter()
+                    .enumerate()
+                    .filter(|(_, r)| r["pid"] == id)
+                    .collect();
+                assert_eq!(own.len(), if level == 0 { 2 } else { 4 });
+                assert_eq!(own[0].1, &json!({"event":"started","pid":id,"depth":level}));
+                assert_eq!(
+                    own.last().unwrap().1,
+                    &json!({"event":"exiting","pid":id,"depth":level,"code":code})
+                );
+                if level > 0 {
+                    let child = starts.iter().find(|r| r["depth"] == level - 1).unwrap();
+                    let child_id = child["pid"].as_u64().unwrap();
+                    assert_eq!(
+                        own[1].1,
+                        &json!({"event":"spawned","pid":id,"depth":level,"child":child_id})
+                    );
+                    assert_eq!(
+                        own[2].1,
+                        &json!({"event":"joined","pid":id,"depth":level,"child":child_id,"code":code})
+                    );
+                    let child_exit = records
+                        .iter()
+                        .position(|r| r["event"] == "exiting" && r["pid"] == child_id)
+                        .unwrap();
+                    assert!(
+                        child_exit < own[2].0,
+                        "parent JOINED must follow child's terminal record"
+                    );
+                }
+            }
+        }
+    }
+}
+
+#[tokio::test]
+async fn controlled_tree_rejects_invalid_inputs_before_any_tree_starts() {
+    let helper = Helper::compile();
+    for arguments in [
+        vec!["tree"],
+        vec!["tree", "2"],
+        vec!["tree", "4", "0"],
+        vec!["tree", "-1", "0"],
+        vec!["tree", "invalid", "0"],
+        vec!["tree", "256", "0"],
+        vec!["tree", "2", "256"],
+        vec!["tree", "2", "-1"],
+        vec!["tree", "2", "invalid"],
+        vec!["tree", "2", "0", "extra"],
+    ] {
+        let (_, status, stdout, stderr) = finite_helper_output(&helper, &arguments).await;
+        assert_eq!(status, 64);
+        assert!(
+            stdout.is_empty(),
+            "invalid tree input must not start a process tree"
+        );
+        assert!(std::str::from_utf8(&stderr)
+            .unwrap()
+            .starts_with("controlled process helper:"));
+    }
 }
 
 #[test]

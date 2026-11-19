@@ -51,6 +51,7 @@ pub enum Provider {
     Sigstore,
     Snowflake,
     Velero,
+    Sap,
 }
 
 impl std::fmt::Display for Provider {

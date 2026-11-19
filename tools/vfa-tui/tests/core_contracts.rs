@@ -38,3 +38,8 @@ fn malformed_collection_preserves_other_collections_and_reload_retains_last_good
 fn missing_catalog_file_is_an_error_not_a_healthy_empty_collection() -> TestResult {
     engine_cases::missing_catalog_file_is_an_error_not_a_healthy_empty_collection(&fixtures())
 }
+
+#[test]
+fn provider_catalog_sap_roundtrip_preserves_strict_unknown_rejection() -> TestResult {
+    engine_cases::provider_catalog_sap_roundtrip_preserves_strict_unknown_rejection()
+}

@@ -351,3 +351,266 @@ Exact grader commands/results are in the two lazy task evaluations. Final npm
 dry-run includes the exporter and excludes private build/evidence artifacts.
 Slow-pipe observations are local bounded timing evidence, not every interleaving.
 Scope is READY FOR REVIEW; the overall native feature remains unverified.
+
+## Current request: task5.2 Rust consumer preparation
+
+Status: READY FOR REVIEW for the isolated parser, not full task5.2 or native
+feature acceptance. Detailed RED/GREEN, guarantees, exact commands and gaps:
+`.kiro/specs/gpui-desktop/evals/task-5.2-consumer.md`. The supplied tasks.mda path
+does not exist; the existing tasks.md remains the source plan.
+
+Parent implemented/integrated the parser and independently verified it. One
+reused rust_reviewer performed discovery and review (configured/live role
+gpt-6.1-sol/high, read-only default; serving identity UNVERIFIED; inherited
+workspace-write, so the read-only assignment was behavioral). Two worker turns,
+one bounded repair. No parallel writer or separate run root was needed.
+
+Changed files for this request:
+
+- tools/vfa-tui/src/engine/export_protocol.rs
+- tools/vfa-tui/src/engine/mod.rs
+- tools/vfa-tui/tests/export_protocol.rs
+- .kiro/specs/gpui-desktop/evals/task-5.2-consumer.md
+- .kiro/specs/gpui-desktop/evals.md
+- .kiro/specs/gpui-desktop/tasks.md
+- .workflow/ultracode/gpui-desktop/eval-contract.md
+- .workflow/ultracode/gpui-desktop/plan.md
+- .workflow/ultracode/gpui-desktop/state.json
+- .workflow/ultracode/gpui-desktop/final-report.md
+
+Criteria: PASS intended missing-module RED and actual-Node filename regression
+RED, then15 parser tests per feature mode GREEN; PASS60/59 focused contracts,
+strict clippy both modes and fmt; PASS30 existing Node cases; PASS exact fresh
+17/11 full-library baseline identity comparison (the full-library gates themselves
+remain MISS). Spec structural self-tests pass. Final npm run validate, integrity
+verification, local links/state/scope assertions and whitespace checks pass.
+Graphify AST update exits0; HTML visualization exceeds its node limit and is not
+native visual evidence. Exact ten-file scope and frozen input/lock/producer bytes
+are preserved; detailed housekeeping evidence is in the task report/state.
+
+Context7 primary Serde JSON guidance informed strict from_slice/schema validation.
+No exporter, dependency, lockfile, approved requirements/design, configuration,
+UI or process/journal code changed. No global installs, commits, push or remote
+CI. Only unchanged locked dependencies were restored to an ignored project-local
+Cargo home after the previous temporary cache disappeared. Raw local evidence
+and source hashes are under tools/vfa-tui/target/export-consumer-wave/.
+
+Remaining risk: coverage percentage/80-percent threshold, shared raw-output
+budget, process stop/drain, redaction, trust/single-use authorization, durable
+journaling and native/Desktop integration remain UNVERIFIED. All full-task
+dependencies/checkboxes are preserved. Another implementation wave requires
+fresh approval; no claim of measured token or cost savings (usage unknown).
+
+## Approved task3.1 wave: identity milestone, not final preparation completion
+
+The user approved task3.1 engine preparation. New files:
+tools/vfa-tui/src/engine/session.rs and tools/vfa-tui/tests/session_contracts.rs;
+engine/mod.rs adds the session export without altering the prior parser export.
+Existing task/eval/workflow records record this separate wave; previous parser
+code/tests remain byte-identical.
+
+PASS intended compile-time RED, then five source identity contracts in each
+feature mode. Combined focused contracts pass65/64; strict clippy both modes
+and fmt exit0. Exact selected roots, native Unix identity with retained directory
+handles, independent collection health, aliases/replacement, non-UTF8 paths and
+bounded regular marker reads are exercised. No Windows/macOS native claim.
+
+Parent implemented the milestone; reused rust_reviewer discovery (configured
+gpt-6.1-sol/high, serving identity UNVERIFIED) identified the separate-read
+parse/hash defect and unstable Windows std file-ID APIs. Final wave review has
+not run and the one repair budget is unconsumed. No writer fan-out needed.
+
+At that milestone, snapshot provenance was blocked by CatalogStore's separate
+parse/hash reads. The subsequently approved two-file extension and completion
+evidence are recorded below. This historical milestone did not claim completion
+of snapshot/operation coordination or final aggregate verification.
+No installs, dependency/lock changes, helper execution, commits or pushes.
+
+## Task3.1 engine preparation: final scoped handoff
+
+Status: READY FOR REVIEW, with regression limits; full task3.1 remains unchecked.
+User explicitly approved the loader/store consistency extension. Parent owns all
+integration; one reused Rust reviewer (configured/live role gpt-6.1-sol/high,
+serving identity UNVERIFIED, read-only assignment behavioral under inherited
+workspace-write) performed discovery and final challenge. One repair, no second
+writer/review wave. This was the smallest route for coupled shared parsers and
+session ownership; token usage remains unknown.
+
+Production/test paths for this task:
+
+- tools/vfa-tui/src/catalog/loader.rs
+- tools/vfa-tui/src/catalog/store.rs
+- tools/vfa-tui/src/engine/mod.rs
+- tools/vfa-tui/src/engine/session.rs
+- tools/vfa-tui/src/engine/snapshot.rs
+- tools/vfa-tui/tests/session_contracts.rs
+
+Evidence paths: .kiro/specs/gpui-desktop/evals/task-3.1.md, evals.md and tasks.md;
+the existing .workflow/ultracode/gpui-desktop/{plan.md,state.json,final-report.md}.
+Previous parser additions are preserved. Exact cumulative scope/hashes are in
+tools/vfa-tui/target/session-preparation-wave/final-results.json (ignored).
+
+PASS intended captured-constructor and snapshot/session RED, then GREEN. Actual
+read-mutate fixtures prove one captured observation per catalog supplies both
+parsing and hashes. Independent quality/duplicate checks and immutable Arc data
+reuse existing shared models. Context/session epochs and bounded opaque operation
+state prevent replacement while queued/running/cancelling, without observer-drop
+cleanup assertions. Native Windows identity fails explicitly, never path fallback.
+
+Reviewer found FIFO selection could block before directory validation; parent
+reproduced real timeout RED with explicit kill/reap and applied the one Unix
+directory-open flag repair. New session target passes19 tests per mode under the
+ordinary parallel harness. Serial focused regressions pass79/78; strict clippy
+both modes, fmt and new immutability compile-fail doctest pass. One existing
+ignored MockRunner doctest remains ignored. npm run validate exits0.
+
+MISS full-library baseline gates: exact same17/11 failures, with737/560 passes
+including two added capture unit tests. MISS one parallel focused attempt in
+unchanged profile ownership code/test (child Busy); exact isolated and full serial
+checks pass. Parallel stability/root cause are UNVERIFIED, not an asserted known
+baseline flake. Failed evidence is retained; no unapproved profile repair.
+
+PASS preserved reload body, public legacy entry points, existing parser bytes,
+all manifests/locks, Node producer and frozen requirements/design. Final spec,
+integrity, graph and exact-scope housekeeping are indexed by the task evaluation.
+No installation, dependency change, helper/network execution during browse,
+commit, push or remote CI. Parent reran graders independently; worker conclusions
+alone are not verification.
+
+Remaining UNVERIFIED: coverage/80-percent threshold, parallel-profile stability,
+other native platforms and Desktop lock-graph behavior, UI/runtime/freshness
+adapters, actual trust/preview invalidation, real job cleanup and durable journal
+admission. Per-file captured hashes are not a multi-file transaction or malicious
+same-user race defense. Do not start another implementation wave without approval.
+
+### Conditional task3.1 delivery request
+
+User now authorizes commit/push only after task3.1 is marked and verified done.
+Current audit confirms engine preparation remains only a subset: prerequisites
+1.5/2.1 and task3.1 remain unchecked, Windows native identity is unsupported, and
+recorded non-green/unverified gates remain. Task3.1 code/test hashes still match
+the verification artifacts. No stage/commit/push occurred; do not mark the task
+done to satisfy the publication condition. Future delivery must isolate mixed
+task3.1/task5.2 module/evidence edits and verify the exact committed snapshot.
+
+## Resumed task3.1 validation closure: local suites now green
+
+Status: READY FOR REVIEW for catalog compatibility; full task3.1 remains pending.
+User resumed the goal and requested continued work. Parent addressed the concrete
+shared-model/catalog mismatch: a single appended Sap variant in
+tools/vfa-tui/src/models/provider.rs, no unknown-provider fallback. New shared
+regression lives in tools/vfa-tui/tests/support/engine_cases.rs with identical
+TUI core_contracts.rs and Desktop engine_contracts.rs wrappers. The real-checkout
+case in tools/vfa-tui/tests/session_contracts.rs independently checks all IDs,
+counts and every SAP agent/skill in CURRENT snapshots. No catalog/fixture changes.
+
+Both new regressions were executed RED before the enum edit and GREEN afterward.
+One reused Rust reviewer (configured/live role gpt-6.1-sol/high, serving identity
+UNVERIFIED) found no blockers; parent ran the actual graders. No writer fan-out
+or production repair needed. Full ordinary parallel Cargo suites now exit0:
+1121 passed default,900 engine-only, zero failed, one pre-existing ignored
+MockRunner doctest each. Library tests754/571 are fully green: the prior17/11
+failures are resolved, not waived. Historical profile-test intermittency is not
+claimed fixed; that unchanged target passes in both current full runs.
+
+Strict clippy both modes, both manifest fmt checks and npm run validate pass.
+Normal engine dependency boundaries pass under both consumer lock graphs, plus
+31 engine self-tests. Restoring unchanged locked SDK cache material under ignored
+project storage also allows actual compiler/archive/VCS/normal-feature bootstrap
+verification and18 negative mutants to pass. No global package/tool installation.
+
+Actual Desktop engine-contract compilation was attempted, with2 build jobs and
+the Desktop target, and exits101 in yeslogic-fontconfig-sys because pkg-config
+is missing. No native tests ran. Host native headers/build prerequisites are
+absent; Windows identity/full foreground/process prerequisites remain pending.
+No task checkbox, publication condition or native PASS is inferred from local
+green tests. No staging, commit, push or remote CI occurred.
+
+Current exact commands/evidence: .kiro/specs/gpui-desktop/evals/task-3.1-catalog-compatibility.md.
+Current raw logs/hashes: tools/vfa-tui/target/session-preparation-wave/catalog-compatibility/.
+Older task3.1 reports/hashes are historical milestones, not the current failure
+state. Coverage and full/native readiness remain UNVERIFIED. This minimal data
+contract fix plus one read-only reviewer was sufficient; usage is unknown.
+
+
+## No-install continuation: finite joined process-tree fixture
+
+Status: READY FOR REVIEW for the fixture; full task2.1/3.1 and native gates pending.
+User declined installs. The existing task2.1 eval explicitly permits finite fully
+joined self-spawn trees. Parent changed only tools/vfa-tui/tests/support/process_helper.rs
+and tools/vfa-tui/tests/process_contracts.rs, plus spec/workflow evidence. No
+production/backends/dependency changes. The helper validates depth/exit before
+spawning, limits the chain to three descendant edges, uses native current_exe
+argv and waits each owned Child even after a spawned-record write error.
+Tests check exact ancestry/PIDs, joined ordering, actual exit0/37, depth0/2/3
+and ten invalid-input classes; failure observation kills/waits the direct child.
+This is not native descendant cancellation or closed-output fault acceptance.
+
+Actual positive runtime RED was exit64/unknown helper mode before implementation;
+GREEN is eight process contracts each mode. Full ordinary parallel suites now
+pass1123 default and902 engine-only, zero failed, one pre-existing ignored
+doctest each. Both strict clippy modes, both crate formats, explicit helper
+format/warnings, structural spec, integrity, graph and source-preservation checks
+pass. No helper Cargo target or manifest changes. Reused Rust reviewer, configured
+gpt-6.1-sol/high/read-only, found no blockers; effective sandbox inherited,
+serving identity unverified. Parent ran graders; zero production repairs.
+
+Exact commands/criteria: .kiro/specs/gpui-desktop/evals/task-2.1-finite-tree.md.
+Raw logs/hashes: tools/vfa-tui/target/finite-tree-wave/.
+No install, staging, commit, push or full task checkoff. The user's full3.1
+publication condition remains unmet. Two test-only source files plus one existing
+reviewer was the smallest capable route. Usage/coverage/native portability unknown.
+
+## Next-action audit: no unblocked full task without host setup
+
+Current task-DAG audit:44 full tasks,6 marked complete, only1.4 dependency-ready.
+Current pkg-config/pkgconf/cmake/clang/ninja and native header checks remain
+negative; user explicitly cannot install. No build or installation was restarted.
+A reused Rust source reviewer confirmed the next meaningful no-install candidate
+is a newly admitted2.4 engine-output wave: additive real bounded readers/drain,
+protocol-before-display and separate reliable status, not isolated primitives.
+A single async scope question is pending. No new implementation was started.
+Team: parent deterministic audit; configured Rust reviewer6.1-sol/high, serving
+identity unverified. Existing source bytes, task dependencies and Git hold remain.
+Full3.1 is not complete; task checkboxes/conditional publication stay unchanged.
+
+## Blocked audit threshold reached
+
+Three consecutive observations confirm the same external gate: full ready1.4
+requires absent native prerequisites, installation was declined, and the next
+meaningful no-install2.4 wave has not been admitted. Last two turns made no
+implementation progress; a pending conversation is not a live-process wait.
+Current tool/header/DAG/source-hash checks agree; reviewer is terminal and no
+build was restarted. Request goal status BLOCKED, not complete. Resume requires
+the existing scope-question answer or a native-capable environment. Full3.1
+remains unchecked; no installs, staging, commit or push.
+
+## Approved2.4 engine-output preparation verified
+
+Status: READY FOR REVIEW, engine preparation only. New subprocess/bounded.rs,
+additive executor/mod wiring, output_budget.rs and finite helper modes provide
+real dual-pipe byte capture, shared8MiB conservative reservation, retained record
+permits, UTF8-safe loss, raw protocol/effect retention and separate repeatable
+terminal completion. Existing capture/helper modes and every unrelated source
+byte remain preserved. Raw records are internal/unredacted; root stop is not
+native descendant cleanup. Full2.4/3.1 and their dependencies remain unchecked.
+
+Initial executable RED8 failures; GREEN9. One configured Rust reviewer found
+counter overlap; one surgical repair was driven by a new failing closed-output
+regression. Final10 contracts pass both modes. Parent full suites pass1133 default
+and912 engine-only,0 failures,1 pre-existing ignored doctest each. Strict lint,
+formats/helper warning check, both normal lock-graph boundaries,31 boundary
+mutants, normal package verification and all96 archived Rust sources pass.
+
+Root npm checkout scan still flags ignored vendored Cargo-cache YAML. Exact
+intended-source snapshot passes all npm gates on tool-approved outside-sandbox
+rerun after an EPERM probe; restricted snapshot failures and subsequent passing
+checkout exporter control are retained, not waived. No validator/source changes.
+Coverage, native foreground/cleanup and restriction stability remain unverified.
+
+Team: one rust_beast_mode writer configured6.1-sol/medium/workspace-write; reused
+rust_reviewer configured6.1-sol/high/read-only, effective inherited workspace-write
+with behavioral read-only assignment. Serving identity/usage unknown. Parent ran
+all independent graders. One repair, no extra review or fan-out. Exact criteria,
+commands and risk: .kiro/specs/gpui-desktop/evals/task-2.4.md. Raw artifacts:
+tools/vfa-tui/target/output-budget-wave/. No installs, staging, commit or push.

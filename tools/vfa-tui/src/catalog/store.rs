@@ -68,34 +68,66 @@ fn sha256_hex(bytes: &[u8]) -> String {
     format!("{:x}", hasher.finalize())
 }
 
-/// Compute SHA-256 hex digest of a file on disk; returns None on I/O error.
-fn hash_file(path: &Path) -> Option<String> {
-    let bytes = std::fs::read(path).ok()?;
-    Some(sha256_hex(&bytes))
-}
-
 impl CatalogStore {
     /// Load all catalog files from the workspace root.
     /// Sorts agents, skills, mcp_refs, and rules by ID (case-insensitive).
     pub fn load(workspace_root: &Path) -> Self {
+        Self::load_with_reader(workspace_root, loader::read_catalog_bytes)
+    }
+
+    /// Hash and parse each owned observation once. The reader is crate-private:
+    /// Desktop can supply bounded checked input without a second domain parser.
+    pub(crate) fn load_with_reader(
+        workspace_root: &Path,
+        mut reader: impl FnMut(&Path) -> Result<Vec<u8>, TuiError>,
+    ) -> Self {
         let mut load_errors = Vec::new();
+        let catalog_dir = workspace_root.join("catalog");
+        let mut content_hashes = HashMap::new();
+        let mut capture = |name: &str| {
+            let path = catalog_dir.join(name);
+            let bytes = reader(&path)?;
+            if bytes.len() as u64 > loader::MAX_CATALOG_FILE_SIZE {
+                return Err(TuiError::CatalogParse {
+                    path: path.display().to_string(),
+                    offset: 0,
+                    detail: "file too large: exceeds maximum catalog size".into(),
+                });
+            }
+            content_hashes.insert(path.clone(), sha256_hex(&bytes));
+            String::from_utf8(bytes).map_err(|_| TuiError::CatalogNotFound {
+                path: path.display().to_string(),
+            })
+        };
 
-        let (mut agents, errs) = loader::load_agents(workspace_root);
+        let (mut agents, errs) =
+            loader::parse_agents(&catalog_dir.join("agents.json"), capture("agents.json"));
         load_errors.extend(errs);
 
-        let (mut skills, errs) = loader::load_skills(workspace_root);
+        let (mut skills, errs) =
+            loader::parse_skills(&catalog_dir.join("skills.json"), capture("skills.json"));
         load_errors.extend(errs);
 
-        let (mut mcp_refs, errs) = loader::load_mcp_refs(workspace_root);
+        let (mut mcp_refs, errs) = loader::parse_mcp_refs(
+            &catalog_dir.join("mcp-references.json"),
+            capture("mcp-references.json"),
+        );
         load_errors.extend(errs);
 
-        let (mut rules, errs) = loader::load_rules(workspace_root);
+        let (mut rules, errs) =
+            loader::parse_rules(&catalog_dir.join("rules.json"), capture("rules.json"));
         load_errors.extend(errs);
 
-        let (role_catalog, errs) = loader::load_roles(workspace_root);
+        let (role_catalog, errs) = loader::parse_roles(
+            &catalog_dir.join("install-roles.json"),
+            capture("install-roles.json"),
+        );
         load_errors.extend(errs);
 
-        let (integrity, errs) = loader::load_integrity(workspace_root);
+        let (integrity, errs) = loader::parse_integrity(
+            &catalog_dir.join("asset-integrity.json"),
+            capture("asset-integrity.json"),
+        );
         load_errors.extend(errs);
 
         // Sort by ID, case-insensitive
@@ -108,23 +140,6 @@ impl CatalogStore {
             Some(rc) => (rc.roles, rc.version, rc.description),
             None => (HashMap::new(), String::new(), String::new()),
         };
-
-        // Build content hashes for the catalog JSON files
-        let catalog_dir = workspace_root.join("catalog");
-        let mut content_hashes = HashMap::new();
-        for filename in &[
-            "agents.json",
-            "skills.json",
-            "mcp-references.json",
-            "rules.json",
-            "install-roles.json",
-            "asset-integrity.json",
-        ] {
-            let path = catalog_dir.join(filename);
-            if let Some(hash) = hash_file(&path) {
-                content_hashes.insert(path, hash);
-            }
-        }
 
         CatalogStore {
             agents,
@@ -583,6 +598,70 @@ impl CatalogStore {
 mod tests {
     use super::*;
     use std::path::Path;
+
+    #[test]
+    fn initial_load_hashes_exactly_the_captured_bytes_once_per_catalog() {
+        let temp = tempfile::tempdir().unwrap();
+        let catalog = temp.path().join("catalog");
+        std::fs::create_dir(&catalog).unwrap();
+        let fixture =
+            Path::new(env!("CARGO_MANIFEST_DIR")).join("tests/fixtures/compatibility/core/catalog");
+        let mut originals = HashMap::new();
+        for entry in std::fs::read_dir(fixture).unwrap() {
+            let entry = entry.unwrap();
+            let path = catalog.join(entry.file_name());
+            let bytes = std::fs::read(entry.path()).unwrap();
+            std::fs::write(&path, &bytes).unwrap();
+            originals.insert(path, bytes);
+        }
+        let mut calls = HashMap::new();
+        let store = CatalogStore::load_with_reader(temp.path(), |path| {
+            *calls.entry(path.to_path_buf()).or_insert(0) += 1;
+            let bytes = std::fs::read(path).unwrap();
+            // Deterministically replace disk bytes BEFORE parsing/hash creation.
+            std::fs::write(path, b"null").unwrap();
+            Ok(bytes)
+        });
+        assert!(store.load_errors.is_empty(), "{:?}", store.load_errors);
+        assert_eq!(
+            store
+                .agents
+                .iter()
+                .map(|a| a.id.as_str())
+                .collect::<Vec<_>>(),
+            ["alpha-agent", "Beta-agent", "zeta-agent"]
+        );
+        assert_eq!(calls.len(), 6);
+        for (path, bytes) in originals {
+            assert_eq!(calls[&path], 1);
+            assert_eq!(
+                store.content_hashes[&path],
+                format!("{:x}", Sha256::digest(&bytes))
+            );
+            assert_ne!(
+                store.content_hashes[&path],
+                format!("{:x}", Sha256::digest(b"null"))
+            );
+        }
+    }
+
+    #[test]
+    fn captured_reader_failure_and_oversize_are_not_healthy_empty_inputs() {
+        let root = Path::new("/not-read-from-disk");
+        let store = CatalogStore::load_with_reader(root, |path| {
+            if path.ends_with("agents.json") {
+                Ok(vec![b' '; 20 * 1024 * 1024 + 1])
+            } else {
+                Err(TuiError::CatalogNotFound {
+                    path: path.display().to_string(),
+                })
+            }
+        });
+        assert!(store.agents.is_empty());
+        assert_eq!(store.load_errors.len(), 6);
+        assert!(store.content_hashes.is_empty());
+        assert!(store.load_errors.iter().any(|error| matches!(error, TuiError::CatalogParse { detail, .. } if detail.contains("too large"))));
+    }
 
     fn workspace_root() -> &'static Path {
         let manifest_dir = env!("CARGO_MANIFEST_DIR");

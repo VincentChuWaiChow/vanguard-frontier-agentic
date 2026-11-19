@@ -329,3 +329,183 @@ actual64MiB rendering above the source limit. New29-case exporter gate runs in
 full root validation (exit0); combined planner/apply/notices run passes30. Existing
 full Rust17/11 failures stay non-green. Commit this producer and covered generated
 metadata separately, then stop; no native, consumer/journal completion or push.
+
+## Current request: Rust consumer preparation
+
+The user requested executable tasks with Ultracode, Codex Agent Teams, TDD and
+Context7. Admit only task5.2 parser preparation under the new eval-contract.md;
+preserve every full-task dependency and checkbox. Parent implements tests first,
+observes missing-module RED, adds the isolated parser, independently runs GREEN
+and regression graders, then requests one Rust review follow-up. One repair
+maximum. No installation, configuration/dependency change, commit or push.
+
+Runtime route: `rust_reviewer`, live role declaration gpt-6.1-sol/high, disk schema
+checked-fields-valid/read-only default; effective inherited sandbox workspace-write
+so read-only assignment is behavioral, not isolation. Serving model/effort cannot
+be independently attested. Parent model/profile/authentication are UNVERIFIED.
+Use existing Context7 read-only resolve/query tools, no setup or login. Available
+offline rust_beast_mode candidate has incomplete schema and is not selected.
+
+Execution evidence: intended missing-module RED confirmed after restoring the
+unchanged locked Cargo cache locally. Fresh full-library baselines reproduce
+exact17/11 failures. First14 parser contracts passed; reviewer identified an
+overrestrictive filename check. A real-Node colon/backslash/newline companion
+fixture reproduced InvalidPlan RED after actual successful apply. The single
+repair narrows only structural path checks; all15 parser tests now pass in both
+modes. Final focused suites pass60/59, strict clippy/fmt pass and both full-library
+failure identity sets remain unchanged. Node producer/planner/notices pass30.
+Coverage tooling is absent; the80-percent threshold remains UNVERIFIED. Do not
+start another implementation/review wave without a fresh approval checkpoint.
+
+Final repository validation exits0, as do asset-integrity verification, spec
+self-tests, local links/state/scope assertions and whitespace checks. Graphify
+AST update exits0 (HTML visualization unavailable due to size). Final handoff
+is READY FOR REVIEW for this bounded slice, not whole-feature completion.
+
+## Next-wave discovery: awaiting approval
+
+Fresh inspection confirms pkg-config/native build tools and LLVM coverage tools
+are still absent. Do not retry sudo, install packages or claim native task1.4
+is executable. No implementation or review worker is running.
+
+Candidate next scope: task3.1 engine-only source/session/snapshot preparation in
+src/engine/session.rs, src/engine/snapshot.rs, src/engine/mod.rs and
+tests/session_contracts.rs under tools/vfa-tui, plus existing scoped evidence.
+Reuse CatalogStore/loader; preserve exact-root selection (no upward/CWD fallback),
+native identity, immutable snapshots, source epochs, named collection failures,
+duplicate-ID rejection and a nonterminal-operation source-switch guard. No
+helper/target writes/network during browse. Test fixtures supply independent
+oracles and prove rejected switches preserve the old context.
+
+Complexity remains provisional B: native identity portability and the operation
+state boundary need explicit invariants before implementation. Full task3.1
+dependencies remain pending; any new slice must be admitted explicitly, not
+silently treated as dependency completion. No files in this candidate scope
+have been created or edited. Ask for this specific next wave before coding.
+
+## Approved task3.1 engine-preparation wave
+
+User approved the specific task3.1 engine-preparation question. Supersede the
+next-wave approval impasse; do not treat that approval as permission for installs,
+commits or full native task completion. Parent owns code/tests/integration;
+reuse the existing Rust reviewer for discovery and one final challenge pass.
+One implementation wave and one repair maximum; timebox45minutes then report
+remaining blockers rather than repeatedly widening scope. Checks/owned paths:
+`.kiro/specs/gpui-desktop/evals/task-3.1.md` (defined before production edits).
+
+Context7/installed std docs confirm Unix dev/ino and Windows file-ID methods'
+unstable status. Fail unsupported identity backends explicitly. Discovery also
+found parse/hash rereads in CatalogStore; a separate two-file loader/store
+consistency approval question is pending. Do not claim same-byte snapshot
+provenance or edit those additional paths until that boundary is resolved.
+
+Identity milestone: intended missing-session-module RED (exit101) preceded new
+SourceIdentity production code. Five Unix contracts now pass in each feature
+mode; combined focused tests pass65/64, strict clippy both modes and fmt pass.
+Only engine/session.rs, additive engine/mod.rs export and session_contracts.rs
+were changed in production/tests. Prior parser bytes are preserved. The shared
+loader/store parse/hash consistency fix remains unapproved and untouched; do
+not replace that guarantee with timestamp/bracketing checks. Snapshot/session
+coordination and final wave review/aggregate validation remain pending.
+
+User approved the exact two-file catalog loader/store consistency extension.
+Continue this same wave: RED captured-byte constructor contract, shared parser/
+reader extraction preserving legacy entry points, then RED snapshot/session
+contracts and the smallest implementation. Session owns immutable Arc snapshots,
+context epochs and bounded opaque operation state; no caller-supplied busy flag
+or observer-drop cleanup. Existing journal OperationStatus is reused. Run full
+defined regressions and the one final reviewer follow-up; one repair maximum.
+
+Task3.1 candidate passed captured-byte and snapshot/session RED/GREEN. The final
+review found a blocking FIFO root open; parent reproduced it in a bounded child,
+killed/reaped the child and applied the one Unix directory-open flag repair.
+All19 session tests pass in each mode. Serial focused regressions pass79/78;
+strict clippy/fmt and immutability compile-fail doctest pass. Full-library failures
+remain exactly17/11 (two additional capture unit cases pass). Root npm validation
+exits0. One unchanged profile test failed once in a parallel focused attempt;
+isolated/serial checks pass, but parallel stability/root cause remain UNVERIFIED.
+Do not hide that miss or change profile code without new scope approval. Final
+handoff/evidence housekeeping closes this wave; no further worker/repair wave.
+
+Final housekeeping passes: structural spec self-tests, read-only integrity,
+links/state/whitespace, exact16-file cumulative scope and final AST graph update.
+Reload/profile/previous parser/locks/producer/frozen inputs are unchanged where
+forbidden. Task3.1 engine preparation is READY FOR REVIEW with the recorded
+baseline/parallel-profile/coverage/native limits, not full-task completion.
+
+Conditional delivery request received: commit and push only when task3.1 is
+marked and verified done. Current source/test bytes match the verified snapshot,
+but full prerequisites1.5/2.1, Windows identity and non-green/unverified gates
+prevent checking off the full task. Record authorization, do not stage or push.
+Future delivery must isolate task3.1 from earlier uncommitted task5.2 changes and
+verify the exact staged/committed tree, outgoing history, branch and remote.
+
+## Explicit resumed-work wave: task3.1 catalog compatibility closure
+
+User resumed the goal and requested focus on continuing the work. Prioritize a
+real completion blocker: canonical `sap` records are rejected by the stale shared
+Provider enum. Define RED/GREEN and scope before editing in
+evals/task-3.1-catalog-compatibility.md. Parent owns the one production enum change
+and shared/actual-catalog regressions; reuse the Rust reviewer once after GREEN.
+One implementation/review wave, one repair maximum, no system/native/dependency
+changes and no publication until the user's full-completion condition is met.
+
+Compatibility closure verified: shared/runtime real-catalog RED preceded the
+one-line Sap variant. Full ordinary parallel Cargo suites now pass1121/900 tests
+(one existing ignored doctest each), strict clippy/fmt and root npm validation
+pass. Actual agents/skills snapshots preserve every canonical ID and SAP entity.
+Reviewer found no blockers; no repair. The earlier17/11 failure sets are resolved,
+not accepted as current failures. Both consumer normal engine subtrees and live
+bootstrap source/provenance checks pass after restoring only locked SDK cache
+material. Actual Desktop engine-contract compilation exits101 at missing
+pkg-config/fontconfig. Native host setup and Windows identity/prerequisites still
+prevent full task3.1 completion; no staging, commit or push.
+
+## No-install task2.1 finite descendant fixture continuation
+
+User explicitly cannot install; continue the existing admitted helper scope, not
+a new native/backend task. Parent owns only process_helper.rs/process_contracts.rs
+and existing evidence. The pre-edit contract is evals/task-2.1-finite-tree.md.
+A reused read-only Rust reviewer confirmed this is explicitly permitted by the
+previous task2.1 eval; one implementation and one source review, zero production
+changes/repairs. No task checkbox or Git publication is authorized by fixture
+completion. Both-mode full regressions, strict lint/format, helper compile and
+source/hash/scope graders must pass before handoff.
+
+## Readiness audit after finite-fixture closure
+
+Deterministic audit of44 full task nodes finds only1.4 dependency-ready. Required
+host executables/headers are still absent; the user declined installs. Existing
+finite preparation does not authorize an unrelated backend expansion. Parent
+kept this dependency/scope audit inline; a reused Rust reviewer independently
+checked the proposed next output path against D7/current executor source.
+
+Candidate2.4 is a meaningful additive engine-output implementation with real
+chunk readers/owned drain/status and shared8MiB accounting, not unused budget
+primitives. Preserve legacy capture; protocol precedes display loss. Measure a
+real64MiB dual-pipe/unterminated fixture with slow/disconnected display and reliable
+terminal delivery. Native ownership/redaction/journal/foreground remain separate.
+One async question requests this new wave admission; no reply yet, no2.4 source
+or task-eval edits. Do not pretend an awaiting decision is a verified process wait.
+No installs, task checkoff or Git publication. Prior turn made actual progress;
+this is the first fresh blocker observation after finite-fixture completion.
+
+## Explicitly approved task2.4 engine-output wave
+
+User approved the pending no-install2.4 question. This supersedes the prior
+blocked admission audit, not the frozen task dependencies or full3.1 Git hold.
+Full pre-edit contract: evals/task-2.4.md. Parent owns scope/integration/graders;
+one configured Rust execution specialist owns bounded.rs, additive executor/mod
+wiring, output_budget.rs and additive finite helper modes. No competing writers.
+One reused Rust reviewer challenges after executable RED/GREEN; one bounded
+integrated repair maximum. No installs/dependencies/legacy capture changes,
+unsafe, UI, native ownership or commit/push. Raw budget is conservatively reserved
+capacity, not RSS or semantic plan/outcome storage. Protocol stdout stays internal
+and separate from lossy unredacted text/stderr transport. All full tasks remain
+uncompleted until their actual dependencies/native checks pass.
+
+Task2.4 wave closed as verified preparation, not full completion: one source
+review/counter repair, final10 output cases and1133/912 full suites; normal package
+and intended-source npm context are documented in evals/task-2.4.md. Preserve the
+checkout cache-scan MISS and restriction failure history. No further source wave,
+native task checkoff or Git publication is implied.

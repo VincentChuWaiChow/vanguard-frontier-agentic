@@ -24,6 +24,22 @@ const CATALOG_FILES: [&str; 6] = [
     "asset-integrity.json",
 ];
 
+/// The canonical catalog already contains SAP; unknown values must still fail.
+pub fn provider_catalog_sap_roundtrip_preserves_strict_unknown_rejection() -> TestResult {
+    for id in ["sap", "aws", "azure", "oci", "multi-cloud", "velero"] {
+        let provider: Provider = serde_json::from_value(json!(id))?;
+        assert_eq!(serde_json::to_value(provider)?, json!(id));
+        assert_eq!(provider.to_string(), id);
+    }
+    for unknown in ["not-a-provider", "SAP", "sap ", "sap/hana", "sap-cloud"] {
+        assert!(
+            serde_json::from_value::<Provider>(json!(unknown)).is_err(),
+            "{unknown}"
+        );
+    }
+    Ok(())
+}
+
 fn read_expected(path: &Path) -> Result<Value, Box<dyn Error>> {
     Ok(serde_json::from_slice(&std::fs::read(path)?)?)
 }

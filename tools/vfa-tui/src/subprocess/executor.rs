@@ -19,6 +19,15 @@ const MAX_LINE_LENGTH: usize = 4096;
 pub struct SubprocessExecutor;
 
 impl SubprocessExecutor {
+    /// Bounded engine-only capture. Records are unredacted, not UI/audit safe.
+    pub async fn spawn_bounded(
+        program: &ProgramSpec,
+        timeout: Duration,
+        protocol: super::bounded::OutputProtocol,
+    ) -> anyhow::Result<super::bounded::BoundedOutputHandle> {
+        super::bounded::spawn(program, timeout, protocol).await
+    }
+
     /// Spawn a subprocess with the given command, arguments, working directory, and timeout.
     ///
     /// The subprocess inherits a sanitized environment (secrets stripped) and captures

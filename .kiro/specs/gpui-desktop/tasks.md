@@ -1,8 +1,9 @@
 # Implementation Plan: GPUI Desktop
 
-Status: PROCESS/EXPORT PREPARATION VERIFIED; FULL NATIVE TASKS PENDING.
+Status: PROCESS/EXPORT/SESSION ENGINE PREPARATION VERIFIED; FULL NATIVE TASKS PENDING.
 Tasks 1.1-1.3, 4.1, 4.2 and 5.1 retain their scoped completion evidence;
-known full-suite baseline gates remain non-green. The user authorized preparation
+the subsequent3.1 compatibility fix clears the known17/11 library failures and
+both full local engine suites pass. Full native gates remain pending. The user authorized preparation
 that requires no installation: engine-core portions of 1.5, reusable cases for 1.6
 and static CI contracts for 8.2. These are partial slices, not dependency bypasses
 or completion of those tasks. Full dependencies below remain unchanged; task 1.4
@@ -11,6 +12,10 @@ commits are authorized; no push, installation or remote CI execution. Impeccable
 visual and portable-path constraints remain unchanged.
 The current wave separately admits typed process/helper preparation for 2.1 and
 Node apply/protocol preparation for 5.2. These do not complete their full tasks.
+The subsequent executable-task request also admits isolated Rust consumer
+preparation for 5.2, without changing any full-task dependency or native gate.
+The explicitly approved 3.1 engine wave also includes the shared loader/store
+captured-byte consistency fix; it does not complete native/full dependencies.
 Architecture and scope come from these frozen approved inputs:
 
 - Requirements SHA-256: `490b95ba21dcf9d6ec6ca803586afd785f1803287c38f0193bed053701e31160`.
@@ -108,6 +113,7 @@ Architecture and scope come from these frozen approved inputs:
   - Estimate: 2-4 hours; timebox, not a completion guarantee.
   - Installation-free preparation: Typed ProgramSpec/additive launcher and finite std-only helper may proceed using verified core/runtime portions; native/both-consumer and full task dependencies remain pending.
   - Preparation evidence: evals/task-2.1.md; real typed launches/finite helper and package checks pass in engine modes; native/full dependencies remain pending and full task unchecked.
+  - Finite-tree continuation: The already permitted std-only fixture now exercises bounded, fully joined parent/child/grandchild chains with actual exit observations. Evidence: evals/task-2.1-finite-tree.md. This is not OS descendant ownership or full task completion.
 
 - [ ] 2.2 Implement and verify Unix descendant ownership
   - Depends: 2.1
@@ -133,13 +139,14 @@ Architecture and scope come from these frozen approved inputs:
 
 - [ ] 2.4 Bound output and separate protocol from display loss
   - Depends: 2.1
-  - Paths: tools/vfa-tui/src/subprocess/executor.rs; tools/vfa-tui/src/subprocess/stream.rs; tools/vfa-tui/tests/output_budget.rs
+  - Paths: tools/vfa-tui/src/subprocess/executor.rs; tools/vfa-tui/src/subprocess/stream.rs; tools/vfa-tui/tests/output_budget.rs; tools/vfa-tui/src/subprocess/bounded.rs; tools/vfa-tui/src/subprocess/mod.rs; tools/vfa-tui/tests/support/process_helper.rs
   - Design: D6, D7
   - Requirements: R9.4-R9.6, R14.5
   - Verification: V5, V6
   - Checks: C2, C3, C6
   - Positive: Chunk reads share one measured 8 MiB budget across streams/framing/tail; protocol hooks precede lossy display and terminal delivery is reliable.
   - Negative: 64 MiB unterminated output and slow/disconnected UI cannot grow buffers, deadlock drain or discard terminal/effects evidence silently.
+  - Installation-free preparation: User explicitly approved a new additive engine-output wave: real bounded byte readers, shared raw budget, protocol-before-display and reliable completion. Preserve legacy capture, native/full dependencies and the unchecked task. Evidence: evals/task-2.4.md; no installation, commit or push.
   - Estimate: 2-4 hours; timebox, not a completion guarantee.
 
 - [ ] 2.5 Implement bounded stateful streaming redaction
@@ -176,6 +183,8 @@ Architecture and scope come from these frozen approved inputs:
   - Positive: Reuse loader/models with canonical native identity, epochs, honest collection status and stable entity IDs; reject source replacement for every nonterminal state.
   - Negative: Invalid markers, malformed collections and duplicate IDs remain named failures; browse triggers no helper, target write or network request.
   - Estimate: 2-4 hours; timebox, not a completion guarantee.
+  - Installation-free preparation: User approved engine-only source/session/snapshot work and the two-file loader/store consistency extension. Exact-root native identity, immutable catalog quality/provenance and bounded source-switch guards pass targeted contracts; captured-byte hashes reuse existing parsers. Evidence: evals/task-3.1.md. Full task stays unchecked; native/full dependencies and historical parallel-profile stability remain explicit gaps.
+  - Validation closure: Current canonical SAP providers are now supported without relaxing unknown-provider rejection. Both complete local Cargo suites pass; engine dependency boundaries pass under both locks. Actual Desktop engine-contract compilation still fails at missing pkg-config/fontconfig prerequisites. Evidence: evals/task-3.1-catalog-compatibility.md; no native/dependency completion or Git publication inferred.
 
 - [ ] 3.2 Unify search, reload and stale-result rejection
   - Depends: 3.1
@@ -320,6 +329,7 @@ Architecture and scope come from these frozen approved inputs:
   - Estimate: 2-4 hours; timebox, not a completion guarantee.
   - Installation-free preparation: Node-only verified apply/protocol producer may proceed after 5.1; Rust parser/redaction, lifecycle/journal integration and full task dependencies remain pending.
   - Preparation evidence: evals/task-5.2.md; strict Node apply/ordered producer, real failure/pipe/limit tests and root validation pass; Rust consumer/journal/native and full task remain pending.
+  - New installation-free consumer slice: The current executable-task request admits an isolated Rust byte-framing/expected-plan validator after 5.1. Evidence: evals/task-5.2-consumer.md. Shared output-budget/redaction, process stop/drain, operation authorization, journal and native dependencies remain pending; the full task stays unchecked.
 
 - [ ] 5.3 Wire single-use preview authorization to execution
   - Depends: 1.5, 3.1, 3.2, 4.3, 4.4, 4.5, 5.2
