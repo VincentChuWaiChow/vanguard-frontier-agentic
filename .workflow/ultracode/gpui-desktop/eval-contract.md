@@ -49,3 +49,28 @@ and generated local graph output. Stop for wire-contract ambiguity, required
 dependency changes, native prerequisites or an unbounded integration requirement.
 TDD checkpoint commits are intentionally not made: current request does not
 authorize Git publication/checkpoints. Preserve RED/GREEN in the task report.
+
+## Three-slice engine contract (2026-11-20, before implementation)
+
+Consumers: future Desktop output/catalog/findings adapters; existing default
+TUI/headless and engine-only consumers must not regress. All criteria start
+UNVERIFIED; parent owns integrated failures. See per-task 2.5/3.2/3.3 eval leaves.
+
+- Capability: streaming secret/control suppression before loss, bounded carry
+  accounting, unchanged protocol; revision/query/context rejection and honest
+  refresh/selection; deterministic relationship/hash provenance and confined reads.
+- Regression: existing full Cargo suites in both feature modes, strict all-target
+  clippy, crate fmt and source helper formatting; engine/both-lock metadata boundary
+  checks; ordinary package verification from exact source-only snapshot and packaged
+  no-default library check. No native or both-lock runtime proof is inferred.
+- Repository checks: unchanged asset integrity, spec verifier/self-tests, offline
+  source-only npm validation with exact tracked/intended file inventory. Known
+  ignored-cache scanner and process-spawn sandbox failures remain separate from
+  source correctness, and any execution-context exception must be explicit.
+- Scope: baseline hashes in ignored target/no-install-three/baseline.json; allow
+  only owned source, module exports and named progress/eval docs. Frozen inputs,
+  manifests/locks, legacy outputs and Git index are invariants. Graph update after
+  changes. No coverage threshold is claimed without available instrumentation.
+- Evidence: record exact commands/status and distinguish observed tests, source
+  inference and unverified native/security boundaries. Stop if tests cannot support
+  the proposed claim; one verified repair pass maximum after integrated review.

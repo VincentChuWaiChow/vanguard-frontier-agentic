@@ -15,6 +15,13 @@ use uuid::Uuid;
 use super::snapshot::CatalogSnapshot;
 use crate::persistence::operations::OperationStatus;
 
+/// Both causes use identical snapshot loading; no legacy watcher is wired here.
+#[derive(Debug, Clone, Copy, PartialEq, Eq)]
+pub enum RefreshTrigger {
+    Manual,
+    ExternalChange,
+}
+
 pub const MAX_SESSION_OPERATIONS: usize = 32;
 
 #[derive(Debug, thiserror::Error)]
@@ -132,6 +139,29 @@ impl SourceSession {
         self.snapshot = Some(Arc::clone(&candidate));
         self.epoch = epoch;
         Ok(candidate)
+    }
+
+    /// Explicitly re-observe the selected checkout. A source-level failure is
+    /// returned after publishing retained stale data; collection failures are
+    /// recorded independently in the returned snapshot. Never invokes helpers.
+    pub fn refresh(
+        &mut self,
+        _trigger: RefreshTrigger,
+    ) -> Result<Arc<CatalogSnapshot>, SessionError> {
+        let previous = self.snapshot.as_ref().ok_or(SessionError::NoSource)?;
+        match CatalogSnapshot::refresh(previous) {
+            Ok(snapshot) => {
+                let refreshed = Arc::new(snapshot);
+                self.snapshot = Some(Arc::clone(&refreshed));
+                Ok(refreshed)
+            }
+            Err(error) => {
+                // Even source-level failure invalidates pending observations;
+                // callers receive the error AND can inspect honest retained data.
+                self.snapshot = Some(Arc::new(CatalogSnapshot::source_failed(previous, &error)));
+                Err(error)
+            }
+        }
     }
 
     pub fn snapshot(&self) -> Option<Arc<CatalogSnapshot>> {

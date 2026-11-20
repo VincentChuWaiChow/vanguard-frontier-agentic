@@ -21,6 +21,16 @@ Architecture and scope come from these frozen approved inputs:
 - Requirements SHA-256: `490b95ba21dcf9d6ec6ca803586afd785f1803287c38f0193bed053701e31160`.
 - Design SHA-256: `33a22ec84e2c376dd1e6aa627b72bf1a209a1773832c7fc3e417e2aa583699d0`.
 
+## Completed no-install work
+
+The user accepted publication of the delivered engine-only slices. These checked
+items record that completed scope; they do not certify the unchecked full native
+tasks or bypass their dependencies.
+
+- [x] Task 2.5 engine preparation: bounded stateful streaming redaction and safe projection.
+- [x] Task 3.2 engine preparation: shared search, reload freshness and stale-result rejection.
+- [x] Task 3.3 engine preparation: dependency findings and confined integrity reads.
+
 ## Tasks
 
 - [ ] 1. Compatibility foundation and native bootstrap
@@ -151,7 +161,7 @@ Architecture and scope come from these frozen approved inputs:
 
 - [ ] 2.5 Implement bounded stateful streaming redaction
   - Depends: 2.4
-  - Paths: tools/vfa-tui/src/security/redact.rs; tools/vfa-tui/src/security/sanitize.rs; tools/vfa-tui/tests/streaming_redaction.rs
+  - Paths: tools/vfa-tui/src/security/redact.rs; tools/vfa-tui/src/security/sanitize.rs; tools/vfa-tui/src/subprocess/bounded.rs; tools/vfa-tui/src/subprocess/executor.rs; tools/vfa-tui/tests/streaming_redaction.rs
   - Design: D5, D6, D7, D11
   - Requirements: R9.5-R9.6, R15.5-R15.6
   - Verification: V6, V11
@@ -159,6 +169,7 @@ Architecture and scope come from these frozen approved inputs:
   - Positive: Documented secret patterns stay suppressed across chunks/lines without buffering entire secret spans; raw protocol remains internal.
   - Negative: Long or unterminated PEM, oversized ambiguous tokens, EOF and cancellation disclose no recognized pending secret; conservative loss is marked.
   - Estimate: 2-4 hours; timebox, not a completion guarantee.
+  - Installation-free preparation: User approved engine-only streaming redaction and additive safe transport projection. Legacy raw transport remains internal/unredacted; bounded state, protocol preservation and loss checks are evaluated in evals/task-2.5.md. Native/full dependencies remain pending; full task unchecked.
 
 - [ ] 2.6 Integrate lifecycle races and the native feasibility barrier
   - Depends: 1.4, 1.5, 2.2, 2.3, 2.4, 2.5
@@ -188,7 +199,7 @@ Architecture and scope come from these frozen approved inputs:
 
 - [ ] 3.2 Unify search, reload and stale-result rejection
   - Depends: 3.1
-  - Paths: tools/vfa-tui/src/search/; tools/vfa-tui/src/catalog/store.rs; tools/vfa-tui/src/catalog/watcher.rs; tools/vfa-tui/src/engine/catalog.rs; tools/vfa-tui/tests/catalog_session.rs
+  - Paths: tools/vfa-tui/src/search/; tools/vfa-tui/src/catalog/store.rs; tools/vfa-tui/src/catalog/watcher.rs; tools/vfa-tui/src/engine/catalog.rs; tools/vfa-tui/src/engine/session.rs; tools/vfa-tui/src/engine/snapshot.rs; tools/vfa-tui/tests/catalog_session.rs
   - Design: D2, D3, D10, D11
   - Requirements: R1.5, R3.1-R3.7, R4.1-R4.6
   - Verification: V3, V5, V9
@@ -196,6 +207,7 @@ Architecture and scope come from these frozen approved inputs:
   - Positive: Shared ranking/filter intersection and other-entity matching are deterministic; watcher/manual refresh share revisions and stale-data rules.
   - Negative: Reordered requests cannot replace current data; failed/deleted reload is not current-empty; unchanged bytes keep revision and removed selection clears.
   - Estimate: 2-4 hours; timebox, not a completion guarantee.
+  - Installation-free preparation: User approved engine-only shared search, revision/observation-bound acceptance and common manual/change-notification refresh. Failed collections retain stale data/hash provenance; existing watcher runtime is not wired. Evidence: evals/task-3.2.md. Full task 3.1/native dependencies and full task completion remain pending.
 
 - [ ] 3.3 Expose real dependency and integrity findings
   - Depends: 3.1
@@ -207,6 +219,7 @@ Architecture and scope come from these frozen approved inputs:
   - Positive: Existing graph/hash algorithms return exact edges, cycles, source paths and matched/missing/mismatched findings with provenance.
   - Negative: Missing/invalid manifest is unavailable, unresolved references remain findings and inspected content is never executed or opened automatically.
   - Estimate: 2-4 hours; timebox, not a completion guarantee.
+  - Installation-free preparation: User approved snapshot-bound graph/hash findings and confined bounded Unix file observations. Non-Unix safe file backend, aggregate digests and native/full dependencies remain unverified. Evidence: evals/task-3.3.md. No inspected content execution or full-task completion is implied.
 
 - [ ] 3.4 Populate governance results with honest input quality
   - Depends: 1.3, 3.1, 3.2, 3.3

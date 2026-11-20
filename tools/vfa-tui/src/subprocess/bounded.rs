@@ -1,4 +1,6 @@
-//! UNREDACTED internal transport, not safe UI/audit output. Direct-root stop is
+//! Raw entry point is UNREDACTED; the opt-in redacted entry point prepares only
+//! a pattern-based display projection. Protocol/semantic fields remain private
+//! engine data, not automatically safe audit output. Direct-root stop is
 //! not descendant ownership. Dropping a handle does not abort its supervisor;
 //! runtime destruction is not shutdown/cleanup acceptance.
 //!
@@ -16,6 +18,7 @@ use super::program::ProgramSpec;
 use crate::engine::export_protocol::{
     ExpectedFile, ExportProtocol, ProtocolError, MAX_RECORD_BYTES,
 };
+use crate::security::redact::StreamingRedactor;
 use std::io;
 use std::process::Stdio;
 use std::sync::atomic::{AtomicUsize, Ordering};
@@ -31,6 +34,12 @@ const CHUNK: usize = 4096;
 const QUEUE_SLOTS: usize = 1024;
 const FIXED_PIPES: usize = 2 * 3 * CHUNK;
 const PARSER_RESERVATION: usize = 32 * MAX_RECORD_BYTES;
+// Each safe pipe reserves 16KiB: heap projection prefix + recognizer (under
+// 5KiB), construction/move scratch (under 5KiB), and all bounded sanitizer,
+// token-copy and callback scratch (under 6KiB). No allocation grows with input.
+// These reduce payload quotas, never increase RAW_BUDGET. Raw counter scratch
+// remains private and bounded; it is not emitted by the safe entry point.
+const SAFE_PIPES: usize = 2 * 4 * CHUNK;
 
 pub enum OutputProtocol {
     Text,
@@ -92,8 +101,10 @@ struct Budget {
     payload_peak: [AtomicUsize; 2],
 }
 impl Budget {
-    fn new(export: bool) -> Arc<Self> {
-        let fixed = FIXED_PIPES + if export { PARSER_RESERVATION } else { 0 };
+    fn new(export: bool, redacted: bool) -> Arc<Self> {
+        let fixed = FIXED_PIPES
+            + if export { PARSER_RESERVATION } else { 0 }
+            + if redacted { SAFE_PIPES } else { 0 };
         Arc::new(Self {
             fixed,
             per_stream: ((RAW_BUDGET - fixed) / 2 / CHUNK) * CHUNK,
@@ -153,7 +164,8 @@ impl Drop for PayloadPermit {
         self.budget.payload[self.stream].fetch_sub(CHUNK, Ordering::SeqCst);
     }
 }
-/// Internal unredacted record, deliberately not Clone or Debug.
+/// Deliberately not Clone or Debug. Raw entry-point records are NOT UI/audit
+/// safe; only spawn_bounded_redacted prepares a safe pattern-based projection.
 pub struct OutputRecord {
     // Declaration order frees allocation before releasing its permit.
     payload: Box<[u8; CHUNK]>,
@@ -238,9 +250,52 @@ struct Display {
     stream: usize,
     tx: mpsc::Sender<OutputRecord>,
     budget: Arc<Budget>,
+    safe: Option<Box<SafeDisplay>>,
+}
+struct SafeDisplay {
+    redactor: StreamingRedactor,
+    prefix: [u8; CHUNK],
+    len: usize,
+    cut: bool,
+}
+const _: () = assert!(std::mem::size_of::<SafeDisplay>() < 5 * 1024);
+impl SafeDisplay {
+    fn append(prefix: &mut [u8; CHUNK], len: &mut usize, cut: &mut bool, bytes: &[u8]) {
+        let take = bytes.len().min(CHUNK - *len);
+        prefix[*len..*len + take].copy_from_slice(&bytes[..take]);
+        *len += take;
+        *cut |= take < bytes.len();
+    }
+    fn feed(&mut self, bytes: &[u8]) {
+        let Self {
+            redactor,
+            prefix,
+            len,
+            cut,
+        } = self;
+        redactor.feed(bytes, |bytes| {
+            if bytes != b"\n" {
+                Self::append(prefix, len, cut, bytes);
+            }
+        });
+    }
+    fn finish(&mut self) {
+        let Self {
+            redactor,
+            prefix,
+            len,
+            cut,
+        } = self;
+        redactor.finish(|bytes| Self::append(prefix, len, cut, bytes));
+    }
 }
 impl Display {
-    fn new(stream: usize, tx: mpsc::Sender<OutputRecord>, budget: Arc<Budget>) -> Self {
+    fn new(
+        stream: usize,
+        tx: mpsc::Sender<OutputRecord>,
+        budget: Arc<Budget>,
+        redacted: bool,
+    ) -> Self {
         Self {
             prefix: [0; CHUNK],
             len: 0,
@@ -249,10 +304,21 @@ impl Display {
             stream,
             tx,
             budget,
+            safe: redacted.then(|| {
+                Box::new(SafeDisplay {
+                    redactor: StreamingRedactor::default(),
+                    prefix: [0; CHUNK],
+                    len: 0,
+                    cut: false,
+                })
+            }),
         }
     }
     fn feed(&mut self, bytes: &[u8]) {
         for &byte in bytes {
+            if let Some(safe) = &mut self.safe {
+                safe.feed(&[byte]);
+            }
             if byte == b'\n' {
                 self.emit(true);
             } else {
@@ -265,7 +331,10 @@ impl Display {
         }
     }
     fn finish(&mut self) {
-        if self.content_bytes > 0 {
+        if let Some(safe) = &mut self.safe {
+            safe.finish();
+        }
+        if self.content_bytes > 0 || self.safe.as_ref().is_some_and(|safe| safe.len > 0) {
             self.emit(false);
         }
     }
@@ -304,6 +373,20 @@ impl Display {
             }
         }
         let omitted = self.content_bytes - consumed as u64;
+        let mut projection_cut = false;
+        if let Some(safe) = &mut self.safe {
+            written = match std::str::from_utf8(&safe.prefix[..safe.len]) {
+                Ok(_) => safe.len,
+                Err(error) => error.valid_up_to(),
+            };
+            // Do not retain the raw counter-rendering scratch even in the
+            // inaccessible tail of a safe record's fixed payload.
+            rendered.fill(0);
+            rendered[..written].copy_from_slice(&safe.prefix[..written]);
+            projection_cut = safe.cut || written < safe.len;
+            safe.len = 0;
+            safe.cut = false;
+        }
         let source_bytes = self.content_bytes + u64::from(newline);
         let sent = match self.tx.try_reserve() {
             Ok(slot) => match self.budget.acquire(self.stream) {
@@ -313,7 +396,7 @@ impl Display {
                         payload,
                         _permit: permit,
                         len: written,
-                        truncated: omitted > 0,
+                        truncated: omitted > 0 || projection_cut,
                     });
                     true
                 }
@@ -337,12 +420,27 @@ pub(crate) async fn spawn(
     timeout: Duration,
     protocol: OutputProtocol,
 ) -> anyhow::Result<BoundedOutputHandle> {
+    spawn_mode(program, timeout, protocol, false).await
+}
+pub(crate) async fn spawn_redacted(
+    program: &ProgramSpec,
+    timeout: Duration,
+    protocol: OutputProtocol,
+) -> anyhow::Result<BoundedOutputHandle> {
+    spawn_mode(program, timeout, protocol, true).await
+}
+async fn spawn_mode(
+    program: &ProgramSpec,
+    timeout: Duration,
+    protocol: OutputProtocol,
+    redacted: bool,
+) -> anyhow::Result<BoundedOutputHandle> {
     // Fresh plan validation occurs BEFORE child launch or output allocation.
     let parser = match protocol {
         OutputProtocol::Text => None,
         OutputProtocol::Export { digest, files } => Some(ExportProtocol::new(digest, files)?),
     };
-    let budget = Budget::new(parser.is_some());
+    let budget = Budget::new(parser.is_some(), redacted);
     let mut command = Command::from(program.command()?);
     command
         .kill_on_drop(true)
@@ -364,8 +462,8 @@ pub(crate) async fn spawn(
     let (err_tx, err_rx) = mpsc::channel(QUEUE_SLOTS);
     let (stop_tx, stop_rx) = watch::channel(false);
     let (terminal_tx, terminal_rx) = watch::channel(None);
-    let stdout_display = Display::new(0, out_tx, Arc::clone(&budget));
-    let stderr_display = Display::new(1, err_tx, Arc::clone(&budget));
+    let stdout_display = Display::new(0, out_tx, Arc::clone(&budget), redacted);
+    let stderr_display = Display::new(1, err_tx, Arc::clone(&budget), redacted);
     let supervisor = tokio::spawn(async move {
         let completion = supervise(
             child,

@@ -1,3 +1,141 @@
+# Publication acceptance for the three completed engine preparations
+
+The latest user request explicitly authorizes commit and push of this reviewed
+21-file wave to `origin/feature/gpui-desktop-alpha`. The completed no-install
+checklist in tasks.md marks the delivered 2.5, 3.2 and 3.3 engine slices done.
+Full native tasks/dependencies remain unchecked; no unrun gate is certified.
+Earlier publication holds below describe previous instructions and are superseded
+only for this wave. Existing source/check evidence is unchanged; commit/push
+results are reported in the session, not predicted in this document.
+
+# Current three-slice engine preparation (2026-11-20)
+
+Status: READY FOR REVIEW for the scoped engine-preparation slices. All parent
+source/capability graders passed; actual-checkout npm has the named ignored-cache
+scanner MISS below. Full tasks 2.5, 3.2 and 3.3 remain unchecked. This current
+section supersedes older progress statements below; historical evidence is retained.
+
+User approved the three proposed no-install engine slices, not full native task
+completion. No installs, dependency/lock changes, native build retries, staging,
+commits or pushes. Native packages remain unavailable; publication is held.
+
+- 2.5: bounded stateful streaming redaction, safe additive transport projection;
+  raw protocol and legacy raw APIs preserved. [Task evidence](../../../.kiro/specs/gpui-desktop/evals/task-2.5.md).
+- 3.2: shared ranking, typed selection, request/context/revision freshness, common
+  refresh and independently stale retained hashes. [Task evidence](../../../.kiro/specs/gpui-desktop/evals/task-3.2.md).
+- 3.3: snapshot-bound graph findings and confined per-file hash observations with
+  honest unavailable inputs. [Task evidence](../../../.kiro/specs/gpui-desktop/evals/task-3.3.md).
+
+## Exact changed paths in this admission
+
+- `.kiro/specs/gpui-desktop/evals.md`
+- `.kiro/specs/gpui-desktop/evals/task-2.5.md`
+- `.kiro/specs/gpui-desktop/evals/task-3.2.md`
+- `.kiro/specs/gpui-desktop/evals/task-3.3.md`
+- `.kiro/specs/gpui-desktop/tasks.md`
+- `.workflow/ultracode/gpui-desktop/eval-contract.md`
+- `.workflow/ultracode/gpui-desktop/final-report.md`
+- `.workflow/ultracode/gpui-desktop/plan.md`
+- `.workflow/ultracode/gpui-desktop/state.json`
+- `tools/vfa-tui/src/engine/catalog.rs`
+- `tools/vfa-tui/src/engine/findings.rs`
+- `tools/vfa-tui/src/engine/mod.rs`
+- `tools/vfa-tui/src/engine/session.rs`
+- `tools/vfa-tui/src/engine/snapshot.rs`
+- `tools/vfa-tui/src/security/redact.rs`
+- `tools/vfa-tui/src/security/sanitize.rs`
+- `tools/vfa-tui/src/subprocess/bounded.rs`
+- `tools/vfa-tui/src/subprocess/executor.rs`
+- `tools/vfa-tui/tests/catalog_session.rs`
+- `tools/vfa-tui/tests/relationship_integrity.rs`
+- `tools/vfa-tui/tests/streaming_redaction.rs`
+
+## Parent-verified integrated checks
+
+| Criterion | Status | Evidence |
+|---|---|---|
+| Complete default Cargo suite | PASS | `full-default.log`: 1,168 passed, 0 failed, 1 pre-existing ignored doctest |
+| Complete engine-only Cargo suite | PASS | `full-engine.log`: 947 passed, 0 failed, same ignored doctest |
+| Strict all-target clippy, both modes | PASS | `clippy-default.log`, `clippy-engine.log`, exit 0 |
+| Crate and unchanged helper formatting | PASS | `fmt.log`, explicit helper rustfmt check |
+| Engine boundary and negative mutants | PASS | `boundary-engine.log`: 31 self-tests; no presentation dependencies |
+| Desktop lock normal subtree | PASS (metadata only) | `boundary-desktop.log`; no Desktop compilation/execution claim |
+| Ordinary package verification | PASS | `package.log`, `package-engine.log`; no dirty/no-verify bypass; 98 archived Rust sources byte-identical |
+| Spec structural checker/self-tests | PASS | `spec-final.log`; not semantic/SMT/runtime proof |
+| Existing asset integrity | PASS | `integrity-final.log`; manifest unchanged |
+| Actual-checkout npm validation | MISS | `npm-checkout.log`, exit 1: ignored vendored Cargo cache zruntime workflow matched secret scanner |
+| Exact intended-source npm validation | PASS | `npm-source.log`, exit 0 in normal execution context; exact tracked/intended source snapshot excludes ignored caches, no validator edits |
+| Native Desktop, other hosts, declared Rust 1.75 | UNVERIFIED | Linux x86_64 exercised with rustc/cargo 1.99.1; no installs/native attempt |
+| Allocation instrumentation and 80% coverage | UNVERIFIED | Fixed-state/permit assertions are not allocator/RSS or coverage measurement; instrumentation tools unavailable |
+
+All log names above are relative to ignored local
+`tools/vfa-tui/target/no-install-three/`. Snapshot inventory and archive results
+are in `source-validation-snapshot.json` and `package-results.json`. No secrets
+were inspected; credential test values are synthetic. No TDD Git checkpoints
+were made: the explicit publication hold overrides the TDD skill's checkpoint
+preference. Full task checkboxes remain unchanged.
+
+Commands (run through the workspace `rtk` wrapper):
+
+```sh
+export CARGO_HOME="$PWD/tools/vfa-tui/target/consumer-cargo-home"
+export CARGO_TARGET_DIR="$PWD/tools/vfa-tui/target/consumer-build"
+cargo test --manifest-path tools/vfa-tui/Cargo.toml --locked --offline --no-fail-fast
+cargo test --manifest-path tools/vfa-tui/Cargo.toml --locked --offline --no-default-features --no-fail-fast
+cargo clippy --manifest-path tools/vfa-tui/Cargo.toml --locked --offline --all-targets -- -D warnings
+cargo clippy --manifest-path tools/vfa-tui/Cargo.toml --locked --offline --no-default-features --all-targets -- -D warnings
+cargo fmt --manifest-path tools/vfa-tui/Cargo.toml -- --check
+rustfmt --edition 2021 --check tools/vfa-tui/tests/support/process_helper.rs
+python3 tools/vfa-tui/tests/check_feature_boundary.py --manifest-path tools/vfa-tui/Cargo.toml --self-test
+python3 tools/vfa-tui/tests/check_feature_boundary.py --manifest-path tools/vfa-tui/Cargo.toml --consumer-manifest tools/vfa-desktop/Cargo.toml
+cargo package --manifest-path "$SOURCE_SNAPSHOT/tools/vfa-tui/Cargo.toml" --locked --offline
+cargo check --manifest-path "$CARGO_TARGET_DIR/package/vfa-tui-0.1.0/Cargo.toml" --locked --offline --lib --no-default-features
+python3 .kiro/specs/gpui-desktop/verify.py --tasks --self-test
+python3 tests/validate-asset-integrity.py
+graphify update .
+git diff --check
+npm run validate
+# Same npm command in exact intended-source snapshot, not an installed dependency tree.
+```
+
+Cargo commands were serialized with `flock /tmp/vfa-no-install-three-cargo.lock`;
+there was no simultaneous shared-target mutation. An unrelated incomplete-file
+compiler error during parallel construction is not counted as RED.
+
+Team: three `rust_beast_mode` implementation packets, configured
+`gpt-6.1-sol/medium`, workspace-write. One `rust_reviewer` integrated source pass,
+configured `gpt-6.1-sol/high`; assignment read-only, inherited enforcement not
+attested. Offline implementation profile name/description schema gap was noted;
+runtime exposed and accepted the configured role without modification. Serving
+model/effort and total tokens remain unverified. Parent independently inspected
+source and ran all integrated commands. Review found no actionable defects;
+post-review repairs used: 0 of 1. This was the smallest disjoint three-packet route
+with shared module exports and verification retained by the parent.
+
+### Scope, publication and execution exceptions
+
+Final evidence: `tools/vfa-tui/target/no-install-three/final-results.json`.
+All baseline files outside the 21 admitted source/evidence paths are preserved.
+Original security whole-string source is byte-identical; manifest/lock/frozen
+input hashes, full-task checkboxes, HEAD and Git index were unchanged at the
+implementation verification checkpoint. Publication is a subsequent authorized phase. Snapshot
+production sources match current sources and the normal Cargo archive; only
+post-verification progress/evidence documents may differ from the source snapshot.
+No privilege/tool exception was requested. No installs, staging, commit or push.
+Total task token usage is unverified; three implementation runs plus one static
+review, no follow-up repair, reduced coordination by using disjoint write sets.
+
+### Remaining gates
+
+Full task dependencies/native Desktop execution, macOS/Windows behavior, actual
+Rust 1.75 compilation, allocation instrumentation, coverage percentage and
+performance acceptance remain UNVERIFIED. Redaction recognizes documented
+patterns only; raw transport/protocol semantic fields remain unsafe for automatic
+audit disclosure. Integrity is sequential per-file observation, not aggregate
+verification or a filesystem sandbox. Existing watcher lifecycle is unchanged.
+
+## Historical progress (unchanged)
+
 # GPUI Desktop progress report
 
 ## Current ready-wave status

@@ -509,3 +509,30 @@ review/counter repair, final10 output cases and1133/912 full suites; normal pack
 and intended-source npm context are documented in evals/task-2.4.md. Preserve the
 checkout cache-scan MISS and restriction failure history. No further source wave,
 native task checkoff or Git publication is implied.
+
+## Approved no-install three-slice wave (2026-11-20)
+
+Objective: implement engine preparation for 2.5, 3.2 and 3.3, exactly as proposed
+and approved by the user. Full native dependencies and task checkboxes remain
+pending. Frozen requirements/design hashes and all legacy adapters are guards.
+
+- Parent: admission, module exports, eval/workflow/task links, integrated review,
+  independent suites/lints/boundary/package/source validation and scope audit.
+- `stream_redaction`: security redaction/sanitization, bounded transport, own tests.
+- `catalog_freshness`: engine catalog/session/snapshot, narrow search, own tests.
+- `safe_findings`: engine findings and own tests; frozen snapshot read APIs only.
+- Existing `rust_beast_mode` profiles: configured gpt-6.1-sol/medium, workspace-write.
+  Offline profile lacks name/description; runtime explicitly exposes this role and
+  accepted all three dispatches. Serving model/effort remains unverified.
+- One later `rust_reviewer`: configured gpt-6.1-sol/high, read-only assignment;
+  inherited effective permissions are not claimed as enforced read-only isolation.
+
+One implementation wave (3 workers), one integrated review, one task-wide
+post-review repair maximum. Initial implementation timebox 75 minutes; total
+planning/review/verification timebox 120 minutes, not a completion promise.
+Shared Cargo target/cache commands serialized by an explicit flock; worker logs
+are disjoint. No whole-crate worker formatting; parent owns final formatting.
+No installs/downloads/dependency edits, native GUI/OS acceptance, Git publication,
+credential reads, cloud actions or unrelated edits. Any needed expansion stops
+the affected packet. Retain failures and distinguish compile-only RED from runtime
+RED. Contracts: evals/task-2.5.md, task-3.2.md and task-3.3.md under the spec.

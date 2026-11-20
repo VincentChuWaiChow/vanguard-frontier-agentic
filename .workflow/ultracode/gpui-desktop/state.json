@@ -3,8 +3,8 @@
   "branch": "feature/gpui-desktop-alpha",
   "baseline": "6dda992a3dedd845731d795aaaed20d49346f57c",
   "spec_directory": ".kiro/specs/gpui-desktop",
-  "phase": "task2_4_engine_output_preparation_verified_full_native_gates_pending",
-  "status": "verified_scoped_output_wave_no_full_task_or_git_publication",
+  "phase": "no_install_three_engine_preparation_verified_full_native_gates_pending",
+  "status": "accepted_three_engine_preparations_complete_full_native_gates_pending",
   "requirements_approval": "approved",
   "revision_basis": "User requested revision before design, then explicitly requested Context7 MCP; no functional scope changes specified",
   "design": "ready_for_user_review",
@@ -35,7 +35,7 @@
     "task_drafting_runs": 3,
     "task_revision_review_runs": 1
   },
-  "next_action": "Preserve verified task2.4 preparation and known environment misses; full tasks/dependencies remain uncompleted. No installs or Git publication. A subsequent implementation wave needs its own bounded admission; do not equate raw transport or root-only stop with full native lifecycle/redaction/trust completion.",
+  "next_action": "Publish exactly the accepted three-slice wave with truthful completion checklist, existing test evidence and known npm cache scanner MISS; no native completion claims.",
   "validation_snapshot": {
     "command": "npm run validate",
     "wrapper": "rtk proxy bash",
@@ -1100,5 +1100,76 @@
       "native_descendant_redaction_UI_audit_full_tasks": "UNVERIFIED"
     },
     "artifacts": "tools/vfa-tui/target/output-budget-wave/final-results.json"
+  },
+  "no_install_three": {
+    "approval": "go ultracode codex-agent-teams for these 3 tasks",
+    "scope": [
+      "2.5 engine redaction",
+      "3.2 engine search/reload freshness",
+      "3.3 engine dependency/integrity findings"
+    ],
+    "baseline": "d3a45cd6d9bc807b7d52f441c080dbd3e43d5890",
+    "implementation_runs": 3,
+    "review_runs": 1,
+    "repair_used": 0,
+    "max_concurrent_workers": 3,
+    "started_epoch": 1795157490.9525008,
+    "contract_leaves": [
+      "evals/task-2.5.md",
+      "evals/task-3.2.md",
+      "evals/task-3.3.md"
+    ],
+    "full_tasks_completed": false,
+    "installs_authorized": false,
+    "git_publication_authorized": true,
+    "checks": {
+      "redaction": "PASS_10_targeted_each_mode_and_full_regressions",
+      "catalog_freshness": "PASS_10_new_plus20_session_each_mode_and_full_regressions",
+      "findings": "PASS_14_targeted_each_mode_plus_library_error_classification",
+      "full_default": "PASS_1168_0_failed_1_preexisting_ignored",
+      "full_engine": "PASS_947_0_failed_1_preexisting_ignored",
+      "clippy": "PASS_both_modes_all_targets_Dwarnings",
+      "boundary": "PASS_engine_31_mutants_and_Desktop_lock_metadata_only",
+      "package": "PASS_normal_verify_engine_check_98_Rust_sources_exact",
+      "npm_checkout": "MISS_ignored_Cargo_zruntime_workflow_secret_scanner",
+      "npm_source": "PASS_same_pipeline_exact_source_snapshot_exit0_no_escalation",
+      "spec": "PASS_structural_selftests_only",
+      "asset_integrity": "PASS_unchanged",
+      "graph": "PASS_AST_update",
+      "scope": "PASS_implementation_checkpoint_exact21_paths; publication rechecks staged tree and source hashes"
+    },
+    "implementation_status": "three_workers_complete_sources_frozen_for_parent_graders_and_independent_review",
+    "worker_targeted_checks": {
+      "2.5": "PASS 10 tests each mode",
+      "3.2": "PASS 10 catalog plus20 session each mode",
+      "3.3": "PASS 14 each mode"
+    },
+    "worker_claims_verified_by_parent": true,
+    "elapsed_seconds_before_review": 540,
+    "independent_review": "PASS_static_no_actionable_findings_one_run",
+    "source_frozen": true,
+    "status": "READY_FOR_REVIEW_scoped_engine_slices_verified_full_tasks_pending",
+    "artifact_root": "tools/vfa-tui/target/no-install-three",
+    "elapsed_seconds_at_handoff": 1185,
+    "remaining_unverified": [
+      "Full_native_task_dependencies_and_UI",
+      "macOS_Windows_behavior_and_nonUnix_safe_file_backend",
+      "Actual_declared_Rust1.75_build",
+      "Coverage_percentage_and_allocator_RSS_measurement",
+      "Native_performance_and_concurrent_filesystem_race_stress"
+    ],
+    "publication": "AUTHORIZED_latest_user_request_for_current_three_slice_wave_only",
+    "permission_exceptions": "none_requested_no_install_no_new_privileged_context",
+    "completed_preparations": [
+      "2.5",
+      "3.2",
+      "3.3"
+    ],
+    "publication_authorization": {
+      "request": "git commit and git push - dont forget to mark the tasks as done",
+      "branch": "feature/gpui-desktop-alpha",
+      "scope": "Exact reviewed 21-file engine-preparation wave; mark delivered slices done, retain native/full-task limitations",
+      "not_authorized": "Force push, history rewrite, unrelated files or false native/full-task completion"
+    }
   }
 }

@@ -28,6 +28,18 @@ impl SubprocessExecutor {
         super::bounded::spawn(program, timeout, protocol).await
     }
 
+    /// Safe bounded display projection: sanitizes and recognizes credentials
+    /// before prefix truncation or queue loss. Export stdout stays private raw
+    /// protocol input; validated export fields are NOT audit-safe projections.
+    /// Pattern-based protection, not full DLP or descendant cleanup acceptance.
+    pub async fn spawn_bounded_redacted(
+        program: &ProgramSpec,
+        timeout: Duration,
+        protocol: super::bounded::OutputProtocol,
+    ) -> anyhow::Result<super::bounded::BoundedOutputHandle> {
+        super::bounded::spawn_redacted(program, timeout, protocol).await
+    }
+
     /// Spawn a subprocess with the given command, arguments, working directory, and timeout.
     ///
     /// The subprocess inherits a sanitized environment (secrets stripped) and captures

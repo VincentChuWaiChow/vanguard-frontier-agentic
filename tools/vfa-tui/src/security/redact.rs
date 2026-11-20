@@ -551,3 +551,220 @@ mod tests {
         assert_eq!(redact_secrets(input), "[REDACTED]");
     }
 }
+
+/// Fixed recognizer carry limit, independent of line and secret lengths.
+const TOKEN_CARRY: usize = 256;
+pub const AMBIGUOUS_OUTPUT_MARKER: &str = "[REDACTED: ambiguous output suppressed]";
+pub const INCOMPLETE_OUTPUT_MARKER: &str = "[REDACTED: incomplete output suppressed]";
+
+/// Incremental, allocation-free safe display projection. More conservative
+/// than the legacy API: oversized ambiguous tokens and all PEM BEGIN blocks
+/// are suppressed, including unterminated blocks at EOF. Pattern protection,
+/// not full DLP: paths and arbitrary unknown secrets can remain sensitive.
+/// Raw export protocol fields are not an audit-safe projection.
+#[derive(Default)]
+pub struct StreamingRedactor {
+    sanitizer: crate::security::sanitize::StreamingSanitizer,
+    recognizer: Recognizer,
+}
+#[derive(Default)]
+struct Recognizer {
+    token: Token,
+    pem: bool,
+    pem_end: bool,
+    end_match: usize,
+    suffix_match: usize,
+}
+struct Token {
+    bytes: [u8; TOKEN_CARRY],
+    len: usize,
+    overflow: bool,
+    begin_match: usize,
+}
+impl Default for Token {
+    fn default() -> Self {
+        Self {
+            bytes: [0; TOKEN_CARRY],
+            len: 0,
+            overflow: false,
+            begin_match: 0,
+        }
+    }
+}
+impl StreamingRedactor {
+    pub fn feed(&mut self, bytes: &[u8], mut emit: impl FnMut(&[u8])) {
+        let recognizer = &mut self.recognizer;
+        for &byte in bytes {
+            self.sanitizer
+                .push(byte, &mut |clean| recognizer.feed(clean, &mut emit));
+        }
+    }
+    /// Flush when the stream closes, including after root cancellation.
+    pub fn finish(&mut self, mut emit: impl FnMut(&[u8])) {
+        let recognizer = &mut self.recognizer;
+        self.sanitizer
+            .finish(&mut |clean| recognizer.feed(clean, &mut emit));
+        recognizer.flush(true, &mut emit);
+        if recognizer.pem {
+            emit(INCOMPLETE_OUTPUT_MARKER.as_bytes());
+        }
+        *recognizer = Recognizer::default();
+    }
+}
+impl Recognizer {
+    fn feed(&mut self, bytes: &[u8], emit: &mut impl FnMut(&[u8])) {
+        for &b in bytes {
+            if self.pem {
+                if advance(b"-----END ", &mut self.end_match, b) {
+                    self.pem_end = true;
+                }
+                if self.pem_end && advance(b"PRIVATE KEY-----", &mut self.suffix_match, b) {
+                    self.pem = false;
+                    self.pem_end = false;
+                    self.end_match = 0;
+                } else if b == b'\n' {
+                    emit(b"\n");
+                }
+                continue;
+            }
+            if b.is_ascii_alphanumeric() || b"_-+/=.".contains(&b) {
+                advance(b"-----BEGIN", &mut self.token.begin_match, b);
+                if self.token.len < TOKEN_CARRY {
+                    self.token.bytes[self.token.len] = b;
+                    self.token.len += 1;
+                } else if !self.token.overflow {
+                    self.token.overflow = true;
+                    emit(AMBIGUOUS_OUTPUT_MARKER.as_bytes());
+                }
+            } else if b == b' ' && self.token.begin_match == b"-----BEGIN".len() {
+                // Legacy PEM permits arbitrary header text. Suppress at BEGIN,
+                // never wait to collect the header or body.
+                if !self.token.overflow {
+                    emit(b"[REDACTED]");
+                }
+                self.token = Token::default();
+                self.pem = true;
+            } else {
+                self.flush(false, emit);
+                emit(&[b]);
+            }
+        }
+    }
+    fn flush(&mut self, eof: bool, emit: &mut impl FnMut(&[u8])) {
+        let bytes = &self.token.bytes[..self.token.len];
+        if !self.token.overflow && !bytes.is_empty() {
+            if streaming_secret(bytes) {
+                emit(b"[REDACTED]");
+            } else if eof && unresolved(bytes) {
+                emit(INCOMPLETE_OUTPUT_MARKER.as_bytes());
+            } else {
+                emit(bytes);
+            }
+        }
+        self.token = Token::default();
+    }
+}
+// Bounded prefix automaton; repeated '-' markers require overlap fallback.
+fn advance(pattern: &[u8], matched: &mut usize, byte: u8) -> bool {
+    let previous = *matched;
+    let mut next = (previous + 1).min(pattern.len());
+    while next > 0 {
+        let start = previous + 1 - next;
+        let ok = (0..next).all(|i| {
+            let source = start + i;
+            let value = if source == previous {
+                byte
+            } else {
+                pattern[source]
+            };
+            pattern[i] == value
+        });
+        if ok {
+            break;
+        }
+        next -= 1;
+    }
+    *matched = next;
+    next == pattern.len()
+}
+fn unresolved(bytes: &[u8]) -> bool {
+    [
+        b"ghp_".as_slice(),
+        b"github_pat_",
+        b"npm_",
+        b"sk-",
+        b"xoxb-",
+        b"xoxp-",
+        b"AKIA",
+        b"-----BEGIN",
+    ]
+    .iter()
+    .any(|prefix| {
+        bytes.windows(prefix.len()).any(|w| w == *prefix)
+            || (1..prefix.len()).any(|n| bytes.ends_with(&prefix[..n]))
+    })
+}
+fn streaming_secret(bytes: &[u8]) -> bool {
+    type Pattern = (&'static [u8], usize, fn(u8) -> bool);
+    let patterns: &[Pattern] = &[
+        (b"ghp_", 36, is_alnum),
+        (b"github_pat_", 22, is_github_pat_char),
+        (b"npm_", 36, is_npm_token_char),
+        (b"sk-", 20, is_sk_char),
+        (b"xoxb-", 20, is_sk_char),
+        (b"xoxp-", 20, is_sk_char),
+        (b"AKIA", 16, |b| {
+            b.is_ascii_uppercase() || b.is_ascii_digit()
+        }),
+    ];
+    for &(prefix, min, valid) in patterns {
+        for (index, window) in bytes.windows(prefix.len()).enumerate() {
+            if window == prefix
+                && bytes[index + prefix.len()..]
+                    .iter()
+                    .take_while(|b| valid(**b))
+                    .count()
+                    >= min
+            {
+                return true;
+            }
+        }
+    }
+    let mut i = 0;
+    while i < bytes.len() {
+        if is_base64url_byte(bytes[i]) {
+            let (mut dots, mut segment, mut valid) = (0, 0, true);
+            while i < bytes.len() && (is_base64url_byte(bytes[i]) || bytes[i] == b'.') {
+                if bytes[i] == b'.' {
+                    valid &= segment >= 10;
+                    dots += 1;
+                    segment = 0;
+                } else {
+                    segment += 1;
+                }
+                i += 1;
+            }
+            if dots == 2 && valid && segment >= 10 {
+                return true;
+            }
+        } else {
+            i += 1;
+        }
+    }
+    i = 0;
+    while i < bytes.len() {
+        let start = i;
+        let mut special = false;
+        while i < bytes.len() && is_base64_byte(bytes[i]) {
+            special |= b"+/=".contains(&bytes[i]);
+            i += 1;
+        }
+        if i - start > 40 && special {
+            return true;
+        }
+        if i == start {
+            i += 1;
+        }
+    }
+    false
+}

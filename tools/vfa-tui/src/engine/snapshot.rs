@@ -2,7 +2,7 @@
 //!
 //! Hashes describe the exact captured bytes passed to existing shared parsers.
 //! This is not a simultaneous multi-file filesystem snapshot, a trust grant, or
-//! a claim of freshness after subsequent edits. Refresh/watcher wiring is later.
+//! a claim of freshness after subsequent edits. Native watcher wiring is later.
 
 use std::collections::{BTreeMap, HashSet};
 use std::fmt;
@@ -45,6 +45,8 @@ pub enum CollectionStatus {
     Empty,
     Partial,
     Unavailable,
+    /// Retained last-good data after a failed refresh.
+    Stale,
 }
 
 #[derive(Debug)]
@@ -57,6 +59,8 @@ pub struct CollectionState {
 
 pub struct CatalogSnapshot {
     context: ContextTag,
+    revision: u64,
+    observed_at: std::time::SystemTime,
     catalog: CatalogStore,
     collections: BTreeMap<CollectionKind, CollectionState>,
 }
@@ -126,8 +130,190 @@ impl CatalogSnapshot {
         }
         Ok(Self {
             context,
+            revision: 1,
+            observed_at: std::time::SystemTime::now(),
             catalog,
             collections,
+        })
+    }
+
+    /// Reload all observations once through the existing bounded reader/shared
+    /// parsers. Failed OR partial collections retain their prior accepted data
+    /// and hashes independently; diagnostics describe the failed new observation.
+    /// Other successfully loaded collections can advance the content revision.
+    pub(crate) fn refresh(previous: &Self) -> Result<Self, SessionError> {
+        let mut candidate = Self::load(previous.context.clone())?;
+        for kind in [
+            CollectionKind::Agents,
+            CollectionKind::Skills,
+            CollectionKind::Roles,
+            CollectionKind::McpReferences,
+            CollectionKind::Rules,
+            CollectionKind::Integrity,
+        ] {
+            if matches!(
+                candidate.collection(kind).status,
+                CollectionStatus::Partial | CollectionStatus::Unavailable
+            ) {
+                let old = previous.collection(kind);
+                // Do not promote an originally unavailable collection to stale
+                // last-good data: there was no successful observation to retain.
+                if matches!(
+                    old.status,
+                    CollectionStatus::Current
+                        | CollectionStatus::Empty
+                        | CollectionStatus::Stale
+                        | CollectionStatus::Partial
+                ) {
+                    match kind {
+                        CollectionKind::Agents => {
+                            candidate.catalog.agents = previous.catalog.agents.clone()
+                        }
+                        CollectionKind::Skills => {
+                            candidate.catalog.skills = previous.catalog.skills.clone()
+                        }
+                        CollectionKind::Roles => {
+                            candidate.catalog.roles = previous.catalog.roles.clone();
+                            candidate.catalog.role_catalog_version =
+                                previous.catalog.role_catalog_version.clone();
+                            candidate.catalog.role_catalog_description =
+                                previous.catalog.role_catalog_description.clone();
+                        }
+                        CollectionKind::McpReferences => {
+                            candidate.catalog.mcp_refs = previous.catalog.mcp_refs.clone()
+                        }
+                        CollectionKind::Rules => {
+                            candidate.catalog.rules = previous.catalog.rules.clone()
+                        }
+                        CollectionKind::Integrity => {
+                            candidate.catalog.integrity = previous.catalog.integrity.clone()
+                        }
+                    }
+                    let state = candidate
+                        .collections
+                        .get_mut(&kind)
+                        .ok_or(SessionError::NoSource)?;
+                    state.status = CollectionStatus::Stale;
+                    state.count = old.count;
+                    let path = previous
+                        .context
+                        .source()
+                        .root()
+                        .join("catalog")
+                        .join(kind.filename());
+                    candidate.catalog.content_hashes.remove(&path);
+                    if let Some(hash) = previous.catalog.content_hashes.get(&path) {
+                        candidate.catalog.content_hashes.insert(path, hash.clone());
+                    }
+                } else {
+                    // No accepted data existed. Keep it unavailable, do not
+                    // publish partial new records or failing-byte provenance.
+                    let state = candidate
+                        .collections
+                        .get_mut(&kind)
+                        .ok_or(SessionError::NoSource)?;
+                    state.status = CollectionStatus::Unavailable;
+                    state.count = 0;
+                    match kind {
+                        CollectionKind::Agents => candidate.catalog.agents.clear(),
+                        CollectionKind::Skills => candidate.catalog.skills.clear(),
+                        CollectionKind::Roles => {
+                            candidate.catalog.roles.clear();
+                            candidate.catalog.role_catalog_version.clear();
+                            candidate.catalog.role_catalog_description.clear();
+                        }
+                        CollectionKind::McpReferences => candidate.catalog.mcp_refs.clear(),
+                        CollectionKind::Rules => candidate.catalog.rules.clear(),
+                        CollectionKind::Integrity => candidate.catalog.integrity = None,
+                    }
+                    let path = previous
+                        .context
+                        .source()
+                        .root()
+                        .join("catalog")
+                        .join(kind.filename());
+                    candidate.catalog.content_hashes.remove(&path);
+                    if let Some(hash) = previous.catalog.content_hashes.get(&path) {
+                        candidate.catalog.content_hashes.insert(path, hash.clone());
+                    }
+                }
+            }
+        }
+        candidate.revision = if candidate.catalog.content_hashes == previous.catalog.content_hashes
+        {
+            previous.revision
+        } else {
+            previous
+                .revision
+                .checked_add(1)
+                .ok_or(SessionError::EpochExhausted)?
+        };
+        Ok(candidate)
+    }
+
+    pub(crate) fn source_failed(previous: &Self, error: &SessionError) -> Self {
+        let c = &previous.catalog;
+        let catalog = CatalogStore {
+            agents: c.agents.clone(),
+            skills: c.skills.clone(),
+            roles: c.roles.clone(),
+            role_catalog_version: c.role_catalog_version.clone(),
+            role_catalog_description: c.role_catalog_description.clone(),
+            mcp_refs: c.mcp_refs.clone(),
+            rules: c.rules.clone(),
+            integrity: c.integrity.clone(),
+            load_errors: vec![parse_error(
+                previous.context.source().root(),
+                error.to_string(),
+            )],
+            content_hashes: c.content_hashes.clone(),
+            catalog_root: c.catalog_root.clone(),
+        };
+        let collections = previous
+            .collections
+            .iter()
+            .map(|(kind, state)| {
+                let issues = vec![error.to_string()];
+                (
+                    *kind,
+                    CollectionState {
+                        status: if state.status == CollectionStatus::Unavailable {
+                            CollectionStatus::Unavailable
+                        } else {
+                            CollectionStatus::Stale
+                        },
+                        count: state.count,
+                        issues,
+                    },
+                )
+            })
+            .collect();
+        Self {
+            context: previous.context.clone(),
+            revision: previous.revision,
+            observed_at: std::time::SystemTime::now(),
+            catalog,
+            collections,
+        }
+    }
+
+    pub fn revision(&self) -> u64 {
+        self.revision
+    }
+
+    /// Time of this load/refresh attempt, NOT the original acquisition time of
+    /// retained stale collections. Their retained content hashes are provenance.
+    pub fn observed_at(&self) -> std::time::SystemTime {
+        self.observed_at
+    }
+
+    /// Conservative freshness guard, not an execution/trust permit.
+    pub fn is_current_data(&self) -> bool {
+        self.collections.values().all(|s| {
+            matches!(
+                s.status,
+                CollectionStatus::Current | CollectionStatus::Empty
+            )
         })
     }
 

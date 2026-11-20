@@ -232,3 +232,99 @@ mod tests {
         assert_eq!(sanitize_subprocess_output(input), input);
     }
 }
+
+// Fixed-state sanitizer for safe streaming display. Unlike the legacy API,
+// strips even SGR and removes controls before credential recognition.
+#[derive(Default)]
+pub(crate) struct StreamingSanitizer {
+    escape: u8,
+    utf8: [u8; 4],
+    len: usize,
+    needed: usize,
+}
+impl StreamingSanitizer {
+    pub(crate) fn push(&mut self, byte: u8, emit: &mut impl FnMut(&[u8])) {
+        match self.escape {
+            1 => {
+                self.escape = match byte {
+                    b'[' => 2,
+                    b']' | b'P' | b'X' | b'^' | b'_' => 3,
+                    _ => 0,
+                };
+                return;
+            }
+            2 => {
+                if (0x40..=0x7e).contains(&byte) || !(0x20..=0x3f).contains(&byte) {
+                    self.escape = 0;
+                }
+                return;
+            }
+            3 => {
+                if byte == 7 {
+                    self.escape = 0;
+                } else if byte == 0x1b {
+                    self.escape = 4;
+                }
+                return;
+            }
+            4 => {
+                self.escape = if byte == b'\\' || byte == 7 {
+                    0
+                } else if byte == 0x1b {
+                    4
+                } else {
+                    3
+                };
+                return;
+            }
+            _ => {}
+        }
+        if byte == 0x1b {
+            self.escape = 1;
+            return;
+        }
+        // An inserted NUL/CR cannot create an artificial key delimiter.
+        if byte < 0x20 && byte != b'\n' && byte != b'\t' || byte == 0x7f {
+            return;
+        }
+        if self.len > 0 {
+            if (0x80..=0xbf).contains(&byte) {
+                self.utf8[self.len] = byte;
+                self.len += 1;
+                if self.len == self.needed {
+                    match std::str::from_utf8(&self.utf8[..self.len]) {
+                        Ok(s) if !s.chars().any(is_disallowed_control) => emit(s.as_bytes()),
+                        Ok(_) => {}
+                        Err(_) => emit("�".as_bytes()),
+                    }
+                    self.len = 0;
+                }
+                return;
+            }
+            self.len = 0;
+            emit("�".as_bytes());
+        }
+        if byte.is_ascii() {
+            emit(&[byte]);
+        } else {
+            self.needed = match byte {
+                0xc2..=0xdf => 2,
+                0xe0..=0xef => 3,
+                0xf0..=0xf4 => 4,
+                _ => {
+                    emit("�".as_bytes());
+                    return;
+                }
+            };
+            self.utf8[0] = byte;
+            self.len = 1;
+        }
+    }
+    pub(crate) fn finish(&mut self, emit: &mut impl FnMut(&[u8])) {
+        if self.len > 0 {
+            emit("�".as_bytes());
+        }
+        self.len = 0;
+        self.escape = 0;
+    }
+}

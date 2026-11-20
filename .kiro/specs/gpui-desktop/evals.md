@@ -176,3 +176,14 @@ a whole. Create later task contracts when their work is authorized.
 - [Task 5.2: isolated Rust consumer preparation; integrated/native obligations pending](evals/task-5.2-consumer.md)
 - [Task 3.1: approved engine preparation; identity milestone and snapshot scope boundary](evals/task-3.1.md)
 - [Task 3.1: current catalog compatibility and full local regression closure](evals/task-3.1-catalog-compatibility.md)
+
+## Approved no-install three-slice preparation
+
+- [Task 2.5 streaming redaction](evals/task-2.5.md): safe bounded projection,
+  separate raw transport/protocol and explicit conservative suppression.
+- [Task 3.2 search and freshness](evals/task-3.2.md): immutable observations,
+  request/revision rejection and stale retained collection provenance.
+- [Task 3.3 dependency/integrity findings](evals/task-3.3.md): existing graph
+  algorithms and bounded descriptor-relative file observations with stated limits.
+
+These leaves cover engine preparation, not full native task acceptance.
