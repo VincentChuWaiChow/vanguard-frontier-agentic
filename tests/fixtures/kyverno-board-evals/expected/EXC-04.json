@@ -2,7 +2,7 @@
   "case_id": "EXC-04",
   "skill_id": "kyverno-exception-governance",
   "kind": "oracle",
-  "run_status": "not-run",
+  "run_status": "pilot-passed",
   "expected_lead": "kyverno-exception-governance-agent",
   "expected_referrals": [],
   "tool_boundary": "static-review; no live adapter",

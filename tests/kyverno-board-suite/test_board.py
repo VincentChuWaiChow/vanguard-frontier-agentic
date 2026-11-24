@@ -250,9 +250,18 @@ class Layer3And4Status(unittest.TestCase):
         cases = [json.loads(p.read_text()) for p in sorted((root / "expected").glob("*.json"))]
         self.assertEqual(manifest["case_count"], len(cases))
         self.assertEqual(len(list((root / "inputs").glob("*.json"))), len(cases))
+        recorded = {case for run in manifest["model_runs"] for case, result in run["results"].items()}
+        for c in cases:
+            with self.subTest(case=c["case_id"]):
+                if c["case_id"] in recorded:
+                    self.assertIn(c["run_status"], {"pilot-passed", "pilot-failed"})
+                else:
+                    self.assertEqual(c["run_status"], "not-run", "a case cannot claim a run the manifest does not record")
+        for run in manifest["model_runs"]:
+            self.assertTrue(run["model"] and run["harness"] and run["fixture_revision"] and run["repetitions"] >= 1)
+            self.assertIn("observed_failures", run)
         if not manifest["model_runs"]:
             self.assertEqual(manifest["evaluation_status"], "not-run")
-            self.assertTrue(all(c["run_status"] == "not-run" for c in cases))
         by_skill = {}
         for c in cases:
             by_skill.setdefault(c["skill_id"], set()).add(c["kind"])

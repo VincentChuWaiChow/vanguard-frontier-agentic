@@ -2,7 +2,7 @@
   "case_id": "POL-05",
   "skill_id": "kyverno-policy-review",
   "kind": "oracle",
-  "run_status": "not-run",
+  "run_status": "pilot-passed",
   "expected_lead": "kyverno-policy-review-agent",
   "expected_referrals": [],
   "tool_boundary": "static-review; no live adapter",

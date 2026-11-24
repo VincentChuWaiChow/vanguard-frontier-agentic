@@ -38162,7 +38162,7 @@
     },
     {
       "tree": "tests",
-      "aggregate_sha256": "eb9700dc8168f0bb1ca35f394b1fe74a9d5a71d16bff064900aaeaf90524eb5b",
+      "aggregate_sha256": "8d701b42069a481f3cba757b0d6e732688b4fc2658b97d98c9babed3fdd02d24",
       "files": [
         {
           "path": "tests/AGENTS.md",
@@ -46806,8 +46806,8 @@
         },
         {
           "path": "tests/fixtures/kyverno-board-evals/expected/EVI-01.json",
-          "sha256": "68ac83ecb470efe5779e523b75a84481812183276f1327c8b93d8990fbb047fb",
-          "bytes": 1350
+          "sha256": "2e8936a2bf0d94322c1fe836b85714c221dc18f31c6296ac5ce8eb8e49581977",
+          "bytes": 1355
         },
         {
           "path": "tests/fixtures/kyverno-board-evals/expected/EVI-02.json",
@@ -46846,8 +46846,8 @@
         },
         {
           "path": "tests/fixtures/kyverno-board-evals/expected/EXC-04.json",
-          "sha256": "bd7ab77cd4cdf7d7a1fb50ee0aafe801a6e1fae390a9e667ac03bebfb1fb3154",
-          "bytes": 1308
+          "sha256": "09b336656a22abdb9a486a55f373efc449fd89cd48a0a36b71819cdd0e5726e9",
+          "bytes": 1313
         },
         {
           "path": "tests/fixtures/kyverno-board-evals/expected/EXC-05.json",
@@ -46966,8 +46966,8 @@
         },
         {
           "path": "tests/fixtures/kyverno-board-evals/expected/POL-05.json",
-          "sha256": "a66c239b8c75238b06eded9e6270d5f1412fa6c86e1ff2cb11c3d60b3f840d61",
-          "bytes": 1411
+          "sha256": "a29f10cb4b4a153ab0aaa5bc92689dda237267d411c3e7975eb0faf5fc6fc886",
+          "bytes": 1416
         },
         {
           "path": "tests/fixtures/kyverno-board-evals/expected/POL-06.json",
@@ -47216,8 +47216,28 @@
         },
         {
           "path": "tests/fixtures/kyverno-board-evals/manifest.json",
-          "sha256": "7e1aba71840f5eb31ed2c1c62ce9eb3435850f407082dc18b518b6587f9be00d",
-          "bytes": 77
+          "sha256": "9323f22316353fb4e865772b68587479f27db2fb1aad4404d064c2b233f2a5c6",
+          "bytes": 1272
+        },
+        {
+          "path": "tests/fixtures/kyverno-board-evals/runs/2026-11-24-pilot/EVI-01.md",
+          "sha256": "d5c842a335b22e65dbf395c1d55f435d950f310fdc30b987dd648a02a98e0792",
+          "bytes": 2447
+        },
+        {
+          "path": "tests/fixtures/kyverno-board-evals/runs/2026-11-24-pilot/EXC-04.md",
+          "sha256": "ba5d9668f5e8a73e647ac7068edefcb7fd22a0988efda2a07be6c575d5272fe9",
+          "bytes": 2503
+        },
+        {
+          "path": "tests/fixtures/kyverno-board-evals/runs/2026-11-24-pilot/POL-05.md",
+          "sha256": "5de90296895d8cc834424b82a734d00a4ece6e79d34820d50762cf9a66ae9fde",
+          "bytes": 3225
+        },
+        {
+          "path": "tests/fixtures/kyverno-board-evals/runs/2026-11-24-pilot/grades.json",
+          "sha256": "cf71ef05aca9776e4a901a6beb29e87dab2891fc7e1bc70a811aa106ba518910",
+          "bytes": 648
         },
         {
           "path": "tests/fixtures/kyverno-maestro-routing/expected/001-happy-admission-design.json",
@@ -51536,8 +51556,8 @@
         },
         {
           "path": "tests/kyverno-board-suite/test_board.py",
-          "sha256": "b6fc46691623d6ae48f4fcbf0b3f596da2652716011b620084a382209be93b6a",
-          "bytes": 15353
+          "sha256": "b4609dba392ad7c42256b60d9d848fd17eb20efc8caed6eb6c4a1bedd09c269f",
+          "bytes": 15939
         },
         {
           "path": "tests/mods.test.mjs",
@@ -51799,5 +51819,5 @@
       "bytes": 9135
     }
   ],
-  "aggregate_sha256": "2d11585bcde5d4d3e2f46162435f46f043e17a30b920a574c8a6b2654fafb667"
+  "aggregate_sha256": "a2a4bdacc59545ea5d10d398d8112fc6a7a6253c1c76363a0f1329a436592fe7"
 }

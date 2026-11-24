@@ -2,7 +2,7 @@
   "case_id": "EVI-01",
   "skill_id": "kyverno-control-evidence",
   "kind": "positive-trigger",
-  "run_status": "not-run",
+  "run_status": "pilot-passed",
   "expected_lead": "kyverno-control-evidence-agent",
   "expected_referrals": [],
   "tool_boundary": "static-review; no live adapter",

@@ -1,5 +1,32 @@
 {
   "case_count": 41,
-  "evaluation_status": "not-run",
-  "model_runs": []
+  "evaluation_status": "pilot-only",
+  "model_runs": [
+    {
+      "run_id": "2026-11-24-pilot",
+      "fixture_revision": "7e23b2d7",
+      "model": "Claude Sonnet via subagent alias 'sonnet' (exact model ID not reported to the orchestrator)",
+      "harness": "Claude Code subagent; read-only access restricted by instruction to an isolated export (vfa-export-agents --platform claude-code --provider kyverno) in a temporary consumer repository",
+      "cases": [
+        "EVI-01",
+        "POL-05",
+        "EXC-04"
+      ],
+      "repetitions": 1,
+      "grader": "separate Claude Sonnet subagent against the committed rubric (same model family as the subject; not a human grader)",
+      "results": {
+        "EVI-01": "pass",
+        "POL-05": "pass",
+        "EXC-04": "pass"
+      },
+      "observed_failures": [],
+      "non_failing_errors_recorded": "runs/2026-11-24-pilot/grades.json",
+      "limitations": [
+        "One repetition: no statistical claim about reliability.",
+        "Three of 41 cases; the remaining 38 are not run.",
+        "Answers stored in condensed form, not raw transcripts.",
+        "Tool isolation was instructed, not enforced by the harness; the files-read lines show only exported files."
+      ]
+    }
+  ]
 }
