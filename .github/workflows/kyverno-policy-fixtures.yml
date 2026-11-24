@@ -1,0 +1,49 @@
+name: Kyverno Policy Fixtures
+
+# Layer 2 of the Kyverno board verification: run the offline policy fixtures with the
+# pinned kyverno CLI. These results establish behavior for the fixture inputs only; they
+# never establish webhook availability, controller-side exception expiry or populations.
+on:
+  push:
+    paths:
+      - 'tests/fixtures/kyverno-policy-cli/**'
+      - 'tests/kyverno-board-suite/**'
+      - '.github/workflows/kyverno-policy-fixtures.yml'
+  pull_request:
+    paths:
+      - 'tests/fixtures/kyverno-policy-cli/**'
+      - 'tests/kyverno-board-suite/**'
+      - '.github/workflows/kyverno-policy-fixtures.yml'
+  workflow_dispatch: {}
+
+permissions:
+  contents: read
+
+env:
+  KYVERNO_CLI_VERSION: v1.20.0
+  # SHA256 of kyverno-cli_v1.20.0_linux_x86_64.tar.gz from the release checksums.txt.
+  KYVERNO_CLI_SHA256: 06b8f3ca7b5626473be8fb4d343ad54ab84e317142766f72420e7d44b80942e2
+
+jobs:
+  offline-fixtures:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+      - name: Install pinned kyverno CLI (checksum-verified)
+        run: |
+          set -euo pipefail
+          archive="kyverno-cli_${KYVERNO_CLI_VERSION}_linux_x86_64.tar.gz"
+          curl -fsSL -o "$RUNNER_TEMP/$archive" \
+            "https://github.com/kyverno/kyverno/releases/download/${KYVERNO_CLI_VERSION}/${archive}"
+          echo "${KYVERNO_CLI_SHA256}  $RUNNER_TEMP/$archive" | sha256sum -c -
+          mkdir -p "$RUNNER_TEMP/kyverno"
+          tar -xzf "$RUNNER_TEMP/$archive" -C "$RUNNER_TEMP/kyverno" kyverno
+          echo "KYVERNO_CLI=$RUNNER_TEMP/kyverno/kyverno" >> "$GITHUB_ENV"
+      - name: Run offline policy fixtures
+        run: |
+          "$KYVERNO_CLI" version
+          "$KYVERNO_CLI" test tests/fixtures/kyverno-policy-cli
+      - name: Assert the suite used the pinned CLI
+        run: python3 -m unittest -v test_board.Layer2Deterministic.test_policy_fixtures_pass_with_pinned_cli
+        working-directory: tests/kyverno-board-suite

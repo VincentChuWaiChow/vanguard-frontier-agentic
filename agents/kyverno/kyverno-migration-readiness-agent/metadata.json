@@ -1,0 +1,52 @@
+{
+  "id": "kyverno-migration-readiness-agent",
+  "name": "Kyverno Migration Readiness",
+  "type": "agent",
+  "provider": "kyverno",
+  "harnesses": [
+    "codex",
+    "copilot",
+    "claude-code",
+    "cursor",
+    "gemini",
+    "kiro"
+  ],
+  "summary": "Agent for kyverno-migration-readiness. Assess Kyverno upgrades and policy-family migrations (legacy kyverno.io ClusterPolicy/Policy to policies.kyverno.io CEL types, CEL API version moves, Kyverno to native ValidatingAdmissionPolicy) from supplied versions, manifests, fixtures and parity results. Use for v1.19 to v1.20 readiness, parity diffs, cohort promotion, abort criteria and rollback constraints. Not for single-policy semantics, webhook incidents or exception approval.",
+  "source_type": "original",
+  "official_docs": [
+    "https://github.com/kyverno/kyverno/releases/tag/v1.20.0",
+    "https://kyverno.io/docs/guides/migration-to-cel/",
+    "https://github.com/kyverno/kyverno/tree/v1.20.0/config/crds/policies.kyverno.io",
+    "https://github.com/kyverno/kyverno/blob/v1.20.0/cmd/cli/kubectl-kyverno/apis/v1alpha1/test_result.go",
+    "https://kyverno.io/docs/kyverno-cli/reference/kyverno_test/"
+  ],
+  "security_notes": "Static review only. Offline CLI parity is input-bounded: UPDATE in the CLI uses identical old and new objects, so UPDATE-sensitive controls need old/new object evidence. Never assume the latest release or execute an upgrade.",
+  "last_verified": "2026-11-24",
+  "path": "agents/kyverno/kyverno-migration-readiness-agent",
+  "harness_variants": {
+    "codex": "agents/kyverno/kyverno-migration-readiness-agent/harnesses/codex.toml",
+    "copilot": "agents/kyverno/kyverno-migration-readiness-agent/harnesses/copilot.agent.md",
+    "claude-code": "agents/kyverno/kyverno-migration-readiness-agent/harnesses/claude-code.agent.md",
+    "cursor": "agents/kyverno/kyverno-migration-readiness-agent/harnesses/cursor.agent.md",
+    "gemini": "agents/kyverno/kyverno-migration-readiness-agent/harnesses/gemini.agent.md",
+    "kiro-ide": "agents/kyverno/kyverno-migration-readiness-agent/harnesses/kiro-ide.agent.md",
+    "kiro-cli": "agents/kyverno/kyverno-migration-readiness-agent/harnesses/kiro-cli.agent.json"
+  },
+  "author": "github: VincentChuWaiChow",
+  "version": "0.1.0",
+  "companion_skills": [
+    "kyverno-migration-readiness"
+  ],
+  "execution_tier": "static-review",
+  "lifecycle": "beta",
+  "routing_keywords": [
+    "migration",
+    "upgrade",
+    "v1.20",
+    "legacy ClusterPolicy",
+    "parity",
+    "cohort",
+    "fleet",
+    "engine version"
+  ]
+}

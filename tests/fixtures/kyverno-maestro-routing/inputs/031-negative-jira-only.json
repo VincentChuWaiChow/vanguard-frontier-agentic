@@ -1,0 +1,8 @@
+{
+  "name": "031-negative-jira-only",
+  "task": "Draft a Jira ticket title for the finding we already agreed.",
+  "tags": [
+    "negative-routing",
+    "handoff:jira-ticket-authoring"
+  ]
+}

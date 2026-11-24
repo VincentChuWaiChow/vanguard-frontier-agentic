@@ -1,0 +1,12 @@
+{
+  "case_id": "EVI-02",
+  "prompt": "Why does cohort C have no PolicyReport results at all?",
+  "execution_context": {
+    "tier": "static-review",
+    "live_adapter_authorized": false,
+    "network_authorized": false
+  },
+  "supplied_evidence": {
+    "population-report": "empty for cohort C"
+  }
+}

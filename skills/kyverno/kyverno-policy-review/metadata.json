@@ -11,20 +11,31 @@
     "kiro",
     "other"
   ],
-  "summary": "Review Kyverno ValidatingPolicy, MutatingPolicy, GeneratingPolicy, DeletingPolicy, ImageValidatingPolicy, and PolicyException resources for admission correctness, failure mode, supply-chain integrity, and the Kyverno-vs-native-CEL architectural decision.",
+  "summary": "Decide whether a Kyverno CEL policy, a legacy ClusterPolicy on releases before v1.20, or a native ValidatingAdmissionPolicy separates legitimate from prohibited writes for an intended control, judge Audit/Warn/Deny against intent and rollout stage, select the engine, and check that image rules verify the approved signer and required attestation claims.",
   "source_type": "original",
   "official_docs": [
-    "https://kyverno.io/docs/",
-    "https://kyverno.io/docs/policy-types/overview/",
-    "https://kyverno.io/docs/policy-types/cluster-policy/validate/",
-    "https://kyverno.io/docs/policy-types/cluster-policy/verify-images/",
-    "https://kyverno.io/docs/exceptions/",
-    "https://kyverno.io/docs/installation/",
-    "https://kubernetes.io/docs/reference/access-authn-authz/validating-admission-policy/"
+    "https://github.com/kyverno/kyverno/releases/tag/v1.20.0",
+    "https://kyverno.io/docs/guides/migration-to-cel/",
+    "https://github.com/kyverno/kyverno/tree/v1.20.0/config/crds/policies.kyverno.io",
+    "https://github.com/kyverno/kyverno/blob/v1.20.0/config/crds/policies.kyverno.io/policies.kyverno.io_validatingpolicies.yaml",
+    "https://kyverno.io/docs/guides/reports/",
+    "https://github.com/kyverno/kyverno/blob/v1.20.0/config/crds/policies.kyverno.io/policies.kyverno.io_imagevalidatingpolicies.yaml",
+    "https://github.com/kyverno/kyverno/blob/v1.20.0/pkg/cel/libs/imageverify/lib.go",
+    "https://kyverno.io/docs/policy-types/image-validating-policy/",
+    "https://kyverno.io/docs/policy-types/generating-policy/",
+    "https://kyverno.io/docs/policy-types/mutating-policy/",
+    "https://github.com/kyverno/kyverno/blob/v1.20.0/cmd/cli/kubectl-kyverno/apis/v1alpha1/test_result.go",
+    "https://github.com/kyverno/kyverno/blob/v1.20.0/pkg/admissionpolicy/celexception_checker.go",
+    "https://kubernetes.io/docs/reference/access-authn-authz/validating-admission-policy/",
+    "https://release-1-18-0.kyverno.io/docs/policy-types/cluster-policy/policy-settings/",
+    "https://istio.io/latest/docs/ambient/architecture/data-plane/",
+    "https://istio.io/latest/docs/ambient/usage/waypoint/"
   ],
-  "security_notes": "Treat failureAction Audit on production policies as a critical finding. Every PolicyException is a documented bypass requiring an owner, reason, and expiry. ImageValidatingPolicy must verify signatures with mutateDigest true. Prefer native ValidatingAdmissionPolicy when CEL alone is sufficient.",
-  "last_verified": "2026-05-01",
+  "security_notes": "Static review only. Severity of Audit or Warn depends on control intent, rollout stage, owner and deadline; a mandatory preventive control left in Audit past its deadline is a defect, an approved time-bounded canary is not. Signature verification alone does not satisfy an attestation or signer-restricted requirement. Never collect cluster evidence or mutate policy.",
+  "last_verified": "2026-11-24",
   "path": "skills/kyverno/kyverno-policy-review",
   "author": "github: VincentChuWaiChow",
-  "version": "0.1.0"
+  "version": "0.2.0",
+  "lifecycle": "beta",
+  "execution_tier": "static-review"
 }

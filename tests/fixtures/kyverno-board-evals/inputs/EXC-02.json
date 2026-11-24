@@ -1,0 +1,12 @@
+{
+  "case_id": "EXC-02",
+  "prompt": "Should the non-root policy itself allow root for exporters?",
+  "execution_context": {
+    "tier": "static-review",
+    "live_adapter_authorized": false,
+    "network_authorized": false
+  },
+  "supplied_evidence": {
+    "manifest": "ValidatingPolicy"
+  }
+}

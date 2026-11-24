@@ -1,0 +1,52 @@
+{
+  "id": "kyverno-admission-reliability-agent",
+  "name": "Kyverno Admission Reliability",
+  "type": "agent",
+  "provider": "kyverno",
+  "harnesses": [
+    "codex",
+    "copilot",
+    "claude-code",
+    "cursor",
+    "gemini",
+    "kiro"
+  ],
+  "summary": "Agent for kyverno-admission-reliability. Assess Kyverno admission reliability from supplied webhook configurations, policy failurePolicy and timeouts, replica and placement evidence, latency and error series and incident observations. Use for release envelopes, webhook timeouts, failurePolicy Fail versus Ignore, controller or registry degradation, and telling a correct policy denial from a webhook call error, an upstream API rejection or stale reports. Not for whether a rule expresses the control, exception approval or coverage claims.",
+  "source_type": "original",
+  "official_docs": [
+    "https://github.com/kyverno/kyverno/blob/v1.20.0/config/crds/policies.kyverno.io/policies.kyverno.io_validatingpolicies.yaml",
+    "https://github.com/kyverno/kyverno/blob/v1.20.0/pkg/controllers/webhook/validating.go",
+    "https://kubernetes.io/docs/reference/access-authn-authz/extensible-admission-controllers/",
+    "https://kyverno.io/docs/guides/high-availability/",
+    "https://kyverno.io/docs/guides/monitoring/"
+  ],
+  "security_notes": "Static review only. failurePolicy governs call and evaluation errors, not violations; Ignore can admit writes unevaluated during an outage and Fail can block writes. Estimates require measured latency and named recovery dependencies. Never probe webhooks, restart controllers or change webhook configuration.",
+  "last_verified": "2026-11-24",
+  "path": "agents/kyverno/kyverno-admission-reliability-agent",
+  "harness_variants": {
+    "codex": "agents/kyverno/kyverno-admission-reliability-agent/harnesses/codex.toml",
+    "copilot": "agents/kyverno/kyverno-admission-reliability-agent/harnesses/copilot.agent.md",
+    "claude-code": "agents/kyverno/kyverno-admission-reliability-agent/harnesses/claude-code.agent.md",
+    "cursor": "agents/kyverno/kyverno-admission-reliability-agent/harnesses/cursor.agent.md",
+    "gemini": "agents/kyverno/kyverno-admission-reliability-agent/harnesses/gemini.agent.md",
+    "kiro-ide": "agents/kyverno/kyverno-admission-reliability-agent/harnesses/kiro-ide.agent.md",
+    "kiro-cli": "agents/kyverno/kyverno-admission-reliability-agent/harnesses/kiro-cli.agent.json"
+  },
+  "author": "github: VincentChuWaiChow",
+  "version": "0.1.0",
+  "companion_skills": [
+    "kyverno-admission-reliability"
+  ],
+  "execution_tier": "static-review",
+  "lifecycle": "beta",
+  "routing_keywords": [
+    "webhook timeout",
+    "failurePolicy",
+    "admission latency",
+    "webhook call error",
+    "controller unreachable",
+    "registry degradation",
+    "release envelope",
+    "on-call"
+  ]
+}

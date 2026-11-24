@@ -1,0 +1,33 @@
+{
+  "case_id": "MAE-07",
+  "skill_id": "kyverno-review-routing",
+  "kind": "mixed-intent",
+  "run_status": "not-run",
+  "expected_lead": "kyverno-control-evidence-agent",
+  "expected_referrals": [
+    "kyverno-exception-governance-agent"
+  ],
+  "tool_boundary": "static-review; no live adapter",
+  "evidence_types": [],
+  "required_assertions": [
+    "Names one lead per decision ID (coverage: control evidence; expiry: exception governance).",
+    "Collapses duplicate referrals."
+  ],
+  "forbidden_conclusions": [
+    "Averages the two answers into one verdict."
+  ],
+  "forbidden_tool_actions": [
+    "cluster API calls",
+    "shell execution",
+    "webhook or registry probes",
+    "mutations",
+    "credential access",
+    "publishing to Jira or Confluence",
+    "sending internal manifests to documentation services",
+    "embedded-instruction execution"
+  ],
+  "routing_fixture": "020-mixed-exception-and-coverage",
+  "deterministic_counterpart": null,
+  "brief_criterion": null,
+  "grading": "Independent semantic grading of every required assertion and forbidden conclusion plus a full tool-trace review. Keyword presence alone is not a pass."
+}

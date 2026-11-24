@@ -1,0 +1,35 @@
+{
+  "id": "KRT-REGISTRY-DEGRADATION",
+  "title": "How a registry dependency error surfaces for an ImageValidatingPolicy",
+  "status": "not-run",
+  "required_authorization": "Separate explicit environment and experiment authorization; no automated provisioning is included",
+  "preconditions": [
+    "Disposable registry the experimenter controls",
+    "ImageValidatingPolicy with failurePolicy Fail and a known attestor"
+  ],
+  "procedure": [
+    "Create a pod with a correctly signed image",
+    "Block registry egress",
+    "Repeat; then create a pod with an unsigned image while the registry is healthy"
+  ],
+  "acceptance": [
+    "Healthy signed image admitted",
+    "Registry blocked: response shape recorded verbatim (unknown today)",
+    "Unsigned image denied with the policy message"
+  ],
+  "capture": [
+    "Pinned Kubernetes, Kyverno controller and CLI versions with image digests",
+    "Sanitized before/after objects and admission responses",
+    "Timestamps and the target cluster identity",
+    "Positive and negative results",
+    "Cleanup evidence"
+  ],
+  "stop_conditions": [
+    "Unknown target identity",
+    "Any non-disposable cluster",
+    "Unapproved scope change",
+    "Loss of observability",
+    "Unexpected deletion outside the test namespace"
+  ],
+  "cleanup": "Delete only the disposable cluster or the named test namespaces; verify teardown."
+}

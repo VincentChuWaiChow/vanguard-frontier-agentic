@@ -1,0 +1,12 @@
+{
+  "case_id": "POL-02",
+  "prompt": "Admission timed out for 12 minutes during the release; was that the non-root policy's fault?",
+  "execution_context": {
+    "tier": "static-review",
+    "live_adapter_authorized": false,
+    "network_authorized": false
+  },
+  "supplied_evidence": {
+    "runtime-metric": "admission review p99 spike, webhook errors"
+  }
+}

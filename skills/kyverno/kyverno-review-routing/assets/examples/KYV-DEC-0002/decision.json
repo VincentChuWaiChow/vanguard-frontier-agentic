@@ -1,0 +1,163 @@
+{
+  "schema_version": "1.0",
+  "decision_id": "KYV-DEC-0002",
+  "as_of": "2026-11-22T00:00:00Z",
+  "request_kind": "advisory",
+  "question": "Why did invoice-api pods fail to start during release R-synthetic-42, and what restores the release?",
+  "intended_control": "ImageValidatingPolicy requiring approved signer for invoice-api images (failurePolicy Fail)",
+  "target_cohort": "invoice-api pod CREATE in payments during release R-synthetic-42",
+  "authorized_scope": "supplied incident observations only",
+  "owner": "payments on-call SRE",
+  "deadline": null,
+  "consequence_class": "none",
+  "environment": {
+    "kubernetes_version": "unknown (not supplied)",
+    "kyverno_controller_version": "v1.20.0 (supplied)",
+    "kyverno_cli_version": "not used",
+    "served_apis": [
+      "policies.kyverno.io/v1 ImageValidatingPolicy"
+    ],
+    "policy_revision": "git:synthetic-0001"
+  },
+  "evidence": [
+    {
+      "id": "EV-1",
+      "type": "admission-trace",
+      "locator": "sanitized API server responses for 3 failed invoice-api pod CREATEs",
+      "captured_at": "2026-11-21T14:05:00Z",
+      "applies_to": "responses without the policy message",
+      "omits": "registry-side logs"
+    },
+    {
+      "id": "EV-2",
+      "type": "runtime-metric",
+      "locator": "registry latency dashboard export, release window",
+      "captured_at": "2026-11-21T14:30:00Z",
+      "applies_to": "elevated registry latency",
+      "omits": "per-request causation"
+    },
+    {
+      "id": "EV-3",
+      "type": "installed-config",
+      "locator": "sanitized ImageValidatingPolicy invoice-api-signed",
+      "captured_at": "2026-11-21T14:10:00Z",
+      "applies_to": "failurePolicy Fail, timeoutSeconds 15",
+      "omits": "admission decisions"
+    }
+  ],
+  "lead": {
+    "agent": "kyverno-admission-reliability-agent",
+    "provisional_conclusion": "A registry dependency error is more consistent than a trust rejection, because the responses carry no policy message.",
+    "easiest_way_wrong": "The trust rejection message was suppressed by a client and the images really are unsigned."
+  },
+  "referrals": [
+    {
+      "decision_id": "KYV-DEC-0002",
+      "to": "kyverno-policy-review-agent",
+      "evidence_refs": [
+        "EV-3"
+      ],
+      "return_question": "Would a correctly signed release image satisfy the policy's attestor identities?",
+      "status": "answered",
+      "answer": "Yes for the supplied identities; the release image signature itself was not supplied."
+    }
+  ],
+  "challenge": null,
+  "claims": [
+    {
+      "id": "C-1",
+      "class": "observed",
+      "statement": "The three failed CREATE responses carry no policy message.",
+      "evidence_refs": [
+        "EV-1"
+      ]
+    },
+    {
+      "id": "C-2",
+      "class": "observed",
+      "statement": "Registry latency was elevated in the release window.",
+      "evidence_refs": [
+        "EV-2"
+      ]
+    },
+    {
+      "id": "C-3",
+      "class": "unknown",
+      "statement": "The incident timeline.",
+      "evidence_refs": [],
+      "smallest_settling_item": "incident commander's timeline with first failure and recovery times"
+    },
+    {
+      "id": "C-4",
+      "class": "unknown",
+      "statement": "How a registry fetch failure surfaces in the admission response.",
+      "evidence_refs": [],
+      "smallest_settling_item": "an admission trace from a controlled registry outage in a disposable cluster"
+    }
+  ],
+  "tests": [
+    {
+      "id": "T-1",
+      "polarity": "positive",
+      "operation": "CREATE",
+      "expected": "a signed release image is admitted with the policy evaluated",
+      "state": "proposed",
+      "observed": null,
+      "evidence_refs": []
+    },
+    {
+      "id": "T-2",
+      "polarity": "negative",
+      "operation": "CREATE",
+      "expected": "an unsigned image is denied with the policy message",
+      "state": "proposed",
+      "observed": null,
+      "evidence_refs": []
+    }
+  ],
+  "outcome": "indeterminate",
+  "verdict": "needs-review",
+  "conditions": [],
+  "dissent": [
+    {
+      "by": "kyverno-policy-review-agent",
+      "position": "A trust rejection is not excluded until the release image signature is checked.",
+      "missing_discriminator": "verification result for the release image digest against the policy attestors",
+      "human_owner": "payments on-call SRE"
+    }
+  ],
+  "business_exposure": "Invoice-api release blocked; invoices queue until pods start.",
+  "suggested_action": "Check the release image signature first (cheapest discriminator), then the registry health; do not switch the policy to Ignore without the incident commander's decision.",
+  "rollback_limits": "Rolling back the release does not change the admission dependency on the registry.",
+  "evidence_owner": "payments on-call SRE",
+  "execution": {
+    "authority": "none",
+    "handoff": null
+  },
+  "artifacts": [
+    {
+      "system": "jira",
+      "kind": "incident",
+      "local_id": "KYV-DEC-0002",
+      "external_key": null,
+      "revision_checked": null,
+      "action": "draft",
+      "skill": "jira-ticket-authoring",
+      "path": "jira-incident.md"
+    },
+    {
+      "system": "confluence",
+      "kind": "runbook",
+      "local_id": "KYV-DEC-0002",
+      "external_key": null,
+      "revision_checked": null,
+      "action": "draft",
+      "skill": "confluence-document-authoring",
+      "path": "confluence-runbook.md"
+    }
+  ],
+  "limitations": [
+    "Synthetic case.",
+    "Incident timeline unknown in every draft."
+  ]
+}

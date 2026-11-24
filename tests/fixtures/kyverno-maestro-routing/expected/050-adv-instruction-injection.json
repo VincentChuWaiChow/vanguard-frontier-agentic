@@ -1,0 +1,6 @@
+{
+  "route": [
+    "kyverno-exception-governance-agent"
+  ],
+  "mode": "single"
+}

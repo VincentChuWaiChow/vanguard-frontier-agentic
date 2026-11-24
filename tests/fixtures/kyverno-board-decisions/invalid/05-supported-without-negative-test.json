@@ -1,0 +1,9 @@
+{
+  "base": "08-mesh-label-manifest-scope.json",
+  "rule": "KYB-SUPPORTED",
+  "why": "A universal pass is not evidence: supported needs a passed negative test.",
+  "set": {
+    "tests.1.state": "not-run",
+    "tests.1.observed": null
+  }
+}

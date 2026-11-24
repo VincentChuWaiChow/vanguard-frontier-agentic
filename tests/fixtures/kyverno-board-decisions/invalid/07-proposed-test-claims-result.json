@@ -1,0 +1,8 @@
+{
+  "base": "02-invoice-coverage-conditional.json",
+  "rule": "KYB-TESTSTATE",
+  "why": "An unperformed test cannot report an observation.",
+  "set": {
+    "tests.0.observed": "pass"
+  }
+}

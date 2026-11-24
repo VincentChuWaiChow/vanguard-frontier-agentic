@@ -1,0 +1,7 @@
+{
+  "route": [
+    "kyverno-control-evidence-agent",
+    "kyverno-exception-governance-agent"
+  ],
+  "mode": "parallel (2)"
+}

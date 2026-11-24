@@ -1,0 +1,8 @@
+{
+  "name": "017-near-mesh-label",
+  "task": "The use-waypoint label passes admission but the waypoint status is absent; is invoice-api traffic authorized?",
+  "tags": [
+    "near-neighbor",
+    "oracle:mesh-referral"
+  ]
+}

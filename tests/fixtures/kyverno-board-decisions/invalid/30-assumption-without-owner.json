@@ -1,0 +1,8 @@
+{
+  "base": "01-cohort-a-promotion-supported.json",
+  "rule": "KYB-UNKNOWN",
+  "why": "An assumption names who must confirm it.",
+  "set": {
+    "claims.2.confirm_owner": "__DELETE__"
+  }
+}

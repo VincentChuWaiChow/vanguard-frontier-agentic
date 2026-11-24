@@ -1,13 +1,13 @@
 ---
 name: "vanguard-kyverno"
 displayName: "Vanguard Frontier — Kyverno"
-description: "Reviews kyverno ClusterPolicy and Policy resources for failureAction, background scanning, PolicyException audit,... Static review only; no live mutations."
+description: "Curated Kyverno agents for admission reliability, control evidence, exception governance, migration readiness. Routes via kyverno-maestro-agent to specialist agents based on task scope. Static review only; no live mutations."
 keywords: ["kyverno", "admission-policy", "cluster-policy", "policy-enforcement"]
 author: "VincentChuWaiChow"
 ---
 # Vanguard Frontier — Kyverno
 
-Reviews kyverno ClusterPolicy and Policy resources for failureAction, background scanning, PolicyException audit,... Static review only; no live mutations.
+Curated Kyverno agents for admission reliability, control evidence, exception governance, migration readiness. Routes via kyverno-maestro-agent to specialist agents based on task scope. Static review only; no live mutations.
 
 ## When to engage this Power
 
@@ -15,9 +15,9 @@ Activate when the task references Kyverno services, resources, or operations. Do
 
 ## Routing pattern
 
-- *(no maestro for this provider; reference agents directly under `agents/kyverno/`)*
+- **`kyverno-maestro-agent`** — classifies and routes the task to the right specialist
 
-Reference agents directly from agents/kyverno/ without maestro-based routing.
+Use the maestro as the entry point: classify the task, then dispatch to one specialist or a parallel team of specialists. Never have the maestro itself execute a live mutation.
 
 ## Live-guard agents (gate_mode only)
 
@@ -27,12 +27,13 @@ Live-guard agents enforce approval, target confirmation, evidence capture, and r
 
 ## Invariants
 
+- Route all tasks through kyverno-maestro-agent for proper classification and dispatch.
 - Static review only -- agents analyze configuration and provide findings without mutating live systems.
 - Cluster-scoped policies can reject legitimate workloads; validate against existing deployments before applying.
 
 ## Where the agents live
 
-Agent specs and adapters are part of the [Vanguard Frontier Agentic](https://github.com/VincentChuWaiChow/vanguard-frontier-agentic) marketplace. For this provider, see `agents/kyverno/` in that repository. The single agent in this provider ships a Kiro adapter (`harnesses/kiro-ide.agent.md`, `kiro-cli.agent.json`).
+Agent specs and adapters are part of the [Vanguard Frontier Agentic](https://github.com/VincentChuWaiChow/vanguard-frontier-agentic) marketplace. For this provider, see `agents/kyverno/` in that repository. All 7 agents in this provider ship a Kiro adapter (`harnesses/kiro-ide.agent.md`, `kiro-cli.agent.json`).
 
 ## Companion install paths
 

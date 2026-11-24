@@ -1,0 +1,14 @@
+{
+  "case_id": "EVI-04",
+  "prompt": "Distinguish: cohort D has an empty report, cohort E's report is 30 days old, catalog workloads are excluded, and 6 creates were denied.",
+  "execution_context": {
+    "tier": "static-review",
+    "live_adapter_authorized": false,
+    "network_authorized": false
+  },
+  "supplied_evidence": {
+    "population-report": "cohort D empty; cohort E as_of 30 days old",
+    "manifest": "matchConditions excludes catalog",
+    "runtime-metric": "6 request_allowed=false"
+  }
+}

@@ -1,0 +1,8 @@
+{
+  "base": "01-cohort-a-promotion-supported.json",
+  "rule": "KYB-SCHEMA",
+  "why": "A review cannot carry execution authority.",
+  "set": {
+    "execution.authority": "approved"
+  }
+}

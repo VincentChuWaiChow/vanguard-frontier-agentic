@@ -1,0 +1,8 @@
+{
+  "base": "02-invoice-coverage-conditional.json",
+  "rule": "KYB-CONDITIONAL",
+  "why": "Conditional on nothing.",
+  "set": {
+    "conditions": []
+  }
+}

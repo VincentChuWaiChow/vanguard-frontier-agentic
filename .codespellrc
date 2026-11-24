@@ -28,9 +28,10 @@ skip = ./.git,./node_modules,./.code-review-graph,./catalog/skill-manifest.json,
 #   consol - abbreviation for "consolidated" (standard accounting shorthand used in table cells)
 #   theses - correct English plural of "thesis" (codespell incorrectly flags as misspelling)
 #   ratatui - Rust TUI framework crate name (not "ratatouille")
+#   intoto - Kyverno ImageValidatingPolicy field attestations[].intoto (in-toto attestation format)
 #   aas  - Average Active Sessions (AWS Performance Insights metric)
 #   ser      - serde::ser serialization module path (Rust serde idiom)
 #   afterall - beforeAll/afterAll test lifecycle hooks (Jest/CAP integration tests)
 #   ags      - SAP Active Global Support (official SAP support tier acronym)
 #   invokable - Server Actions / functions are "invokable" (standard JS/TS term)
-ignore-words-list = aks,ons,zar,caf,requestor,bu,sme,coo,ot,tupe,ect,createable,opps,iif,optin,vie,abl,mape,auxiliar,blocs,leary,consol,theses,ratatui,aas,ser,afterall,ags,invokable,disjointness
+ignore-words-list = aks,ons,zar,caf,requestor,bu,sme,coo,ot,tupe,ect,createable,opps,iif,optin,vie,abl,mape,auxiliar,blocs,leary,consol,theses,ratatui,aas,ser,afterall,ags,invokable,disjointness,intoto

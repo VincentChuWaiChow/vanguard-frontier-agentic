@@ -1,0 +1,8 @@
+{
+  "base": "04-exception-annotation-date-conditional.json",
+  "rule": "KYB-EXPIRY",
+  "why": "A date in a description cannot establish automatic expiry.",
+  "set": {
+    "exception_expiry.automatic_expiry_claimed": true
+  }
+}

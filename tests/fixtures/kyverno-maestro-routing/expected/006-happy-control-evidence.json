@@ -1,0 +1,6 @@
+{
+  "route": [
+    "kyverno-control-evidence-agent"
+  ],
+  "mode": "single"
+}

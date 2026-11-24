@@ -1,0 +1,292 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://vanguard-frontier-agentic.invalid/schemas/kyverno-board-decision.schema.json",
+  "title": "Kyverno board decision record",
+  "description": "Structural contract for one board decision. Semantic rules (verdict mapping, challenge, coverage arithmetic, expiry, rollback, parity, artifact idempotency) live in scripts/validate_board_decision.py.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version", "decision_id", "as_of", "request_kind", "question", "intended_control",
+    "target_cohort", "authorized_scope", "owner", "deadline", "consequence_class", "environment",
+    "evidence", "lead", "referrals", "challenge", "claims", "tests", "outcome", "verdict",
+    "conditions", "dissent", "business_exposure", "suggested_action", "rollback_limits",
+    "evidence_owner", "execution", "artifacts", "limitations"
+  ],
+  "$defs": {
+    "text": {"type": "string", "minLength": 1},
+    "agent": {"type": "string", "pattern": "^[a-z0-9][a-z0-9-]*-agent$"},
+    "evidenceRef": {"type": "string", "pattern": "^EV-[0-9]+$"},
+    "evidenceRefs": {"type": "array", "items": {"$ref": "#/$defs/evidenceRef"}, "uniqueItems": true},
+    "date": {"type": "string", "pattern": "^[0-9]{4}-[0-9]{2}-[0-9]{2}$"},
+    "dateTime": {"type": "string", "pattern": "^[0-9]{4}-[0-9]{2}-[0-9]{2}T[0-9]{2}:[0-9]{2}:[0-9]{2}Z$"},
+    "count": {"type": "integer", "minimum": 0}
+  },
+  "properties": {
+    "schema_version": {"const": "1.0"},
+    "decision_id": {"type": "string", "pattern": "^KYV-DEC-[0-9]{4}$"},
+    "as_of": {"$ref": "#/$defs/dateTime", "description": "Caller-supplied evaluation instant. The validator never reads the clock."},
+    "request_kind": {"enum": ["advisory", "explicit-execution"]},
+    "question": {"$ref": "#/$defs/text"},
+    "intended_control": {"$ref": "#/$defs/text"},
+    "target_cohort": {"$ref": "#/$defs/text"},
+    "authorized_scope": {"$ref": "#/$defs/text"},
+    "owner": {"$ref": "#/$defs/text"},
+    "deadline": {"oneOf": [{"$ref": "#/$defs/date"}, {"type": "null"}]},
+    "consequence_class": {"enum": ["none", "promotion-to-enforcement", "broad-exception", "trust-root-change", "destructive-lifecycle", "fleet-upgrade"]},
+    "environment": {
+      "type": "object", "additionalProperties": false,
+      "required": ["kubernetes_version", "kyverno_controller_version", "kyverno_cli_version", "served_apis", "policy_revision"],
+      "properties": {
+        "kubernetes_version": {"$ref": "#/$defs/text"},
+        "kyverno_controller_version": {"$ref": "#/$defs/text"},
+        "kyverno_cli_version": {"$ref": "#/$defs/text"},
+        "served_apis": {"type": "array", "items": {"$ref": "#/$defs/text"}},
+        "policy_revision": {"$ref": "#/$defs/text"}
+      }
+    },
+    "evidence": {
+      "type": "array",
+      "items": {
+        "type": "object", "additionalProperties": false,
+        "required": ["id", "type", "locator", "captured_at", "applies_to", "omits"],
+        "properties": {
+          "id": {"$ref": "#/$defs/evidenceRef"},
+          "type": {"enum": ["manifest", "rendered-gitops", "installed-config", "offline-test", "admission-trace", "population-report", "runtime-metric", "controlled-test"]},
+          "locator": {"$ref": "#/$defs/text"},
+          "captured_at": {"oneOf": [{"$ref": "#/$defs/dateTime"}, {"type": "null"}]},
+          "applies_to": {"$ref": "#/$defs/text"},
+          "omits": {"$ref": "#/$defs/text"}
+        }
+      }
+    },
+    "lead": {
+      "type": "object", "additionalProperties": false,
+      "required": ["agent", "provisional_conclusion", "easiest_way_wrong"],
+      "properties": {
+        "agent": {"$ref": "#/$defs/agent"},
+        "provisional_conclusion": {"$ref": "#/$defs/text"},
+        "easiest_way_wrong": {"$ref": "#/$defs/text"}
+      }
+    },
+    "referrals": {
+      "type": "array",
+      "items": {
+        "type": "object", "additionalProperties": false,
+        "required": ["decision_id", "to", "evidence_refs", "return_question", "status"],
+        "properties": {
+          "decision_id": {"type": "string", "pattern": "^KYV-DEC-[0-9]{4}$"},
+          "to": {"$ref": "#/$defs/agent"},
+          "evidence_refs": {"$ref": "#/$defs/evidenceRefs"},
+          "return_question": {"$ref": "#/$defs/text"},
+          "status": {"enum": ["pending", "answered", "declined", "unresolved-boundary"]},
+          "answer": {"$ref": "#/$defs/text"}
+        }
+      }
+    },
+    "challenge": {
+      "oneOf": [
+        {"type": "null"},
+        {
+          "type": "object", "additionalProperties": false,
+          "required": ["challenger", "counterexample", "result"],
+          "properties": {
+            "challenger": {"$ref": "#/$defs/agent"},
+            "counterexample": {"$ref": "#/$defs/text"},
+            "result": {"enum": ["upheld", "overturned", "not-run"]}
+          }
+        }
+      ]
+    },
+    "claims": {
+      "type": "array", "minItems": 1,
+      "items": {
+        "type": "object", "additionalProperties": false,
+        "required": ["id", "class", "statement", "evidence_refs"],
+        "properties": {
+          "id": {"type": "string", "pattern": "^C-[0-9]+$"},
+          "class": {"enum": ["observed", "derived", "assumption", "unknown"]},
+          "statement": {"$ref": "#/$defs/text"},
+          "evidence_refs": {"$ref": "#/$defs/evidenceRefs"},
+          "rule": {"$ref": "#/$defs/text"},
+          "confirm_owner": {"$ref": "#/$defs/text"},
+          "smallest_settling_item": {"$ref": "#/$defs/text"}
+        }
+      }
+    },
+    "tests": {
+      "type": "array",
+      "items": {
+        "type": "object", "additionalProperties": false,
+        "required": ["id", "polarity", "operation", "expected", "state", "observed", "evidence_refs"],
+        "properties": {
+          "id": {"type": "string", "pattern": "^T-[0-9]+$"},
+          "polarity": {"enum": ["positive", "negative"]},
+          "operation": {"enum": ["CREATE", "UPDATE", "DELETE", "CONNECT", "background", "n/a"]},
+          "expected": {"$ref": "#/$defs/text"},
+          "state": {"enum": ["proposed", "passed", "failed", "inconclusive", "not-run"]},
+          "observed": {"oneOf": [{"$ref": "#/$defs/text"}, {"type": "null"}]},
+          "evidence_refs": {"$ref": "#/$defs/evidenceRefs"}
+        }
+      }
+    },
+    "audit_assessment": {
+      "type": "object", "additionalProperties": false,
+      "required": ["configured_action", "control_intent", "rollout_stage", "deadline", "owner", "promotion_criteria", "severity", "reasoning"],
+      "properties": {
+        "configured_action": {"enum": ["Deny", "Audit", "Warn"]},
+        "control_intent": {"enum": ["mandatory-preventive", "detective", "advisory"]},
+        "rollout_stage": {"enum": ["approved-canary", "steady-state", "unapproved"]},
+        "deadline": {"oneOf": [{"$ref": "#/$defs/date"}, {"type": "null"}]},
+        "owner": {"oneOf": [{"$ref": "#/$defs/text"}, {"type": "null"}]},
+        "promotion_criteria": {"oneOf": [{"$ref": "#/$defs/text"}, {"type": "null"}]},
+        "severity": {"enum": ["none", "low", "medium", "high"]},
+        "reasoning": {"$ref": "#/$defs/text"}
+      }
+    },
+    "coverage": {
+      "type": "object", "additionalProperties": false,
+      "required": ["population_source", "inventory_total", "fresh_results", "excepted", "without_fresh_result", "results_breakdown", "blocked_requests", "claimed", "compliance_percentage", "prevention_demonstrated"],
+      "properties": {
+        "population_source": {"$ref": "#/$defs/evidenceRef"},
+        "inventory_total": {"$ref": "#/$defs/count"},
+        "fresh_results": {"$ref": "#/$defs/count"},
+        "excepted": {"$ref": "#/$defs/count"},
+        "without_fresh_result": {"$ref": "#/$defs/count"},
+        "results_breakdown": {
+          "oneOf": [
+            {"type": "null"},
+            {
+              "type": "object", "additionalProperties": false,
+              "required": ["pass", "fail", "warn", "error", "skip"],
+              "properties": {
+                "pass": {"$ref": "#/$defs/count"}, "fail": {"$ref": "#/$defs/count"}, "warn": {"$ref": "#/$defs/count"},
+                "error": {"$ref": "#/$defs/count"}, "skip": {"$ref": "#/$defs/count"}
+              }
+            }
+          ]
+        },
+        "blocked_requests": {
+          "type": "object", "additionalProperties": false,
+          "required": ["count", "source"],
+          "properties": {"count": {"$ref": "#/$defs/count"}, "source": {"oneOf": [{"$ref": "#/$defs/evidenceRef"}, {"type": "null"}]}}
+        },
+        "claimed": {
+          "type": "object", "additionalProperties": false,
+          "required": ["numerator", "denominator", "label"],
+          "properties": {"numerator": {"$ref": "#/$defs/count"}, "denominator": {"$ref": "#/$defs/count"}, "label": {"$ref": "#/$defs/text"}}
+        },
+        "compliance_percentage": {"oneOf": [{"type": "number", "minimum": 0, "maximum": 100}, {"type": "null"}]},
+        "prevention_demonstrated": {"$ref": "#/$defs/count"}
+      }
+    },
+    "exception_expiry": {
+      "type": "object", "additionalProperties": false,
+      "required": ["exception", "expires_at", "annotation_date", "reconciliation_evidence", "automatic_expiry_claimed", "adjacent_workloads_covered"],
+      "properties": {
+        "exception": {"$ref": "#/$defs/text"},
+        "expires_at": {"oneOf": [{"$ref": "#/$defs/dateTime"}, {"type": "null"}]},
+        "annotation_date": {"oneOf": [{"$ref": "#/$defs/date"}, {"type": "null"}]},
+        "reconciliation_evidence": {"$ref": "#/$defs/evidenceRefs"},
+        "automatic_expiry_claimed": {"type": "boolean"},
+        "adjacent_workloads_covered": {"enum": ["verified", "unverified", "not-applicable"]}
+      }
+    },
+    "rollback": {
+      "type": "object", "additionalProperties": false,
+      "required": ["restoration_claimed", "basis", "downstream_state_evidence", "reversal_plan", "restoration_plan"],
+      "properties": {
+        "restoration_claimed": {"type": "boolean"},
+        "basis": {"enum": ["git-revert-only", "downstream-state-evidence", "none"]},
+        "downstream_state_evidence": {"$ref": "#/$defs/evidenceRefs"},
+        "reversal_plan": {"$ref": "#/$defs/text"},
+        "restoration_plan": {"$ref": "#/$defs/text"}
+      }
+    },
+    "parity": {
+      "type": "object", "additionalProperties": false,
+      "required": ["corpus", "operations", "old_new_pair_evidence"],
+      "properties": {
+        "corpus": {"$ref": "#/$defs/evidenceRef"},
+        "operations": {
+          "type": "object", "additionalProperties": false,
+          "required": ["CREATE", "UPDATE", "DELETE"],
+          "properties": {
+            "CREATE": {"enum": ["agree", "differ", "untested"]},
+            "UPDATE": {"enum": ["agree", "differ", "untested"]},
+            "DELETE": {"enum": ["agree", "differ", "untested", "not-applicable"]}
+          }
+        },
+        "old_new_pair_evidence": {"$ref": "#/$defs/evidenceRefs"}
+      }
+    },
+    "outcome": {"enum": ["supported", "conditional", "blocked", "indeterminate"]},
+    "verdict": {"enum": ["approved", "needs-review", "blocked"]},
+    "conditions": {
+      "type": "array",
+      "items": {
+        "type": "object", "additionalProperties": false,
+        "required": ["evidence_needed", "owner"],
+        "properties": {"evidence_needed": {"$ref": "#/$defs/text"}, "owner": {"$ref": "#/$defs/text"}}
+      }
+    },
+    "dissent": {
+      "type": "array",
+      "items": {
+        "type": "object", "additionalProperties": false,
+        "required": ["by", "position", "missing_discriminator", "human_owner"],
+        "properties": {
+          "by": {"$ref": "#/$defs/agent"},
+          "position": {"$ref": "#/$defs/text"},
+          "missing_discriminator": {"$ref": "#/$defs/text"},
+          "human_owner": {"$ref": "#/$defs/text"}
+        }
+      }
+    },
+    "business_exposure": {"$ref": "#/$defs/text"},
+    "suggested_action": {"$ref": "#/$defs/text"},
+    "rollback_limits": {"$ref": "#/$defs/text"},
+    "evidence_owner": {"$ref": "#/$defs/text"},
+    "execution": {
+      "type": "object", "additionalProperties": false,
+      "required": ["authority", "handoff"],
+      "properties": {
+        "authority": {"const": "none"},
+        "handoff": {
+          "oneOf": [
+            {"type": "null"},
+            {
+              "type": "object", "additionalProperties": false,
+              "required": ["guard", "target", "diff", "blast_radius", "rollback", "verification"],
+              "properties": {
+                "guard": {"const": "kubernetes-live-admission-policy-guard-agent"},
+                "target": {"$ref": "#/$defs/text"},
+                "diff": {"$ref": "#/$defs/text"},
+                "blast_radius": {"$ref": "#/$defs/text"},
+                "rollback": {"$ref": "#/$defs/text"},
+                "verification": {"$ref": "#/$defs/text"}
+              }
+            }
+          ]
+        }
+      }
+    },
+    "artifacts": {
+      "type": "array",
+      "items": {
+        "type": "object", "additionalProperties": false,
+        "required": ["system", "kind", "local_id", "external_key", "revision_checked", "action", "skill"],
+        "properties": {
+          "system": {"enum": ["jira", "confluence"]},
+          "kind": {"enum": ["operational-change", "incident", "spike", "bug", "adr", "tdd", "runbook", "incident-postmortem", "product-explainer"]},
+          "local_id": {"type": "string", "pattern": "^KYV-DEC-[0-9]{4}$"},
+          "external_key": {"oneOf": [{"$ref": "#/$defs/text"}, {"type": "null"}]},
+          "revision_checked": {"oneOf": [{"$ref": "#/$defs/text"}, {"type": "null"}]},
+          "action": {"enum": ["draft", "update"]},
+          "skill": {"enum": ["jira-ticket-authoring", "confluence-document-authoring"]},
+          "path": {"$ref": "#/$defs/text"}
+        }
+      }
+    },
+    "limitations": {"type": "array", "items": {"$ref": "#/$defs/text"}}
+  }
+}

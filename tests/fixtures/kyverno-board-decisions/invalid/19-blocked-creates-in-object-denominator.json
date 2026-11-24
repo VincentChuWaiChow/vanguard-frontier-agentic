@@ -1,0 +1,8 @@
+{
+  "base": "02-invoice-coverage-conditional.json",
+  "rule": "KYB-COVERAGE",
+  "why": "6 blocked creates never became objects.",
+  "set": {
+    "coverage.claimed.denominator": 126
+  }
+}

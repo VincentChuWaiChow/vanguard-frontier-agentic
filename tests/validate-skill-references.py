@@ -66,7 +66,15 @@ OFFICIAL_SOURCES: dict[str, tuple[str, ...]] = {
     # for the atlassian-rovo-mcp-integration ledger; github.com/atlassian/ is the
     # vendor-maintained Rovo MCP Server repository.
     "developer.atlassian.com": ("/cloud/",),
-    "github.com": ("/oracle/", "/aws/", "/awslabs/", "/Azure/", "/googleapis/", "/aliyun/", "/scaleway/", "/ovh/", "/atlassian/"),
+    # Kyverno board ledgers (skills/kyverno/*): the Kyverno project's own documentation, its
+    # versioned v1.18 documentation site (legacy ClusterPolicy defaults), and its source repository
+    # at release tags (github.com/kyverno/); the Kubernetes project's documentation for admission
+    # webhooks and ValidatingAdmissionPolicy; and Istio's documentation for mesh referral claims.
+    "kyverno.io": ("/docs/",),
+    "release-1-18-0.kyverno.io": ("/docs/",),
+    "kubernetes.io": ("/docs/",),
+    "istio.io": ("/latest/docs/",),
+    "github.com": ("/oracle/", "/aws/", "/awslabs/", "/Azure/", "/googleapis/", "/aliyun/", "/scaleway/", "/ovh/", "/atlassian/", "/kyverno/"),
     # GitHub Pages of the github.com/oracle organisation (Oracle NoSQL Node.js SDK reference).
     "oracle.github.io": ("/nosql-node-sdk/",),
 }

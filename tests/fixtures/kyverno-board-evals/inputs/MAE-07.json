@@ -1,0 +1,13 @@
+{
+  "case_id": "MAE-07",
+  "prompt": "Do the 8 exceptions count toward our coverage percentage, and do their expiry dates hold?",
+  "execution_context": {
+    "tier": "static-review",
+    "live_adapter_authorized": false,
+    "network_authorized": false
+  },
+  "supplied_evidence": {
+    "population-report": "KYV-DEC-0001 evidence",
+    "manifest": "8 PolicyExceptions"
+  }
+}

@@ -1,0 +1,12 @@
+{
+  "case_id": "REL-04",
+  "prompt": "On-call sees pod creates failing. One response says 'payments-image-trust: image must be signed...'; others show a webhook timeout. Same cause?",
+  "execution_context": {
+    "tier": "static-review",
+    "live_adapter_authorized": false,
+    "network_authorized": false
+  },
+  "supplied_evidence": {
+    "admission-trace": "one response with the policy message; two with a call error naming the webhook"
+  }
+}

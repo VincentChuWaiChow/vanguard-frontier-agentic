@@ -1,0 +1,21 @@
+apiVersion: cli.kyverno.io/v1alpha1
+kind: Test
+metadata:
+  name: audit-and-deny-same-offline-result
+policies:
+  - policy.yaml
+resources:
+  - resources.yaml
+results:
+  # Audit does not change the evaluation result: the violation is still "fail".
+  # Whether the write is admitted depends on validationActions, which this test cannot observe.
+  - isValidatingPolicy: true
+    policy: payments-run-as-non-root-canary
+    kind: Pod
+    resources: [payments/invoice-batch-root]
+    result: fail
+  - isValidatingPolicy: true
+    policy: payments-run-as-non-root-canary
+    kind: Pod
+    resources: [payments/invoice-retry-worker]
+    result: pass

@@ -1,0 +1,9 @@
+{
+  "base": "05-gitops-revert-not-restoration.json",
+  "rule": "KYB-ROLLBACK",
+  "why": "Reverting Git does not restore deleted state.",
+  "set": {
+    "rollback.restoration_claimed": true,
+    "rollback.basis": "git-revert-only"
+  }
+}

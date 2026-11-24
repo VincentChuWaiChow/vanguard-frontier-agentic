@@ -1,0 +1,8 @@
+{
+  "name": "011-near-pre-existing-resource",
+  "task": "An existing resource predates the new Deny ValidatingPolicy; will it be rejected?",
+  "tags": [
+    "near-neighbor",
+    "oracle:no-retroactive-rejection"
+  ]
+}

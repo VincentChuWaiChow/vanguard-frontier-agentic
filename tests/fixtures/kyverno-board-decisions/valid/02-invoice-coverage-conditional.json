@@ -1,0 +1,221 @@
+{
+  "schema_version": "1.0",
+  "decision_id": "KYV-DEC-0001",
+  "as_of": "2026-11-20T00:00:00Z",
+  "request_kind": "advisory",
+  "question": "Can assurance tell product leadership that invoice-api workloads are covered by payments-run-as-non-root?",
+  "intended_control": "payments-run-as-non-root (mandatory preventive) on invoice-api workloads",
+  "target_cohort": "invoice-api in-scope workload objects (namespace payments)",
+  "authorized_scope": "supplied inventory, reports and request events only",
+  "owner": "assurance analyst",
+  "deadline": null,
+  "consequence_class": "none",
+  "environment": {
+    "kubernetes_version": "unknown (not supplied)",
+    "kyverno_controller_version": "v1.20.0 (supplied)",
+    "kyverno_cli_version": "not used",
+    "served_apis": [
+      "policies.kyverno.io/v1 ValidatingPolicy"
+    ],
+    "policy_revision": "git:synthetic-0001"
+  },
+  "evidence": [
+    {
+      "id": "EV-1",
+      "type": "population-report",
+      "locator": "inventory export invoice-api in-scope objects",
+      "captured_at": "2026-11-20T00:00:00Z",
+      "applies_to": "120 in-scope workload objects, 7-day window",
+      "omits": "objects created and deleted inside the window"
+    },
+    {
+      "id": "EV-2",
+      "type": "population-report",
+      "locator": "PolicyReports payments-run-as-non-root, 7-day window",
+      "captured_at": "2026-11-20T00:00:00Z",
+      "applies_to": "100 objects with fresh results",
+      "omits": "result breakdown for 92 non-excepted objects; 20 objects"
+    },
+    {
+      "id": "EV-3",
+      "type": "installed-config",
+      "locator": "sanitized PolicyExceptions referencing payments-run-as-non-root",
+      "captured_at": "2026-11-20T00:00:00Z",
+      "applies_to": "8 excepted objects (report as skip)",
+      "omits": "approval records"
+    },
+    {
+      "id": "EV-4",
+      "type": "runtime-metric",
+      "locator": "kyverno_admission_requests_total{request_allowed=\"false\"} payments pods CREATE, 7-day window",
+      "captured_at": "2026-11-20T00:00:00Z",
+      "applies_to": "6 blocked creates",
+      "omits": "which policy denied each request"
+    }
+  ],
+  "lead": {
+    "agent": "kyverno-control-evidence-agent",
+    "provisional_conclusion": "Fresh-result coverage is 100/120; no compliance percentage is supportable yet.",
+    "easiest_way_wrong": "The 20 objects without fresh results are out of scope by design, which would change the denominator."
+  },
+  "referrals": [
+    {
+      "decision_id": "KYV-DEC-0001",
+      "to": "kyverno-policy-review-agent",
+      "evidence_refs": [
+        "EV-1",
+        "EV-2"
+      ],
+      "return_question": "Do the 20 objects without fresh results match the policy's matchConstraints and matchConditions?",
+      "status": "pending"
+    }
+  ],
+  "challenge": null,
+  "claims": [
+    {
+      "id": "C-1",
+      "class": "observed",
+      "statement": "The inventory holds 120 in-scope workload objects.",
+      "evidence_refs": [
+        "EV-1"
+      ]
+    },
+    {
+      "id": "C-2",
+      "class": "observed",
+      "statement": "100 of the 120 have a fresh result in the window.",
+      "evidence_refs": [
+        "EV-2"
+      ]
+    },
+    {
+      "id": "C-3",
+      "class": "derived",
+      "statement": "Fresh-result coverage is 100/120 (83.3%).",
+      "evidence_refs": [
+        "EV-1",
+        "EV-2"
+      ],
+      "rule": "numerator and denominator from the same object population and window"
+    },
+    {
+      "id": "C-4",
+      "class": "derived",
+      "statement": "The 8 excepted objects report skip and are not demonstrated prevention.",
+      "evidence_refs": [
+        "EV-3"
+      ],
+      "rule": "an exception is a bypass, not an enforcement outcome"
+    },
+    {
+      "id": "C-5",
+      "class": "derived",
+      "statement": "The 6 blocked creates never became objects and stay out of the object denominator.",
+      "evidence_refs": [
+        "EV-4"
+      ],
+      "rule": "denied writes are visible in metrics and events, not reports"
+    },
+    {
+      "id": "C-6",
+      "class": "unknown",
+      "statement": "The pass/fail/warn/error breakdown for the other 92 observed objects.",
+      "evidence_refs": [],
+      "smallest_settling_item": "PolicyReport result counts for the 92 non-excepted objects in the same window"
+    },
+    {
+      "id": "C-7",
+      "class": "unknown",
+      "statement": "Why 20 objects have no fresh result.",
+      "evidence_refs": [],
+      "smallest_settling_item": "reports-controller health for the window plus the matching decision for those 20 objects"
+    }
+  ],
+  "tests": [
+    {
+      "id": "T-1",
+      "polarity": "positive",
+      "operation": "background",
+      "expected": "a compliant invoice-api object reports pass",
+      "state": "proposed",
+      "observed": null,
+      "evidence_refs": []
+    },
+    {
+      "id": "T-2",
+      "polarity": "negative",
+      "operation": "CREATE",
+      "expected": "a root container CREATE is denied and counted with request_allowed=false",
+      "state": "proposed",
+      "observed": null,
+      "evidence_refs": []
+    }
+  ],
+  "coverage": {
+    "population_source": "EV-1",
+    "inventory_total": 120,
+    "fresh_results": 100,
+    "excepted": 8,
+    "without_fresh_result": 20,
+    "results_breakdown": null,
+    "blocked_requests": {
+      "count": 6,
+      "source": "EV-4"
+    },
+    "claimed": {
+      "numerator": 100,
+      "denominator": 120,
+      "label": "fresh-result coverage"
+    },
+    "compliance_percentage": null,
+    "prevention_demonstrated": 0
+  },
+  "outcome": "conditional",
+  "verdict": "needs-review",
+  "conditions": [
+    {
+      "evidence_needed": "result breakdown for the 92 non-excepted objects with fresh results",
+      "owner": "assurance analyst"
+    },
+    {
+      "evidence_needed": "cause of the 20 objects without fresh results",
+      "owner": "platform security engineer"
+    }
+  ],
+  "dissent": [],
+  "business_exposure": "An unsupported compliance figure for a revenue-critical service could reach leadership or an auditor.",
+  "suggested_action": "Report 100/120 fresh-result coverage with its blind spots; open the spike to close the two unknowns before any compliance percentage.",
+  "rollback_limits": "Not applicable (no change proposed).",
+  "evidence_owner": "assurance analyst",
+  "execution": {
+    "authority": "none",
+    "handoff": null
+  },
+  "artifacts": [
+    {
+      "system": "jira",
+      "kind": "spike",
+      "local_id": "KYV-DEC-0001",
+      "external_key": null,
+      "revision_checked": null,
+      "action": "draft",
+      "skill": "jira-ticket-authoring",
+      "path": "jira-spike.md"
+    },
+    {
+      "system": "confluence",
+      "kind": "product-explainer",
+      "local_id": "KYV-DEC-0001",
+      "external_key": null,
+      "revision_checked": null,
+      "action": "draft",
+      "skill": "confluence-document-authoring",
+      "path": "confluence-product-explainer.md"
+    }
+  ],
+  "limitations": [
+    "Synthetic case.",
+    "Retention of reports and metrics beyond the window is unknown.",
+    "The 6 blocked creates are attributed to the namespace, not to this policy."
+  ]
+}

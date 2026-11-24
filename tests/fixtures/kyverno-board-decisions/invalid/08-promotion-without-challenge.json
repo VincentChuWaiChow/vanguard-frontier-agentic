@@ -1,0 +1,8 @@
+{
+  "base": "01-cohort-a-promotion-supported.json",
+  "rule": "KYB-CHALLENGE",
+  "why": "Promotion to enforcement requires an independent challenge.",
+  "set": {
+    "challenge": null
+  }
+}

@@ -1,0 +1,30 @@
+{
+  "id": "kyverno-control-evidence",
+  "name": "Kyverno Control Evidence",
+  "type": "skill",
+  "provider": "kyverno",
+  "harnesses": [
+    "codex",
+    "claude-code",
+    "cursor",
+    "gemini",
+    "kiro",
+    "other"
+  ],
+  "summary": "Decide what control coverage and business impact the supplied Kyverno evidence supports, for which population and time window, from inventories, PolicyReports, exception lists, metrics and events. Not for policy design, webhook incidents or exception approval.",
+  "source_type": "original",
+  "official_docs": [
+    "https://github.com/kyverno/kyverno/releases/tag/v1.20.0",
+    "https://kyverno.io/docs/guides/reports/",
+    "https://kyverno.io/docs/guides/monitoring/",
+    "https://github.com/kyverno/kyverno/blob/v1.20.0/config/crds/policies.kyverno.io/policies.kyverno.io_policyexceptions.yaml",
+    "https://release-1-18-0.kyverno.io/docs/policy-types/cluster-policy/policy-settings/"
+  ],
+  "security_notes": "Static review only. Exceptions report as skip and are not demonstrated prevention; denied writes are visible in metrics and events, not reports. Never present a percentage without its population and window.",
+  "last_verified": "2026-11-24",
+  "path": "skills/kyverno/kyverno-control-evidence",
+  "author": "github: VincentChuWaiChow",
+  "version": "0.1.0",
+  "lifecycle": "beta",
+  "execution_tier": "static-review"
+}

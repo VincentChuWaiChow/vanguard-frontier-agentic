@@ -1,0 +1,17 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: invoice-api
+  namespace: payments
+  labels:
+    billing.example/tier: premium
+spec:
+  selector:
+    matchLabels: {app: invoice-api}
+  template:
+    metadata:
+      labels: {app: invoice-api}
+    spec:
+      containers:
+        - name: api
+          image: registry.example.invalid/payments/invoice-api@sha256:0000000000000000000000000000000000000000000000000000000000000006

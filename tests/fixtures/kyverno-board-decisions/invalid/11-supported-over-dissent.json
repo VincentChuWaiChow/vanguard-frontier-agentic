@@ -1,0 +1,15 @@
+{
+  "base": "01-cohort-a-promotion-supported.json",
+  "rule": "KYB-DISSENT",
+  "why": "No majority vote: recorded dissent blocks supported.",
+  "set": {
+    "dissent": [
+      {
+        "by": "kyverno-admission-reliability-agent",
+        "position": "p99 baseline unknown",
+        "missing_discriminator": "pre-canary latency baseline",
+        "human_owner": "payments on-call SRE"
+      }
+    ]
+  }
+}

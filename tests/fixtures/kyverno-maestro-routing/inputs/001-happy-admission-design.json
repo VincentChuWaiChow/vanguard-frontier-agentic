@@ -1,0 +1,7 @@
+{
+  "name": "001-happy-admission-design",
+  "task": "Does this ValidatingPolicy with matchConditions still let invoice retries through while catching root containers?",
+  "tags": [
+    "happy-path"
+  ]
+}

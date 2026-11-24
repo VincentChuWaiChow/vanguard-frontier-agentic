@@ -1,0 +1,6 @@
+interface:
+  display_name: "Kyverno Exception Governance"
+  short_description: "Review exceptions, scope and expiry."
+  default_prompt: "Use $kyverno-exception-governance to review each PolicyException for necessity, scope and verifiable removal from the supplied sanitized evidence. Report unknowns and do not perform live operations."
+policy:
+  allow_implicit_invocation: true

@@ -1,0 +1,8 @@
+{
+  "name": "016-near-report-states",
+  "task": "Distinguish an empty report, a stale report and blocked creates in our coverage numbers.",
+  "tags": [
+    "near-neighbor",
+    "oracle:four-report-states"
+  ]
+}

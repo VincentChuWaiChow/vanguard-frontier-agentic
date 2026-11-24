@@ -1,0 +1,6 @@
+{
+  "route": [
+    "kyverno-policy-lifecycle-agent"
+  ],
+  "mode": "single"
+}

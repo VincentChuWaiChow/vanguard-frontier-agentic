@@ -1,0 +1,51 @@
+{
+  "id": "kyverno-control-evidence-agent",
+  "name": "Kyverno Control Evidence",
+  "type": "agent",
+  "provider": "kyverno",
+  "harnesses": [
+    "codex",
+    "copilot",
+    "claude-code",
+    "cursor",
+    "gemini",
+    "kiro"
+  ],
+  "summary": "Agent for kyverno-control-evidence. Quantify Kyverno control coverage from supplied inventories, PolicyReports, exception lists, admission metrics and event streams. Use for coverage percentages, compliance assertions, empty or stale reports, excluded workloads, blocked-request counts, evidence packs and pilot business measures. Not for designing the policy, diagnosing a webhook incident or approving exceptions.",
+  "source_type": "original",
+  "official_docs": [
+    "https://kyverno.io/docs/guides/reports/",
+    "https://kyverno.io/docs/guides/reports/",
+    "https://kyverno.io/docs/guides/monitoring/",
+    "https://github.com/kyverno/kyverno/blob/v1.20.0/config/crds/policies.kyverno.io/policies.kyverno.io_policyexceptions.yaml"
+  ],
+  "security_notes": "Static review only. Exceptions report as skip and are not demonstrated prevention; denied writes are visible in metrics and events, not reports. Never present a percentage without its population and window.",
+  "last_verified": "2026-11-24",
+  "path": "agents/kyverno/kyverno-control-evidence-agent",
+  "harness_variants": {
+    "codex": "agents/kyverno/kyverno-control-evidence-agent/harnesses/codex.toml",
+    "copilot": "agents/kyverno/kyverno-control-evidence-agent/harnesses/copilot.agent.md",
+    "claude-code": "agents/kyverno/kyverno-control-evidence-agent/harnesses/claude-code.agent.md",
+    "cursor": "agents/kyverno/kyverno-control-evidence-agent/harnesses/cursor.agent.md",
+    "gemini": "agents/kyverno/kyverno-control-evidence-agent/harnesses/gemini.agent.md",
+    "kiro-ide": "agents/kyverno/kyverno-control-evidence-agent/harnesses/kiro-ide.agent.md",
+    "kiro-cli": "agents/kyverno/kyverno-control-evidence-agent/harnesses/kiro-cli.agent.json"
+  },
+  "author": "github: VincentChuWaiChow",
+  "version": "0.1.0",
+  "companion_skills": [
+    "kyverno-control-evidence"
+  ],
+  "execution_tier": "static-review",
+  "lifecycle": "beta",
+  "routing_keywords": [
+    "coverage",
+    "PolicyReport",
+    "compliance",
+    "evidence pack",
+    "denominator",
+    "stale report",
+    "audit evidence",
+    "blocked requests"
+  ]
+}

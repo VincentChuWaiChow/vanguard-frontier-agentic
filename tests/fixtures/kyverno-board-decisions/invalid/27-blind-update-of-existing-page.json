@@ -1,0 +1,8 @@
+{
+  "base": "02-invoice-coverage-conditional.json",
+  "rule": "KYB-ARTIFACT",
+  "why": "An update must check the current revision first.",
+  "set": {
+    "artifacts.1.action": "update"
+  }
+}

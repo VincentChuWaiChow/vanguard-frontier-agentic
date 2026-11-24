@@ -1,0 +1,18 @@
+apiVersion: cli.kyverno.io/v1alpha1
+kind: Test
+metadata:
+  name: update-old-object-not-modelled
+policies:
+  - policy.yaml
+resources:
+  - resources.yaml
+results:
+  # kyverno CLI v1.20.0 sets object and oldObject to the same resource for operation UPDATE
+  # (cmd/cli/kubectl-kyverno/apis/v1alpha1/test_result.go, Operation field). A changed label
+  # therefore cannot be represented offline: this pass says nothing about a real tier change.
+  - isValidatingPolicy: true
+    policy: invoice-tier-label-immutable
+    kind: Deployment
+    resources: [payments/invoice-api]
+    operation: UPDATE
+    result: pass

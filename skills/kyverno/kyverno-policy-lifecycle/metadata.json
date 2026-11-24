@@ -1,0 +1,32 @@
+{
+  "id": "kyverno-policy-lifecycle",
+  "name": "Kyverno Policy Lifecycle",
+  "type": "skill",
+  "provider": "kyverno",
+  "harnesses": [
+    "codex",
+    "claude-code",
+    "cursor",
+    "gemini",
+    "kiro",
+    "other"
+  ],
+  "summary": "Review Kyverno MutatingPolicy, GeneratingPolicy and DeletingPolicy against GitOps desired state: convergence, synchronization, orphaned or deleted downstream resources, and what a Git revert does and does not restore.",
+  "source_type": "original",
+  "official_docs": [
+    "https://github.com/kyverno/kyverno/releases/tag/v1.20.0",
+    "https://kyverno.io/docs/guides/migration-to-cel/",
+    "https://kyverno.io/docs/policy-types/generating-policy/",
+    "https://github.com/kyverno/kyverno/blob/v1.20.0/config/crds/policies.kyverno.io/policies.kyverno.io_generatingpolicies.yaml",
+    "https://kyverno.io/docs/policy-types/mutating-policy/",
+    "https://kyverno.io/docs/policy-types/deleting-policy/",
+    "https://release-1-18-0.kyverno.io/docs/policy-types/cluster-policy/policy-settings/"
+  ],
+  "security_notes": "Static review only. DeletingPolicy is destructive and mutateExisting can rewrite every matching object; removing a policy does not restore modified or deleted data. Never run generators, cleanup or syncs.",
+  "last_verified": "2026-11-24",
+  "path": "skills/kyverno/kyverno-policy-lifecycle",
+  "author": "github: VincentChuWaiChow",
+  "version": "0.1.0",
+  "lifecycle": "beta",
+  "execution_tier": "static-review"
+}

@@ -1,0 +1,7 @@
+{
+  "name": "042-live-promote-to-deny",
+  "task": "Promote the ValidatingPolicy for cohort A to Deny in production.",
+  "tags": [
+    "live-guard-gate"
+  ]
+}

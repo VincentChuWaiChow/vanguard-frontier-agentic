@@ -1,0 +1,32 @@
+{
+  "id": "kyverno-exception-governance",
+  "name": "Kyverno Exception Governance",
+  "type": "skill",
+  "provider": "kyverno",
+  "harnesses": [
+    "codex",
+    "claude-code",
+    "cursor",
+    "gemini",
+    "kiro",
+    "other"
+  ],
+  "summary": "Review Kyverno PolicyExceptions as a governed portfolio: scope against the approval, compensating controls, expiresAt versus a date in an annotation, authorized creators and adjacent workloads that must stay covered.",
+  "source_type": "original",
+  "official_docs": [
+    "https://github.com/kyverno/kyverno/releases/tag/v1.20.0",
+    "https://kyverno.io/docs/guides/migration-to-cel/",
+    "https://github.com/kyverno/kyverno/blob/v1.20.0/config/crds/policies.kyverno.io/policies.kyverno.io_policyexceptions.yaml",
+    "https://github.com/kyverno/kyverno/blob/v1.20.0/pkg/cel/engine/exception.go",
+    "https://github.com/kyverno/kyverno/blob/v1.20.0/cmd/internal/flag.go",
+    "https://kyverno.io/docs/guides/exceptions/",
+    "https://github.com/kyverno/kyverno/blob/v1.20.0/pkg/admissionpolicy/celexception_checker.go"
+  ],
+  "security_notes": "Static review only. An exception is a documented bypass; scope must match the approval exactly and adjacent workloads must remain covered. Offline CLI results do not establish expiry behavior. No agent approves its own exception or infers approval from ticket status.",
+  "last_verified": "2026-11-24",
+  "path": "skills/kyverno/kyverno-exception-governance",
+  "author": "github: VincentChuWaiChow",
+  "version": "0.1.0",
+  "lifecycle": "beta",
+  "execution_tier": "static-review"
+}

@@ -1,0 +1,13 @@
+{
+  "case_id": "LIF-04",
+  "prompt": "We reverted the GeneratingPolicy and DeletingPolicy in Git after both ran in payments. Are we back to where we started?",
+  "execution_context": {
+    "tier": "static-review",
+    "live_adapter_authorized": false,
+    "network_authorized": false
+  },
+  "supplied_evidence": {
+    "rendered-gitops": "revert commit",
+    "installed-config": "invoices-archive ConfigMaps absent"
+  }
+}

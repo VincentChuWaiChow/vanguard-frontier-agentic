@@ -1,0 +1,6 @@
+interface:
+  display_name: "Kyverno Policy Lifecycle"
+  short_description: "Review mutate, generate and delete convergence and rollback."
+  default_prompt: "Use $kyverno-policy-lifecycle to assess convergence and post-rollback state of mutation, generation and scheduled deletion from the supplied sanitized evidence. Report unknowns and do not perform live operations."
+policy:
+  allow_implicit_invocation: true

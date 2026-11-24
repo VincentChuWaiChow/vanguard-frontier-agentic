@@ -1,0 +1,13 @@
+{
+  "case_id": "POL-08",
+  "prompt": "The istio.io/use-waypoint label passes admission but the waypoint status is absent. Is invoice-api traffic authorized at L7?",
+  "execution_context": {
+    "tier": "static-review",
+    "live_adapter_authorized": false,
+    "network_authorized": false
+  },
+  "supplied_evidence": {
+    "manifest": "Kyverno policy requiring the label; Service carries it",
+    "installed-config": "no WaypointBound condition supplied"
+  }
+}
