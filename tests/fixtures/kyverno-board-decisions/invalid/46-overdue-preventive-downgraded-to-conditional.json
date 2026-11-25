@@ -1,0 +1,15 @@
+{
+  "base": "03-overdue-preventive-audit-blocked.json",
+  "rule": "KYB-AUDIT",
+  "why": "A preventive control past its canary deadline is a demonstrated failure and must be blocked, not downgraded to conditional (Codex review).",
+  "set": {
+    "outcome": "conditional",
+    "verdict": "needs-review",
+    "conditions": [
+      {
+        "evidence_needed": "promotion of the policy to Deny",
+        "owner": "platform security owner"
+      }
+    ]
+  }
+}

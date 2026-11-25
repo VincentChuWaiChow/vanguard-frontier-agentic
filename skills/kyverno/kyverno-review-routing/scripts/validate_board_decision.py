@@ -25,7 +25,7 @@ Rules (each proven to fire by a negative fixture in the repository gate):
   KYB-DISSENT       "supported" while dissent is recorded (no majority vote)
   KYB-REFERRAL      referral to the lead itself, wrong decision ID, or duplicate referral
   KYB-EXECUTION     an advisory request carries a live handoff, or an execution request lacks one
-  KYB-AUDIT         Audit/Warn severity that ignores intent, stage or deadline
+  KYB-AUDIT         Audit/Warn severity or outcome that ignores intent, stage or deadline
   KYB-COVERAGE      coverage arithmetic mixes populations or overclaims
   KYB-EXPIRY        automatic expiry claimed without expiresAt and reconciliation evidence
   KYB-ROLLBACK      restoration claimed from a Git revert alone
@@ -205,8 +205,10 @@ def check(rec: dict, validator) -> list[tuple[str, str]]:
             elif aa["deadline"] < as_of_date:
                 if aa["severity"] != "high":
                     add("KYB-AUDIT", f"mandatory preventive control in {aa['configured_action']} past its deadline {aa['deadline']} must be high severity")
-                if outcome == "supported":
-                    add("KYB-AUDIT", "an overdue preventive control cannot be supported")
+                if outcome != "blocked":
+                    # The approved window ended and violations are still admitted: a demonstrated
+                    # prevention failure, not missing evidence (policy-semantics truth table).
+                    add("KYB-AUDIT", f"an overdue mandatory preventive control must be blocked, not {outcome}")
             elif aa["severity"] == "high":
                 add("KYB-AUDIT", "an approved, in-window canary is not a high-severity defect; severity follows intent and deadline, not the field value")
         elif aa["severity"] in ("none", "low"):

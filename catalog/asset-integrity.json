@@ -36844,7 +36844,7 @@
     },
     {
       "tree": "catalog",
-      "aggregate_sha256": "7c67ed398ab4ae250cda6d81088406883e06d9d1fb2a3a26a6ba3a8302eb9368",
+      "aggregate_sha256": "726f173b59d34c4fddf5afaeafd1097716d9d3dd9fe5508c18b570a83d77d483",
       "files": [
         {
           "path": "catalog/AGENTS.md",
@@ -36898,7 +36898,7 @@
         },
         {
           "path": "catalog/skill-manifest.json",
-          "sha256": "93eaa01577a9945c8c3271266ec285ce7162993af6d07928bec2a86c459b2045",
+          "sha256": "3e702c7f6319ad61dcf609ddb0489af6bdf4c89a0207cd7971d90b0dfbc95d6a",
           "bytes": 1220088
         },
         {
@@ -38162,7 +38162,7 @@
     },
     {
       "tree": "tests",
-      "aggregate_sha256": "e323abd867a082f4f36fa353957c7ea11227bc871664f34b50cc315715d2e732",
+      "aggregate_sha256": "921058f1c15156178e51bd792c2ea9ce8a3a0582f7622ad0c60874575d7e2d11",
       "files": [
         {
           "path": "tests/AGENTS.md",
@@ -46830,6 +46830,11 @@
           "bytes": 299
         },
         {
+          "path": "tests/fixtures/kyverno-board-decisions/invalid/46-overdue-preventive-downgraded-to-conditional.json",
+          "sha256": "b44a08166f30a718afe9cdf53182d60cffcf8df7e45a7d48c39672e21c5e54fe",
+          "bytes": 455
+        },
+        {
           "path": "tests/fixtures/kyverno-board-decisions/valid/01-cohort-a-promotion-supported.json",
           "sha256": "5d0dec34525b7467769512b52b1a6d189f88abe9f2042615c76117f0d6e8e9c9",
           "bytes": 6222
@@ -51884,5 +51889,5 @@
       "bytes": 9135
     }
   ],
-  "aggregate_sha256": "f6a3820a3a27cef500411477262679176e37084706d8497e3bf8c9a4403484e2"
+  "aggregate_sha256": "40fd1b5ceed0aeafd5371ca32a76001b4746f35669fde8825320486dc6168780"
 }
