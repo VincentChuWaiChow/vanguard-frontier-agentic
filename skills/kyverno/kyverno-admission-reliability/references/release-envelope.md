@@ -29,7 +29,7 @@ Given a proposed policy or configuration change, can the admission path carry it
 
 ## Interpretation
 
-1. Confirm HA minimum: three admission replicas, with leader election meaning one replica manages certificates and webhooks at a time [KYV-E11]. Fewer replicas means a single failure removes the path.
+1. Confirm HA minimum: three admission replicas is the supported minimum, and leader election means one replica manages certificates and webhooks at a time [KYV-E11]. Below three is below the supported minimum, but the admission path is lost only when every serving replica is unavailable: with one replica any single failure does it; with two, losing both does (same node, same zone, or a drain with no PodDisruptionBudget). That remaining replicas keep serving requests is an inference from leadership covering only certificate and webhook management; confirm it with installed-config and the replicas' placement.
 2. Compute p95 and p99 per request class (resource kind and operation) from the histogram [KYV-E12]. A cluster-wide average hides the slow class.
 3. Estimate affected writes as matching write rate times the degradation window, with the rate taken from the request counter [KYV-E12]. Never guess the rate; if the series is missing, the estimate is unknown.
 4. Image verification contacts the registry during admission — inference; confirm with an admission-trace. The ImageValidatingPolicy needs registry credentials in its own credentials field [KYV-E19]. The added latency is unknown until measured; a timeout chosen above the measured p99 plus registry variance is a judgment, not a fact.

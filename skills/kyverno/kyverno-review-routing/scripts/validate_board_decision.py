@@ -55,6 +55,7 @@ SCHEMA = HERE.parent / "assets" / "board-decision.schema.json"
 DELETE = "__DELETE__"
 
 VERDICT_FOR = {"supported": "approved", "conditional": "needs-review", "blocked": "blocked", "indeterminate": "needs-review"}
+TEST_EXECUTION = {"offline-test", "admission-trace", "controlled-test"}  # evidence that can show a test result
 REQUEST_PAIRS = {"admission-trace", "controlled-test"}  # evidence that can carry a real old/new UPDATE pair
 OBSERVED_STATE = {"installed-config", "admission-trace", "population-report", "controlled-test"}  # observed, not desired, state
 SECRET_PATTERNS = [
@@ -139,6 +140,8 @@ def check(rec: dict, validator) -> list[tuple[str, str]]:
             add("KYB-TESTSTATE", f"test {t['id']} is {t['state']} without an observation and evidence")
         if t["state"] in ("proposed", "not-run") and t["observed"]:
             add("KYB-TESTSTATE", f"test {t['id']} is {t['state']} but claims an observation")
+        if t["state"] == "passed" and not any(ev.get(r, {}).get("type") in TEST_EXECUTION for r in t["evidence_refs"]):
+            add("KYB-TESTSTATE", f"test {t['id']} is passed without execution evidence (offline-test, admission-trace or controlled-test); a manifest shows intent, not a result")
     for r in rec["referrals"]:
         refs_ok(r["evidence_refs"], f"referral to {r['to']}")
 

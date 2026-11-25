@@ -15300,7 +15300,7 @@
     {
       "id": "kyverno-admission-reliability",
       "path": "skills/kyverno/kyverno-admission-reliability",
-      "aggregate_sha256": "3d19d88d05eda57e8fe0c31547e74e5b6477b19970d54f0d63a9bee6d3f84525",
+      "aggregate_sha256": "d8f7689cf46d07a5a92c924e410aeeb336b1f2d8e1d691136bda27336605c10a",
       "files": [
         {
           "path": "skills/kyverno/kyverno-admission-reliability/SKILL.md",
@@ -15344,8 +15344,8 @@
         },
         {
           "path": "skills/kyverno/kyverno-admission-reliability/references/release-envelope.md",
-          "sha256": "55376b32ebc053a76a1e2f71ce476e82834a806ea01a1d92f8e78bddb2cb4298",
-          "bytes": 6774
+          "sha256": "3c41a09338930f1e591aff8805b775bdd9b7282e2b56cbbe5a42645868b00380",
+          "bytes": 7189
         },
         {
           "path": "skills/kyverno/kyverno-admission-reliability/references/webhook-failure-semantics.md",
@@ -15797,7 +15797,7 @@
     {
       "id": "kyverno-review-routing",
       "path": "skills/kyverno/kyverno-review-routing",
-      "aggregate_sha256": "8d088844f6a7368d7406820354d635d0dc781a02ae768410a9fb19ffd4c714d0",
+      "aggregate_sha256": "a92c19b085e576b2517f1c4bcfc3147999521082400e769690548b35bd0f0968",
       "files": [
         {
           "path": "skills/kyverno/kyverno-review-routing/SKILL.md",
@@ -15891,8 +15891,8 @@
         },
         {
           "path": "skills/kyverno/kyverno-review-routing/scripts/validate_board_decision.py",
-          "sha256": "270c182bd484257ae954aa05f13312f40a5eb4289c7886c7cd4f5cb5b4bf4351",
-          "bytes": 20646
+          "sha256": "bf6890ef3a66c9f18562d9718f86a23597f308a689c6d2db0fa21b284efd2d6f",
+          "bytes": 21057
         }
       ]
     },

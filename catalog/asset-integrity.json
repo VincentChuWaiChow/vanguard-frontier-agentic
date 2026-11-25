@@ -36844,7 +36844,7 @@
     },
     {
       "tree": "catalog",
-      "aggregate_sha256": "2bb8e9666287b4171125f2ad77c915ace3cb7a14b7d8ed189ae47b9b889fa775",
+      "aggregate_sha256": "3e803434227f8f89edf4a6e0ad12d3a6fac250942903bfbeb3c7c856a6fd7fef",
       "files": [
         {
           "path": "catalog/AGENTS.md",
@@ -36898,7 +36898,7 @@
         },
         {
           "path": "catalog/skill-manifest.json",
-          "sha256": "0517d023d2c6324a65495924dc58ce30d37bb033c6c3fac37d4166edc3a08549",
+          "sha256": "bcc2faaf3dc1ca0d9deb8283998c47e1a27e6dd3b5328cd89bbdde8b0a1291b0",
           "bytes": 1220088
         },
         {
@@ -38162,7 +38162,7 @@
     },
     {
       "tree": "tests",
-      "aggregate_sha256": "ef648fdae7de0f3d5bebaf0c2a1ed642d7dadda71b0e4568e0c76b0296197b6d",
+      "aggregate_sha256": "f847c9a1b96ebd1c44de64e0f8cda59ded71cae543d6e78a96a527248e14c514",
       "files": [
         {
           "path": "tests/AGENTS.md",
@@ -46820,6 +46820,11 @@
           "bytes": 365
         },
         {
+          "path": "tests/fixtures/kyverno-board-decisions/invalid/44-passed-tests-on-manifest-only.json",
+          "sha256": "a905cf2ff4ea0bccdeae350d77280811ed7fcd37ad041c424fb0c86246bc60dc",
+          "bytes": 333
+        },
+        {
           "path": "tests/fixtures/kyverno-board-decisions/valid/01-cohort-a-promotion-supported.json",
           "sha256": "5d0dec34525b7467769512b52b1a6d189f88abe9f2042615c76117f0d6e8e9c9",
           "bytes": 6222
@@ -51874,5 +51879,5 @@
       "bytes": 9135
     }
   ],
-  "aggregate_sha256": "a9ad64acf7e7739fb254b74f900aa3a35f934f5831bf103aa6bf768e5c5e0a7f"
+  "aggregate_sha256": "58d22f3c03be38968245dfd261ebb50b9d141264b45b59950c6583e77a5fbe89"
 }
