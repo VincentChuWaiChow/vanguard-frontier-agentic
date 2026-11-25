@@ -21,7 +21,7 @@ The documented preflight renders a chart with preflight enabled and applies it. 
 
 | Step | Class | Who must authorize |
 | --- | --- | --- |
-| `helm template` render with preflight enabled, writing a file [C1] | observational, no cluster change | none beyond normal access |
+| `helm template` render with preflight enabled, writing a local file [C0] | observational, no cluster change | none beyond normal access |
 | `kubectl create -f` of that rendered file [C4] | mutation: creates DaemonSet and Deployment in kube-system | change approver for the cluster |
 | `kubectl delete -f` of the same file [C5] | removes the preflight resources | same change approver |
 

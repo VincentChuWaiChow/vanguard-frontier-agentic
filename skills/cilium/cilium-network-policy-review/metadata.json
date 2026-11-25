@@ -28,5 +28,8 @@
   "author": "github: VincentChuWaiChow",
   "version": "0.2.0",
   "lifecycle": "beta",
-  "execution_tier": "static-review"
+  "execution_tier": "static-review",
+  "companion_skills": [
+    "cilium-evidence-boundary"
+  ]
 }

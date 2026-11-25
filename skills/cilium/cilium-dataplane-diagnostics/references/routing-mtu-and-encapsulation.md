@@ -2,7 +2,7 @@
 
 ## Problem
 
-Packets that fit on the pod interface may not fit once encapsulation, encryption or DSR metadata is added. The signature is that small requests succeed and large transfers stall. This reference computes the expected MTU budget from supplied settings and separates MTU faults from policy drops. Generic MTU probing steps are in the playbook of the skill `kubernetes-network-architecture-review`; this reference covers Cilium-specific overhead and discrimination.
+Packets that fit on the pod interface may not fit once encapsulation, encryption or DSR metadata is added. The signature is that small requests succeed and large transfers stall. This reference computes the expected MTU budget from supplied settings and separates MTU faults from policy drops. Generic MTU probing steps are in the playbook of owned by `kubernetes-network-architecture-review-agent` (hand off; that skill is not bundled with this one); this reference covers Cilium-specific overhead and discrimination.
 
 ## Mechanism
 
@@ -50,7 +50,7 @@ Cilium enables Linux packetization-layer PMTUD (RFC 4821) by default for pod end
 | `cilium-dbg monitor --type drop` for reason codes 136 or 15 | Whether the listed signal codes appear; a signal to check against pod and device MTU, not proof | [C2] |
 | `cilium-dbg status --verbose` for routing, host routing and encryption | Which layers are active | [C2] |
 | Controlled DF-bit probes at increasing sizes | Path MTU ceiling | [C3], authorized operator |
-| `hubble observe --verdict DROPPED` flows around the failing transfer, via Hubble Relay | Whether drops are visible at all [CIL-DP-E41] | [C1] ([C2] when run inside the agent pod) |
+| `hubble observe --verdict DROPPED` flows around the failing transfer, via Hubble Relay | Whether drops are visible at all [CIL-DP-E41] | [C2] ([C2] when run inside the agent pod) |
 
 Interpretation of Hubble completeness (ring buffer, lost events) is owned by the companion skill `cilium-evidence-boundary`.
 

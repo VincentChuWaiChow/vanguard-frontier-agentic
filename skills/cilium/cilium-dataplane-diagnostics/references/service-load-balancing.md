@@ -2,7 +2,7 @@
 
 ## Problem
 
-Whether a Service VIP, NodePort or external client reaches a backend depends on where and by whom the translation happens. Kube-proxy replacement (KPR), socket-LB scope, Maglev and DSR each change that. This reference verifies the active mode and the limits of each option. Generic Service, EndpointSlice and traffic-policy triage is owned by the skill `kubernetes-network-architecture-review`.
+Whether a Service VIP, NodePort or external client reaches a backend depends on where and by whom the translation happens. Kube-proxy replacement (KPR), socket-LB scope, Maglev and DSR each change that. This reference verifies the active mode and the limits of each option. Generic Service, EndpointSlice and traffic-policy triage is owned by `kubernetes-network-architecture-review-agent` (hand off; that skill is not bundled with this one).
 
 ## Verify kube-proxy replacement
 
@@ -51,7 +51,7 @@ Cmdref pages for the listing commands exist in 1.20.5 [CIL-DP-E07].
 
 ## Traffic policy interaction
 
-`externalTrafficPolicy` and `internalTrafficPolicy` change which backends are eligible. Their semantics, EndpointSlice readiness and topology behavior are owned by the skill `kubernetes-network-architecture-review`; supply their values as inputs and do not restate them here.
+`externalTrafficPolicy` and `internalTrafficPolicy` change which backends are eligible. Their semantics, EndpointSlice readiness and topology behavior are owned by `kubernetes-network-architecture-review-agent` (hand off; that skill is not bundled with this one); supply their values as inputs and do not restate them here.
 
 ## Contradictory results
 

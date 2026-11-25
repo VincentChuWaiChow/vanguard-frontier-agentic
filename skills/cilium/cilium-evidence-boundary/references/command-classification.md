@@ -29,7 +29,7 @@ These are the cases where the name suggests a lower class than the behavior.
 | Upgrade preflight (`kubectl create -f cilium-preflight.yaml`) | [C1] check | [C4] | It creates a `cilium-pre-flight-check` DaemonSet and Deployment in `kube-system` to pre-pull images [CIL-EV-E02]. |
 | `cilium sysdump` | [C1] status | [C2] | It collects logs, ConfigMaps, Helm values, bugtool output, kvstore data and Hubble flows from every node by default [CIL-EV-E03]. |
 | Any `cilium-dbg ...` subcommand | [C1] status | at least [C2] | `cilium-dbg` runs inside the Cilium agent pod, so collecting it requires exec into a kube-system workload; the agent pod's privileges are not restated here, but exec into it is never routine read access. |
-| `hubble observe` through Hubble Relay | [C1] read | [C1], sensitive output | It is read-only, but flows carry pod names, IP addresses, DNS names and, with L7 visibility, request metadata. |
+| `hubble observe` through Hubble Relay | [C1] read | [C2] | It is read-only, but flows carry pod names, IP addresses, DNS names and, with L7 visibility, request metadata, which is data that can be sensitive; collection needs a named scope, window and redaction plan. |
 | `tcpdump` on a node interface | [C1] read | [C2] | Requires node access and captures payload bytes unless filtered. |
 
 ## Diagnostic bundles are sensitive by default
@@ -44,7 +44,7 @@ Rules that follow from this:
 
 ## How to write a classed command
 
-Inline, on the same line: `hubble observe --verdict DROPPED --since 5m` [C1], via Hubble Relay against the confirmed cluster.
+Inline, on the same line: `hubble observe --verdict DROPPED --since 5m` [C2], via Hubble Relay against the confirmed cluster.
 
 As a block, with a class line immediately before the fence:
 
@@ -61,9 +61,9 @@ For [C3], [C4] and [C5], also name the authorization path, for example "requires
 | Mutation surface | Path |
 | --- | --- |
 | CiliumNetworkPolicy, CiliumClusterwideNetworkPolicy, NetworkPolicy, CiliumEgressGatewayPolicy | `kubernetes-live-network-policy-guard-agent` |
-| ClusterMesh peer Secret, Gateway API resources | `kubernetes-live-network-architecture-mutation-guard-agent` |
-| BGP CRDs, LB-IPAM pools, L2 announcement policies, Helm values, `cilium-config`, upgrades, CNI migration | No guard exists. Hand off to the human change process; never propose execution. |
+| ClusterMesh peer Secret, Gateway API resource instances (not their CRDs) | `kubernetes-live-network-architecture-mutation-guard-agent` |
+| BGP CRDs, LB-IPAM pools, L2 announcement policies, Helm values, `cilium-config`, upgrades, CNI migration, any CustomResourceDefinition install or change (Gateway API CRDs included) | No guard exists. Hand off to the human change process; never propose execution. |
 
 ## Scenario
 
-An incident commander asks the board to "just run the connectivity test in prod to see what's broken". The board answers that `cilium connectivity test` is [C3] because it creates workloads and policies in the production cluster, names the cluster and namespace it would touch, and proposes [C1] evidence first: drop counters and a bounded `hubble observe` window for the affected workloads. If the operator still wants the test, it is their authorized action, not the board's.
+An incident commander asks the board to "just run the connectivity test in prod to see what's broken". The board answers that `cilium connectivity test` is [C3] because it creates workloads and policies in the production cluster, names the cluster and namespace it would touch, and proposes [C2] evidence first: drop counters and a bounded `hubble observe` window for the affected workloads. If the operator still wants the test, it is their authorized action, not the board's.

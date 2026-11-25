@@ -2,6 +2,7 @@
 name: cilium-lifecycle-readiness
 description: Decide whether a proposed Cilium lifecycle change (minor or patch upgrade, rollback, CNI migration to Cilium, disruptive configuration change such as IPAM, kube-proxy replacement or ClusterMesh identity settings, or advisory remediation) is ready to enter an authorized change process. Use with exact current and target versions, install method, Helm values diff, per-node-pool kernels, Kubernetes version and enabled features. Not for target architecture or CNI choice, live policy diagnosis, or executing anything. Static review only; it never runs preflight, edits Helm values or upgrades.
 allowed-tools: Read Grep Glob
+disallowed-tools: Write Edit NotebookEdit Bash
 metadata:
   author: 'github: VincentChuWaiChow'
   version: 0.1.0
@@ -54,6 +55,7 @@ Load companion skill `cilium-evidence-boundary` first (command classes, evidence
 
 ## Failure handling
 
+- Companion skill `cilium-evidence-boundary` not installed: stop and return `needs-review`, stating that the command-class and evidence rules are missing; do not continue without them.
 - Unknown or non-x.y.z version: `needs-review`; no range, skew or advisory conclusion.
 - Managed distribution: upstream facts are leads only; ask for the vendor's compatibility statement.
 - Conflicting inputs (values diff vs reported features): state both and resolve toward the more disruptive reading.

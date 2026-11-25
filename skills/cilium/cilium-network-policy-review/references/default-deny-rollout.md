@@ -59,11 +59,11 @@ The command and flag are documented on the ClusterMesh policy page [CIL-NP-E16].
 4. Compare the inventory with the proposed allow set. Unmatched inventory rows are the predicted
    breakage; unmatched allow rows are over-permission to challenge.
 
-Class: [C1] observational, via Relay; flows may carry sensitive metadata the operator must sanitize.
+Class: [C2] observational, via Relay; flows may carry sensitive metadata the operator must sanitize.
 
 ```text
-hubble observe --from-namespace <ns> --verdict FORWARDED --since 24h   [C1]
-hubble observe --to-namespace <ns> --verdict DROPPED --since 24h   [C1]
+hubble observe --from-namespace <ns> --verdict FORWARDED --since 24h   [C2]
+hubble observe --to-namespace <ns> --verdict DROPPED --since 24h   [C2]
 ```
 
 The flags `--verdict`, `--since` and `--from-namespace` are documented for the hubble CLI;
@@ -74,10 +74,11 @@ troubleshooting form and is [C2] [CIL-NP-E20]. Policy-denied drops can be isolat
 
 ## Observe before enforce, and blast-radius ordering
 
-- Audit-style observation first: the documented verdict set includes `AUDIT`, so check whether
-  the cluster's policy audit mode is available and enabled before relying on it; the setting that
-  enables it is not documented on the pages reviewed here and is an unknown to resolve with the
-  operator [CIL-NP-E13].
+- Audit-style observation first: the documented verdict set includes `AUDIT` [CIL-NP-E13], and
+  policy audit mode (agent-wide or per endpoint) shows what policy would drop without dropping it;
+  while it is on nothing is enforced, so it is a rollout tool, not a production state. Turning it on
+  or off is a change for the human change process; details and limits are in
+  [policy-semantics.md](policy-semantics.md).
 - Order changes from smallest to largest blast radius: a single non-critical namespace, then
   namespaces by dependency depth (leaf services before shared ones), and last any
   `CiliumClusterwideNetworkPolicy`, which has cluster-wide scope.

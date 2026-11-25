@@ -33,11 +33,11 @@ kubectl -n kube-system exec <cilium-pod> -- cilium-dbg policy get   [C2]
 kubectl -n kube-system exec <cilium-pod> -- cilium-dbg endpoint list   [C2]
 ```
 
-Class: [C1] Hubble flows via Relay; flows may contain sensitive metadata, sanitize before sharing.
+Class: [C2] Hubble flows via Relay; flows may contain sensitive metadata, sanitize before sharing.
 
 ```text
-hubble observe --from-namespace <ns> --verdict DROPPED --last 1000   [C1]
-hubble observe --fqdn <fqdn> --verdict DROPPED --last 1000   [C1]
+hubble observe --from-namespace <ns> --verdict DROPPED --last 1000   [C2]
+hubble observe --fqdn <fqdn> --verdict DROPPED --last 1000   [C2]
 cilium clustermesh inspect-policy-default-local-cluster --all-namespaces   [C1]
 ```
 

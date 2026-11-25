@@ -11,7 +11,7 @@ Hubble is the most persuasive evidence a Cilium user can supply, because it show
 - Hubble runs inside each Cilium agent. It reads events from the agent's monitor and stores them in a user-space ring buffer on that node; once the buffer is full, new events overwrite the oldest [CIL-EV-E05].
 - The buffer capacity is one less than a power of two, configured with `--hubble-event-buffer-capacity` (Helm `hubble.eventBufferCapacity`), default 4095 flows [CIL-EV-E06].
 - Hubble Relay connects to every node's Hubble server and answers cluster-wide queries [CIL-EV-E07]. A Relay query is a union of per-node buffers, each with its own retention horizon.
-- `hubble observe --last N` [C1] returns the last N flows per node when queried through Relay, not N cluster-wide [CIL-EV-E08].
+- `hubble observe --last N` [C2] returns the last N flows per node when queried through Relay, not N cluster-wide [CIL-EV-E08].
 
 The consequence is first-principles arithmetic, not a fixed number: on a node that emits events at rate R per second, the buffer covers roughly capacity / R seconds. A busy node can cover seconds; a quiet node can cover hours. A flow older than the busiest relevant node's horizon is gone, whatever the query asks for.
 

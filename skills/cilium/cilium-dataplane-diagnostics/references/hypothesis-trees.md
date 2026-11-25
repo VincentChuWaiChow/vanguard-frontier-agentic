@@ -2,7 +2,7 @@
 
 ## Rule
 
-One status code or one drop line is not a root cause. For each symptom, hold at least two competing hypotheses, record supporting and contradicting evidence, and pick the least-invasive check that separates them. Generic DNS, EndpointSlice and traffic-policy triage is owned by the skill `kubernetes-network-architecture-review`; this reference goes deeper into the Cilium datapath only. Command classes follow the companion skill `cilium-evidence-boundary`. Every command below is evidence an authorized operator may collect, never a step this skill takes.
+One status code or one drop line is not a root cause. For each symptom, hold at least two competing hypotheses, record supporting and contradicting evidence, and pick the least-invasive check that separates them. Generic DNS, EndpointSlice and traffic-policy triage is owned by `kubernetes-network-architecture-review-agent` (hand off; that skill is not bundled with this one); this reference goes deeper into the Cilium datapath only. Command classes follow the companion skill `cilium-evidence-boundary`. Every command below is evidence an authorized operator may collect, never a step this skill takes.
 
 ## 1. Intermittent connection timeouts
 
@@ -31,7 +31,7 @@ Refs: [CIL-DP-E21] [CIL-DP-E23] [CIL-DP-E26] [CIL-DP-E27] [CIL-DP-E07].
 
 | Hypothesis | Supports | Contradicts | Next check |
 | --- | --- | --- | --- |
-| Encapsulation or underlay path fault | Same-node works; tunnel mode; underlay UDP filtered | Native routing with working underlay | `hubble observe` flows by node via Hubble Relay [C1] (or [C2] when run inside the agent pod); per-node evidence |
+| Encapsulation or underlay path fault | Same-node works; tunnel mode; underlay UDP filtered | Native routing with working underlay | `hubble observe` flows by node via Hubble Relay [C2] (or [C2] when run inside the agent pod); per-node evidence |
 | Encryption peer or key problem | WireGuard peer count differs from nodes minus one; port 51871 blocked | Peer count matches | `cilium-dbg status` [C2] encryption line |
 | Asymmetric routing | Request seen at destination, reply not seen at source | Both directions captured | Paired captures; see the routing and MTU reference |
 | Stale or unroutable IP | `Stale or unroutable IP` drops | Absent | `cilium-dbg monitor --type drop` [C2] |

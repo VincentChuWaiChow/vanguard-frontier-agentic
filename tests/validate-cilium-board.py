@@ -25,6 +25,18 @@ CB08  Harness adapters equal what tests/agentic-board-suite/_build_harnesses.py 
 CB09  The routing fixture tests/fixtures/cilium-maestro-routing/taxonomy.json routes to every
       non-maestro Cilium agent, and its live_guards are exactly LIVE_GUARDS.
 CB10  No Cilium agent contract grants a write-capable tool in its Claude Code adapter.
+CB11  Any agent anywhere in agents/ whose companion_skills name a Cilium skill also declares
+      cilium-evidence-boundary, so the rules that skill depends on are bundled with it. (A live
+      guard that reused a Cilium skill without its companion lost checks silently once.)
+CB12  A command whose verb mutates or destroys state (apply, delete, patch, create, replace,
+      edit, scale, uninstall, upgrade, rollback, restart, flush, cleanup, disconnect, ...) may not
+      carry a class below [C4] or sit under a `Class:` line below [C4]. This checks that the class
+      is plausible, not merely present; a wrong but plausible class still needs human review.
+
+Before matching, text is NFKC-normalized and zero-width characters are removed, and a leading
+`sudo`, `VAR=value` assignment or path prefix is ignored, so `sudo kubectl ...`,
+`KUBECONFIG=x kubectl ...` and `/usr/local/bin/kubectl ...` are recognized. Every line of a
+command block is checked, not only the first, and HTML <code>/<pre> spans count as code.
 
 Usage:
     python3 tests/validate-cilium-board.py           # check
@@ -36,6 +48,7 @@ import importlib.util
 import json
 import re
 import sys
+import unicodedata
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -48,7 +61,17 @@ LIVE_GUARDS = {
     "kubernetes-live-network-policy-guard-agent",
     "kubernetes-live-network-architecture-mutation-guard-agent",
 }
-COMMAND_TOOLS = ("cilium", "cilium-dbg", "hubble", "kubectl", "helm", "tcpdump", "bpftool", "conntrack", "ip")
+COMMAND_TOOLS = ("cilium", "cilium-dbg", "hubble", "kubectl", "k", "oc", "kubeadm", "helm", "tcpdump",
+                 "bpftool", "conntrack", "ip", "iptables", "nft")
+MUTATING_VERBS = re.compile(
+    r"\b(?:apply|delete|patch|create|replace|edit|scale|label|annotate|uninstall|upgrade|rollback|"
+    r"rollout\s+restart|restart|flush|cleanup|disconnect|connect|drain|cordon|taint|install|rotate|"
+    r"set\s+image|config\s+\S+=)\b", re.IGNORECASE)
+READ_ONLY_HELP = re.compile(r"(?:--help|\bhelp\b|--dry-run=client|\btemplate\b|\bget\b\s+values)", re.IGNORECASE)
+LOW_CLASS = re.compile(r"\[C[0-3]\]")
+ZERO_WIDTH = re.compile("[\u200b\u200c\u200d\u2060\ufeff]")
+PREFIX = re.compile(r"^(?:sudo\s+(?:-\S+\s+)*)?(?:[A-Za-z_][A-Za-z0-9_]*=\S*\s+)*(?:\S*/)?")
+HTML_CODE = re.compile(r"<(?:code|pre)[^>]*>(.*?)</(?:code|pre)>", re.IGNORECASE | re.DOTALL)
 REQUIRED_HEADINGS = (
     "## Mission",
     "## Decision ownership",
@@ -68,7 +91,20 @@ REQUIRED_HEADINGS = (
 CLASS_TAG = re.compile(r"\[C[0-5]\]")
 CLASS_LINE = re.compile(r"^Class: \[C[0-5]\]")
 CODE_SPAN = re.compile(r"`([^`\n]+)`")
-TOOL_RE = re.compile(r"^(?:" + "|".join(re.escape(t) for t in COMMAND_TOOLS) + r") ")
+TOOL_RE = re.compile(r"^(?:" + "|".join(re.escape(t) for t in COMMAND_TOOLS) + r")[ \t]", re.IGNORECASE)
+
+
+def normalize(text: str) -> str:
+    return ZERO_WIDTH.sub("", unicodedata.normalize("NFKC", text))
+
+
+def is_command(text: str) -> bool:
+    return bool(TOOL_RE.match(PREFIX.sub("", text.strip(), count=1)))
+
+
+def mutating(text: str) -> bool:
+    body = PREFIX.sub("", text.strip(), count=1)
+    return bool(MUTATING_VERBS.search(body)) and not READ_ONLY_HELP.search(body)
 FENCE = re.compile(r"^(\s*)(```|~~~)\s*([\w+-]*)")
 FORBIDDEN_FENCES = {"bash", "sh", "shell", "console"}
 
@@ -92,34 +128,45 @@ def markdown_files() -> list[Path]:
 
 def check_commands(path: Path, errors: list[str]) -> None:
     rel = path.relative_to(ROOT)
-    lines = path.read_text(encoding="utf-8").splitlines()
+    lines = normalize(path.read_text(encoding="utf-8")).splitlines()
     in_fence = False
     fence_marker = ""
-    fence_first = False
+    block_class: str | None = None
     for i, line in enumerate(lines):
         m = FENCE.match(line)
         if m and not in_fence:
-            in_fence, fence_marker, fence_first = True, m.group(2), True
+            in_fence, fence_marker = True, m.group(2)
             if m.group(3).lower() in FORBIDDEN_FENCES and path.is_relative_to(SKILLS):
                 errors.append(f"CB03 {rel}:{i + 1}: '{m.group(3)}' fence in a static-review skill; use 'text'")
-            fence_open = i
+            j = i - 1
+            while j >= 0 and not lines[j].strip():
+                j -= 1
+            block_class = lines[j].strip() if j >= i - 2 and j >= 0 and CLASS_LINE.match(lines[j].strip()) else None
             continue
         if in_fence:
             if line.strip().startswith(fence_marker):
                 in_fence = False
                 continue
-            if fence_first and line.strip():
-                fence_first = False
-                if TOOL_RE.match(line.strip()):
-                    j = fence_open - 1
-                    while j >= 0 and not lines[j].strip():
-                        j -= 1
-                    if j < 0 or j < fence_open - 2 or not CLASS_LINE.match(lines[j].strip()):
-                        errors.append(f"CB02 {rel}:{fence_open + 1}: command block without a preceding 'Class: [Cn]' line")
+            stripped = line.strip()
+            if not stripped or stripped.startswith("#") or not is_command(stripped):
+                continue
+            tag = CLASS_TAG.search(stripped)
+            if block_class is None and not tag:
+                errors.append(f"CB02 {rel}:{i + 1}: command line in a block without a preceding 'Class: [Cn]' line")
+            effective = tag.group(0) if tag else (CLASS_TAG.search(block_class).group(0) if block_class else "")
+            if effective and mutating(stripped) and LOW_CLASS.search(effective):
+                errors.append(f"CB12 {rel}:{i + 1}: mutating command `{stripped[:60]}` classed {effective}; needs [C4] or [C5]")
             continue
-        for span in CODE_SPAN.findall(line):
-            if TOOL_RE.match(span) and not CLASS_TAG.search(line):
+        spans = CODE_SPAN.findall(line) + HTML_CODE.findall(line)
+        for span in spans:
+            if not is_command(span):
+                continue
+            tags = CLASS_TAG.findall(line)
+            if not tags:
                 errors.append(f"CB01 {rel}:{i + 1}: command `{span}` has no class tag on its line")
+                break
+            if mutating(span) and all(LOW_CLASS.match(tg) for tg in tags):
+                errors.append(f"CB12 {rel}:{i + 1}: mutating command `{span[:60]}` classed {tags[0]}; needs [C4] or [C5]")
                 break
 
 
@@ -176,6 +223,13 @@ def main(argv: list[str]) -> int:
         claude = agent_dir / "harnesses" / "claude-code.agent.md"
         if claude.is_file() and 'tools: "Read, Grep, Glob"' not in claude.read_text(encoding="utf-8"):
             errors.append(f"CB10 {claude.relative_to(ROOT)}: Claude Code adapter must grant only Read, Grep, Glob")
+
+    cilium_skills = {p.name for p in SKILLS.iterdir() if (p / "SKILL.md").is_file()}
+    for meta_path in sorted((ROOT / "agents").glob("*/*/metadata.json")):
+        meta = json.loads(meta_path.read_text(encoding="utf-8"))
+        companions = set(meta.get("companion_skills") or [])
+        if companions & cilium_skills and SHARED_SKILL not in companions:
+            errors.append(f"CB11 {meta_path.relative_to(ROOT)}: uses Cilium skill(s) {sorted(companions & cilium_skills)} without {SHARED_SKILL}")
 
     if not TAXONOMY.is_file():
         errors.append(f"CB09 {TAXONOMY.relative_to(ROOT)}: missing")

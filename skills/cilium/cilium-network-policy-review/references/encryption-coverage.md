@@ -104,7 +104,7 @@ tcpdump -n -i cilium_wg0   [C2] shows the plaintext inner packets
 tcpdump -n -i <iface> esp   [C2] shows ESP on the underlay for IPsec
 ```
 
-- `hubble observe --encrypted` filters flows by encryption state [C1] [CIL-NP-E13]. Whether a
+- `hubble observe --encrypted` filters flows by encryption state [C2] [CIL-NP-E13]. Whether a
   flow is marked encrypted depends on the Hubble version and its telemetry completeness, which
   `cilium-evidence-boundary` owns; treat it as corroboration, not proof.
 - Contradictions: config says WireGuard on but peers are fewer than nodes minus one means

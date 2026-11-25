@@ -2,6 +2,7 @@
 name: cilium-evidence-boundary
 description: Shared evidence and safety contract for every Cilium board specialist. Defines what counts as evidence, how each diagnostic command is classified by its real behavior (offline, observational, privileged, active, mutating, destructive), how Hubble flow telemetry may and may not be used as proof, the verdict vocabulary, and how a verified finding is handed to the existing Jira and Confluence authoring skills. Load it first whenever another cilium-* skill runs. Do not use it alone to answer a Cilium question; it decides how conclusions are bounded, not what they are. Static review only.
 allowed-tools: Read Grep Glob
+disallowed-tools: Write Edit NotebookEdit Bash
 metadata:
   author: 'github: VincentChuWaiChow'
   version: 0.1.0

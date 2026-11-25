@@ -30,7 +30,6 @@ GHSA IDs are the primary key. CVE numbers are UNVERIFIED unless noted: the extra
 | GHSA-q6h5-q3q6-f87x | 2026-06-16, Moderate | 1.19.0 to below 1.19.4; 1.18.2 to below 1.18.10; below 1.17.16 | 1.19.4, 1.18.10, 1.17.16 | CiliumLocalRedirectPolicy using `addressMatcher`: cross-namespace Service traffic hijack |
 | GHSA-3fcv-jvfp-m4q9 | 2026-06-01, Critical | 1.19.0 to below 1.19.2; 1.18.0 to below 1.18.8; below 1.17.14 | 1.19.2, 1.18.8, 1.17.14 | L7 enabled: world-accessible Envoy admin socket, local information disclosure or cluster disruption |
 
-CVE identifiers printed on the pages: CVE-2026-77531 (GHSA-xqhm-7xhv-6ppj), CVE-2026-104149 (GHSA-vh48-r624-p8v7), CVE-2026-56743 (GHSA-fm8w-2m5w-9j7r), CVE-2026-56742 (GHSA-w7c2-w76w-5hmj), CVE-2026-53935 (GHSA-q6h5-q3q6-f87x). All UNVERIFIED; the first two advisories printed none. The CVSS values read were 7.3 for GHSA-xqhm-7xhv-6ppj and 5.4 for GHSA-fm8w-2m5w-9j7r [CIL-LC-E26].
 
 Related older advisory GHSA-gj49-89wh-h4gj (High, 2026-04-22; bugtool output contained the WireGuard private key; affected below 1.17.15, 1.18.0 to 1.18.8, 1.19.0 to 1.19.2; fixed 1.19.3, 1.18.9, 1.17.15) is in [CIL-LC-E27]; bundles from affected versions are sensitive [CIL-LC-E28], and the companion skill `cilium-evidence-boundary` owns bundle handling.
 

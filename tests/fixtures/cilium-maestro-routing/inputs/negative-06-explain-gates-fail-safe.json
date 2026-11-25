@@ -1,0 +1,8 @@
+{
+  "name": "negative-06-explain-gates-fail-safe",
+  "task": "Explain what kubectl apply does to a CiliumNetworkPolicy in a production cluster.",
+  "tags": [
+    "negative-routing",
+    "fail-safe:false-gate-accepted"
+  ]
+}

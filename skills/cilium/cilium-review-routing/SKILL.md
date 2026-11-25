@@ -2,6 +2,7 @@
 name: cilium-review-routing
 description: Coordinate a Cilium review across network policy and encryption coverage, datapath diagnostics and capacity, cluster-boundary connectivity (BGP, LB-IPAM, L2 announcements, egress gateway, ClusterMesh), and lifecycle readiness (upgrades, CNI migration, advisories). Use for multi-domain requests or when the owning specialist is unclear, such as "service unreachable" or "broke after the change". Selects the minimum set of specialists, orders them by evidence dependency, preserves disagreements, and returns handoffs for every live change. Never answers a Cilium question itself, never dispatches a live guard, and never manufactures approval.
 allowed-tools: Read Grep Glob
+disallowed-tools: Write Edit NotebookEdit Bash
 metadata:
   author: 'github: VincentChuWaiChow'
   version: 0.1.0
@@ -37,8 +38,8 @@ The user goal, the environment and Cilium version scope (or the explicit stateme
 3. If the request is a mutation or an instruction to execute, stop at a handoff. Never dispatch a live guard automatically.
 4. Select the minimum set of owners from the routing table, at most four.
 5. Order them by evidence dependency. The version and installed features come first when unknown, because every specialist withholds version-dependent conclusions without them.
-6. Pass each owner only its decision, the intent, and the relevant sanitized evidence.
-7. Combine results without voting or averaging. A confirmed `blocked` stands; otherwise any `needs-review` stands.
+6. Return a dispatch plan: for each owner, its agent id, its decision, and only the intent and sanitized evidence it needs. The router never spawns agents; the caller invokes the plan and may return the specialists' outputs for step 7.
+7. When outputs are returned, combine them without voting or averaging. A confirmed `blocked` stands; otherwise any `needs-review` stands.
 8. Return the plan, the evidence ownership, the combined verdict, unresolved disagreements, and handoffs, including Jira or Confluence drafting through the companion skill's handoff rules.
 
 ## Reference loading
@@ -51,6 +52,7 @@ The user goal, the environment and Cilium version scope (or the explicit stateme
 
 ## Failure handling
 
+- Companion skill `cilium-evidence-boundary` not installed: stop and return `needs-review`, stating that the command-class and evidence rules are missing; do not continue without them.
 - No owner matches: say so and name the closest out-of-board owner; never answer generically.
 - Version unknown: route, but mark every version-dependent result `needs-review`.
 - A specialist is unavailable in this harness: record the gap; never substitute your own answer.

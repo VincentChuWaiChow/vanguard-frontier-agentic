@@ -1,4 +1,4 @@
 interface:
   display_name: Cilium External Connectivity Review
-  short_description: "Decide whether traffic crossing the cluster boundary through BGP Control Plane advertisement, LB-IPAM, L2 anno"
+  short_description: "Review reachability, address ownership and failure behavior at the cluster boundary"
   default_prompt: Use $cilium-external-connectivity-review on the supplied evidence within its stated scope. Report unknowns and do not perform live operations.

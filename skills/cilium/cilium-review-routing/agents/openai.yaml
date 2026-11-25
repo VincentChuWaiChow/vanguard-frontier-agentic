@@ -1,4 +1,4 @@
 interface:
   display_name: Cilium Review Routing
-  short_description: "Route a multi-domain or ambiguous Cilium request to the minimum set of board specialists, order them by eviden"
+  short_description: "Plan which Cilium specialist owns each decision; never answers or dispatches itself"
   default_prompt: Use $cilium-review-routing on the supplied evidence within its stated scope. Report unknowns and do not perform live operations.

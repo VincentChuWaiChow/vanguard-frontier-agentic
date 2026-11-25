@@ -2,6 +2,7 @@
 name: cilium-external-connectivity-review
 description: Review whether traffic that crosses the cluster boundary through Cilium BGP Control Plane, LB IPAM, L2 announcements, egress gateway or ClusterMesh is reachable, correctly owned, bounded and failure-isolated as claimed. Use for load balancer VIP reachability, fixed egress source IPs, gateway node failure, multi-cluster failover and resilience claims on an already chosen design. Static review of supplied manifests, status output and peer-side evidence only. Do not use to choose the multi-cluster technology or CIDR plan, to decide which egress destinations are allowed, to review lifecycle changes, or to run any command.
 allowed-tools: Read Grep Glob
+disallowed-tools: Write Edit NotebookEdit Bash
 metadata:
   author: 'github: VincentChuWaiChow'
   version: 0.1.0

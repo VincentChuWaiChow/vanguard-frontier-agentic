@@ -16,7 +16,7 @@ Reference: [Network Policy overview](https://docs.cilium.io/en/stable/network/ku
 
 ### Step 2 — Verify default-deny posture in the affected namespace
 
-Deny-by-default semantics (derived/unverified; not re-verified in this skill's ledger, confirm against the policy language page for the installed version): a pod selected by at least one ingress policy is expected to be deny-by-default for ingress, and likewise for egress; a pod selected by no policy is expected to be allow-all.
+Deny-by-default semantics are in [policy-semantics.md](policy-semantics.md): enforcement mode first, then per-direction default-deny (a selecting rule with that direction's section isolates the pod for that direction unless `enableDefaultDeny` disables it), the allow union, and deny rules, which win over every allow. Answer those before this step's findings.
 
 Critical findings:
 
@@ -33,11 +33,10 @@ Recommended baseline: a `default-deny-all` `NetworkPolicy` per namespace plus ex
 - `toPorts.rules.kafka` — Kafka-aware policy (removed in Cilium 1.20; remove `kafka` and `l7proto` rules before upgrading). Flag any such rule on a 1.20 target as an upgrade blocker.
 - `toPorts.rules.dns` — DNS FQDN allowlist for egress.
 
-L7 rules require the Envoy proxy to be enabled. Without Envoy, policy with L7 fields **either fails admission or is enforced only at L3/L4**, depending on Cilium version (not confirmed against the 1.20 docs; treat as unknown and confirm before relying on L7).
+L7 rules are enforced by Cilium's L7 proxy. Confirm the proxy is enabled for the installed version before relying on an L7 rule; what happens to an L7 rule when it is not is not recorded in this skill's ledger, so treat it as unknown. Note that `enableDefaultDeny: false` does not stop an L7 rule from dropping traffic (see [policy-semantics.md](policy-semantics.md)).
 
 Stress-tests:
 
-- L7 HTTP rule on a namespace where pods talk via gRPC (HTTP/2) — how an HTTP path matcher applies to HTTP/2 traffic is not re-verified in this skill's ledger; confirm against the policy language page for the installed version before relying on it.
 - L7 DNS rule with FQDN `*.example.com` — `*.example.com` wildcard support is not re-verified in this skill's ledger (derived/unverified; confirm against the policy language page for the installed version), and the destination port still matters, so verify port 53 UDP/TCP is allowed at L4. From 1.19 the `**` DNS wildcard matches multiple subdomains, so a rule using it is broader than before [CIL-NP-E17].
 
 Reference: [L7 Policy in Cilium](https://docs.cilium.io/en/stable/security/policy/language/#layer-7-examples).
@@ -82,12 +81,12 @@ Reference: [Cilium ClusterMesh](https://docs.cilium.io/en/stable/network/cluster
 
 Static policy review is not enough. Use Hubble to confirm what the policy actually does:
 
-Class: [C1] Hubble via Relay; flows may contain sensitive metadata. The operator collects; the agent does not run these. Telemetry completeness is judged per the companion skill `cilium-evidence-boundary`.
+Class: [C2] Hubble via Relay; flows may contain sensitive metadata. The operator collects; the agent does not run these. Telemetry completeness is judged per the companion skill `cilium-evidence-boundary`.
 
 ```text
-hubble observe --to-namespace <ns> --to-pod <pod-prefix> --verdict DROPPED --last 1000   [C1]
-hubble observe --from-namespace <ns> --from-pod <pod-prefix> --verdict FORWARDED --last 100   [C1]
-hubble observe --type l7 --last 100   [C1]
+hubble observe --to-namespace <ns> --to-pod <pod-prefix> --verdict DROPPED --last 1000   [C2]
+hubble observe --from-namespace <ns> --from-pod <pod-prefix> --verdict FORWARDED --last 100   [C2]
+hubble observe --type l7 --last 100   [C2]
 ```
 
 `--to-namespace` and `--to-pod` are assumed to mirror the documented `--from-*` filters; confirm with the operator's CLI help. The first line should return nothing if allow rules are correct; the second confirms expected destinations; the third shows L7 flow records. `--type dns` is not a documented flow type (documented types are capture, drop, l7, policy-verdict, trace, trace-sock).
@@ -107,13 +106,13 @@ Reference: [Hubble Observability](https://docs.cilium.io/en/stable/observability
 Return:
 
 - **target**: which policy format and which scope,
-- **evidence level**: `sanitized user evidence` / `documentation-based` / `inference`,
+- **evidence level**: `verified` / `partial` / `assumed`, with each claim classed `observed` / `derived` / `assumption` / `unknown` per the companion skill,
 - **default-deny posture** in the namespace(s),
 - **L7 enforcement assessment**: Envoy proxy enabled / required, whether L7 rules will actually run,
 - **egress posture**: cloud-metadata service blocked, CIDR scope, FQDN allowlist hygiene,
 - **ClusterMesh assessment** when applicable (cross-cluster semantics, `policy-default-local-cluster` value),
 - **risk findings** (with severity: high / medium / low),
-- **safest next actions** with sample manifest changes and `hubble observe` [C1] commands for the operator to collect as verification,
+- **safest next actions** with sample manifest changes and `hubble observe` [C2] commands for the operator to collect as verification,
 - **rollback plan**: how to revert the change without leaving pods unreachable,
 - **assumptions and missing facts**.
 

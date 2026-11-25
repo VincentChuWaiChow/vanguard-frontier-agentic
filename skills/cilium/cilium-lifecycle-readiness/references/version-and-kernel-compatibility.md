@@ -40,7 +40,7 @@ Clusters in a mesh must differ by at most one minor Cilium release, and must use
 | Finding | Verdict direction | Claim class |
 | --- | --- | --- |
 | Current version below 1.18.0 | `blocked` for assuming a supported fix path; plan stepwise | derived |
-| Target is not the next minor | `blocked` until stepwise [CIL-LC-E01] | observed |
+| Target skips a minor in either direction (upgrade or rollback more than one minor away) | `blocked` until stepwise [CIL-LC-E01]; a patch change within the same minor and a rollback to the immediately preceding minor are in scope, not blocked | observed |
 | Any node kernel below 5.10 and not an RHEL 8.10 4.18 build | `blocked` [CIL-LC-E12] | observed |
 | Kubernetes version outside 1.33 to 1.36 for 1.20.5 | `needs-review` [CIL-LC-E14] | observed |
 | Feature needs kernel above the lowest pool | `blocked` cluster-wide, `needs-review` if scoped per pool | derived |

@@ -2,6 +2,7 @@
 name: cilium-dataplane-diagnostics
 description: Explain observed Cilium datapath behavior (intermittent timeouts, Service VIP or NodePort failures, cross-node-only loss, large-payload failures, latency regressions, non-policy drop reasons) and assess conntrack, NAT and BPF map capacity from supplied status, drop lines, metrics and Helm values. Use to rank competing hypotheses and name the next least-invasive discriminating observation, including forward-looking map headroom computed only from supplied counts. Do not use for policy verdict review, BGP, LB-IPAM, egress gateway or ClusterMesh design, upgrade readiness or target architecture. Static review only; never collects live evidence.
 allowed-tools: Read Grep Glob
+disallowed-tools: Write Edit NotebookEdit Bash
 metadata:
   author: 'github: VincentChuWaiChow'
   version: 0.1.0
@@ -27,7 +28,7 @@ Hand off instead:
 - Policy verdict drops ("Policy denied") to `cilium-network-policy-review-agent`.
 - BGP, LB-IPAM, L2 announcements, egress gateway, ClusterMesh to `cilium-external-connectivity-review-agent`.
 - A regression that started after an upgrade or config change: keep diagnosing, and co-route with `cilium-lifecycle-readiness-agent`.
-- Target architecture or CNI choice to `kubernetes-network-architecture-review-agent`; generic DNS and EndpointSlice triage follows the skill `kubernetes-network-architecture-review`.
+- Target architecture or CNI choice to `kubernetes-network-architecture-review-agent`; generic DNS and EndpointSlice triage owned by `kubernetes-network-architecture-review-agent` (hand off; that skill is not bundled with this one).
 - Cost of larger maps or nodes to `finops-maestro-agent`.
 
 ## Required inputs
@@ -61,6 +62,7 @@ Load companion skill `cilium-evidence-boundary` first. Then load only the active
 
 ## Failure handling
 
+- Companion skill `cilium-evidence-boundary` not installed: stop and return `needs-review`, stating that the command-class and evidence rules are missing; do not continue without them.
 - Missing version: do not choose a command form or default; state the version-dependent variants and mark `unknown`.
 - Missing metrics or Prometheus disabled: report the gap as unknown, never as healthy.
 - Conflicting sources (for example code comment versus constant): record both and cite the CONFLICT row.

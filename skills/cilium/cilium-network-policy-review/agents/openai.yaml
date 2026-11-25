@@ -1,0 +1,4 @@
+interface:
+  display_name: Cilium Network Policy Review
+  short_description: "Decide whether policy and encryption enforce the intended connectivity boundary"
+  default_prompt: Use $cilium-network-policy-review on the supplied, sanitized policy and evidence. Answer the policy-semantics questions first, report unknowns, and do not perform live operations.

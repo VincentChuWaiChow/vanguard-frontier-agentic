@@ -123,7 +123,7 @@
     "kubernetes-live-network-policy-guard-agent"
   ],
   "gate_mode": "live-guard-gate",
-  "live_guard_intent": "(?=[\\s\\S]*\\b(?:prod|production|live|cluster|context|namespace)\\b)(?:(?:\\b(?:kubectl|oc)\\s+(?:apply|patch|delete|create|replace|edit|label|annotate|set)\\b)|(?:\\b(?:now|just|immediately|go ahead and|please)\\s+(?:apply|patch|delete|remove|create|update|replace|edit|label|annotate|push|roll out)\\b[\\s\\S]{0,200}\\b(?:(?:Cilium(?:Clusterwide)?NetworkPolic(?:y|ies)|NetworkPolic(?:y|ies)|CiliumEgressGatewayPolic(?:y|ies)|network polic(?:y|ies))|(?:HTTPRoutes?|Gateway API|Gateways?|ClusterMesh (?:peer )?secrets?|clustermesh secrets?))\\b)|(?:\\b(?:apply|patch|delete|remove|create|update|replace|edit|label|annotate|push|roll out)\\b\\s+(?:this|these|the|our|that)\\s+(?:(?:Cilium(?:Clusterwide)?NetworkPolic(?:y|ies)|NetworkPolic(?:y|ies)|CiliumEgressGatewayPolic(?:y|ies)|network polic(?:y|ies))|(?:HTTPRoutes?|Gateway API|Gateways?|ClusterMesh (?:peer )?secrets?|clustermesh secrets?))\\b(?![\\s\\S]{0,80}\\b(?:would be safe|is safe|safely|review|whether)\\b)))",
+  "live_guard_intent": "(?=[\\s\\S]*\\b(?:prod|production|live|cluster|context|namespace)\\b)(?:(?:\\b(?:kubectl|oc|k)\\b(?:\\s+--?[\\w.-]+(?:[= ](?!apply|patch|delete|create|replace|edit|label|annotate|set)\\S+)?)*\\s+(?:apply|patch|delete|create|replace|edit|label|annotate|set)\\b)|(?:\\b(?:now|just|immediately|go ahead and|please)\\s+(?:apply|patch|delete|remove|create|update|replace|edit|label|annotate|push|deploy|ship|roll\\s*out)\\b[\\s\\S]{0,200}\\b(?:(?:Cilium(?:Clusterwide)?NetworkPolic(?:y|ies)|NetworkPolic(?:y|ies)|CiliumEgressGatewayPolic(?:y|ies)|network polic(?:y|ies))|(?:HTTPRoutes?|Gateway API|Gateways?|ClusterMesh (?:peer )?secrets?|clustermesh secrets?))\\b)|(?:\\b(?:apply|patch|delete|remove|create|update|replace|edit|label|annotate|push|deploy|ship|roll\\s*out)\\b\\s+(?:this|these|the|our|that|a|an)\\s+(?:new\\s+)?(?:(?:Cilium(?:Clusterwide)?NetworkPolic(?:y|ies)|NetworkPolic(?:y|ies)|CiliumEgressGatewayPolic(?:y|ies)|network polic(?:y|ies))|(?:HTTPRoutes?|Gateway API|Gateways?|ClusterMesh (?:peer )?secrets?|clustermesh secrets?))\\b))",
   "parallel_threshold": 0.8,
   "live_guard_keywords": {
     "kubernetes-live-network-policy-guard-agent": [
@@ -131,7 +131,10 @@
       "CiliumClusterwideNetworkPolicy",
       "NetworkPolicy",
       "CiliumEgressGatewayPolicy",
-      "network policy"
+      "network policy",
+      "cnp",
+      "ccnp",
+      "egress gateway policy"
     ],
     "kubernetes-live-network-architecture-mutation-guard-agent": [
       "Gateway API",

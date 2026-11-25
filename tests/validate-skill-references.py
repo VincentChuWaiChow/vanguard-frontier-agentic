@@ -164,9 +164,28 @@ def check_plain_references(errors: list[str]) -> int:
     return checked
 
 
+# Paths on an allow-listed code host that carry user-generated content rather than the owner's
+# documentation or source: an issue, discussion, pull request or wiki page under an allowed org is
+# still written by anyone, so it cannot stand as provider evidence.
+USER_CONTENT_SEGMENTS = {"issues", "discussions", "pull", "pulls", "wiki", "compare"}
+
+
 def official(url: str) -> bool:
     parsed = urlparse(url)
     if parsed.scheme != "https" or parsed.hostname not in OFFICIAL_SOURCES:
+        return False
+    # Reject anything that could make the prefix check lie: userinfo or an explicit port in the
+    # authority, and dot-segments (literal or percent-encoded) or backslashes in the path, which
+    # would let "github.com/cilium/../attacker/" pass a startswith("/cilium/") test.
+    if "@" in parsed.netloc or parsed.port is not None:
+        return False
+    lowered = parsed.path.lower()
+    if "%2e" in lowered or "%2f" in lowered or "\\" in parsed.path:
+        return False
+    segments = parsed.path.split("/")
+    if any(seg in (".", "..") for seg in segments):
+        return False
+    if parsed.hostname == "github.com" and len(segments) > 3 and segments[3] in USER_CONTENT_SEGMENTS:
         return False
     return any(parsed.path.startswith(prefix) for prefix in OFFICIAL_SOURCES[parsed.hostname])
 
