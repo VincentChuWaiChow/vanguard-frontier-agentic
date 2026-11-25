@@ -13,7 +13,6 @@ use std::fmt::Write as FmtWrite;
 use std::fs;
 use std::path::Path;
 
-use chrono::Utc;
 use sha2::{Digest, Sha256};
 
 use crate::error::TuiError;
@@ -83,7 +82,7 @@ impl<'a> AuditLogger<'a> {
         details: serde_json::Value,
         operator: &str,
     ) -> Result<AuditEntry, TuiError> {
-        let timestamp = Utc::now().format("%Y-%m-%dT%H:%M:%S%.3fZ").to_string();
+        let timestamp = crate::clock::now_millis();
         let details_json = serde_json::to_string(&details).unwrap_or_else(|_| "{}".to_string());
 
         let entry_hash = Self::compute_hash_v2(

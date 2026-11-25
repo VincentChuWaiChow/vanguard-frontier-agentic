@@ -9,6 +9,7 @@
 pub mod app;
 pub mod catalog;
 pub mod cli;
+pub mod clock;
 pub mod error;
 pub mod federation;
 pub mod gates;

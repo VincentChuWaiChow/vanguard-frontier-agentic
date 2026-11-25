@@ -311,7 +311,7 @@ impl HeadlessReporter {
         };
 
         // ── 7. Evaluate policy for each workspace ────────────────────────────
-        let today = chrono::Utc::now().format("%Y-%m-%d").to_string();
+        let today = crate::clock::today();
         let per_workspace_evals: Vec<crate::models::policy::PolicyEvaluation> = workspaces
             .iter()
             .zip(installed_per_workspace.iter())
@@ -436,7 +436,7 @@ impl HeadlessReporter {
 
         // Build the timestamp here so it is available for both persistence and
         // the output envelope below.
-        let timestamp = chrono::Utc::now().to_rfc3339_opts(chrono::SecondsFormat::Millis, true);
+        let timestamp = crate::clock::now_millis();
 
         // ── 9. Best-effort persistence ────────────────────────────────────────
         // Persist coverage scores and drift records to the SQLite index.  If the
