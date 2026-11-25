@@ -1,5 +1,5 @@
 """Deterministic sensitivity analysis of the Cilium opportunity scoring (seeded)."""
-import random, itertools
+import random
 W0 = dict(BI=20,Sev=15,Freq=10,Gap=10,AI=10,Evid=10,Safe=10,Dist=10,Maint=5)
 K = list(W0)
 S = {  # scores exactly as committed in 02-opportunity-scoring.md
