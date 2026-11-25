@@ -36915,7 +36915,7 @@
     },
     {
       "tree": "scripts",
-      "aggregate_sha256": "bbca3998695f7747f20b68d7bb078c3ca2cb618b75dcb74968255cc657e82e0f",
+      "aggregate_sha256": "76c8a8d0ee08505c3bbb8f2d42cac2b546968e7a84283f09cf868135c45e6c02",
       "files": [
         {
           "path": "scripts/apply-skill-allowed-tools.py",
@@ -37034,8 +37034,8 @@
         },
         {
           "path": "scripts/gen_kyverno_board.py",
-          "sha256": "d4e8c0f99a000aa43ef8ddce3341251d5e0c001ef4be70716d529679883688c8",
-          "bytes": 13088
+          "sha256": "d9c449fa31a26452a6f8b26a4f78506c05d1b433ece960dc5e0e921b06cd21c8",
+          "bytes": 13892
         },
         {
           "path": "scripts/gen_netsuite_agents.py",
@@ -38162,7 +38162,7 @@
     },
     {
       "tree": "tests",
-      "aggregate_sha256": "921058f1c15156178e51bd792c2ea9ce8a3a0582f7622ad0c60874575d7e2d11",
+      "aggregate_sha256": "91d471102b837c1916a327d52eac42c5d143bc466e6867c02a673cad76bb5121",
       "files": [
         {
           "path": "tests/AGENTS.md",
@@ -51626,8 +51626,8 @@
         },
         {
           "path": "tests/kyverno-board-suite/test_board.py",
-          "sha256": "6539aa8703b8613c5acb5cfd0a33209dc758cd1cc2b6c04f5858be0e24e5eb65",
-          "bytes": 21867
+          "sha256": "fc62ba88df5d095a01b0c72f812effab32f72bd055f211fa7150b4029a747b37",
+          "bytes": 23494
         },
         {
           "path": "tests/mods.test.mjs",
@@ -51889,5 +51889,5 @@
       "bytes": 9135
     }
   ],
-  "aggregate_sha256": "40fd1b5ceed0aeafd5371ca32a76001b4746f35669fde8825320486dc6168780"
+  "aggregate_sha256": "5bf29572f1a18032548d7519ce9b92b7b27477f63f518072320a622fa7c9fe5c"
 }

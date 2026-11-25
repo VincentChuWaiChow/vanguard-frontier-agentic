@@ -108,6 +108,21 @@ def md_adapter(agent: dict, text: str, extra: str = "") -> str:
     return f'---\nname: "{agent["name"]}"\ndescription: "{agent["description"]}"\n{extra}---\n\n{text}'
 
 
+def codex_model_lines(prior: str) -> list[str]:
+    """Policy-managed top-level keys of an existing codex.toml, in order.
+
+    Scans only top-level keys, stopping at `developer_instructions` (the agent body) or the
+    first table header, as model-policy's editTomlKey does, so prose in the body can never
+    be mistaken for a managed key."""
+    kept = []
+    for line in prior.split("\n"):
+        if line.startswith(("developer_instructions", "[")):
+            break
+        if MODEL_LINE.match(line):
+            kept.append(line)
+    return kept
+
+
 def frontmatter_model_lines(prior: str) -> str:
     """Policy-managed `model:`/`effort:` lines from an existing adapter's frontmatter, in order."""
     lines = prior.split("\n")
@@ -156,12 +171,16 @@ def render_agent(agent: dict, board: dict, sources: dict[str, dict], existing: d
     files["harnesses/gemini.agent.md"] = (
         f'---\nname: "{aid}"\ndisplay_name: "{agent["name"]}"\ndescription: "{agent["description"]}"\n---\n\n{text}'
     )
-    prior = existing.get("harnesses/codex.toml", "")
-    kept = [m.group(0) for m in MODEL_LINE.finditer(prior)] or ['model = "gpt-5.4"', 'model_reasoning_effort = "high"']
+    if "harnesses/codex.toml" in existing:
+        # An existing adapter keeps exactly its policy-managed lines, including none at all:
+        # model-policy:apply removes them for `auto`, and that choice must survive regeneration.
+        kept = codex_model_lines(existing["harnesses/codex.toml"])
+    else:
+        kept = ['model = "gpt-5.4"', 'model_reasoning_effort = "high"']  # first generation only
     files["harnesses/codex.toml"] = (
         f'name = "{aid.replace("-", "_")}"\n'
         f'description = "{agent["description"]}"\n'
-        + "\n".join(kept) + "\n"
+        + "".join(f"{line}\n" for line in kept)
         + 'sandbox_mode = "read-only"\n\n'
         + f'developer_instructions = """\n{text}\n"""\n\n'
         + f'[[skills.config]]\npath = "skills/kyverno/{skill}/SKILL.md"\nenabled = true\n\n'

@@ -149,6 +149,28 @@ class Layer1Structure(unittest.TestCase):
         bare = gen.render_agent(agent, board, sources, {})
         self.assertNotIn("model:", bare["harnesses/claude-code.agent.md"].split("\n---\n", 1)[0])
 
+    def test_generator_preserves_codex_auto_and_ignores_body_decoys(self):
+        # model-policy:apply deletes the Codex model lines for `auto`; regeneration must not
+        # reinstate the first-generation defaults over that applied choice.
+        gen = load(ROOT / "scripts/gen_kyverno_board.py", "gen_kyverno_board_codex")
+        board, sources, _ = gen.load()
+        agent = board["agents"][0]
+        header = lambda toml: toml.split("developer_instructions", 1)[0]
+        auto = 'name = "x"\ndescription = "y"\nsandbox_mode = "read-only"\n\ndeveloper_instructions = """\nbody\n"""\n'
+        files = gen.render_agent(agent, board, sources, {"harnesses/codex.toml": auto})
+        self.assertNotIn("model", header(files["harnesses/codex.toml"]))
+        # Positive: an explicit override survives.
+        pinned = auto.replace('sandbox_mode', 'model = "o3"\nmodel_reasoning_effort = "low"\nsandbox_mode')
+        files = gen.render_agent(agent, board, sources, {"harnesses/codex.toml": pinned})
+        self.assertIn('model = "o3"\nmodel_reasoning_effort = "low"\n', header(files["harnesses/codex.toml"]))
+        # A decoy key inside the agent body is never treated as a managed line.
+        decoy = auto.replace("body", 'model = "decoy"')
+        files = gen.render_agent(agent, board, sources, {"harnesses/codex.toml": decoy})
+        self.assertNotIn("model", header(files["harnesses/codex.toml"]))
+        # Only a brand-new adapter gets the initialization defaults.
+        fresh = gen.render_agent(agent, board, sources, {})
+        self.assertIn('model = "gpt-5.4"', header(fresh["harnesses/codex.toml"]))
+
     def test_ledgers_carry_only_cited_rows(self):
         marker = re.compile(r"\[(KYV-E\d+)\]")
         for skill in SKILLS:
