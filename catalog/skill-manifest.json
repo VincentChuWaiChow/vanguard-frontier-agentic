@@ -6349,7 +6349,7 @@
     {
       "id": "cilium-dataplane-diagnostics",
       "path": "skills/cilium/cilium-dataplane-diagnostics",
-      "aggregate_sha256": "edbd96b9fe6c8a8ba8bed1c597b30b89213cdfe763a76ed6bd839841167229ff",
+      "aggregate_sha256": "b658fffdccee51d1a2e1248d5e7bc7a96c033489038c25bc0b53d1502e3d9cdb",
       "files": [
         {
           "path": "skills/cilium/cilium-dataplane-diagnostics/SKILL.md",
@@ -6368,8 +6368,8 @@
         },
         {
           "path": "skills/cilium/cilium-dataplane-diagnostics/references/conntrack-nat-and-map-capacity.md",
-          "sha256": "04d23acfeb1bf28fb26167ea64312d41281eb23f582808775620bb3123085146",
-          "bytes": 5628
+          "sha256": "bdcc433b8e8775a709bc699a9f42a03ab88e233bee0d1475a2af6c0780842ca2",
+          "bytes": 5746
         },
         {
           "path": "skills/cilium/cilium-dataplane-diagnostics/references/drop-reasons-and-signals.md",
@@ -6378,23 +6378,23 @@
         },
         {
           "path": "skills/cilium/cilium-dataplane-diagnostics/references/evidence-ledger.md",
-          "sha256": "d81aa80630b97d8bc1bdd0e457a2fbb9a03943be81e1fd3dd50ec6b7e077ddad",
-          "bytes": 13825
+          "sha256": "706d15d723e6064555cb6621bf54d3929aa41b358e3c9f288e74aecf3345aa76",
+          "bytes": 13967
         },
         {
           "path": "skills/cilium/cilium-dataplane-diagnostics/references/hypothesis-trees.md",
-          "sha256": "e91f00741dc2e10e3c15406c8b7273dc21c57352757a171c7d85287a461c00aa",
-          "bytes": 5992
+          "sha256": "72d2f2320d6a3b14bb368aacca59e2a8bc990b3bf8439fab134fa3ecaae6d4ae",
+          "bytes": 6049
         },
         {
           "path": "skills/cilium/cilium-dataplane-diagnostics/references/packet-path-model.md",
-          "sha256": "46d4183fa7860f4dfd2e0df36e19f41f09404837f292012850b19a8359ca1ba2",
-          "bytes": 5702
+          "sha256": "1ea4a43a0f3bb79c97e50b12cc3eec7b1efb1ab1c8d7c18d5d40a56c84cb58d6",
+          "bytes": 5306
         },
         {
           "path": "skills/cilium/cilium-dataplane-diagnostics/references/routing-mtu-and-encapsulation.md",
-          "sha256": "4b54680a11af85ecb69fc9ffcbab2e01f93db49126dcf40767a09245a92a6626",
-          "bytes": 5082
+          "sha256": "85ae562cac91948d74735dcacedc74405bb04ee4e378c9e4f338655752448d59",
+          "bytes": 5420
         },
         {
           "path": "skills/cilium/cilium-dataplane-diagnostics/references/service-load-balancing.md",

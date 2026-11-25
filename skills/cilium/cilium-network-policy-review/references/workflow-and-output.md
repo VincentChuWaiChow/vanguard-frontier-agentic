@@ -7,7 +7,7 @@
 Cilium supports three formats with different scopes and capabilities:
 
 1. **`NetworkPolicy`** (`networking.k8s.io/v1`) — Kubernetes-native, namespace-scoped, L3/L4 only.
-2. **`CiliumNetworkPolicy`** (`cilium.io/v2`, "CNP") — namespace-scoped, L3-L7 (HTTP, Kafka, DNS), FQDN matching, ICMP, identity-based selectors via Cilium endpoint identities.
+2. **`CiliumNetworkPolicy`** (`cilium.io/v2`, "CNP") — namespace-scoped, L3-L7 (HTTP, DNS; Kafka only before its removal in 1.20), FQDN matching, ICMP, identity-based selectors via Cilium endpoint identities.
 3. **`CiliumClusterwideNetworkPolicy`** (`cilium.io/v2`, "CCNP") — cluster-wide, same capabilities as CNP, applies across all namespaces.
 
 A namespace can have multiple policies of all three formats simultaneously. The effective policy is the **union** of allows: any policy that allows traffic permits it.
@@ -16,7 +16,7 @@ Reference: [Network Policy overview](https://docs.cilium.io/en/stable/network/ku
 
 ### Step 2 — Verify default-deny posture in the affected namespace
 
-Cilium follows the Kubernetes NetworkPolicy semantic: pods with **at least one ingress policy selecting them** become deny-by-default for ingress; pods with **at least one egress policy selecting them** become deny-by-default for egress. Without any policy selecting a pod, all traffic is allowed.
+Deny-by-default semantics (derived/unverified; not re-verified in this skill's ledger, confirm against the policy language page for the installed version): a pod selected by at least one ingress policy is expected to be deny-by-default for ingress, and likewise for egress; a pod selected by no policy is expected to be allow-all.
 
 Critical findings:
 
@@ -30,15 +30,15 @@ Recommended baseline: a `default-deny-all` `NetworkPolicy` per namespace plus ex
 `CiliumNetworkPolicy` and `CiliumClusterwideNetworkPolicy` support L7 rules via Cilium's embedded Envoy:
 
 - `toPorts.rules.http` — method, path, host, header matching.
-- `toPorts.rules.kafka` — Kafka-aware policy; REMOVED in Cilium 1.20 (remove `kafka` and `l7proto` rules before upgrading). Flag any such rule on a 1.20 target as an upgrade blocker.
+- `toPorts.rules.kafka` — Kafka-aware policy (removed in Cilium 1.20; remove `kafka` and `l7proto` rules before upgrading). Flag any such rule on a 1.20 target as an upgrade blocker.
 - `toPorts.rules.dns` — DNS FQDN allowlist for egress.
 
 L7 rules require the Envoy proxy to be enabled. Without Envoy, policy with L7 fields **either fails admission or is enforced only at L3/L4**, depending on Cilium version (not confirmed against the 1.20 docs; treat as unknown and confirm before relying on L7).
 
 Stress-tests:
 
-- L7 HTTP rule with `path: /admin` but the policy applies to a namespace where pods talk via gRPC — the HTTP path matcher does nothing for HTTP/2 stream multiplexing.
-- L7 DNS rule with FQDN `*.example.com` — wildcard match is supported for DNS but the destination port still matters; verify port 53 UDP/TCP allowed at L4. From 1.19 the `**` DNS wildcard matches multiple subdomains, so a rule using it is broader than before.
+- L7 HTTP rule on a namespace where pods talk via gRPC (HTTP/2) — how an HTTP path matcher applies to HTTP/2 traffic is not re-verified in this skill's ledger; confirm against the policy language page for the installed version before relying on it.
+- L7 DNS rule with FQDN `*.example.com` — `*.example.com` wildcard support is not re-verified in this skill's ledger (derived/unverified; confirm against the policy language page for the installed version), and the destination port still matters, so verify port 53 UDP/TCP is allowed at L4. From 1.19 the `**` DNS wildcard matches multiple subdomains, so a rule using it is broader than before [CIL-NP-E17].
 
 Reference: [L7 Policy in Cilium](https://docs.cilium.io/en/stable/security/policy/language/#layer-7-examples).
 
@@ -47,7 +47,7 @@ Reference: [L7 Policy in Cilium](https://docs.cilium.io/en/stable/security/polic
 Egress is the most-overlooked side of network policy. Critical findings:
 
 - `egress` rules with `toCIDRSet: [{cidr: 0.0.0.0/0}]` and no `except` for internal CIDRs (RFC 1918, link-local, cloud metadata service IPs like `169.254.169.254`) — allows pod to reach the cloud metadata service and exfiltrate cloud credentials.
-- `egress` with `toEndpoints: []` (empty selector) — the empty selector matches **everything** in Cilium semantics; this is broader than `toEndpoints` not being present at all.
+- `egress` with `toEndpoints: []` (empty selector) — the empty selector is expected to match everything and to be broader than `toEndpoints` being absent (derived/unverified; not re-verified in this skill's ledger, confirm against the policy language page for the installed version).
 - `egress` allowing `toFQDNs.matchPattern: '*'` — wildcard DNS matching with no narrow allowlist.
 
 Recommended baseline: explicit `toEndpoints` for in-cluster, `toCIDRSet` with `except` for the cloud metadata CIDR, `toFQDNs` for known external services.
@@ -90,7 +90,7 @@ hubble observe --from-namespace <ns> --from-pod <pod-prefix> --verdict FORWARDED
 hubble observe --type l7 --last 100   [C1]
 ```
 
-The first line should return nothing if allow rules are correct; the second confirms expected destinations; the third shows L7 flow records. `--type dns` is not a documented flow type (documented types are capture, drop, l7, policy-verdict, trace, trace-sock).
+`--to-namespace` and `--to-pod` are assumed to mirror the documented `--from-*` filters; confirm with the operator's CLI help. The first line should return nothing if allow rules are correct; the second confirms expected destinations; the third shows L7 flow records. `--type dns` is not a documented flow type (documented types are capture, drop, l7, policy-verdict, trace, trace-sock).
 
 Reference: [Hubble Observability](https://docs.cilium.io/en/stable/observability/hubble/).
 
@@ -100,14 +100,14 @@ Reference: [Hubble Observability](https://docs.cilium.io/en/stable/observability
 - Prefer named `endpointSelector` labels over IP CIDRs for in-cluster traffic — IPs change, labels survive pod recreation.
 - Prefer `toFQDNs` over `toCIDRSet` for external services with stable hostnames — DNS rotation no longer breaks the policy.
 - Avoid `CiliumClusterwideNetworkPolicy` for namespace-scoped concerns — cluster-wide blast radius.
-- Test policy changes in a dev or staging cluster first — eBPF program reload happens asynchronously, and a misordered apply during rollout can briefly break traffic.
+- Test policy changes in a dev or staging cluster first. eBPF program reload may be asynchronous, so an apply could allow traffic before an isolating policy takes effect (derived/unverified; not re-verified in this skill's ledger, confirm against the policy language page for the installed version).
 
 ## Output
 
 Return:
 
 - **target**: which policy format and which scope,
-- **evidence level**: `live evidence` / `documentation-based` / `sanitized user evidence` / `inference`,
+- **evidence level**: `sanitized user evidence` / `documentation-based` / `inference`,
 - **default-deny posture** in the namespace(s),
 - **L7 enforcement assessment**: Envoy proxy enabled / required, whether L7 rules will actually run,
 - **egress posture**: cloud-metadata service blocked, CIDR scope, FQDN allowlist hygiene,

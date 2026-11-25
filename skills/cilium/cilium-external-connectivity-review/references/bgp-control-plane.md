@@ -34,7 +34,7 @@ A BGP session in `Established` state and an advertised prefix are statements abo
 ## Failure modes
 
 - Blackhole window: with eTP Cluster and graceful restart, a node that goes down can blackhole traffic until the restart timer expires; the operation guide gives 120s by default [CIL-EX-E17]. Compare that with any stated recovery objective.
-- BFD is not supported, so detection of a dead path rests on hold time (default 90s) and not on sub-second probes [CIL-EX-E17].
+- BFD is not supported [CIL-EX-E17]. Derived: detection of a dead path therefore rests on hold time (default 90s) rather than sub-second probes.
 - Retained advertisement on empty services: with eTP Cluster and the default flag, a service with zero backends still attracts traffic to every selected node [CIL-EX-E16].
 - Silent non-configuration: status conditions `cilium.io/NoMatchingNode`, `MissingPeerConfigs`, `ConflictingClusterConfig` on the cluster config and `cilium.io/MissingAuthSecret` on the peer config mean part of the design is not applied [CIL-EX-E18].
 - Reporting disabled: `bgpControlPlane.statusReport.enabled=false` removes the status the review depends on [CIL-EX-E18].
@@ -48,7 +48,8 @@ A BGP session in `Established` state and an advertised prefix are statements abo
 | `cilium bgp routes advertised ipv4 unicast` | [C2] same reason | Whether the VIP is actually advertised |
 | `cilium bgp routes available ipv4 unicast` | [C2] same reason | Routes Cilium holds versus routes it sends |
 | `kubectl describe ciliumbgpnodeconfigs <node>` | [C1] | Per-node status and conditions |
-| `cilium-dbg bgp route-policies` | [C2] agent pod, debugging | Policy applied to advertisements |
+| `cilium-dbg bgp route-policies` | [C2] agent pod, debugging; per the 1.20 notes, BGP peer and route access via REST and `cilium-dbg bgp` is deprecated in favour of `cilium shell -- bgp/*` [CIL-EX-E41] | Policy applied to advertisements |
+| `cilium shell -- bgp/*` | [C2] runs in the agent; the replacement form named in the 1.20 notes, exact subcommands not captured in the fact sheets [CIL-EX-E41] | Same questions as the deprecated forms |
 | Peer router route table and forwarding state | outside the user's cluster; request from the network owner | Whether the peer installed and uses the route |
 
 Logs are tagged `subsys=bgp-control-plane` (agent) and `subsys=bgp-cp-operator` (operator) [CIL-EX-E18]. Command classes follow the companion skill `cilium-evidence-boundary`.

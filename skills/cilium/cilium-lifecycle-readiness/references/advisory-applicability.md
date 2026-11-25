@@ -32,7 +32,7 @@ GHSA IDs are the primary key. CVE numbers are UNVERIFIED unless noted: the extra
 
 CVE identifiers printed on the pages: CVE-2026-77531 (GHSA-xqhm-7xhv-6ppj), CVE-2026-104149 (GHSA-vh48-r624-p8v7), CVE-2026-56743 (GHSA-fm8w-2m5w-9j7r), CVE-2026-56742 (GHSA-w7c2-w76w-5hmj), CVE-2026-53935 (GHSA-q6h5-q3q6-f87x). All UNVERIFIED; the first two advisories printed none. The CVSS values read were 7.3 for GHSA-xqhm-7xhv-6ppj and 5.4 for GHSA-fm8w-2m5w-9j7r [CIL-LC-E26].
 
-Related older advisory: GHSA-gj49-89wh-h4gj (High, 2026-04-22): cilium-bugtool output contained the WireGuard private key `cilium_wg0.key`. Affected below 1.17.15, 1.18.0 to 1.18.8, 1.19.0 to 1.19.2; fixed 1.19.3, 1.18.9, 1.17.15; no workaround; rotate keys if bugtool or sysdump archives were shared [CIL-LC-E27]. Treat any archive from an affected version as sensitive: a sysdump collects ConfigMaps, Helm values and Hubble flows, and no redaction code was found on main [CIL-LC-E28]. The handling rules are in the companion skill `cilium-evidence-boundary`.
+Related older advisory GHSA-gj49-89wh-h4gj (High, 2026-04-22; bugtool output contained the WireGuard private key; affected below 1.17.15, 1.18.0 to 1.18.8, 1.19.0 to 1.19.2; fixed 1.19.3, 1.18.9, 1.17.15) is in [CIL-LC-E27]; bundles from affected versions are sensitive [CIL-LC-E28], and the companion skill `cilium-evidence-boundary` owns bundle handling.
 
 Policy: supported branches get advisories and CVEs for stable features; beta-feature issues go to public issues [CIL-LC-E11].
 
@@ -48,7 +48,7 @@ Installed 1.19.3:
 - GHSA-p5q6-g354-mxrg (fixed 1.19.8): in range; depends on L7 secret references.
 - GHSA-vh48-r624-p8v7: 1.19 is not listed as affected.
 
-The feature column then decides the urgency. A patch to the latest 1.19.x covers every fixed line for this minor, and is a separate change from any minor hop.
+The feature column then decides the urgency. For the eight advisories in this snapshot, a patch to the latest 1.19.x covers every fixed line for this minor, and is a separate change from any minor hop.
 
 ## Evidence that discriminates
 

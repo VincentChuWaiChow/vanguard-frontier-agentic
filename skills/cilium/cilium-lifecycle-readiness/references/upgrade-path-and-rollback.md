@@ -52,7 +52,7 @@ These follow from the facts above; the reviewed pages do not prescribe node orde
 | --- | --- | --- |
 | Which versions run? | `kubectl get ds cilium -n kube-system -o yaml` image field [C1] | observational |
 | Which Helm revision is live? | `helm history cilium -n kube-system` [C1] | observational |
-| Saved values at current revision | `helm get values cilium -n kube-system` [C1] | observational, may contain sensitive values |
+| Saved values at current revision | `helm get values cilium -n kube-system` [C2] | privileged observation, may contain sensitive values |
 
 ## Contradictions
 

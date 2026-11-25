@@ -2,12 +2,12 @@
 
 ## Problem
 
-Cilium keeps connection and translation state in fixed-size BPF maps. When a map fills, insertion fails and new flows are dropped while existing flows keep working, which looks like intermittent timeouts. Capacity must be judged from supplied counts against configured maxima, including forward-looking headroom.
+Cilium keeps connection and translation state in fixed-size BPF maps. When a map fills, insertion fails and new flows are dropped while existing flows are expected to keep working (derived from first principles, not a ledger fact), which looks like intermittent timeouts. Capacity must be judged from supplied counts against configured maxima, including forward-looking headroom.
 
 ## Mechanism from first principles
 
 - Conntrack (CT) records each tracked connection so replies and policy decisions are consistent. TCP and non-TCP (any) flows use separate maps. Entries are consumed on new connections and freed by garbage collection (GC) when they expire.
-- NAT state is kept for translated flows (masquerade, NodePort SNAT). Each translated flow consumes a NAT entry in addition to its CT entry.
+- NAT state is kept for translated flows (masquerade, NodePort SNAT). Derived from first principles (not a ledger fact): each translated flow consumes a NAT entry in addition to its CT entry.
 - Policy maps are per endpoint; the policy map max applies to each endpoint, not cluster-wide.
 - All maps have hard caps and "insertion beyond the limit will fail" [CIL-DP-E12].
 

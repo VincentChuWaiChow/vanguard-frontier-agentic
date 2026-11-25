@@ -18,11 +18,11 @@ Datapath symptoms are diagnosed against the wrong hop when the reviewer assumes 
 | Routing mode (tunnel or native) | Tunnel adds an encapsulation and decapsulation hop and reduces usable MTU; native relies on the underlay routing pod CIDRs. Default tunnel protocol is vxlan. | [CIL-DP-E29] [CIL-DP-E31] |
 | `kubeProxyReplacement` | With `true`, Service translation is done by Cilium eBPF; with the default `false`, only per-packet ClusterIP load balancing in-cluster is done by Cilium. Agent exits if kernel support is missing when `true`. | [CIL-DP-E22] |
 | `socketLB.hostNamespaceOnly` | `true` skips the socket-level rewrite in pod namespaces; translation moves to tc at the pod veth. Documented for Istio sidecars. | [CIL-DP-E23] |
-| `bpf.hostLegacyRouting` and eBPF host routing | eBPF host routing needs eBPF KPR plus eBPF masquerade; it bypasses the host netfilter stack. `true` on hostLegacyRouting is the escape hatch. | [CIL-DP-E33] |
+| `bpf.hostLegacyRouting` and eBPF host routing | eBPF host routing needs eBPF KPR plus eBPF masquerade; it is incompatible with features that rely on netfilter hooks, for example Istio. `true` on hostLegacyRouting is the escape hatch. | [CIL-DP-E33] |
 | `bpf.masquerade` | Required with KPR for eBPF host routing and for egress gateway. | [CIL-DP-E33] [CIL-DP-E37] |
 | Encryption (WireGuard or IPsec) | Adds an encryption hop and per-packet overhead; in tunnel mode WireGuard is double-encapsulated. Same-node traffic is not encrypted. | [CIL-DP-E38] [CIL-DP-E29] |
 | Egress gateway | Requires BPF masquerade and KPR; selected pod traffic to given CIDRs is redirected via a gateway node and SNATed. Ownership of that feature is `cilium-external-connectivity-review-agent`. | [CIL-DP-E37] |
-| L7 proxy redirect | L4 flows covered by L7 rules are redirected to the node proxy; IPsec with L7 proxy needs transparent DNS-proxy mode. | [CIL-DP-E38] |
+| L7 proxy redirect | Derived: L4 flows covered by L7 rules are redirected to the node proxy; IPsec with L7 proxy needs transparent DNS-proxy mode. | [CIL-DP-E38] |
 | DSR (`loadBalancer.mode`) | Service info is carried in the packet, lowering advertised MTU; dispatch mode depends on routing mode. See the service load balancing reference. | [CIL-DP-E26] |
 
 ## Conceptual path (illustration only)
@@ -63,7 +63,7 @@ Drop-reason interpretation and owners: see the drop reasons reference.
 
 ## Scenario
 
-An enterprise platform team runs native routing with KPR enabled and Istio sidecars. After enabling sidecars, the derived path must be checked for where Service translation happens. The docs name Istio sidecars as a case for skipping the socket rewrite in pod namespaces; the documented setting is `socketLB.hostNamespaceOnly=true`, which moves translation to tc at the veth [CIL-DP-E23]. Mesh-side behavior hands off to `istio-maestro-agent`; applying the Helm change is a human change process, as no guard exists for cilium-config changes.
+The Istio sidecar and socket-LB scenario is covered in the service load balancing reference.
 
 ## Version applicability
 

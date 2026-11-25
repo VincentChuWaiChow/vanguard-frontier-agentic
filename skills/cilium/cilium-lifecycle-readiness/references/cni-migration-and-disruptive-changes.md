@@ -32,7 +32,7 @@ The guide strongly recommends a trial migration on a test or lab cluster [CIL-LC
 | --- | --- | --- |
 | IPAM mode | Do not change except by a documented migration; may cause persistent connectivity disruption; safest is a fresh cluster; the only online path is cluster-pool to multi-pool [CIL-LC-E19] | any other transition `blocked` |
 | `clusterPoolIPv4MaskSize` | Changing it is not possible; do not change existing `clusterPoolIPv4PodCIDRList` elements, add new ones [CIL-LC-E20] | change request `blocked` |
-| kube-proxy replacement added or removed | Existing service connections break; both NAT tables are unaware of each other; service traffic stops until the replacement is installed [CIL-LC-E21] | `needs-review` with a drain plan |
+| kube-proxy replacement added or removed | Two documented statements: removing kube-proxy stops service traffic until the Cilium replacement is installed; adding or removing the eBPF replacement on a running cluster breaks existing connections because the two NAT tables are unaware of each other [CIL-LC-E21] | `needs-review` with a drain plan |
 | `maxConnectedClusters` | Set once at install; changing may cause disruption and incorrect policy enforcement; supported values 255 and 511; all clusters in the mesh must match [CIL-LC-E23] | `blocked` |
 | Cluster ID or name | Changing on a cluster with running workloads requires restarting all workloads, since the ID feeds security identity [CIL-LC-E24] | `blocked` without restart plan |
 | Tunnel to native routing | No in-place procedure or warning found on the pages reviewed | UNVERIFIED, `needs-review` |
@@ -55,7 +55,7 @@ The ClusterMesh ID range under 511 is not stated on the pages reviewed; a plan t
 1. Trial on a lab cluster that includes the untested features; record the enforcement-off window per node.
 2. Name the window owner and compensating controls (for example restricting who can schedule onto migrated nodes); controls are the owner's decision.
 3. Migrate a canary node pool, verify, then continue; keep the old CNI until every node is verified.
-4. Post-migration: flip migration values back and delete the CiliumNodeConfig as the guide describes [CIL-LC-E17], each a [C4] change with its own authorizer.
+4. Post-migration: flip migration values back and delete the CiliumNodeConfig as the guide describes [CIL-LC-E17]. Flipping values is a [C4] change and deleting the CiliumNodeConfig is a [C5] change, each with its own authorizer under the human change process.
 
 ## Contradictions
 

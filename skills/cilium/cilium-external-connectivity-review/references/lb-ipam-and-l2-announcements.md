@@ -10,7 +10,7 @@ LB IPAM decides which IP a Service gets. It does not make the IP reachable: it w
 
 - LB IPAM is always enabled but dormant until the first `CiliumLoadBalancerIPPool` exists [CIL-EX-E23].
 - Pool fields include `allowFirstLastIPs`, `serviceSelector` and `disabled`. A pool with no `serviceSelector` allocates to any service [CIL-EX-E23].
-- The `cilium.io/v2` pool API is current; `v2alpha1` is deprecated in favor of `v2` per the 1.19 upgrade notes [CIL-EX-E23]. A manifest still on `v2alpha1` is a lifecycle item, not an outage.
+- The `cilium.io/v2` pool API is current; `v2alpha1` is deprecated in favor of `v2` per the 1.19 upgrade notes [CIL-EX-E23]. Its 1.20 status is not established in this ledger. A manifest still on `v2alpha1` is a lifecycle item for `cilium-lifecycle-readiness-agent`.
 - Overlap is a soft error: the last added pool is marked `Conflicting` (condition `cilium.io/PoolConflict`, reason `cidr_overlap`) and allocates nothing further [CIL-EX-E21]. Existing allocations are not described as removed on the pages reviewed; treat their fate as unknown.
 - Sharing: services with the same `lbipam.cilium.io/sharing-key` share IPs while their ports do not conflict; conflicting ports receive additional IPs in the set. Cross-namespace sharing is off by default and needs `lbipam.cilium.io/sharing-cross-namespace` (comma-separated namespaces or `*`) on both services [CIL-EX-E22].
 
@@ -20,7 +20,7 @@ LB IPAM decides which IP a Service gets. It does not make the IP reachable: it w
 | --- | --- | --- |
 | Pool without `serviceSelector` | Any Service in any namespace that asks for a LoadBalancer can take an address from it | [CIL-EX-E23] |
 | Sharing key with `*` namespaces | One tenant's service can co-locate its ports on another tenant's IP | [CIL-EX-E22] |
-| Overlapping pool CIDRs | The newer pool silently stops allocating; new services stay pending | [CIL-EX-E21] |
+| Overlapping pool CIDRs | Soft error: the later pool is marked `Conflicting` and no further allocation happens from it; derived: new Services needing that pool may get no address | [CIL-EX-E21] |
 | Pool and BGP advertisement selectors differ | An allocated IP may never be advertised, or a pool may be advertised that was meant to be internal | [CIL-EX-E14] |
 
 The last row is derived from the two selector mechanisms; confirm against the rendered manifests.
@@ -70,4 +70,4 @@ Pool or L2 policy changes have no live guard; hand off to the human change proce
 
 ## Scenario
 
-A retailer runs on-premises clusters with a flat VLAN and 120 LoadBalancer services across business units. A single catch-all pool has no `serviceSelector`, and the platform team adds a second pool for the finance unit with a CIDR that overlaps the first. The newer pool becomes `Conflicting`, so no further allocation happens from it and new finance services stay pending, and the team routes finance workloads to the catch-all pool. Review verdict: `blocked` for the pool design (selector-less pool plus overlap), `needs-review` for L2 failover, because the owner claims sub-5-second failover while the documented default is 10 to 20 seconds, plus unknown client ARP behavior. The next observation is the pool conditions via `kubectl get <CiliumLoadBalancerIPPool kind> -o yaml` [C1].
+A retailer runs on-premises clusters with a flat VLAN and 120 LoadBalancer services across business units. A single catch-all pool has no `serviceSelector`, and the platform team adds a second pool for the finance unit with a CIDR that overlaps the first. The newer pool becomes `Conflicting`, so no further allocation happens from it (derived: new finance Services drawing on it may get no address), and the team routes finance workloads to the catch-all pool. Review verdict: `blocked` for the pool design (selector-less pool plus overlap), `needs-review` for L2 failover, because the owner claims sub-5-second failover while the documented default is 10 to 20 seconds, plus unknown client ARP behavior. The next observation is the pool conditions via `kubectl get <CiliumLoadBalancerIPPool kind> -o yaml` [C1].

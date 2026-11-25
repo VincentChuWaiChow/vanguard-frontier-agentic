@@ -6,11 +6,7 @@ classes and verdict vocabulary are owned by the companion skill `cilium-evidence
 
 ## Core rule
 
-Absence of observed flows does not prove a dependency does not exist. A batch job that runs
-monthly, a failover path, a health probe from a node, or a flow dropped from a lossy buffer will
-not appear in a bounded Hubble window. The inventory is a lower bound; completeness is judged
-under `cilium-evidence-boundary`, and a verdict that depends on "no flow seen" stays
-`needs-review`.
+Absence of observed flows does not prove a dependency does not exist; apply the flow-telemetry rules of the companion skill `cilium-evidence-boundary`, and keep a verdict that depends on "no flow seen" at `needs-review`.
 
 ## Mechanism
 
@@ -85,8 +81,9 @@ troubleshooting form and is [C2] [CIL-NP-E20]. Policy-denied drops can be isolat
 - Order changes from smallest to largest blast radius: a single non-critical namespace, then
   namespaces by dependency depth (leaf services before shared ones), and last any
   `CiliumClusterwideNetworkPolicy`, which has cluster-wide scope.
-- Apply allow rules before the isolating policy within one change, because eBPF program reload is
-  asynchronous in the existing skill guidance and a misordered apply can briefly break traffic.
+- Apply allow rules before the isolating policy within one change, as a precaution (derived/unverified; not
+  re-verified in this skill's ledger, confirm against the policy language page for the installed
+  version): eBPF program reload may be asynchronous, so a misordered apply could briefly break traffic.
 - Policy changes while an upgrade runs: a new policy implementation is postponed on a node until
   that node's upgrade completes and L7-proxy traffic is disrupted during upgrade; avoid
   combining both changes [CIL-NP-E21].

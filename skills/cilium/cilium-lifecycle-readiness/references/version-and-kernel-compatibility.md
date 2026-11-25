@@ -51,7 +51,7 @@ Clusters in a mesh must differ by at most one minor Cilium release, and must use
 
 - A feature is enabled in the values diff on the strength of a test pool's kernel, then rolled to the fleet: agents on older pools cannot honor it. Cheapest catch is the per-pool kernel column, collected before the diff is reviewed.
 - Kubernetes is upgraded first and lands outside the e2e-tested range of the Cilium version in place: upgrade order of the two is a plan decision that needs both ranges written down side by side.
-- Patch lag: the cluster is on an old patch of a maintained minor, and the supported-branch table is read as if the cluster were on the newest patch. Branch support does not retroactively cover an old patch; the upgrade guide asks for the latest patch first [CIL-LC-E02].
+- Patch lag: the cluster is on an old patch of a maintained minor, and the supported-branch table is read as if the cluster were on the newest patch. Derived: branch support does not retroactively cover an old patch; the upgrade guide asks for the latest patch first [CIL-LC-E02].
 
 ## Evidence that discriminates
 
@@ -68,4 +68,4 @@ Clusters in a mesh must differ by at most one minor Cilium release, and must use
 
 ## Handoff
 
-Feature decisions to turn on (BIG TCP, netkit): cilium-dataplane-diagnostics-agent. Mesh topology: cilium-external-connectivity-review-agent.
+Which kernel-gated features to turn on (BIG TCP, netkit) is a design choice: kubernetes-network-architecture-review-agent. Mesh topology: cilium-external-connectivity-review-agent.

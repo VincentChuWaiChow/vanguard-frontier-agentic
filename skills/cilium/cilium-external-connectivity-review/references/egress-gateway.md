@@ -4,7 +4,7 @@ Purpose: decide whether pods that must leave the cluster with a predictable sour
 
 ## Boundary with the policy skill
 
-This reference owns SNAT, IP ownership, gateway selection and failure behavior. Which destinations a workload is allowed to reach (including the cloud metadata endpoint) is egress authorization and belongs to `cilium-network-policy-review-agent`. Encryption of replies belongs there too. A review that approves "pods use the gateway" has not approved "pods may reach that destination".
+This reference owns SNAT, IP ownership, gateway selection and failure behavior. Which destinations a workload is allowed to reach (including the cloud metadata endpoint) is egress authorization and belongs to `cilium-network-policy-review-agent`. A review that approves "pods use the gateway" has not approved "pods may reach that destination".
 
 ## The problem this addresses
 
@@ -45,7 +45,7 @@ If the partner firewall allowlists only the gateway IP, a gateway change (planne
 
 ## Encryption note
 
-WireGuard documentation states egress gateway replies are not encrypted when XDP acceleration is enabled [CIL-EX-E34]. Whether that matters belongs to `cilium-network-policy-review-agent`, which owns transport-encryption; only flag the interaction here.
+WireGuard documentation states egress gateway replies are not encrypted when XDP acceleration is enabled [CIL-EX-E34]. Reply encryption is owned by `cilium-network-policy-review-agent`; only flag the interaction here.
 
 ## Evidence that discriminates
 
@@ -70,4 +70,4 @@ Live CiliumEgressGatewayPolicy changes go to `kubernetes-live-network-policy-gua
 
 ## Scenario
 
-A payments processor allowlists one source IP for a merchant API. The team selects nodes labeled as gateways, runs two such nodes, and claims HA. The review confirms BPF masquerade and KPR are on, but finds the cluster is also joined to a ClusterMesh peer and that the policy selects pods in both clusters. Verdict: `blocked` on the incompatibility [CIL-EX-E30]. For the single-cluster remainder: with two matching nodes the lexically first is the only active gateway, there is no documented failover, and a drain of that node breaks live connections to the merchant. `evidence_level: partial`, HA claim classed `unknown`. Next observation: a recorded gateway-node drain test captured by an authorized operator, with destination-side logs.
+A payments processor allowlists one source IP for a merchant API. The team selects nodes labeled as gateways, runs two such nodes, and claims HA. The review confirms BPF masquerade and KPR are on, but finds the cluster is also joined to a ClusterMesh peer and that the policy selects pods in both clusters. Verdict: `blocked` on the incompatibility [CIL-EX-E30]. For the single-cluster remainder: for the single `egressGateway` form, lexical-first selection applies, so with two matching nodes the lexically first is the only active gateway, there is no documented failover, and a drain of that node breaks live connections to the merchant. `evidence_level: partial`, HA claim classed `unknown`. Next observation: a recorded gateway-node drain test [C5] (it interrupts service; run only through the human change process by an authorized operator), with destination-side logs.

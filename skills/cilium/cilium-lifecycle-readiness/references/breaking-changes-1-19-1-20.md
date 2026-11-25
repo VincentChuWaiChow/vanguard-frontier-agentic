@@ -48,7 +48,7 @@ Informational in 1.20 [CIL-LC-E07]: empty CNP and CCNP rejected at admission by 
 
 ## Failure modes
 
-- Objects removed with the CRD: deleting or replacing a CRD deletes its objects. Back up TLSRoutes and BGP objects as manifests first (handled as [C1] reads; the backup content may carry sensitive routing data).
+- Objects removed with the CRD: general Kubernetes behavior (derived, not a Cilium-ledger fact): deleting or replacing a CRD deletes its objects. Back up TLSRoutes and BGP objects as manifests first (handled as [C1] reads; the backup content may carry sensitive routing data).
 - Gateway API CRD change is not a Cilium Helm change: a mutating change to those CRDs goes to kubernetes-live-network-architecture-mutation-guard-agent when live, else the change process.
 - Counting items: the checklist is not exhaustive for your environment; absence from this table is not proof of no impact.
 

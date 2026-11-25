@@ -80,9 +80,7 @@ either path is covered [CIL-NP-E05].
   on the page reviewed [CIL-NP-E02].
 - ClusterMesh with WireGuard: clustermesh-apiserver forwards public keys and UDP 51871 must be
   open between nodes of different clusters [CIL-NP-E10].
-- Collection hazard: advisory GHSA-gj49-89wh-h4gj reports that cilium-bugtool output contained
-  the WireGuard private key before the fixed releases; rotate keys if bugtool or sysdump
-  archives were shared [CIL-NP-E11].
+- Key exposure through diagnostic bundles is covered by the companion skill `cilium-evidence-boundary`; advisory applicability by `cilium-lifecycle-readiness-agent`.
 
 ## Evidence that discriminates coverage claims
 
@@ -137,6 +135,7 @@ tcpdump -n -i <iface> esp   [C2] shows ESP on the underlay for IPsec
 - Enabling, rotating or disabling encryption, Helm changes or cilium-config changes: no guard
   exists; hand to the human change process, and to `cilium-lifecycle-readiness-agent` for
   readiness.
-- Egress gateway gateway-node and reply path behavior, ClusterMesh peering and BGP: to
-  `cilium-external-connectivity-review-agent`.
+- Egress gateway gateway selection and failover, ClusterMesh peering and BGP: to
+  `cilium-external-connectivity-review-agent`. Reply encryption under XDP stays a coverage
+  question owned here [CIL-NP-E04].
 - Why a packet drops or where it is dropped: to `cilium-dataplane-diagnostics-agent`.

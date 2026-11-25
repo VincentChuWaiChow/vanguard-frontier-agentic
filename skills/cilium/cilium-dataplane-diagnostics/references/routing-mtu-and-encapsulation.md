@@ -41,16 +41,16 @@ Cilium enables Linux packetization-layer PMTUD (RFC 4821) by default for pod end
 
 ## Signature and discrimination
 
-- MTU fault: TCP handshake and small exchanges work; transfers fail above a size threshold; the failing flows are not selected by identity or port; `Fragmentation needed` (136) or `MTU error message` (15) may appear in drops [CIL-DP-E10].
+- MTU fault: TCP handshake and small exchanges work; transfers fail above a size threshold; the failing flows are not selected by identity or port; drops with the reason codes 136 (`Fragmentation needed`) or 15 (`MTU error message`) are signals that need a check; the sheet gives the codes only, so they do not by themselves discriminate an MTU fault from other causes [CIL-DP-E10].
 - Policy drop: failures are size-independent; the drop line says `Policy denied` [CIL-DP-E09].
 
 | Check | Discriminates | Class |
 | --- | --- | --- |
 | Compare expected and observed pod MTU from supplied values | Overhead mis-budget | [C0] |
-| `cilium-dbg monitor --type drop` for reason codes 136 or 15 | MTU drops versus policy | [C2] |
+| `cilium-dbg monitor --type drop` for reason codes 136 or 15 | Whether the listed signal codes appear; a signal to check against pod and device MTU, not proof | [C2] |
 | `cilium-dbg status --verbose` for routing, host routing and encryption | Which layers are active | [C2] |
 | Controlled DF-bit probes at increasing sizes | Path MTU ceiling | [C3], authorized operator |
-| `hubble observe --verdict DROPPED` flows around the failing transfer | Whether drops are visible at all [CIL-DP-E41] | [C1] |
+| `hubble observe --verdict DROPPED` flows around the failing transfer, via Hubble Relay | Whether drops are visible at all [CIL-DP-E41] | [C1] ([C2] when run inside the agent pod) |
 
 Interpretation of Hubble completeness (ring buffer, lost events) is owned by the companion skill `cilium-evidence-boundary`.
 
@@ -62,8 +62,8 @@ In native routing the underlay must route pod CIDRs both ways. If the request re
 
 - Small packets succeed, large fail, and drop reasons are empty: oversize packets may be lost on the wire before Cilium sees them; absence of a drop line does not refute MTU.
 - Pod MTU equals budget yet failures persist: the underlay MTU in the supplied data may be wrong, or an intermediate hop (cloud, firewall) is smaller. Hand underlay questions to the cloud network owner.
-- XDP on AWS ENA needs a lowered MTU in the documented example [CIL-DP-E28]; this is not generalizable beyond that example.
+- XDP on AWS ENA needs a lowered MTU in the documented example [CIL-DP-E42]; this is not generalizable beyond that example.
 
 ## Scenario
 
-A manufacturer enables WireGuard on a tunnel-mode cluster and sees file uploads over 1 MB stall while API calls pass. Budget: device_mtu minus tunnel overhead minus WireGuard overhead (double encapsulation per [CIL-DP-E38]). The supplied pod MTU is higher than that result, supporting the MTU hypothesis; the next observation is the drop stream for reasons 136 or 15 during an upload. Changing the MTU is a human change process item.
+A manufacturer enables WireGuard on a tunnel-mode cluster and sees file uploads over 1 MB stall while API calls pass. Budget: device_mtu minus tunnel overhead minus WireGuard overhead (double encapsulation per [CIL-DP-E38]). The supplied pod MTU is higher than that result, supporting the MTU hypothesis; the next observation is the drop stream during an upload, noting whether reason codes 136 or 15 appear as signals to check against the MTU budget. Changing the MTU is a human change process item.

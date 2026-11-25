@@ -39,7 +39,7 @@ By default, if a remote cluster becomes unreachable Cilium retains last-known se
 Consequences for review:
 
 - With the default, a lost cluster is not removed from load balancing by the mesh; failure detection falls to connection-level behavior and the application.
-- With a non-zero TTL, removal is delayed by the TTL and then abrupt; a 15m example means up to 15 minutes of stale backends. Compare with the stated recovery objective.
+- With a non-zero TTL, cached data is revoked after the TTL and load-balancing to that cluster then stops [CIL-EX-E09]; a 15m example means up to 15 minutes of stale backends. Compare with the stated recovery objective.
 - Neither setting proves that the surviving cluster has capacity or data to serve.
 
 ## Evidence that discriminates
@@ -50,7 +50,7 @@ Consequences for review:
 | `cilium-dbg service list --clustermesh-affinity` | [C2] agent pod | Local versus remote backend selection |
 | Helm values for `clustermesh.*` | [C2] if from sysdump or Helm values (sensitive); prefer a supplied excerpt | Configured cacheTTL, maxConnectedClusters, KVStoreMesh |
 | Annotated Service manifests in every cluster | [C1] | Global, shared, affinity annotations and name/namespace parity |
-| A recorded failure drill with timestamps | requires an authorized operator [C4] | Time to stop sending to the lost cluster |
+| A recorded failure drill with timestamps | [C5] interrupts service; human change process with an authorized operator only | Time to stop sending to the lost cluster |
 
 Hubble cross-cluster flow interpretation and sensitive collection follow the companion skill `cilium-evidence-boundary`.
 
