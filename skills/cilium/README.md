@@ -20,7 +20,7 @@ Skills behind the Cilium board of specialist agents. Each specialist skill owns 
 
 ## Posture
 
-- **Static review by default.** The skills read supplied artifacts. The policy skill may read live state only through an authorized read-only tool against a user-confirmed cluster.
+- **Static review only.** Every skill reads supplied artifacts. Live state reaches the board only as sanitized output that the user or an authorized operator collected.
 - **Every command is classified.** A command is named only with its class, from offline analysis to destructive, decided by what it does rather than by its verb. `tests/validate-cilium-board.py` fails the build on an unclassified command.
 - **Every upstream claim is cited.** Each skill's `references/evidence-ledger.md` records the source, section, retrieval date and status of every material claim; `tests/validate-skill-references.py` fails the build on an uncited row or a citation without a row.
 - **An unobserved flow proves nothing.** Hubble keeps a bounded per-node buffer; absence of a flow is never evidence that traffic did not occur.

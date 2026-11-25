@@ -34,7 +34,7 @@
   "trees": [
     {
       "tree": "agents",
-      "aggregate_sha256": "cbd812a85ab9f488171565db7bd46a955532c34e9b05afaf55833296368bd6ca",
+      "aggregate_sha256": "a6c66d3ca3748b368252f7ebe9424106d5b5ebdab8646c65db1940904d880ce8",
       "files": [
         {
           "path": "agents/AGENTS.md",
@@ -8108,8 +8108,8 @@
         },
         {
           "path": "agents/cilium/README.md",
-          "sha256": "4c3aaaccedd9c38d3444f654037ae9ecd1411b63ab50b880431647239793d904",
-          "bytes": 2946
+          "sha256": "b2d10f6089077b8e3e5d87f02755195a6783a72933a8c2ad32170cc6e92a066e",
+          "bytes": 2914
         },
         {
           "path": "agents/cilium/cilium-dataplane-diagnostics-agent/AGENT.md",
@@ -8293,48 +8293,48 @@
         },
         {
           "path": "agents/cilium/cilium-network-policy-review-agent/AGENT.md",
-          "sha256": "4cf60a0832daa321787f51bff16bcd5382ac9344c3408bc4f3ac12649fee0aeb",
-          "bytes": 6863
+          "sha256": "4ed7f40232607eec4337cc23f09f570660ddbe60efaeaedcc5cd5127cd1cad6b",
+          "bytes": 6892
         },
         {
           "path": "agents/cilium/cilium-network-policy-review-agent/harnesses/claude-code.agent.md",
-          "sha256": "d24e3fd36bd84fe1b5773f8ba194ab1c00290b371a0017c553dc30b335e193d2",
-          "bytes": 6461
+          "sha256": "8136fea0a567afd5b28903e19454bc8c4f70fa595988963bb62c3e3b83fd3230",
+          "bytes": 6490
         },
         {
           "path": "agents/cilium/cilium-network-policy-review-agent/harnesses/codex.toml",
-          "sha256": "c7e77a745bf15c607ea8a48dd5615840e034ecadc80c64f8efd1d6640706cbb9",
-          "bytes": 6598
+          "sha256": "8f112c59a3e4c124dbc5a39c6dc5d50b8f81e32c0015786d91ef1b66d4799499",
+          "bytes": 6627
         },
         {
           "path": "agents/cilium/cilium-network-policy-review-agent/harnesses/copilot.agent.md",
-          "sha256": "e4b721282319f5cabdc5475b4f2b802ae791af96dc7b97f7ac68f783b1018586",
-          "bytes": 6541
+          "sha256": "6b40946230f75d1d34269b06eb41e3226aa57bfc41dfd87635464637bc3a57f3",
+          "bytes": 6570
         },
         {
           "path": "agents/cilium/cilium-network-policy-review-agent/harnesses/cursor.agent.md",
-          "sha256": "02e4a9a7a2959f5513f89bec4505b4d3bc07215cf384e90606fce8c861c3f1bf",
-          "bytes": 6450
+          "sha256": "cf931b95511f5b47a3242c79185dd7a80d01b3213ece6c451b283c056f1aaac9",
+          "bytes": 6479
         },
         {
           "path": "agents/cilium/cilium-network-policy-review-agent/harnesses/gemini.agent.md",
-          "sha256": "d5d1ca9515a26b49d5b737b6f8cbe4a04ff6123c546227791bd5da281a3cc90e",
-          "bytes": 6573
+          "sha256": "998c106f5c3e453cd5fecc91122a5be0b8eb6f495b396daea7c8b1fd181152bb",
+          "bytes": 6602
         },
         {
           "path": "agents/cilium/cilium-network-policy-review-agent/harnesses/kiro-cli.agent.json",
-          "sha256": "a8c818fdb9396b97ba99c818b513dfe9964d81aba3ffb2549e2b41678a3cd4d3",
-          "bytes": 6529
+          "sha256": "ebb14d2fc8ba5177c62cfb444e8e4cf1369c3284ef842522fa2a887d5fce7d7c",
+          "bytes": 6558
         },
         {
           "path": "agents/cilium/cilium-network-policy-review-agent/harnesses/kiro-ide.agent.md",
-          "sha256": "c4238f686fb2e2e75bc4f15d056287e2006108faa9bf132533a06d917c5a180f",
-          "bytes": 6435
+          "sha256": "45dcb5231c2f76ca2b446e0a18f3cb0e0987fd035130a327a7b1114a0b1b28c4",
+          "bytes": 6464
         },
         {
           "path": "agents/cilium/cilium-network-policy-review-agent/metadata.json",
-          "sha256": "76bd18fc8420b1b1bc311e642f0094229309f9563b6bd4b02d5cafb41eed2897",
-          "bytes": 3190
+          "sha256": "5efe7cf11700aaef96eba195838b9c6679aa30a94abf9c7dc6152506364b5129",
+          "bytes": 3208
         },
         {
           "path": "agents/contabo/README.md",
@@ -36754,7 +36754,7 @@
     },
     {
       "tree": "catalog",
-      "aggregate_sha256": "2dacdb9d481f1c725ebdb8ca3740251e9d96de621f0aac157b77f853b8517383",
+      "aggregate_sha256": "8b6bd96cd479558180365130f0de00a93af88c4808f5d96e567984675c97a963",
       "files": [
         {
           "path": "catalog/AGENTS.md",
@@ -36763,8 +36763,8 @@
         },
         {
           "path": "catalog/agents.json",
-          "sha256": "beaa804790a695eaf2a288e9c48286e194328f592113332ec810dc9a082201dd",
-          "bytes": 1304732
+          "sha256": "c53b2a561c9f5d06f8bb213ba0d18702f76ccb05a915020c1bb0d723acbdda1b",
+          "bytes": 1304750
         },
         {
           "path": "catalog/index.json",
@@ -36808,13 +36808,13 @@
         },
         {
           "path": "catalog/skill-manifest.json",
-          "sha256": "f6b54c2fba2b35e9ec18a7917b4335059ee3365717df8099065c4480fc740fd0",
+          "sha256": "5e940ced5fc6aad1679604b9810cca2dba46fb5af606bb2fa469510f710d46ca",
           "bytes": 1205242
         },
         {
           "path": "catalog/skills.json",
-          "sha256": "7eaa958eea63199ff07fb3e2ed9f15be6b5eb6d2b5714e00eb4219bec6652225",
-          "bytes": 1283173
+          "sha256": "487f242b78e90a659ef5bb5887ff3cf00002cbfe1b4126056af33e025bc5f579",
+          "bytes": 1283169
         },
         {
           "path": "catalog/workflows.json",
@@ -38052,7 +38052,7 @@
     },
     {
       "tree": "tests",
-      "aggregate_sha256": "dd4ea1c937ab3a679546a207b2d6a6f4626807c400222bf3cf8332aa06682244",
+      "aggregate_sha256": "14756edf9fda09239758bce77e2ddd7e0930d5b8db6fa0943edfd7973e8f838d",
       "files": [
         {
           "path": "tests/AGENTS.md",
@@ -50796,8 +50796,8 @@
         },
         {
           "path": "tests/validate-cilium-board.py",
-          "sha256": "a6146789a4d7b1ac867f87976f5579e126fd615e09ba620adaa2ab438513a494",
-          "bytes": 9385
+          "sha256": "f23bb68caae4b79e268e2861d19281d17357ddd0b857518d67810cb581fe0dd1",
+          "bytes": 9500
         },
         {
           "path": "tests/validate-codex-marketplace.py",
@@ -50984,5 +50984,5 @@
       "bytes": 9135
     }
   ],
-  "aggregate_sha256": "49dead78ead369d22ddc8b03854d124ea8a1e391b784466ba54bee040a842803"
+  "aggregate_sha256": "7dfb1355879ba0be1091f45ae7d155d8b9634a69c58e150e260d650ea6e05ec6"
 }

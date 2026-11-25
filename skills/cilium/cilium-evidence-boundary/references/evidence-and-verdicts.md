@@ -38,6 +38,10 @@ A success at stage 6 does not prove which policy or route caused it. A failure a
 - A file set the user did not claim is complete cannot prove that a policy, a pool or a peer does not exist elsewhere.
 - A hash binds content, not the truthfulness or completeness of the source.
 
+## Feature maturity
+
+When a conclusion depends on a feature the upstream documentation labels beta or experimental (for example L2 announcements or WireGuard node-to-node encryption, per the owning specialist's ledger), state that label next to the conclusion. Never recommend such a feature for production without saying so, and never treat its documented behavior as stable across minor releases. A feature that appears only in development documentation is not available in a released version until the versioned documentation for that release shows it.
+
 ## Verdicts
 
 The repository vocabulary is used unchanged:

@@ -8,7 +8,7 @@ metadata:
   updated: '2026-11-25'
   category: security
   lifecycle: beta
-  execution_tier: read-only-runtime
+  execution_tier: static-review
 ---
 
 # Cilium Network Policy Review
@@ -38,7 +38,7 @@ Boundaries: the agent reviews and recommends; it never executes. Live policy cha
 - Sanitized policy YAML for the affected scope, and the Cilium version and routing mode.
 - For rollout: Hubble flows for the namespace with window and sampling, and dependency owners.
 - For encryption: the claim, the traffic classes, encryption mode, and agent status or capture output.
-- Live reads only when the host exposes an authorized read-only tool AND the user has confirmed the target cluster/context identity; otherwise static review of sanitized YAML.
+- Static review only: review supplied, sanitized YAML and command output. Commands in the references are evidence the user or an authorized operator may collect against a confirmed cluster and context; the agent never collects it.
 
 ## Workflow
 

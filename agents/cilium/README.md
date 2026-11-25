@@ -11,7 +11,7 @@ The Cilium board: a router and four specialists, each owning one consequential d
 | Agent | Decision owned | Execution tier |
 | --- | --- | --- |
 | `cilium-maestro-agent` | Which specialist owns each decision in a multi-domain request, and what the combined evidence establishes | static review |
-| `cilium-network-policy-review-agent` | Do policy and transport encryption enforce the intended connectivity boundary without unacceptable rollout risk? | read-only runtime, on a confirmed target only |
+| `cilium-network-policy-review-agent` | Do policy and transport encryption enforce the intended connectivity boundary without unacceptable rollout risk? | static review |
 | `cilium-dataplane-diagnostics-agent` | What is the most defensible explanation of the observed datapath behavior, and is capacity adequate? | static review |
 | `cilium-external-connectivity-review-agent` | Is traffic crossing the cluster boundary reachable, owned, bounded and failure-isolated as claimed? | static review |
 | `cilium-lifecycle-readiness-agent` | Is the lifecycle change ready to enter an authorized change process? | static review |

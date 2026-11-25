@@ -5024,14 +5024,14 @@
       "https://docs.cilium.io/en/stable/security/network/encryption-wireguard/",
       "https://kubernetes.io/docs/concepts/services-networking/network-policies/"
     ],
-    "security_notes": "Reads live state only through an authorized read-only tool against a user-confirmed cluster and context; otherwise static review of sanitized YAML. A policy-default-local-cluster change alters the cross-cluster semantics of every existing policy at once. Unrestricted 0.0.0.0/0 egress without an exception for the instance metadata endpoint exposes node cloud credentials, a widely reported cloud breach pattern. Encryption enabled in configuration is intent, not coverage evidence.",
+    "security_notes": "Static review of supplied, sanitized YAML and command output only; live state is collected, if at all, by the user or an authorized operator against a confirmed cluster. A policy-default-local-cluster change alters the cross-cluster semantics of every existing policy at once. Unrestricted 0.0.0.0/0 egress without an exception for the instance metadata endpoint exposes node cloud credentials, a widely reported cloud breach pattern. Encryption enabled in configuration is intent, not coverage evidence.",
     "source_type": "original",
     "version": "0.2.0",
     "companion_skills": [
       "cilium-network-policy-review",
       "cilium-evidence-boundary"
     ],
-    "execution_tier": "read-only-runtime",
+    "execution_tier": "static-review",
     "lifecycle": "beta"
   },
   {

@@ -4761,7 +4761,7 @@
     "path": "skills/cilium/cilium-network-policy-review",
     "author": "github: VincentChuWaiChow",
     "version": "0.2.0",
-    "execution_tier": "read-only-runtime",
+    "execution_tier": "static-review",
     "lifecycle": "beta"
   },
   {

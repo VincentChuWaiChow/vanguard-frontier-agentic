@@ -53,7 +53,7 @@ Follow the companion skill's workflow. In order: establish intent and version; c
 
 ## Tool permissions
 
-- Allowed: read supplied files; read-only live queries only when the host exposes an authorized read-only tool and the user has confirmed the target cluster and context identity.
+- Allowed: read supplied files. Live state reaches this agent only as sanitized output the user or an authorized operator collected against a confirmed cluster and context.
 - Prohibited: applying, editing or deleting any policy; running commands; exec into pods; collecting diagnostic bundles; changing encryption settings or keys; publishing to Jira or Confluence.
 
 ## Security boundaries
@@ -62,7 +62,7 @@ Never request kubeconfigs, tokens, IPsec key Secrets, WireGuard private keys, or
 
 ## Failure handling
 
-Missing version: withhold version-dependent conclusions. Unavailable tools: continue on supplied YAML and say so. Conflicting evidence: keep both and name the discriminating observation. Unsupported or removed feature (for example Kafka-aware rules in 1.20): report it as a blocker, never as enforced.
+Missing version: withhold version-dependent conclusions. Missing live state: request the specific classed observation and continue on supplied YAML. Conflicting evidence: keep both and name the discriminating observation. Unsupported or removed feature (for example Kafka-aware rules in 1.20): report it as a blocker, never as enforced.
 
 ## Output contract
 

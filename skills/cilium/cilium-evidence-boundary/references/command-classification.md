@@ -28,13 +28,13 @@ These are the cases where the name suggests a lower class than the behavior.
 | `cilium connectivity test` | [C1] check | [C3] | It creates a test namespace (default `cilium-test`, suffixed with a sequence number) with client and echo workloads, Services and policies [CIL-EV-E01]. |
 | Upgrade preflight (`kubectl create -f cilium-preflight.yaml`) | [C1] check | [C4] | It creates a `cilium-pre-flight-check` DaemonSet and Deployment in `kube-system` to pre-pull images [CIL-EV-E02]. |
 | `cilium sysdump` | [C1] status | [C2] | It collects logs, ConfigMaps, Helm values, bugtool output, kvstore data and Hubble flows from every node by default [CIL-EV-E03]. |
-| Any `cilium-dbg ...` subcommand | [C1] status | at least [C2] | `cilium-dbg` runs inside the Cilium agent pod, so it requires exec into a privileged system pod. |
+| Any `cilium-dbg ...` subcommand | [C1] status | at least [C2] | `cilium-dbg` runs inside the Cilium agent pod, so collecting it requires exec into a kube-system workload; the agent pod's privileges are not restated here, but exec into it is never routine read access. |
 | `hubble observe` through Hubble Relay | [C1] read | [C1], sensitive output | It is read-only, but flows carry pod names, IP addresses, DNS names and, with L7 visibility, request metadata. |
 | `tcpdump` on a node interface | [C1] read | [C2] | Requires node access and captures payload bytes unless filtered. |
 
 ## Diagnostic bundles are sensitive by default
 
-A diagnostic bundle is a copy of the cluster's configuration and logs, so it inherits everything sensitive that configuration and logs contain. No redaction step was found in the `cilium sysdump` [C2] collection code reviewed for this skill [CIL-EV-E03]. One published advisory, GHSA-gj49-89wh-h4gj, records that bugtool output contained the WireGuard private key in releases before 1.19.3, 1.18.9 and 1.17.15, and advises rotating keys where such archives were shared [CIL-EV-E04].
+A diagnostic bundle is a copy of the cluster's configuration and logs, so it inherits everything sensitive that configuration and logs contain. No redaction step was found in a text search of the `cilium sysdump` [C2] collection code on the development branch [CIL-EV-E03]; that is not an exhaustive audit, so treat any bundle as unredacted. One published advisory, GHSA-gj49-89wh-h4gj, records that bugtool output contained the WireGuard private key in releases before 1.19.3, 1.18.9 and 1.17.15, and advises rotating keys where such archives were shared [CIL-EV-E04].
 
 Rules that follow from this:
 

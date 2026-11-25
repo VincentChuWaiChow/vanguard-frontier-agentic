@@ -67,7 +67,7 @@ controllability (10) · Dist distinctness (10) · Maint maintenance feasibility 
 | C7 | ClusterMesh and multi-cluster resilience | 4 | 5 | 2 | 3 | 4 | 3 | 4 | 3 | 3 | 72 | pass | **Merge** into C8 |
 | C4 | Egress governance and exfiltration | 4 | 5 | 3 | 2 | 4 | 3 | 4 | 2 | 3 | 70 | G1 fail | **Split**: authorization stays in C3; gateway SNAT, HA and IP ownership go to C8 |
 | C13 | Runtime threat correlation (Tetragon) | 4 | 5 | 2 | 4 | 4 | 2 | 3 | 3 | 2 | 69 | G3 fail | **Defer** to a runtime-security board |
-| C6 | Hubble observability and dependency intelligence | 3 | 3 | 4 | 3 | 4 | 3 | 5 | 2 | 4 | 67 | G1 fail | **Skill without agent**: `cilium-flow-evidence` |
+| C6 | Hubble observability and dependency intelligence | 3 | 3 | 4 | 3 | 4 | 3 | 5 | 2 | 4 | 67 | G1 fail | **Skill without agent**: folded into `cilium-evidence-boundary` |
 | C9 | Gateway API and service-mesh ownership | 3 | 4 | 3 | 2 | 4 | 3 | 4 | 2 | 3 | 63 | G1 fail | **Reject** (exists): delegate |
 | C2 | Network architecture and CNI modernization | 5 | 5 | 2 | 1 | 4 | 3 | 4 | 1 | 3 | 68 | G1 fail | **Reject** (exists): `kubernetes-network-architecture-review-agent` |
 | C1 | Cilium maestro | — | — | — | — | — | — | — | — | — | n/a | §4 | **Accept** `cilium-maestro-agent` |
@@ -78,9 +78,9 @@ comes from; none needed its own Cilium agent.
 | # | Candidate | Where the value comes from | Disposition |
 |---|---|---|---|
 | C14 | Network change impact intelligence | Maestro routing C3 + C5 + C8 against one proposed change | **Merged** into maestro workflow |
-| C15 | Zero-trust migration readiness | Default-deny readiness from observed flows | **Merged** into C3 + `cilium-flow-evidence` |
+| C15 | Zero-trust migration readiness | Default-deny readiness from observed flows | **Merged** into C3 + `cilium-evidence-boundary` |
 | C16 | Fleet configuration drift | A deterministic diff of `cilium-config` and Helm values across clusters | **Rejected** as an agent (G5); deferred as a script |
-| C17 | Application dependency discovery | Flow aggregation with explicit coverage limits | **Merged** into `cilium-flow-evidence` |
+| C17 | Application dependency discovery | Flow aggregation with explicit coverage limits | **Merged** into `cilium-evidence-boundary` |
 | C18 | Acquisition integration readiness | Cluster ID, CIDR and identity conflicts between meshes | **Merged** into C8 and `kubernetes-network-architecture-review-agent` |
 | C19 | Regulatory evidence assurance | Control-to-evidence lineage | **Delegated** to `atlassian-control-evidence-lineage-agent` |
 | C20 | Network technical-debt intelligence | A `tech-debt` finding class on every specialist | **Rejected** (no distinct decision); a finding tag |

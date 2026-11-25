@@ -30,9 +30,9 @@ When the event queue fills, events are dropped from Hubble and its metrics, but 
 ## What Hubble cannot see
 
 - Pods must be managed by Cilium to be observable by Hubble [CIL-EV-E11]. A workload outside Cilium management is invisible, not quiet.
-- Hubble reports only events the datapath emits. Monitor aggregation settings reduce what is emitted.
+- Hubble reports only events the datapath emits. The tuning guidance names a longer aggregation interval and event rate limiting as ways to reduce the events emitted [CIL-EV-E10]; how much a given setting removes is not stated on the pages reviewed, so ask for the configured values.
 - Host-network traffic visibility is not stated on the pages reviewed for this skill; treat it as `unknown` unless the user supplies evidence for their configuration.
-- L7 fields appear only where L7 visibility or policy redirects the flow through the proxy.
+- L7 fields can only describe traffic that passed through the L7 proxy, so their absence on other flows says nothing about application-layer content (derived from how the proxy is inserted, not a ledger fact).
 
 ## Rules for using flows as proof
 
@@ -53,7 +53,7 @@ Default-deny rollout and migration planning both need a list of real dependencie
 
 ## Metric cardinality
 
-Hubble metrics and flow exports multiply by labels such as namespace, workload and destination. High label cardinality raises monitoring cost and can be the reason a team disabled the very metric a review needs. When a metric is missing, record it as missing visibility and hand cost questions to `finops-maestro-agent`; never conclude that the thing it would have measured is healthy.
+Hubble metrics and flow exports multiply by their labels, such as namespace, workload and destination. Higher label cardinality means more series to store (derived), and a team may have disabled or filtered a metric for that reason (a hypothesis to check, not an assumption). When a metric is missing, record it as missing visibility and hand cost questions to `finops-maestro-agent`; never conclude that the thing it would have measured is healthy.
 
 ## Scenario
 

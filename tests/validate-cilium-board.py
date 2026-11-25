@@ -17,7 +17,8 @@ CB03  No `bash`/`sh`/`shell`/`console` fences in Cilium skills: the skills are R
 CB04  Every Cilium skill except the shared one names `cilium-evidence-boundary` in SKILL.md,
       and every Cilium agent declares it in companion_skills.
 CB05  Every companion skill a Cilium agent declares exists under skills/cilium/.
-CB06  Every Cilium agent declares execution_tier, and none is `mutating-runtime`.
+CB06  Every Cilium agent declares execution_tier `static-review`: its rendered adapters grant only
+      read tools, so any other tier would claim an ability the agent does not have.
 CB07  Every Cilium AGENT.md carries the canonical contract headings in REQUIRED_HEADINGS.
 CB08  Harness adapters equal what tests/agentic-board-suite/_build_harnesses.py renders from
       AGENT.md (same renderer as the agentic board, so tool grants stay vendor-verified).
@@ -157,8 +158,8 @@ def main(argv: list[str]) -> int:
         tier = meta.get("execution_tier")
         if not tier:
             errors.append(f"CB06 {rel}/metadata.json: execution_tier missing")
-        elif tier == "mutating-runtime":
-            errors.append(f"CB06 {rel}/metadata.json: a Cilium board agent may not be mutating-runtime")
+        elif tier != "static-review":
+            errors.append(f"CB06 {rel}/metadata.json: execution_tier '{tier}' — Cilium board agents are static-review")
         body = (agent_dir / "AGENT.md").read_text(encoding="utf-8")
         for heading in REQUIRED_HEADINGS:
             if not re.search(rf"^{re.escape(heading)}\s*$", body, re.MULTILINE):
