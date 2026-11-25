@@ -1,0 +1,7 @@
+{
+  "name": "001-happy-network-policy-review",
+  "task": "Review this CiliumNetworkPolicy for default-deny gaps and toFQDNs egress.",
+  "tags": [
+    "happy-path"
+  ]
+}

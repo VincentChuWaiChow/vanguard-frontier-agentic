@@ -1,0 +1,4 @@
+interface:
+  display_name: Cilium Dataplane Diagnostics
+  short_description: "Rank competing explanations of observed Cilium datapath behavior (non-policy drops, intermittent timeouts, Ser"
+  default_prompt: Use $cilium-dataplane-diagnostics on the supplied evidence within its stated scope. Report unknowns and do not perform live operations.

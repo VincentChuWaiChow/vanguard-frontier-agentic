@@ -1,0 +1,4 @@
+interface:
+  display_name: Cilium Evidence Boundary
+  short_description: "Shared evidence and safety contract for the Cilium board: claim classes, command classification by real behavi"
+  default_prompt: Use $cilium-evidence-boundary on the supplied evidence within its stated scope. Report unknowns and do not perform live operations.

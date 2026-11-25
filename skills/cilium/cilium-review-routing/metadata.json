@@ -1,0 +1,26 @@
+{
+  "id": "cilium-review-routing",
+  "name": "Cilium Review Routing",
+  "type": "skill",
+  "provider": "cilium",
+  "harnesses": [
+    "codex",
+    "claude-code",
+    "cursor",
+    "gemini",
+    "kiro",
+    "other"
+  ],
+  "summary": "Route a multi-domain or ambiguous Cilium request to the minimum set of board specialists, order them by evidence dependency, combine verdicts without voting, preserve disagreements, and return handoffs for every live change and out-of-board request.",
+  "source_type": "original",
+  "official_docs": [
+    "https://docs.cilium.io/en/stable/"
+  ],
+  "security_notes": "Static routing only; never auto-dispatches a live guard and never grants a specialist tools.",
+  "last_verified": "2026-11-25",
+  "path": "skills/cilium/cilium-review-routing",
+  "author": "github: VincentChuWaiChow",
+  "version": "0.1.0",
+  "lifecycle": "beta",
+  "execution_tier": "static-review"
+}

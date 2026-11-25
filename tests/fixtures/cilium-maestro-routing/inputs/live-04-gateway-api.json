@@ -1,0 +1,7 @@
+{
+  "name": "live-04-gateway-api",
+  "task": "Please patch the HTTPRoute for the Gateway API listener in the production cluster.",
+  "tags": [
+    "live-guard-gate"
+  ]
+}

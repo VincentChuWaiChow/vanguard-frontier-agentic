@@ -1,0 +1,30 @@
+{
+  "id": "cilium-external-connectivity-review",
+  "name": "Cilium External Connectivity Review",
+  "type": "skill",
+  "provider": "cilium",
+  "harnesses": [
+    "codex",
+    "claude-code",
+    "cursor",
+    "gemini",
+    "kiro",
+    "other"
+  ],
+  "summary": "Decide whether traffic crossing the cluster boundary through BGP Control Plane advertisement, LB-IPAM, L2 announcements, the egress gateway or ClusterMesh is reachable, correctly owned, bounded and failure-isolated as claimed. Separates control-plane state from datapath reachability and checks documented incompatibilities and failure behavior. Static review: never changes BGP, pools, announcements, gateways or mesh configuration.",
+  "source_type": "original",
+  "official_docs": [
+    "https://docs.cilium.io/en/stable/network/bgp-control-plane/bgp-control-plane/",
+    "https://docs.cilium.io/en/stable/network/lb-ipam/",
+    "https://docs.cilium.io/en/stable/network/l2-announcements/",
+    "https://docs.cilium.io/en/stable/network/egress-gateway/egress-gateway/",
+    "https://docs.cilium.io/en/stable/network/clustermesh/"
+  ],
+  "security_notes": "Static review only. No live guard covers BGP, LB-IPAM or L2 announcement resources, so every change there is a proposal for the human change process. A ClusterMesh is one trust domain; never request BGP auth Secrets, mesh certificates or kvstore credentials.",
+  "last_verified": "2026-11-25",
+  "path": "skills/cilium/cilium-external-connectivity-review",
+  "author": "github: VincentChuWaiChow",
+  "version": "0.1.0",
+  "lifecycle": "beta",
+  "execution_tier": "static-review"
+}

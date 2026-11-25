@@ -1,0 +1,7 @@
+{
+  "route": [
+    "cilium-dataplane-diagnostics-agent",
+    "cilium-lifecycle-readiness-agent"
+  ],
+  "mode": "parallel (2)"
+}

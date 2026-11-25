@@ -5,26 +5,27 @@
   <span style="font-size:3.5em">🐝</span>
 </p>
 
-This folder contains Cilium-focused skills curated for this marketplace.
+Skills behind the Cilium board of specialist agents. Each specialist skill owns one decision; one shared skill owns the evidence and safety rules they all apply. The board's design record is [ADR-0006](../../docs/adr/0006-cilium-agent-board.md).
 
-## Local marketplace portfolio
+## Skills
 
-This folder contains **1** local Cilium skill:
+| Skill | Owns | Companion of |
+| --- | --- | --- |
+| `cilium-evidence-boundary` | Claim classes, command classification by real behavior, Hubble flow-telemetry limits, verdicts, and the handoff to the Jira and Confluence authoring skills | every Cilium agent |
+| `cilium-network-policy-review` | Whether policy and transport encryption enforce the intended connectivity boundary | `cilium-network-policy-review-agent` |
+| `cilium-dataplane-diagnostics` | The most defensible explanation of observed datapath behavior, including capacity | `cilium-dataplane-diagnostics-agent` |
+| `cilium-external-connectivity-review` | Reachability, address ownership and failure isolation across the cluster boundary (BGP, LB-IPAM, L2 announcements, egress gateway, ClusterMesh) | `cilium-external-connectivity-review-agent` |
+| `cilium-lifecycle-readiness` | Whether an upgrade, rollback, CNI migration, disruptive change or advisory remediation is ready for an authorized change process | `cilium-lifecycle-readiness-agent` |
+| `cilium-review-routing` | Which specialist owns each decision in a multi-domain request | `cilium-maestro-agent` |
 
-- `cilium-network-policy-review`
+## Posture
 
-## Portfolio posture
+- **Static review by default.** The skills read supplied artifacts. The policy skill may read live state only through an authorized read-only tool against a user-confirmed cluster.
+- **Every command is classified.** A command is named only with its class, from offline analysis to destructive, decided by what it does rather than by its verb. `tests/validate-cilium-board.py` fails the build on an unclassified command.
+- **Every upstream claim is cited.** Each skill's `references/evidence-ledger.md` records the source, section, retrieval date and status of every material claim; `tests/validate-skill-references.py` fails the build on an uncited row or a citation without a row.
+- **An unobserved flow proves nothing.** Hubble keeps a bounded per-node buffer; absence of a flow is never evidence that traffic did not occur.
+- **No live operator.** Policy changes go to `kubernetes-live-network-policy-guard-agent`, ClusterMesh peer Secret and Gateway API changes to `kubernetes-live-network-architecture-mutation-guard-agent`. BGP, Helm, upgrade and migration changes have no guard and go to the human change process.
 
-Cilium skills for evidence-backed eBPF networking review covering the three policy formats (`NetworkPolicy`, `CiliumNetworkPolicy`, `CiliumClusterwideNetworkPolicy`), L7 policy via embedded Envoy, ClusterMesh cross-cluster semantics, Hubble flow observability, and `CiliumEgressGatewayPolicy` for SNAT egress.
+## Maintenance
 
-These skills are intentionally conservative:
-
-- prefer `kubectl get networkpolicies,ciliumnetworkpolicies,ciliumclusterwidenetworkpolicies,ciliumegressgatewaypolicies -A -o yaml` for live policy state grounding before any review
-- treat **removal of a default-deny `NetworkPolicy`** as a critical finding — pods become reachable from any source/destination
-- challenge `CiliumNetworkPolicy` egress with `toCIDRSet: [0.0.0.0/0]` — unrestricted egress = data exfiltration path
-- challenge `policy-default-local-cluster` flag changes in ClusterMesh — cross-cluster policy semantics change globally for every existing policy
-- challenge `CiliumEgressGatewayPolicy` IP collisions — two policies SNATing to the same IP cause silent connection breakage
-- prefer `cilium clustermesh inspect-policy-default-local-cluster` before any flag flip — it lists every policy that would change behavior
-- use official Cilium documentation (docs.cilium.io) for policy syntax, CRD versions, ClusterMesh setup, and L7 policy semantics
-
-Run `npm run validate` after changing cataloged Cilium skills.
+The ledgers are dated snapshots of Cilium 1.20.5 documentation, retrieved 2026-11-25. At each Cilium minor release, re-fetch the rows of the lifecycle skill's breaking-changes and advisory references first; they are the most version-sensitive. Run `npm run validate` after changing any Cilium skill.

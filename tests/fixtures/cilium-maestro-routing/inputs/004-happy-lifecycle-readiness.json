@@ -1,0 +1,7 @@
+{
+  "name": "004-happy-lifecycle-readiness",
+  "task": "Is our Cilium upgrade from 1.18 to 1.20 ready? Here are the Helm values.",
+  "tags": [
+    "happy-path"
+  ]
+}

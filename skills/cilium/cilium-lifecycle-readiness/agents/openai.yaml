@@ -1,0 +1,4 @@
+interface:
+  display_name: Cilium Lifecycle Readiness
+  short_description: "Decide whether a proposed Cilium upgrade, rollback, CNI migration to Cilium, disruptive configuration change ("
+  default_prompt: Use $cilium-lifecycle-readiness on the supplied evidence within its stated scope. Report unknowns and do not perform live operations.

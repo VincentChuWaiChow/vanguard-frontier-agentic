@@ -1,0 +1,8 @@
+{
+  "name": "multi-01-service-unreachable",
+  "task": "A ClusterIP service is unreachable while pods are healthy and we see Policy denied drops.",
+  "tags": [
+    "multi-domain",
+    "known-limitation:first-owner-only"
+  ]
+}

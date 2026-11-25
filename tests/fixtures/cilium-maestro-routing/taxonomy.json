@@ -1,0 +1,144 @@
+{
+  "provider": "cilium",
+  "domains": {
+    "network-policy-review": {
+      "agent": "cilium-network-policy-review-agent",
+      "keywords": [
+        "CiliumNetworkPolicy",
+        "CiliumClusterwideNetworkPolicy",
+        "NetworkPolicy",
+        "network policy",
+        "default-deny",
+        "default deny",
+        "Policy denied",
+        "toFQDNs",
+        "toCIDRSet",
+        "toEntities",
+        "metadata endpoint",
+        "169.254.169.254",
+        "L7 policy",
+        "policy-default-local-cluster",
+        "WireGuard",
+        "IPsec",
+        "transparent encryption",
+        "encrypted in transit",
+        "strict mode",
+        "microsegmentation",
+        "zero-trust",
+        "zero trust",
+        "exfiltration",
+        "lateral movement",
+        "segmentation"
+      ]
+    },
+    "dataplane-diagnostics": {
+      "agent": "cilium-dataplane-diagnostics-agent",
+      "keywords": [
+        "datapath",
+        "dataplane",
+        "drop reason",
+        "drops",
+        "CT: Map insertion failed",
+        "conntrack",
+        "connection tracking",
+        "BPF map",
+        "map pressure",
+        "socket load balancing",
+        "socket-LB",
+        "kube-proxy replacement",
+        "Maglev",
+        "DSR",
+        "MTU",
+        "fragmentation",
+        "timeouts",
+        "packet loss",
+        "endpoint regeneration",
+        "latency",
+        "throughput",
+        "unreachable",
+        "NodePort",
+        "ClusterIP",
+        "capacity",
+        "headroom"
+      ]
+    },
+    "external-connectivity-review": {
+      "agent": "cilium-external-connectivity-review-agent",
+      "keywords": [
+        "BGP",
+        "CiliumBGPClusterConfig",
+        "CiliumBGPPeerConfig",
+        "CiliumBGPAdvertisement",
+        "route advertisement",
+        "advertised",
+        "LB-IPAM",
+        "LB IPAM",
+        "CiliumLoadBalancerIPPool",
+        "LoadBalancer IP",
+        "L2 announcement",
+        "egress gateway",
+        "CiliumEgressGatewayPolicy",
+        "egress IP",
+        "SNAT",
+        "ClusterMesh",
+        "cluster mesh",
+        "global service",
+        "service affinity",
+        "KVStoreMesh",
+        "cluster ID",
+        "cross-cluster",
+        "peer router",
+        "failover",
+        "disaster recovery"
+      ]
+    },
+    "lifecycle-readiness": {
+      "agent": "cilium-lifecycle-readiness-agent",
+      "keywords": [
+        "upgrade",
+        "upgrading",
+        "rollback",
+        "roll back",
+        "preflight",
+        "pre-flight",
+        "Helm values",
+        "deprecated",
+        "removed in",
+        "kernel",
+        "CNI migration",
+        "migrate to Cilium",
+        "migrating to Cilium",
+        "IPAM mode",
+        "security advisory",
+        "advisory",
+        "GHSA",
+        "CVE",
+        "version skew",
+        "minor version"
+      ]
+    }
+  },
+  "live_guards": [
+    "kubernetes-live-network-architecture-mutation-guard-agent",
+    "kubernetes-live-network-policy-guard-agent"
+  ],
+  "gate_mode": "live-guard-gate",
+  "live_guard_intent": "(?=[\\s\\S]*\\b(?:prod|production|live|cluster|context|namespace)\\b)(?:(?:\\b(?:kubectl|oc)\\s+(?:apply|patch|delete|create|replace|edit|label|annotate|set)\\b)|(?:\\b(?:now|just|immediately|go ahead and|please)\\s+(?:apply|patch|delete|remove|create|update|replace|edit|label|annotate|push|roll out)\\b[\\s\\S]{0,200}\\b(?:(?:Cilium(?:Clusterwide)?NetworkPolic(?:y|ies)|NetworkPolic(?:y|ies)|CiliumEgressGatewayPolic(?:y|ies)|network polic(?:y|ies))|(?:HTTPRoutes?|Gateway API|Gateways?|ClusterMesh (?:peer )?secrets?|clustermesh secrets?))\\b)|(?:\\b(?:apply|patch|delete|remove|create|update|replace|edit|label|annotate|push|roll out)\\b\\s+(?:this|these|the|our|that)\\s+(?:(?:Cilium(?:Clusterwide)?NetworkPolic(?:y|ies)|NetworkPolic(?:y|ies)|CiliumEgressGatewayPolic(?:y|ies)|network polic(?:y|ies))|(?:HTTPRoutes?|Gateway API|Gateways?|ClusterMesh (?:peer )?secrets?|clustermesh secrets?))\\b(?![\\s\\S]{0,80}\\b(?:would be safe|is safe|safely|review|whether)\\b)))",
+  "parallel_threshold": 0.8,
+  "live_guard_keywords": {
+    "kubernetes-live-network-policy-guard-agent": [
+      "CiliumNetworkPolicy",
+      "CiliumClusterwideNetworkPolicy",
+      "NetworkPolicy",
+      "CiliumEgressGatewayPolicy",
+      "network policy"
+    ],
+    "kubernetes-live-network-architecture-mutation-guard-agent": [
+      "Gateway API",
+      "HTTPRoute",
+      "Gateway",
+      "ClusterMesh peer secret",
+      "clustermesh secret"
+    ]
+  }
+}

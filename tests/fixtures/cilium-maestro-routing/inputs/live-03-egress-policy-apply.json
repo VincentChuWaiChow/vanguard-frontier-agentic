@@ -1,0 +1,7 @@
+{
+  "name": "live-03-egress-policy-apply",
+  "task": "Go ahead and update the CiliumEgressGatewayPolicy in the live cluster.",
+  "tags": [
+    "live-guard-gate"
+  ]
+}

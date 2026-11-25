@@ -1,0 +1,8 @@
+{
+  "name": "006-happy-capacity-headroom",
+  "task": "Do we have conntrack and BPF map headroom for double the connections next quarter?",
+  "tags": [
+    "happy-path",
+    "merged:capacity"
+  ]
+}

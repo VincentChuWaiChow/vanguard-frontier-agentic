@@ -34,16 +34,16 @@
   "trees": [
     {
       "tree": "agents",
-      "aggregate_sha256": "5ea1b8de71a09cae03b7ace2312e9877a59e273a8b3f9de8728020ae94a06dd6",
+      "aggregate_sha256": "cbd812a85ab9f488171565db7bd46a955532c34e9b05afaf55833296368bd6ca",
       "files": [
         {
           "path": "agents/AGENTS.md",
-          "sha256": "e12531652f70e3e920021d6984eb35e76029030a19366e20d98bbba769e66ede",
+          "sha256": "cdd62479d138e8707ef25a775c5a39a2fe983010b431e813f0e24efcc00e827e",
           "bytes": 28065
         },
         {
           "path": "agents/README.md",
-          "sha256": "09dc62b5de1f4e271ebf26bcfcd1455f49262e4cc7a3e7d4c8e4b492c482d548",
+          "sha256": "ce9367979a932e6038a7786b924db7200fb1f79565d7e60dffff05cdd25d8071",
           "bytes": 10047
         },
         {
@@ -8108,53 +8108,233 @@
         },
         {
           "path": "agents/cilium/README.md",
-          "sha256": "fb579dc82a6764ea01f6563602800aafa6f907467f104a108c609e85000e72a9",
-          "bytes": 2241
+          "sha256": "4c3aaaccedd9c38d3444f654037ae9ecd1411b63ab50b880431647239793d904",
+          "bytes": 2946
+        },
+        {
+          "path": "agents/cilium/cilium-dataplane-diagnostics-agent/AGENT.md",
+          "sha256": "9099f2a0c89c6ae5b7051031d45e7fd4af00da2cf84b584ba51619c72cb39232",
+          "bytes": 6508
+        },
+        {
+          "path": "agents/cilium/cilium-dataplane-diagnostics-agent/harnesses/claude-code.agent.md",
+          "sha256": "86c7996546d96122053dea9ef4d07c9a967978fe6cc3953d8dc40483c0337def",
+          "bytes": 6011
+        },
+        {
+          "path": "agents/cilium/cilium-dataplane-diagnostics-agent/harnesses/codex.toml",
+          "sha256": "bdfaa9ff8f48ad92d4df2de417a4d1f30f2d9d834e81fccfe3bd70b334bb07fb",
+          "bytes": 6148
+        },
+        {
+          "path": "agents/cilium/cilium-dataplane-diagnostics-agent/harnesses/copilot.agent.md",
+          "sha256": "cece58ad1cb3c27a563efe507253da57c704c60a084c99e924ce1e381047cbbf",
+          "bytes": 6091
+        },
+        {
+          "path": "agents/cilium/cilium-dataplane-diagnostics-agent/harnesses/cursor.agent.md",
+          "sha256": "fdecb164af4fc5248448d72371cc50c43814a19352ef956f46dc319ca522fda2",
+          "bytes": 6000
+        },
+        {
+          "path": "agents/cilium/cilium-dataplane-diagnostics-agent/harnesses/gemini.agent.md",
+          "sha256": "4979fcfb3e85fbf3301ebf0ce0697745d14f6d4446bceadca88d5d3d009d1f6d",
+          "bytes": 6123
+        },
+        {
+          "path": "agents/cilium/cilium-dataplane-diagnostics-agent/harnesses/kiro-cli.agent.json",
+          "sha256": "375dd0dcf4cf564a656ee6605570d88d5388eb01c4af62efe321635b7be5995e",
+          "bytes": 6075
+        },
+        {
+          "path": "agents/cilium/cilium-dataplane-diagnostics-agent/harnesses/kiro-ide.agent.md",
+          "sha256": "fe14e0582f0028b8e7269de9cd137fc281d3fcfcf3027e5f9a5f801d5ebf7d5a",
+          "bytes": 5985
+        },
+        {
+          "path": "agents/cilium/cilium-dataplane-diagnostics-agent/metadata.json",
+          "sha256": "939620ed1eacdfdc75562942a878396ef141cbd3255b5bcc820859e74a51e682",
+          "bytes": 2816
+        },
+        {
+          "path": "agents/cilium/cilium-external-connectivity-review-agent/AGENT.md",
+          "sha256": "95944a58c43ece0311d1a999cf0a1e24447c1a61b38138ce8cd5aa8a27e87c0b",
+          "bytes": 6576
+        },
+        {
+          "path": "agents/cilium/cilium-external-connectivity-review-agent/harnesses/claude-code.agent.md",
+          "sha256": "d14bd836256db3c43f881907de27d73746bfccbf0ae262c8e958d359ca5bf456",
+          "bytes": 6042
+        },
+        {
+          "path": "agents/cilium/cilium-external-connectivity-review-agent/harnesses/codex.toml",
+          "sha256": "a17522110616c7e79cfd3a16ca2fc18ed1040300bfb99e06a79173a54c322e85",
+          "bytes": 6179
+        },
+        {
+          "path": "agents/cilium/cilium-external-connectivity-review-agent/harnesses/copilot.agent.md",
+          "sha256": "9d9417e53400f11fb6984c62c962aaa44d3a115f432d1e6e4b0f5a1884089f63",
+          "bytes": 6122
+        },
+        {
+          "path": "agents/cilium/cilium-external-connectivity-review-agent/harnesses/cursor.agent.md",
+          "sha256": "c2d30c14750b3631d5ff079e273977d694804970b9a48a7081cb76f8e348d2d6",
+          "bytes": 6031
+        },
+        {
+          "path": "agents/cilium/cilium-external-connectivity-review-agent/harnesses/gemini.agent.md",
+          "sha256": "fe9935dfa1c094df7d648a95e2363cacbccd8ec792855cbf2b166c8b8897194a",
+          "bytes": 6161
+        },
+        {
+          "path": "agents/cilium/cilium-external-connectivity-review-agent/harnesses/kiro-cli.agent.json",
+          "sha256": "d24a4484844ce20a70831c38dabb064fc959f13e2a72495af62a4d17cfa1ce5f",
+          "bytes": 6101
+        },
+        {
+          "path": "agents/cilium/cilium-external-connectivity-review-agent/harnesses/kiro-ide.agent.md",
+          "sha256": "9bc1889efe9765aaaccec34cf5e920b19354438aeba48b83dd9a6ead2347ff2f",
+          "bytes": 6016
+        },
+        {
+          "path": "agents/cilium/cilium-external-connectivity-review-agent/metadata.json",
+          "sha256": "b2272ac630fcda7227c037fead2d40a91b7a59e0d5fd448eef22028c56917197",
+          "bytes": 2912
+        },
+        {
+          "path": "agents/cilium/cilium-lifecycle-readiness-agent/AGENT.md",
+          "sha256": "eae9aa8eb75bcf5b97ce86a231575ccc4656f11a0b45d57ff619e04d90f561e8",
+          "bytes": 6360
+        },
+        {
+          "path": "agents/cilium/cilium-lifecycle-readiness-agent/harnesses/claude-code.agent.md",
+          "sha256": "564fe0a205bc0201b69b4b7789c8fd6a2ded1fd41b4b47683193ec583ebe0b7b",
+          "bytes": 5851
+        },
+        {
+          "path": "agents/cilium/cilium-lifecycle-readiness-agent/harnesses/codex.toml",
+          "sha256": "5fddb4b66488c6d87ab419e04ca7078a0df899d472b745bd3028b528af9b0deb",
+          "bytes": 5988
+        },
+        {
+          "path": "agents/cilium/cilium-lifecycle-readiness-agent/harnesses/copilot.agent.md",
+          "sha256": "22bc65d5d1595a6730927c144c428172d5fd7bbd22ba561a0acee2cf94168c68",
+          "bytes": 5931
+        },
+        {
+          "path": "agents/cilium/cilium-lifecycle-readiness-agent/harnesses/cursor.agent.md",
+          "sha256": "cb5431e3da47aa39b4e07668f80c5f2e149136c55afe56a1f7cf8b5cb25b38e8",
+          "bytes": 5840
+        },
+        {
+          "path": "agents/cilium/cilium-lifecycle-readiness-agent/harnesses/gemini.agent.md",
+          "sha256": "000b799318f6d1e644c839f8620911a8f506b8e823a7f239de2af2be1c9f4b1c",
+          "bytes": 5961
+        },
+        {
+          "path": "agents/cilium/cilium-lifecycle-readiness-agent/harnesses/kiro-cli.agent.json",
+          "sha256": "9ab641ac8b7f16818e9f0f962320705b1a90d4c4d5bc7fee43033a208a96b012",
+          "bytes": 5910
+        },
+        {
+          "path": "agents/cilium/cilium-lifecycle-readiness-agent/harnesses/kiro-ide.agent.md",
+          "sha256": "a6f238f6ebeee127a9c0a0935efbfee251d7534fa8f646e10cb64c6cb9337f5c",
+          "bytes": 5825
+        },
+        {
+          "path": "agents/cilium/cilium-lifecycle-readiness-agent/metadata.json",
+          "sha256": "a94bb3b5327b963c0f30b96e3305c5d490f4fde991687654706d2300a1a3843e",
+          "bytes": 2773
+        },
+        {
+          "path": "agents/cilium/cilium-maestro-agent/AGENT.md",
+          "sha256": "d4286fce27560274a4281e904eb47e669da983e269f1209b251a260c2940bc4e",
+          "bytes": 4683
+        },
+        {
+          "path": "agents/cilium/cilium-maestro-agent/harnesses/claude-code.agent.md",
+          "sha256": "c46947543065aca68d94e097c1aca6790196beed1fcdfe558583fdeb96a74efa",
+          "bytes": 4065
+        },
+        {
+          "path": "agents/cilium/cilium-maestro-agent/harnesses/codex.toml",
+          "sha256": "87c1985cddcd3529ec48e7d7e421cc97531de396023dcdd32349d3fcf6ad307a",
+          "bytes": 4195
+        },
+        {
+          "path": "agents/cilium/cilium-maestro-agent/harnesses/copilot.agent.md",
+          "sha256": "d96c3083609bec32b314fd39a44ade8c8c27d285117033caf5fa0df27d4b36c8",
+          "bytes": 4145
+        },
+        {
+          "path": "agents/cilium/cilium-maestro-agent/harnesses/cursor.agent.md",
+          "sha256": "b5df408b83106128316006bc56665479632139819af1ce899bfa3ef033fd4003",
+          "bytes": 4054
+        },
+        {
+          "path": "agents/cilium/cilium-maestro-agent/harnesses/gemini.agent.md",
+          "sha256": "6f8280657f7ff22fc89a30f8fc74e4bcbfb837a73868996b8117959043445977",
+          "bytes": 4163
+        },
+        {
+          "path": "agents/cilium/cilium-maestro-agent/harnesses/kiro-cli.agent.json",
+          "sha256": "57399612dc9b1bc6cd77ae8f92845f00fdaa5f93a3138790131f162900d359a1",
+          "bytes": 4128
+        },
+        {
+          "path": "agents/cilium/cilium-maestro-agent/harnesses/kiro-ide.agent.md",
+          "sha256": "70277023f54c66f55e125b4617d1aeca2813dff4a03c38551f4ba4e06d843b96",
+          "bytes": 4039
+        },
+        {
+          "path": "agents/cilium/cilium-maestro-agent/metadata.json",
+          "sha256": "2557b62110e418bf33cf00b3d40946312bd8c2446611c887464ddd44fb3e1677",
+          "bytes": 2460
         },
         {
           "path": "agents/cilium/cilium-network-policy-review-agent/AGENT.md",
-          "sha256": "6c92297bd9a74f0c11443c5f8956bb9165fe937fbc7b8e59f564be1903956734",
-          "bytes": 2895
+          "sha256": "4cf60a0832daa321787f51bff16bcd5382ac9344c3408bc4f3ac12649fee0aeb",
+          "bytes": 6863
         },
         {
           "path": "agents/cilium/cilium-network-policy-review-agent/harnesses/claude-code.agent.md",
-          "sha256": "f70eb9d4e1d7d7ede361920a76bb1fda97895c92f4d779f3a328a18421cc18c3",
-          "bytes": 2257
+          "sha256": "d24e3fd36bd84fe1b5773f8ba194ab1c00290b371a0017c553dc30b335e193d2",
+          "bytes": 6461
         },
         {
           "path": "agents/cilium/cilium-network-policy-review-agent/harnesses/codex.toml",
-          "sha256": "be9fdf8f834977a7740b1890cd796f8a8a800f3a84513f9b86c045f4b72502a8",
-          "bytes": 2005
+          "sha256": "c7e77a745bf15c607ea8a48dd5615840e034ecadc80c64f8efd1d6640706cbb9",
+          "bytes": 6598
         },
         {
           "path": "agents/cilium/cilium-network-policy-review-agent/harnesses/copilot.agent.md",
-          "sha256": "f70eb9d4e1d7d7ede361920a76bb1fda97895c92f4d779f3a328a18421cc18c3",
-          "bytes": 2257
+          "sha256": "e4b721282319f5cabdc5475b4f2b802ae791af96dc7b97f7ac68f783b1018586",
+          "bytes": 6541
         },
         {
           "path": "agents/cilium/cilium-network-policy-review-agent/harnesses/cursor.agent.md",
-          "sha256": "f70eb9d4e1d7d7ede361920a76bb1fda97895c92f4d779f3a328a18421cc18c3",
-          "bytes": 2257
+          "sha256": "02e4a9a7a2959f5513f89bec4505b4d3bc07215cf384e90606fce8c861c3f1bf",
+          "bytes": 6450
         },
         {
           "path": "agents/cilium/cilium-network-policy-review-agent/harnesses/gemini.agent.md",
-          "sha256": "8c05a17f988400ee5b99dd90e516e89ac4440252d406563b26e0127d26e38113",
-          "bytes": 2308
+          "sha256": "d5d1ca9515a26b49d5b737b6f8cbe4a04ff6123c546227791bd5da281a3cc90e",
+          "bytes": 6573
         },
         {
           "path": "agents/cilium/cilium-network-policy-review-agent/harnesses/kiro-cli.agent.json",
-          "sha256": "d03ebd50e36b9993922f7aa2a168baf34d3076e04f6f1b636ee5f2ba2215ca89",
-          "bytes": 1531
+          "sha256": "a8c818fdb9396b97ba99c818b513dfe9964d81aba3ffb2549e2b41678a3cd4d3",
+          "bytes": 6529
         },
         {
           "path": "agents/cilium/cilium-network-policy-review-agent/harnesses/kiro-ide.agent.md",
-          "sha256": "f70eb9d4e1d7d7ede361920a76bb1fda97895c92f4d779f3a328a18421cc18c3",
-          "bytes": 2257
+          "sha256": "c4238f686fb2e2e75bc4f15d056287e2006108faa9bf132533a06d917c5a180f",
+          "bytes": 6435
         },
         {
           "path": "agents/cilium/cilium-network-policy-review-agent/metadata.json",
-          "sha256": "7eb63802dfcead3daff40cb5ce37151d10b58acdb2c85fce97e260dc2aa05b7b",
-          "bytes": 1991
+          "sha256": "76bd18fc8420b1b1bc311e642f0094229309f9563b6bd4b02d5cafb41eed2897",
+          "bytes": 3190
         },
         {
           "path": "agents/contabo/README.md",
@@ -36574,7 +36754,7 @@
     },
     {
       "tree": "catalog",
-      "aggregate_sha256": "078ecf54df976228c97acaf7bcda7f3bda572bf6a5c886dfd7c9600145dbf0f9",
+      "aggregate_sha256": "2dacdb9d481f1c725ebdb8ca3740251e9d96de621f0aac157b77f853b8517383",
       "files": [
         {
           "path": "catalog/AGENTS.md",
@@ -36583,8 +36763,8 @@
         },
         {
           "path": "catalog/agents.json",
-          "sha256": "a9f70b8ecacb5e36eeecf514a59bdd0734860b47d269f9fcf902ac64ea829780",
-          "bytes": 1296881
+          "sha256": "beaa804790a695eaf2a288e9c48286e194328f592113332ec810dc9a082201dd",
+          "bytes": 1304732
         },
         {
           "path": "catalog/index.json",
@@ -36593,8 +36773,8 @@
         },
         {
           "path": "catalog/install-roles.json",
-          "sha256": "5b6f8e2d45eb49e6cc9b04a2f9803b4c687bde2ee25441cc16f245f9ba4d8c2a",
-          "bytes": 130933
+          "sha256": "2f265a03473ccf8e99f50b6c8ea37fc9de3b0abc7d9202e7f7c7cbd78193ebc7",
+          "bytes": 131451
         },
         {
           "path": "catalog/mcp-references.json",
@@ -36603,8 +36783,8 @@
         },
         {
           "path": "catalog/model-assignments.json",
-          "sha256": "b26609848548315cfa97d39b61c97711b7c4e228011a97612387c8f5c9e0ced7",
-          "bytes": 715628
+          "sha256": "94e8df98a337204fa04c1a9d8d83be22158d5252d300493a2a5d359bf7445034",
+          "bytes": 719357
         },
         {
           "path": "catalog/model-policy.json",
@@ -36628,13 +36808,13 @@
         },
         {
           "path": "catalog/skill-manifest.json",
-          "sha256": "16353b12bde7ded56a88af210ff341ffeb0bba439bb5bc0484ebbe03deb080c4",
-          "bytes": 1194179
+          "sha256": "f6b54c2fba2b35e9ec18a7917b4335059ee3365717df8099065c4480fc740fd0",
+          "bytes": 1205242
         },
         {
           "path": "catalog/skills.json",
-          "sha256": "6d413ccb0d24b0389ba3921363cb3a942515d20707acdbfa9258473a216c2d9b",
-          "bytes": 1275582
+          "sha256": "7eaa958eea63199ff07fb3e2ed9f15be6b5eb6d2b5714e00eb4219bec6652225",
+          "bytes": 1283173
         },
         {
           "path": "catalog/workflows.json",
@@ -37516,7 +37696,7 @@
     },
     {
       "tree": "powers",
-      "aggregate_sha256": "5545feea0e1b61e4cd3e7dab8590676c67bf5dd620d9392a99e3949f78de90eb",
+      "aggregate_sha256": "085f4c0de5e5aaa8a08aa53618c5d19c4132994c986cd68892fba632a9d271b4",
       "files": [
         {
           "path": "powers/README.md",
@@ -37565,8 +37745,8 @@
         },
         {
           "path": "powers/vanguard-cilium/POWER.md",
-          "sha256": "71df5bfca323eb7e037c62c0d7e4bc9b6dfc9d2d62b3e68ced69eb0c14e6a8fd",
-          "bytes": 2232
+          "sha256": "8d7aefe31f8c16250f75d8725c9bbf5db5c56db142178b3190147bc2599dbb1f",
+          "bytes": 2529
         },
         {
           "path": "powers/vanguard-contabo/POWER.md",
@@ -37803,7 +37983,7 @@
     },
     {
       "tree": ".claude-plugin",
-      "aggregate_sha256": "00a5de81a63a8ade68ca6550a2ccb19664da4f47150780a1ea0a9868acd41aae",
+      "aggregate_sha256": "193b030c022de0b4e9fccc0b198bd3bede1516051792cab58c3a8ac41c21d789",
       "files": [
         {
           "path": ".claude-plugin/README.md",
@@ -37812,19 +37992,19 @@
         },
         {
           "path": ".claude-plugin/marketplace.json",
-          "sha256": "0ebc3d2b3b4065a74ee107a05566544175bd0f80f397cd2ae20b1e05a51d0691",
+          "sha256": "c69e5d535979ee35c332b0a58e101047179f3afcc74339c5c617f552b99ae661",
           "bytes": 855
         },
         {
           "path": ".claude-plugin/plugin.json",
-          "sha256": "ee7d207e8d1f8b1e03512fc74839575178d55013cb8096906381180cf8d798d5",
-          "bytes": 69218
+          "sha256": "8bce0223c53809f5ce4e052c5c5fd6778a4e3f12ee2e1fc3c9a74873c3625191",
+          "bytes": 69565
         }
       ]
     },
     {
       "tree": ".cursor-plugin",
-      "aggregate_sha256": "ac074efb1fd58b2a1f10cb45804937d7e3c9fdee3b75abb5aae6abfe23592325",
+      "aggregate_sha256": "b0967bf3e320e0ebaf4e6569c4d03ed399874bf363414a62ba8d18a241b000a4",
       "files": [
         {
           "path": ".cursor-plugin/README.md",
@@ -37833,8 +38013,8 @@
         },
         {
           "path": ".cursor-plugin/plugin.json",
-          "sha256": "4c916b5e6671fe21cd8284e205c3745ce7b1ce31de0d306b826594606f31c6f6",
-          "bytes": 65444
+          "sha256": "495306c79c1d7f285a7997d7480fec4b9f011c64e1ecfed3f31be4790969e752",
+          "bytes": 65771
         }
       ]
     },
@@ -37872,7 +38052,7 @@
     },
     {
       "tree": "tests",
-      "aggregate_sha256": "c268d1028a6d0691bf40e32c43f0d1a81f09e8df3a893c813257691ab5fd0f27",
+      "aggregate_sha256": "dd4ea1c937ab3a679546a207b2d6a6f4626807c400222bf3cf8332aa06682244",
       "files": [
         {
           "path": "tests/AGENTS.md",
@@ -38911,7 +39091,7 @@
         },
         {
           "path": "tests/fixtures/README.md",
-          "sha256": "c0cdc3bd5335d3dd6e655be399fc114a71d24db88d8448416efb6a3d276dcd04",
+          "sha256": "49bf4b5f9508bf248d17ced831dcb383e7b41d021af538c52bb0d1055107956b",
           "bytes": 3698
         },
         {
@@ -41383,6 +41563,291 @@
           "path": "tests/fixtures/azure-maestro-routing/taxonomy.json",
           "sha256": "27137e96db6e51624ee25883837ddebe15a405ba7aad85000eadd780f621d005",
           "bytes": 9240
+        },
+        {
+          "path": "tests/fixtures/cilium-maestro-routing/expected/001-happy-network-policy-review.json",
+          "sha256": "42dffe9970d57db0fbbcc917b505a8266fc51ed82d7b4ae9298907469c722713",
+          "bytes": 82
+        },
+        {
+          "path": "tests/fixtures/cilium-maestro-routing/expected/002-happy-dataplane-diagnostics.json",
+          "sha256": "a3ac19b0800de84204ccddb1cf6c98f98cbc4243040531c2b02ee4e95093d53a",
+          "bytes": 82
+        },
+        {
+          "path": "tests/fixtures/cilium-maestro-routing/expected/003-happy-external-connectivity-review.json",
+          "sha256": "909e5a4d215d9332b8f95c416242b9cac75fcf54a6437c2221d541a444471893",
+          "bytes": 89
+        },
+        {
+          "path": "tests/fixtures/cilium-maestro-routing/expected/004-happy-lifecycle-readiness.json",
+          "sha256": "49c0b608d132da8c8a87c32ef7f49072374fbebab83800abe22b9925ce4adb28",
+          "bytes": 80
+        },
+        {
+          "path": "tests/fixtures/cilium-maestro-routing/expected/005-happy-encryption-coverage.json",
+          "sha256": "42dffe9970d57db0fbbcc917b505a8266fc51ed82d7b4ae9298907469c722713",
+          "bytes": 82
+        },
+        {
+          "path": "tests/fixtures/cilium-maestro-routing/expected/006-happy-capacity-headroom.json",
+          "sha256": "a3ac19b0800de84204ccddb1cf6c98f98cbc4243040531c2b02ee4e95093d53a",
+          "bytes": 82
+        },
+        {
+          "path": "tests/fixtures/cilium-maestro-routing/expected/007-happy-egress-gateway.json",
+          "sha256": "909e5a4d215d9332b8f95c416242b9cac75fcf54a6437c2221d541a444471893",
+          "bytes": 89
+        },
+        {
+          "path": "tests/fixtures/cilium-maestro-routing/expected/008-happy-advisory-applicability.json",
+          "sha256": "49c0b608d132da8c8a87c32ef7f49072374fbebab83800abe22b9925ce4adb28",
+          "bytes": 80
+        },
+        {
+          "path": "tests/fixtures/cilium-maestro-routing/expected/009-happy-cni-migration.json",
+          "sha256": "49c0b608d132da8c8a87c32ef7f49072374fbebab83800abe22b9925ce4adb28",
+          "bytes": 80
+        },
+        {
+          "path": "tests/fixtures/cilium-maestro-routing/expected/010-happy-clustermesh-dr.json",
+          "sha256": "909e5a4d215d9332b8f95c416242b9cac75fcf54a6437c2221d541a444471893",
+          "bytes": 89
+        },
+        {
+          "path": "tests/fixtures/cilium-maestro-routing/expected/adv-ambiguous.json",
+          "sha256": "93d7b7768c78f4f08a3d2d77a98110ba46316d589148f9778281b17d8bb9974e",
+          "bytes": 44
+        },
+        {
+          "path": "tests/fixtures/cilium-maestro-routing/expected/adv-instruction-injection.json",
+          "sha256": "42dffe9970d57db0fbbcc917b505a8266fc51ed82d7b4ae9298907469c722713",
+          "bytes": 82
+        },
+        {
+          "path": "tests/fixtures/cilium-maestro-routing/expected/adv-jira-injection.json",
+          "sha256": "06da91bdb9ec47a83838ebe2727fc6ed0833c2ab625a0ebf41d1ac52cc7931ce",
+          "bytes": 99
+        },
+        {
+          "path": "tests/fixtures/cilium-maestro-routing/expected/adv-persona-replacement.json",
+          "sha256": "909e5a4d215d9332b8f95c416242b9cac75fcf54a6437c2221d541a444471893",
+          "bytes": 89
+        },
+        {
+          "path": "tests/fixtures/cilium-maestro-routing/expected/adv-secrets-bait.json",
+          "sha256": "a3ac19b0800de84204ccddb1cf6c98f98cbc4243040531c2b02ee4e95093d53a",
+          "bytes": 82
+        },
+        {
+          "path": "tests/fixtures/cilium-maestro-routing/expected/live-01-apply-cnp-prod.json",
+          "sha256": "06da91bdb9ec47a83838ebe2727fc6ed0833c2ab625a0ebf41d1ac52cc7931ce",
+          "bytes": 99
+        },
+        {
+          "path": "tests/fixtures/cilium-maestro-routing/expected/live-02-kubectl-delete-prod.json",
+          "sha256": "06da91bdb9ec47a83838ebe2727fc6ed0833c2ab625a0ebf41d1ac52cc7931ce",
+          "bytes": 99
+        },
+        {
+          "path": "tests/fixtures/cilium-maestro-routing/expected/live-03-egress-policy-apply.json",
+          "sha256": "06da91bdb9ec47a83838ebe2727fc6ed0833c2ab625a0ebf41d1ac52cc7931ce",
+          "bytes": 99
+        },
+        {
+          "path": "tests/fixtures/cilium-maestro-routing/expected/live-04-gateway-api.json",
+          "sha256": "40536d257990744d48681e87dc9274b0a5e163d42ca2157dda169b468db41c24",
+          "bytes": 114
+        },
+        {
+          "path": "tests/fixtures/cilium-maestro-routing/expected/live-05-clustermesh-secret.json",
+          "sha256": "40536d257990744d48681e87dc9274b0a5e163d42ca2157dda169b468db41c24",
+          "bytes": 114
+        },
+        {
+          "path": "tests/fixtures/cilium-maestro-routing/expected/multi-01-service-unreachable.json",
+          "sha256": "a3ac19b0800de84204ccddb1cf6c98f98cbc4243040531c2b02ee4e95093d53a",
+          "bytes": 82
+        },
+        {
+          "path": "tests/fixtures/cilium-maestro-routing/expected/multi-02-broke-after-upgrade.json",
+          "sha256": "94e0058f461af7cba2bd4df8a60236bc02d3109087fdf0fceb3013d57a9bde47",
+          "bytes": 128
+        },
+        {
+          "path": "tests/fixtures/cilium-maestro-routing/expected/multi-03-cross-cluster-policy.json",
+          "sha256": "909e5a4d215d9332b8f95c416242b9cac75fcf54a6437c2221d541a444471893",
+          "bytes": 89
+        },
+        {
+          "path": "tests/fixtures/cilium-maestro-routing/expected/negative-01-review-apply-safety.json",
+          "sha256": "42dffe9970d57db0fbbcc917b505a8266fc51ed82d7b4ae9298907469c722713",
+          "bytes": 82
+        },
+        {
+          "path": "tests/fixtures/cilium-maestro-routing/expected/negative-02-upgrade-execution.json",
+          "sha256": "49c0b608d132da8c8a87c32ef7f49072374fbebab83800abe22b9925ce4adb28",
+          "bytes": 80
+        },
+        {
+          "path": "tests/fixtures/cilium-maestro-routing/expected/negative-03-bgp-change.json",
+          "sha256": "909e5a4d215d9332b8f95c416242b9cac75fcf54a6437c2221d541a444471893",
+          "bytes": 89
+        },
+        {
+          "path": "tests/fixtures/cilium-maestro-routing/expected/negative-04-product-identification.json",
+          "sha256": "93d7b7768c78f4f08a3d2d77a98110ba46316d589148f9778281b17d8bb9974e",
+          "bytes": 44
+        },
+        {
+          "path": "tests/fixtures/cilium-maestro-routing/expected/negative-05-tetragon.json",
+          "sha256": "93d7b7768c78f4f08a3d2d77a98110ba46316d589148f9778281b17d8bb9974e",
+          "bytes": 44
+        },
+        {
+          "path": "tests/fixtures/cilium-maestro-routing/inputs/001-happy-network-policy-review.json",
+          "sha256": "ef883a16d72675ba26b3e864923f16c9bcde1bbdab7b7e28d3e537705a9955ab",
+          "bytes": 169
+        },
+        {
+          "path": "tests/fixtures/cilium-maestro-routing/inputs/002-happy-dataplane-diagnostics.json",
+          "sha256": "798ed3da51874702d0ac74d427fdb977ebea7051e426d2aae1175b216820f9ed",
+          "bytes": 178
+        },
+        {
+          "path": "tests/fixtures/cilium-maestro-routing/inputs/003-happy-external-connectivity-review.json",
+          "sha256": "90ba62bc9129861756ab34dea089195e8ae78bca1706c24c528cff323f48b8a9",
+          "bytes": 197
+        },
+        {
+          "path": "tests/fixtures/cilium-maestro-routing/inputs/004-happy-lifecycle-readiness.json",
+          "sha256": "812d395ed252ce7d1e61af6f427ffd6591de7a163c8de7f0d3c05847c9bd56f9",
+          "bytes": 166
+        },
+        {
+          "path": "tests/fixtures/cilium-maestro-routing/inputs/005-happy-encryption-coverage.json",
+          "sha256": "a15a64e83874001d0afc322d146f5801c43872857ce6e52fa89f54bc8653c4d2",
+          "bytes": 210
+        },
+        {
+          "path": "tests/fixtures/cilium-maestro-routing/inputs/006-happy-capacity-headroom.json",
+          "sha256": "bad2b417bfb5bd9a6013dc9eb7b29a2ef211dbf6be88ef185126441bd66f52e4",
+          "bytes": 197
+        },
+        {
+          "path": "tests/fixtures/cilium-maestro-routing/inputs/007-happy-egress-gateway.json",
+          "sha256": "f99b4acdedc0ae1c8440ff537cb329b2d6b400dede9ac471aad8101583596fe4",
+          "bytes": 216
+        },
+        {
+          "path": "tests/fixtures/cilium-maestro-routing/inputs/008-happy-advisory-applicability.json",
+          "sha256": "3b54646aa3814f6d8c1653e47c654c9bb2e3cf08aaa2ec56cb771cebf00bf72a",
+          "bytes": 185
+        },
+        {
+          "path": "tests/fixtures/cilium-maestro-routing/inputs/009-happy-cni-migration.json",
+          "sha256": "282b59ed1f64c3efa057813ebd7d6ffadda413e029a2de0c084daaf4c94a8faf",
+          "bytes": 198
+        },
+        {
+          "path": "tests/fixtures/cilium-maestro-routing/inputs/010-happy-clustermesh-dr.json",
+          "sha256": "02492656e63fc7bdc564e11cdd37828c881bf913100270f9342407440df13a4c",
+          "bytes": 182
+        },
+        {
+          "path": "tests/fixtures/cilium-maestro-routing/inputs/adv-ambiguous.json",
+          "sha256": "719b82ca90bbc8d2f22dbfe237a98cd4e0cd50056835f5c65ca03aa21947c177",
+          "bytes": 113
+        },
+        {
+          "path": "tests/fixtures/cilium-maestro-routing/inputs/adv-instruction-injection.json",
+          "sha256": "b6ba7e8b8f843ae88f6e348785ee39924baa0b3233541ef32ae8cc6d7d195e9a",
+          "bytes": 200
+        },
+        {
+          "path": "tests/fixtures/cilium-maestro-routing/inputs/adv-jira-injection.json",
+          "sha256": "98ec58744a0afffe403443f8090ed38ecd7b40f9ba0b4ff8d224779b2c5c2078",
+          "bytes": 259
+        },
+        {
+          "path": "tests/fixtures/cilium-maestro-routing/inputs/adv-persona-replacement.json",
+          "sha256": "49cc506af5d8b86a8ad18a5b8379564ae0f74170c40a0cb94f6bdb5fb93c3bc9",
+          "bytes": 205
+        },
+        {
+          "path": "tests/fixtures/cilium-maestro-routing/inputs/adv-secrets-bait.json",
+          "sha256": "42e1d0c559f113bcf657e6c33e6e9dd3c9837f7058273454d97168f6653fed62",
+          "bytes": 197
+        },
+        {
+          "path": "tests/fixtures/cilium-maestro-routing/inputs/live-01-apply-cnp-prod.json",
+          "sha256": "0eb43966f7a83f38b5bae72b6de8b7c5ee85589ca7bfdbcdfaf2814ff6cb4759",
+          "bytes": 160
+        },
+        {
+          "path": "tests/fixtures/cilium-maestro-routing/inputs/live-02-kubectl-delete-prod.json",
+          "sha256": "11a4de2eb7e21a7676ed5b2fbd127edadfced6f9e4cb5cd173da73dc7b9e1890",
+          "bytes": 207
+        },
+        {
+          "path": "tests/fixtures/cilium-maestro-routing/inputs/live-03-egress-policy-apply.json",
+          "sha256": "5a7a4a7f3ad4406a6417712b8308df7e3eb5251c857463206c1c837d23e2f7d4",
+          "bytes": 167
+        },
+        {
+          "path": "tests/fixtures/cilium-maestro-routing/inputs/live-04-gateway-api.json",
+          "sha256": "51d293e8cf571feefa3e9e0cdb8b87e17edf20ea4dd28f1ffc4b2314cbb5d29a",
+          "bytes": 171
+        },
+        {
+          "path": "tests/fixtures/cilium-maestro-routing/inputs/live-05-clustermesh-secret.json",
+          "sha256": "0f67a10b6325c9443ef43f9083d5c26a1c10464ae4599fe675ad6b39ebc2cf60",
+          "bytes": 164
+        },
+        {
+          "path": "tests/fixtures/cilium-maestro-routing/inputs/multi-01-service-unreachable.json",
+          "sha256": "0a209b529a9041d4f9975a2df3267ad07ec1bad54dad3378ffc1f7e595224703",
+          "bytes": 225
+        },
+        {
+          "path": "tests/fixtures/cilium-maestro-routing/inputs/multi-02-broke-after-upgrade.json",
+          "sha256": "8f2f9be5235577d092e2ca8d3fd9c649220748e1a23251d82b49559374cfc5d8",
+          "bytes": 179
+        },
+        {
+          "path": "tests/fixtures/cilium-maestro-routing/inputs/multi-03-cross-cluster-policy.json",
+          "sha256": "9ef7fec7ac0b1e8af33862cd084eaef65c4f5083946bd1e8f4094d60dbfe6806",
+          "bytes": 251
+        },
+        {
+          "path": "tests/fixtures/cilium-maestro-routing/inputs/negative-01-review-apply-safety.json",
+          "sha256": "af26e443e250d28ac0d7474eec459d3c130bd86d1e091a6f0a95d9a9bf7fb9c7",
+          "bytes": 224
+        },
+        {
+          "path": "tests/fixtures/cilium-maestro-routing/inputs/negative-02-upgrade-execution.json",
+          "sha256": "212040053ae39e2d19a92a2b3e96957d64b032d4369ef6c9f2ed173371c5c9d7",
+          "bytes": 218
+        },
+        {
+          "path": "tests/fixtures/cilium-maestro-routing/inputs/negative-03-bgp-change.json",
+          "sha256": "55e60cb8b44f8b4310517807cbd1505f98521e2daa36adc34ebd6e67d02708f2",
+          "bytes": 212
+        },
+        {
+          "path": "tests/fixtures/cilium-maestro-routing/inputs/negative-04-product-identification.json",
+          "sha256": "25abc748c7420ee96d38c6541b39d66585f5426e1cd986acf105d8b53dc31d0f",
+          "bytes": 163
+        },
+        {
+          "path": "tests/fixtures/cilium-maestro-routing/inputs/negative-05-tetragon.json",
+          "sha256": "86759cbe1a17570cc0d32435ed837b0e5d9b7d5ee75a365d3db3946b711d802f",
+          "bytes": 169
+        },
+        {
+          "path": "tests/fixtures/cilium-maestro-routing/taxonomy.json",
+          "sha256": "697f65c18d8a9b705264cfcdb5fed28fa1f181e37b66749c6802649bdb4a1782",
+          "bytes": 4487
         },
         {
           "path": "tests/fixtures/contabo-maestro-routing/expected/001-happy-capacity-planner.json",
@@ -50261,7 +50726,7 @@
         },
         {
           "path": "tests/requirements-ci.txt",
-          "sha256": "cd1244f872e66b4a6538225d91d7f5d98a71aabb9b923abcce562f7271fc1761",
+          "sha256": "84f8f8046497bd09942daf3562ff8be618fd768da6ded7aaed4ffe95bfea5f5c",
           "bytes": 414
         },
         {
@@ -50328,6 +50793,11 @@
           "path": "tests/validate-catalog.py",
           "sha256": "96296cc1d18054131c3da40e27339990cc9b8c04d38e268df95cbd66d6b30363",
           "bytes": 22195
+        },
+        {
+          "path": "tests/validate-cilium-board.py",
+          "sha256": "a6146789a4d7b1ac867f87976f5579e126fd615e09ba620adaa2ab438513a494",
+          "bytes": 9385
         },
         {
           "path": "tests/validate-codex-marketplace.py",
@@ -50446,8 +50916,8 @@
         },
         {
           "path": "tests/validate-skill-references.py",
-          "sha256": "f3d4b06546cf4dac71162d8db572e59c071f5de24597843b5c43ef572318d35f",
-          "bytes": 10571
+          "sha256": "7615cee46ca8e218dd60c5c41a41ac521b48e914fbfd38e563755d9f00d65b7c",
+          "bytes": 11045
         },
         {
           "path": "tests/validate-skill-yaml-strict.py",
@@ -50465,8 +50935,8 @@
   "root_files": [
     {
       "path": "README.md",
-      "sha256": "b8781201fb6a09dc7e4c40583dff8c601b7eeaf25749bb7f401380fa83fdb95e",
-      "bytes": 116095
+      "sha256": "ba5a77b8c3d0dfb0bf9d2c9bed10ec7a193253656767ba96eb5ea2fd4380676c",
+      "bytes": 116096
     },
     {
       "path": "SECURITY.md",
@@ -50505,8 +50975,8 @@
     },
     {
       "path": "package.json",
-      "sha256": "c99aa00b46bab1bd699a6b2ec7c7d778d5de7a629f7aad24204738c2fd879b00",
-      "bytes": 9211
+      "sha256": "4249723f99715800029e33b572f24195a27d91092a8fb5429b3c45eb95dafaf4",
+      "bytes": 9315
     },
     {
       "path": ".releaserc.js",
@@ -50514,5 +50984,5 @@
       "bytes": 9135
     }
   ],
-  "aggregate_sha256": "44c18365e0df8cec7578e9aea0b392e76c0f709c09322cf456e2e6ae7ce080ec"
+  "aggregate_sha256": "49dead78ead369d22ddc8b03854d124ea8a1e391b784466ba54bee040a842803"
 }

@@ -1,0 +1,7 @@
+{
+  "name": "multi-02-broke-after-upgrade",
+  "task": "Latency and packet loss started right after the upgrade; check the rollback options.",
+  "tags": [
+    "multi-domain"
+  ]
+}

@@ -1,13 +1,13 @@
 ---
 name: "vanguard-cilium"
 displayName: "Vanguard Frontier — Cilium"
-description: "Reviews ciliumNetworkPolicy, CiliumClusterwideNetworkPolicy, NetworkPolicy, ClusterMesh cross-cluster policy semantics, and... Static review only; no live mutations."
+description: "Curated Cilium agents for dataplane diagnostics, external connectivity, lifecycle readiness, network policy. Routes via cilium-maestro-agent to specialist agents based on task scope. Static review only; no live mutations."
 keywords: ["cilium", "network-policy", "ebpf", "cluster-mesh"]
 author: "VincentChuWaiChow"
 ---
 # Vanguard Frontier — Cilium
 
-Reviews ciliumNetworkPolicy, CiliumClusterwideNetworkPolicy, NetworkPolicy, ClusterMesh cross-cluster policy semantics, and... Static review only; no live mutations.
+Curated Cilium agents for dataplane diagnostics, external connectivity, lifecycle readiness, network policy. Routes via cilium-maestro-agent to specialist agents based on task scope. Static review only; no live mutations.
 
 ## When to engage this Power
 
@@ -15,9 +15,9 @@ Activate when the task references Cilium services, resources, or operations. Do 
 
 ## Routing pattern
 
-- *(no maestro for this provider; reference agents directly under `agents/cilium/`)*
+- **`cilium-maestro-agent`** — classifies and routes the task to the right specialist
 
-Reference agents directly from agents/cilium/ without maestro-based routing.
+Use the maestro as the entry point: classify the task, then dispatch to one specialist or a parallel team of specialists. Never have the maestro itself execute a live mutation.
 
 ## Live-guard agents (gate_mode only)
 
@@ -27,12 +27,13 @@ Live-guard agents enforce approval, target confirmation, evidence capture, and r
 
 ## Invariants
 
+- Route all tasks through cilium-maestro-agent for proper classification and dispatch.
 - Static review only -- agents analyze configuration and provide findings without mutating live systems.
 - Network policies must be reviewed for unintended traffic blocking across namespaces and cluster-mesh endpoints.
 
 ## Where the agents live
 
-Agent specs and adapters are part of the [Vanguard Frontier Agentic](https://github.com/VincentChuWaiChow/vanguard-frontier-agentic) marketplace. For this provider, see `agents/cilium/` in that repository. The single agent in this provider ships a Kiro adapter (`harnesses/kiro-ide.agent.md`, `kiro-cli.agent.json`).
+Agent specs and adapters are part of the [Vanguard Frontier Agentic](https://github.com/VincentChuWaiChow/vanguard-frontier-agentic) marketplace. For this provider, see `agents/cilium/` in that repository. All 5 agents in this provider ship a Kiro adapter (`harnesses/kiro-ide.agent.md`, `kiro-cli.agent.json`).
 
 ## Companion install paths
 

@@ -1,0 +1,8 @@
+{
+  "name": "negative-05-tetragon",
+  "task": "Write a Tetragon TracingPolicy to SIGKILL curl.",
+  "tags": [
+    "negative-routing",
+    "regression:out-of-board"
+  ]
+}

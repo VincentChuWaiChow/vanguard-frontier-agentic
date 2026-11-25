@@ -66,7 +66,15 @@ OFFICIAL_SOURCES: dict[str, tuple[str, ...]] = {
     # for the atlassian-rovo-mcp-integration ledger; github.com/atlassian/ is the
     # vendor-maintained Rovo MCP Server repository.
     "developer.atlassian.com": ("/cloud/",),
-    "github.com": ("/oracle/", "/aws/", "/awslabs/", "/Azure/", "/googleapis/", "/aliyun/", "/scaleway/", "/ovh/", "/atlassian/"),
+    # Cilium board ledgers: the Cilium project's own documentation, its source and release
+    # repository (github.com/cilium/, raw files served from the same org), its sibling project
+    # Tetragon, and the Kubernetes and Gateway API projects whose APIs Cilium implements.
+    "docs.cilium.io": ("/en/",),
+    "tetragon.io": ("/docs/",),
+    "kubernetes.io": ("/docs/",),
+    "gateway-api.sigs.k8s.io": ("/",),
+    "raw.githubusercontent.com": ("/cilium/",),
+    "github.com": ("/oracle/", "/aws/", "/awslabs/", "/Azure/", "/googleapis/", "/aliyun/", "/scaleway/", "/ovh/", "/atlassian/", "/cilium/"),
     # GitHub Pages of the github.com/oracle organisation (Oracle NoSQL Node.js SDK reference).
     "oracle.github.io": ("/nosql-node-sdk/",),
 }

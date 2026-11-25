@@ -1,0 +1,60 @@
+{
+  "id": "cilium-lifecycle-readiness-agent",
+  "name": "Cilium Lifecycle Readiness",
+  "type": "agent",
+  "provider": "cilium",
+  "harnesses": [
+    "codex",
+    "copilot",
+    "claude-code",
+    "cursor",
+    "gemini",
+    "kiro"
+  ],
+  "summary": "Agent for cilium-lifecycle-readiness. Decide whether a proposed Cilium upgrade, rollback, CNI migration to Cilium, disruptive configuration change (IPAM mode, kube-proxy replacement toggle, ClusterMesh sizing) or security-advisory remediation is ready to enter an authorized change process: one-minor upgrade path, breaking changes, kernel and Kubernetes compatibility, rollback constraints and advisory applicability. Assesses readiness only; never runs preflight, Helm or Cilium CLI commands.",
+  "source_type": "original",
+  "official_docs": [
+    "https://docs.cilium.io/en/stable/operations/upgrade/",
+    "https://docs.cilium.io/en/stable/operations/system_requirements/",
+    "https://docs.cilium.io/en/stable/installation/k8s-install-migration/",
+    "https://docs.cilium.io/en/stable/network/concepts/ipam/",
+    "https://github.com/cilium/cilium/security/advisories"
+  ],
+  "security_notes": "Static review only. The upgrade preflight creates a DaemonSet and Deployment and is a mutation; Helm upgrades and migrations have no live guard and go to the human change process. An advisory is never dismissed on version alone or applied on version alone; the enabled feature decides.",
+  "last_verified": "2026-11-25",
+  "path": "agents/cilium/cilium-lifecycle-readiness-agent",
+  "harness_variants": {
+    "codex": "agents/cilium/cilium-lifecycle-readiness-agent/harnesses/codex.toml",
+    "copilot": "agents/cilium/cilium-lifecycle-readiness-agent/harnesses/copilot.agent.md",
+    "claude-code": "agents/cilium/cilium-lifecycle-readiness-agent/harnesses/claude-code.agent.md",
+    "cursor": "agents/cilium/cilium-lifecycle-readiness-agent/harnesses/cursor.agent.md",
+    "gemini": "agents/cilium/cilium-lifecycle-readiness-agent/harnesses/gemini.agent.md",
+    "kiro-ide": "agents/cilium/cilium-lifecycle-readiness-agent/harnesses/kiro-ide.agent.md",
+    "kiro-cli": "agents/cilium/cilium-lifecycle-readiness-agent/harnesses/kiro-cli.agent.json"
+  },
+  "author": "github: VincentChuWaiChow",
+  "version": "0.1.0",
+  "companion_skills": [
+    "cilium-lifecycle-readiness",
+    "cilium-evidence-boundary"
+  ],
+  "execution_tier": "static-review",
+  "lifecycle": "beta",
+  "routing_keywords": [
+    "Cilium upgrade",
+    "upgrade readiness",
+    "rollback",
+    "preflight",
+    "Helm values",
+    "deprecated",
+    "removed in 1.20",
+    "kernel requirement",
+    "CNI migration",
+    "migrate to Cilium",
+    "IPAM mode change",
+    "security advisory",
+    "GHSA",
+    "CVE applicability",
+    "version skew"
+  ]
+}

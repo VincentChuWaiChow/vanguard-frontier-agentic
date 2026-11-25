@@ -1,0 +1,30 @@
+{
+  "id": "cilium-dataplane-diagnostics",
+  "name": "Cilium Dataplane Diagnostics",
+  "type": "skill",
+  "provider": "cilium",
+  "harnesses": [
+    "codex",
+    "claude-code",
+    "cursor",
+    "gemini",
+    "kiro",
+    "other"
+  ],
+  "summary": "Rank competing explanations of observed Cilium datapath behavior (non-policy drops, intermittent timeouts, Service VIP unreachable with healthy pods, conntrack and BPF map pressure, kube-proxy replacement and socket load balancing, MTU, routing, endpoint regeneration) from supplied evidence, and name the next least-invasive observation that separates them. Includes capacity headroom from supplied counts. Static review: never runs commands, execs into the agent, captures packets or changes configuration.",
+  "source_type": "original",
+  "official_docs": [
+    "https://docs.cilium.io/en/stable/operations/troubleshooting/",
+    "https://docs.cilium.io/en/stable/network/ebpf/maps/",
+    "https://docs.cilium.io/en/stable/network/kubernetes/kubeproxy-free/",
+    "https://docs.cilium.io/en/stable/observability/metrics/",
+    "https://docs.cilium.io/en/stable/operations/performance/tuning/"
+  ],
+  "security_notes": "Static review only. Proposes cilium-dbg, hubble and tcpdump observations with their command class (privileged observation or higher) for an authorized operator; never requests sysdump or bugtool archives, which can contain configuration and keys.",
+  "last_verified": "2026-11-25",
+  "path": "skills/cilium/cilium-dataplane-diagnostics",
+  "author": "github: VincentChuWaiChow",
+  "version": "0.1.0",
+  "lifecycle": "beta",
+  "execution_tier": "static-review"
+}

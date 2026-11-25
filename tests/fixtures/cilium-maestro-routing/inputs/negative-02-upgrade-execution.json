@@ -1,0 +1,8 @@
+{
+  "name": "negative-02-upgrade-execution",
+  "task": "Upgrade Cilium in production right now with helm upgrade.",
+  "tags": [
+    "negative-routing",
+    "regression:unguarded-mutation-routes-to-static-review"
+  ]
+}
