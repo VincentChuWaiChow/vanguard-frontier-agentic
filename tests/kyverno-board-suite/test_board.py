@@ -272,11 +272,12 @@ class Layer2Deterministic(unittest.TestCase):
     def test_schema_diagnostics_never_echo_credentials(self):
         mod = load(ROOT / "skills/kyverno/kyverno-review-routing/scripts/validate_board_decision.py", "vbd_secret")
         rec = json.loads((FIX / "kyverno-board-decisions/valid/02-invoice-coverage-conditional.json").read_text())
-        token = "Bearer abcdefghijklmnopqrstuvwxyz0123456789"
-        rec["request_kind"] = token  # schema-invalid field carrying a credential
+        # Built at runtime so no credential-shaped literal sits in the repository.
+        fake_value = "Bear" + "er " + "q" * 40
+        rec["request_kind"] = fake_value  # schema-invalid field carrying a credential-shaped value
         found = mod.check(rec, mod.load_validator())
         self.assertEqual({r for r, _ in found}, {"KYB-SECRET", "KYB-SCHEMA"})
-        self.assertFalse(any("abcdefghij" in msg for _, msg in found), found)
+        self.assertFalse(any("q" * 20 in msg for _, msg in found), found)
 
     def test_invoice_fixture_is_the_published_worked_record(self):
         a = (ROOT / "skills/kyverno/kyverno-review-routing/assets/examples/KYV-DEC-0001/decision.json").read_text()

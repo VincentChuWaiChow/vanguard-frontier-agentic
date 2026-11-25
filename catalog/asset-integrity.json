@@ -38162,7 +38162,7 @@
     },
     {
       "tree": "tests",
-      "aggregate_sha256": "dd72f685b216c1aba5e6b15bc217fb1e447acae85754df313506ad57533cd7f2",
+      "aggregate_sha256": "027661b77f140ac8e64ec0cc7ecc4e689922ce12e26ac266d36254bf21a3123e",
       "files": [
         {
           "path": "tests/AGENTS.md",
@@ -51601,8 +51601,8 @@
         },
         {
           "path": "tests/kyverno-board-suite/test_board.py",
-          "sha256": "2b2cea77bf2626ecd87224dcce9d7d3f772df7a3de2c8c1a4c6d5c619e7c01ad",
-          "bytes": 20323
+          "sha256": "5224437c291a8452be1756985ce5c82bcc5cb0a90b7e43c46ac811ff9377ee09",
+          "bytes": 20405
         },
         {
           "path": "tests/mods.test.mjs",
@@ -51864,5 +51864,5 @@
       "bytes": 9135
     }
   ],
-  "aggregate_sha256": "3e8f99168b220d9b3cb42728a3c09419e54cac05cf11f7f8b9172630970c145f"
+  "aggregate_sha256": "22df6b18843fc95e28903f15e712379e84f01603d9b9361f4c6d29ed5950415d"
 }
