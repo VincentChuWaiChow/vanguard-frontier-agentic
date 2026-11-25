@@ -34,7 +34,7 @@
   "trees": [
     {
       "tree": "agents",
-      "aggregate_sha256": "6ce7bb58388ee26ffe58fe61083ffed75b6b9566c5f0ae541674b62ae5b747d7",
+      "aggregate_sha256": "af2fa45086c801620e7ad3ce37780a940229d4377270f0c81dd681a6710825ea",
       "files": [
         {
           "path": "agents/AGENTS.md",
@@ -19798,13 +19798,13 @@
         },
         {
           "path": "agents/kubernetes/kubernetes-live-admission-policy-guard-agent/references/least-privilege-rbac.yaml",
-          "sha256": "b0e83f631d3fdb81b1342eeb4fb19d57a4d350d89f8fdd2163a1af12d6057dd0",
-          "bytes": 5482
+          "sha256": "0ae70a4d338d5b403e365346c1477de1f6af9a6213e434ee29560001174bdbf6",
+          "bytes": 7252
         },
         {
           "path": "agents/kubernetes/kubernetes-live-admission-policy-guard-agent/references/rbac-pre-flight.md",
-          "sha256": "a16e1185e284619cc35eac2cffdb56bb7550c5c99dfded9b858718bf52b6a5a1",
-          "bytes": 5251
+          "sha256": "a54c0567be853ccbbcaf309e2f2f1c69b11cf2b3fff78146e9942d81dc2696d0",
+          "bytes": 6384
         },
         {
           "path": "agents/kubernetes/kubernetes-live-admission-policy-guard-agent/references/refusal-list.md",
@@ -36844,7 +36844,7 @@
     },
     {
       "tree": "catalog",
-      "aggregate_sha256": "caf420ef398167c75d9b8d5a6607d5d2c4d3da95415ceab9d85b706c7d03067a",
+      "aggregate_sha256": "7c67ed398ab4ae250cda6d81088406883e06d9d1fb2a3a26a6ba3a8302eb9368",
       "files": [
         {
           "path": "catalog/AGENTS.md",
@@ -36898,7 +36898,7 @@
         },
         {
           "path": "catalog/skill-manifest.json",
-          "sha256": "4d951394fbaeaeeca211b68bb296889707a43f891e8404a85576143c0553d244",
+          "sha256": "93eaa01577a9945c8c3271266ec285ce7162993af6d07928bec2a86c459b2045",
           "bytes": 1220088
         },
         {
@@ -38162,7 +38162,7 @@
     },
     {
       "tree": "tests",
-      "aggregate_sha256": "d058b4c5011d18fe443e05ff670ce71311e594abb2f0ce41f150f70cd66a0a2c",
+      "aggregate_sha256": "e323abd867a082f4f36fa353957c7ea11227bc871664f34b50cc315715d2e732",
       "files": [
         {
           "path": "tests/AGENTS.md",
@@ -51556,13 +51556,13 @@
         },
         {
           "path": "tests/integration/rbac-pre-flight/fixtures/crds.yaml",
-          "sha256": "03555179510ffa10e35dd19b800b5dc911266917e2af95bb5698acf8a46a57aa",
-          "bytes": 14607
+          "sha256": "5fef0480584f655865c7fd921c94ff3a1b918419f518c9b6897ac939f88ab456",
+          "bytes": 18915
         },
         {
           "path": "tests/integration/rbac-pre-flight/guards/admission-policy.sh",
-          "sha256": "8ab0b9a73ee61bce5e9ea1bb08970b9d4304d0aa839731f4d887ceff4cdd1c6d",
-          "bytes": 2682
+          "sha256": "863b11d3f93b55ed2f345342a5d4ce80b61a8b1293d9f2287bba5dd6aaade735",
+          "bytes": 3855
         },
         {
           "path": "tests/integration/rbac-pre-flight/guards/argocd-sync.sh",
@@ -51884,5 +51884,5 @@
       "bytes": 9135
     }
   ],
-  "aggregate_sha256": "a37b66c9b5cba9ff706a51918fcce9d135d13c4097bcd1f83b984bc09664f14b"
+  "aggregate_sha256": "f6a3820a3a27cef500411477262679176e37084706d8497e3bf8c9a4403484e2"
 }

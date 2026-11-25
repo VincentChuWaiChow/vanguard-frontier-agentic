@@ -15797,7 +15797,7 @@
     {
       "id": "kyverno-review-routing",
       "path": "skills/kyverno/kyverno-review-routing",
-      "aggregate_sha256": "3f58be0bf5578782004e3e154ad3a73a6cf5968f9336d011cf45879a93c792a0",
+      "aggregate_sha256": "0f311aa1f8dd3dfcc6c8ae9764c68a97268e31f9f6cdc6a202dc975c11a1f328",
       "files": [
         {
           "path": "skills/kyverno/kyverno-review-routing/SKILL.md",
@@ -15876,8 +15876,8 @@
         },
         {
           "path": "skills/kyverno/kyverno-review-routing/references/live-handoff.md",
-          "sha256": "ef00da92c537f56d692f51c4e522cc310cfe4ff7307e83242b3ecb33e1aba645",
-          "bytes": 4965
+          "sha256": "eff1a258201ddc55ea96636a9921a7fce0bab18c403e1726e4c50c92ec3bafdd",
+          "bytes": 5674
         },
         {
           "path": "skills/kyverno/kyverno-review-routing/references/referral-and-challenge.md",
