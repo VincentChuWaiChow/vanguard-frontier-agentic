@@ -38052,7 +38052,7 @@
     },
     {
       "tree": "tests",
-      "aggregate_sha256": "26b3f027cb4e7fba581383f94cb8b8a047d194572f9745c1ee4fa63494c2d423",
+      "aggregate_sha256": "135ed833621efea961d1bbb934b20187342408970b6c95992d5c8fa177d97b66",
       "files": [
         {
           "path": "tests/AGENTS.md",
@@ -41601,8 +41601,8 @@
         },
         {
           "path": "tests/fixtures/cilium-board-evals/sensitivity.py",
-          "sha256": "d1ca85797a49fb6ff6c823990cb0bc539b71d86eb2fb1a289f4fc3780e9aba50",
-          "bytes": 3033
+          "sha256": "09303a88aaad35a5b783e5d4959a5423362982a7eb2de6972b6c3a395cbdb083",
+          "bytes": 3022
         },
         {
           "path": "tests/fixtures/cilium-maestro-routing/build_fixture.py",
@@ -51089,5 +51089,5 @@
       "bytes": 9135
     }
   ],
-  "aggregate_sha256": "ccd48e6716e26ccb5f370b299ccbd01f5072775d4cd0d79792293343e0189679"
+  "aggregate_sha256": "7d1c1caee2bac9401a0873f42ef3302476e28063099a9385fa38c237094e11d2"
 }
