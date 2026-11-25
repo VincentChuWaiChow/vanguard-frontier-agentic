@@ -127,6 +127,28 @@ class Layer1Structure(unittest.TestCase):
             with self.assertRaises(SystemExit):
                 gen.skill_outputs("fake-skill", sources, vocab)
 
+    def test_generator_preserves_policy_managed_markdown_model_fields(self):
+        # model-policy:apply owns `model:`/`effort:` in the claude-code and cursor adapters;
+        # regenerating the board must not silently drop an applied override.
+        gen = load(ROOT / "scripts/gen_kyverno_board.py", "gen_kyverno_board_md")
+        board, sources, _ = gen.load()
+        agent = board["agents"][0]
+        fm = '---\nname: "x"\ndescription: "y"\nmodel: "{m}"\n{e}---\n\nbody\n'
+        existing = {
+            "harnesses/claude-code.agent.md": fm.format(m="opus", e='effort: "high"\n'),
+            "harnesses/cursor.agent.md": fm.format(m="inherit", e=""),
+            "harnesses/kiro-ide.agent.md": fm.format(m="hand-added", e=""),
+        }
+        files = gen.render_agent(agent, board, sources, existing)
+        claude = files["harnesses/claude-code.agent.md"].split("\n---\n", 1)[0]
+        self.assertTrue(claude.endswith('model: "opus"\neffort: "high"'), claude)
+        self.assertIn('\nmodel: "inherit"\n---\n', files["harnesses/cursor.agent.md"])
+        # Negative: a harness model-policy does not manage keeps no model line.
+        self.assertNotIn("model:", files["harnesses/kiro-ide.agent.md"].split("\n---\n", 1)[0])
+        # And with nothing on disk, no model line is invented.
+        bare = gen.render_agent(agent, board, sources, {})
+        self.assertNotIn("model:", bare["harnesses/claude-code.agent.md"].split("\n---\n", 1)[0])
+
     def test_ledgers_carry_only_cited_rows(self):
         marker = re.compile(r"\[(KYV-E\d+)\]")
         for skill in SKILLS:
