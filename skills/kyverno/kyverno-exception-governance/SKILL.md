@@ -75,6 +75,9 @@ Load [evidence vocabulary](references/evidence-vocabulary.md) first. Load the ot
 | --- | --- |
 | Which exception mechanism applies to this policy family and release, and what does each field do? | [exception mechanics](references/exception-mechanics.md) |
 | Is the exception necessary, scoped to the approval, and verifiably removed? | [disposition and expiry](references/disposition-and-expiry.md) |
+| Which exception shapes keep a deviation bounded, and how are they tested before approval? | [exception patterns](references/exception-patterns.md) |
+| How do I record one exception request with scope, compensating control, expiry and adjacent checks? | [exception request worksheet](assets/templates/exception-request.md) |
+| What is a tested PolicyException starting point with a compensating control? | [policy-exception starter kit](assets/templates/policy-exception-starter/README.md) |
 | Which source supports a cited claim, and is it release-pinned? | [evidence ledger](references/evidence-ledger.md) |
 
 ## Response minimum

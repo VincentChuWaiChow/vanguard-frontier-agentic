@@ -25,7 +25,9 @@
     "https://github.com/kyverno/kyverno/blob/v1.20.0/pkg/cel/libs/imageverify/lib.go",
     "https://kyverno.io/docs/policy-types/image-validating-policy/",
     "https://release-1-18-0.kyverno.io/docs/policy-types/cluster-policy/policy-settings/",
-    "https://github.com/kyverno/kyverno/blob/v1.20.0/config/crds/policies.kyverno.io/policies.kyverno.io_imagevalidatingpolicies.yaml"
+    "https://github.com/kyverno/kyverno/blob/v1.20.0/config/crds/policies.kyverno.io/policies.kyverno.io_imagevalidatingpolicies.yaml",
+    "https://github.com/kyverno/kyverno/blob/v1.20.0/charts/kyverno/values.yaml",
+    "https://kyverno.io/docs/installation/installation/"
   ],
   "security_notes": "Static review only. failurePolicy governs call and evaluation errors, not violations; Ignore can admit writes unevaluated during an outage and Fail can block writes. Estimates require measured latency and named recovery dependencies. Never probe webhooks, restart controllers or change webhook configuration.",
   "last_verified": "2026-11-24",

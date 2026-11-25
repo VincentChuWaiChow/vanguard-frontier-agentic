@@ -74,6 +74,9 @@ Load [evidence vocabulary](references/evidence-vocabulary.md) first. Load the ot
 | Which release and policy-family changes force a migration, and what is unverified? | [release and family scope](references/release-and-family-scope.md) |
 | What can an offline parity run prove, and what needs a running API server or controller? | [parity testing](references/parity-testing.md) |
 | Which cohorts move, in what order, and what restores prior behavior? | [cohort rollout and abort](references/cohort-rollout-and-abort.md) |
+| What can the pinned CLI prove for a migration corpus, and where does it mislead? | [offline test harness](references/offline-test-harness.md) |
+| What do I record per cohort to decide order, canary window, abort and rollback limits? | [cohort matrix worksheet](assets/templates/cohort-matrix.md) |
+| What does a corpus with every row naming its operation look like? | [parity corpus starter kit](assets/templates/parity-corpus-starter/README.md) |
 | Which source supports a cited claim, and is it release-pinned? | [evidence ledger](references/evidence-ledger.md) |
 
 ## Response minimum

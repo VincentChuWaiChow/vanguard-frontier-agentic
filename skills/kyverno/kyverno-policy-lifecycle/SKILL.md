@@ -75,6 +75,10 @@ Load [evidence vocabulary](references/evidence-vocabulary.md) first. Load the ot
 | What happens to generated downstream objects, and will a reconciler fight synchronization? | [generation and synchronization](references/generation-and-synchronization.md) |
 | What do mutate-existing and scheduled deletion change, and what stays changed? | [mutation and deletion](references/mutation-and-deletion.md) |
 | What does reverting the policy in Git actually restore? | [reversal and restoration](references/reversal-and-restoration.md) |
+| Which MutatingPolicy, GeneratingPolicy and DeletingPolicy fields decide blast radius, and how do I test them offline? | [CEL lifecycle patterns](references/cel-lifecycle-patterns.md) |
+| What do I record per object to judge what a rollback restores? | [state table worksheet](assets/templates/state-table.md) |
+| What does a tested MutatingPolicy look like? | [mutating policy starter kit](assets/templates/mutating-policy-starter/README.md) |
+| What does a tested GeneratingPolicy with explicit lifecycle switches look like? | [generating policy starter kit](assets/templates/generating-policy-starter/README.md) |
 | Which source supports a cited claim, and is it release-pinned? | [evidence ledger](references/evidence-ledger.md) |
 
 ## Response minimum

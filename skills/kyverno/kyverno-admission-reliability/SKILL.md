@@ -75,6 +75,9 @@ Load [evidence vocabulary](references/evidence-vocabulary.md) first. Load the ot
 | Which writes are rejected, delayed or admitted unevaluated when the Kyverno webhook or a dependency fails? | [webhook failure semantics](references/webhook-failure-semantics.md) |
 | Can the admission path absorb this change within its latency and error budget, and what aborts the release? | [release envelope](references/release-envelope.md) |
 | Which observation separates a correct policy denial from a webhook call error, an upstream API rejection, or stale reports? | [incident discrimination](references/incident-discrimination.md) |
+| Which writes never reach Kyverno, and what does a default install leave single-instance? | [webhook scope and defaults](references/webhook-scope-and-defaults.md) |
+| What do I record to judge whether the admission path can absorb this change? | [release envelope worksheet](assets/templates/release-envelope.md) |
+| How do I keep competing incident explanations separate until evidence settles them? | [incident hypotheses worksheet](assets/templates/incident-hypotheses.md) |
 | Which source supports a cited claim, and is it release-pinned? | [evidence ledger](references/evidence-ledger.md) |
 
 ## Response minimum

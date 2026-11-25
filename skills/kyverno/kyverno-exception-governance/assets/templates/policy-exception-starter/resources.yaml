@@ -1,0 +1,23 @@
+# 1. Approved workload WITH the compensating control: exception granted.
+apiVersion: v1
+kind: Pod
+metadata:
+  name: legacy-invoice-exporter
+  namespace: payments
+  labels:
+    network-isolation: strict
+spec:
+  containers:
+    - name: exporter
+      image: registry.example.invalid/payments/legacy-exporter@sha256:0000000000000000000000000000000000000000000000000000000000000004
+---
+# 2. Adjacent workload, same namespace, no exception: must stay covered.
+apiVersion: v1
+kind: Pod
+metadata:
+  name: invoice-batch-root
+  namespace: payments
+spec:
+  containers:
+    - name: batch
+      image: registry.example.invalid/payments/invoice-batch@sha256:0000000000000000000000000000000000000000000000000000000000000002

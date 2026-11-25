@@ -181,6 +181,71 @@ class Layer1Structure(unittest.TestCase):
                         self.assertTrue(str(target).startswith(str(own.resolve())), "link escapes the exported skill")
 
 
+class Layer1Templates(unittest.TestCase):
+    """Templates are part of the skill contract: discoverable, runnable, and free of known traps."""
+
+    def kits(self):
+        return sorted(p.parent for p in (ROOT / "skills/kyverno").glob("*/assets/templates/*/kyverno-test.yaml"))
+
+    def test_every_template_is_on_its_skill_loading_map(self):
+        for skill in SKILLS:
+            tdir = ROOT / "skills/kyverno" / skill / "assets/templates"
+            if not tdir.is_dir():
+                continue
+            text = (ROOT / "skills/kyverno" / skill / "SKILL.md").read_text()
+            for item in sorted(tdir.iterdir()):
+                link = f"assets/templates/{item.name}/README.md" if item.is_dir() else f"assets/templates/{item.name}"
+                with self.subTest(skill=skill, template=item.name):
+                    self.assertIn(f"]({link})", text, "template not reachable from the entry point")
+
+    def test_every_skill_ships_at_least_one_template(self):
+        for skill in SKILLS:
+            with self.subTest(skill=skill):
+                self.assertTrue(any((ROOT / "skills/kyverno" / skill / "assets/templates").glob("*")))
+
+    def test_starter_kits_are_complete(self):
+        kits = self.kits()
+        self.assertGreaterEqual(len(kits), 6)
+        for kit in kits:
+            with self.subTest(kit=str(kit.relative_to(ROOT))):
+                self.assertTrue((kit / "README.md").is_file())
+                yaml_text = "".join(p.read_text() for p in kit.rglob("*.yaml"))
+                self.assertIn("TEMPLATE", yaml_text, "kit must mark what to replace")
+
+    def test_starter_kits_avoid_known_traps(self):
+        traps = [
+            (re.compile(r"controllers:\s*\[[^\]]*\b[A-Z][a-zA-Z]+"), "autogen controllers must be lowercase plural resource names (KYV-E38/E39)"),
+            (re.compile(r"\.registry\b(?!\()"), "image().registry() is a method; field style fails to compile"),
+            (re.compile(r"attestors\.[a-zA-Z0-9]*-"), "attestor names must be CEL identifiers (no hyphens)"),
+            (re.compile(r"^\s*validationFailureAction:", re.M), "legacy ClusterPolicy field in a v1 starter kit"),
+        ]
+        for kit in self.kits():
+            for path in kit.rglob("*.yaml"):
+                text = path.read_text()
+                for pattern, why in traps:
+                    with self.subTest(file=str(path.relative_to(ROOT)), why=why):
+                        self.assertIsNone(pattern.search(text), why)
+
+    def test_policy_kits_set_lifecycle_switches_explicitly(self):
+        for kit in self.kits():
+            policy = kit / "policy.yaml"
+            if not policy.is_file():
+                continue
+            text = policy.read_text()
+            with self.subTest(kit=kit.name):
+                if "kind: ValidatingPolicy" in text or "kind: ImageValidatingPolicy" in text:
+                    self.assertRegex(text, r"(?m)^  validationActions: ")
+                    self.assertRegex(text, r"(?m)^  failurePolicy: (Fail|Ignore)$")
+                if "kind: GeneratingPolicy" in text:
+                    for switch in ("generateExisting", "synchronize", "orphanDownstreamOnPolicyDelete"):
+                        self.assertIn(switch, text)
+
+    def test_decision_record_template_is_valid(self):
+        mod = load(ROOT / "skills/kyverno/kyverno-review-routing/scripts/validate_board_decision.py", "vbd_template")
+        record = json.loads((ROOT / "skills/kyverno/kyverno-review-routing/assets/templates/decision-record.template.json").read_text())
+        self.assertEqual(mod.check(record, mod.load_validator()), [])
+
+
 class Layer2Deterministic(unittest.TestCase):
     def test_routing_fixtures_cover_every_seat_with_trigger_and_near_neighbor(self):
         grader = load(ROOT / "tests/validate-maestro-routing.py", "validate_maestro_routing")
@@ -230,8 +295,10 @@ class Layer2Deterministic(unittest.TestCase):
             self.skipTest("pinned kyverno CLI not available (set KYVERNO_CLI); layer 2 policy fixtures NOT verified in this run")
         version = subprocess.run([cli, "version"], capture_output=True, text=True).stdout
         self.assertIn(f"Version: {PINNED_CLI}", version, "fixtures record behavior of the pinned CLI only")
-        res = subprocess.run([cli, "test", str(FIX / "kyverno-policy-cli")], capture_output=True, text=True)
-        self.assertEqual(res.returncode, 0, res.stdout[-3000:] + res.stderr[-2000:])
+        for target in (FIX / "kyverno-policy-cli", ROOT / "skills/kyverno"):
+            with self.subTest(target=str(target.relative_to(ROOT))):
+                res = subprocess.run([cli, "test", str(target)], capture_output=True, text=True)
+                self.assertEqual(res.returncode, 0, res.stdout[-3000:] + res.stderr[-2000:])
 
 
 class Layer3And4Status(unittest.TestCase):

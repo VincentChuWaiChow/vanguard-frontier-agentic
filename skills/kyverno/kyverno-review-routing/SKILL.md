@@ -73,6 +73,8 @@ Load [evidence vocabulary](references/evidence-vocabulary.md) first. Load the ot
 | When does a finding become a Jira issue or Confluence page, and how do they stay linked? | [Atlassian handoff](references/atlassian-handoff.md) |
 | What happens when a request asks for a live change? | [live handoff](references/live-handoff.md) |
 | What does a complete, internally consistent decision record look like? | [decision schema](assets/board-decision.schema.json) and the worked records under `assets/examples/` |
+| How do I record one referral with one return question? | [referral worksheet](assets/templates/referral.md) |
+| What does a minimal valid decision record look like? | [decision record template](assets/templates/decision-record.template.json) |
 | Which source supports a cited claim, and is it release-pinned? | [evidence ledger](references/evidence-ledger.md) |
 
 ## Response minimum

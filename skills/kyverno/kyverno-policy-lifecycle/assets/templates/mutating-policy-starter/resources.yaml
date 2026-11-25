@@ -1,0 +1,7 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: invoice-settings
+  namespace: payments
+data:
+  retries: "3"

@@ -18,7 +18,10 @@
     "https://kyverno.io/docs/guides/reports/",
     "https://kyverno.io/docs/guides/monitoring/",
     "https://github.com/kyverno/kyverno/blob/v1.20.0/config/crds/policies.kyverno.io/policies.kyverno.io_policyexceptions.yaml",
-    "https://release-1-18-0.kyverno.io/docs/policy-types/cluster-policy/policy-settings/"
+    "https://release-1-18-0.kyverno.io/docs/policy-types/cluster-policy/policy-settings/",
+    "https://github.com/kyverno/kyverno/blob/v1.20.0/charts/kyverno/values.yaml",
+    "https://github.com/kyverno/kyverno/blob/v1.20.0/config/crds/policyreport/wgpolicyk8s.io_policyreports.yaml",
+    "https://kyverno.io/docs/policy-types/validating-policy/"
   ],
   "security_notes": "Static review only. Exceptions report as skip and are not demonstrated prevention; denied writes are visible in metrics and events, not reports. Never present a percentage without its population and window.",
   "last_verified": "2026-11-24",

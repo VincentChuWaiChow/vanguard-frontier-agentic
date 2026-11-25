@@ -12275,7 +12275,9 @@
       "https://github.com/kyverno/kyverno/blob/v1.20.0/pkg/cel/libs/imageverify/lib.go",
       "https://kyverno.io/docs/policy-types/image-validating-policy/",
       "https://release-1-18-0.kyverno.io/docs/policy-types/cluster-policy/policy-settings/",
-      "https://github.com/kyverno/kyverno/blob/v1.20.0/config/crds/policies.kyverno.io/policies.kyverno.io_imagevalidatingpolicies.yaml"
+      "https://github.com/kyverno/kyverno/blob/v1.20.0/config/crds/policies.kyverno.io/policies.kyverno.io_imagevalidatingpolicies.yaml",
+      "https://github.com/kyverno/kyverno/blob/v1.20.0/charts/kyverno/values.yaml",
+      "https://kyverno.io/docs/installation/installation/"
     ],
     "security_notes": "Static review only. failurePolicy governs call and evaluation errors, not violations; Ignore can admit writes unevaluated during an outage and Fail can block writes. Estimates require measured latency and named recovery dependencies. Never probe webhooks, restart controllers or change webhook configuration.",
     "last_verified": "2026-11-24",
@@ -12305,7 +12307,10 @@
       "https://kyverno.io/docs/guides/reports/",
       "https://kyverno.io/docs/guides/monitoring/",
       "https://github.com/kyverno/kyverno/blob/v1.20.0/config/crds/policies.kyverno.io/policies.kyverno.io_policyexceptions.yaml",
-      "https://release-1-18-0.kyverno.io/docs/policy-types/cluster-policy/policy-settings/"
+      "https://release-1-18-0.kyverno.io/docs/policy-types/cluster-policy/policy-settings/",
+      "https://github.com/kyverno/kyverno/blob/v1.20.0/charts/kyverno/values.yaml",
+      "https://github.com/kyverno/kyverno/blob/v1.20.0/config/crds/policyreport/wgpolicyk8s.io_policyreports.yaml",
+      "https://kyverno.io/docs/policy-types/validating-policy/"
     ],
     "security_notes": "Static review only. Exceptions report as skip and are not demonstrated prevention; denied writes are visible in metrics and events, not reports. Never present a percentage without its population and window.",
     "last_verified": "2026-11-24",
@@ -12337,7 +12342,9 @@
       "https://github.com/kyverno/kyverno/blob/v1.20.0/pkg/cel/engine/exception.go",
       "https://github.com/kyverno/kyverno/blob/v1.20.0/cmd/internal/flag.go",
       "https://kyverno.io/docs/guides/exceptions/",
-      "https://github.com/kyverno/kyverno/blob/v1.20.0/pkg/admissionpolicy/celexception_checker.go"
+      "https://github.com/kyverno/kyverno/blob/v1.20.0/pkg/admissionpolicy/celexception_checker.go",
+      "https://release-1-18-0.kyverno.io/docs/policy-types/cluster-policy/policy-settings/",
+      "https://github.com/kyverno/kyverno/blob/v1.20.0/pkg/cel/libs/variables.go"
     ],
     "security_notes": "Static review only. An exception is a documented bypass; scope must match the approval exactly and adjacent workloads must remain covered. Offline CLI results do not establish expiry behavior. No agent approves its own exception or infers approval from ticket status.",
     "last_verified": "2026-11-24",
@@ -12369,6 +12376,8 @@
       "https://github.com/kyverno/kyverno/blob/v1.20.0/config/crds/policies.kyverno.io/policies.kyverno.io_validatingpolicies.yaml",
       "https://kyverno.io/docs/guides/reports/",
       "https://github.com/kyverno/kyverno/blob/v1.20.0/pkg/cel/engine/exception.go",
+      "https://github.com/kyverno/kyverno/blob/v1.20.0/cmd/internal/flag.go",
+      "https://kyverno.io/docs/guides/exceptions/",
       "https://kyverno.io/docs/policy-types/mutating-policy/",
       "https://kyverno.io/docs/policy-types/deleting-policy/",
       "https://github.com/kyverno/kyverno/blob/v1.20.0/cmd/cli/kubectl-kyverno/apis/v1alpha1/test_result.go",
@@ -12376,7 +12385,9 @@
       "https://github.com/kyverno/kyverno/blob/v1.20.0/pkg/admissionpolicy/celexception_checker.go",
       "https://kubernetes.io/docs/reference/access-authn-authz/validating-admission-policy/",
       "https://release-1-18-0.kyverno.io/docs/policy-types/cluster-policy/policy-settings/",
-      "https://istio.io/latest/docs/setup/upgrade/canary/"
+      "https://istio.io/latest/docs/setup/upgrade/canary/",
+      "https://github.com/kyverno/kyverno/blob/v1.20.0/pkg/cel/autogen/extraction.go",
+      "https://kyverno.io/docs/policy-types/cel-libraries/"
     ],
     "security_notes": "Static review only. Offline CLI parity is input-bounded: UPDATE in the CLI uses identical old and new objects, so UPDATE-sensitive controls need old/new object evidence. Never assume the latest release or execute an upgrade.",
     "last_verified": "2026-11-24",
@@ -12408,7 +12419,11 @@
       "https://github.com/kyverno/kyverno/blob/v1.20.0/config/crds/policies.kyverno.io/policies.kyverno.io_generatingpolicies.yaml",
       "https://kyverno.io/docs/policy-types/mutating-policy/",
       "https://kyverno.io/docs/policy-types/deleting-policy/",
-      "https://release-1-18-0.kyverno.io/docs/policy-types/cluster-policy/policy-settings/"
+      "https://kyverno.io/docs/kyverno-cli/reference/kyverno_test/",
+      "https://release-1-18-0.kyverno.io/docs/policy-types/cluster-policy/policy-settings/",
+      "https://github.com/kyverno/kyverno/blob/v1.20.0/config/crds/policies.kyverno.io/policies.kyverno.io_mutatingpolicies.yaml",
+      "https://github.com/kyverno/kyverno/blob/v1.20.0/config/crds/policies.kyverno.io/policies.kyverno.io_deletingpolicies.yaml",
+      "https://github.com/kyverno/kyverno/blob/v1.20.0/cmd/cli/kubectl-kyverno/apis/v1alpha1/test_result.go"
     ],
     "security_notes": "Static review only. DeletingPolicy is destructive and mutateExisting can rewrite every matching object; removing a policy does not restore modified or deleted data. Never run generators, cleanup or syncs.",
     "last_verified": "2026-11-24",
@@ -12449,7 +12464,12 @@
       "https://kubernetes.io/docs/reference/access-authn-authz/validating-admission-policy/",
       "https://release-1-18-0.kyverno.io/docs/policy-types/cluster-policy/policy-settings/",
       "https://istio.io/latest/docs/ambient/architecture/data-plane/",
-      "https://istio.io/latest/docs/ambient/usage/waypoint/"
+      "https://istio.io/latest/docs/ambient/usage/waypoint/",
+      "https://github.com/kyverno/kyverno/blob/v1.20.0/pkg/cel/autogen/extraction.go",
+      "https://github.com/kyverno/kyverno/blob/v1.20.0/pkg/controllers/admissionpolicygenerator/generate-vap.go",
+      "https://kyverno.io/docs/policy-types/validating-policy/",
+      "https://kyverno.io/docs/policy-types/cel-libraries/",
+      "https://github.com/kyverno/kyverno/blob/v1.20.0/cmd/cli/kubectl-kyverno/apis/v1alpha1/test.go"
     ],
     "security_notes": "Static review only. Severity of Audit or Warn depends on control intent, rollout stage, owner and deadline; a mandatory preventive control left in Audit past its deadline is a defect, an approved time-bounded canary is not. Signature verification alone does not satisfy an attestation or signer-restricted requirement. Never collect cluster evidence or mutate policy.",
     "last_verified": "2026-11-24",

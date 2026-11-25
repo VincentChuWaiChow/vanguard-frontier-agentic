@@ -1,0 +1,47 @@
+# TEMPLATE: ValidatingPolicy starter (policies.kyverno.io/v1, verified with kyverno CLI v1.20.0).
+# Replace every value marked TEMPLATE. Keep each field explicit: defaults are release-specific.
+apiVersion: policies.kyverno.io/v1
+kind: ValidatingPolicy
+metadata:
+  name: example-require-run-as-non-root          # TEMPLATE: control name
+  annotations:
+    policies.kyverno.io/owner: payments-platform # TEMPLATE: accountable owner (role or team, never a person's token)
+spec:
+  # Deny blocks the write; Audit records it; Warn returns a warning. Choose from intent, rollout stage and deadline.
+  validationActions: [Deny]
+  # Fail rejects matching writes when evaluation errors; Ignore admits them unevaluated. Governs errors, not violations.
+  failurePolicy: Fail
+  webhookConfiguration:
+    timeoutSeconds: 10                            # 1-30 seconds
+  evaluation:
+    admission:
+      enabled: true
+    background:
+      enabled: true                               # must be false if a rule reads request-only data (e.g. user info)
+  # Pod rules are auto-generated for pod controllers unless disabled; native VAP generation is opt-in per policy.
+  autogen:
+    podControllers:
+      enabled: true
+      controllers: [deployments, statefulsets, daemonsets, jobs, cronjobs]  # TEMPLATE: lowercase plural resource names
+    validatingAdmissionPolicy:
+      enabled: false
+  matchConstraints:
+    resourceRules:
+      - apiGroups: [""]
+        apiVersions: [v1]
+        operations: [CREATE, UPDATE]              # TEMPLATE: every operation that can introduce the violation
+        resources: [pods]
+  matchConditions:
+    - name: in-scope-namespace                    # TEMPLATE: scope; keep it as narrow as the approved control
+      expression: "object.metadata.namespace == 'payments'"
+  variables:
+    - name: containers
+      expression: "object.spec.containers + object.spec.?initContainers.orValue([])"
+  validations:
+    - expression: >-
+        variables.containers.all(c, c.?securityContext.?runAsNonRoot.orValue(false) == true)
+      # The message is the developer's only instruction: name the field to fix and who to ask.
+      message: >-
+        example-require-run-as-non-root: set securityContext.runAsNonRoot=true on every container
+        and init container. If the image cannot run as non-root, ask the payments platform owner
+        for a time-bound PolicyException.

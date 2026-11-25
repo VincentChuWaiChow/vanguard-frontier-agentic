@@ -78,6 +78,10 @@ Load [evidence vocabulary](references/evidence-vocabulary.md) first. Load the ot
 | Which requests and stored objects does this rule actually see, and when is it evaluated? | [request matching and evaluation](references/request-matching-and-evaluation.md) |
 | Which image, signer identity and attestation claim does admission actually verify? | [artifact admission](references/artifact-admission.md) |
 | Which parts of a mesh question can Kyverno decide, and which need Istio evidence? | [mesh referral](references/mesh-referral.md) |
+| Which CEL authoring choices (messages, autogen, native generation, libraries, live lookups) change what is evaluated, and how are they proved offline? | [CEL authoring and autogen](references/cel-authoring-and-autogen.md) |
+| How do I record legitimate, violating and adjacent cases against action, intent and stage? | [decision table worksheet](assets/templates/decision-table.md) |
+| What is a tested ValidatingPolicy starting point with autogen and adjacent cases? | [validating-policy starter kit](assets/templates/validating-policy-starter/README.md) |
+| What is a starting point for an image policy, and what does it verify offline? | [image-validating-policy starter kit](assets/templates/image-validating-policy-starter/README.md) |
 | Which source supports a cited claim, and is it release-pinned? | [evidence ledger](references/evidence-ledger.md) |
 
 ## Response minimum

@@ -1,0 +1,21 @@
+apiVersion: cli.kyverno.io/v1alpha1
+kind: Test
+metadata:
+  name: policy-exception-starter
+policies:
+  - policy.yaml
+resources:
+  - resources.yaml
+exceptions:
+  - exception.yaml
+results:
+  - isValidatingPolicy: true
+    policy: payments-run-as-non-root
+    kind: Pod
+    resources: [payments/legacy-invoice-exporter]
+    result: skip
+  - isValidatingPolicy: true
+    policy: payments-run-as-non-root
+    kind: Pod
+    resources: [payments/invoice-batch-root]
+    result: fail

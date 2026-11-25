@@ -1,0 +1,32 @@
+# Parity corpus: the same objects for every engine and release under comparison.
+apiVersion: v1
+kind: Pod
+metadata:
+  name: legitimate-workload
+  namespace: payments
+spec:
+  initContainers:
+    - name: init
+      image: registry.example.invalid/init@sha256:0000000000000000000000000000000000000000000000000000000000000010
+      securityContext:
+        runAsNonRoot: true
+  containers:
+    - name: app
+      image: registry.example.invalid/app@sha256:0000000000000000000000000000000000000000000000000000000000000011
+      securityContext:
+        runAsNonRoot: true
+---
+apiVersion: v1
+kind: Pod
+metadata:
+  name: violating-workload
+  namespace: payments
+spec:
+  initContainers:
+    - name: init
+      image: registry.example.invalid/init@sha256:0000000000000000000000000000000000000000000000000000000000000010
+  containers:
+    - name: app
+      image: registry.example.invalid/app@sha256:0000000000000000000000000000000000000000000000000000000000000011
+      securityContext:
+        runAsNonRoot: true

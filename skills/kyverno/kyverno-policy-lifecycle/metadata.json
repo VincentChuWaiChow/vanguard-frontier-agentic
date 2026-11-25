@@ -20,7 +20,11 @@
     "https://github.com/kyverno/kyverno/blob/v1.20.0/config/crds/policies.kyverno.io/policies.kyverno.io_generatingpolicies.yaml",
     "https://kyverno.io/docs/policy-types/mutating-policy/",
     "https://kyverno.io/docs/policy-types/deleting-policy/",
-    "https://release-1-18-0.kyverno.io/docs/policy-types/cluster-policy/policy-settings/"
+    "https://kyverno.io/docs/kyverno-cli/reference/kyverno_test/",
+    "https://release-1-18-0.kyverno.io/docs/policy-types/cluster-policy/policy-settings/",
+    "https://github.com/kyverno/kyverno/blob/v1.20.0/config/crds/policies.kyverno.io/policies.kyverno.io_mutatingpolicies.yaml",
+    "https://github.com/kyverno/kyverno/blob/v1.20.0/config/crds/policies.kyverno.io/policies.kyverno.io_deletingpolicies.yaml",
+    "https://github.com/kyverno/kyverno/blob/v1.20.0/cmd/cli/kubectl-kyverno/apis/v1alpha1/test_result.go"
   ],
   "security_notes": "Static review only. DeletingPolicy is destructive and mutateExisting can rewrite every matching object; removing a policy does not restore modified or deleted data. Never run generators, cleanup or syncs.",
   "last_verified": "2026-11-24",

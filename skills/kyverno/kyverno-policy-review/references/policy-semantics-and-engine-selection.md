@@ -58,7 +58,7 @@ The two Audit rows get different severities because intent and deadline differ, 
 
 - Use native ValidatingAdmissionPolicy when the rule is a pure admission check on the request and a binding can scope it [KYV-E27].
 - Use a Kyverno CEL policy when the rule needs image verification, generation, mutate-existing or PolicyReports; these are Kyverno capabilities [KYV-E18] [KYV-E20] [KYV-E22], and a native ValidatingAdmissionPolicy is a validation-only mechanism (inference from its definition; confirm against the Kubernetes release in use).
-- Kyverno can generate a native ValidatingAdmissionPolicy from a ValidatingPolicy when the `generateValidatingAdmissionPolicy` toggle is on (default true at v1.20.0); an exception with compensating validations blocks that translation, so the rule then stays on the Kyverno webhook path [KYV-E26].
+- Kyverno generates a native ValidatingAdmissionPolicy from a ValidatingPolicy only when all of these hold: the controller toggle is on (default true at v1.20.0) [KYV-E26]; the policy sets `autogen.validatingAdmissionPolicy.enabled: true` (default false) [KYV-E37]; pod-controller autogen produces no rules, which for a Pod policy means `autogen.podControllers` is disabled or empty (it is enabled by default) [KYV-E37] [KYV-E40]; and no exception defines compensating validations [KYV-E26]. A default Pod policy therefore stays on the Kyverno webhook path; confirm with `installed-config` showing the generated ValidatingAdmissionPolicy and its binding.
 
 ## Worked example (synthetic)
 

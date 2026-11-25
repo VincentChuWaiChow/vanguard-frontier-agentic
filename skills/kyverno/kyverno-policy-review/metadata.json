@@ -29,7 +29,12 @@
     "https://kubernetes.io/docs/reference/access-authn-authz/validating-admission-policy/",
     "https://release-1-18-0.kyverno.io/docs/policy-types/cluster-policy/policy-settings/",
     "https://istio.io/latest/docs/ambient/architecture/data-plane/",
-    "https://istio.io/latest/docs/ambient/usage/waypoint/"
+    "https://istio.io/latest/docs/ambient/usage/waypoint/",
+    "https://github.com/kyverno/kyverno/blob/v1.20.0/pkg/cel/autogen/extraction.go",
+    "https://github.com/kyverno/kyverno/blob/v1.20.0/pkg/controllers/admissionpolicygenerator/generate-vap.go",
+    "https://kyverno.io/docs/policy-types/validating-policy/",
+    "https://kyverno.io/docs/policy-types/cel-libraries/",
+    "https://github.com/kyverno/kyverno/blob/v1.20.0/cmd/cli/kubectl-kyverno/apis/v1alpha1/test.go"
   ],
   "security_notes": "Static review only. Severity of Audit or Warn depends on control intent, rollout stage, owner and deadline; a mandatory preventive control left in Audit past its deadline is a defect, an approved time-bounded canary is not. Signature verification alone does not satisfy an attestation or signer-restricted requirement. Never collect cluster evidence or mutate policy.",
   "last_verified": "2026-11-24",

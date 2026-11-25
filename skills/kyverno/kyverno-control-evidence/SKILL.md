@@ -75,6 +75,8 @@ Load [evidence vocabulary](references/evidence-vocabulary.md) first. Load the ot
 | What numerator, denominator and window support a coverage claim, and what must not be counted? | [population and coverage](references/population-and-coverage.md) |
 | Which evidence stream shows which outcome, and how do empty, stale, excluded and denied cases differ? | [report and event streams](references/report-and-event-streams.md) |
 | Which business measures can a pilot report honestly, and which counter-metric keeps each one honest? | [pilot measures](references/pilot-measures.md) |
+| What does a PolicyReport record, and which questions can its fields answer? | [report schema and queries](references/report-schema-and-queries.md) |
+| How do I record each claim with numerator, denominator, window and blind spots? | [evidence pack worksheet](assets/templates/evidence-pack.md) |
 | Which source supports a cited claim, and is it release-pinned? | [evidence ledger](references/evidence-ledger.md) |
 
 ## Response minimum

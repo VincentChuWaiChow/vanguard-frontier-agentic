@@ -20,6 +20,8 @@
     "https://github.com/kyverno/kyverno/blob/v1.20.0/config/crds/policies.kyverno.io/policies.kyverno.io_validatingpolicies.yaml",
     "https://kyverno.io/docs/guides/reports/",
     "https://github.com/kyverno/kyverno/blob/v1.20.0/pkg/cel/engine/exception.go",
+    "https://github.com/kyverno/kyverno/blob/v1.20.0/cmd/internal/flag.go",
+    "https://kyverno.io/docs/guides/exceptions/",
     "https://kyverno.io/docs/policy-types/mutating-policy/",
     "https://kyverno.io/docs/policy-types/deleting-policy/",
     "https://github.com/kyverno/kyverno/blob/v1.20.0/cmd/cli/kubectl-kyverno/apis/v1alpha1/test_result.go",
@@ -27,7 +29,9 @@
     "https://github.com/kyverno/kyverno/blob/v1.20.0/pkg/admissionpolicy/celexception_checker.go",
     "https://kubernetes.io/docs/reference/access-authn-authz/validating-admission-policy/",
     "https://release-1-18-0.kyverno.io/docs/policy-types/cluster-policy/policy-settings/",
-    "https://istio.io/latest/docs/setup/upgrade/canary/"
+    "https://istio.io/latest/docs/setup/upgrade/canary/",
+    "https://github.com/kyverno/kyverno/blob/v1.20.0/pkg/cel/autogen/extraction.go",
+    "https://kyverno.io/docs/policy-types/cel-libraries/"
   ],
   "security_notes": "Static review only. Offline CLI parity is input-bounded: UPDATE in the CLI uses identical old and new objects, so UPDATE-sensitive controls need old/new object evidence. Never assume the latest release or execute an upgrade.",
   "last_verified": "2026-11-24",

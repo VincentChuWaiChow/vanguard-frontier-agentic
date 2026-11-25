@@ -1,17 +1,19 @@
 name: Kyverno Policy Fixtures
 
-# Layer 2 of the Kyverno board verification: run the offline policy fixtures with the
-# pinned kyverno CLI. These results establish behavior for the fixture inputs only; they
+# Layer 2 of the Kyverno board verification: run the offline policy fixtures and the skills'
+# starter kits with the pinned kyverno CLI. These results establish behavior for the inputs only; they
 # never establish webhook availability, controller-side exception expiry or populations.
 on:
   push:
     paths:
       - 'tests/fixtures/kyverno-policy-cli/**'
+      - 'skills/kyverno/**/assets/templates/**'
       - 'tests/kyverno-board-suite/**'
       - '.github/workflows/kyverno-policy-fixtures.yml'
   pull_request:
     paths:
       - 'tests/fixtures/kyverno-policy-cli/**'
+      - 'skills/kyverno/**/assets/templates/**'
       - 'tests/kyverno-board-suite/**'
       - '.github/workflows/kyverno-policy-fixtures.yml'
   workflow_dispatch: {}
@@ -44,6 +46,7 @@ jobs:
         run: |
           "$KYVERNO_CLI" version
           "$KYVERNO_CLI" test tests/fixtures/kyverno-policy-cli
+          "$KYVERNO_CLI" test skills/kyverno
       - name: Assert the suite used the pinned CLI
         run: python3 -m unittest -v test_board.Layer2Deterministic.test_policy_fixtures_pass_with_pinned_cli
         working-directory: tests/kyverno-board-suite

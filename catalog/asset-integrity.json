@@ -36844,7 +36844,7 @@
     },
     {
       "tree": "catalog",
-      "aggregate_sha256": "1e72dbf79b02ecb770f4c97d0a8a6bde6d871f9b2f24001f58774368fcb2ad30",
+      "aggregate_sha256": "a27b36004b0ae41551d45c8fdac2119a346828dfef7cfd1bb98bcc855823b049",
       "files": [
         {
           "path": "catalog/AGENTS.md",
@@ -36898,13 +36898,13 @@
         },
         {
           "path": "catalog/skill-manifest.json",
-          "sha256": "3a6cc18ba2817a52890a41f650e8111c0aecc68061f63ebd0d5d27a355e5a422",
-          "bytes": 1209023
+          "sha256": "4cd2170fb9598f939d43ab84bbd6b4369fecae7fc032c67915f5b0a8e39fad63",
+          "bytes": 1219838
         },
         {
           "path": "catalog/skills.json",
-          "sha256": "97aa0beef41a56016dc3cc590f5ec741049a10c5067cfa47b1e7fede580d6411",
-          "bytes": 1287927
+          "sha256": "34345d93c022529061de5f06341a1762dd8cca23a7b882ed9eaf212ceacdd170",
+          "bytes": 1289661
         },
         {
           "path": "catalog/workflows.json",
@@ -36915,7 +36915,7 @@
     },
     {
       "tree": "scripts",
-      "aggregate_sha256": "5ae89baf6db769a57c3e271a7541bad2978e7a1d3794997cf709da99db5b8c21",
+      "aggregate_sha256": "00984f4a71e1d9267fc903de05c516bdfdde42507995281d32ea9efe7444823b",
       "files": [
         {
           "path": "scripts/apply-skill-allowed-tools.py",
@@ -37229,8 +37229,8 @@
         },
         {
           "path": "scripts/kyverno_data/sources.json",
-          "sha256": "e6cf7a4a8e71a8f6be1d346aa5b599a4cf1f9320ef9b1ac8bbf4596ef49636a9",
-          "bytes": 17834
+          "sha256": "a838ca8f4eaa58054b39726287e71efd175283331a457ad5f45257d2b6b7d148",
+          "bytes": 26096
         },
         {
           "path": "scripts/model-policy.mjs",
@@ -38162,7 +38162,7 @@
     },
     {
       "tree": "tests",
-      "aggregate_sha256": "8d701b42069a481f3cba757b0d6e732688b4fc2658b97d98c9babed3fdd02d24",
+      "aggregate_sha256": "c15f03e84f48eeee2f713fa0d522c01f6cb5303a83bda366e62a343e8d615ed9",
       "files": [
         {
           "path": "tests/AGENTS.md",
@@ -51556,8 +51556,8 @@
         },
         {
           "path": "tests/kyverno-board-suite/test_board.py",
-          "sha256": "b4609dba392ad7c42256b60d9d848fd17eb20efc8caed6eb6c4a1bedd09c269f",
-          "bytes": 15939
+          "sha256": "4708400707f4ac700ec05103d0eba2a99eff47e7ec297fd1cb6aa6032af9f48f",
+          "bytes": 19676
         },
         {
           "path": "tests/mods.test.mjs",
@@ -51819,5 +51819,5 @@
       "bytes": 9135
     }
   ],
-  "aggregate_sha256": "a2a4bdacc59545ea5d10d398d8112fc6a7a6253c1c76363a0f1329a436592fe7"
+  "aggregate_sha256": "9dc674cd30bb243450b7de9734cc1e999677383fb30032d09b653d36dabf882b"
 }

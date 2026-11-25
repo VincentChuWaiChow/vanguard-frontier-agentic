@@ -203,7 +203,7 @@
     },
     {
       "id": "KYV-E26",
-      "claim": "The generateValidatingAdmissionPolicy toggle defaults to true at v1.20.0, and an exception with compensating validations prevents translating its ValidatingPolicy into a native ValidatingAdmissionPolicy",
+      "claim": "The generateValidatingAdmissionPolicy controller toggle defaults to true at v1.20.0, and an exception with compensating validations prevents translating its ValidatingPolicy into a native ValidatingAdmissionPolicy; the per-policy opt-in and the pod-controller autogen exclusion are in KYV-E37 and KYV-E40",
       "url": "https://github.com/kyverno/kyverno/blob/v1.20.0/pkg/admissionpolicy/celexception_checker.go",
       "section": "CanGenerateNativePolicy; pkg/toggle/toggle.go line 43",
       "retrieved": "2026-11-24",
@@ -286,6 +286,134 @@
       "claim": "ImageValidatingPolicy v1 has failurePolicy (Ignore or Fail) and webhookConfiguration.timeoutSeconds (default 10 seconds, range 1 to 30, after which the request fails or ignores the result per the failure policy); unlike ValidatingPolicy, its CRD states no failurePolicy default",
       "url": "https://github.com/kyverno/kyverno/blob/v1.20.0/config/crds/policies.kyverno.io/policies.kyverno.io_imagevalidatingpolicies.yaml",
       "section": "spec.failurePolicy, spec.webhookConfiguration.timeoutSeconds (v1)",
+      "retrieved": "2026-11-24",
+      "status": "VERIFIED"
+    },
+    {
+      "id": "KYV-E37",
+      "claim": "At v1.20.0 ValidatingPolicy spec.autogen.podControllers.enabled defaults to true and controllers defaults to all supported pod controllers, while spec.autogen.validatingAdmissionPolicy.enabled defaults to false",
+      "url": "https://github.com/kyverno/kyverno/blob/v1.20.0/config/crds/policies.kyverno.io/policies.kyverno.io_validatingpolicies.yaml",
+      "section": "spec.autogen (v1)",
+      "retrieved": "2026-11-24",
+      "status": "VERIFIED"
+    },
+    {
+      "id": "KYV-E38",
+      "claim": "Autogen resolves controller names through a built-in table keyed by lowercase plural resource names (daemonsets, deployments, replicasets, statefulsets, jobs, cronjobs); other bare names resolve only through a cluster RESTMapper, which an offline CLI run does not have",
+      "url": "https://github.com/kyverno/kyverno/blob/v1.20.0/pkg/cel/autogen/extraction.go",
+      "section": "ResolveConfig; ConfigsMap in pkg/cel/autogen/data.go",
+      "retrieved": "2026-11-24",
+      "status": "VERIFIED"
+    },
+    {
+      "id": "KYV-E39",
+      "claim": "The CRD field description for autogen controllers gives Kind names (DaemonSet, Deployment, Job, StatefulSet, ReplicaSet, ReplicationController, CronJob), which conflicts with the plural resource-name keys the resolver uses (KYV-E38)",
+      "url": "https://github.com/kyverno/kyverno/blob/v1.20.0/config/crds/policies.kyverno.io/policies.kyverno.io_validatingpolicies.yaml",
+      "section": "spec.autogen.podControllers.controllers description (v1)",
+      "retrieved": "2026-11-24",
+      "status": "CONFLICT"
+    },
+    {
+      "id": "KYV-E40",
+      "claim": "The admission-policy generator creates a native ValidatingAdmissionPolicy only when the policy's autogen.validatingAdmissionPolicy is enabled, skips generation when pod-controller autogen produces configs, and blocks it for exceptions with compensating validations",
+      "url": "https://github.com/kyverno/kyverno/blob/v1.20.0/pkg/controllers/admissionpolicygenerator/generate-vap.go",
+      "section": "handleVAPGeneration (wantVap, isAutogen)",
+      "retrieved": "2026-11-24",
+      "status": "VERIFIED"
+    },
+    {
+      "id": "KYV-E41",
+      "claim": "The v1.20.0 Helm chart defaults resourceFilters to skip Event, Node, ReplicaSet, APIService, TokenReview and SubjectAccessReview kinds and every object in kube-system, kube-public and kube-node-lease; webhooks.namespaceSelector excludes kube-system, excludeKyvernoNamespace is true and webhook matchConditions are empty",
+      "url": "https://github.com/kyverno/kyverno/blob/v1.20.0/charts/kyverno/values.yaml",
+      "section": "config.resourceFilters, config.webhooks, config.excludeKyvernoNamespace, config.matchConditions",
+      "retrieved": "2026-11-24",
+      "status": "VERIFIED"
+    },
+    {
+      "id": "KYV-E42",
+      "claim": "The v1.20.0 Helm chart leaves admissionController.replicas unset and admissionController.podDisruptionBudget.enabled false (minAvailable 1); reportsServer.enabled and openreports.enabled are false",
+      "url": "https://github.com/kyverno/kyverno/blob/v1.20.0/charts/kyverno/values.yaml",
+      "section": "admissionController.replicas, podDisruptionBudget; reportsServer; openreports",
+      "retrieved": "2026-11-24",
+      "status": "VERIFIED"
+    },
+    {
+      "id": "KYV-E43",
+      "claim": "A default Kyverno installation provides four separate Deployments, each with a single replica, and high availability is achieved per controller",
+      "url": "https://kyverno.io/docs/installation/installation/",
+      "section": "High availability",
+      "retrieved": "2026-11-24",
+      "status": "VERIFIED"
+    },
+    {
+      "id": "KYV-E44",
+      "claim": "MutatingPolicy v1 mutations use patchType ApplyConfiguration or JSONPatch; reinvocationPolicy is Never or IfNeeded; targetMatchConstraints and targetMatchConditions select mutate-existing targets",
+      "url": "https://github.com/kyverno/kyverno/blob/v1.20.0/config/crds/policies.kyverno.io/policies.kyverno.io_mutatingpolicies.yaml",
+      "section": "spec.mutations, spec.reinvocationPolicy, spec.targetMatchConstraints (v1)",
+      "retrieved": "2026-11-24",
+      "status": "VERIFIED"
+    },
+    {
+      "id": "KYV-E45",
+      "claim": "DeletingPolicy v1 has schedule, conditions, matchConstraints, variables and deletionPropagationPolicy (Foreground, Background or Orphan)",
+      "url": "https://github.com/kyverno/kyverno/blob/v1.20.0/config/crds/policies.kyverno.io/policies.kyverno.io_deletingpolicies.yaml",
+      "section": "spec (v1)",
+      "retrieved": "2026-11-24",
+      "status": "VERIFIED"
+    },
+    {
+      "id": "KYV-E46",
+      "claim": "kyverno CLI test results declare the policy type with isValidatingPolicy, isMutatingPolicy, isImageValidatingPolicy, isGeneratingPolicy, isDeletingPolicy or isValidatingAdmissionPolicy, and compare patchedResources, generatedResource(s) or cloneSourceResource for mutation and generation",
+      "url": "https://github.com/kyverno/kyverno/blob/v1.20.0/cmd/cli/kubectl-kyverno/apis/v1alpha1/test_result.go",
+      "section": "TestResult fields",
+      "retrieved": "2026-11-24",
+      "status": "VERIFIED"
+    },
+    {
+      "id": "KYV-E47",
+      "claim": "At v1.20.0 PolicyReport and ClusterPolicyReport are served and stored as wgpolicyk8s.io/v1alpha2; results carry policy, rule, result (pass, fail, warn, error or skip), source, timestamp, scored, severity, category, properties and resources, with a summary count per result value",
+      "url": "https://github.com/kyverno/kyverno/blob/v1.20.0/config/crds/policyreport/wgpolicyk8s.io_policyreports.yaml",
+      "section": "spec.versions; results[]; summary",
+      "retrieved": "2026-11-24",
+      "status": "VERIFIED"
+    },
+    {
+      "id": "KYV-E48",
+      "claim": "ValidatingPolicy validations carry expression, message, messageExpression and reason; messageExpression takes precedence over message and falls back to it when it fails or yields an empty, whitespace-only or multi-line string; auditAnnotations attach key-value data to PolicyReport results",
+      "url": "https://kyverno.io/docs/policy-types/validating-policy/",
+      "section": "messageExpression; auditAnnotations",
+      "retrieved": "2026-11-24",
+      "status": "VERIFIED"
+    },
+    {
+      "id": "KYV-E49",
+      "claim": "Kyverno CEL libraries include resource.Get and resource.List, http.Get and http.Post, globalContext.Get, parseServiceAccount, time.now and an image() type whose parts are read with methods such as tag(), digest() and identifier()",
+      "url": "https://kyverno.io/docs/policy-types/cel-libraries/",
+      "section": "Resource, HTTP, User, Image, GlobalContext libraries; Time functions",
+      "retrieved": "2026-11-24",
+      "status": "VERIFIED"
+    },
+    {
+      "id": "KYV-E50",
+      "claim": "Policy expressions read exception-supplied values through exceptions.allowedValues and exceptions.allowedImages",
+      "url": "https://github.com/kyverno/kyverno/blob/v1.20.0/pkg/cel/libs/variables.go",
+      "section": "exceptions variable",
+      "retrieved": "2026-11-24",
+      "status": "VERIFIED"
+    },
+    {
+      "id": "KYV-E51",
+      "claim": "Published Kyverno example policy verify-image-slsa reads extractPayload(image, attestations.slsaProvenance).builder.id at the top level of the payload; whether in-toto predicate fields sit at the top level or under .predicate is not settled by a source read here",
+      "url": "https://github.com/kyverno/website/blob/main/src/content/policies/other-ivpol/verify-image-slsa/verify-image-slsa.md",
+      "section": "validations",
+      "retrieved": "2026-11-24",
+      "status": "UNVERIFIED"
+    },
+    {
+      "id": "KYV-E52",
+      "claim": "The kyverno CLI Test manifest accepts mock inputs for offline runs: context, variables, userinfo, exceptions, clusterResources, apiCallResponses (url, method, response) and globalContextEntries",
+      "url": "https://github.com/kyverno/kyverno/blob/v1.20.0/cmd/cli/kubectl-kyverno/apis/v1alpha1/test.go",
+      "section": "Test struct fields",
       "retrieved": "2026-11-24",
       "status": "VERIFIED"
     }

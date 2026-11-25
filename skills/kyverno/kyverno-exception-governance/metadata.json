@@ -20,7 +20,9 @@
     "https://github.com/kyverno/kyverno/blob/v1.20.0/pkg/cel/engine/exception.go",
     "https://github.com/kyverno/kyverno/blob/v1.20.0/cmd/internal/flag.go",
     "https://kyverno.io/docs/guides/exceptions/",
-    "https://github.com/kyverno/kyverno/blob/v1.20.0/pkg/admissionpolicy/celexception_checker.go"
+    "https://github.com/kyverno/kyverno/blob/v1.20.0/pkg/admissionpolicy/celexception_checker.go",
+    "https://release-1-18-0.kyverno.io/docs/policy-types/cluster-policy/policy-settings/",
+    "https://github.com/kyverno/kyverno/blob/v1.20.0/pkg/cel/libs/variables.go"
   ],
   "security_notes": "Static review only. An exception is a documented bypass; scope must match the approval exactly and adjacent workloads must remain covered. Offline CLI results do not establish expiry behavior. No agent approves its own exception or infers approval from ticket status.",
   "last_verified": "2026-11-24",
