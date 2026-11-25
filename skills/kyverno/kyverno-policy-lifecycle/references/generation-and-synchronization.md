@@ -67,11 +67,11 @@ For a GeneratingPolicy, what happens to the downstream object when the policy, t
 
 ## State after rollback
 
-If the policy is removed or reverted: data-source downstream objects are deleted with synchronization enabled unless orphaning was enabled, and retained without synchronization [KYV-E34]; clone downstream objects stay [KYV-E35]. Whether objects created by `generateExisting` behave the same way is unverified here; settle it with downstream state evidence. Objects generated while the policy existed and changed by other writers are not restored by anything here. Treat any more specific claim as unverified until downstream state evidence is supplied.
+Separate the two kinds of rollback. If the revert removes the policy (it did not exist at the earlier commit, or the reconciler prunes it): data-source downstream objects are deleted with synchronization enabled unless orphaning was enabled, and retained without synchronization [KYV-E34]; clone downstream objects stay [KYV-E35]. If the revert only restores earlier policy content and the policy stays: with a data source and synchronization the downstream is synced to the earlier content and unmodified without it [KYV-E34]; clone downstream objects are unmodified [KYV-E35]. Whether objects created by `generateExisting` behave the same way is unverified here; settle it with downstream state evidence. Objects generated while the policy existed and changed by other writers are not restored by anything here. Treat any more specific claim as unverified until downstream state evidence is supplied.
 
 ## Counterexample
 
-A team argues "synchronization keeps downstream objects aligned with the policy, so a revert is safe". With a data source and synchronization enabled, the revert deletes the downstream objects unless orphaning was on (they are retained without synchronization) [KYV-E34] [KYV-E21]; with a clone source it leaves them [KYV-E35]. Synchronization governs how downstream follows the policy, not whether state returns to its prior form.
+A team argues "synchronization keeps downstream objects aligned with the policy, so a revert is safe". If the revert removes the policy, a data source with synchronization deletes the downstream objects unless orphaning was on (they are retained without synchronization) [KYV-E34] [KYV-E21]; with a clone source it leaves them [KYV-E35]. If it only restores earlier content, synchronization rewrites the downstream to that content instead [KYV-E34]; neither case returns objects that other writers changed. Synchronization governs how downstream follows the policy, not whether state returns to its prior form.
 
 ## Escalation threshold
 

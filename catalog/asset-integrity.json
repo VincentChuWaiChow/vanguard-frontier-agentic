@@ -36844,7 +36844,7 @@
     },
     {
       "tree": "catalog",
-      "aggregate_sha256": "9cdb49d2c83048041dfc9cf90989075df2dc3f22799d8a0244c6acd71e939ae3",
+      "aggregate_sha256": "ce9f29b86c814471bce51349f48e0cd79346387e102171664898cb90c0020c44",
       "files": [
         {
           "path": "catalog/AGENTS.md",
@@ -36898,7 +36898,7 @@
         },
         {
           "path": "catalog/skill-manifest.json",
-          "sha256": "30fa9d79df463cddeb82e40f99bf7f1c6165d7cfa0d582d4b139cfcd96a2fe88",
+          "sha256": "0106f8e99435265537f7a0b1ff90479125a6a252d66776ffc0c7ea7eb20861bb",
           "bytes": 1220088
         },
         {
@@ -38162,7 +38162,7 @@
     },
     {
       "tree": "tests",
-      "aggregate_sha256": "c15f03e84f48eeee2f713fa0d522c01f6cb5303a83bda366e62a343e8d615ed9",
+      "aggregate_sha256": "dd72f685b216c1aba5e6b15bc217fb1e447acae85754df313506ad57533cd7f2",
       "files": [
         {
           "path": "tests/AGENTS.md",
@@ -46765,14 +46765,59 @@
           "bytes": 179
         },
         {
+          "path": "tests/fixtures/kyverno-board-decisions/invalid/33-blocked-count-without-source.json",
+          "sha256": "31b1dc6a3dae79c7ca79d5b2d4e6ac622569573b222347c1e71720883bf06c47",
+          "bytes": 207
+        },
+        {
+          "path": "tests/fixtures/kyverno-board-decisions/invalid/34-report-failures-as-prevention.json",
+          "sha256": "dfeb010cbdd748dbc39436430fd6c8d30dc39326167fe1632fe46c421ee442c6",
+          "bytes": 443
+        },
+        {
+          "path": "tests/fixtures/kyverno-board-decisions/invalid/35-compliance-percentage-contradicts-breakdown.json",
+          "sha256": "a94f7e6f3fc25e7842006d08b08a1207de87cbf04822eadea00f64c278229404",
+          "bytes": 340
+        },
+        {
+          "path": "tests/fixtures/kyverno-board-decisions/invalid/36-excepted-reporting-unaccounted.json",
+          "sha256": "753708a8b096f2dac60baed42872c5f0dfc7d6b3151ac63f66b2c3bbaabd2b85",
+          "bytes": 261
+        },
+        {
+          "path": "tests/fixtures/kyverno-board-decisions/invalid/37-referral-target-as-challenger.json",
+          "sha256": "4873e137844e742ad05bcfa0f69b5ded018f10797da03f5ba3f1a30a96dbf7e1",
+          "bytes": 246
+        },
+        {
+          "path": "tests/fixtures/kyverno-board-decisions/invalid/38-duplicate-evidence-id.json",
+          "sha256": "99f8ea603a32373762edb38cdb48309694f6f55825a9ab5ae23fc9d3cff6b391",
+          "bytes": 348
+        },
+        {
+          "path": "tests/fixtures/kyverno-board-decisions/invalid/39-expiry-evidence-before-expiry.json",
+          "sha256": "6b35ffd038645ace33fcb0455e7dda7ee6b534decb5ef06eefa64bd160e20c3f",
+          "bytes": 579
+        },
+        {
+          "path": "tests/fixtures/kyverno-board-decisions/invalid/40-update-pairs-from-metric.json",
+          "sha256": "9bb5e1b5b097067d7ed3560f49a21542f960d22c120a3de250e1dd935f80c983",
+          "bytes": 268
+        },
+        {
+          "path": "tests/fixtures/kyverno-board-decisions/invalid/41-restoration-from-desired-state.json",
+          "sha256": "28f0f1d75927e930fe15228d899b16358f4da090ef62578d295d3478d53e0658",
+          "bytes": 336
+        },
+        {
           "path": "tests/fixtures/kyverno-board-decisions/valid/01-cohort-a-promotion-supported.json",
           "sha256": "5d0dec34525b7467769512b52b1a6d189f88abe9f2042615c76117f0d6e8e9c9",
           "bytes": 6222
         },
         {
           "path": "tests/fixtures/kyverno-board-decisions/valid/02-invoice-coverage-conditional.json",
-          "sha256": "b9efab79a8ceee9bbee82308bddaadaa61ab158316b141bf044ce3ab76bcd90b",
-          "bytes": 7097
+          "sha256": "6a480750020f7fe4c09ddd582ffc9491f7a275e868e6fb3d452044b1dcbaf717",
+          "bytes": 7167
         },
         {
           "path": "tests/fixtures/kyverno-board-decisions/valid/03-overdue-preventive-audit-blocked.json",
@@ -51556,8 +51601,8 @@
         },
         {
           "path": "tests/kyverno-board-suite/test_board.py",
-          "sha256": "4708400707f4ac700ec05103d0eba2a99eff47e7ec297fd1cb6aa6032af9f48f",
-          "bytes": 19676
+          "sha256": "2b2cea77bf2626ecd87224dcce9d7d3f772df7a3de2c8c1a4c6d5c619e7c01ad",
+          "bytes": 20323
         },
         {
           "path": "tests/mods.test.mjs",
@@ -51819,5 +51864,5 @@
       "bytes": 9135
     }
   ],
-  "aggregate_sha256": "a7f88683de770150e740b25df9d50769a0489054144719cfcf9d4957805fcf21"
+  "aggregate_sha256": "3e8f99168b220d9b3cb42728a3c09419e54cac05cf11f7f8b9172630970c145f"
 }

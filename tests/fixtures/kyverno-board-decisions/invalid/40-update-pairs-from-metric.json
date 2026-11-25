@@ -1,0 +1,11 @@
+{
+  "base": "01-cohort-a-promotion-supported.json",
+  "rule": "KYB-PARITY",
+  "why": "A latency metric cannot carry old/new UPDATE pairs (Codex review).",
+  "set": {
+    "evidence.1.type": "offline-test",
+    "parity.old_new_pair_evidence": [
+      "EV-4"
+    ]
+  }
+}

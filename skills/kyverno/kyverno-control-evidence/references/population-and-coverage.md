@@ -29,7 +29,7 @@ For a statement such as "the control covers N percent of workloads", which items
 1. Fix the object denominator from the inventory, not from the reports. Objects with no report belong in the denominator and are blind spots.
 2. Count the numerator as in-scope objects with a fresh result inside the supplied window. Freshness means a result timestamp within window of as_of; both come from the caller.
 3. Do not add blocked creates to the object denominator: a denied create never became an object, and requests are visible in metrics and events [KYV-E09] [KYV-E12].
-4. Do not count excepted objects as demonstrated prevention; they report skip by default [KYV-E13]. Take the excepted count from the skip results in the report, then filter the exception list by expiresAt against as_of: an exception past expiresAt is no longer applied [KYV-E13], so a skip it produced earlier may be stale.
+4. Do not count excepted objects as demonstrated prevention; they report skip by default [KYV-E13]. Take exception membership from active exception scope (`policyRefs`, `matchConditions`, `expiresAt` against as_of) matched against the inventory, not from skip rows: excepted objects report skip by default but pass when the exception sets `reportResult: pass` [KYV-E13], so record how many report each way. An exception past expiresAt is no longer applied [KYV-E13], so a skip it produced earlier may be stale.
 5. A compliance percentage needs the pass, fail, warn, error and skip breakdown; error means an evaluation error, not a pass [KYV-E10]. A fresh result is not a passing result: fail results sit inside the fresh count.
 6. Record lineage: each number cites the evidence item it came from.
 
@@ -44,7 +44,7 @@ For a statement such as "the control covers N percent of workloads", which items
 | Object denominator | 120 | I-1 |
 | Objects with fresh results | 100 | R-1 |
 | Fresh-result coverage (includes fail and skip; not enforcement) | 100/120 = 83.3% | R-1 over I-1 |
-| Excepted objects within the 100 | 8 | skip results in R-1 (excepted objects report skip by default [KYV-E13]); X-1 filtered by expiresAt against as_of |
+| Excepted objects within the 100 | 8 (all report skip here) | active exception scope in X-1 matched against I-1 and filtered by expiresAt against as_of; reportResult decides skip or pass [KYV-E13] |
 | Objects with no fresh result | 20 | I-1 minus R-1 |
 | Blocked creates (not in the denominator) | 6 | M-1 [KYV-E12] |
 

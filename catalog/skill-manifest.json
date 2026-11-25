@@ -15362,7 +15362,7 @@
     {
       "id": "kyverno-control-evidence",
       "path": "skills/kyverno/kyverno-control-evidence",
-      "aggregate_sha256": "8706ad07065d793adf8a779afc6612669e7056328bf6a763a8a5b454c3b5372f",
+      "aggregate_sha256": "bf029d724ce1f17f140a6c31184ad2de1961d08c5a621d5e7c44471187bcc0cd",
       "files": [
         {
           "path": "skills/kyverno/kyverno-control-evidence/SKILL.md",
@@ -15401,8 +15401,8 @@
         },
         {
           "path": "skills/kyverno/kyverno-control-evidence/references/population-and-coverage.md",
-          "sha256": "267c2892c3975e1bd53a4b73310cfffb5e8b600cf63925bfa6f638a9f1189625",
-          "bytes": 5799
+          "sha256": "50ff5d7497adaeb5920d240875d0eba9bc0f69731488b5decd5b9d9729111e08",
+          "bytes": 6031
         },
         {
           "path": "skills/kyverno/kyverno-control-evidence/references/report-and-event-streams.md",
@@ -15583,7 +15583,7 @@
     {
       "id": "kyverno-policy-lifecycle",
       "path": "skills/kyverno/kyverno-policy-lifecycle",
-      "aggregate_sha256": "a5e1cef7f3be55896d4336c8d7b8269bce2cb73f10fc382c2a2739a56275981f",
+      "aggregate_sha256": "dceadb5b249d4d33f8bd8f759942417ecc23c6420848d35608adf9eb45b21f94",
       "files": [
         {
           "path": "skills/kyverno/kyverno-policy-lifecycle/SKILL.md",
@@ -15677,8 +15677,8 @@
         },
         {
           "path": "skills/kyverno/kyverno-policy-lifecycle/references/generation-and-synchronization.md",
-          "sha256": "c5ca855ff36e0cfad2174c5c8cc15b53761289fec6a1cdf75c8b7e7d449b068e",
-          "bytes": 7811
+          "sha256": "e52c10159386dd416b71dc9d8fcf26ada0e00c976cfee0ca4379a334d5a62f0a",
+          "bytes": 8340
         },
         {
           "path": "skills/kyverno/kyverno-policy-lifecycle/references/mutation-and-deletion.md",
@@ -15687,8 +15687,8 @@
         },
         {
           "path": "skills/kyverno/kyverno-policy-lifecycle/references/reversal-and-restoration.md",
-          "sha256": "294737a5f1abafcbfe5a713f36c12b5411367a791fba1b04c94d7fad02db7486",
-          "bytes": 6341
+          "sha256": "34f3c1a91fefabd7ab6c0fdfc4ba594d9861afb6cdd8cd0175a02934380f93fe",
+          "bytes": 6540
         }
       ]
     },
@@ -15797,7 +15797,7 @@
     {
       "id": "kyverno-review-routing",
       "path": "skills/kyverno/kyverno-review-routing",
-      "aggregate_sha256": "1752783c76daafcf3333ec52c0c913e87f2c9342ca73a043009ec8c04ba00892",
+      "aggregate_sha256": "c45ad25dec55904b9c461fbe229cf9eb4548bb7fa535c50d6f174acd911c82c4",
       "files": [
         {
           "path": "skills/kyverno/kyverno-review-routing/SKILL.md",
@@ -15811,8 +15811,8 @@
         },
         {
           "path": "skills/kyverno/kyverno-review-routing/assets/board-decision.schema.json",
-          "sha256": "09260a7b9a72f1bef4eb23c7113e29c56b98026fe55000c178af5f7580cc0106",
-          "bytes": 13902
+          "sha256": "f96e251baa8db0b14411e08710cee7d180d072bf807fd176ef530a6d65162723",
+          "bytes": 14451
         },
         {
           "path": "skills/kyverno/kyverno-review-routing/assets/examples/KYV-DEC-0001/confluence-product-explainer.md",
@@ -15821,8 +15821,8 @@
         },
         {
           "path": "skills/kyverno/kyverno-review-routing/assets/examples/KYV-DEC-0001/decision.json",
-          "sha256": "b9efab79a8ceee9bbee82308bddaadaa61ab158316b141bf044ce3ab76bcd90b",
-          "bytes": 7097
+          "sha256": "6a480750020f7fe4c09ddd582ffc9491f7a275e868e6fb3d452044b1dcbaf717",
+          "bytes": 7167
         },
         {
           "path": "skills/kyverno/kyverno-review-routing/assets/examples/KYV-DEC-0001/jira-spike.md",
@@ -15891,8 +15891,8 @@
         },
         {
           "path": "skills/kyverno/kyverno-review-routing/scripts/validate_board_decision.py",
-          "sha256": "03c44ab5ca77d6248501fd187c67b58a21f1ebf25948cbf30c433071bf08f0cf",
-          "bytes": 17777
+          "sha256": "de30847423bba52a986b6db3948813a5542bae0ea25717e90c8e52b3543620bb",
+          "bytes": 19993
         }
       ]
     },

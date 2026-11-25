@@ -156,6 +156,10 @@
     "inventory_total": 120,
     "fresh_results": 100,
     "excepted": 8,
+    "excepted_reported_as": {
+      "skip": 8,
+      "pass": 0
+    },
     "without_fresh_result": 20,
     "results_breakdown": null,
     "blocked_requests": {

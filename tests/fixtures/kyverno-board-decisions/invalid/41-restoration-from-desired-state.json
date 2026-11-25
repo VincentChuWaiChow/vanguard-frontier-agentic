@@ -1,0 +1,12 @@
+{
+  "base": "05-gitops-revert-not-restoration.json",
+  "rule": "KYB-ROLLBACK",
+  "why": "Rendered desired state is not observed downstream state (Codex review).",
+  "set": {
+    "rollback.restoration_claimed": true,
+    "rollback.basis": "downstream-state-evidence",
+    "rollback.downstream_state_evidence": [
+      "EV-1"
+    ]
+  }
+}

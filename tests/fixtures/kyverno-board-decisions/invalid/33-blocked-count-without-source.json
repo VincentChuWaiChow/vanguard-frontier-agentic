@@ -1,0 +1,8 @@
+{
+  "base": "02-invoice-coverage-conditional.json",
+  "rule": "KYB-COVERAGE",
+  "why": "Every counted number keeps its lineage (Codex review).",
+  "set": {
+    "coverage.blocked_requests.source": null
+  }
+}

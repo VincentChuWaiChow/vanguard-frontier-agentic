@@ -41,7 +41,7 @@ After a Kyverno lifecycle policy has run and the policy is reverted in Git, whic
 
 **Requester supplied**: in `payments`, a GeneratingPolicy with a data source and synchronization on created `invoice-limits` ConfigMaps; another GeneratingPolicy with a clone source created `invoice-signing-config` copies; a DeletingPolicy removed `invoices-archive` ConfigMaps. The team reverted all three in Git and states "payments is back to the prior state".
 
-**Agent derived**: with synchronization on, the data-source downstream `invoice-limits` objects are deleted by the revert unless orphaning was enabled (retained without synchronization) [KYV-E34] [KYV-E21]; the clone downstream copies stay [KYV-E35]; for the `invoices-archive` ConfigMaps no cited source describes restoration, and DeletingPolicy is destructive [KYV-E23], so they are treated as still deleted until state evidence shows otherwise.
+**Agent derived**: none of the three policies existed at the earlier commit, so the revert removes them (a removal, not a content-only rollback, which would instead sync downstream to the earlier content [KYV-E34]). With synchronization on, the data-source downstream `invoice-limits` objects are deleted by that removal unless orphaning was enabled (retained without synchronization) [KYV-E34] [KYV-E21]; the clone downstream copies stay [KYV-E35]; for the `invoices-archive` ConfigMaps no cited source describes restoration, and DeletingPolicy is destructive [KYV-E23], so they are treated as still deleted until state evidence shows otherwise.
 
 | Object | Before change | After change | After Git revert | After restoration plan | Evidence |
 | --- | --- | --- | --- | --- | --- |

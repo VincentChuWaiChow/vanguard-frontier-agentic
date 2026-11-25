@@ -145,12 +145,18 @@
     },
     "coverage": {
       "type": "object", "additionalProperties": false,
-      "required": ["population_source", "inventory_total", "fresh_results", "excepted", "without_fresh_result", "results_breakdown", "blocked_requests", "claimed", "compliance_percentage", "prevention_demonstrated"],
+      "required": ["population_source", "inventory_total", "fresh_results", "excepted", "excepted_reported_as", "without_fresh_result", "results_breakdown", "blocked_requests", "claimed", "compliance_percentage", "prevention_demonstrated"],
       "properties": {
         "population_source": {"$ref": "#/$defs/evidenceRef"},
         "inventory_total": {"$ref": "#/$defs/count"},
         "fresh_results": {"$ref": "#/$defs/count"},
         "excepted": {"$ref": "#/$defs/count"},
+        "excepted_reported_as": {
+          "description": "Exception membership comes from active exception scope matched against the inventory; excepted objects report skip by default or pass with reportResult: pass.",
+          "type": "object", "additionalProperties": false, "required": ["skip", "pass"],
+          "properties": {"skip": {"$ref": "#/$defs/count"}, "pass": {"$ref": "#/$defs/count"}}
+        },
+        "compliance_definition": {"const": "non-excepted passes / non-excepted objects with fresh results"},
         "without_fresh_result": {"$ref": "#/$defs/count"},
         "results_breakdown": {
           "oneOf": [

@@ -55,7 +55,8 @@ SCHEMA = HERE.parent / "assets" / "board-decision.schema.json"
 DELETE = "__DELETE__"
 
 VERDICT_FOR = {"supported": "approved", "conditional": "needs-review", "blocked": "blocked", "indeterminate": "needs-review"}
-OFFLINE_ONLY = {"offline-test", "manifest", "rendered-gitops"}
+REQUEST_PAIRS = {"admission-trace", "controlled-test"}  # evidence that can carry a real old/new UPDATE pair
+OBSERVED_STATE = {"installed-config", "admission-trace", "population-report", "controlled-test"}  # observed, not desired, state
 SECRET_PATTERNS = [
     re.compile(r"-----BEGIN [A-Z ]*PRIVATE KEY-----"),
     re.compile(r"\bBearer\s+[A-Za-z0-9._~+/=-]{16,}"),
@@ -96,22 +97,28 @@ def check(rec: dict, validator) -> list[tuple[str, str]]:
     def add(rule: str, msg: str) -> None:
         found.append((rule, msg))
 
-    errors = sorted(validator.iter_errors(rec), key=lambda e: list(e.path))
-    if errors:
-        for e in errors[:5]:
-            add("KYB-SCHEMA", f"{'/'.join(str(p) for p in e.path) or '<root>'}: {e.message}")
-        return found  # semantic rules assume a well-formed record
-
+    # Scan for credentials first, and never echo instance values in schema diagnostics:
+    # a malformed record must not leak a token into validation logs.
     for s in _strings(rec):
         if any(p.search(s) for p in SECRET_PATTERNS):
             add("KYB-SECRET", "credential-shaped value in record; redact it and keep only a reference")
             break
+    errors = sorted(validator.iter_errors(rec), key=lambda e: list(e.path))
+    if errors:
+        for e in errors[:5]:
+            where = "/".join(str(p) for p in e.absolute_path) or "<root>"
+            add("KYB-SCHEMA", f"{where}: fails schema keyword '{e.validator}'")
+        return found  # semantic rules assume a well-formed record
 
     outcome, verdict = rec["outcome"], rec["verdict"]
     if VERDICT_FOR[outcome] != verdict:
         add("KYB-VERDICT", f"outcome {outcome} maps to verdict {VERDICT_FOR[outcome]}, not {verdict}")
 
-    ev = {e["id"]: e for e in rec["evidence"]}
+    ev: dict[str, dict] = {}
+    for e in rec["evidence"]:
+        if e["id"] in ev:
+            add("KYB-EVIDENCE", f"duplicate evidence ID {e['id']}; every reference must resolve to exactly one item")
+        ev.setdefault(e["id"], e)
 
     def refs_ok(refs, where):
         missing = [r for r in refs if r not in ev]
@@ -149,6 +156,8 @@ def check(rec: dict, validator) -> list[tuple[str, str]]:
             add("KYB-CHALLENGE", f"{rec['consequence_class']} requires an independent challenge")
         elif ch["challenger"] == lead:
             add("KYB-CHALLENGE", "the lead cannot challenge (approve) its own conclusion")
+        elif ch["challenger"] in {r["to"] for r in rec["referrals"]}:
+            add("KYB-CHALLENGE", f"{ch['challenger']} already contributed through a referral and cannot be the independent challenger")
         elif outcome == "supported" and ch["result"] != "upheld":
             add("KYB-CHALLENGE", f"supported while the challenge result is {ch['result']}")
     elif ch is not None and ch["challenger"] == lead:
@@ -193,7 +202,13 @@ def check(rec: dict, validator) -> list[tuple[str, str]]:
 
     cov = rec.get("coverage")
     if cov:
-        refs_ok([cov["population_source"]] + ([cov["blocked_requests"]["source"]] if cov["blocked_requests"]["source"] else []), "coverage")
+        blocked = cov["blocked_requests"]
+        refs_ok([cov["population_source"]] + ([blocked["source"]] if blocked["source"] else []), "coverage")
+        if blocked["count"] > 0 and ev.get(blocked["source"] or "", {}).get("type") not in ("runtime-metric", "admission-trace"):
+            add("KYB-COVERAGE", "a nonzero blocked-request count needs a runtime-metric or admission-trace source")
+        rep_as = cov["excepted_reported_as"]
+        if rep_as["skip"] + rep_as["pass"] != cov["excepted"]:
+            add("KYB-COVERAGE", "excepted_reported_as must account for every excepted object (skip by default, pass with reportResult: pass)")
         if cov["fresh_results"] + cov["without_fresh_result"] != cov["inventory_total"]:
             add("KYB-COVERAGE", "fresh + without-fresh-result must equal the inventory population")
         if cov["excepted"] > cov["fresh_results"]:
@@ -210,10 +225,18 @@ def check(rec: dict, validator) -> list[tuple[str, str]]:
         else:
             if sum(b.values()) != cov["fresh_results"]:
                 add("KYB-COVERAGE", "result breakdown must sum to objects with fresh results")
-            if b["skip"] < cov["excepted"]:
-                add("KYB-COVERAGE", "excepted objects report as skip; breakdown skip is smaller than excepted")
-        if cov["prevention_demonstrated"] > (b["fail"] if b else 0) + cov["blocked_requests"]["count"]:
-            add("KYB-COVERAGE", "prevention claimed beyond observed failures and blocked requests (exceptions are not prevention)")
+            if b["skip"] < rep_as["skip"] or b["pass"] < rep_as["pass"]:
+                add("KYB-COVERAGE", "breakdown cannot hold the excepted objects where excepted_reported_as says they report")
+            if cov["compliance_percentage"] is not None:
+                population = cov["fresh_results"] - cov["excepted"]
+                if population <= 0:
+                    add("KYB-COVERAGE", "no compliance percentage without non-excepted objects with fresh results")
+                else:
+                    supported = 100.0 * (b["pass"] - rep_as["pass"]) / population
+                    if abs(cov["compliance_percentage"] - supported) > 0.05:
+                        add("KYB-COVERAGE", f"compliance percentage must equal non-excepted passes over non-excepted fresh results ({supported:.1f})")
+        if cov["prevention_demonstrated"] > blocked["count"]:
+            add("KYB-COVERAGE", "demonstrated prevention needs blocked admissions; report failures and exceptions are not prevention")
 
     ex = rec.get("exception_expiry")
     if ex:
@@ -221,15 +244,21 @@ def check(rec: dict, validator) -> list[tuple[str, str]]:
         if ex["automatic_expiry_claimed"]:
             if not ex["expires_at"]:
                 add("KYB-EXPIRY", "automatic expiry claimed with no expiresAt; a date in an annotation is not a mechanism")
-            elif not any(ev.get(r, {}).get("type") in ("admission-trace", "population-report", "controlled-test") for r in ex["reconciliation_evidence"]):
-                add("KYB-EXPIRY", "automatic expiry claimed without post-expiry admission, report or controlled-test evidence")
+            elif not any(
+                ev.get(r, {}).get("type") in ("admission-trace", "population-report", "controlled-test")
+                and ev[r]["captured_at"] is not None
+                and ex["expires_at"] < ev[r]["captured_at"] <= rec["as_of"]
+                for r in ex["reconciliation_evidence"]
+            ):
+                add("KYB-EXPIRY", "automatic expiry needs admission, report or controlled-test evidence captured after expiresAt and no later than as_of")
         if outcome == "supported" and ex["adjacent_workloads_covered"] == "unverified":
             add("KYB-EXPIRY", "adjacent workloads must be shown to remain covered before the exception is supported")
 
     rb = rec.get("rollback")
     if rb:
         refs_ok(rb["downstream_state_evidence"], "rollback")
-        if rb["restoration_claimed"] and (rb["basis"] != "downstream-state-evidence" or not rb["downstream_state_evidence"]):
+        observed = [r for r in rb["downstream_state_evidence"] if ev.get(r, {}).get("type") in OBSERVED_STATE]
+        if rb["restoration_claimed"] and (rb["basis"] != "downstream-state-evidence" or not observed):
             add("KYB-ROLLBACK", "restoration claimed without downstream state evidence; reverting Git does not restore mutated or deleted state")
 
     par = rec.get("parity")
@@ -242,8 +271,8 @@ def check(rec: dict, validator) -> list[tuple[str, str]]:
             if "untested" in ops.values():
                 add("KYB-PARITY", "parity supported with an untested operation")
             pairs = [ev[r]["type"] for r in par["old_new_pair_evidence"] if r in ev]
-            if ops["UPDATE"] == "agree" and (not pairs or all(t in OFFLINE_ONLY for t in pairs)):
-                add("KYB-PARITY", "UPDATE parity needs old/new pairs beyond offline tests (the CLI uses identical old and new objects)")
+            if ops["UPDATE"] == "agree" and not any(t in REQUEST_PAIRS for t in pairs):
+                add("KYB-PARITY", "UPDATE parity needs request-level old/new pairs (admission-trace or controlled-test); the CLI uses identical old and new objects")
 
     seen_art = set()
     for a in rec["artifacts"]:
