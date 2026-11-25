@@ -46,7 +46,7 @@ Which fields and expressions in a ValidatingPolicy decide what is evaluated (mes
 
 **Decision today**: `conditional` / `needs-review`: rule logic is `supported` for the four tested objects; admission effect is not shown offline.
 
-**Cheapest discriminating check**: delete the Deployment case from the test file and confirm the controller coverage is no longer pinned; then re-add it and confirm `fail`.
+**Cheapest discriminating check**: switch the controller names to Kind names and confirm the Deployment result disappears (no result offline); an absent result is not a pass, and it shows the plural names are what pins the coverage.
 
 **Developer-facing denial message**: "example-require-run-as-non-root: set securityContext.runAsNonRoot=true on every container and init container. If the image cannot run as non-root, ask the payments platform owner for a time-bound PolicyException." It names the field, the scope and the owner.
 

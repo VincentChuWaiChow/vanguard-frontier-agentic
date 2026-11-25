@@ -5,7 +5,7 @@ A policy, resources and CLI test for one control on the synthetic invoice servic
 ## What it demonstrates
 
 - One legitimate Pod (`payments/legitimate-workload`) that passes, one in-scope violation (`payments/violating-workload`, an init container without `runAsNonRoot`) that fails, and one adjacent Pod in another namespace (`catalog/adjacent-workload`) that is skipped because the namespace condition excludes it.
-- A Deployment (`payments/violating-deployment`) that fails through autogen, which pins pod-controller coverage offline [KYV-E37].
+- A Deployment (`payments/violating-deployment`) that fails through autogen, which pins pod-controller coverage offline for the Deployment only [KYV-E37]. The kit lists five controllers (deployments, statefulsets, daemonsets, jobs, cronjobs) but tests only the Deployment; add a row per controller you claim to cover.
 - Every default that matters is written explicitly: `validationActions`, `failurePolicy`, `webhookConfiguration.timeoutSeconds`, evaluation toggles and the autogen block [KYV-E04] [KYV-E05] [KYV-E06].
 - Native ValidatingAdmissionPolicy generation is left at its per-policy opt-in value of false [KYV-E37] [KYV-E40].
 - A denial message that names the field to fix and the owner to ask.

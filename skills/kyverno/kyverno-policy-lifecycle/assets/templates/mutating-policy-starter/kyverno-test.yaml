@@ -13,3 +13,10 @@ results:
     resources: [payments/invoice-settings]
     patchedResources: patched.yaml
     result: pass
+  # Idempotence guard: an owner-labelled object is excluded (skip) and left byte-for-byte unchanged.
+  - isMutatingPolicy: true
+    policy: example-add-cost-center-label
+    kind: ConfigMap
+    resources: [payments/ledger-settings]
+    patchedResources: unchanged.yaml
+    result: skip

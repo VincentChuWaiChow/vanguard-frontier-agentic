@@ -28,7 +28,7 @@ For a given write, did Kyverno never see it (filtered before evaluation), see it
 
 ## Interpretation
 
-1. Chart resource filters skip the kinds Event, Node, ReplicaSet, APIService, TokenReview and SubjectAccessReview, and every object in kube-system, kube-public and kube-node-lease [KYV-E41]. A policy matching those kinds or namespaces is accepted by the cluster and then never runs.
+1. Chart resource filters skip the kinds Event, Node, ReplicaSet, APIService, TokenReview and SubjectAccessReview, and every object in kube-system, kube-public and kube-node-lease [KYV-E41]. A policy matching those kinds or namespaces is accepted by the cluster; inference: it then never runs, since KYV-E41 lists chart defaults but does not state that CEL policies honor them, so confirm with a `controlled-test`.
 2. The webhook `namespaceSelector` excludes kube-system by default, the Kyverno namespace is excluded by default (`excludeKyvernoNamespace` is true), and the webhook match conditions are empty by default [KYV-E41]. Empty match conditions means no extra pre-filter was installed; any conditions found in installed-config were added by someone.
 3. Classify every observation into one of three buckets before reasoning:
 
@@ -48,13 +48,13 @@ For a given write, did Kyverno never see it (filtered before evaluation), see it
 
 **Requester supplied**: the invoice service Pods in `payments` are the intended scope. A second policy is written against ReplicaSets in `payments` and the team reports it "never fires". The installed `kyverno` ConfigMap and webhook configurations are supplied, plus the Deployment replica counts.
 
-**Agent derived**: the invoice service Pods in `payments` are not in a filtered namespace, so Pod CREATE reaches the webhook [KYV-E41]. The ReplicaSet policy never runs because ReplicaSet is a filtered kind in the chart defaults [KYV-E41]; this is filtering, not a policy bug and not an error. The install shows one admission replica and no PodDisruptionBudget, matching the chart defaults [KYV-E42] [KYV-E43] and below the HA minimum [KYV-E11].
+**Agent derived**: the invoice service Pods in `payments` are not in a filtered namespace, so Pod CREATE reaches the webhook [KYV-E41]. Inference: the ReplicaSet policy never runs because ReplicaSet is a filtered kind in the chart defaults [KYV-E41]. KYV-E41 lists the chart defaults; it does not state that CEL policies honor `resourceFilters`, so a `controlled-test` would confirm it. If confirmed, this is filtering, not a policy bug and not an error. The install shows one admission replica and no PodDisruptionBudget, matching the chart defaults [KYV-E42] [KYV-E43] and below the HA minimum [KYV-E11].
 
 **Still needed**: confirmation the ConfigMap in the supplied installed-config is the live one, and the failurePolicy of the Pod policies.
 
 **Decision today**: `conditional`, verdict `needs-review`; the ReplicaSet policy is moved to the Pod or Deployment kinds it was meant to protect, and the single replica is raised before any Fail-policy release.
 
-**Cheapest discriminating check**: check whether kyverno_admission_requests_total has any series with resource_kind ReplicaSet [KYV-E12]; none confirms the filter.
+**Cheapest discriminating check**: check whether kyverno_admission_requests_total has any series with resource_kind ReplicaSet [KYV-E12]; a missing series is consistent with the filter; confirm with `installed-config` (the `resourceFilters` value), because absence also fits no matching rule or no ReplicaSet writes.
 
 **Developer-facing denial message**: not applicable; a filtered write produces no message. For the Pod policies the developer sees the policy's own denial text.
 

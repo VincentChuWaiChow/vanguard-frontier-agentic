@@ -6,8 +6,9 @@ A MutatingPolicy that adds a `cost-center` label to ConfigMaps created in `payme
 
 - A `patchType: ApplyConfiguration` mutation with `reinvocationPolicy: Never` [KYV-E44].
 - An idempotent matchCondition: the patch applies only when the label is absent, so a second pass changes nothing and an owner's value is never overwritten.
-- `mutateExisting` explicitly set to false, because enabling it rewrites every matching existing object on each trigger [KYV-E22].
-- A `kyverno-test.yaml` using `isMutatingPolicy` and `patchedResources` against `patched.yaml` [KYV-E46]; the expected patch passes and a wrong expected patch fails with "Resource diff" (O4).
+- `mutateExisting` explicitly set to false, because enabling it with trigger and target sharing a type rewrites every matching existing object on each trigger [KYV-E22].
+- A `kyverno-test.yaml` using `isMutatingPolicy` and `patchedResources` against `patched.yaml` [KYV-E46]; the expected patch passes and a wrong expected patch fails with "Resource diff" (observed with the pinned CLI).
+- Two cases: `payments/invoice-settings` (unlabelled) is patched and reports `pass` against `patched.yaml`; `payments/ledger-settings` already carries `cost-center: finance-ops`, reports `skip` and matches `unchanged.yaml`, so the owner's value is preserved. Observed: for a MutatingPolicy an excluded object reports `skip` and a wrong expected patch still fails with "Resource diff" (unlike GeneratingPolicy, where an excluded trigger passes with reason "Excluded"). The second case is what a second admission pass would see on an already-labelled object; it is offline evidence only, and admission reinvocation itself is not shown.
 
 ## Verified with
 
@@ -23,7 +24,7 @@ A MutatingPolicy that adds a `cost-center` label to ConfigMaps created in `payme
 
 ## Traps this kit avoids
 
-- A non-idempotent patch: the guard makes a second run a no-op, whatever the reinvocationPolicy value [KYV-E44].
+- A non-idempotent patch: the guard makes a second run a no-op in the owner-labelled case. Inference: the guard would also make reinvocationPolicy irrelevant, but admission reinvocation is not shown here [KYV-E44].
 - Enabling mutateExisting without a match-set inventory [KYV-E22].
-- A wrong expected patch hidden by a loose comparison: the offline test fails with "Resource diff" (O4).
+- A wrong expected patch hidden by a loose comparison: the offline test fails with "Resource diff".
 - Reading an offline `pass` as proof of background or reconciler behavior [KYV-E25].

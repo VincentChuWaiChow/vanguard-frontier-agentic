@@ -15,7 +15,7 @@ Records, per object, what a lifecycle policy changed and what survives a Git rev
 | Object | Owner / reconciler | Before change | After change | After Git revert | After restoration plan | Evidence | Second-run result |
 | --- | --- | --- | --- | --- | --- | --- | --- |
 | `<kind/namespace/name>` | `<team or controller>` | `<state>` | `<state>` | `<state or unverified>` | `<state or none>` | `<evidence ID>` | `<changed again or unchanged>` |
-| ConfigMap `payments/invoice-settings` | Payments platform team | No `cost-center` label | Label `cost-center: payments` | Unverified: persistence assumed until downstream state is shown | None needed if the label is acceptable | EV-1 (offline-test), EV-2 pending | Unchanged: the matchCondition skips labelled objects |
+| ConfigMap `payments/invoice-settings` | Payments platform team | No `cost-center` label | Label `cost-center: payments` | Unverified: persistence assumed until downstream state is shown | None needed if the label is acceptable | EV-1 (offline-test), EV-2 pending | Unchanged offline (owner-labelled case, EV-1); admission reinvocation not shown |
 | ConfigMap `tenant-a/invoice-limits` | Kyverno generator (GitOps reconciler unknown) | Absent | Present with `maxRetries: "3"` | Retained, because orphaning is enabled; confirm by inspection | None | EV-3 (offline-test) | Unknown: needs a controlled-test |
 
 ## Evidence status

@@ -17,14 +17,15 @@ Decision ID: `<KYV-DEC-nnnn>`.
 | Claim | Numerator | Denominator | Population source | Window / as_of | Evidence lineage | Blind spots | What it cannot support |
 | --- | --- | --- | --- | --- | --- | --- | --- |
 | `<claim>` | `<count and rule>` | `<count and rule>` | `<inventory and capture time>` | `<window> / <as_of>` | `<EV-n per number>` | `<cause or Unknown>` | `<claims not supported>` |
-| 100 of 120 invoice-api objects have a fresh result | 100 objects with a result timestamp inside the window | 120 in-scope objects | inventory export, 2026-11-20 | 7 days / 2026-11-20T00:00:00Z | EV-1 (inventory), EV-2 (reports) | 20 objects with no fresh result, cause Unknown; 8 excepted objects | a compliance percentage; enforcement; the estate-wide state |
+| 100 of 120 invoice-api objects have a fresh result | 100 objects with a result timestamp inside the window | 120 in-scope objects | inventory export, 2026-11-20 | 7 days / 2026-11-20T00:00:00Z | EV-1 (inventory), EV-2 (reports) | 20 objects with no fresh result, cause Unknown; the 8 excepted objects are inside the 100 numerator (they report `skip`), not additional to it | a compliance percentage; enforcement; the estate-wide state |
 
 ## Counted separately
 
-| Item | Count | Why not in the denominator | Evidence |
+| Item | Count | Treatment | Evidence |
 | --- | --- | --- | --- |
 | `<excepted objects / blocked creates / excluded>` | `<n>` | `<reason>` | `<EV-n>` |
-| Blocked creates | 6 | denied requests never became objects | EV-4 runtime-metric |
+| Excepted (skip) | 8 | inside the 100 numerator; counted separately so a `skip` is not read as a pass | EV-2 population-report |
+| Blocked creates | 6 | not in the denominator: denied requests never became objects | EV-4 runtime-metric |
 
 ## Evidence status
 
@@ -32,3 +33,4 @@ Decision ID: `<KYV-DEC-nnnn>`.
 | --- | --- | --- | --- | --- |
 | `<EV-n>` | `<population-report / runtime-metric / installed-config>` | `<export or query>` | `<timestamp>` | `<what it does not show>` |
 | EV-2 | population-report | PolicyReports, 7-day window | 2026-11-20T00:00:00Z | per-result breakdown for 92 objects; the 20 objects |
+| EV-4 | runtime-metric | `kyverno_admission_requests_total` with `request_allowed` false, 7-day window | 2026-11-20T00:00:00Z | which policy denied; the denied objects |

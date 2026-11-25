@@ -5,3 +5,14 @@ metadata:
   namespace: payments
 data:
   retries: "3"
+---
+# Already labelled by its owner: this is also what a second admission pass would see.
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: ledger-settings
+  namespace: payments
+  labels:
+    cost-center: finance-ops
+data:
+  retries: "5"

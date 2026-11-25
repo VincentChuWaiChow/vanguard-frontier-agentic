@@ -19,3 +19,9 @@ results:
     kind: Pod
     resources: [payments/invoice-batch-root]
     result: fail
+  # Widening detector: same namespace, compensating label present, not the approved workload.
+  - isValidatingPolicy: true
+    policy: payments-run-as-non-root
+    kind: Pod
+    resources: [payments/invoice-batch-labelled]
+    result: fail

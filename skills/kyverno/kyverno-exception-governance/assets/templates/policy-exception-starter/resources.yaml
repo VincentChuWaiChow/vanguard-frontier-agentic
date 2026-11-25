@@ -21,3 +21,18 @@ spec:
   containers:
     - name: batch
       image: registry.example.invalid/payments/invoice-batch@sha256:0000000000000000000000000000000000000000000000000000000000000002
+---
+# 3. Adjacent workload that DOES carry the compensating label but is not the approved workload.
+#    If the exception's matchConditions were widened (namespace-only or `true`), this Pod would flip
+#    from `fail` to `skip`; with the exact-workload condition it must stay `fail`.
+apiVersion: v1
+kind: Pod
+metadata:
+  name: invoice-batch-labelled
+  namespace: payments
+  labels:
+    network-isolation: strict
+spec:
+  containers:
+    - name: batch
+      image: registry.example.invalid/payments/invoice-batch@sha256:0000000000000000000000000000000000000000000000000000000000000002

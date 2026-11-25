@@ -28,14 +28,14 @@ Which fields does a PolicyReport result carry, and which coverage, attribution, 
 
 1. A result carries `policy`, `rule`, `result` (pass, fail, warn, error or skip), `source`, `timestamp`, `scored`, `severity`, `category`, `properties` and `resources`; the report carries a summary count for each result value [KYV-E47]. Read `result` from the report, not from the summary alone: the summary is a count, not a list of objects.
 2. Question: how many in-scope objects have a result? The summary counts results, so coverage needs the summary plus an inventory; an object with no report is only visible by comparing against the inventory [KYV-E47]. Counts in the summary can exceed the object count when one object has several results.
-3. Question: which policy or rule produced a result? Attribution needs `policy` and `rule`; a blocked-request counter has no such label [KYV-E12], so a denial cannot be attributed to a policy from that counter alone.
+3. Question: which policy or rule produced a result? Attribution needs `policy` and `rule`; [KYV-E12] documents the labels `resource_kind`, `resource_request_operation` and `request_allowed` and no policy label; confirm the series' labels in the environment before attributing a denial to a policy from that counter.
 4. Question: is the result fresh? Freshness compares the result `timestamp` to a caller-supplied as_of and window [KYV-E47]. The agent never sets the threshold.
 5. Question: was it a violation? `fail` is a violation, `error` is an evaluation error, `warn` appears for example when `policies.kyverno.io/scored` is false [KYV-E10]. A fresh result is not a passing result.
 6. Question: why did it fail or what should the owner do? `properties` hold extra key-value data, and auditAnnotations attach key-value data to results [KYV-E48]. Treat the property keys as policy-author conventions; they carry no meaning unless the policy defines them.
 7. Question: was the object excepted? Excepted objects report `skip` by default; an exception's `reportResult` may be `pass` [KYV-E13]. A skip alone cannot distinguish an exception from an out-of-scope exclusion; join to the exception list, then check `expiresAt` against as_of, since an expired exception is no longer applied [KYV-E13].
 8. Question: were requests blocked? Reports describe existing resources; blocked requests are investigated through metrics and Events [KYV-E09]. They never enter a report or the object denominator.
 9. An image policy `pass` can mean nothing failed rather than an image was verified. Observed with the pinned kyverno CLI v1.20.0 in this repository's starter kits: an image outside `matchImageReferences` reports `pass`, so a `pass` on an image policy is not verification.
-10. An empty report is not a pass: report presence depends on the producer being enabled and running [KYV-E42], and the cause of absence is unknown until checked.
+10. An empty report is not a pass: inference: report presence depends on the producer being enabled and running, so confirm the producer in `installed-config` (the chart values show Reports Server and OpenReports disabled by default [KYV-E42]); the cause of absence is unknown until checked.
 
 ## Worked example (synthetic)
 

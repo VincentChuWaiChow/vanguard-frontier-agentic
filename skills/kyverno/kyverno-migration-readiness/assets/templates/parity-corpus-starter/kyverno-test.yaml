@@ -34,3 +34,17 @@ results:
     resources: [payments/violating-workload]
     operation: UPDATE
     result: fail
+  # Scope and autogen rows: an adjacent namespace stays out of scope, and the pod-controller rule
+  # (lowercase plural autogen names) evaluates the Deployment. Both must hold on every engine compared.
+  - isValidatingPolicy: true
+    policy: example-require-run-as-non-root
+    kind: Pod
+    resources: [catalog/adjacent-workload]
+    operation: CREATE
+    result: skip
+  - isValidatingPolicy: true
+    policy: example-require-run-as-non-root
+    kind: Deployment
+    resources: [payments/violating-deployment]
+    operation: CREATE
+    result: fail
