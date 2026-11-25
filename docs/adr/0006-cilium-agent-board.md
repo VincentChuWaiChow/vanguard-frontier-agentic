@@ -10,7 +10,7 @@ permalink: /docs/adr/0006-cilium-agent-board/
 
 Proposed (2026-11-25). Accepted only when the repository owner accepts it.
 
-The supporting design record (reconnaissance, capability matrix, pain register, opportunity scores, contracts, threat model, value model, red team) is `.claude/workflow/cilium-board/`. It is a dated record and authorizes nothing.
+The supporting design record (reconnaissance, capability matrix, pain register, opportunity scores, contracts, threat model, value model, red team) is [docs/architecture/cilium-board/](../architecture/cilium-board/README.md). It is a dated record and authorizes nothing.
 
 ## Context
 
@@ -25,7 +25,7 @@ Four findings decided the shape:
 
 ## Decision
 
-1. **Board:** `cilium-maestro-agent` (static router) and four specialists, each owning one decision:
+1. **Board:** `cilium-maestro-agent` (static router; corrected to plan-only by the pre-acceptance review: it returns a dispatch plan and never spawns agents) and four specialists, each owning one decision:
    - `cilium-network-policy-review-agent` (retained, id unchanged, version 0.2.0): does policy and transport encryption enforce the intended connectivity boundary? Its scope is deliberately widened from authorization to authorization plus confidentiality (WireGuard and IPsec coverage), and narrowed by moving egress gateway SNAT and failover to the boundary specialist.
    - `cilium-dataplane-diagnostics-agent`: what explains the observed datapath behavior, including capacity.
    - `cilium-external-connectivity-review-agent`: is traffic crossing the cluster boundary reachable, owned, bounded and failure-isolated?
@@ -35,7 +35,7 @@ Four findings decided the shape:
 4. **Every material upstream claim cites a dated ledger row** in the skill's `references/evidence-ledger.md`, using the repository's existing ledger gate. The allowlist is extended to the Cilium project's own hosts, Kubernetes and Gateway API.
 5. **No live operator.** Policy changes are named for `kubernetes-live-network-policy-guard-agent`, ClusterMesh peer Secret and Gateway API changes for `kubernetes-live-network-architecture-mutation-guard-agent`, never auto-dispatched; everything else goes to the human change process.
 6. **A new gate, `validate:cilium-board`**, enforces command classification, `text`-only fences, the shared companion, no mutating tier, the canonical `AGENT.md` sections, harness freshness through the existing agentic-board renderer, read-only Claude Code grants, and routing coverage. A routing fixture of 28 scenarios is graded by the existing `evaluate()`.
-7. **Reuse over invention:** the `agentic-board-protocol` envelope, the evidence-output verdict vocabulary, the ledger gate, the harness renderer and the routing grader are reused unchanged; no schema is added.
+7. **Reuse over invention** *(corrected by the pre-acceptance review: no Cilium contract adopts the `agentic-board-protocol` envelope; the human is the bridge to Atlassian)*: the `agentic-board-protocol` envelope, the evidence-output verdict vocabulary, the ledger gate, the harness renderer and the routing grader are reused unchanged; no schema is added.
 
 ## Rejected alternatives
 
@@ -59,4 +59,4 @@ Four findings decided the shape:
 
 ## Verdict
 
-**CONDITIONALLY READY** for beta. Structure, safety boundaries and traceability are gated and pass. Not yet established: whether the agents' real answers meet these contracts on real evidence (no live evaluation has been run), whether the maestro earns its hop, and whether the ledgers will be maintained. Conditions and residual risks are listed in `.claude/workflow/cilium-board/06-red-team-and-release-readiness.md`.
+The original self-assessment (CONDITIONALLY READY) is superseded by the independent pre-acceptance review in [docs/architecture/cilium-board/07-pre-acceptance-review.md](../architecture/cilium-board/07-pre-acceptance-review.md), which recommends acceptance only after the remediation and decisions listed there. The status stays **Proposed** until the repository owner decides.
