@@ -182,6 +182,8 @@ def check(rec: dict, validator) -> list[tuple[str, str]]:
             add("KYB-REFERRAL", f"referral back to the lead {lead}")
         if r["decision_id"] != rec["decision_id"]:
             add("KYB-REFERRAL", f"referral carries {r['decision_id']}, not {rec['decision_id']}")
+        if r["status"] == "unresolved-boundary" and outcome != "indeterminate":
+            add("KYB-REFERRAL", f"referral to {r['to']} ended at an unresolved ownership boundary; the decision is indeterminate until a human owner settles it")
         key = (r["to"], r["return_question"].strip().lower())
         if key in seen_ref:
             add("KYB-REFERRAL", f"duplicate referral to {r['to']}")

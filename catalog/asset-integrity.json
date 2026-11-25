@@ -36844,7 +36844,7 @@
     },
     {
       "tree": "catalog",
-      "aggregate_sha256": "3e803434227f8f89edf4a6e0ad12d3a6fac250942903bfbeb3c7c856a6fd7fef",
+      "aggregate_sha256": "caf420ef398167c75d9b8d5a6607d5d2c4d3da95415ceab9d85b706c7d03067a",
       "files": [
         {
           "path": "catalog/AGENTS.md",
@@ -36898,7 +36898,7 @@
         },
         {
           "path": "catalog/skill-manifest.json",
-          "sha256": "bcc2faaf3dc1ca0d9deb8283998c47e1a27e6dd3b5328cd89bbdde8b0a1291b0",
+          "sha256": "4d951394fbaeaeeca211b68bb296889707a43f891e8404a85576143c0553d244",
           "bytes": 1220088
         },
         {
@@ -38162,7 +38162,7 @@
     },
     {
       "tree": "tests",
-      "aggregate_sha256": "f847c9a1b96ebd1c44de64e0f8cda59ded71cae543d6e78a96a527248e14c514",
+      "aggregate_sha256": "c97516d4cd829f9f8cd8f593ddba45b0b15649aa718d21799c0b93dc7d1a1ab3",
       "files": [
         {
           "path": "tests/AGENTS.md",
@@ -46825,6 +46825,11 @@
           "bytes": 333
         },
         {
+          "path": "tests/fixtures/kyverno-board-decisions/invalid/45-unresolved-boundary-but-supported.json",
+          "sha256": "14466b4e115e11c82ff5421f5d7542ccf8cf83bb44c4c8e500b8a7b594f2b642",
+          "bytes": 299
+        },
+        {
           "path": "tests/fixtures/kyverno-board-decisions/valid/01-cohort-a-promotion-supported.json",
           "sha256": "5d0dec34525b7467769512b52b1a6d189f88abe9f2042615c76117f0d6e8e9c9",
           "bytes": 6222
@@ -51879,5 +51884,5 @@
       "bytes": 9135
     }
   ],
-  "aggregate_sha256": "58d22f3c03be38968245dfd261ebb50b9d141264b45b59950c6583e77a5fbe89"
+  "aggregate_sha256": "bc1211a6dfa78392af30e02a32e979a282ed7a9e97b25fcdec35c3e017c0a1c0"
 }

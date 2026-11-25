@@ -15797,7 +15797,7 @@
     {
       "id": "kyverno-review-routing",
       "path": "skills/kyverno/kyverno-review-routing",
-      "aggregate_sha256": "a92c19b085e576b2517f1c4bcfc3147999521082400e769690548b35bd0f0968",
+      "aggregate_sha256": "3f58be0bf5578782004e3e154ad3a73a6cf5968f9336d011cf45879a93c792a0",
       "files": [
         {
           "path": "skills/kyverno/kyverno-review-routing/SKILL.md",
@@ -15891,8 +15891,8 @@
         },
         {
           "path": "skills/kyverno/kyverno-review-routing/scripts/validate_board_decision.py",
-          "sha256": "bf6890ef3a66c9f18562d9718f86a23597f308a689c6d2db0fa21b284efd2d6f",
-          "bytes": 21057
+          "sha256": "14f046dbedfa6a5f19da6216cff30e59c0ffa738c275d6b86593d8462bcfa2cc",
+          "bytes": 21299
         }
       ]
     },

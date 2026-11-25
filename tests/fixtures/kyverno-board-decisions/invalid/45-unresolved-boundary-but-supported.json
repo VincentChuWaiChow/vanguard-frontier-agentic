@@ -1,0 +1,9 @@
+{
+  "base": "01-cohort-a-promotion-supported.json",
+  "rule": "KYB-REFERRAL",
+  "why": "An unresolved ownership boundary cannot be approved (Codex review).",
+  "set": {
+    "referrals.0.status": "unresolved-boundary",
+    "referrals.0.answer": "ownership referred back to migration readiness"
+  }
+}
