@@ -146,6 +146,9 @@ def check(rec: dict, validator) -> list[tuple[str, str]]:
         passed = {t["polarity"] for t in rec["tests"] if t["state"] == "passed" and t["evidence_refs"]}
         if passed != {"positive", "negative"}:
             add("KYB-SUPPORTED", "supported needs a passed positive and a passed negative test with evidence")
+        failed = [t["id"] for t in rec["tests"] if t["state"] == "failed"]
+        if failed:
+            add("KYB-SUPPORTED", f"supported while in-scope tests failed {failed}; narrow the scope in a separate decision or return blocked/conditional")
     if outcome == "conditional" and not rec["conditions"]:
         add("KYB-CONDITIONAL", "conditional needs named conditions, each with an owner")
 
@@ -162,6 +165,10 @@ def check(rec: dict, validator) -> list[tuple[str, str]]:
             add("KYB-CHALLENGE", f"supported while the challenge result is {ch['result']}")
     elif ch is not None and ch["challenger"] == lead:
         add("KYB-CHALLENGE", "the lead cannot challenge its own conclusion")
+    # Consequential decisions already require an upheld challenge above; an optional challenge on an
+    # ordinary decision still binds once it is recorded.
+    if rec["consequence_class"] == "none" and ch is not None and ch["result"] == "overturned" and outcome == "supported":
+        add("KYB-CHALLENGE", "a recorded overturn contradicts supported; answer it with evidence or change the conclusion")
 
     if outcome == "supported" and rec["dissent"]:
         add("KYB-DISSENT", "dissent is recorded; resolve it with evidence or return conditional/indeterminate")

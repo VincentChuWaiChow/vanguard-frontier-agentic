@@ -36844,7 +36844,7 @@
     },
     {
       "tree": "catalog",
-      "aggregate_sha256": "ce9f29b86c814471bce51349f48e0cd79346387e102171664898cb90c0020c44",
+      "aggregate_sha256": "2bb8e9666287b4171125f2ad77c915ace3cb7a14b7d8ed189ae47b9b889fa775",
       "files": [
         {
           "path": "catalog/AGENTS.md",
@@ -36898,7 +36898,7 @@
         },
         {
           "path": "catalog/skill-manifest.json",
-          "sha256": "0106f8e99435265537f7a0b1ff90479125a6a252d66776ffc0c7ea7eb20861bb",
+          "sha256": "0517d023d2c6324a65495924dc58ce30d37bb033c6c3fac37d4166edc3a08549",
           "bytes": 1220088
         },
         {
@@ -38162,7 +38162,7 @@
     },
     {
       "tree": "tests",
-      "aggregate_sha256": "027661b77f140ac8e64ec0cc7ecc4e689922ce12e26ac266d36254bf21a3123e",
+      "aggregate_sha256": "ef648fdae7de0f3d5bebaf0c2a1ed642d7dadda71b0e4568e0c76b0296197b6d",
       "files": [
         {
           "path": "tests/AGENTS.md",
@@ -46810,6 +46810,16 @@
           "bytes": 336
         },
         {
+          "path": "tests/fixtures/kyverno-board-decisions/invalid/42-supported-with-failed-test.json",
+          "sha256": "3b537d46c881404f63a68ecaf07c7f3db94eaa78af35f5026c7f4d09bd90dc60",
+          "bytes": 282
+        },
+        {
+          "path": "tests/fixtures/kyverno-board-decisions/invalid/43-overturned-challenge-on-advisory-supported.json",
+          "sha256": "a54113ab810c22ab448a5ca9d667d076dbc010b8efb5c28721cbfa0e1733e694",
+          "bytes": 365
+        },
+        {
           "path": "tests/fixtures/kyverno-board-decisions/valid/01-cohort-a-promotion-supported.json",
           "sha256": "5d0dec34525b7467769512b52b1a6d189f88abe9f2042615c76117f0d6e8e9c9",
           "bytes": 6222
@@ -51864,5 +51874,5 @@
       "bytes": 9135
     }
   ],
-  "aggregate_sha256": "22df6b18843fc95e28903f15e712379e84f01603d9b9361f4c6d29ed5950415d"
+  "aggregate_sha256": "a9ad64acf7e7739fb254b74f900aa3a35f934f5831bf103aa6bf768e5c5e0a7f"
 }

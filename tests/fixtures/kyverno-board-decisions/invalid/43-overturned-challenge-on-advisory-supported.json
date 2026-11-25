@@ -1,0 +1,12 @@
+{
+  "base": "08-mesh-label-manifest-scope.json",
+  "rule": "KYB-CHALLENGE",
+  "why": "An overturn contradicts approval even when challenge is optional (Codex review).",
+  "set": {
+    "challenge": {
+      "challenger": "kyverno-control-evidence-agent",
+      "counterexample": "label applied to a Service outside payments",
+      "result": "overturned"
+    }
+  }
+}
