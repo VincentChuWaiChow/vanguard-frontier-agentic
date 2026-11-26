@@ -1,0 +1,22 @@
+[[rule]]
+id = "require-iam"
+type = "require_asset"
+asset_id = "aws-iam-review-agent"
+severity = "critical"
+scope = "all"
+description = "IAM review is required"
+
+[[rule]]
+id = "require-s3"
+type = "require_asset"
+asset_id = "aws-s3-security-agent"
+severity = "warning"
+scope = "all"
+description = "S3 review is required"
+
+[[suppression]]
+rule_id = "require-s3"
+workspace = "alpha"
+reason = "Fixed fixture exception"
+approver = "fixture-reviewer"
+expires = "9999-12-31"

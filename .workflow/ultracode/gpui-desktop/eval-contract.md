@@ -74,3 +74,11 @@ UNVERIFIED; parent owns integrated failures. See per-task 2.5/3.2/3.3 eval leave
 - Evidence: record exact commands/status and distinguish observed tests, source
   inference and unverified native/security boundaries. Stop if tests cannot support
   the proposed claim; one verified repair pass maximum after integrated review.
+
+## Current approved continuation
+
+The next three-slice wave uses the full contract at
+`.kiro/specs/gpui-desktop/evals/no-install-continuation.md` and its three lazy task
+leaves. Existing contracts above remain historical evidence, not new authorization.
+One integrated review and one parent-owned repair batch were used; all native/full
+dependency, installation and publication exclusions remain unchanged.

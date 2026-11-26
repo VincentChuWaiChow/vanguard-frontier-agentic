@@ -15,7 +15,7 @@ use uuid::Uuid;
 use super::snapshot::CatalogSnapshot;
 use crate::persistence::operations::OperationStatus;
 
-/// Both causes use identical snapshot loading; no legacy watcher is wired here.
+/// Both causes use identical snapshot loading; watcher ownership is explicit.
 #[derive(Debug, Clone, Copy, PartialEq, Eq)]
 pub enum RefreshTrigger {
     Manual,
@@ -164,6 +164,18 @@ impl SourceSession {
         }
     }
 
+    /// Apply only notifications captured for this exact session/source epoch.
+    /// Old generations must not re-observe or invalidate the selected source.
+    pub fn refresh_external(
+        &mut self,
+        context: &ContextTag,
+    ) -> Result<Option<Arc<CatalogSnapshot>>, SessionError> {
+        if !self.is_current(context) {
+            return Ok(None);
+        }
+        self.refresh(RefreshTrigger::ExternalChange).map(Some)
+    }
+
     pub fn snapshot(&self) -> Option<Arc<CatalogSnapshot>> {
         self.snapshot.as_ref().map(Arc::clone)
     }
@@ -242,6 +254,90 @@ impl SourceSession {
             return Err(SessionError::OperationNotTerminal);
         }
         self.operations.remove(&id);
+        Ok(())
+    }
+}
+
+/// An explicitly owned notification adapter around the shared source session.
+/// No refresh task mutates shared state: the adapter polls `next_change` on its
+/// own event loop. A source replacement drains/stops the old notification owner.
+#[derive(Default)]
+pub struct WatchedSourceSession {
+    session: SourceSession,
+    watcher: Option<crate::catalog::watcher::WatcherHandle>,
+    events: Option<tokio::sync::mpsc::Receiver<crate::catalog::watcher::WatcherEvent>>,
+    watch_context: Option<ContextTag>,
+}
+
+#[derive(Debug, thiserror::Error)]
+pub enum WatchedSessionError {
+    #[error(transparent)]
+    Session(#[from] SessionError),
+    #[error(transparent)]
+    Watcher(#[from] crate::error::TuiError),
+    #[error("watcher cleanup failed: {0}")]
+    Shutdown(String),
+}
+
+impl WatchedSourceSession {
+    pub fn new() -> Self {
+        Self::default()
+    }
+
+    pub fn session(&self) -> &SourceSession {
+        &self.session
+    }
+
+    pub async fn select(
+        &mut self,
+        selected: &Path,
+    ) -> Result<Arc<CatalogSnapshot>, WatchedSessionError> {
+        // The existing selector performs all identity, busy and snapshot checks.
+        // No events can be processed concurrently through this exclusive borrow.
+        let snapshot = self.session.select(selected)?;
+        if self.watch_context.as_ref() == Some(snapshot.context()) && self.watcher.is_some() {
+            return Ok(snapshot);
+        }
+        self.shutdown().await?;
+        let (watcher, events) =
+            crate::catalog::watcher::spawn_watcher(snapshot.context().source().root(), None, &[])?;
+        self.watcher = Some(watcher);
+        self.events = Some(events);
+        self.watch_context = Some(snapshot.context().clone());
+        // Close the select/load-to-watch startup gap via the same refresh path.
+        self.session
+            .refresh(RefreshTrigger::ExternalChange)
+            .map_err(Into::into)
+    }
+
+    pub fn refresh(&mut self) -> Result<Arc<CatalogSnapshot>, SessionError> {
+        self.session.refresh(RefreshTrigger::Manual)
+    }
+
+    pub async fn next_change(&mut self) -> Result<Option<Arc<CatalogSnapshot>>, SessionError> {
+        let Some(events) = self.events.as_mut() else {
+            return Ok(None);
+        };
+        if events.recv().await.is_none() {
+            return Ok(None);
+        }
+        let Some(context) = self.watch_context.as_ref() else {
+            return Ok(None);
+        };
+        self.session.refresh_external(context)
+    }
+
+    /// Cancellation-safe: do not remove the owned handle until its join returns.
+    pub async fn shutdown(&mut self) -> Result<(), WatchedSessionError> {
+        if let Some(watcher) = self.watcher.as_mut() {
+            watcher
+                .shutdown_async()
+                .await
+                .map_err(WatchedSessionError::Shutdown)?;
+        }
+        self.watcher = None;
+        self.events = None;
+        self.watch_context = None;
         Ok(())
     }
 }

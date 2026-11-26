@@ -14,7 +14,10 @@
 
 use std::{
     path::{Path, PathBuf},
-    sync::{Arc, Mutex},
+    sync::{
+        atomic::{AtomicBool, Ordering},
+        Arc, Mutex,
+    },
     time::Duration,
 };
 
@@ -23,8 +26,9 @@ use notify_debouncer_full::{
     notify::{RecursiveMode, Watcher},
     DebounceEventResult, Debouncer, FileIdMap,
 };
-use tokio::sync::mpsc;
-use tracing::{debug, warn};
+use tokio::sync::{mpsc, watch, Notify};
+use tokio::task::JoinHandle;
+use tracing::warn;
 
 use crate::error::TuiError;
 
@@ -42,7 +46,8 @@ pub enum WatcherEvent {
     Catalog(PathBuf),
     /// The workspace registry file changed.
     Registry,
-    /// A file under one of the watched workspace paths changed.
+    /// A watched workspace changed, or a whole-root rescan is required after
+    /// overflow/backend error. Consumers must refresh the complete observation.
     Workspace(PathBuf),
 }
 
@@ -56,10 +61,18 @@ pub struct WatchConfig {
 
 /// Opaque handle that keeps the debouncer alive and exposes shutdown /
 /// re-establish operations.
+type NativeDebouncer = Debouncer<notify_debouncer_full::notify::RecommendedWatcher, FileIdMap>;
+
 pub struct WatcherHandle {
     /// The debouncer **must** stay alive for the duration of watching.
     /// Wrapped in `Arc<Mutex<…>>` so the re-establish task can borrow it.
-    debouncer: Arc<Mutex<Debouncer<notify_debouncer_full::notify::RecommendedWatcher, FileIdMap>>>,
+    debouncer: Arc<Mutex<Option<NativeDebouncer>>>,
+    cancel: watch::Sender<bool>,
+    worker: Option<JoinHandle<Result<(), String>>>,
+    completion: Option<Result<(), String>>,
+    dirty: Arc<DirtySignal>,
+    #[cfg(all(test, unix))]
+    ingress: mpsc::Sender<WatcherEvent>,
     config: WatchConfig,
 }
 
@@ -70,75 +83,65 @@ impl WatcherHandle {
     /// the next periodic call).  Logs a warning for any path that exists but
     /// cannot be watched.
     pub fn reestablish(&self) {
-        let mut guard = match self.debouncer.lock() {
-            Ok(g) => g,
-            Err(e) => {
-                warn!("watcher mutex poisoned during reestablish: {e}");
-                return;
-            }
-        };
-        let watcher = guard.watcher();
-
-        let cfg = &self.config;
-
-        // Catalog dir
-        if cfg.catalog_dir.exists() {
-            if let Err(e) = watcher.watch(&cfg.catalog_dir, RecursiveMode::Recursive) {
-                warn!(
-                    path = %cfg.catalog_dir.display(),
-                    "failed to re-watch catalog dir: {e}"
-                );
-            } else {
-                debug!(path = %cfg.catalog_dir.display(), "re-established catalog watch");
-            }
-        }
-
-        // Registry file
-        if let Some(reg) = &cfg.registry_path {
-            if reg.exists() {
-                // Watch the parent directory so we catch temp-then-rename writes
-                if let Some(parent) = reg.parent() {
-                    if let Err(e) = watcher.watch(parent, RecursiveMode::NonRecursive) {
-                        warn!(
-                            path = %parent.display(),
-                            "failed to re-watch registry parent: {e}"
-                        );
-                    } else {
-                        debug!(path = %parent.display(), "re-established registry watch");
-                    }
-                }
-            }
-        }
-
-        // Workspace paths
-        for ws in &cfg.workspace_paths {
-            if ws.exists() {
-                if let Err(e) = watcher.watch(ws, RecursiveMode::Recursive) {
-                    warn!(
-                        path = %ws.display(),
-                        "failed to re-watch workspace path: {e}"
-                    );
-                } else {
-                    debug!(path = %ws.display(), "re-established workspace watch");
-                }
-            }
-        }
+        reestablish_roots(&self.debouncer, &self.config);
+        self.dirty.mark();
     }
 
-    /// Consume the handle and stop the debouncer gracefully.
+    /// Request shutdown without waiting. Kept for legacy callers; this does not
+    /// acknowledge cleanup. Use `shutdown_async` when completion matters.
     pub fn shutdown(self) {
-        match Arc::try_unwrap(self.debouncer) {
-            Ok(mutex) => {
-                if let Ok(debouncer) = mutex.into_inner() {
-                    debouncer.stop_nonblocking();
-                }
-            }
-            Err(_arc) => {
-                // Re-establish task still holds a reference; the debouncer will
-                // be stopped when all Arc clones are dropped.
-                debug!("watcher shutdown deferred – re-establish task still active");
-            }
-        }
+        self.cancel.send_replace(true);
+    }
+
+    /// Cancel and observe retry-worker exit and notification resource shutdown.
+    /// The join stays in `self` while awaited: cancelling this future cannot
+    /// lose ownership of cleanup, and a later call can observe its completion.
+    pub async fn shutdown_async(&mut self) -> Result<(), String> {
+        self.cancel.send_replace(true);
+        self.wait_stopped().await
+    }
+
+    /// Observe completion after receiver closure or a shutdown request.
+    pub async fn wait_stopped(&mut self) -> Result<(), String> {
+        let Some(worker) = self.worker.as_mut() else {
+            return self.completion.clone().unwrap_or(Ok(()));
+        };
+        let result = worker
+            .await
+            .map_err(|error| error.to_string())
+            .and_then(|result| result);
+        self.worker = None;
+        self.completion = Some(result.clone());
+        result
+    }
+}
+
+impl Drop for WatcherHandle {
+    fn drop(&mut self) {
+        // Dropping a legacy owner requests finite cleanup rather than leaving
+        // an unowned infinite retry task. Async callers must observe completion.
+        self.cancel.send_replace(true);
+    }
+}
+
+/// One bit retains all overflow, independent of the number of changed paths.
+/// Notify is only a wakeup; the atomic bit is the authoritative pending state.
+#[derive(Default)]
+struct DirtySignal {
+    pending: AtomicBool,
+    wake: Notify,
+}
+
+impl DirtySignal {
+    fn mark(&self) {
+        self.pending.store(true, Ordering::Release);
+        self.wake.notify_one();
+    }
+}
+
+fn deliver(tx: &mpsc::Sender<WatcherEvent>, dirty: &DirtySignal, event: WatcherEvent) {
+    if matches!(tx.try_send(event), Err(mpsc::error::TrySendError::Full(_))) {
+        dirty.mark();
     }
 }
 
@@ -212,6 +215,8 @@ pub fn spawn_watcher(
     let cb_registry = config.registry_path.clone();
     let cb_workspace_paths = config.workspace_paths.clone();
     let cb_tx = tx.clone();
+    let dirty = Arc::new(DirtySignal::default());
+    let cb_dirty = Arc::clone(&dirty);
 
     let debouncer = new_debouncer(
         DEBOUNCE_TIMEOUT,
@@ -220,6 +225,9 @@ pub fn spawn_watcher(
             match result {
                 Ok(events) => {
                     for event in events {
+                        if event.need_rescan() {
+                            cb_dirty.mark();
+                        }
                         for path in &event.paths {
                             if let Some(watcher_event) = classify_path(
                                 path,
@@ -229,14 +237,15 @@ pub fn spawn_watcher(
                             ) {
                                 // Use try_send to avoid blocking the notify
                                 // callback thread (Req 1.7).
-                                if cb_tx.try_send(watcher_event).is_err() {
-                                    debug!("watcher channel full or closed, dropping event");
-                                }
+                                deliver(&cb_tx, &cb_dirty, watcher_event);
                             }
                         }
                     }
                 }
                 Err(errors) => {
+                    // An error invalidates the prior observation as surely as a
+                    // change. Retain a rescan even when the event queue is full.
+                    cb_dirty.mark();
                     for e in errors {
                         warn!("filesystem watcher error: {e}");
                     }
@@ -249,7 +258,7 @@ pub fn spawn_watcher(
         reason: e.to_string(),
     })?;
 
-    let debouncer_arc = Arc::new(Mutex::new(debouncer));
+    let debouncer_arc = Arc::new(Mutex::new(Some(debouncer)));
 
     // Establish initial watches.
     {
@@ -257,7 +266,13 @@ pub fn spawn_watcher(
             path: "watcher-mutex".to_string(),
             reason: e.to_string(),
         })?;
-        let watcher = guard.watcher();
+        let watcher = guard
+            .as_mut()
+            .ok_or_else(|| TuiError::LogDestination {
+                path: "watcher-mutex".into(),
+                reason: "watcher already stopped".into(),
+            })?
+            .watcher();
 
         if catalog_dir.exists() {
             watcher
@@ -301,24 +316,119 @@ pub fn spawn_watcher(
         }
     }
 
-    let handle = WatcherHandle {
-        debouncer: debouncer_arc.clone(),
-        config: config.clone(),
-    };
-
-    // ── Background re-establish task (Req 1.4 / 25.5) ────────────────────────
-    let reestablish_handle = WatcherHandle {
-        debouncer: debouncer_arc,
-        config,
-    };
-    tokio::spawn(async move {
+    let (cancel, mut cancelled) = watch::channel(false);
+    let resources = Arc::clone(&debouncer_arc);
+    let worker_config = config.clone();
+    let cleanup_config = config.clone();
+    let worker_dirty = Arc::clone(&dirty);
+    #[cfg(all(test, unix))]
+    let ingress = tx.clone();
+    let worker = tokio::spawn(async move {
+        let dirty = worker_dirty;
+        let mut retry = tokio::time::interval(REESTABLISH_INTERVAL);
+        // interval's first tick is immediate; initial watches already exist.
+        retry.tick().await;
         loop {
-            tokio::time::sleep(REESTABLISH_INTERVAL).await;
-            reestablish_handle.reestablish();
+            tokio::select! {
+                biased;
+                _ = cancelled.changed() => break,
+                _ = tx.closed() => break,
+                _ = dirty.wake.notified() => {
+                    if !dirty.pending.swap(false, Ordering::AcqRel) { continue; }
+                    // Overflow loses path detail, never the final invalidation.
+                    // One full-source invalidation is bounded independently of event rate.
+                    // Workspace is already the legacy full-refresh signal.
+                    // Catalog(directory) would instead attempt a single-file
+                    // reload in existing consumers and silently miss the rescan.
+                    tokio::select! {
+                        biased;
+                        _ = cancelled.changed() => {},
+                        result = tx.send(WatcherEvent::Workspace(worker_config.catalog_dir.clone())) => {
+                            if result.is_err() { break; }
+                        }
+                    }
+                    if *cancelled.borrow() || tx.is_closed() { break; }
+                }
+                _ = retry.tick() => {
+                    reestablish_roots(&resources, &worker_config);
+                    dirty.mark();
+                }
+            }
         }
+        // stop() joins the debouncer thread. Never perform this blocking join
+        // on the async executor, and do not report completion before it returns.
+        tokio::task::spawn_blocking(move || {
+            let debouncer = resources.lock().unwrap_or_else(|e| e.into_inner()).take();
+            let mut failure = None;
+            if let Some(mut debouncer) = debouncer {
+                // Linux notify 6.1.1 unwatch waits for the event-loop response:
+                // acknowledge removal of subscriptions before joining callbacks.
+                let mut roots = vec![cleanup_config.catalog_dir];
+                if let Some(parent) = cleanup_config
+                    .registry_path
+                    .as_deref()
+                    .and_then(Path::parent)
+                {
+                    roots.push(parent.to_path_buf());
+                }
+                roots.extend(cleanup_config.workspace_paths);
+                for root in roots {
+                    if let Err(error) = debouncer.watcher().unwatch(&root) {
+                        if !matches!(
+                            error.kind,
+                            notify_debouncer_full::notify::ErrorKind::WatchNotFound
+                        ) {
+                            failure = Some(error.to_string());
+                        }
+                    }
+                }
+                debouncer.stop();
+            }
+            failure.map_or(Ok(()), Err)
+        })
+        .await
+        .map_err(|error| error.to_string())??;
+        Ok(())
     });
 
-    Ok((handle, rx))
+    Ok((
+        WatcherHandle {
+            debouncer: debouncer_arc,
+            config,
+            cancel,
+            worker: Some(worker),
+            completion: None,
+            dirty,
+            #[cfg(all(test, unix))]
+            ingress,
+        },
+        rx,
+    ))
+}
+
+fn reestablish_roots(resources: &Mutex<Option<NativeDebouncer>>, config: &WatchConfig) {
+    let mut guard = resources.lock().unwrap_or_else(|e| e.into_inner());
+    let Some(debouncer) = guard.as_mut() else {
+        return;
+    };
+    let watcher = debouncer.watcher();
+    let mut roots = vec![(config.catalog_dir.as_path(), RecursiveMode::Recursive)];
+    if let Some(parent) = config.registry_path.as_deref().and_then(Path::parent) {
+        roots.push((parent, RecursiveMode::NonRecursive));
+    }
+    roots.extend(
+        config
+            .workspace_paths
+            .iter()
+            .map(|p| (p.as_path(), RecursiveMode::Recursive)),
+    );
+    for (path, mode) in roots {
+        if path.exists() {
+            if let Err(error) = watcher.watch(path, mode) {
+                warn!(path = %path.display(), "failed to re-establish watch: {error}");
+            }
+        }
+    }
 }
 
 // ── Tests ─────────────────────────────────────────────────────────────────────
@@ -328,6 +438,100 @@ mod tests {
     use std::time::Duration;
     use tempfile::TempDir;
     use tokio::time::timeout;
+
+    #[tokio::test]
+    async fn closed_receiver_releases_retry_owned_resources() {
+        let dir = TempDir::new().unwrap();
+        let (handle, rx) = spawn_watcher(dir.path(), None, &[]).unwrap();
+        let resources = Arc::downgrade(&handle.debouncer);
+        drop(rx);
+        handle.shutdown();
+        timeout(Duration::from_secs(3), async {
+            while resources.upgrade().is_some() {
+                tokio::task::yield_now().await;
+            }
+        })
+        .await
+        .expect("closed receiver/shutdown retained retry-owned resources");
+    }
+
+    #[cfg(unix)] // SourceSession native identity oracle is intentionally Unix-only.
+    #[tokio::test]
+    async fn overflow_coalesces_final_change_into_bounded_root_rescan() {
+        let dir = TempDir::new().unwrap();
+        std::fs::create_dir(dir.path().join("catalog")).unwrap();
+        std::fs::write(
+            dir.path().join("package.json"),
+            r#"{"name":"@raishin/vanguard-frontier-agentic"}"#,
+        )
+        .unwrap();
+        let agents = dir.path().join("catalog/agents.json");
+        std::fs::write(
+            &agents,
+            include_bytes!("../../tests/fixtures/compatibility/core/catalog/agents.json"),
+        )
+        .unwrap();
+        let mut session = crate::engine::session::SourceSession::new();
+        let first = session.select(dir.path()).unwrap();
+        assert_eq!(first.catalog().agents.len(), 3);
+        // A separate watched root isolates the deterministic callback-injection
+        // grader from incidental native event scheduling during fixture writes.
+        let notifications = TempDir::new().unwrap();
+        let (mut handle, mut events) = spawn_watcher(notifications.path(), None, &[]).unwrap();
+        // No await: on this current-thread executor the worker cannot drain the
+        // channel while the callback delivery path is deterministically flooded.
+        for index in 0..10_000 {
+            deliver(
+                &handle.ingress,
+                &handle.dirty,
+                WatcherEvent::Catalog(dir.path().join(format!("{index}.json"))),
+            );
+        }
+        // Final bytes differ from the acquired observation. The final callback
+        // was dropped from the full queue; only its retained dirty signal remains.
+        std::fs::write(&agents, "[]").unwrap();
+        assert_eq!(events.len(), 256);
+        assert!(handle.dirty.pending.load(Ordering::Acquire));
+        // Handshake: let the supervisor take the first dirty bit while its
+        // rescan send is blocked by the full queue. A later final invalidation
+        // must survive this in-flight send (a wake-only design loses it).
+        timeout(Duration::from_secs(3), async {
+            while handle.dirty.pending.load(Ordering::Acquire) {
+                tokio::task::yield_now().await;
+            }
+        })
+        .await
+        .unwrap();
+        deliver(
+            &handle.ingress,
+            &handle.dirty,
+            WatcherEvent::Catalog(agents.clone()),
+        );
+        assert!(handle.dirty.pending.load(Ordering::Acquire));
+        for _ in 0..256 {
+            events.recv().await.unwrap();
+        }
+        assert_eq!(
+            timeout(Duration::from_secs(3), events.recv())
+                .await
+                .unwrap(),
+            Some(WatcherEvent::Workspace(notifications.path().to_path_buf()))
+        );
+        assert_eq!(
+            timeout(Duration::from_secs(3), events.recv())
+                .await
+                .unwrap(),
+            Some(WatcherEvent::Workspace(notifications.path().to_path_buf()))
+        );
+        assert!(
+            events.try_recv().is_err(),
+            "overflow must not retain an unbounded path queue"
+        );
+        let refreshed = session.refresh_external(first.context()).unwrap().unwrap();
+        assert!(refreshed.catalog().agents.is_empty());
+        assert_eq!(refreshed.revision(), first.revision() + 1);
+        handle.shutdown_async().await.unwrap();
+    }
 
     // ── Pure classification tests (no filesystem, no timing) ─────────────────
 

@@ -1,3 +1,131 @@
+# Current governance, evidence and watcher continuation (2026-11-26)
+
+Status: READY FOR REVIEW for the three completed engine-preparation slices.
+Subsequent user request: "then you git commit and git push" explicitly authorizes
+publication of exactly this reviewed wave on `origin/feature/gpui-desktop-alpha`.
+The remote branch matched baseline `cc6d01b71d23adc5c7b1fa03b284e1cd9248fadf` before
+publication, so no additional historical local commits are included. Git results
+are reported in the session and ignored publication evidence, not predicted here.
+This section supersedes prior progress and publication instructions for the current
+request. The user approved three bounded engine preparations, not full native
+completion. Implementation made no installation, dependency change, staging,
+commit, push or remote CI operation; only the subsequent scoped publication is now
+separately authorized.
+
+## Delivered scope
+
+- 3.4: same-observation structured scan quality, report-specific dependency status,
+  exact request/generation guards and bounded retained stale governance results.
+- 4.3: real-commit-gated inert probes, known outcome/audit independence, one retained
+  evidence event, bounded evidence-only retries and owner-locked restart recovery.
+- 3.2: reliable bounded overflow/rescan, generation-bound notification refresh and
+  cancellation-safe observed retry/debouncer cleanup through the additive owner.
+
+## Parent evidence
+
+All raw logs/JSON are under ignored `tools/vfa-tui/target/no-install-continuation/`.
+
+| Criterion | Status | Evidence |
+| --- | --- | --- |
+| Initial baseline | PASS | Default 1,168 and engine-only 947; zero failed, same existing ignored doctest |
+| Post-review full regression | PASS | Default 1,204 and engine-only 982; zero failed, identical ignored doctest; exact baseline test identities preserved |
+| Capability/TDD | PASS scoped | Real runtime RED for each slice; missing-API RED separate; reviewed two governance cases first failed at runtime, then passed |
+| Independent review | PASS process | One reviewer, two verified governance counterexamples; one parent repair batch including the strict-clippy test-borrow miss; no second review claimed |
+| Strict lint/format | PASS | Both all-target clippy modes with `-D warnings`, crate formats and whitespace checks |
+| Dependency boundaries | PASS metadata only | Both consumer lock graphs and 31 feature-boundary mutants; no Desktop behavioral parity inferred |
+| Export/CI regressions | PASS | 56 Node tests, zero failures/skips, exact existing exporter behavior retained |
+| TUI package | PASS | Ordinary locked/offline package verification and packaged no-default library check; 100 Rust files match source bytes; test helpers excluded |
+| Spec/integrity/frozen scope | PASS | Structural mutants, unchanged asset manifest, seven frozen input hashes; Git index empty |
+| AST graph | PASS scoped | Code graph updated; optional HTML exceeds visualization size limit, not native UI evidence |
+| Checkout npm | MISS baseline environment | Before source edits, validator flags ignored vendored zruntime workflow; scanner/ignore rules untouched |
+| Snapshot npm in sandbox | MISS environment | Corrected harmless child-process probe reproduces Node spawnSync EPERM in both checkout and snapshot |
+| Approved snapshot npm | PASS with context | Same unchanged full pipeline passes on exact source-only snapshot, tool-approved outside sandbox after successful probe; failures above are retained |
+| Native/other hosts | UNVERIFIED | GPUI build prerequisites, native/both-lock behavior, UI/AT/performance and full dependency gates unchanged |
+| Documentation linters | UNVERIFIED unavailable | No installed Markdown/spelling tools found; none downloaded or installed |
+
+## Exact verification commands
+
+Run from the explicit selected source root, with the existing cached Cargo home
+and target directory, `CARGO_NET_OFFLINE=true`, and the shared continuation flock.
+Every shell entry uses `rtk proxy`; raw JSON records exact argument arrays.
+
+```text
+cargo +stable test --manifest-path tools/vfa-tui/Cargo.toml --locked --offline --no-fail-fast
+cargo +stable test --manifest-path tools/vfa-tui/Cargo.toml --locked --offline --no-default-features --no-fail-fast
+cargo +stable clippy --manifest-path tools/vfa-tui/Cargo.toml --all-targets --locked --offline -- -D warnings
+cargo +stable clippy --manifest-path tools/vfa-tui/Cargo.toml --all-targets --locked --offline --no-default-features -- -D warnings
+cargo +stable fmt --manifest-path tools/vfa-tui/Cargo.toml --check
+python3 tools/vfa-tui/tests/check_feature_boundary.py --manifest-path tools/vfa-tui/Cargo.toml --self-test
+python3 tools/vfa-tui/tests/check_feature_boundary.py --manifest-path tools/vfa-tui/Cargo.toml --consumer-manifest tools/vfa-desktop/Cargo.toml
+node --test tests/export-plan.test.mjs tests/export-apply.test.mjs tests/gpui-ci-contracts.test.mjs
+python3 .kiro/specs/gpui-desktop/verify.py --tasks --self-test
+python3 tests/validate-asset-integrity.py
+graphify update .
+```
+
+Package uses a discovered absolute manifest in the exact disposable source-only
+snapshot, then checks the packaged manifest with no-default/locked/offline flags.
+Full npm command is `npm run validate` in that snapshot. No `--allow-dirty`,
+`--no-verify`, scanner waiver or fabricated native PASS is used. Snapshot manifests
+hash every intended file; subsequent progress/eval documents may differ, but all
+crate code/tests, package bytes and frozen requirements/design/manifest inputs
+must remain exact.
+
+## Team, permission exception and remaining limits
+
+Three runtime-exposed `rust_beast_mode` specialists used disjoint files (configured
+`gpt-6.1-sol/medium`, workspace-write). One reused `rust_reviewer` was assigned
+read-only review (configured `gpt-6.1-sol/high`). Serving identity and effective
+reviewer isolation are unobservable; native role dispatch succeeded despite the
+implementation profile's incomplete offline name/description metadata. Parent
+owned module exports, integration, tests, documents and the one repair batch.
+This split used independent domains without extra research/review agents.
+Per-agent token usage and comparative savings were not measured; no cost or
+latency-savings claim is made from these checks.
+
+One harmless Node probe and the same local npm validation were tool-approved
+outside the managed sandbox after EPERM was reproduced. No credential read,
+installation, configuration or external-system mutation was part of that route.
+
+Observations are sequential, not an atomic filesystem snapshot. Controller
+fencing excludes cooperating duplicate controllers, not arbitrary raw-journal or
+same-user SQLite edits. Closing the controller joins the writer but does not flush
+pending failed evidence. Legacy synchronous watcher shutdown/drop requests finite
+cleanup only; explicit async observation requires a live runtime. Notify's internal
+backend thread has no public join and its exit is unverified. Full task checkboxes
+and dependencies remain unchanged; no unmeasured coverage threshold is claimed.
+
+## Changed paths
+
+- `.kiro/specs/gpui-desktop/evals.md`
+- `.kiro/specs/gpui-desktop/evals/no-install-continuation.md`
+- `.kiro/specs/gpui-desktop/evals/task-3.2-watcher.md`
+- `.kiro/specs/gpui-desktop/evals/task-3.4.md`
+- `.kiro/specs/gpui-desktop/evals/task-4.3.md`
+- `.kiro/specs/gpui-desktop/tasks.md`
+- `.workflow/ultracode/gpui-desktop/eval-contract.md`
+- `.workflow/ultracode/gpui-desktop/final-report.md`
+- `.workflow/ultracode/gpui-desktop/plan.md`
+- `.workflow/ultracode/gpui-desktop/state.json`
+- `tools/vfa-tui/src/catalog/watcher.rs`
+- `tools/vfa-tui/src/engine/evidence.rs`
+- `tools/vfa-tui/src/engine/governance.rs`
+- `tools/vfa-tui/src/engine/mod.rs`
+- `tools/vfa-tui/src/engine/session.rs`
+- `tools/vfa-tui/src/federation/scanner.rs`
+- `tools/vfa-tui/src/headless/reporter.rs`
+- `tools/vfa-tui/src/models/report.rs`
+- `tools/vfa-tui/src/persistence/operations.rs`
+- `tools/vfa-tui/tests/catalog_session.rs`
+- `tools/vfa-tui/tests/evidence_recovery.rs`
+- `tools/vfa-tui/tests/fixtures/governance/policy.toml`
+- `tools/vfa-tui/tests/governance_contracts.rs`
+- `tools/vfa-tui/tests/watcher_lifecycle.rs`
+
+---
+
+Historical records below are not authorization for the current wave.
+
 # Publication acceptance for the three completed engine preparations
 
 The latest user request explicitly authorizes commit and push of this reviewed

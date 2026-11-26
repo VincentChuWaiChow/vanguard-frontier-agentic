@@ -187,3 +187,16 @@ a whole. Create later task contracts when their work is authorized.
   algorithms and bounded descriptor-relative file observations with stated limits.
 
 These leaves cover engine preparation, not full native task acceptance.
+
+## Approved governance, evidence and watcher continuation
+
+- [Shared three-slice contract](evals/no-install-continuation.md): authorization,
+  disjoint ownership, task-wide limits, integrated checks and explicit exclusions.
+- [Task 3.4 governance input quality](evals/task-3.4.md): same-observation scan
+  quality and requested-report status with bounded stale provenance.
+- [Task 4.3 evidence-only admission/recovery](evals/task-4.3.md): actual commit
+  receipts, bounded evidence retries and exclusive-owner unknown-effects recovery.
+- [Task 3.2 owned watcher](evals/task-3.2-watcher.md): reliable overflow/rescan,
+  generation-bound automatic refresh and observed async cleanup.
+
+The full native tasks stay unchecked. These are evaluated preparation slices.

@@ -536,3 +536,15 @@ No installs/downloads/dependency edits, native GUI/OS acceptance, Git publicatio
 credential reads, cloud actions or unrelated edits. Any needed expansion stops
 the affected packet. Retain failures and distinguish compile-only RED from runtime
 RED. Contracts: evals/task-2.5.md, task-3.2.md and task-3.3.md under the spec.
+
+## Approved continuation: governance, evidence recovery and watcher ownership
+
+User: "go ahead for these", following the read-only no-install assessment.
+Run the three bounded engine preparations described in
+`.kiro/specs/gpui-desktop/evals/no-install-continuation.md`; that full contract owns
+the disjoint write sets, success/failure checks and task-wide limits. Preserve all
+previous results and full-task dependencies. No commit/push/install authority is
+inferred from older workflow records. Parent integrates and verifies; three
+runtime-exposed Rust implementation specialists work independently, followed by
+one reused Rust reviewer and at most one task-wide repair batch. All Cargo commands
+share the continuation's explicit flock; parent owns module exports/formatting.

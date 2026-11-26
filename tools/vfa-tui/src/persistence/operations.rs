@@ -6,7 +6,9 @@
 //! Blocking calls belong on an engine worker, not a UI callback. No runtime is
 //! constructed per request. Use `close` to observe orderly connection errors.
 
-use std::sync::{mpsc, Arc};
+use std::collections::HashSet;
+use std::path::PathBuf;
+use std::sync::{mpsc, Arc, Mutex, OnceLock};
 use std::thread::{self, JoinHandle};
 
 use chrono::{DateTime, SecondsFormat, Utc};
@@ -265,7 +267,14 @@ fn sorted_json(value: &Value) -> Value {
     }
 }
 
+/// Maximum validated operation projections returned by a recovery step.
+pub const RECOVERY_PAGE_SIZE: usize = 32;
+
 enum Request {
+    RecoveryPage(
+        Option<String>,
+        mpsc::Sender<Result<Vec<OperationProjection>, JournalError>>,
+    ),
     Append(
         Box<CanonicalEvent>,
         mpsc::Sender<Result<CommitReceipt, JournalError>>,
@@ -281,15 +290,33 @@ enum Request {
     ),
 }
 
+// Only cooperating evidence controllers are excluded here. Raw journal APIs and
+// same-user SQLite editors are not fenced by this in-process registry; the OS
+// ProfileOwner remains cross-process authority. A poisoned registry fails closed.
+static EVIDENCE_OWNERS: OnceLock<Mutex<HashSet<PathBuf>>> = OnceLock::new();
+
+struct EvidenceAuthority(PathBuf);
+
+impl Drop for EvidenceAuthority {
+    fn drop(&mut self) {
+        if let Ok(mut owners) = EVIDENCE_OWNERS.get_or_init(Mutex::default).lock() {
+            owners.remove(&self.0);
+        }
+    }
+}
+
 /// One bounded request queue and one dedicated writer per journal handle.
 /// Share this handle, rather than opening per-request journal instances.
 pub struct OperationJournal {
+    profile_root: PathBuf,
+    evidence_authority: Option<EvidenceAuthority>,
     sender: Option<mpsc::SyncSender<Request>>,
     worker: Option<JoinHandle<Result<(), JournalError>>>,
 }
 
 impl OperationJournal {
     pub fn open(owner: Arc<ProfileOwner>) -> Result<Self, JournalError> {
+        let profile_root = owner.paths().root().to_path_buf();
         let (sender, receiver) = mpsc::sync_channel(QUEUE_CAPACITY);
         let (ready_sender, ready_receiver) = mpsc::sync_channel(1);
         let worker = thread::Builder::new()
@@ -297,6 +324,8 @@ impl OperationJournal {
             .spawn(move || run_worker(owner, receiver, ready_sender))?;
         match ready_receiver.recv() {
             Ok(Ok(())) => Ok(Self {
+                profile_root,
+                evidence_authority: None,
                 sender: Some(sender),
                 worker: Some(worker),
             }),
@@ -309,6 +338,23 @@ impl OperationJournal {
                 }
             }
         }
+    }
+
+    /// Retain exclusive cooperating-controller authority through worker close.
+    pub(crate) fn claim_evidence_authority(&mut self) -> Result<(), JournalError> {
+        let mut owners = EVIDENCE_OWNERS
+            .get_or_init(Mutex::default)
+            .lock()
+            .map_err(|_| {
+                JournalError::InvalidStore("evidence ownership registry poisoned".into())
+            })?;
+        if !owners.insert(self.profile_root.clone()) {
+            return Err(JournalError::InvalidStore(
+                "profile already has an evidence controller".into(),
+            ));
+        }
+        self.evidence_authority = Some(EvidenceAuthority(self.profile_root.clone()));
+        Ok(())
     }
 
     /// Returns only after SQL and COMMIT succeed. Queue admission is not a receipt.
@@ -345,6 +391,19 @@ impl OperationJournal {
         response.recv().map_err(|_| JournalError::WorkerStopped)?
     }
 
+    /// Bounded keyset scan through the owned connection. Includes event-only
+    /// identities so missing/corrupt projections fail closed rather than vanish.
+    /// Pages include terminal records: changing statuses cannot skip identities.
+    pub fn recovery_page(
+        &self,
+        after: Option<&str>,
+    ) -> Result<Vec<OperationProjection>, JournalError> {
+        let after = after.map(canonical_uuid).transpose()?;
+        let (reply, response) = mpsc::channel();
+        self.send(Request::RecoveryPage(after, reply))?;
+        response.recv().map_err(|_| JournalError::WorkerStopped)?
+    }
+
     fn send(&self, request: Request) -> Result<(), JournalError> {
         self.sender
             .as_ref()
@@ -364,10 +423,16 @@ impl OperationJournal {
 
     fn finish(&mut self) -> Result<(), JournalError> {
         self.sender.take();
-        match self.worker.take() {
-            Some(worker) => worker.join().map_err(|_| JournalError::WorkerPanicked)?,
+        let result = match self.worker.take() {
+            Some(worker) => worker
+                .join()
+                .map_err(|_| JournalError::WorkerPanicked)
+                .and_then(|result| result),
             None => Ok(()),
-        }
+        };
+        // Joining completes before controller authority is released, on errors too.
+        self.evidence_authority.take();
+        result
     }
 }
 
@@ -393,6 +458,9 @@ fn run_worker(
     if ready.send(Ok(())).is_ok() {
         while let Ok(request) = receiver.recv() {
             match request {
+                Request::RecoveryPage(after, reply) => {
+                    let _ = reply.send(read_recovery_page(&connection, after.as_deref()));
+                }
                 Request::Append(event, reply) => {
                     let _ = reply.send(commit_event(&mut connection, &event));
                 }
@@ -624,4 +692,33 @@ fn read_operation(
         ));
     }
     Ok(Some(current))
+}
+
+fn read_recovery_page(
+    connection: &Connection,
+    after: Option<&str>,
+) -> Result<Vec<OperationProjection>, JournalError> {
+    let mut statement = connection.prepare(
+        "SELECT operation_id FROM (SELECT operation_id FROM operations UNION SELECT operation_id FROM operation_events)
+         WHERE (?1 IS NULL OR operation_id > ?1) ORDER BY operation_id LIMIT ?2",
+    ).map_err(|error| JournalError::sqlite("prepare recovery page", error))?;
+    let ids = statement
+        .query_map(params![after, RECOVERY_PAGE_SIZE as i64], |row| {
+            row.get::<_, String>(0)
+        })
+        .map_err(|error| JournalError::sqlite("query recovery page", error))?
+        .collect::<Result<Vec<_>, _>>()
+        .map_err(|error| JournalError::sqlite("read recovery identities", error))?;
+    ids.into_iter()
+        .map(|id| {
+            if canonical_uuid(&id)? != id {
+                return Err(JournalError::InvalidData(
+                    "noncanonical recovery identity".into(),
+                ));
+            }
+            read_operation(connection, &id)?.ok_or_else(|| {
+                JournalError::InvalidStore("recovery identity has no projection".into())
+            })
+        })
+        .collect()
 }

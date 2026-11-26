@@ -11,7 +11,7 @@ pub struct ReportProducer {
 }
 
 /// Owned, adapter-neutral inputs. Paths are selected by the caller, not CWD.
-#[derive(Debug, Clone)]
+#[derive(Debug, Clone, PartialEq, Eq)]
 pub struct ReportRequest {
     pub catalog_root: PathBuf,
     pub registry_path: PathBuf,
@@ -39,14 +39,53 @@ pub struct ReportQuality {
     pub catalog: ReportInputStatus,
     pub registry: ReportInputStatus,
     pub policy: ReportInputStatus,
-    /// Registry resolution quality, not completeness of scanner file reads.
-    /// A valid registry with zero selected workspaces is current, not scan proof.
+    /// Combined registry resolution and actual scan completeness.
     pub workspaces: ReportInputStatus,
     pub expected_workspaces: usize,
     pub available_workspaces: usize,
+    /// Fully scanned workspaces; incomplete workspaces are explicitly excluded.
+    pub successful_workspaces: usize,
+    /// Legacy scores retain their historical semantics, and must not be shown
+    /// as complete health when this flag is false.
+    pub legacy_scores_complete: bool,
 }
 
-/// Registry resolution observation, not an assertion that every file was readable.
+impl ReportQuality {
+    /// Dependency quality of a requested report, independently of its findings.
+    /// Policy configuration affects policy/summary reports only.
+    pub fn for_report(&self, report: &ReportType) -> ReportInputStatus {
+        let mut inputs = vec![self.catalog];
+        if matches!(
+            report,
+            ReportType::Coverage
+                | ReportType::Violations
+                | ReportType::Drift
+                | ReportType::Stale
+                | ReportType::Versions
+                | ReportType::Summary
+                | ReportType::All
+        ) {
+            inputs.extend([self.registry, self.workspaces]);
+        }
+        if matches!(
+            report,
+            ReportType::Violations | ReportType::Summary | ReportType::All
+        ) {
+            inputs.push(self.policy);
+        }
+        if inputs.contains(&ReportInputStatus::Unavailable) {
+            ReportInputStatus::Unavailable
+        } else if inputs.contains(&ReportInputStatus::Partial) {
+            ReportInputStatus::Partial
+        } else if inputs.contains(&ReportInputStatus::NotConfigured) {
+            ReportInputStatus::NotConfigured
+        } else {
+            ReportInputStatus::Current
+        }
+    }
+}
+
+/// Combined resolution and scan quality for this workspace observation.
 #[derive(Debug, Clone, Serialize)]
 pub struct ReportWorkspaceProvenance {
     pub path: PathBuf,
@@ -77,6 +116,8 @@ pub struct ReportResult {
     pub provenance: ReportProvenance,
     /// Ordered legacy progress/error messages; generation itself never prints.
     pub diagnostics: Vec<String>,
+    /// Exact owned observations used to calculate the legacy report payload.
+    pub scans: Vec<crate::federation::scanner::WorkspaceScan>,
     // Only the terminal adapter consumes this write plan. Core generation has
     // the identical public result but does not need to retain adapter cache data.
     #[cfg(feature = "terminal")]

@@ -207,43 +207,6 @@ impl ReportService {
             ));
         }
 
-        let workspace_provenance: Vec<_> = workspaces
-            .iter()
-            .map(|workspace| {
-                let (status, diagnostic) = match &workspace.status {
-                    crate::models::workspace::WorkspaceStatus::Available => {
-                        (ReportInputStatus::Current, None)
-                    }
-                    crate::models::workspace::WorkspaceStatus::Unavailable(reason) => {
-                        (ReportInputStatus::Unavailable, Some(reason.clone()))
-                    }
-                    crate::models::workspace::WorkspaceStatus::Scanning => (
-                        ReportInputStatus::Partial,
-                        Some("scan still in progress".to_owned()),
-                    ),
-                };
-                ReportWorkspaceProvenance {
-                    path: workspace.canonical_path.clone(),
-                    name: workspace.name.clone(),
-                    status,
-                    diagnostic,
-                }
-            })
-            .collect();
-        let available_workspaces = workspace_provenance
-            .iter()
-            .filter(|workspace| workspace.status == ReportInputStatus::Current)
-            .count();
-        let workspace_status = if registry_status != ReportInputStatus::Current {
-            registry_status
-        } else if available_workspaces == workspaces.len() {
-            ReportInputStatus::Current
-        } else if available_workspaces == 0 {
-            ReportInputStatus::Unavailable
-        } else {
-            ReportInputStatus::Partial
-        };
-
         // ── 4. Load policy config ────────────────────────────────────────────
         let policy_path = request.policy_path.clone();
         let mut policy_status;
@@ -314,17 +277,86 @@ impl ReportService {
         );
         let scanner = WorkspaceScanner::new(8);
 
-        // Run scanner for each workspace to collect installed assets.
-        let installed_per_workspace: Vec<(
-            PathBuf,
-            Vec<crate::federation::scanner::InstalledAsset>,
-        )> = workspaces
+        // Capture once: quality and payload share these exact observations.
+        let scans: Vec<_> = workspaces
             .iter()
-            .map(|ws| {
-                let assets = scanner.scan_workspace(ws, &catalog_index);
-                (ws.canonical_path.clone(), assets)
+            .map(|ws| scanner.observe_workspace(ws, &catalog_index))
+            .collect();
+        let installed_per_workspace: Vec<_> = scans
+            .iter()
+            .map(|scan| (scan.workspace.clone(), scan.assets.clone()))
+            .collect();
+        let workspace_provenance: Vec<_> = workspaces
+            .iter()
+            .zip(&scans)
+            .map(|(ws, scan)| {
+                let (status, diagnostic) = match &ws.status {
+                    crate::models::workspace::WorkspaceStatus::Unavailable(reason) => {
+                        (ReportInputStatus::Unavailable, Some(reason.clone()))
+                    }
+                    crate::models::workspace::WorkspaceStatus::Scanning => (
+                        ReportInputStatus::Partial,
+                        Some("scan still in progress".into()),
+                    ),
+                    crate::models::workspace::WorkspaceStatus::Available
+                        if scan.errors.is_empty() =>
+                    {
+                        (ReportInputStatus::Current, None)
+                    }
+                    _ => (
+                        if scan.successful_files == 0 {
+                            ReportInputStatus::Unavailable
+                        } else {
+                            ReportInputStatus::Partial
+                        },
+                        Some(
+                            scan.errors
+                                .iter()
+                                .map(|e| {
+                                    format!("{} {}: {}", e.operation, e.path.display(), e.detail)
+                                })
+                                .collect::<Vec<_>>()
+                                .join("; "),
+                        ),
+                    ),
+                };
+                ReportWorkspaceProvenance {
+                    path: ws.canonical_path.clone(),
+                    name: ws.name.clone(),
+                    status,
+                    diagnostic,
+                }
             })
             .collect();
+        let available_workspaces = workspaces
+            .iter()
+            .filter(|ws| {
+                matches!(
+                    ws.status,
+                    crate::models::workspace::WorkspaceStatus::Available
+                )
+            })
+            .count();
+        let successful_workspaces = workspace_provenance
+            .iter()
+            .filter(|ws| ws.status == ReportInputStatus::Current)
+            .count();
+        let workspace_status = if registry_status != ReportInputStatus::Current {
+            registry_status
+        } else if registry.entries.is_empty() {
+            // An empty configuration is distinct from a successful filter that
+            // selects none of an otherwise registered workspace collection.
+            ReportInputStatus::NotConfigured
+        } else if successful_workspaces == workspaces.len() {
+            ReportInputStatus::Current
+        } else if workspace_provenance
+            .iter()
+            .all(|ws| ws.status == ReportInputStatus::Unavailable)
+        {
+            ReportInputStatus::Unavailable
+        } else {
+            ReportInputStatus::Partial
+        };
 
         // All installed assets flattened.
         let all_installed: Vec<crate::federation::scanner::InstalledAsset> =
@@ -504,18 +536,24 @@ impl ReportService {
             Value::Object(obj)
         };
 
+        let mut quality = ReportQuality {
+            catalog: catalog_status,
+            registry: registry_status,
+            policy: policy_status,
+            workspaces: workspace_status,
+            expected_workspaces: workspaces.len(),
+            available_workspaces,
+            successful_workspaces,
+            legacy_scores_complete: false,
+        };
+        quality.legacy_scores_complete = expanded
+            .iter()
+            .all(|report| quality.for_report(report) == ReportInputStatus::Current);
         ReportResult {
             payload: output_value,
             exit_code,
             producer: request.producer.clone(),
-            quality: ReportQuality {
-                catalog: catalog_status,
-                registry: registry_status,
-                policy: policy_status,
-                workspaces: workspace_status,
-                expected_workspaces: workspaces.len(),
-                available_workspaces,
-            },
+            quality,
             provenance: ReportProvenance {
                 catalog_root: request.catalog_root.clone(),
                 registry_path: request.registry_path.clone(),
@@ -525,6 +563,7 @@ impl ReportService {
                 workspaces: workspace_provenance,
             },
             diagnostics,
+            scans,
             #[cfg(feature = "terminal")]
             persistence,
         }

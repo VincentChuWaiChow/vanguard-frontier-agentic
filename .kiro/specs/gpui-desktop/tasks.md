@@ -1,6 +1,6 @@
 # Implementation Plan: GPUI Desktop
 
-Status: PROCESS/EXPORT/SESSION ENGINE PREPARATION VERIFIED; FULL NATIVE TASKS PENDING.
+Status: ENGINE PREPARATION VERIFIED; FULL NATIVE TASKS PENDING.
 Tasks 1.1-1.3, 4.1, 4.2 and 5.1 retain their scoped completion evidence;
 the subsequent3.1 compatibility fix clears the known17/11 library failures and
 both full local engine suites pass. Full native gates remain pending. The user authorized preparation
@@ -18,6 +18,14 @@ The explicitly approved 3.1 engine wave also includes the shared loader/store
 captured-byte consistency fix; it does not complete native/full dependencies.
 Architecture and scope come from these frozen approved inputs:
 
+The user subsequently approved three more no-install engine preparations:
+3.4 structured governance input quality, 4.3 evidence-only admission/recovery
+(including narrow journal queries), and the 3.2 owned-watcher continuation.
+The current contract is `evals/no-install-continuation.md`; the approved engine
+implementation and local verification are complete. No full task/dependency or native completion is
+implied. Installation and real helper execution remain unauthorized; the later
+explicit commit/push request authorizes publication of this delivered wave only.
+
 - Requirements SHA-256: `490b95ba21dcf9d6ec6ca803586afd785f1803287c38f0193bed053701e31160`.
 - Design SHA-256: `33a22ec84e2c376dd1e6aa627b72bf1a209a1773832c7fc3e417e2aa583699d0`.
 
@@ -30,6 +38,9 @@ tasks or bypass their dependencies.
 - [x] Task 2.5 engine preparation: bounded stateful streaming redaction and safe projection.
 - [x] Task 3.2 engine preparation: shared search, reload freshness and stale-result rejection.
 - [x] Task 3.3 engine preparation: dependency findings and confined integrity reads.
+- [x] Task 3.4 engine preparation: structured scan quality and honest governance provenance.
+- [x] Task 4.3 evidence-only preparation: committed admission, bounded retries and owner-locked recovery.
+- [x] Task 3.2 owned-watcher continuation: reliable rescan, source guards and observed async cleanup.
 
 ## Tasks
 
@@ -199,7 +210,7 @@ tasks or bypass their dependencies.
 
 - [ ] 3.2 Unify search, reload and stale-result rejection
   - Depends: 3.1
-  - Paths: tools/vfa-tui/src/search/; tools/vfa-tui/src/catalog/store.rs; tools/vfa-tui/src/catalog/watcher.rs; tools/vfa-tui/src/engine/catalog.rs; tools/vfa-tui/src/engine/session.rs; tools/vfa-tui/src/engine/snapshot.rs; tools/vfa-tui/tests/catalog_session.rs
+  - Paths: tools/vfa-tui/src/search/; tools/vfa-tui/src/catalog/store.rs; tools/vfa-tui/src/catalog/watcher.rs; tools/vfa-tui/src/engine/catalog.rs; tools/vfa-tui/src/engine/session.rs; tools/vfa-tui/src/engine/snapshot.rs; tools/vfa-tui/tests/catalog_session.rs; tools/vfa-tui/tests/watcher_lifecycle.rs
   - Design: D2, D3, D10, D11
   - Requirements: R1.5, R3.1-R3.7, R4.1-R4.6
   - Verification: V3, V5, V9
@@ -207,7 +218,8 @@ tasks or bypass their dependencies.
   - Positive: Shared ranking/filter intersection and other-entity matching are deterministic; watcher/manual refresh share revisions and stale-data rules.
   - Negative: Reordered requests cannot replace current data; failed/deleted reload is not current-empty; unchanged bytes keep revision and removed selection clears.
   - Estimate: 2-4 hours; timebox, not a completion guarantee.
-  - Installation-free preparation: User approved engine-only shared search, revision/observation-bound acceptance and common manual/change-notification refresh. Failed collections retain stale data/hash provenance; existing watcher runtime is not wired. Evidence: evals/task-3.2.md. Full task 3.1/native dependencies and full task completion remain pending.
+  - Installation-free preparation: User approved engine-only shared search, revision/observation-bound acceptance and common manual/change-notification refresh. Failed collections retain stale data/hash provenance; that original wave did not wire the watcher runtime. Evidence: evals/task-3.2.md; see the subsequent continuation below. Full task 3.1/native dependencies and full task completion remain pending.
+  - Owned-watcher continuation: Owned notification/retry lifecycle, reliable dirty/rescan overflow and source-bound automatic refresh pass targeted and full local regression checks. Evidence: evals/task-3.2-watcher.md. Notify internal backend-thread exit, other hosts and native/full task completion remain unverified.
 
 - [ ] 3.3 Expose real dependency and integrity findings
   - Depends: 3.1
@@ -223,7 +235,7 @@ tasks or bypass their dependencies.
 
 - [ ] 3.4 Populate governance results with honest input quality
   - Depends: 1.3, 3.1, 3.2, 3.3
-  - Paths: tools/vfa-tui/src/engine/governance.rs; tools/vfa-tui/src/federation/scanner.rs; tools/vfa-tui/src/policy/; tools/vfa-tui/tests/governance_contracts.rs
+  - Paths: tools/vfa-tui/src/engine/governance.rs; tools/vfa-tui/src/federation/scanner.rs; tools/vfa-tui/src/policy/; tools/vfa-tui/src/headless/reporter.rs; tools/vfa-tui/src/models/report.rs; tools/vfa-tui/tests/governance_contracts.rs; tools/vfa-tui/tests/fixtures/governance/
   - Design: D9, D10, D11
   - Requirements: R6.1-R6.6, R6.8-R6.10, R10.3
   - Verification: V2, V4
@@ -231,6 +243,7 @@ tasks or bypass their dependencies.
   - Positive: Two fixed workspace fixtures yield exact coverage/drift/policy results, suppression semantics and report parity through existing services.
   - Negative: Absent/invalid/unreadable/mixed inputs produce NOT_CONFIGURED, UNAVAILABLE or PARTIAL with denominators/exclusions and stale provenance, not healthy zeros.
   - Estimate: 2-4 hours; timebox, not a completion guarantee.
+  - Installation-free preparation: Additive structured scan observations, same-observation report quality and retained governance provenance pass local contracts, including reviewed empty-registry and unlistable-root regressions. Evidence: evals/task-3.4.md. Legacy vector/report contracts and full/native dependencies remain unchanged.
 
 - [ ] 4. Profile, evidence and execution safety
 
@@ -262,7 +275,7 @@ tasks or bypass their dependencies.
 
 - [ ] 4.3 Implement evidence admission, recovery and idempotence
   - Depends: 1.5, 2.6, 4.2
-  - Paths: tools/vfa-tui/src/engine/evidence.rs; tools/vfa-tui/tests/evidence_recovery.rs
+  - Paths: tools/vfa-tui/src/engine/evidence.rs; tools/vfa-tui/src/persistence/operations.rs; tools/vfa-tui/tests/evidence_recovery.rs
   - Design: D3, D8, D10, D11
   - Requirements: R9.2, R9.8, R10.1, R10.5, R10.9-R10.11
   - Verification: V6, V7
@@ -270,6 +283,7 @@ tasks or bypass their dependencies.
   - Positive: Durable start gates action; observed outcome remains separate from audit status; bounded evidence retries deduplicate without replay under profile ownership.
   - Negative: Failed start launches nothing; terminal commit failure preserves known success plus audit FAILED; permanent errors never loop or trigger action replay.
   - Estimate: 2-4 hours; timebox, not a completion guarantee.
+  - Installation-free preparation: Evidence-only admission, bounded retries and exclusive-owner restart recovery pass real temporary-database/process contracts, with narrow journal queries/controller ownership. Evidence: evals/task-4.3.md. Only inert action probes; no schema migration, real helper wiring or full/native dependency completion.
 
 - [ ] 4.4 Resolve native helpers and validated launch specifications
   - Depends: 1.2, 2.6

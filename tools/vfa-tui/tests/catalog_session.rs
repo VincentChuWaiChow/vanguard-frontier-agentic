@@ -475,3 +475,114 @@ fn replaced_root_is_not_rebound_by_refresh_and_old_selection_and_result_are_reje
     assert_ne!(s.snapshot().unwrap().context(), first.context());
     assert!(c.selection(&s).is_none());
 }
+
+#[tokio::test]
+async fn owned_watch_routes_linux_rename_delete_recreate_through_shared_refresh() {
+    use std::time::Duration;
+    use tokio::time::timeout;
+    use vfa_tui::engine::session::WatchedSourceSession;
+    let (_temp, root) = fixture();
+    let mut owner = WatchedSourceSession::new();
+    let first = owner.select(&root).await.unwrap();
+    let path = root.join("catalog/agents.json");
+    let staged = root.join("catalog/replacement.json");
+    std::fs::write(&staged, "[]").unwrap();
+    std::fs::rename(&staged, &path).unwrap();
+    let renamed = timeout(Duration::from_secs(5), owner.next_change())
+        .await
+        .unwrap()
+        .unwrap()
+        .unwrap();
+    assert!(renamed.catalog().agents.is_empty());
+    assert_eq!(renamed.revision(), first.revision() + 1);
+    std::fs::remove_file(&path).unwrap();
+    let deleted = timeout(Duration::from_secs(5), owner.next_change())
+        .await
+        .unwrap()
+        .unwrap()
+        .unwrap();
+    assert_eq!(
+        deleted.collection(CollectionKind::Agents).status,
+        CollectionStatus::Stale
+    );
+    assert_eq!(deleted.revision(), renamed.revision());
+    std::fs::write(&path, "[]").unwrap();
+    let recreated = timeout(Duration::from_secs(5), owner.next_change())
+        .await
+        .unwrap()
+        .unwrap()
+        .unwrap();
+    assert_eq!(
+        recreated.collection(CollectionKind::Agents).status,
+        CollectionStatus::Empty
+    );
+    assert_eq!(recreated.revision(), deleted.revision());
+    assert!(recreated.is_current_data());
+    timeout(Duration::from_secs(5), owner.shutdown())
+        .await
+        .unwrap()
+        .unwrap();
+    assert!(owner.next_change().await.unwrap().is_none());
+}
+
+#[tokio::test]
+async fn real_old_source_notification_cannot_refresh_selected_source() {
+    use std::time::Duration;
+    use tokio::time::timeout;
+    use vfa_tui::catalog::watcher::spawn_watcher;
+    let (_temp, root) = fixture();
+    let (_other_temp, other) = fixture();
+    let mut session = SourceSession::new();
+    let original = session.select(&root).unwrap();
+    let old_context = original.context().clone();
+    let (mut watch, mut events) = spawn_watcher(&root, None, &[]).unwrap();
+    std::fs::write(root.join("catalog/agents.json"), "[]").unwrap();
+    timeout(Duration::from_secs(5), events.recv())
+        .await
+        .unwrap()
+        .unwrap();
+    watch.shutdown_async().await.unwrap();
+    let selected = session.select(&other).unwrap();
+    std::fs::write(other.join("catalog/agents.json"), "[]").unwrap();
+    assert!(session.refresh_external(&old_context).unwrap().is_none());
+    assert!(
+        std::sync::Arc::ptr_eq(&selected, &session.snapshot().unwrap()),
+        "old-generation event must not even publish a new observation"
+    );
+    assert_eq!(session.snapshot().unwrap().catalog().agents.len(), 3);
+    assert!(session
+        .refresh_external(selected.context())
+        .unwrap()
+        .unwrap()
+        .catalog()
+        .agents
+        .is_empty());
+}
+
+#[tokio::test]
+async fn owned_source_switch_drains_old_notifications_and_watches_new_source() {
+    use std::time::Duration;
+    use tokio::time::timeout;
+    use vfa_tui::engine::session::WatchedSourceSession;
+    let (_temp, root) = fixture();
+    let (_other_temp, other) = fixture();
+    let mut owner = WatchedSourceSession::new();
+    let old = owner.select(&root).await.unwrap();
+    let selected = owner.select(&other).await.unwrap();
+    assert_ne!(selected.context(), old.context());
+    // Both roots change: only new-source events can reach the owned receiver.
+    std::fs::write(root.join("catalog/agents.json"), "broken").unwrap();
+    std::fs::write(other.join("catalog/agents.json"), "[]").unwrap();
+    let observed = timeout(Duration::from_secs(5), owner.next_change())
+        .await
+        .unwrap()
+        .unwrap()
+        .unwrap();
+    assert_eq!(observed.context(), selected.context());
+    assert!(observed.catalog().agents.is_empty());
+    assert!(observed.is_current_data());
+    timeout(Duration::from_secs(5), owner.shutdown())
+        .await
+        .unwrap()
+        .unwrap();
+}

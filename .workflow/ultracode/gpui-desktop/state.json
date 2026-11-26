@@ -3,8 +3,8 @@
   "branch": "feature/gpui-desktop-alpha",
   "baseline": "6dda992a3dedd845731d795aaaed20d49346f57c",
   "spec_directory": ".kiro/specs/gpui-desktop",
-  "phase": "no_install_three_engine_preparation_verified_full_native_gates_pending",
-  "status": "accepted_three_engine_preparations_complete_full_native_gates_pending",
+  "phase": "no_install_governance_evidence_watcher_preparation_verified",
+  "status": "ready_for_review_engine_preparations_only",
   "requirements_approval": "approved",
   "revision_basis": "User requested revision before design, then explicitly requested Context7 MCP; no functional scope changes specified",
   "design": "ready_for_user_review",
@@ -35,7 +35,7 @@
     "task_drafting_runs": 3,
     "task_revision_review_runs": 1
   },
-  "next_action": "Publish exactly the accepted three-slice wave with truthful completion checklist, existing test evidence and known npm cache scanner MISS; no native completion claims.",
+  "next_action": "Publish exactly the reviewed continuation wave under the subsequent explicit commit/push request; no additional implementation, installation or native completion authorized.",
   "validation_snapshot": {
     "command": "npm run validate",
     "wrapper": "rtk proxy bash",
@@ -1170,6 +1170,220 @@
       "branch": "feature/gpui-desktop-alpha",
       "scope": "Exact reviewed 21-file engine-preparation wave; mark delivered slices done, retain native/full-task limitations",
       "not_authorized": "Force push, history rewrite, unrelated files or false native/full-task completion"
+    }
+  },
+  "continuation_wave": {
+    "user_request": "go ahead for these",
+    "scope": [
+      "3.4 governance scan quality",
+      "4.3 evidence-only admission and recovery",
+      "3.2 owned watcher continuation"
+    ],
+    "baseline": "cc6d01b71d23adc5c7b1fa03b284e1cd9248fadf",
+    "status": "complete_verified_preparations_full_native_gates_pending",
+    "contract": ".kiro/specs/gpui-desktop/evals/no-install-continuation.md",
+    "full_tasks_complete": false,
+    "installs_commits_pushes_authorized": false,
+    "implementation_runs": 3,
+    "review_runs": 1,
+    "repair_batches": 1,
+    "baseline_checks": {
+      "default": {
+        "passed": 1168,
+        "failed": 0,
+        "ignored": 1,
+        "log": "baseline-default.log"
+      },
+      "engine": {
+        "passed": 947,
+        "failed": 0,
+        "ignored": 1,
+        "log": "baseline-engine.log"
+      }
+    },
+    "review_findings": [
+      "empty registered workspace configuration must be NOT_CONFIGURED, unlike no-match filter",
+      "unlistable but traversable workspace must retain independently readable assets",
+      "strict clippy rejects needless borrowed probe closure"
+    ],
+    "final_checks": {
+      "postreview-fmt": {
+        "command": [
+          "cargo",
+          "+stable",
+          "fmt",
+          "--manifest-path",
+          "tools/vfa-tui/Cargo.toml",
+          "--check"
+        ],
+        "exit_code": 0,
+        "seconds": 0.33,
+        "log": "tools/vfa-tui/target/no-install-continuation/postreview-fmt.log"
+      },
+      "postreview-clippy-default": {
+        "command": [
+          "cargo",
+          "+stable",
+          "clippy",
+          "--manifest-path",
+          "tools/vfa-tui/Cargo.toml",
+          "--all-targets",
+          "--locked",
+          "--offline",
+          "--",
+          "-D",
+          "warnings"
+        ],
+        "exit_code": 0,
+        "seconds": 2.89,
+        "log": "tools/vfa-tui/target/no-install-continuation/postreview-clippy-default.log"
+      },
+      "postreview-clippy-engine": {
+        "command": [
+          "cargo",
+          "+stable",
+          "clippy",
+          "--manifest-path",
+          "tools/vfa-tui/Cargo.toml",
+          "--all-targets",
+          "--locked",
+          "--offline",
+          "--no-default-features",
+          "--",
+          "-D",
+          "warnings"
+        ],
+        "exit_code": 0,
+        "seconds": 2.03,
+        "log": "tools/vfa-tui/target/no-install-continuation/postreview-clippy-engine.log"
+      },
+      "postreview-default": {
+        "command": [
+          "cargo",
+          "+stable",
+          "test",
+          "--manifest-path",
+          "tools/vfa-tui/Cargo.toml",
+          "--locked",
+          "--offline",
+          "--no-fail-fast"
+        ],
+        "exit_code": 0,
+        "seconds": 143.01,
+        "log": "tools/vfa-tui/target/no-install-continuation/postreview-default.log",
+        "passed": 1204,
+        "failed": 0,
+        "ignored": 1
+      },
+      "postreview-engine": {
+        "command": [
+          "cargo",
+          "+stable",
+          "test",
+          "--manifest-path",
+          "tools/vfa-tui/Cargo.toml",
+          "--locked",
+          "--offline",
+          "--no-default-features",
+          "--no-fail-fast"
+        ],
+        "exit_code": 0,
+        "seconds": 110.63,
+        "log": "tools/vfa-tui/target/no-install-continuation/postreview-engine.log",
+        "passed": 982,
+        "failed": 0,
+        "ignored": 1
+      }
+    },
+    "regression_identities": {
+      "default": {
+        "baseline_pass_identities": 1168,
+        "current_pass_identities": 1204,
+        "new": 36,
+        "missing": [],
+        "ignored_unchanged": [
+          "Doc-tests vfa_tui::src/gates/executor.rs - gates::executor::MockRunner (line 187)"
+        ]
+      },
+      "engine": {
+        "baseline_pass_identities": 947,
+        "current_pass_identities": 982,
+        "new": 35,
+        "missing": [],
+        "ignored_unchanged": [
+          "Doc-tests vfa_tui::src/gates/executor.rs - gates::executor::MockRunner (line 187)"
+        ]
+      }
+    },
+    "npm_source": {
+      "command": [
+        "npm",
+        "run",
+        "validate"
+      ],
+      "exit_code": 0,
+      "source_snapshot": "final-source-snapshot.json",
+      "execution_context": "separately tool-approved outside sandbox after sandbox-only Node spawnSync EPERM probe",
+      "log": "npm-final-source-approved.log",
+      "installs": false,
+      "validator_changes": false
+    },
+    "package": {
+      "package": {
+        "command": [
+          "cargo",
+          "+stable",
+          "package",
+          "--manifest-path",
+          "/tmp/vfa-continuation-final \u03a9 qg7glcb0/tools/vfa-tui/Cargo.toml",
+          "--locked",
+          "--offline"
+        ],
+        "exit_code": 0,
+        "seconds": 9.22,
+        "log": "tools/vfa-tui/target/no-install-continuation/package.log"
+      },
+      "packaged-engine-check": {
+        "command": [
+          "cargo",
+          "+stable",
+          "check",
+          "--manifest-path",
+          "/home/vchu@maureva.com/Documents/vscode/vanguard-frontier-agentic/tools/vfa-tui/target/consumer-build/package/vfa-tui-0.1.0/Cargo.toml",
+          "--locked",
+          "--offline",
+          "--no-default-features",
+          "--lib"
+        ],
+        "exit_code": 0,
+        "seconds": 2.69,
+        "log": "tools/vfa-tui/target/no-install-continuation/packaged-engine-check.log"
+      },
+      "archive_source_parity": {
+        "result": "PASS",
+        "rust_files": 100,
+        "sha256": "703630f3ae7057654dadf73b9acd9f955fbc515a55c0bb732ee11e4febfd5e60",
+        "test_helpers_excluded": true
+      }
+    },
+    "native": "UNVERIFIED_prerequisites_and_full_dependencies_pending",
+    "docs_lint": "UNVERIFIED_tools_unavailable_no_installation",
+    "graph": "PASS_AST_only_HTML_visualization_unavailable",
+    "code_changed_after_snapshot": false,
+    "completed_preparations": [
+      "3.4 governance",
+      "4.3 evidence-only",
+      "3.2 watcher continuation"
+    ],
+    "publication_authorization": {
+      "user_request": "then you git commit and git push",
+      "scope": "Exactly the 24 reviewed continuation files, normal commit and push to current upstream only",
+      "baseline_remote_head": "cc6d01b71d23adc5c7b1fa03b284e1cd9248fadf",
+      "remote": "origin",
+      "branch": "feature/gpui-desktop-alpha",
+      "identity": "Raishin <15792229+Raishin@users.noreply.github.com>",
+      "outcomes": "Reported in session and ignored target/no-install-continuation/publication-result.json; this authorization does not predict success",
+      "install_native_or_other_implementation_authorized": false
     }
   }
 }

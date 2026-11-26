@@ -31,9 +31,7 @@ use tokio::sync::Semaphore;
 use tracing::warn;
 
 use crate::models::workspace::ResolvedWorkspace;
-use crate::workspace::harness_layout::{
-    detect_harness_dirs, validate_harness_layout, HarnessDir, LayoutMatch,
-};
+use crate::workspace::harness_layout::HarnessDir;
 
 // ---------------------------------------------------------------------------
 // DetectionMethod
@@ -89,6 +87,36 @@ pub struct InstalledAsset {
     pub confirmed: bool,
     /// Harness directory name (e.g. `".claude"`).
     pub harness: String,
+}
+
+/// A named failed input operation; never interpreted as an empty successful scan.
+#[derive(Debug, Clone, PartialEq, Eq, Serialize, Deserialize)]
+pub struct ScanError {
+    pub path: PathBuf,
+    pub operation: String,
+    pub detail: String,
+}
+
+/// One owned scan observation. Counts describe attempted inputs, not findings.
+#[derive(Debug, Clone, Default, Serialize, Deserialize)]
+pub struct WorkspaceScan {
+    pub workspace: PathBuf,
+    pub assets: Vec<InstalledAsset>,
+    pub errors: Vec<ScanError>,
+    pub expected_directories: usize,
+    pub successful_directories: usize,
+    pub expected_files: usize,
+    pub successful_files: usize,
+}
+
+impl WorkspaceScan {
+    fn error(&mut self, path: &Path, operation: &str, error: impl std::fmt::Display) {
+        self.errors.push(ScanError {
+            path: path.to_owned(),
+            operation: operation.into(),
+            detail: error.to_string(),
+        });
+    }
 }
 
 // ---------------------------------------------------------------------------
@@ -273,8 +301,8 @@ impl WorkspaceScanner {
     /// | Codex     | `plugin.json` only             |
     /// | Opencode  | `*.toml`, `*.yaml`, `*.yml`    |
     ///
-    /// Validates the layout before walking (Req 7.6); returns empty vec with a
-    /// `warn!` if the layout does not match any known pattern.
+    /// Uses the existing harness extension/layout signals during enumeration.
+    /// The vector adapter discards quality; governance uses `observe_workspace`.
     pub fn scan_harness_dir(
         &self,
         _workspace_path: &Path,
@@ -282,42 +310,73 @@ impl WorkspaceScanner {
         dir: &Path,
         index: &CatalogIndex,
     ) -> Vec<InstalledAsset> {
-        // Validate layout first (Req 7.6).
-        if validate_harness_layout(harness, dir) == LayoutMatch::NoMatch {
-            warn!(
-                harness = harness.dir_name(),
-                path = %dir.display(),
-                "harness directory does not match expected layout — skipping"
-            );
-            return vec![];
-        }
+        let mut observation = WorkspaceScan::default();
+        self.observe_harness_dir(harness, dir, index, &mut observation);
+        observation.assets
+    }
 
+    fn observe_harness_dir(
+        &self,
+        harness: &HarnessDir,
+        dir: &Path,
+        index: &CatalogIndex,
+        observation: &mut WorkspaceScan,
+    ) {
+        observation.expected_directories += 1;
         let entries = match std::fs::read_dir(dir) {
-            Ok(e) => e,
-            Err(err) => {
-                warn!(path = %dir.display(), error = %err, "could not read harness directory");
-                return vec![];
+            Ok(entries) => {
+                observation.successful_directories += 1;
+                entries
+            }
+            Err(error) => {
+                warn!(harness = harness.dir_name(), path = %dir.display(), "harness directory does not match expected layout — skipping");
+                observation.error(dir, "read_directory", error);
+                return;
             }
         };
-
-        let mut results = Vec::new();
-
-        for entry in entries.flatten() {
+        let mut layout_matched = false;
+        for entry in entries {
+            let entry = match entry {
+                Ok(entry) => entry,
+                Err(error) => {
+                    observation.error(dir, "read_entry", error);
+                    continue;
+                }
+            };
             let file_path = entry.path();
-            if !file_path.is_file() {
+            let matches_file = self.file_matches_harness(&file_path, harness);
+            let kiro_text = *harness == HarnessDir::Kiro
+                && file_path.extension().is_some_and(|ext| ext == "txt");
+            if !matches_file && !kiro_text {
                 continue;
             }
-
-            // Apply harness-specific file-extension filter (Req 7.8).
-            if !self.file_matches_harness(&file_path, harness) {
+            match std::fs::metadata(&file_path) {
+                Ok(metadata) if metadata.is_dir() => continue,
+                Ok(metadata) if !metadata.is_file() => {
+                    observation.expected_files += 1;
+                    observation.error(&file_path, "read_file", "not a regular file");
+                    continue;
+                }
+                Ok(_) => {}
+                Err(error) => {
+                    observation.expected_files += 1;
+                    observation.error(&file_path, "file_metadata", error);
+                    continue;
+                }
+            }
+            layout_matched = true;
+            if !matches_file {
                 continue;
             }
-
-            // Read file bytes; skip on I/O error.
+            observation.expected_files += 1;
             let bytes = match std::fs::read(&file_path) {
-                Ok(b) => b,
-                Err(err) => {
-                    warn!(path = %file_path.display(), error = %err, "could not read file");
+                Ok(bytes) => {
+                    observation.successful_files += 1;
+                    bytes
+                }
+                Err(error) => {
+                    warn!(path = %file_path.display(), error = %error, "could not read file");
+                    observation.error(&file_path, "read_file", error);
                     continue;
                 }
             };
@@ -387,7 +446,7 @@ impl WorkspaceScanner {
                 methods.dedup();
                 let confirmed = is_confirmed(&methods);
 
-                results.push(InstalledAsset {
+                observation.assets.push(InstalledAsset {
                     workspace_path: file_path,
                     asset_id: id,
                     installed_version,
@@ -398,8 +457,9 @@ impl WorkspaceScanner {
                 });
             }
         }
-
-        results
+        if !layout_matched {
+            warn!(harness = harness.dir_name(), path = %dir.display(), "harness directory does not match expected layout — skipping");
+        }
     }
 
     // -----------------------------------------------------------------------
@@ -419,28 +479,54 @@ impl WorkspaceScanner {
         ws: &ResolvedWorkspace,
         index: &CatalogIndex,
     ) -> Vec<InstalledAsset> {
-        let harness_dirs = detect_harness_dirs(&ws.canonical_path);
+        self.observe_workspace(ws, index).assets
+    }
 
-        let ws_root = &ws.canonical_path;
-        let mut all: Vec<InstalledAsset> = harness_dirs
-            .iter()
-            .flat_map(|(harness, dir)| self.scan_harness_dir(ws_root, harness, dir, index))
-            .collect();
-
-        // Bug #2: Recursively check for agents/ and skills/ subdirectories within each harness root.
-        // Example: .claude/agents/, .cursor/agents/, etc.
-        for (harness, dir) in &harness_dirs {
-            for subdir_name in &["agents", "skills"] {
-                let subdir = dir.join(subdir_name);
-                if subdir.is_dir() {
-                    let sub_assets = self.scan_harness_dir(ws_root, harness, &subdir, index);
-                    all.extend(sub_assets);
+    /// Capture assets and completeness from the same directory/file reads.
+    /// Absent optional harnesses are not errors; an absent workspace is.
+    pub fn observe_workspace(&self, ws: &ResolvedWorkspace, index: &CatalogIndex) -> WorkspaceScan {
+        let root = &ws.canonical_path;
+        let mut observation = WorkspaceScan {
+            workspace: root.clone(),
+            expected_directories: 1,
+            ..Default::default()
+        };
+        match std::fs::read_dir(root) {
+            Ok(_) => observation.successful_directories = 1,
+            Err(error) => {
+                observation.error(root, "read_workspace", error);
+                // A traversable root need not be listable. Preserve the legacy
+                // fixed-path scans when their harnesses remain independently
+                // readable, while retaining this incomplete-input observation.
+            }
+        }
+        for harness in HarnessDir::all() {
+            let dir = root.join(harness.dir_name());
+            match std::fs::symlink_metadata(&dir) {
+                Err(error) if error.kind() == std::io::ErrorKind::NotFound => continue,
+                Err(error) => {
+                    observation.error(&dir, "harness_metadata", error);
+                    continue;
+                }
+                Ok(_) => self.observe_harness_dir(&harness, &dir, index, &mut observation),
+            }
+            for name in ["agents", "skills"] {
+                let subdir = dir.join(name);
+                match std::fs::symlink_metadata(&subdir) {
+                    Ok(_) => self.observe_harness_dir(&harness, &subdir, index, &mut observation),
+                    Err(error)
+                        if matches!(
+                            error.kind(),
+                            std::io::ErrorKind::NotFound | std::io::ErrorKind::NotADirectory
+                        ) => {}
+                    Err(error) => observation.error(&subdir, "directory_metadata", error),
                 }
             }
         }
-
-        all.sort_by(|a, b| a.asset_id.cmp(&b.asset_id));
-        all
+        observation
+            .assets
+            .sort_by(|a, b| a.asset_id.cmp(&b.asset_id));
+        observation
     }
 
     // -----------------------------------------------------------------------
