@@ -1,0 +1,24 @@
+{
+  "identities": {
+    "binary_sha256": "0ee49ea92932e5871ee52615c39a475ef15b5035216fbe448149d6cd7abf5071",
+    "lockfile_sha256": "e3cf2952b825307b739c17a5abb88571e565a5b83af65e3b892719dd25b31aa5",
+    "bootstrap_source_sha256": "4212aeb66be0fcaa4d73470e7b74dce5a9e65a7ff253677331b282a9ea4369a5",
+    "toolkit_provenance_sha256": "6ecf254c071533eaed810b5e7353a3391051f617055cbe5b22b52a4af13665ed"
+  },
+  "reports": [
+    {
+      "backend": "x11",
+      "evidence_file": ".workflow/ultracode/gpui-install-prerequisites/results/native-x11-host/bootstrap-x11-219426-1795805574933975922.json",
+      "hashes_match_current_build": true,
+      "painted_quads": 6,
+      "software_emulated": true
+    },
+    {
+      "backend": "wayland",
+      "evidence_file": ".workflow/ultracode/gpui-install-prerequisites/results/native-wayland-host/bootstrap-wayland-220705-1795805598890042573.json",
+      "hashes_match_current_build": true,
+      "painted_quads": 10,
+      "software_emulated": true
+    }
+  ]
+}

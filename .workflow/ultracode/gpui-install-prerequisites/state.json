@@ -1,0 +1,491 @@
+{
+  "title": "GPUI installation prerequisite closure",
+  "slug": "gpui-install-prerequisites",
+  "created_at": "2026-11-27T18:42:14.443267+00:00",
+  "updated_at": "2026-11-27T19:07:06.220746+00:00",
+  "status": "blocked",
+  "mode": "delegated",
+  "baseline_ref": "34fbb1c781e78ecfa743d61c84bfe29214bbf105",
+  "risk_level": "medium",
+  "eval_contract": {
+    "level": "inline",
+    "path": "plan.md",
+    "status": "checked"
+  },
+  "approval": {
+    "required": true,
+    "granted": true,
+    "notes": "User explicitly requested installation, accepted terminal handoff, then reported installed. dpkg-query/pkg-config independently verified all four corrected packages. Parent locked Linux Cargo fetch approved and completed. No agent system package mutation.",
+    "additional_repair": "User explicitly approved native-test repair via async question response. No dependency/features changes."
+  },
+  "delegation": {
+    "native_agent_available": true,
+    "native_agent_planned": true,
+    "native_agent_used": true,
+    "agent_count": 3,
+    "wave_count": 2,
+    "no_delegation_reason": "",
+    "notes": "Max 3 cumulative agent runs; 2 concurrent; 1 parent repair; 60 min.",
+    "agents": [
+      "/root/installation_scope",
+      "/root/native_prereq_review",
+      "/root/installation_final_review"
+    ]
+  },
+  "packets": [
+    {
+      "id": "01-scope",
+      "status": "complete",
+      "owner": "read-only-agent",
+      "write_scope": [],
+      "result_path": "results/01-scope.md"
+    },
+    {
+      "id": "02-native-review",
+      "status": "complete",
+      "owner": "read-only-agent",
+      "write_scope": [],
+      "result_path": "results/02-native-review.md"
+    },
+    {
+      "id": "03-install-verify",
+      "status": "complete",
+      "owner": "parent",
+      "write_scope": [],
+      "result_path": "results/03-install-verify.md"
+    },
+    {
+      "id": "04-final-review",
+      "status": "complete",
+      "owner": "read-only-agent",
+      "write_scope": [],
+      "result_path": "results/04-final-review.md"
+    }
+  ],
+  "verification": {
+    "status": "pass_scoped_linux",
+    "checks": [
+      {
+        "name": "Prerequisites",
+        "command": "dpkg-query -W; pkg-config --modversion fontconfig wayland-client xkbcommon xkbcommon-x11 x11-xcb",
+        "required": true,
+        "status": "pass",
+        "exit_code": 0,
+        "evidence": "Installed package observations in spec eval; user performed apt transaction."
+      },
+      {
+        "name": "Compiler/provenance/features",
+        "command": "rtk proxy python3 tools/vfa-desktop/tests/check_bootstrap.py --manifest-path tools/vfa-desktop/Cargo.toml --toolchain stable --self-test",
+        "required": true,
+        "status": "pass",
+        "exit_code": 0,
+        "evidence": "Exit 0; exact compiler/archive/VCS/lock/features plus 18 mutants."
+      },
+      {
+        "name": "Both engine lock boundaries",
+        "command": "rtk proxy python3 tools/vfa-tui/tests/check_feature_boundary.py --manifest-path tools/vfa-tui/Cargo.toml [--consumer-manifest tools/vfa-desktop/Cargo.toml] --self-test",
+        "required": true,
+        "status": "pass",
+        "exit_code": 0,
+        "evidence": "Each invocation exits 0; 31 mutants and actual engine subtrees."
+      },
+      {
+        "name": "Desktop all-target check/strict clippy",
+        "command": "rtk cargo +stable check/clippy --manifest-path tools/vfa-desktop/Cargo.toml --locked --offline --all-targets -j 4 [-- -D warnings]",
+        "required": true,
+        "status": "pass",
+        "exit_code": 0,
+        "evidence": "Each exits 0; final fresh reruns confirmed."
+      },
+      {
+        "name": "Explicit native strict clippy",
+        "command": "rtk cargo +stable clippy --manifest-path tools/vfa-desktop/Cargo.toml --locked --offline --test native_smoke -j 4 -- -D warnings",
+        "required": true,
+        "status": "pass",
+        "exit_code": 0,
+        "evidence": "Exit 0; explicit excluded target checked separately."
+      },
+      {
+        "name": "Desktop standard suite",
+        "command": "rtk cargo +stable test --manifest-path tools/vfa-desktop/Cargo.toml --locked --offline -j 4",
+        "required": true,
+        "status": "pass",
+        "exit_code": 0,
+        "evidence": "Exit 0; results/desktop-tests-final.log: 6 engine + 1 callback, no skipped/ignored cases."
+      },
+      {
+        "name": "TUI default/engine shared cases",
+        "command": "rtk cargo +stable test --manifest-path tools/vfa-tui/Cargo.toml --locked --offline [--no-default-features] --test core_contracts -j 4",
+        "required": true,
+        "status": "pass",
+        "exit_code": 0,
+        "evidence": "Each exits 0; 6 cases per mode. results/tui-core-default.log and tui-core-engine.log."
+      },
+      {
+        "name": "Disconnected callback mutation",
+        "command": "Isolated copy callback empty; cargo +stable test --manifest-path <mutant>/tools/vfa-desktop/Cargo.toml --locked --offline --test ui -j 4 from /tmp",
+        "required": true,
+        "status": "pass",
+        "exit_code": 0,
+        "evidence": "Grader exits 0; actual test exits 101 with 0 != 1. results/callback-mutant.json/log. Final original suite GREEN."
+      },
+      {
+        "name": "Native X11 host bootstrap",
+        "command": "rtk proxy <compiled native_smoke> --scenario bootstrap --backend x11 --evidence-dir <absolute results/native-x11-host>",
+        "required": true,
+        "status": "pass",
+        "exit_code": 0,
+        "evidence": "Exit 0 via scoped escalation; actual x11; 6 painted quads; llvmpipe; 765 ms, clean event-loop exit."
+      },
+      {
+        "name": "Native Wayland host bootstrap",
+        "command": "rtk proxy <compiled native_smoke> --scenario bootstrap --backend wayland --evidence-dir <absolute results/native-wayland-host>",
+        "required": true,
+        "status": "pass",
+        "exit_code": 0,
+        "evidence": "Exit 0 via scoped escalation; actual wayland; 10 painted quads; llvmpipe; 462 ms, clean event-loop exit."
+      },
+      {
+        "name": "Native evidence identity audit",
+        "command": "Python native summary/hash verification against current executable/lock/bootstrap/provenance",
+        "required": true,
+        "status": "pass",
+        "exit_code": 0,
+        "evidence": "Exit 0; results/native-evidence-audit.json. No cross-host/hardware/performance inference."
+      },
+      {
+        "name": "Native negative probes",
+        "command": "Compiled native_smoke unsupported scenario / wrong host / file destination / DISPLAY=:65535",
+        "required": true,
+        "status": "pass",
+        "exit_code": 0,
+        "evidence": "Grader exits 0; each actual target exits 1 with expected diagnostic; results/native-negative-results.json and logs."
+      },
+      {
+        "name": "Repository validation",
+        "command": "rtk npm run validate (approved escalation)",
+        "required": true,
+        "status": "pass",
+        "exit_code": 0,
+        "evidence": "Exit 0; results/repository-validate-escalated.log. Original sandbox EPERM failures retained separately; exporter untouched."
+      },
+      {
+        "name": "Spec/format/spelling/Markdown/diff",
+        "command": "verify.py --tasks --self-test; cargo +stable fmt --check; codespell -q 3 changed sources/docs; cached markdownlint-cli2 changed docs; git diff --check",
+        "required": true,
+        "status": "pass",
+        "exit_code": 0,
+        "evidence": "All exit 0. Markdownlint 0.23.3 linted 2 files with 0 issues; no install needed."
+      },
+      {
+        "name": "Independent review",
+        "command": "Native read-only installation_final_review source/log/hash inspection",
+        "required": true,
+        "status": "pass",
+        "exit_code": 0,
+        "evidence": "PASS scoped; no code blocker; requested final docs/state reflect completed npm run. Not independent runtime execution."
+      },
+      {
+        "name": "Frozen inputs/scope",
+        "command": "sha256sum requirements/design and both locks; git diff --name-only/status",
+        "required": true,
+        "status": "pass",
+        "exit_code": 0,
+        "evidence": "Unchanged frozen hashes and HEAD; only two Desktop test files, task notes, new eval/workflow. Pre-existing .kiro/kiro-agents preserved."
+      },
+      {
+        "name": "AST refresh",
+        "command": "code-review-graph full build then final incremental update, minimal postprocess",
+        "required": true,
+        "status": "pass",
+        "exit_code": 0,
+        "evidence": "Current branch/HEAD; full parse 313 files, no errors; generated cache only; not correctness/native evidence."
+      },
+      {
+        "name": "Native Unicode/space relocation",
+        "command": "Copied actual native executable to temporary Unicode/space path; bootstrap X11 from /tmp with Unicode/space evidence path",
+        "required": true,
+        "status": "pass",
+        "exit_code": 0,
+        "evidence": "results/native-relocation-command.json/log and native output-\u00e9 space/*.json; relocated bytes match original binary SHA-256. Not packaged clean-machine proof."
+      }
+    ],
+    "attempts": [
+      {
+        "name": "System package install",
+        "command": "sudo -n apt-get update",
+        "required": true,
+        "status": "skipped",
+        "evidence": "Escalated execution exits 1: sudo password required. No packages changed."
+      },
+      {
+        "name": "Spec/task structural mutants",
+        "command": "rtk proxy python3 .kiro/specs/gpui-desktop/verify.py --tasks --self-test",
+        "required": true,
+        "status": "pass",
+        "evidence": "Exit 0; 44 tasks and negative mutants pass; not runtime proof."
+      },
+      {
+        "name": "Desktop fmt",
+        "command": "rtk cargo +stable fmt --manifest-path tools/vfa-desktop/Cargo.toml --check",
+        "required": true,
+        "status": "pass",
+        "evidence": "Exit 0; parsing/formatting only."
+      },
+      {
+        "name": "Bootstrap provenance before dependency fetch",
+        "command": "rtk proxy python3 tools/vfa-desktop/tests/check_bootstrap.py --manifest-path tools/vfa-desktop/Cargo.toml --toolchain stable --self-test",
+        "required": true,
+        "status": "fail",
+        "evidence": "Exit 1; 18 mutants pass; live source checks lack Kit archive."
+      },
+      {
+        "name": "Desktop check before dependency fetch",
+        "command": "rtk cargo +stable check --manifest-path tools/vfa-desktop/Cargo.toml --locked --offline --all-targets",
+        "required": true,
+        "status": "fail",
+        "evidence": "Exit 101: gpui-kit unavailable in Cargo cache; results/desktop-check-before-install.log"
+      },
+      {
+        "name": "Locked Linux dependency fetch",
+        "command": "rtk cargo +stable fetch --manifest-path tools/vfa-desktop/Cargo.toml --locked --target x86_64-unknown-linux-gnu",
+        "required": true,
+        "status": "pass",
+        "evidence": "Exit 0 via scoped native escalation; source/lock versions unchanged."
+      },
+      {
+        "name": "Installed native packages",
+        "command": "dpkg-query -W; pkg-config --modversion fontconfig wayland-client xkbcommon xkbcommon-x11 x11-xcb",
+        "required": true,
+        "status": "pass",
+        "evidence": "All four requested development packages installed; pkg-config returns 2.15.0/1.22.0/1.6.0/1.6.0/1.8.7."
+      },
+      {
+        "name": "Bootstrap provenance after fetch",
+        "command": "rtk proxy python3 tools/vfa-desktop/tests/check_bootstrap.py --manifest-path tools/vfa-desktop/Cargo.toml --toolchain stable --self-test",
+        "required": true,
+        "status": "pass",
+        "evidence": "Exit 0; 18 negative mutants, compiler/archive/VCS and actual normal Kit features pass."
+      },
+      {
+        "name": "Desktop engine boundary",
+        "command": "rtk proxy python3 tools/vfa-tui/tests/check_feature_boundary.py --manifest-path tools/vfa-tui/Cargo.toml --consumer-manifest tools/vfa-desktop/Cargo.toml --self-test",
+        "required": true,
+        "status": "pass",
+        "evidence": "Exit 0; 31 deterministic mutants and actual Desktop engine subtree pass."
+      },
+      {
+        "name": "TUI boundary before own cache restore",
+        "command": "rtk proxy python3 tools/vfa-tui/tests/check_feature_boundary.py --manifest-path tools/vfa-tui/Cargo.toml --self-test",
+        "required": true,
+        "status": "fail",
+        "evidence": "Exit 1: unchanged TUI lock needs bytes 1.11.1; default Cargo home read-only in sandbox. Source fetch escalation required, not a boundary assertion failure."
+      },
+      {
+        "name": "Desktop all-targets before import repair",
+        "command": "rtk cargo +stable check --manifest-path tools/vfa-desktop/Cargo.toml --locked --offline --all-targets -j 2",
+        "required": true,
+        "status": "fail",
+        "evidence": "Exit 101: UI test E0599 update_window missing AppContext trait import. results/desktop-check-prerequisites.log"
+      },
+      {
+        "name": "Desktop all-targets after import repair",
+        "command": "rtk cargo +stable check --manifest-path tools/vfa-desktop/Cargo.toml --locked --offline --all-targets -j 4",
+        "required": true,
+        "status": "pass",
+        "evidence": "Exit 0; results/desktop-check-after-repair.log"
+      },
+      {
+        "name": "Desktop strict clippy",
+        "command": "rtk cargo +stable clippy --manifest-path tools/vfa-desktop/Cargo.toml --locked --offline --all-targets -j 4 -- -D warnings",
+        "required": true,
+        "status": "pass",
+        "evidence": "Exit 0; results/desktop-clippy.log"
+      },
+      {
+        "name": "TUI locked dependency fetch",
+        "command": "rtk cargo +stable fetch --manifest-path tools/vfa-tui/Cargo.toml --locked --target x86_64-unknown-linux-gnu",
+        "required": true,
+        "status": "pass",
+        "evidence": "Exit 0 scoped escalation; original TUI lock unchanged."
+      },
+      {
+        "name": "TUI engine boundary after fetch",
+        "command": "rtk proxy python3 tools/vfa-tui/tests/check_feature_boundary.py --manifest-path tools/vfa-tui/Cargo.toml --self-test",
+        "required": true,
+        "status": "pass",
+        "evidence": "Exit 0; 31 mutants and actual presentation-free engine subtree."
+      },
+      {
+        "name": "Desktop fmt after import repair",
+        "command": "rtk cargo +stable fmt --manifest-path tools/vfa-desktop/Cargo.toml --check",
+        "required": true,
+        "status": "pass",
+        "evidence": "Exit 0; only owned UI file formatted."
+      },
+      {
+        "name": "AST graph refresh",
+        "command": "code-review-graph full build, minimal postprocess",
+        "required": true,
+        "status": "pass",
+        "evidence": "313 files; 3027 nodes; 42842 edges; no parse errors; correct feature/gpui-desktop-alpha branch and HEAD. Generated cache not committed."
+      },
+      {
+        "name": "Desktop full standard suite",
+        "command": "rtk cargo +stable test --manifest-path tools/vfa-desktop/Cargo.toml --locked --offline -j 4",
+        "required": true,
+        "status": "pass",
+        "evidence": "Exit 0; 6 engine contracts and 1 actual UI callback test pass, no ignored/skipped tests; empty unit/doc targets pass. results/desktop-tests.log"
+      },
+      {
+        "name": "Native explicit compilation before additional repair",
+        "command": "rtk cargo +stable test --manifest-path tools/vfa-desktop/Cargo.toml --locked --offline --test native_smoke -j 4 -- --scenario bootstrap --backend x11 --evidence-dir <results/native-x11>",
+        "required": true,
+        "status": "fail",
+        "evidence": "Exit 101: rendered_scene is bench-support-only in pinned GPUI; unused AppContext import. No native launch occurred. results/native-x11-command.log"
+      },
+      {
+        "name": "TUI default shared contracts",
+        "command": "rtk cargo +stable test --manifest-path tools/vfa-tui/Cargo.toml --locked --offline --test core_contracts -j 4",
+        "required": true,
+        "status": "pass",
+        "evidence": "Exit 0; 6 shared cases pass. results/tui-core-default.log"
+      },
+      {
+        "name": "Scoped spelling",
+        "command": "rtk proxy codespell -q 3 <changed eval/tasks/UI files>",
+        "required": true,
+        "status": "pass",
+        "evidence": "Exit 0 using repository .codespellrc."
+      },
+      {
+        "name": "Repository validate sandbox attempt",
+        "command": "rtk npm run validate",
+        "required": true,
+        "status": "fail",
+        "evidence": "Exit 1 at install-coverage, 32 assertions fail. Direct exporter works; spawnSync diagnostic has error EPERM with empty output. Scoped escalation rerun pending, no exporter edits."
+      },
+      {
+        "name": "Native explicit strict clippy after approved repair",
+        "command": "rtk cargo +stable clippy --manifest-path tools/vfa-desktop/Cargo.toml --locked --offline --test native_smoke -j 4 -- -D warnings",
+        "required": true,
+        "status": "pass",
+        "evidence": "Exit 0; results/native-clippy.log"
+      },
+      {
+        "name": "Native X11 sandbox launch",
+        "command": "rtk cargo +stable test --manifest-path tools/vfa-desktop/Cargo.toml --locked --offline --test native_smoke -j 4 -- --scenario bootstrap --backend x11 --evidence-dir <absolute evidence dir>",
+        "required": true,
+        "status": "fail",
+        "evidence": "Compiled; parent exits 1, child 101; failed to connect to X server :0. Evidence moved from Cargo package CWD into results/native-x11-sandbox; actual argv in native-x11-after-repair.log used relative destination."
+      },
+      {
+        "name": "Disconnected callback mutation",
+        "command": "rtk proxy python3 <isolated copy and cargo ui mutant probe>",
+        "required": true,
+        "status": "pass",
+        "evidence": "Grader exit 0; actual mutant test exits 101 with assertion left 0 right 1. Isolated Unicode/space-containing copy run from unrelated /tmp CWD; original source unchanged. results/callback-mutant.json/log"
+      },
+      {
+        "name": "TUI engine-only shared contracts",
+        "command": "rtk cargo +stable test --manifest-path tools/vfa-tui/Cargo.toml --locked --offline --no-default-features --test core_contracts -j 4",
+        "required": true,
+        "status": "pass",
+        "evidence": "Exit 0; 6 cases. results/tui-core-engine.log"
+      }
+    ],
+    "deferred_gates": [
+      "macOS ARM64 and Windows x64 MSVC native bootstrap unverified",
+      "Task 1.5 foreground bridge and task 2.6 process/runtime admission not implemented/verified here",
+      "AT/IME/clipboard/hardware acceleration/performance/visual/package readiness not claimed"
+    ]
+  },
+  "repairs_consumed": 2,
+  "repair": "Initial AppContext import; one additional explicitly user-approved native harness repair uses test-support painted_quads, accurately named in observation and parent guard, removes unused import. No further repairs authorized.",
+  "repair_limit": 2,
+  "scope_outcome": "Verified Linux slice retained without source drift. Native Windows is locally reachable; standard Rust/MSVC/SDK prerequisites absent. Windows setup/license route and macOS host availability await user input.",
+  "source_hashes": {
+    "tools/vfa-desktop/tests/ui.rs": "dbe90bd6fce3c2753317e4f15b0adbf8691c14d4184e5d61476c342648ca12d2",
+    "tools/vfa-desktop/tests/native_smoke.rs": "264562ec52a1c7894cbce2cadca5eb4a402ebea1b56d76bcaa81d7c1236a9b98",
+    "tools/vfa-desktop/src/lib.rs": "4212aeb66be0fcaa4d73470e7b74dce5a9e65a7ff253677331b282a9ea4369a5",
+    "tools/vfa-desktop/Cargo.lock": "e3cf2952b825307b739c17a5abb88571e565a5b83af65e3b892719dd25b31aa5",
+    "tools/vfa-tui/Cargo.lock": "a64b4b039631d720e18399746c0294ad1640c22364185c0edfd7a3a24fffabcb",
+    ".kiro/specs/gpui-desktop/requirements.md": "490b95ba21dcf9d6ec6ca803586afd785f1803287c38f0193bed053701e31160",
+    ".kiro/specs/gpui-desktop/design.md": "33a22ec84e2c376dd1e6aa627b72bf1a209a1773832c7fc3e417e2aa583699d0"
+  },
+  "usage": {
+    "agent_runs": 3,
+    "waves": 2,
+    "followups": 0,
+    "repairs": 2,
+    "repair_authority": "Initial 1 plus user-approved additional native repair",
+    "worker_tokens": "UNVERIFIED",
+    "goal_telemetry_checkpoint": {
+      "tokens_used": 199608,
+      "time_used_seconds": 902
+    },
+    "elapsed_minutes_at_report": 15.9
+  },
+  "continuations": [
+    {
+      "at": "2026-11-27T19:02:06.999408+00:00",
+      "previous_turn_classification": "progress",
+      "safe_action": "Read-only native Windows toolchain/SDK discovery and dependency audit",
+      "result": "Native Windows reachable via WSL interop, required prerequisites absent at standard locations",
+      "dependency_audit": "Only task 1.4 has all numbered prerequisite tasks complete; do not implement dependent full tasks before its admission.",
+      "pending_user_input": "Windows appropriately licensed toolchain setup route; macOS ARM64 host availability.",
+      "workflow_limits": "Three cumulative agents already used; no further spawn or source repair; read-only parent continuation within 60-minute limit."
+    }
+  ],
+  "blocked_audit": {
+    "checked_at": "2026-11-27T19:03:32.858786+00:00",
+    "same_condition_goal_turns": 3,
+    "condition": "Required non-Linux native prerequisite/access evidence remains unavailable: native Windows Rust/MSVC/Windows SDK absent at observed standard locations; Windows appropriately licensed setup route awaiting user input; macOS ARM64 host/access not supplied.",
+    "turns": [
+      {
+        "turn": "Original installation execution",
+        "classification": "progress",
+        "remaining_condition": "Linux evidence verified; Windows/macOS native requirements not met."
+      },
+      {
+        "turn": "First automatic continuation",
+        "classification": "progress",
+        "remaining_condition": "Windows host reached but prerequisite toolchain absent; setup route/macOS access questions outstanding."
+      },
+      {
+        "turn": "Second automatic continuation",
+        "classification": "no progress after authoritative revalidation",
+        "remaining_condition": "Windows tools/default Rust/VS installer/SDK paths still absent; no user setup/access answer or source drift; only full task 1.4 has completed numbered dependencies."
+      }
+    ],
+    "safe_next_actions_exhausted": "Local Linux contract verified; source/locks unchanged. Cannot install a selected Windows toolchain without the outstanding scope/licensing route or obtain actual macOS native evidence without target access. No substitute cross-compile/remote CI/dependency bypass.",
+    "resume_inputs": [
+      "User-selected/authorized Windows prerequisite setup route with license eligibility, or user-completed installation",
+      "Actual macOS ARM64 host to run native bootstrap checks or provenance-bound native evidence"
+    ],
+    "linux_verification_unchanged": "pass_scoped_linux"
+  },
+  "publication_followup": {
+    "authorization": "User explicitly requested git commit and git push for now. Current feature branch only; no merge/release/deployment/manual remote CI.",
+    "owned_paths": [
+      ".kiro/specs/gpui-desktop/tasks.md",
+      ".kiro/specs/gpui-desktop/evals/installation-prerequisites.md",
+      "tools/vfa-desktop/tests/ui.rs",
+      "tools/vfa-desktop/tests/native_smoke.rs",
+      ".workflow/ultracode/gpui-install-prerequisites/"
+    ],
+    "excluded_preexisting_paths": [
+      ".kiro/kiro-agents/"
+    ],
+    "branch": "feature/gpui-desktop-alpha",
+    "remote": "origin",
+    "remote_url": "git@github.com:Raishin/vanguard-frontier-agentic.git",
+    "status": "ready_to_commit",
+    "research_agent": "/root/macos_docker_research",
+    "research_limit": "One bounded read-only documentation agent for the new follow-up; no installations or CI execution.",
+    "macos_user_availability": "User says they do not have a Mac; Docker feasibility documentation requested. Native gate unchanged.",
+    "preflight": "PASS: current source/lock hashes; seven Desktop tests; fmt; all-target and explicit-native strict clippy; 18 bootstrap/provenance mutants; task structural grader; unchanged asset integrity; Markdown/spelling/diff. Remote feature tip observed equal baseline HEAD.",
+    "research_result": "results/05-publication-platform-docs.md",
+    "log_policy": "Respect existing *.log ignore; structured JSON/reports plus results/verification-transcript.md are versioned. Full raw logs remain local, not force-added."
+  }
+}

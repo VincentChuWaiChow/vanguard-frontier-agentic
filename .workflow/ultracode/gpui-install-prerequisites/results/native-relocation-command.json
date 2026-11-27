@@ -1,0 +1,14 @@
+{
+  "command": [
+    "/tmp/vfa native-\u00e9 relocation eql14i4b/desktop smoke-\u00e9 executable",
+    "--scenario",
+    "bootstrap",
+    "--backend",
+    "x11",
+    "--evidence-dir",
+    "/home/raishin/projects/vanguard-frontier-agentic/.workflow/ultracode/gpui-install-prerequisites/results/native output-\u00e9 space"
+  ],
+  "cwd": "/tmp",
+  "exit_code": 0,
+  "copied_from_current_build": true
+}

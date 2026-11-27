@@ -1,0 +1,14 @@
+{
+  "observed_backend": "x11",
+  "platform": "PlatformInfo { os: Linux, target: Native }",
+  "compositor": "X11",
+  "native_frame_progress_observed": true,
+  "painted_quads": 6,
+  "gpu": {
+    "device": "llvmpipe (LLVM 20.1.2, 256 bits)",
+    "driver": "llvmpipe",
+    "driver_info": "Mesa 25.2.8-0ubuntu0.24.04.2 (LLVM 20.1.2)",
+    "software_emulated": true
+  },
+  "event_loop_returned": true
+}

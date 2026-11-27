@@ -1,0 +1,64 @@
+[
+  {
+    "name": "unsupported-scenario",
+    "command": [
+      "/home/raishin/projects/vanguard-frontier-agentic/tools/vfa-desktop/target/debug/deps/native_smoke-d76c45678eb8f848",
+      "--scenario",
+      "workflows",
+      "--backend",
+      "x11",
+      "--evidence-dir",
+      "/home/raishin/projects/vanguard-frontier-agentic/.workflow/ultracode/gpui-install-prerequisites/results/negative-scenario"
+    ],
+    "environment_overrides": {},
+    "exit_code": 1,
+    "expected_nonzero_and_diagnostic": true
+  },
+  {
+    "name": "wrong-native-host",
+    "command": [
+      "/home/raishin/projects/vanguard-frontier-agentic/tools/vfa-desktop/target/debug/deps/native_smoke-d76c45678eb8f848",
+      "--scenario",
+      "bootstrap",
+      "--backend",
+      "windows",
+      "--evidence-dir",
+      "/home/raishin/projects/vanguard-frontier-agentic/.workflow/ultracode/gpui-install-prerequisites/results/negative-host"
+    ],
+    "environment_overrides": {},
+    "exit_code": 1,
+    "expected_nonzero_and_diagnostic": true
+  },
+  {
+    "name": "unwritable-evidence",
+    "command": [
+      "/home/raishin/projects/vanguard-frontier-agentic/tools/vfa-desktop/target/debug/deps/native_smoke-d76c45678eb8f848",
+      "--scenario",
+      "bootstrap",
+      "--backend",
+      "x11",
+      "--evidence-dir",
+      "/home/raishin/projects/vanguard-frontier-agentic/.workflow/ultracode/gpui-install-prerequisites/results/not-a-directory"
+    ],
+    "environment_overrides": {},
+    "exit_code": 1,
+    "expected_nonzero_and_diagnostic": true
+  },
+  {
+    "name": "missing-display",
+    "command": [
+      "/home/raishin/projects/vanguard-frontier-agentic/tools/vfa-desktop/target/debug/deps/native_smoke-d76c45678eb8f848",
+      "--scenario",
+      "bootstrap",
+      "--backend",
+      "x11",
+      "--evidence-dir",
+      "/home/raishin/projects/vanguard-frontier-agentic/.workflow/ultracode/gpui-install-prerequisites/results/negative-missing-display"
+    ],
+    "environment_overrides": {
+      "DISPLAY": ":65535"
+    },
+    "exit_code": 1,
+    "expected_nonzero_and_diagnostic": true
+  }
+]

@@ -1,6 +1,6 @@
 //! Explicit real-window bootstrap. Not the later runtime/process admission gate.
 
-use gpui_kit::{AppContext as _, QuitMode, WindowOptions};
+use gpui_kit::{QuitMode, WindowOptions};
 use raw_window_handle::{HasWindowHandle, RawWindowHandle};
 use serde_json::{Value, json};
 use sha2::{Digest, Sha256};
@@ -100,8 +100,8 @@ fn native_child(backend: String, output: PathBuf) -> Result<(), String> {
                 window.on_next_frame(move |window, _| {
                     window.refresh();
                     window.on_next_frame(move |window, cx| {
-                        let scene_primitives = window.rendered_scene().len();
-                        if scene_primitives == 0
+                        let painted_quads = window.painted_quads().len();
+                        if painted_quads == 0
                             || (cfg!(target_os = "linux") && window.gpu_specs().is_none())
                         {
                             *captured.borrow_mut() =
@@ -121,7 +121,7 @@ fn native_child(backend: String, output: PathBuf) -> Result<(), String> {
                             "platform": format!("{:?}", cx.platform_info()),
                             "compositor": cx.compositor_name(),
                             "native_frame_progress_observed": true,
-                            "scene_primitives": scene_primitives,
+                            "painted_quads": painted_quads,
                             "gpu": gpu,
                         })));
                         window.remove_window();
@@ -235,7 +235,7 @@ fn run() -> Result<(), String> {
         && observation.as_ref().is_some_and(|value| {
             value["observed_backend"] == backend
                 && value["native_frame_progress_observed"] == true
-                && value["scene_primitives"]
+                && value["painted_quads"]
                     .as_u64()
                     .is_some_and(|count| count > 0)
                 && value["event_loop_returned"] == true

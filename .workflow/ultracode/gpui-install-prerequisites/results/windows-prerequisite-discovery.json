@@ -1,0 +1,20 @@
+{
+  "observed_at": "2026-11-27T19:02:06.999408+00:00",
+  "method": "Read-only native Windows PowerShell through approved WSL interop escalation; no profile and noninteractive",
+  "native_windows_reachable": true,
+  "os_version": "Microsoft Windows NT 10.0.26300.0",
+  "architecture": "X64",
+  "winget_available": true,
+  "cargo_on_path": false,
+  "rustc_on_path": false,
+  "cargo_in_default_user_location": false,
+  "rustup_in_default_user_location": false,
+  "vswhere_installer_present": false,
+  "known_msvc_buildtools_paths_present": false,
+  "windows_10_sdk_lib_path_present": false,
+  "scope_limit": "Observed standard paths and PATH only; no exhaustive disk scan. No Windows install/configuration/build/test occurred.",
+  "native_windows_bootstrap": "UNVERIFIED",
+  "native_macos_bootstrap": "UNVERIFIED",
+  "sandbox_attempt": "WSL interop failed socket permission; approved host escalation succeeded",
+  "external_actions": "None; no remote runner, cloud host or credentials used."
+}

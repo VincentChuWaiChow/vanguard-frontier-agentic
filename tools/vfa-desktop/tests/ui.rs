@@ -1,7 +1,9 @@
 //! Headless callback proof, deliberately not native rendering/AT evidence.
 
 use gpui_kit::test::TestWindowExt;
-use gpui_kit::{Bounds, TestAppContext, WindowBounds, WindowOptions, base::Root, px, size};
+use gpui_kit::{
+    AppContext as _, Bounds, TestAppContext, WindowBounds, WindowOptions, base::Root, px, size,
+};
 use vfa_desktop::open_bootstrap;
 
 #[gpui_kit::test]

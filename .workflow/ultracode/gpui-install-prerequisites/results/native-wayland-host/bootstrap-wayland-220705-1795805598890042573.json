@@ -1,0 +1,30 @@
+{
+  "scenario": "bootstrap",
+  "outcome": "PASS",
+  "requested_backend": "wayland",
+  "observation": {
+    "observed_backend": "wayland",
+    "platform": "PlatformInfo { os: Linux, target: Native }",
+    "compositor": "Wayland",
+    "native_frame_progress_observed": true,
+    "painted_quads": 10,
+    "gpu": {
+      "device": "llvmpipe (LLVM 20.1.2, 256 bits)",
+      "driver": "llvmpipe",
+      "driver_info": "Mesa 25.2.8-0ubuntu0.24.04.2 (LLVM 20.1.2)",
+      "software_emulated": true
+    },
+    "event_loop_returned": true
+  },
+  "timed_out": false,
+  "child_exit_code": 0,
+  "elapsed_ms": 462,
+  "binary_sha256": "0ee49ea92932e5871ee52615c39a475ef15b5035216fbe448149d6cd7abf5071",
+  "lockfile_sha256": "e3cf2952b825307b739c17a5abb88571e565a5b83af65e3b892719dd25b31aa5",
+  "bootstrap_source_sha256": "4212aeb66be0fcaa4d73470e7b74dce5a9e65a7ff253677331b282a9ea4369a5",
+  "toolkit_provenance_sha256": "6ecf254c071533eaed810b5e7353a3391051f617055cbe5b22b52a4af13665ed",
+  "platform_os": "linux",
+  "platform_arch": "x86_64",
+  "observed_at_unix_ns": 1795805598890042573,
+  "limits": "Native handle, nonempty scene and intervening draw/present turn only; not pixels/compositor display, AT, IME, clipboard or runtime/process admission"
+}

@@ -1,0 +1,21 @@
+{
+  "mutant_root": "/tmp/vfa GPUI callback mutant rt31e9u3/checkout space-\u00e9",
+  "manifest": "/tmp/vfa GPUI callback mutant rt31e9u3/checkout space-\u00e9/tools/vfa-desktop/Cargo.toml",
+  "mutation": "Callback is empty, with original control label and identity retained. Original checkout not modified.",
+  "target_dir": "/home/raishin/projects/vanguard-frontier-agentic/tools/vfa-desktop/target",
+  "command": [
+    "cargo",
+    "+stable",
+    "test",
+    "--manifest-path",
+    "/tmp/vfa GPUI callback mutant rt31e9u3/checkout space-\u00e9/tools/vfa-desktop/Cargo.toml",
+    "--locked",
+    "--offline",
+    "--test",
+    "ui",
+    "-j",
+    "4"
+  ],
+  "exit_code": 101,
+  "expected_failure_observed": true
+}

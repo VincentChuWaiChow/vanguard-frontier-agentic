@@ -1,6 +1,17 @@
 # Implementation Plan: GPUI Desktop
 
 Status: ENGINE PREPARATION VERIFIED; FULL NATIVE TASKS PENDING.
+
+Current installation continuation: the user authorized local prerequisites for
+the installation-blocked tasks. The four Linux development packages are now
+installed; locked Desktop checks, UI/engine tests and X11/Wayland bootstrap pass
+locally on WSLg's software renderer. macOS/Windows native evidence remains pending. Earlier
+no-install restrictions below describe the historical engine-only waves, not
+this continuation. See `evals/installation-prerequisites.md`. Full tasks remain
+unchecked until their actual criteria and native dependencies pass.
+The user subsequently authorized committing/pushing this delivered continuation;
+that authorization does not waive any incomplete native or dependency gate.
+
 Tasks 1.1-1.3, 4.1, 4.2 and 5.1 retain their scoped completion evidence;
 the subsequent3.1 compatibility fix clears the known17/11 library failures and
 both full local engine suites pass. Full native gates remain pending. The user authorized preparation
@@ -93,6 +104,7 @@ tasks or bypass their dependencies.
   - Negative: Normal graph excludes Fast/WebView/shell/test-support; renderer/prerequisite absence is diagnostic, not a successful skipped native launch.
   - Estimate: 2-4 hours; timebox, not a completion guarantee.
   - Evidence: evals/task-1.4.md; pinning/provenance and normal dependency checks pass; compilation stopped at missing host prerequisites. Native/UI checks remain unverified and this task stays unchecked.
+  - Installation continuation: evals/installation-prerequisites.md supersedes the local prerequisite/compile gap: locked checks, strict lint, actual UI callback/mutant and X11/Wayland bootstrap pass. Native smoke uses the pinned SDK's test-support painted-quad observation without enabling benchmark features. macOS/Windows and later admission remain unverified; full task unchecked.
 
 - [ ] 1.5 Implement the persistent engine host and foreground bridge
   - Depends: 1.2, 1.3, 1.4
@@ -119,6 +131,7 @@ tasks or bypass their dependencies.
   - Estimate: 2-4 hours; timebox, not a completion guarantee.
   - Installation-free preparation: Extract the existing independent core cases and add both consumer wrappers after 1.1/1.3. Execute TUI default/no-default cases locally; Desktop execution under its own lock remains unverified until 1.4. Syntax or metadata checks do not prove parity.
   - Preparation evidence: evals/task-1.6.md; five shared cases pass in both TUI modes; Desktop wrapper added but second-graph execution remains unverified. Full task unchecked.
+  - Installation continuation: all six current shared cases, including the later SAP regression, now pass under the Desktop lock and both TUI modes. See evals/installation-prerequisites.md. Full dependency/native completion is not inferred; full task unchecked.
 
 - [ ] 2. Native process and runtime feasibility
 
