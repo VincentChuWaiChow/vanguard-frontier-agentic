@@ -1,5 +1,6 @@
 # TEMPLATE: one legitimate operation that must pass, one in-scope violation that must fail,
-# one adjacent out-of-scope object that must be skipped, and one pod controller (autogen).
+# one adjacent out-of-scope object that must be skipped, one pod controller (autogen), and two
+# Pod-level securityContext cases (inherited pass, container override fail).
 apiVersion: v1
 kind: Pod
 metadata:
@@ -57,3 +58,31 @@ spec:
       containers:
         - name: app
           image: registry.example.invalid/app@sha256:0000000000000000000000000000000000000000000000000000000000000013
+---
+# Pod-level runAsNonRoot only: every container inherits it, so the Pod is compliant.
+apiVersion: v1
+kind: Pod
+metadata:
+  name: pod-level-non-root
+  namespace: payments
+spec:
+  securityContext:
+    runAsNonRoot: true
+  containers:
+    - name: app
+      image: registry.example.invalid/payments/invoice-api@sha256:0000000000000000000000000000000000000000000000000000000000000001
+---
+# A container-level false overrides the Pod-level true, so the Pod violates the control.
+apiVersion: v1
+kind: Pod
+metadata:
+  name: container-overrides-pod-level
+  namespace: payments
+spec:
+  securityContext:
+    runAsNonRoot: true
+  containers:
+    - name: app
+      image: registry.example.invalid/payments/invoice-api@sha256:0000000000000000000000000000000000000000000000000000000000000001
+      securityContext:
+        runAsNonRoot: false

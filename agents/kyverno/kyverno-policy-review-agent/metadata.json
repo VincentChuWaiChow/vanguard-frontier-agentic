@@ -15,7 +15,6 @@
   "source_type": "original",
   "official_docs": [
     "https://github.com/kyverno/kyverno/blob/v1.20.0/config/crds/policies.kyverno.io/policies.kyverno.io_validatingpolicies.yaml",
-    "https://github.com/kyverno/kyverno/blob/v1.20.0/config/crds/policies.kyverno.io/policies.kyverno.io_validatingpolicies.yaml",
     "https://kyverno.io/docs/guides/reports/",
     "https://github.com/kyverno/kyverno/blob/v1.20.0/config/crds/policies.kyverno.io/policies.kyverno.io_imagevalidatingpolicies.yaml",
     "https://kubernetes.io/docs/reference/access-authn-authz/validating-admission-policy/"

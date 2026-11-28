@@ -104,8 +104,18 @@ Return a board outcome (`supported`, `conditional`, `blocked`, `indeterminate`) 
 """
 
 
+def q(value: str) -> str:
+    """Double-quoted scalar valid as YAML and as a TOML basic string (JSON escaping is a subset of both)."""
+    return json.dumps(value, ensure_ascii=False)
+
+
+def toml_multiline(text: str) -> str:
+    """Body for a TOML multi-line basic string: escape backslashes and any triple quote."""
+    return text.replace("\\", "\\\\").replace('"""', '""\\"')
+
+
 def md_adapter(agent: dict, text: str, extra: str = "") -> str:
-    return f'---\nname: "{agent["name"]}"\ndescription: "{agent["description"]}"\n{extra}---\n\n{text}'
+    return f'---\nname: {q(agent["name"])}\ndescription: {q(agent["description"])}\n{extra}---\n\n{text}'
 
 
 def codex_model_lines(prior: str) -> list[str]:
@@ -135,6 +145,15 @@ def frontmatter_model_lines(prior: str) -> str:
         if FM_MODEL_LINE.match(line):
             kept.append(line)
     return ""  # unterminated frontmatter: preserve nothing rather than guess
+
+
+def cited_urls(rows) -> list[str]:
+    """Distinct URLs of the rows that may support a verdict, in first-cited order."""
+    urls: list[str] = []
+    for r in rows:
+        if r["status"] != "UNVERIFIED" and r["url"] not in urls:
+            urls.append(r["url"])
+    return urls
 
 
 def render_agent(agent: dict, board: dict, sources: dict[str, dict], existing: dict[str, str]) -> dict[str, str]:
@@ -169,7 +188,7 @@ def render_agent(agent: dict, board: dict, sources: dict[str, dict], existing: d
         'tools:\n  - "read"\n  - "search"\n  - "search/codebase"\ndisable-model-invocation: false\nuser-invocable: true\n',
     )
     files["harnesses/gemini.agent.md"] = (
-        f'---\nname: "{aid}"\ndisplay_name: "{agent["name"]}"\ndescription: "{agent["description"]}"\n---\n\n{text}'
+        f'---\nname: {q(aid)}\ndisplay_name: {q(agent["name"])}\ndescription: {q(agent["description"])}\n---\n\n{text}'
     )
     if "harnesses/codex.toml" in existing:
         # An existing adapter keeps exactly its policy-managed lines, including none at all:
@@ -179,10 +198,10 @@ def render_agent(agent: dict, board: dict, sources: dict[str, dict], existing: d
         kept = ['model = "gpt-5.4"', 'model_reasoning_effort = "high"']  # first generation only
     files["harnesses/codex.toml"] = (
         f'name = "{aid.replace("-", "_")}"\n'
-        f'description = "{agent["description"]}"\n'
+        f'description = {q(agent["description"])}\n'
         + "".join(f"{line}\n" for line in kept)
         + 'sandbox_mode = "read-only"\n\n'
-        + f'developer_instructions = """\n{text}\n"""\n\n'
+        + f'developer_instructions = """\n{toml_multiline(text)}\n"""\n\n'
         + f'[[skills.config]]\npath = "skills/kyverno/{skill}/SKILL.md"\nenabled = true\n\n'
         + f'[metadata]\nauthor = "{board["author"]}"\n'
     )
@@ -198,7 +217,7 @@ def render_agent(agent: dict, board: dict, sources: dict[str, dict], existing: d
         "harnesses": HARNESSES,
         "summary": f"Agent for {skill}. {agent['description']}",
         "source_type": "original",
-        "official_docs": [sources[i]["url"] for i in agent["official_doc_ids"]],
+        "official_docs": cited_urls(sources[i] for i in agent["official_doc_ids"]),
         "security_notes": agent["security_notes"],
         "last_verified": board["last_verified"],
         "path": f"agents/kyverno/{aid}",
@@ -241,11 +260,7 @@ def skill_outputs(skill: str, sources: dict[str, dict], vocab: str) -> dict[str,
     meta_path = sdir / "metadata.json"
     if meta_path.is_file():
         meta = json.loads(meta_path.read_text(encoding="utf-8"))
-        urls: list[str] = []
-        for r in rows:
-            if r["status"] != "UNVERIFIED" and r["url"] not in urls:
-                urls.append(r["url"])
-        meta["official_docs"] = urls
+        meta["official_docs"] = cited_urls(rows)
         out[f"skills/kyverno/{skill}/metadata.json"] = json.dumps(meta, indent=2, ensure_ascii=False) + "\n"
     return out
 
@@ -271,9 +286,23 @@ def build() -> dict[str, str]:
     return outputs
 
 
+def orphan_agent_dirs(agent_ids, agents_dir: Path = AGENTS_DIR) -> list[str]:
+    """Agent directories on disk that board.json no longer declares.
+
+    Never deleted automatically: removing an agent is a catalog change a maintainer makes
+    deliberately. Both modes report them, and --check fails on them.
+    """
+    if not agents_dir.is_dir():
+        return []
+    declared = set(agent_ids)
+    return sorted(d.name for d in agents_dir.iterdir() if d.is_dir() and d.name not in declared)
+
+
 def main(argv: list[str]) -> int:
     check = "--check" in argv
-    drift: list[str] = []
+    board, _, _ = load()
+    orphans = orphan_agent_dirs(a["id"] for a in board["agents"])
+    drift: list[str] = [f"agents/kyverno/{name}/ (not in board.json; remove it or declare it)" for name in orphans]
     for rel, text in sorted(build().items()):
         path = ROOT / rel
         current = path.read_text(encoding="utf-8") if path.is_file() else None
@@ -285,6 +314,8 @@ def main(argv: list[str]) -> int:
             path.parent.mkdir(parents=True, exist_ok=True)
             path.write_text(text, encoding="utf-8")
             print(f"wrote {rel}")
+    if not check and orphans:
+        print("gen_kyverno_board: agent directories not in board.json (left in place): " + ", ".join(orphans), file=sys.stderr)
     if check:
         if drift:
             print("gen_kyverno_board: DRIFT (run python3 scripts/gen_kyverno_board.py):", file=sys.stderr)

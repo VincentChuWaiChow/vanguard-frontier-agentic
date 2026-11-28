@@ -34,7 +34,7 @@
   "trees": [
     {
       "tree": "agents",
-      "aggregate_sha256": "4358749baa164a27b3311e56d7baf4410e89aea92d9af7072ec4d7d295d2783a",
+      "aggregate_sha256": "8cc17c35086211b88f78f605c69430d103c55c8af40e61da4b92cc0535848d52",
       "files": [
         {
           "path": "agents/AGENTS.md",
@@ -20518,8 +20518,8 @@
         },
         {
           "path": "agents/kyverno/kyverno-control-evidence-agent/metadata.json",
-          "sha256": "6cb650f3e8dd07810a4ff19f207d39bf866d4a0c692cd94a350bc87bb50bf426",
-          "bytes": 2354
+          "sha256": "032b0c00024c1abd4242bcf60a8871f3870c87e4b5ce58917fd9b4db8de32906",
+          "bytes": 2307
         },
         {
           "path": "agents/kyverno/kyverno-exception-governance-agent/AGENT.md",
@@ -20743,8 +20743,8 @@
         },
         {
           "path": "agents/kyverno/kyverno-policy-review-agent/metadata.json",
-          "sha256": "60b9f4198abb4673f33163aebcccce87edee73780db0b6bf448b320c91f243eb",
-          "bytes": 3004
+          "sha256": "97c013da317d6fcbd93cd120bec55af9fbb1a3a4204d3414efa2aff6b01f93b8",
+          "bytes": 2873
         },
         {
           "path": "agents/legal/README.md",
@@ -36844,7 +36844,7 @@
     },
     {
       "tree": "catalog",
-      "aggregate_sha256": "2182ea0707ea15b4e51a25c58049dc2d9f2d600026dc45aa64c355ee47097984",
+      "aggregate_sha256": "72c7fc5486e4aaaf6be6f0b8bd8481d44b29c53bb098adf4638ec8f0cab787c7",
       "files": [
         {
           "path": "catalog/AGENTS.md",
@@ -36853,8 +36853,8 @@
         },
         {
           "path": "catalog/agents.json",
-          "sha256": "5d672c9cadcf508bfb94d14c957c0b720511570e7d068155e24abbbd073c2668",
-          "bytes": 1307948
+          "sha256": "a93c00c3e071706efccf490c88e280f3a2ba6754cd8e9c40c40815bc69395ad8",
+          "bytes": 1307766
         },
         {
           "path": "catalog/index.json",
@@ -36898,8 +36898,8 @@
         },
         {
           "path": "catalog/skill-manifest.json",
-          "sha256": "b9c9887b6e6a583947cade3cd7fbe569f87d8255fbb5b0fb043eb8cab6de121f",
-          "bytes": 1220089
+          "sha256": "5f6748f39f5dae373fbe7a212f40d4d22e587f2a5a121ead8215bba73801b6fa",
+          "bytes": 1220090
         },
         {
           "path": "catalog/skills.json",
@@ -36915,7 +36915,7 @@
     },
     {
       "tree": "scripts",
-      "aggregate_sha256": "76c8a8d0ee08505c3bbb8f2d42cac2b546968e7a84283f09cf868135c45e6c02",
+      "aggregate_sha256": "28354afb5886910b32583e24c819e3bccd145d40840a19aa3b728d8951b2a471",
       "files": [
         {
           "path": "scripts/apply-skill-allowed-tools.py",
@@ -37034,8 +37034,8 @@
         },
         {
           "path": "scripts/gen_kyverno_board.py",
-          "sha256": "d9c449fa31a26452a6f8b26a4f78506c05d1b433ece960dc5e0e921b06cd21c8",
-          "bytes": 13892
+          "sha256": "c1fef718cabbe67f7447e66f87c822aac324d7b74714d38fff15daadbd681d3f",
+          "bytes": 15265
         },
         {
           "path": "scripts/gen_netsuite_agents.py",
@@ -38162,7 +38162,7 @@
     },
     {
       "tree": "tests",
-      "aggregate_sha256": "39922b0c80ccb8c17967f0f2bf3080451053099a75f38515de5735960dd5c459",
+      "aggregate_sha256": "a26344bb3d2accb56575db5abe288a7d5aebcf3734d54688c4b47da12dcddd8d",
       "files": [
         {
           "path": "tests/AGENTS.md",
@@ -51641,8 +51641,8 @@
         },
         {
           "path": "tests/kyverno-board-suite/test_board.py",
-          "sha256": "fc62ba88df5d095a01b0c72f812effab32f72bd055f211fa7150b4029a747b37",
-          "bytes": 23494
+          "sha256": "ab53369c08f8ff6fc4ef69d8d58700565d67fa29d8f58efdc79b05ee4bfa8e68",
+          "bytes": 24457
         },
         {
           "path": "tests/mods.test.mjs",
@@ -51904,5 +51904,5 @@
       "bytes": 9135
     }
   ],
-  "aggregate_sha256": "7dea3b8403d6b0b2739b284a9e0d9005272bdb70e89139fef2f7ee405d76e5fb"
+  "aggregate_sha256": "59c6b3d3a01cdc278857260d1847603ea6ef6517de32480f6226becf3f5fe43a"
 }
