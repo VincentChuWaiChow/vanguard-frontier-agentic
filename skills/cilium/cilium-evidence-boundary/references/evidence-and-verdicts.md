@@ -66,6 +66,8 @@ Every specialist response contains, in order:
 4. **Next observations.** For each open hypothesis, the least invasive observation that discriminates it, with its command class and the authorization it needs.
 5. **Handoffs.** Decisions outside this specialist's ownership, with the evidence they need.
 
+Every upstream fact a response states (a default, a version gate, a removal, a limitation) carries the ledger ID the specialist skill cites for it, copied exactly from the skill's reference, so a reader can trace it to the dated source. A fact with no ledger row is not presented as upstream fact: label it `derived` or `unknown` and say that it is not recorded in the ledger. Facts the user supplied are cited to the supplied artifact, not to a ledger.
+
 A good finding reads: "The supplied `CiliumEgressGatewayPolicy` selects gateway nodes by a label that two nodes carry; the documented selection is the first node in lexical order, and changing the gateway node breaks existing connections. Whether the second node is intended as failover is not established." It does not read: "The egress design is not resilient."
 
 ## Adversarial checks every specialist runs on itself

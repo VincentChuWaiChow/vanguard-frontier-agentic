@@ -86,7 +86,7 @@ Status: **fixed** means changed in this change and re-verified by the named meth
 | P2-5 | Value model understated maintenance (1.5 to 4.5 engineer-days per minor is the reviewer's estimate). Three KPIs measured form, volume, or unmeasurable quantities, and the maestro KPI had no data source. | recorded in 05; revised KPIs in §10 |
 | P2-6 | Managed distributions: the reviewer found GKE Dataplane V2, AKS Azure CNI powered by Cilium and EKS Hybrid Nodes all restrict versions and configuration. The skills say only "ask the vendor". | open (O-4): the orchestrator has not verified those provider pages, so they are not encoded |
 | P2-7 | Collection examples use `-A` (all namespaces) and never name `--context`: cross-tenant collection labeled as read-only. | open (O-10) |
-| P2-8 | Answers state upstream facts without citing ledger IDs (grader's main criticism). | open (O-8) |
+| P2-8 | Answers state upstream facts without citing ledger IDs (grader's main criticism). | fixed in the contract (2026-11-28): the evidence-boundary response contract requires each upstream fact to carry its ledger ID, or be labeled `derived` or `unknown`. Model behavior against it is not re-evaluated. |
 | P2-9 | Encryption folded into the policy decision dilutes single-decision ownership. | open, decision O-3 |
 | P2-10 | Context cost: a typical policy review loads 9k to 11k tokens, against 3k to 4k for AgentCore. | open |
 
@@ -94,17 +94,17 @@ Status: **fixed** means changed in this change and re-verified by the named meth
 
 | # | Finding | Status |
 | --- | --- | --- |
-| P3-1 | Legacy hedges remain in the policy workflow file (empty-selector and wildcard semantics). | open |
+| P3-1 | Legacy hedges remain in the policy workflow file (empty-selector and wildcard semantics). | fixed (2026-11-28) against the v1.20.5 tag: `matchPattern` wildcards (`CIL-NP-E28`), `[{}]` versus absent versus `[]` (`E29`, `E30`), and the `toFQDNs` DNS-proxy prerequisite (`E31`). **Correction:** the replaced text said `toEndpoints: []` matches everything and is broader than an absent field. The engine's own tests show the opposite: an explicitly empty list allows nothing. The eBPF-reload and L7-proxy-off hedges remain, labeled. |
 | P3-2 | `helm template` was over-classified; it is an offline render. | fixed: [C0] |
 | P3-3 | Unverified CVE numbers were printed in the advisory reference. | fixed: removed; GHSA ids stay the key |
 | P3-4 | `openai.yaml` was missing for the policy skill, and other files had truncated descriptions. | fixed |
 | P3-5 | Bespoke per-board gates are proliferating (Istio, Atlassian, agentic board, Cilium). | open: candidate for one generic board-contract gate |
-| P3-6 | Codex adapter sandbox handling differs from the Istio board's. | open |
+| P3-6 | Codex adapter sandbox handling differs from the Istio board's. | investigated, no change (2026-11-28): Codex's role loader on `main` (`codex-rs/core/src/agent/role.rs`) projects `developer_instructions`, model settings, disabled `[features]` such as `shell_tool` and `skills` from a role file, and no `sandbox_mode`. The Cilium adapters' `shell_tool = false` is the projected control; the Istio adapters' `sandbox_mode = "read-only"` may be ignored there. That is an Istio-board question, not changed here. |
 | P3-7 | The guard's former egress-gateway IP-collision check was never sourced. It is replaced by the verified egress-gateway reference. | recorded |
 
 ### P4 — Optional
 
-- **P4-1:** Rename `mcp-and-evidence.md`, which contains no MCP content.
+- **P4-1:** Rename `mcp-and-evidence.md`, which contains no MCP content. *Declined (2026-11-28): the file name is a repository-wide skill convention, used by dozens of skills.*
 - **P4-2:** Trim duplicated boilerplate. "Human change process" appears 25 times.
 - **P4-3:** Add a `dependencies` block to `openai.yaml`, as AgentCore does.
 
@@ -141,8 +141,8 @@ Answers to the challenge questions:
 The independent re-verification of about 45 claims found:
 
 - **No upstream contradiction** in defaults, version gates, compatibility, drop codes, MTU overheads or encryption gaps. Examples: drop codes in `drop.go` and MTU constants in `mtu.go`, both at v1.20.5; the ClusterMesh single trust domain; `cacheTTL` default 0s; egress-gateway incompatibilities; WireGuard same-node and XDP/DSR gaps.
-- **Omissions** were the two P0s plus Gateway API controller ownership and the GatewayClass `controllerName` (open), `policy-deny-response` (open), and host policies (open).
-- **Version skew:** Gateway API is 1.6.1 in the upgrade notes but 1.6.3 on the install page. Context7's newest Cilium snapshot (1.20.4) lags stable (1.20.5).
+- **Omissions** were the two P0s plus Gateway API controller ownership and the GatewayClass `controllerName`, `policy-deny-response`, and host policies. *Update 2026-11-28:* all three are now encoded against primary sources: host policies and host-firewall audit persistence (`CIL-NP-E32`, `E33`), deny response in the policy and dataplane skills (`CIL-NP-E34`, `CIL-DP-E43`), and the Cilium `controllerName` in the lifecycle Gateway API row (`CIL-LC-E31`).
+- **Version skew:** Gateway API is 1.6.1 in the upgrade notes but 1.6.3 on the install page. *Resolved 2026-11-28:* at the v1.20.5 tag, 1.6.1 is the stated minimum and 1.6.3 is the version the documentation is built against (`CIL-LC-E30`); they do not conflict. Context7's newest Cilium snapshot (1.20.4) lags stable (1.20.5).
 - **Not re-fetched:** the system requirements, IPsec, L2 announcements and Hubble pages, and the security-advisory pages. The advisory table stays a dated snapshot to re-fetch before use.
 
 Documentation describes capability, not behavior in every configuration; none of this was tested on a cluster.

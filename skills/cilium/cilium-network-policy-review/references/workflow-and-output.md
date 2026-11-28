@@ -12,6 +12,8 @@ Cilium supports three formats with different scopes and capabilities:
 
 A namespace can have multiple policies of all three formats simultaneously. The effective policy is the **union** of allows: any policy that allows traffic permits it.
 
+A `CiliumClusterwideNetworkPolicy` with a `nodeSelector` instead of an `endpointSelector` is a host policy. It governs nodes and host-networking pods and has its own semantics in [policy-semantics.md](policy-semantics.md).
+
 Reference: [Network Policy overview](https://docs.cilium.io/en/stable/network/kubernetes/policy/).
 
 ### Step 2 — Verify default-deny posture in the affected namespace
@@ -37,16 +39,20 @@ L7 rules are enforced by Cilium's L7 proxy. Confirm the proxy is enabled for the
 
 Stress-tests:
 
-- L7 DNS rule with FQDN `*.example.com` — `*.example.com` wildcard support is not re-verified in this skill's ledger (derived/unverified; confirm against the policy language page for the installed version), and the destination port still matters, so verify port 53 UDP/TCP is allowed at L4. From 1.19 the `**` DNS wildcard matches multiple subdomains, so a rule using it is broader than before [CIL-NP-E17].
+- `matchPattern` wildcards are narrower or broader than reviewers assume [CIL-NP-E28]: `*.example.com` matches `sub.example.com` but neither `example.com` nor `sub.sub.example.com`; `**.example.com` matches every subdomain depth but not `example.com`; `*` alone matches every name. A rule meant to cover the apex and its subdomains needs both a `matchName` and a pattern. From 1.19 the `**` prefix is available, so a rule using it is broader than a single-level pattern [CIL-NP-E17].
+- A `toFQDNs` rule depends on the DNS proxy. Cilium associates names with IPs by intercepting DNS responses, which requires the L7 proxy (`--enable-l7-proxy=true`) and an L7 rule (`rules.dns`) allowing the DNS requests themselves [CIL-NP-E31]. Without both, the rule has no addresses to allow (`derived`). A `toFQDNs` rule without a companion DNS rule on port 53 to the DNS service is a finding, and so is an unconfirmed L7 proxy setting.
 
-Reference: [L7 Policy in Cilium](https://docs.cilium.io/en/stable/security/policy/language/#layer-7-examples).
+Reference: [Layer 7 policy](https://docs.cilium.io/en/stable/security/policy/layer7/) and [DNS-based policy](https://docs.cilium.io/en/stable/security/policy/layer3/#dns-based).
 
 ### Step 4 — Audit egress (the exfiltration path)
 
 Egress is the most-overlooked side of network policy. Critical findings:
 
 - `egress` rules with `toCIDRSet: [{cidr: 0.0.0.0/0}]` and no `except` for internal CIDRs (RFC 1918, link-local, cloud metadata service IPs like `169.254.169.254`) — allows pod to reach the cloud metadata service and exfiltrate cloud credentials.
-- `egress` with `toEndpoints: []` (empty selector) — the empty selector is expected to match everything and to be broader than `toEndpoints` being absent (derived/unverified; not re-verified in this skill's ledger, confirm against the policy language page for the installed version).
+- Three spellings of "any endpoint" mean different things. Read the manifest literally:
+  - `toEndpoints: [{}]`, a list holding one empty selector, selects every endpoint; in a `CiliumNetworkPolicy` egress rule that means every endpoint in the policy's own namespace [CIL-NP-E29].
+  - No peer list at all, in a rule that has `toPorts`, places no L3 restriction: every peer is allowed on those ports. The engine tests show this for an ingress rule without `fromEndpoints` [CIL-NP-E30]; the egress counterpart, `toEndpoints` absent, is `derived` from it.
+  - `toEndpoints: []`, an explicitly empty list, selects no peer in the v1.20.5 policy engine's own tests, so the rule allows nothing [CIL-NP-E30]. That the YAML `[]` reaches the engine as such an empty list is `derived`, not documented; report the rule `needs-review` and ask the author which of the three they meant.
 - `egress` allowing `toFQDNs.matchPattern: '*'` — wildcard DNS matching with no narrow allowlist.
 
 Recommended baseline: explicit `toEndpoints` for in-cluster, `toCIDRSet` with `except` for the cloud metadata CIDR, `toFQDNs` for known external services.

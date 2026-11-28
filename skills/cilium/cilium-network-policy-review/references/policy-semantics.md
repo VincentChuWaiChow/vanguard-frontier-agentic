@@ -53,6 +53,22 @@ Policy audit mode allows all traffic and logs what policy would have dropped. It
 - An endpoint in audit mode is unenforced, whatever its policies say. Ask for the agent setting and per-endpoint state.
 - Audit verdicts are the right input for a default-deny rollout, because they show what would be dropped without dropping it. Turning audit on or off is a configuration change: per-endpoint it is set with `cilium-dbg endpoint config <id> PolicyAuditMode=Enabled` [C4], inside the agent pod, and a restart of the agent resets it [CIL-NP-E26]. It goes to the human change process; the board never sets it.
 
+## Host policies: a separate subject
+
+A `CiliumClusterwideNetworkPolicy` that carries a `nodeSelector` instead of an `endpointSelector` is a host policy. It applies to every node the selector matches, and on each of them only to the host namespace, host-networking pods included; it does not apply to traffic between ordinary (non-host-networking) pods and destinations outside the cluster. It can hold L3 and L4 rules in both directions and L7 DNS rules (beta), no other L7 rules, and it takes effect only when the host firewall is enabled (`hostFirewall.enabled=true`) [CIL-NP-E32].
+
+Review rules:
+
+- The five questions above answer for pod endpoints. Traffic to and from the node itself and its host-networking pods is answered by host policies, so a "namespace is default-deny" finding never covers a host-networking pod in it.
+- An unknown host-firewall setting makes every host-policy conclusion `needs-review`: the policy may be inert.
+- Host policies can cut a node off from the API server. The upstream procedure validates them in host-endpoint audit mode first, and that audit mode does not survive an agent restart: the restarted agent enforces existing host policies at once [CIL-NP-E33]. A rollout plan that relies on audit mode across an agent restart or upgrade is a finding. Enabling the host firewall or changing host audit mode is a configuration change for the human change process.
+
+## What a denied connection looks like to the client
+
+By default a policy drop is silent, so the client sees a timeout, not a refusal. With `policy-deny-response` set to `icmp` (experimental, Helm `policyDenyResponse`), Cilium answers pod egress traffic denied by policy with ICMP Destination Unreachable; ingress denial is not covered, and the client sees the reply only if ICMP ingress is allowed back to it [CIL-NP-E34].
+
+- "Connection timed out" is consistent with a policy drop; "unreachable" or a fast failure is consistent with one only when this option is `icmp`. Ask for the setting before reading the client error as evidence for or against a policy cause.
+
 ## DNS and default-deny egress
 
 A default deny-all egress policy also blocks DNS; workloads that resolve names need a separate allow to the cluster DNS service [CIL-NP-E27]. An egress default-deny proposal without a DNS allow is a predicted outage for any workload that connects by name.

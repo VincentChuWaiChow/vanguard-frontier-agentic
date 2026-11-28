@@ -12,8 +12,9 @@ One status code or one drop line is not a root cause. For each symptom, hold at 
 | Backend churn or missing backend | `Service backend not found` drops; failures track rollouts | Stable backends and no such drops | `cilium-dbg service list` [C2] |
 | Endpoint regeneration failing | `endpoint_regenerations_total` with `outcome=fail`; endpoints not in ready state | All endpoints ready; no failures | `cilium-dbg endpoint list` [C2] |
 | MTU or PMTU black hole | Only larger transfers stall; see hypothesis tree 4 | Failures on small requests | See the routing and MTU reference |
+| Policy drop presenting as a timeout | `Policy denied` drops for the flow; by default a policy drop is silent, so the client times out [CIL-DP-E43] | No policy drops for the flow, counted only when drop visibility for that node and window is shown complete | `cilium-dbg monitor --type drop` [C2]; ask for the `policy-deny-response` setting; hand the verdict to `cilium-network-policy-review-agent` |
 
-Refs: [CIL-DP-E16] [CIL-DP-E18] [CIL-DP-E34] [CIL-DP-E35].
+Refs: [CIL-DP-E16] [CIL-DP-E18] [CIL-DP-E34] [CIL-DP-E35] [CIL-DP-E43].
 
 ## 2. Service VIP or NodePort unreachable while pods are healthy
 

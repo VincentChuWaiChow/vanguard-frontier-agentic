@@ -6349,7 +6349,7 @@
     {
       "id": "cilium-dataplane-diagnostics",
       "path": "skills/cilium/cilium-dataplane-diagnostics",
-      "aggregate_sha256": "43c2169b78fd178b604adcda99bdec87e1729437b3940fa01391bb3a89202f85",
+      "aggregate_sha256": "a47413308428ff017701dcafbd3675347b47f402c0355d4863e6cf98daec6968",
       "files": [
         {
           "path": "skills/cilium/cilium-dataplane-diagnostics/SKILL.md",
@@ -6378,13 +6378,13 @@
         },
         {
           "path": "skills/cilium/cilium-dataplane-diagnostics/references/evidence-ledger.md",
-          "sha256": "706d15d723e6064555cb6621bf54d3929aa41b358e3c9f288e74aecf3345aa76",
-          "bytes": 13967
+          "sha256": "df21e3841cad9a403a3e92292aa38c83b03f4384e56d5e5389e2bebfc7bb276f",
+          "bytes": 14326
         },
         {
           "path": "skills/cilium/cilium-dataplane-diagnostics/references/hypothesis-trees.md",
-          "sha256": "057c2cb1f0ebb50f28ede4eadb650722e97ac16730ff1e25cab432012a003f94",
-          "bytes": 6097
+          "sha256": "8b007bcf3778065a431aa3e90a3c91814496eebf6056776ec405122f32675a05",
+          "bytes": 6512
         },
         {
           "path": "skills/cilium/cilium-dataplane-diagnostics/references/packet-path-model.md",
@@ -6406,7 +6406,7 @@
     {
       "id": "cilium-evidence-boundary",
       "path": "skills/cilium/cilium-evidence-boundary",
-      "aggregate_sha256": "4e338645fb80bd29535640af033fda9bea05bfee011b7e802aa952051d9cb1e5",
+      "aggregate_sha256": "dd6562c8df77750bf5f98c4fb50f42d234de7b8de496023d672d6ddd81814e92",
       "files": [
         {
           "path": "skills/cilium/cilium-evidence-boundary/SKILL.md",
@@ -6430,8 +6430,8 @@
         },
         {
           "path": "skills/cilium/cilium-evidence-boundary/references/evidence-and-verdicts.md",
-          "sha256": "e8f446b694e2f458b3e1f4dc1d0a55fd1793e9acae3e3d41905243bcf0b3ca4c",
-          "bytes": 5925
+          "sha256": "119b1823cb82fb9f758783cf9881262b2891a57141c01b4c957f3163c3018874",
+          "bytes": 6380
         },
         {
           "path": "skills/cilium/cilium-evidence-boundary/references/evidence-ledger.md",
@@ -6500,7 +6500,7 @@
     {
       "id": "cilium-lifecycle-readiness",
       "path": "skills/cilium/cilium-lifecycle-readiness",
-      "aggregate_sha256": "36cde6c8f5f3c767ad6f9ae5c4e6c799a57a6a2c0ed175bc275ffa1b7b68a875",
+      "aggregate_sha256": "b60559b60f5562f92383071d91bc31b759a055480b8d8324321eaa3c56bc999f",
       "files": [
         {
           "path": "skills/cilium/cilium-lifecycle-readiness/SKILL.md",
@@ -6524,8 +6524,8 @@
         },
         {
           "path": "skills/cilium/cilium-lifecycle-readiness/references/breaking-changes-1-19-1-20.md",
-          "sha256": "590c968e63f79edb79b9acf26ec236e727e84c2c39c5469a67d7cb2958d9eb3b",
-          "bytes": 6774
+          "sha256": "3c0b0655a3b7dc622fa61233b7d239b11d7d5e28e34edde70961b4d0d8c3c737",
+          "bytes": 7155
         },
         {
           "path": "skills/cilium/cilium-lifecycle-readiness/references/cni-migration-and-disruptive-changes.md",
@@ -6534,8 +6534,8 @@
         },
         {
           "path": "skills/cilium/cilium-lifecycle-readiness/references/evidence-ledger.md",
-          "sha256": "17f5470dcc8966bf60c47535954253b06f4d421689b2d6507d065c05262a3433",
-          "bytes": 8551
+          "sha256": "9e1a004f023e709fe12588fb5548834b7573939d973d1ac09d3f4cbedfc3f0a9",
+          "bytes": 9350
         },
         {
           "path": "skills/cilium/cilium-lifecycle-readiness/references/upgrade-path-and-rollback.md",
@@ -6552,12 +6552,12 @@
     {
       "id": "cilium-network-policy-review",
       "path": "skills/cilium/cilium-network-policy-review",
-      "aggregate_sha256": "d7acdffaaacefa51ad53744d2bd1bb9fa72cf38c2bd77c410923252e360518be",
+      "aggregate_sha256": "f7e6b82c40f4320a8d109852f193a8d492085634d31b870a93a379090e2c420d",
       "files": [
         {
           "path": "skills/cilium/cilium-network-policy-review/SKILL.md",
-          "sha256": "534ffff5f9f77e19a6cfe5cf5f1bd52b9165d2fe90fdde4cdee49fba5a4edd75",
-          "bytes": 7148
+          "sha256": "afbd593f84f15f65b9d6c80791e22d0af164d23ef0cb452d9a9c34d7bef84868",
+          "bytes": 7292
         },
         {
           "path": "skills/cilium/cilium-network-policy-review/agents/openai.yaml",
@@ -6566,8 +6566,8 @@
         },
         {
           "path": "skills/cilium/cilium-network-policy-review/metadata.json",
-          "sha256": "e89552380ac4ef50d86aa8f0a38bbe817a9b16f7afe0588353befdd7f8f40311",
-          "bytes": 1819
+          "sha256": "424ad2dfef6eef4aa30920e981855b5a61b8986b0773ff592d3ee2ee2fa0cccd",
+          "bytes": 1817
         },
         {
           "path": "skills/cilium/cilium-network-policy-review/references/default-deny-rollout.md",
@@ -6581,8 +6581,8 @@
         },
         {
           "path": "skills/cilium/cilium-network-policy-review/references/evidence-ledger.md",
-          "sha256": "272e13d98fbb996f01104e076cc4044e69524a2a4366dcdb4acd61b7fec79fb4",
-          "bytes": 10540
+          "sha256": "f32426995b173c3199d6403f88e1705a5b14d838dab2f12964fb509ca7a0442d",
+          "bytes": 13731
         },
         {
           "path": "skills/cilium/cilium-network-policy-review/references/mcp-and-evidence.md",
@@ -6591,18 +6591,18 @@
         },
         {
           "path": "skills/cilium/cilium-network-policy-review/references/official-sources.md",
-          "sha256": "b7361c302b0e95b015e66bad2db1e4e4d92634f5a4a07eb1c32d7aff3cced05b",
-          "bytes": 3007
+          "sha256": "68b0922e4887832810f4124bdd3a5883b621507037eb3bac7b2cbf2ff20396ce",
+          "bytes": 3083
         },
         {
           "path": "skills/cilium/cilium-network-policy-review/references/policy-semantics.md",
-          "sha256": "0bbedeb23aa209f28316094040ee12f948d6975770d1576d71d338e607466acb",
-          "bytes": 5964
+          "sha256": "03c33a8b879d907e38cf479f88d34ba6ad38865ba352046ab29fe9958204cc86",
+          "bytes": 8035
         },
         {
           "path": "skills/cilium/cilium-network-policy-review/references/workflow-and-output.md",
-          "sha256": "0861951967a2605947b8cc263aab4ea6bddf13a6ffa02eef7da0282356a8d01c",
-          "bytes": 9643
+          "sha256": "e368cccc26fbef862f84ac1a58b4223f4c25691db4b11c81b3fd7cd174060524",
+          "bytes": 11033
         }
       ]
     },

@@ -44,7 +44,7 @@ Boundaries: the agent reviews and recommends; it never executes. Live policy cha
 ## Workflow
 
 1. Load the companion skill first, fix scope, version and evidence classes; if the cluster identity is unconfirmed, stay static.
-2. Answer the five policy-semantics questions first: enforcement mode, per-direction default-deny (including `enableDefaultDeny`), the allow union, any `ingressDeny`/`egressDeny` (deny wins over every allow), and audit mode. No allowed or denied conclusion stands without them.
+2. Answer the five policy-semantics questions first: enforcement mode, per-direction default-deny (including `enableDefaultDeny`), the allow union, any `ingressDeny`/`egressDeny` (deny wins over every allow), and audit mode. No allowed or denied conclusion stands without them. A `CiliumClusterwideNetworkPolicy` with a `nodeSelector` is a host policy and is answered separately.
 3. Establish default-deny posture per namespace and direction; flag any removal or unselected workload.
 4. Audit egress: CIDR scope and `except`, empty selectors, FQDN wildcards, and the `**` DNS change.
 5. Audit L7 rules against proxy availability and the 1.20 Kafka and `l7proto` removal.
@@ -59,7 +59,7 @@ Load companion skill `cilium-evidence-boundary` first, then only what the questi
 
 | Reference | Load when |
 | --- | --- |
-| [policy-semantics.md](references/policy-semantics.md) | Every review: enforcement mode, per-direction default-deny, deny precedence, audit mode |
+| [policy-semantics.md](references/policy-semantics.md) | Every review: enforcement mode, per-direction default-deny, deny precedence, audit mode, host policies, what a denied client sees |
 | [mcp-and-evidence.md](references/mcp-and-evidence.md) | Choosing evidence path, confirming version, ClusterMesh and proxy state, sanitization |
 | [workflow-and-output.md](references/workflow-and-output.md) | Running the full format-by-format review and shaping the answer |
 | [official-sources.md](references/official-sources.md) | Needing the documentation list and grounded background |

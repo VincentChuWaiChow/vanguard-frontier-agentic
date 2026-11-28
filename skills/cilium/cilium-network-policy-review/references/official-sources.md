@@ -7,7 +7,7 @@ Prefer a versioned URL (`/en/v1.20/`, `/en/v1.19/`, `/en/v1.18/`) that matches t
 ## Policy
 
 - [Network Policy](https://docs.cilium.io/en/stable/network/kubernetes/policy/) — the three policy formats (`NetworkPolicy`, `CiliumNetworkPolicy`, `CiliumClusterwideNetworkPolicy`) and how Cilium applies them.
-- [Policy language](https://docs.cilium.io/en/stable/security/policy/language/) — selectors, `toEndpoints`, `toCIDRSet`, `toFQDNs`, `toServices`, `toEntities`, and L7 rule syntax for the installed version.
+- [Layer 3 policy](https://docs.cilium.io/en/stable/security/policy/layer3/) and [Layer 7 policy](https://docs.cilium.io/en/stable/security/policy/layer7/) — selectors, `toEndpoints`, `toCIDRSet`, `toFQDNs`, `toServices`, `toEntities`, and L7 rule syntax for the installed version.
 - [Policy enforcement modes](https://docs.cilium.io/en/stable/security/policy/intro/) — `default`, `always` and `never`, and the identity-based model.
 - [Kubernetes NetworkPolicy](https://kubernetes.io/docs/concepts/services-networking/network-policies/) — the upstream semantics that Cilium implements for standard `NetworkPolicy`.
 

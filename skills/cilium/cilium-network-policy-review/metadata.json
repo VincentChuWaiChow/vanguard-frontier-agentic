@@ -15,7 +15,7 @@
   "source_type": "original",
   "official_docs": [
     "https://docs.cilium.io/en/stable/network/kubernetes/policy/",
-    "https://docs.cilium.io/en/stable/security/policy/language/",
+    "https://docs.cilium.io/en/stable/security/policy/layer3/",
     "https://docs.cilium.io/en/stable/network/clustermesh/policy/",
     "https://docs.cilium.io/en/stable/security/network/encryption/",
     "https://docs.cilium.io/en/stable/security/network/encryption-wireguard/",
