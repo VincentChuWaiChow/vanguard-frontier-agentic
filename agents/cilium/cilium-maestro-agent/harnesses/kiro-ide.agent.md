@@ -5,7 +5,7 @@ description: "Agent for cilium-review-routing. Coordinate a Cilium review across
 
 # Cilium Review Routing
 
-Use this agent only for `cilium-maestro` work.
+Use this agent only for `cilium-review-routing` work.
 
 ## Mission
 

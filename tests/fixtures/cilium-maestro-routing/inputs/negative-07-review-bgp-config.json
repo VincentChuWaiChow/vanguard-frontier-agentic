@@ -1,0 +1,8 @@
+{
+  "name": "negative-07-review-bgp-config",
+  "task": "Review our CiliumBGPPeerConfig for a missing graceful restart setting.",
+  "tags": [
+    "negative-routing",
+    "regression:no-false-gate"
+  ]
+}

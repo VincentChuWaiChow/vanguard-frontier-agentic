@@ -48,7 +48,7 @@ A BGP session in `Established` state and an advertised prefix are statements abo
 | `cilium bgp routes advertised ipv4 unicast` | [C2] same reason | Whether the VIP is actually advertised |
 | `cilium bgp routes available ipv4 unicast` | [C2] same reason | Routes Cilium holds versus routes it sends |
 | `kubectl describe ciliumbgpnodeconfigs <node>` | [C1] | Per-node status and conditions |
-| `cilium-dbg bgp route-policies` | [C2] agent pod, debugging; per the 1.20 notes, BGP peer and route access via REST and `cilium-dbg bgp` is deprecated in favour of `cilium shell -- bgp/*` [CIL-EX-E41] | Policy applied to advertisements |
+| `cilium-dbg bgp route-policies` | [C2] agent pod, debugging; per the 1.20 notes, BGP peer and route access via REST and `cilium-dbg bgp` [C2] is deprecated in favour of `cilium shell -- bgp/*` [C2] [CIL-EX-E41] | Policy applied to advertisements |
 | `cilium shell -- bgp/*` | [C2] runs in the agent; the replacement form named in the 1.20 notes, exact subcommands not captured in the fact sheets [CIL-EX-E41] | Same questions as the deprecated forms |
 | Peer router route table and forwarding state | outside the user's cluster; request from the network owner | Whether the peer installed and uses the route |
 

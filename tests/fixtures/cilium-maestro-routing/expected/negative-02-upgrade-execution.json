@@ -1,6 +1,4 @@
 {
-  "route": [
-    "cilium-lifecycle-readiness-agent"
-  ],
-  "mode": "single"
+  "route": [],
+  "mode": "live-guard-gate"
 }

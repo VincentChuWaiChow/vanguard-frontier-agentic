@@ -176,16 +176,37 @@ def check_plain_references(errors: list[str]) -> int:
 # documentation or source: an issue, discussion, pull request or wiki page under an allowed org is
 # still written by anyone, so it cannot stand as provider evidence.
 USER_CONTENT_SEGMENTS = {"issues", "discussions", "pull", "pulls", "wiki", "compare"}
+# github.com path segments (after /owner/repo/) whose next segment is a git ref.
+GITHUB_REF_SEGMENTS = {"blob", "tree", "raw"}
+# GitHub serves any commit in a repository's fork network under the parent's path, so a commit SHA
+# (abbreviated or full) can point at a fork's commit that the owner never wrote or reviewed.
+COMMIT_SHA_RE = re.compile(r"[0-9a-f]{7,40}", re.I)  # used with fullmatch
 
 
 def official(url: str) -> bool:
+    """Return True only for an https URL on an allow-listed host and path prefix.
+
+    Rejected, so that the prefix check cannot be made to lie or to vouch for non-owner content:
+
+    * userinfo, an explicit port, or a malformed port (``:abc``, ``:99999``) in the authority;
+    * percent-encoded dots or slashes, backslashes, or ``.``/``..`` segments in the path, which
+      would let ``github.com/cilium/../attacker/`` pass a ``startswith("/cilium/")`` test;
+    * user-written content: on github.com a ``USER_CONTENT_SEGMENTS`` segment after
+      ``/owner/repo/`` (compared case-insensitively, since GitHub routes ``/Issues/`` too), and on
+      raw.githubusercontent.com a ``refs/pull/`` ref (a pull request's head or merge commit);
+    * commit-SHA references, which can resolve to a fork's commit served under the parent repo:
+      github.com ``/commit/`` and ``/commits/`` pages, and a 7-40 character hexadecimal ref in
+      github.com ``blob``/``tree``/``raw`` URLs or in raw.githubusercontent.com
+      ``/owner/repo/<ref>/`` URLs. Tags (``v1.20.5``) and branch names (``main``) stay accepted.
+    """
     parsed = urlparse(url)
     if parsed.scheme != "https" or parsed.hostname not in OFFICIAL_SOURCES:
         return False
-    # Reject anything that could make the prefix check lie: userinfo or an explicit port in the
-    # authority, and dot-segments (literal or percent-encoded) or backslashes in the path, which
-    # would let "github.com/cilium/../attacker/" pass a startswith("/cilium/") test.
-    if "@" in parsed.netloc or parsed.port is not None:
+    try:
+        port = parsed.port
+    except ValueError:  # non-numeric or out-of-range port
+        return False
+    if "@" in parsed.netloc or port is not None:
         return False
     lowered = parsed.path.lower()
     if "%2e" in lowered or "%2f" in lowered or "\\" in parsed.path:
@@ -193,8 +214,17 @@ def official(url: str) -> bool:
     segments = parsed.path.split("/")
     if any(seg in (".", "..") for seg in segments):
         return False
-    if parsed.hostname == "github.com" and len(segments) > 3 and segments[3] in USER_CONTENT_SEGMENTS:
-        return False
+    if parsed.hostname == "github.com" and len(segments) > 3:
+        kind = segments[3].lower()
+        if kind in USER_CONTENT_SEGMENTS or kind in ("commit", "commits"):
+            return False
+        if kind in GITHUB_REF_SEGMENTS and len(segments) > 4 and COMMIT_SHA_RE.fullmatch(segments[4]):
+            return False
+    if parsed.hostname == "raw.githubusercontent.com":
+        if "/refs/pull/" in lowered:
+            return False
+        if len(segments) > 3 and COMMIT_SHA_RE.fullmatch(segments[3]):
+            return False
     return any(parsed.path.startswith(prefix) for prefix in OFFICIAL_SOURCES[parsed.hostname])
 
 

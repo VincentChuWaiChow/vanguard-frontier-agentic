@@ -1,0 +1,8 @@
+{
+  "name": "live-13-bgp-peer-config",
+  "task": "Update the CiliumBGPPeerConfig in production now.",
+  "tags": [
+    "live-guard-gate",
+    "regression:unguarded-mutation-gates-with-empty-route"
+  ]
+}

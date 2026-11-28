@@ -1,0 +1,8 @@
+{
+  "name": "live-15-helm-upgrade",
+  "task": "Run helm upgrade cilium in the production cluster.",
+  "tags": [
+    "live-guard-gate",
+    "regression:unguarded-cli-mutation"
+  ]
+}

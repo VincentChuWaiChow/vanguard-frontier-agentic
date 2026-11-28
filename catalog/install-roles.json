@@ -521,6 +521,7 @@
         "azure-network-topology-review",
         "azure-private-endpoint-adoption-planner",
         "azure-subscription-resource-organization",
+        "cilium-evidence-boundary",
         "cilium-network-policy-review",
         "contabo-live-instance-lifecycle-guard",
         "contabo-live-storage-operations-guard",

@@ -26,6 +26,8 @@ A specialist `approved` is not role 4, and a router plan is not role 5.
 
 The router never auto-dispatches a live guard. It names the guard and the evidence the guard needs, and stops.
 
+A request to execute a change no guard owns (the third row) is still a gated request, not a review request: the plan dispatches no specialist and names the human change process. A specialist review of the proposed change is a separate request the caller may make, phrased as a review. The routing fixture records this as `live-guard-gate` mode with an empty route.
+
 ## What a change proposal contains
 
 - The decision it serves, and the specialist verdicts that support it.

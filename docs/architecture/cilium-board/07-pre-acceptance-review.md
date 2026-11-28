@@ -108,6 +108,19 @@ Status: **fixed** means changed in this change and re-verified by the named meth
 - **P4-2:** Trim duplicated boilerplate. "Human change process" appears 25 times.
 - **P4-3:** Add a `dependencies` block to `openai.yaml`, as AgentCore does.
 
+### Code review of 2026-11-28 (after the review above)
+
+A later code review of the pull request found ten defects; all are fixed and probed.
+
+| # | Defect | Fix |
+| --- | --- | --- |
+| CR-1 | Live-change requests skipped the gate: a word between the determiner and the kind ("the default-deny CNP"), the `cnp` abbreviation, BGP, LB-IPAM, L2, Helm and `cilium` CLI changes, and any context word placed before the verb. | Intent regex anchored and widened; mutations no guard owns gate with an empty route through the new optional grader key `live_guard_require_keyword`; 8 regression scenarios (42 total). |
+| CR-2 | The live policy guard was told to load skills whose rules forbid execution, and whose `disallowed-tools` would remove the shell while active. | Guard contract and all seven adapters list the three skills, read them as checklists, and state that the guard's own contract governs execution; the evidence-boundary skill says the same. |
+| CR-3 | The `cloud-platform-engineer` role installed the policy skill without its companion, so every review would stop. | Companion added; CB11 now also checks install roles. |
+| CR-4 to CR-7 | CB01 and CB12 could be evaded: missing verbs and flag-style mutations, whole-command matching of help and verbs, one tag covering several commands on a line, unstripped prompts and wrappers, unscanned indented and multi-line HTML blocks. | Token-based subcommand matching, per-span tag pairing, iterative prefix stripping, indented and HTML block scanning. Five content lines that the old gate let through now carry their own class tags. |
+| CR-8, CR-9 | Ledger URLs accepted mixed-case user-content paths, pull-request refs and commit SHAs, and a malformed port crashed the gate. | Case-insensitive segment check, `refs/pull/` and SHA refs rejected, port errors reported. |
+| CR-10 | Maestro adapters named a skill that does not exist. | The renderer names the agent's own companion skill. |
+
 ## 4. Candidate re-assessment and sensitivity
 
 The independent reviewer scored all 25 candidates before reading the original scorecard. Gaps of 10 or more points:

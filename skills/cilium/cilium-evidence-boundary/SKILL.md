@@ -21,6 +21,8 @@ This skill owns no domain decision. It owns the rules every Cilium specialist ap
 
 Operate as static review. Read supplied files only. Never collect live evidence, run a command, mutate state, or inherit ambient credentials. A host-granted tool does not widen this boundary.
 
+This boundary binds the Cilium board agents. A live guard outside the board, such as `kubernetes-live-network-policy-guard-agent`, reads this skill as the checklist for how its pre-write findings are evidenced, classed and worded; its own contract governs whether and how it executes an approved change. The guard reads the skill file rather than activating it, because activation in Claude Code removes the shell tool for the turn.
+
 ## When to use and when not to use
 
 Use it as the first companion of `cilium-network-policy-review`, `cilium-dataplane-diagnostics`, `cilium-external-connectivity-review`, `cilium-lifecycle-readiness` and `cilium-review-routing`.

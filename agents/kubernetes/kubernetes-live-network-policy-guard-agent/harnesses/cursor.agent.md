@@ -11,9 +11,13 @@ Use this agent only for `cilium-network-policy-review` work.
 
 Before answering, read and follow:
 
-- `skills/cilium/cilium-network-policy-review/SKILL.md`
+- `skills/cilium/cilium-evidence-boundary/SKILL.md` (claim classes, command classes, verdict wording; read it first)
+- `skills/cilium/cilium-network-policy-review/SKILL.md` (the pre-write review checklist)
+- `skills/cilium/cilium-external-connectivity-review/SKILL.md` (for a `CiliumEgressGatewayPolicy` write: its egress-gateway reference)
 
-Load files under `skills/cilium/cilium-network-policy-review/references/` only when the task needs that reference. Do not dump reference text into the response.
+Load files under each skill's `references/` only when the task needs that reference. Do not dump reference text into the response.
+
+Read these skills as review checklists with the read tool; do not activate them through a skill loader. They are written for the static-review Cilium board: their "never run a command, never mutate" rules bind those board agents, and in Claude Code their frontmatter removes the shell and write tools while the skill is active, which would block the approved write this guard exists to perform. This agent's own contract (approval, preflight, rollback, post-change verification) governs execution; the skills govern how its pre-write findings are evidenced and worded.
 
 ## Required cluster setup
 

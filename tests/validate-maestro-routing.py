@@ -104,6 +104,19 @@ def evaluate(task: str, taxonomy: dict) -> dict:
                 score += sum(1 for t in tokens if t and re.search(rf"\b{re.escape(t)}\b", task.lower()))
                 scored.append((agent_id, score))
             scored.sort(key=lambda kv: (-kv[1], kv[0]))
+            # Optional: a taxonomy whose gate also covers mutations that no
+            # registered guard owns (e.g. a BGP or Helm change) sets
+            # live_guard_require_keyword. Then a guard is chosen only when one of
+            # its declared live_guard_keywords appears; otherwise the mutation is
+            # gated with an empty route (no guard owns it, so nothing may be
+            # dispatched). Id-token scoring alone never picks the guard here: a
+            # word like "live" or "network" in the task would otherwise hand an
+            # unowned mutation to whichever guard sorts first. Absent the key,
+            # behaviour is unchanged.
+            if taxonomy.get("live_guard_require_keyword") and not any(
+                _score_domain(task, guard_keywords.get(agent_id, [])) > 0 for agent_id in live_guards
+            ):
+                return {"route": [], "mode": gate_mode}
             if scored[0][1] > 0:
                 return {"route": [scored[0][0]], "mode": gate_mode}
             # Generic live-guard intent without a clear specific match: emit

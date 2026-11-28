@@ -1,6 +1,4 @@
 {
-  "route": [
-    "cilium-external-connectivity-review-agent"
-  ],
-  "mode": "single"
+  "route": [],
+  "mode": "live-guard-gate"
 }

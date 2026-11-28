@@ -43,7 +43,7 @@ The docs state that removing kube-proxy breaks existing service connections and 
 | Question | Check | Class |
 | --- | --- | --- |
 | Is KPR active on node N? | `cilium-dbg status` | [C2] |
-| Does the VIP have backends programmed? | `cilium-dbg service list` and `cilium-dbg bpf lb list` | [C2] |
+| Does the VIP have backends programmed? | `cilium-dbg service list` [C2] and `cilium-dbg bpf lb list` [C2] | [C2] |
 | Are reverse-SK or LB maps under pressure? | `cilium_bpf_map_pressure` series by `map_name` | [C1] |
 | Are Service drops present? | `cilium-dbg monitor --type drop` for `Service backend not found` | [C2] |
 

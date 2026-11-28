@@ -1,0 +1,8 @@
+{
+  "name": "live-12-remove-default-deny-cnp-abbrev",
+  "task": "Remove the default-deny CNP from the prod namespace now.",
+  "tags": [
+    "live-guard-gate",
+    "regression:review-cnp-abbreviation"
+  ]
+}

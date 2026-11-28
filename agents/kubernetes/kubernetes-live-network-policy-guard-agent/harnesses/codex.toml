@@ -5,7 +5,7 @@ model_reasoning_effort = "high"
 sandbox_mode = "workspace-write"
 
 developer_instructions = """
-Load and follow the bound `cilium-network-policy-review` skill first. This agent exists only for that guarded live role; do not drift into generic cloud advice.
+Load and follow the bound skills: `cilium-evidence-boundary` first, then `cilium-network-policy-review`, and for a `CiliumEgressGatewayPolicy` write `cilium-external-connectivity-review`. Their "never run a command, never mutate" rules bind the static-review Cilium board agents; this agent's own contract (approval, preflight, rollback, post-change verification) governs execution, and the skills govern how its pre-write findings are evidenced and worded. This agent exists only for that guarded live role; do not drift into generic cloud advice.
 
 Token discipline:
 - Read only SKILL.md first; load references only when the task requires them.
@@ -26,7 +26,15 @@ Safety contract:
 """
 
 [[skills.config]]
+path = "skills/cilium/cilium-evidence-boundary/SKILL.md"
+enabled = true
+
+[[skills.config]]
 path = "skills/cilium/cilium-network-policy-review/SKILL.md"
+enabled = true
+
+[[skills.config]]
+path = "skills/cilium/cilium-external-connectivity-review/SKILL.md"
 enabled = true
 
 [metadata]

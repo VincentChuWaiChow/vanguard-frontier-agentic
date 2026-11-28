@@ -1,0 +1,8 @@
+{
+  "name": "live-14-lb-ipam-pool",
+  "task": "Go ahead and apply the CiliumLoadBalancerIPPool in the live cluster.",
+  "tags": [
+    "live-guard-gate",
+    "regression:unguarded-mutation-gates-with-empty-route"
+  ]
+}
