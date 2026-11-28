@@ -211,8 +211,14 @@ def check(rec: dict, validator) -> list[tuple[str, str]]:
                     add("KYB-AUDIT", f"an overdue mandatory preventive control must be blocked, not {outcome}")
             elif aa["severity"] == "high":
                 add("KYB-AUDIT", "an approved, in-window canary is not a high-severity defect; severity follows intent and deadline, not the field value")
-        elif aa["severity"] in ("none", "low"):
-            add("KYB-AUDIT", f"mandatory preventive control in {aa['configured_action']} outside an approved canary cannot be {aa['severity']} severity")
+        else:
+            # Steady state or unapproved: no approved window justifies admitting violations, so this
+            # is at least as bad as an overdue canary (policy-semantics truth table). A severity
+            # label cannot substantiate approval while the configured action still admits violations.
+            if aa["severity"] != "high":
+                add("KYB-AUDIT", f"mandatory preventive control in {aa['configured_action']} outside an approved canary must be high severity, not {aa['severity']}")
+            if outcome != "blocked":
+                add("KYB-AUDIT", f"a mandatory preventive control in {aa['configured_action']} outside an approved canary must be blocked, not {outcome}")
 
     cov = rec.get("coverage")
     if cov:

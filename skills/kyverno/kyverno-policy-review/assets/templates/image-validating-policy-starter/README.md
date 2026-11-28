@@ -8,6 +8,7 @@ An ImageValidatingPolicy skeleton for the synthetic invoice service in namespace
 - Explicit `failurePolicy` and `webhookConfiguration.timeoutSeconds`, because the CRD states no failurePolicy default for this kind [KYV-E36].
 - Strict keyless identity (subject and issuer) rather than a broad regular expression [KYV-E17].
 - Separate validations for the signature and for the attestation, so a signature check alone does not satisfy the attestation requirement [KYV-E18].
+- Both verifications run over `images.containers + images.initContainers`. With `required: true`, an init-container image that matches `matchImageReferences` but is never verified fails the Pod, even when that image is correctly signed. Kyverno v1.20.0 extracts init-container images separately from containers (`pkg/cel/compiler/images.go`). Ephemeral containers arrive through the `pods/ephemeralcontainers` subresource, which this policy does not match.
 - Private-registry pull secrets belong in `spec.credentials.secrets`; the admitted Pod's imagePullSecrets are not used [KYV-E19].
 - The one offline result pins the out-of-scope path: a Pod whose image is outside `matchImageReferences` reports `pass`, not `skip`.
 
@@ -21,7 +22,7 @@ An ImageValidatingPolicy skeleton for the synthetic invoice service in namespace
 
 1. Replace every `TEMPLATE` marker (control name, image globs, identities, attestation type).
 2. Keep each field explicit; set `failurePolicy` and the timeout deliberately.
-3. Keep one in-scope signed image, one unsigned image and one out-of-scope image in your controlled test, and keep the out-of-scope case here.
+3. Keep one in-scope signed image, one unsigned image, one out-of-scope image and one Pod whose correctly signed in-scope image is an init container in your controlled test, and keep the out-of-scope case here. The init-container Pod must be admitted. If it is rejected, an expression is missing `images.initContainers`.
 4. Rerun the kit with the pinned CLI, then run the signer and attestation paths in a disposable cluster; enable the predicate check only after reading one known-good attestation.
 
 ## Traps this kit avoids

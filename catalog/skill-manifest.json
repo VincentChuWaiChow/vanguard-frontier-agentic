@@ -15695,7 +15695,7 @@
     {
       "id": "kyverno-policy-review",
       "path": "skills/kyverno/kyverno-policy-review",
-      "aggregate_sha256": "cdad0f2bd7258e17d36b02c9927a5f2a5e3f0d88d371aad5917942580a5a1368",
+      "aggregate_sha256": "09396afff1f9f8e9f250dfba079978dc857e7311f729c9afdc4d3e06492fa66a",
       "files": [
         {
           "path": "skills/kyverno/kyverno-policy-review/SKILL.md",
@@ -15714,8 +15714,8 @@
         },
         {
           "path": "skills/kyverno/kyverno-policy-review/assets/templates/image-validating-policy-starter/README.md",
-          "sha256": "7e805af4c233e049db47fe743c1f0eb1a0fe40ef15d19786520362970cc49dd1",
-          "bytes": 2721
+          "sha256": "b3e271157ce371811aeeb5da00ca877f259cb70096daf888d904c4083a0643c8",
+          "bytes": 3356
         },
         {
           "path": "skills/kyverno/kyverno-policy-review/assets/templates/image-validating-policy-starter/kyverno-test.yaml",
@@ -15724,8 +15724,8 @@
         },
         {
           "path": "skills/kyverno/kyverno-policy-review/assets/templates/image-validating-policy-starter/policy.yaml",
-          "sha256": "f686fcad5d51a70110eac955e5a9f1cfb5418e969bfc9a1f859a74d162912589",
-          "bytes": 3385
+          "sha256": "3be26a7f6cfa0529bc156be9af34af894949c368b15f75e75250a142170de69c",
+          "bytes": 3938
         },
         {
           "path": "skills/kyverno/kyverno-policy-review/assets/templates/image-validating-policy-starter/resources.yaml",
@@ -15784,8 +15784,8 @@
         },
         {
           "path": "skills/kyverno/kyverno-policy-review/references/policy-semantics-and-engine-selection.md",
-          "sha256": "eb782b528a3a6eff85b9c3077ec63880da05d4d7e99096210aa3537c0fc28662",
-          "bytes": 9907
+          "sha256": "9c699ae05782b9500dad8f1ad1671e295e0a9f266d283bb1c5ec22084ea756fe",
+          "bytes": 10171
         },
         {
           "path": "skills/kyverno/kyverno-policy-review/references/request-matching-and-evaluation.md",
@@ -15797,7 +15797,7 @@
     {
       "id": "kyverno-review-routing",
       "path": "skills/kyverno/kyverno-review-routing",
-      "aggregate_sha256": "1ca6ebce106a77450503e5cee78502f5b52ea15e511479d53ad6a83edd586626",
+      "aggregate_sha256": "8b64d26fcf61a5708e5dc3ee85f73e67de016cbcd024f5d5222fe74e1d778318",
       "files": [
         {
           "path": "skills/kyverno/kyverno-review-routing/SKILL.md",
@@ -15891,8 +15891,8 @@
         },
         {
           "path": "skills/kyverno/kyverno-review-routing/scripts/validate_board_decision.py",
-          "sha256": "b27ef522199e208aa1987d22180411bfccc0c5b5b6ba6660f1f98009c1146b8a",
-          "bytes": 21523
+          "sha256": "9c33fa5641b904b4b05631f80f54e6b5799bdad7d59097e96fa41e4c55cd9475",
+          "bytes": 22034
         }
       ]
     },

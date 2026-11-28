@@ -36844,7 +36844,7 @@
     },
     {
       "tree": "catalog",
-      "aggregate_sha256": "726f173b59d34c4fddf5afaeafd1097716d9d3dd9fe5508c18b570a83d77d483",
+      "aggregate_sha256": "2182ea0707ea15b4e51a25c58049dc2d9f2d600026dc45aa64c355ee47097984",
       "files": [
         {
           "path": "catalog/AGENTS.md",
@@ -36898,8 +36898,8 @@
         },
         {
           "path": "catalog/skill-manifest.json",
-          "sha256": "3e702c7f6319ad61dcf609ddb0489af6bdf4c89a0207cd7971d90b0dfbc95d6a",
-          "bytes": 1220088
+          "sha256": "b9c9887b6e6a583947cade3cd7fbe569f87d8255fbb5b0fb043eb8cab6de121f",
+          "bytes": 1220089
         },
         {
           "path": "catalog/skills.json",
@@ -38162,7 +38162,7 @@
     },
     {
       "tree": "tests",
-      "aggregate_sha256": "e17cd3499a994eab4d3c81e39c2a209fa91bed6830633905c8662b30a19b29c0",
+      "aggregate_sha256": "39922b0c80ccb8c17967f0f2bf3080451053099a75f38515de5735960dd5c459",
       "files": [
         {
           "path": "tests/AGENTS.md",
@@ -46835,6 +46835,16 @@
           "bytes": 455
         },
         {
+          "path": "tests/fixtures/kyverno-board-decisions/invalid/47-steady-state-preventive-audit-supported.json",
+          "sha256": "ef052e56e536abc2ee0b59ba67269df3dfd4b569367452449c282850c6bcac76",
+          "bytes": 348
+        },
+        {
+          "path": "tests/fixtures/kyverno-board-decisions/invalid/48-unapproved-preventive-audit-medium-supported.json",
+          "sha256": "b0654a946ee09a9853bc11b661505c8d77e4561d8d34234262704b305535f95b",
+          "bytes": 302
+        },
+        {
           "path": "tests/fixtures/kyverno-board-decisions/valid/01-cohort-a-promotion-supported.json",
           "sha256": "5d0dec34525b7467769512b52b1a6d189f88abe9f2042615c76117f0d6e8e9c9",
           "bytes": 6222
@@ -46873,6 +46883,11 @@
           "path": "tests/fixtures/kyverno-board-decisions/valid/08-mesh-label-manifest-scope.json",
           "sha256": "a733da5af887fb0220f15ff02b03405df211406911090f6ecb09a124e4151dcf",
           "bytes": 3098
+        },
+        {
+          "path": "tests/fixtures/kyverno-board-decisions/valid/09-steady-state-preventive-audit-blocked.json",
+          "sha256": "8dadad8f711026dc6bdb9263fb6feb7afcb5060a32166bf676fa4dde67ae7343",
+          "bytes": 3472
         },
         {
           "path": "tests/fixtures/kyverno-board-evals/expected/EVI-01.json",
@@ -51889,5 +51904,5 @@
       "bytes": 9135
     }
   ],
-  "aggregate_sha256": "28ab3707c50eb7e008a64ecd5651b06f8abeece322f0636201f612c6206285dc"
+  "aggregate_sha256": "aeb503fc2c19aa3d22af64c65ecefa9ae84947f8d6f30c61eb09aab7723c71e2"
 }
