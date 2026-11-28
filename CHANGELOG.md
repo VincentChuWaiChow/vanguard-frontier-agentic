@@ -1,3 +1,60 @@
+## 🛡️ v3.23.0 — *Provenance · Policy · Portability*
+_Released 2026-11-28_
+
+> _Curated multi-cloud, zero-trust agent marketplace — `AWS` · `Azure` · `OCI` · `GCP` · `Terraform`._
+> Least privilege, live evidence, safe rollback paths.
+
+**Release type:** New capabilities — review the sections below before upgrading.
+
+### ✨ Features
+
+* **model-policy:** default Codex agents to gpt-6-sol ([`400083b`](https://github.com/VincentChuWaiChow/vanguard-frontier-agentic/commit/400083b6184f263b5592671d03aa18ac215e063d))
+  Move the codex all-tier rule in catalog/model-policy.json from gpt-5.4 to
+  gpt-6-sol (reasoning effort stays high) and re-project it: model-policy:apply
+  rewrote 632 codex.toml adapters and catalog/model-assignments.json. gpt-6-sol
+  is registered in catalog/model-registry.json (high is in its verified effort
+  set) and is the model the dotnet/generic/hr/java/legal/netsuite/salesforce
+  provider rules already pinned. It needs Codex CLI 0.155.0 or later.
+
+  The Kyverno, OCI and Azure guard generators hardcoded gpt-5.4/high for new
+  Codex adapters; they now read the all-tier codex rule from the policy (auto
+  emits nothing), so a freshly generated adapter cannot pin a stale model.
+  Docs and the gpt-5.4 registry note no longer claim the policy pins it, and the
+  TUI test that reads the committed assignments expects the new default.
+
+### 🐛 Bug Fixes
+
+* **kyverno:** accept Pod-level runAsNonRoot and harden the board generator ([`5737761`](https://github.com/VincentChuWaiChow/vanguard-frontier-agentic/commit/57377611a9c830b22170e1c58ea5a35a6f2fbf6e))
+  Post-merge code review of #245.
+
+  - validating-policy-starter: a container without its own runAsNonRoot now
+    inherits the Pod-level securityContext value, so a Pod that sets it only at
+    Pod level is no longer denied; a container-level false still overrides and
+    fails. Two kit cases pin both directions (the old expression fails the
+    inherited case with the pinned CLI v1.20.0).
+  - gen_kyverno_board: agent official_docs drop duplicate and UNVERIFIED rows
+    through the same helper the skill path uses (two agents listed a URL twice);
+    scalars are JSON-quoted and the codex developer_instructions body escapes
+    backslashes and triple quotes, so quotes or \d in board data still yield
+    valid TOML and YAML; --check now fails on agent directories that board.json
+    no longer declares (reported, never deleted).
+  - test_board: the pinned-CLI test runs only when KYVERNO_CLI is set, so the
+    gate no longer depends on whatever kyverno is on PATH; the ledger test uses
+    the generator's citation marker shape; new orphan-directory test.
+  - docs/configuration.md: add the validate:kyverno-board row to the gate table.
+
+---
+
+### 📥 Install
+```bash
+npm install @raishin/vanguard-frontier-agentic@3.23.0
+```
+
+### 🔐 Supply-chain provenance
+Every release ships a build attestation (SLSA provenance) and an SBOM. Verify the tag with `gh attestation verify` before installing.
+
+**Full changelog:** https://github.com/VincentChuWaiChow/vanguard-frontier-agentic/compare/v3.22.0...v3.23.0
+
 ## 🛡️ v3.22.0 — *Provenance · Policy · Portability*
 _Released 2026-11-28_
 
