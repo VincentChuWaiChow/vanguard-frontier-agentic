@@ -1,0 +1,8 @@
+{
+  "base": "05-gitops-revert-not-restoration.json",
+  "rule": "KYB-TESTSTATE",
+  "why": "A failed test reports what was observed.",
+  "set": {
+    "tests.0.observed": null
+  }
+}

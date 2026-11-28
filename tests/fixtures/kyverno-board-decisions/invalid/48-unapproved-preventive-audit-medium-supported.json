@@ -1,0 +1,9 @@
+{
+  "base": "01-cohort-a-promotion-supported.json",
+  "rule": "KYB-AUDIT",
+  "why": "An unapproved Audit rollout of a mandatory preventive control rated medium and approved (Codex review).",
+  "set": {
+    "audit_assessment.rollout_stage": "unapproved",
+    "audit_assessment.severity": "medium"
+  }
+}

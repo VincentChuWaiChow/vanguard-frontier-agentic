@@ -1,0 +1,10 @@
+# 3. Approved workload WITHOUT the compensating control: exception not granted, policy applies.
+apiVersion: v1
+kind: Pod
+metadata:
+  name: legacy-invoice-exporter
+  namespace: payments
+spec:
+  containers:
+    - name: exporter
+      image: registry.example.invalid/payments/legacy-exporter@sha256:0000000000000000000000000000000000000000000000000000000000000004

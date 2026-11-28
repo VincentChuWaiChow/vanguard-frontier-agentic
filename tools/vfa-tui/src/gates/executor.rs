@@ -94,7 +94,7 @@ impl GateRunner for SubprocessRunner {
     ) -> Pin<Box<dyn Future<Output = GateResult> + Send + 'a>> {
         Box::pin(async move {
             let start = Instant::now();
-            let timestamp = chrono::Utc::now().to_rfc3339_opts(chrono::SecondsFormat::Millis, true);
+            let timestamp = crate::clock::now_millis();
 
             let spawn_result =
                 SubprocessExecutor::spawn(&def.command, &def.args, workspace_root, def.timeout)
@@ -223,7 +223,7 @@ where
                 status,
                 exit_code: None,
                 duration: Duration::ZERO,
-                timestamp: chrono::Utc::now().to_rfc3339_opts(chrono::SecondsFormat::Millis, true),
+                timestamp: crate::clock::now_millis(),
                 output: String::new(),
                 skip_reason: None,
             }
@@ -311,8 +311,7 @@ pub async fn execute_all(
                     status: DagGateStatus::Skipped,
                     exit_code: None,
                     duration: Duration::ZERO,
-                    timestamp: chrono::Utc::now()
-                        .to_rfc3339_opts(chrono::SecondsFormat::Millis, true),
+                    timestamp: crate::clock::now_millis(),
                     output: String::new(),
                     skip_reason: Some(reason.clone()),
                 },
@@ -451,7 +450,7 @@ pub async fn execute_single(
                 status: DagGateStatus::Skipped,
                 exit_code: None,
                 duration: Duration::ZERO,
-                timestamp: chrono::Utc::now().to_rfc3339_opts(chrono::SecondsFormat::Millis, true),
+                timestamp: crate::clock::now_millis(),
                 output: String::new(),
                 skip_reason: Some(format!("dependency failed: {failed_dep}")),
             });

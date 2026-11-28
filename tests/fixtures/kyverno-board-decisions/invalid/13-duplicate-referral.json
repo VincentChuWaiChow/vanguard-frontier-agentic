@@ -1,0 +1,16 @@
+{
+  "base": "08-mesh-label-manifest-scope.json",
+  "rule": "KYB-REFERRAL",
+  "why": "Collapse duplicate referrals.",
+  "set": {
+    "referrals.1": {
+      "decision_id": "KYV-DEC-0108",
+      "to": "istio-maestro-agent",
+      "evidence_refs": [
+        "EV-1"
+      ],
+      "return_question": "Is the named waypoint bound and does traffic to invoice-api traverse it?",
+      "status": "pending"
+    }
+  }
+}

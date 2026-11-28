@@ -1,0 +1,106 @@
+{
+  "schema_version": "1.0",
+  "decision_id": "KYV-DEC-0108",
+  "as_of": "2026-11-24T00:00:00Z",
+  "request_kind": "advisory",
+  "question": "Does every payments namespace declare a waypoint before invoice-api goes live?",
+  "intended_control": "require istio.io/use-waypoint on payments namespaces",
+  "target_cohort": "payments namespaces",
+  "authorized_scope": "namespace manifests",
+  "owner": "payments platform lead",
+  "deadline": null,
+  "consequence_class": "none",
+  "environment": {
+    "kubernetes_version": "1.33 (supplied)",
+    "kyverno_controller_version": "v1.20.0 (supplied)",
+    "kyverno_cli_version": "v1.20.0",
+    "served_apis": [
+      "policies.kyverno.io/v1 ValidatingPolicy"
+    ],
+    "policy_revision": "git:synthetic-0001"
+  },
+  "evidence": [
+    {
+      "id": "EV-1",
+      "type": "offline-test",
+      "locator": "label policy fixture (CLI v1.20.0)",
+      "captured_at": "2026-11-24T00:00:00Z",
+      "applies_to": "labelled namespace passes, unlabelled fails",
+      "omits": "waypoint existence and traffic"
+    }
+  ],
+  "lead": {
+    "agent": "kyverno-policy-review-agent",
+    "provisional_conclusion": "The policy enforces label presence; traffic traversal is not established.",
+    "easiest_way_wrong": "Reading label presence as L7 enforcement."
+  },
+  "referrals": [
+    {
+      "decision_id": "KYV-DEC-0108",
+      "to": "istio-maestro-agent",
+      "evidence_refs": [
+        "EV-1"
+      ],
+      "return_question": "Is the named waypoint bound and does traffic to invoice-api traverse it?",
+      "status": "pending"
+    }
+  ],
+  "challenge": null,
+  "claims": [
+    {
+      "id": "C-1",
+      "class": "observed",
+      "statement": "Labelled namespaces pass and unlabelled fail offline.",
+      "evidence_refs": [
+        "EV-1"
+      ]
+    },
+    {
+      "id": "C-2",
+      "class": "unknown",
+      "statement": "Whether traffic traverses the waypoint.",
+      "evidence_refs": [],
+      "smallest_settling_item": "istio.io/WaypointBound condition and a traffic observation"
+    }
+  ],
+  "tests": [
+    {
+      "id": "T-1",
+      "polarity": "positive",
+      "operation": "CREATE",
+      "expected": "labelled namespace admitted",
+      "state": "passed",
+      "observed": "pass",
+      "evidence_refs": [
+        "EV-1"
+      ]
+    },
+    {
+      "id": "T-2",
+      "polarity": "negative",
+      "operation": "CREATE",
+      "expected": "unlabelled namespace fails",
+      "state": "passed",
+      "observed": "fail",
+      "evidence_refs": [
+        "EV-1"
+      ]
+    }
+  ],
+  "outcome": "supported",
+  "verdict": "approved",
+  "conditions": [],
+  "dissent": [],
+  "business_exposure": "Mis-reading label presence as L7 enforcement would overstate invoice-api protection.",
+  "suggested_action": "Keep the manifest decision; await the Istio return answer before any traffic claim.",
+  "rollback_limits": "Not applicable.",
+  "evidence_owner": "platform security engineer",
+  "execution": {
+    "authority": "none",
+    "handoff": null
+  },
+  "artifacts": [],
+  "limitations": [
+    "Manifest-level decision only; no traffic evidence."
+  ]
+}

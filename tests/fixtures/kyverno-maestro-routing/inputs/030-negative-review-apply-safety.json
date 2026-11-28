@@ -1,0 +1,8 @@
+{
+  "name": "030-negative-review-apply-safety",
+  "task": "Review whether applying this ValidatingPolicy change in production is safe.",
+  "tags": [
+    "negative-routing",
+    "regression:no-false-gate"
+  ]
+}

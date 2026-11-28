@@ -1,0 +1,8 @@
+{
+  "base": "07-explicit-execution-handoff.json",
+  "rule": "KYB-EXECUTION",
+  "why": "An explicit execution request reaches the guard boundary.",
+  "set": {
+    "execution.handoff": null
+  }
+}

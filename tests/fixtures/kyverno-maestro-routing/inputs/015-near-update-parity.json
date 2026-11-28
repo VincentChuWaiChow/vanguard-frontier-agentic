@@ -1,0 +1,8 @@
+{
+  "name": "015-near-update-parity",
+  "task": "The migration parity corpus agrees on CREATE but differs on UPDATE for cohort B; can it move?",
+  "tags": [
+    "near-neighbor",
+    "oracle:update-parity"
+  ]
+}

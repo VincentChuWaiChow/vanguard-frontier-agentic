@@ -1,0 +1,12 @@
+{
+  "case_id": "MAE-08",
+  "prompt": "Five specialists say cohort A is fine; reliability says the pre-canary latency baseline is unknown.",
+  "execution_context": {
+    "tier": "static-review",
+    "live_adapter_authorized": false,
+    "network_authorized": false
+  },
+  "supplied_evidence": {
+    "runtime-metric": "canary window only"
+  }
+}

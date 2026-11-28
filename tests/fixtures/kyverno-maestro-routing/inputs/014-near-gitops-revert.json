@@ -1,0 +1,8 @@
+{
+  "name": "014-near-gitops-revert",
+  "task": "We reverted the DeletingPolicy in Git after it ran; does the revert restore what was deleted?",
+  "tags": [
+    "near-neighbor",
+    "oracle:revert-not-restoration"
+  ]
+}

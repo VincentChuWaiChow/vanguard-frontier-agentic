@@ -13242,11 +13242,200 @@
     "companion_skills": null
   },
   {
+    "id": "kyverno-admission-reliability-agent",
+    "name": "Kyverno Admission Reliability",
+    "type": "agent",
+    "provider": "kyverno",
+    "harnesses": [
+      "codex",
+      "copilot",
+      "claude-code",
+      "cursor",
+      "gemini",
+      "kiro"
+    ],
+    "summary": "Agent for kyverno-admission-reliability. Assess Kyverno admission reliability from supplied webhook configurations, policy failurePolicy and timeouts, replica and placement evidence, latency and error series and incident observations. Use for release envelopes, webhook timeouts, failurePolicy Fail versus Ignore, controller or registry degradation, and telling a correct policy denial from a webhook call error, an upstream API rejection or stale reports. Not for whether a rule expresses the control, exception approval or coverage claims.",
+    "source_type": "original",
+    "official_docs": [
+      "https://github.com/kyverno/kyverno/blob/v1.20.0/config/crds/policies.kyverno.io/policies.kyverno.io_validatingpolicies.yaml",
+      "https://github.com/kyverno/kyverno/blob/v1.20.0/pkg/controllers/webhook/validating.go",
+      "https://kubernetes.io/docs/reference/access-authn-authz/extensible-admission-controllers/",
+      "https://kyverno.io/docs/guides/high-availability/",
+      "https://kyverno.io/docs/guides/monitoring/"
+    ],
+    "security_notes": "Static review only. failurePolicy governs call and evaluation errors, not violations; Ignore can admit writes unevaluated during an outage and Fail can block writes. Estimates require measured latency and named recovery dependencies. Never probe webhooks, restart controllers or change webhook configuration.",
+    "last_verified": "2026-11-24",
+    "path": "agents/kyverno/kyverno-admission-reliability-agent",
+    "version": "0.1.0",
+    "execution_tier": "static-review",
+    "lifecycle": "beta",
+    "companion_skills": [
+      "kyverno-admission-reliability"
+    ]
+  },
+  {
+    "id": "kyverno-control-evidence-agent",
+    "name": "Kyverno Control Evidence",
+    "type": "agent",
+    "provider": "kyverno",
+    "harnesses": [
+      "codex",
+      "copilot",
+      "claude-code",
+      "cursor",
+      "gemini",
+      "kiro"
+    ],
+    "summary": "Agent for kyverno-control-evidence. Quantify Kyverno control coverage from supplied inventories, PolicyReports, exception lists, admission metrics and event streams. Use for coverage percentages, compliance assertions, empty or stale reports, excluded workloads, blocked-request counts, evidence packs and pilot business measures. Not for designing the policy, diagnosing a webhook incident or approving exceptions.",
+    "source_type": "original",
+    "official_docs": [
+      "https://kyverno.io/docs/guides/reports/",
+      "https://kyverno.io/docs/guides/reports/",
+      "https://kyverno.io/docs/guides/monitoring/",
+      "https://github.com/kyverno/kyverno/blob/v1.20.0/config/crds/policies.kyverno.io/policies.kyverno.io_policyexceptions.yaml"
+    ],
+    "security_notes": "Static review only. Exceptions report as skip and are not demonstrated prevention; denied writes are visible in metrics and events, not reports. Never present a percentage without its population and window.",
+    "last_verified": "2026-11-24",
+    "path": "agents/kyverno/kyverno-control-evidence-agent",
+    "version": "0.1.0",
+    "execution_tier": "static-review",
+    "lifecycle": "beta",
+    "companion_skills": [
+      "kyverno-control-evidence"
+    ]
+  },
+  {
+    "id": "kyverno-exception-governance-agent",
+    "name": "Kyverno Exception Governance",
+    "type": "agent",
+    "provider": "kyverno",
+    "harnesses": [
+      "codex",
+      "copilot",
+      "claude-code",
+      "cursor",
+      "gemini",
+      "kiro"
+    ],
+    "summary": "Agent for kyverno-exception-governance. Review Kyverno PolicyExceptions as a governed portfolio from supplied exception manifests, approval records, controller flags and evidence of removal. Use for exception requests, renewals, scope against the approval, compensating controls, expiresAt versus a date written in an annotation, authorized creators, exception namespaces and adjacent workloads that must stay covered. Not for designing the underlying policy, webhook reliability or estate coverage percentages.",
+    "source_type": "original",
+    "official_docs": [
+      "https://github.com/kyverno/kyverno/blob/v1.20.0/config/crds/policies.kyverno.io/policies.kyverno.io_policyexceptions.yaml",
+      "https://github.com/kyverno/kyverno/blob/v1.20.0/pkg/cel/engine/exception.go",
+      "https://github.com/kyverno/kyverno/blob/v1.20.0/cmd/internal/flag.go",
+      "https://kyverno.io/docs/guides/exceptions/"
+    ],
+    "security_notes": "Static review only. An exception is a documented bypass; scope must match the approval exactly and adjacent workloads must remain covered. Offline CLI results do not establish expiry behavior. No agent approves its own exception or infers approval from ticket status.",
+    "last_verified": "2026-11-24",
+    "path": "agents/kyverno/kyverno-exception-governance-agent",
+    "version": "0.1.0",
+    "execution_tier": "static-review",
+    "lifecycle": "beta",
+    "companion_skills": [
+      "kyverno-exception-governance"
+    ]
+  },
+  {
+    "id": "kyverno-maestro-agent",
+    "name": "Kyverno Review Routing",
+    "type": "agent",
+    "provider": "kyverno",
+    "harnesses": [
+      "codex",
+      "copilot",
+      "claude-code",
+      "cursor",
+      "gemini",
+      "kiro"
+    ],
+    "summary": "Agent for kyverno-review-routing. Coordinate a Kyverno policy engineering board across admission design, admission reliability, exceptions, lifecycle reconciliation, migration and control evidence. Use when a request spans more than one decision or ownership is unclear. Route one lead per decision, bounded referrals with a decision ID and one return question, independent challenge for consequential promotions, and Jira or Confluence drafts through the existing Atlassian authoring skills. Never auto-dispatch the live admission guard or average away a blocker.",
+    "source_type": "original",
+    "official_docs": [
+      "https://github.com/kyverno/kyverno/releases/tag/v1.20.0",
+      "https://kyverno.io/docs/guides/reports/",
+      "https://istio.io/latest/docs/ambient/usage/waypoint/"
+    ],
+    "security_notes": "Static routing only. One lead per decision, no self-approval, no majority vote, minimal disclosure between specialists, and never auto-dispatch the live admission guard.",
+    "last_verified": "2026-11-24",
+    "path": "agents/kyverno/kyverno-maestro-agent",
+    "version": "0.1.0",
+    "execution_tier": "static-review",
+    "lifecycle": "beta",
+    "companion_skills": [
+      "kyverno-review-routing",
+      "jira-ticket-authoring",
+      "confluence-document-authoring"
+    ]
+  },
+  {
+    "id": "kyverno-migration-readiness-agent",
+    "name": "Kyverno Migration Readiness",
+    "type": "agent",
+    "provider": "kyverno",
+    "harnesses": [
+      "codex",
+      "copilot",
+      "claude-code",
+      "cursor",
+      "gemini",
+      "kiro"
+    ],
+    "summary": "Agent for kyverno-migration-readiness. Assess Kyverno upgrades and policy-family migrations (legacy kyverno.io ClusterPolicy/Policy to policies.kyverno.io CEL types, CEL API version moves, Kyverno to native ValidatingAdmissionPolicy) from supplied versions, manifests, fixtures and parity results. Use for v1.19 to v1.20 readiness, parity diffs, cohort promotion, abort criteria and rollback constraints. Not for single-policy semantics, webhook incidents or exception approval.",
+    "source_type": "original",
+    "official_docs": [
+      "https://github.com/kyverno/kyverno/releases/tag/v1.20.0",
+      "https://kyverno.io/docs/guides/migration-to-cel/",
+      "https://github.com/kyverno/kyverno/tree/v1.20.0/config/crds/policies.kyverno.io",
+      "https://github.com/kyverno/kyverno/blob/v1.20.0/cmd/cli/kubectl-kyverno/apis/v1alpha1/test_result.go",
+      "https://kyverno.io/docs/kyverno-cli/reference/kyverno_test/"
+    ],
+    "security_notes": "Static review only. Offline CLI parity is input-bounded: UPDATE in the CLI uses identical old and new objects, so UPDATE-sensitive controls need old/new object evidence. Never assume the latest release or execute an upgrade.",
+    "last_verified": "2026-11-24",
+    "path": "agents/kyverno/kyverno-migration-readiness-agent",
+    "version": "0.1.0",
+    "execution_tier": "static-review",
+    "lifecycle": "beta",
+    "companion_skills": [
+      "kyverno-migration-readiness"
+    ]
+  },
+  {
+    "id": "kyverno-policy-lifecycle-agent",
+    "name": "Kyverno Policy Lifecycle",
+    "type": "agent",
+    "provider": "kyverno",
+    "harnesses": [
+      "codex",
+      "copilot",
+      "claude-code",
+      "cursor",
+      "gemini",
+      "kiro"
+    ],
+    "summary": "Agent for kyverno-policy-lifecycle. Review Kyverno MutatingPolicy, GeneratingPolicy and DeletingPolicy behavior against Argo CD or Flux desired state from supplied manifests, rendered output and object state. Use for mutate-existing, generateExisting, synchronization, orphaned or deleted downstream resources, scheduled deletion, controller RBAC, reconciler conflicts and rollback claims. Not for whether a validation rule expresses the control or for exception approval.",
+    "source_type": "original",
+    "official_docs": [
+      "https://kyverno.io/docs/policy-types/generating-policy/",
+      "https://github.com/kyverno/kyverno/blob/v1.20.0/config/crds/policies.kyverno.io/policies.kyverno.io_generatingpolicies.yaml",
+      "https://kyverno.io/docs/policy-types/mutating-policy/",
+      "https://kyverno.io/docs/policy-types/deleting-policy/"
+    ],
+    "security_notes": "Static review only. DeletingPolicy is destructive and mutateExisting can rewrite every matching object; removing a policy does not restore modified or deleted data. Never run generators, cleanup or syncs.",
+    "last_verified": "2026-11-24",
+    "path": "agents/kyverno/kyverno-policy-lifecycle-agent",
+    "version": "0.1.0",
+    "execution_tier": "static-review",
+    "lifecycle": "beta",
+    "companion_skills": [
+      "kyverno-policy-lifecycle"
+    ]
+  },
+  {
     "id": "kyverno-policy-review-agent",
     "name": "Kyverno Policy Review",
     "type": "agent",
     "provider": "kyverno",
-    "summary": "Agent for kyverno-policy-review. Review Kyverno ClusterPolicy and Policy resources for failureAction, background scanning, PolicyException audit, mutate/generate rules, and Kyverno-vs-native ValidatingAdmissionPolicy decision.",
+    "summary": "Agent for kyverno-policy-review. Review Kyverno CEL policies (policies.kyverno.io ValidatingPolicy, ImageValidatingPolicy and their namespaced forms), legacy ClusterPolicy/Policy on releases before v1.20, and native ValidatingAdmissionPolicy against an intended control. Use for request matching, operations, old versus new object, subresources, identities, admission versus background evaluation, Audit/Warn/Deny intent, engine selection, and image signer or attestation requirements. Not for webhook outages, exception portfolios, generate/mutate/delete reconciliation, fleet migration or coverage reporting.",
     "path": "agents/kyverno/kyverno-policy-review-agent",
     "harnesses": [
       "codex",
@@ -13256,18 +13445,22 @@
       "gemini",
       "kiro"
     ],
-    "last_verified": "2026-05-01",
+    "last_verified": "2026-11-24",
     "official_docs": [
-      "https://kyverno.io/docs/",
-      "https://kyverno.io/docs/policy-reports/",
-      "https://kyverno.io/docs/writing-policies/",
-      "https://kyverno.io/docs/policy-exceptions/",
+      "https://github.com/kyverno/kyverno/blob/v1.20.0/config/crds/policies.kyverno.io/policies.kyverno.io_validatingpolicies.yaml",
+      "https://github.com/kyverno/kyverno/blob/v1.20.0/config/crds/policies.kyverno.io/policies.kyverno.io_validatingpolicies.yaml",
+      "https://kyverno.io/docs/guides/reports/",
+      "https://github.com/kyverno/kyverno/blob/v1.20.0/config/crds/policies.kyverno.io/policies.kyverno.io_imagevalidatingpolicies.yaml",
       "https://kubernetes.io/docs/reference/access-authn-authz/validating-admission-policy/"
     ],
-    "security_notes": "failureAction: Audit in production is a critical finding — violations are logged but workloads are not blocked. PolicyException without expiry is an infinite escape hatch.",
+    "security_notes": "Static review only. Severity of Audit or Warn depends on control intent, rollout stage, owner and deadline; a mandatory preventive control left in Audit past its deadline is a defect, an approved time-bounded canary is not. Signature verification alone does not satisfy an attestation or signer-restricted requirement. Never collect cluster evidence or mutate policy.",
     "source_type": "original",
-    "version": "0.1.0",
-    "companion_skills": null
+    "version": "0.2.0",
+    "companion_skills": [
+      "kyverno-policy-review"
+    ],
+    "execution_tier": "static-review",
+    "lifecycle": "beta"
   },
   {
     "id": "legal-contract-review-agent",

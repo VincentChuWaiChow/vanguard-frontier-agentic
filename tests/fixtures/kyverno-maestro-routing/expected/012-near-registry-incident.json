@@ -1,0 +1,6 @@
+{
+  "route": [
+    "kyverno-admission-reliability-agent"
+  ],
+  "mode": "single"
+}

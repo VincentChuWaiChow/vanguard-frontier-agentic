@@ -1,0 +1,12 @@
+{
+  "case_id": "REL-02",
+  "prompt": "Should invoice-batch-root have been denied?",
+  "execution_context": {
+    "tier": "static-review",
+    "live_adapter_authorized": false,
+    "network_authorized": false
+  },
+  "supplied_evidence": {
+    "manifest": "ValidatingPolicy"
+  }
+}

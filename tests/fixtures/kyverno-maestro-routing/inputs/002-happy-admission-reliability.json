@@ -1,0 +1,7 @@
+{
+  "name": "002-happy-admission-reliability",
+  "task": "Our webhook timeout is 15 seconds with failurePolicy Fail; what happens to pod writes if the controller is unreachable?",
+  "tags": [
+    "happy-path"
+  ]
+}

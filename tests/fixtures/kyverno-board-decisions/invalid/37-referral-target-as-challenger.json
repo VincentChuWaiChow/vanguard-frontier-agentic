@@ -1,0 +1,8 @@
+{
+  "base": "01-cohort-a-promotion-supported.json",
+  "rule": "KYB-CHALLENGE",
+  "why": "A referral contributor is not an independent challenger (Codex review).",
+  "set": {
+    "challenge.challenger": "kyverno-admission-reliability-agent"
+  }
+}

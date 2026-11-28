@@ -35,9 +35,14 @@
 # Built-in Kubernetes resources are NOT stubbed here -- a CRD cannot shadow a
 # built-in API group, and their absence really would mean a broken cluster.
 #
-# The group, plural, kind and scope of all 24 stubs were checked against the
+# The group, plural, kind and scope of the first 24 stubs were checked against the
 # upstream CRD manifests on each project's default branch (argo-cd, istio,
-# velero, cilium, kyverno, gateway-api) and match.
+# velero, cilium, kyverno, gateway-api) and match.  The 8 policies.kyverno.io
+# stubs were checked against kyverno config/crds/policies.kyverno.io at tag
+# v1.20.0 and match; upstream serves v1 with v1beta1 as storage, a single v1
+# here is enough because RBAC evaluation never reads versions.  The 2
+# wgpolicyk8s.io stubs were checked against kyverno config/crds/policyreport at
+# tag v1.20.0 (served and stored as v1alpha2) and match.
 #
 # The gateway.networking.k8s.io stubs carry `api-approved.kubernetes.io`.  Any
 # group under *.k8s.io is protected: apiextensions rejects a CRD in one without
@@ -475,6 +480,174 @@ spec:
 apiVersion: apiextensions.k8s.io/v1
 kind: CustomResourceDefinition
 metadata:
+  name: validatingpolicies.policies.kyverno.io
+spec:
+  group: policies.kyverno.io
+  scope: Cluster
+  names:
+    plural: validatingpolicies
+    singular: validatingpolicy
+    kind: ValidatingPolicy
+    listKind: ValidatingPolicyList
+  versions:
+    - name: v1
+      served: true
+      storage: true
+      schema:
+        openAPIV3Schema:
+          type: object
+          x-kubernetes-preserve-unknown-fields: true
+---
+apiVersion: apiextensions.k8s.io/v1
+kind: CustomResourceDefinition
+metadata:
+  name: namespacedvalidatingpolicies.policies.kyverno.io
+spec:
+  group: policies.kyverno.io
+  scope: Namespaced
+  names:
+    plural: namespacedvalidatingpolicies
+    singular: namespacedvalidatingpolicy
+    kind: NamespacedValidatingPolicy
+    listKind: NamespacedValidatingPolicyList
+  versions:
+    - name: v1
+      served: true
+      storage: true
+      schema:
+        openAPIV3Schema:
+          type: object
+          x-kubernetes-preserve-unknown-fields: true
+---
+apiVersion: apiextensions.k8s.io/v1
+kind: CustomResourceDefinition
+metadata:
+  name: imagevalidatingpolicies.policies.kyverno.io
+spec:
+  group: policies.kyverno.io
+  scope: Cluster
+  names:
+    plural: imagevalidatingpolicies
+    singular: imagevalidatingpolicy
+    kind: ImageValidatingPolicy
+    listKind: ImageValidatingPolicyList
+  versions:
+    - name: v1
+      served: true
+      storage: true
+      schema:
+        openAPIV3Schema:
+          type: object
+          x-kubernetes-preserve-unknown-fields: true
+---
+apiVersion: apiextensions.k8s.io/v1
+kind: CustomResourceDefinition
+metadata:
+  name: policyexceptions.policies.kyverno.io
+spec:
+  group: policies.kyverno.io
+  scope: Namespaced
+  names:
+    plural: policyexceptions
+    singular: policyexception
+    kind: PolicyException
+    listKind: PolicyExceptionList
+  versions:
+    - name: v1
+      served: true
+      storage: true
+      schema:
+        openAPIV3Schema:
+          type: object
+          x-kubernetes-preserve-unknown-fields: true
+---
+apiVersion: apiextensions.k8s.io/v1
+kind: CustomResourceDefinition
+metadata:
+  name: mutatingpolicies.policies.kyverno.io
+spec:
+  group: policies.kyverno.io
+  scope: Cluster
+  names:
+    plural: mutatingpolicies
+    singular: mutatingpolicy
+    kind: MutatingPolicy
+    listKind: MutatingPolicyList
+  versions:
+    - name: v1
+      served: true
+      storage: true
+      schema:
+        openAPIV3Schema:
+          type: object
+          x-kubernetes-preserve-unknown-fields: true
+---
+apiVersion: apiextensions.k8s.io/v1
+kind: CustomResourceDefinition
+metadata:
+  name: generatingpolicies.policies.kyverno.io
+spec:
+  group: policies.kyverno.io
+  scope: Cluster
+  names:
+    plural: generatingpolicies
+    singular: generatingpolicy
+    kind: GeneratingPolicy
+    listKind: GeneratingPolicyList
+  versions:
+    - name: v1
+      served: true
+      storage: true
+      schema:
+        openAPIV3Schema:
+          type: object
+          x-kubernetes-preserve-unknown-fields: true
+---
+apiVersion: apiextensions.k8s.io/v1
+kind: CustomResourceDefinition
+metadata:
+  name: namespacedgeneratingpolicies.policies.kyverno.io
+spec:
+  group: policies.kyverno.io
+  scope: Namespaced
+  names:
+    plural: namespacedgeneratingpolicies
+    singular: namespacedgeneratingpolicy
+    kind: NamespacedGeneratingPolicy
+    listKind: NamespacedGeneratingPolicyList
+  versions:
+    - name: v1
+      served: true
+      storage: true
+      schema:
+        openAPIV3Schema:
+          type: object
+          x-kubernetes-preserve-unknown-fields: true
+---
+apiVersion: apiextensions.k8s.io/v1
+kind: CustomResourceDefinition
+metadata:
+  name: deletingpolicies.policies.kyverno.io
+spec:
+  group: policies.kyverno.io
+  scope: Cluster
+  names:
+    plural: deletingpolicies
+    singular: deletingpolicy
+    kind: DeletingPolicy
+    listKind: DeletingPolicyList
+  versions:
+    - name: v1
+      served: true
+      storage: true
+      schema:
+        openAPIV3Schema:
+          type: object
+          x-kubernetes-preserve-unknown-fields: true
+---
+apiVersion: apiextensions.k8s.io/v1
+kind: CustomResourceDefinition
+metadata:
   name: gateways.gateway.networking.k8s.io
   annotations:
     api-approved.kubernetes.io: "unapproved, test stub for RBAC evaluation only"
@@ -557,6 +730,48 @@ spec:
     listKind: ReferenceGrantList
   versions:
     - name: v1
+      served: true
+      storage: true
+      schema:
+        openAPIV3Schema:
+          type: object
+          x-kubernetes-preserve-unknown-fields: true
+---
+apiVersion: apiextensions.k8s.io/v1
+kind: CustomResourceDefinition
+metadata:
+  name: policyreports.wgpolicyk8s.io
+spec:
+  group: wgpolicyk8s.io
+  scope: Namespaced
+  names:
+    plural: policyreports
+    singular: policyreport
+    kind: PolicyReport
+    listKind: PolicyReportList
+  versions:
+    - name: v1alpha2
+      served: true
+      storage: true
+      schema:
+        openAPIV3Schema:
+          type: object
+          x-kubernetes-preserve-unknown-fields: true
+---
+apiVersion: apiextensions.k8s.io/v1
+kind: CustomResourceDefinition
+metadata:
+  name: clusterpolicyreports.wgpolicyk8s.io
+spec:
+  group: wgpolicyk8s.io
+  scope: Cluster
+  names:
+    plural: clusterpolicyreports
+    singular: clusterpolicyreport
+    kind: ClusterPolicyReport
+    listKind: ClusterPolicyReportList
+  versions:
+    - name: v1alpha2
       served: true
       storage: true
       schema:

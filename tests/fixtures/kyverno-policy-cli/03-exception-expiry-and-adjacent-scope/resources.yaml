@@ -1,0 +1,30 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: legacy-invoice-exporter
+  namespace: payments
+spec:
+  containers:
+    - name: exporter
+      image: registry.example.invalid/payments/legacy-exporter@sha256:0000000000000000000000000000000000000000000000000000000000000004
+---
+apiVersion: v1
+kind: Pod
+metadata:
+  name: legacy-ledger-sync
+  namespace: payments
+spec:
+  containers:
+    - name: sync
+      image: registry.example.invalid/payments/ledger-sync@sha256:0000000000000000000000000000000000000000000000000000000000000005
+---
+# Adjacent workload with no approved exception: must remain covered.
+apiVersion: v1
+kind: Pod
+metadata:
+  name: invoice-batch-root
+  namespace: payments
+spec:
+  containers:
+    - name: batch
+      image: registry.example.invalid/payments/invoice-batch@sha256:0000000000000000000000000000000000000000000000000000000000000002

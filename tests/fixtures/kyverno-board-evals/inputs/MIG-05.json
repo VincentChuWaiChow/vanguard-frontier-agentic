@@ -1,0 +1,14 @@
+{
+  "case_id": "MIG-05",
+  "prompt": "Can payments move cohort A to Deny in the next release without blocking legitimate invoice retries?",
+  "execution_context": {
+    "tier": "static-review",
+    "live_adapter_authorized": false,
+    "network_authorized": false
+  },
+  "supplied_evidence": {
+    "controlled-test": "real old/new pairs; retry-worker admitted; root pod denied",
+    "population-report": "42 cohort A objects pass over 14-day canary",
+    "runtime-metric": "p99 within envelope"
+  }
+}

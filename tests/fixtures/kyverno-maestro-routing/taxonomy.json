@@ -1,0 +1,132 @@
+{
+  "provider": "kyverno",
+  "domains": {
+    "admission-design": {
+      "agent": "kyverno-policy-review-agent",
+      "keywords": [
+        "ValidatingPolicy",
+        "ImageValidatingPolicy",
+        "ClusterPolicy",
+        "validationActions",
+        "matchConstraints",
+        "matchConditions",
+        "oldObject",
+        "ValidatingAdmissionPolicy",
+        "signer",
+        "signature",
+        "attestation",
+        "predicate",
+        "subresource",
+        "denial message",
+        "waypoint",
+        "use-waypoint",
+        "existing resource",
+        "predates"
+      ]
+    },
+    "admission-reliability": {
+      "agent": "kyverno-admission-reliability-agent",
+      "keywords": [
+        "webhook timeout",
+        "timeoutSeconds",
+        "failurePolicy",
+        "admission latency",
+        "p99",
+        "webhook call error",
+        "unreachable",
+        "registry degradation",
+        "registry outage",
+        "replicas",
+        "release envelope",
+        "on-call",
+        "outage",
+        "incident"
+      ]
+    },
+    "exception-governance": {
+      "agent": "kyverno-exception-governance-agent",
+      "keywords": [
+        "PolicyException",
+        "PolicyExceptions",
+        "exception",
+        "exceptions",
+        "expiresAt",
+        "expiry",
+        "compensating control",
+        "exceptionNamespace",
+        "waiver",
+        "renewal",
+        "deviation"
+      ]
+    },
+    "policy-lifecycle": {
+      "agent": "kyverno-policy-lifecycle-agent",
+      "keywords": [
+        "MutatingPolicy",
+        "GeneratingPolicy",
+        "DeletingPolicy",
+        "mutateExisting",
+        "generateExisting",
+        "synchronize",
+        "downstream",
+        "orphan",
+        "revert",
+        "reverted",
+        "Argo CD",
+        "Flux",
+        "reconciler",
+        "generator",
+        "scheduled deletion"
+      ]
+    },
+    "migration-readiness": {
+      "agent": "kyverno-migration-readiness-agent",
+      "keywords": [
+        "migration",
+        "migrate",
+        "upgrade",
+        "v1.20",
+        "v1.19",
+        "legacy",
+        "parity",
+        "cohort",
+        "fleet",
+        "promote",
+        "promotion"
+      ]
+    },
+    "control-evidence": {
+      "agent": "kyverno-control-evidence-agent",
+      "keywords": [
+        "coverage",
+        "PolicyReport",
+        "PolicyReports",
+        "compliance",
+        "evidence pack",
+        "denominator",
+        "stale report",
+        "empty report",
+        "blocked creates",
+        "assurance",
+        "auditor",
+        "percentage"
+      ]
+    }
+  },
+  "live_guards": [
+    "kubernetes-live-admission-policy-guard-agent"
+  ],
+  "gate_mode": "live-guard-gate",
+  "live_guard_intent": "^(?![\\s\\S]*\\b(?:review|assess|whether|would it be safe|is it safe|should we|evaluate)\\b)(?=[\\s\\S]*\\b(?:prod|production|live|cluster|context|namespace)\\b)(?:(?:\\b(?:kubectl|oc)\\s+(?:apply|patch|delete|create|replace|edit|label|annotate)\\b)|(?:\\b(?:apply|patch|delete|create|update|replace|edit|label|annotate|promote|enforce|switch|set)\\b[\\s\\S]{0,200}\\b(?:ValidatingPolic(?:y|ies)|NamespacedValidatingPolic(?:y|ies)|ImageValidatingPolic(?:y|ies)|MutatingPolic(?:y|ies)|GeneratingPolic(?:y|ies)|DeletingPolic(?:y|ies)|PolicyExceptions?|ClusterPolic(?:y|ies)|ValidatingAdmissionPolic(?:y|ies)|ValidatingAdmissionPolicyBindings?|Kyverno polic(?:y|ies))\\b)|(?:\\b(?:ValidatingPolic(?:y|ies)|NamespacedValidatingPolic(?:y|ies)|ImageValidatingPolic(?:y|ies)|MutatingPolic(?:y|ies)|GeneratingPolic(?:y|ies)|DeletingPolic(?:y|ies)|PolicyExceptions?|ClusterPolic(?:y|ies)|ValidatingAdmissionPolic(?:y|ies)|ValidatingAdmissionPolicyBindings?|Kyverno polic(?:y|ies))\\b[\\s\\S]{0,200}\\b(?:apply|patch|delete|create|update|replace|edit|label|annotate|promote|enforce|switch|set)\\b))",
+  "parallel_threshold": 0.8,
+  "live_guard_keywords": {
+    "kubernetes-live-admission-policy-guard-agent": [
+      "ValidatingPolicy",
+      "ImageValidatingPolicy",
+      "PolicyException",
+      "ClusterPolicy",
+      "ValidatingAdmissionPolicy",
+      "Kyverno"
+    ]
+  }
+}

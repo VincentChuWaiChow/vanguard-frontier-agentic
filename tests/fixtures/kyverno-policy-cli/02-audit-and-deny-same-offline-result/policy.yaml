@@ -1,0 +1,28 @@
+# Synthetic Audit canary of the same control. Offline results do not encode the admission effect.
+apiVersion: policies.kyverno.io/v1
+kind: ValidatingPolicy
+metadata:
+  name: payments-run-as-non-root-canary
+spec:
+  validationActions: [Audit]
+  evaluation:
+    admission:
+      enabled: true
+    background:
+      enabled: true
+  matchConstraints:
+    resourceRules:
+      - apiGroups: [""]
+        apiVersions: [v1]
+        operations: [CREATE, UPDATE]
+        resources: [pods]
+  matchConditions:
+    - name: payments-namespace-only
+      expression: "object.metadata.namespace == 'payments'"
+  validations:
+    - expression: >-
+        object.spec.containers.all(c, has(c.securityContext) &&
+        has(c.securityContext.runAsNonRoot) && c.securityContext.runAsNonRoot == true)
+      message: >-
+        payments-run-as-non-root: set securityContext.runAsNonRoot=true on every container.
+        Escalate to the payments platform owner if the image cannot run as non-root.

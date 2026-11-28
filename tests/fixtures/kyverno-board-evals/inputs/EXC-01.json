@@ -1,0 +1,13 @@
+{
+  "case_id": "EXC-01",
+  "prompt": "A team asks to renew the legacy-invoice-exporter root exception for 90 days.",
+  "execution_context": {
+    "tier": "static-review",
+    "live_adapter_authorized": false,
+    "network_authorized": false
+  },
+  "supplied_evidence": {
+    "manifest": "PolicyException with expiresAt, exact workload matchCondition",
+    "approval": "risk delegate approval record"
+  }
+}

@@ -1,0 +1,50 @@
+apiVersion: cli.kyverno.io/v1alpha1
+kind: Test
+metadata:
+  name: parity-corpus-starter
+policies:
+  - target-policy.yaml
+resources:
+  - corpus.yaml
+# Every row names its operation. Offline UPDATE uses identical old and new objects, so an UPDATE row
+# here proves the expression tolerates UPDATE, not that a real change is caught: controls that compare
+# object with oldObject need controlled-test pairs before the cohort's UPDATE parity counts.
+results:
+  - isValidatingPolicy: true
+    policy: example-require-run-as-non-root
+    kind: Pod
+    resources: [payments/legitimate-workload]
+    operation: CREATE
+    result: pass
+  - isValidatingPolicy: true
+    policy: example-require-run-as-non-root
+    kind: Pod
+    resources: [payments/legitimate-workload]
+    operation: UPDATE
+    result: pass
+  - isValidatingPolicy: true
+    policy: example-require-run-as-non-root
+    kind: Pod
+    resources: [payments/violating-workload]
+    operation: CREATE
+    result: fail
+  - isValidatingPolicy: true
+    policy: example-require-run-as-non-root
+    kind: Pod
+    resources: [payments/violating-workload]
+    operation: UPDATE
+    result: fail
+  # Scope and autogen rows: an adjacent namespace stays out of scope, and the pod-controller rule
+  # (lowercase plural autogen names) evaluates the Deployment. Both must hold on every engine compared.
+  - isValidatingPolicy: true
+    policy: example-require-run-as-non-root
+    kind: Pod
+    resources: [catalog/adjacent-workload]
+    operation: CREATE
+    result: skip
+  - isValidatingPolicy: true
+    policy: example-require-run-as-non-root
+    kind: Deployment
+    resources: [payments/violating-deployment]
+    operation: CREATE
+    result: fail

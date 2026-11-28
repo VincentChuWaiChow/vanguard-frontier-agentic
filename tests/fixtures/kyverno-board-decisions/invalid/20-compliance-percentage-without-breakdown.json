@@ -1,0 +1,8 @@
+{
+  "base": "02-invoice-coverage-conditional.json",
+  "rule": "KYB-COVERAGE",
+  "why": "No compliance percentage without the result breakdown for the 92.",
+  "set": {
+    "coverage.compliance_percentage": 92.0
+  }
+}

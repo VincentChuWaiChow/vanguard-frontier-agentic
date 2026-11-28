@@ -1,0 +1,19 @@
+{
+  "base": "02-invoice-coverage-conditional.json",
+  "rule": "KYB-COVERAGE",
+  "why": "Background or Audit failures are findings, not blocked admissions (Codex review).",
+  "set": {
+    "coverage.results_breakdown": {
+      "pass": 82,
+      "fail": 10,
+      "warn": 0,
+      "error": 0,
+      "skip": 8
+    },
+    "coverage.blocked_requests": {
+      "count": 0,
+      "source": null
+    },
+    "coverage.prevention_demonstrated": 10
+  }
+}

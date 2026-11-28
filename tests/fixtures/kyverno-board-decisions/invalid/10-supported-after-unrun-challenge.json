@@ -1,0 +1,8 @@
+{
+  "base": "01-cohort-a-promotion-supported.json",
+  "rule": "KYB-CHALLENGE",
+  "why": "A challenge that did not run cannot uphold a promotion.",
+  "set": {
+    "challenge.result": "not-run"
+  }
+}

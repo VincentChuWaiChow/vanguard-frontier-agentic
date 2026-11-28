@@ -1,0 +1,24 @@
+apiVersion: cli.kyverno.io/v1alpha1
+kind: Test
+metadata:
+  name: preventive-control-decision-table
+policies:
+  - policy.yaml
+resources:
+  - resources.yaml
+results:
+  - isValidatingPolicy: true
+    policy: payments-run-as-non-root
+    kind: Pod
+    resources: [payments/invoice-retry-worker]
+    result: pass
+  - isValidatingPolicy: true
+    policy: payments-run-as-non-root
+    kind: Pod
+    resources: [payments/invoice-batch-root]
+    result: fail
+  - isValidatingPolicy: true
+    policy: payments-run-as-non-root
+    kind: Pod
+    resources: [catalog/catalog-root]
+    result: skip

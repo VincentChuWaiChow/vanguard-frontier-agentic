@@ -1,0 +1,35 @@
+{
+  "id": "KRT-EXCEPTION-EXPIRY",
+  "title": "Controller behaviour for an expired PolicyException",
+  "status": "not-run",
+  "required_authorization": "Separate explicit environment and experiment authorization; no automated provisioning is included",
+  "preconditions": [
+    "Exceptions enabled with an exception namespace",
+    "One exception with expiresAt in the future and one already expired"
+  ],
+  "procedure": [
+    "Create the exempted workloads",
+    "Wait for a background scan",
+    "Inspect admission responses and PolicyReports"
+  ],
+  "acceptance": [
+    "Future exception: admitted, report result skip",
+    "Expired exception: denied at admission and reported fail",
+    "Adjacent workload without exception: denied"
+  ],
+  "capture": [
+    "Pinned Kubernetes, Kyverno controller and CLI versions with image digests",
+    "Sanitized before/after objects and admission responses",
+    "Timestamps and the target cluster identity",
+    "Positive and negative results",
+    "Cleanup evidence"
+  ],
+  "stop_conditions": [
+    "Unknown target identity",
+    "Any non-disposable cluster",
+    "Unapproved scope change",
+    "Loss of observability",
+    "Unexpected deletion outside the test namespace"
+  ],
+  "cleanup": "Delete only the disposable cluster or the named test namespaces; verify teardown."
+}

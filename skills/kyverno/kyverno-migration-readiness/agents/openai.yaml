@@ -1,0 +1,6 @@
+interface:
+  display_name: "Kyverno Migration Readiness"
+  short_description: "Decide which cohorts move and what aborts it."
+  default_prompt: "Use $kyverno-migration-readiness to decide which cohorts can move and what aborts the move from the supplied sanitized evidence. Report unknowns and do not perform live operations."
+policy:
+  allow_implicit_invocation: true

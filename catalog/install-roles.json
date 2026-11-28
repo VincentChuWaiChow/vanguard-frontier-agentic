@@ -1082,13 +1082,19 @@
     },
     "kubernetes-admission-security-engineer": {
       "label": "Kubernetes Admission Security Engineer",
-      "description": "API and image admission control: Kyverno, native ValidatingAdmissionPolicy (CEL), Pod Security Admission, image signature verification, RBAC privilege-escalation review, and live admission policy mutation guards. Anchors the cluster's deny-by-default story.",
+      "description": "API and image admission control: Kyverno (policy engineering board: admission design, reliability, exceptions, lifecycle, migration, control evidence), native ValidatingAdmissionPolicy (CEL), Pod Security Admission, image signature verification, RBAC privilege-escalation review, and live admission policy mutation guards. Anchors the cluster's deny-by-default story.",
       "agents": [
         "kubernetes-live-admission-policy-guard-agent",
         "kubernetes-live-rbac-mutation-guard-agent",
         "kubernetes-maestro-agent",
         "kubernetes-psa-review-agent",
         "kubernetes-rbac-review-agent",
+        "kyverno-admission-reliability-agent",
+        "kyverno-control-evidence-agent",
+        "kyverno-exception-governance-agent",
+        "kyverno-maestro-agent",
+        "kyverno-migration-readiness-agent",
+        "kyverno-policy-lifecycle-agent",
         "kyverno-policy-review-agent"
       ],
       "skills": [
@@ -1096,7 +1102,13 @@
         "kubernetes-maestro",
         "kubernetes-pod-security-admission-review",
         "kubernetes-rbac-review",
-        "kyverno-policy-review"
+        "kyverno-admission-reliability",
+        "kyverno-control-evidence",
+        "kyverno-exception-governance",
+        "kyverno-migration-readiness",
+        "kyverno-policy-lifecycle",
+        "kyverno-policy-review",
+        "kyverno-review-routing"
       ]
     },
     "kubernetes-application-platform-engineer": {

@@ -1,0 +1,8 @@
+{
+  "name": "010-near-artifact-trust",
+  "task": "Does our ImageValidatingPolicy enforce the approved signer and the SLSA attestation predicate?",
+  "tags": [
+    "near-neighbor",
+    "seat-merge:artifact-trust"
+  ]
+}

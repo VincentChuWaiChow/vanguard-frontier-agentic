@@ -1,0 +1,11 @@
+{
+  "base": "02-invoice-coverage-conditional.json",
+  "rule": "KYB-COVERAGE",
+  "why": "Pass-reporting exceptions must still be counted as excepted (Codex review).",
+  "set": {
+    "coverage.excepted_reported_as": {
+      "skip": 5,
+      "pass": 0
+    }
+  }
+}

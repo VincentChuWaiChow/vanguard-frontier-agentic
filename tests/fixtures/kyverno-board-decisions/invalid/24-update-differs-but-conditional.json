@@ -1,0 +1,15 @@
+{
+  "base": "06-parity-update-differs-blocked.json",
+  "rule": "KYB-PARITY",
+  "why": "One unexplained difference on a required control blocks the cohort.",
+  "set": {
+    "outcome": "conditional",
+    "verdict": "needs-review",
+    "conditions": [
+      {
+        "evidence_needed": "old/new pairs",
+        "owner": "platform release manager"
+      }
+    ]
+  }
+}

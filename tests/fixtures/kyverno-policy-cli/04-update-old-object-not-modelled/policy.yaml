@@ -1,0 +1,23 @@
+# Synthetic control: the billing tier label of an invoice workload must not change on UPDATE.
+apiVersion: policies.kyverno.io/v1
+kind: ValidatingPolicy
+metadata:
+  name: invoice-tier-label-immutable
+spec:
+  validationActions: [Deny]
+  evaluation:
+    background:
+      enabled: false
+  matchConstraints:
+    resourceRules:
+      - apiGroups: ["apps"]
+        apiVersions: [v1]
+        operations: [UPDATE]
+        resources: [deployments]
+  validations:
+    - expression: >-
+        object.metadata.labels[?'billing.example/tier'].orValue('') ==
+        oldObject.metadata.labels[?'billing.example/tier'].orValue('')
+      message: >-
+        invoice-tier-label-immutable: billing.example/tier cannot change in place.
+        Create a new Deployment for the new tier; escalate to the billing platform owner.

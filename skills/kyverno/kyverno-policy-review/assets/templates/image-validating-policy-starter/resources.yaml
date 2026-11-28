@@ -1,0 +1,10 @@
+# Out-of-scope image: not matched by matchImageReferences, so no registry call is made offline.
+apiVersion: v1
+kind: Pod
+metadata:
+  name: out-of-scope-image
+  namespace: payments
+spec:
+  containers:
+    - name: app
+      image: other.example.invalid/tools/debug@sha256:0000000000000000000000000000000000000000000000000000000000000020

@@ -1,0 +1,30 @@
+apiVersion: cli.kyverno.io/v1alpha1
+kind: Test
+metadata:
+  name: exception-expiry-and-adjacent-scope
+policies:
+  - policy.yaml
+resources:
+  - resources.yaml
+exceptions:
+  - exceptions.yaml
+results:
+  - isValidatingPolicy: true
+    policy: payments-run-as-non-root
+    kind: Pod
+    resources: [payments/legacy-invoice-exporter]
+    result: skip
+  - isValidatingPolicy: true
+    policy: payments-run-as-non-root
+    kind: Pod
+    resources: [payments/legacy-ledger-sync]
+    # OBSERVED with kyverno CLI v1.20.0: the expired exception is still applied offline (skip).
+    # The v1.20.0 controller lists exceptions through pkg/cel/engine/exception.go, which skips
+    # expired ones, so this offline result cannot establish admission or background behavior.
+    # If a newer pinned CLI returns fail here, re-verify and update the skill references.
+    result: skip
+  - isValidatingPolicy: true
+    policy: payments-run-as-non-root
+    kind: Pod
+    resources: [payments/invoice-batch-root]
+    result: fail

@@ -1,0 +1,51 @@
+{
+  "id": "kyverno-exception-governance-agent",
+  "name": "Kyverno Exception Governance",
+  "type": "agent",
+  "provider": "kyverno",
+  "harnesses": [
+    "codex",
+    "copilot",
+    "claude-code",
+    "cursor",
+    "gemini",
+    "kiro"
+  ],
+  "summary": "Agent for kyverno-exception-governance. Review Kyverno PolicyExceptions as a governed portfolio from supplied exception manifests, approval records, controller flags and evidence of removal. Use for exception requests, renewals, scope against the approval, compensating controls, expiresAt versus a date written in an annotation, authorized creators, exception namespaces and adjacent workloads that must stay covered. Not for designing the underlying policy, webhook reliability or estate coverage percentages.",
+  "source_type": "original",
+  "official_docs": [
+    "https://github.com/kyverno/kyverno/blob/v1.20.0/config/crds/policies.kyverno.io/policies.kyverno.io_policyexceptions.yaml",
+    "https://github.com/kyverno/kyverno/blob/v1.20.0/pkg/cel/engine/exception.go",
+    "https://github.com/kyverno/kyverno/blob/v1.20.0/cmd/internal/flag.go",
+    "https://kyverno.io/docs/guides/exceptions/"
+  ],
+  "security_notes": "Static review only. An exception is a documented bypass; scope must match the approval exactly and adjacent workloads must remain covered. Offline CLI results do not establish expiry behavior. No agent approves its own exception or infers approval from ticket status.",
+  "last_verified": "2026-11-24",
+  "path": "agents/kyverno/kyverno-exception-governance-agent",
+  "harness_variants": {
+    "codex": "agents/kyverno/kyverno-exception-governance-agent/harnesses/codex.toml",
+    "copilot": "agents/kyverno/kyverno-exception-governance-agent/harnesses/copilot.agent.md",
+    "claude-code": "agents/kyverno/kyverno-exception-governance-agent/harnesses/claude-code.agent.md",
+    "cursor": "agents/kyverno/kyverno-exception-governance-agent/harnesses/cursor.agent.md",
+    "gemini": "agents/kyverno/kyverno-exception-governance-agent/harnesses/gemini.agent.md",
+    "kiro-ide": "agents/kyverno/kyverno-exception-governance-agent/harnesses/kiro-ide.agent.md",
+    "kiro-cli": "agents/kyverno/kyverno-exception-governance-agent/harnesses/kiro-cli.agent.json"
+  },
+  "author": "github: VincentChuWaiChow",
+  "version": "0.1.0",
+  "companion_skills": [
+    "kyverno-exception-governance"
+  ],
+  "execution_tier": "static-review",
+  "lifecycle": "beta",
+  "routing_keywords": [
+    "PolicyException",
+    "exception request",
+    "exception renewal",
+    "expiresAt",
+    "compensating control",
+    "exceptionNamespace",
+    "deviation",
+    "waiver"
+  ]
+}

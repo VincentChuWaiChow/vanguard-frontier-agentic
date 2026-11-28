@@ -1,0 +1,12 @@
+{
+  "case_id": "REL-01",
+  "prompt": "Webhook timeout is 15s with failurePolicy Fail on the image policy; what happens to pod writes if the controller is unreachable?",
+  "execution_context": {
+    "tier": "static-review",
+    "live_adapter_authorized": false,
+    "network_authorized": false
+  },
+  "supplied_evidence": {
+    "installed-config": "IVP failurePolicy Fail, timeoutSeconds 15; 3 admission replicas"
+  }
+}

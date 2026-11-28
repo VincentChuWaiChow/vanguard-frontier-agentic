@@ -1,0 +1,29 @@
+apiVersion: cli.kyverno.io/v1alpha1
+kind: Test
+metadata:
+  name: validating-policy-starter
+policies:
+  - policy.yaml
+resources:
+  - resources.yaml
+results:
+  - isValidatingPolicy: true
+    policy: example-require-run-as-non-root
+    kind: Pod
+    resources: [payments/legitimate-workload]
+    result: pass
+  - isValidatingPolicy: true
+    policy: example-require-run-as-non-root
+    kind: Pod
+    resources: [payments/violating-workload]
+    result: fail
+  - isValidatingPolicy: true
+    policy: example-require-run-as-non-root
+    kind: Pod
+    resources: [catalog/adjacent-workload]
+    result: skip
+  - isValidatingPolicy: true
+    policy: example-require-run-as-non-root
+    kind: Deployment
+    resources: [payments/violating-deployment]
+    result: fail

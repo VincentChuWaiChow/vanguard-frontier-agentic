@@ -1,0 +1,12 @@
+{
+  "case_id": "MAE-05",
+  "prompt": "Run the same KYV-DEC-0001 handoff again.",
+  "execution_context": {
+    "tier": "static-review",
+    "live_adapter_authorized": false,
+    "network_authorized": false
+  },
+  "supplied_evidence": {
+    "decision": "KYV-DEC-0001 with existing drafts"
+  }
+}

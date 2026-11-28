@@ -1,0 +1,20 @@
+{
+  "EVI-01": {
+    "result": "pass",
+    "non_failing_errors": [
+      "The answer says the 6 blocked creates 'show the control acting on new requests', which attributes request events to this control beyond the counter labels."
+    ]
+  },
+  "POL-05": {
+    "result": "pass",
+    "non_failing_errors": [
+      "Illustrative workload names and a drafted denial message go beyond supplied evidence (labelled illustrative)."
+    ]
+  },
+  "EXC-04": {
+    "result": "pass",
+    "non_failing_errors": [
+      "Speculates the workload 'probably runs as root' from a sibling policy name; adjacent-workload coverage statement graded marginal."
+    ]
+  }
+}

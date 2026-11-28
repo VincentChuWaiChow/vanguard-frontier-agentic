@@ -1,0 +1,7 @@
+{
+  "name": "006-happy-control-evidence",
+  "task": "Can we tell leadership our PolicyReport coverage percentage for the invoice service, and what is the denominator?",
+  "tags": [
+    "happy-path"
+  ]
+}

@@ -3,18 +3,25 @@
   "name": "Kyverno Policy Review",
   "type": "agent",
   "provider": "kyverno",
-  "harnesses": ["codex", "copilot", "claude-code", "cursor", "gemini", "kiro"],
-  "summary": "Agent for kyverno-policy-review. Review Kyverno ClusterPolicy and Policy resources for failureAction, background scanning, PolicyException audit, mutate/generate rules, and Kyverno-vs-native ValidatingAdmissionPolicy decision.",
+  "harnesses": [
+    "codex",
+    "copilot",
+    "claude-code",
+    "cursor",
+    "gemini",
+    "kiro"
+  ],
+  "summary": "Agent for kyverno-policy-review. Review Kyverno CEL policies (policies.kyverno.io ValidatingPolicy, ImageValidatingPolicy and their namespaced forms), legacy ClusterPolicy/Policy on releases before v1.20, and native ValidatingAdmissionPolicy against an intended control. Use for request matching, operations, old versus new object, subresources, identities, admission versus background evaluation, Audit/Warn/Deny intent, engine selection, and image signer or attestation requirements. Not for webhook outages, exception portfolios, generate/mutate/delete reconciliation, fleet migration or coverage reporting.",
   "source_type": "original",
   "official_docs": [
-    "https://kyverno.io/docs/",
-    "https://kyverno.io/docs/policy-reports/",
-    "https://kyverno.io/docs/writing-policies/",
-    "https://kyverno.io/docs/policy-exceptions/",
+    "https://github.com/kyverno/kyverno/blob/v1.20.0/config/crds/policies.kyverno.io/policies.kyverno.io_validatingpolicies.yaml",
+    "https://github.com/kyverno/kyverno/blob/v1.20.0/config/crds/policies.kyverno.io/policies.kyverno.io_validatingpolicies.yaml",
+    "https://kyverno.io/docs/guides/reports/",
+    "https://github.com/kyverno/kyverno/blob/v1.20.0/config/crds/policies.kyverno.io/policies.kyverno.io_imagevalidatingpolicies.yaml",
     "https://kubernetes.io/docs/reference/access-authn-authz/validating-admission-policy/"
   ],
-  "security_notes": "failureAction: Audit in production is a critical finding — violations are logged but workloads are not blocked. PolicyException without expiry is an infinite escape hatch.",
-  "last_verified": "2026-05-01",
+  "security_notes": "Static review only. Severity of Audit or Warn depends on control intent, rollout stage, owner and deadline; a mandatory preventive control left in Audit past its deadline is a defect, an approved time-bounded canary is not. Signature verification alone does not satisfy an attestation or signer-restricted requirement. Never collect cluster evidence or mutate policy.",
+  "last_verified": "2026-11-24",
   "path": "agents/kyverno/kyverno-policy-review-agent",
   "harness_variants": {
     "codex": "agents/kyverno/kyverno-policy-review-agent/harnesses/codex.toml",
@@ -26,5 +33,21 @@
     "kiro-cli": "agents/kyverno/kyverno-policy-review-agent/harnesses/kiro-cli.agent.json"
   },
   "author": "github: VincentChuWaiChow",
-  "version": "0.1.0"
+  "version": "0.2.0",
+  "companion_skills": [
+    "kyverno-policy-review"
+  ],
+  "execution_tier": "static-review",
+  "lifecycle": "beta",
+  "routing_keywords": [
+    "ValidatingPolicy",
+    "ImageValidatingPolicy",
+    "ClusterPolicy",
+    "validationActions",
+    "matchConstraints",
+    "oldObject",
+    "native ValidatingAdmissionPolicy",
+    "signer",
+    "attestation predicate"
+  ]
 }

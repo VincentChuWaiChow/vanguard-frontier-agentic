@@ -1,0 +1,10 @@
+{
+  "case_id": "REL-03",
+  "prompt": "Is admission healthy enough for the release?",
+  "execution_context": {
+    "tier": "static-review",
+    "live_adapter_authorized": false,
+    "network_authorized": false
+  },
+  "supplied_evidence": {}
+}

@@ -1,0 +1,9 @@
+{
+  "base": "01-cohort-a-promotion-supported.json",
+  "rule": "KYB-SUPPORTED",
+  "why": "An evidenced failure in the stated cohort contradicts promotion (Codex review).",
+  "set": {
+    "tests.2.state": "failed",
+    "tests.2.observed": "legitimate invoice-api UPDATE denied"
+  }
+}

@@ -1,0 +1,8 @@
+{
+  "name": "013-near-exception-expiry-annotation",
+  "task": "The exception description says it expires in March but there is no expiresAt; is the waiver still applied?",
+  "tags": [
+    "near-neighbor",
+    "oracle:annotation-date"
+  ]
+}

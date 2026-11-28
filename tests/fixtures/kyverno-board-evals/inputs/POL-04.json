@@ -1,0 +1,13 @@
+{
+  "case_id": "POL-04",
+  "prompt": "Promote payments-run-as-non-root to Deny; the manifest says Deny already so we are protected.",
+  "execution_context": {
+    "tier": "static-review",
+    "live_adapter_authorized": false,
+    "network_authorized": false
+  },
+  "supplied_evidence": {
+    "manifest": "validationActions [Deny]",
+    "installed-config": "validationActions [Audit] (edited during incident)"
+  }
+}

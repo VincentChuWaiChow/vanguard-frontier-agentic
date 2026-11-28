@@ -1,0 +1,8 @@
+{
+  "base": "02-invoice-coverage-conditional.json",
+  "rule": "KYB-VERDICT",
+  "why": "conditional must map to needs-review.",
+  "set": {
+    "verdict": "approved"
+  }
+}

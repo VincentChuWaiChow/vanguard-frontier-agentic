@@ -147,7 +147,7 @@ pub fn evaluate_trust(
                 rule: synthetic_rule.clone(),
                 workspace: workspace_name.to_string(),
                 asset_id: Some(mcp_ref.id.clone()),
-                first_detected: chrono::Utc::now().to_rfc3339(),
+                first_detected: crate::clock::now_millis(),
                 details,
                 remediation: format!(
                     "Remove or replace '{}' with a reference that satisfies the trust boundary",

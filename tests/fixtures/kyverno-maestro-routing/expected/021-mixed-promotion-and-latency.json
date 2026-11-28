@@ -1,0 +1,7 @@
+{
+  "route": [
+    "kyverno-admission-reliability-agent",
+    "kyverno-migration-readiness-agent"
+  ],
+  "mode": "parallel (2)"
+}

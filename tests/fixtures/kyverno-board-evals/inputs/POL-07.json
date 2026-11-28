@@ -1,0 +1,13 @@
+{
+  "case_id": "POL-07",
+  "prompt": "Our ImageValidatingPolicy uses the approved release pipeline identity; images also need SLSA provenance. Are we covered?",
+  "execution_context": {
+    "tier": "static-review",
+    "live_adapter_authorized": false,
+    "network_authorized": false
+  },
+  "supplied_evidence": {
+    "manifest": "IVP calls verifyImageSignatures with the approved attestor; no verifyAttestationSignatures call",
+    "image": "signed by approved signer, provenance attestation of a different predicate type"
+  }
+}

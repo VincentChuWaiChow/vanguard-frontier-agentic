@@ -1,0 +1,6 @@
+{
+  "route": [
+    "kyverno-migration-readiness-agent"
+  ],
+  "mode": "single"
+}

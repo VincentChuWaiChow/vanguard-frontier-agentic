@@ -81,7 +81,7 @@ pub fn evaluate_lifecycle(
                     .unwrap_or("unknown")
                     .to_string(),
                 asset_id: Some(asset.asset_id.clone()),
-                first_detected: chrono::Utc::now().to_rfc3339(),
+                first_detected: crate::clock::now_millis(),
                 details: format!(
                     "asset '{}' is at lifecycle stage '{}' but minimum required is '{}'",
                     asset.asset_id, lc, min_stage

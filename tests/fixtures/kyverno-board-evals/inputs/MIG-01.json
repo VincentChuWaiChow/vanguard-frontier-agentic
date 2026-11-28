@@ -1,0 +1,13 @@
+{
+  "case_id": "MIG-01",
+  "prompt": "Which cohort can migrate from legacy ClusterPolicy before the v1.20 upgrade?",
+  "execution_context": {
+    "tier": "static-review",
+    "live_adapter_authorized": false,
+    "network_authorized": false
+  },
+  "supplied_evidence": {
+    "installed-config": "controller v1.19.2",
+    "manifest": "ClusterPolicies and their CEL rewrites"
+  }
+}

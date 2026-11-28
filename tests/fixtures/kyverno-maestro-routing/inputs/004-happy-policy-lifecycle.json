@@ -1,0 +1,7 @@
+{
+  "name": "004-happy-policy-lifecycle",
+  "task": "Will this GeneratingPolicy with synchronize enabled fight Argo CD over the downstream ConfigMaps?",
+  "tags": [
+    "happy-path"
+  ]
+}

@@ -1,0 +1,45 @@
+# TEMPLATE: GeneratingPolicy starter, data source (policies.kyverno.io/v1, verified with kyverno CLI v1.20.0).
+# State every lifecycle switch explicitly; read the behavior table in references/generation-and-synchronization.md.
+apiVersion: policies.kyverno.io/v1
+kind: GeneratingPolicy
+metadata:
+  name: example-default-invoice-limits             # TEMPLATE
+spec:
+  evaluation:
+    admission:
+      enabled: true
+    generateExisting:
+      enabled: false        # true performs a one-time pass over existing triggers: enumerate them first
+    synchronize:
+      enabled: true         # with sync, Kyverno reverts edits to the downstream object (two writers if GitOps owns it)
+    orphanDownstreamOnPolicyDelete:
+      enabled: true         # data source + sync: false would DELETE downstream when the policy is deleted
+  matchConstraints:
+    resourceRules:
+      - apiGroups: [""]
+        apiVersions: [v1]
+        operations: [CREATE]
+        resources: [namespaces]
+  matchConditions:
+    - name: invoice-tenant-namespaces              # TEMPLATE: trigger scope
+      expression: "object.metadata.?labels[?'tenant-type'].orValue('') == 'invoice'"
+  variables:
+    - name: nsName
+      expression: "object.metadata.name"
+    - name: limits
+      expression: >-
+        [
+          {
+            "kind": dyn("ConfigMap"),
+            "apiVersion": dyn("v1"),
+            "metadata": dyn({
+              "name": "invoice-limits",
+              "namespace": string(variables.nsName)
+            }),
+            "data": dyn({
+              "maxRetries": "3"
+            })
+          }
+        ]
+  generate:
+    - expression: generator.Apply(variables.nsName, variables.limits)

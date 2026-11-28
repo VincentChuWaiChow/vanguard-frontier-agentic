@@ -1,0 +1,6 @@
+{
+  "route": [
+    "kyverno-policy-review-agent"
+  ],
+  "mode": "single"
+}

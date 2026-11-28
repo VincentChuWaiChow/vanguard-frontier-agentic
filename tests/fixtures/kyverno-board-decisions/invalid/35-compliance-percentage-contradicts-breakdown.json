@@ -1,0 +1,15 @@
+{
+  "base": "02-invoice-coverage-conditional.json",
+  "rule": "KYB-COVERAGE",
+  "why": "A percentage must follow from the breakdown (Codex review).",
+  "set": {
+    "coverage.results_breakdown": {
+      "pass": 0,
+      "fail": 92,
+      "warn": 0,
+      "error": 0,
+      "skip": 8
+    },
+    "coverage.compliance_percentage": 100.0
+  }
+}

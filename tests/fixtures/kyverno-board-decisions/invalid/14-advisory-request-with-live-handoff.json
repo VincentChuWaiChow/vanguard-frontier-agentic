@@ -1,0 +1,15 @@
+{
+  "base": "01-cohort-a-promotion-supported.json",
+  "rule": "KYB-EXECUTION",
+  "why": "'Is this safe to apply' stays advisory.",
+  "set": {
+    "execution.handoff": {
+      "guard": "kubernetes-live-admission-policy-guard-agent",
+      "target": "payments-run-as-non-root",
+      "diff": "Audit -> Deny",
+      "blast_radius": "payments pods",
+      "rollback": "restore Audit",
+      "verification": "one admit, one deny"
+    }
+  }
+}

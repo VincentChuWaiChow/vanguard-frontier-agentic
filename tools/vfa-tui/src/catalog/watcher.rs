@@ -178,6 +178,30 @@ pub fn classify_path(
     None
 }
 
+/// Classify every path in one debounced batch, dropping duplicates.
+///
+/// One write surfaces as several notify events for the same path (data
+/// modify, close-after-write, metadata), and the debouncer delivers them in
+/// the same batch. Forwarding each one would make the TUI reload the same
+/// file several times per change, so each distinct [`WatcherEvent`] is
+/// forwarded once per batch, in first-seen order. Pure, like [`classify_path`].
+pub fn classify_batch<'a>(
+    changed: impl IntoIterator<Item = &'a Path>,
+    catalog_dir: &Path,
+    registry_path: Option<&Path>,
+    workspace_paths: &[PathBuf],
+) -> Vec<WatcherEvent> {
+    let mut out: Vec<WatcherEvent> = Vec::new();
+    for path in changed {
+        if let Some(ev) = classify_path(path, catalog_dir, registry_path, workspace_paths) {
+            if !out.contains(&ev) {
+                out.push(ev);
+            }
+        }
+    }
+    out
+}
+
 // ── Spawn function ────────────────────────────────────────────────────────────
 
 /// Spawn a filesystem watcher and return a `(WatcherHandle, Receiver<WatcherEvent>)`.
@@ -216,20 +240,19 @@ pub fn spawn_watcher(
         move |result: DebounceEventResult| {
             match result {
                 Ok(events) => {
-                    for event in events {
-                        for path in &event.paths {
-                            if let Some(watcher_event) = classify_path(
-                                path,
-                                &cb_catalog_dir,
-                                cb_registry.as_deref(),
-                                &cb_workspace_paths,
-                            ) {
-                                // Use try_send to avoid blocking the notify
-                                // callback thread (Req 1.7).
-                                if cb_tx.try_send(watcher_event).is_err() {
-                                    debug!("watcher channel full or closed, dropping event");
-                                }
-                            }
+                    let batch = classify_batch(
+                        events
+                            .iter()
+                            .flat_map(|event| event.paths.iter().map(PathBuf::as_path)),
+                        &cb_catalog_dir,
+                        cb_registry.as_deref(),
+                        &cb_workspace_paths,
+                    );
+                    for watcher_event in batch {
+                        // Use try_send to avoid blocking the notify
+                        // callback thread (Req 1.7).
+                        if cb_tx.try_send(watcher_event).is_err() {
+                            debug!("watcher channel full or closed, dropping event");
                         }
                     }
                 }
@@ -325,6 +348,35 @@ mod tests {
     use tokio::time::timeout;
 
     // ── Pure classification tests (no filesystem, no timing) ─────────────────
+
+    #[test]
+    fn classify_batch_forwards_each_distinct_event_once() {
+        let cat = PathBuf::from("/tmp/catalog");
+        let reg = PathBuf::from("/tmp/registry.json");
+        let agents = cat.join("agents.json");
+        let skills = cat.join("skills.json");
+        let outside = PathBuf::from("/elsewhere/file.json");
+        // One write to agents.json reported three times (modify, close, metadata),
+        // then a registry change, a second catalog file and an unwatched path.
+        let paths = [&agents, &agents, &reg, &agents, &skills, &outside, &reg];
+        let got = classify_batch(paths.iter().map(|p| p.as_path()), &cat, Some(&reg), &[]);
+        assert_eq!(
+            got,
+            vec![
+                WatcherEvent::Catalog(agents.clone()),
+                WatcherEvent::Registry,
+                WatcherEvent::Catalog(skills.clone()),
+            ]
+        );
+    }
+
+    #[test]
+    fn classify_batch_empty_and_unwatched_yield_nothing() {
+        let cat = PathBuf::from("/tmp/catalog");
+        let outside = PathBuf::from("/elsewhere/file.json");
+        assert!(classify_batch(std::iter::empty(), &cat, None, &[]).is_empty());
+        assert!(classify_batch([outside.as_path()], &cat, None, &[]).is_empty());
+    }
 
     #[test]
     fn classify_catalog_file() {

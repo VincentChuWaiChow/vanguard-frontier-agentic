@@ -1,0 +1,97 @@
+{
+  "schema_version": "1.0",
+  "decision_id": "KYV-DEC-0106",
+  "as_of": "2026-11-24T00:00:00Z",
+  "request_kind": "advisory",
+  "question": "Can cohort B move from legacy ClusterPolicy to ValidatingPolicy before the v1.20 upgrade?",
+  "intended_control": "invoice-tier-label-immutable",
+  "target_cohort": "payments cohort B",
+  "authorized_scope": "cohort B Deployments",
+  "owner": "payments platform lead",
+  "deadline": null,
+  "consequence_class": "fleet-upgrade",
+  "environment": {
+    "kubernetes_version": "1.33 (supplied)",
+    "kyverno_controller_version": "v1.19.2 (supplied)",
+    "kyverno_cli_version": "v1.20.0",
+    "served_apis": [
+      "kyverno.io/v1 ClusterPolicy",
+      "policies.kyverno.io/v1 ValidatingPolicy"
+    ],
+    "policy_revision": "git:synthetic-0001"
+  },
+  "evidence": [
+    {
+      "id": "EV-1",
+      "type": "offline-test",
+      "locator": "parity corpus cohort B (CLI v1.19.2 legacy, v1.20.0 CEL)",
+      "captured_at": "2026-11-22T00:00:00Z",
+      "applies_to": "CREATE agree; UPDATE differs on 2 cases",
+      "omits": "real old/new pairs"
+    }
+  ],
+  "lead": {
+    "agent": "kyverno-migration-readiness-agent",
+    "provisional_conclusion": "Cohort B parity is blocked on UPDATE.",
+    "easiest_way_wrong": "The UPDATE difference is an artifact of identical old/new objects offline."
+  },
+  "referrals": [],
+  "challenge": {
+    "challenger": "kyverno-policy-review-agent",
+    "counterexample": "a tier change on invoice-api that legacy denies and CEL admits",
+    "result": "upheld"
+  },
+  "claims": [
+    {
+      "id": "C-1",
+      "class": "observed",
+      "statement": "Two UPDATE cases differ between engines.",
+      "evidence_refs": [
+        "EV-1"
+      ]
+    },
+    {
+      "id": "C-2",
+      "class": "unknown",
+      "statement": "Which engine is right on UPDATE.",
+      "evidence_refs": [],
+      "smallest_settling_item": "controlled-test UPDATE with a changed billing tier label (real old/new pair)"
+    }
+  ],
+  "tests": [
+    {
+      "id": "T-1",
+      "polarity": "negative",
+      "operation": "UPDATE",
+      "expected": "tier change denied by both engines",
+      "state": "failed",
+      "observed": "differs",
+      "evidence_refs": [
+        "EV-1"
+      ]
+    }
+  ],
+  "outcome": "blocked",
+  "verdict": "blocked",
+  "conditions": [],
+  "dissent": [],
+  "business_exposure": "An unexplained UPDATE difference on a required control.",
+  "suggested_action": "Hold cohort B; collect old/new pair evidence.",
+  "rollback_limits": "After v1.20.0 the legacy engine no longer executes; confirm rollback limits in the upgrade documentation.",
+  "evidence_owner": "platform release manager",
+  "execution": {
+    "authority": "none",
+    "handoff": null
+  },
+  "artifacts": [],
+  "limitations": [],
+  "parity": {
+    "corpus": "EV-1",
+    "operations": {
+      "CREATE": "agree",
+      "UPDATE": "differ",
+      "DELETE": "untested"
+    },
+    "old_new_pair_evidence": []
+  }
+}

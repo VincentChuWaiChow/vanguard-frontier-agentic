@@ -1,0 +1,13 @@
+{
+  "case_id": "POL-05",
+  "prompt": "An Audit canary for cohort A was approved until 2026-12-15 with an owner; a separate mandatory non-root control is still in Audit 40 days past its deadline. Rate both.",
+  "execution_context": {
+    "tier": "static-review",
+    "live_adapter_authorized": false,
+    "network_authorized": false
+  },
+  "supplied_evidence": {
+    "manifest": "two ValidatingPolicies, both validationActions [Audit]",
+    "approval": "cohort A canary owner payments platform lead, deadline 2026-12-15, promotion criteria"
+  }
+}
