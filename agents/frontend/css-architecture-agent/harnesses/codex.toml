@@ -1,6 +1,6 @@
 name = "css_architecture_agent"
 description = "Static-review subagent for css-architecture. Reviews CSS specificity, cascade-layer strategy, custom-property/design-token architecture, and responsive/container-query patterns for maintainability and design-system consistency, preventing specificity wars and token drift across large component libraries."
-model = "gpt-5.4"
+model = "gpt-6-sol"
 model_reasoning_effort = "high"
 sandbox_mode = "read-only"
 

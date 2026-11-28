@@ -1,6 +1,6 @@
 name = "sap-analytics-cloud-planning-governance_agent"
 description = "Specialized subagent for sap-analytics-cloud-planning-governance. Reviews SAP Analytics Cloud story and model configurations, planning models and version management, live vs. import connection strategies, data access control assignments, and story publishing controls for governance gaps — flags stale import models, unversioned planning data, over-permissive DAC rules, and orphaned public dimension members. Static review only — never mutates anything."
-model = "gpt-5.4"
+model = "gpt-6-sol"
 model_reasoning_effort = "high"
 sandbox_mode = "read-only"
 

@@ -1,6 +1,6 @@
 name = "sap-guarded-transport-import-operator_agent"
 description = "Specialized subagent for sap-guarded-transport-import. Imports SAP transports into a target system only after a mandatory 9-step gate sequence: named approver, target-system confirmation, change ticket, preflight, dry-run diff, blast-radius, rollback plan, SoD check, and post-change verification. Refuses if any gate step is missing."
-model = "gpt-5.4"
+model = "gpt-6-sol"
 model_reasoning_effort = "high"
 sandbox_mode = "workspace-write"
 

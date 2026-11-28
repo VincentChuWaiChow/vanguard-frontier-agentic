@@ -1,6 +1,6 @@
 name = "sap-signavio-process-mining-value_agent"
 description = "Specialized subagent for sap-signavio-process-mining-value. Reviews SAP Signavio Process Intelligence and Process Manager outputs — process discovery and conformance results, bottleneck and rework pattern analysis, variant clustering and happy-path coverage, investigation setup quality, and value realization metrics against business case targets. Produces a graded process-mining findings report with improvement recommendations. Static review only — never mutates process models and never alters investigation or connector configurations."
-model = "gpt-5.4"
+model = "gpt-6-sol"
 model_reasoning_effort = "high"
 sandbox_mode = "read-only"
 

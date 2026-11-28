@@ -1,6 +1,6 @@
 name = "ai_advertising_targeting_fairness_review_agent"
 description = "Specialized subagent for ai-advertising-targeting-fairness-review. Reviews ad-platform audience targeting configurations and declared AI feature usage for protected-class discrimination risk under Fair Housing Act, ECOA, and EU AI Act Article 5 — proxy segments, algorithmic disparate impact, and missing Special Ad Category declarations."
-model = "gpt-5.4"
+model = "gpt-6-sol"
 model_reasoning_effort = "high"
 sandbox_mode = "read-only"
 

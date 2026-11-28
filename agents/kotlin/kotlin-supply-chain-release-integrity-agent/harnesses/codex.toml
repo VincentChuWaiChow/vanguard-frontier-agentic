@@ -1,6 +1,6 @@
 name = "kotlin_supply_chain_release_integrity_agent"
 description = "Static review of Kotlin/Gradle dependency trust and release integrity: verification-metadata enforcement, dependency locking, Gradle plugin trust and pinning, repository scope, and KMP/Maven publication controls. Reads build files, verification/lock metadata, and publication config only."
-model = "gpt-5.4"
+model = "gpt-6-sol"
 model_reasoning_effort = "high"
 sandbox_mode = "read-only"
 

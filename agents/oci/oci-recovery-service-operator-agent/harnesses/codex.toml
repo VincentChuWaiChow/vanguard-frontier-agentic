@@ -1,6 +1,6 @@
 name = "oci_recovery_service_operator"
 description = "Specialized subagent for oci-recovery-service-operator. Operate OCI Recovery Service protected databases, protection policies, recovery service subnets, backup health, redo status, and recovery metrics. Use for database recovery posture, protected database health, and restore readiness."
-model = "gpt-5.4"
+model = "gpt-6-sol"
 model_reasoning_effort = "medium"
 sandbox_mode = "read-only"
 

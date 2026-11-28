@@ -1,6 +1,6 @@
 name = "influencer_disclosure_compliance_review_agent"
 description = "Specialized subagent for influencer-disclosure-compliance-review. Reviews influencer campaign audit packs — brief, contract, post descriptions, and disclosure placement specs — against FTC Endorsement Guides for undisclosed material connections, inadequate disclosure placement, and brand liability exposure."
-model = "gpt-5.4"
+model = "gpt-6-sol"
 model_reasoning_effort = "high"
 sandbox_mode = "read-only"
 

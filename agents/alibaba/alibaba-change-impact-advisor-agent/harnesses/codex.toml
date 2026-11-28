@@ -1,6 +1,6 @@
 name = "alibaba_change_impact_advisor_agent"
 description = "Specialized subagent for alibaba-change-impact-advisor. Pre-change blast radius analysis for Alibaba Cloud — Resource Directory OU scope mapping, RAM policy cascade effects, VPC peering and CEN impact, SLB backend pool changes, RDS connection pool disruption, and safe change sequencing."
-model = "gpt-5.4"
+model = "gpt-6-sol"
 model_reasoning_effort = "high"
 sandbox_mode = "read-only"
 

@@ -1,6 +1,6 @@
 name = "hetzner_live_firewall_rule_guard_agent"
 description = "Live-guard agent for Hetzner Cloud Firewall rule mutations and server attachment changes. Requires current rules snapshot, blast-radius review, explicit human approval, target confirmation, and rollback plan before any mutation."
-model = "gpt-5.4"
+model = "gpt-6-sol"
 model_reasoning_effort = "high"
 sandbox_mode = "workspace-write"
 

@@ -1,6 +1,6 @@
 name = "kotlin_compose_ui_quality_accessibility_agent"
 description = "Static review of Jetpack Compose UI correctness and accessibility: recomposition stability (@Stable/@Immutable, unstable parameters), correct side-effect API usage, remember/derivedStateOf scoping, state hoisting, and mandatory semantics/contentDescription and touch-target accessibility. Reads source only."
-model = "gpt-5.4"
+model = "gpt-6-sol"
 model_reasoning_effort = "high"
 sandbox_mode = "read-only"
 

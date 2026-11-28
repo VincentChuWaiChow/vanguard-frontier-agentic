@@ -1,6 +1,6 @@
 name = "design_systems_governance_agent"
 description = "Static-review subagent for design-systems-governance. Reviews design-token pipelines and component-library governance (token source of truth, Style Dictionary/Tokens Studio transforms, contrast and theming guarantees) to stop hardcoded values and token drift from breaking theming, dark mode, and WCAG contrast compliance."
-model = "gpt-5.4"
+model = "gpt-6-sol"
 model_reasoning_effort = "high"
 sandbox_mode = "read-only"
 

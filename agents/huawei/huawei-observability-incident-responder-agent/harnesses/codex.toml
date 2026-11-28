@@ -1,6 +1,6 @@
 name = "huawei_observability_incident_responder_agent"
 description = "Specialized subagent for huawei-observability-incident-responder. Respond to incidents via CES metric alarms, LTS log analytics, AOM service topology, APM distributed tracing, and SMN notification governance."
-model = "gpt-5.4"
+model = "gpt-6-sol"
 model_reasoning_effort = "high"
 sandbox_mode = "read-only"
 

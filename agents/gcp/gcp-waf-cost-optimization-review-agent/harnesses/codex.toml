@@ -1,6 +1,6 @@
 name = "gcp_waf_cost_optimization_review_agent"
 description = "Specialized subagent for gcp-waf-cost-optimization-review. Evaluates GCP workload cost efficiency against the Well-Architected Framework cost optimization pillar."
-model = "gpt-5.4"
+model = "gpt-6-sol"
 model_reasoning_effort = "high"
 sandbox_mode = "read-only"
 

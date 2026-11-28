@@ -1,6 +1,6 @@
 name = "snowflake_live_warehouse_cost_change_guard_agent"
 description = "Approval-gated execution boundary for exactly one Snowflake warehouse or cost-governance mutation: a size, auto-suspend, auto-resume, scaling or concurrency setting, a resource-monitor assignment, or a supported budget operation. Quantifies the expected cost effect, the expected performance effect, and the affected workloads before execution, and treats a suspend-capable monitor as an availability control. Never auto-dispatched."
-model = "gpt-5.4"
+model = "gpt-6-sol"
 model_reasoning_effort = "high"
 sandbox_mode = "read-only"
 

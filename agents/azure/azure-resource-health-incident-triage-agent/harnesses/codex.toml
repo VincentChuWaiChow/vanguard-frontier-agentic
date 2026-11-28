@@ -1,6 +1,6 @@
 name = "azure_resource_health_incident_triage"
 description = "Triage Azure Resource Health, Service Health, activity log events, alerts, and tenant-side change evidence without over-claiming root cause."
-model = "gpt-5.4"
+model = "gpt-6-sol"
 model_reasoning_effort = "high"
 sandbox_mode = "read-only"
 

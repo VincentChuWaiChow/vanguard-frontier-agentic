@@ -1,6 +1,6 @@
 name = "oci-live-cost-budget-runaway-guard_agent"
 description = "Specialized subagent for oci-live-cost-budget-runaway-guard. Gate OCI budget rule mutations, cost-tracking tag changes, and GPU or HPC shape provisioning against compartment spend limits before any cost-impacting mutation."
-model = "gpt-5.4"
+model = "gpt-6-sol"
 model_reasoning_effort = "high"
 sandbox_mode = "workspace-write"
 

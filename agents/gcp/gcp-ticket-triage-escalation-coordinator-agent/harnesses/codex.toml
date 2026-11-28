@@ -1,6 +1,6 @@
 name = "gcp_ticket_triage_escalation_coordinator_agent"
 description = "Specialized subagent for gcp-ticket-triage-escalation-coordinator. Triage GCP operational alerts, incidents, and support tickets — P0/P1/P2/P3 classification, GCP Premium/Enhanced Support SLA enforcement, war room coordination, evidence collection from Cloud Monitoring and Cloud Logging, and safe escalation paths."
-model = "gpt-5.4"
+model = "gpt-6-sol"
 model_reasoning_effort = "high"
 sandbox_mode = "read-only"
 

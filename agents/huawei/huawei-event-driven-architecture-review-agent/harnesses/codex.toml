@@ -1,6 +1,6 @@
 name = "huawei_event_driven_architecture_review_agent"
 description = "Specialized subagent for huawei-event-driven-architecture-review. Review Huawei Cloud DMS (Distributed Message Service) for Kafka, ROMA Connect, FunctionGraph event triggers, and SMN (Simple Message Notification) designs — dead-letter configuration, message ordering, idempotency, consumer group lag monitoring, and retry storm prevention."
-model = "gpt-5.4"
+model = "gpt-6-sol"
 model_reasoning_effort = "high"
 sandbox_mode = "read-only"
 

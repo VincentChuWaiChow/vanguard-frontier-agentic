@@ -1,6 +1,6 @@
 name = "kubernetes_live_velero_restore_guard_agent"
 description = "Specialized subagent for velero-backup-restore-guard. Guard live Velero restore execution, schedule deletion, BackupStorageLocation changes, and volume snapshot configuration against data loss and scope creep."
-model = "gpt-5.4"
+model = "gpt-6-sol"
 model_reasoning_effort = "high"
 sandbox_mode = "workspace-write"
 

@@ -1,6 +1,6 @@
 name = "lookalike_audience_upload_compliance_review_agent"
 description = "Specialized subagent for lookalike-audience-upload-compliance-review. Reviews custom-audience and lookalike-audience upload specifications for hashing adequacy, PII field scope, consent-basis validity, and platform data-sharing restrictions before upload to Meta, Google, LinkedIn, or TikTok."
-model = "gpt-5.4"
+model = "gpt-6-sol"
 model_reasoning_effort = "high"
 sandbox_mode = "read-only"
 

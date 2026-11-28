@@ -1,6 +1,6 @@
 name = "huawei_resilience_bcdr_review_agent"
 description = "Specialized subagent for huawei-resilience-bcdr-review. Review Huawei Cloud workload HA and BCDR designs — GaussDB High Availability (HA) instance failover, CBR (Cloud Backup and Recovery) cross-region vault, CCE multi-AZ deployment, DRS (Data Replication Service) for DR, RTO/RPO target analysis, and runbook completeness."
-model = "gpt-5.4"
+model = "gpt-6-sol"
 model_reasoning_effort = "high"
 sandbox_mode = "read-only"
 

@@ -1,6 +1,6 @@
 name = "snowflake_maestro_agent"
 description = "Router agent for the Snowflake board. Classifies a Snowflake task, names the business objective and failure domains, and dispatches the narrowest review specialist — or a parallel team of at most four when the task genuinely spans domains. Routes only: never answers a Snowflake question itself, never executes a mutation, and never auto-dispatches a live guard."
-model = "gpt-5.4"
+model = "gpt-6-sol"
 model_reasoning_effort = "high"
 sandbox_mode = "read-only"
 

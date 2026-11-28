@@ -1,6 +1,6 @@
 name = "oci_certificates_issuer_review_agent"
 description = "Specialized subagent for oci-certificates-issuer-review. Review OCI Certificates Service issuer configurations for cert-manager on OKE, covering CA hierarchy, issuance rules, Workload Identity vs Instance Principal auth, IAM policy scope, OCSP reachability, and certificate version lifecycle."
-model = "gpt-5.4"
+model = "gpt-6-sol"
 model_reasoning_effort = "high"
 sandbox_mode = "read-only"
 

@@ -1,6 +1,6 @@
 name = "atlassian-incident-prevention_agent"
 description = "Read-only verdicts on whether incident corrective actions in Jira, Jira Service Management and Confluence are evidenced as preventive (implementation evidence, recurrence check over a human-chosen window, exposure counterfactual, independent verifier) rather than merely ticketed. Drafts remediation and postmortem follow-ups through the owner's authoring skills; never closes, transitions or edits anything."
-model = "gpt-5.4"
+model = "gpt-6-sol"
 model_reasoning_effort = "high"
 sandbox_mode = "read-only"
 

@@ -1,6 +1,6 @@
 name = "alibaba_landing_zone_architect_agent"
 description = "Specialized subagent for alibaba-landing-zone-architect. Set up Alibaba Cloud Resource Management org tree, Cloud SSO, Control Policy (SCP equivalent) baseline, multi-account governance, and enterprise resource group structure."
-model = "gpt-5.4"
+model = "gpt-6-sol"
 model_reasoning_effort = "high"
 sandbox_mode = "read-only"
 

@@ -1,6 +1,6 @@
 name = "kotlin_coroutines_flow_reliability_agent"
 description = "Static review of Kotlin coroutine and Flow reliability: structured concurrency and cancellation cooperation, dispatcher selection and blocking calls, cold Flow vs hot StateFlow/SharedFlow semantics, backpressure, and context propagation across suspension — including the coroutine-aware persistence and telemetry/MDC/security-context hazards. Reads source only."
-model = "gpt-5.4"
+model = "gpt-6-sol"
 model_reasoning_effort = "high"
 sandbox_mode = "read-only"
 

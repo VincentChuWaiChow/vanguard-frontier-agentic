@@ -1,6 +1,6 @@
 name = "kotlin_test_architecture_agent"
 description = "Static review of Kotlin coroutine/Flow/Compose/Android/KMP test architecture and determinism: runTest virtual-time usage, test-dispatcher choice and advance discipline, Dispatchers.setMain/resetMain hygiene, Turbine Flow testing, and Compose/Robolectric-vs-instrumented boundary choice. Reads test source and build config only."
-model = "gpt-5.4"
+model = "gpt-6-sol"
 model_reasoning_effort = "high"
 sandbox_mode = "read-only"
 

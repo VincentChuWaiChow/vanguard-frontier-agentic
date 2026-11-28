@@ -1,6 +1,6 @@
 name = "api_integration_bff_agent"
 description = "Static-review subagent for api-integration-bff-boundary. Designs and reviews the contract, ownership, and trust boundary between frontend clients and backend/BFF layers to prevent over-fetching, leaked backend implementation details, and unenforced authorization at the edge."
-model = "gpt-5.4"
+model = "gpt-6-sol"
 model_reasoning_effort = "high"
 sandbox_mode = "read-only"
 

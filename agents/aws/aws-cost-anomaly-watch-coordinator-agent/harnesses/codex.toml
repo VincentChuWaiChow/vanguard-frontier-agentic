@@ -1,6 +1,6 @@
 name = "aws_cost_anomaly_watch_coordinator_agent"
 description = "Specialized subagent for aws-cost-anomaly-watch-coordinator. Review AWS cost anomalies, budget drift, usage spikes, and savings opportunities with non-destructive recommendations and business-facing escalation guidance."
-model = "gpt-5.4"
+model = "gpt-6-sol"
 model_reasoning_effort = "high"
 sandbox_mode = "read-only"
 

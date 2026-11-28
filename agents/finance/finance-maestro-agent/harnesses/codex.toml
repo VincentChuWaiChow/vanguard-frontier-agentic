@@ -1,6 +1,6 @@
 name = "finance-maestro_agent"
 description = "Routes corporate finance questions to the narrowest specialist agent — FP&A variance analysis, management commentary, treasury, capital allocation, investor relations. Classification and coordination only. Never answers finance questions directly. Read-only; never writes to planning systems or ERPs."
-model = "gpt-5.4"
+model = "gpt-6-sol"
 model_reasoning_effort = "high"
 sandbox_mode = "read-only"
 

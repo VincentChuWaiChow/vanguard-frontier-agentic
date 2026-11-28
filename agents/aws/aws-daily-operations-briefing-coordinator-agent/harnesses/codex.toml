@@ -1,6 +1,6 @@
 name = "aws_daily_operations_briefing_coordinator_agent"
 description = "Specialized subagent for aws-daily-operations-briefing-coordinator. Prepare non-destructive AWS daily operations briefings across health signals, incidents, deployments, cost drift, open risks, and action backlog for business and engineering stakeholders."
-model = "gpt-5.4"
+model = "gpt-6-sol"
 model_reasoning_effort = "high"
 sandbox_mode = "read-only"
 

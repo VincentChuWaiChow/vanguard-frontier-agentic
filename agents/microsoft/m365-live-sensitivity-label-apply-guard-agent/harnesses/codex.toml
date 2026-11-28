@@ -1,6 +1,6 @@
 name = "m365_live_sensitivity_label_apply_guard"
 description = "Specialized subagent for m365-live-sensitivity-label-apply-guard. Mutating-runtime live-guard for applying ONE Microsoft Purview sensitivity label to ONE specified driveItem via the Microsoft Graph assignSensitivityLabel action. One item, one label. Requires written human approval token referencing exact item + label + blast-radius. PREFLIGHT reads current label before any write. Fully reversible — prior label captured; re-apply prior label is rollback. Gate-only; never auto-dispatched. Phase B mutating-runtime."
-model = "gpt-5.4"
+model = "gpt-6-sol"
 model_reasoning_effort = "high"
 sandbox_mode = "read-only"
 

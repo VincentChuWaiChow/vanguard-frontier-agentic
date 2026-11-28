@@ -1,6 +1,6 @@
 name = "oci_iot_digital_twin_engineer"
 description = "Specialized subagent for oci-iot-digital-twin-engineer. Design and operate OCI IoT digital twin adapters, models, instances, relationships, and domain context. Use for digital twin topology, lifecycle, integration, and safe model/relationship changes."
-model = "gpt-5.4"
+model = "gpt-6-sol"
 model_reasoning_effort = "medium"
 sandbox_mode = "read-only"
 

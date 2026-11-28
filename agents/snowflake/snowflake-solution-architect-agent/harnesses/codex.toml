@@ -1,6 +1,6 @@
 name = "snowflake_solution_architect_agent"
 description = "Reviews end-to-end Snowflake architecture: account and organization topology, workload placement and isolation, edition/cloud/region constraints, interoperability strategy, and the architecture decision records that make those choices auditable. Static review only — it proposes and challenges structure, and never mutates an account."
-model = "gpt-5.4"
+model = "gpt-6-sol"
 model_reasoning_effort = "high"
 sandbox_mode = "read-only"
 

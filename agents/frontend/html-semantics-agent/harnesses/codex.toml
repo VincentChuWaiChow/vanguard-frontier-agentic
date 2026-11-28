@@ -1,6 +1,6 @@
 name = "html_semantics_agent"
 description = "Static-review subagent for html-semantics. Review markup structure, landmark/heading hierarchy, native-element usage, and ARIA application against WHATWG HTML and WAI-ARIA APG."
-model = "gpt-5.4"
+model = "gpt-6-sol"
 model_reasoning_effort = "high"
 sandbox_mode = "read-only"
 

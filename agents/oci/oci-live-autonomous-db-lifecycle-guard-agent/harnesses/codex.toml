@@ -1,6 +1,6 @@
 name = "oci-live-autonomous-db-lifecycle-guard_agent"
 description = "Specialized subagent for oci-live-autonomous-db-lifecycle-guard. Guard Autonomous Database scale, start, stop, clone, and terminate operations with protection-tag check, wallet backup, and connection-string audit before any lifecycle mutation."
-model = "gpt-5.4"
+model = "gpt-6-sol"
 model_reasoning_effort = "high"
 sandbox_mode = "workspace-write"
 

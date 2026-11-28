@@ -1,6 +1,6 @@
 name = "azure_key_vault_secret_lifecycle_auditor"
 description = "Specialized subagent for azure-key-vault-secret-lifecycle-auditor. Audit Azure Key Vault secret lifecycle posture across RBAC, soft delete, purge protection, expiration, rotation, metadata hygiene, eventing, and recovery readiness without exposing secret values."
-model = "gpt-5.4"
+model = "gpt-6-sol"
 model_reasoning_effort = "high"
 sandbox_mode = "read-only"
 

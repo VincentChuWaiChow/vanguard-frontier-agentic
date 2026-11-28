@@ -1,6 +1,6 @@
 name = "oci_mysql_heatwave_ai_specialist"
 description = "Specialized subagent for oci-mysql-heatwave-ai-specialist. OCI Operate and review MySQL HeatWave, MySQL AI, vector/RAG workflows, connection configs, object storage ingestion, and SQL safety. Use for MySQL AI questions, HeatWave ML, vector store loading, and MySQL operational reviews."
-model = "gpt-5.4"
+model = "gpt-6-sol"
 model_reasoning_effort = "medium"
 sandbox_mode = "read-only"
 

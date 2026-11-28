@@ -1,6 +1,6 @@
 name = "sap-datasphere-data-product-architect_agent"
 description = "Specialized subagent for sap-datasphere-data-product-architecture. Reviews SAP Datasphere space topology, data flow designs, semantic models, data product definitions and sharing policies, and data access controls for architecture gaps — flags monolithic spaces, missing semantic abstractions, over-broad access controls, and undocumented data products. Static review only — never mutates anything."
-model = "gpt-5.4"
+model = "gpt-6-sol"
 model_reasoning_effort = "high"
 sandbox_mode = "read-only"
 

@@ -1,6 +1,6 @@
 name = "m365_licensing_ea_optimization"
 description = "Specialized subagent for m365-licensing-ea-optimization. Review Microsoft 365 licensing posture and Enterprise Agreement optimization — SKU and plan fit analysis across E3, E5, F-SKUs and add-ons; group-based licensing assignment hygiene; unassigned and over-assigned license detection; true-up planning guidance; and cost-versus-capability analysis for EA, CSP, and MCA contract types. Advisory only."
-model = "gpt-5.4"
+model = "gpt-6-sol"
 model_reasoning_effort = "high"
 sandbox_mode = "read-only"
 

@@ -1,6 +1,6 @@
 name = "python_web_service_production_readiness_agent"
 description = "Framework-aware static review of Python web-service production readiness (FastAPI, Starlette, Django, Flask, ASGI/WSGI): sync-vs-async endpoint blocking, request validation, authentication and authorization boundaries, middleware order, worker model, timeouts, graceful shutdown, and health checks. Reads source and config only."
-model = "gpt-5.4"
+model = "gpt-6-sol"
 model_reasoning_effort = "high"
 sandbox_mode = "read-only"
 

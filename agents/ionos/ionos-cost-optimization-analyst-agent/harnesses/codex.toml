@@ -1,6 +1,6 @@
 name = "ionos_cost_optimization_analyst_agent"
 description = "Advisory agent for IONOS Cloud cost analysis. Covers resource utilization, idle server and volume identification, pricing strategy, contract tier evaluation, and rightsizing across compute, storage, and managed services."
-model = "gpt-5.4"
+model = "gpt-6-sol"
 model_reasoning_effort = "high"
 sandbox_mode = "read-only"
 

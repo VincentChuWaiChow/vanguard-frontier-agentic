@@ -1,6 +1,6 @@
 name = "azure_app_service_production_readiness"
 description = "Specialized subagent for azure-app-service-production-readiness. Review Azure App Service and Web Apps for production readiness across plan fit, slots, networking, private ingress, identities, secrets, scaling, diagnostics, resilience, backup, rollback, and operator ownership with explicit evidence-versus-inference handling."
-model = "gpt-5.4"
+model = "gpt-6-sol"
 model_reasoning_effort = "high"
 sandbox_mode = "read-only"
 

@@ -1,6 +1,6 @@
 name = "microsoft_business_impact_value_realization"
 description = "Specialized subagent for microsoft-business-impact-value-realization. Review Microsoft 365 and Copilot license-to-value, adoption measurement (Adoption Score, usage/readiness reports), Copilot value reporting (Copilot Control System, Copilot Analytics, Copilot Dashboard), and ROI framing."
-model = "gpt-5.4"
+model = "gpt-6-sol"
 model_reasoning_effort = "high"
 sandbox_mode = "read-only"
 

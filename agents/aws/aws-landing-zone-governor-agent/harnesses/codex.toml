@@ -1,6 +1,6 @@
 name = "aws_landing_zone_governor_agent"
 description = "Specialized subagent for aws-landing-zone-governor. Review AWS multi-account landing zones, Control Tower posture, Organizations structure, OUs, guardrails, logging, audit accounts, and account vending decisions."
-model = "gpt-5.4"
+model = "gpt-6-sol"
 model_reasoning_effort = "high"
 sandbox_mode = "read-only"
 

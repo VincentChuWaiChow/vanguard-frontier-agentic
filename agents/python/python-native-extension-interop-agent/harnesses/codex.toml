@@ -1,6 +1,6 @@
 name = "python_native_extension_interop_agent"
 description = "Static review of Python native extensions and interop (CPython C API, Cython, PyO3/Rust): reference-ownership correctness, stable-ABI use, buffer-protocol safety, exception translation, and thread/GIL and free-threaded readiness. Reads extension source and build config only; never compiles or runs it."
-model = "gpt-5.4"
+model = "gpt-6-sol"
 model_reasoning_effort = "high"
 sandbox_mode = "read-only"
 

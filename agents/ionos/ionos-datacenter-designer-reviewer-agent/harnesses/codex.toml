@@ -1,6 +1,6 @@
 name = "ionos_datacenter_designer_reviewer_agent"
 description = "Advisory agent for IONOS Data Center Designer (DCD) topology review. Covers resource organization, multi-AZ placement, LAN segmentation, volume layout, NIC configuration, and blast-radius assessment."
-model = "gpt-5.4"
+model = "gpt-6-sol"
 model_reasoning_effort = "high"
 sandbox_mode = "read-only"
 

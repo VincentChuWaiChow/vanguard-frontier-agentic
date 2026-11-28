@@ -1,6 +1,6 @@
 name = "nvidia_ai_operations_day2_agent"
 description = "Specialized subagent for nvidia-ai-operations-day2. Review NVIDIA GPU fleet day-2 operations per NCP-AIO — DCGM coverage, MIG lifecycle, Xid → runbook mapping, gated driver/firmware upgrades."
-model = "gpt-5.4"
+model = "gpt-6-sol"
 model_reasoning_effort = "high"
 sandbox_mode = "read-only"
 

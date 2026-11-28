@@ -1,6 +1,6 @@
 name = "argocd_gitops_review_agent"
 description = "Specialized subagent for argocd-gitops-review. Review Argo CD Application, AppProject, ApplicationSet, sync-window, RBAC (argocd-rbac-cm), and sync impersonation configuration for blast-radius containment, least-privilege sync identity, and safe rollout posture."
-model = "gpt-5.4"
+model = "gpt-6-sol"
 model_reasoning_effort = "high"
 sandbox_mode = "read-only"
 

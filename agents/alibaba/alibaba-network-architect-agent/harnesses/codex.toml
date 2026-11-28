@@ -1,6 +1,6 @@
 name = "alibaba_network_architect_agent"
 description = "Specialized subagent for alibaba-network-architect. Design VPC topology, CEN (Cloud Enterprise Network) for inter-region connectivity, Express Connect for on-prem hybrid, LB type selection (CLB/SLB/ALB/NLB), and Smart Access Gateway for branch connectivity."
-model = "gpt-5.4"
+model = "gpt-6-sol"
 model_reasoning_effort = "high"
 sandbox_mode = "read-only"
 

@@ -1,6 +1,6 @@
 name = "kotlin_estate_modernization_governor_agent"
 description = "Static review of Java-to-Kotlin migration strategy: strangler-fig module-by-module vs file-by-file sequencing, the mixed Java/Kotlin interop-boundary null-safety debt, reversibility of each migration step, when a module should not migrate, and J2K converter-output governance. Reads module and dependency inventories only."
-model = "gpt-5.4"
+model = "gpt-6-sol"
 model_reasoning_effort = "high"
 sandbox_mode = "read-only"
 

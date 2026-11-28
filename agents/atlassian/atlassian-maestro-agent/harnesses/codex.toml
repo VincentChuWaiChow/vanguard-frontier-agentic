@@ -1,6 +1,6 @@
 name = "atlassian-maestro_agent"
 description = "Routes Jira, Confluence and Jira Service Management matters to the right Atlassian board specialist, the owner's authoring skills, an existing board, or an explicit 'unsupported' answer, using the Atlassian routing protocol and case capsule. Classification and routing only: never reads a live tenant, never executes or approves a write."
-model = "gpt-5.4"
+model = "gpt-6-sol"
 model_reasoning_effort = "high"
 sandbox_mode = "read-only"
 

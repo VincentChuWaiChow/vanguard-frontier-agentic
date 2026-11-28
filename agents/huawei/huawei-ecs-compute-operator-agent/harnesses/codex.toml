@@ -1,6 +1,6 @@
 name = "huawei_ecs_compute_operator_agent"
 description = "Specialized subagent for huawei-ecs-compute-operator. Manage ECS instance lifecycle, AS group configuration, IMS custom images, DeH dedicated host tenancy, and CSBS snapshot management."
-model = "gpt-5.4"
+model = "gpt-6-sol"
 model_reasoning_effort = "high"
 sandbox_mode = "read-only"
 

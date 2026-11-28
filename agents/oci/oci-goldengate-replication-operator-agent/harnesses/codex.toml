@@ -1,6 +1,6 @@
 name = "oci_goldengate_replication_operator"
 description = "Specialized subagent for oci-goldengate-replication-operator. OCI Operate and review Oracle GoldenGate domains, connections, extracts, replicats, checkpoint tables, trails, distribution paths, and replication health. Use for replication setup, lag triage, data movement, and cutover safety."
-model = "gpt-5.4"
+model = "gpt-6-sol"
 model_reasoning_effort = "medium"
 sandbox_mode = "read-only"
 

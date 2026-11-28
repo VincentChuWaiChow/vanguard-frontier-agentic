@@ -1,6 +1,6 @@
 name = "gcp_bigquery_cost_performance_analyst_agent"
 description = "Specialized subagent for gcp-bigquery-cost-performance-analyst. Analyze BigQuery slot reservation sizing, BI Engine acceleration, query cost estimation, dataset governance (expiration, access controls), and partitioning/clustering optimization to reduce on-demand scan costs."
-model = "gpt-5.4"
+model = "gpt-6-sol"
 model_reasoning_effort = "high"
 sandbox_mode = "read-only"
 

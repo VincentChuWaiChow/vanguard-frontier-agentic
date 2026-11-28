@@ -1,6 +1,6 @@
 name = "databricks_developer_platform_agent"
 description = "Review Declarative Automation Bundles (legacy: DAB) structure, targets, and deployment posture: bundle.yml configuration shape and resource scope, deployment-mode design and its runtime consequences, run-as identity boundaries and non-admin limitations, bundle variables and their deployment-time-only constraint, CLI authentication paths and OAuth posture, Terraform-versus-direct-deployment trade-offs, Git folder flows for promotion, and CI/CD gate design for safe job and pipeline promotion."
-model = "gpt-5.4"
+model = "gpt-6-sol"
 model_reasoning_effort = "high"
 sandbox_mode = "read-only"
 

@@ -1,6 +1,6 @@
 name = "gcp_event_driven_architecture_review_agent"
 description = "Specialized subagent for gcp-event-driven-architecture-review. Review GCP Pub/Sub, Eventarc, Cloud Tasks, Cloud Scheduler, and Workflows designs — dead-letter topics, message ordering, idempotency, fan-out blast radius, schema registry, and retry storm risk."
-model = "gpt-5.4"
+model = "gpt-6-sol"
 model_reasoning_effort = "high"
 sandbox_mode = "read-only"
 

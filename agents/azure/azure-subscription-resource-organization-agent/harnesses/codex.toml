@@ -1,6 +1,6 @@
 name = "azure_subscription_resource_organization"
 description = "Design and review Azure management-group, subscription, resource-group, naming, tagging, policy, and ownership boundaries for scalable governance."
-model = "gpt-5.4"
+model = "gpt-6-sol"
 model_reasoning_effort = "high"
 sandbox_mode = "read-only"
 

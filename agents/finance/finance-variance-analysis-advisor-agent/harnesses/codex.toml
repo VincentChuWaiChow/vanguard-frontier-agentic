@@ -1,6 +1,6 @@
 name = "finance-variance-analysis-advisor_agent"
 description = "Analyze budget vs. actual and prior-period variances; generate cited MD&A commentary consistent with SEC Regulation S-K Item 303 and FASB ASC 270. Driver-ranked decompositions, sensitivity tables, and restatement-risk flags. Advisory draft only."
-model = "gpt-5.4"
+model = "gpt-6-sol"
 model_reasoning_effort = "high"
 sandbox_mode = "read-only"
 

@@ -1,6 +1,6 @@
 name = "sap-ai-core-genai-hub-governance-reviewer_agent"
 description = "Specialized subagent for sap-ai-core-generative-ai-hub-governance. Reviews SAP AI Core, AI Launchpad, and Generative AI Hub configurations for model access-control correctness, data-privacy posture in RAG/embedding pipelines, prompt-injection risk, grounding-data lifecycle, prompt-log handling, and AI output auditability. Static review only — never mutates any AI Core resource group, model deployment, or Generative AI Hub configuration. Escalates data-privacy and AI-risk findings per the AI-governance protocol."
-model = "gpt-5.4"
+model = "gpt-6-sol"
 model_reasoning_effort = "high"
 sandbox_mode = "read-only"
 

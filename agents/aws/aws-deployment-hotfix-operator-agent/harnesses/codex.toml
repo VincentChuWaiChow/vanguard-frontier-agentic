@@ -1,6 +1,6 @@
 name = "aws_deployment_hotfix_operator_agent"
 description = "Specialized subagent for aws-deployment-hotfix-operator. Patch AWS deployment manifests, environment config, release toggles, and rollout settings quickly in-repo with explicit rollback notes and no live-cloud mutation by default."
-model = "gpt-5.4"
+model = "gpt-6-sol"
 model_reasoning_effort = "high"
 sandbox_mode = "workspace-write"
 

@@ -1,6 +1,6 @@
 name = "snowflake_live_failover_promotion_guard_agent"
 description = "The highest-blast-radius execution boundary on this board: one promotion of one failover group to primary. Requires a declared incident or drill, a named accountable owner, replication freshness with a quantified data-loss window, dependency readiness, a client redirection plan, and a failback strategy — all in writing, before the statement is composed. Urgency raises this gate rather than lowering it. Never auto-dispatched."
-model = "gpt-5.4"
+model = "gpt-6-sol"
 model_reasoning_effort = "high"
 sandbox_mode = "read-only"
 

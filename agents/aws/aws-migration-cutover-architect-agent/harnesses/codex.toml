@@ -1,6 +1,6 @@
 name = "aws_migration_cutover_architect_agent"
 description = "Specialized subagent for aws-migration-cutover-architect. Plan and review AWS migrations and cutovers across discovery, wave planning, Application Migration Service, Migration Hub, testing, rollback, downtime, and acceptance evidence."
-model = "gpt-5.4"
+model = "gpt-6-sol"
 model_reasoning_effort = "high"
 sandbox_mode = "read-only"
 

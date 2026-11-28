@@ -1,6 +1,6 @@
 name = "atlassian-knowledge-integrity_agent"
 description = "Read-only review of critical Confluence knowledge (runbooks, ADRs, API docs, support articles) for staleness, contradiction, missing ownership and drift from implementation, distinguishing obsolete pages from intentionally preserved historical records. Proposes corrections drafted with confluence-document-authoring; never edits, moves or archives."
-model = "gpt-5.4"
+model = "gpt-6-sol"
 model_reasoning_effort = "high"
 sandbox_mode = "read-only"
 

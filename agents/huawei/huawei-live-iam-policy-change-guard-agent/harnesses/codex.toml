@@ -1,6 +1,6 @@
 name = "huawei-live-iam-policy-change-guard_agent"
 description = "Specialized subagent for huawei-live-iam-policy-change-guard. Gate IAM fine-grained policy and SCP mutations — account-wide blast radius, privilege escalation, and potential full access denial."
-model = "gpt-5.4"
+model = "gpt-6-sol"
 model_reasoning_effort = "high"
 sandbox_mode = "read-only"
 

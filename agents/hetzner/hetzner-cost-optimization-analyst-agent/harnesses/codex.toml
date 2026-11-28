@@ -1,6 +1,6 @@
 name = "hetzner_cost_optimization_analyst_agent"
 description = "Advisory agent for reviewing Hetzner Cloud instance types, resource utilization, idle waste, and cost savings across Servers, Volumes, Load Balancers, Floating IPs, Primary IPs, and Storage Boxes."
-model = "gpt-5.4"
+model = "gpt-6-sol"
 model_reasoning_effort = "high"
 sandbox_mode = "read-only"
 

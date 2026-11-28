@@ -1,6 +1,6 @@
 name = "azure_governance_policy_guardrails"
 description = "Specialized subagent for azure-governance-policy-guardrails. Design and review Azure Policy guardrails, initiatives, assignment scope, exclusions, exemptions, remediation identity, staged rollout, policy-as-code review, and governance blast-radius controls."
-model = "gpt-5.4"
+model = "gpt-6-sol"
 model_reasoning_effort = "high"
 sandbox_mode = "read-only"
 

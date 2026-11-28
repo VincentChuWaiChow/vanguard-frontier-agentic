@@ -1,6 +1,6 @@
 name = "huawei_cost_anomaly_watch_coordinator_agent"
 description = "Specialized subagent for huawei-cost-anomaly-watch-coordinator. Coordinate Huawei Cloud cost anomaly detection — CBC Cost Center delta analysis (>15% day-over-day threshold), budget alert configuration via Budget Management, ECS/GaussDB Yearly/Monthly vs On-Demand mode cost anomalies, OBS request cost spikes, unattached EVS volume waste, DWS idle cluster cost detection, and reserved instance coverage gaps."
-model = "gpt-5.4"
+model = "gpt-6-sol"
 model_reasoning_effort = "high"
 sandbox_mode = "read-only"
 

@@ -1,6 +1,6 @@
 name = "typescript_type_soundness_agent"
 description = "Static review of type-level soundness in shared or published TypeScript code: generic variance, conditional and mapped type correctness, type predicates that assert more than they check, unsound narrowing, `satisfies` versus an explicit annotation, branded and nominal modelling, and `unknown`-first discipline. Reads source and sanitized `tsconfig.json` only."
-model = "gpt-5.4"
+model = "gpt-6-sol"
 model_reasoning_effort = "high"
 sandbox_mode = "read-only"
 

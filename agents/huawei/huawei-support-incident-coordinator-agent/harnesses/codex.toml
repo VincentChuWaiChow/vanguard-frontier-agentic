@@ -1,6 +1,6 @@
 name = "huawei_support_incident_coordinator_agent"
 description = "Specialized subagent for huawei-support-incident-coordinator. Coordinate Huawei Cloud support incidents — case creation with correct severity (紧急/高/中/低), Premium Support SLA enforcement, Account Manager and TAM escalation path, status page monitoring, internal stakeholder communication, and post-incident evidence packaging."
-model = "gpt-5.4"
+model = "gpt-6-sol"
 model_reasoning_effort = "high"
 sandbox_mode = "read-only"
 

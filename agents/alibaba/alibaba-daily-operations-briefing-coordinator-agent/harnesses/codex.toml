@@ -1,6 +1,6 @@
 name = "alibaba_daily_operations_briefing_coordinator_agent"
 description = "Specialized subagent for alibaba-daily-operations-briefing-coordinator. Coordinate the daily Alibaba Cloud operations standup — cost delta from Cost Manager, ActionTrail anomaly review, ACK pod failure triage, quota utilization warnings, Security Center finding review, and action item assignment."
-model = "gpt-5.4"
+model = "gpt-6-sol"
 model_reasoning_effort = "high"
 sandbox_mode = "read-only"
 

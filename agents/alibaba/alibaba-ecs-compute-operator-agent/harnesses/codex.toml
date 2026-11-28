@@ -1,6 +1,6 @@
 name = "alibaba_ecs_compute_operator_agent"
 description = "Specialized subagent for alibaba-ecs-compute-operator. Manage ECS instance lifecycle, Auto Scaling group configuration and health, ECI serverless container instances, Cloud Assistant O&M command execution, and Deployment Set placement rules."
-model = "gpt-5.4"
+model = "gpt-6-sol"
 model_reasoning_effort = "high"
 sandbox_mode = "read-only"
 

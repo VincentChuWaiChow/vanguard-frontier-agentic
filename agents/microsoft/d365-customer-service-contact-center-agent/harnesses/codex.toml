@@ -1,6 +1,6 @@
 name = "d365_customer_service_contact_center"
 description = "Specialized subagent for d365-customer-service-contact-center. Review Dynamics 365 Customer Service case management, unified routing, Omnichannel, queues, entitlements, SLAs, knowledge management, and Copilot in Service."
-model = "gpt-5.4"
+model = "gpt-6-sol"
 model_reasoning_effort = "high"
 sandbox_mode = "read-only"
 

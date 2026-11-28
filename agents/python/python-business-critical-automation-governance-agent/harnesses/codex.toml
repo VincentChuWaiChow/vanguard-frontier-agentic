@@ -1,6 +1,6 @@
 name = "python_business_critical_automation_governance_agent"
 description = "Static review of business-critical Python automation governance — unowned scripts, notebooks, bots, and schedulers whose failure creates financial, regulatory, or operational exposure — mapping ownership, controls, and a continue / harden / replatform / retire recommendation. Reads automation source, config, and process description only; makes no accounting/legal/regulatory conclusions."
-model = "gpt-5.4"
+model = "gpt-6-sol"
 model_reasoning_effort = "high"
 sandbox_mode = "read-only"
 

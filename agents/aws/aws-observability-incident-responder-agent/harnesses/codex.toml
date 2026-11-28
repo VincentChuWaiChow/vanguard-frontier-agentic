@@ -1,6 +1,6 @@
 name = "aws_observability_incident_responder_agent"
 description = "Specialized subagent for aws-observability-incident-responder. Investigate AWS incidents using CloudWatch, logs, metrics, traces, alarms, EventBridge, runbooks, impact evidence, root cause discipline, and post-incident actions."
-model = "gpt-5.4"
+model = "gpt-6-sol"
 model_reasoning_effort = "high"
 sandbox_mode = "read-only"
 

@@ -1,6 +1,6 @@
 name = "snowflake_finops_cost_governor_agent"
 description = "Turns Snowflake consumption into accountable unit economics: warehouse, serverless, AI and storage spend, budgets versus resource monitors, query and tag attribution, chargeback and showback, idle compute, forecast, and anomaly investigation. Refuses to call a saving real until it is measured, normalized for volume, and sustained. Static review only — it never resizes, suspends, or sets a limit."
-model = "gpt-5.4"
+model = "gpt-6-sol"
 model_reasoning_effort = "high"
 sandbox_mode = "read-only"
 

@@ -1,6 +1,6 @@
 name = "azure_cosmosdb_application_developer"
 description = "Specialized subagent for azure-cosmosdb-application-developer. Guide Azure Cosmos DB application development across NoSQL data modeling, partition-aware access patterns, point reads, query shape, SDK usage, transactional batch scope, and consistency-aware application behavior with explicit evidence-versus-inference handling."
-model = "gpt-5.4"
+model = "gpt-6-sol"
 model_reasoning_effort = "high"
 sandbox_mode = "read-only"
 

@@ -1,6 +1,6 @@
 name = "azure_observability_investigator"
 description = "Investigate Azure Monitor, Log Analytics, Application Insights, alerts, KQL evidence, telemetry gaps, and inference boundaries."
-model = "gpt-5.4"
+model = "gpt-6-sol"
 model_reasoning_effort = "high"
 sandbox_mode = "read-only"
 

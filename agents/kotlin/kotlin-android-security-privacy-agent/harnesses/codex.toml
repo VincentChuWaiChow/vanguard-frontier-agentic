@@ -1,6 +1,6 @@
 name = "kotlin_android_security_privacy_agent"
 description = "MASVS-aligned static review of Android app security and privacy posture: exported components and intent surfaces, deep-link/App Links validation, WebView exposure, cleartext-traffic and network-security-config, local storage and secrets, backup exposure, runtime-permission minimization, and PII in logs. Reads manifest, source, and sanitized config only."
-model = "gpt-5.4"
+model = "gpt-6-sol"
 model_reasoning_effort = "high"
 sandbox_mode = "read-only"
 

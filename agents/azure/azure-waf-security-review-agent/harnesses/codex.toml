@@ -1,6 +1,6 @@
 name = "azure_waf_security_review"
 description = "Review Azure workload security against Well-Architected security principles, Zero Trust, CIA, IAM, segmentation, data protection, threat detection, DevSecOps, and posture evidence."
-model = "gpt-5.4"
+model = "gpt-6-sol"
 model_reasoning_effort = "high"
 sandbox_mode = "read-only"
 

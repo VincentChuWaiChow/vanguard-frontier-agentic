@@ -1,6 +1,6 @@
 name = "hetzner_maestro_agent"
 description = "Router agent that classifies Hetzner Cloud tasks and delegates to the narrowest specialist for cost optimization, infrastructure review, capacity planning, firewall guard, or server lifecycle guard."
-model = "gpt-5.4"
+model = "gpt-6-sol"
 model_reasoning_effort = "high"
 sandbox_mode = "read-only"
 

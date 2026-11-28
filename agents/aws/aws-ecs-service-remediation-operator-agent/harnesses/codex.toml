@@ -1,6 +1,6 @@
 name = "aws_ecs_service_remediation_operator_agent"
 description = "Specialized subagent for aws-ecs-service-remediation-operator. Correct ECS/Fargate service definitions, task settings, deployment parameters, and environment configuration in-repo with bounded write access and no live service mutation by default."
-model = "gpt-5.4"
+model = "gpt-6-sol"
 model_reasoning_effort = "high"
 sandbox_mode = "workspace-write"
 

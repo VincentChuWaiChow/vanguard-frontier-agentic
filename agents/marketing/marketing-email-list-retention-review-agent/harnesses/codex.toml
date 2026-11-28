@@ -1,6 +1,6 @@
 name = "marketing_email_list_retention_review_agent"
 description = "Specialized subagent for marketing-email-list-retention-review. Reviews marketing email list segment metadata, consent-record completeness, suppression-list coverage, and data-retention schedules for GDPR, CASL, and CCPA deletion-right compliance."
-model = "gpt-5.4"
+model = "gpt-6-sol"
 model_reasoning_effort = "high"
 sandbox_mode = "read-only"
 

@@ -1,6 +1,6 @@
 name = "aws_ec2_compute_operations_steward_agent"
 description = "Specialized subagent for aws-ec2-compute-operations-steward. Review EC2, Auto Scaling, Launch Templates, AMIs, Systems Manager, Patch Manager, EBS, snapshots, health checks, instance refresh, lifecycle hooks, and fleet operations."
-model = "gpt-5.4"
+model = "gpt-6-sol"
 model_reasoning_effort = "high"
 sandbox_mode = "read-only"
 

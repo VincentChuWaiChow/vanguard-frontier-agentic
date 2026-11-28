@@ -1,6 +1,6 @@
 name = "huawei_load_balancer_traffic_engineer_agent"
 description = "Specialized subagent for huawei-load-balancer-traffic-engineer. Engineer and review Huawei Cloud ELB configurations — dedicated vs shared ELB type selection, HTTP/HTTPS/TCP/UDP listener protocols, health check configuration, WAF integration on ELB, backend server group routing, connection draining, and TLS policy enforcement on Dedicated ELB."
-model = "gpt-5.4"
+model = "gpt-6-sol"
 model_reasoning_effort = "high"
 sandbox_mode = "read-only"
 

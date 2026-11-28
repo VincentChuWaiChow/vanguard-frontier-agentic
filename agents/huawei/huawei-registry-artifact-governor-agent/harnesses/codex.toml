@@ -1,6 +1,6 @@
 name = "huawei_registry_artifact_governor_agent"
 description = "Specialized subagent for huawei-registry-artifact-governor. Govern Huawei Cloud SWR (Software Repository for Container) — image retention policy, vulnerability scanning via VSS (Vulnerability Scan Service) integration, namespace permission least privilege, cross-region image replication, and supply chain security posture."
-model = "gpt-5.4"
+model = "gpt-6-sol"
 model_reasoning_effort = "high"
 sandbox_mode = "read-only"
 

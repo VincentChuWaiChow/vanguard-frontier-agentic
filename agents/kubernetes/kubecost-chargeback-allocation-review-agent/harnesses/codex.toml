@@ -1,6 +1,6 @@
 name = "kubecost_chargeback_allocation_review_agent"
 description = "Specialized subagent for kubecost-chargeback-allocation-review. Review Kubecost and OpenCost deployments for cost allocation accuracy, label taxonomy completeness, shared cost model, idle attribution, budget alerts, API authentication, and savings recommendation hygiene."
-model = "gpt-5.4"
+model = "gpt-6-sol"
 model_reasoning_effort = "high"
 sandbox_mode = "read-only"
 

@@ -1,6 +1,6 @@
 name = "product_analytics_experimentation_agent"
 description = "Static-review subagent for product-analytics-experimentation. Verifies frontend analytics instrumentation and A/B experimentation setups for statistical validity, privacy-by-design tracking, event-schema correctness, and traceability from a UI change to a measurable business metric before ship."
-model = "gpt-5.4"
+model = "gpt-6-sol"
 model_reasoning_effort = "high"
 sandbox_mode = "read-only"
 

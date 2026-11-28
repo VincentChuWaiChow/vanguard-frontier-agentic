@@ -1,6 +1,6 @@
 name = "aws_bedrock_agent_security_governor_agent"
 description = "Specialized subagent for aws-bedrock-agent-security-governor. Review Amazon Bedrock agents, AgentCore, Guardrails, knowledge bases, action groups, memory, prompt-injection defenses, PII handling, observability, and least-privilege access."
-model = "gpt-5.4"
+model = "gpt-6-sol"
 model_reasoning_effort = "high"
 sandbox_mode = "read-only"
 

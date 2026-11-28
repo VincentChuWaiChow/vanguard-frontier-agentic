@@ -1,6 +1,6 @@
 name = "oci_cloud_guard_responder"
 description = "Specialized subagent for oci-cloud-guard-responder. Triage and govern OCI Cloud Guard problems, targets, responder recipes, detector findings, and security remediation safely. Use for Cloud Guard reviews, problem prioritization, remediation planning, and compliance evidence when OCI API evidence through the user’s configured read-only OCI MCP or official documentation fallback are needed."
-model = "gpt-5.4"
+model = "gpt-6-sol"
 model_reasoning_effort = "medium"
 sandbox_mode = "read-only"
 

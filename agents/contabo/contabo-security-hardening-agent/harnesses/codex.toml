@@ -1,6 +1,6 @@
 name = "contabo_security_hardening_agent"
 description = "Advisory agent for Contabo security posture: SSH key management via secret IDs, default user policy review, firewall configuration, OAuth2 credential hygiene, and x-request-id traceability enforcement."
-model = "gpt-5.4"
+model = "gpt-6-sol"
 model_reasoning_effort = "high"
 sandbox_mode = "read-only"
 

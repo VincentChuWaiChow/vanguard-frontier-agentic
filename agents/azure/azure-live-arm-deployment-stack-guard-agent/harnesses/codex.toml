@@ -1,6 +1,6 @@
 name = "azure_live_arm_deployment_stack_guard"
 description = "Specialized subagent for azure-live-arm-deployment-stack-guard. Guard ARM, Bicep, and Deployment Stack changes with what-if evidence, deny settings review, unmanaged-resource impact, and explicit approval before execute."
-model = "gpt-5.4"
+model = "gpt-6-sol"
 model_reasoning_effort = "high"
 sandbox_mode = "read-only"
 

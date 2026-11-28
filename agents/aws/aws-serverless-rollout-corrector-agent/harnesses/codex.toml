@@ -1,6 +1,6 @@
 name = "aws_serverless_rollout_corrector_agent"
 description = "Specialized subagent for aws-serverless-rollout-corrector. Patch serverless deployment definitions, Lambda rollout settings, event wiring, and alias/version configuration in-repo while keeping live rollout actions out of scope by default."
-model = "gpt-5.4"
+model = "gpt-6-sol"
 model_reasoning_effort = "high"
 sandbox_mode = "workspace-write"
 

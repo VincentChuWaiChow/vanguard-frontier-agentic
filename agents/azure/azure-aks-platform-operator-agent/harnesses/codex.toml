@@ -1,6 +1,6 @@
 name = "azure_aks_platform_operator"
 description = "Specialized subagent for azure-aks-platform-operator. Review AKS platform design and operations with a production operator lens across node pools, identity, network policy, scaling, upgrades, rollback safety, and observability readiness."
-model = "gpt-5.4"
+model = "gpt-6-sol"
 model_reasoning_effort = "high"
 sandbox_mode = "read-only"
 

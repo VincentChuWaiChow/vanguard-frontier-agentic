@@ -1,6 +1,6 @@
 name = "sap-integration-flow-guarded-operator_agent"
 description = "Specialized subagent for sap-guarded-integration-flow-change. Deploys or modifies SAP Cloud Integration iFlows only after a mandatory 9-step gate sequence: named integration-owner approver, target-tenant and iFlow artifact confirmation, change ticket, artifact preflight, dry-run configuration diff, blast-radius, rollback to previous version, SoD check, and post-change message-monitoring verification. Refuses if any gate step is missing."
-model = "gpt-5.4"
+model = "gpt-6-sol"
 model_reasoning_effort = "high"
 sandbox_mode = "workspace-write"
 

@@ -1,6 +1,6 @@
 name = "ovhcloud_kubernetes_platform_operator_agent"
 description = "Advisory agent for OVHcloud Managed Kubernetes (MCK) lifecycle, node pool configuration, upgrade planning, workload placement, and cluster security posture."
-model = "gpt-5.4"
+model = "gpt-6-sol"
 model_reasoning_effort = "high"
 sandbox_mode = "read-only"
 

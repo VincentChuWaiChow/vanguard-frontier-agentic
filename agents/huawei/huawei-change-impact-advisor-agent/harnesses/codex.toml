@@ -1,6 +1,6 @@
 name = "huawei_change_impact_advisor_agent"
 description = "Specialized subagent for huawei-change-impact-advisor. Pre-change blast radius analysis for Huawei Cloud — Organizations SCP cascade scope, IAM agency dependency chain, VPC route table and VPC Peering impact, GaussDB instance class change disruption, CCE node pool resize safety, and Enterprise Project boundary clarity."
-model = "gpt-5.4"
+model = "gpt-6-sol"
 model_reasoning_effort = "high"
 sandbox_mode = "read-only"
 

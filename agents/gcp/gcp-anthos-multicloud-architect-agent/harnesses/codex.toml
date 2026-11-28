@@ -1,6 +1,6 @@
 name = "gcp_anthos_multicloud_architect_agent"
 description = "Specialized subagent for gcp-anthos-multicloud-architect. Design and operate Anthos / GKE Enterprise fleet management, Config Management (GitOps with Policy Controller), multi-cloud Kubernetes across GCP, AWS, and Azure."
-model = "gpt-5.4"
+model = "gpt-6-sol"
 model_reasoning_effort = "high"
 sandbox_mode = "read-only"
 

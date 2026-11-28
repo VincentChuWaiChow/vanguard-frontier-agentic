@@ -1,6 +1,6 @@
 name = "oci_load_balancer_traffic_engineer"
 description = "Specialized subagent for oci-load-balancer-traffic-engineer. Design, review, and troubleshoot OCI Load Balancer and Network Load Balancer traffic paths, listeners, backend sets, certificates, health checks, logging, and failover. Use for L7/L4 traffic engineering and availability reviews."
-model = "gpt-5.4"
+model = "gpt-6-sol"
 model_reasoning_effort = "medium"
 sandbox_mode = "read-only"
 

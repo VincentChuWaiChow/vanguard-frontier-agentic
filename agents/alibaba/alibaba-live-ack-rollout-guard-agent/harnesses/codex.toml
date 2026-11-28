@@ -1,6 +1,6 @@
 name = "alibaba-live-ack-rollout-guard_agent"
 description = "Specialized subagent for alibaba-live-ack-rollout-guard. Gate ACK deployment mutations, node pool scaling, and cluster version upgrades against rollback posture and workload disruption budget before any production change."
-model = "gpt-5.4"
+model = "gpt-6-sol"
 model_reasoning_effort = "high"
 sandbox_mode = "workspace-write"
 

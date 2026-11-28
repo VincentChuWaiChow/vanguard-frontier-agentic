@@ -1,6 +1,6 @@
 name = "state_management_data_flow_agent"
 description = "Static-review subagent for state-management-data-flow. Reviews and designs client/server state boundaries, store shape, normalization, and re-render performance to prevent state-duplication bugs, stale-data incidents, and unnecessary re-render cascades."
-model = "gpt-5.4"
+model = "gpt-6-sol"
 model_reasoning_effort = "high"
 sandbox_mode = "read-only"
 

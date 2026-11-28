@@ -1,6 +1,6 @@
 name = "kotlin_gradle_build_engineering_agent"
 description = "Static review of Gradle build-graph quality and CI throughput for Kotlin/KMP projects: configuration-cache and build-cache correctness, task-graph/configuration-avoidance, kapt vs KSP annotation processing, and convention-plugin centralization. Reads Gradle build files and build-scan evidence only."
-model = "gpt-5.4"
+model = "gpt-6-sol"
 model_reasoning_effort = "high"
 sandbox_mode = "read-only"
 

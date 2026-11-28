@@ -1,6 +1,6 @@
 name = "python_data_access_transaction_agent"
 description = "Static review of Python database access and transactions (SQLAlchemy, Django ORM, DB-API): session and transaction scope, commit/rollback boundaries, N+1 and lazy-loading, connection-pool sizing, migration safety, and multi-tenancy scoping. Reads source, models, and migrations only; never connects to a database or runs a migration."
-model = "gpt-5.4"
+model = "gpt-6-sol"
 model_reasoning_effort = "high"
 sandbox_mode = "read-only"
 

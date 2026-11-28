@@ -1,6 +1,6 @@
 name = "oci_limits_capacity_planner"
 description = "Specialized subagent for oci-limits-capacity-planner. Review OCI service limits, quotas, capacity availability, regional subscriptions, and growth risk. Use before deployments, migrations, DR expansion, shape changes, OKE scaling, database scaling, or quota increase requests."
-model = "gpt-5.4"
+model = "gpt-6-sol"
 model_reasoning_effort = "medium"
 sandbox_mode = "read-only"
 

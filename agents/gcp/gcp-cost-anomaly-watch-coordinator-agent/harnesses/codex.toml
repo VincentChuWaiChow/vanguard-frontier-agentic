@@ -1,6 +1,6 @@
 name = "gcp_cost_anomaly_watch_coordinator_agent"
 description = "Specialized subagent for gcp-cost-anomaly-watch-coordinator. Detect and coordinate response to GCP cost anomalies — BigQuery on-demand query cost spikes ($5/TB scanned), Cloud Run scaling runaway, unattached Persistent Disks, idle GCE instances, budget alert → notification channel → remediation playbook."
-model = "gpt-5.4"
+model = "gpt-6-sol"
 model_reasoning_effort = "high"
 sandbox_mode = "read-only"
 

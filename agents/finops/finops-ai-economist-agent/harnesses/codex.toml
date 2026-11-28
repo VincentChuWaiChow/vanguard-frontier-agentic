@@ -1,6 +1,6 @@
 name = "finops-ai-economist_agent"
 description = "Specialized subagent for finops-ai-economist. Analyse AI workload economics across foundation-model providers, GPU instance families, and managed inference services. Compare $/M tokens, $/GPU-hour-utilized, $/inference, and training-vs-inference TCO across Anthropic, OpenAI, Google Vertex AI, AWS Bedrock, Azure OpenAI, and OCI Generative AI."
-model = "gpt-5.4"
+model = "gpt-6-sol"
 model_reasoning_effort = "high"
 sandbox_mode = "read-only"
 

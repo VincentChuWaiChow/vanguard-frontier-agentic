@@ -1,6 +1,6 @@
 name = "gcp_cloud_auth_advisor_agent"
 description = "Specialized subagent for gcp-cloud-auth-advisor. Advise on Google Cloud authentication and authorization patterns — ADC, service account best practices, Workload Identity Federation, human user auth, service-to-service auth, and anti-patterns like SA key downloads."
-model = "gpt-5.4"
+model = "gpt-6-sol"
 model_reasoning_effort = "high"
 sandbox_mode = "read-only"
 

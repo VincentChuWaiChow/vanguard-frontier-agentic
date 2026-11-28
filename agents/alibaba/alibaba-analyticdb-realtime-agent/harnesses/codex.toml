@@ -1,6 +1,6 @@
 name = "alibaba_analyticdb_realtime_agent"
 description = "Specialized subagent for alibaba-analyticdb-realtime. Operate AnalyticDB for MySQL/PostgreSQL, Hologres real-time analytics, and DAS (Database Autonomy Service) for real-time database diagnostics across Alibaba data services."
-model = "gpt-5.4"
+model = "gpt-6-sol"
 model_reasoning_effort = "high"
 sandbox_mode = "read-only"
 

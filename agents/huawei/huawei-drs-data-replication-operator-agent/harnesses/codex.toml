@@ -1,6 +1,6 @@
 name = "huawei_drs_data_replication_operator_agent"
 description = "Specialized subagent for huawei-drs-data-replication-operator. Plan and execute DRS migrations and real-time sync tasks, CDM batch ETL jobs, and DMS Kafka cluster operations with safe migration sequencing."
-model = "gpt-5.4"
+model = "gpt-6-sol"
 model_reasoning_effort = "high"
 sandbox_mode = "read-only"
 

@@ -1,6 +1,6 @@
 name = "alibaba_iac_change_safety_review_agent"
 description = "Specialized subagent for alibaba-iac-change-safety-review. Review Terraform and ROS (Resource Orchestration Service) changes targeting Alibaba Cloud — blast radius analysis, resource deletion detection, cross-stack dependency impact, Resource Directory scope, and rollback plan completeness."
-model = "gpt-5.4"
+model = "gpt-6-sol"
 model_reasoning_effort = "high"
 sandbox_mode = "read-only"
 

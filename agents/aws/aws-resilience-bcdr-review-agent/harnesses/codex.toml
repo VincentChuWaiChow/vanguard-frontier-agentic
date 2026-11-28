@@ -1,6 +1,6 @@
 name = "aws_resilience_bcdr_review_agent"
 description = "Specialized subagent for aws-resilience-bcdr-review. Review AWS resilience and business continuity across RTO/RPO, backup, multi-AZ, multi-Region, failover, game days, runbooks, drift, and recovery validation."
-model = "gpt-5.4"
+model = "gpt-6-sol"
 model_reasoning_effort = "high"
 sandbox_mode = "read-only"
 

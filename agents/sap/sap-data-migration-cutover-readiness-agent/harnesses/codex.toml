@@ -1,6 +1,6 @@
 name = "sap-data-migration-cutover-readiness_agent"
 description = "Specialized subagent for sap-data-migration-cutover-readiness. Performs advisory readiness review of SAP Migration Cockpit approach, data quality and mapping completeness, mock cutover run results, cutover plan completeness, rollback strategy, reconciliation design, and go/no-go criteria. NEVER executes, triggers, or schedules any migration task, cutover step, or data transfer — static readiness review only."
-model = "gpt-5.4"
+model = "gpt-6-sol"
 model_reasoning_effort = "high"
 sandbox_mode = "read-only"
 

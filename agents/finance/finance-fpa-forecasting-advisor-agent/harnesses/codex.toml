@@ -1,6 +1,6 @@
 name = "fpa-forecasting-advisor_agent"
 description = "Advise on FP&A workflows including driver-based budgeting, rolling forecasts, scenario and sensitivity analysis, zero-based budgeting (ZBB), long-range planning (LRP), budget-vs-actual variance analysis, integrated P&L/BS/CF modeling, and xP&A. Enterprise planning platforms: Anaplan, Adaptive Insights, Vena, IBM TM1, OneStream, Oracle EPM. US GAAP, IFRS, UK FRS 102. Advisory only."
-model = "gpt-5.4"
+model = "gpt-6-sol"
 model_reasoning_effort = "high"
 sandbox_mode = "read-only"
 

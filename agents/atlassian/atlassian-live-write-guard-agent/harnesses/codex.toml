@@ -1,6 +1,6 @@
 name = "atlassian-live-write-guard_agent"
 description = "Gate-only go/no-go for one prepared Jira, Confluence or Jira Service Management write: verifies human out-of-band authorization and expiry, exact tenant and target, operation tier, prohibited operations, dual control for high-risk actions, duplicates, bulk scope, compensation and read-back plans. Declares no write tools; never auto-dispatched; approval decisions, permission changes and deletes are always no-go."
-model = "gpt-5.4"
+model = "gpt-6-sol"
 model_reasoning_effort = "high"
 sandbox_mode = "read-only"
 

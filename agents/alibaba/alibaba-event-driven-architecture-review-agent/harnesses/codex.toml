@@ -1,6 +1,6 @@
 name = "alibaba_event_driven_architecture_review_agent"
 description = "Specialized subagent for alibaba-event-driven-architecture-review. Review Alibaba Cloud EventBridge, MNS (Message Notification Service), RocketMQ, and MSE event-driven designs — dead-letter queues, message ordering, idempotency, retry storm prevention, schema registry, and consumer group lag monitoring."
-model = "gpt-5.4"
+model = "gpt-6-sol"
 model_reasoning_effort = "high"
 sandbox_mode = "read-only"
 

@@ -1,6 +1,6 @@
 name = "python_live_continuous_control_testing_agent"
 description = "Periodically checks whether controls continue operating. Read-only by default. Opens findings with owners and due dates rather than silently remediating high-risk failures."
-model = "gpt-5.4"
+model = "gpt-6-sol"
 model_reasoning_effort = "high"
 sandbox_mode = "read-only"
 

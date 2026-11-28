@@ -1,6 +1,6 @@
 name = "d365_success_by_design_governance"
 description = "Specialized subagent for d365-success-by-design-governance. Review Dynamics 365 implementation governance against the Success by Design framework, enforcing phase gates, Solution Blueprint Review completion, fit-to-standard and fit-gap discipline, customization sprawl controls, and go-live readiness evidence."
-model = "gpt-5.4"
+model = "gpt-6-sol"
 model_reasoning_effort = "high"
 sandbox_mode = "read-only"
 

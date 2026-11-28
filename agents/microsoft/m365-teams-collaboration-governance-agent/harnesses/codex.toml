@@ -1,6 +1,6 @@
 name = "m365_teams_collaboration_governance"
 description = "Specialized subagent for m365-teams-collaboration-governance. Review Microsoft Teams collaboration and communications governance covering Teams and Microsoft 365 group lifecycle and sprawl, external access and guest sharing controls, sensitivity labels on Teams and groups, meeting and messaging policies, phone and voice governance, and app permission policies. Cert anchor MS-700 Teams Administrator. Static review and advisory only."
-model = "gpt-5.4"
+model = "gpt-6-sol"
 model_reasoning_effort = "high"
 sandbox_mode = "read-only"
 

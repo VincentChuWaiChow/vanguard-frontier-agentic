@@ -4423,12 +4423,13 @@ mod tests {
             assignments.is_some(),
             "catalog/model-assignments.json should load"
         );
-        // Every codex assignment carries a concrete model (seeded policy).
+        // Every codex assignment carries a concrete model: the committed policy's `all`-tier
+        // codex default (catalog/model-policy.json), which this agent does not override.
         let firebase = app
             .catalog
             .model_assignments_for_agent("gcp-firebase-developer-agent");
         assert!(firebase.iter().any(|a| a.harness == "codex"
-            && a.model.as_deref() == Some("gpt-5.4")
+            && a.model.as_deref() == Some("gpt-6-sol")
             && a.reasoning_effort.as_deref() == Some("high")));
     }
 

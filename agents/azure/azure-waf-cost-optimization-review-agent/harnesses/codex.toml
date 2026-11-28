@@ -1,6 +1,6 @@
 name = "azure_waf_cost_optimization_review"
 description = "Review Azure workload cost posture against Well-Architected cost principles, cost visibility, Advisor recommendations, commitments, rightsizing, tagging, and waste removal."
-model = "gpt-5.4"
+model = "gpt-6-sol"
 model_reasoning_effort = "high"
 sandbox_mode = "read-only"
 

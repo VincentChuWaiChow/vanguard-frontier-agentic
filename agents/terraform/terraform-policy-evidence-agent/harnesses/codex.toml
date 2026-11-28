@@ -1,6 +1,6 @@
 name = "terraform_policy_evidence_agent"
 description = "Turn a Terraform or OpenTofu change into an auditable control decision: which control the change touches, whether the policy that enforces it evaluates the plan or only the source, whether an exception is scoped and expiring, and what evidence artifact an auditor could actually read. Reads plans, policy code, and control mappings only."
-model = "gpt-5.4"
+model = "gpt-6-sol"
 model_reasoning_effort = "high"
 sandbox_mode = "read-only"
 

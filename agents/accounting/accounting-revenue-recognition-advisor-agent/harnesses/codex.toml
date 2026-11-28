@@ -1,6 +1,6 @@
 name = "accounting-revenue-recognition-advisor_agent"
 description = "Apply the ASC 606 / IFRS 15 five-step model to described revenue arrangements. Step-by-step advisory analysis with GAAP/IFRS paragraph citations, judgment areas, confidence scoring, and risk flags. Advisory only — never posts journal entries, never makes final accounting determinations."
-model = "gpt-5.4"
+model = "gpt-6-sol"
 model_reasoning_effort = "high"
 sandbox_mode = "read-only"
 

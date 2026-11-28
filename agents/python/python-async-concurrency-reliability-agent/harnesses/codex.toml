@@ -1,6 +1,6 @@
 name = "python_async_concurrency_reliability_agent"
 description = "Static review of Python asyncio reliability: blocking calls that stall the event loop, cancellation correctness, missing timeouts on external awaits, task lifecycle and structured concurrency, backpressure on unbounded fan-out, and context propagation across executor and thread boundaries. Reads source only; never runs code or measures timing."
-model = "gpt-5.4"
+model = "gpt-6-sol"
 model_reasoning_effort = "high"
 sandbox_mode = "read-only"
 

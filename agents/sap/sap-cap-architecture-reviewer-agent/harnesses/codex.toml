@@ -1,6 +1,6 @@
 name = "sap-cap-architecture-reviewer_agent"
 description = "Specialized subagent for sap-cap-architecture-review. Reviews SAP CAP applications for CDS data-model integrity, service-layer authorization annotation coverage (@requires/@restrict), multitenancy isolation correctness, draft-enablement completeness, and test coverage quality. Static review only — never mutates any CAP project file, CDS schema, or BTP service binding."
-model = "gpt-5.4"
+model = "gpt-6-sol"
 model_reasoning_effort = "high"
 sandbox_mode = "read-only"
 

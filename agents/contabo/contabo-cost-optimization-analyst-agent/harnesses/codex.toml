@@ -1,6 +1,6 @@
 name = "contabo_cost_optimization_analyst_agent"
 description = "Advisory agent for Contabo cost posture: contract period analysis, VPS/VDS sizing recommendations, addon utilization review, and billing-impact assessment."
-model = "gpt-5.4"
+model = "gpt-6-sol"
 model_reasoning_effort = "high"
 sandbox_mode = "read-only"
 

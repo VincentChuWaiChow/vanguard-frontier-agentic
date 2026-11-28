@@ -1,6 +1,6 @@
 name = "python_live_data_change_control_agent"
 description = "Governs migrations, backfills, pipeline reprocessing, and bounded data correction. Requires ownership, data classification, reconciliation evidence, and rollback evidence."
-model = "gpt-5.4"
+model = "gpt-6-sol"
 model_reasoning_effort = "high"
 sandbox_mode = "workspace-write"
 

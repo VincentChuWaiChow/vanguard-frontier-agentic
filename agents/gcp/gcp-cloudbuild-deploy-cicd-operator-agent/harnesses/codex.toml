@@ -1,6 +1,6 @@
 name = "gcp_cloudbuild_deploy_cicd_operator_agent"
 description = "Specialized subagent for gcp-cloudbuild-deploy-cicd-operator. Build and operate CI/CD pipelines using Cloud Build, Cloud Deploy delivery pipelines, Artifact Registry, SLSA provenance generation, and release gating with approval workflows."
-model = "gpt-5.4"
+model = "gpt-6-sol"
 model_reasoning_effort = "high"
 sandbox_mode = "read-only"
 

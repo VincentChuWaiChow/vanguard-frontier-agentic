@@ -104,6 +104,24 @@ Return a board outcome (`supported`, `conditional`, `blocked`, `indeterminate`) 
 """
 
 
+def codex_policy_default_lines(policy_path: Path) -> list[str]:
+    """First-generation Codex model lines from the policy's `all`-scope codex rule.
+
+    catalog/model-policy.json is the source of truth (npm run model-policy:apply rewrites these
+    lines anyway); reading it keeps a freshly generated adapter from pinning a stale model.
+    `auto` or an absent field emits nothing, matching what model-policy:apply leaves for auto.
+    """
+    with open(policy_path, encoding="utf-8") as fh:
+        rules = json.load(fh)["rules"]
+    rule = next((r for r in rules if r.get("scope") == "all" and r.get("harness") == "codex"), {})
+    lines = []
+    for key, toml_key in (("model", "model"), ("reasoning_effort", "model_reasoning_effort")):
+        value = rule.get(key)
+        if value and value != "auto":
+            lines.append(f'{toml_key} = "{value}"')
+    return lines
+
+
 def q(value: str) -> str:
     """Double-quoted scalar valid as YAML and as a TOML basic string (JSON escaping is a subset of both)."""
     return json.dumps(value, ensure_ascii=False)
@@ -195,7 +213,7 @@ def render_agent(agent: dict, board: dict, sources: dict[str, dict], existing: d
         # model-policy:apply removes them for `auto`, and that choice must survive regeneration.
         kept = codex_model_lines(existing["harnesses/codex.toml"])
     else:
-        kept = ['model = "gpt-5.4"', 'model_reasoning_effort = "high"']  # first generation only
+        kept = codex_policy_default_lines(ROOT / "catalog" / "model-policy.json")  # first generation only
     files["harnesses/codex.toml"] = (
         f'name = "{aid.replace("-", "_")}"\n'
         f'description = {q(agent["description"])}\n'

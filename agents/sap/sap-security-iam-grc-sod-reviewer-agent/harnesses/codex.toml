@@ -1,6 +1,6 @@
 name = "sap-security-iam-grc-sod-reviewer_agent"
 description = "Specialized subagent for sap-security-iam-grc-sod-review. Reviews SAP IAS/IPS configuration, XSUAA role collection assignments, GRC Access Control ruleset design, and Segregation of Duties exposure — flags SoD conflicts, excessive privilege, and identity trust misconfigurations. Escalates critical findings to security, HR, and legal. Static review only — never mutates any identity, role, or GRC object."
-model = "gpt-5.4"
+model = "gpt-6-sol"
 model_reasoning_effort = "high"
 sandbox_mode = "read-only"
 

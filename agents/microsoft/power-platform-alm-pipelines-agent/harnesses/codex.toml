@@ -1,6 +1,6 @@
 name = "power_platform_alm_pipelines"
 description = "Specialized subagent for power-platform-alm-pipelines. Review Power Platform application lifecycle management health: managed versus unmanaged solution posture, Power Platform Pipelines configuration and stage ordering, environment strategy across dev/test/prod, connection references and environment variables, Git source control integration, Solution Checker quality gates, and rollback readiness."
-model = "gpt-5.4"
+model = "gpt-6-sol"
 model_reasoning_effort = "high"
 sandbox_mode = "read-only"
 

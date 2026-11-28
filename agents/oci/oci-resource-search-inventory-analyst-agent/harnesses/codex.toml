@@ -1,6 +1,6 @@
 name = "oci_resource_search_inventory_analyst"
 description = "Specialized subagent for oci-resource-search-inventory-analyst. Build OCI resource inventories and dependency maps using Resource Search, compartments, tags, and cross-service discovery. Use for tenancy inventory, ownership gaps, orphan detection, migration scoping, and architecture evidence collection."
-model = "gpt-5.4"
+model = "gpt-6-sol"
 model_reasoning_effort = "medium"
 sandbox_mode = "read-only"
 

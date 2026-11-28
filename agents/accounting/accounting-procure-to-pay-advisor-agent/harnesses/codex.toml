@@ -1,6 +1,6 @@
 name = "accounting-procure-to-pay-advisor_agent"
 description = "Advise on procure-to-pay (P2P) accounting across US GAAP, IFRS, German HGB, JGAAP, India GST, and China VAT. PO matching (2/3/4-way), AP accruals (GRNI), early payment discounts, supply chain financing reclassification (IFRS IC 2020), VAT/GST input credit, procurement fraud controls. Advisory only."
-model = "gpt-5.4"
+model = "gpt-6-sol"
 model_reasoning_effort = "high"
 sandbox_mode = "read-only"
 

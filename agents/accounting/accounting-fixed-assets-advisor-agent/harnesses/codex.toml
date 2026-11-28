@@ -1,6 +1,6 @@
 name = "accounting-fixed-assets-advisor_agent"
 description = "Advise on fixed assets, depreciation, and impairment across US GAAP, IFRS, German HGB, JGAAP, CAS, and Ind AS. PP&E (ASC 360 / IAS 16), goodwill impairment (ASC 350 / IAS 36), intangibles and R&D (ASC 350/730 / IAS 38), revaluation model, componentisation, tax depreciation interaction. Advisory only."
-model = "gpt-5.4"
+model = "gpt-6-sol"
 model_reasoning_effort = "high"
 sandbox_mode = "read-only"
 

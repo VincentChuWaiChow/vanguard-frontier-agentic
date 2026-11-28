@@ -1,6 +1,6 @@
 name = "scaleway_network_architect_agent"
 description = "Advisory agent for Scaleway VPC design, security groups, Private Networks, Load Balancer configuration, placement group HA strategy, and multi-zone resilience patterns."
-model = "gpt-5.4"
+model = "gpt-6-sol"
 model_reasoning_effort = "high"
 sandbox_mode = "read-only"
 

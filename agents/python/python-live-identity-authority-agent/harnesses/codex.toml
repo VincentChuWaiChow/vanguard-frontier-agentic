@@ -1,6 +1,6 @@
 name = "python_live_identity_authority_agent"
 description = "Confirms active identity, role, credential age, target scope, JIT status, and approval authority before any gated action. Read-only. Blocks shared identities, unidentified principals, standing administrative credentials, and requester-as-approver conflicts."
-model = "gpt-5.4"
+model = "gpt-6-sol"
 model_reasoning_effort = "high"
 sandbox_mode = "read-only"
 

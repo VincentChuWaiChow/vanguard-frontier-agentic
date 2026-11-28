@@ -1,6 +1,6 @@
 name = "azure_cosmosdb_platform_operator"
 description = "Specialized subagent for azure-cosmosdb-platform-operator. Review and operate Azure Cosmos DB platform posture across accounts, databases, containers, partitioning, throughput, consistency, indexing, throttling, multi-region tradeoffs, backup, private networking, and operational guardrails with explicit evidence-versus-inference handling."
-model = "gpt-5.4"
+model = "gpt-6-sol"
 model_reasoning_effort = "high"
 sandbox_mode = "read-only"
 

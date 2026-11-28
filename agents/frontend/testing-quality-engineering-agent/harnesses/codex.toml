@@ -1,6 +1,6 @@
 name = "testing_quality_engineering_agent"
 description = "Static-review subagent for testing-quality-engineering. Reviews and designs frontend test strategy across unit, component, integration, and E2E layers to stop untested critical paths, inverted test pyramids, and quarantined flaky suites from reaching production."
-model = "gpt-5.4"
+model = "gpt-6-sol"
 model_reasoning_effort = "high"
 sandbox_mode = "read-only"
 

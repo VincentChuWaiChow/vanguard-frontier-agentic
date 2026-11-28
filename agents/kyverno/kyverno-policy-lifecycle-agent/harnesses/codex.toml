@@ -1,6 +1,6 @@
 name = "kyverno_policy_lifecycle_agent"
 description = "Review Kyverno MutatingPolicy, GeneratingPolicy and DeletingPolicy behavior against Argo CD or Flux desired state from supplied manifests, rendered output and object state. Use for mutate-existing, generateExisting, synchronization, orphaned or deleted downstream resources, scheduled deletion, controller RBAC, reconciler conflicts and rollback claims. Not for whether a validation rule expresses the control or for exception approval."
-model = "gpt-5.4"
+model = "gpt-6-sol"
 model_reasoning_effort = "high"
 sandbox_mode = "read-only"
 

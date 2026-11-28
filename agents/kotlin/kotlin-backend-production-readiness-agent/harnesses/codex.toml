@@ -1,6 +1,6 @@
 name = "kotlin_backend_production_readiness_agent"
 description = "Static review of production readiness for Ktor servers and the Kotlin-on-Spring coroutine surface: server lifecycle/monitoring events, Netty/CIO graceful-shutdown configuration, StatusPages typed error mapping, resource cleanup on shutdown, and correctly routing the coroutine-context-loss hazard behind suspend WebFlux handlers. Reads source and sanitized config only."
-model = "gpt-5.4"
+model = "gpt-6-sol"
 model_reasoning_effort = "high"
 sandbox_mode = "read-only"
 

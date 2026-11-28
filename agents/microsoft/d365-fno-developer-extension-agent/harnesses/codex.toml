@@ -1,6 +1,6 @@
 name = "d365_fno_developer_extension"
 description = "Specialized subagent for d365-fno-developer-extension. Review Dynamics 365 Finance & Operations developer and extension engineering work — X++ extensions, Chain of Command, extension models, deployable packages, Azure DevOps and LCS ALM, build and test automation, upgrade-safe customization, and performance. Enforces extension-only patterns, CoC correctness, upgrade safety, and package hygiene before production deployment."
-model = "gpt-5.4"
+model = "gpt-6-sol"
 model_reasoning_effort = "high"
 sandbox_mode = "read-only"
 

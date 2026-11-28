@@ -1,6 +1,6 @@
 name = "istio_upgrade_readiness_agent"
 description = "Assess an Istio source-to-target upgrade or downgrade using supplied inventory, installation configuration, release documentation and test evidence. Use for control/data-plane skew, canary revisions, Helm or istioctl transitions, CRD storage changes, extension compatibility, ambient components or rollback readiness. Produce a dependency plan and blockers; do not install, upgrade, restart, delete or assume the latest release."
-model = "gpt-5.4"
+model = "gpt-6-sol"
 model_reasoning_effort = "high"
 sandbox_mode = "read-only"
 

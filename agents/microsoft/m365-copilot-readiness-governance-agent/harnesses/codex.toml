@@ -1,6 +1,6 @@
 name = "m365_copilot_readiness_governance"
 description = "Specialized subagent for m365-copilot-readiness-governance. Review Microsoft 365 Copilot readiness and data-exposure governance against the Zero Trust 7-layer model. Covers oversharing assessment, SharePoint Advanced Management controls, Microsoft Purview sensitivity labels, DLP policy gaps, Microsoft Graph permission scope, connector and plugin risk, and user permissions to data."
-model = "gpt-5.4"
+model = "gpt-6-sol"
 model_reasoning_effort = "high"
 sandbox_mode = "read-only"
 

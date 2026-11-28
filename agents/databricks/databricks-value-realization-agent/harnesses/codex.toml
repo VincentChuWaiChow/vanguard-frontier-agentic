@@ -1,6 +1,6 @@
 name = "databricks_value_realization_agent"
 description = "Static review of whether a claimed Databricks business outcome is measurable at all, and only then what it is worth. Establishes pain, executive owner, a pre-change baseline, a leading metric, a lagging business KPI, the data required to compute both, the attribution limits, a measurement window, and a kill condition — and refuses to produce a number when the baseline does not exist. Never asserts a currency figure that is not derived from evidence the user supplied."
-model = "gpt-5.4"
+model = "gpt-6-sol"
 model_reasoning_effort = "high"
 sandbox_mode = "read-only"
 

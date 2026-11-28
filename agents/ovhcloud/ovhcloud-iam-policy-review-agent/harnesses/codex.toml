@@ -1,6 +1,6 @@
 name = "ovhcloud_iam_policy_review_agent"
 description = "Advisory agent for reviewing OVHcloud IAM policies, conditional access rules (IP, tag, expiration), identity groups, and URN-scoped permissions."
-model = "gpt-5.4"
+model = "gpt-6-sol"
 model_reasoning_effort = "high"
 sandbox_mode = "read-only"
 

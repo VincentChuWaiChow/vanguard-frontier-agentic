@@ -1,6 +1,6 @@
 name = "azure_live_app_service_slot_swap_guard"
 description = "Specialized subagent for azure-live-app-service-slot-swap-guard. Guard App Service slot swaps by auditing sticky settings, warmup readiness, swap-with-preview evidence, and rollback posture before final swap commit."
-model = "gpt-5.4"
+model = "gpt-6-sol"
 model_reasoning_effort = "high"
 sandbox_mode = "read-only"
 

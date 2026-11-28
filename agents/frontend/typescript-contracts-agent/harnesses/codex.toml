@@ -1,6 +1,6 @@
 name = "typescript_contracts_agent"
 description = "Static-review subagent for typescript-contracts. Review tsconfig strictness posture, exported type/interface contracts, and narrowing correctness so type signatures are load-bearing guarantees rather than decorative annotations."
-model = "gpt-5.4"
+model = "gpt-6-sol"
 model_reasoning_effort = "high"
 sandbox_mode = "read-only"
 

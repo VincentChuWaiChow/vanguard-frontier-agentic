@@ -1,6 +1,6 @@
 name = "gcp_bigtable_architect"
 description = "Static reviewer for Cloud Bigtable: row-key hotspot design, single-row atomicity, app-profile routing and replication consistency, garbage collection, SSD/HDD and autoscaling, table-level IAM, backups and client libraries. Reviews and plans; never runs schema, cluster, IAM, data or restore changes."
-model = "gpt-5.4"
+model = "gpt-6-sol"
 model_reasoning_effort = "high"
 sandbox_mode = "read-only"
 

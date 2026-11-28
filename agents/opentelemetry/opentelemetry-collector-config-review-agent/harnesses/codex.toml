@@ -1,6 +1,6 @@
 name = "opentelemetry_collector_config_review_agent"
 description = "Specialized subagent for opentelemetry-collector-config-review. Review OpenTelemetry Collector pipeline configuration — receiver/processor/exporter ordering, memory_limiter placement, batch processor tuning, exporter backend validation, Operator CRDs, and pipeline health metrics."
-model = "gpt-5.4"
+model = "gpt-6-sol"
 model_reasoning_effort = "high"
 sandbox_mode = "read-only"
 

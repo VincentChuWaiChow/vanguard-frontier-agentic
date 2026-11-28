@@ -1,6 +1,6 @@
 name = "terraform_supply_chain_integrity_agent"
 description = "Decide whether a Terraform or OpenTofu dependency may be trusted and whether the trust is actually enforced: provider source addresses and registry namespaces, `.terraform.lock.hcl` hash coverage across platforms, mirrors and network-restricted installation, and module source provenance. Reads dependency declarations, lock files, and CLI configuration only."
-model = "gpt-5.4"
+model = "gpt-6-sol"
 model_reasoning_effort = "high"
 sandbox_mode = "read-only"
 

@@ -1,6 +1,6 @@
 name = "azure_live_pim_jit_activation_guard"
 description = "Gate PIM eligible role activations with justification, ticket binding, MFA verification, approval evidence, and time-bound scope before activation."
-model = "gpt-5.4"
+model = "gpt-6-sol"
 model_reasoning_effort = "high"
 sandbox_mode = "read-only"
 

@@ -1,6 +1,6 @@
 name = "finops-kubernetes-rightsizer_agent"
 description = "Specialized subagent for finops-kubernetes-rightsizer. Produce pod request/limit recommendations from user-supplied p50/p95/p99 metrics, scan idle pods/nodes/PVs/LoadBalancers, evaluate Karpenter consolidation eligibility, and emit OpenCost-compatible allocation tables mapped to FOCUS columns. Read-only; never executes kubectl."
-model = "gpt-5.4"
+model = "gpt-6-sol"
 model_reasoning_effort = "high"
 sandbox_mode = "read-only"
 

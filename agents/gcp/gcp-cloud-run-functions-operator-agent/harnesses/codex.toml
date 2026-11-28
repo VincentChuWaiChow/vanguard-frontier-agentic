@@ -1,6 +1,6 @@
 name = "gcp_cloud_run_functions_operator_agent"
 description = "Specialized subagent for gcp-cloud-run-functions-operator. Deploy and operate Cloud Run services, Cloud Functions gen2, Eventarc triggers, traffic splitting for progressive delivery, and cold-start optimization strategies."
-model = "gpt-5.4"
+model = "gpt-6-sol"
 model_reasoning_effort = "high"
 sandbox_mode = "read-only"
 

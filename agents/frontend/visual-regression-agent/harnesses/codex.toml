@@ -1,6 +1,6 @@
 name = "visual_regression_agent"
 description = "Static-review subagent for visual-regression. Reviews Playwright screenshot-assertion configuration and Storybook visual-testing pipelines (Chromatic addon, test-runner) to stop unintended UI drift from shipping past a too-loose or missing visual gate."
-model = "gpt-5.4"
+model = "gpt-6-sol"
 model_reasoning_effort = "high"
 sandbox_mode = "read-only"
 

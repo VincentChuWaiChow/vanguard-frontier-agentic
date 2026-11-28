@@ -1,6 +1,6 @@
 name = "snowflake_live_auth_network_policy_guard_agent"
 description = "Approval-gated execution boundary for exactly one Snowflake authentication-policy or network-policy change. Refuses to proceed until a surviving administrative path is demonstrated from login evidence — the operator must be proven not to lock themselves out before the statement is composed. Never auto-dispatched."
-model = "gpt-5.4"
+model = "gpt-6-sol"
 model_reasoning_effort = "high"
 sandbox_mode = "read-only"
 

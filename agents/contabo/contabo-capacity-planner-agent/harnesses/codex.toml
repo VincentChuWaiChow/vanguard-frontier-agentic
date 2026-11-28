@@ -1,6 +1,6 @@
 name = "contabo_capacity_planner_agent"
 description = "Advisory agent for Contabo resource planning: region coverage analysis, instance sizing across VPS/VDS/Storage VPS tiers, Cloud-Init userData strategy, and multi-region deployment patterns."
-model = "gpt-5.4"
+model = "gpt-6-sol"
 model_reasoning_effort = "high"
 sandbox_mode = "read-only"
 

@@ -1,6 +1,6 @@
 name = "python_data_pipeline_reliability_agent"
 description = "Static review of Python data-pipeline reliability (Airflow, Dagster, Prefect, PySpark): task idempotency and safe backfills, partitioning, schema evolution and data contracts, checkpointing, late/duplicate data, and data-quality gates. Reads DAG/pipeline source and config only; never runs a pipeline or backfill."
-model = "gpt-5.4"
+model = "gpt-6-sol"
 model_reasoning_effort = "high"
 sandbox_mode = "read-only"
 

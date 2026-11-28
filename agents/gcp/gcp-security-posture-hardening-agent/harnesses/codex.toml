@@ -1,6 +1,6 @@
 name = "gcp_security_posture_hardening_agent"
 description = "Specialized subagent for gcp-security-posture-hardening. Review GCP security posture via Security Command Center findings, CIS GCP Benchmark gaps, org policy enforcement baseline, Assured Workloads controls, and CSPM recommendations."
-model = "gpt-5.4"
+model = "gpt-6-sol"
 model_reasoning_effort = "high"
 sandbox_mode = "read-only"
 

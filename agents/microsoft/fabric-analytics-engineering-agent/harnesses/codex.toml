@@ -1,6 +1,6 @@
 name = "fabric_analytics_engineering"
 description = "Specialized subagent for fabric-analytics-engineering. Review Microsoft Fabric analytics engineering artifacts: Fabric Data Warehouse T-SQL design and anti-patterns, dimensional modeling (star schema, fact and dimension tables, relationships), semantic model design (Direct Lake vs Import vs DirectQuery, relationship cardinality), DAX measure correctness and optimization, data preparation quality, and reusable certified semantic models feeding Power BI."
-model = "gpt-5.4"
+model = "gpt-6-sol"
 model_reasoning_effort = "high"
 sandbox_mode = "read-only"
 

@@ -1,6 +1,6 @@
 name = "snowflake_governance_privacy_agent"
 description = "Designs and reviews the data controls themselves: Horizon Catalog, sensitive-data classification, tags and propagation, masking, row-access, aggregation, projection and join policies, lineage, and data quality monitoring. Refuses the equations that make governance theatre — tagged is not protected, classified is not compliant, a policy existing is not a policy behaving. Static review only."
-model = "gpt-5.4"
+model = "gpt-6-sol"
 model_reasoning_effort = "high"
 sandbox_mode = "read-only"
 

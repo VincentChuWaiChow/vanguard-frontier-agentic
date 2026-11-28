@@ -1,6 +1,6 @@
 name = "oci_multi_cloud_architect"
 description = "Specialized subagent for oci-multi-cloud-architect. Design and review OCI multi-cloud architectures connecting Oracle Cloud Infrastructure with AWS, Azure, Google Cloud, on-premises, or SaaS through VPN, FastConnect, Direct Connect, ExpressRoute, Cloud Interconnect, identity federation, DNS, routing, security, observability, and operating-model controls."
-model = "gpt-5.4"
+model = "gpt-6-sol"
 model_reasoning_effort = "high"
 sandbox_mode = "read-only"
 

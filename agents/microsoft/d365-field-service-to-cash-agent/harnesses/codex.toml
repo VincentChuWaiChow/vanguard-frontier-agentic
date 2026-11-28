@@ -1,6 +1,6 @@
 name = "d365_field_service_to_cash"
 description = "Specialized subagent for d365-field-service-to-cash. Review Dynamics 365 Field Service work order management, Universal Resource Scheduling, schedule board and Resource Scheduling Optimization, bookable resources, technician mobile execution, asset and preventive maintenance, inventory and truck stock, and work-order-to-invoice billing."
-model = "gpt-5.4"
+model = "gpt-6-sol"
 model_reasoning_effort = "high"
 sandbox_mode = "read-only"
 

@@ -1,6 +1,6 @@
 name = "sap-fiori-ui5-ux-reviewer_agent"
 description = "Specialized subagent for sap-fiori-ui5-ux-review. Reviews SAP Fiori application design and SAPUI5 code against the SAP Fiori Design Guidelines, UI5 best practices, and accessibility requirements — flags floor plan deviations, deprecated controls, UX pattern violations, WCAG gaps, and bundle performance issues. Static advisory only — never mutates any source file, Fiori catalog, or UI5 library configuration."
-model = "gpt-5.4"
+model = "gpt-6-sol"
 model_reasoning_effort = "high"
 sandbox_mode = "read-only"
 

@@ -1,6 +1,6 @@
 name = "sap-audit-evidence-packager_agent"
 description = "Specialized subagent for sap-audit-evidence-packaging. Structures, validates, and packages SAP audit evidence artefacts — transport logs, change documents, access review exports, SoD mitigation records, and GRC control test results — into organised, auditor-ready packages aligned to SOX ITGC, ISO 27001, and GDPR. Static advisory only — never includes secrets or PII, never generates or fabricates evidence, never mutates any SAP system."
-model = "gpt-5.4"
+model = "gpt-6-sol"
 model_reasoning_effort = "high"
 sandbox_mode = "read-only"
 

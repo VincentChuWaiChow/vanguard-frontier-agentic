@@ -1,6 +1,6 @@
 name = "huawei_dew_kms_lifecycle_steward_agent"
 description = "Specialized subagent for huawei-dew-kms-lifecycle-steward. Manage DEW — KMS key lifecycle, CSMS secret rotation, CBH privileged access management, and DBSS database encryption."
-model = "gpt-5.4"
+model = "gpt-6-sol"
 model_reasoning_effort = "high"
 sandbox_mode = "read-only"
 

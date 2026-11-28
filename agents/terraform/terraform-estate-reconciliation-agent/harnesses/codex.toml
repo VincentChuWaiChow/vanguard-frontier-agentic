@@ -1,6 +1,6 @@
 name = "terraform_estate_reconciliation_agent"
 description = "Make the record match reality without destroying anything: classify drift and decide whether to adopt, revert, or accept it; bring unmanaged brownfield infrastructure under management via import blocks; and carry resource address changes with `moved` and `removed` blocks so a refactor is not read as a destroy. Reads plans, source, and sanitized inventories only."
-model = "gpt-5.4"
+model = "gpt-6-sol"
 model_reasoning_effort = "high"
 sandbox_mode = "read-only"
 

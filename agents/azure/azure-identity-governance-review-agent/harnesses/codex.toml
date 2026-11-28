@@ -1,6 +1,6 @@
 name = "azure_identity_governance_review"
 description = "Specialized subagent for azure-identity-governance-review. Review Microsoft Entra identity governance posture across PIM, access reviews, entitlement management, standing access, and ownership gaps with explicit evidence handling."
-model = "gpt-5.4"
+model = "gpt-6-sol"
 model_reasoning_effort = "high"
 sandbox_mode = "read-only"
 

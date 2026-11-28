@@ -1,6 +1,6 @@
 name = "cilium_network_policy_review_agent"
 description = "Specialized subagent for cilium-network-policy-review. Review CiliumNetworkPolicy, CiliumClusterwideNetworkPolicy, NetworkPolicy, ClusterMesh cross-cluster policy semantics, and egress gateway configuration for default-deny posture, L7 enforcement prerequisites, and exfiltration risk."
-model = "gpt-5.4"
+model = "gpt-6-sol"
 model_reasoning_effort = "high"
 sandbox_mode = "read-only"
 

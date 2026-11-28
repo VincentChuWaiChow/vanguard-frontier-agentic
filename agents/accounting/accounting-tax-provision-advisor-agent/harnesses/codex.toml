@@ -1,6 +1,6 @@
 name = "accounting-tax-provision-advisor_agent"
 description = "Advise on corporate income tax provision under ASC 740 (US GAAP) and IAS 12 (IFRS). Covers current vs. deferred tax, temporary and permanent differences, valuation allowance, uncertain tax positions (FIN 48 / IFRIC 23), Pillar Two GloBE (IAS 12.4A mandatory temporary exception vs. ASC 740 no exception), enacted vs. substantively enacted rates, ETR reconciliation, and local GAAP variants (HGB, JGAAP, CAS 18, Ind AS 12). Advisory only."
-model = "gpt-5.4"
+model = "gpt-6-sol"
 model_reasoning_effort = "high"
 sandbox_mode = "read-only"
 

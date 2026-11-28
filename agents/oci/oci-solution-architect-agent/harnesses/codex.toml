@@ -1,6 +1,6 @@
 name = "oci_solution_architect"
 description = "Specialized subagent for oci-solution-architect. Design, review, and stress-test Oracle Cloud Infrastructure solution architectures across identity, compartments, networking, compute, database, storage, observability, security, reliability, cost, and operations. Use when asked for OCI landing zones, target architectures, architecture review boards, migration designs, production readiness, or tradeoff decisions."
-model = "gpt-5.4"
+model = "gpt-6-sol"
 model_reasoning_effort = "high"
 sandbox_mode = "read-only"
 

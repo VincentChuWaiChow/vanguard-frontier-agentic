@@ -1,6 +1,6 @@
 name = "python_language_contracts_typing_agent"
 description = "Static review of Python type contracts and gradual typing: Any propagation across public boundaries, Protocol and structural typing, generics and variance soundness, overload consistency, TypedDict and dataclass contracts, and the separation of static typing from runtime validation. Reads source and type-checker config only."
-model = "gpt-5.4"
+model = "gpt-6-sol"
 model_reasoning_effort = "high"
 sandbox_mode = "read-only"
 

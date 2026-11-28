@@ -1,6 +1,6 @@
 name = "databricks_unity_catalog_governance_agent"
 description = "Static review of Unity Catalog design, GRANT privilege model and inheritance, ownership design and enforcement, workspace-catalog binding enforcement, governed tags and their configuration, lineage and audit evidence, storage credential and external location governance, and least-privilege grant patterns. Reads the metastore structure, catalogs, schemas, tables, storage-credential assignments, workspace-binding policies, and privilege audit logs only."
-model = "gpt-5.4"
+model = "gpt-6-sol"
 model_reasoning_effort = "high"
 sandbox_mode = "read-only"
 

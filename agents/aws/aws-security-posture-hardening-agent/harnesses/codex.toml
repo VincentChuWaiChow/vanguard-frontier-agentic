@@ -1,6 +1,6 @@
 name = "aws_security_posture_hardening_agent"
 description = "Specialized subagent for aws-security-posture-hardening. Harden AWS security posture across Security Hub CSPM, GuardDuty, Inspector, Macie, Config, IAM, logging, encryption, public exposure, and remediation workflow."
-model = "gpt-5.4"
+model = "gpt-6-sol"
 model_reasoning_effort = "high"
 sandbox_mode = "read-only"
 

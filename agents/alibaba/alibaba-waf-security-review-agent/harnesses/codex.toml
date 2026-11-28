@@ -1,6 +1,6 @@
 name = "alibaba_waf_security_review_agent"
 description = "Specialized subagent for alibaba-waf-security-review. Assess Alibaba Cloud workload security posture: RAM least-privilege, VPC isolation, KMS/HSM encryption, Cloud Security Center threat detection, ActionTrail audit, WAF/Anti-DDoS web protection, and Chinese regulatory compliance (MLPS 2.0, DSL, PIPL)."
-model = "gpt-5.4"
+model = "gpt-6-sol"
 model_reasoning_effort = "high"
 sandbox_mode = "read-only"
 

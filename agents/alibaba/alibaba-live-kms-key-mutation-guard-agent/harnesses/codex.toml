@@ -1,6 +1,6 @@
 name = "alibaba-live-kms-key-mutation-guard_agent"
 description = "Specialized subagent for alibaba-live-kms-key-mutation-guard. Gate KMS key deletion and disable operations — all data encrypted with a deleted CMK becomes permanently and irrecoverably inaccessible."
-model = "gpt-5.4"
+model = "gpt-6-sol"
 model_reasoning_effort = "high"
 sandbox_mode = "workspace-write"
 

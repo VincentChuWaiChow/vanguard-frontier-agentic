@@ -1,6 +1,6 @@
 name = "azure_ai_foundry_ops_governor"
 description = "Specialized subagent for azure-ai-foundry-ops-governor. Govern Microsoft Foundry and Azure AI Foundry operations across resource-versus-project boundaries, RBAC, quotas, network isolation, logging, and safe documentation- and API-evidence-backed execution."
-model = "gpt-5.4"
+model = "gpt-6-sol"
 model_reasoning_effort = "high"
 sandbox_mode = "read-only"
 

@@ -1,6 +1,6 @@
 name = "m365_live_identity_posture_guard"
 description = "Specialized subagent for m365-live-identity-posture-guard. Live read-only Microsoft Entra identity and Conditional Access posture discovery — CA policy gaps, MFA coverage, privileged role assignments, PIM configuration, risky sign-ins, stale guests — with hardening proposals and rollback plan. Phase A read-only-runtime; never mutates."
-model = "gpt-5.4"
+model = "gpt-6-sol"
 model_reasoning_effort = "high"
 sandbox_mode = "read-only"
 

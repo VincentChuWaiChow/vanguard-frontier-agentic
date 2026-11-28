@@ -1,6 +1,6 @@
 name = "php_maestro_agent"
 description = "PHP board router that classifies a task and dispatches to the narrowest specialist — PHP application security (unserialize/session/upload), Composer dependency supply-chain, PHP runtime version/EOL and OPcache/PHP-FPM hardening, or WordPress plugin/theme/REST/block security — never performing specialist review itself, capping parallel dispatch, and refusing live-mutation requests."
-model = "gpt-5.4"
+model = "gpt-6-sol"
 model_reasoning_effort = "high"
 sandbox_mode = "read-only"
 

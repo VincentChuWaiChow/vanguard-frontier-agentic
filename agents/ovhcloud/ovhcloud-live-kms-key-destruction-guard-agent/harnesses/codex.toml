@@ -1,6 +1,6 @@
 name = "ovhcloud_live_kms_key_destruction_guard_agent"
 description = "Approval-gated live-guard agent for OVHcloud KMS key version destruction: enforces usage audit, waiting period confirmation, and documented rollback plan before any destructive key operation."
-model = "gpt-5.4"
+model = "gpt-6-sol"
 model_reasoning_effort = "high"
 sandbox_mode = "workspace-write"
 

@@ -1,6 +1,6 @@
 name = "aws-live-ecs-rollout-guard_agent"
 description = "Specialized subagent for aws-live-ecs-rollout-guard. Guard live Amazon ECS and Fargate rollout actions with service targeting, deployment circuit breaker or alarm checks, rollback posture, and explicit approval before mutation."
-model = "gpt-5.4"
+model = "gpt-6-sol"
 model_reasoning_effort = "high"
 sandbox_mode = "workspace-write"
 

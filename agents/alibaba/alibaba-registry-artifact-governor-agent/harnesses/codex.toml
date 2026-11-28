@@ -1,6 +1,6 @@
 name = "alibaba_registry_artifact_governor_agent"
 description = "Specialized subagent for alibaba-registry-artifact-governor. Govern Alibaba Cloud Container Registry (ACR) — Enterprise Edition vs Personal Edition selection, image vulnerability scanning, namespace IAM least privilege, image retention policies, cross-region replication, and supply chain security posture."
-model = "gpt-5.4"
+model = "gpt-6-sol"
 model_reasoning_effort = "high"
 sandbox_mode = "read-only"
 

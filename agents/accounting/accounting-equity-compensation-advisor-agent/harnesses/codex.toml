@@ -1,6 +1,6 @@
 name = "accounting-equity-compensation-advisor_agent"
 description = "Advise on equity-based compensation accounting under ASC 718 and IFRS 2. Covers stock options, RSUs/PSUs, ESPPs, performance awards, fair value measurement models (Black-Scholes, lattice, Monte Carlo), vesting conditions, forfeitures, modifications, tax effects, and multi-jurisdiction rules. Advisory only."
-model = "gpt-5.4"
+model = "gpt-6-sol"
 model_reasoning_effort = "high"
 sandbox_mode = "read-only"
 

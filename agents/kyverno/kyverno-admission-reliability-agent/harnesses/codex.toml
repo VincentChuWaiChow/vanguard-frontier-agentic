@@ -1,6 +1,6 @@
 name = "kyverno_admission_reliability_agent"
 description = "Assess Kyverno admission reliability from supplied webhook configurations, policy failurePolicy and timeouts, replica and placement evidence, latency and error series and incident observations. Use for release envelopes, webhook timeouts, failurePolicy Fail versus Ignore, controller or registry degradation, and telling a correct policy denial from a webhook call error, an upstream API rejection or stale reports. Not for whether a rule expresses the control, exception approval or coverage claims."
-model = "gpt-5.4"
+model = "gpt-6-sol"
 model_reasoning_effort = "high"
 sandbox_mode = "read-only"
 

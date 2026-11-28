@@ -1,6 +1,6 @@
 name = "m365_identity_zero_trust"
 description = "Specialized subagent for m365-identity-zero-trust. Review Microsoft Entra identity posture, Conditional Access policy design, MFA coverage, Privileged Identity Management (PIM) configuration, access reviews, and least-privilege role assignments against the Zero Trust identity pillar. Static review and advisory only."
-model = "gpt-5.4"
+model = "gpt-6-sol"
 model_reasoning_effort = "high"
 sandbox_mode = "read-only"
 

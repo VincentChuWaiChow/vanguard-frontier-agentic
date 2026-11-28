@@ -169,7 +169,11 @@ class Layer1Structure(unittest.TestCase):
         self.assertNotIn("model", header(files["harnesses/codex.toml"]))
         # Only a brand-new adapter gets the initialization defaults.
         fresh = gen.render_agent(agent, board, sources, {})
-        self.assertIn('model = "gpt-5.4"', header(fresh["harnesses/codex.toml"]))
+        policy = json.loads((ROOT / "catalog/model-policy.json").read_text(encoding="utf-8"))
+        default = next(r for r in policy["rules"] if r["scope"] == "all" and r["harness"] == "codex")
+        self.assertIn(f'model = "{default["model"]}"\nmodel_reasoning_effort = "{default["reasoning_effort"]}"\n',
+                      header(fresh["harnesses/codex.toml"]))
+        self.assertNotIn("gpt-5.4", header(fresh["harnesses/codex.toml"]))
 
     def test_check_reports_agent_dirs_missing_from_board(self):
         gen = load(ROOT / "scripts/gen_kyverno_board.py", "gen_kyverno_board_orphans")

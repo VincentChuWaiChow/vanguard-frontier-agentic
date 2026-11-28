@@ -1,6 +1,6 @@
 name = "azure_waf_reliability_review"
 description = "Review Azure workload reliability against Well-Architected reliability principles, availability targets, zones/regions, health modeling, recovery, testing, and operational simplicity."
-model = "gpt-5.4"
+model = "gpt-6-sol"
 model_reasoning_effort = "high"
 sandbox_mode = "read-only"
 

@@ -1,6 +1,6 @@
 name = "aws_iac_patch_executor_agent"
 description = "Specialized subagent for aws-iac-patch-executor. Edit AWS IaC files such as CloudFormation, SAM, CDK config, and Terraform configuration in a bounded, non-destructive way with validation-first discipline."
-model = "gpt-5.4"
+model = "gpt-6-sol"
 model_reasoning_effort = "high"
 sandbox_mode = "workspace-write"
 

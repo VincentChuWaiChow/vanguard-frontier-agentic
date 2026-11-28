@@ -1,6 +1,6 @@
 name = "aws_private_ca_issuer_review_agent"
 description = "Specialized subagent for aws-private-ca-issuer-review. Review AWS ACM Private CA issuer configurations for cert-manager, covering CA hierarchy, template ARN scope, IRSA permissions, validity periods, CRL reachability, and cross-account usage."
-model = "gpt-5.4"
+model = "gpt-6-sol"
 model_reasoning_effort = "high"
 sandbox_mode = "read-only"
 

@@ -1,6 +1,6 @@
 name = "huawei_codearts_devops_operator_agent"
 description = "Specialized subagent for huawei-codearts-devops-operator. Build and operate CI/CD pipelines using Huawei CodeArts (CodeHub, Build, Deploy, TestPlan, Pipeline), SWR image lifecycle policies, deployment automation, and environment promotion with rollback gates."
-model = "gpt-5.4"
+model = "gpt-6-sol"
 model_reasoning_effort = "high"
 sandbox_mode = "read-only"
 

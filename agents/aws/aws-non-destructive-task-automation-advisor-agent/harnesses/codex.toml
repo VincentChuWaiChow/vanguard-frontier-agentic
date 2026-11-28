@@ -1,6 +1,6 @@
 name = "aws_non_destructive_task_automation_advisor_agent"
 description = "Specialized subagent for aws-non-destructive-task-automation-advisor. Design AWS-native, non-destructive automation for reporting, notification, evidence gathering, approvals, and workflow coordination using serverless and event-driven services."
-model = "gpt-5.4"
+model = "gpt-6-sol"
 model_reasoning_effort = "high"
 sandbox_mode = "read-only"
 

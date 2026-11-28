@@ -1,6 +1,6 @@
 name = "kubernetes_pod_spec_review_agent"
 description = "Specialized subagent for kubernetes-pod-spec-review. Review Pod, Deployment, and StatefulSet specs for probe correctness, resource QoS, securityContext posture, image pull policy, secret consumption, topology spread, and termination grace period."
-model = "gpt-5.4"
+model = "gpt-6-sol"
 model_reasoning_effort = "high"
 sandbox_mode = "read-only"
 

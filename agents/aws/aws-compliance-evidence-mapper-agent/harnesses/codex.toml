@@ -1,6 +1,6 @@
 name = "aws_compliance_evidence_mapper_agent"
 description = "Specialized subagent for aws-compliance-evidence-mapper. Map AWS controls, Security Hub findings, AWS Config conformance packs, Audit Manager assessments, evidence folders, manual evidence, and report gaps for audit readiness."
-model = "gpt-5.4"
+model = "gpt-6-sol"
 model_reasoning_effort = "high"
 sandbox_mode = "read-only"
 

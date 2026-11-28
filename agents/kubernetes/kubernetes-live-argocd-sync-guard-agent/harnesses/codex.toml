@@ -1,6 +1,6 @@
 name = "kubernetes-live-argocd-sync-guard_agent"
 description = "Specialized subagent for argocd-gitops-review. Guard live argocd CLI or kubectl operations on Argo CD Application, AppProject, and ApplicationSet resources, and sync-window modifications. Requires AppProject blast-radius assessment, sync identity review, and explicit approval before any production sync, AppProject mutation, or sync-window deletion."
-model = "gpt-5.4"
+model = "gpt-6-sol"
 model_reasoning_effort = "high"
 sandbox_mode = "workspace-write"
 

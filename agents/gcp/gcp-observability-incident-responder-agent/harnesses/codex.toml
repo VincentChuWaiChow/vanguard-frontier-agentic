@@ -1,6 +1,6 @@
 name = "gcp_observability_incident_responder_agent"
 description = "Specialized subagent for gcp-observability-incident-responder. Respond to incidents and set up observability using Cloud Monitoring, Cloud Logging, Error Reporting, Cloud Trace, and SLO burn rate alerting."
-model = "gpt-5.4"
+model = "gpt-6-sol"
 model_reasoning_effort = "high"
 sandbox_mode = "read-only"
 

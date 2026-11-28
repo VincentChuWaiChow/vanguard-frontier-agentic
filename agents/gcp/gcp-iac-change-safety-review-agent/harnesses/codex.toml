@@ -1,6 +1,6 @@
 name = "gcp_iac_change_safety_review_agent"
 description = "Specialized subagent for gcp-iac-change-safety-review. Review Terraform and Deployment Manager changes targeting GCP — blast radius analysis, destroy-operation detection, cross-project impact, state file conflicts, org policy drift, and rollback plan completeness."
-model = "gpt-5.4"
+model = "gpt-6-sol"
 model_reasoning_effort = "high"
 sandbox_mode = "read-only"
 

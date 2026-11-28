@@ -1,6 +1,6 @@
 name = "python_live_code_remediation_agent"
 description = "Creates a branch and pull request and runs approved isolated validation for a code/dependency remediation. Cannot merge, deploy, or weaken policy."
-model = "gpt-5.4"
+model = "gpt-6-sol"
 model_reasoning_effort = "high"
 sandbox_mode = "workspace-write"
 

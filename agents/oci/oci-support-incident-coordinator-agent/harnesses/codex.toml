@@ -1,6 +1,6 @@
 name = "oci_support_incident_coordinator"
 description = "Specialized subagent for oci-support-incident-coordinator. Coordinate OCI support incidents with evidence quality, severity discipline, resource scope, timelines, and escalation readiness. Use for support tickets, incident evidence packs, Oracle SR preparation, and post-incident follow-up."
-model = "gpt-5.4"
+model = "gpt-6-sol"
 model_reasoning_effort = "medium"
 sandbox_mode = "read-only"
 

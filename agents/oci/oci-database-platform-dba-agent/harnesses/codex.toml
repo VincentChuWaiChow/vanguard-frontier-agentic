@@ -1,6 +1,6 @@
 name = "oci_database_platform_dba"
 description = "Specialized subagent for oci-database-platform-dba. Operate as a ruthless OCI database platform DBA for DB systems, Autonomous Database, Exadata, backups, patching, performance triage, capacity, and IAM-scoped database operations. Use when work touches OCI Database service posture, discovery, troubleshooting, change review, or least-privilege access."
-model = "gpt-5.4"
+model = "gpt-6-sol"
 model_reasoning_effort = "high"
 sandbox_mode = "read-only"
 

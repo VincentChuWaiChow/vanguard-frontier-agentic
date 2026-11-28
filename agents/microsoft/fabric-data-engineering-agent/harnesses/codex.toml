@@ -1,6 +1,6 @@
 name = "fabric_data_engineering"
 description = "Specialized subagent for fabric-data-engineering. Review Microsoft Fabric data engineering artifacts: Lakehouse and OneLake design, medallion architecture, Spark notebooks and Spark job definitions, Data pipelines and Dataflows Gen2, Delta/Parquet storage and shortcuts, Real-Time Intelligence (eventstreams, KQL databases), Direct Lake source design, ingestion/orchestration, CU efficiency, and deployment pipelines/Git integration."
-model = "gpt-5.4"
+model = "gpt-6-sol"
 model_reasoning_effort = "high"
 sandbox_mode = "read-only"
 

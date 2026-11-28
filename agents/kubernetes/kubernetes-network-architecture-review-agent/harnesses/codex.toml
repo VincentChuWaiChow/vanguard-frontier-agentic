@@ -1,6 +1,6 @@
 name = "kubernetes_network_architecture_review_agent"
 description = "Specialized subagent for kubernetes-network-architecture-review. Review Kubernetes cluster network architecture: CNI and dataplane (kube-proxy mode, IPAM, MTU, encapsulation, dual-stack), Service surface (EndpointSlices, internalTrafficPolicy, externalTrafficPolicy, topology-aware routing), Ingress to Gateway API migration, CoreDNS and NodeLocal DNSCache, multi-cluster topology, egress topology, and connectivity troubleshooting."
-model = "gpt-5.4"
+model = "gpt-6-sol"
 model_reasoning_effort = "high"
 sandbox_mode = "read-only"
 

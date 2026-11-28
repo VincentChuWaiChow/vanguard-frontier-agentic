@@ -1,6 +1,6 @@
 name = "kyverno_migration_readiness_agent"
 description = "Assess Kyverno upgrades and policy-family migrations (legacy kyverno.io ClusterPolicy/Policy to policies.kyverno.io CEL types, CEL API version moves, Kyverno to native ValidatingAdmissionPolicy) from supplied versions, manifests, fixtures and parity results. Use for v1.19 to v1.20 readiness, parity diffs, cohort promotion, abort criteria and rollback constraints. Not for single-policy semantics, webhook incidents or exception approval."
-model = "gpt-5.4"
+model = "gpt-6-sol"
 model_reasoning_effort = "high"
 sandbox_mode = "read-only"
 

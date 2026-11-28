@@ -1,6 +1,6 @@
 name = "email_sender_authentication_review_agent"
 description = "Specialized subagent for email-sender-authentication-review. Reviews DNS sender-authentication records (SPF, DKIM, DMARC, BIMI) for a marketing domain to identify policy gaps exposing campaigns to rejection, spoofing, or inbox displacement."
-model = "gpt-5.4"
+model = "gpt-6-sol"
 model_reasoning_effort = "high"
 sandbox_mode = "read-only"
 

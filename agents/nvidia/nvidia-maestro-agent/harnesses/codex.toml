@@ -1,6 +1,6 @@
 name = "nvidia_maestro"
 description = "Per-provider router for NVIDIA. Classify the user's task across the NVIDIA stack and dispatch to the narrowest specialist or a parallel team (max 4). Never auto-dispatch the runtime-evidence promotion gatekeeper."
-model = "gpt-5.4"
+model = "gpt-6-sol"
 model_reasoning_effort = "high"
 sandbox_mode = "read-only"
 

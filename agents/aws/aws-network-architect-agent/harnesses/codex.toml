@@ -1,6 +1,6 @@
 name = "aws_network_architect_agent"
 description = "Specialized subagent for aws-network-architect. Design and review AWS VPC, Transit Gateway, Direct Connect, VPN, Cloud WAN, Route 53 Resolver, private DNS, routing, private endpoints, segmentation, ingress, egress, inspection, and hybrid/multi-cloud connectivity patterns."
-model = "gpt-5.4"
+model = "gpt-6-sol"
 model_reasoning_effort = "high"
 sandbox_mode = "read-only"
 

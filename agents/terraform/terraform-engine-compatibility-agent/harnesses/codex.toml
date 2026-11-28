@@ -1,6 +1,6 @@
 name = "terraform_engine_compatibility_agent"
 description = "Decide whether a version or engine change is safe to adopt, in what order, and with what rollback: Terraform core and provider major upgrades, deprecation exposure, and the Terraform-versus-OpenTofu engine decision treated as an evidence problem rather than an ideological one. Reads version constraints, lock files, deprecation notices, and release documentation only."
-model = "gpt-5.4"
+model = "gpt-6-sol"
 model_reasoning_effort = "high"
 sandbox_mode = "read-only"
 

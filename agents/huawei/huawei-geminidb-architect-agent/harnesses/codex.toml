@@ -1,6 +1,6 @@
 name = "huawei_geminidb_architect"
 description = "Static reviewer for Huawei Cloud GeminiDB: API selection (rejecting the end-of-support Mongo API), Cassandra API partition-key, row-size, deletion and sharding rules, strong writes without transactions, failure-headroom sizing, IAM and billing. Reviews and plans; never runs instance, schema, data, IAM or billing changes."
-model = "gpt-5.4"
+model = "gpt-6-sol"
 model_reasoning_effort = "high"
 sandbox_mode = "read-only"
 

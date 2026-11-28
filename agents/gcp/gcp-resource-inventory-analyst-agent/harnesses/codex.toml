@@ -1,6 +1,6 @@
 name = "gcp_resource_inventory_analyst_agent"
 description = "Specialized subagent for gcp-resource-inventory-analyst. Query Asset Inventory API for resource discovery, audit resource label/tag coverage, detect stale or orphaned resources, review change history, and build inventory reports across projects and folders."
-model = "gpt-5.4"
+model = "gpt-6-sol"
 model_reasoning_effort = "high"
 sandbox_mode = "read-only"
 

@@ -1,6 +1,6 @@
 name = "kotlin_serialization_wire_contract_agent"
 description = "Static review of kotlinx.serialization wire-contract safety and schema evolution: encodeDefaults/explicitNulls defaults, @EncodeDefault overrides, strict-decode unknown-key rejection, sealed-class closed polymorphism and class discriminators, and breaking-change detection for optional/required-field evolution. Reads source and serializer configuration only."
-model = "gpt-5.4"
+model = "gpt-6-sol"
 model_reasoning_effort = "high"
 sandbox_mode = "read-only"
 

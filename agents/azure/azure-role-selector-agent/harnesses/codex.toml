@@ -1,6 +1,6 @@
 name = "azure_role_selector"
 description = "Select least-privilege Azure RBAC roles by matching required actions, built-in roles, scope boundaries, privileged administrator risk, and custom-role fallback evidence."
-model = "gpt-5.4"
+model = "gpt-6-sol"
 model_reasoning_effort = "high"
 sandbox_mode = "read-only"
 

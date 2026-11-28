@@ -1,6 +1,6 @@
 name = "oci_waf_reliability_review"
 description = "Specialized subagent for oci-waf-reliability-review. Assess OCI workload reliability posture across AD/FD redundancy, load balancing, database HA, backup and replication, Full Stack DR orchestration, and RTO/RPO validation aligned to OCI Architecture Best Practices."
-model = "gpt-5.4"
+model = "gpt-6-sol"
 model_reasoning_effort = "high"
 sandbox_mode = "read-only"
 

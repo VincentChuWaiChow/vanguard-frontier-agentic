@@ -1,6 +1,6 @@
 name = "d365_commerce"
 description = "Specialized subagent for d365-commerce. Review Dynamics 365 Commerce omnichannel retail operations: Store Commerce POS, e-commerce storefront, call center channels, Commerce Scale Unit, channel management, product catalogs and assortments, pricing and discounts, inventory visibility, and store operations."
-model = "gpt-5.4"
+model = "gpt-6-sol"
 model_reasoning_effort = "high"
 sandbox_mode = "read-only"
 

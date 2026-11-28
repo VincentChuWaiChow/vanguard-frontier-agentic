@@ -1,6 +1,6 @@
 name = "angular_specialist_agent"
 description = "Static-review subagent for angular-specialist. Review Angular Signals-based reactive architecture, change-detection strategy, and SSR/hydration correctness."
-model = "gpt-5.4"
+model = "gpt-6-sol"
 model_reasoning_effort = "high"
 sandbox_mode = "read-only"
 

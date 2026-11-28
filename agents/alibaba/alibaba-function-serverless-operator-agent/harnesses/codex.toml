@@ -1,6 +1,6 @@
 name = "alibaba_function_serverless_operator_agent"
 description = "Specialized subagent for alibaba-function-serverless-operator. Deploy and operate Function Compute 3.0 (event triggers, cold start optimization, concurrency), SAE (Serverless App Engine) applications, and EDAS (Enterprise Distributed Application Service) microservice apps."
-model = "gpt-5.4"
+model = "gpt-6-sol"
 model_reasoning_effort = "high"
 sandbox_mode = "read-only"
 

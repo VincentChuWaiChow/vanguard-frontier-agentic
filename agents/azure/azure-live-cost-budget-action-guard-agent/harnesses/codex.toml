@@ -1,6 +1,6 @@
 name = "azure_live_cost_budget_action_guard"
 description = "Specialized subagent for azure-live-cost-budget-action-guard. Gate budget, cost alert, quota, and high-cost SKU actions against approved spend thresholds, forecast evidence, and explicit financial approval before mutation."
-model = "gpt-5.4"
+model = "gpt-6-sol"
 model_reasoning_effort = "high"
 sandbox_mode = "read-only"
 

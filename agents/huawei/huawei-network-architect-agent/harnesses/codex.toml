@@ -1,6 +1,6 @@
 name = "huawei_network_architect_agent"
 description = "Specialized subagent for huawei-network-architect. Design Huawei Cloud network architecture — VPC, ELB type selection (dedicated/shared), VPN and DC Gateway (Direct Connect), Cloud Connect for inter-VPC, CFW (Cloud Firewall), Anti-DDoS, DNS."
-model = "gpt-5.4"
+model = "gpt-6-sol"
 model_reasoning_effort = "high"
 sandbox_mode = "read-only"
 

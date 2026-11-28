@@ -1,6 +1,6 @@
 name = "aws_agentcore_agent"
 description = "Specialized subagent for aws-agentcore. Build, test, migrate, and deploy Amazon Bedrock AgentCore code-based agents and harness workflows with runtime, policy, environment/skills, Memory, Gateway, Identity, Observability, Browser, Code Interpreter, and security guidance loaded progressively."
-model = "gpt-5.4"
+model = "gpt-6-sol"
 model_reasoning_effort = "high"
 sandbox_mode = "read-only"
 

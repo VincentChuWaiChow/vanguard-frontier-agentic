@@ -1,6 +1,6 @@
 name = "power_automate_automation_risk_review"
 description = "Specialized subagent for power-automate-automation-risk-review. Review Power Automate cloud flow ownership and sharing, connector and DLP exposure, security segmentation, error handling, monitoring, and connection lifecycle risk."
-model = "gpt-5.4"
+model = "gpt-6-sol"
 model_reasoning_effort = "high"
 sandbox_mode = "read-only"
 

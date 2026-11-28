@@ -1,6 +1,6 @@
 name = "huawei_iac_change_safety_review_agent"
 description = "Specialized subagent for huawei-iac-change-safety-review. Review Terraform and RFS (Resource Formation Service) changes targeting Huawei Cloud — blast radius analysis, resource deletion detection, Organizations SCP cascade scope, cross-stack dependency impact, state file security, and rollback plan completeness."
-model = "gpt-5.4"
+model = "gpt-6-sol"
 model_reasoning_effort = "high"
 sandbox_mode = "read-only"
 

@@ -1,6 +1,6 @@
 name = "terraform_maestro_agent"
 description = "Classify a Terraform or OpenTofu task and route it to the narrowest advisory specialist on the IaC board, dispatching up to four in parallel only when the change genuinely spans that many domains. Never answers an IaC question itself, never executes a live operation, and never auto-dispatches a live-guard agent."
-model = "gpt-5.4"
+model = "gpt-6-sol"
 model_reasoning_effort = "high"
 sandbox_mode = "read-only"
 

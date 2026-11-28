@@ -1,6 +1,6 @@
 name = "huawei_waf_security_review_agent"
 description = "Specialized subagent for huawei-waf-security-review. Assess Huawei Cloud workload security posture via IAM SCP governance, VPC isolation, DEW key management, SecMaster SIEM/SOAR, and MLPS 2.0 technical controls."
-model = "gpt-5.4"
+model = "gpt-6-sol"
 model_reasoning_effort = "high"
 sandbox_mode = "read-only"
 

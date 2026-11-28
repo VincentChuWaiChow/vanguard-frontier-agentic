@@ -1,6 +1,6 @@
 name = "sap-live-readonly-landscape-discovery_agent"
 description = "Specialized subagent for sap-live-readonly-landscape-discovery. Lists, gets, describes, and exports BTP subaccounts, entitlements, destinations, integration flows, and role collections. Read-only — forbidden from any create, update, delete, deploy, assign, rotate, import, or trigger operation."
-model = "gpt-5.4"
+model = "gpt-6-sol"
 model_reasoning_effort = "high"
 sandbox_mode = "read-only"
 

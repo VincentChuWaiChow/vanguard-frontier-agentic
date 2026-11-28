@@ -1,6 +1,6 @@
 name = "microsoft_maestro"
 description = "Top-level Microsoft SaaS router. Classify the user's task, route to the right sub-maestro (m365-maestro-agent, d365-maestro-agent, power-platform-maestro-agent, copilot-governance-maestro-agent) or specialist. Refuses Azure IaaS tasks and deflects them to azure-maestro. Never auto-dispatch live-guard agents."
-model = "gpt-5.4"
+model = "gpt-6-sol"
 model_reasoning_effort = "high"
 sandbox_mode = "read-only"
 

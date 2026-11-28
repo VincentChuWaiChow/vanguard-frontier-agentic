@@ -1,6 +1,6 @@
 name = "oci_storage_backup_steward"
 description = "Specialized subagent for oci-storage-backup-steward. Operate as a ruthless OCI storage and backup steward for Object Storage, Block Volume, File Storage, backup policies, retention, replication, lifecycle rules, restore readiness, and IAM-scoped storage operations. Use when work touches OCI storage inventory, backup posture, recovery planning, or storage permissions."
-model = "gpt-5.4"
+model = "gpt-6-sol"
 model_reasoning_effort = "medium"
 sandbox_mode = "read-only"
 

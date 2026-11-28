@@ -1,6 +1,6 @@
 name = "huawei_migration_architect_agent"
 description = "Specialized subagent for huawei-migration-architect. Plan migrations to Huawei Cloud via MgC, SMS, DRS, and OMS. Design cutover sequencing with rollback safety gates."
-model = "gpt-5.4"
+model = "gpt-6-sol"
 model_reasoning_effort = "high"
 sandbox_mode = "read-only"
 
