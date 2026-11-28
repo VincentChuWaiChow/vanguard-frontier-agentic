@@ -1,0 +1,8 @@
+{
+  "base": "02-invoice-coverage-conditional.json",
+  "rule": "KYB-ARTIFACT",
+  "why": "The local decision ID must carry across drafts.",
+  "set": {
+    "artifacts.0.local_id": "KYV-DEC-0009"
+  }
+}

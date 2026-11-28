@@ -1,0 +1,7 @@
+{
+  "name": "003-happy-exception-governance",
+  "task": "A team asked for a PolicyException renewal; is the deviation still bounded and does expiresAt actually remove it?",
+  "tags": [
+    "happy-path"
+  ]
+}

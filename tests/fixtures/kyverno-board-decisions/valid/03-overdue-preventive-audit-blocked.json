@@ -1,0 +1,109 @@
+{
+  "schema_version": "1.0",
+  "decision_id": "KYV-DEC-0103",
+  "as_of": "2026-11-24T00:00:00Z",
+  "request_kind": "advisory",
+  "question": "Is the payments non-root control preventing root containers today?",
+  "intended_control": "payments-run-as-non-root (mandatory preventive)",
+  "target_cohort": "payments namespace",
+  "authorized_scope": "namespace payments",
+  "owner": "payments platform lead",
+  "deadline": "2026-10-15",
+  "consequence_class": "none",
+  "environment": {
+    "kubernetes_version": "1.33 (supplied)",
+    "kyverno_controller_version": "v1.20.0 (supplied)",
+    "kyverno_cli_version": "v1.20.0",
+    "served_apis": [
+      "policies.kyverno.io/v1 ValidatingPolicy"
+    ],
+    "policy_revision": "git:synthetic-0001"
+  },
+  "evidence": [
+    {
+      "id": "EV-1",
+      "type": "installed-config",
+      "locator": "sanitized ValidatingPolicy payments-run-as-non-root",
+      "captured_at": "2026-11-23T08:00:00Z",
+      "applies_to": "validationActions [Audit]",
+      "omits": "admission decisions"
+    },
+    {
+      "id": "EV-2",
+      "type": "population-report",
+      "locator": "PolicyReports payments",
+      "captured_at": "2026-11-23T08:00:00Z",
+      "applies_to": "3 fail results for root containers",
+      "omits": "denied writes"
+    }
+  ],
+  "lead": {
+    "agent": "kyverno-policy-review-agent",
+    "provisional_conclusion": "The control is detective only; root containers are admitted.",
+    "easiest_way_wrong": "A separate native ValidatingAdmissionPolicy with Deny covers the same requirement."
+  },
+  "referrals": [],
+  "challenge": null,
+  "claims": [
+    {
+      "id": "C-1",
+      "class": "observed",
+      "statement": "validationActions is [Audit] 40 days after the promotion deadline.",
+      "evidence_refs": [
+        "EV-1"
+      ]
+    },
+    {
+      "id": "C-2",
+      "class": "observed",
+      "statement": "Three existing pods fail the rule.",
+      "evidence_refs": [
+        "EV-2"
+      ]
+    },
+    {
+      "id": "C-3",
+      "class": "unknown",
+      "statement": "Whether another enforcement point denies root containers.",
+      "evidence_refs": [],
+      "smallest_settling_item": "installed ValidatingAdmissionPolicyBindings for payments"
+    }
+  ],
+  "tests": [
+    {
+      "id": "T-1",
+      "polarity": "negative",
+      "operation": "CREATE",
+      "expected": "root container denied",
+      "state": "proposed",
+      "observed": null,
+      "evidence_refs": []
+    }
+  ],
+  "outcome": "blocked",
+  "verdict": "blocked",
+  "conditions": [],
+  "dissent": [],
+  "business_exposure": "Root containers run in the revenue-critical payments namespace.",
+  "suggested_action": "Fix the three failing workloads, then promote to Deny through the live admission guard.",
+  "rollback_limits": "Promotion affects future writes only; the three existing pods are not rejected retroactively.",
+  "evidence_owner": "payments platform lead",
+  "execution": {
+    "authority": "none",
+    "handoff": null
+  },
+  "artifacts": [],
+  "limitations": [
+    "No admission traces supplied."
+  ],
+  "audit_assessment": {
+    "configured_action": "Audit",
+    "control_intent": "mandatory-preventive",
+    "rollout_stage": "approved-canary",
+    "deadline": "2026-10-15",
+    "owner": "payments platform lead",
+    "promotion_criteria": "zero fail results for 14 days",
+    "severity": "high",
+    "reasoning": "Mandatory preventive control left in Audit 40 days past its deadline; violations are admitted."
+  }
+}

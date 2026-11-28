@@ -1,0 +1,34 @@
+# Legitimate business operation that must succeed (invoice retry worker).
+apiVersion: v1
+kind: Pod
+metadata:
+  name: invoice-retry-worker
+  namespace: payments
+spec:
+  containers:
+    - name: worker
+      image: registry.example.invalid/payments/invoice-retry@sha256:0000000000000000000000000000000000000000000000000000000000000001
+      securityContext:
+        runAsNonRoot: true
+---
+# In-scope violation that must be caught.
+apiVersion: v1
+kind: Pod
+metadata:
+  name: invoice-batch-root
+  namespace: payments
+spec:
+  containers:
+    - name: batch
+      image: registry.example.invalid/payments/invoice-batch@sha256:0000000000000000000000000000000000000000000000000000000000000002
+---
+# Out-of-scope: adjacent namespace is not covered by this control (matchConditions).
+apiVersion: v1
+kind: Pod
+metadata:
+  name: catalog-root
+  namespace: catalog
+spec:
+  containers:
+    - name: app
+      image: registry.example.invalid/catalog/app@sha256:0000000000000000000000000000000000000000000000000000000000000003

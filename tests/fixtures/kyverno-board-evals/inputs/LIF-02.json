@@ -1,0 +1,12 @@
+{
+  "case_id": "LIF-02",
+  "prompt": "Is our Argo CD AppProject destination list too broad?",
+  "execution_context": {
+    "tier": "static-review",
+    "live_adapter_authorized": false,
+    "network_authorized": false
+  },
+  "supplied_evidence": {
+    "rendered-gitops": "AppProject"
+  }
+}

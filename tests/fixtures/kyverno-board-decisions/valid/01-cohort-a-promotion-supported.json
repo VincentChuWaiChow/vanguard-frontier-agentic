@@ -1,0 +1,188 @@
+{
+  "schema_version": "1.0",
+  "decision_id": "KYV-DEC-0101",
+  "as_of": "2026-11-24T00:00:00Z",
+  "request_kind": "advisory",
+  "question": "Can payments move cohort A to Deny in the next release without blocking legitimate invoice retries?",
+  "intended_control": "payments-run-as-non-root: every payments container runs as non-root (mandatory preventive)",
+  "target_cohort": "payments cohort A (invoice-api, invoice-retry-worker)",
+  "authorized_scope": "namespace payments, cohort A Deployments only",
+  "owner": "payments platform lead",
+  "deadline": "2026-12-15",
+  "consequence_class": "promotion-to-enforcement",
+  "environment": {
+    "kubernetes_version": "1.33 (supplied)",
+    "kyverno_controller_version": "v1.20.0 (supplied)",
+    "kyverno_cli_version": "v1.20.0",
+    "served_apis": [
+      "policies.kyverno.io/v1 ValidatingPolicy"
+    ],
+    "policy_revision": "git:synthetic-0001"
+  },
+  "evidence": [
+    {
+      "id": "EV-1",
+      "type": "manifest",
+      "locator": "policies/payments-run-as-non-root.yaml@git:synthetic-0001",
+      "captured_at": null,
+      "applies_to": "ValidatingPolicy v1, Audit canary",
+      "omits": "installed state"
+    },
+    {
+      "id": "EV-2",
+      "type": "controlled-test",
+      "locator": "disposable cluster run kv-ct-17 (Kyverno v1.20.0, Kubernetes 1.33)",
+      "captured_at": "2026-11-21T10:00:00Z",
+      "applies_to": "CREATE/UPDATE with real old/new pairs for cohort A objects",
+      "omits": "production traffic"
+    },
+    {
+      "id": "EV-3",
+      "type": "population-report",
+      "locator": "PolicyReports payments cohort A, 14-day canary window",
+      "captured_at": "2026-11-23T00:00:00Z",
+      "applies_to": "42 cohort A objects: 42 pass",
+      "omits": "denied writes; other cohorts"
+    },
+    {
+      "id": "EV-4",
+      "type": "runtime-metric",
+      "locator": "kyverno_admission_review_duration_seconds, payments pods CREATE, canary window",
+      "captured_at": "2026-11-23T00:00:00Z",
+      "applies_to": "p99 for pod CREATE",
+      "omits": "per-policy attribution"
+    }
+  ],
+  "lead": {
+    "agent": "kyverno-migration-readiness-agent",
+    "provisional_conclusion": "Cohort A can move to Deny: parity holds on CREATE and UPDATE and legitimate retries pass.",
+    "easiest_way_wrong": "A legitimate invoice retry path not represented in the controlled test (e.g. a debug sidecar) runs as root."
+  },
+  "referrals": [
+    {
+      "decision_id": "KYV-DEC-0101",
+      "to": "kyverno-admission-reliability-agent",
+      "evidence_refs": [
+        "EV-4"
+      ],
+      "return_question": "What is the p99 admission latency for pod CREATE in payments during the canary window?",
+      "status": "answered",
+      "answer": "p99 within the release envelope for the window supplied; baseline before the canary unknown."
+    }
+  ],
+  "challenge": {
+    "challenger": "kyverno-policy-review-agent",
+    "counterexample": "invoice-retry-worker restarted with an injected debug container that runs as root",
+    "result": "upheld"
+  },
+  "claims": [
+    {
+      "id": "C-1",
+      "class": "observed",
+      "statement": "All 42 cohort A objects report pass in the canary window.",
+      "evidence_refs": [
+        "EV-3"
+      ]
+    },
+    {
+      "id": "C-2",
+      "class": "derived",
+      "statement": "Deny would not have rejected any cohort A write observed in the window.",
+      "evidence_refs": [
+        "EV-2",
+        "EV-3"
+      ],
+      "rule": "pass under Audit implies admission under Deny for the same inputs"
+    },
+    {
+      "id": "C-3",
+      "class": "assumption",
+      "statement": "No debug containers are injected into cohort A in production.",
+      "evidence_refs": [],
+      "confirm_owner": "payments platform lead"
+    }
+  ],
+  "tests": [
+    {
+      "id": "T-1",
+      "polarity": "positive",
+      "operation": "CREATE",
+      "expected": "invoice-retry-worker admitted",
+      "state": "passed",
+      "observed": "admitted",
+      "evidence_refs": [
+        "EV-2"
+      ]
+    },
+    {
+      "id": "T-2",
+      "polarity": "negative",
+      "operation": "CREATE",
+      "expected": "invoice-batch-root denied with the policy message",
+      "state": "passed",
+      "observed": "denied: payments-run-as-non-root message",
+      "evidence_refs": [
+        "EV-2"
+      ]
+    },
+    {
+      "id": "T-3",
+      "polarity": "positive",
+      "operation": "UPDATE",
+      "expected": "invoice-api image bump with old/new pair admitted",
+      "state": "passed",
+      "observed": "admitted",
+      "evidence_refs": [
+        "EV-2"
+      ]
+    }
+  ],
+  "outcome": "supported",
+  "verdict": "approved",
+  "conditions": [],
+  "dissent": [],
+  "business_exposure": "Wrongly denied invoice retries delay revenue collection for cohort A.",
+  "suggested_action": "Promote cohort A to validationActions [Deny] in the next release via the live admission guard; keep other cohorts in Audit.",
+  "rollback_limits": "Reverting to Audit restores admission behavior for future writes only; writes denied during the window are not replayed.",
+  "evidence_owner": "payments platform lead",
+  "execution": {
+    "authority": "none",
+    "handoff": null
+  },
+  "artifacts": [
+    {
+      "system": "jira",
+      "kind": "operational-change",
+      "local_id": "KYV-DEC-0101",
+      "external_key": null,
+      "revision_checked": null,
+      "action": "draft",
+      "skill": "jira-ticket-authoring"
+    }
+  ],
+  "limitations": [
+    "Controlled-test equivalence to production is argued, not proven.",
+    "Baseline latency before the canary is unknown."
+  ],
+  "audit_assessment": {
+    "configured_action": "Audit",
+    "control_intent": "mandatory-preventive",
+    "rollout_stage": "approved-canary",
+    "deadline": "2026-12-15",
+    "owner": "payments platform lead",
+    "promotion_criteria": "zero fail results and parity on CREATE/UPDATE for 14 days",
+    "severity": "low",
+    "reasoning": "Approved, time-bounded canary inside its window with an owner and promotion criteria; Audit is intended here."
+  },
+  "parity": {
+    "corpus": "EV-2",
+    "operations": {
+      "CREATE": "agree",
+      "UPDATE": "agree",
+      "DELETE": "not-applicable"
+    },
+    "old_new_pair_evidence": [
+      "EV-2"
+    ]
+  }
+}

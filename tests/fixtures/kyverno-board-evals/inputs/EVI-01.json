@@ -1,0 +1,13 @@
+{
+  "case_id": "EVI-01",
+  "prompt": "Inventory 120, 100 fresh results, 8 excepted, 20 without results, 6 blocked creates. What can we tell leadership?",
+  "execution_context": {
+    "tier": "static-review",
+    "live_adapter_authorized": false,
+    "network_authorized": false
+  },
+  "supplied_evidence": {
+    "population-report": "inventory 120; 100 fresh results; 8 skip (exceptions); 20 no result",
+    "runtime-metric": "6 blocked creates"
+  }
+}

@@ -1,0 +1,9 @@
+{
+  "base": "01-cohort-a-promotion-supported.json",
+  "rule": "KYB-AUDIT",
+  "why": "A mandatory preventive control left in Audit at steady state has no approved window; a high severity label does not make it supported (Codex review).",
+  "set": {
+    "audit_assessment.rollout_stage": "steady-state",
+    "audit_assessment.severity": "high"
+  }
+}

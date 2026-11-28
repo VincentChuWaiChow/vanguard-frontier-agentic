@@ -28,6 +28,18 @@ run_guard_admission_policy() {
   # Kyverno CRDs may not exist in vanilla kind
   assert_cannot_or_skip delete clusterpolicies.kyverno.io "--as=$SA"
   assert_cannot delete validatingadmissionpolicies.admissionregistration.k8s.io "--as=$SA"
+  assert_cannot_or_skip delete validatingpolicies.policies.kyverno.io "--as=$SA"
+  assert_cannot_or_skip delete policyexceptions.policies.kyverno.io --all-namespaces "--as=$SA"
+
+  # Kyverno CEL policies whose controller writes or deletes other objects
+  assert_cannot_or_skip create mutatingpolicies.policies.kyverno.io "--as=$SA"
+  assert_cannot_or_skip create generatingpolicies.policies.kyverno.io "--as=$SA"
+  assert_cannot_or_skip create deletingpolicies.policies.kyverno.io "--as=$SA"
+  assert_cannot_or_skip create namespacedgeneratingpolicies.policies.kyverno.io --all-namespaces "--as=$SA"
+
+  # Policy reports are evidence — read only
+  assert_cannot_or_skip create policyreports.wgpolicyk8s.io --all-namespaces "--as=$SA"
+  assert_cannot_or_skip delete clusterpolicyreports.wgpolicyk8s.io "--as=$SA"
 
   # Kyverno control plane (namespace always exists once kyverno is installed;
   # patch deployments/configmaps check works even if kyverno is absent — returns no)
@@ -45,6 +57,18 @@ run_guard_admission_policy() {
   assert_can_or_skip create policies.kyverno.io --all-namespaces "--as=$SA"
   assert_can_or_skip create policyexceptions.kyverno.io --all-namespaces "--as=$SA"
   assert_can_or_skip list clusterpolicies.kyverno.io "--as=$SA"
+
+  # Kyverno CEL policies (policies.kyverno.io, Kyverno 1.20+)
+  assert_can_or_skip create validatingpolicies.policies.kyverno.io "--as=$SA"
+  assert_can_or_skip patch validatingpolicies.policies.kyverno.io "--as=$SA"
+  assert_can_or_skip patch imagevalidatingpolicies.policies.kyverno.io "--as=$SA"
+  assert_can_or_skip create namespacedvalidatingpolicies.policies.kyverno.io --all-namespaces "--as=$SA"
+  assert_can_or_skip create policyexceptions.policies.kyverno.io --all-namespaces "--as=$SA"
+  assert_can_or_skip list generatingpolicies.policies.kyverno.io "--as=$SA"
+
+  # Policy reports (wgpolicyk8s.io/v1alpha2 at Kyverno v1.20.0)
+  assert_can_or_skip list policyreports.wgpolicyk8s.io --all-namespaces "--as=$SA"
+  assert_can_or_skip list clusterpolicyreports.wgpolicyk8s.io "--as=$SA"
 
   # ValidatingAdmissionPolicy is GA in 1.30+, available in 1.28+ as beta
   assert_can create validatingadmissionpolicies.admissionregistration.k8s.io "--as=$SA"

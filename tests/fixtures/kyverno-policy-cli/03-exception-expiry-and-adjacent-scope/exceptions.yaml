@@ -1,0 +1,31 @@
+# Approved, time-bounded exception: expiresAt is in the future relative to any plausible run.
+apiVersion: policies.kyverno.io/v1
+kind: PolicyException
+metadata:
+  name: legacy-exporter-root-until-2099
+  namespace: payments
+spec:
+  expiresAt: "2099-01-01T00:00:00Z"
+  policyRefs:
+    - name: payments-run-as-non-root
+      kind: ValidatingPolicy
+  matchConditions:
+    - name: exact-workload
+      expression: "object.metadata.name == 'legacy-invoice-exporter'"
+---
+# Expired exception (expiresAt in the past).
+apiVersion: policies.kyverno.io/v1
+kind: PolicyException
+metadata:
+  name: ledger-sync-root-expired
+  namespace: payments
+  annotations:
+    description: "Temporary until 2026-03-31 per change record CHG-SYNTH-0001"
+spec:
+  expiresAt: "2020-01-01T00:00:00Z"
+  policyRefs:
+    - name: payments-run-as-non-root
+      kind: ValidatingPolicy
+  matchConditions:
+    - name: exact-workload
+      expression: "object.metadata.name == 'legacy-ledger-sync'"

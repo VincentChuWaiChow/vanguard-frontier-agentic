@@ -1,0 +1,33 @@
+{
+  "id": "KRT-UPDATE-PARITY",
+  "title": "UPDATE decisions with real old/new objects",
+  "status": "not-run",
+  "required_authorization": "Separate explicit environment and experiment authorization; no automated provisioning is included",
+  "preconditions": [
+    "Legacy-free v1.20.0 cluster with the CEL policy; a v1.19 cluster with the legacy policy for comparison"
+  ],
+  "procedure": [
+    "Create a Deployment with billing tier premium",
+    "Update the tier label in place",
+    "Record each engine's admission response"
+  ],
+  "acceptance": [
+    "Both engines deny the tier change with the policy message",
+    "Both admit an update that leaves the label unchanged"
+  ],
+  "capture": [
+    "Pinned Kubernetes, Kyverno controller and CLI versions with image digests",
+    "Sanitized before/after objects and admission responses",
+    "Timestamps and the target cluster identity",
+    "Positive and negative results",
+    "Cleanup evidence"
+  ],
+  "stop_conditions": [
+    "Unknown target identity",
+    "Any non-disposable cluster",
+    "Unapproved scope change",
+    "Loss of observability",
+    "Unexpected deletion outside the test namespace"
+  ],
+  "cleanup": "Delete only the disposable cluster or the named test namespaces; verify teardown."
+}

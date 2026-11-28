@@ -1,0 +1,49 @@
+{
+  "id": "kyverno-maestro-agent",
+  "name": "Kyverno Review Routing",
+  "type": "agent",
+  "provider": "kyverno",
+  "harnesses": [
+    "codex",
+    "copilot",
+    "claude-code",
+    "cursor",
+    "gemini",
+    "kiro"
+  ],
+  "summary": "Agent for kyverno-review-routing. Coordinate a Kyverno policy engineering board across admission design, admission reliability, exceptions, lifecycle reconciliation, migration and control evidence. Use when a request spans more than one decision or ownership is unclear. Route one lead per decision, bounded referrals with a decision ID and one return question, independent challenge for consequential promotions, and Jira or Confluence drafts through the existing Atlassian authoring skills. Never auto-dispatch the live admission guard or average away a blocker.",
+  "source_type": "original",
+  "official_docs": [
+    "https://github.com/kyverno/kyverno/releases/tag/v1.20.0",
+    "https://kyverno.io/docs/guides/reports/",
+    "https://istio.io/latest/docs/ambient/usage/waypoint/"
+  ],
+  "security_notes": "Static routing only. One lead per decision, no self-approval, no majority vote, minimal disclosure between specialists, and never auto-dispatch the live admission guard.",
+  "last_verified": "2026-11-24",
+  "path": "agents/kyverno/kyverno-maestro-agent",
+  "harness_variants": {
+    "codex": "agents/kyverno/kyverno-maestro-agent/harnesses/codex.toml",
+    "copilot": "agents/kyverno/kyverno-maestro-agent/harnesses/copilot.agent.md",
+    "claude-code": "agents/kyverno/kyverno-maestro-agent/harnesses/claude-code.agent.md",
+    "cursor": "agents/kyverno/kyverno-maestro-agent/harnesses/cursor.agent.md",
+    "gemini": "agents/kyverno/kyverno-maestro-agent/harnesses/gemini.agent.md",
+    "kiro-ide": "agents/kyverno/kyverno-maestro-agent/harnesses/kiro-ide.agent.md",
+    "kiro-cli": "agents/kyverno/kyverno-maestro-agent/harnesses/kiro-cli.agent.json"
+  },
+  "author": "github: VincentChuWaiChow",
+  "version": "0.1.0",
+  "companion_skills": [
+    "kyverno-review-routing",
+    "jira-ticket-authoring",
+    "confluence-document-authoring"
+  ],
+  "execution_tier": "static-review",
+  "lifecycle": "beta",
+  "routing_keywords": [
+    "Kyverno board",
+    "multi-decision Kyverno review",
+    "review routing",
+    "conflicting findings",
+    "promotion to Deny"
+  ]
+}

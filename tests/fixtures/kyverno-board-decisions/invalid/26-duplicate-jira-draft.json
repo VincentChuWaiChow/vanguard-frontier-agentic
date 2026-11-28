@@ -1,0 +1,16 @@
+{
+  "base": "02-invoice-coverage-conditional.json",
+  "rule": "KYB-ARTIFACT",
+  "why": "A repeated run must not create a second ticket.",
+  "set": {
+    "artifacts.2": {
+      "system": "jira",
+      "kind": "spike",
+      "local_id": "KYV-DEC-0001",
+      "external_key": null,
+      "revision_checked": null,
+      "action": "draft",
+      "skill": "jira-ticket-authoring"
+    }
+  }
+}

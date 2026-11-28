@@ -1,0 +1,65 @@
+# TEMPLATE: ImageValidatingPolicy starter (policies.kyverno.io/v1, loads and compiles with kyverno CLI v1.20.0).
+# Offline tests cannot reach a registry, so only the out-of-scope path is exercised here; verify the
+# signer and attestation paths in a disposable cluster (controlled-test) before promoting to Deny.
+apiVersion: policies.kyverno.io/v1
+kind: ImageValidatingPolicy
+metadata:
+  name: example-require-signed-provenance          # TEMPLATE: control name
+spec:
+  validationActions: [Deny]
+  # The ImageValidatingPolicy CRD states no failurePolicy default: always set it explicitly.
+  failurePolicy: Fail
+  webhookConfiguration:
+    timeoutSeconds: 15                              # registry calls happen inside this budget (1-30 s)
+  matchConstraints:
+    resourceRules:
+      - apiGroups: [""]
+        apiVersions: [v1]
+        operations: [CREATE, UPDATE]
+        resources: [pods]
+  matchImageReferences:
+    - glob: "registry.example.invalid/payments/*"   # TEMPLATE: every registry path the requirement covers
+  validationConfigurations:
+    mutateDigest: true
+    verifyDigest: true
+    required: true
+  # Private registries: list pull secrets here; the admitted Pod's imagePullSecrets are not used.
+  # credentials:
+  #   secrets: [registry-pull-secret]              # TEMPLATE
+  attestors:
+    - name: releasePipeline                         # must be a CEL identifier: no hyphens
+      cosign:
+        keyless:
+          identities:
+            # Strict subject and issuer: a broad subjectRegExp would admit other signers.
+            - subject: "https://ci.example.invalid/payments/release.yaml@refs/heads/main"  # TEMPLATE
+              issuer: "https://token.example.invalid"                                      # TEMPLATE
+  attestations:
+    - name: provenance
+      intoto:
+        type: "https://slsa.dev/provenance/v1"     # TEMPLATE: required predicate type
+  validations:
+    # Both checks cover init containers as well as containers: Kyverno v1.20.0 extracts a Pod's
+    # images.containers, images.initContainers and images.ephemeralContainers separately (each [] when
+    # absent), and `required: true` rejects any matched image that no verification call checked.
+    # Ephemeral containers arrive through the pods/ephemeralcontainers subresource, which
+    # resources: [pods] does not match, so they are not covered here.
+    # 1. The approved signer signed every container and init-container image.
+    - expression: >-
+        (images.containers + images.initContainers).map(image, verifyImageSignatures(image, [attestors.releasePipeline])).all(n, n > 0)
+      message: >-
+        example-require-signed-provenance: images must be signed by the release pipeline identity.
+        Rebuild through the release pipeline or ask the supply-chain owner.
+    # 2. A provenance attestation of the required type is signed by the same identity.
+    #    A signature check alone (rule 1) does not satisfy this requirement.
+    - expression: >-
+        (images.containers + images.initContainers).map(image, verifyAttestationSignatures(image, attestations.provenance, [attestors.releasePipeline])).all(n, n > 0)
+      message: >-
+        example-require-signed-provenance: images need a signed SLSA provenance attestation.
+        Rebuild through the release pipeline or ask the supply-chain owner.
+    # 3. OPTIONAL predicate-content check. UNVERIFIED payload path: published examples read fields at the
+    #    top level of extractPayload(...), while documentation describes in-toto predicate fields under
+    #    `.predicate`. Confirm against one known-good attestation in a disposable cluster, then enable.
+    # - expression: >-
+    #     (images.containers + images.initContainers).map(image, extractPayload(image, attestations.provenance).predicate.buildDefinition.buildType == "TEMPLATE").all(ok, ok)
+    #   message: "example-require-signed-provenance: provenance build type is not the approved builder."

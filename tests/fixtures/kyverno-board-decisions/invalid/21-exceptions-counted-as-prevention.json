@@ -1,0 +1,8 @@
+{
+  "base": "02-invoice-coverage-conditional.json",
+  "rule": "KYB-COVERAGE",
+  "why": "Exceptions are not demonstrated prevention.",
+  "set": {
+    "coverage.prevention_demonstrated": 14
+  }
+}

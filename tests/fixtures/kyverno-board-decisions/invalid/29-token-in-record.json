@@ -1,0 +1,8 @@
+{
+  "base": "02-invoice-coverage-conditional.json",
+  "rule": "KYB-SECRET",
+  "why": "Credentials never enter evidence.",
+  "set": {
+    "limitations.3": "kubeconfig token: abcdef0123456789"
+  }
+}

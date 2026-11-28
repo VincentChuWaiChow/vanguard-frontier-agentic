@@ -1,0 +1,10 @@
+{
+  "case_id": "EVI-03",
+  "prompt": "Are we compliant?",
+  "execution_context": {
+    "tier": "static-review",
+    "live_adapter_authorized": false,
+    "network_authorized": false
+  },
+  "supplied_evidence": {}
+}

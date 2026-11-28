@@ -1,0 +1,7 @@
+{
+  "name": "005-happy-migration-readiness",
+  "task": "Which cohort can migrate from legacy ClusterPolicy before the v1.20 upgrade, and what is our parity evidence?",
+  "tags": [
+    "happy-path"
+  ]
+}

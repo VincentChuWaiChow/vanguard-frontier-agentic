@@ -5,26 +5,24 @@
   <span style="font-size:3.5em">🛡️</span>
 </p>
 
-This folder contains Kyverno-focused skills curated for this marketplace.
+Companion skills for the Kyverno policy engineering board (see `agents/kyverno/README.md`). Each skill is a lean entry point with triggers, the nearest competing trigger, minimum inputs, read-only operating rules, a decision procedure, a reference-loading map and a response minimum. Topic references load on demand.
 
-## Local marketplace portfolio
+| Skill | Decision it settles |
+| --- | --- |
+| `kyverno-policy-review` | Does the rule separate legitimate from prohibited writes on the installed API family, and does an image rule verify the approved signer and claims? |
+| `kyverno-admission-reliability` | Can admission sustain the change and recover from dependency failures, and which hypothesis explains a failure? |
+| `kyverno-exception-governance` | Is a deviation necessary, bounded to its approval, and verifiably removed? |
+| `kyverno-policy-lifecycle` | Will mutate, generate or scheduled delete converge with other reconcilers, and what remains after reversal? |
+| `kyverno-migration-readiness` | Which cohorts can move between policy families or releases with behavior preserved? |
+| `kyverno-control-evidence` | What coverage and impact can the evidence support, for which population and window? |
+| `kyverno-review-routing` | Who owns each decision, and what evidence would settle disagreement? |
 
-This folder contains **1** local Kyverno skill:
+## Release scope
 
-- `kyverno-policy-review`
+Content is pinned to Kyverno v1.20.0, the release that deleted the legacy `kyverno.io` policy engine. At that tag the `policies.kyverno.io` CRDs serve v1, v1beta1 and v1alpha1, with v1beta1 as the storage version. Legacy ClusterPolicy guidance applies only to releases before v1.20.
 
-## Portfolio posture
+## Shared evidence and sources
 
-Kyverno skills for evidence-backed admission policy review across `ValidatingPolicy`, `MutatingPolicy`, `GeneratingPolicy`, `DeletingPolicy`, and `ImageValidatingPolicy` — the stable `policies.kyverno.io/v1` API surface.
+`references/evidence-vocabulary.md` (evidence types, claim classes, outcome-to-verdict mapping) and `references/evidence-ledger.md` (only the source rows that skill cites) are generated into every skill from `scripts/kyverno_data/`, so each skill works after an isolated export. Edit `scripts/kyverno_data/`, then run `python3 scripts/gen_kyverno_board.py`.
 
-These skills are intentionally conservative:
-
-- prefer `kubectl get policies.kyverno.io -A -o yaml` for live policy state grounding before any review
-- treat `failureAction: Audit` in production as a critical finding — policy violations become silent
-- treat `PolicyException` resources as audit-required escalation paths — every exception is a documented bypass
-- challenge any policy with `background: false` and no admission match — the policy never runs
-- prefer policies that compile to native `ValidatingAdmissionPolicy` (CEL) when complexity allows — fewer moving parts than the Kyverno controller
-- challenge `ImageValidatingPolicy` with `verifyImages` skipped on CVE-only images — supply-chain attestation must remain
-- use official Kyverno documentation (kyverno.io) for policy syntax, CEL expressions, and ValidatingAdmissionPolicy generation
-
-Run `npm run validate` after changing cataloged Kyverno skills.
+Run `npm run validate` and `npm run validate:kyverno-board` after changing these skills.

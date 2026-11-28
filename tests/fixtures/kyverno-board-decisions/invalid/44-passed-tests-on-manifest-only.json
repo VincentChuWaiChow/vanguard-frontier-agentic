@@ -1,0 +1,16 @@
+{
+  "base": "01-cohort-a-promotion-supported.json",
+  "rule": "KYB-TESTSTATE",
+  "why": "A manifest declares intent; it cannot show a passed test (Codex review).",
+  "set": {
+    "tests.0.evidence_refs": [
+      "EV-1"
+    ],
+    "tests.1.evidence_refs": [
+      "EV-1"
+    ],
+    "tests.2.evidence_refs": [
+      "EV-1"
+    ]
+  }
+}

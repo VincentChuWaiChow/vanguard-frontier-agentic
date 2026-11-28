@@ -1,0 +1,13 @@
+{
+  "case_id": "MAE-06",
+  "prompt": "Kyverno 1.21 docs say X, the 1.20 CRD says Y, and we have no controller evidence. Can we enable the feature?",
+  "execution_context": {
+    "tier": "static-review",
+    "live_adapter_authorized": false,
+    "network_authorized": false
+  },
+  "supplied_evidence": {
+    "documentation": "conflicting statements",
+    "installed-config": null
+  }
+}

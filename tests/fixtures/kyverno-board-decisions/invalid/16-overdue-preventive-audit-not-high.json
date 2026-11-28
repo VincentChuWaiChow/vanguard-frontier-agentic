@@ -1,0 +1,8 @@
+{
+  "base": "03-overdue-preventive-audit-blocked.json",
+  "rule": "KYB-AUDIT",
+  "why": "Overdue mandatory preventive Audit is a high-severity defect.",
+  "set": {
+    "audit_assessment.severity": "medium"
+  }
+}

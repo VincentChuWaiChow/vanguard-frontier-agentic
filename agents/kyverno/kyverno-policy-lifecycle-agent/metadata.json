@@ -1,0 +1,52 @@
+{
+  "id": "kyverno-policy-lifecycle-agent",
+  "name": "Kyverno Policy Lifecycle",
+  "type": "agent",
+  "provider": "kyverno",
+  "harnesses": [
+    "codex",
+    "copilot",
+    "claude-code",
+    "cursor",
+    "gemini",
+    "kiro"
+  ],
+  "summary": "Agent for kyverno-policy-lifecycle. Review Kyverno MutatingPolicy, GeneratingPolicy and DeletingPolicy behavior against Argo CD or Flux desired state from supplied manifests, rendered output and object state. Use for mutate-existing, generateExisting, synchronization, orphaned or deleted downstream resources, scheduled deletion, controller RBAC, reconciler conflicts and rollback claims. Not for whether a validation rule expresses the control or for exception approval.",
+  "source_type": "original",
+  "official_docs": [
+    "https://kyverno.io/docs/policy-types/generating-policy/",
+    "https://github.com/kyverno/kyverno/blob/v1.20.0/config/crds/policies.kyverno.io/policies.kyverno.io_generatingpolicies.yaml",
+    "https://kyverno.io/docs/policy-types/mutating-policy/",
+    "https://kyverno.io/docs/policy-types/deleting-policy/"
+  ],
+  "security_notes": "Static review only. DeletingPolicy is destructive and mutateExisting can rewrite every matching object; removing a policy does not restore modified or deleted data. Never run generators, cleanup or syncs.",
+  "last_verified": "2026-11-24",
+  "path": "agents/kyverno/kyverno-policy-lifecycle-agent",
+  "harness_variants": {
+    "codex": "agents/kyverno/kyverno-policy-lifecycle-agent/harnesses/codex.toml",
+    "copilot": "agents/kyverno/kyverno-policy-lifecycle-agent/harnesses/copilot.agent.md",
+    "claude-code": "agents/kyverno/kyverno-policy-lifecycle-agent/harnesses/claude-code.agent.md",
+    "cursor": "agents/kyverno/kyverno-policy-lifecycle-agent/harnesses/cursor.agent.md",
+    "gemini": "agents/kyverno/kyverno-policy-lifecycle-agent/harnesses/gemini.agent.md",
+    "kiro-ide": "agents/kyverno/kyverno-policy-lifecycle-agent/harnesses/kiro-ide.agent.md",
+    "kiro-cli": "agents/kyverno/kyverno-policy-lifecycle-agent/harnesses/kiro-cli.agent.json"
+  },
+  "author": "github: VincentChuWaiChow",
+  "version": "0.1.0",
+  "companion_skills": [
+    "kyverno-policy-lifecycle"
+  ],
+  "execution_tier": "static-review",
+  "lifecycle": "beta",
+  "routing_keywords": [
+    "MutatingPolicy",
+    "GeneratingPolicy",
+    "DeletingPolicy",
+    "mutateExisting",
+    "generateExisting",
+    "synchronize",
+    "downstream",
+    "reconciler conflict",
+    "scheduled deletion"
+  ]
+}

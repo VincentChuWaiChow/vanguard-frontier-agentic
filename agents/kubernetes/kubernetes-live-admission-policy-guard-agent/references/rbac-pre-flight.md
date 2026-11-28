@@ -68,6 +68,16 @@ kubectl auth can-i patch validatingwebhookconfigurations.admissionregistration.k
 # Delete on policies — rollback is via apply -f baseline
 kubectl auth can-i delete clusterpolicies.kyverno.io --as=$SA
 kubectl auth can-i delete validatingadmissionpolicies.admissionregistration.k8s.io --as=$SA
+kubectl auth can-i delete validatingpolicies.policies.kyverno.io --as=$SA
+kubectl auth can-i delete policyexceptions.policies.kyverno.io --all-namespaces --as=$SA
+# Kyverno CEL policies whose controller writes or deletes other objects — never written by this guard
+kubectl auth can-i create mutatingpolicies.policies.kyverno.io --as=$SA
+kubectl auth can-i create generatingpolicies.policies.kyverno.io --as=$SA
+kubectl auth can-i create deletingpolicies.policies.kyverno.io --as=$SA
+kubectl auth can-i create namespacedgeneratingpolicies.policies.kyverno.io --all-namespaces --as=$SA
+# Policy reports are evidence — read only, never written or deleted by this guard
+kubectl auth can-i create policyreports.wgpolicyk8s.io --all-namespaces --as=$SA
+kubectl auth can-i delete clusterpolicyreports.wgpolicyk8s.io --as=$SA
 # Kyverno control plane
 kubectl auth can-i patch deployments -n kyverno --as=$SA
 kubectl auth can-i patch configmaps -n kyverno --as=$SA
@@ -82,6 +92,16 @@ kubectl auth can-i create policies.kyverno.io --all-namespaces --as=$SA
 kubectl auth can-i create policyexceptions.kyverno.io --all-namespaces --as=$SA
 kubectl auth can-i create validatingadmissionpolicies.admissionregistration.k8s.io --as=$SA
 kubectl auth can-i list clusterpolicies.kyverno.io --as=$SA
+# Kyverno CEL policies (policies.kyverno.io, Kyverno 1.20+)
+kubectl auth can-i create validatingpolicies.policies.kyverno.io --as=$SA
+kubectl auth can-i patch validatingpolicies.policies.kyverno.io --as=$SA
+kubectl auth can-i patch imagevalidatingpolicies.policies.kyverno.io --as=$SA
+kubectl auth can-i create namespacedvalidatingpolicies.policies.kyverno.io --all-namespaces --as=$SA
+kubectl auth can-i create policyexceptions.policies.kyverno.io --all-namespaces --as=$SA
+kubectl auth can-i list generatingpolicies.policies.kyverno.io --as=$SA
+# Policy reports (wgpolicyk8s.io/v1alpha2 at Kyverno v1.20.0)
+kubectl auth can-i list policyreports.wgpolicyk8s.io --all-namespaces --as=$SA
+kubectl auth can-i list clusterpolicyreports.wgpolicyk8s.io --as=$SA
 ```
 
 Every must-not row must print `no`. Every must-be row must print `yes`. Any deviation: refuse and tell the operator which line failed.

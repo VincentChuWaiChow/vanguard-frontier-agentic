@@ -1,0 +1,90 @@
+{
+  "schema_version": "1.0",
+  "decision_id": "KYV-DEC-0000",
+  "as_of": "2026-01-01T00:00:00Z",
+  "request_kind": "advisory",
+  "question": "TEMPLATE: the business decision, e.g. Can <service> move <cohort> to Deny in <release> without blocking <legitimate operation>?",
+  "intended_control": "TEMPLATE: the control and its intent (mandatory preventive | detective | advisory)",
+  "target_cohort": "TEMPLATE: exact cohort",
+  "authorized_scope": "TEMPLATE: what the requester is authorized to have reviewed",
+  "owner": "TEMPLATE: accountable role",
+  "deadline": null,
+  "consequence_class": "none",
+  "environment": {
+    "kubernetes_version": "unknown",
+    "kyverno_controller_version": "unknown",
+    "kyverno_cli_version": "unknown",
+    "served_apis": [],
+    "policy_revision": "unknown"
+  },
+  "evidence": [
+    {
+      "id": "EV-1",
+      "type": "manifest",
+      "locator": "TEMPLATE: path@revision",
+      "captured_at": null,
+      "applies_to": "TEMPLATE: what this item can establish",
+      "omits": "TEMPLATE: what it cannot establish"
+    }
+  ],
+  "lead": {
+    "agent": "kyverno-policy-review-agent",
+    "provisional_conclusion": "TEMPLATE: provisional conclusion",
+    "easiest_way_wrong": "TEMPLATE: the easiest way it could be wrong"
+  },
+  "referrals": [],
+  "challenge": null,
+  "claims": [
+    {
+      "id": "C-1",
+      "class": "observed",
+      "statement": "TEMPLATE: what EV-1 directly shows",
+      "evidence_refs": [
+        "EV-1"
+      ]
+    },
+    {
+      "id": "C-2",
+      "class": "unknown",
+      "statement": "TEMPLATE: the missing fact",
+      "evidence_refs": [],
+      "smallest_settling_item": "TEMPLATE: the smallest evidence item that settles it"
+    }
+  ],
+  "tests": [
+    {
+      "id": "T-1",
+      "polarity": "positive",
+      "operation": "CREATE",
+      "expected": "TEMPLATE: legitimate operation admitted",
+      "state": "proposed",
+      "observed": null,
+      "evidence_refs": []
+    },
+    {
+      "id": "T-2",
+      "polarity": "negative",
+      "operation": "CREATE",
+      "expected": "TEMPLATE: in-scope violation denied with the policy message",
+      "state": "proposed",
+      "observed": null,
+      "evidence_refs": []
+    }
+  ],
+  "outcome": "indeterminate",
+  "verdict": "needs-review",
+  "conditions": [],
+  "dissent": [],
+  "business_exposure": "TEMPLATE: what goes wrong for the business if this decision is wrong",
+  "suggested_action": "TEMPLATE: next action, kept separate from authority to execute",
+  "rollback_limits": "TEMPLATE: what a rollback restores and what it does not",
+  "evidence_owner": "TEMPLATE: who supplies the missing evidence",
+  "execution": {
+    "authority": "none",
+    "handoff": null
+  },
+  "artifacts": [],
+  "limitations": [
+    "TEMPLATE: what this record does not establish"
+  ]
+}

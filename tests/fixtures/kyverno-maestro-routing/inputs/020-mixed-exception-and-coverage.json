@@ -1,0 +1,7 @@
+{
+  "name": "020-mixed-exception-and-coverage",
+  "task": "Do the 8 exceptions count toward our coverage percentage, and do their expiry dates hold?",
+  "tags": [
+    "mixed-intent"
+  ]
+}

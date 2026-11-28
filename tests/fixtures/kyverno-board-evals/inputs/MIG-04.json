@@ -1,0 +1,12 @@
+{
+  "case_id": "MIG-04",
+  "prompt": "The cohort B parity corpus agrees on CREATE but differs on UPDATE. Can cohort B move?",
+  "execution_context": {
+    "tier": "static-review",
+    "live_adapter_authorized": false,
+    "network_authorized": false
+  },
+  "supplied_evidence": {
+    "offline-test": "parity corpus: CREATE agree, UPDATE differs on 2 cases"
+  }
+}

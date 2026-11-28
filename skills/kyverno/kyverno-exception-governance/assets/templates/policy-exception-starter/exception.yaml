@@ -1,0 +1,27 @@
+# TEMPLATE: PolicyException starter (policies.kyverno.io/v1, verified with kyverno CLI v1.20.0).
+# Exceptions apply only when the controller enables them (enablePolicyException, default false) and the
+# exception lives in an allowed exceptionNamespace. Confirm both in installed-config.
+apiVersion: policies.kyverno.io/v1
+kind: PolicyException
+metadata:
+  name: legacy-exporter-root                       # TEMPLATE
+  namespace: payments                              # TEMPLATE: must be an allowed exception namespace
+  annotations:
+    # Governance record (inert data for the controller; the board reads it, Kyverno does not enforce it).
+    exceptions.example.invalid/approval-record: "CHG-TEMPLATE-0001"   # TEMPLATE
+    exceptions.example.invalid/expiry-owner: "payments service owner" # TEMPLATE
+spec:
+  # The only removal mechanism the controller honors: once past, the exception is no longer applied.
+  # A date in an annotation or description is not a mechanism.
+  expiresAt: "2099-01-01T00:00:00Z"                # TEMPLATE: the approved end, RFC3339
+  policyRefs:                                      # exact policy name AND kind
+    - name: payments-run-as-non-root
+      kind: ValidatingPolicy
+  matchConditions:                                 # exactly the approved workload; never a whole namespace
+    - name: approved-workload-only
+      expression: "object.metadata.namespace == 'payments' && object.metadata.name == 'legacy-invoice-exporter'"
+  # Compensating controls: every one must pass or the policy applies as if the exception did not exist.
+  validations:
+    - expression: "object.metadata.?labels[?'network-isolation'].orValue('') == 'strict'"
+      message: >-
+        legacy-exporter-root exception requires label network-isolation=strict (compensating control).

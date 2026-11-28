@@ -1,0 +1,35 @@
+{
+  "id": "KRT-WEBHOOK-FAILURE",
+  "title": "Controller unreachable versus a valid webhook denial",
+  "status": "not-run",
+  "required_authorization": "Separate explicit environment and experiment authorization; no automated provisioning is included",
+  "preconditions": [
+    "Disposable cluster with Kyverno v1.20.0 and one ValidatingPolicy (Deny) on pods in a test namespace",
+    "Policies with failurePolicy Fail and Ignore in separate namespaces"
+  ],
+  "procedure": [
+    "Create one compliant and one violating pod with the controller healthy",
+    "Scale the admission controller to zero",
+    "Repeat both creates in each namespace"
+  ],
+  "acceptance": [
+    "Healthy: compliant admitted, violating denied with the policy message",
+    "Unreachable + Fail: both creates rejected with a call error, no policy message",
+    "Unreachable + Ignore: both creates admitted unevaluated"
+  ],
+  "capture": [
+    "Pinned Kubernetes, Kyverno controller and CLI versions with image digests",
+    "Sanitized before/after objects and admission responses",
+    "Timestamps and the target cluster identity",
+    "Positive and negative results",
+    "Cleanup evidence"
+  ],
+  "stop_conditions": [
+    "Unknown target identity",
+    "Any non-disposable cluster",
+    "Unapproved scope change",
+    "Loss of observability",
+    "Unexpected deletion outside the test namespace"
+  ],
+  "cleanup": "Delete only the disposable cluster or the named test namespaces; verify teardown."
+}

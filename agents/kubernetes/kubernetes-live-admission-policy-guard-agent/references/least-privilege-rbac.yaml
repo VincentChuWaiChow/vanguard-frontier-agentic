@@ -44,7 +44,16 @@ rules:
     resources: ["namespaces"]
     verbs: ["get", "list", "watch"]
   - apiGroups: ["kyverno.io"]
-    resources: ["clusterpolicies", "policies", "policyexceptions", "clusterpolicyreports", "policyreports", "updaterequests"]
+    resources: ["clusterpolicies", "policies", "policyexceptions", "updaterequests"]
+    verbs: ["get", "list", "watch"]
+  # Policy reports are not in kyverno.io: at Kyverno v1.20.0 PolicyReport and
+  # ClusterPolicyReport are served and stored as wgpolicyk8s.io/v1alpha2
+  # (kyverno config/crds/policyreport). Read only. If Kyverno runs with
+  # --openreportsEnabled (default false) reports move to openreports.io instead;
+  # that group is deliberately not granted here — add it only after confirming the
+  # flag and the group's resource names on the installed release.
+  - apiGroups: ["wgpolicyk8s.io"]
+    resources: ["policyreports", "clusterpolicyreports"]
     verbs: ["get", "list", "watch"]
   - apiGroups: ["admissionregistration.k8s.io"]
     resources: ["validatingadmissionpolicies", "validatingadmissionpolicybindings"]
@@ -54,6 +63,35 @@ rules:
     verbs: ["create", "patch"]
   - apiGroups: ["admissionregistration.k8s.io"]
     resources: ["validatingadmissionpolicies", "validatingadmissionpolicybindings"]
+    verbs: ["create", "patch"]
+  # Kyverno CEL policies (policies.kyverno.io, Kyverno 1.20+ where the legacy kyverno.io
+  # engine no longer accepts creates or spec updates). Read every kind so the guard can
+  # capture a baseline and bound blast radius before any change.
+  - apiGroups: ["policies.kyverno.io"]
+    resources:
+      - "validatingpolicies"
+      - "namespacedvalidatingpolicies"
+      - "imagevalidatingpolicies"
+      - "namespacedimagevalidatingpolicies"
+      - "mutatingpolicies"
+      - "namespacedmutatingpolicies"
+      - "generatingpolicies"
+      - "namespacedgeneratingpolicies"
+      - "deletingpolicies"
+      - "namespaceddeletingpolicies"
+      - "policyexceptions"
+    verbs: ["get", "list", "watch"]
+  # Write only the kinds that evaluate admission requests. Mutating, generating and
+  # deleting policies are deliberately excluded: each makes the Kyverno controller change
+  # or create or delete OTHER objects with its own service account, so a write here would
+  # be a confused-deputy escalation well beyond this guard's admission-policy scope.
+  - apiGroups: ["policies.kyverno.io"]
+    resources:
+      - "validatingpolicies"
+      - "namespacedvalidatingpolicies"
+      - "imagevalidatingpolicies"
+      - "namespacedimagevalidatingpolicies"
+      - "policyexceptions"
     verbs: ["create", "patch"]
 # =====================================================================
 # DELIBERATELY ABSENT — DO NOT add unless you accept the listed risk.
@@ -71,6 +109,11 @@ rules:
 #   - apiGroups: ["certificates.k8s.io"]                                  -> CSR approval (system:masters cert minting)
 #   - apiGroups: ["authentication.k8s.io"]                                -> tokenreviews, impersonation primitives
 #   - apiGroups: ["admissionregistration.k8s.io"]                         -> mutating/validating webhook configs
+#   - apiGroups: ["policies.kyverno.io"], verbs: ["delete","deletecollection","update"] -> rollback is apply -f baseline
+#   - apiGroups: ["policies.kyverno.io"], resources: ["mutatingpolicies","namespacedmutatingpolicies",
+#       "generatingpolicies","namespacedgeneratingpolicies","deletingpolicies","namespaceddeletingpolicies"],
+#       verbs: write                                                      -> controller writes/deletes other objects as Kyverno
+#   - apiGroups: ["wgpolicyk8s.io"], verbs: write                         -> forge or erase compliance evidence
 #   - apiGroups: ["apiregistration.k8s.io"]                               -> APIService aggregation hijack
 #   - apiGroups: ["apiextensions.k8s.io"]                                 -> CRD install / uninstall
 #   - apiGroups: ["scheduling.k8s.io"]                                    -> system-cluster-critical / system-node-critical

@@ -1,0 +1,15 @@
+{
+  "base": "01-cohort-a-promotion-supported.json",
+  "rule": "KYB-EVIDENCE",
+  "why": "Every reference must resolve to one artifact (Codex review).",
+  "set": {
+    "evidence.4": {
+      "id": "EV-2",
+      "type": "offline-test",
+      "locator": "duplicate id",
+      "captured_at": null,
+      "applies_to": "x",
+      "omits": "x"
+    }
+  }
+}

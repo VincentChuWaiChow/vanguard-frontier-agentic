@@ -1,0 +1,10 @@
+{
+  "case_id": "EXC-03",
+  "prompt": "Is our exception portfolio fine?",
+  "execution_context": {
+    "tier": "static-review",
+    "live_adapter_authorized": false,
+    "network_authorized": false
+  },
+  "supplied_evidence": {}
+}

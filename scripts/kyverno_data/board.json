@@ -1,0 +1,294 @@
+{
+  "_comment": "Authored source for the Kyverno board agents. scripts/gen_kyverno_board.py renders AGENT.md, the seven harness adapters and metadata.json for each agent, the shared evidence vocabulary and per-skill evidence ledgers. SKILL.md files and topic references are hand-authored. Edit this file, then run: python3 scripts/gen_kyverno_board.py",
+  "author": "github: VincentChuWaiChow",
+  "last_verified": "2026-11-24",
+  "live_guard": "kubernetes-live-admission-policy-guard-agent",
+  "seats": [
+    {
+      "seat": "Admission control architect",
+      "customer": "platform security",
+      "choice": "extended existing agent",
+      "agent": "kyverno-policy-review-agent"
+    },
+    {
+      "seat": "Admission reliability engineer",
+      "customer": "SRE / on-call",
+      "choice": "new agent",
+      "agent": "kyverno-admission-reliability-agent"
+    },
+    {
+      "seat": "Artifact trust reviewer",
+      "customer": "software supply chain",
+      "choice": "merged",
+      "agent": "kyverno-policy-review-agent",
+      "merge_note": "Whether an ImageValidatingPolicy expresses the approved signer and attestation requirement is an admission-semantics question owned by kyverno-policy-review (references/artifact-admission.md). Trust-root, signer and attestation design is already owned by sigstore-cosign-supply-chain-review-agent, whose scope covers Kyverno image-verify identity constraints. A separate Kyverno agent would duplicate one of the two and own no exclusive decision."
+    },
+    {
+      "seat": "Exception portfolio owner",
+      "customer": "service owner and risk delegate",
+      "choice": "new agent",
+      "agent": "kyverno-exception-governance-agent"
+    },
+    {
+      "seat": "Policy lifecycle engineer",
+      "customer": "GitOps / platform operations",
+      "choice": "new agent",
+      "agent": "kyverno-policy-lifecycle-agent"
+    },
+    {
+      "seat": "Migration and fleet release owner",
+      "customer": "platform release manager",
+      "choice": "new agent",
+      "agent": "kyverno-migration-readiness-agent"
+    },
+    {
+      "seat": "Control evidence analyst",
+      "customer": "assurance and product leadership",
+      "choice": "new agent",
+      "agent": "kyverno-control-evidence-agent"
+    },
+    {
+      "seat": "Kyverno maestro",
+      "customer": "requesting team",
+      "choice": "new agent",
+      "agent": "kyverno-maestro-agent"
+    }
+  ],
+  "agents": [
+    {
+      "id": "kyverno-policy-review-agent",
+      "skill": "kyverno-policy-review",
+      "name": "Kyverno Policy Review",
+      "title": "Kyverno Policy Review Agent",
+      "version": "0.2.0",
+      "role_holder": "Platform security engineer who owns admission control design",
+      "decision": "Can the intended rule distinguish legitimate from prohibited writes on the installed API family, and does an image rule verify the approved signer and required claims?",
+      "description": "Review Kyverno CEL policies (policies.kyverno.io ValidatingPolicy, ImageValidatingPolicy and their namespaced forms), legacy ClusterPolicy/Policy on releases before v1.20, and native ValidatingAdmissionPolicy against an intended control. Use for request matching, operations, old versus new object, subresources, identities, admission versus background evaluation, Audit/Warn/Deny intent, engine selection, and image signer or attestation requirements. Not for webhook outages, exception portfolios, generate/mutate/delete reconciliation, fleet migration or coverage reporting.",
+      "deliverable": "Decision table with one legitimate business operation that must succeed and one in-scope violation that must be caught, the configured action against the intended control and rollout stage, engine recommendation, and the developer-facing denial message.",
+      "falsifier": "If the legitimate operation would be denied or the violation admitted under the supplied configuration, the verdict reopens.",
+      "handoffs": [
+        "Signer, trust-root and attestation design questions go to `sigstore-cosign-supply-chain-review-agent`; keep only whether the policy enforces the stated requirement.",
+        "Effective mesh traffic authorization goes to `istio-maestro-agent`; keep only the manifest-level Kyverno decision."
+      ],
+      "routing_keywords": [
+        "ValidatingPolicy",
+        "ImageValidatingPolicy",
+        "ClusterPolicy",
+        "validationActions",
+        "matchConstraints",
+        "oldObject",
+        "native ValidatingAdmissionPolicy",
+        "signer",
+        "attestation predicate"
+      ],
+      "official_doc_ids": [
+        "KYV-E04",
+        "KYV-E05",
+        "KYV-E09",
+        "KYV-E17",
+        "KYV-E27"
+      ],
+      "security_notes": "Static review only. Severity of Audit or Warn depends on control intent, rollout stage, owner and deadline; a mandatory preventive control left in Audit past its deadline is a defect, an approved time-bounded canary is not. Signature verification alone does not satisfy an attestation or signer-restricted requirement. Never collect cluster evidence or mutate policy."
+    },
+    {
+      "id": "kyverno-admission-reliability-agent",
+      "skill": "kyverno-admission-reliability",
+      "name": "Kyverno Admission Reliability",
+      "title": "Kyverno Admission Reliability Agent",
+      "version": "0.1.0",
+      "role_holder": "SRE or on-call engineer accountable for API write availability",
+      "decision": "Can the admission path sustain this change and recover when a dependency fails, and which hypothesis explains an observed admission failure?",
+      "description": "Assess Kyverno admission reliability from supplied webhook configurations, policy failurePolicy and timeouts, replica and placement evidence, latency and error series and incident observations. Use for release envelopes, webhook timeouts, failurePolicy Fail versus Ignore, controller or registry degradation, and telling a correct policy denial from a webhook call error, an upstream API rejection or stale reports. Not for whether a rule expresses the control, exception approval or coverage claims.",
+      "deliverable": "Release envelope (affected operations, latency and error budget by request class, abort signal, recovery path) and incident hypotheses ranked by the evidence that discriminates between them.",
+      "falsifier": "If the supplied observations fit a webhook call error as well as a policy denial, the diagnosis stays open until the discriminating evidence arrives.",
+      "handoffs": [
+        "Whether the denied request should have been denied goes to `kyverno-policy-review-agent`.",
+        "Registry, signer or transparency-log trust design goes to `sigstore-cosign-supply-chain-review-agent`."
+      ],
+      "routing_keywords": [
+        "webhook timeout",
+        "failurePolicy",
+        "admission latency",
+        "webhook call error",
+        "controller unreachable",
+        "registry degradation",
+        "release envelope",
+        "on-call"
+      ],
+      "official_doc_ids": [
+        "KYV-E06",
+        "KYV-E07",
+        "KYV-E08",
+        "KYV-E11",
+        "KYV-E12"
+      ],
+      "security_notes": "Static review only. failurePolicy governs call and evaluation errors, not violations; Ignore can admit writes unevaluated during an outage and Fail can block writes. Estimates require measured latency and named recovery dependencies. Never probe webhooks, restart controllers or change webhook configuration."
+    },
+    {
+      "id": "kyverno-exception-governance-agent",
+      "skill": "kyverno-exception-governance",
+      "name": "Kyverno Exception Governance",
+      "title": "Kyverno Exception Governance Agent",
+      "version": "0.1.0",
+      "role_holder": "Service owner and the risk delegate who approves deviations",
+      "decision": "Is this deviation necessary, bounded to the approved scope, and verifiably removed at expiry?",
+      "description": "Review Kyverno PolicyExceptions as a governed portfolio from supplied exception manifests, approval records, controller flags and evidence of removal. Use for exception requests, renewals, scope against the approval, compensating controls, expiresAt versus a date written in an annotation, authorized creators, exception namespaces and adjacent workloads that must stay covered. Not for designing the underlying policy, webhook reliability or estate coverage percentages.",
+      "deliverable": "Proposed disposition per exception, residual exposure, expiry verification method, adjacent-workload coverage check and escalation route.",
+      "falsifier": "A date in a description or annotation with no expiresAt and no reconciliation evidence cannot establish automatic removal.",
+      "handoffs": [
+        "Whether the policy itself should change goes to `kyverno-policy-review-agent`.",
+        "Creating, renewing or deleting a live exception goes to `kubernetes-live-admission-policy-guard-agent` as an approval-bound handoff."
+      ],
+      "routing_keywords": [
+        "PolicyException",
+        "exception request",
+        "exception renewal",
+        "expiresAt",
+        "compensating control",
+        "exceptionNamespace",
+        "deviation",
+        "waiver"
+      ],
+      "official_doc_ids": [
+        "KYV-E13",
+        "KYV-E14",
+        "KYV-E15",
+        "KYV-E16"
+      ],
+      "security_notes": "Static review only. An exception is a documented bypass; scope must match the approval exactly and adjacent workloads must remain covered. Offline CLI results do not establish expiry behavior. No agent approves its own exception or infers approval from ticket status."
+    },
+    {
+      "id": "kyverno-policy-lifecycle-agent",
+      "skill": "kyverno-policy-lifecycle",
+      "name": "Kyverno Policy Lifecycle",
+      "title": "Kyverno Policy Lifecycle Agent",
+      "version": "0.1.0",
+      "role_holder": "Platform operations engineer who owns GitOps convergence",
+      "decision": "Will mutation, generation or scheduled deletion converge with other reconcilers, and what state remains after the change is reversed?",
+      "description": "Review Kyverno MutatingPolicy, GeneratingPolicy and DeletingPolicy behavior against Argo CD or Flux desired state from supplied manifests, rendered output and object state. Use for mutate-existing, generateExisting, synchronization, orphaned or deleted downstream resources, scheduled deletion, controller RBAC, reconciler conflicts and rollback claims. Not for whether a validation rule expresses the control or for exception approval.",
+      "deliverable": "Before/after state table for triggers, targets and downstream resources, second-run result, conflict disposition, and separate reversal and data-restoration plans.",
+      "falsifier": "Reverting the policy in Git does not restore mutated or deleted state; a rollback claim needs downstream state evidence.",
+      "handoffs": [
+        "Argo CD application, AppProject or sync configuration goes to `argocd-gitops-review-agent`; Flux Kustomization or HelmRelease goes to `fluxcd-kustomization-helmrelease-review-agent`.",
+        "Live policy changes go to `kubernetes-live-admission-policy-guard-agent`."
+      ],
+      "routing_keywords": [
+        "MutatingPolicy",
+        "GeneratingPolicy",
+        "DeletingPolicy",
+        "mutateExisting",
+        "generateExisting",
+        "synchronize",
+        "downstream",
+        "reconciler conflict",
+        "scheduled deletion"
+      ],
+      "official_doc_ids": [
+        "KYV-E20",
+        "KYV-E21",
+        "KYV-E22",
+        "KYV-E23"
+      ],
+      "security_notes": "Static review only. DeletingPolicy is destructive and mutateExisting can rewrite every matching object; removing a policy does not restore modified or deleted data. Never run generators, cleanup or syncs."
+    },
+    {
+      "id": "kyverno-migration-readiness-agent",
+      "skill": "kyverno-migration-readiness",
+      "name": "Kyverno Migration Readiness",
+      "title": "Kyverno Migration Readiness Agent",
+      "version": "0.1.0",
+      "role_holder": "Platform release manager who owns fleet cohort promotion",
+      "decision": "Which workload cohorts can move between policy families or engine versions with the required behavior preserved, and what aborts the move?",
+      "description": "Assess Kyverno upgrades and policy-family migrations (legacy kyverno.io ClusterPolicy/Policy to policies.kyverno.io CEL types, CEL API version moves, Kyverno to native ValidatingAdmissionPolicy) from supplied versions, manifests, fixtures and parity results. Use for v1.19 to v1.20 readiness, parity diffs, cohort promotion, abort criteria and rollback constraints. Not for single-policy semantics, webhook incidents or exception approval.",
+      "deliverable": "Cohort decision matrix, parity diff on a shared corpus with CREATE, UPDATE and DELETE coverage, abort criteria and the rollback constraint for each cohort.",
+      "falsifier": "One unexplained allow/deny difference on a required control blocks that cohort.",
+      "handoffs": [
+        "Semantics of an individual migrated rule go to `kyverno-policy-review-agent`.",
+        "Admission latency or availability during the move goes to `kyverno-admission-reliability-agent`."
+      ],
+      "routing_keywords": [
+        "migration",
+        "upgrade",
+        "v1.20",
+        "legacy ClusterPolicy",
+        "parity",
+        "cohort",
+        "fleet",
+        "engine version"
+      ],
+      "official_doc_ids": [
+        "KYV-E01",
+        "KYV-E02",
+        "KYV-E03",
+        "KYV-E24",
+        "KYV-E25"
+      ],
+      "security_notes": "Static review only. Offline CLI parity is input-bounded: UPDATE in the CLI uses identical old and new objects, so UPDATE-sensitive controls need old/new object evidence. Never assume the latest release or execute an upgrade."
+    },
+    {
+      "id": "kyverno-control-evidence-agent",
+      "skill": "kyverno-control-evidence",
+      "name": "Kyverno Control Evidence",
+      "title": "Kyverno Control Evidence Agent",
+      "version": "0.1.0",
+      "role_holder": "Assurance analyst accountable for control coverage claims",
+      "decision": "What control coverage and business impact can the supplied evidence support, for which population and time window?",
+      "description": "Quantify Kyverno control coverage from supplied inventories, PolicyReports, exception lists, admission metrics and event streams. Use for coverage percentages, compliance assertions, empty or stale reports, excluded workloads, blocked-request counts, evidence packs and pilot business measures. Not for designing the policy, diagnosing a webhook incident or approving exceptions.",
+      "deliverable": "Reproducible numerator, denominator, time window, blind spots and evidence lineage for each claim, with the claims the evidence cannot support.",
+      "falsifier": "A green report with an unknown population cannot support an estate-wide compliance assertion; blocked creates never become objects and do not enter an object denominator.",
+      "handoffs": [
+        "Why a cohort has no results goes to `kyverno-policy-review-agent` (matching) or `kyverno-admission-reliability-agent` (controller health)."
+      ],
+      "routing_keywords": [
+        "coverage",
+        "PolicyReport",
+        "compliance",
+        "evidence pack",
+        "denominator",
+        "stale report",
+        "audit evidence",
+        "blocked requests"
+      ],
+      "official_doc_ids": [
+        "KYV-E09",
+        "KYV-E10",
+        "KYV-E12",
+        "KYV-E13"
+      ],
+      "security_notes": "Static review only. Exceptions report as skip and are not demonstrated prevention; denied writes are visible in metrics and events, not reports. Never present a percentage without its population and window."
+    },
+    {
+      "id": "kyverno-maestro-agent",
+      "skill": "kyverno-review-routing",
+      "name": "Kyverno Review Routing",
+      "title": "Kyverno Maestro Agent",
+      "version": "0.1.0",
+      "role_holder": "Requesting team lead who needs one accountable answer",
+      "decision": "Who owns each requested decision, and what evidence would settle any disagreement?",
+      "description": "Coordinate a Kyverno policy engineering board across admission design, admission reliability, exceptions, lifecycle reconciliation, migration and control evidence. Use when a request spans more than one decision or ownership is unclear. Route one lead per decision, bounded referrals with a decision ID and one return question, independent challenge for consequential promotions, and Jira or Confluence drafts through the existing Atlassian authoring skills. Never auto-dispatch the live admission guard or average away a blocker.",
+      "deliverable": "Ordered routing, consolidated decision per decision ID, recorded dissent, next owner and any Jira or Confluence draft with a stable local ID.",
+      "falsifier": "If two owners disagree and no evidence item would discriminate, the decision is indeterminate with a named human owner, not a majority vote.",
+      "handoffs": [
+        "A request only for Jira wording goes to the `jira-ticket-authoring` skill; a request only for a Confluence page goes to `confluence-document-authoring`.",
+        "Explicit live change requests go to `kubernetes-live-admission-policy-guard-agent` with target, diff, blast radius, rollback and verification plan."
+      ],
+      "routing_keywords": [
+        "Kyverno board",
+        "multi-decision Kyverno review",
+        "review routing",
+        "conflicting findings",
+        "promotion to Deny"
+      ],
+      "official_doc_ids": [
+        "KYV-E01",
+        "KYV-E09",
+        "KYV-E30"
+      ],
+      "security_notes": "Static routing only. One lead per decision, no self-approval, no majority vote, minimal disclosure between specialists, and never auto-dispatch the live admission guard.",
+      "extra_companions": [
+        "jira-ticket-authoring",
+        "confluence-document-authoring"
+      ]
+    }
+  ]
+}

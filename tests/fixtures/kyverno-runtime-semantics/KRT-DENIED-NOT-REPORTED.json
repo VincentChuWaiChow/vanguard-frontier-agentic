@@ -1,0 +1,32 @@
+{
+  "id": "KRT-DENIED-NOT-REPORTED",
+  "title": "Denied creates are visible in metrics/events, not in PolicyReports",
+  "status": "not-run",
+  "required_authorization": "Separate explicit environment and experiment authorization; no automated provisioning is included",
+  "preconditions": [
+    "Metrics scraping enabled for the admission controller"
+  ],
+  "procedure": [
+    "Submit a violating pod create",
+    "Wait for report generation"
+  ],
+  "acceptance": [
+    "No PolicyReport entry for the denied object",
+    "kyverno_admission_requests_total increases with request_allowed=false"
+  ],
+  "capture": [
+    "Pinned Kubernetes, Kyverno controller and CLI versions with image digests",
+    "Sanitized before/after objects and admission responses",
+    "Timestamps and the target cluster identity",
+    "Positive and negative results",
+    "Cleanup evidence"
+  ],
+  "stop_conditions": [
+    "Unknown target identity",
+    "Any non-disposable cluster",
+    "Unapproved scope change",
+    "Loss of observability",
+    "Unexpected deletion outside the test namespace"
+  ],
+  "cleanup": "Delete only the disposable cluster or the named test namespaces; verify teardown."
+}

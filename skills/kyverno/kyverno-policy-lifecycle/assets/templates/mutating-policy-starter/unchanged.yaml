@@ -1,0 +1,10 @@
+# The owner's value must survive: the matchConditions guard excludes labelled objects.
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: ledger-settings
+  namespace: payments
+  labels:
+    cost-center: finance-ops
+data:
+  retries: "5"

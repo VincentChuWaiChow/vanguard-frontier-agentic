@@ -1,0 +1,8 @@
+{
+  "name": "012-near-registry-incident",
+  "task": "Pods fail during the invoice release: is this a registry outage or a real signature denial? on-call needs a diagnosis.",
+  "tags": [
+    "near-neighbor",
+    "oracle:denial-vs-call-error"
+  ]
+}

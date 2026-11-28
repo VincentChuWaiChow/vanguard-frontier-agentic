@@ -1,0 +1,18 @@
+{
+  "base": "01-cohort-a-promotion-supported.json",
+  "rule": "KYB-PARITY",
+  "why": "The CLI uses identical old and new objects, so offline UPDATE agreement proves nothing.",
+  "set": {
+    "evidence.4": {
+      "id": "EV-5",
+      "type": "offline-test",
+      "locator": "parity corpus (CLI v1.20.0)",
+      "captured_at": "2026-11-21T00:00:00Z",
+      "applies_to": "UPDATE with identical old/new",
+      "omits": "real old/new pairs"
+    },
+    "parity.old_new_pair_evidence": [
+      "EV-5"
+    ]
+  }
+}

@@ -1,0 +1,8 @@
+{
+  "base": "01-cohort-a-promotion-supported.json",
+  "rule": "KYB-REFERRAL",
+  "why": "Routing loop: the lead cannot refer to itself.",
+  "set": {
+    "referrals.0.to": "kyverno-migration-readiness-agent"
+  }
+}

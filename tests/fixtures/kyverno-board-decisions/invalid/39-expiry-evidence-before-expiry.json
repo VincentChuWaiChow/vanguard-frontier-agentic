@@ -1,0 +1,20 @@
+{
+  "base": "04-exception-annotation-date-conditional.json",
+  "rule": "KYB-EXPIRY",
+  "why": "Evidence must postdate expiresAt (Codex review).",
+  "set": {
+    "exception_expiry.expires_at": "2026-03-31T00:00:00Z",
+    "exception_expiry.automatic_expiry_claimed": true,
+    "exception_expiry.reconciliation_evidence": [
+      "EV-3"
+    ],
+    "evidence.2": {
+      "id": "EV-3",
+      "type": "admission-trace",
+      "locator": "trace",
+      "captured_at": "2026-03-30T00:00:00Z",
+      "applies_to": "legacy-ledger-sync CREATE",
+      "omits": "other workloads"
+    }
+  }
+}

@@ -68,13 +68,21 @@ OFFICIAL_SOURCES: dict[str, tuple[str, ...]] = {
     "developer.atlassian.com": ("/cloud/",),
     # Cilium board ledgers: the Cilium project's own documentation, its source and release
     # repository (github.com/cilium/, raw files served from the same org), its sibling project
-    # Tetragon, and the Kubernetes and Gateway API projects whose APIs Cilium implements.
+    # Tetragon, and the Gateway API project whose APIs Cilium implements.
     "docs.cilium.io": ("/en/",),
     "tetragon.io": ("/docs/",),
-    "kubernetes.io": ("/docs/",),
     "gateway-api.sigs.k8s.io": ("/",),
     "raw.githubusercontent.com": ("/cilium/",),
-    "github.com": ("/oracle/", "/aws/", "/awslabs/", "/Azure/", "/googleapis/", "/aliyun/", "/scaleway/", "/ovh/", "/atlassian/", "/cilium/"),
+    # Kyverno board ledgers (skills/kyverno/*): the Kyverno project's own documentation, its
+    # versioned v1.18 documentation site (legacy ClusterPolicy defaults), and its source repository
+    # at release tags (github.com/kyverno/); the Kubernetes project's documentation for admission
+    # webhooks, ValidatingAdmissionPolicy and network policy (shared by the Cilium and Kyverno
+    # boards); and Istio's documentation for mesh referral claims.
+    "kyverno.io": ("/docs/",),
+    "release-1-18-0.kyverno.io": ("/docs/",),
+    "kubernetes.io": ("/docs/",),
+    "istio.io": ("/latest/docs/",),
+    "github.com": ("/oracle/", "/aws/", "/awslabs/", "/Azure/", "/googleapis/", "/aliyun/", "/scaleway/", "/ovh/", "/atlassian/", "/cilium/", "/kyverno/"),
     # GitHub Pages of the github.com/oracle organisation (Oracle NoSQL Node.js SDK reference).
     "oracle.github.io": ("/nosql-node-sdk/",),
 }

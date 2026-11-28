@@ -1,0 +1,7 @@
+{
+  "name": "021-mixed-promotion-and-latency",
+  "task": "Can we promote cohort A to Deny in the next release without p99 admission latency exceeding its budget?",
+  "tags": [
+    "mixed-intent"
+  ]
+}

@@ -1,0 +1,8 @@
+{
+  "name": "032-negative-confluence-only",
+  "task": "Write the Confluence ADR page for the decision we already made.",
+  "tags": [
+    "negative-routing",
+    "handoff:confluence-document-authoring"
+  ]
+}

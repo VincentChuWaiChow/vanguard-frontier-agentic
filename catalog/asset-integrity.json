@@ -34,16 +34,16 @@
   "trees": [
     {
       "tree": "agents",
-      "aggregate_sha256": "78a980005e7ecd2b63a38c331f7da202ce070e9d571ab875613c3b654eb003f1",
+      "aggregate_sha256": "81d9e356d6c5660d64d7c15c76b7fc211c364301740f53b5295e105c03262405",
       "files": [
         {
           "path": "agents/AGENTS.md",
-          "sha256": "cdd62479d138e8707ef25a775c5a39a2fe983010b431e813f0e24efcc00e827e",
+          "sha256": "7e8c1d9d38f311dfee37f8601ade1d3d2f6e6a388889009484dcb82c7947c43c",
           "bytes": 28065
         },
         {
           "path": "agents/README.md",
-          "sha256": "ce9367979a932e6038a7786b924db7200fb1f79565d7e60dffff05cdd25d8071",
+          "sha256": "384bfe8c7b99c537e08149c5025dfe63bd700bdb09ffca6869cc2ff120308469",
           "bytes": 10047
         },
         {
@@ -19978,13 +19978,13 @@
         },
         {
           "path": "agents/kubernetes/kubernetes-live-admission-policy-guard-agent/references/least-privilege-rbac.yaml",
-          "sha256": "b0e83f631d3fdb81b1342eeb4fb19d57a4d350d89f8fdd2163a1af12d6057dd0",
-          "bytes": 5482
+          "sha256": "83285aa77a562e03aea7526493603bda11ac60ad07488b202d406ae2c49985fb",
+          "bytes": 7905
         },
         {
           "path": "agents/kubernetes/kubernetes-live-admission-policy-guard-agent/references/rbac-pre-flight.md",
-          "sha256": "a16e1185e284619cc35eac2cffdb56bb7550c5c99dfded9b858718bf52b6a5a1",
-          "bytes": 5251
+          "sha256": "4c34ef3d84df0e0fee4ae5a1b2aa2be2a6407323870eb8bf473e482faf43ecc8",
+          "bytes": 6830
         },
         {
           "path": "agents/kubernetes/kubernetes-live-admission-policy-guard-agent/references/refusal-list.md",
@@ -20608,53 +20608,323 @@
         },
         {
           "path": "agents/kyverno/README.md",
-          "sha256": "8b4bfe32e121c2e7febb5c34ee9fc4a4e04a2fe779946ea7a68c4ba10717db76",
-          "bytes": 2015
+          "sha256": "dd18ed6355c6fe8ffbd433884e1da1259ed821abd73454a2fcb14e3d8782736a",
+          "bytes": 7300
+        },
+        {
+          "path": "agents/kyverno/kyverno-admission-reliability-agent/AGENT.md",
+          "sha256": "11d9ae472031768bf70cf1eecde521f56d9b9d454836ecd4ec52c2424cf75ad3",
+          "bytes": 3221
+        },
+        {
+          "path": "agents/kyverno/kyverno-admission-reliability-agent/harnesses/claude-code.agent.md",
+          "sha256": "93f2ac01d9488da2db5e3a750967ac43ceaf316e4745ec33ce57a116b76e0658",
+          "bytes": 2982
+        },
+        {
+          "path": "agents/kyverno/kyverno-admission-reliability-agent/harnesses/codex.toml",
+          "sha256": "612691b973f08f5a69fd92d71093a5869724ba408d72c79fcc17944d712bca6f",
+          "bytes": 3239
+        },
+        {
+          "path": "agents/kyverno/kyverno-admission-reliability-agent/harnesses/copilot.agent.md",
+          "sha256": "9cf073815fcf1d2f96e8508025396d8c2e78fd3f7252100398cb4e4d7545effc",
+          "bytes": 3088
+        },
+        {
+          "path": "agents/kyverno/kyverno-admission-reliability-agent/harnesses/cursor.agent.md",
+          "sha256": "93f2ac01d9488da2db5e3a750967ac43ceaf316e4745ec33ce57a116b76e0658",
+          "bytes": 2982
+        },
+        {
+          "path": "agents/kyverno/kyverno-admission-reliability-agent/harnesses/gemini.agent.md",
+          "sha256": "46d9ba0067daec75d5721663d856ff9f6ee580f1c24bd3f36166d05b68b807fc",
+          "bytes": 3034
+        },
+        {
+          "path": "agents/kyverno/kyverno-admission-reliability-agent/harnesses/kiro-cli.agent.json",
+          "sha256": "f155a253f4309cb4aa950dd76dd7466d12eecde60fb4bebfecf96d0a847c4a16",
+          "bytes": 3037
+        },
+        {
+          "path": "agents/kyverno/kyverno-admission-reliability-agent/harnesses/kiro-ide.agent.md",
+          "sha256": "93f2ac01d9488da2db5e3a750967ac43ceaf316e4745ec33ce57a116b76e0658",
+          "bytes": 2982
+        },
+        {
+          "path": "agents/kyverno/kyverno-admission-reliability-agent/metadata.json",
+          "sha256": "29ba16abf2ae46df9a84949ac3c88e404a4f43afb3c515214d00812ae1f9f629",
+          "bytes": 2824
+        },
+        {
+          "path": "agents/kyverno/kyverno-control-evidence-agent/AGENT.md",
+          "sha256": "1f2c383e985dadc14cdf6b7ea4590fe6b27a92fe71e4628e2f6c8ca496b2827a",
+          "bytes": 3088
+        },
+        {
+          "path": "agents/kyverno/kyverno-control-evidence-agent/harnesses/claude-code.agent.md",
+          "sha256": "83759ec591b4598785bc1f1c18aebe9d9aeecad72e86ad7049968e20cea5bb4f",
+          "bytes": 2723
+        },
+        {
+          "path": "agents/kyverno/kyverno-control-evidence-agent/harnesses/codex.toml",
+          "sha256": "32edd6b520e13f99745c601401d13ee3036a0cc417c4742aec14167294ad27c4",
+          "bytes": 2975
+        },
+        {
+          "path": "agents/kyverno/kyverno-control-evidence-agent/harnesses/copilot.agent.md",
+          "sha256": "04076b991003acf31be9bef5e49eccfc2a7f29814fa243f74a368be94032ad2d",
+          "bytes": 2829
+        },
+        {
+          "path": "agents/kyverno/kyverno-control-evidence-agent/harnesses/cursor.agent.md",
+          "sha256": "83759ec591b4598785bc1f1c18aebe9d9aeecad72e86ad7049968e20cea5bb4f",
+          "bytes": 2723
+        },
+        {
+          "path": "agents/kyverno/kyverno-control-evidence-agent/harnesses/gemini.agent.md",
+          "sha256": "070e320ebdcb49e4c70c6d861c17d318e17fc0092f5bc8cf2805c6cd2d9bd2fc",
+          "bytes": 2770
+        },
+        {
+          "path": "agents/kyverno/kyverno-control-evidence-agent/harnesses/kiro-cli.agent.json",
+          "sha256": "dba62a49a1fb54370780a76143d730f21698c64e2627f3bfc1e9e51b2bd01b34",
+          "bytes": 2777
+        },
+        {
+          "path": "agents/kyverno/kyverno-control-evidence-agent/harnesses/kiro-ide.agent.md",
+          "sha256": "83759ec591b4598785bc1f1c18aebe9d9aeecad72e86ad7049968e20cea5bb4f",
+          "bytes": 2723
+        },
+        {
+          "path": "agents/kyverno/kyverno-control-evidence-agent/metadata.json",
+          "sha256": "6cb650f3e8dd07810a4ff19f207d39bf866d4a0c692cd94a350bc87bb50bf426",
+          "bytes": 2354
+        },
+        {
+          "path": "agents/kyverno/kyverno-exception-governance-agent/AGENT.md",
+          "sha256": "9e1116ec95bdfacf9e462cae33b780b6a2b38129a8c932bd7b878ad1791def3b",
+          "bytes": 3106
+        },
+        {
+          "path": "agents/kyverno/kyverno-exception-governance-agent/harnesses/claude-code.agent.md",
+          "sha256": "d6aa5bb74bb4ac4a754cc52fe5ad5d22575a820b61d6a8ab282bc8cc41ec1a80",
+          "bytes": 2837
+        },
+        {
+          "path": "agents/kyverno/kyverno-exception-governance-agent/harnesses/codex.toml",
+          "sha256": "9298ddbb9a7fed582179e06fc33071d9ed6378fb2f8f1ffd1c9723a1ca3e19bf",
+          "bytes": 3093
+        },
+        {
+          "path": "agents/kyverno/kyverno-exception-governance-agent/harnesses/copilot.agent.md",
+          "sha256": "36b244703250bd75571ef09e134bccffd7551a3a0e451d1ce68e17725b0b49e8",
+          "bytes": 2943
+        },
+        {
+          "path": "agents/kyverno/kyverno-exception-governance-agent/harnesses/cursor.agent.md",
+          "sha256": "d6aa5bb74bb4ac4a754cc52fe5ad5d22575a820b61d6a8ab282bc8cc41ec1a80",
+          "bytes": 2837
+        },
+        {
+          "path": "agents/kyverno/kyverno-exception-governance-agent/harnesses/gemini.agent.md",
+          "sha256": "ce755593bf96399abd4c4177d4ed51f650208139865bc7cf6fa71e420eec3ecf",
+          "bytes": 2888
+        },
+        {
+          "path": "agents/kyverno/kyverno-exception-governance-agent/harnesses/kiro-cli.agent.json",
+          "sha256": "e144a539d8b43e88b148733155ee69baf69fac7413f4ab574ec83825481700e5",
+          "bytes": 2892
+        },
+        {
+          "path": "agents/kyverno/kyverno-exception-governance-agent/harnesses/kiro-ide.agent.md",
+          "sha256": "d6aa5bb74bb4ac4a754cc52fe5ad5d22575a820b61d6a8ab282bc8cc41ec1a80",
+          "bytes": 2837
+        },
+        {
+          "path": "agents/kyverno/kyverno-exception-governance-agent/metadata.json",
+          "sha256": "5e3073e37a4ae3a1ce545b114f123ba20375c51380ad16d9304591b555fa41f0",
+          "bytes": 2635
+        },
+        {
+          "path": "agents/kyverno/kyverno-maestro-agent/AGENT.md",
+          "sha256": "5b85b9e7872fd1be515d9fea4aeb2544d9f8babd6254bbf2e0247a9d54c88554",
+          "bytes": 3169
+        },
+        {
+          "path": "agents/kyverno/kyverno-maestro-agent/harnesses/claude-code.agent.md",
+          "sha256": "3e6e27c548db2585c3415a35939773095861e60ba663a790b5e280e809b0dd96",
+          "bytes": 2953
+        },
+        {
+          "path": "agents/kyverno/kyverno-maestro-agent/harnesses/codex.toml",
+          "sha256": "c91b9b64af023fdf21029b87e8287d72fd17426d7fac7ef968c444cd74399eea",
+          "bytes": 3196
+        },
+        {
+          "path": "agents/kyverno/kyverno-maestro-agent/harnesses/copilot.agent.md",
+          "sha256": "0468ab88d86f21a8ff51e28b5a3340f95e1b0a39f300a52100ebdbba8c78d222",
+          "bytes": 3059
+        },
+        {
+          "path": "agents/kyverno/kyverno-maestro-agent/harnesses/cursor.agent.md",
+          "sha256": "3e6e27c548db2585c3415a35939773095861e60ba663a790b5e280e809b0dd96",
+          "bytes": 2953
+        },
+        {
+          "path": "agents/kyverno/kyverno-maestro-agent/harnesses/gemini.agent.md",
+          "sha256": "9465a240a4505b83beddbcb04f36a6fb36ef11dfe9522bf5333af8d115a2260d",
+          "bytes": 2991
+        },
+        {
+          "path": "agents/kyverno/kyverno-maestro-agent/harnesses/kiro-cli.agent.json",
+          "sha256": "cdae12e084ecf74770911f7bf06281faa132b99d7cf27baa1826d0f89299a5e2",
+          "bytes": 3008
+        },
+        {
+          "path": "agents/kyverno/kyverno-maestro-agent/harnesses/kiro-ide.agent.md",
+          "sha256": "3e6e27c548db2585c3415a35939773095861e60ba663a790b5e280e809b0dd96",
+          "bytes": 2953
+        },
+        {
+          "path": "agents/kyverno/kyverno-maestro-agent/metadata.json",
+          "sha256": "6d3a2dea348cca3e9cac4022f132f2f522ec9ed284b82dcac767386b2bff5b02",
+          "bytes": 2317
+        },
+        {
+          "path": "agents/kyverno/kyverno-migration-readiness-agent/AGENT.md",
+          "sha256": "2eac3f4df86ded1519b98d5c9ba1b934653c396caa0e6ff3e4200a0c5d4cab87",
+          "bytes": 3082
+        },
+        {
+          "path": "agents/kyverno/kyverno-migration-readiness-agent/harnesses/claude-code.agent.md",
+          "sha256": "c65721faceac58116ccbcd90cf23e22230b75dc50931ed496e1f6848612c4bda",
+          "bytes": 2780
+        },
+        {
+          "path": "agents/kyverno/kyverno-migration-readiness-agent/harnesses/codex.toml",
+          "sha256": "37dec9ed38b91aa9a5b68e052a0ea490f49958a361959ec2ad02363903da3269",
+          "bytes": 3035
+        },
+        {
+          "path": "agents/kyverno/kyverno-migration-readiness-agent/harnesses/copilot.agent.md",
+          "sha256": "25e7cf1d0780d934a9cf93f6567049092361b975e9532583e110f5a5e5a96ccb",
+          "bytes": 2886
+        },
+        {
+          "path": "agents/kyverno/kyverno-migration-readiness-agent/harnesses/cursor.agent.md",
+          "sha256": "c65721faceac58116ccbcd90cf23e22230b75dc50931ed496e1f6848612c4bda",
+          "bytes": 2780
+        },
+        {
+          "path": "agents/kyverno/kyverno-migration-readiness-agent/harnesses/gemini.agent.md",
+          "sha256": "7a9146292e20eb8bebc6210ad9c252dd046dc0f8a129074e88c098a6b65dc878",
+          "bytes": 2830
+        },
+        {
+          "path": "agents/kyverno/kyverno-migration-readiness-agent/harnesses/kiro-cli.agent.json",
+          "sha256": "62ec7c527f295f50dc8e50a252bfb38389e0ff0e96338ddeaa5cb05782ee71e1",
+          "bytes": 2835
+        },
+        {
+          "path": "agents/kyverno/kyverno-migration-readiness-agent/harnesses/kiro-ide.agent.md",
+          "sha256": "c65721faceac58116ccbcd90cf23e22230b75dc50931ed496e1f6848612c4bda",
+          "bytes": 2780
+        },
+        {
+          "path": "agents/kyverno/kyverno-migration-readiness-agent/metadata.json",
+          "sha256": "50da5eff38ee6e53545d1a33a292cdd2c09d78113a9089a44d82756b0f3617a7",
+          "bytes": 2552
+        },
+        {
+          "path": "agents/kyverno/kyverno-policy-lifecycle-agent/AGENT.md",
+          "sha256": "076896d6bbb12d198fbb69df4a92e6617e96a699ab3dd9369cca43595b4f5593",
+          "bytes": 3196
+        },
+        {
+          "path": "agents/kyverno/kyverno-policy-lifecycle-agent/harnesses/claude-code.agent.md",
+          "sha256": "b19aba013b9273b4b7895d04a21a607337750cc10a26bfc105c37ef53acaf9d2",
+          "bytes": 2888
+        },
+        {
+          "path": "agents/kyverno/kyverno-policy-lifecycle-agent/harnesses/codex.toml",
+          "sha256": "864a050fc77f107ed10b29586f81a7dc15b0308aa354c3a78187f763c72690ba",
+          "bytes": 3140
+        },
+        {
+          "path": "agents/kyverno/kyverno-policy-lifecycle-agent/harnesses/copilot.agent.md",
+          "sha256": "94d60715aefce02384b612b9f5162bce307022ddf1bcaffb9c4836d6b3cb323c",
+          "bytes": 2994
+        },
+        {
+          "path": "agents/kyverno/kyverno-policy-lifecycle-agent/harnesses/cursor.agent.md",
+          "sha256": "b19aba013b9273b4b7895d04a21a607337750cc10a26bfc105c37ef53acaf9d2",
+          "bytes": 2888
+        },
+        {
+          "path": "agents/kyverno/kyverno-policy-lifecycle-agent/harnesses/gemini.agent.md",
+          "sha256": "c6386f00f7d4656807fd99e7b580bae576c9ca9fbf685395c2d116a12a463fd0",
+          "bytes": 2935
+        },
+        {
+          "path": "agents/kyverno/kyverno-policy-lifecycle-agent/harnesses/kiro-cli.agent.json",
+          "sha256": "c7afe106c04370c071d531b98ae112efcecfd3c22b7005e48f65cbde413773d6",
+          "bytes": 2943
+        },
+        {
+          "path": "agents/kyverno/kyverno-policy-lifecycle-agent/harnesses/kiro-ide.agent.md",
+          "sha256": "b19aba013b9273b4b7895d04a21a607337750cc10a26bfc105c37ef53acaf9d2",
+          "bytes": 2888
+        },
+        {
+          "path": "agents/kyverno/kyverno-policy-lifecycle-agent/metadata.json",
+          "sha256": "59c4a671fca7341ff264403e887ccd831d203d52ae18cb7404338d8e2ef3fe73",
+          "bytes": 2496
         },
         {
           "path": "agents/kyverno/kyverno-policy-review-agent/AGENT.md",
-          "sha256": "442fe13e1aa23366f12e1f5d8311bbfb10191321e21f7d526427f7491c95df44",
-          "bytes": 2437
+          "sha256": "4a20c4cff7e8f8f926fdbd3e1179432b4ffbd1489532977564353ae17d34abb5",
+          "bytes": 3339
         },
         {
           "path": "agents/kyverno/kyverno-policy-review-agent/harnesses/claude-code.agent.md",
-          "sha256": "6fef06b54a5376178d8f74d986a86a4f8e96989685904772ce69f88a33746913",
-          "bytes": 1806
+          "sha256": "18749720acdf810671a2c77c7d607a5d80079df19c1098814700fc2a0fca0936",
+          "bytes": 3169
         },
         {
           "path": "agents/kyverno/kyverno-policy-review-agent/harnesses/codex.toml",
-          "sha256": "bab4934642098a908cbbac6b908b56350c5259e00185510795b046a79a820312",
-          "bytes": 1784
+          "sha256": "5d735a02b51f89fdbce368b1a03ec50ac95600959cf2d4cbcc6c55d82bfc25f7",
+          "bytes": 3418
         },
         {
           "path": "agents/kyverno/kyverno-policy-review-agent/harnesses/copilot.agent.md",
-          "sha256": "6fef06b54a5376178d8f74d986a86a4f8e96989685904772ce69f88a33746913",
-          "bytes": 1806
+          "sha256": "e248001df3f8cd0ba2b7ece8844ffc3035bb4d330364b3afce3edf4474a129f7",
+          "bytes": 3275
         },
         {
           "path": "agents/kyverno/kyverno-policy-review-agent/harnesses/cursor.agent.md",
-          "sha256": "6fef06b54a5376178d8f74d986a86a4f8e96989685904772ce69f88a33746913",
-          "bytes": 1806
+          "sha256": "18749720acdf810671a2c77c7d607a5d80079df19c1098814700fc2a0fca0936",
+          "bytes": 3169
         },
         {
           "path": "agents/kyverno/kyverno-policy-review-agent/harnesses/gemini.agent.md",
-          "sha256": "56ee4810d656b78dae6b05d538eb80eaedf07951c52be182c62f2a31d5a17ee4",
-          "bytes": 1850
+          "sha256": "f9d060d66059f849545602239323691eba94c8314b4249db8062e0ce0fe1bede",
+          "bytes": 3213
         },
         {
           "path": "agents/kyverno/kyverno-policy-review-agent/harnesses/kiro-cli.agent.json",
-          "sha256": "cd7919450917b575e30fa921c3ac1a005ecd33b6378d153ca6b3849e6233139f",
-          "bytes": 1857
+          "sha256": "e5c341d03b6ef676dbfaf8139f3b052b84fd345884e0400ec0764c4431f8abd6",
+          "bytes": 3224
         },
         {
           "path": "agents/kyverno/kyverno-policy-review-agent/harnesses/kiro-ide.agent.md",
-          "sha256": "6fef06b54a5376178d8f74d986a86a4f8e96989685904772ce69f88a33746913",
-          "bytes": 1806
+          "sha256": "18749720acdf810671a2c77c7d607a5d80079df19c1098814700fc2a0fca0936",
+          "bytes": 3169
         },
         {
           "path": "agents/kyverno/kyverno-policy-review-agent/metadata.json",
-          "sha256": "d0622df7410688d9148c8de6156f415eece135cda828a4524c31862bb5cffdf4",
-          "bytes": 1763
+          "sha256": "60b9f4198abb4673f33163aebcccce87edee73780db0b6bf448b320c91f243eb",
+          "bytes": 3004
         },
         {
           "path": "agents/legal/README.md",
@@ -36754,7 +37024,7 @@
     },
     {
       "tree": "catalog",
-      "aggregate_sha256": "5e42879cff96b7cc1761399f655ff7e3d8e5211022b68670ec4a404034225aba",
+      "aggregate_sha256": "d2a0564d00233a13a6167b3229497b6daefca24596359b659df78fd2e6a051b1",
       "files": [
         {
           "path": "catalog/AGENTS.md",
@@ -36763,8 +37033,8 @@
         },
         {
           "path": "catalog/agents.json",
-          "sha256": "fffae1dea91bf1610a0ec031446285935c3177e554a02cc82f93ef66ac338f43",
-          "bytes": 1304829
+          "sha256": "b6b17e23cac2dea7045c218ed47e64d2d039a9a660577ddfae6b106a59536389",
+          "bytes": 1315896
         },
         {
           "path": "catalog/index.json",
@@ -36773,8 +37043,8 @@
         },
         {
           "path": "catalog/install-roles.json",
-          "sha256": "2f265a03473ccf8e99f50b6c8ea37fc9de3b0abc7d9202e7f7c7cbd78193ebc7",
-          "bytes": 131451
+          "sha256": "48e19424c26ace555b2700486c60e4a7de61073c1c67f9eda5b8630f1af3f707",
+          "bytes": 132042
         },
         {
           "path": "catalog/mcp-references.json",
@@ -36783,8 +37053,8 @@
         },
         {
           "path": "catalog/model-assignments.json",
-          "sha256": "94e8df98a337204fa04c1a9d8d83be22158d5252d300493a2a5d359bf7445034",
-          "bytes": 719357
+          "sha256": "d1538d66f8b93aaea9fc6f625e98fda5b5e31baa5b8cf02959330a1b860ca90c",
+          "bytes": 724928
         },
         {
           "path": "catalog/model-policy.json",
@@ -36808,13 +37078,13 @@
         },
         {
           "path": "catalog/skill-manifest.json",
-          "sha256": "c31248c1f78f42f9dfd730c73c33b111e5a9f340d3a0b19add44d3530fa436c5",
-          "bytes": 1205686
+          "sha256": "ed77a411a4ac50ae1e90318fc1db2b254f024196b3c4bc0ff59a80c677657bbb",
+          "bytes": 1231596
         },
         {
           "path": "catalog/skills.json",
-          "sha256": "487f242b78e90a659ef5bb5887ff3cf00002cbfe1b4126056af33e025bc5f579",
-          "bytes": 1283169
+          "sha256": "6a708a0ed11e2fe06d36f6be0fd1dd6dbd9817c173deaa50aab8b54b6c1383cc",
+          "bytes": 1297248
         },
         {
           "path": "catalog/workflows.json",
@@ -36825,7 +37095,7 @@
     },
     {
       "tree": "scripts",
-      "aggregate_sha256": "75b474cf973ecd5891bbdb2cc10a7e93e1794f4977e83b81ba78a02d81762513",
+      "aggregate_sha256": "76c8a8d0ee08505c3bbb8f2d42cac2b546968e7a84283f09cf868135c45e6c02",
       "files": [
         {
           "path": "scripts/apply-skill-allowed-tools.py",
@@ -36941,6 +37211,11 @@
           "path": "scripts/gen_kotlin_agents.py",
           "sha256": "f6048d7cb117d475c3946d08a876392011c7c326975c0b86f6bca4f8ccde5140",
           "bytes": 20397
+        },
+        {
+          "path": "scripts/gen_kyverno_board.py",
+          "sha256": "d9c449fa31a26452a6f8b26a4f78506c05d1b433ece960dc5e0e921b06cd21c8",
+          "bytes": 13892
         },
         {
           "path": "scripts/gen_netsuite_agents.py",
@@ -37121,6 +37396,21 @@
           "path": "scripts/kotlin_data/agents/15-kotlin-test-architecture-agent.json",
           "sha256": "c8b6ef001988c70f6d2427d7575ce655c779d0962c2a8fb3883d553d9d30fef5",
           "bytes": 15646
+        },
+        {
+          "path": "scripts/kyverno_data/board.json",
+          "sha256": "85ed3852ff9e55179b2a60d6bf216818a68362c6ef77361d28e339fd8e635da4",
+          "bytes": 17961
+        },
+        {
+          "path": "scripts/kyverno_data/evidence-vocabulary.md",
+          "sha256": "4cf8a0de394c3cbe21db6c29d883f8769f0ead2784cd5e353582e29385f758fa",
+          "bytes": 4282
+        },
+        {
+          "path": "scripts/kyverno_data/sources.json",
+          "sha256": "a838ca8f4eaa58054b39726287e71efd175283331a457ad5f45257d2b6b7d148",
+          "bytes": 26096
         },
         {
           "path": "scripts/model-policy.mjs",
@@ -37696,7 +37986,7 @@
     },
     {
       "tree": "powers",
-      "aggregate_sha256": "085f4c0de5e5aaa8a08aa53618c5d19c4132994c986cd68892fba632a9d271b4",
+      "aggregate_sha256": "2fd9d835aea73333508f26d20db2c142a6b9df3c361495346f2899de5702344c",
       "files": [
         {
           "path": "powers/README.md",
@@ -37835,8 +38125,8 @@
         },
         {
           "path": "powers/vanguard-kyverno/POWER.md",
-          "sha256": "c1095ab0c363fba82ea25353f2e8c34fb5296e92911c6de0ef16833218c2013f",
-          "bytes": 2239
+          "sha256": "446ff5a1486a996ce9115e3e761dc0958df5263866cbd1fcecbc63f947d8bfc5",
+          "bytes": 2562
         },
         {
           "path": "powers/vanguard-legal/POWER.md",
@@ -37983,7 +38273,7 @@
     },
     {
       "tree": ".claude-plugin",
-      "aggregate_sha256": "193b030c022de0b4e9fccc0b198bd3bede1516051792cab58c3a8ac41c21d789",
+      "aggregate_sha256": "5bb3e842db9cec950944d4f91aadbd83ea38349dc518819af879853a350af5bf",
       "files": [
         {
           "path": ".claude-plugin/README.md",
@@ -37992,19 +38282,19 @@
         },
         {
           "path": ".claude-plugin/marketplace.json",
-          "sha256": "c69e5d535979ee35c332b0a58e101047179f3afcc74339c5c617f552b99ae661",
+          "sha256": "fe1bb1a18bbfd1c93ed837d9e58b7ffd0b1783c9d0dc8e43830bc36e43617469",
           "bytes": 855
         },
         {
           "path": ".claude-plugin/plugin.json",
-          "sha256": "8bce0223c53809f5ce4e052c5c5fd6778a4e3f12ee2e1fc3c9a74873c3625191",
-          "bytes": 69565
+          "sha256": "d6bc0af473fe6e5c694da1e9aef75f99ab6a153050a20b6134e8eb322fe2d20f",
+          "bytes": 70084
         }
       ]
     },
     {
       "tree": ".cursor-plugin",
-      "aggregate_sha256": "b0967bf3e320e0ebaf4e6569c4d03ed399874bf363414a62ba8d18a241b000a4",
+      "aggregate_sha256": "c21ac395ba9f3da77b180578b3d521c43b3adf14a27fbef2a37c233beacd8993",
       "files": [
         {
           "path": ".cursor-plugin/README.md",
@@ -38013,8 +38303,8 @@
         },
         {
           "path": ".cursor-plugin/plugin.json",
-          "sha256": "495306c79c1d7f285a7997d7480fec4b9f011c64e1ecfed3f31be4790969e752",
-          "bytes": 65771
+          "sha256": "bda8c4932c98c790da858f0441b7f35d67518431c931877e18ceae95b65e47ab",
+          "bytes": 66260
         }
       ]
     },
@@ -38052,7 +38342,7 @@
     },
     {
       "tree": "tests",
-      "aggregate_sha256": "135ed833621efea961d1bbb934b20187342408970b6c95992d5c8fa177d97b66",
+      "aggregate_sha256": "ca9c6a1f9ec22fe57d9e465a1b9b43fd7f48461e9221ea7a4937e2687a842c3c",
       "files": [
         {
           "path": "tests/AGENTS.md",
@@ -39091,7 +39381,7 @@
         },
         {
           "path": "tests/fixtures/README.md",
-          "sha256": "acabf617782e2b63a2c6b5164f8dc832fa7e49633a764ef7cedaa703b19405f6",
+          "sha256": "1d6a7eeaef237701fe8c05bc876efb2caf572f5764011b4bea0edd2fc0c38051",
           "bytes": 3698
         },
         {
@@ -46885,6 +47175,1101 @@
           "bytes": 2768
         },
         {
+          "path": "tests/fixtures/kyverno-board-decisions/invalid/01-execution-authority-granted.json",
+          "sha256": "a9fce0483c13ca1be9a4b048fa7fabea8912faf2f7db29211c1c161b35e7142e",
+          "bytes": 186
+        },
+        {
+          "path": "tests/fixtures/kyverno-board-decisions/invalid/02-verdict-does-not-follow-outcome.json",
+          "sha256": "fbf202ecd361cafd36e7b7d6a2b2738eb301fad86152015f41ebf3cebbcb728b",
+          "bytes": 170
+        },
+        {
+          "path": "tests/fixtures/kyverno-board-decisions/invalid/03-claim-cites-missing-evidence.json",
+          "sha256": "e7113d37b4da465f1270717c30a553a84a7c44fa03d28676bd76822353d15e2a",
+          "bytes": 180
+        },
+        {
+          "path": "tests/fixtures/kyverno-board-decisions/invalid/04-unknown-without-settling-item.json",
+          "sha256": "488b32f9a0a51502fb3bc725f92bb572230f309bea620bbf0e265a41372983f1",
+          "bytes": 213
+        },
+        {
+          "path": "tests/fixtures/kyverno-board-decisions/invalid/05-supported-without-negative-test.json",
+          "sha256": "66c13ced1202e2b84ab6fa3b8b6d50d747a00c2b9ac6a5667bce61f6b048c56f",
+          "bytes": 240
+        },
+        {
+          "path": "tests/fixtures/kyverno-board-decisions/invalid/06-conditional-without-conditions.json",
+          "sha256": "e6825a5082a43efb76ba88ec75fc7c7a9eadfae1a9a761061136070f0c2df4c8",
+          "bytes": 155
+        },
+        {
+          "path": "tests/fixtures/kyverno-board-decisions/invalid/07-proposed-test-claims-result.json",
+          "sha256": "0ee4b0dcb118601449f5818327985a6d264147194774c1e11bb5805a78175fd1",
+          "bytes": 189
+        },
+        {
+          "path": "tests/fixtures/kyverno-board-decisions/invalid/08-promotion-without-challenge.json",
+          "sha256": "06706d231395a805e438fcd77e3587bf3b2d6cd0b0e9a0e13bdc6556ea2d01b9",
+          "bytes": 190
+        },
+        {
+          "path": "tests/fixtures/kyverno-board-decisions/invalid/09-lead-challenges-itself.json",
+          "sha256": "6b0e2eb4f7861bf07fe91270f1d746de43f6aa1c59e4d25dce44abc11ecea79c",
+          "bytes": 196
+        },
+        {
+          "path": "tests/fixtures/kyverno-board-decisions/invalid/10-supported-after-unrun-challenge.json",
+          "sha256": "82dcc617b9555fd90425b5bde905840e932463d18f0048a98a370f81c7283f1c",
+          "bytes": 198
+        },
+        {
+          "path": "tests/fixtures/kyverno-board-decisions/invalid/11-supported-over-dissent.json",
+          "sha256": "e10ed6673502947fee718d05d47f9553a88f806d3459a7d77ec6468d3ac97058",
+          "bytes": 405
+        },
+        {
+          "path": "tests/fixtures/kyverno-board-decisions/invalid/12-referral-back-to-lead.json",
+          "sha256": "34b6db6804591a59b7b9da7f778abe285c1743ee7f4e04d4cd7c51ce00174a18",
+          "bytes": 212
+        },
+        {
+          "path": "tests/fixtures/kyverno-board-decisions/invalid/13-duplicate-referral.json",
+          "sha256": "dc656cae16e3930ac8289be9ee617666e63dedb4e683f612ac516ccf8404aea0",
+          "bytes": 409
+        },
+        {
+          "path": "tests/fixtures/kyverno-board-decisions/invalid/14-advisory-request-with-live-handoff.json",
+          "sha256": "b0fe90146d128d959d3c1297c14ba8b72f9df919505faf5df95abc45fbff53ce",
+          "bytes": 437
+        },
+        {
+          "path": "tests/fixtures/kyverno-board-decisions/invalid/15-execution-request-without-handoff.json",
+          "sha256": "8ee8a4b7fc368a0c3611c5d519db3b09ddeb70b268baa4c962e227514050af0f",
+          "bytes": 194
+        },
+        {
+          "path": "tests/fixtures/kyverno-board-decisions/invalid/16-overdue-preventive-audit-not-high.json",
+          "sha256": "1876a991359742e1300537fc4ab64ac6145e4b329867b0b5bf4d53ae710c19de",
+          "bytes": 212
+        },
+        {
+          "path": "tests/fixtures/kyverno-board-decisions/invalid/17-in-window-canary-rated-high.json",
+          "sha256": "d92c680917098e0ea2463c7ce90fe0424f429c6315648723d21528725fd4e556",
+          "bytes": 204
+        },
+        {
+          "path": "tests/fixtures/kyverno-board-decisions/invalid/18-canary-without-deadline.json",
+          "sha256": "545a5c70e8415af6c50a3441c979caec2ca91ca51abcffd27dc9a3a7bab18f8e",
+          "bytes": 200
+        },
+        {
+          "path": "tests/fixtures/kyverno-board-decisions/invalid/19-blocked-creates-in-object-denominator.json",
+          "sha256": "919a8f6648590494a0d982fd6b9b3e4be288a14d1d47ea8eb9bd716fb6f318a6",
+          "bytes": 187
+        },
+        {
+          "path": "tests/fixtures/kyverno-board-decisions/invalid/20-compliance-percentage-without-breakdown.json",
+          "sha256": "665788ee471330c8bd294a7b4b3a295ca5a0798c8a319e6e53f85a398062ffe5",
+          "bytes": 216
+        },
+        {
+          "path": "tests/fixtures/kyverno-board-decisions/invalid/21-exceptions-counted-as-prevention.json",
+          "sha256": "b0aaa5bbcc5e6fcf91bcb55b813d0d187dabac4dbd29e7f0f5ba09707608042a",
+          "bytes": 194
+        },
+        {
+          "path": "tests/fixtures/kyverno-board-decisions/invalid/22-annotation-date-claimed-as-expiry.json",
+          "sha256": "5668276ce72bed440d810a946957ec6ccce5233200bc8a56c7203b8556e0684a",
+          "bytes": 227
+        },
+        {
+          "path": "tests/fixtures/kyverno-board-decisions/invalid/23-git-revert-claimed-as-restoration.json",
+          "sha256": "fe03560bbb2f71a03c21249a822be29597662de48441e05a90d62f2758257405",
+          "bytes": 236
+        },
+        {
+          "path": "tests/fixtures/kyverno-board-decisions/invalid/24-update-differs-but-conditional.json",
+          "sha256": "3d585f8af5ba06eee594d1f3e35dedfcbda0a10b72d3d58de4a8f55f22d38e61",
+          "bytes": 365
+        },
+        {
+          "path": "tests/fixtures/kyverno-board-decisions/invalid/25-update-parity-from-offline-only.json",
+          "sha256": "0e5a5c7af919ad87af3576f664553bceca5a76da1a8e1fc202f8b941e32d3c87",
+          "bytes": 509
+        },
+        {
+          "path": "tests/fixtures/kyverno-board-decisions/invalid/26-duplicate-jira-draft.json",
+          "sha256": "5a70b07ba2af6cfcbf96eecdd1495f3db02b73779827e17839ee3419d96c6b8c",
+          "bytes": 387
+        },
+        {
+          "path": "tests/fixtures/kyverno-board-decisions/invalid/27-blind-update-of-existing-page.json",
+          "sha256": "80a3d3d6967b219bac87db3bc5a38fb948b6225480a6df33213b5de64c8c5fec",
+          "bytes": 191
+        },
+        {
+          "path": "tests/fixtures/kyverno-board-decisions/invalid/28-artifact-loses-decision-id.json",
+          "sha256": "7a69c7ec583250b68daafaacaa63831cad31b6a5beeac10b9c17594daabd6bbb",
+          "bytes": 198
+        },
+        {
+          "path": "tests/fixtures/kyverno-board-decisions/invalid/29-token-in-record.json",
+          "sha256": "d1e7a00dd5964b2e091f7e43ad7479e93bf16e8502d3d9faf816083013d4986a",
+          "bytes": 197
+        },
+        {
+          "path": "tests/fixtures/kyverno-board-decisions/invalid/30-assumption-without-owner.json",
+          "sha256": "0f6bfd7912a010894951d7d7a9a340c1c6659248b54a996f5f499132697ec997",
+          "bytes": 190
+        },
+        {
+          "path": "tests/fixtures/kyverno-board-decisions/invalid/31-exception-supported-adjacent-unverified.json",
+          "sha256": "dd82067d3daa1371bd87a9fb13d77c07e991f9accb78d38dab7f2ac6799a33b9",
+          "bytes": 565
+        },
+        {
+          "path": "tests/fixtures/kyverno-board-decisions/invalid/32-failed-test-without-observation.json",
+          "sha256": "825e9c110ee73aedf9cce714eb7b517ac019b3926efc7a7be8f36b56e7c45a3d",
+          "bytes": 179
+        },
+        {
+          "path": "tests/fixtures/kyverno-board-decisions/invalid/33-blocked-count-without-source.json",
+          "sha256": "31b1dc6a3dae79c7ca79d5b2d4e6ac622569573b222347c1e71720883bf06c47",
+          "bytes": 207
+        },
+        {
+          "path": "tests/fixtures/kyverno-board-decisions/invalid/34-report-failures-as-prevention.json",
+          "sha256": "dfeb010cbdd748dbc39436430fd6c8d30dc39326167fe1632fe46c421ee442c6",
+          "bytes": 443
+        },
+        {
+          "path": "tests/fixtures/kyverno-board-decisions/invalid/35-compliance-percentage-contradicts-breakdown.json",
+          "sha256": "a94f7e6f3fc25e7842006d08b08a1207de87cbf04822eadea00f64c278229404",
+          "bytes": 340
+        },
+        {
+          "path": "tests/fixtures/kyverno-board-decisions/invalid/36-excepted-reporting-unaccounted.json",
+          "sha256": "753708a8b096f2dac60baed42872c5f0dfc7d6b3151ac63f66b2c3bbaabd2b85",
+          "bytes": 261
+        },
+        {
+          "path": "tests/fixtures/kyverno-board-decisions/invalid/37-referral-target-as-challenger.json",
+          "sha256": "4873e137844e742ad05bcfa0f69b5ded018f10797da03f5ba3f1a30a96dbf7e1",
+          "bytes": 246
+        },
+        {
+          "path": "tests/fixtures/kyverno-board-decisions/invalid/38-duplicate-evidence-id.json",
+          "sha256": "99f8ea603a32373762edb38cdb48309694f6f55825a9ab5ae23fc9d3cff6b391",
+          "bytes": 348
+        },
+        {
+          "path": "tests/fixtures/kyverno-board-decisions/invalid/39-expiry-evidence-before-expiry.json",
+          "sha256": "6b35ffd038645ace33fcb0455e7dda7ee6b534decb5ef06eefa64bd160e20c3f",
+          "bytes": 579
+        },
+        {
+          "path": "tests/fixtures/kyverno-board-decisions/invalid/40-update-pairs-from-metric.json",
+          "sha256": "9bb5e1b5b097067d7ed3560f49a21542f960d22c120a3de250e1dd935f80c983",
+          "bytes": 268
+        },
+        {
+          "path": "tests/fixtures/kyverno-board-decisions/invalid/41-restoration-from-desired-state.json",
+          "sha256": "28f0f1d75927e930fe15228d899b16358f4da090ef62578d295d3478d53e0658",
+          "bytes": 336
+        },
+        {
+          "path": "tests/fixtures/kyverno-board-decisions/invalid/42-supported-with-failed-test.json",
+          "sha256": "3b537d46c881404f63a68ecaf07c7f3db94eaa78af35f5026c7f4d09bd90dc60",
+          "bytes": 282
+        },
+        {
+          "path": "tests/fixtures/kyverno-board-decisions/invalid/43-overturned-challenge-on-advisory-supported.json",
+          "sha256": "a54113ab810c22ab448a5ca9d667d076dbc010b8efb5c28721cbfa0e1733e694",
+          "bytes": 365
+        },
+        {
+          "path": "tests/fixtures/kyverno-board-decisions/invalid/44-passed-tests-on-manifest-only.json",
+          "sha256": "a905cf2ff4ea0bccdeae350d77280811ed7fcd37ad041c424fb0c86246bc60dc",
+          "bytes": 333
+        },
+        {
+          "path": "tests/fixtures/kyverno-board-decisions/invalid/45-unresolved-boundary-but-supported.json",
+          "sha256": "14466b4e115e11c82ff5421f5d7542ccf8cf83bb44c4c8e500b8a7b594f2b642",
+          "bytes": 299
+        },
+        {
+          "path": "tests/fixtures/kyverno-board-decisions/invalid/46-overdue-preventive-downgraded-to-conditional.json",
+          "sha256": "b44a08166f30a718afe9cdf53182d60cffcf8df7e45a7d48c39672e21c5e54fe",
+          "bytes": 455
+        },
+        {
+          "path": "tests/fixtures/kyverno-board-decisions/invalid/47-steady-state-preventive-audit-supported.json",
+          "sha256": "ef052e56e536abc2ee0b59ba67269df3dfd4b569367452449c282850c6bcac76",
+          "bytes": 348
+        },
+        {
+          "path": "tests/fixtures/kyverno-board-decisions/invalid/48-unapproved-preventive-audit-medium-supported.json",
+          "sha256": "b0654a946ee09a9853bc11b661505c8d77e4561d8d34234262704b305535f95b",
+          "bytes": 302
+        },
+        {
+          "path": "tests/fixtures/kyverno-board-decisions/valid/01-cohort-a-promotion-supported.json",
+          "sha256": "5d0dec34525b7467769512b52b1a6d189f88abe9f2042615c76117f0d6e8e9c9",
+          "bytes": 6222
+        },
+        {
+          "path": "tests/fixtures/kyverno-board-decisions/valid/02-invoice-coverage-conditional.json",
+          "sha256": "6a480750020f7fe4c09ddd582ffc9491f7a275e868e6fb3d452044b1dcbaf717",
+          "bytes": 7167
+        },
+        {
+          "path": "tests/fixtures/kyverno-board-decisions/valid/03-overdue-preventive-audit-blocked.json",
+          "sha256": "018e60ee7109cc0ad708991eb13831305e271a1211d0d6218ff9f98fb46ee946",
+          "bytes": 3464
+        },
+        {
+          "path": "tests/fixtures/kyverno-board-decisions/valid/04-exception-annotation-date-conditional.json",
+          "sha256": "c9f72bfdc54c36b0df1cb0a07bea4d8b57fd296785fb5b511a10283ae7be0835",
+          "bytes": 3407
+        },
+        {
+          "path": "tests/fixtures/kyverno-board-decisions/valid/05-gitops-revert-not-restoration.json",
+          "sha256": "6606561acf3f7dc51207482c1e9144ba1881a48089254beeca25db2252b801b6",
+          "bytes": 3399
+        },
+        {
+          "path": "tests/fixtures/kyverno-board-decisions/valid/06-parity-update-differs-blocked.json",
+          "sha256": "b157f56c87105fa2df7146a497e6f6c30b947451548dfb768c843d6116e801f5",
+          "bytes": 2943
+        },
+        {
+          "path": "tests/fixtures/kyverno-board-decisions/valid/07-explicit-execution-handoff.json",
+          "sha256": "4896979c8668dbe30ef839507a6ce8318b73bdff15c8e960d95c1be4962abc3c",
+          "bytes": 2505
+        },
+        {
+          "path": "tests/fixtures/kyverno-board-decisions/valid/08-mesh-label-manifest-scope.json",
+          "sha256": "a733da5af887fb0220f15ff02b03405df211406911090f6ecb09a124e4151dcf",
+          "bytes": 3098
+        },
+        {
+          "path": "tests/fixtures/kyverno-board-decisions/valid/09-steady-state-preventive-audit-blocked.json",
+          "sha256": "8dadad8f711026dc6bdb9263fb6feb7afcb5060a32166bf676fa4dde67ae7343",
+          "bytes": 3472
+        },
+        {
+          "path": "tests/fixtures/kyverno-board-evals/expected/EVI-01.json",
+          "sha256": "2e8936a2bf0d94322c1fe836b85714c221dc18f31c6296ac5ce8eb8e49581977",
+          "bytes": 1355
+        },
+        {
+          "path": "tests/fixtures/kyverno-board-evals/expected/EVI-02.json",
+          "sha256": "28643773b2633a4e21b767f3f5c7e36e2a75bd19362fcb9d9230e7b6a09bbfb3",
+          "bytes": 1030
+        },
+        {
+          "path": "tests/fixtures/kyverno-board-evals/expected/EVI-03.json",
+          "sha256": "c1dc2333295c823b653874a64349ce4e53872632cd18b030bee7badfb1ba3b50",
+          "bytes": 1020
+        },
+        {
+          "path": "tests/fixtures/kyverno-board-evals/expected/EVI-04.json",
+          "sha256": "805fdfd59573413f29d17073db6e8acd1bbfe8272bf6edb3b133f52d8dcbd937",
+          "bytes": 1262
+        },
+        {
+          "path": "tests/fixtures/kyverno-board-evals/expected/EVI-05.json",
+          "sha256": "cc3b4672d2b4d908f7520fa7c65240d7e2c13012d906a760f9bb07d0f950f857",
+          "bytes": 1114
+        },
+        {
+          "path": "tests/fixtures/kyverno-board-evals/expected/EXC-01.json",
+          "sha256": "a2b6847c156b8e8e4113ea0a0d7e9dc4f6d3a757e75f227731c633a1f6ff535d",
+          "bytes": 1167
+        },
+        {
+          "path": "tests/fixtures/kyverno-board-evals/expected/EXC-02.json",
+          "sha256": "e25e3a1ae1421608f4acfcd02718665c8985ec9acaf93d36fcf72647e66755b4",
+          "bytes": 971
+        },
+        {
+          "path": "tests/fixtures/kyverno-board-evals/expected/EXC-03.json",
+          "sha256": "2b2f2a72ad102c74dc537ca22dafb1fdad3f7cd1ecff5c30aea3d23e159a8b6e",
+          "bytes": 1073
+        },
+        {
+          "path": "tests/fixtures/kyverno-board-evals/expected/EXC-04.json",
+          "sha256": "09b336656a22abdb9a486a55f373efc449fd89cd48a0a36b71819cdd0e5726e9",
+          "bytes": 1313
+        },
+        {
+          "path": "tests/fixtures/kyverno-board-evals/expected/EXC-05.json",
+          "sha256": "2cd670daa9be1f86426ae5d0117757b055c1722f74cc9549e41dc64b99bddc50",
+          "bytes": 1133
+        },
+        {
+          "path": "tests/fixtures/kyverno-board-evals/expected/LIF-01.json",
+          "sha256": "be04e45c8deefe30f650c3c0741627966fbf249ed6222b96a10df8cb5210d9bc",
+          "bytes": 1149
+        },
+        {
+          "path": "tests/fixtures/kyverno-board-evals/expected/LIF-02.json",
+          "sha256": "c662495dedcd3f19d1758af935ad9ad87768969af991ad89832e4e0835948da5",
+          "bytes": 1005
+        },
+        {
+          "path": "tests/fixtures/kyverno-board-evals/expected/LIF-03.json",
+          "sha256": "8b1e7104599b6fb264e328ebcba67e15441ce03ddfd5f686ab7496a96bb2ff85",
+          "bytes": 1014
+        },
+        {
+          "path": "tests/fixtures/kyverno-board-evals/expected/LIF-04.json",
+          "sha256": "31bd93f8fc410e719436ddd6a040c82233a0107b3dfc5c9b4a49b2aa8f43ff8a",
+          "bytes": 1273
+        },
+        {
+          "path": "tests/fixtures/kyverno-board-evals/expected/LIF-05.json",
+          "sha256": "9020e6d410738172846b9fe4086910574e0e1a0404f52562925df4caa922f2d3",
+          "bytes": 1127
+        },
+        {
+          "path": "tests/fixtures/kyverno-board-evals/expected/MAE-01.json",
+          "sha256": "daee792b619be88f2d18066d10b5c8ea4d610bfaa0e2e948a4519f0edaf3a205",
+          "bytes": 1176
+        },
+        {
+          "path": "tests/fixtures/kyverno-board-evals/expected/MAE-02.json",
+          "sha256": "950ddfd5f43d2ca6c96fab673d0b69480b8cc43b68151d4b5b235c618e1df5f7",
+          "bytes": 1183
+        },
+        {
+          "path": "tests/fixtures/kyverno-board-evals/expected/MAE-03.json",
+          "sha256": "f1c85ca233f05791fcdc67caaf12510e705638074a5c1cf1f203092c96eb66f9",
+          "bytes": 1173
+        },
+        {
+          "path": "tests/fixtures/kyverno-board-evals/expected/MAE-04.json",
+          "sha256": "a9966396f95a79cbc683b0e7bd24c208e16c0704970962c720a5e1366e59d994",
+          "bytes": 1162
+        },
+        {
+          "path": "tests/fixtures/kyverno-board-evals/expected/MAE-05.json",
+          "sha256": "f2e1a449eeec797cf5fd2f26bee588018afe42f564e69dd58fcd4472b8ac9925",
+          "bytes": 1202
+        },
+        {
+          "path": "tests/fixtures/kyverno-board-evals/expected/MAE-06.json",
+          "sha256": "501c6c761f9eecfafeeb43e64cc0f020d34921c61a85d7848183a19acd9fb083",
+          "bytes": 1172
+        },
+        {
+          "path": "tests/fixtures/kyverno-board-evals/expected/MAE-07.json",
+          "sha256": "976d4fd168a3016cd77b18a7976af315285277c3eb8588cf68da4e829622eaa5",
+          "bytes": 1155
+        },
+        {
+          "path": "tests/fixtures/kyverno-board-evals/expected/MAE-08.json",
+          "sha256": "f0e4fc50e81ef203cc44721e3d60f875ec7f12d4987beb16e99e79680c9be99d",
+          "bytes": 1117
+        },
+        {
+          "path": "tests/fixtures/kyverno-board-evals/expected/MIG-01.json",
+          "sha256": "e0bb130bf031e68f81211ff27438eb9cc079ea0b04d50deee383c456b76c997b",
+          "bytes": 1165
+        },
+        {
+          "path": "tests/fixtures/kyverno-board-evals/expected/MIG-02.json",
+          "sha256": "57d0f07bace0bc83e2d4f5d01d21fd3896dd4eca7919aeec6043b867e9185235",
+          "bytes": 990
+        },
+        {
+          "path": "tests/fixtures/kyverno-board-evals/expected/MIG-03.json",
+          "sha256": "be8a7033bc1dc9061f2d45d634e5b42c3c9437c3d63cc6653ee1c28cae42feac",
+          "bytes": 1077
+        },
+        {
+          "path": "tests/fixtures/kyverno-board-evals/expected/MIG-04.json",
+          "sha256": "e9db1a32447bc1dca6401a6c21eb0ed208b7a910b2417289ed7c6618049c455c",
+          "bytes": 1225
+        },
+        {
+          "path": "tests/fixtures/kyverno-board-evals/expected/MIG-05.json",
+          "sha256": "bd313e3734506e124f4ef50553bd6a2bcf4675746f845cf007c187684c9f2aaa",
+          "bytes": 1390
+        },
+        {
+          "path": "tests/fixtures/kyverno-board-evals/expected/POL-01.json",
+          "sha256": "a2ef9061ce60c47bbca20c827e4297fd0d5d515279d806799f26f0bab8d160e5",
+          "bytes": 1336
+        },
+        {
+          "path": "tests/fixtures/kyverno-board-evals/expected/POL-02.json",
+          "sha256": "f5a129e2dc56c349e5bb32438913c02e142cbdec05278eefb8d4fc9ead825f41",
+          "bytes": 1105
+        },
+        {
+          "path": "tests/fixtures/kyverno-board-evals/expected/POL-03.json",
+          "sha256": "ff41bc2c8033e7b7b39d1ebbe3619b00380ca8f5583dff5c1520abc1f4868273",
+          "bytes": 1130
+        },
+        {
+          "path": "tests/fixtures/kyverno-board-evals/expected/POL-04.json",
+          "sha256": "517ae9e2dc45473edd3b5b511de772586370ce35a114c8f1b056f6618e8e371c",
+          "bytes": 1183
+        },
+        {
+          "path": "tests/fixtures/kyverno-board-evals/expected/POL-05.json",
+          "sha256": "a29f10cb4b4a153ab0aaa5bc92689dda237267d411c3e7975eb0faf5fc6fc886",
+          "bytes": 1416
+        },
+        {
+          "path": "tests/fixtures/kyverno-board-evals/expected/POL-06.json",
+          "sha256": "2fff324b106b29a38231881fe0956ed637b9ddcf6b6e740ab0e8a00cf98ad033",
+          "bytes": 1192
+        },
+        {
+          "path": "tests/fixtures/kyverno-board-evals/expected/POL-07.json",
+          "sha256": "420ca203b5ea53cacbdec321d6ececcb2f2bfa784afe74346f2cf2d364872a3b",
+          "bytes": 1273
+        },
+        {
+          "path": "tests/fixtures/kyverno-board-evals/expected/POL-08.json",
+          "sha256": "f4b37d55901377bbf262d1318d3c5e2aa7901a80f2687714034b6f5d9256b2e5",
+          "bytes": 1359
+        },
+        {
+          "path": "tests/fixtures/kyverno-board-evals/expected/REL-01.json",
+          "sha256": "f8c5b406882c92cceb9302c8678770eec5970d8104e3b059abcc7a49a791cc58",
+          "bytes": 1187
+        },
+        {
+          "path": "tests/fixtures/kyverno-board-evals/expected/REL-02.json",
+          "sha256": "95b3afe9b628a6f5fafc933447e570f05646d9dddaa3fb5f4af539092a3069d5",
+          "bytes": 980
+        },
+        {
+          "path": "tests/fixtures/kyverno-board-evals/expected/REL-03.json",
+          "sha256": "ce30cc9dbafcf9bab3593619d8c98a5e449a4a22eb5ff3bce3bd1c32309edb38",
+          "bytes": 1120
+        },
+        {
+          "path": "tests/fixtures/kyverno-board-evals/expected/REL-04.json",
+          "sha256": "94aef4b6b9e69ef21f40c25b4738bffa2c78173a4ec9dc0dd03b1f1bd9ded46b",
+          "bytes": 1279
+        },
+        {
+          "path": "tests/fixtures/kyverno-board-evals/expected/REL-05.json",
+          "sha256": "f3d450c97e77ccefb42d924758afba34a7d8d3c4b0128de7ba9a68aa8996603e",
+          "bytes": 1159
+        },
+        {
+          "path": "tests/fixtures/kyverno-board-evals/inputs/EVI-01.json",
+          "sha256": "874b24a1cbba8f667e1aa505d4e1531b777033ec0645e9ad5bd32d01b54f877b",
+          "bytes": 452
+        },
+        {
+          "path": "tests/fixtures/kyverno-board-evals/inputs/EVI-02.json",
+          "sha256": "0b313f573ecacd540fdda802c926c4a741e56de1a08482f9f3b70668ee47f373",
+          "bytes": 301
+        },
+        {
+          "path": "tests/fixtures/kyverno-board-evals/inputs/EVI-03.json",
+          "sha256": "f509eee531b83c67e536f92d12c7520f722c52aabca48e8465e1621a7013f490",
+          "bytes": 215
+        },
+        {
+          "path": "tests/fixtures/kyverno-board-evals/inputs/EVI-04.json",
+          "sha256": "ba92cb95ebf4b2c0d4b2b305ea57e6a5e3d5503fa439abbb5b8a7629d2bf5867",
+          "bytes": 507
+        },
+        {
+          "path": "tests/fixtures/kyverno-board-evals/inputs/EVI-05.json",
+          "sha256": "eea3a6565b598fa7d2b1a7ec85952d93d0659bec947803608a52eab3f3000675",
+          "bytes": 328
+        },
+        {
+          "path": "tests/fixtures/kyverno-board-evals/inputs/EXC-01.json",
+          "sha256": "45debc55076b9ade0b761ef818088687d4705d5357c7af9ea45db1bb80c9cd5c",
+          "bytes": 406
+        },
+        {
+          "path": "tests/fixtures/kyverno-board-evals/inputs/EXC-02.json",
+          "sha256": "97c0c5e4d1fba40ece691ebafd0266f965398d978b7ea1714d80651fab984113",
+          "bytes": 295
+        },
+        {
+          "path": "tests/fixtures/kyverno-board-evals/inputs/EXC-03.json",
+          "sha256": "feca1e5990ad2eaa75ab21af332ce89495fc5d313478c794fc5e80fb19b21823",
+          "bytes": 230
+        },
+        {
+          "path": "tests/fixtures/kyverno-board-evals/inputs/EXC-04.json",
+          "sha256": "67696abe379050ebc4fcaddf43a92e18c7ee8901ca8b89acc15972b903550a2d",
+          "bytes": 475
+        },
+        {
+          "path": "tests/fixtures/kyverno-board-evals/inputs/EXC-05.json",
+          "sha256": "54ebd6d3843de2cced8490495752b77b266032fc93ba9bce10b718e0e19b8f24",
+          "bytes": 340
+        },
+        {
+          "path": "tests/fixtures/kyverno-board-evals/inputs/LIF-01.json",
+          "sha256": "e7e7894469c2c1503e13999446fb32ca5079c99784b7d1a6f899109774defd34",
+          "bytes": 423
+        },
+        {
+          "path": "tests/fixtures/kyverno-board-evals/inputs/LIF-02.json",
+          "sha256": "beb8bf0358c9b4988d40d85598737090285c38eab8c433d73e81a72798cae055",
+          "bytes": 290
+        },
+        {
+          "path": "tests/fixtures/kyverno-board-evals/inputs/LIF-03.json",
+          "sha256": "92bab0db68c896b92708b30e8e5ca3eb1b42e6e5eff235e524b4149127f95abd",
+          "bytes": 224
+        },
+        {
+          "path": "tests/fixtures/kyverno-board-evals/inputs/LIF-04.json",
+          "sha256": "b25e7edbb5df622f0d8dd4fe341615a8d95b46a870d20f3b9b3a56d447dfd3ec",
+          "bytes": 421
+        },
+        {
+          "path": "tests/fixtures/kyverno-board-evals/inputs/LIF-05.json",
+          "sha256": "cfba264780e863ae5782730b73582e7102ffa63152e8b06ca7d69b9339e486cd",
+          "bytes": 357
+        },
+        {
+          "path": "tests/fixtures/kyverno-board-evals/inputs/MAE-01.json",
+          "sha256": "390196947006db30872ed2259cbcc91b71cd47fde6122550171a96d31b831a4e",
+          "bytes": 416
+        },
+        {
+          "path": "tests/fixtures/kyverno-board-evals/inputs/MAE-02.json",
+          "sha256": "f3b04e21eaee14fb21181ff94e609ad72990f412e6e4dd89cf41b52cce039144",
+          "bytes": 297
+        },
+        {
+          "path": "tests/fixtures/kyverno-board-evals/inputs/MAE-03.json",
+          "sha256": "9e02128f1a29ce78eba1cf9b64b00a86126c876dd400f347959cbb809a6cade2",
+          "bytes": 278
+        },
+        {
+          "path": "tests/fixtures/kyverno-board-evals/inputs/MAE-04.json",
+          "sha256": "d77e7311e76772af358dd5921c7c2746c141c2daaea712a80ee0d2936bda15ca",
+          "bytes": 335
+        },
+        {
+          "path": "tests/fixtures/kyverno-board-evals/inputs/MAE-05.json",
+          "sha256": "59f1653116b4c6d039fd6535f334faaabdc3c10023653f0f1d5c0d2abfdb4a33",
+          "bytes": 293
+        },
+        {
+          "path": "tests/fixtures/kyverno-board-evals/inputs/MAE-06.json",
+          "sha256": "5a68bb80c62a77b9628fcfa0d64644c7d99f80d5ff5863648ed968feca7529be",
+          "bytes": 385
+        },
+        {
+          "path": "tests/fixtures/kyverno-board-evals/inputs/MAE-07.json",
+          "sha256": "e8accd57f98adcd9231a2161b8fecd04ee81dec77692d58c3bf2c01037612fb5",
+          "bytes": 377
+        },
+        {
+          "path": "tests/fixtures/kyverno-board-evals/inputs/MAE-08.json",
+          "sha256": "0dda9be473a09cb85543e5cce9f0202a09030a820b80e4d5343bbe3da78f4537",
+          "bytes": 343
+        },
+        {
+          "path": "tests/fixtures/kyverno-board-evals/inputs/MIG-01.json",
+          "sha256": "cd460f4c6f4557f8fc926d0ff649e86b90fc34dc4c02cc184372feb91b649e99",
+          "bytes": 380
+        },
+        {
+          "path": "tests/fixtures/kyverno-board-evals/inputs/MIG-02.json",
+          "sha256": "4f1a3f26c3744053ea6045ed905f9e60cc5bbdd4ccb553cf81715eeacba29d41",
+          "bytes": 234
+        },
+        {
+          "path": "tests/fixtures/kyverno-board-evals/inputs/MIG-03.json",
+          "sha256": "34bbc10036a3f6c981ad8c951874c84f0c9e8834e998410314f840349e96005b",
+          "bytes": 228
+        },
+        {
+          "path": "tests/fixtures/kyverno-board-evals/inputs/MIG-04.json",
+          "sha256": "3f789a6371a0e4295423560c3f890c39b9105a99d44c33290495b9a29f9f6118",
+          "bytes": 363
+        },
+        {
+          "path": "tests/fixtures/kyverno-board-evals/inputs/MIG-05.json",
+          "sha256": "5d0af04362c90318d1b3b26f98f627350cf7e75418cef8ba21477359cd7505cc",
+          "bytes": 501
+        },
+        {
+          "path": "tests/fixtures/kyverno-board-evals/inputs/POL-01.json",
+          "sha256": "5650e3d5a8cebae19fb88fde91113f7d864e9bf581ade593808d87ea0d762d39",
+          "bytes": 485
+        },
+        {
+          "path": "tests/fixtures/kyverno-board-evals/inputs/POL-02.json",
+          "sha256": "cfb6eebb6bbf94cf6711a8270b534977ca35dcf2560f7354c3ec0775d20758f6",
+          "bytes": 360
+        },
+        {
+          "path": "tests/fixtures/kyverno-board-evals/inputs/POL-03.json",
+          "sha256": "fb3dffd856379ae0cc950cd88a5f9b33f113517f66c112e13286ee9039553fe6",
+          "bytes": 259
+        },
+        {
+          "path": "tests/fixtures/kyverno-board-evals/inputs/POL-04.json",
+          "sha256": "6e1c60d8964097328b3dbe90c8914d7bf066f7f4cb7b39c0448e5e634a0008c0",
+          "bytes": 415
+        },
+        {
+          "path": "tests/fixtures/kyverno-board-evals/inputs/POL-05.json",
+          "sha256": "ac8b690d9239a4be7d09e6fabc8aa88d8e98cf467511f7bd96fe343abf821280",
+          "bytes": 546
+        },
+        {
+          "path": "tests/fixtures/kyverno-board-evals/inputs/POL-06.json",
+          "sha256": "777993d2dd6dc04baaf5128c52431a3baab6f4635c69572c108acd9c1485504f",
+          "bytes": 432
+        },
+        {
+          "path": "tests/fixtures/kyverno-board-evals/inputs/POL-07.json",
+          "sha256": "72f4cd5a6ce95b56dcf8953da8eba83e1e904530b9caec07a9dae486e53ec400",
+          "bytes": 531
+        },
+        {
+          "path": "tests/fixtures/kyverno-board-evals/inputs/POL-08.json",
+          "sha256": "e547b8e22285be82fd4e3780ffe40330776b0c79c954555eb82e4583684c34a1",
+          "bytes": 461
+        },
+        {
+          "path": "tests/fixtures/kyverno-board-evals/inputs/REL-01.json",
+          "sha256": "293a823e9fd10eb4793c0fa8a66a8e29775929304dbfaab2f68a7a129d0a25d0",
+          "bytes": 419
+        },
+        {
+          "path": "tests/fixtures/kyverno-board-evals/inputs/REL-02.json",
+          "sha256": "2412fbc4da47f7cfc0977f6810e8a55c1731f6cad67681f3bec66df70117d4f9",
+          "bytes": 279
+        },
+        {
+          "path": "tests/fixtures/kyverno-board-evals/inputs/REL-03.json",
+          "sha256": "c38d90a332424c979f5786b719e487097b5b692d702b71c246cd492f72ac7883",
+          "bytes": 242
+        },
+        {
+          "path": "tests/fixtures/kyverno-board-evals/inputs/REL-04.json",
+          "sha256": "49c9a01e638253ef10718363533d031d24a5b7e60693bb7d2d01581d157bcc88",
+          "bytes": 448
+        },
+        {
+          "path": "tests/fixtures/kyverno-board-evals/inputs/REL-05.json",
+          "sha256": "a0763ea8e94adc77698b98734a29a3f6b9190e5a3897443320ca8683c4301da2",
+          "bytes": 311
+        },
+        {
+          "path": "tests/fixtures/kyverno-board-evals/manifest.json",
+          "sha256": "9323f22316353fb4e865772b68587479f27db2fb1aad4404d064c2b233f2a5c6",
+          "bytes": 1272
+        },
+        {
+          "path": "tests/fixtures/kyverno-board-evals/runs/2026-11-24-pilot/EVI-01.md",
+          "sha256": "d5c842a335b22e65dbf395c1d55f435d950f310fdc30b987dd648a02a98e0792",
+          "bytes": 2447
+        },
+        {
+          "path": "tests/fixtures/kyverno-board-evals/runs/2026-11-24-pilot/EXC-04.md",
+          "sha256": "ba5d9668f5e8a73e647ac7068edefcb7fd22a0988efda2a07be6c575d5272fe9",
+          "bytes": 2503
+        },
+        {
+          "path": "tests/fixtures/kyverno-board-evals/runs/2026-11-24-pilot/POL-05.md",
+          "sha256": "5de90296895d8cc834424b82a734d00a4ece6e79d34820d50762cf9a66ae9fde",
+          "bytes": 3225
+        },
+        {
+          "path": "tests/fixtures/kyverno-board-evals/runs/2026-11-24-pilot/grades.json",
+          "sha256": "cf71ef05aca9776e4a901a6beb29e87dab2891fc7e1bc70a811aa106ba518910",
+          "bytes": 648
+        },
+        {
+          "path": "tests/fixtures/kyverno-maestro-routing/expected/001-happy-admission-design.json",
+          "sha256": "a7aef580707e995afa37dd70a7bc7fb9a38dd752b89f57b1083373759198558f",
+          "bytes": 75
+        },
+        {
+          "path": "tests/fixtures/kyverno-maestro-routing/expected/002-happy-admission-reliability.json",
+          "sha256": "f16cc977dab8ff503d5b0cd75972df0987bb37cb2801ebefbecc08b3717b2497",
+          "bytes": 83
+        },
+        {
+          "path": "tests/fixtures/kyverno-maestro-routing/expected/003-happy-exception-governance.json",
+          "sha256": "b14c8719a403000f51535ed7c96c66f264bbd4076b99f58481525a017ff0b57f",
+          "bytes": 82
+        },
+        {
+          "path": "tests/fixtures/kyverno-maestro-routing/expected/004-happy-policy-lifecycle.json",
+          "sha256": "6a3f50dda51872d43f6cc1b4b85590ae7bb2d0048aec811c1f618f9932f085fc",
+          "bytes": 78
+        },
+        {
+          "path": "tests/fixtures/kyverno-maestro-routing/expected/005-happy-migration-readiness.json",
+          "sha256": "4c7081e5ebacff66dac550cd524c4603497e8467bbab171a5622d00433944403",
+          "bytes": 81
+        },
+        {
+          "path": "tests/fixtures/kyverno-maestro-routing/expected/006-happy-control-evidence.json",
+          "sha256": "8d8bc1f0b7d53f8c553a75cb457c494915f2f8924b9eaf7371755370c4372f63",
+          "bytes": 78
+        },
+        {
+          "path": "tests/fixtures/kyverno-maestro-routing/expected/010-near-artifact-trust.json",
+          "sha256": "a7aef580707e995afa37dd70a7bc7fb9a38dd752b89f57b1083373759198558f",
+          "bytes": 75
+        },
+        {
+          "path": "tests/fixtures/kyverno-maestro-routing/expected/011-near-pre-existing-resource.json",
+          "sha256": "a7aef580707e995afa37dd70a7bc7fb9a38dd752b89f57b1083373759198558f",
+          "bytes": 75
+        },
+        {
+          "path": "tests/fixtures/kyverno-maestro-routing/expected/012-near-registry-incident.json",
+          "sha256": "f16cc977dab8ff503d5b0cd75972df0987bb37cb2801ebefbecc08b3717b2497",
+          "bytes": 83
+        },
+        {
+          "path": "tests/fixtures/kyverno-maestro-routing/expected/013-near-exception-expiry-annotation.json",
+          "sha256": "b14c8719a403000f51535ed7c96c66f264bbd4076b99f58481525a017ff0b57f",
+          "bytes": 82
+        },
+        {
+          "path": "tests/fixtures/kyverno-maestro-routing/expected/014-near-gitops-revert.json",
+          "sha256": "6a3f50dda51872d43f6cc1b4b85590ae7bb2d0048aec811c1f618f9932f085fc",
+          "bytes": 78
+        },
+        {
+          "path": "tests/fixtures/kyverno-maestro-routing/expected/015-near-update-parity.json",
+          "sha256": "4c7081e5ebacff66dac550cd524c4603497e8467bbab171a5622d00433944403",
+          "bytes": 81
+        },
+        {
+          "path": "tests/fixtures/kyverno-maestro-routing/expected/016-near-report-states.json",
+          "sha256": "8d8bc1f0b7d53f8c553a75cb457c494915f2f8924b9eaf7371755370c4372f63",
+          "bytes": 78
+        },
+        {
+          "path": "tests/fixtures/kyverno-maestro-routing/expected/017-near-mesh-label.json",
+          "sha256": "a7aef580707e995afa37dd70a7bc7fb9a38dd752b89f57b1083373759198558f",
+          "bytes": 75
+        },
+        {
+          "path": "tests/fixtures/kyverno-maestro-routing/expected/020-mixed-exception-and-coverage.json",
+          "sha256": "7a649166a0aa41e6ec6a93b1f493a450862a6ea486ef4da97361d23e396c0b33",
+          "bytes": 126
+        },
+        {
+          "path": "tests/fixtures/kyverno-maestro-routing/expected/021-mixed-promotion-and-latency.json",
+          "sha256": "2f9034c8672ac8d2bf39ee8b336d2bae2b9bd08532f92c0138bd4a457a087781",
+          "bytes": 130
+        },
+        {
+          "path": "tests/fixtures/kyverno-maestro-routing/expected/030-negative-review-apply-safety.json",
+          "sha256": "a7aef580707e995afa37dd70a7bc7fb9a38dd752b89f57b1083373759198558f",
+          "bytes": 75
+        },
+        {
+          "path": "tests/fixtures/kyverno-maestro-routing/expected/031-negative-jira-only.json",
+          "sha256": "93d7b7768c78f4f08a3d2d77a98110ba46316d589148f9778281b17d8bb9974e",
+          "bytes": 44
+        },
+        {
+          "path": "tests/fixtures/kyverno-maestro-routing/expected/032-negative-confluence-only.json",
+          "sha256": "93d7b7768c78f4f08a3d2d77a98110ba46316d589148f9778281b17d8bb9974e",
+          "bytes": 44
+        },
+        {
+          "path": "tests/fixtures/kyverno-maestro-routing/expected/040-live-apply-policy.json",
+          "sha256": "6d1341fc7648f9c77294175561754926eca9c9b479d7bd9c1b626f1188c7b206",
+          "bytes": 101
+        },
+        {
+          "path": "tests/fixtures/kyverno-maestro-routing/expected/041-live-create-exception.json",
+          "sha256": "6d1341fc7648f9c77294175561754926eca9c9b479d7bd9c1b626f1188c7b206",
+          "bytes": 101
+        },
+        {
+          "path": "tests/fixtures/kyverno-maestro-routing/expected/042-live-promote-to-deny.json",
+          "sha256": "6d1341fc7648f9c77294175561754926eca9c9b479d7bd9c1b626f1188c7b206",
+          "bytes": 101
+        },
+        {
+          "path": "tests/fixtures/kyverno-maestro-routing/expected/043-live-delete-clusterpolicy.json",
+          "sha256": "6d1341fc7648f9c77294175561754926eca9c9b479d7bd9c1b626f1188c7b206",
+          "bytes": 101
+        },
+        {
+          "path": "tests/fixtures/kyverno-maestro-routing/expected/050-adv-instruction-injection.json",
+          "sha256": "b14c8719a403000f51535ed7c96c66f264bbd4076b99f58481525a017ff0b57f",
+          "bytes": 82
+        },
+        {
+          "path": "tests/fixtures/kyverno-maestro-routing/expected/051-adv-approval-in-ticket.json",
+          "sha256": "b14c8719a403000f51535ed7c96c66f264bbd4076b99f58481525a017ff0b57f",
+          "bytes": 82
+        },
+        {
+          "path": "tests/fixtures/kyverno-maestro-routing/expected/052-adv-secrets-bait.json",
+          "sha256": "8d8bc1f0b7d53f8c553a75cb457c494915f2f8924b9eaf7371755370c4372f63",
+          "bytes": 78
+        },
+        {
+          "path": "tests/fixtures/kyverno-maestro-routing/expected/053-adv-ambiguous.json",
+          "sha256": "93d7b7768c78f4f08a3d2d77a98110ba46316d589148f9778281b17d8bb9974e",
+          "bytes": 44
+        },
+        {
+          "path": "tests/fixtures/kyverno-maestro-routing/inputs/001-happy-admission-design.json",
+          "sha256": "d9a77801739cc01c5ab39dfbff43c38ce84b0b646ea33ddfdc6cd248e44d4334",
+          "bytes": 204
+        },
+        {
+          "path": "tests/fixtures/kyverno-maestro-routing/inputs/002-happy-admission-reliability.json",
+          "sha256": "13432da5ef5b7f19c0d7d80b440adfc7d5e10db6cee3f62a148826aeecbfc212",
+          "bytes": 215
+        },
+        {
+          "path": "tests/fixtures/kyverno-maestro-routing/inputs/003-happy-exception-governance.json",
+          "sha256": "3c4264e03aa36ce2e16b1c7d6f15e5cc8982cd2845d341139e384b62a565d108",
+          "bytes": 208
+        },
+        {
+          "path": "tests/fixtures/kyverno-maestro-routing/inputs/004-happy-policy-lifecycle.json",
+          "sha256": "f85cabcca0e0ccb37e5b966c9ea974adf8e788a73f26c0de4c8714abba2570db",
+          "bytes": 188
+        },
+        {
+          "path": "tests/fixtures/kyverno-maestro-routing/inputs/005-happy-migration-readiness.json",
+          "sha256": "8280a513b7a7840f49021c6a3243a3afd89db467b95f37b110eff5c159690d85",
+          "bytes": 203
+        },
+        {
+          "path": "tests/fixtures/kyverno-maestro-routing/inputs/006-happy-control-evidence.json",
+          "sha256": "8b38f4b07c052b45dfbdb8c301741688ad2d38e23e332748bb8d78e7245c2266",
+          "bytes": 204
+        },
+        {
+          "path": "tests/fixtures/kyverno-maestro-routing/inputs/010-near-artifact-trust.json",
+          "sha256": "ad17f5596eee859041b67269a15bd927f66d266b7f0e9f7c40544f33e2420bd6",
+          "bytes": 218
+        },
+        {
+          "path": "tests/fixtures/kyverno-maestro-routing/inputs/011-near-pre-existing-resource.json",
+          "sha256": "89b507365a1f34a95e0d20cb443ab865ded81ff12b9a506f624b59a1e9e2ac87",
+          "bytes": 218
+        },
+        {
+          "path": "tests/fixtures/kyverno-maestro-routing/inputs/012-near-registry-incident.json",
+          "sha256": "41dc6ebdafcfd4b59485cd15035146f41a1e85e2658c9f1dc409da6838f55cef",
+          "bytes": 247
+        },
+        {
+          "path": "tests/fixtures/kyverno-maestro-routing/inputs/013-near-exception-expiry-annotation.json",
+          "sha256": "bea88f2a2caf50cc3f091ae434fac89f09b85c6887baa3113551a50f1b80c9d0",
+          "bytes": 240
+        },
+        {
+          "path": "tests/fixtures/kyverno-maestro-routing/inputs/014-near-gitops-revert.json",
+          "sha256": "7a3b8e342da6c2a38eceb9e4b1a009675aea6e396c3db34c24013555b40234e0",
+          "bytes": 220
+        },
+        {
+          "path": "tests/fixtures/kyverno-maestro-routing/inputs/015-near-update-parity.json",
+          "sha256": "c783102b24c83eefdd2d59d07315081f28a789dc57b32ba3d9fd93387d597bd2",
+          "bytes": 211
+        },
+        {
+          "path": "tests/fixtures/kyverno-maestro-routing/inputs/016-near-report-states.json",
+          "sha256": "e039ddf938413dc6383e5d109065e27b579fd75f021c279a464c91bf0aef6e9b",
+          "bytes": 211
+        },
+        {
+          "path": "tests/fixtures/kyverno-maestro-routing/inputs/017-near-mesh-label.json",
+          "sha256": "144f82e0d22e67de2b11591bd24b540ca06605d39f9ff858b9ec0a85c6ce70e6",
+          "bytes": 224
+        },
+        {
+          "path": "tests/fixtures/kyverno-maestro-routing/inputs/020-mixed-exception-and-coverage.json",
+          "sha256": "26c954906ca72004b23ff67456f8cbfc5f96a5082a800521ee6b9559dd9554e3",
+          "bytes": 188
+        },
+        {
+          "path": "tests/fixtures/kyverno-maestro-routing/inputs/021-mixed-promotion-and-latency.json",
+          "sha256": "8856669e3fd066a5f8150daa9bef59c24d0c569223a089eeea1c398c5fc8e27c",
+          "bytes": 201
+        },
+        {
+          "path": "tests/fixtures/kyverno-maestro-routing/inputs/030-negative-review-apply-safety.json",
+          "sha256": "d5594b0faea657da655de88d0d97ee3387df6577a87136a1bfaab57eb74c215e",
+          "bytes": 210
+        },
+        {
+          "path": "tests/fixtures/kyverno-maestro-routing/inputs/031-negative-jira-only.json",
+          "sha256": "922bf809176fde903eb951169168159f6f5f53bacc91f3e72f5c276272263008",
+          "bytes": 190
+        },
+        {
+          "path": "tests/fixtures/kyverno-maestro-routing/inputs/032-negative-confluence-only.json",
+          "sha256": "6e0d70ba9559f5e0e5ca3adc25fa35e2a2d1d65c6a1e63ee21768090afdb1494",
+          "bytes": 207
+        },
+        {
+          "path": "tests/fixtures/kyverno-maestro-routing/inputs/040-live-apply-policy.json",
+          "sha256": "d400c8d602ae73ba10dd21945a8688a45dbbefd03b478591c8336464c58b8924",
+          "bytes": 165
+        },
+        {
+          "path": "tests/fixtures/kyverno-maestro-routing/inputs/041-live-create-exception.json",
+          "sha256": "fc491779fda718893b9cb0989efdf6b8eded8eb1d881c3862d011e1769a46d33",
+          "bytes": 197
+        },
+        {
+          "path": "tests/fixtures/kyverno-maestro-routing/inputs/042-live-promote-to-deny.json",
+          "sha256": "0de43eca77431899f65dee6e779d18abf3ebd9df8708abbfa9d2a9dd27c343db",
+          "bytes": 158
+        },
+        {
+          "path": "tests/fixtures/kyverno-maestro-routing/inputs/043-live-delete-clusterpolicy.json",
+          "sha256": "c28788c16d3dccf63ea8531e964ee2afb5de8f9e7c7e4033955ae47df65d7c66",
+          "bytes": 153
+        },
+        {
+          "path": "tests/fixtures/kyverno-maestro-routing/inputs/050-adv-instruction-injection.json",
+          "sha256": "4b171a9e3f4b94d2ab377658d8e13ca420bd2e63e4ca2f43fc82d3b7c59d4941",
+          "bytes": 193
+        },
+        {
+          "path": "tests/fixtures/kyverno-maestro-routing/inputs/051-adv-approval-in-ticket.json",
+          "sha256": "597e2cd26bbe043866cdad4a7bc6d66648841c2260e7176a078e9079f778a7fd",
+          "bytes": 194
+        },
+        {
+          "path": "tests/fixtures/kyverno-maestro-routing/inputs/052-adv-secrets-bait.json",
+          "sha256": "1a6f555bd2f1a7e896fef9f2819eb99804264c4c940eef93f70e66c969bb14fe",
+          "bytes": 162
+        },
+        {
+          "path": "tests/fixtures/kyverno-maestro-routing/inputs/053-adv-ambiguous.json",
+          "sha256": "f2d2c8780ec705658f1f86aaad2881d9faa28b821838598228b25b2f0868a55b",
+          "bytes": 117
+        },
+        {
+          "path": "tests/fixtures/kyverno-maestro-routing/taxonomy.json",
+          "sha256": "72d8e5dc1875f3d53191b829ba0793abfb0e1bb91bb3f261cfa07d1f63df0b5b",
+          "bytes": 4095
+        },
+        {
+          "path": "tests/fixtures/kyverno-policy-cli/01-preventive-control-decision-table/kyverno-test.yaml",
+          "sha256": "4fc9e413d5740c6f3184ca290cc60077e6d491cd7b8f9c50b3e6556fa9f7b9c4",
+          "bytes": 585
+        },
+        {
+          "path": "tests/fixtures/kyverno-policy-cli/01-preventive-control-decision-table/policy.yaml",
+          "sha256": "4482559e6ddc0a60921a6bdb07711240226ce89d04c2a622583bf80ca511bed3",
+          "bytes": 948
+        },
+        {
+          "path": "tests/fixtures/kyverno-policy-cli/01-preventive-control-decision-table/resources.yaml",
+          "sha256": "e92976bcb3a0674af61852a9f8e5d9b94e8cf438846706897e2055b2c6b8407f",
+          "bytes": 1007
+        },
+        {
+          "path": "tests/fixtures/kyverno-policy-cli/02-audit-and-deny-same-offline-result/kyverno-test.yaml",
+          "sha256": "b78ca3d50913356b570ad08546f3001ed6b018cf0bb7ad56649d7ae32c43f3fa",
+          "bytes": 641
+        },
+        {
+          "path": "tests/fixtures/kyverno-policy-cli/02-audit-and-deny-same-offline-result/policy.yaml",
+          "sha256": "98aa8b91e470ca070ebb726aefe110444dbd32356a87de6198c4de1b9f8256a9",
+          "bytes": 975
+        },
+        {
+          "path": "tests/fixtures/kyverno-policy-cli/02-audit-and-deny-same-offline-result/resources.yaml",
+          "sha256": "e92976bcb3a0674af61852a9f8e5d9b94e8cf438846706897e2055b2c6b8407f",
+          "bytes": 1007
+        },
+        {
+          "path": "tests/fixtures/kyverno-policy-cli/03-exception-expiry-and-adjacent-scope/exceptions.yaml",
+          "sha256": "775a3825f9c927e6cf736bc1795a3eaefad27526546b6e7de150e8565a8d3b34",
+          "bytes": 959
+        },
+        {
+          "path": "tests/fixtures/kyverno-policy-cli/03-exception-expiry-and-adjacent-scope/kyverno-test.yaml",
+          "sha256": "d2e6773b1181045c541acf5715efa894420474022734531332614a789e64c6e7",
+          "bytes": 1004
+        },
+        {
+          "path": "tests/fixtures/kyverno-policy-cli/03-exception-expiry-and-adjacent-scope/policy.yaml",
+          "sha256": "4482559e6ddc0a60921a6bdb07711240226ce89d04c2a622583bf80ca511bed3",
+          "bytes": 948
+        },
+        {
+          "path": "tests/fixtures/kyverno-policy-cli/03-exception-expiry-and-adjacent-scope/resources.yaml",
+          "sha256": "71378761c6ad579529618830ec4d2d041cc334d8f740f42a03a6f109c0c7828f",
+          "bytes": 849
+        },
+        {
+          "path": "tests/fixtures/kyverno-policy-cli/04-update-old-object-not-modelled/kyverno-test.yaml",
+          "sha256": "d8a1bdef2b9066a4a6cb4418b821635e29cd6ea5b5bd1241255660f329ff7e32",
+          "bytes": 608
+        },
+        {
+          "path": "tests/fixtures/kyverno-policy-cli/04-update-old-object-not-modelled/policy.yaml",
+          "sha256": "ac4848015ea3d59b49623e4751e4ed0ccb66c40c26d89cb0792c2d4b97770442",
+          "bytes": 808
+        },
+        {
+          "path": "tests/fixtures/kyverno-policy-cli/04-update-old-object-not-modelled/resources.yaml",
+          "sha256": "ed297484348c2a96a460df05f8cb4a8c48b49b1388b391daff71d703bdee5dfe",
+          "bytes": 429
+        },
+        {
+          "path": "tests/fixtures/kyverno-runtime-semantics/KRT-DENIED-NOT-REPORTED.json",
+          "sha256": "8ecaf4d74078df1b5ece3f6c8d29ff93be8dd454cc71378cebecd46a7e13d37b",
+          "bytes": 1176
+        },
+        {
+          "path": "tests/fixtures/kyverno-runtime-semantics/KRT-EXCEPTION-EXPIRY.json",
+          "sha256": "8f3c52214a27844a49225827e0921a76cbbdbf55b36fec97c164ff43a973a70f",
+          "bytes": 1319
+        },
+        {
+          "path": "tests/fixtures/kyverno-runtime-semantics/KRT-GENERATE-REVERT.json",
+          "sha256": "761e502de3137285b5762c796fae90304b7da21bfc180a285bf52ffac9511578",
+          "bytes": 1390
+        },
+        {
+          "path": "tests/fixtures/kyverno-runtime-semantics/KRT-REGISTRY-DEGRADATION.json",
+          "sha256": "7bfd9ffcf598f973619467e0ef0271cec6a32886e9446c1b803f41a0ce465cd1",
+          "bytes": 1376
+        },
+        {
+          "path": "tests/fixtures/kyverno-runtime-semantics/KRT-UPDATE-PARITY.json",
+          "sha256": "a1255462c9a66f81bd169628bcf15e29aeaa703cd0f6b9851862e24f2f779a13",
+          "bytes": 1259
+        },
+        {
+          "path": "tests/fixtures/kyverno-runtime-semantics/KRT-WEBHOOK-FAILURE.json",
+          "sha256": "6f12a4d5668ae1bceaf693b26aa5029109a8f99a9dff4a21f37ae2f9810db82e",
+          "bytes": 1474
+        },
+        {
+          "path": "tests/fixtures/kyverno-runtime-semantics/README.md",
+          "sha256": "02e64e09d03032cb2af6c861e65d50fcd4eec246a5e79097cca87982b5707e18",
+          "bytes": 659
+        },
+        {
           "path": "tests/fixtures/legal-maestro-routing/expected/01-contract-review.json",
           "sha256": "8d3270a4c8eb23c2f14f72ea10b6b93d216acb9ca70a7529de0f3e5e994e4155",
           "bytes": 75
@@ -50761,13 +52146,13 @@
         },
         {
           "path": "tests/integration/rbac-pre-flight/fixtures/crds.yaml",
-          "sha256": "03555179510ffa10e35dd19b800b5dc911266917e2af95bb5698acf8a46a57aa",
-          "bytes": 14607
+          "sha256": "bafe4f6d99e427d798af7f53ff836bd146038d55e26e96a9817472ecb0f5b8a5",
+          "bytes": 20033
         },
         {
           "path": "tests/integration/rbac-pre-flight/guards/admission-policy.sh",
-          "sha256": "8ab0b9a73ee61bce5e9ea1bb08970b9d4304d0aa839731f4d887ceff4cdd1c6d",
-          "bytes": 2682
+          "sha256": "d087d394f01b3947407cc1f82656ff9d5a6336af865aadd9322ff183dc0e07b2",
+          "bytes": 4289
         },
         {
           "path": "tests/integration/rbac-pre-flight/guards/argocd-sync.sh",
@@ -50823,6 +52208,11 @@
           "path": "tests/istio-review-suite/test_evidence_facts.py",
           "sha256": "5de0e5d1e612ddef7a6820e4d266636d24ba6ade76161925234b80cf49c0fc07",
           "bytes": 16126
+        },
+        {
+          "path": "tests/kyverno-board-suite/test_board.py",
+          "sha256": "fc62ba88df5d095a01b0c72f812effab32f72bd055f211fa7150b4029a747b37",
+          "bytes": 23494
         },
         {
           "path": "tests/mods.test.mjs",
@@ -51021,8 +52411,8 @@
         },
         {
           "path": "tests/validate-skill-references.py",
-          "sha256": "504977a11e435ac431361bd05d2655c04be03c985df4cde0b91abace1fa6f1c6",
-          "bytes": 12108
+          "sha256": "6967ff1adb85ba19bb710df8b21f5455d5b14a477b8c84765c33a9f063b8a758",
+          "bytes": 12671
         },
         {
           "path": "tests/validate-skill-yaml-strict.py",
@@ -51040,8 +52430,8 @@
   "root_files": [
     {
       "path": "README.md",
-      "sha256": "ba5a77b8c3d0dfb0bf9d2c9bed10ec7a193253656767ba96eb5ea2fd4380676c",
-      "bytes": 116096
+      "sha256": "0933ab6c3f88819919b3dd2bcedde46dcc24cd97b47010e28c14b3ee49a1f412",
+      "bytes": 116097
     },
     {
       "path": "SECURITY.md",
@@ -51080,8 +52470,8 @@
     },
     {
       "path": "package.json",
-      "sha256": "4249723f99715800029e33b572f24195a27d91092a8fb5429b3c45eb95dafaf4",
-      "bytes": 9315
+      "sha256": "c4e482a3807dc7dc8adac4868f0210fba34947da700751e013e7d1cdeff656c4",
+      "bytes": 9572
     },
     {
       "path": ".releaserc.js",
@@ -51089,5 +52479,5 @@
       "bytes": 9135
     }
   ],
-  "aggregate_sha256": "7d1c1caee2bac9401a0873f42ef3302476e28063099a9385fa38c237094e11d2"
+  "aggregate_sha256": "31d42fafa642ba22f74c253dec18e5384f19495cd3931b5498a3967ef87cf7ab"
 }

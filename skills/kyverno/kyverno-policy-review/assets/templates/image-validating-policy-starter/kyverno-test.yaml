@@ -1,0 +1,17 @@
+apiVersion: cli.kyverno.io/v1alpha1
+kind: Test
+metadata:
+  name: image-validating-policy-starter
+policies:
+  - policy.yaml
+resources:
+  - resources.yaml
+results:
+  - isImageValidatingPolicy: true
+    policy: example-require-signed-provenance
+    kind: Pod
+    resources: [payments/out-of-scope-image]
+    # OBSERVED with kyverno CLI v1.20.0: an image outside matchImageReferences reports `pass`, not `skip`:
+    # the Pod matches matchConstraints and every expression is .all() over an empty image list.
+    # Read an ImageValidatingPolicy `pass` as "nothing failed", not as "an image was verified".
+    result: pass

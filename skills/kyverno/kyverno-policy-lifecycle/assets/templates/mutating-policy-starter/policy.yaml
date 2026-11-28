@@ -1,0 +1,35 @@
+# TEMPLATE: MutatingPolicy starter (policies.kyverno.io/v1, verified with kyverno CLI v1.20.0).
+# Admission-time mutation only. mutateExisting rewrites every matching existing object on each trigger:
+# enumerate that blast radius and get an independent challenge before enabling it.
+apiVersion: policies.kyverno.io/v1
+kind: MutatingPolicy
+metadata:
+  name: example-add-cost-center-label              # TEMPLATE
+spec:
+  failurePolicy: Fail
+  reinvocationPolicy: Never                        # Never | IfNeeded
+  evaluation:
+    admission:
+      enabled: true
+    mutateExisting:
+      enabled: false                               # keep false unless the existing-object rewrite is approved
+  matchConstraints:
+    resourceRules:
+      - apiGroups: [""]
+        apiVersions: [v1]
+        operations: [CREATE]
+        resources: [configmaps]
+  matchConditions:
+    - name: in-scope-and-unlabelled                # idempotent: never overwrite an owner's value
+      expression: >-
+        object.metadata.namespace == 'payments' &&
+        !(object.metadata.?labels[?'cost-center'].hasValue())
+  mutations:
+    - patchType: ApplyConfiguration
+      applyConfiguration:
+        expression: >-
+          Object{
+            metadata: Object.metadata{
+              labels: {"cost-center": "payments"}
+            }
+          }

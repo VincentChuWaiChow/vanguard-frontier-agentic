@@ -1,0 +1,22 @@
+{
+  "base": "04-exception-annotation-date-conditional.json",
+  "rule": "KYB-EXPIRY",
+  "why": "Adjacent workloads must remain covered.",
+  "set": {
+    "exception_expiry.adjacent_workloads_covered": "unverified",
+    "outcome": "supported",
+    "verdict": "approved",
+    "conditions": [],
+    "tests.1": {
+      "id": "T-2",
+      "polarity": "positive",
+      "operation": "CREATE",
+      "expected": "legacy-ledger-sync admitted under the exception",
+      "state": "passed",
+      "observed": "skip",
+      "evidence_refs": [
+        "EV-2"
+      ]
+    }
+  }
+}

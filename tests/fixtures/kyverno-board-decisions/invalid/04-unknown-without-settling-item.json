@@ -1,0 +1,8 @@
+{
+  "base": "02-invoice-coverage-conditional.json",
+  "rule": "KYB-UNKNOWN",
+  "why": "Every unknown names the smallest item that settles it.",
+  "set": {
+    "claims.5.smallest_settling_item": "__DELETE__"
+  }
+}
