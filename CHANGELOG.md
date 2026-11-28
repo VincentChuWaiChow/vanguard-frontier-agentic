@@ -1,3 +1,207 @@
+## 🛡️ v3.22.0 — *Provenance · Policy · Portability*
+_Released 2026-11-28_
+
+> _Curated multi-cloud, zero-trust agent marketplace — `AWS` · `Azure` · `OCI` · `GCP` · `Terraform`._
+> Least privilege, live evidence, safe rollback paths.
+
+**Release type:** New capabilities — review the sections below before upgrading.
+
+### ✨ Features
+
+* **kyverno:** add Kyverno policy engineering board with corrected reviewer ([`7e23b2d`](https://github.com/VincentChuWaiChow/vanguard-frontier-agentic/commit/7e23b2d701a31fa27427dfed2ba6bd2ec0ce5d95))
+  Correct the existing kyverno-policy-review agent and skill against Kyverno
+  v1.20.0 sources: the legacy kyverno.io engine is deleted in v1.20.0, the
+  policies.kyverno.io CRDs serve v1 with v1beta1 storage, ValidatingPolicy
+  failurePolicy defaults to Fail, the v1 PolicyException has expiresAt, and
+  Audit severity is reasoned from intent, rollout stage and deadline rather
+  than assigned categorically. Remove the invented migrate-policy command and
+  the URL-list reference.
+
+  Add five specialist seats (admission reliability, exception governance,
+  policy lifecycle, migration readiness, control evidence) and a maestro, all
+  static-review, generated from scripts/kyverno_data by
+  scripts/gen_kyverno_board.py with shared evidence vocabulary and per-skill
+  cited-only evidence ledgers. Artifact trust is merged into the reviewer plus
+  the existing Sigstore owner.
+
+  Add routing fixtures, a decision-record schema and validator (18 rules, each
+  proven by a negative fixture), pinned kyverno CLI v1.20.0 policy fixtures
+  with a checksum-verified CI job, runtime specs and a model-eval rubric corpus
+  (both marked not run), Jira/Confluence worked drafts, and the
+  validate:kyverno-board gate.
+* **kyverno:** add verified starter kits, worksheets and Context7-grounded references ([`049eeb2`](https://github.com/VincentChuWaiChow/vanguard-frontier-agentic/commit/049eeb29fd56eb3583e293163b67f8570e71ff88))
+  Add runnable starter kits (ValidatingPolicy, ImageValidatingPolicy, PolicyException,
+  MutatingPolicy, GeneratingPolicy, migration parity corpus) that pass with the pinned
+  kyverno CLI v1.20.0, Markdown worksheets for every seat, a validator-valid decision
+  record template, and six topic references. Context7 located candidate facts; each
+  ledger row (KYV-E37..E52) was confirmed against the v1.20.0 tag, the live docs page or
+  the pinned CLI before encoding.
+
+  Correct the engine-selection reference: native ValidatingAdmissionPolicy generation is
+  opt-in per policy (default false) and skipped while pod-controller autogen is enabled.
+  Record that autogen resolves lowercase plural resource names, not the Kind names the
+  CRD description suggests. Extend the board suite and the CLI workflow to cover the kits.
+
+### 🐛 Bug Fixes
+
+* **kubernetes:** grant the admission guard report reads in wgpolicyk8s.io ([`cb70441`](https://github.com/VincentChuWaiChow/vanguard-frontier-agentic/commit/cb70441f73b6688278b98283d335f2ca113009e1))
+  The guard's read rule listed policyreports and clusterpolicyreports under
+  kyverno.io, where no such resources exist; at Kyverno v1.20.0 both are served
+  and stored as wgpolicyk8s.io/v1alpha2 (config/crds/policyreport). Move them to a
+  read-only wgpolicyk8s.io rule, list report writes as deliberately absent, and
+  leave openreports.io (behind the default-off openreportsEnabled flag) ungranted.
+
+  RBAC pre-flight gains must-be-yes list checks and must-not create/delete checks
+  for the report kinds, plus two wgpolicyk8s.io stub CRDs so kubectl auth can-i
+  resolves them instead of answering vacuously.
+* **kubernetes:** let the live admission guard handle Kyverno CEL policies ([`e1df891`](https://github.com/VincentChuWaiChow/vanguard-frontier-agentic/commit/e1df89179c208385350aa51f6a868ed67330ad3c))
+  The guard's service account could read and write only kyverno.io and
+  admissionregistration.k8s.io, so a policies.kyverno.io handoff from the Kyverno
+  board (for example a ValidatingPolicy promotion) could neither capture a
+  baseline nor patch the target. Kyverno 1.20 also blocks creates and spec
+  updates of legacy kyverno.io policies.
+
+  - Read all 11 policies.kyverno.io kinds (names checked against the v1.20.0 CRDs).
+  - create/patch only ValidatingPolicy, ImageValidatingPolicy, their namespaced
+    variants and PolicyException. Mutating, generating and deleting policies stay
+    read-only: their controller writes or deletes other objects as Kyverno.
+  - No delete on any policy; rollback remains re-applying the baseline.
+  - Pre-flight doc and script gain matching can/cannot asserts; 8 stub CRDs make
+    CI evaluate them instead of skipping.
+  - live-handoff.md states the guard's write scope and routes out-of-scope kinds
+    to a human owner.
+* **kyverno:** an overdue mandatory preventive control must be blocked ([`7d38296`](https://github.com/VincentChuWaiChow/vanguard-frontier-agentic/commit/7d38296af41cdf34ae15ce16d2f3ed8a9e89cbc6))
+  KYB-AUDIT rejected only `supported` for a preventive control left in Audit or
+  Warn past its approved canary deadline, so the demonstrated prevention failure
+  could be downgraded to conditional/needs-review. The policy-semantics truth
+  table requires high severity and a blocked outcome once the window ends.
+
+  Negative fixture: invalid/46-overdue-preventive-downgraded-to-conditional.json.
+* **kyverno:** an unresolved referral boundary forces an indeterminate outcome ([`5ce85f8`](https://github.com/VincentChuWaiChow/vanguard-frontier-agentic/commit/5ce85f84f6f7774ff554f4a137e1803fac606765))
+  A referral that ended at status unresolved-boundary now fails KYB-REFERRAL unless
+  the decision is indeterminate, matching referral-and-challenge.md. A pending
+  referral is still allowed beside a scoped supported decision. From Codex review;
+  negative fixture invalid/45-unresolved-boundary-but-supported.json.
+* **kyverno:** block non-canary preventive Audit and verify init-container images ([`2875fde`](https://github.com/VincentChuWaiChow/vanguard-frontier-agentic/commit/2875fdebb8d203686b9764c93bc1fe188b4aaafd))
+  KYB-AUDIT accepted a mandatory preventive control left in Audit or Warn at
+  steady state or as an unapproved rollout whenever its severity was medium or
+  high, so a severity label could carry a supported/approved decision while the
+  configured action still admits violations. Outside an approved canary the
+  validator now requires high severity and a blocked outcome, matching the
+  overdue-canary rule; the truth table gains the matching row. Fixtures: valid 09,
+  invalid 47 (steady-state, high, supported) and 48 (unapproved, medium,
+  supported); both invalid fixtures pass with no violation on the old rule.
+
+  The ImageValidatingPolicy starter verified only images.containers. Kyverno
+  v1.20.0 extracts images.initContainers separately (pkg/cel/compiler/images.go,
+  [] when absent), and required: true rejects a matched image that no
+  verification checked, so a correctly signed in-scope init image failed the Pod.
+  Both verifications and the commented predicate check now cover containers and
+  init containers; the controlled-test checklist gains an init-container case.
+  The pinned CLI still passes the kit, and a misspelled field errors at
+  evaluation.
+* **kyverno:** close decision-validator gaps found in review ([`4e4ca66`](https://github.com/VincentChuWaiChow/vanguard-frontier-agentic/commit/4e4ca66f7937bab88aede8f7001766ace0cb9e0a))
+  Address the Codex review on the board decision validator and two references:
+  - reject duplicate evidence IDs, referral targets acting as the independent
+    challenger, unsourced blocked-request counts, report failures counted as
+    prevention, compliance percentages that do not follow from the breakdown,
+    expiry evidence captured before expiresAt or after as_of, UPDATE parity
+    resting on non-request evidence, and restoration claims backed only by
+    desired state;
+  - record how excepted objects report (skip by default, pass with
+    reportResult: pass) instead of inferring membership from skip rows;
+  - scan for credentials before schema checks and never echo instance values
+    in schema diagnostics;
+  - distinguish a content-only policy rollback (downstream synced) from policy
+    removal (downstream deleted unless orphaned) in the lifecycle references.
+
+  Each new check has a negative fixture that fires exactly its rule.
+* **kyverno:** keep Codex `auto` model settings when regenerating the board ([`de3e708`](https://github.com/VincentChuWaiChow/vanguard-frontier-agentic/commit/de3e708daca1011f7f40f40eb7b97d9c8378d931))
+  model-policy:apply deletes codex.toml `model`/`model_reasoning_effort` for
+  `auto`, but the generator treated an existing adapter with no model lines as
+  uninitialized and reinstated gpt-5.4/high, overriding the applied policy.
+  Defaults now apply only when the adapter does not exist yet.
+
+  The scan for managed lines also stops at `developer_instructions` or the
+  first table header, as editTomlKey does, so a `model = ...` line in the agent
+  body can never be carried into the header.
+* **kyverno:** keep policy-managed model fields in Markdown adapters on regeneration ([`3d82ec7`](https://github.com/VincentChuWaiChow/vanguard-frontier-agentic/commit/3d82ec7968f043d55330fdac4263827d89ae4f43))
+  gen_kyverno_board.py only carried codex.toml model lines forward, so running it
+  after model-policy:apply silently dropped claude-code `model:`/`effort:` and
+  cursor `model:` overrides. It now reads those adapters and re-emits the
+  frontmatter lines in model-policy's order; harnesses model-policy does not manage
+  keep none, and nothing is invented when no file exists.
+* **kyverno:** keep the credential-redaction test free of secret-shaped literals ([`157bd3e`](https://github.com/VincentChuWaiChow/vanguard-frontier-agentic/commit/157bd3ee712fa96d09cc4687627a358ffa6ed93f))
+  Build the fake bearer value at runtime so the catalog secret scan does not flag
+  the test file; the test still proves schema diagnostics never echo the value
+  (negative probe: the previous message format leaks it).
+* **kyverno:** make starter kits discriminating and correct reference claims ([`eafd82e`](https://github.com/VincentChuWaiChow/vanguard-frontier-agentic/commit/eafd82e40a80e1ef2e2f7f801fad10665f7a4543))
+  Add a widening detector to the PolicyException kit (an adjacent workload that carries
+  the compensating label flips to skip if the match is widened; verified by a negative
+  probe), an owner-labelled idempotence case to the MutatingPolicy kit, and adjacent-scope
+  and autogen rows to the parity corpus. Apply the independent refuter's findings: cite
+  rows only for what they state, label inferences, replace internal observation labels
+  with descriptions, and align worksheet rows with the board's worked cases.
+* **kyverno:** reject supported decisions with failed tests or an overturned challenge ([`64b7084`](https://github.com/VincentChuWaiChow/vanguard-frontier-agentic/commit/64b70847078817e90222b2edfbc780a25e76c200))
+  Address two further Codex findings on the decision validator: a supported
+  outcome now fails KYB-SUPPORTED when any in-scope test failed, and a recorded
+  overturned challenge contradicts supported even when the challenge was optional
+  (KYB-CHALLENGE). Each has a negative fixture that fires exactly its rule.
+* **kyverno:** require execution evidence for passed tests and correct HA blast radius ([`bd72207`](https://github.com/VincentChuWaiChow/vanguard-frontier-agentic/commit/bd722071c16017a1179f0ad21b51d7cb6a42c20d))
+  A passed test now needs offline-test, admission-trace or controlled-test
+  evidence (KYB-TESTSTATE); a manifest only declares intent. The release-envelope
+  reference keeps three replicas as the supported minimum but no longer claims a
+  single failure removes the admission path for two replicas: the path is lost
+  only when every serving replica is unavailable (labelled inference). Both from
+  Codex review.
+* **release:** run semantic-release on Node 26 ([`76a78e9`](https://github.com/VincentChuWaiChow/vanguard-frontier-agentic/commit/76a78e941089574bb8e24a6b794868f676580385))
+  Dependabot (#241) bumped semantic-release 25.0.9 -> 26.0.1, whose
+  engines.node is ">=26.13", but the release job still pinned Node 24, so
+  every release since has stopped at "node version >=26.13 is required.
+  Found v24.22.3" and the kyverno board merge produced no version. Track
+  Node 26 in the release job and correct the stale comment (Node 24 already
+  bundles npm 11.x; the publish step pins npm@^11.5.1 regardless).
+
+  Checked locally: semantic-release starts under Node 26.13.1 and loads
+  every configured plugin in a dry run, and fails with the CI error under an
+  older Node. Every package in the lockfile accepts Node 26.13.1.
+* **tui:** forward each distinct watcher event once per debounce batch ([`bb141d6`](https://github.com/VincentChuWaiChow/vanguard-frontier-agentic/commit/bb141d6bb77bf75255e21dd09847a4bccea2d7fa))
+  One write surfaces as several notify events for the same path, all in one
+  debounced batch, and the callback forwarded each, so the TUI reloaded the same
+  catalog file about three times per change. On a loaded CI runner the
+  rapid-writes test straddled batches and counted 13 events for 10 writes.
+
+  Extract the per-batch classification into a pure classify_batch that keeps
+  the first occurrence of each WatcherEvent, and cover it with deterministic unit
+  tests. The timing test's assertion is unchanged.
+* **vfa-tui:** replace unmaintained chrono with the time crate ([`4a47a4f`](https://github.com/VincentChuWaiChow/vanguard-frontier-agentic/commit/4a47a4f6aa9446c3a2b5e690fa6202f101074c78))
+  RUSTSEC-2026-0543 marks chrono unmaintained with no safe upgrade, which made the
+  cargo-deny advisories step of the Gate job fail on every branch, master included.
+  chrono was a direct dependency only; time 0.3.47 is already in the tree through
+  ratatui-widgets and tracing-subscriber, so the swap adds no crate.
+
+  A new clock module formats UTC timestamps by hand from time's components (no
+  optional time features), with deterministic unit tests on fixed instants. Audit
+  records, gate results and headless reports keep the existing
+  YYYY-MM-DDTHH:MM:SS.mmmZ format; policy first_detected moves from chrono's
+  +00:00 RFC 3339 form to the same Z form, still RFC 3339.
+
+  Verified locally: cargo fmt --check, cargo clippy --all-targets -D warnings,
+  cargo test (1,129 passed), and cargo-deny 0.19.4 check (advisories ok; the
+  pre-change lockfile still fails on RUSTSEC-2026-0543).
+
+---
+
+### 📥 Install
+```bash
+npm install @raishin/vanguard-frontier-agentic@3.22.0
+```
+
+### 🔐 Supply-chain provenance
+Every release ships a build attestation (SLSA provenance) and an SBOM. Verify the tag with `gh attestation verify` before installing.
+
+**Full changelog:** https://github.com/VincentChuWaiChow/vanguard-frontier-agentic/compare/v3.21.0...v3.22.0
+
 ## 🛡️ v3.21.0 — *Provenance · Policy · Portability*
 _Released 2026-11-13_
 
@@ -12955,7 +13159,7 @@ Collateral: regenerate asset-integrity.json, plugin manifests
 
 ## 🔴 v2.0.0 — *Zero-Trust Scope Enforcement* &mdash; 2026-05-16
 
-> _Provider-scoped exports are now strict and auditable. 750 agents · 785 skills · 46 providers · 77 roles_
+> _Provider-scoped exports are now strict and auditable. 756 agents · 791 skills · 46 providers · 77 roles_
 >
 > This release closes a class of privilege-escalation bugs in the export CLI and hardens the
 > entire provider-scope boundary from user input through to CI attestation.

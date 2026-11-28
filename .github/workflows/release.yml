@@ -69,10 +69,14 @@ jobs:
 
       - uses: actions/setup-node@949feb2413d6458794dcd2491c4babbbce0c15c1 # v7.1.0
         with:
-          # Node 24 bundles npm 10.x. npm >= 11.5.1 is required for native
-          # OIDC trusted-publisher token exchange. setup-node's registry-url
-          # configures .npmrc with the npm registry.
-          node-version: "24"
+          # semantic-release 26 refuses to start below Node 26.13
+          # (package-lock: semantic-release engines.node ">=26.13"), so the
+          # release job tracks Node 26. Keep this in step with that engines
+          # range when Dependabot bumps semantic-release. npm >= 11.5.1 is
+          # required for native OIDC trusted-publisher token exchange; the
+          # publish step pins it with npx regardless of the bundled npm.
+          # setup-node's registry-url configures .npmrc with the npm registry.
+          node-version: "26"
           registry-url: "https://registry.npmjs.org"
           package-manager-cache: false
 
