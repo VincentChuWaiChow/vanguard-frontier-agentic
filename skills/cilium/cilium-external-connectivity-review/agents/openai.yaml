@@ -1,0 +1,4 @@
+interface:
+  display_name: Cilium External Connectivity Review
+  short_description: "Review reachability, address ownership and failure behavior at the cluster boundary"
+  default_prompt: Use $cilium-external-connectivity-review on the supplied evidence within its stated scope. Report unknowns and do not perform live operations.

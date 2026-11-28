@@ -1,0 +1,8 @@
+{
+  "name": "007-happy-egress-gateway",
+  "task": "Two nodes match our egress gateway node selector; which one owns the egress IP and what happens on failure?",
+  "tags": [
+    "happy-path",
+    "split:egress"
+  ]
+}

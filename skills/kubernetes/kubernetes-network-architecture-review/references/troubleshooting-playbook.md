@@ -9,7 +9,7 @@ Hypothesis ladder, in order of cost:
 1. **DNS** — does the source pod resolve the destination's Service or pod-IP DNS name? `kubectl exec <src> -- nslookup <name>`. If this fails, jump to the DNS playbook below.
 2. **Service VIP exists and has endpoints** — `kubectl get svc <svc>` plus `kubectl get endpointslice -l kubernetes.io/service-name=<svc>`. Empty EndpointSlice → label selector mismatch.
 3. **NetworkPolicy** — `kubectl get networkpolicies,ciliumnetworkpolicies,ciliumclusterwidenetworkpolicies -A -o yaml`. If any policy selects either pod, default-deny may be active. **At this point, hand off to `cilium-network-policy-review`** — that skill owns policy correctness.
-4. **Underlying L3 reachability** — from the source node, `ip route get <dst-pod-ip>`; on Cilium, `cilium-dbg bpf endpoint list` and `cilium-dbg policy trace --src-pod ns/pod --dst-pod ns/pod`.
+4. **Underlying L3 reachability** — from the source node, `ip route get <dst-pod-ip>`; on Cilium, `cilium-dbg bpf endpoint list` and `cilium-dbg policy trace --src-pod ns/pod --dst-pod ns/pod`. On a Cilium cluster, datapath-level diagnosis beyond this step (non-policy drop reasons, conntrack or BPF map pressure, socket load balancing) belongs to `cilium-dataplane-diagnostics-agent`.
 5. **MTU** — `kubectl exec <src> -- ping -M do -s 1450 <dst-pod-ip>` then increment payload until packets are dropped. The largest size that succeeds is the path MTU.
 6. **Conntrack table full** — on the source node, `conntrack -L | wc -l` vs `sysctl net.netfilter.nf_conntrack_max`. Near 90% means new connections will be dropped.
 

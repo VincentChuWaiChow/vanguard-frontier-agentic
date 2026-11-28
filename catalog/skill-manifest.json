@@ -6347,34 +6347,299 @@
       ]
     },
     {
+      "id": "cilium-dataplane-diagnostics",
+      "path": "skills/cilium/cilium-dataplane-diagnostics",
+      "aggregate_sha256": "63de9d294bfa806c18ecbb41f6b37270721b994fe8a8e1789837530e4a596aba",
+      "files": [
+        {
+          "path": "skills/cilium/cilium-dataplane-diagnostics/SKILL.md",
+          "sha256": "219e7dff1b6ffcd4f0cfd092c9c8857a0d9107e331b1061cc692427a2dc62d2a",
+          "bytes": 6013
+        },
+        {
+          "path": "skills/cilium/cilium-dataplane-diagnostics/agents/openai.yaml",
+          "sha256": "e9ce6e7e9b00e7b61252733c13a368bd41784def3d9783d747ad17c4fbfe2a7c",
+          "bytes": 303
+        },
+        {
+          "path": "skills/cilium/cilium-dataplane-diagnostics/metadata.json",
+          "sha256": "7ee206fd7ad05457ffe2a37e0b40669184c90a7e87b95795756ddfdd51919f5a",
+          "bytes": 1691
+        },
+        {
+          "path": "skills/cilium/cilium-dataplane-diagnostics/references/conntrack-nat-and-map-capacity.md",
+          "sha256": "bdcc433b8e8775a709bc699a9f42a03ab88e233bee0d1475a2af6c0780842ca2",
+          "bytes": 5746
+        },
+        {
+          "path": "skills/cilium/cilium-dataplane-diagnostics/references/drop-reasons-and-signals.md",
+          "sha256": "a5e6626bee0e2f8309aa653d3881f52a974b2fff789699f46f0fdb36ff1c152e",
+          "bytes": 5832
+        },
+        {
+          "path": "skills/cilium/cilium-dataplane-diagnostics/references/evidence-ledger.md",
+          "sha256": "df21e3841cad9a403a3e92292aa38c83b03f4384e56d5e5389e2bebfc7bb276f",
+          "bytes": 14326
+        },
+        {
+          "path": "skills/cilium/cilium-dataplane-diagnostics/references/hypothesis-trees.md",
+          "sha256": "8b007bcf3778065a431aa3e90a3c91814496eebf6056776ec405122f32675a05",
+          "bytes": 6512
+        },
+        {
+          "path": "skills/cilium/cilium-dataplane-diagnostics/references/packet-path-model.md",
+          "sha256": "1ea4a43a0f3bb79c97e50b12cc3eec7b1efb1ab1c8d7c18d5d40a56c84cb58d6",
+          "bytes": 5306
+        },
+        {
+          "path": "skills/cilium/cilium-dataplane-diagnostics/references/routing-mtu-and-encapsulation.md",
+          "sha256": "a22c2924b538cee9f848f6a7daaf088120a5791c6c0f2dcef91c96aae211599c",
+          "bytes": 5477
+        },
+        {
+          "path": "skills/cilium/cilium-dataplane-diagnostics/references/service-load-balancing.md",
+          "sha256": "8cc9d56ff19c74365e601c0b81cc2edbab4bc8153ea6f786594c333d6c7ff568",
+          "bytes": 5122
+        }
+      ]
+    },
+    {
+      "id": "cilium-evidence-boundary",
+      "path": "skills/cilium/cilium-evidence-boundary",
+      "aggregate_sha256": "140b1a6a998d1160bc83a031b2e1f66753f656a1cbe1dae927fe30777b7a43be",
+      "files": [
+        {
+          "path": "skills/cilium/cilium-evidence-boundary/SKILL.md",
+          "sha256": "ef320dd025294be159f83dc694ae8239bceb9c76563962a7539e7ade68400a2a",
+          "bytes": 5194
+        },
+        {
+          "path": "skills/cilium/cilium-evidence-boundary/agents/openai.yaml",
+          "sha256": "220d62efcbd1914adaf4689c2d75fc6af94db544b247e64f0ffea1dc40cfc5d3",
+          "bytes": 302
+        },
+        {
+          "path": "skills/cilium/cilium-evidence-boundary/metadata.json",
+          "sha256": "5e70881f036ac0dd48b892026ee662389c848d6d7bbedcf0ef88b0d4cc13709a",
+          "bytes": 1325
+        },
+        {
+          "path": "skills/cilium/cilium-evidence-boundary/references/command-classification.md",
+          "sha256": "0c1376d3254a80351bdf361961bedc13a11fbf5bb2489022c5ef8aa872e04305",
+          "bytes": 6074
+        },
+        {
+          "path": "skills/cilium/cilium-evidence-boundary/references/evidence-and-verdicts.md",
+          "sha256": "119b1823cb82fb9f758783cf9881262b2891a57141c01b4c957f3163c3018874",
+          "bytes": 6380
+        },
+        {
+          "path": "skills/cilium/cilium-evidence-boundary/references/evidence-ledger.md",
+          "sha256": "5fbb909553783954b64a686adffec548f0322910b6164168ffdb4cb2c3ed8e00",
+          "bytes": 4275
+        },
+        {
+          "path": "skills/cilium/cilium-evidence-boundary/references/findings-to-atlassian-handoff.md",
+          "sha256": "3ce712635e0744aa0c015a977570db1e681c18dfefabe36ca6fd7309c5682efd",
+          "bytes": 9638
+        },
+        {
+          "path": "skills/cilium/cilium-evidence-boundary/references/flow-telemetry.md",
+          "sha256": "4015f98f15231bb4abb3081db65191d9420788c5ba43e5e3927c3971ec41c732",
+          "bytes": 5987
+        }
+      ]
+    },
+    {
+      "id": "cilium-external-connectivity-review",
+      "path": "skills/cilium/cilium-external-connectivity-review",
+      "aggregate_sha256": "b46db730cb1bb67e834ce98fbafb076f7f16e25ff4b63ac22de7854c4ce9f5d0",
+      "files": [
+        {
+          "path": "skills/cilium/cilium-external-connectivity-review/SKILL.md",
+          "sha256": "2e959ebea5708a71bb51dba3fd31f2a85cd36808d169687c2e7454584fe70fb1",
+          "bytes": 6461
+        },
+        {
+          "path": "skills/cilium/cilium-external-connectivity-review/agents/openai.yaml",
+          "sha256": "305d7f64425c26536c4ed35e5be9e1911c45c2a9e6effb7188640af731fa9b76",
+          "bytes": 331
+        },
+        {
+          "path": "skills/cilium/cilium-external-connectivity-review/metadata.json",
+          "sha256": "40a9847c12a106939749800438c719cd89a2ccd75c97fe84c1dc0111cff5c7b6",
+          "bytes": 1661
+        },
+        {
+          "path": "skills/cilium/cilium-external-connectivity-review/references/bgp-control-plane.md",
+          "sha256": "6fe63a036f1c19df84a247e4891de2f2432d6c93fd1749f9ba2c729cb5a1e05f",
+          "bytes": 7623
+        },
+        {
+          "path": "skills/cilium/cilium-external-connectivity-review/references/clustermesh-resilience.md",
+          "sha256": "69441c4eff44985b5aabfadda39cca7a77959a26f9f726bb23813143d02b7fa5",
+          "bytes": 8164
+        },
+        {
+          "path": "skills/cilium/cilium-external-connectivity-review/references/egress-gateway.md",
+          "sha256": "ab0824436cb1ed453b917dcaaa1c5bbf13603679c4655a1fe6c4b36a85af8b18",
+          "bytes": 7211
+        },
+        {
+          "path": "skills/cilium/cilium-external-connectivity-review/references/evidence-ledger.md",
+          "sha256": "e441edf4c5b9691ea22a44562bae0e346c9143707ec1dc7061d28a0fbdc346f5",
+          "bytes": 12904
+        },
+        {
+          "path": "skills/cilium/cilium-external-connectivity-review/references/lb-ipam-and-l2-announcements.md",
+          "sha256": "afd23651d94ab4588803a1a0328ae6a01a8c9f6ebb7c8e77f92b641607544c7f",
+          "bytes": 7340
+        }
+      ]
+    },
+    {
+      "id": "cilium-lifecycle-readiness",
+      "path": "skills/cilium/cilium-lifecycle-readiness",
+      "aggregate_sha256": "b60559b60f5562f92383071d91bc31b759a055480b8d8324321eaa3c56bc999f",
+      "files": [
+        {
+          "path": "skills/cilium/cilium-lifecycle-readiness/SKILL.md",
+          "sha256": "0828e73d71dfdd269a5fbb86bdcc2183cd36f04ac13b683f49e54dbb981f9ccb",
+          "bytes": 5743
+        },
+        {
+          "path": "skills/cilium/cilium-lifecycle-readiness/agents/openai.yaml",
+          "sha256": "d8f98212fd56a7020caf71b106df161dbd490a12dc8e9ddc536f4dc69c8f3bcd",
+          "bytes": 318
+        },
+        {
+          "path": "skills/cilium/cilium-lifecycle-readiness/metadata.json",
+          "sha256": "15846e64625f13a71e2c7f01d2b95f5ab71ad7fa600a354cb80931a926416ec9",
+          "bytes": 1667
+        },
+        {
+          "path": "skills/cilium/cilium-lifecycle-readiness/references/advisory-applicability.md",
+          "sha256": "c4691ec905769d524bb569bc0a4683d42974d566a31d96cc8c899c423b4eff34",
+          "bytes": 5850
+        },
+        {
+          "path": "skills/cilium/cilium-lifecycle-readiness/references/breaking-changes-1-19-1-20.md",
+          "sha256": "3c0b0655a3b7dc622fa61233b7d239b11d7d5e28e34edde70961b4d0d8c3c737",
+          "bytes": 7155
+        },
+        {
+          "path": "skills/cilium/cilium-lifecycle-readiness/references/cni-migration-and-disruptive-changes.md",
+          "sha256": "a3d657125100419b6a7846c2d2091a427bc83d447a471e15d6d624ac1bf54872",
+          "bytes": 6269
+        },
+        {
+          "path": "skills/cilium/cilium-lifecycle-readiness/references/evidence-ledger.md",
+          "sha256": "9e1a004f023e709fe12588fb5548834b7573939d973d1ac09d3f4cbedfc3f0a9",
+          "bytes": 9350
+        },
+        {
+          "path": "skills/cilium/cilium-lifecycle-readiness/references/upgrade-path-and-rollback.md",
+          "sha256": "bf118cb7e5ff1c0a35d0c04f824c553c34c9ba2fe528733eacc6e8947d51b238",
+          "bytes": 5195
+        },
+        {
+          "path": "skills/cilium/cilium-lifecycle-readiness/references/version-and-kernel-compatibility.md",
+          "sha256": "e7b8860a78f78fe98294ca98d83b3f194ca8588b278f1b82b96bea449cdaf003",
+          "bytes": 5775
+        }
+      ]
+    },
+    {
       "id": "cilium-network-policy-review",
       "path": "skills/cilium/cilium-network-policy-review",
-      "aggregate_sha256": "9d6d9d13e515dee6faf0c6bf2f053b573dd15dc2851a1c01b4241285f11e3f6e",
+      "aggregate_sha256": "f7e6b82c40f4320a8d109852f193a8d492085634d31b870a93a379090e2c420d",
       "files": [
         {
           "path": "skills/cilium/cilium-network-policy-review/SKILL.md",
-          "sha256": "e4746d3a3e348e29eea69d83dc858b534bb7c80fb485a8d90b3cb66d7884a3f5",
-          "bytes": 3932
+          "sha256": "afbd593f84f15f65b9d6c80791e22d0af164d23ef0cb452d9a9c34d7bef84868",
+          "bytes": 7292
+        },
+        {
+          "path": "skills/cilium/cilium-network-policy-review/agents/openai.yaml",
+          "sha256": "ab3776960dda5f6ac906ecfbb0e75044009a4a32a7fb006b8198523807da0ce3",
+          "bytes": 357
         },
         {
           "path": "skills/cilium/cilium-network-policy-review/metadata.json",
-          "sha256": "f914a4c8db3d5d931dee7c168d5ed91009ca8a02b1f5fbe833466b3eb22a45ec",
-          "bytes": 1535
+          "sha256": "424ad2dfef6eef4aa30920e981855b5a61b8986b0773ff592d3ee2ee2fa0cccd",
+          "bytes": 1817
+        },
+        {
+          "path": "skills/cilium/cilium-network-policy-review/references/default-deny-rollout.md",
+          "sha256": "5d311eefb970c5b49f0fff703847cf4bb287445199a37e8abebe370eeff337c2",
+          "bytes": 8361
+        },
+        {
+          "path": "skills/cilium/cilium-network-policy-review/references/encryption-coverage.md",
+          "sha256": "5c7d876848f6fee34473eff912b171d5aec6dd161dd9415ee196586971a5d3ee",
+          "bytes": 8856
+        },
+        {
+          "path": "skills/cilium/cilium-network-policy-review/references/evidence-ledger.md",
+          "sha256": "f32426995b173c3199d6403f88e1705a5b14d838dab2f12964fb509ca7a0442d",
+          "bytes": 13731
         },
         {
           "path": "skills/cilium/cilium-network-policy-review/references/mcp-and-evidence.md",
-          "sha256": "de93a44fb02d5eb13ed5f5a01c07cd7e0d54933f84292dadeb93e11309596630",
-          "bytes": 2937
+          "sha256": "d5407a0d854e39fac39306661cfd77ce61fb30b0ca3a7fb531621c75845d0d2a",
+          "bytes": 3523
         },
         {
           "path": "skills/cilium/cilium-network-policy-review/references/official-sources.md",
-          "sha256": "8e1528b7831d6f3fbd7da41521d2475312ca4c38023339048a2496eaea060368",
-          "bytes": 4999
+          "sha256": "68b0922e4887832810f4124bdd3a5883b621507037eb3bac7b2cbf2ff20396ce",
+          "bytes": 3083
+        },
+        {
+          "path": "skills/cilium/cilium-network-policy-review/references/policy-semantics.md",
+          "sha256": "03c33a8b879d907e38cf479f88d34ba6ad38865ba352046ab29fe9958204cc86",
+          "bytes": 8035
         },
         {
           "path": "skills/cilium/cilium-network-policy-review/references/workflow-and-output.md",
-          "sha256": "1ee4e7888e23abcc96404a1427306f78a9597af07f349a5cd2327dc8fe43aa14",
-          "bytes": 8864
+          "sha256": "e368cccc26fbef862f84ac1a58b4223f4c25691db4b11c81b3fd7cd174060524",
+          "bytes": 11033
+        }
+      ]
+    },
+    {
+      "id": "cilium-review-routing",
+      "path": "skills/cilium/cilium-review-routing",
+      "aggregate_sha256": "98a8d81f0fd57760da5f2d62eac70fa6603bb69b80e027505530cfa3af973814",
+      "files": [
+        {
+          "path": "skills/cilium/cilium-review-routing/SKILL.md",
+          "sha256": "5c3287920f9972da2407f9a8d05e3e330b8ecd1adc353a7c744cc53018be8302",
+          "bytes": 4398
+        },
+        {
+          "path": "skills/cilium/cilium-review-routing/agents/openai.yaml",
+          "sha256": "7f64bc1ceae561b4ca2872a1af4fbf040881f23a70f1f25a6ec1d2a68087dadc",
+          "bytes": 303
+        },
+        {
+          "path": "skills/cilium/cilium-review-routing/metadata.json",
+          "sha256": "b54478e1692db3bee823fa1f3b32027804a9122dc00a6700b802281b86295e74",
+          "bytes": 962
+        },
+        {
+          "path": "skills/cilium/cilium-review-routing/references/conflicts-and-aggregation.md",
+          "sha256": "5184c6cb3770d0a3e4ddbe71b68c614725edb1b99752c698dacc9edba99b4dc0",
+          "bytes": 2829
+        },
+        {
+          "path": "skills/cilium/cilium-review-routing/references/live-and-out-of-board-handoff.md",
+          "sha256": "649aa65db1b2bca042aa3928bd29f16b441629163d7fe8ef68e1fe02ac8f387c",
+          "bytes": 3431
+        },
+        {
+          "path": "skills/cilium/cilium-review-routing/references/routing-table.md",
+          "sha256": "4bb4f9254a9b4ca70f5a4bccdfef51a3743551885c5687d77bd2a94d1514ed3f",
+          "bytes": 4076
         }
       ]
     },
@@ -15081,7 +15346,7 @@
     {
       "id": "kubernetes-maestro",
       "path": "skills/kubernetes/kubernetes-maestro",
-      "aggregate_sha256": "910cfa15c5b62abfad83135bea1fa4ad8f3a18d2365e0c7375579350b5b8e7dc",
+      "aggregate_sha256": "2987cbfec8d45701de421ff6f548bf096cabcc7a5c86cc25554046e8b457e1e8",
       "files": [
         {
           "path": "skills/kubernetes/kubernetes-maestro/SKILL.md",
@@ -15100,8 +15365,8 @@
         },
         {
           "path": "skills/kubernetes/kubernetes-maestro/references/workflow-and-output.md",
-          "sha256": "a2076ac8200a38e43cd3a61d5b33c002f56d1be4dea282b794c08940f294fcdd",
-          "bytes": 22476
+          "sha256": "1665434ed7588a6df8c9e546314f17992e6472993da9a49a13c2933ef62ba81b",
+          "bytes": 23687
         }
       ]
     },
@@ -15130,7 +15395,7 @@
     {
       "id": "kubernetes-network-architecture-review",
       "path": "skills/kubernetes/kubernetes-network-architecture-review",
-      "aggregate_sha256": "ccf69e70180c1d2a716a6056a5f2f6f600ef0050a2897bbf2b32882d90ea19bf",
+      "aggregate_sha256": "9dc6a2453154bcc5e198d2b4a30db5fc630fd2b31b7f73977a1563e8c01fefb0",
       "files": [
         {
           "path": "skills/kubernetes/kubernetes-network-architecture-review/SKILL.md",
@@ -15174,8 +15439,8 @@
         },
         {
           "path": "skills/kubernetes/kubernetes-network-architecture-review/references/troubleshooting-playbook.md",
-          "sha256": "887499a75082dbebde2926225ad815979a17ba319b3bb77d4ceae87c7d063527",
-          "bytes": 7491
+          "sha256": "01491739bdc6e7d36743aaf7c38c44a38cac69e1d40f7de4ec03758802b8972a",
+          "bytes": 7683
         }
       ]
     },

@@ -1,0 +1,33 @@
+{
+  "id": "cilium-lifecycle-readiness",
+  "name": "Cilium Lifecycle Readiness",
+  "type": "skill",
+  "provider": "cilium",
+  "harnesses": [
+    "codex",
+    "claude-code",
+    "cursor",
+    "gemini",
+    "kiro",
+    "other"
+  ],
+  "summary": "Decide whether a proposed Cilium upgrade, rollback, CNI migration to Cilium, disruptive configuration change (IPAM mode, kube-proxy replacement toggle, ClusterMesh sizing) or security-advisory remediation is ready to enter an authorized change process: one-minor upgrade path, breaking changes, kernel and Kubernetes compatibility, rollback constraints and advisory applicability. Assesses readiness only; never runs preflight, Helm or Cilium CLI commands.",
+  "source_type": "original",
+  "official_docs": [
+    "https://docs.cilium.io/en/stable/operations/upgrade/",
+    "https://docs.cilium.io/en/stable/operations/system_requirements/",
+    "https://docs.cilium.io/en/stable/installation/k8s-install-migration/",
+    "https://docs.cilium.io/en/stable/network/concepts/ipam/",
+    "https://github.com/cilium/cilium/security/advisories"
+  ],
+  "security_notes": "Static review only. The upgrade preflight creates a DaemonSet and Deployment and is a mutation; Helm upgrades and migrations have no live guard and go to the human change process. An advisory is never dismissed on version alone or applied on version alone; the enabled feature decides.",
+  "last_verified": "2026-11-25",
+  "path": "skills/cilium/cilium-lifecycle-readiness",
+  "author": "github: VincentChuWaiChow",
+  "version": "0.1.0",
+  "lifecycle": "beta",
+  "execution_tier": "static-review",
+  "companion_skills": [
+    "cilium-evidence-boundary"
+  ]
+}

@@ -1,0 +1,7 @@
+{
+  "name": "002-happy-dataplane-diagnostics",
+  "task": "Intermittent timeouts and drops with reason CT: Map insertion failed on two nodes.",
+  "tags": [
+    "happy-path"
+  ]
+}

@@ -7,16 +7,18 @@
 Cilium supports three formats with different scopes and capabilities:
 
 1. **`NetworkPolicy`** (`networking.k8s.io/v1`) — Kubernetes-native, namespace-scoped, L3/L4 only.
-2. **`CiliumNetworkPolicy`** (`cilium.io/v2`, "CNP") — namespace-scoped, L3-L7 (HTTP, Kafka, DNS), FQDN matching, ICMP, identity-based selectors via Cilium endpoint identities.
+2. **`CiliumNetworkPolicy`** (`cilium.io/v2`, "CNP") — namespace-scoped, L3-L7 (HTTP, DNS; Kafka only before its removal in 1.20), FQDN matching, ICMP, identity-based selectors via Cilium endpoint identities.
 3. **`CiliumClusterwideNetworkPolicy`** (`cilium.io/v2`, "CCNP") — cluster-wide, same capabilities as CNP, applies across all namespaces.
 
 A namespace can have multiple policies of all three formats simultaneously. The effective policy is the **union** of allows: any policy that allows traffic permits it.
+
+A `CiliumClusterwideNetworkPolicy` with a `nodeSelector` instead of an `endpointSelector` is a host policy. It governs nodes and host-networking pods and has its own semantics in [policy-semantics.md](policy-semantics.md).
 
 Reference: [Network Policy overview](https://docs.cilium.io/en/stable/network/kubernetes/policy/).
 
 ### Step 2 — Verify default-deny posture in the affected namespace
 
-Cilium follows the Kubernetes NetworkPolicy semantic: pods with **at least one ingress policy selecting them** become deny-by-default for ingress; pods with **at least one egress policy selecting them** become deny-by-default for egress. Without any policy selecting a pod, all traffic is allowed.
+Deny-by-default semantics are in [policy-semantics.md](policy-semantics.md): enforcement mode first, then per-direction default-deny (a selecting rule with that direction's section isolates the pod for that direction unless `enableDefaultDeny` disables it), the allow union, and deny rules, which win over every allow. Answer those before this step's findings.
 
 Critical findings:
 
@@ -30,72 +32,70 @@ Recommended baseline: a `default-deny-all` `NetworkPolicy` per namespace plus ex
 `CiliumNetworkPolicy` and `CiliumClusterwideNetworkPolicy` support L7 rules via Cilium's embedded Envoy:
 
 - `toPorts.rules.http` — method, path, host, header matching.
-- `toPorts.rules.kafka` — Kafka API key matching, topic-level allow.
+- `toPorts.rules.kafka` — Kafka-aware policy (removed in Cilium 1.20; remove `kafka` and `l7proto` rules before upgrading). Flag any such rule on a 1.20 target as an upgrade blocker.
 - `toPorts.rules.dns` — DNS FQDN allowlist for egress.
 
-L7 rules require the Envoy proxy to be enabled. Without Envoy, policy with L7 fields **either fails admission or is enforced only at L3/L4**, depending on Cilium version. Confirm before relying on L7.
+L7 rules are enforced by Cilium's L7 proxy. Confirm the proxy is enabled for the installed version before relying on an L7 rule; what happens to an L7 rule when it is not is not recorded in this skill's ledger, so treat it as unknown. Note that `enableDefaultDeny: false` does not stop an L7 rule from dropping traffic (see [policy-semantics.md](policy-semantics.md)).
 
 Stress-tests:
 
-- L7 HTTP rule with `path: /admin` but the policy applies to a namespace where pods talk via gRPC — the HTTP path matcher does nothing for HTTP/2 stream multiplexing.
-- L7 DNS rule with FQDN `*.example.com` — wildcard match is supported for DNS but the destination port still matters; verify port 53 UDP/TCP allowed at L4.
+- `matchPattern` wildcards are narrower or broader than reviewers assume [CIL-NP-E28]: `*.example.com` matches `sub.example.com` but neither `example.com` nor `sub.sub.example.com`; `**.example.com` matches every subdomain depth but not `example.com`; `*` alone matches every name. A rule meant to cover the apex and its subdomains needs both a `matchName` and a pattern. From 1.19 the `**` prefix is available, so a rule using it is broader than a single-level pattern [CIL-NP-E17].
+- A `toFQDNs` rule depends on the DNS proxy. Cilium associates names with IPs by intercepting DNS responses, which requires the L7 proxy (`--enable-l7-proxy=true`) and an L7 rule (`rules.dns`) allowing the DNS requests themselves [CIL-NP-E31]. Without both, the rule has no addresses to allow (`derived`). A `toFQDNs` rule without a companion DNS rule on port 53 to the DNS service is a finding, and so is an unconfirmed L7 proxy setting.
 
-Reference: [L7 Policy in Cilium](https://docs.cilium.io/en/stable/security/policy/language/#layer-7-examples).
+Reference: [Layer 7 policy](https://docs.cilium.io/en/stable/security/policy/layer7/) and [DNS-based policy](https://docs.cilium.io/en/stable/security/policy/layer3/#dns-based).
 
 ### Step 4 — Audit egress (the exfiltration path)
 
 Egress is the most-overlooked side of network policy. Critical findings:
 
 - `egress` rules with `toCIDRSet: [{cidr: 0.0.0.0/0}]` and no `except` for internal CIDRs (RFC 1918, link-local, cloud metadata service IPs like `169.254.169.254`) — allows pod to reach the cloud metadata service and exfiltrate cloud credentials.
-- `egress` with `toEndpoints: []` (empty selector) — the empty selector matches **everything** in Cilium semantics; this is broader than `toEndpoints` not being present at all.
+- Three spellings of "any endpoint" mean different things. Read the manifest literally:
+  - `toEndpoints: [{}]`, a list holding one empty selector, selects every endpoint; in a `CiliumNetworkPolicy` egress rule that means every endpoint in the policy's own namespace [CIL-NP-E29].
+  - No peer list at all, in a rule that has `toPorts`, places no L3 restriction: every peer is allowed on those ports. The engine tests show this for an ingress rule without `fromEndpoints` [CIL-NP-E30]; the egress counterpart, `toEndpoints` absent, is `derived` from it.
+  - `toEndpoints: []`, an explicitly empty list, selects no peer in the v1.20.5 policy engine's own tests, so the rule allows nothing [CIL-NP-E30]. That the YAML `[]` reaches the engine as such an empty list is `derived`, not documented; report the rule `needs-review` and ask the author which of the three they meant.
 - `egress` allowing `toFQDNs.matchPattern: '*'` — wildcard DNS matching with no narrow allowlist.
 
 Recommended baseline: explicit `toEndpoints` for in-cluster, `toCIDRSet` with `except` for the cloud metadata CIDR, `toFQDNs` for known external services.
 
-### Step 5 — Audit `CiliumEgressGatewayPolicy`
+### Step 5 — Egress gateway: hand off
 
-`CiliumEgressGatewayPolicy` assigns a SNAT egress IP for selected pods exiting the cluster — used when external systems require a stable source IP for firewall allowlisting.
-
-Stress-tests:
-
-- Two `CiliumEgressGatewayPolicy` resources with the same `egressIP` — both policies match different pods, both rewrite to the same source IP, and the response routing on the gateway node breaks for one or both. The result is intermittent connection drops.
-- `egressIP` not actually assigned to a NIC on the chosen gateway node — Cilium silently fails to apply, traffic falls back to default node SNAT.
-- `nodeSelector` matches multiple nodes — only one acts as gateway; failover is not automatic.
-- `destinationCIDRs: ['0.0.0.0/0', '::/0']` — every external connection from the selected pods is SNATed; a more narrow CIDR is usually appropriate.
-- Missing `nodeSelector` — policy applies to all nodes, which is rarely the intent.
-
-Reference: [Cilium Egress Gateway](https://docs.cilium.io/en/stable/network/egress-gateway/egress-gateway/).
+`CiliumEgressGatewayPolicy` IP collision, SNAT behavior, gateway node selection and gateway failure are owned by `cilium-external-connectivity-review-agent`. Keep here only the egress **authorization** question: which pods may reach which destinations under policy. Hand off any `egressIP`, `nodeSelector` or gateway-failover finding by agent id with the manifest excerpt.
 
 ### Step 6 — Audit ClusterMesh policy semantics
 
 When ClusterMesh is enabled, identity-based policy selectors (`namespaceSelector`, `endpointSelector`) match across cluster boundaries. Two semantics are possible:
 
-1. **`policy-default-local-cluster: false` (default in older versions)** — selectors match endpoints in any peer cluster. A `namespaceSelector: {kubernetes.io/metadata.name: prod}` matches `prod` in this cluster AND `prod` in every peer cluster.
-2. **`policy-default-local-cluster: true` (default in 1.16+)** — selectors match only the local cluster unless the policy explicitly sets `cluster: <peer-cluster>` on the selector.
+1. **`policy-default-local-cluster: false` (behavior in 1.18 and lower)** — selectors match endpoints in any peer cluster. A `namespaceSelector: {kubernetes.io/metadata.name: prod}` matches `prod` in this cluster AND `prod` in every peer cluster.
+2. **`policy-default-local-cluster: true` (introduced as an option in 1.18, default from 1.19)** — selectors match only the local cluster unless a cluster is explicitly targeted (cross-cluster selector label `io.cilium.k8s.policy.cluster`). Policies are not distributed across clusters; each cluster needs its own copy.
 
-**A flag flip changes every existing policy's effective scope simultaneously.** Cilium ships `cilium clustermesh inspect-policy-default-local-cluster` specifically to preview which policies would be affected.
+**A flag flip changes every existing policy's effective scope simultaneously.** Cilium ships an inspect command for this purpose (see the command block below) to preview which policies would be affected.
 
 Stress-tests:
 
 - ClusterMesh deployment with mixed clusters at different `policy-default-local-cluster` settings — confusing semantics; one cluster's policy may match peer endpoints while another's does not.
 - Migrating from `false` to `true` — every policy that previously matched cross-cluster identities now silently stops matching them. **This is a documented operational landmine.**
 
-Reference: [Cilium ClusterMesh](https://docs.cilium.io/en/stable/network/clustermesh/) and [`cilium clustermesh inspect-policy-default-local-cluster`](https://docs.cilium.io/en/stable/cmdref/cilium_clustermesh_inspect-policy-default-local-cluster/).
+Class: [C1] reads cluster state through the operator's authorized client.
+
+```text
+cilium clustermesh inspect-policy-default-local-cluster --all-namespaces   [C1]
+```
+
+Reference: [Cilium ClusterMesh](https://docs.cilium.io/en/stable/network/clustermesh/) and the [inspect command reference](https://docs.cilium.io/en/stable/cmdref/cilium_clustermesh_inspect-policy-default-local-cluster/).
 
 ### Step 7 — Use Hubble to verify enforcement
 
 Static policy review is not enough. Use Hubble to confirm what the policy actually does:
 
-```shell
-# Watch ingress drops to a workload — should be empty if allow rules are correct
-hubble observe --to-namespace <ns> --to-pod <pod-prefix> --verdict DROPPED --last 1000
+Class: [C2] Hubble via Relay; flows may contain sensitive metadata. The operator collects; the agent does not run these. Telemetry completeness is judged per the companion skill `cilium-evidence-boundary`.
 
-# Watch egress allows from a workload — confirms the workload reaches expected destinations
-hubble observe --from-namespace <ns> --from-pod <pod-prefix> --verdict FORWARDED --last 100
-
-# DNS resolution by FQDN policy
-hubble observe --type dns --last 100
+```text
+hubble observe --to-namespace <ns> --to-pod <pod-prefix> --verdict DROPPED --last 1000   [C2]
+hubble observe --from-namespace <ns> --from-pod <pod-prefix> --verdict FORWARDED --last 100   [C2]
+hubble observe --type l7 --last 100   [C2]
 ```
+
+`--to-namespace` and `--to-pod` are assumed to mirror the documented `--from-*` filters; confirm with the operator's CLI help. The first line should return nothing if allow rules are correct; the second confirms expected destinations; the third shows L7 flow records. `--type dns` is not a documented flow type (documented types are capture, drop, l7, policy-verdict, trace, trace-sock).
 
 Reference: [Hubble Observability](https://docs.cilium.io/en/stable/observability/hubble/).
 
@@ -105,20 +105,20 @@ Reference: [Hubble Observability](https://docs.cilium.io/en/stable/observability
 - Prefer named `endpointSelector` labels over IP CIDRs for in-cluster traffic — IPs change, labels survive pod recreation.
 - Prefer `toFQDNs` over `toCIDRSet` for external services with stable hostnames — DNS rotation no longer breaks the policy.
 - Avoid `CiliumClusterwideNetworkPolicy` for namespace-scoped concerns — cluster-wide blast radius.
-- Test policy changes in a dev or staging cluster first — eBPF program reload happens asynchronously, and a misordered apply during rollout can briefly break traffic.
+- Test policy changes in a dev or staging cluster first. eBPF program reload may be asynchronous, so an apply could allow traffic before an isolating policy takes effect (derived/unverified; not re-verified in this skill's ledger, confirm against the policy language page for the installed version).
 
 ## Output
 
 Return:
 
 - **target**: which policy format and which scope,
-- **evidence level**: `live evidence` / `documentation-based` / `sanitized user evidence` / `inference`,
+- **evidence level**: `verified` / `partial` / `assumed`, with each claim classed `observed` / `derived` / `assumption` / `unknown` per the companion skill,
 - **default-deny posture** in the namespace(s),
 - **L7 enforcement assessment**: Envoy proxy enabled / required, whether L7 rules will actually run,
 - **egress posture**: cloud-metadata service blocked, CIDR scope, FQDN allowlist hygiene,
 - **ClusterMesh assessment** when applicable (cross-cluster semantics, `policy-default-local-cluster` value),
 - **risk findings** (with severity: high / medium / low),
-- **safest next actions** with sample manifest changes and `hubble observe` commands to verify,
+- **safest next actions** with sample manifest changes and `hubble observe` [C2] commands for the operator to collect as verification,
 - **rollback plan**: how to revert the change without leaving pods unreachable,
 - **assumptions and missing facts**.
 
@@ -126,5 +126,5 @@ Return:
 
 - Never recommend removing a default-deny policy without a confirmed replacement that explicitly allows required flows.
 - Never recommend `toCIDRSet: [{cidr: 0.0.0.0/0}]` without an `except` block covering the cloud metadata service IP and any other sensitive internal CIDRs.
-- Never recommend changing `policy-default-local-cluster` without first running `cilium clustermesh inspect-policy-default-local-cluster` and reviewing every affected policy.
+- Never recommend changing `policy-default-local-cluster` without first having the operator collect the inspect output (Step 6) and reviewing every affected policy.
 - Do not print Cilium ClusterMesh peer Secrets or agent service account tokens.

@@ -1,0 +1,6 @@
+{
+  "route": [
+    "cilium-network-policy-review-agent"
+  ],
+  "mode": "single"
+}

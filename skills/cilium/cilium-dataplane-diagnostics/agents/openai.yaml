@@ -1,0 +1,4 @@
+interface:
+  display_name: Cilium Dataplane Diagnostics
+  short_description: "Rank datapath hypotheses and name the next discriminating observation"
+  default_prompt: Use $cilium-dataplane-diagnostics on the supplied evidence within its stated scope. Report unknowns and do not perform live operations.

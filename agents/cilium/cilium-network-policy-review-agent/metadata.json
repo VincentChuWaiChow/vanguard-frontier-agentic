@@ -11,17 +11,17 @@
     "gemini",
     "kiro"
   ],
-  "summary": "Review CiliumNetworkPolicy, CiliumClusterwideNetworkPolicy, NetworkPolicy, ClusterMesh cross-cluster policy semantics, and egress gateway configuration for default-deny posture, L7 enforcement prerequisites, and exfiltration risk.",
+  "summary": "Agent for cilium-network-policy-review. Decide whether Cilium policy and transport-encryption configuration enforce the intended connectivity boundary, meaning who may connect and whether the connection is confidential, without unacceptable rollout risk: NetworkPolicy, CiliumNetworkPolicy and CiliumClusterwideNetworkPolicy composition, default-deny readiness, egress authorization including the cloud metadata endpoint, L7 prerequisites, ClusterMesh policy-default-local-cluster semantics, and WireGuard or IPsec coverage claims. Egress gateway SNAT and failover belong to cilium-external-connectivity-review-agent.",
   "source_type": "original",
   "official_docs": [
     "https://docs.cilium.io/en/stable/network/kubernetes/policy/",
+    "https://docs.cilium.io/en/stable/security/policy/language/",
     "https://docs.cilium.io/en/stable/network/clustermesh/policy/",
-    "https://docs.cilium.io/en/stable/network/egress-gateway/",
-    "https://docs.cilium.io/en/stable/observability/hubble/",
+    "https://docs.cilium.io/en/stable/security/network/encryption-wireguard/",
     "https://kubernetes.io/docs/concepts/services-networking/network-policies/"
   ],
-  "security_notes": "policy-default-local-cluster flag change affects cross-cluster semantics of EVERY existing CiliumNetworkPolicy globally. toCIDRSet 0.0.0.0/0 without excluding the cloud metadata endpoint (169.254.169.254) is the Capital One breach path.",
-  "last_verified": "2026-05-01",
+  "security_notes": "Static review of supplied, sanitized YAML and command output only; live state is collected, if at all, by the user or an authorized operator against a confirmed cluster. A policy-default-local-cluster change alters the cross-cluster semantics of every existing policy at once. Unrestricted 0.0.0.0/0 egress without an exception for the instance metadata endpoint exposes node cloud credentials, a widely reported cloud breach pattern. Encryption enabled in configuration is intent, not coverage evidence.",
+  "last_verified": "2026-11-25",
   "path": "agents/cilium/cilium-network-policy-review-agent",
   "harness_variants": {
     "codex": "agents/cilium/cilium-network-policy-review-agent/harnesses/codex.toml",
@@ -33,5 +33,29 @@
     "kiro-cli": "agents/cilium/cilium-network-policy-review-agent/harnesses/kiro-cli.agent.json"
   },
   "author": "github: VincentChuWaiChow",
-  "version": "0.1.0"
+  "version": "0.2.0",
+  "companion_skills": [
+    "cilium-network-policy-review",
+    "cilium-evidence-boundary"
+  ],
+  "execution_tier": "static-review",
+  "lifecycle": "beta",
+  "routing_keywords": [
+    "CiliumNetworkPolicy",
+    "CiliumClusterwideNetworkPolicy",
+    "NetworkPolicy",
+    "default-deny",
+    "Policy denied",
+    "toFQDNs",
+    "toCIDRSet",
+    "metadata endpoint",
+    "L7 policy",
+    "policy-default-local-cluster",
+    "WireGuard",
+    "IPsec",
+    "transparent encryption",
+    "strict mode",
+    "microsegmentation",
+    "zero trust"
+  ]
 }

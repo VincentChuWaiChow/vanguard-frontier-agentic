@@ -66,6 +66,29 @@ def q(s: str) -> str:
     return json.dumps(s, ensure_ascii=False)
 
 
+def _scope_skill(agent_dir: Path, meta: dict, aid: str) -> str:
+    """The skill the adapter's "Use this agent only for `...` work" line names.
+
+    Normally the agent id without "-agent". When that is not one of the agent's companion skills
+    (an agent whose skill is named differently, such as a maestro bound to a routing skill), use
+    the single companion that is not shared by every sibling agent in the same board directory,
+    so the line never names a skill that does not exist. Deterministic: reads committed metadata.
+    """
+    derived = aid[: -len("-agent")] if aid.endswith("-agent") else aid
+    companions = list(meta.get("companion_skills") or [])
+    if not companions or derived in companions:
+        return derived
+    shared: set[str] | None = None
+    for sibling in sorted(agent_dir.parent.iterdir()):
+        sib_meta = sibling / "metadata.json"
+        if not sib_meta.is_file():
+            continue
+        skills = set(json.loads(sib_meta.read_text(encoding="utf-8")).get("companion_skills") or [])
+        shared = skills if shared is None else shared & skills
+    own = [c for c in companions if c not in (shared or set())]
+    return own[0] if len(own) == 1 else derived
+
+
 def render(agent_dir: Path) -> dict[str, str]:
     meta = json.loads((agent_dir / "metadata.json").read_text(encoding="utf-8"))
     agent_md = (agent_dir / "AGENT.md").read_text(encoding="utf-8")
@@ -73,7 +96,7 @@ def render(agent_dir: Path) -> dict[str, str]:
     if idx < 0:
         raise SystemExit(f"{agent_dir}: AGENT.md has no '## Mission' section")
     name, desc, aid = meta["name"], meta["summary"], meta["id"]
-    scope_id = aid[: -len("-agent")] if aid.endswith("-agent") else aid
+    scope_id = _scope_skill(agent_dir, meta, aid)
     body = f"# {name}\n\nUse this agent only for `{scope_id}` work.\n\n{agent_md[idx + 1:].rstrip()}\n"
     if '"""' in body:
         raise SystemExit(f"{agent_dir}: body contains a TOML triple quote")

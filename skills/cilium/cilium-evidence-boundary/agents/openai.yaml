@@ -1,0 +1,4 @@
+interface:
+  display_name: Cilium Evidence Boundary
+  short_description: "Shared evidence, command-class and handoff rules for every Cilium specialist"
+  default_prompt: Use $cilium-evidence-boundary on the supplied evidence within its stated scope. Report unknowns and do not perform live operations.

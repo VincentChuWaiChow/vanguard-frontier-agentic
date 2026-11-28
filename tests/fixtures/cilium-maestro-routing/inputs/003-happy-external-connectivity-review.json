@@ -1,0 +1,7 @@
+{
+  "name": "003-happy-external-connectivity-review",
+  "task": "Our BGP sessions are established but the LoadBalancer IP is not advertised to the peer router.",
+  "tags": [
+    "happy-path"
+  ]
+}

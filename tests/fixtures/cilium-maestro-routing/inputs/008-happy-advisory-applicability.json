@@ -1,0 +1,8 @@
+{
+  "name": "008-happy-advisory-applicability",
+  "task": "Does security advisory GHSA-3fcv-jvfp-m4q9 apply to our clusters?",
+  "tags": [
+    "happy-path",
+    "merged:advisory"
+  ]
+}

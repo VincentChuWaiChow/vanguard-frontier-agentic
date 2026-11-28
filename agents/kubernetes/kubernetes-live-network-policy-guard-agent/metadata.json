@@ -20,7 +20,7 @@
     "https://kubernetes.io/docs/concepts/services-networking/network-policies/"
   ],
   "security_notes": "Deleting a default-deny CiliumNetworkPolicy removes all ingress/egress restrictions for matched workloads. toCIDRSet change to include 0.0.0.0/0 without excluding 169.254.169.254/32 opens the cloud metadata service. CiliumClusterwideNetworkPolicy changes affect all namespaces simultaneously. Per docs/least-privilege-rbac.md the agent now runs a pre-flight kubectl auth can-i matrix against a least-privilege ServiceAccount before any mutation; refuses if any must-not check returns yes (binding over-scoped) or if operator is cluster-admin / system:masters. References shipped: least-privilege-rbac.yaml (deny-by-default ClusterRole), rbac-pre-flight.md (positive + negative resourceName tests), refusal-list.md (universal one-way doors plus domain-specific HARD REFUSE list). Refuses to read or process credentials volunteered by the operator; uses only the in-pod ServiceAccount token at /var/run/secrets/kubernetes.io/serviceaccount/token.",
-  "last_verified": "2026-05-08",
+  "last_verified": "2026-11-25",
   "path": "agents/kubernetes/kubernetes-live-network-policy-guard-agent",
   "harness_variants": {
     "codex": "agents/kubernetes/kubernetes-live-network-policy-guard-agent/harnesses/codex.toml",
@@ -32,8 +32,10 @@
     "kiro-cli": "agents/kubernetes/kubernetes-live-network-policy-guard-agent/harnesses/kiro-cli.agent.json"
   },
   "author": "github: VincentChuWaiChow",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "companion_skills": [
-    "cilium-network-policy-review"
+    "cilium-network-policy-review",
+    "cilium-external-connectivity-review",
+    "cilium-evidence-boundary"
   ]
 }

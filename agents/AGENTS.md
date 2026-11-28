@@ -1,6 +1,6 @@
 # AGENTS.md — Navigation Compass
 
-<!-- count:global:agents -->756<!-- /count --> agents across <!-- count:global:providers -->46<!-- /count --> providers. This file is the index; load provider files on demand.
+<!-- count:global:agents -->760<!-- /count --> agents across <!-- count:global:providers -->46<!-- /count --> providers. This file is the index; load provider files on demand.
 
 ## File structure
 
@@ -294,7 +294,7 @@ Live-guard agents refuse to proceed without: target confirmation (cluster/accoun
 
 ---
 
-## 🐝 Cilium — <!-- count:dir:cilium:agents -->1<!-- /count --> agents → [`agents/cilium/README.md`](cilium/README.md)
+## 🐝 Cilium — <!-- count:dir:cilium:agents -->5<!-- /count --> agents → [`agents/cilium/README.md`](cilium/README.md)
 
 | Agent | Tier | Load when |
 |---|---|---|

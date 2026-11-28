@@ -1,0 +1,141 @@
+=== S05-bgp-healthy-vip-dead ===
+
+**1. Decision and scope**
+
+Verdict: `needs-review`. `evidence_level: partial`. Neither team can be called right yet, because the decisive peer-side evidence is missing.
+
+- Decision question: is VIP 192.0.2.10 for `shop/frontend` reachable from outside the cluster, and which side of the boundary explains why it isn't?
+- Execution tier: static review of the supplied output only. Nothing was run or tested. This is not certification.
+- Not reviewed: peer router state, firewall paths, the BGP CRDs (cluster config, advertisement, node selector), Helm values, Cilium version, kube-proxy replacement and masquerade state, and the node labels beyond those stated.
+
+**2. Applicability**
+
+- Cilium version is unknown, so version-gated conclusions are withheld. That includes whether BGPv1 `CiliumBGPPeeringPolicy` is still in use (removed in 1.19).
+- The Service is `externalTrafficPolicy: Local`, and the VIP is a `LoadBalancerIP`.
+- The BGP `Service` advertisement and its selector were not supplied, so the control-plane claim "the VIP is advertised" is itself unobserved.
+
+**3. Findings**
+
+**F1. An Established BGP session does not prove reachability.** (Mechanism, class `derived`.)
+- "All sessions Established" is a control-plane statement. BGP Control Plane does not program the datapath, and a healthy session never proves end-to-end connectivity.
+- The network team's claim "BGP is up, so Kubernetes is broken" and the platform claim "BGP is healthy, so it's fine" both over-read a session state.
+
+**F2. With `externalTrafficPolicy: Local`, advertisement depends on local endpoints on the advertising nodes.** (Class `derived`, severity high.)
+- The sessions are on node-1 and node-2, which carry `bgp=enabled`.
+- The endpoints exist only on node-5 and node-6, which do not carry that label.
+- Under eTP Local, a node with no local endpoint stops advertising the VIP, regardless of session state.
+- The documented consequence is that the VIP is not advertised, or is advertised but has nowhere to deliver. Either way no node that both peers and hosts a backend exists.
+- Whether node-1 and node-2 advertise the VIP anyway is unobserved. If they do, traffic arriving there has no local backend and is dropped under Local policy.
+
+**F3. Node-selection mismatch.** (Class `observed` for the labels and endpoints as supplied, `derived` for the consequence.)
+- The set of nodes that peer (`bgp=enabled`: node-1, node-2) and the set of nodes that host backends (node-5, node-6) are disjoint.
+- The intersection is empty, which is a sufficient explanation for the symptom. It is not confirmed, because peer-side state is absent.
+
+**Counterexamples that would disprove F2/F3:**
+- Peer-side route evidence shows the router has the 192.0.2.10/32 route via node-5 or node-6. That would point to a different node selector than the one supplied.
+- The Service is actually `externalTrafficPolicy: Cluster` in the deployed manifest, so the supplied copy is stale.
+- Endpoints have since moved onto node-1 or node-2, so the snapshot is stale.
+- A firewall or ACL between the router and the nodes drops the traffic, which is independent of F2/F3.
+
+**Claim classes**
+
+| Claim | Class |
+| --- | --- |
+| Sessions Established on node-1, node-2 | observed (supplied output, capture time not given) |
+| External clients cannot reach the VIP | assumption (reported, not measured here) |
+| The VIP is advertised by any node | unknown |
+| The peer router holds or uses a route for the VIP | unknown |
+| Mismatch between peering nodes and endpoint nodes | derived |
+
+**Which team is right?** Neither can be declared right without the peer-side caveat.
+- The evidence is consistent with a misalignment on the Kubernetes and Cilium side: node selection plus eTP Local.
+- That is a configuration seam, not proof of a Cilium fault and not proof the network is healthy.
+
+**4. Next observations**
+
+Every item is collected by an authorized operator. This review runs none of them.
+1. **Peer-side evidence, owned by the network team.** Router route table and forwarding state for 192.0.2.10 (is the route present, from which next hops, and is it installed?). Also ACL, firewall and import-policy state, and max-prefix limits on the sessions. Collect at the same timestamp as item 2. This is outside the cluster.
+2. `cilium bgp routes advertised ipv4 unicast` (class C2): is the VIP actually advertised, and from which nodes?
+3. `kubectl describe ciliumbgpnodeconfigs <node>` for node-1, node-2, node-5 and node-6 (class C1): per-node status and conditions such as `cilium.io/NoMatchingNode`.
+4. Rendered BGP cluster config and advertisement (including `nodeSelector` and the Service selector), the Service manifest and the node labels (class C1).
+5. The Cilium version and Helm values: kube-proxy replacement, routing mode and masquerade (excerpt only; do not send Secrets or full sysdumps).
+
+**5. Handoffs**
+- Any change to node labels, the BGP `nodeSelector` or the Service traffic policy has no live guard. It is a change proposal for the human change process, owned jointly by the platform team (labels, Service) and the network team (peer side). This review does not make or propose executing it.
+- If peer evidence shows the route is present and the datapath still fails, hand that to `cilium-dataplane-diagnostics-agent`.
+- If the Cilium version turns out to be 1.19 or later with BGPv1 still in use, hand that to `cilium-lifecycle-readiness-agent`.
+
+Nothing was tested. This is not certification.
+
+
+=== S06-clustermesh-cascade ===
+
+**1. Decision and scope**
+
+Verdict: `needs-review`. `evidence_level: partial`. The DR design is not certified, and the supplied evidence is consistent with the DR claim failing.
+
+- Decision question: does ClusterMesh fail over automatically when east is lost, as the DR plan states?
+- Execution tier: static review of the supplied Service annotations, Helm excerpt and incident times. Nothing was run or tested.
+- Not reviewed: data replication and state, capacity in west, client retry and timeout behavior, the mesh connectivity status, the Cilium version, kube-proxy replacement state, backend health and readiness in west, and the full Helm values.
+
+**2. Applicability**
+
+- The Cilium version is unknown. Version-gated conclusions are withheld, although the cache behavior below is the documented default.
+- The `orders/api` Service carries `service.cilium.io/global=true`. The annotation is shown for this cluster only. Parity in east (same name, namespace and annotation) was not supplied.
+- No affinity annotation means the default `none` applies.
+- `clustermesh.cacheTTL` is not set in the supplied Helm values. This is an excerpt, so it is an assumption that the deployed value matches it.
+
+**3. Findings**
+
+**F1. Stale remote backends are retained by default, so traffic keeps going to the lost cluster.** (Class `derived`, severity high.)
+- When a remote cluster becomes unreachable, Cilium retains the last-known service information. `clustermesh.cacheTTL` defaults to `0s`, which means the cache is never revoked.
+- East's backends therefore stay in the load-balancing set for `orders/api`, and west clients keep being sent to them.
+- This fits the timeline: east is unreachable from 14:10, and west clients time out from 14:10 to 14:40, with no recovery reported.
+- It is not proven. It is the first candidate, and the supplied evidence does not exclude others.
+
+**F2. No affinity means no preference for local backends.** (Class `derived`.)
+- With affinity `none`, traffic is spread across local and remote backends rather than preferring west.
+- Roughly a share of requests would go to the dead east backends, which would present as timeouts.
+- Affinity `local` would use remote endpoints only when all local backends are unavailable or unhealthy. That would help here, but it does not fix a stale cache by itself, and it depends on west backend health reporting.
+- Whether west has healthy local backends is unknown.
+
+**F3. Cross-cluster connectivity is not proof of application-level DR.** (Class `derived`.)
+- A working mesh shows that packets and service backends can be exchanged. It says nothing about data replication, writable state, capacity in west, or client behavior.
+- The DR plan statement "ClusterMesh fails over automatically" is an `assumption`. The incident observed here contradicts it.
+- Even a corrected cache setting would not establish that west can serve the load.
+
+**Counterexamples that would disprove F1:**
+- The deployed `cacheTTL` is non-zero and was shorter than the outage, and the timeouts have another cause such as an application dependency on an east-resident database or a west capacity issue.
+- Mesh status or `cilium-dbg service list` in west shows no east backends for `orders/api` during the outage.
+- The timed-out requests were not going to east backends at all.
+
+**Claim classes**
+
+| Claim | Class |
+| --- | --- |
+| east unreachable since 14:10 | observed (supplied report) |
+| west clients timed out 14:10-14:40 | observed (supplied report) |
+| Service is global, no affinity | observed (supplied manifest, this cluster only) |
+| `cacheTTL` unset in the deployed config | assumption (supplied excerpt only) |
+| Stale east backends kept receiving traffic | derived, not confirmed |
+| DR design is sound | unknown, not established, and not certified |
+
+**Design tradeoff to note.** Setting `cacheTTL` above zero revokes cached remote data after that time. A value such as 15m still means up to 15 minutes of stale backends, which must be compared with the recovery objective. That is the owner's decision, not this review's.
+
+**4. Next observations**
+
+All are collected by an authorized operator.
+1. The deployed Helm values for `clustermesh.*` (`cacheTTL`, `maxConnectedClusters`, KVStoreMesh), as a supplied excerpt rather than a sysdump (class C2 if taken from the cluster). Resolves the assumption about `cacheTTL`.
+2. `cilium-dbg service list --clustermesh-affinity` on a west node, captured during or after an outage window (class C2). Shows whether east backends are still present and what affinity is effective.
+3. The annotated `orders/api` Service manifests from both clusters (class C1), to confirm name, namespace and annotation parity.
+4. Readiness and health of the west backends for the same service, and the west capacity at the time.
+5. A recorded failure drill with timestamps, run only by an authorized operator under the human change process (class C5, interrupts service), to measure the time until west stops sending to east.
+6. The owner's evidence on data replication, writability, and client timeout and retry behavior in west.
+
+**5. Handoffs**
+- Any change to `clustermesh.cacheTTL` or to the Service affinity annotation is a Helm or manifest change with no live guard. It is a change proposal for the human change process, and this review makes no change.
+- ClusterMesh peer Secret changes would go to `kubernetes-live-network-architecture-mutation-guard-agent`. None are proposed here.
+- If the multi-cluster technology choice or the CIDR plan is questioned, that goes to `kubernetes-network-architecture-review-agent`.
+- If policy selecting endpoints across clusters (`policy-default-local-cluster`) is in play, that goes to `cilium-network-policy-review-agent`.
+
+Nothing was tested. This is not certification and does not approve the DR design.

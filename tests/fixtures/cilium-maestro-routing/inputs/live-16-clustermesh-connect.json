@@ -1,0 +1,8 @@
+{
+  "name": "live-16-clustermesh-connect",
+  "task": "Run cilium clustermesh connect against the prod cluster.",
+  "tags": [
+    "live-guard-gate",
+    "regression:unguarded-cli-mutation"
+  ]
+}

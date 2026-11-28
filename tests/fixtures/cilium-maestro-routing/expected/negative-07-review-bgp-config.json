@@ -1,0 +1,6 @@
+{
+  "route": [
+    "cilium-external-connectivity-review-agent"
+  ],
+  "mode": "single"
+}

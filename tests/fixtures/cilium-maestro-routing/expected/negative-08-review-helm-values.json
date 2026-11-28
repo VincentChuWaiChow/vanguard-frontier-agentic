@@ -1,0 +1,6 @@
+{
+  "route": [
+    "cilium-lifecycle-readiness-agent"
+  ],
+  "mode": "single"
+}

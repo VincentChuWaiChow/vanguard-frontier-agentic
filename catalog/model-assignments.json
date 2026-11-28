@@ -5409,6 +5409,138 @@
       "reasoning_source": "default"
     },
     {
+      "agent_id": "cilium-dataplane-diagnostics-agent",
+      "harness": "codex",
+      "model": "gpt-5.4",
+      "model_provider": null,
+      "model_fallback_from": null,
+      "model_warning": null,
+      "reasoning_effort": "high",
+      "model_source": "all",
+      "reasoning_source": "all"
+    },
+    {
+      "agent_id": "cilium-dataplane-diagnostics-agent",
+      "harness": "claude-code",
+      "model": null,
+      "model_provider": null,
+      "model_fallback_from": null,
+      "model_warning": null,
+      "reasoning_effort": null,
+      "model_source": "default",
+      "reasoning_source": "default"
+    },
+    {
+      "agent_id": "cilium-dataplane-diagnostics-agent",
+      "harness": "cursor",
+      "model": null,
+      "model_provider": null,
+      "model_fallback_from": null,
+      "model_warning": null,
+      "reasoning_effort": null,
+      "model_source": "default",
+      "reasoning_source": "default"
+    },
+    {
+      "agent_id": "cilium-external-connectivity-review-agent",
+      "harness": "codex",
+      "model": "gpt-5.4",
+      "model_provider": null,
+      "model_fallback_from": null,
+      "model_warning": null,
+      "reasoning_effort": "high",
+      "model_source": "all",
+      "reasoning_source": "all"
+    },
+    {
+      "agent_id": "cilium-external-connectivity-review-agent",
+      "harness": "claude-code",
+      "model": null,
+      "model_provider": null,
+      "model_fallback_from": null,
+      "model_warning": null,
+      "reasoning_effort": null,
+      "model_source": "default",
+      "reasoning_source": "default"
+    },
+    {
+      "agent_id": "cilium-external-connectivity-review-agent",
+      "harness": "cursor",
+      "model": null,
+      "model_provider": null,
+      "model_fallback_from": null,
+      "model_warning": null,
+      "reasoning_effort": null,
+      "model_source": "default",
+      "reasoning_source": "default"
+    },
+    {
+      "agent_id": "cilium-lifecycle-readiness-agent",
+      "harness": "codex",
+      "model": "gpt-5.4",
+      "model_provider": null,
+      "model_fallback_from": null,
+      "model_warning": null,
+      "reasoning_effort": "high",
+      "model_source": "all",
+      "reasoning_source": "all"
+    },
+    {
+      "agent_id": "cilium-lifecycle-readiness-agent",
+      "harness": "claude-code",
+      "model": null,
+      "model_provider": null,
+      "model_fallback_from": null,
+      "model_warning": null,
+      "reasoning_effort": null,
+      "model_source": "default",
+      "reasoning_source": "default"
+    },
+    {
+      "agent_id": "cilium-lifecycle-readiness-agent",
+      "harness": "cursor",
+      "model": null,
+      "model_provider": null,
+      "model_fallback_from": null,
+      "model_warning": null,
+      "reasoning_effort": null,
+      "model_source": "default",
+      "reasoning_source": "default"
+    },
+    {
+      "agent_id": "cilium-maestro-agent",
+      "harness": "codex",
+      "model": "gpt-5.4",
+      "model_provider": null,
+      "model_fallback_from": null,
+      "model_warning": null,
+      "reasoning_effort": "high",
+      "model_source": "all",
+      "reasoning_source": "all"
+    },
+    {
+      "agent_id": "cilium-maestro-agent",
+      "harness": "claude-code",
+      "model": null,
+      "model_provider": null,
+      "model_fallback_from": null,
+      "model_warning": null,
+      "reasoning_effort": null,
+      "model_source": "default",
+      "reasoning_source": "default"
+    },
+    {
+      "agent_id": "cilium-maestro-agent",
+      "harness": "cursor",
+      "model": null,
+      "model_provider": null,
+      "model_fallback_from": null,
+      "model_warning": null,
+      "reasoning_effort": null,
+      "model_source": "default",
+      "reasoning_source": "default"
+    },
+    {
       "agent_id": "cilium-network-policy-review-agent",
       "harness": "codex",
       "model": "gpt-5.4",

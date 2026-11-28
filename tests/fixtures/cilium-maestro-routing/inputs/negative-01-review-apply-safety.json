@@ -1,0 +1,8 @@
+{
+  "name": "negative-01-review-apply-safety",
+  "task": "Review whether applying this CiliumNetworkPolicy default deny would be safe in production.",
+  "tags": [
+    "negative-routing",
+    "regression:no-false-gate"
+  ]
+}

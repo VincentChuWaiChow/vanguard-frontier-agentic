@@ -4,43 +4,48 @@
   <span style="font-size:3.5em">🐝</span>
 </p>
 
-Cilium agent catalog for this marketplace.
+The Cilium board: a router and four specialists, each owning one consequential decision. It is deliberately small. Candidates that duplicated an existing agent, needed an unguarded live mutation, or owned no distinct decision were merged, delegated or rejected; the scoring and the rejected alternatives are in [ADR-0006](../../docs/adr/0006-cilium-agent-board.md).
 
-## 🧱 Agent tiers
+## Board
 
-| Tier | Purpose | Default access | Live cluster mutation |
-|---|---|---|---|
-| Review agents | Audit CiliumNetworkPolicy, ClusterMesh, WireGuard, node-level identity, egress | read-only | not allowed by default |
-| Guarded live operators | Apply CiliumNetworkPolicy/NetworkPolicy mutations on live clusters | workspace-write | approval-gated and target-confirmed only |
+| Agent | Decision owned | Execution tier |
+| --- | --- | --- |
+| `cilium-maestro-agent` | Which specialist owns each decision in a multi-domain request, and what the combined evidence establishes | static review |
+| `cilium-network-policy-review-agent` | Do policy and transport encryption enforce the intended connectivity boundary without unacceptable rollout risk? | static review |
+| `cilium-dataplane-diagnostics-agent` | What is the most defensible explanation of the observed datapath behavior, and is capacity adequate? | static review |
+| `cilium-external-connectivity-review-agent` | Is traffic crossing the cluster boundary reachable, owned, bounded and failure-isolated as claimed? | static review |
+| `cilium-lifecycle-readiness-agent` | Is the lifecycle change ready to enter an authorized change process? | static review |
 
-## 📋 Network policy review agents
+Every agent loads the shared `cilium-evidence-boundary` skill first. No agent applies, upgrades, restarts, captures packets or publishes anything.
 
-| Agent | Primary use | Default live posture | Must refuse when |
-|---|---|---|---|
-| `cilium-network-policy-review-agent` | Review CiliumNetworkPolicy, CiliumClusterwideNetworkPolicy, standard NetworkPolicy, ClusterMesh trust, 169.254.169.254 egress posture | read-only | — |
+## Owned elsewhere
 
-## 🔒 Live-guard operators (dispatched by kubernetes-maestro)
+| Request | Owner |
+| --- | --- |
+| CNI choice, overlay versus native routing as a design, CIDR planning, generic Gateway API, DNS | `kubernetes-network-architecture-review-agent` |
+| Istio | `istio-maestro-agent` |
+| Runtime detection rules | `falco-runtime-threat-rules-review-agent` |
+| Cost and chargeback | `finops-maestro-agent` |
+| Control evidence lineage, incident recurrence | `atlassian-control-evidence-lineage-agent`, `atlassian-incident-prevention-agent` |
 
-Live-guard agents for Cilium are housed in `agents/kubernetes/` because they operate at the Kubernetes API layer:
+## Live changes
 
-| Agent | Primary use |
-|---|---|
-| `kubernetes-live-network-policy-guard-agent` | Guard live `kubectl apply/delete` on CiliumNetworkPolicy, CiliumClusterwideNetworkPolicy, standard NetworkPolicy |
+Live-guard agents for Cilium resources live in `agents/kubernetes/` because they operate at the Kubernetes API layer. The board names them; it never dispatches them.
 
-## 🛡️ Operating note
+| Change | Path |
+| --- | --- |
+| CiliumNetworkPolicy, CiliumClusterwideNetworkPolicy, NetworkPolicy, CiliumEgressGatewayPolicy | `kubernetes-live-network-policy-guard-agent` |
+| ClusterMesh peer Secret, Gateway API resources | `kubernetes-live-network-architecture-mutation-guard-agent` |
+| BGP, LB-IPAM, L2 announcements, Helm values, upgrades, CNI migration | no guard exists: human change process |
 
-- Review agents stay read-only — they never write to the cluster
-- The instance metadata service (`169.254.169.254`) should be blocked by egress policy for workloads that do not need node-level cloud credentials — its exposure has been weaponized in cloud breaches
-- ClusterMesh extends identity across clusters — a permissive policy in cluster A becomes a trust boundary for cluster B
-- `CiliumClusterwideNetworkPolicy` applies across all namespaces — changes require broader blast-radius assessment than namespace-scoped policies
-- All live-guard agents produce a structured verdict response — see [`docs/evidence-output-spec.md`](../../docs/evidence-output-spec.md)
+All verdicts use the structured response in [`docs/evidence-output-spec.md`](../../docs/evidence-output-spec.md).
 
-## 📦 Install
+## Install
 
 ```bash
-# Install Cilium review agent
-npx vfa-export-agents --platform claude-code --agents cilium-network-policy-review-agent --repo .
+# The whole board
+npx vfa-export-agents --platform claude-code --provider cilium --repo .
 
-# Install all Kubernetes network agents (includes live-guard)
+# All Kubernetes network agents, including the live guards
 npx vfa-export-agents --platform claude-code --role kubernetes-network-engineer --repo .
 ```

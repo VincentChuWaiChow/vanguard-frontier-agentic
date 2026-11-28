@@ -1,0 +1,8 @@
+{
+  "name": "live-11-delete-default-deny-cnp",
+  "task": "Delete the default-deny CiliumNetworkPolicy in production.",
+  "tags": [
+    "live-guard-gate",
+    "regression:review-words-between-determiner-and-kind"
+  ]
+}

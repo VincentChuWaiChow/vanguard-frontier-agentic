@@ -1,0 +1,8 @@
+{
+  "name": "multi-03-cross-cluster-policy",
+  "task": "Cross-cluster calls fail in our ClusterMesh after the policy-default-local-cluster default changed in the upgrade.",
+  "tags": [
+    "multi-domain",
+    "known-limitation:first-owner-only"
+  ]
+}

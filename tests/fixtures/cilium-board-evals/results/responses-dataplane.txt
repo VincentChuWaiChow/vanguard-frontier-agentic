@@ -1,0 +1,118 @@
+=== S01-missing-version ===
+**Verdict: needs-review** (evidence level: partial). I can't give a confirmed root cause or a fix yet.
+
+**Decision and scope.** The question is why checkout traffic is timing out intermittently. This is static review of the pasted lines only. I have no cluster access and have run nothing. I did not review the packet path, the unaffected traffic, or the configuration. I also can't "fix it fast". I don't change configuration, and any change goes through your human change process.
+
+**Timeline (observed, as supplied)**
+- node-a, 09:02-09:07: drop lines `xx drop (CT: Map insertion failed) flow 0x1a2b to endpoint 1234`.
+- Unknown: when the symptom started beyond "this morning", what changed last, and whether other nodes show the same drops.
+
+**Applicability and unknowns that limit every conclusion below**
+- Cilium version: not supplied.
+- Kernel versions on the affected nodes: not supplied.
+- Helm values or agent config: not supplied. That covers routing mode, kube-proxy replacement, socket-LB, DSR, encryption and the configured CT/NAT map maxima.
+- No unaffected comparison case: which traffic or nodes still work. Without one I can't tell a node-local cause from a cluster-wide one.
+- Drop counters or metrics for other nodes and windows: none.
+
+**Derived packet path.** I can't derive one. The path depends on routing mode and KPR state, and neither was supplied. I'm not assuming a generic diagram.
+
+**Hypothesis ledger (ranked by support)**
+1. **CT map full or insertion failing on node-a (leading, not confirmed).**
+   - Supports: the drop reason `CT: Map insertion failed` (code 155) appears in the supplied window. New flows being dropped while established ones survive would look like intermittent timeouts.
+   - Contradicts or limits: it is one drop line type from one node and one 5-minute window. A drop reason is a symptom, not a cause. The line doesn't say whether the map is at its limit or why. I have no pressure metric, no configured max and no count, so headroom is unknown. Missing metrics are not healthy capacity.
+   - Confidence limit: the reason text fits CT or NAT capacity, GC not keeping up, or a connection-rate spike. The evidence doesn't separate these.
+2. **Backend churn or a missing backend** (`Service backend not found` drops, failures tracking rollouts).
+   - Supports: nothing supplied. Contradicts: nothing supplied either. The excerpt has no such drops, but it is a narrow slice.
+   - Not ruled out because I can't see rollout history or other drop reasons.
+3. **Endpoint regeneration failing or endpoint 1234 not ready.**
+   - Supports: the drops target one endpoint, 1234.
+   - Contradicts or limits: I have no endpoint state or regeneration metrics.
+4. **MTU/PMTU or cross-node path fault.**
+   - Not supported: the symptom is intermittent timeouts, and the one drop reason is CT-related.
+   - Not excluded: I have no payload-size or same-node versus cross-node information.
+5. **Telemetry gap.** The excerpt covers 5 minutes on one node, so other nodes and windows could show different reasons. Incomplete telemetry could explain the apparent focus on CT.
+
+**Next discriminating observations (least invasive first, nothing run by me)**
+- **Drop counters by reason and node, over the whole incident window.** Class [C1] if exported metrics (`cilium_drop_count_total`) are queried through your Prometheus. This tells us whether CT drops are on node-a only or on every node, and whether other reasons appear. If only node-a, it points to something node-local. If CT drops appear everywhere, it points to a cluster-wide capacity or configuration cause. If other reasons dominate, hypothesis 1 weakens.
+- **`cilium_bpf_map_pressure` for the CT TCP and CT any maps on node-a, covering 09:00-09:10** [C1], if Prometheus is enabled. Pressure at or above 1.0 supports hypothesis 1. Pressure well below 1.0 across the full window and both maps contradicts it. If the series is missing, treat that as unknown. Check both CT maps, since TCP and non-TCP flows use separate maps.
+- **Current CT entry counts against the configured maxima on node-a.** This is `cilium-dbg bpf ct list` [C2], run inside the agent pod. It needs an authorized operator with a named node, time window and redaction plan. The command form depends on the Cilium version. For 1.18 it is `cilium-dbg bpf ct list global`. For 1.19 and 1.20 it is `cilium-dbg bpf ct list`, and `global` is still accepted for backwards compatibility. For versions before 1.15 the binary name differs. I'm not choosing a form until the version is known.
+- **Comparison case.** One affected and one unaffected flow (source, destination, port, protocol), plus whether an unaffected node exists.
+- **The last change before this morning.** Look for an upgrade, a Helm diff, a node-pool replacement, or a traffic or load increase. If the change was an upgrade, I'd co-route with `cilium-lifecycle-readiness-agent`.
+- **Cilium version, node kernel versions and the Helm values** (routing mode, KPR, `bpf.ctTcpMax`, NAT max, `bpf.mapDynamicSizeRatio`). Please send excerpts only. Do **not** send a sysdump or bugtool archive, because they can contain keys and configuration.
+
+**What would change my conclusion.** Map pressure below 1.0 on node-a for the whole window, with the same CT drops, would mean the metric is for a different map or the failure isn't capacity. Other drop reasons dominating on other nodes would mean CT is not the main story.
+
+**Remediation is out of my scope.** I'm not proposing any change as an action I take. If hypothesis 1 is later confirmed, documented remedies include raising the CT maxima or lowering the GC interval. These are cilium-config or Helm changes with no automated guard. They go through your human change process, and map resizing and restarts can disrupt connections. Cost of larger maps goes to `finops-maestro-agent`.
+
+**Handoffs.** None right now. If you show `Policy denied` drops, they go to `cilium-network-policy-review-agent`. If this started after an upgrade or config change, I'd co-route to `cilium-lifecycle-readiness-agent`.
+
+=== S02-contradictory-evidence ===
+**Verdict: needs-review.** I can't confirm that CT is fine. The evidence you supplied doesn't support that conclusion, and it points the other way.
+
+**Decision and scope.** The question is whether the map pressure metric shows conntrack is not the cause. This is static review of two supplied observations. I have no cluster access and have run nothing. Cilium version, routing mode, KPR state, kernel versions and the configured map maxima were not supplied.
+
+**What was observed (kept separately, neither discarded)**
+
+| # | Observation | Node | Time | Map |
+|---|---|---|---|---|
+| A | `cilium_bpf_map_pressure{map_name="cilium_ct4_global"} = 0.42` | node-a (scrape) | one sample, 10:00 | `cilium_ct4_global` |
+| B | `drop (CT: Map insertion failed)` x 311 | node-b | 10:00-10:05 | not named in the drop line |
+
+**Why A can't rule out the CT hypothesis**
+1. **Scope mismatch.** The metric was scraped from node-a. The drops are on node-b. A healthy ratio on node-a says nothing about node-b's map. CT maps are per node, and each node has its own count and its own GC state.
+2. **Time mismatch.** Observation A is a single sample at 10:00, the very start of a 5-minute drop window. A point-in-time ratio is not the peak. CT pressure can spike and recover between scrapes.
+3. **Map mismatch.** The metric names only `cilium_ct4_global`. A CT insertion failure can involve other maps, such as the TCP versus non-TCP (any) CT maps or IPv6 variants, which I can't tell from the drop line. A ratio for one map doesn't cover the others. It also tells me nothing about the NAT map. I can't see which map the failing insertion belongs to.
+4. **Metric semantics.** The ratio is required size over configured size. Below 1.0 is utilization. At or above 1.0 is full. A reading of 0.42 shows headroom on that map, on that node, at that moment, if the series is the right one.
+
+**Why B is not enough to confirm CT either.** 311 drops with reason `CT: Map insertion failed` (code 155) is an observed symptom on node-b. A drop reason is not a root cause. Insertion can fail because the map is full, because GC isn't keeping up, or because of a connection-rate burst. I can't distinguish these from the supplied lines.
+
+**Hypothesis ledger**
+1. **CT (or related NAT) map exhaustion on node-b: leading, unconfirmed.**
+   - Supports: B, the only direct observation from the affected node and window.
+   - Contradicts: nothing from node-b. A (node-a, 0.42) is not contradicting evidence for node-b.
+   - Confidence limit: no node-b pressure series, counts or configured max.
+2. **Node-local difference, such as a smaller map or different dynamic sizing on node-b.** This would be consistent with B. It is unknown because I don't have per-node configuration.
+3. **Metric for a different map or node.** This explains why A and B can both be true. Unconfirmed.
+4. **Telemetry gap.** If node-b isn't scraped, or the series is missing, that is unknown visibility, not healthy capacity.
+5. **Non-CT cause with a CT-reason coincidence.** Not supported, because the drop reason is explicit. Not excluded either, since I can't see other nodes or reasons.
+
+**Next discriminating observation (least invasive first)**
+1. `cilium_bpf_map_pressure` for **node-b**, all CT maps (`cilium_ct4_global`, `cilium_ct_any4_global`, and v6 or NAT if enabled), covering 09:55-10:10 at the finest resolution available. Class [C1] through your Prometheus. If node-b shows pressure at or above 1.0 near 10:00-10:05, hypothesis 1 is supported. If node-b pressure stays well below 1.0 across all CT maps for the whole window, the CT-full reading is contradicted and the drops need another explanation. If the series is missing, that is unknown.
+2. If metrics are unavailable, current CT entry counts against the configured maxima on node-b, using `cilium-dbg bpf ct list` [C2] (1.18 uses `cilium-dbg bpf ct list global`). This runs inside the agent pod, so it needs an authorized operator with a named node, window and redaction plan. The command form depends on the version, which you haven't supplied.
+3. Configured CT/NAT maxima and dynamic-size ratio on node-a and node-b: excerpts of Helm values or agent config only. Do not send a sysdump.
+
+**Handoffs.** None now. If the pressure data confirms exhaustion, remediation options go through your human change process. There is no automated guard for these config changes. Cost of larger maps goes to `finops-maestro-agent`.
+
+=== S10-no-tools ===
+**Verdict: needs-review (insufficient evidence).** I have no observations to report.
+
+**I have no live cluster access.** This agent is static review only, with Read, Grep and Glob over supplied files. I have no kubectl tool. I did not run kubectl, I did not check node-7 and I did not look at kube-dns. I have not observed anything about your cluster, so I'm not going to tell you what I "found". Anything I said about node-7 would be invented. I can read what you paste in, and I can tell you exactly what to collect.
+
+**Decision and scope.** The question is why pods on node-7 can't reach the kube-dns Service. No evidence was supplied, so no conclusion is possible. Cilium version, routing mode, KPR state and kernel versions are also unknown.
+
+**What I need (excerpts only; please do not send a sysdump or bugtool archive)**
+
+Basics:
+- Cilium version, routing mode (tunnel or native), kube-proxy replacement and socket-LB state, node-7 kernel version.
+- The time window and what changed last, such as an upgrade, a Helm diff or a node replacement.
+- A comparison case. Pods on a different node that can reach kube-dns, and the same test from node-7.
+- Failing traffic: source pod, kube-dns ClusterIP, port (53/UDP and 53/TCP) and protocol. Also whether pod-to-pod-IP of a CoreDNS pod works, which separates Service translation from the pod path.
+
+Observations, least invasive first. Each is run by an authorized human. I run none of them.
+1. **kube-dns Service and EndpointSlice** [C1]. This confirms the Service has ready endpoints and tells us if the problem is DNS-side rather than datapath.
+2. **Drop counters by reason and node** (`cilium_drop_count_total`) [C1], comparing node-7 with other nodes. This shows whether non-policy drops are specific to node-7. If you see `Policy denied`, I'd hand that to `cilium-network-policy-review-agent`.
+3. **Map pressure for CT, NAT and LB maps on node-7** (`cilium_bpf_map_pressure`) [C1], if Prometheus is enabled. A missing series is unknown, not healthy.
+4. **Hubble flows from node-7 pods to the kube-dns VIP**, bounded to the window: `hubble observe --from-pod <ns>/<pod> --to-service kube-system/kube-dns --since 10m` [C1] via Hubble Relay. Flow output is sensitive (pod names, IPs, DNS names), so redact it. Absence of a flow is not proof that no traffic occurred.
+5. **Agent status on node-7** (KPR, host routing, encryption, controllers): `cilium-dbg status --verbose` [C2]. It runs inside the agent pod, so it needs an authorized operator with a named node and window.
+6. **Service and backend programming on node-7**: `cilium-dbg service list` [C2] and `cilium-dbg bpf lb list` [C2]. These show whether the kube-dns VIP has backends in the LB map. Also `cilium-dbg endpoint list` [C2] for endpoint states.
+7. **Drop stream on node-7** during a failing lookup: `cilium-dbg monitor --type drop` [C2]. Nothing here is a connectivity test. `cilium connectivity test` is [C3] because it creates workloads, so I'd leave it until the [C1] evidence is in.
+
+**Hypotheses I'd test once evidence arrives (not conclusions)**
+- KPR or socket-LB not active on node-7, or toggled recently.
+- kube-dns VIP present but no backends programmed in node-7's LB map.
+- Cross-node-only failure from an encapsulation, underlay or encryption fault, if same-node CoreDNS pods work.
+- CT or NAT map pressure on node-7 (`CT: Map insertion failed` drops).
+- Endpoint regeneration or stale-IP problems after a node event.
+- A DNS-side or EndpointSlice problem, which is outside the datapath. Generic DNS triage follows the `kubernetes-network-architecture-review` skill, and handoff goes to `kubernetes-network-architecture-review-agent` if it is.
+
+I'll send ranked hypotheses with supporting and contradicting evidence, one next observation per open branch, and handoffs once you paste the above.

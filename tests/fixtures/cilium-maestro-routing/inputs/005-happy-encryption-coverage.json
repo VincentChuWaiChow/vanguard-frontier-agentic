@@ -1,0 +1,8 @@
+{
+  "name": "005-happy-encryption-coverage",
+  "task": "The auditor wants evidence that WireGuard transparent encryption covers cardholder traffic.",
+  "tags": [
+    "happy-path",
+    "merged:encryption"
+  ]
+}

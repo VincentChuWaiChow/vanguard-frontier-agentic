@@ -1,0 +1,7 @@
+{
+  "name": "010-happy-clustermesh-dr",
+  "task": "Our ClusterMesh global service must fail over for disaster recovery when one cluster is lost.",
+  "tags": [
+    "happy-path"
+  ]
+}

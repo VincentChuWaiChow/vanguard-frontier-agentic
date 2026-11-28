@@ -1,0 +1,8 @@
+{
+  "name": "009-happy-cni-migration",
+  "task": "Plan the CNI migration from Flannel; what is untested and when is policy not enforced?",
+  "tags": [
+    "happy-path",
+    "merged:migration"
+  ]
+}

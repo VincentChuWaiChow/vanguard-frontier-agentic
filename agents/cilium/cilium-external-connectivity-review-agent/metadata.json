@@ -1,0 +1,62 @@
+{
+  "id": "cilium-external-connectivity-review-agent",
+  "name": "Cilium External Connectivity Review",
+  "type": "agent",
+  "provider": "cilium",
+  "harnesses": [
+    "codex",
+    "copilot",
+    "claude-code",
+    "cursor",
+    "gemini",
+    "kiro"
+  ],
+  "summary": "Agent for cilium-external-connectivity-review. Decide whether traffic crossing the cluster boundary through BGP Control Plane advertisement, LB-IPAM, L2 announcements, the egress gateway or ClusterMesh is reachable, correctly owned, bounded and failure-isolated as claimed. Separates control-plane state from datapath reachability and checks documented incompatibilities and failure behavior. Static review: never changes BGP, pools, announcements, gateways or mesh configuration.",
+  "source_type": "original",
+  "official_docs": [
+    "https://docs.cilium.io/en/stable/network/bgp-control-plane/bgp-control-plane/",
+    "https://docs.cilium.io/en/stable/network/lb-ipam/",
+    "https://docs.cilium.io/en/stable/network/l2-announcements/",
+    "https://docs.cilium.io/en/stable/network/egress-gateway/egress-gateway/",
+    "https://docs.cilium.io/en/stable/network/clustermesh/"
+  ],
+  "security_notes": "Static review only. No live guard covers BGP, LB-IPAM or L2 announcement resources, so every change there is a proposal for the human change process. A ClusterMesh is one trust domain; never request BGP auth Secrets, mesh certificates or kvstore credentials.",
+  "last_verified": "2026-11-25",
+  "path": "agents/cilium/cilium-external-connectivity-review-agent",
+  "harness_variants": {
+    "codex": "agents/cilium/cilium-external-connectivity-review-agent/harnesses/codex.toml",
+    "copilot": "agents/cilium/cilium-external-connectivity-review-agent/harnesses/copilot.agent.md",
+    "claude-code": "agents/cilium/cilium-external-connectivity-review-agent/harnesses/claude-code.agent.md",
+    "cursor": "agents/cilium/cilium-external-connectivity-review-agent/harnesses/cursor.agent.md",
+    "gemini": "agents/cilium/cilium-external-connectivity-review-agent/harnesses/gemini.agent.md",
+    "kiro-ide": "agents/cilium/cilium-external-connectivity-review-agent/harnesses/kiro-ide.agent.md",
+    "kiro-cli": "agents/cilium/cilium-external-connectivity-review-agent/harnesses/kiro-cli.agent.json"
+  },
+  "author": "github: VincentChuWaiChow",
+  "version": "0.1.0",
+  "companion_skills": [
+    "cilium-external-connectivity-review",
+    "cilium-evidence-boundary"
+  ],
+  "execution_tier": "static-review",
+  "lifecycle": "beta",
+  "routing_keywords": [
+    "BGP",
+    "CiliumBGPClusterConfig",
+    "CiliumBGPPeerConfig",
+    "CiliumBGPAdvertisement",
+    "route advertisement",
+    "LB-IPAM",
+    "CiliumLoadBalancerIPPool",
+    "L2 announcements",
+    "egress gateway",
+    "CiliumEgressGatewayPolicy",
+    "egress IP",
+    "SNAT",
+    "ClusterMesh",
+    "global service",
+    "service affinity",
+    "KVStoreMesh",
+    "cluster ID"
+  ]
+}

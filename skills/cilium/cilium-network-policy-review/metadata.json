@@ -11,20 +11,25 @@
     "kiro",
     "other"
   ],
-  "summary": "Review Cilium NetworkPolicy, CiliumNetworkPolicy, CiliumClusterwideNetworkPolicy, CiliumEgressGatewayPolicy, and ClusterMesh policy-default-local-cluster behavior for zero-trust correctness, blast radius, L7 enforcement, and egress gateway IP correctness.",
+  "summary": "Review whether Cilium policy and transport-encryption configuration enforce the intended connectivity boundary: NetworkPolicy, CiliumNetworkPolicy and CiliumClusterwideNetworkPolicy composition, default-deny readiness and rollout, egress authorization, L7 prerequisites, ClusterMesh policy-default-local-cluster semantics, and WireGuard or IPsec coverage evidence.",
   "source_type": "original",
   "official_docs": [
-    "https://docs.cilium.io/en/stable/",
     "https://docs.cilium.io/en/stable/network/kubernetes/policy/",
-    "https://docs.cilium.io/en/stable/security/policy/",
-    "https://docs.cilium.io/en/stable/network/clustermesh/",
-    "https://docs.cilium.io/en/stable/network/egress-gateway/egress-gateway/",
-    "https://docs.cilium.io/en/stable/observability/hubble/",
+    "https://docs.cilium.io/en/stable/security/policy/layer3/",
+    "https://docs.cilium.io/en/stable/network/clustermesh/policy/",
+    "https://docs.cilium.io/en/stable/security/network/encryption/",
+    "https://docs.cilium.io/en/stable/security/network/encryption-wireguard/",
+    "https://docs.cilium.io/en/stable/security/network/encryption-ipsec/",
     "https://docs.cilium.io/en/stable/cmdref/cilium_clustermesh_inspect-policy-default-local-cluster/"
   ],
-  "security_notes": "Removal of default-deny NetworkPolicy collapses namespace isolation. Unrestricted egress (0.0.0.0/0) is a documented exfiltration path. ClusterMesh policy-default-local-cluster flag flip changes cross-cluster semantics for every existing policy globally. CiliumEgressGatewayPolicy IP collisions cause silent connection breakage.",
-  "last_verified": "2026-05-01",
+  "security_notes": "Removal of a default-deny policy collapses namespace isolation. Unrestricted 0.0.0.0/0 egress is an exfiltration path. A policy-default-local-cluster change flips cross-cluster semantics for every existing policy. Encryption enabled in configuration is not coverage evidence; same-node traffic is never encrypted by WireGuard.",
+  "last_verified": "2026-11-25",
   "path": "skills/cilium/cilium-network-policy-review",
   "author": "github: VincentChuWaiChow",
-  "version": "0.1.0"
+  "version": "0.2.0",
+  "lifecycle": "beta",
+  "execution_tier": "static-review",
+  "companion_skills": [
+    "cilium-evidence-boundary"
+  ]
 }

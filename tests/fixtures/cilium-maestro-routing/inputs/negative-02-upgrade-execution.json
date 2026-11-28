@@ -1,0 +1,8 @@
+{
+  "name": "negative-02-upgrade-execution",
+  "task": "Upgrade Cilium in production right now with helm upgrade.",
+  "tags": [
+    "live-guard-gate",
+    "regression:unguarded-mutation-gates-with-empty-route"
+  ]
+}

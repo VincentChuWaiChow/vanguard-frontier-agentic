@@ -1,0 +1,28 @@
+{
+  "id": "cilium-evidence-boundary",
+  "name": "Cilium Evidence Boundary",
+  "type": "skill",
+  "provider": "cilium",
+  "harnesses": [
+    "codex",
+    "claude-code",
+    "cursor",
+    "gemini",
+    "kiro",
+    "other"
+  ],
+  "summary": "Shared evidence and safety contract for the Cilium board: claim classes, command classification by real behavior, Hubble flow-telemetry limits, the verdict vocabulary, and the handoff of verified findings to the existing Jira and Confluence authoring skills. Loaded first by every Cilium specialist; never answers a domain question alone.",
+  "source_type": "original",
+  "official_docs": [
+    "https://docs.cilium.io/en/stable/operations/troubleshooting/",
+    "https://docs.cilium.io/en/stable/internals/hubble/",
+    "https://docs.cilium.io/en/stable/operations/upgrade/"
+  ],
+  "security_notes": "Static review only. Classifies cilium connectivity test as an active diagnostic, the upgrade preflight as a mutation and cilium sysdump as privileged, sensitive collection; never requests diagnostic bundles. An unobserved flow is never evidence that traffic did not occur.",
+  "last_verified": "2026-11-25",
+  "path": "skills/cilium/cilium-evidence-boundary",
+  "author": "github: VincentChuWaiChow",
+  "version": "0.1.0",
+  "lifecycle": "beta",
+  "execution_tier": "static-review"
+}

@@ -4615,6 +4615,124 @@
     "version": "0.1.0"
   },
   {
+    "id": "cilium-dataplane-diagnostics",
+    "name": "Cilium Dataplane Diagnostics",
+    "type": "skill",
+    "provider": "cilium",
+    "harnesses": [
+      "codex",
+      "claude-code",
+      "cursor",
+      "gemini",
+      "kiro",
+      "other"
+    ],
+    "summary": "Rank competing explanations of observed Cilium datapath behavior (non-policy drops, intermittent timeouts, Service VIP unreachable with healthy pods, conntrack and BPF map pressure, kube-proxy replacement and socket load balancing, MTU, routing, endpoint regeneration) from supplied evidence, and name the next least-invasive observation that separates them. Includes capacity headroom from supplied counts. Static review: never runs commands, execs into the agent, captures packets or changes configuration.",
+    "source_type": "original",
+    "official_docs": [
+      "https://docs.cilium.io/en/stable/operations/troubleshooting/",
+      "https://docs.cilium.io/en/stable/network/ebpf/maps/",
+      "https://docs.cilium.io/en/stable/network/kubernetes/kubeproxy-free/",
+      "https://docs.cilium.io/en/stable/observability/metrics/",
+      "https://docs.cilium.io/en/stable/operations/performance/tuning/"
+    ],
+    "security_notes": "Static review only. Proposes cilium-dbg, hubble and tcpdump observations with their command class (privileged observation or higher) for an authorized operator; never requests sysdump or bugtool archives, which can contain configuration and keys.",
+    "last_verified": "2026-11-25",
+    "path": "skills/cilium/cilium-dataplane-diagnostics",
+    "version": "0.1.0",
+    "execution_tier": "static-review",
+    "lifecycle": "beta",
+    "author": "github: VincentChuWaiChow"
+  },
+  {
+    "id": "cilium-evidence-boundary",
+    "name": "Cilium Evidence Boundary",
+    "type": "skill",
+    "provider": "cilium",
+    "harnesses": [
+      "codex",
+      "claude-code",
+      "cursor",
+      "gemini",
+      "kiro",
+      "other"
+    ],
+    "summary": "Shared evidence and safety contract for the Cilium board: claim classes, command classification by real behavior, Hubble flow-telemetry limits, the verdict vocabulary, and the handoff of verified findings to the existing Jira and Confluence authoring skills. Loaded first by every Cilium specialist; never answers a domain question alone.",
+    "source_type": "original",
+    "official_docs": [
+      "https://docs.cilium.io/en/stable/operations/troubleshooting/",
+      "https://docs.cilium.io/en/stable/internals/hubble/",
+      "https://docs.cilium.io/en/stable/operations/upgrade/"
+    ],
+    "security_notes": "Static review only. Classifies cilium connectivity test as an active diagnostic, the upgrade preflight as a mutation and cilium sysdump as privileged, sensitive collection; never requests diagnostic bundles. An unobserved flow is never evidence that traffic did not occur.",
+    "last_verified": "2026-11-25",
+    "path": "skills/cilium/cilium-evidence-boundary",
+    "version": "0.1.0",
+    "execution_tier": "static-review",
+    "lifecycle": "beta",
+    "author": "github: VincentChuWaiChow"
+  },
+  {
+    "id": "cilium-external-connectivity-review",
+    "name": "Cilium External Connectivity Review",
+    "type": "skill",
+    "provider": "cilium",
+    "harnesses": [
+      "codex",
+      "claude-code",
+      "cursor",
+      "gemini",
+      "kiro",
+      "other"
+    ],
+    "summary": "Decide whether traffic crossing the cluster boundary through BGP Control Plane advertisement, LB-IPAM, L2 announcements, the egress gateway or ClusterMesh is reachable, correctly owned, bounded and failure-isolated as claimed. Separates control-plane state from datapath reachability and checks documented incompatibilities and failure behavior. Static review: never changes BGP, pools, announcements, gateways or mesh configuration.",
+    "source_type": "original",
+    "official_docs": [
+      "https://docs.cilium.io/en/stable/network/bgp-control-plane/bgp-control-plane/",
+      "https://docs.cilium.io/en/stable/network/lb-ipam/",
+      "https://docs.cilium.io/en/stable/network/l2-announcements/",
+      "https://docs.cilium.io/en/stable/network/egress-gateway/egress-gateway/",
+      "https://docs.cilium.io/en/stable/network/clustermesh/"
+    ],
+    "security_notes": "Static review only. No live guard covers BGP, LB-IPAM or L2 announcement resources, so every change there is a proposal for the human change process. A ClusterMesh is one trust domain; never request BGP auth Secrets, mesh certificates or kvstore credentials.",
+    "last_verified": "2026-11-25",
+    "path": "skills/cilium/cilium-external-connectivity-review",
+    "version": "0.1.0",
+    "execution_tier": "static-review",
+    "lifecycle": "beta",
+    "author": "github: VincentChuWaiChow"
+  },
+  {
+    "id": "cilium-lifecycle-readiness",
+    "name": "Cilium Lifecycle Readiness",
+    "type": "skill",
+    "provider": "cilium",
+    "harnesses": [
+      "codex",
+      "claude-code",
+      "cursor",
+      "gemini",
+      "kiro",
+      "other"
+    ],
+    "summary": "Decide whether a proposed Cilium upgrade, rollback, CNI migration to Cilium, disruptive configuration change (IPAM mode, kube-proxy replacement toggle, ClusterMesh sizing) or security-advisory remediation is ready to enter an authorized change process: one-minor upgrade path, breaking changes, kernel and Kubernetes compatibility, rollback constraints and advisory applicability. Assesses readiness only; never runs preflight, Helm or Cilium CLI commands.",
+    "source_type": "original",
+    "official_docs": [
+      "https://docs.cilium.io/en/stable/operations/upgrade/",
+      "https://docs.cilium.io/en/stable/operations/system_requirements/",
+      "https://docs.cilium.io/en/stable/installation/k8s-install-migration/",
+      "https://docs.cilium.io/en/stable/network/concepts/ipam/",
+      "https://github.com/cilium/cilium/security/advisories"
+    ],
+    "security_notes": "Static review only. The upgrade preflight creates a DaemonSet and Deployment and is a mutation; Helm upgrades and migrations have no live guard and go to the human change process. An advisory is never dismissed on version alone or applied on version alone; the enabled feature decides.",
+    "last_verified": "2026-11-25",
+    "path": "skills/cilium/cilium-lifecycle-readiness",
+    "version": "0.1.0",
+    "execution_tier": "static-review",
+    "lifecycle": "beta",
+    "author": "github: VincentChuWaiChow"
+  },
+  {
     "id": "cilium-network-policy-review",
     "name": "Cilium Network Policy Review",
     "type": "skill",
@@ -4627,22 +4745,50 @@
       "kiro",
       "other"
     ],
-    "summary": "Review Cilium NetworkPolicy, CiliumNetworkPolicy, CiliumClusterwideNetworkPolicy, CiliumEgressGatewayPolicy, and ClusterMesh policy-default-local-cluster behavior for zero-trust correctness, blast radius, L7 enforcement, and egress gateway IP correctness.",
+    "summary": "Review whether Cilium policy and transport-encryption configuration enforce the intended connectivity boundary: NetworkPolicy, CiliumNetworkPolicy and CiliumClusterwideNetworkPolicy composition, default-deny readiness and rollout, egress authorization, L7 prerequisites, ClusterMesh policy-default-local-cluster semantics, and WireGuard or IPsec coverage evidence.",
     "source_type": "original",
     "official_docs": [
-      "https://docs.cilium.io/en/stable/",
       "https://docs.cilium.io/en/stable/network/kubernetes/policy/",
-      "https://docs.cilium.io/en/stable/security/policy/",
-      "https://docs.cilium.io/en/stable/network/clustermesh/",
-      "https://docs.cilium.io/en/stable/network/egress-gateway/egress-gateway/",
-      "https://docs.cilium.io/en/stable/observability/hubble/",
+      "https://docs.cilium.io/en/stable/security/policy/language/",
+      "https://docs.cilium.io/en/stable/network/clustermesh/policy/",
+      "https://docs.cilium.io/en/stable/security/network/encryption/",
+      "https://docs.cilium.io/en/stable/security/network/encryption-wireguard/",
+      "https://docs.cilium.io/en/stable/security/network/encryption-ipsec/",
       "https://docs.cilium.io/en/stable/cmdref/cilium_clustermesh_inspect-policy-default-local-cluster/"
     ],
-    "security_notes": "Removal of default-deny NetworkPolicy collapses namespace isolation. Unrestricted egress (0.0.0.0/0) is a documented exfiltration path. ClusterMesh policy-default-local-cluster flag flip changes cross-cluster semantics for every existing policy globally. CiliumEgressGatewayPolicy IP collisions cause silent connection breakage.",
-    "last_verified": "2026-05-01",
+    "security_notes": "Removal of a default-deny policy collapses namespace isolation. Unrestricted 0.0.0.0/0 egress is an exfiltration path. A policy-default-local-cluster change flips cross-cluster semantics for every existing policy. Encryption enabled in configuration is not coverage evidence; same-node traffic is never encrypted by WireGuard.",
+    "last_verified": "2026-11-25",
     "path": "skills/cilium/cilium-network-policy-review",
     "author": "github: VincentChuWaiChow",
-    "version": "0.1.0"
+    "version": "0.2.0",
+    "execution_tier": "static-review",
+    "lifecycle": "beta"
+  },
+  {
+    "id": "cilium-review-routing",
+    "name": "Cilium Review Routing",
+    "type": "skill",
+    "provider": "cilium",
+    "harnesses": [
+      "codex",
+      "claude-code",
+      "cursor",
+      "gemini",
+      "kiro",
+      "other"
+    ],
+    "summary": "Route a multi-domain or ambiguous Cilium request to the minimum set of board specialists, order them by evidence dependency, combine verdicts without voting, preserve disagreements, and return handoffs for every live change and out-of-board request.",
+    "source_type": "original",
+    "official_docs": [
+      "https://docs.cilium.io/en/stable/"
+    ],
+    "security_notes": "Static routing only; never auto-dispatches a live guard and never grants a specialist tools.",
+    "last_verified": "2026-11-25",
+    "path": "skills/cilium/cilium-review-routing",
+    "version": "0.1.0",
+    "execution_tier": "static-review",
+    "lifecycle": "beta",
+    "author": "github: VincentChuWaiChow"
   },
   {
     "id": "close-cycle-advisor",

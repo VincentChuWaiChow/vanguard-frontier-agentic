@@ -521,6 +521,7 @@
         "azure-network-topology-review",
         "azure-private-endpoint-adoption-planner",
         "azure-subscription-resource-organization",
+        "cilium-evidence-boundary",
         "cilium-network-policy-review",
         "contabo-live-instance-lifecycle-guard",
         "contabo-live-storage-operations-guard",
@@ -1158,8 +1159,12 @@
     },
     "kubernetes-network-engineer": {
       "label": "Kubernetes Network Engineer",
-      "description": "Cluster network architecture and policy: CNI and dataplane design, Service and Gateway API traffic, DNS, multi-cluster and egress topology, Cilium policy and observability, plus evidence-bounded Istio ambient, authorization, traffic resilience, Gateway API, upgrade, and dataplane review with separately guarded live mesh-policy changes.",
+      "description": "Cluster network architecture and policy: CNI and dataplane design, Service and Gateway API traffic, DNS, multi-cluster and egress topology; the Cilium board (policy and encryption coverage, datapath diagnostics and capacity, BGP, LB-IPAM, egress gateway and ClusterMesh connectivity, and upgrade and migration readiness); plus evidence-bounded Istio ambient, authorization, traffic resilience, Gateway API, upgrade, and dataplane review with separately guarded live mesh-policy changes.",
       "agents": [
+        "cilium-dataplane-diagnostics-agent",
+        "cilium-external-connectivity-review-agent",
+        "cilium-lifecycle-readiness-agent",
+        "cilium-maestro-agent",
         "cilium-network-policy-review-agent",
         "istio-ambient-mesh-review-agent",
         "istio-authorization-policy-review-agent",
@@ -1175,7 +1180,12 @@
         "kubernetes-network-architecture-review-agent"
       ],
       "skills": [
+        "cilium-dataplane-diagnostics",
+        "cilium-evidence-boundary",
+        "cilium-external-connectivity-review",
+        "cilium-lifecycle-readiness",
         "cilium-network-policy-review",
+        "cilium-review-routing",
         "istio-ambient-mesh-review",
         "istio-authorization-policy-review",
         "istio-dataplane-diagnostics",
