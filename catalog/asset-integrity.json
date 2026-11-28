@@ -34,7 +34,7 @@
   "trees": [
     {
       "tree": "agents",
-      "aggregate_sha256": "af2fa45086c801620e7ad3ce37780a940229d4377270f0c81dd681a6710825ea",
+      "aggregate_sha256": "4358749baa164a27b3311e56d7baf4410e89aea92d9af7072ec4d7d295d2783a",
       "files": [
         {
           "path": "agents/AGENTS.md",
@@ -19798,13 +19798,13 @@
         },
         {
           "path": "agents/kubernetes/kubernetes-live-admission-policy-guard-agent/references/least-privilege-rbac.yaml",
-          "sha256": "0ae70a4d338d5b403e365346c1477de1f6af9a6213e434ee29560001174bdbf6",
-          "bytes": 7252
+          "sha256": "83285aa77a562e03aea7526493603bda11ac60ad07488b202d406ae2c49985fb",
+          "bytes": 7905
         },
         {
           "path": "agents/kubernetes/kubernetes-live-admission-policy-guard-agent/references/rbac-pre-flight.md",
-          "sha256": "a54c0567be853ccbbcaf309e2f2f1c69b11cf2b3fff78146e9942d81dc2696d0",
-          "bytes": 6384
+          "sha256": "4c34ef3d84df0e0fee4ae5a1b2aa2be2a6407323870eb8bf473e482faf43ecc8",
+          "bytes": 6830
         },
         {
           "path": "agents/kubernetes/kubernetes-live-admission-policy-guard-agent/references/refusal-list.md",
@@ -38162,7 +38162,7 @@
     },
     {
       "tree": "tests",
-      "aggregate_sha256": "91d471102b837c1916a327d52eac42c5d143bc466e6867c02a673cad76bb5121",
+      "aggregate_sha256": "e17cd3499a994eab4d3c81e39c2a209fa91bed6830633905c8662b30a19b29c0",
       "files": [
         {
           "path": "tests/AGENTS.md",
@@ -51561,13 +51561,13 @@
         },
         {
           "path": "tests/integration/rbac-pre-flight/fixtures/crds.yaml",
-          "sha256": "5fef0480584f655865c7fd921c94ff3a1b918419f518c9b6897ac939f88ab456",
-          "bytes": 18915
+          "sha256": "bafe4f6d99e427d798af7f53ff836bd146038d55e26e96a9817472ecb0f5b8a5",
+          "bytes": 20033
         },
         {
           "path": "tests/integration/rbac-pre-flight/guards/admission-policy.sh",
-          "sha256": "863b11d3f93b55ed2f345342a5d4ce80b61a8b1293d9f2287bba5dd6aaade735",
-          "bytes": 3855
+          "sha256": "d087d394f01b3947407cc1f82656ff9d5a6336af865aadd9322ff183dc0e07b2",
+          "bytes": 4289
         },
         {
           "path": "tests/integration/rbac-pre-flight/guards/argocd-sync.sh",
@@ -51889,5 +51889,5 @@
       "bytes": 9135
     }
   ],
-  "aggregate_sha256": "5bf29572f1a18032548d7519ce9b92b7b27477f63f518072320a622fa7c9fe5c"
+  "aggregate_sha256": "28ab3707c50eb7e008a64ecd5651b06f8abeece322f0636201f612c6206285dc"
 }

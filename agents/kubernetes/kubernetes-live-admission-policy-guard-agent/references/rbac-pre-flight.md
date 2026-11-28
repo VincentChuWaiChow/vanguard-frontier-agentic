@@ -75,6 +75,9 @@ kubectl auth can-i create mutatingpolicies.policies.kyverno.io --as=$SA
 kubectl auth can-i create generatingpolicies.policies.kyverno.io --as=$SA
 kubectl auth can-i create deletingpolicies.policies.kyverno.io --as=$SA
 kubectl auth can-i create namespacedgeneratingpolicies.policies.kyverno.io --all-namespaces --as=$SA
+# Policy reports are evidence — read only, never written or deleted by this guard
+kubectl auth can-i create policyreports.wgpolicyk8s.io --all-namespaces --as=$SA
+kubectl auth can-i delete clusterpolicyreports.wgpolicyk8s.io --as=$SA
 # Kyverno control plane
 kubectl auth can-i patch deployments -n kyverno --as=$SA
 kubectl auth can-i patch configmaps -n kyverno --as=$SA
@@ -96,6 +99,9 @@ kubectl auth can-i patch imagevalidatingpolicies.policies.kyverno.io --as=$SA
 kubectl auth can-i create namespacedvalidatingpolicies.policies.kyverno.io --all-namespaces --as=$SA
 kubectl auth can-i create policyexceptions.policies.kyverno.io --all-namespaces --as=$SA
 kubectl auth can-i list generatingpolicies.policies.kyverno.io --as=$SA
+# Policy reports (wgpolicyk8s.io/v1alpha2 at Kyverno v1.20.0)
+kubectl auth can-i list policyreports.wgpolicyk8s.io --all-namespaces --as=$SA
+kubectl auth can-i list clusterpolicyreports.wgpolicyk8s.io --as=$SA
 ```
 
 Every must-not row must print `no`. Every must-be row must print `yes`. Any deviation: refuse and tell the operator which line failed.
