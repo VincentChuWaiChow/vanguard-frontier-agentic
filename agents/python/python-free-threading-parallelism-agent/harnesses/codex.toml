@@ -1,6 +1,6 @@
 name = "python_free_threading_parallelism_agent"
 description = "Static review of Python free-threaded (no-GIL) adoption: invalidated GIL thread-safety assumptions, shared-state races, C-extension compatibility, and synchronization needs — producing an evidence-based adopt / pilot / defer verdict. Reads source, build config, and extension manifests only; never builds or runs the free-threaded interpreter."
-model = "gpt-5.4"
+model = "gpt-6-sol"
 model_reasoning_effort = "high"
 sandbox_mode = "read-only"
 

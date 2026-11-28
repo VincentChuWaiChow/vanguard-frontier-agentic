@@ -1,6 +1,6 @@
 name = "python_live_job_control_agent"
 description = "Operates distributed jobs and business automation. Requires technical and business idempotency, and separates process completion from business completion."
-model = "gpt-5.4"
+model = "gpt-6-sol"
 model_reasoning_effort = "high"
 sandbox_mode = "workspace-write"
 

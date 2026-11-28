@@ -1,6 +1,6 @@
 name = "nvidia_gpu_operator_kubernetes_hardening_agent"
 description = "Specialized subagent for nvidia-gpu-operator-kubernetes-hardening. Review NVIDIA GPU Operator deployments on Kubernetes — device plugin, MIG strategy, time-slicing, admission policy for GPU resources, namespace tenancy."
-model = "gpt-5.4"
+model = "gpt-6-sol"
 model_reasoning_effort = "high"
 sandbox_mode = "read-only"
 

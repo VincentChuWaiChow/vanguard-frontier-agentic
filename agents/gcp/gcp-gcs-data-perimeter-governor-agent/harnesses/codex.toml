@@ -1,6 +1,6 @@
 name = "gcp_gcs_data_perimeter_governor_agent"
 description = "Specialized subagent for gcp-gcs-data-perimeter-governor. Govern Google Cloud Storage data perimeters — uniform bucket-level access enforcement, public access prevention, VPC Service Controls perimeter coverage, IAM Conditions for time-bounded access, Object Lifecycle policies, and data residency compliance."
-model = "gpt-5.4"
+model = "gpt-6-sol"
 model_reasoning_effort = "high"
 sandbox_mode = "read-only"
 

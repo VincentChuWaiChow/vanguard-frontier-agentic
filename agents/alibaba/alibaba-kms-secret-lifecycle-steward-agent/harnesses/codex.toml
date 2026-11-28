@@ -1,6 +1,6 @@
 name = "alibaba_kms_secret_lifecycle_steward_agent"
 description = "Specialized subagent for alibaba-kms-secret-lifecycle-steward. Audit and govern Alibaba Cloud KMS key lifecycles, Certificate Manager, SSM (Secrets Manager), and HSM key operations. Ensure encryption-at-rest coverage and rotation compliance."
-model = "gpt-5.4"
+model = "gpt-6-sol"
 model_reasoning_effort = "high"
 sandbox_mode = "read-only"
 

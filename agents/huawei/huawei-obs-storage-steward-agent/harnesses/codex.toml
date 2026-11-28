@@ -1,6 +1,6 @@
 name = "huawei_obs_storage_steward_agent"
 description = "Specialized subagent for huawei-obs-storage-steward. Manage OBS lifecycle policies, bucket ACL and policy governance, SFS, EVS, and CBR backup strategies on Huawei Cloud."
-model = "gpt-5.4"
+model = "gpt-6-sol"
 model_reasoning_effort = "high"
 sandbox_mode = "read-only"
 

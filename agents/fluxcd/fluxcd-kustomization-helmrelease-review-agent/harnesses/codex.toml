@@ -1,6 +1,6 @@
 name = "fluxcd_kustomization_helmrelease_review_agent"
 description = "Specialized subagent for fluxcd-kustomization-helmrelease-review. Review FluxCD Kustomization, HelmRelease, and source resources for SOPS encryption, source trust, ServiceAccount scoping, prune safety, and upgrade remediation."
-model = "gpt-5.4"
+model = "gpt-6-sol"
 model_reasoning_effort = "high"
 sandbox_mode = "read-only"
 

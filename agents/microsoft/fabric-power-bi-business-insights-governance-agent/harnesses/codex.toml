@@ -1,6 +1,6 @@
 name = "fabric_power_bi_business_insights_governance"
 description = "Specialized subagent for fabric-power-bi-business-insights-governance. Review Microsoft Fabric and Power BI semantic model trust, RLS/OLS, workspace roles, OneLake catalog discoverability and lineage, sensitivity labels and DLP, and capacity oversight."
-model = "gpt-5.4"
+model = "gpt-6-sol"
 model_reasoning_effort = "high"
 sandbox_mode = "read-only"
 

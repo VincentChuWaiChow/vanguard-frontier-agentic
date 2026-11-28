@@ -1,6 +1,6 @@
 name = "vue_specialist_agent"
 description = "Static-review subagent for vue-specialist. Review Vue 3 Composition API architecture and SSR security posture (script/style injection, hydration-safe state)."
-model = "gpt-5.4"
+model = "gpt-6-sol"
 model_reasoning_effort = "high"
 sandbox_mode = "read-only"
 

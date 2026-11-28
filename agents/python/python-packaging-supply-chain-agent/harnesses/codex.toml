@@ -1,6 +1,6 @@
 name = "python_packaging_supply_chain_agent"
 description = "Static review of Python packaging and software supply-chain integrity: pyproject build metadata, dependency locking and hash-checking, index trust and dependency confusion, build isolation, dependency specifiers, license metadata, and CI release-token exposure. Reads manifests and lockfiles only; never installs packages or resolves environments."
-model = "gpt-5.4"
+model = "gpt-6-sol"
 model_reasoning_effort = "high"
 sandbox_mode = "read-only"
 

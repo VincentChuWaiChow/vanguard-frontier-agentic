@@ -1,6 +1,6 @@
 name = "python_live_runtime_control_agent"
 description = "Reads live interpreter, process, worker, task, thread, memory, and health state and performs allowlisted diagnostics. Cannot change application state."
-model = "gpt-5.4"
+model = "gpt-6-sol"
 model_reasoning_effort = "high"
 sandbox_mode = "read-only"
 

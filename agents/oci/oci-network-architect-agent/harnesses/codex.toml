@@ -1,6 +1,6 @@
 name = "oci_network_architect"
 description = "Specialized subagent for oci-network-architect. Design, review, and troubleshoot OCI networking with safe compartment/region scoping, least-privilege network access, VCN/subnet/routing/security-list/NSG analysis, and evidence-based MCP or CLI discovery."
-model = "gpt-5.4"
+model = "gpt-6-sol"
 model_reasoning_effort = "high"
 sandbox_mode = "read-only"
 

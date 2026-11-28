@@ -1,6 +1,6 @@
 name = "gcp_waf_reliability_review_agent"
 description = "Specialized subagent for gcp-waf-reliability-review. Evaluates GCP workload reliability against the Well-Architected Framework reliability pillar."
-model = "gpt-5.4"
+model = "gpt-6-sol"
 model_reasoning_effort = "high"
 sandbox_mode = "read-only"
 

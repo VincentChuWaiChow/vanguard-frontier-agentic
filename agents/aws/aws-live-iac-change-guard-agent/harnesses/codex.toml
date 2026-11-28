@@ -1,6 +1,6 @@
 name = "aws-live-iac-change-guard_agent"
 description = "Specialized subagent for aws-live-iac-change-guard. Guard live CloudFormation, SAM, CDK, and Terraform-backed AWS infrastructure changes with change sets or plans, rollback triggers, stack policies, drift checks, and explicit approval."
-model = "gpt-5.4"
+model = "gpt-6-sol"
 model_reasoning_effort = "high"
 sandbox_mode = "workspace-write"
 

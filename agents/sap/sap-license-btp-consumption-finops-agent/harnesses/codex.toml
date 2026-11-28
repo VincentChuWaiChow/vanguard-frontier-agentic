@@ -1,6 +1,6 @@
 name = "sap-license-btp-consumption-finops_agent"
 description = "Specialized subagent for sap-license-btp-consumption-finops-review. Reviews SAP software licence positions, BTP consumption-based commercial models, CPEA credit allocation and burn-rate patterns, and FinOps governance controls — flags CPEA misallocation, licence metric drift, missing showback controls, and budget guardrail gaps. Static review only — never mutates any licence record, contract term, or BTP commercial configuration."
-model = "gpt-5.4"
+model = "gpt-6-sol"
 model_reasoning_effort = "high"
 sandbox_mode = "read-only"
 

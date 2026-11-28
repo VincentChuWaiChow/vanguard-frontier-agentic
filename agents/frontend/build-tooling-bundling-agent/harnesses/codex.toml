@@ -1,6 +1,6 @@
 name = "build_tooling_bundling_agent"
 description = "Static-review subagent for build-tooling-bundling. Reviews Vite/Webpack/Rollup build configuration, code-splitting strategy, and bundle-size budgets to stop duplicate dependencies, unsplit vendor chunks, and undetected bloat from degrading load performance."
-model = "gpt-5.4"
+model = "gpt-6-sol"
 model_reasoning_effort = "high"
 sandbox_mode = "read-only"
 

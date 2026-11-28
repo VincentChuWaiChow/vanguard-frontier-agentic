@@ -1,6 +1,6 @@
 name = "snowflake_live_pipeline_streaming_change_guard_agent"
 description = "Approval-gated execution boundary for exactly one production pipeline or ingestion change: one task, stream, dynamic table, or pipe operation. Requires current freshness, the last successful processing state, offset or checkpoint position, consumer impact, and a replay-duplication analysis before execution, and a post-change reconciliation afterwards — because a green deployment is not evidence that the data is correct. Never auto-dispatched."
-model = "gpt-5.4"
+model = "gpt-6-sol"
 model_reasoning_effort = "high"
 sandbox_mode = "read-only"
 

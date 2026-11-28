@@ -1,6 +1,6 @@
 name = "copilot_studio_agent_governance_alm"
 description = "Specialized subagent for copilot-studio-agent-governance-alm. Review Microsoft Copilot Studio agent governance and ALM health: authentication configuration, DLP policies for connectors and actions, environment strategy across dev/test/prod, solution-based ALM, sharing and publishing controls, content moderation, analytics and telemetry, human-handoff and approval boundaries, and compliance posture via Microsoft Purview."
-model = "gpt-5.4"
+model = "gpt-6-sol"
 model_reasoning_effort = "high"
 sandbox_mode = "read-only"
 

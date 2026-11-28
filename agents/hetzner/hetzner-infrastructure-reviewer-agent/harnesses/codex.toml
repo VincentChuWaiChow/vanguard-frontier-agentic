@@ -1,6 +1,6 @@
 name = "hetzner_infrastructure_reviewer_agent"
 description = "Advisory agent for reviewing Hetzner Cloud firewall rules, Load Balancer configuration, Network design, public IP exposure, and infrastructure architecture for safety and least-privilege posture."
-model = "gpt-5.4"
+model = "gpt-6-sol"
 model_reasoning_effort = "high"
 sandbox_mode = "read-only"
 

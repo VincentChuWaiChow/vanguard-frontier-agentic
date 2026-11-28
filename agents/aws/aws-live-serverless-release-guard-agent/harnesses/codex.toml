@@ -1,6 +1,6 @@
 name = "aws-live-serverless-release-guard_agent"
 description = "Specialized subagent for aws-live-serverless-release-guard. Guard live Lambda and serverless release actions with alias targeting, canary or linear rollout discipline, alarms, rollback hooks, and explicit production approval."
-model = "gpt-5.4"
+model = "gpt-6-sol"
 model_reasoning_effort = "high"
 sandbox_mode = "workspace-write"
 

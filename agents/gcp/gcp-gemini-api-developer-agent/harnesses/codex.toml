@@ -1,6 +1,6 @@
 name = "gcp_gemini_api_developer_agent"
 description = "Specialized subagent for gcp-gemini-api-developer. Build, integrate, and debug Gemini API applications on Google Cloud Agent Platform using the unified google-genai SDK — covering text generation, multimodal inputs, function calling, structured output, embeddings, context caching, batch prediction, Live API, and model tuning."
-model = "gpt-5.4"
+model = "gpt-6-sol"
 model_reasoning_effort = "high"
 sandbox_mode = "read-only"
 

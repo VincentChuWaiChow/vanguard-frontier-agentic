@@ -1,6 +1,6 @@
 name = "alibaba_security_center_hardening_agent"
 description = "Specialized subagent for alibaba-security-center-hardening. Harden Alibaba Cloud security posture via Security Center (threat detection, vulnerability scanning), WAF, Anti-DDoS Pro, Cloud Firewall (north-south and east-west), and Network Traffic Analysis (NTA)."
-model = "gpt-5.4"
+model = "gpt-6-sol"
 model_reasoning_effort = "high"
 sandbox_mode = "read-only"
 

@@ -1,6 +1,6 @@
 name = "d365_project_operations"
 description = "Specialized subagent for d365-project-operations. Review Dynamics 365 Project Operations project contracts, project planning and scheduling, resource management and assignment, time and expense, project budgeting and cost control, billing and revenue recognition, and Finance integration."
-model = "gpt-5.4"
+model = "gpt-6-sol"
 model_reasoning_effort = "high"
 sandbox_mode = "read-only"
 

@@ -1,6 +1,6 @@
 name = "huawei_waf_cost_optimization_review_agent"
 description = "Specialized subagent for huawei-waf-cost-optimization-review. Assess Huawei Cloud cost efficiency via ECS flavor selection including Kunpeng Arm, billing mode optimization, Spot Instance adoption, Enterprise Project cost attribution, and Cost Center monitoring."
-model = "gpt-5.4"
+model = "gpt-6-sol"
 model_reasoning_effort = "high"
 sandbox_mode = "read-only"
 

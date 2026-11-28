@@ -1,6 +1,6 @@
 name = "oci_waf_cost_optimization_review"
 description = "Specialized subagent for oci-waf-cost-optimization-review. Assess OCI workload cost posture across compute rightsizing, Ampere A1 adoption, Universal Credits coverage, tagging compliance, idle resource elimination, and OCI Cost Management tooling."
-model = "gpt-5.4"
+model = "gpt-6-sol"
 model_reasoning_effort = "high"
 sandbox_mode = "read-only"
 

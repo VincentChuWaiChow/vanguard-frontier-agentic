@@ -1,6 +1,6 @@
 name = "cert_manager_issuer_trust_review_agent"
 description = "Specialized subagent for cert-manager-issuer-trust-review. Review cert-manager Issuer and ClusterIssuer scope, CertificateRequestPolicy coverage, certificate SAN and duration risks, trust-manager bundle distribution, and cloud CA integration authentication for Kubernetes PKI posture."
-model = "gpt-5.4"
+model = "gpt-6-sol"
 model_reasoning_effort = "high"
 sandbox_mode = "read-only"
 

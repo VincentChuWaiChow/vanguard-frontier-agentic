@@ -1,6 +1,6 @@
 name = "oci_security_compliance_reviewer"
 description = "Specialized subagent for oci-security-compliance-reviewer. Review Oracle Cloud Infrastructure security, IAM, network, logging, encryption, and compliance posture. Use when asked to audit OCI policies, compartments, tenancy security, Cloud Guard findings, buckets, vaults, security lists, NSGs, or least-privilege access; prepare compliance evidence; or challenge risky OCI admin assumptions before changes."
-model = "gpt-5.4"
+model = "gpt-6-sol"
 model_reasoning_effort = "high"
 sandbox_mode = "read-only"
 

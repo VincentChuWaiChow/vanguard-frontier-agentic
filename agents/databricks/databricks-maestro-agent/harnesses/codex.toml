@@ -1,6 +1,6 @@
 name = "databricks_maestro_agent"
 description = "Control-plane router for the Databricks board. Classifies a Databricks task on intent, business context, artifact type, blast radius, required evidence, implied runtime authority, and specialist ownership, then dispatches the narrowest static-review specialist or a parallel team of up to four. Never reviews Databricks work itself, never answers a domain question directly, and never auto-dispatches a mutation to a live guard."
-model = "gpt-5.4"
+model = "gpt-6-sol"
 model_reasoning_effort = "high"
 sandbox_mode = "read-only"
 

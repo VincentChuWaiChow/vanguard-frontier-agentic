@@ -1,6 +1,6 @@
 name = "aws_solution_architect_agent"
 description = "Specialized subagent for aws-solution-architect. Design and stress-test AWS solution architectures across identity, networking, compute, data, security, resilience, operations, and cost with Well-Architected evidence discipline."
-model = "gpt-5.4"
+model = "gpt-6-sol"
 model_reasoning_effort = "high"
 sandbox_mode = "read-only"
 

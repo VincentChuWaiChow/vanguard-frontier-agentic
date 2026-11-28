@@ -1,6 +1,6 @@
 name = "oci-live-oke-rollout-guard_agent"
 description = "Specialized subagent for oci-live-oke-rollout-guard. Guard OKE deployment rollouts through DevOps Service pipeline approval stages with blue-green and canary evidence, and kubectl rollout pause or undo gate."
-model = "gpt-5.4"
+model = "gpt-6-sol"
 model_reasoning_effort = "high"
 sandbox_mode = "workspace-write"
 

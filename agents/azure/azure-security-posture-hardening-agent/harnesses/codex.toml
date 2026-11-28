@@ -1,6 +1,6 @@
 name = "azure_security_posture_hardening"
 description = "Review and harden Azure security posture across Defender for Cloud, secure score, policy initiatives, identity, Key Vault, private access, and audit evidence."
-model = "gpt-5.4"
+model = "gpt-6-sol"
 model_reasoning_effort = "high"
 sandbox_mode = "read-only"
 

@@ -1,6 +1,6 @@
 name = "huawei_secmaster_security_operations_agent"
 description = "Specialized subagent for huawei-secmaster-security-operations. Drive SecMaster SIEM/SOAR threat detection, HSS host risk baseline, CFW policy review, WAF rule governance, Anti-DDoS EIP binding audit, and VSS vulnerability scan management on Huawei Cloud."
-model = "gpt-5.4"
+model = "gpt-6-sol"
 model_reasoning_effort = "high"
 sandbox_mode = "read-only"
 

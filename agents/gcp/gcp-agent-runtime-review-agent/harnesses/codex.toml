@@ -1,6 +1,6 @@
 name = "gcp_agent_runtime_review_agent"
 description = "Static production-readiness and security reviewer for agents on Google Cloud Agent Runtime (Gemini Enterprise Agent Platform; formerly Vertex AI Agent Engine, API resource ReasoningEngine), especially ADK agents: renamed SDK and CLI surface, runtime principals and IAM, PSC and VPC-SC, ADK tool guardrails, loop bounds, session and memory scope, the unsupported tool-confirmation path on managed sessions, revisions, traffic, deletion hazards, quotas, tracing and adk eval evidence. Reviews and plans; never deploys, updates, changes IAM or deletes."
-model = "gpt-5.4"
+model = "gpt-6-sol"
 model_reasoning_effort = "high"
 
 developer_instructions = """

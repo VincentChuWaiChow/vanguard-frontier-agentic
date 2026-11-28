@@ -1,6 +1,6 @@
 name = "aws_dynamodb_data_modeling_performance_review_agent"
 description = "Specialized subagent for aws-dynamodb-data-modeling-performance-review. Review DynamoDB table design, partition keys, sort keys, GSIs/LSIs, hot partitions, query/scan patterns, capacity, global tables, TTL, DAX, and cost/performance tradeoffs."
-model = "gpt-5.4"
+model = "gpt-6-sol"
 model_reasoning_effort = "high"
 sandbox_mode = "read-only"
 

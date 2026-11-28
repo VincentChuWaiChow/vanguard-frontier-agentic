@@ -1,6 +1,6 @@
 name = "oci_nosql_pattern"
 description = "Builds and operates Oracle NoSQL Database Cloud Service access patterns: shard and primary keys, indexes, continuation, same-shard transactions, consistency, TTL, IAM, encryption, replicas, metrics, Terraform/DDL/OCI CLI and customer-owned Migrator or SDK export/import recovery. Produces code and IaC for the user to apply; never runs OCI changes."
-model = "gpt-5.4"
+model = "gpt-6-sol"
 model_reasoning_effort = "high"
 sandbox_mode = "read-only"
 

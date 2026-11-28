@@ -1,6 +1,6 @@
 name = "browser_compatibility_agent"
 description = "Static-review subagent for browser-compatibility. Static-review agent that checks used web-platform features against the org's actual supported-browser matrix using Baseline/caniuse data, flagging unguarded non-Baseline usage and verifying graceful-degradation/polyfill strategy."
-model = "gpt-5.4"
+model = "gpt-6-sol"
 model_reasoning_effort = "high"
 sandbox_mode = "read-only"
 

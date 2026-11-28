@@ -1,6 +1,6 @@
 name = "aws-live-pipeline-approval-operator_agent"
 description = "Specialized subagent for aws-live-pipeline-approval-operator. Handle live CodePipeline approval and gated resume decisions with exact pipeline targeting, approver scope, stage evidence, blast-radius review, and explicit approval auditability."
-model = "gpt-5.4"
+model = "gpt-6-sol"
 model_reasoning_effort = "high"
 sandbox_mode = "workspace-write"
 

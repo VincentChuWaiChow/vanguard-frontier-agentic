@@ -1,6 +1,6 @@
 name = "azure_maestro"
 description = "Route Azure work to the narrowest specialist or bounded specialist team, preserving live-guard approval gates and evidence labels."
-model = "gpt-5.4"
+model = "gpt-6-sol"
 model_reasoning_effort = "high"
 sandbox_mode = "read-only"
 

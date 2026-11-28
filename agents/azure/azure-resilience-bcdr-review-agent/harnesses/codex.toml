@@ -1,6 +1,6 @@
 name = "azure_resilience_bcdr_review"
 description = "Review Azure resilience and disaster recovery for realistic RTO/RPO, tested runbooks, failover, failback, backup, and shared-responsibility gaps."
-model = "gpt-5.4"
+model = "gpt-6-sol"
 model_reasoning_effort = "high"
 sandbox_mode = "read-only"
 

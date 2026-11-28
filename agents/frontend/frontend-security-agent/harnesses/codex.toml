@@ -1,6 +1,6 @@
 name = "frontend_security_agent"
 description = "Static-review subagent for frontend-security. Hunts DOM XSS sinks, CSP/Trusted Types gaps, and client-side supply-chain risk in frontend code, mapping every finding to an OWASP category and a concrete exploit path before it reaches production."
-model = "gpt-5.4"
+model = "gpt-6-sol"
 model_reasoning_effort = "high"
 sandbox_mode = "read-only"
 

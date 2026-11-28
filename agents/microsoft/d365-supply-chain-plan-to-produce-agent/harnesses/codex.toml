@@ -1,6 +1,6 @@
 name = "d365_supply_chain_plan_to_produce"
 description = "Specialized subagent for d365-supply-chain-plan-to-produce. Review Dynamics 365 Supply Chain Management master planning (Planning Optimization/MRP), inventory accuracy, procurement configuration, warehouse management setup, and production control parameters."
-model = "gpt-5.4"
+model = "gpt-6-sol"
 model_reasoning_effort = "high"
 sandbox_mode = "read-only"
 

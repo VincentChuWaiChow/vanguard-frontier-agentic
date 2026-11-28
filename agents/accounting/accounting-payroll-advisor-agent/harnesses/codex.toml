@@ -1,6 +1,6 @@
 name = "accounting-payroll-advisor_agent"
 description = "Advise on multi-jurisdiction payroll accounting — compensation expense recognition (ASC 710 / IAS 19), defined contribution and defined benefit plan accounting (ASC 715 / IAS 19), post-retirement benefits (ASC 715-60), and payroll tax compliance (US, UK, Germany, Japan, China, India). Advisory only — never processes payroll, never accepts employee PII or wage data."
-model = "gpt-5.4"
+model = "gpt-6-sol"
 model_reasoning_effort = "high"
 sandbox_mode = "read-only"
 

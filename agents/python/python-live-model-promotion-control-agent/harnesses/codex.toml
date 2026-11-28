@@ -1,6 +1,6 @@
 name = "python_live_model_promotion_control_agent"
 description = "Promotes exactly one immutable model artifact. Requires risk classification, evaluation evidence, monitoring, and rollback."
-model = "gpt-5.4"
+model = "gpt-6-sol"
 model_reasoning_effort = "high"
 sandbox_mode = "workspace-write"
 

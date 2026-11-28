@@ -1,6 +1,6 @@
 name = "aws_waf_security_review_agent"
 description = "Specialized subagent for aws-waf-security-review. Review AWS workload security posture against the Well-Architected Framework Security Pillar: identity, detection, infrastructure protection, data protection, and incident response."
-model = "gpt-5.4"
+model = "gpt-6-sol"
 model_reasoning_effort = "high"
 sandbox_mode = "read-only"
 

@@ -1,6 +1,6 @@
 name = "huawei_live_gaussdb_mutation_guard_agent"
 description = "Specialized live-guard subagent for huawei-live-gaussdb-mutation-guard. Gate GaussDB/RDS instance deletion, spec downgrade, and backup policy changes."
-model = "gpt-5.4"
+model = "gpt-6-sol"
 model_reasoning_effort = "high"
 sandbox_mode = "read-only"
 

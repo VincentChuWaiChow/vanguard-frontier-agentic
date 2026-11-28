@@ -1,6 +1,6 @@
 name = "databricks_platform_reliability_agent"
 description = "Diagnose and design compute, job, and pipeline reliability: operational evidence from system tables (`system.compute.*`, `system.lakeflow.*`, `system.billing.*`, `system.access.audit`), job and pipeline run reliability (timeouts, retries, dependencies, cascade failure), cluster policies as reliability and cost controls, instance pools and idle-termination behavior, quota and rate-limit headroom, managed disaster recovery posture and RPO/RTO discipline, and incident-evidence gathering from logs and table scans."
-model = "gpt-5.4"
+model = "gpt-6-sol"
 model_reasoning_effort = "high"
 sandbox_mode = "read-only"
 

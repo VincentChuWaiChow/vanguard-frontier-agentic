@@ -1,6 +1,6 @@
 name = "kotlin_library_api_abi_governance_agent"
 description = "Static review of Kotlin library public-API evolution and binary/source compatibility for libraries consumed by both Kotlin and Java: binary-compatibility-validator .api snapshots and apiCheck gating, Explicit API mode, @JvmOverloads/@JvmStatic/@JvmName surface shaping, and ABI-sensitive data-class and inline-function changes. Reads source and build config only."
-model = "gpt-5.4"
+model = "gpt-6-sol"
 model_reasoning_effort = "high"
 sandbox_mode = "read-only"
 

@@ -1,6 +1,6 @@
 name = "gcp_firebase_developer_agent"
 description = "Specialized subagent for gcp-firebase-developer. Build, configure, and operate Firebase-powered web and mobile applications across Firestore, Auth, Hosting, Cloud Functions for Firebase, Storage, App Check, Remote Config, and Analytics."
-model = "gpt-5.4"
+model = "gpt-6-sol"
 model_reasoning_effort = "high"
 sandbox_mode = "read-only"
 

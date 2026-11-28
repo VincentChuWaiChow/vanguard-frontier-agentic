@@ -1,6 +1,6 @@
 name = "oci_registry_artifact_governor"
 description = "Specialized subagent for oci-registry-artifact-governor. Govern OCI Registry repositories, container images, artifact access, retention, promotion, and deployment safety. Use for OCIR repository reviews, image lifecycle, DevOps/OKE integration, and least-privilege push/pull access."
-model = "gpt-5.4"
+model = "gpt-6-sol"
 model_reasoning_effort = "medium"
 sandbox_mode = "read-only"
 

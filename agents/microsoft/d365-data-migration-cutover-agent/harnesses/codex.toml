@@ -1,6 +1,6 @@
 name = "d365_data_migration_cutover"
 description = "Specialized subagent for d365-data-migration-cutover. Review Dynamics 365 data migration planning and go-live cutover readiness, enforcing mock migration evidence, data quality gates, staging table validation, reconciliation controls, cutover runbook completeness, and rollback plan before production migration."
-model = "gpt-5.4"
+model = "gpt-6-sol"
 model_reasoning_effort = "high"
 sandbox_mode = "read-only"
 

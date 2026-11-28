@@ -1,6 +1,6 @@
 name = "frontend_board_chair_agent"
 description = "Final governance authority for the frontend review board: sequences specialist reviews per workflow type, resolves conflicting verdicts under hard-gate rules, and issues binding approve/conditional-approve/reject decisions with a full evidence trail and handoff record."
-model = "gpt-5.4"
+model = "gpt-6-sol"
 model_reasoning_effort = "high"
 sandbox_mode = "read-only"
 

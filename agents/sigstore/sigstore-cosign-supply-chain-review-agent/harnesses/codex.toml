@@ -1,6 +1,6 @@
 name = "sigstore_cosign_supply_chain_review_agent"
 description = "Specialized subagent for sigstore-cosign-supply-chain-review. Review Cosign image signing, Kyverno imageVerify identity constraints, SBOM and SLSA provenance attestations, Rekor transparency log posture, and keyless vs key-based signing for Kubernetes supply chain integrity."
-model = "gpt-5.4"
+model = "gpt-6-sol"
 model_reasoning_effort = "high"
 sandbox_mode = "read-only"
 

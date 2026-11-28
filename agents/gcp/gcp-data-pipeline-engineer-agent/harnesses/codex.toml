@@ -1,6 +1,6 @@
 name = "gcp_data_pipeline_engineer_agent"
 description = "Specialized subagent for gcp-data-pipeline-engineer. Design and troubleshoot data pipelines using Dataflow (Apache Beam), Pub/Sub messaging, Dataproc (Spark/Hadoop), Cloud Composer (Apache Airflow), and Dataplex data governance."
-model = "gpt-5.4"
+model = "gpt-6-sol"
 model_reasoning_effort = "high"
 sandbox_mode = "read-only"
 

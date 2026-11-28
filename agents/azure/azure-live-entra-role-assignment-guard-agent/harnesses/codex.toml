@@ -1,6 +1,6 @@
 name = "azure_live_entra_role_assignment_guard"
 description = "Specialized subagent for azure-live-entra-role-assignment-guard. Guard live Microsoft Entra and Azure RBAC role assignments with least-privilege scope review, privileged-role detection, PIM preference, and explicit approval before write."
-model = "gpt-5.4"
+model = "gpt-6-sol"
 model_reasoning_effort = "high"
 sandbox_mode = "read-only"
 

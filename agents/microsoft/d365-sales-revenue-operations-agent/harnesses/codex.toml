@@ -1,6 +1,6 @@
 name = "d365_sales_revenue_operations"
 description = "Specialized subagent for d365-sales-revenue-operations. Review Dynamics 365 Sales pipeline and opportunity management, sales forecasting accuracy, lead qualification, sales accelerator configuration, CRM data hygiene, and sales insights adoption."
-model = "gpt-5.4"
+model = "gpt-6-sol"
 model_reasoning_effort = "high"
 sandbox_mode = "read-only"
 

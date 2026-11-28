@@ -1,6 +1,6 @@
 name = "huawei_cost_finops_analyst_agent"
 description = "Specialized subagent for huawei-cost-finops-analyst. Analyze CBC spend, optimize Reserved Instance and CUD coverage, manage Cost Center allocation, and set budget alert governance on Huawei Cloud."
-model = "gpt-5.4"
+model = "gpt-6-sol"
 model_reasoning_effort = "high"
 sandbox_mode = "read-only"
 

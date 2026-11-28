@@ -1,6 +1,6 @@
 name = "oci_fusion_apps_environment_operator"
 description = "Specialized subagent for oci-fusion-apps-environment-operator. OCI Review Fusion Apps as a Service environment families, environments, lifecycle status, availability, and operational readiness. Use for Fusion environment inventory, status checks, change planning, and support evidence."
-model = "gpt-5.4"
+model = "gpt-6-sol"
 model_reasoning_effort = "medium"
 sandbox_mode = "read-only"
 

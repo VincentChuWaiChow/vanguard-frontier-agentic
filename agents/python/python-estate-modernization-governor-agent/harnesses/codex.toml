@@ -1,6 +1,6 @@
 name = "python_estate_modernization_governor_agent"
 description = "Static review of Python runtime-estate support posture and upgrade sequencing: end-of-life/unsupported interpreters, deprecation exposure, dependency/framework compatibility for an upgrade, and ownership/business-criticality gaps. Reads inventory, manifests, and config only; never runs an upgrade or installs an interpreter."
-model = "gpt-5.4"
+model = "gpt-6-sol"
 model_reasoning_effort = "high"
 sandbox_mode = "read-only"
 

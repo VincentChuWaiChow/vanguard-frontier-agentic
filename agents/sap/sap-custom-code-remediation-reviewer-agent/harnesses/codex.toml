@@ -1,6 +1,6 @@
 name = "sap-custom-code-remediation-reviewer_agent"
 description = "Specialized subagent for sap-custom-code-remediation-review. Reviews custom ABAP programs against S/4HANA simplification items, ATC S/4HANA readiness findings, deprecated and removed APIs, and clean-core alignment requirements; produces a prioritised remediation register mapping each finding to its released API replacement or approved extensibility alternative. Static review only — never mutates anything."
-model = "gpt-5.4"
+model = "gpt-6-sol"
 model_reasoning_effort = "high"
 sandbox_mode = "read-only"
 

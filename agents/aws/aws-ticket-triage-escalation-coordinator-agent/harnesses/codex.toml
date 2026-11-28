@@ -1,6 +1,6 @@
 name = "aws_ticket_triage_escalation_coordinator_agent"
 description = "Specialized subagent for aws-ticket-triage-escalation-coordinator. Triage AWS operational tickets, alerts, and requests into priority, owner, evidence needs, and safe escalation paths without taking destructive actions."
-model = "gpt-5.4"
+model = "gpt-6-sol"
 model_reasoning_effort = "high"
 sandbox_mode = "read-only"
 

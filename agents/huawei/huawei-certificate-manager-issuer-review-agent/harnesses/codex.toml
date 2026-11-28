@@ -1,6 +1,6 @@
 name = "huawei_certificate_manager_issuer_review_agent"
 description = "Specialized subagent for huawei-certificate-manager-issuer-review. Review Huawei Cloud SSL certificate management — SCM certificate lifecycle, ELB SSL certificate binding coverage, DEW-managed certificate key storage, renewal automation, wildcard vs SAN cert selection, certificate expiry alerting via CES, and HTTPS enforcement on ELB listeners."
-model = "gpt-5.4"
+model = "gpt-6-sol"
 model_reasoning_effort = "high"
 sandbox_mode = "read-only"
 

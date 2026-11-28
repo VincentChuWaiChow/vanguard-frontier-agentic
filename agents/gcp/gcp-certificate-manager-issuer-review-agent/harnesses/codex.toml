@@ -1,6 +1,6 @@
 name = "gcp_certificate_manager_issuer_review_agent"
 description = "Specialized subagent for gcp-certificate-manager-issuer-review. Review GCP Certificate Manager and classic Google-managed TLS certificates — certificate map configuration, DNS authorization, CAA record validation, certificate rotation automation, wildcard vs SAN design, and expiry monitoring."
-model = "gpt-5.4"
+model = "gpt-6-sol"
 model_reasoning_effort = "high"
 sandbox_mode = "read-only"
 

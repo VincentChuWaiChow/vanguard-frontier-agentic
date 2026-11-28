@@ -1,6 +1,6 @@
 name = "typescript_public_api_and_declaration_governance_agent"
 description = "Static review of a published TypeScript type surface: `.d.ts` correctness and emit strategy, public-versus-accidental exports, breaking-change classification and the semver decision, the consumer compilation matrix, and compile-time type-contract tests. Reads declarations, API reports, and configuration only."
-model = "gpt-5.4"
+model = "gpt-6-sol"
 model_reasoning_effort = "high"
 sandbox_mode = "read-only"
 

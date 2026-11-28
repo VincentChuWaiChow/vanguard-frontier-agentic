@@ -1,6 +1,6 @@
 name = "python_live_system_inventory_agent"
 description = "Read-only discovery of Python runtimes, services, jobs, notebooks, packages, owners, environments, deployment revisions, service identities, and criticality. Produces asset and ownership evidence. Never retrieves raw credentials."
-model = "gpt-5.4"
+model = "gpt-6-sol"
 model_reasoning_effort = "high"
 sandbox_mode = "read-only"
 

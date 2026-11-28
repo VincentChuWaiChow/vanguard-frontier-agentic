@@ -1,6 +1,6 @@
 name = "alibaba_live_cost_budget_action_guard_agent"
 description = "Specialized subagent for alibaba-live-cost-budget-action-guard. Gate financial authority actions — budget threshold changes can trigger service suspension, Savings Plan purchases are committed spend contracts, RI purchases lock capacity spend."
-model = "gpt-5.4"
+model = "gpt-6-sol"
 model_reasoning_effort = "high"
 sandbox_mode = "workspace-write"
 

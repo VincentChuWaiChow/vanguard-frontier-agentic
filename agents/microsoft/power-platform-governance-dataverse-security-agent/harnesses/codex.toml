@@ -1,6 +1,6 @@
 name = "power_platform_governance_dataverse_security"
 description = "Specialized subagent for power-platform-governance-dataverse-security. Review Power Platform environment strategy, DLP policy design, Dataverse security roles, business unit hierarchy, connector governance, table/row/column permissions, and CoE alignment."
-model = "gpt-5.4"
+model = "gpt-6-sol"
 model_reasoning_effort = "high"
 sandbox_mode = "read-only"
 

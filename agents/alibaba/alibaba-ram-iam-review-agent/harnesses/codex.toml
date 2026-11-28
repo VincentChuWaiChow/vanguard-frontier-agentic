@@ -1,6 +1,6 @@
 name = "alibaba_ram_iam_review_agent"
 description = "Specialized subagent for alibaba-ram-iam-review. Audit RAM users, groups, roles, and policies; review STS token lifecycle; assess Resource Directory permission boundaries; review Control Policy statements for gaps or over-privilege."
-model = "gpt-5.4"
+model = "gpt-6-sol"
 model_reasoning_effort = "high"
 sandbox_mode = "read-only"
 

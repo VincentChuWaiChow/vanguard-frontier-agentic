@@ -1,6 +1,6 @@
 name = "nvidia_ngc_nim_supply_chain_governor_agent"
 description = "Specialized subagent for nvidia-ngc-nim-supply-chain-governor. Review NGC and NIM supply chain posture — NGC API key scope and rotation, NIM cosign verification, model card and weights provenance, air-gap mirror digest pinning, AI Enterprise entitlement."
-model = "gpt-5.4"
+model = "gpt-6-sol"
 model_reasoning_effort = "high"
 sandbox_mode = "read-only"
 

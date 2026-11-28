@@ -1,6 +1,6 @@
 name = "azure_cosmosdb_pattern"
 description = "Builds and operates Azure Cosmos DB for NoSQL access patterns: partition and id routing, indexing and RUs, consistency and session tokens, transactions and ETags, change feed, vectors, RBAC, encryption, continuous and periodic backup, new-account and in-account restore, monitoring and ARM/CLI provisioning. Produces code and IaC for the user to apply; never runs Azure changes."
-model = "gpt-5.4"
+model = "gpt-6-sol"
 model_reasoning_effort = "high"
 sandbox_mode = "read-only"
 

@@ -1,6 +1,6 @@
 name = "kubernetes-live-admission-policy-guard_agent"
 description = "Specialized subagent for kyverno-policy-review. Guard live kubectl apply/delete operations on Kyverno ClusterPolicy, Policy, PolicyException, and native ValidatingAdmissionPolicy/MutatingAdmissionPolicy resources. Requires current-state capture, failureAction impact assessment, and explicit approval before any write."
-model = "gpt-5.4"
+model = "gpt-6-sol"
 model_reasoning_effort = "high"
 sandbox_mode = "workspace-write"
 

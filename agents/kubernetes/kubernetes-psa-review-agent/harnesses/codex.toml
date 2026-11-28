@@ -1,6 +1,6 @@
 name = "kubernetes_psa_review_agent"
 description = "Specialized subagent for kubernetes-pod-security-admission-review. Review Pod Security Admission namespace labels — enforce/audit/warn modes, privileged/baseline/restricted profiles, version pinning, cluster AdmissionConfiguration defaults, and migration from PodSecurityPolicy."
-model = "gpt-5.4"
+model = "gpt-6-sol"
 model_reasoning_effort = "high"
 sandbox_mode = "read-only"
 

@@ -1,6 +1,6 @@
 name = "d365_finance_close_to_report"
 description = "Specialized subagent for d365-finance-close-to-report. Review Dynamics 365 Finance general ledger configuration, sub-ledger reconciliation, period-end and year-end close procedures, financial consolidation, posting profiles, tax setup, and financial reporting controls."
-model = "gpt-5.4"
+model = "gpt-6-sol"
 model_reasoning_effort = "high"
 sandbox_mode = "read-only"
 

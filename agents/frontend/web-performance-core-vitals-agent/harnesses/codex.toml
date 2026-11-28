@@ -1,6 +1,6 @@
 name = "web_performance_core_vitals_agent"
 description = "Static-review subagent for web-performance-core-vitals. Triages Core Web Vitals (LCP, INP, CLS) using both lab and field evidence, ties every verdict to a numeric budget and business metric, and refuses lab-only sign-off."
-model = "gpt-5.4"
+model = "gpt-6-sol"
 model_reasoning_effort = "high"
 sandbox_mode = "read-only"
 

@@ -1,6 +1,6 @@
 name = "contabo_live_storage_operations_guard_agent"
 description = "Live-guard agent for Contabo Object Storage and S3-compatible bucket operations: inventory audit, access policy review, retention policy enforcement, and deletion with backup verification before any destructive mutation."
-model = "gpt-5.4"
+model = "gpt-6-sol"
 model_reasoning_effort = "high"
 sandbox_mode = "workspace-write"
 

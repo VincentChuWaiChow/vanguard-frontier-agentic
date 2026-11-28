@@ -1,6 +1,6 @@
 name = "kyverno_maestro_agent"
 description = "Coordinate a Kyverno policy engineering board across admission design, admission reliability, exceptions, lifecycle reconciliation, migration and control evidence. Use when a request spans more than one decision or ownership is unclear. Route one lead per decision, bounded referrals with a decision ID and one return question, independent challenge for consequential promotions, and Jira or Confluence drafts through the existing Atlassian authoring skills. Never auto-dispatch the live admission guard or average away a blocker."
-model = "gpt-5.4"
+model = "gpt-6-sol"
 model_reasoning_effort = "high"
 sandbox_mode = "read-only"
 

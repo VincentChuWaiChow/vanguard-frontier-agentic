@@ -1,6 +1,6 @@
 name = "scaleway_iam_policy_review_agent"
 description = "Advisory agent for reviewing Scaleway IAM bindings, API key governance, service account scopes, and organization/project-level permission sets."
-model = "gpt-5.4"
+model = "gpt-6-sol"
 model_reasoning_effort = "high"
 sandbox_mode = "read-only"
 

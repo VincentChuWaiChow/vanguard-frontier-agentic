@@ -1,6 +1,6 @@
 name = "alibaba_load_balancer_traffic_engineer_agent"
 description = "Specialized subagent for alibaba-load-balancer-traffic-engineer. Traffic engineering for Alibaba Cloud load balancers — CLB (Classic, legacy), SLB (Server Load Balancer, Layer 4/7), ALB (Application Load Balancer, Layer 7 advanced routing), NLB (Network Load Balancer, Layer 4 high throughput), and GA (Global Accelerator) — type selection, health check design, and traffic distribution."
-model = "gpt-5.4"
+model = "gpt-6-sol"
 model_reasoning_effort = "high"
 sandbox_mode = "read-only"
 

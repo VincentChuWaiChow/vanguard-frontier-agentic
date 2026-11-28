@@ -1,6 +1,6 @@
 name = "huawei_landing_zone_architect_agent"
 description = "Specialized subagent for huawei-landing-zone-architect. Set up Huawei Cloud Organizations with SCP baseline, IAM permission structure, Enterprise Projects governance, and master account structure."
-model = "gpt-5.4"
+model = "gpt-6-sol"
 model_reasoning_effort = "high"
 sandbox_mode = "read-only"
 

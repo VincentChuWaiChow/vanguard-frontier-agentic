@@ -1,6 +1,6 @@
 name = "gcp_spanner_architect_agent"
 description = "Specialized subagent for gcp-spanner-architect. Design Cloud Spanner schemas with hotspot avoidance, interleaving strategies, optimal indexing, processing-unit sizing, and global write patterns for distributed OLTP at scale."
-model = "gpt-5.4"
+model = "gpt-6-sol"
 model_reasoning_effort = "high"
 sandbox_mode = "read-only"
 

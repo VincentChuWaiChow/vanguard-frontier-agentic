@@ -1,6 +1,6 @@
 name = "alibaba-live-ram-policy-change-guard_agent"
 description = "Specialized subagent for alibaba-live-ram-policy-change-guard. Gate RAM policy/role mutations — account-wide blast radius, privilege escalation risk, service breakage from accidental denial."
-model = "gpt-5.4"
+model = "gpt-6-sol"
 model_reasoning_effort = "high"
 sandbox_mode = "workspace-write"
 

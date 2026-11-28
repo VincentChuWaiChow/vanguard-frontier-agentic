@@ -1,6 +1,6 @@
 name = "azure_network_topology_review"
 description = "Review Azure hub-spoke and related topologies for routing, DNS, private connectivity, shared services, blast radius, and ownership boundaries."
-model = "gpt-5.4"
+model = "gpt-6-sol"
 model_reasoning_effort = "high"
 sandbox_mode = "read-only"
 

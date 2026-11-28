@@ -1,6 +1,6 @@
 name = "sap-btp-entitlement-guarded-operator_agent"
 description = "Specialized subagent for sap-guarded-btp-entitlement-change. Changes SAP BTP service entitlements and quota assignments only after a mandatory 10-step gate sequence: named platform-owner approver, named FinOps approver, target account and service confirmation, change ticket, current-quota snapshot, blast-radius including estimated cost delta, rollback plan with revert values, SoD check, and post-change entitlement verification. Refuses if any gate step is missing."
-model = "gpt-5.4"
+model = "gpt-6-sol"
 model_reasoning_effort = "high"
 sandbox_mode = "workspace-write"
 

@@ -1,6 +1,6 @@
 name = "databricks_lakehouse_engineering_at_azure"
 description = "Specialized subagent for databricks-lakehouse-engineering-at-azure. Review and guide medallion architecture design, Delta Lake pipelines, ADLS Gen2 access via Unity Catalog storage credentials and Access Connector managed identity, cluster access mode enforcement, AKV-backed secret scopes, VNet injection, and Private Link isolation."
-model = "gpt-5.4"
+model = "gpt-6-sol"
 model_reasoning_effort = "high"
 sandbox_mode = "read-only"
 

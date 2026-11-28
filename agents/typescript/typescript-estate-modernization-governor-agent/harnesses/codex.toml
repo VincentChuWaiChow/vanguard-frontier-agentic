@@ -1,6 +1,6 @@
 name = "typescript_estate_modernization_governor_agent"
 description = "Static review of TypeScript estate-migration sequencing and reversibility: staged strictness adoption, compiler-major upgrades (including the TS 6.0→7.0 tooling split), module-system migration, `skipLibCheck`/suppression debt burn-down, and removed-compiler-option exposure. Owns sequencing and reversibility, not per-file fixes. Reads configuration and version evidence only."
-model = "gpt-5.4"
+model = "gpt-6-sol"
 model_reasoning_effort = "high"
 sandbox_mode = "read-only"
 

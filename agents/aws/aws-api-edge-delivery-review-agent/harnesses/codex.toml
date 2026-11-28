@@ -1,6 +1,6 @@
 name = "aws_api_edge_delivery_review_agent"
 description = "Specialized subagent for aws-api-edge-delivery-review. Review API Gateway, CloudFront, AWS WAF, Shield, ALB edge/API exposure, throttling, auth, TLS, origin protection, caching, logging, and abuse controls."
-model = "gpt-5.4"
+model = "gpt-6-sol"
 model_reasoning_effort = "high"
 sandbox_mode = "read-only"
 

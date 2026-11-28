@@ -1,6 +1,6 @@
 name = "databricks_unity_catalog_governance_at_azure"
 description = "Specialized subagent for databricks-unity-catalog-governance-at-azure. Review and design Unity Catalog three-level namespace governance, GRANT privilege model, Microsoft Entra ID identity federation, service principal posture, workspace-catalog binding, account/workspace/metastore admin separation, and least-privilege schema-scoped grant patterns."
-model = "gpt-5.4"
+model = "gpt-6-sol"
 model_reasoning_effort = "high"
 sandbox_mode = "read-only"
 

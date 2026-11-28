@@ -1,6 +1,6 @@
 name = "backstage_scaffolder_template_review_agent"
 description = "Specialized subagent for backstage-scaffolder-template-review. Review Backstage Scaffolder software templates for action blast-radius, input parameter injection, RBAC gate coverage, integration secret scope, catalog entity poisoning, and output exposure."
-model = "gpt-5.4"
+model = "gpt-6-sol"
 model_reasoning_effort = "high"
 sandbox_mode = "read-only"
 

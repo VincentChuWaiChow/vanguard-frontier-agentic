@@ -1,6 +1,6 @@
 name = "oci_nosql_database_architect"
 description = "Static reviewer for Oracle NoSQL Database Cloud Service (NDCS): shard and primary key design, EVENTUAL vs ABSOLUTE consistency, read/write units, TTL, child tables, Global Active tables, nosql-rows IAM and Oracle NoSQL SDK code. Reviews and plans; never runs DDL, capacity, replica or IAM changes."
-model = "gpt-5.4"
+model = "gpt-6-sol"
 model_reasoning_effort = "high"
 sandbox_mode = "read-only"
 

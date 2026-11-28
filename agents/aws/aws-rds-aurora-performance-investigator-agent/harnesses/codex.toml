@@ -1,6 +1,6 @@
 name = "aws_rds_aurora_performance_investigator_agent"
 description = "Specialized subagent for aws-rds-aurora-performance-investigator. Investigate Amazon RDS and Aurora latency, connection exhaustion, slow queries, lock waits, replica lag, storage pressure, failover, Performance Insights, and database capacity risk."
-model = "gpt-5.4"
+model = "gpt-6-sol"
 model_reasoning_effort = "high"
 sandbox_mode = "read-only"
 

@@ -1,6 +1,6 @@
 name = "huawei_dws_dli_data_analyst_agent"
 description = "Specialized subagent for huawei-dws-dli-data-analyst. Operate DWS (GaussDB DWS), DLI (serverless Spark/Flink), MRS (MapReduce Service), and DataArts Studio for data governance and pipeline orchestration."
-model = "gpt-5.4"
+model = "gpt-6-sol"
 model_reasoning_effort = "high"
 sandbox_mode = "read-only"
 

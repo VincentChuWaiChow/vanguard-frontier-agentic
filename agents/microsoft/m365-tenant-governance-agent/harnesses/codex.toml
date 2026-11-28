@@ -1,6 +1,6 @@
 name = "m365_tenant_governance"
 description = "Specialized subagent for m365-tenant-governance. Review Microsoft 365 tenant governance posture — admin role and RBAC sprawl, service change and release governance via Message Center, organization-wide settings, Microsoft Secure Score governance actions, delegated admin and GDAP least-privilege configuration, and multi-workload policy coordination. Static review and advisory only."
-model = "gpt-5.4"
+model = "gpt-6-sol"
 model_reasoning_effort = "high"
 sandbox_mode = "read-only"
 

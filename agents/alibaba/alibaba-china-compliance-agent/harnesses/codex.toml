@@ -1,6 +1,6 @@
 name = "alibaba_china_compliance_agent"
 description = "Specialized subagent for alibaba-china-compliance. Advise on MLPS 2.0 (GB/T 22239-2019) compliance, Data Security Law (DSL), Cybersecurity Law, Personal Information Protection Law (PIPL), ICP filing, and cross-border data transfer obligations for workloads in Alibaba Cloud China mainland regions."
-model = "gpt-5.4"
+model = "gpt-6-sol"
 model_reasoning_effort = "high"
 sandbox_mode = "read-only"
 

@@ -1,6 +1,6 @@
 name = "argo_rollouts_progressive_delivery_review_agent"
 description = "Specialized subagent for argo-rollouts-progressive-delivery-review. Review Argo Rollouts canary and blue-green strategy, AnalysisTemplate conditions, traffic provider alignment, canaryService isolation, PDB compatibility, and automated rollback posture for progressive delivery safety."
-model = "gpt-5.4"
+model = "gpt-6-sol"
 model_reasoning_effort = "high"
 sandbox_mode = "read-only"
 

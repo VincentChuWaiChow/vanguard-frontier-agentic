@@ -1,6 +1,6 @@
 name = "aws_dynamodb_patterns"
 description = "Builds and operates Amazon DynamoDB access patterns: table and index design, existing-model refactors, runtime contract, PITR and on-demand backup and new-table restore, offline or approved live audits, bounded performance-test plans, feature plans, vectors, IAM, encryption, Streams, DAX and provisioning. Produces code and IaC diffs for the user to apply; never runs AWS changes."
-model = "gpt-5.4"
+model = "gpt-6-sol"
 model_reasoning_effort = "high"
 sandbox_mode = "read-only"
 

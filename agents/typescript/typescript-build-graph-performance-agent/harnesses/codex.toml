@@ -1,6 +1,6 @@
 name = "typescript_build_graph_performance_agent"
 description = "Static review, from supplied measurement evidence only, of what in a TypeScript program graph costs measured build or editor time: project references, composite/incremental/.tsbuildinfo behavior, generated-code volume, pathological type instantiation, and duplicated checking across lint, test, and build. Reads measurement output and configuration only."
-model = "gpt-5.4"
+model = "gpt-6-sol"
 model_reasoning_effort = "high"
 sandbox_mode = "read-only"
 

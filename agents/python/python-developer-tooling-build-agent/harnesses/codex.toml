@@ -1,6 +1,6 @@
 name = "python_developer_tooling_build_agent"
 description = "Static review of Python developer tooling and build configuration — whether linters/type-checkers/tests are wired to catch meaningful defects (not stylistic noise), CI gate coverage, build-backend and monorepo layout, and developer feedback loops. Reads tool/CI/build config only; never runs the tools."
-model = "gpt-5.4"
+model = "gpt-6-sol"
 model_reasoning_effort = "high"
 sandbox_mode = "read-only"
 

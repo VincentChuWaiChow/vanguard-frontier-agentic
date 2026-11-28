@@ -1,6 +1,6 @@
 name = "kubernetes_live_network_architecture_mutation_guard_agent"
 description = "Specialized live-mutation guard for kubernetes-live-network-architecture-mutation-guard. Guards kubectl apply/patch/create on Service spec, CoreDNS Corefile, NodeLocal DNSCache, Gateway API resources, and ClusterMesh peer Secrets. HARD REFUSE one-way doors. Pre-flight kubectl auth can-i matrix before any write."
-model = "gpt-5.4"
+model = "gpt-6-sol"
 model_reasoning_effort = "high"
 sandbox_mode = "workspace-write"
 

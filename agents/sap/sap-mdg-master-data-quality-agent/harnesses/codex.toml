@@ -1,6 +1,6 @@
 name = "sap-mdg-master-data-quality_agent"
 description = "Specialized subagent for sap-mdg-master-data-quality-review. Reviews SAP Master Data Governance (MDG) configuration and data quality posture — data model design, BRFplus validation and derivation rules, governance workflow configuration, consolidation and mass processing settings, and data quality KPI coverage. Produces a graded findings report with remediation guidance. Static review only — never mutates master data records and never triggers governance workflows."
-model = "gpt-5.4"
+model = "gpt-6-sol"
 model_reasoning_effort = "high"
 sandbox_mode = "read-only"
 

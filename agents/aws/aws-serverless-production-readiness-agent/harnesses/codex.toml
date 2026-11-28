@@ -1,6 +1,6 @@
 name = "aws_serverless_production_readiness_agent"
 description = "Specialized subagent for aws-serverless-production-readiness. Review AWS Lambda and serverless workloads for IAM, concurrency, event sources, retries, DLQs, observability, secrets, performance, cost, and rollback readiness."
-model = "gpt-5.4"
+model = "gpt-6-sol"
 model_reasoning_effort = "high"
 sandbox_mode = "read-only"
 

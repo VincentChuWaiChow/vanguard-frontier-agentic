@@ -1,6 +1,6 @@
 name = "frontend_maestro"
 description = "Per-domain router for frontend. Classify an inbound frontend task, dispatch to the narrowest specialist agent(s) from the frontend catalog (or a parallel team for multi-domain tasks), and hand off the resulting evidence to the Board Chair — never render a governance verdict itself."
-model = "gpt-5.4"
+model = "gpt-6-sol"
 model_reasoning_effort = "high"
 sandbox_mode = "read-only"
 

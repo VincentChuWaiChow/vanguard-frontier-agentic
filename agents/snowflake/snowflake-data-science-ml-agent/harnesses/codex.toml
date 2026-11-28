@@ -1,6 +1,6 @@
 name = "snowflake_data_science_ml_agent"
 description = "Reviews the ML lifecycle in Snowflake for reproducibility and governability: Snowpark ML, feature engineering and leakage, training reproducibility, the model registry and versioning, batch and continuous inference, drift and model observability, and ML data lineage. Treats a notebook with a good metric as an experiment, not a production system. Static review only."
-model = "gpt-5.4"
+model = "gpt-6-sol"
 model_reasoning_effort = "high"
 sandbox_mode = "read-only"
 

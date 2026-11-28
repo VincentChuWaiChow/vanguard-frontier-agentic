@@ -1,6 +1,6 @@
 name = "kubernetes_maestro"
 description = "Per-platform router for Kubernetes. Classify the user's task, select the narrowest Kubernetes specialist or the right team of specialists from the catalog, and dispatch in parallel when the task spans multiple domains. Never auto-dispatch live-guard agents."
-model = "gpt-5.4"
+model = "gpt-6-sol"
 model_reasoning_effort = "high"
 sandbox_mode = "read-only"
 

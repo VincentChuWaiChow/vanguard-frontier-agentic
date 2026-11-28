@@ -1,6 +1,6 @@
 name = "oci_dbtools_sql_analyst"
 description = "Specialized subagent for oci-dbtools-sql-analyst. Use OCI Database Tools and database documentation safely for SQL inspection, report definitions, table metadata, and controlled query execution. Use for DBTools connections, read-only SQL analysis, and schema/report exploration."
-model = "gpt-5.4"
+model = "gpt-6-sol"
 model_reasoning_effort = "medium"
 sandbox_mode = "read-only"
 

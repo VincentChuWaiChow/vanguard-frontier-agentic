@@ -1,6 +1,6 @@
 name = "databricks_live_unity_catalog_grant_guard_at_azure"
 description = "Specialized subagent for databricks-live-unity-catalog-grant-guard-at-azure. Mutating-runtime live guard for Unity Catalog privilege management on Azure Databricks. Executes exactly ONE GRANT or REVOKE of a single privilege on a single Unity Catalog securable (schema, table, or volume) to a single principal — gated by explicit written human approval, dry-run preflight, prior-state capture, and named rollback."
-model = "gpt-5.4"
+model = "gpt-6-sol"
 model_reasoning_effort = "high"
 sandbox_mode = "read-only"
 

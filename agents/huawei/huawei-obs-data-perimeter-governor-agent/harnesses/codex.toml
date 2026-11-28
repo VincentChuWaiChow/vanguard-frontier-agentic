@@ -1,6 +1,6 @@
 name = "huawei_obs_data_perimeter_governor_agent"
 description = "Specialized subagent for huawei-obs-data-perimeter-governor. Govern Huawei Cloud OBS (Object Storage Service) data perimeters — bucket policy and ACL public exposure, Block Public Access configuration, VPC endpoint binding for private access, WORM (Object Lock), cross-region replication compliance, and MLPS 2.0 data residency enforcement."
-model = "gpt-5.4"
+model = "gpt-6-sol"
 model_reasoning_effort = "high"
 sandbox_mode = "read-only"
 

@@ -1,6 +1,6 @@
 name = "sap-hypercare-incident-commander_agent"
 description = "Specialized subagent for sap-hypercare-incident-commander-review. Reviews SAP hypercare readiness posture, go-live stabilisation plan completeness, incident command structure, cutover fallback coverage, and war-room escalation process design during and after SAP project go-live events — flags missing hypercare role assignments, incomplete incident severity classifications, absent cutover fallback decision trees, ungated production support handover gaps, and stabilisation monitoring blind spots. Escalates critical production-availability, business-continuity, and contractual-SLA findings to project manager, go-live incident commander, operations lead, and SAP engagement manager. Static review only — never mutates any incident record, hypercare plan, support ticket, or cutover checklist entry."
-model = "gpt-5.4"
+model = "gpt-6-sol"
 model_reasoning_effort = "high"
 sandbox_mode = "read-only"
 

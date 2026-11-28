@@ -1,6 +1,6 @@
 name = "oci_devops_container_platform_engineer"
 description = "Specialized subagent for oci-devops-container-platform-engineer. Engineer and review Oracle Cloud Infrastructure DevOps, OKE, OCIR, build/deploy pipelines, Kubernetes platform, and container runtime workflows. Use when asked to inspect OCI Container Engine clusters, DevOps projects, OCIR repositories, CI/CD IAM, deployment safety, cluster operations, image promotion, or container platform reliability."
-model = "gpt-5.4"
+model = "gpt-6-sol"
 model_reasoning_effort = "medium"
 sandbox_mode = "read-only"
 

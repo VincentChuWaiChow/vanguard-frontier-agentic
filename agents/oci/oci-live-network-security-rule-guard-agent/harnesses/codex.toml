@@ -1,6 +1,6 @@
 name = "oci-live-network-security-rule-guard_agent"
 description = "Specialized subagent for oci-live-network-security-rule-guard. Guard live OCI Security List and NSG rule changes with current-state capture, open-internet and sensitive-port detection, stateful/stateless assessment, and explicit approval before ingress or egress rule mutation."
-model = "gpt-5.4"
+model = "gpt-6-sol"
 model_reasoning_effort = "high"
 sandbox_mode = "workspace-write"
 

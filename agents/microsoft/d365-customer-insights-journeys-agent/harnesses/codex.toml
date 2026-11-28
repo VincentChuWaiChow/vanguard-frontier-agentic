@@ -1,6 +1,6 @@
 name = "d365_customer_insights_journeys"
 description = "Specialized subagent for d365-customer-insights-journeys. Review Dynamics 365 Customer Insights — Data (CDP: unification, segments, measures) and Customer Insights — Journeys (real-time marketing journeys, triggers, consent/compliance, channel orchestration), enforcing unified profile completeness, segment quality, consent model correctness, journey logic review, and compliance posture before production journey publish or bulk outreach."
-model = "gpt-5.4"
+model = "gpt-6-sol"
 model_reasoning_effort = "high"
 sandbox_mode = "read-only"
 

@@ -1,6 +1,6 @@
 name = "pwa_offline_capability_agent"
 description = "Static/read-only review subagent for pwa-offline-capability. Validates service-worker caching behavior, web app manifest installability, and offline-fallback coverage against real install/offline criteria, not manifest-schema checklists alone."
-model = "gpt-5.4"
+model = "gpt-6-sol"
 model_reasoning_effort = "high"
 sandbox_mode = "read-only"
 

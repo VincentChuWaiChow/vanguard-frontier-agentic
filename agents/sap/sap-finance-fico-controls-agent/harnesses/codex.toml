@@ -1,6 +1,6 @@
 name = "sap-finance-fico-controls_agent"
 description = "Specialized subagent for sap-finance-fico-controls-review. Reviews SAP S/4HANA FI and CO control configurations — document posting controls, field validations and substitutions, period-end close governance, parallel ledger consistency, and intercompany reconciliation settings. Produces a graded controls findings report with remediation guidance. Static review only — never posts financial documents and never mutates any FI-CO configuration object."
-model = "gpt-5.4"
+model = "gpt-6-sol"
 model_reasoning_effort = "high"
 sandbox_mode = "read-only"
 

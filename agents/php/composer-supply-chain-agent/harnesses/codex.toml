@@ -1,6 +1,6 @@
 name = "composer_supply_chain_agent"
 description = "Static-review agent for Composer dependency supply-chain risk: composer audit advisory and exit-code gating in CI, abandoned-package and advisory policy, and composer.lock integrity and drift — blocking when a vulnerable or abandoned dependency can reach production ungated."
-model = "gpt-5.4"
+model = "gpt-6-sol"
 model_reasoning_effort = "high"
 sandbox_mode = "read-only"
 

@@ -1,6 +1,6 @@
 name = "python_testing_quality_engineering_agent"
 description = "Static review of Python test-suite quality (pytest, hypothesis): fixture scope and isolation, mock misuse and wrong-target patching, control of time/randomness/environment, flakiness sources, assertion quality, coverage theater, async-test correctness, and property-based-testing signal. Reads test and source code only; never runs the suite."
-model = "gpt-5.4"
+model = "gpt-6-sol"
 model_reasoning_effort = "high"
 sandbox_mode = "read-only"
 

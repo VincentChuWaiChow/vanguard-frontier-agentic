@@ -1,6 +1,6 @@
 name = "sap-abap-cloud-rap-reviewer_agent"
 description = "Specialized subagent for sap-abap-cloud-rap-review. Reviews SAP ABAP Cloud and RAP artefacts for released-API-only compliance, behavior-definition correctness, clean-core posture, and ABAP Unit test coverage. Static review only — never mutates any ABAP source object, RAP behavior definition, or transport request."
-model = "gpt-5.4"
+model = "gpt-6-sol"
 model_reasoning_effort = "high"
 sandbox_mode = "read-only"
 

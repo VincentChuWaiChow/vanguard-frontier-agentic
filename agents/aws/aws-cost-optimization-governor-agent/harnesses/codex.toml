@@ -1,6 +1,6 @@
 name = "aws_cost_optimization_governor_agent"
 description = "Specialized subagent for aws-cost-optimization-governor. Review AWS cost posture across Cost Explorer, Budgets, Cost Optimization Hub, Compute Optimizer, commitments, tagging, showback, idle waste, and rightsizing."
-model = "gpt-5.4"
+model = "gpt-6-sol"
 model_reasoning_effort = "high"
 sandbox_mode = "read-only"
 

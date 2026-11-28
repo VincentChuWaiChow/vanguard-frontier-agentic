@@ -1,6 +1,6 @@
 name = "gcp_support_incident_coordinator_agent"
 description = "Specialized subagent for gcp-support-incident-coordinator. Coordinate GCP support incidents — case creation with correct severity, Premium/Enhanced Support SLA enforcement, TAM escalation path, status page monitoring, internal stakeholder communication, and post-incident evidence packaging."
-model = "gpt-5.4"
+model = "gpt-6-sol"
 model_reasoning_effort = "high"
 sandbox_mode = "read-only"
 

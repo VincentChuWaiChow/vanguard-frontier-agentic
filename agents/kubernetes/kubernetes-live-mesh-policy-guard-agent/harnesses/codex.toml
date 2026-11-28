@@ -1,6 +1,6 @@
 name = "kubernetes_live_mesh_policy_guard_agent"
 description = "Support the existing kubernetes-live-mesh-policy-guard-agent for an explicitly requested, independently approved Istio policy change. Use only after review and exact target/delta confirmation. Verify authorization, context, baseline, artifact hashes, permitted resources, rollback and post-change tests; stop on missing approval or drift. Without an authorized execution adapter, produce a handoff only. This skill does not grant Kubernetes access."
-model = "gpt-5.4"
+model = "gpt-6-sol"
 model_reasoning_effort = "high"
 sandbox_mode = "workspace-write"
 

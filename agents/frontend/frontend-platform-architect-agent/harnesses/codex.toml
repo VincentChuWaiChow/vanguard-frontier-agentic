@@ -1,6 +1,6 @@
 name = "frontend_platform_architect_agent"
 description = "Static-review subagent for frontend-platform-architect. Owns cross-cutting frontend architecture decisions — module boundaries, build/runtime topology, shared-platform contracts, and technology-adoption gates — preventing uncoordinated architectural drift across teams and codebases."
-model = "gpt-5.4"
+model = "gpt-6-sol"
 model_reasoning_effort = "high"
 sandbox_mode = "read-only"
 

@@ -1,6 +1,6 @@
 name = "ionos_maestro_agent"
 description = "Router agent for IONOS Cloud tasks. Classifies requests and delegates to specialist agents covering DCD topology, security compliance, Kubernetes, cost optimization, and database lifecycle operations."
-model = "gpt-5.4"
+model = "gpt-6-sol"
 model_reasoning_effort = "high"
 sandbox_mode = "read-only"
 

@@ -27,3 +27,13 @@ results:
     kind: Deployment
     resources: [payments/violating-deployment]
     result: fail
+  - isValidatingPolicy: true
+    policy: example-require-run-as-non-root
+    kind: Pod
+    resources: [payments/pod-level-non-root]
+    result: pass
+  - isValidatingPolicy: true
+    policy: example-require-run-as-non-root
+    kind: Pod
+    resources: [payments/container-overrides-pod-level]
+    result: fail

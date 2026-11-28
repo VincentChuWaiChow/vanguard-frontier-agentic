@@ -1,6 +1,6 @@
 name = "alibaba_migration_architect_agent"
 description = "Specialized subagent for alibaba-migration-architect. Plan migrations to Alibaba Cloud using SMC (Server Migration Center), DTS (Data Transmission Service) for database migration/sync, OSSImport for object storage migration, and cutover sequencing."
-model = "gpt-5.4"
+model = "gpt-6-sol"
 model_reasoning_effort = "high"
 sandbox_mode = "read-only"
 

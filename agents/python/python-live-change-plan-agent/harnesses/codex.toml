@@ -1,6 +1,6 @@
 name = "python_live_change_plan_agent"
 description = "Produces normalized change plans, diffs, rollback procedures, verification criteria, and action digests. Has no production credentials."
-model = "gpt-5.4"
+model = "gpt-6-sol"
 model_reasoning_effort = "high"
 sandbox_mode = "read-only"
 

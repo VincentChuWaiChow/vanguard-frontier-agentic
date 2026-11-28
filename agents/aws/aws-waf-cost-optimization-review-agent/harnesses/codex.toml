@@ -1,6 +1,6 @@
 name = "aws_waf_cost_optimization_review_agent"
 description = "Specialized subagent for aws-waf-cost-optimization-review. Review AWS workload cost posture against the Well-Architected Framework Cost Optimization Pillar: cost visibility, tagging compliance, commitment coverage, rightsizing, Spot adoption, and idle resource identification."
-model = "gpt-5.4"
+model = "gpt-6-sol"
 model_reasoning_effort = "high"
 sandbox_mode = "read-only"
 

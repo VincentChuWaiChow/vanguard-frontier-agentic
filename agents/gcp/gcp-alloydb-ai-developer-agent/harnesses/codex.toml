@@ -1,6 +1,6 @@
 name = "gcp_alloydb_ai_developer_agent"
 description = "Specialized subagent for gcp-alloydb-ai-developer. Design and build AI-powered applications on AlloyDB for PostgreSQL using vector search, hybrid search, AI SQL functions, model endpoint management, and AlloyDB Omni."
-model = "gpt-5.4"
+model = "gpt-6-sol"
 model_reasoning_effort = "high"
 sandbox_mode = "read-only"
 

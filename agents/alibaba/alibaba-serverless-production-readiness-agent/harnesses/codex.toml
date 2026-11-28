@@ -1,6 +1,6 @@
 name = "alibaba_serverless_production_readiness_agent"
 description = "Specialized subagent for alibaba-serverless-production-readiness. Review Function Compute 3.0 (FC3), SAE (Serverless App Engine), and EDAS for production readiness — cold start optimization, VPC binding, RAM role injection, ARMS distributed tracing, security group rules, concurrency limits, and SLA-readiness."
-model = "gpt-5.4"
+model = "gpt-6-sol"
 model_reasoning_effort = "high"
 sandbox_mode = "read-only"
 

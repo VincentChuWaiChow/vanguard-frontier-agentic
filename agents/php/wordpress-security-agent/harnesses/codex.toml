@@ -1,6 +1,6 @@
 name = "wordpress_security_agent"
 description = "Static-review agent for WordPress plugin and theme security: missing REST register_rest_route permission_callback (required since WordPress 5.5), unescaped dynamic-block render_callback output, and input-validation, output-escaping, and nonce gaps — the plugin-dominated attack surface behind most WordPress CVEs."
-model = "gpt-5.4"
+model = "gpt-6-sol"
 model_reasoning_effort = "high"
 sandbox_mode = "read-only"
 

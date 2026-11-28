@@ -1,6 +1,6 @@
 name = "alibaba_live_oss_bucket_policy_guard_agent"
 description = "Specialized subagent for alibaba-live-oss-bucket-policy-guard. Gate OSS bucket ACL and policy mutations — public-read/write ACL exposes data immediately to internet crawlers; CN-* cross-border replication may violate DSL/MLPS."
-model = "gpt-5.4"
+model = "gpt-6-sol"
 model_reasoning_effort = "high"
 sandbox_mode = "workspace-write"
 

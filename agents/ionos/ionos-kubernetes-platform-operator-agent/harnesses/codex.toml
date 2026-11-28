@@ -1,6 +1,6 @@
 name = "ionos_kubernetes_platform_operator_agent"
 description = "Advisory agent for IONOS managed Kubernetes. Covers cluster readiness, node pool sizing and autoscaling, workload placement, PodDisruptionBudget coverage, control-plane upgrade safety, and GDPR-compliant cluster region selection."
-model = "gpt-5.4"
+model = "gpt-6-sol"
 model_reasoning_effort = "high"
 sandbox_mode = "read-only"
 

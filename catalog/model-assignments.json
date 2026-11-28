@@ -1,7 +1,7 @@
 {
   "manifest_version": 1,
   "generated_by": "scripts/model-policy.mjs",
-  "policy_sha256": "c1784b39cdae313001369bb4e48d6360a04573c641a9a617f4dbcb28d41c0113",
+  "policy_sha256": "69c1fd1fa527a9cf090b619caf9cb07d5957842072fb0b2a57d0267996e4849a",
   "capabilities": {
     "codex": {
       "model": true,
@@ -32,7 +32,7 @@
     {
       "agent_id": "accessibility-wcag-agent",
       "harness": "codex",
-      "model": "gpt-5.4",
+      "model": "gpt-6-sol",
       "model_provider": null,
       "model_fallback_from": null,
       "model_warning": null,
@@ -65,7 +65,7 @@
     {
       "agent_id": "accounting-business-combinations-advisor-agent",
       "harness": "codex",
-      "model": "gpt-5.4",
+      "model": "gpt-6-sol",
       "model_provider": null,
       "model_fallback_from": null,
       "model_warning": null,
@@ -98,7 +98,7 @@
     {
       "agent_id": "accounting-close-cycle-advisor-agent",
       "harness": "codex",
-      "model": "gpt-5.4",
+      "model": "gpt-6-sol",
       "model_provider": null,
       "model_fallback_from": null,
       "model_warning": null,
@@ -131,7 +131,7 @@
     {
       "agent_id": "accounting-consolidation-intercompany-advisor-agent",
       "harness": "codex",
-      "model": "gpt-5.4",
+      "model": "gpt-6-sol",
       "model_provider": null,
       "model_fallback_from": null,
       "model_warning": null,
@@ -164,7 +164,7 @@
     {
       "agent_id": "accounting-equity-compensation-advisor-agent",
       "harness": "codex",
-      "model": "gpt-5.4",
+      "model": "gpt-6-sol",
       "model_provider": null,
       "model_fallback_from": null,
       "model_warning": null,
@@ -197,7 +197,7 @@
     {
       "agent_id": "accounting-fixed-assets-advisor-agent",
       "harness": "codex",
-      "model": "gpt-5.4",
+      "model": "gpt-6-sol",
       "model_provider": null,
       "model_fallback_from": null,
       "model_warning": null,
@@ -230,7 +230,7 @@
     {
       "agent_id": "accounting-fx-translation-advisor-agent",
       "harness": "codex",
-      "model": "gpt-5.4",
+      "model": "gpt-6-sol",
       "model_provider": null,
       "model_fallback_from": null,
       "model_warning": null,
@@ -263,7 +263,7 @@
     {
       "agent_id": "accounting-hedge-accounting-advisor-agent",
       "harness": "codex",
-      "model": "gpt-5.4",
+      "model": "gpt-6-sol",
       "model_provider": null,
       "model_fallback_from": null,
       "model_warning": null,
@@ -296,7 +296,7 @@
     {
       "agent_id": "accounting-indirect-tax-einvoicing-advisor-agent",
       "harness": "codex",
-      "model": "gpt-5.4",
+      "model": "gpt-6-sol",
       "model_provider": null,
       "model_fallback_from": null,
       "model_warning": null,
@@ -329,7 +329,7 @@
     {
       "agent_id": "accounting-lease-accounting-advisor-agent",
       "harness": "codex",
-      "model": "gpt-5.4",
+      "model": "gpt-6-sol",
       "model_provider": null,
       "model_fallback_from": null,
       "model_warning": null,
@@ -362,7 +362,7 @@
     {
       "agent_id": "accounting-maestro-agent",
       "harness": "codex",
-      "model": "gpt-5.4",
+      "model": "gpt-6-sol",
       "model_provider": null,
       "model_fallback_from": null,
       "model_warning": null,
@@ -395,7 +395,7 @@
     {
       "agent_id": "accounting-payroll-advisor-agent",
       "harness": "codex",
-      "model": "gpt-5.4",
+      "model": "gpt-6-sol",
       "model_provider": null,
       "model_fallback_from": null,
       "model_warning": null,
@@ -428,7 +428,7 @@
     {
       "agent_id": "accounting-procure-to-pay-advisor-agent",
       "harness": "codex",
-      "model": "gpt-5.4",
+      "model": "gpt-6-sol",
       "model_provider": null,
       "model_fallback_from": null,
       "model_warning": null,
@@ -461,7 +461,7 @@
     {
       "agent_id": "accounting-revenue-recognition-advisor-agent",
       "harness": "codex",
-      "model": "gpt-5.4",
+      "model": "gpt-6-sol",
       "model_provider": null,
       "model_fallback_from": null,
       "model_warning": null,
@@ -494,7 +494,7 @@
     {
       "agent_id": "accounting-tax-provision-advisor-agent",
       "harness": "codex",
-      "model": "gpt-5.4",
+      "model": "gpt-6-sol",
       "model_provider": null,
       "model_fallback_from": null,
       "model_warning": null,
@@ -593,7 +593,7 @@
     {
       "agent_id": "ai-advertising-targeting-fairness-review-agent",
       "harness": "codex",
-      "model": "gpt-5.4",
+      "model": "gpt-6-sol",
       "model_provider": null,
       "model_fallback_from": null,
       "model_warning": null,
@@ -626,7 +626,7 @@
     {
       "agent_id": "ai-assisted-frontend-review-agent",
       "harness": "codex",
-      "model": "gpt-5.4",
+      "model": "gpt-6-sol",
       "model_provider": null,
       "model_fallback_from": null,
       "model_warning": null,
@@ -659,7 +659,7 @@
     {
       "agent_id": "alibaba-ack-container-platform-operator-agent",
       "harness": "codex",
-      "model": "gpt-5.4",
+      "model": "gpt-6-sol",
       "model_provider": null,
       "model_fallback_from": null,
       "model_warning": null,
@@ -692,7 +692,7 @@
     {
       "agent_id": "alibaba-actiontrail-audit-analyst-agent",
       "harness": "codex",
-      "model": "gpt-5.4",
+      "model": "gpt-6-sol",
       "model_provider": null,
       "model_fallback_from": null,
       "model_warning": null,
@@ -725,7 +725,7 @@
     {
       "agent_id": "alibaba-analyticdb-realtime-agent",
       "harness": "codex",
-      "model": "gpt-5.4",
+      "model": "gpt-6-sol",
       "model_provider": null,
       "model_fallback_from": null,
       "model_warning": null,
@@ -758,7 +758,7 @@
     {
       "agent_id": "alibaba-certificate-manager-issuer-review-agent",
       "harness": "codex",
-      "model": "gpt-5.4",
+      "model": "gpt-6-sol",
       "model_provider": null,
       "model_fallback_from": null,
       "model_warning": null,
@@ -791,7 +791,7 @@
     {
       "agent_id": "alibaba-change-impact-advisor-agent",
       "harness": "codex",
-      "model": "gpt-5.4",
+      "model": "gpt-6-sol",
       "model_provider": null,
       "model_fallback_from": null,
       "model_warning": null,
@@ -824,7 +824,7 @@
     {
       "agent_id": "alibaba-china-compliance-agent",
       "harness": "codex",
-      "model": "gpt-5.4",
+      "model": "gpt-6-sol",
       "model_provider": null,
       "model_fallback_from": null,
       "model_warning": null,
@@ -857,7 +857,7 @@
     {
       "agent_id": "alibaba-cost-anomaly-watch-coordinator-agent",
       "harness": "codex",
-      "model": "gpt-5.4",
+      "model": "gpt-6-sol",
       "model_provider": null,
       "model_fallback_from": null,
       "model_warning": null,
@@ -890,7 +890,7 @@
     {
       "agent_id": "alibaba-cost-finops-analyst-agent",
       "harness": "codex",
-      "model": "gpt-5.4",
+      "model": "gpt-6-sol",
       "model_provider": null,
       "model_fallback_from": null,
       "model_warning": null,
@@ -923,7 +923,7 @@
     {
       "agent_id": "alibaba-daily-operations-briefing-coordinator-agent",
       "harness": "codex",
-      "model": "gpt-5.4",
+      "model": "gpt-6-sol",
       "model_provider": null,
       "model_fallback_from": null,
       "model_warning": null,
@@ -956,7 +956,7 @@
     {
       "agent_id": "alibaba-devops-cicd-operator-agent",
       "harness": "codex",
-      "model": "gpt-5.4",
+      "model": "gpt-6-sol",
       "model_provider": null,
       "model_fallback_from": null,
       "model_warning": null,
@@ -989,7 +989,7 @@
     {
       "agent_id": "alibaba-ecs-compute-operator-agent",
       "harness": "codex",
-      "model": "gpt-5.4",
+      "model": "gpt-6-sol",
       "model_provider": null,
       "model_fallback_from": null,
       "model_warning": null,
@@ -1022,7 +1022,7 @@
     {
       "agent_id": "alibaba-event-driven-architecture-review-agent",
       "harness": "codex",
-      "model": "gpt-5.4",
+      "model": "gpt-6-sol",
       "model_provider": null,
       "model_fallback_from": null,
       "model_warning": null,
@@ -1055,7 +1055,7 @@
     {
       "agent_id": "alibaba-function-serverless-operator-agent",
       "harness": "codex",
-      "model": "gpt-5.4",
+      "model": "gpt-6-sol",
       "model_provider": null,
       "model_fallback_from": null,
       "model_warning": null,
@@ -1088,7 +1088,7 @@
     {
       "agent_id": "alibaba-iac-change-safety-review-agent",
       "harness": "codex",
-      "model": "gpt-5.4",
+      "model": "gpt-6-sol",
       "model_provider": null,
       "model_fallback_from": null,
       "model_warning": null,
@@ -1121,7 +1121,7 @@
     {
       "agent_id": "alibaba-kms-secret-lifecycle-steward-agent",
       "harness": "codex",
-      "model": "gpt-5.4",
+      "model": "gpt-6-sol",
       "model_provider": null,
       "model_fallback_from": null,
       "model_warning": null,
@@ -1154,7 +1154,7 @@
     {
       "agent_id": "alibaba-landing-zone-architect-agent",
       "harness": "codex",
-      "model": "gpt-5.4",
+      "model": "gpt-6-sol",
       "model_provider": null,
       "model_fallback_from": null,
       "model_warning": null,
@@ -1187,7 +1187,7 @@
     {
       "agent_id": "alibaba-live-ack-rollout-guard-agent",
       "harness": "codex",
-      "model": "gpt-5.4",
+      "model": "gpt-6-sol",
       "model_provider": null,
       "model_fallback_from": null,
       "model_warning": null,
@@ -1220,7 +1220,7 @@
     {
       "agent_id": "alibaba-live-cost-budget-action-guard-agent",
       "harness": "codex",
-      "model": "gpt-5.4",
+      "model": "gpt-6-sol",
       "model_provider": null,
       "model_fallback_from": null,
       "model_warning": null,
@@ -1253,7 +1253,7 @@
     {
       "agent_id": "alibaba-live-kms-key-mutation-guard-agent",
       "harness": "codex",
-      "model": "gpt-5.4",
+      "model": "gpt-6-sol",
       "model_provider": null,
       "model_fallback_from": null,
       "model_warning": null,
@@ -1286,7 +1286,7 @@
     {
       "agent_id": "alibaba-live-oss-bucket-policy-guard-agent",
       "harness": "codex",
-      "model": "gpt-5.4",
+      "model": "gpt-6-sol",
       "model_provider": null,
       "model_fallback_from": null,
       "model_warning": null,
@@ -1319,7 +1319,7 @@
     {
       "agent_id": "alibaba-live-ram-policy-change-guard-agent",
       "harness": "codex",
-      "model": "gpt-5.4",
+      "model": "gpt-6-sol",
       "model_provider": null,
       "model_fallback_from": null,
       "model_warning": null,
@@ -1352,7 +1352,7 @@
     {
       "agent_id": "alibaba-live-rds-polardb-mutation-guard-agent",
       "harness": "codex",
-      "model": "gpt-5.4",
+      "model": "gpt-6-sol",
       "model_provider": null,
       "model_fallback_from": null,
       "model_warning": null,
@@ -1385,7 +1385,7 @@
     {
       "agent_id": "alibaba-load-balancer-traffic-engineer-agent",
       "harness": "codex",
-      "model": "gpt-5.4",
+      "model": "gpt-6-sol",
       "model_provider": null,
       "model_fallback_from": null,
       "model_warning": null,
@@ -1418,7 +1418,7 @@
     {
       "agent_id": "alibaba-maestro-agent",
       "harness": "codex",
-      "model": "gpt-5.4",
+      "model": "gpt-6-sol",
       "model_provider": null,
       "model_fallback_from": null,
       "model_warning": null,
@@ -1451,7 +1451,7 @@
     {
       "agent_id": "alibaba-maxcompute-dataworks-analyst-agent",
       "harness": "codex",
-      "model": "gpt-5.4",
+      "model": "gpt-6-sol",
       "model_provider": null,
       "model_fallback_from": null,
       "model_warning": null,
@@ -1484,7 +1484,7 @@
     {
       "agent_id": "alibaba-migration-architect-agent",
       "harness": "codex",
-      "model": "gpt-5.4",
+      "model": "gpt-6-sol",
       "model_provider": null,
       "model_fallback_from": null,
       "model_warning": null,
@@ -1517,7 +1517,7 @@
     {
       "agent_id": "alibaba-mse-microservice-engine-agent",
       "harness": "codex",
-      "model": "gpt-5.4",
+      "model": "gpt-6-sol",
       "model_provider": null,
       "model_fallback_from": null,
       "model_warning": null,
@@ -1550,7 +1550,7 @@
     {
       "agent_id": "alibaba-network-architect-agent",
       "harness": "codex",
-      "model": "gpt-5.4",
+      "model": "gpt-6-sol",
       "model_provider": null,
       "model_fallback_from": null,
       "model_warning": null,
@@ -1583,7 +1583,7 @@
     {
       "agent_id": "alibaba-observability-incident-responder-agent",
       "harness": "codex",
-      "model": "gpt-5.4",
+      "model": "gpt-6-sol",
       "model_provider": null,
       "model_fallback_from": null,
       "model_warning": null,
@@ -1616,7 +1616,7 @@
     {
       "agent_id": "alibaba-oss-data-perimeter-governor-agent",
       "harness": "codex",
-      "model": "gpt-5.4",
+      "model": "gpt-6-sol",
       "model_provider": null,
       "model_fallback_from": null,
       "model_warning": null,
@@ -1649,7 +1649,7 @@
     {
       "agent_id": "alibaba-oss-storage-steward-agent",
       "harness": "codex",
-      "model": "gpt-5.4",
+      "model": "gpt-6-sol",
       "model_provider": null,
       "model_fallback_from": null,
       "model_warning": null,
@@ -1682,7 +1682,7 @@
     {
       "agent_id": "alibaba-polardb-rds-dba-agent",
       "harness": "codex",
-      "model": "gpt-5.4",
+      "model": "gpt-6-sol",
       "model_provider": null,
       "model_fallback_from": null,
       "model_warning": null,
@@ -1715,7 +1715,7 @@
     {
       "agent_id": "alibaba-ram-iam-review-agent",
       "harness": "codex",
-      "model": "gpt-5.4",
+      "model": "gpt-6-sol",
       "model_provider": null,
       "model_fallback_from": null,
       "model_warning": null,
@@ -1748,7 +1748,7 @@
     {
       "agent_id": "alibaba-registry-artifact-governor-agent",
       "harness": "codex",
-      "model": "gpt-5.4",
+      "model": "gpt-6-sol",
       "model_provider": null,
       "model_fallback_from": null,
       "model_warning": null,
@@ -1781,7 +1781,7 @@
     {
       "agent_id": "alibaba-resilience-bcdr-review-agent",
       "harness": "codex",
-      "model": "gpt-5.4",
+      "model": "gpt-6-sol",
       "model_provider": null,
       "model_fallback_from": null,
       "model_warning": null,
@@ -1814,7 +1814,7 @@
     {
       "agent_id": "alibaba-security-center-hardening-agent",
       "harness": "codex",
-      "model": "gpt-5.4",
+      "model": "gpt-6-sol",
       "model_provider": null,
       "model_fallback_from": null,
       "model_warning": null,
@@ -1847,7 +1847,7 @@
     {
       "agent_id": "alibaba-serverless-production-readiness-agent",
       "harness": "codex",
-      "model": "gpt-5.4",
+      "model": "gpt-6-sol",
       "model_provider": null,
       "model_fallback_from": null,
       "model_warning": null,
@@ -1880,7 +1880,7 @@
     {
       "agent_id": "alibaba-solution-architect-agent",
       "harness": "codex",
-      "model": "gpt-5.4",
+      "model": "gpt-6-sol",
       "model_provider": null,
       "model_fallback_from": null,
       "model_warning": null,
@@ -1913,7 +1913,7 @@
     {
       "agent_id": "alibaba-support-incident-coordinator-agent",
       "harness": "codex",
-      "model": "gpt-5.4",
+      "model": "gpt-6-sol",
       "model_provider": null,
       "model_fallback_from": null,
       "model_warning": null,
@@ -1946,7 +1946,7 @@
     {
       "agent_id": "alibaba-tablestore-architect-agent",
       "harness": "codex",
-      "model": "gpt-5.4",
+      "model": "gpt-6-sol",
       "model_provider": null,
       "model_fallback_from": null,
       "model_warning": null,
@@ -1979,7 +1979,7 @@
     {
       "agent_id": "alibaba-ticket-triage-escalation-coordinator-agent",
       "harness": "codex",
-      "model": "gpt-5.4",
+      "model": "gpt-6-sol",
       "model_provider": null,
       "model_fallback_from": null,
       "model_warning": null,
@@ -2012,7 +2012,7 @@
     {
       "agent_id": "alibaba-waf-cost-optimization-review-agent",
       "harness": "codex",
-      "model": "gpt-5.4",
+      "model": "gpt-6-sol",
       "model_provider": null,
       "model_fallback_from": null,
       "model_warning": null,
@@ -2045,7 +2045,7 @@
     {
       "agent_id": "alibaba-waf-reliability-review-agent",
       "harness": "codex",
-      "model": "gpt-5.4",
+      "model": "gpt-6-sol",
       "model_provider": null,
       "model_fallback_from": null,
       "model_warning": null,
@@ -2078,7 +2078,7 @@
     {
       "agent_id": "alibaba-waf-security-review-agent",
       "harness": "codex",
-      "model": "gpt-5.4",
+      "model": "gpt-6-sol",
       "model_provider": null,
       "model_fallback_from": null,
       "model_warning": null,
@@ -2111,7 +2111,7 @@
     {
       "agent_id": "analytics-data-minimization-review-agent",
       "harness": "codex",
-      "model": "gpt-5.4",
+      "model": "gpt-6-sol",
       "model_provider": null,
       "model_fallback_from": null,
       "model_warning": null,
@@ -2144,7 +2144,7 @@
     {
       "agent_id": "angular-specialist-agent",
       "harness": "codex",
-      "model": "gpt-5.4",
+      "model": "gpt-6-sol",
       "model_provider": null,
       "model_fallback_from": null,
       "model_warning": null,
@@ -2177,7 +2177,7 @@
     {
       "agent_id": "api-integration-bff-agent",
       "harness": "codex",
-      "model": "gpt-5.4",
+      "model": "gpt-6-sol",
       "model_provider": null,
       "model_fallback_from": null,
       "model_warning": null,
@@ -2210,7 +2210,7 @@
     {
       "agent_id": "argo-rollouts-progressive-delivery-review-agent",
       "harness": "codex",
-      "model": "gpt-5.4",
+      "model": "gpt-6-sol",
       "model_provider": null,
       "model_fallback_from": null,
       "model_warning": null,
@@ -2243,7 +2243,7 @@
     {
       "agent_id": "argocd-gitops-review-agent",
       "harness": "codex",
-      "model": "gpt-5.4",
+      "model": "gpt-6-sol",
       "model_provider": null,
       "model_fallback_from": null,
       "model_warning": null,
@@ -2276,7 +2276,7 @@
     {
       "agent_id": "atlassian-control-evidence-lineage-agent",
       "harness": "codex",
-      "model": "gpt-5.4",
+      "model": "gpt-6-sol",
       "model_provider": null,
       "model_fallback_from": null,
       "model_warning": null,
@@ -2309,7 +2309,7 @@
     {
       "agent_id": "atlassian-incident-prevention-agent",
       "harness": "codex",
-      "model": "gpt-5.4",
+      "model": "gpt-6-sol",
       "model_provider": null,
       "model_fallback_from": null,
       "model_warning": null,
@@ -2342,7 +2342,7 @@
     {
       "agent_id": "atlassian-knowledge-integrity-agent",
       "harness": "codex",
-      "model": "gpt-5.4",
+      "model": "gpt-6-sol",
       "model_provider": null,
       "model_fallback_from": null,
       "model_warning": null,
@@ -2375,7 +2375,7 @@
     {
       "agent_id": "atlassian-live-write-guard-agent",
       "harness": "codex",
-      "model": "gpt-5.4",
+      "model": "gpt-6-sol",
       "model_provider": null,
       "model_fallback_from": null,
       "model_warning": null,
@@ -2408,7 +2408,7 @@
     {
       "agent_id": "atlassian-maestro-agent",
       "harness": "codex",
-      "model": "gpt-5.4",
+      "model": "gpt-6-sol",
       "model_provider": null,
       "model_fallback_from": null,
       "model_warning": null,
@@ -2441,7 +2441,7 @@
     {
       "agent_id": "aws-agentcore-agent",
       "harness": "codex",
-      "model": "gpt-5.4",
+      "model": "gpt-6-sol",
       "model_provider": null,
       "model_fallback_from": null,
       "model_warning": null,
@@ -2474,7 +2474,7 @@
     {
       "agent_id": "aws-api-edge-delivery-review-agent",
       "harness": "codex",
-      "model": "gpt-5.4",
+      "model": "gpt-6-sol",
       "model_provider": null,
       "model_fallback_from": null,
       "model_warning": null,
@@ -2507,7 +2507,7 @@
     {
       "agent_id": "aws-bedrock-agent-security-governor-agent",
       "harness": "codex",
-      "model": "gpt-5.4",
+      "model": "gpt-6-sol",
       "model_provider": null,
       "model_fallback_from": null,
       "model_warning": null,
@@ -2540,7 +2540,7 @@
     {
       "agent_id": "aws-change-impact-advisor-agent",
       "harness": "codex",
-      "model": "gpt-5.4",
+      "model": "gpt-6-sol",
       "model_provider": null,
       "model_fallback_from": null,
       "model_warning": null,
@@ -2573,7 +2573,7 @@
     {
       "agent_id": "aws-ci-cd-release-engineer-agent",
       "harness": "codex",
-      "model": "gpt-5.4",
+      "model": "gpt-6-sol",
       "model_provider": null,
       "model_fallback_from": null,
       "model_warning": null,
@@ -2606,7 +2606,7 @@
     {
       "agent_id": "aws-compliance-evidence-mapper-agent",
       "harness": "codex",
-      "model": "gpt-5.4",
+      "model": "gpt-6-sol",
       "model_provider": null,
       "model_fallback_from": null,
       "model_warning": null,
@@ -2639,7 +2639,7 @@
     {
       "agent_id": "aws-cost-anomaly-watch-coordinator-agent",
       "harness": "codex",
-      "model": "gpt-5.4",
+      "model": "gpt-6-sol",
       "model_provider": null,
       "model_fallback_from": null,
       "model_warning": null,
@@ -2672,7 +2672,7 @@
     {
       "agent_id": "aws-cost-optimization-governor-agent",
       "harness": "codex",
-      "model": "gpt-5.4",
+      "model": "gpt-6-sol",
       "model_provider": null,
       "model_fallback_from": null,
       "model_warning": null,
@@ -2705,7 +2705,7 @@
     {
       "agent_id": "aws-daily-operations-briefing-coordinator-agent",
       "harness": "codex",
-      "model": "gpt-5.4",
+      "model": "gpt-6-sol",
       "model_provider": null,
       "model_fallback_from": null,
       "model_warning": null,
@@ -2738,7 +2738,7 @@
     {
       "agent_id": "aws-data-protection-backup-steward-agent",
       "harness": "codex",
-      "model": "gpt-5.4",
+      "model": "gpt-6-sol",
       "model_provider": null,
       "model_fallback_from": null,
       "model_warning": null,
@@ -2771,7 +2771,7 @@
     {
       "agent_id": "aws-deployment-hotfix-operator-agent",
       "harness": "codex",
-      "model": "gpt-5.4",
+      "model": "gpt-6-sol",
       "model_provider": null,
       "model_fallback_from": null,
       "model_warning": null,
@@ -2804,7 +2804,7 @@
     {
       "agent_id": "aws-devops-agent-skill-designer-agent",
       "harness": "codex",
-      "model": "gpt-5.4",
+      "model": "gpt-6-sol",
       "model_provider": null,
       "model_fallback_from": null,
       "model_warning": null,
@@ -2837,7 +2837,7 @@
     {
       "agent_id": "aws-dynamodb-data-modeling-performance-review-agent",
       "harness": "codex",
-      "model": "gpt-5.4",
+      "model": "gpt-6-sol",
       "model_provider": null,
       "model_fallback_from": null,
       "model_warning": null,
@@ -2870,7 +2870,7 @@
     {
       "agent_id": "aws-dynamodb-patterns-agent",
       "harness": "codex",
-      "model": "gpt-5.4",
+      "model": "gpt-6-sol",
       "model_provider": null,
       "model_fallback_from": null,
       "model_warning": null,
@@ -2903,7 +2903,7 @@
     {
       "agent_id": "aws-ec2-compute-operations-steward-agent",
       "harness": "codex",
-      "model": "gpt-5.4",
+      "model": "gpt-6-sol",
       "model_provider": null,
       "model_fallback_from": null,
       "model_warning": null,
@@ -2936,7 +2936,7 @@
     {
       "agent_id": "aws-ecs-fargate-platform-operator-agent",
       "harness": "codex",
-      "model": "gpt-5.4",
+      "model": "gpt-6-sol",
       "model_provider": null,
       "model_fallback_from": null,
       "model_warning": null,
@@ -2969,7 +2969,7 @@
     {
       "agent_id": "aws-ecs-service-remediation-operator-agent",
       "harness": "codex",
-      "model": "gpt-5.4",
+      "model": "gpt-6-sol",
       "model_provider": null,
       "model_fallback_from": null,
       "model_warning": null,
@@ -3002,7 +3002,7 @@
     {
       "agent_id": "aws-eks-platform-operator-agent",
       "harness": "codex",
-      "model": "gpt-5.4",
+      "model": "gpt-6-sol",
       "model_provider": null,
       "model_fallback_from": null,
       "model_warning": null,
@@ -3035,7 +3035,7 @@
     {
       "agent_id": "aws-event-driven-architecture-review-agent",
       "harness": "codex",
-      "model": "gpt-5.4",
+      "model": "gpt-6-sol",
       "model_provider": null,
       "model_fallback_from": null,
       "model_warning": null,
@@ -3068,7 +3068,7 @@
     {
       "agent_id": "aws-generative-ai-developer-agent",
       "harness": "codex",
-      "model": "gpt-5.4",
+      "model": "gpt-6-sol",
       "model_provider": null,
       "model_fallback_from": null,
       "model_warning": null,
@@ -3101,7 +3101,7 @@
     {
       "agent_id": "aws-iac-change-safety-review-agent",
       "harness": "codex",
-      "model": "gpt-5.4",
+      "model": "gpt-6-sol",
       "model_provider": null,
       "model_fallback_from": null,
       "model_warning": null,
@@ -3134,7 +3134,7 @@
     {
       "agent_id": "aws-iac-patch-executor-agent",
       "harness": "codex",
-      "model": "gpt-5.4",
+      "model": "gpt-6-sol",
       "model_provider": null,
       "model_fallback_from": null,
       "model_warning": null,
@@ -3167,7 +3167,7 @@
     {
       "agent_id": "aws-iam-least-privilege-review-agent",
       "harness": "codex",
-      "model": "gpt-5.4",
+      "model": "gpt-6-sol",
       "model_provider": null,
       "model_fallback_from": null,
       "model_warning": null,
@@ -3200,7 +3200,7 @@
     {
       "agent_id": "aws-kms-secrets-lifecycle-steward-agent",
       "harness": "codex",
-      "model": "gpt-5.4",
+      "model": "gpt-6-sol",
       "model_provider": null,
       "model_fallback_from": null,
       "model_warning": null,
@@ -3233,7 +3233,7 @@
     {
       "agent_id": "aws-landing-zone-governor-agent",
       "harness": "codex",
-      "model": "gpt-5.4",
+      "model": "gpt-6-sol",
       "model_provider": null,
       "model_fallback_from": null,
       "model_warning": null,
@@ -3266,7 +3266,7 @@
     {
       "agent_id": "aws-live-deployment-guarded-operator-agent",
       "harness": "codex",
-      "model": "gpt-5.4",
+      "model": "gpt-6-sol",
       "model_provider": null,
       "model_fallback_from": null,
       "model_warning": null,
@@ -3299,7 +3299,7 @@
     {
       "agent_id": "aws-live-ecs-rollout-guard-agent",
       "harness": "codex",
-      "model": "gpt-5.4",
+      "model": "gpt-6-sol",
       "model_provider": null,
       "model_fallback_from": null,
       "model_warning": null,
@@ -3332,7 +3332,7 @@
     {
       "agent_id": "aws-live-iac-change-guard-agent",
       "harness": "codex",
-      "model": "gpt-5.4",
+      "model": "gpt-6-sol",
       "model_provider": null,
       "model_fallback_from": null,
       "model_warning": null,
@@ -3365,7 +3365,7 @@
     {
       "agent_id": "aws-live-pipeline-approval-operator-agent",
       "harness": "codex",
-      "model": "gpt-5.4",
+      "model": "gpt-6-sol",
       "model_provider": null,
       "model_fallback_from": null,
       "model_warning": null,
@@ -3398,7 +3398,7 @@
     {
       "agent_id": "aws-live-serverless-release-guard-agent",
       "harness": "codex",
-      "model": "gpt-5.4",
+      "model": "gpt-6-sol",
       "model_provider": null,
       "model_fallback_from": null,
       "model_warning": null,
@@ -3431,7 +3431,7 @@
     {
       "agent_id": "aws-maestro-agent",
       "harness": "codex",
-      "model": "gpt-5.4",
+      "model": "gpt-6-sol",
       "model_provider": null,
       "model_fallback_from": null,
       "model_warning": null,
@@ -3464,7 +3464,7 @@
     {
       "agent_id": "aws-migration-cutover-architect-agent",
       "harness": "codex",
-      "model": "gpt-5.4",
+      "model": "gpt-6-sol",
       "model_provider": null,
       "model_fallback_from": null,
       "model_warning": null,
@@ -3497,7 +3497,7 @@
     {
       "agent_id": "aws-network-architect-agent",
       "harness": "codex",
-      "model": "gpt-5.4",
+      "model": "gpt-6-sol",
       "model_provider": null,
       "model_fallback_from": null,
       "model_warning": null,
@@ -3530,7 +3530,7 @@
     {
       "agent_id": "aws-non-destructive-task-automation-advisor-agent",
       "harness": "codex",
-      "model": "gpt-5.4",
+      "model": "gpt-6-sol",
       "model_provider": null,
       "model_fallback_from": null,
       "model_warning": null,
@@ -3563,7 +3563,7 @@
     {
       "agent_id": "aws-observability-incident-responder-agent",
       "harness": "codex",
-      "model": "gpt-5.4",
+      "model": "gpt-6-sol",
       "model_provider": null,
       "model_fallback_from": null,
       "model_warning": null,
@@ -3596,7 +3596,7 @@
     {
       "agent_id": "aws-pipeline-fix-operator-agent",
       "harness": "codex",
-      "model": "gpt-5.4",
+      "model": "gpt-6-sol",
       "model_provider": null,
       "model_fallback_from": null,
       "model_warning": null,
@@ -3629,7 +3629,7 @@
     {
       "agent_id": "aws-private-ca-issuer-review-agent",
       "harness": "codex",
-      "model": "gpt-5.4",
+      "model": "gpt-6-sol",
       "model_provider": null,
       "model_fallback_from": null,
       "model_warning": null,
@@ -3662,7 +3662,7 @@
     {
       "agent_id": "aws-rds-aurora-performance-investigator-agent",
       "harness": "codex",
-      "model": "gpt-5.4",
+      "model": "gpt-6-sol",
       "model_provider": null,
       "model_fallback_from": null,
       "model_warning": null,
@@ -3695,7 +3695,7 @@
     {
       "agent_id": "aws-resilience-bcdr-review-agent",
       "harness": "codex",
-      "model": "gpt-5.4",
+      "model": "gpt-6-sol",
       "model_provider": null,
       "model_fallback_from": null,
       "model_warning": null,
@@ -3728,7 +3728,7 @@
     {
       "agent_id": "aws-s3-data-perimeter-governor-agent",
       "harness": "codex",
-      "model": "gpt-5.4",
+      "model": "gpt-6-sol",
       "model_provider": null,
       "model_fallback_from": null,
       "model_warning": null,
@@ -3761,7 +3761,7 @@
     {
       "agent_id": "aws-security-posture-hardening-agent",
       "harness": "codex",
-      "model": "gpt-5.4",
+      "model": "gpt-6-sol",
       "model_provider": null,
       "model_fallback_from": null,
       "model_warning": null,
@@ -3794,7 +3794,7 @@
     {
       "agent_id": "aws-serverless-production-readiness-agent",
       "harness": "codex",
-      "model": "gpt-5.4",
+      "model": "gpt-6-sol",
       "model_provider": null,
       "model_fallback_from": null,
       "model_warning": null,
@@ -3827,7 +3827,7 @@
     {
       "agent_id": "aws-serverless-rollout-corrector-agent",
       "harness": "codex",
-      "model": "gpt-5.4",
+      "model": "gpt-6-sol",
       "model_provider": null,
       "model_fallback_from": null,
       "model_warning": null,
@@ -3860,7 +3860,7 @@
     {
       "agent_id": "aws-solution-architect-agent",
       "harness": "codex",
-      "model": "gpt-5.4",
+      "model": "gpt-6-sol",
       "model_provider": null,
       "model_fallback_from": null,
       "model_warning": null,
@@ -3893,7 +3893,7 @@
     {
       "agent_id": "aws-ticket-triage-escalation-coordinator-agent",
       "harness": "codex",
-      "model": "gpt-5.4",
+      "model": "gpt-6-sol",
       "model_provider": null,
       "model_fallback_from": null,
       "model_warning": null,
@@ -3926,7 +3926,7 @@
     {
       "agent_id": "aws-waf-cost-optimization-review-agent",
       "harness": "codex",
-      "model": "gpt-5.4",
+      "model": "gpt-6-sol",
       "model_provider": null,
       "model_fallback_from": null,
       "model_warning": null,
@@ -3959,7 +3959,7 @@
     {
       "agent_id": "aws-waf-reliability-review-agent",
       "harness": "codex",
-      "model": "gpt-5.4",
+      "model": "gpt-6-sol",
       "model_provider": null,
       "model_fallback_from": null,
       "model_warning": null,
@@ -3992,7 +3992,7 @@
     {
       "agent_id": "aws-waf-security-review-agent",
       "harness": "codex",
-      "model": "gpt-5.4",
+      "model": "gpt-6-sol",
       "model_provider": null,
       "model_fallback_from": null,
       "model_warning": null,
@@ -4025,7 +4025,7 @@
     {
       "agent_id": "azure-ai-foundry-ops-governor-agent",
       "harness": "codex",
-      "model": "gpt-5.4",
+      "model": "gpt-6-sol",
       "model_provider": null,
       "model_fallback_from": null,
       "model_warning": null,
@@ -4058,7 +4058,7 @@
     {
       "agent_id": "azure-aks-platform-operator-agent",
       "harness": "codex",
-      "model": "gpt-5.4",
+      "model": "gpt-6-sol",
       "model_provider": null,
       "model_fallback_from": null,
       "model_warning": null,
@@ -4091,7 +4091,7 @@
     {
       "agent_id": "azure-app-service-production-readiness-agent",
       "harness": "codex",
-      "model": "gpt-5.4",
+      "model": "gpt-6-sol",
       "model_provider": null,
       "model_fallback_from": null,
       "model_warning": null,
@@ -4124,7 +4124,7 @@
     {
       "agent_id": "azure-cosmosdb-application-developer-agent",
       "harness": "codex",
-      "model": "gpt-5.4",
+      "model": "gpt-6-sol",
       "model_provider": null,
       "model_fallback_from": null,
       "model_warning": null,
@@ -4157,7 +4157,7 @@
     {
       "agent_id": "azure-cosmosdb-pattern-agent",
       "harness": "codex",
-      "model": "gpt-5.4",
+      "model": "gpt-6-sol",
       "model_provider": null,
       "model_fallback_from": null,
       "model_warning": null,
@@ -4190,7 +4190,7 @@
     {
       "agent_id": "azure-cosmosdb-performance-investigator-agent",
       "harness": "codex",
-      "model": "gpt-5.4",
+      "model": "gpt-6-sol",
       "model_provider": null,
       "model_fallback_from": null,
       "model_warning": null,
@@ -4223,7 +4223,7 @@
     {
       "agent_id": "azure-cosmosdb-platform-operator-agent",
       "harness": "codex",
-      "model": "gpt-5.4",
+      "model": "gpt-6-sol",
       "model_provider": null,
       "model_fallback_from": null,
       "model_warning": null,
@@ -4256,7 +4256,7 @@
     {
       "agent_id": "azure-cost-estimation-review-agent",
       "harness": "codex",
-      "model": "gpt-5.4",
+      "model": "gpt-6-sol",
       "model_provider": null,
       "model_fallback_from": null,
       "model_warning": null,
@@ -4289,7 +4289,7 @@
     {
       "agent_id": "azure-cost-optimization-governor-agent",
       "harness": "codex",
-      "model": "gpt-5.4",
+      "model": "gpt-6-sol",
       "model_provider": null,
       "model_fallback_from": null,
       "model_warning": null,
@@ -4322,7 +4322,7 @@
     {
       "agent_id": "azure-entra-id-specialist-agent",
       "harness": "codex",
-      "model": "gpt-5.4",
+      "model": "gpt-6-sol",
       "model_provider": null,
       "model_fallback_from": null,
       "model_warning": null,
@@ -4355,7 +4355,7 @@
     {
       "agent_id": "azure-governance-policy-guardrails-agent",
       "harness": "codex",
-      "model": "gpt-5.4",
+      "model": "gpt-6-sol",
       "model_provider": null,
       "model_fallback_from": null,
       "model_warning": null,
@@ -4388,7 +4388,7 @@
     {
       "agent_id": "azure-identity-governance-review-agent",
       "harness": "codex",
-      "model": "gpt-5.4",
+      "model": "gpt-6-sol",
       "model_provider": null,
       "model_fallback_from": null,
       "model_warning": null,
@@ -4421,7 +4421,7 @@
     {
       "agent_id": "azure-key-vault-secret-lifecycle-auditor-agent",
       "harness": "codex",
-      "model": "gpt-5.4",
+      "model": "gpt-6-sol",
       "model_provider": null,
       "model_fallback_from": null,
       "model_warning": null,
@@ -4454,7 +4454,7 @@
     {
       "agent_id": "azure-keyvault-certificate-issuer-review-agent",
       "harness": "codex",
-      "model": "gpt-5.4",
+      "model": "gpt-6-sol",
       "model_provider": null,
       "model_fallback_from": null,
       "model_warning": null,
@@ -4487,7 +4487,7 @@
     {
       "agent_id": "azure-landing-zone-architect-agent",
       "harness": "codex",
-      "model": "gpt-5.4",
+      "model": "gpt-6-sol",
       "model_provider": null,
       "model_fallback_from": null,
       "model_warning": null,
@@ -4520,7 +4520,7 @@
     {
       "agent_id": "azure-live-aks-rollout-guard-agent",
       "harness": "codex",
-      "model": "gpt-5.4",
+      "model": "gpt-6-sol",
       "model_provider": null,
       "model_fallback_from": null,
       "model_warning": null,
@@ -4553,7 +4553,7 @@
     {
       "agent_id": "azure-live-app-service-slot-swap-guard-agent",
       "harness": "codex",
-      "model": "gpt-5.4",
+      "model": "gpt-6-sol",
       "model_provider": null,
       "model_fallback_from": null,
       "model_warning": null,
@@ -4586,7 +4586,7 @@
     {
       "agent_id": "azure-live-arm-deployment-stack-guard-agent",
       "harness": "codex",
-      "model": "gpt-5.4",
+      "model": "gpt-6-sol",
       "model_provider": null,
       "model_fallback_from": null,
       "model_warning": null,
@@ -4619,7 +4619,7 @@
     {
       "agent_id": "azure-live-cost-budget-action-guard-agent",
       "harness": "codex",
-      "model": "gpt-5.4",
+      "model": "gpt-6-sol",
       "model_provider": null,
       "model_fallback_from": null,
       "model_warning": null,
@@ -4652,7 +4652,7 @@
     {
       "agent_id": "azure-live-entra-role-assignment-guard-agent",
       "harness": "codex",
-      "model": "gpt-5.4",
+      "model": "gpt-6-sol",
       "model_provider": null,
       "model_fallback_from": null,
       "model_warning": null,
@@ -4685,7 +4685,7 @@
     {
       "agent_id": "azure-live-keyvault-rotation-purge-guard-agent",
       "harness": "codex",
-      "model": "gpt-5.4",
+      "model": "gpt-6-sol",
       "model_provider": null,
       "model_fallback_from": null,
       "model_warning": null,
@@ -4718,7 +4718,7 @@
     {
       "agent_id": "azure-live-pim-jit-activation-guard-agent",
       "harness": "codex",
-      "model": "gpt-5.4",
+      "model": "gpt-6-sol",
       "model_provider": null,
       "model_fallback_from": null,
       "model_warning": null,
@@ -4751,7 +4751,7 @@
     {
       "agent_id": "azure-maestro-agent",
       "harness": "codex",
-      "model": "gpt-5.4",
+      "model": "gpt-6-sol",
       "model_provider": null,
       "model_fallback_from": null,
       "model_warning": null,
@@ -4784,7 +4784,7 @@
     {
       "agent_id": "azure-migrate-landing-zone-cutover-agent",
       "harness": "codex",
-      "model": "gpt-5.4",
+      "model": "gpt-6-sol",
       "model_provider": null,
       "model_fallback_from": null,
       "model_warning": null,
@@ -4817,7 +4817,7 @@
     {
       "agent_id": "azure-network-topology-review-agent",
       "harness": "codex",
-      "model": "gpt-5.4",
+      "model": "gpt-6-sol",
       "model_provider": null,
       "model_fallback_from": null,
       "model_warning": null,
@@ -4850,7 +4850,7 @@
     {
       "agent_id": "azure-observability-investigator-agent",
       "harness": "codex",
-      "model": "gpt-5.4",
+      "model": "gpt-6-sol",
       "model_provider": null,
       "model_fallback_from": null,
       "model_warning": null,
@@ -4883,7 +4883,7 @@
     {
       "agent_id": "azure-platform-automation-devops-agent",
       "harness": "codex",
-      "model": "gpt-5.4",
+      "model": "gpt-6-sol",
       "model_provider": null,
       "model_fallback_from": null,
       "model_warning": null,
@@ -4916,7 +4916,7 @@
     {
       "agent_id": "azure-private-endpoint-adoption-planner-agent",
       "harness": "codex",
-      "model": "gpt-5.4",
+      "model": "gpt-6-sol",
       "model_provider": null,
       "model_fallback_from": null,
       "model_warning": null,
@@ -4949,7 +4949,7 @@
     {
       "agent_id": "azure-rbac-review-agent",
       "harness": "codex",
-      "model": "gpt-5.4",
+      "model": "gpt-6-sol",
       "model_provider": null,
       "model_fallback_from": null,
       "model_warning": null,
@@ -4982,7 +4982,7 @@
     {
       "agent_id": "azure-resilience-bcdr-review-agent",
       "harness": "codex",
-      "model": "gpt-5.4",
+      "model": "gpt-6-sol",
       "model_provider": null,
       "model_fallback_from": null,
       "model_warning": null,
@@ -5015,7 +5015,7 @@
     {
       "agent_id": "azure-resource-health-incident-triage-agent",
       "harness": "codex",
-      "model": "gpt-5.4",
+      "model": "gpt-6-sol",
       "model_provider": null,
       "model_fallback_from": null,
       "model_warning": null,
@@ -5048,7 +5048,7 @@
     {
       "agent_id": "azure-role-selector-agent",
       "harness": "codex",
-      "model": "gpt-5.4",
+      "model": "gpt-6-sol",
       "model_provider": null,
       "model_fallback_from": null,
       "model_warning": null,
@@ -5081,7 +5081,7 @@
     {
       "agent_id": "azure-security-posture-hardening-agent",
       "harness": "codex",
-      "model": "gpt-5.4",
+      "model": "gpt-6-sol",
       "model_provider": null,
       "model_fallback_from": null,
       "model_warning": null,
@@ -5114,7 +5114,7 @@
     {
       "agent_id": "azure-subscription-resource-organization-agent",
       "harness": "codex",
-      "model": "gpt-5.4",
+      "model": "gpt-6-sol",
       "model_provider": null,
       "model_fallback_from": null,
       "model_warning": null,
@@ -5147,7 +5147,7 @@
     {
       "agent_id": "azure-waf-cost-optimization-review-agent",
       "harness": "codex",
-      "model": "gpt-5.4",
+      "model": "gpt-6-sol",
       "model_provider": null,
       "model_fallback_from": null,
       "model_warning": null,
@@ -5180,7 +5180,7 @@
     {
       "agent_id": "azure-waf-reliability-review-agent",
       "harness": "codex",
-      "model": "gpt-5.4",
+      "model": "gpt-6-sol",
       "model_provider": null,
       "model_fallback_from": null,
       "model_warning": null,
@@ -5213,7 +5213,7 @@
     {
       "agent_id": "azure-waf-security-review-agent",
       "harness": "codex",
-      "model": "gpt-5.4",
+      "model": "gpt-6-sol",
       "model_provider": null,
       "model_fallback_from": null,
       "model_warning": null,
@@ -5246,7 +5246,7 @@
     {
       "agent_id": "backstage-scaffolder-template-review-agent",
       "harness": "codex",
-      "model": "gpt-5.4",
+      "model": "gpt-6-sol",
       "model_provider": null,
       "model_fallback_from": null,
       "model_warning": null,
@@ -5279,7 +5279,7 @@
     {
       "agent_id": "browser-compatibility-agent",
       "harness": "codex",
-      "model": "gpt-5.4",
+      "model": "gpt-6-sol",
       "model_provider": null,
       "model_fallback_from": null,
       "model_warning": null,
@@ -5312,7 +5312,7 @@
     {
       "agent_id": "build-tooling-bundling-agent",
       "harness": "codex",
-      "model": "gpt-5.4",
+      "model": "gpt-6-sol",
       "model_provider": null,
       "model_fallback_from": null,
       "model_warning": null,
@@ -5345,7 +5345,7 @@
     {
       "agent_id": "cert-manager-issuer-trust-review-agent",
       "harness": "codex",
-      "model": "gpt-5.4",
+      "model": "gpt-6-sol",
       "model_provider": null,
       "model_fallback_from": null,
       "model_warning": null,
@@ -5411,7 +5411,7 @@
     {
       "agent_id": "cilium-network-policy-review-agent",
       "harness": "codex",
-      "model": "gpt-5.4",
+      "model": "gpt-6-sol",
       "model_provider": null,
       "model_fallback_from": null,
       "model_warning": null,
@@ -5444,7 +5444,7 @@
     {
       "agent_id": "composer-supply-chain-agent",
       "harness": "codex",
-      "model": "gpt-5.4",
+      "model": "gpt-6-sol",
       "model_provider": null,
       "model_fallback_from": null,
       "model_warning": null,
@@ -5477,7 +5477,7 @@
     {
       "agent_id": "contabo-capacity-planner-agent",
       "harness": "codex",
-      "model": "gpt-5.4",
+      "model": "gpt-6-sol",
       "model_provider": null,
       "model_fallback_from": null,
       "model_warning": null,
@@ -5510,7 +5510,7 @@
     {
       "agent_id": "contabo-cost-optimization-analyst-agent",
       "harness": "codex",
-      "model": "gpt-5.4",
+      "model": "gpt-6-sol",
       "model_provider": null,
       "model_fallback_from": null,
       "model_warning": null,
@@ -5543,7 +5543,7 @@
     {
       "agent_id": "contabo-live-instance-lifecycle-guard-agent",
       "harness": "codex",
-      "model": "gpt-5.4",
+      "model": "gpt-6-sol",
       "model_provider": null,
       "model_fallback_from": null,
       "model_warning": null,
@@ -5576,7 +5576,7 @@
     {
       "agent_id": "contabo-live-storage-operations-guard-agent",
       "harness": "codex",
-      "model": "gpt-5.4",
+      "model": "gpt-6-sol",
       "model_provider": null,
       "model_fallback_from": null,
       "model_warning": null,
@@ -5609,7 +5609,7 @@
     {
       "agent_id": "contabo-maestro-agent",
       "harness": "codex",
-      "model": "gpt-5.4",
+      "model": "gpt-6-sol",
       "model_provider": null,
       "model_fallback_from": null,
       "model_warning": null,
@@ -5642,7 +5642,7 @@
     {
       "agent_id": "contabo-security-hardening-agent",
       "harness": "codex",
-      "model": "gpt-5.4",
+      "model": "gpt-6-sol",
       "model_provider": null,
       "model_fallback_from": null,
       "model_warning": null,
@@ -5675,7 +5675,7 @@
     {
       "agent_id": "copilot-governance-maestro-agent",
       "harness": "codex",
-      "model": "gpt-5.4",
+      "model": "gpt-6-sol",
       "model_provider": null,
       "model_fallback_from": null,
       "model_warning": null,
@@ -5708,7 +5708,7 @@
     {
       "agent_id": "copilot-studio-agent-governance-alm-agent",
       "harness": "codex",
-      "model": "gpt-5.4",
+      "model": "gpt-6-sol",
       "model_provider": null,
       "model_fallback_from": null,
       "model_warning": null,
@@ -5741,7 +5741,7 @@
     {
       "agent_id": "css-architecture-agent",
       "harness": "codex",
-      "model": "gpt-5.4",
+      "model": "gpt-6-sol",
       "model_provider": null,
       "model_fallback_from": null,
       "model_warning": null,
@@ -5774,7 +5774,7 @@
     {
       "agent_id": "d365-commerce-agent",
       "harness": "codex",
-      "model": "gpt-5.4",
+      "model": "gpt-6-sol",
       "model_provider": null,
       "model_fallback_from": null,
       "model_warning": null,
@@ -5807,7 +5807,7 @@
     {
       "agent_id": "d365-customer-insights-journeys-agent",
       "harness": "codex",
-      "model": "gpt-5.4",
+      "model": "gpt-6-sol",
       "model_provider": null,
       "model_fallback_from": null,
       "model_warning": null,
@@ -5840,7 +5840,7 @@
     {
       "agent_id": "d365-customer-service-contact-center-agent",
       "harness": "codex",
-      "model": "gpt-5.4",
+      "model": "gpt-6-sol",
       "model_provider": null,
       "model_fallback_from": null,
       "model_warning": null,
@@ -5873,7 +5873,7 @@
     {
       "agent_id": "d365-data-migration-cutover-agent",
       "harness": "codex",
-      "model": "gpt-5.4",
+      "model": "gpt-6-sol",
       "model_provider": null,
       "model_fallback_from": null,
       "model_warning": null,
@@ -5906,7 +5906,7 @@
     {
       "agent_id": "d365-field-service-to-cash-agent",
       "harness": "codex",
-      "model": "gpt-5.4",
+      "model": "gpt-6-sol",
       "model_provider": null,
       "model_fallback_from": null,
       "model_warning": null,
@@ -5939,7 +5939,7 @@
     {
       "agent_id": "d365-finance-close-to-report-agent",
       "harness": "codex",
-      "model": "gpt-5.4",
+      "model": "gpt-6-sol",
       "model_provider": null,
       "model_fallback_from": null,
       "model_warning": null,
@@ -5972,7 +5972,7 @@
     {
       "agent_id": "d365-fno-developer-extension-agent",
       "harness": "codex",
-      "model": "gpt-5.4",
+      "model": "gpt-6-sol",
       "model_provider": null,
       "model_fallback_from": null,
       "model_warning": null,
@@ -6005,7 +6005,7 @@
     {
       "agent_id": "d365-integration-dual-write-agent",
       "harness": "codex",
-      "model": "gpt-5.4",
+      "model": "gpt-6-sol",
       "model_provider": null,
       "model_fallback_from": null,
       "model_warning": null,
@@ -6038,7 +6038,7 @@
     {
       "agent_id": "d365-live-record-field-update-guard-agent",
       "harness": "codex",
-      "model": "gpt-5.4",
+      "model": "gpt-6-sol",
       "model_provider": null,
       "model_fallback_from": null,
       "model_warning": null,
@@ -6071,7 +6071,7 @@
     {
       "agent_id": "d365-live-security-role-guard-agent",
       "harness": "codex",
-      "model": "gpt-5.4",
+      "model": "gpt-6-sol",
       "model_provider": null,
       "model_fallback_from": null,
       "model_warning": null,
@@ -6104,7 +6104,7 @@
     {
       "agent_id": "d365-maestro-agent",
       "harness": "codex",
-      "model": "gpt-5.4",
+      "model": "gpt-6-sol",
       "model_provider": null,
       "model_fallback_from": null,
       "model_warning": null,
@@ -6137,7 +6137,7 @@
     {
       "agent_id": "d365-project-operations-agent",
       "harness": "codex",
-      "model": "gpt-5.4",
+      "model": "gpt-6-sol",
       "model_provider": null,
       "model_fallback_from": null,
       "model_warning": null,
@@ -6170,7 +6170,7 @@
     {
       "agent_id": "d365-sales-revenue-operations-agent",
       "harness": "codex",
-      "model": "gpt-5.4",
+      "model": "gpt-6-sol",
       "model_provider": null,
       "model_fallback_from": null,
       "model_warning": null,
@@ -6203,7 +6203,7 @@
     {
       "agent_id": "d365-security-sod-governance-agent",
       "harness": "codex",
-      "model": "gpt-5.4",
+      "model": "gpt-6-sol",
       "model_provider": null,
       "model_fallback_from": null,
       "model_warning": null,
@@ -6236,7 +6236,7 @@
     {
       "agent_id": "d365-success-by-design-governance-agent",
       "harness": "codex",
-      "model": "gpt-5.4",
+      "model": "gpt-6-sol",
       "model_provider": null,
       "model_fallback_from": null,
       "model_warning": null,
@@ -6269,7 +6269,7 @@
     {
       "agent_id": "d365-supply-chain-plan-to-produce-agent",
       "harness": "codex",
-      "model": "gpt-5.4",
+      "model": "gpt-6-sol",
       "model_provider": null,
       "model_fallback_from": null,
       "model_warning": null,
@@ -6302,7 +6302,7 @@
     {
       "agent_id": "databricks-ai-bi-genie-agent",
       "harness": "codex",
-      "model": "gpt-5.4",
+      "model": "gpt-6-sol",
       "model_provider": null,
       "model_fallback_from": null,
       "model_warning": null,
@@ -6335,7 +6335,7 @@
     {
       "agent_id": "databricks-data-protection-privacy-agent",
       "harness": "codex",
-      "model": "gpt-5.4",
+      "model": "gpt-6-sol",
       "model_provider": null,
       "model_fallback_from": null,
       "model_warning": null,
@@ -6368,7 +6368,7 @@
     {
       "agent_id": "databricks-data-quality-observability-agent",
       "harness": "codex",
-      "model": "gpt-5.4",
+      "model": "gpt-6-sol",
       "model_provider": null,
       "model_fallback_from": null,
       "model_warning": null,
@@ -6401,7 +6401,7 @@
     {
       "agent_id": "databricks-developer-platform-agent",
       "harness": "codex",
-      "model": "gpt-5.4",
+      "model": "gpt-6-sol",
       "model_provider": null,
       "model_fallback_from": null,
       "model_warning": null,
@@ -6434,7 +6434,7 @@
     {
       "agent_id": "databricks-finops-cost-agent",
       "harness": "codex",
-      "model": "gpt-5.4",
+      "model": "gpt-6-sol",
       "model_provider": null,
       "model_fallback_from": null,
       "model_warning": null,
@@ -6467,7 +6467,7 @@
     {
       "agent_id": "databricks-genai-agent-engineering-agent",
       "harness": "codex",
-      "model": "gpt-5.4",
+      "model": "gpt-6-sol",
       "model_provider": null,
       "model_fallback_from": null,
       "model_warning": null,
@@ -6500,7 +6500,7 @@
     {
       "agent_id": "databricks-genai-evaluation-observability-agent",
       "harness": "codex",
-      "model": "gpt-5.4",
+      "model": "gpt-6-sol",
       "model_provider": null,
       "model_fallback_from": null,
       "model_warning": null,
@@ -6533,7 +6533,7 @@
     {
       "agent_id": "databricks-identity-network-security-agent",
       "harness": "codex",
-      "model": "gpt-5.4",
+      "model": "gpt-6-sol",
       "model_provider": null,
       "model_fallback_from": null,
       "model_warning": null,
@@ -6566,7 +6566,7 @@
     {
       "agent_id": "databricks-lakeflow-pipeline-engineering-agent",
       "harness": "codex",
-      "model": "gpt-5.4",
+      "model": "gpt-6-sol",
       "model_provider": null,
       "model_fallback_from": null,
       "model_warning": null,
@@ -6599,7 +6599,7 @@
     {
       "agent_id": "databricks-lakehouse-engineering-at-azure-agent",
       "harness": "codex",
-      "model": "gpt-5.4",
+      "model": "gpt-6-sol",
       "model_provider": null,
       "model_fallback_from": null,
       "model_warning": null,
@@ -6632,7 +6632,7 @@
     {
       "agent_id": "databricks-live-unity-catalog-grant-guard-at-azure-agent",
       "harness": "codex",
-      "model": "gpt-5.4",
+      "model": "gpt-6-sol",
       "model_provider": null,
       "model_fallback_from": null,
       "model_warning": null,
@@ -6665,7 +6665,7 @@
     {
       "agent_id": "databricks-maestro-agent",
       "harness": "codex",
-      "model": "gpt-5.4",
+      "model": "gpt-6-sol",
       "model_provider": null,
       "model_fallback_from": null,
       "model_warning": null,
@@ -6698,7 +6698,7 @@
     {
       "agent_id": "databricks-mlops-agent",
       "harness": "codex",
-      "model": "gpt-5.4",
+      "model": "gpt-6-sol",
       "model_provider": null,
       "model_fallback_from": null,
       "model_warning": null,
@@ -6731,7 +6731,7 @@
     {
       "agent_id": "databricks-platform-architecture-agent",
       "harness": "codex",
-      "model": "gpt-5.4",
+      "model": "gpt-6-sol",
       "model_provider": null,
       "model_fallback_from": null,
       "model_warning": null,
@@ -6764,7 +6764,7 @@
     {
       "agent_id": "databricks-platform-reliability-agent",
       "harness": "codex",
-      "model": "gpt-5.4",
+      "model": "gpt-6-sol",
       "model_provider": null,
       "model_fallback_from": null,
       "model_warning": null,
@@ -6797,7 +6797,7 @@
     {
       "agent_id": "databricks-sql-performance-agent",
       "harness": "codex",
-      "model": "gpt-5.4",
+      "model": "gpt-6-sol",
       "model_provider": null,
       "model_fallback_from": null,
       "model_warning": null,
@@ -6830,7 +6830,7 @@
     {
       "agent_id": "databricks-streaming-reliability-agent",
       "harness": "codex",
-      "model": "gpt-5.4",
+      "model": "gpt-6-sol",
       "model_provider": null,
       "model_fallback_from": null,
       "model_warning": null,
@@ -6863,7 +6863,7 @@
     {
       "agent_id": "databricks-unity-catalog-governance-agent",
       "harness": "codex",
-      "model": "gpt-5.4",
+      "model": "gpt-6-sol",
       "model_provider": null,
       "model_fallback_from": null,
       "model_warning": null,
@@ -6896,7 +6896,7 @@
     {
       "agent_id": "databricks-unity-catalog-governance-at-azure-agent",
       "harness": "codex",
-      "model": "gpt-5.4",
+      "model": "gpt-6-sol",
       "model_provider": null,
       "model_fallback_from": null,
       "model_warning": null,
@@ -6929,7 +6929,7 @@
     {
       "agent_id": "databricks-value-realization-agent",
       "harness": "codex",
-      "model": "gpt-5.4",
+      "model": "gpt-6-sol",
       "model_provider": null,
       "model_fallback_from": null,
       "model_warning": null,
@@ -6962,7 +6962,7 @@
     {
       "agent_id": "design-systems-governance-agent",
       "harness": "codex",
-      "model": "gpt-5.4",
+      "model": "gpt-6-sol",
       "model_provider": null,
       "model_fallback_from": null,
       "model_warning": null,
@@ -7325,7 +7325,7 @@
     {
       "agent_id": "email-sender-authentication-review-agent",
       "harness": "codex",
-      "model": "gpt-5.4",
+      "model": "gpt-6-sol",
       "model_provider": null,
       "model_fallback_from": null,
       "model_warning": null,
@@ -7358,7 +7358,7 @@
     {
       "agent_id": "enterprise-red-team-review-agent",
       "harness": "codex",
-      "model": "gpt-5.4",
+      "model": "gpt-6-sol",
       "model_provider": null,
       "model_fallback_from": null,
       "model_warning": null,
@@ -7391,7 +7391,7 @@
     {
       "agent_id": "eu-ai-act-marketing-system-review-agent",
       "harness": "codex",
-      "model": "gpt-5.4",
+      "model": "gpt-6-sol",
       "model_provider": null,
       "model_fallback_from": null,
       "model_warning": null,
@@ -7424,7 +7424,7 @@
     {
       "agent_id": "external-secrets-operator-review-agent",
       "harness": "codex",
-      "model": "gpt-5.4",
+      "model": "gpt-6-sol",
       "model_provider": null,
       "model_fallback_from": null,
       "model_warning": null,
@@ -7457,7 +7457,7 @@
     {
       "agent_id": "fabric-analytics-engineering-agent",
       "harness": "codex",
-      "model": "gpt-5.4",
+      "model": "gpt-6-sol",
       "model_provider": null,
       "model_fallback_from": null,
       "model_warning": null,
@@ -7490,7 +7490,7 @@
     {
       "agent_id": "fabric-data-engineering-agent",
       "harness": "codex",
-      "model": "gpt-5.4",
+      "model": "gpt-6-sol",
       "model_provider": null,
       "model_fallback_from": null,
       "model_warning": null,
@@ -7523,7 +7523,7 @@
     {
       "agent_id": "fabric-power-bi-business-insights-governance-agent",
       "harness": "codex",
-      "model": "gpt-5.4",
+      "model": "gpt-6-sol",
       "model_provider": null,
       "model_fallback_from": null,
       "model_warning": null,
@@ -7556,7 +7556,7 @@
     {
       "agent_id": "falco-runtime-threat-rules-review-agent",
       "harness": "codex",
-      "model": "gpt-5.4",
+      "model": "gpt-6-sol",
       "model_provider": null,
       "model_fallback_from": null,
       "model_warning": null,
@@ -7589,7 +7589,7 @@
     {
       "agent_id": "finance-capital-allocation-advisor-agent",
       "harness": "codex",
-      "model": "gpt-5.4",
+      "model": "gpt-6-sol",
       "model_provider": null,
       "model_fallback_from": null,
       "model_warning": null,
@@ -7622,7 +7622,7 @@
     {
       "agent_id": "finance-debt-capital-structure-advisor-agent",
       "harness": "codex",
-      "model": "gpt-5.4",
+      "model": "gpt-6-sol",
       "model_provider": null,
       "model_fallback_from": null,
       "model_warning": null,
@@ -7655,7 +7655,7 @@
     {
       "agent_id": "finance-fpa-forecasting-advisor-agent",
       "harness": "codex",
-      "model": "gpt-5.4",
+      "model": "gpt-6-sol",
       "model_provider": null,
       "model_fallback_from": null,
       "model_warning": null,
@@ -7688,7 +7688,7 @@
     {
       "agent_id": "finance-maestro-agent",
       "harness": "codex",
-      "model": "gpt-5.4",
+      "model": "gpt-6-sol",
       "model_provider": null,
       "model_fallback_from": null,
       "model_warning": null,
@@ -7721,7 +7721,7 @@
     {
       "agent_id": "finance-transfer-pricing-pillar-two-advisor-agent",
       "harness": "codex",
-      "model": "gpt-5.4",
+      "model": "gpt-6-sol",
       "model_provider": null,
       "model_fallback_from": null,
       "model_warning": null,
@@ -7754,7 +7754,7 @@
     {
       "agent_id": "finance-treasury-liquidity-advisor-agent",
       "harness": "codex",
-      "model": "gpt-5.4",
+      "model": "gpt-6-sol",
       "model_provider": null,
       "model_fallback_from": null,
       "model_warning": null,
@@ -7787,7 +7787,7 @@
     {
       "agent_id": "finance-variance-analysis-advisor-agent",
       "harness": "codex",
-      "model": "gpt-5.4",
+      "model": "gpt-6-sol",
       "model_provider": null,
       "model_fallback_from": null,
       "model_warning": null,
@@ -7820,7 +7820,7 @@
     {
       "agent_id": "finance-working-capital-advisor-agent",
       "harness": "codex",
-      "model": "gpt-5.4",
+      "model": "gpt-6-sol",
       "model_provider": null,
       "model_fallback_from": null,
       "model_warning": null,
@@ -7853,7 +7853,7 @@
     {
       "agent_id": "finops-ai-economist-agent",
       "harness": "codex",
-      "model": "gpt-5.4",
+      "model": "gpt-6-sol",
       "model_provider": null,
       "model_fallback_from": null,
       "model_warning": null,
@@ -7886,7 +7886,7 @@
     {
       "agent_id": "finops-cloud-price-advisor-agent",
       "harness": "codex",
-      "model": "gpt-5.4",
+      "model": "gpt-6-sol",
       "model_provider": null,
       "model_fallback_from": null,
       "model_warning": null,
@@ -7919,7 +7919,7 @@
     {
       "agent_id": "finops-kubernetes-rightsizer-agent",
       "harness": "codex",
-      "model": "gpt-5.4",
+      "model": "gpt-6-sol",
       "model_provider": null,
       "model_fallback_from": null,
       "model_warning": null,
@@ -7952,7 +7952,7 @@
     {
       "agent_id": "finops-maestro-agent",
       "harness": "codex",
-      "model": "gpt-5.4",
+      "model": "gpt-6-sol",
       "model_provider": null,
       "model_fallback_from": null,
       "model_warning": null,
@@ -7985,7 +7985,7 @@
     {
       "agent_id": "fluxcd-kustomization-helmrelease-review-agent",
       "harness": "codex",
-      "model": "gpt-5.4",
+      "model": "gpt-6-sol",
       "model_provider": null,
       "model_fallback_from": null,
       "model_warning": null,
@@ -8018,7 +8018,7 @@
     {
       "agent_id": "frontend-board-chair-agent",
       "harness": "codex",
-      "model": "gpt-5.4",
+      "model": "gpt-6-sol",
       "model_provider": null,
       "model_fallback_from": null,
       "model_warning": null,
@@ -8051,7 +8051,7 @@
     {
       "agent_id": "frontend-finops-cost-to-serve-agent",
       "harness": "codex",
-      "model": "gpt-5.4",
+      "model": "gpt-6-sol",
       "model_provider": null,
       "model_fallback_from": null,
       "model_warning": null,
@@ -8084,7 +8084,7 @@
     {
       "agent_id": "frontend-maestro-agent",
       "harness": "codex",
-      "model": "gpt-5.4",
+      "model": "gpt-6-sol",
       "model_provider": null,
       "model_fallback_from": null,
       "model_warning": null,
@@ -8117,7 +8117,7 @@
     {
       "agent_id": "frontend-migration-modernization-agent",
       "harness": "codex",
-      "model": "gpt-5.4",
+      "model": "gpt-6-sol",
       "model_provider": null,
       "model_fallback_from": null,
       "model_warning": null,
@@ -8150,7 +8150,7 @@
     {
       "agent_id": "frontend-observability-rum-agent",
       "harness": "codex",
-      "model": "gpt-5.4",
+      "model": "gpt-6-sol",
       "model_provider": null,
       "model_fallback_from": null,
       "model_warning": null,
@@ -8183,7 +8183,7 @@
     {
       "agent_id": "frontend-platform-architect-agent",
       "harness": "codex",
-      "model": "gpt-5.4",
+      "model": "gpt-6-sol",
       "model_provider": null,
       "model_fallback_from": null,
       "model_warning": null,
@@ -8216,7 +8216,7 @@
     {
       "agent_id": "frontend-security-agent",
       "harness": "codex",
-      "model": "gpt-5.4",
+      "model": "gpt-6-sol",
       "model_provider": null,
       "model_fallback_from": null,
       "model_warning": null,
@@ -8249,7 +8249,7 @@
     {
       "agent_id": "gcp-agent-runtime-review-agent",
       "harness": "codex",
-      "model": "gpt-5.4",
+      "model": "gpt-6-sol",
       "model_provider": null,
       "model_fallback_from": null,
       "model_warning": null,
@@ -8282,7 +8282,7 @@
     {
       "agent_id": "gcp-alloydb-ai-developer-agent",
       "harness": "codex",
-      "model": "gpt-5.4",
+      "model": "gpt-6-sol",
       "model_provider": null,
       "model_fallback_from": null,
       "model_warning": null,
@@ -8315,7 +8315,7 @@
     {
       "agent_id": "gcp-alloydb-cloudsql-dba-agent",
       "harness": "codex",
-      "model": "gpt-5.4",
+      "model": "gpt-6-sol",
       "model_provider": null,
       "model_fallback_from": null,
       "model_warning": null,
@@ -8348,7 +8348,7 @@
     {
       "agent_id": "gcp-anthos-multicloud-architect-agent",
       "harness": "codex",
-      "model": "gpt-5.4",
+      "model": "gpt-6-sol",
       "model_provider": null,
       "model_fallback_from": null,
       "model_warning": null,
@@ -8381,7 +8381,7 @@
     {
       "agent_id": "gcp-apigee-api-platform-operator-agent",
       "harness": "codex",
-      "model": "gpt-5.4",
+      "model": "gpt-6-sol",
       "model_provider": null,
       "model_fallback_from": null,
       "model_warning": null,
@@ -8414,7 +8414,7 @@
     {
       "agent_id": "gcp-bigquery-cost-performance-analyst-agent",
       "harness": "codex",
-      "model": "gpt-5.4",
+      "model": "gpt-6-sol",
       "model_provider": null,
       "model_fallback_from": null,
       "model_warning": null,
@@ -8447,7 +8447,7 @@
     {
       "agent_id": "gcp-bigtable-architect-agent",
       "harness": "codex",
-      "model": "gpt-5.4",
+      "model": "gpt-6-sol",
       "model_provider": null,
       "model_fallback_from": null,
       "model_warning": null,
@@ -8480,7 +8480,7 @@
     {
       "agent_id": "gcp-certificate-manager-issuer-review-agent",
       "harness": "codex",
-      "model": "gpt-5.4",
+      "model": "gpt-6-sol",
       "model_provider": null,
       "model_fallback_from": null,
       "model_warning": null,
@@ -8513,7 +8513,7 @@
     {
       "agent_id": "gcp-change-impact-advisor-agent",
       "harness": "codex",
-      "model": "gpt-5.4",
+      "model": "gpt-6-sol",
       "model_provider": null,
       "model_fallback_from": null,
       "model_warning": null,
@@ -8546,7 +8546,7 @@
     {
       "agent_id": "gcp-cloud-auth-advisor-agent",
       "harness": "codex",
-      "model": "gpt-5.4",
+      "model": "gpt-6-sol",
       "model_provider": null,
       "model_fallback_from": null,
       "model_warning": null,
@@ -8579,7 +8579,7 @@
     {
       "agent_id": "gcp-cloud-run-functions-operator-agent",
       "harness": "codex",
-      "model": "gpt-5.4",
+      "model": "gpt-6-sol",
       "model_provider": null,
       "model_fallback_from": null,
       "model_warning": null,
@@ -8612,7 +8612,7 @@
     {
       "agent_id": "gcp-cloudbuild-deploy-cicd-operator-agent",
       "harness": "codex",
-      "model": "gpt-5.4",
+      "model": "gpt-6-sol",
       "model_provider": null,
       "model_fallback_from": null,
       "model_warning": null,
@@ -8645,7 +8645,7 @@
     {
       "agent_id": "gcp-compliance-assured-workloads-agent",
       "harness": "codex",
-      "model": "gpt-5.4",
+      "model": "gpt-6-sol",
       "model_provider": null,
       "model_fallback_from": null,
       "model_warning": null,
@@ -8678,7 +8678,7 @@
     {
       "agent_id": "gcp-compute-engine-operator-agent",
       "harness": "codex",
-      "model": "gpt-5.4",
+      "model": "gpt-6-sol",
       "model_provider": null,
       "model_fallback_from": null,
       "model_warning": null,
@@ -8711,7 +8711,7 @@
     {
       "agent_id": "gcp-cost-anomaly-watch-coordinator-agent",
       "harness": "codex",
-      "model": "gpt-5.4",
+      "model": "gpt-6-sol",
       "model_provider": null,
       "model_fallback_from": null,
       "model_warning": null,
@@ -8744,7 +8744,7 @@
     {
       "agent_id": "gcp-cost-finops-analyst-agent",
       "harness": "codex",
-      "model": "gpt-5.4",
+      "model": "gpt-6-sol",
       "model_provider": null,
       "model_fallback_from": null,
       "model_warning": null,
@@ -8777,7 +8777,7 @@
     {
       "agent_id": "gcp-daily-operations-briefing-coordinator-agent",
       "harness": "codex",
-      "model": "gpt-5.4",
+      "model": "gpt-6-sol",
       "model_provider": null,
       "model_fallback_from": null,
       "model_warning": null,
@@ -8810,7 +8810,7 @@
     {
       "agent_id": "gcp-data-pipeline-engineer-agent",
       "harness": "codex",
-      "model": "gpt-5.4",
+      "model": "gpt-6-sol",
       "model_provider": null,
       "model_fallback_from": null,
       "model_warning": null,
@@ -8843,7 +8843,7 @@
     {
       "agent_id": "gcp-event-driven-architecture-review-agent",
       "harness": "codex",
-      "model": "gpt-5.4",
+      "model": "gpt-6-sol",
       "model_provider": null,
       "model_fallback_from": null,
       "model_warning": null,
@@ -8876,7 +8876,7 @@
     {
       "agent_id": "gcp-firebase-developer-agent",
       "harness": "codex",
-      "model": "gpt-5.4",
+      "model": "gpt-6-sol",
       "model_provider": null,
       "model_fallback_from": null,
       "model_warning": null,
@@ -8909,7 +8909,7 @@
     {
       "agent_id": "gcp-gcs-data-perimeter-governor-agent",
       "harness": "codex",
-      "model": "gpt-5.4",
+      "model": "gpt-6-sol",
       "model_provider": null,
       "model_fallback_from": null,
       "model_warning": null,
@@ -8942,7 +8942,7 @@
     {
       "agent_id": "gcp-gemini-api-developer-agent",
       "harness": "codex",
-      "model": "gpt-5.4",
+      "model": "gpt-6-sol",
       "model_provider": null,
       "model_fallback_from": null,
       "model_warning": null,
@@ -8975,7 +8975,7 @@
     {
       "agent_id": "gcp-gke-platform-operator-agent",
       "harness": "codex",
-      "model": "gpt-5.4",
+      "model": "gpt-6-sol",
       "model_provider": null,
       "model_fallback_from": null,
       "model_warning": null,
@@ -9008,7 +9008,7 @@
     {
       "agent_id": "gcp-iac-change-safety-review-agent",
       "harness": "codex",
-      "model": "gpt-5.4",
+      "model": "gpt-6-sol",
       "model_provider": null,
       "model_fallback_from": null,
       "model_warning": null,
@@ -9041,7 +9041,7 @@
     {
       "agent_id": "gcp-iam-least-privilege-review-agent",
       "harness": "codex",
-      "model": "gpt-5.4",
+      "model": "gpt-6-sol",
       "model_provider": null,
       "model_fallback_from": null,
       "model_warning": null,
@@ -9074,7 +9074,7 @@
     {
       "agent_id": "gcp-landing-zone-architect-agent",
       "harness": "codex",
-      "model": "gpt-5.4",
+      "model": "gpt-6-sol",
       "model_provider": null,
       "model_fallback_from": null,
       "model_warning": null,
@@ -9107,7 +9107,7 @@
     {
       "agent_id": "gcp-live-bigquery-dataset-deletion-guard-agent",
       "harness": "codex",
-      "model": "gpt-5.4",
+      "model": "gpt-6-sol",
       "model_provider": null,
       "model_fallback_from": null,
       "model_warning": null,
@@ -9140,7 +9140,7 @@
     {
       "agent_id": "gcp-live-cloud-run-traffic-migration-guard-agent",
       "harness": "codex",
-      "model": "gpt-5.4",
+      "model": "gpt-6-sol",
       "model_provider": null,
       "model_fallback_from": null,
       "model_warning": null,
@@ -9173,7 +9173,7 @@
     {
       "agent_id": "gcp-live-cost-budget-action-guard-agent",
       "harness": "codex",
-      "model": "gpt-5.4",
+      "model": "gpt-6-sol",
       "model_provider": null,
       "model_fallback_from": null,
       "model_warning": null,
@@ -9206,7 +9206,7 @@
     {
       "agent_id": "gcp-live-gke-rollout-guard-agent",
       "harness": "codex",
-      "model": "gpt-5.4",
+      "model": "gpt-6-sol",
       "model_provider": null,
       "model_fallback_from": null,
       "model_warning": null,
@@ -9239,7 +9239,7 @@
     {
       "agent_id": "gcp-live-iam-policy-change-guard-agent",
       "harness": "codex",
-      "model": "gpt-5.4",
+      "model": "gpt-6-sol",
       "model_provider": null,
       "model_fallback_from": null,
       "model_warning": null,
@@ -9272,7 +9272,7 @@
     {
       "agent_id": "gcp-live-kms-key-destruction-guard-agent",
       "harness": "codex",
-      "model": "gpt-5.4",
+      "model": "gpt-6-sol",
       "model_provider": null,
       "model_fallback_from": null,
       "model_warning": null,
@@ -9305,7 +9305,7 @@
     {
       "agent_id": "gcp-load-balancer-traffic-engineer-agent",
       "harness": "codex",
-      "model": "gpt-5.4",
+      "model": "gpt-6-sol",
       "model_provider": null,
       "model_fallback_from": null,
       "model_warning": null,
@@ -9338,7 +9338,7 @@
     {
       "agent_id": "gcp-maestro-agent",
       "harness": "codex",
-      "model": "gpt-5.4",
+      "model": "gpt-6-sol",
       "model_provider": null,
       "model_fallback_from": null,
       "model_warning": null,
@@ -9371,7 +9371,7 @@
     {
       "agent_id": "gcp-migration-cutover-architect-agent",
       "harness": "codex",
-      "model": "gpt-5.4",
+      "model": "gpt-6-sol",
       "model_provider": null,
       "model_fallback_from": null,
       "model_warning": null,
@@ -9404,7 +9404,7 @@
     {
       "agent_id": "gcp-network-architect-agent",
       "harness": "codex",
-      "model": "gpt-5.4",
+      "model": "gpt-6-sol",
       "model_provider": null,
       "model_fallback_from": null,
       "model_warning": null,
@@ -9437,7 +9437,7 @@
     {
       "agent_id": "gcp-networking-observability-agent",
       "harness": "codex",
-      "model": "gpt-5.4",
+      "model": "gpt-6-sol",
       "model_provider": null,
       "model_fallback_from": null,
       "model_warning": null,
@@ -9470,7 +9470,7 @@
     {
       "agent_id": "gcp-observability-incident-responder-agent",
       "harness": "codex",
-      "model": "gpt-5.4",
+      "model": "gpt-6-sol",
       "model_provider": null,
       "model_fallback_from": null,
       "model_warning": null,
@@ -9503,7 +9503,7 @@
     {
       "agent_id": "gcp-registry-artifact-governor-agent",
       "harness": "codex",
-      "model": "gpt-5.4",
+      "model": "gpt-6-sol",
       "model_provider": null,
       "model_fallback_from": null,
       "model_warning": null,
@@ -9536,7 +9536,7 @@
     {
       "agent_id": "gcp-resilience-bcdr-review-agent",
       "harness": "codex",
-      "model": "gpt-5.4",
+      "model": "gpt-6-sol",
       "model_provider": null,
       "model_fallback_from": null,
       "model_warning": null,
@@ -9569,7 +9569,7 @@
     {
       "agent_id": "gcp-resource-inventory-analyst-agent",
       "harness": "codex",
-      "model": "gpt-5.4",
+      "model": "gpt-6-sol",
       "model_provider": null,
       "model_fallback_from": null,
       "model_warning": null,
@@ -9602,7 +9602,7 @@
     {
       "agent_id": "gcp-secret-kms-lifecycle-steward-agent",
       "harness": "codex",
-      "model": "gpt-5.4",
+      "model": "gpt-6-sol",
       "model_provider": null,
       "model_fallback_from": null,
       "model_warning": null,
@@ -9635,7 +9635,7 @@
     {
       "agent_id": "gcp-security-posture-hardening-agent",
       "harness": "codex",
-      "model": "gpt-5.4",
+      "model": "gpt-6-sol",
       "model_provider": null,
       "model_fallback_from": null,
       "model_warning": null,
@@ -9668,7 +9668,7 @@
     {
       "agent_id": "gcp-serverless-production-readiness-agent",
       "harness": "codex",
-      "model": "gpt-5.4",
+      "model": "gpt-6-sol",
       "model_provider": null,
       "model_fallback_from": null,
       "model_warning": null,
@@ -9701,7 +9701,7 @@
     {
       "agent_id": "gcp-solution-architect-agent",
       "harness": "codex",
-      "model": "gpt-5.4",
+      "model": "gpt-6-sol",
       "model_provider": null,
       "model_fallback_from": null,
       "model_warning": null,
@@ -9734,7 +9734,7 @@
     {
       "agent_id": "gcp-spanner-architect-agent",
       "harness": "codex",
-      "model": "gpt-5.4",
+      "model": "gpt-6-sol",
       "model_provider": null,
       "model_fallback_from": null,
       "model_warning": null,
@@ -9767,7 +9767,7 @@
     {
       "agent_id": "gcp-support-incident-coordinator-agent",
       "harness": "codex",
-      "model": "gpt-5.4",
+      "model": "gpt-6-sol",
       "model_provider": null,
       "model_fallback_from": null,
       "model_warning": null,
@@ -9800,7 +9800,7 @@
     {
       "agent_id": "gcp-ticket-triage-escalation-coordinator-agent",
       "harness": "codex",
-      "model": "gpt-5.4",
+      "model": "gpt-6-sol",
       "model_provider": null,
       "model_fallback_from": null,
       "model_warning": null,
@@ -9833,7 +9833,7 @@
     {
       "agent_id": "gcp-vertex-ai-mlops-engineer-agent",
       "harness": "codex",
-      "model": "gpt-5.4",
+      "model": "gpt-6-sol",
       "model_provider": null,
       "model_fallback_from": null,
       "model_warning": null,
@@ -9866,7 +9866,7 @@
     {
       "agent_id": "gcp-vpc-service-controls-architect-agent",
       "harness": "codex",
-      "model": "gpt-5.4",
+      "model": "gpt-6-sol",
       "model_provider": null,
       "model_fallback_from": null,
       "model_warning": null,
@@ -9899,7 +9899,7 @@
     {
       "agent_id": "gcp-waf-cost-optimization-review-agent",
       "harness": "codex",
-      "model": "gpt-5.4",
+      "model": "gpt-6-sol",
       "model_provider": null,
       "model_fallback_from": null,
       "model_warning": null,
@@ -9932,7 +9932,7 @@
     {
       "agent_id": "gcp-waf-reliability-review-agent",
       "harness": "codex",
-      "model": "gpt-5.4",
+      "model": "gpt-6-sol",
       "model_provider": null,
       "model_fallback_from": null,
       "model_warning": null,
@@ -9965,7 +9965,7 @@
     {
       "agent_id": "gcp-waf-security-review-agent",
       "harness": "codex",
-      "model": "gpt-5.4",
+      "model": "gpt-6-sol",
       "model_provider": null,
       "model_fallback_from": null,
       "model_warning": null,
@@ -10031,7 +10031,7 @@
     {
       "agent_id": "hetzner-capacity-planner-agent",
       "harness": "codex",
-      "model": "gpt-5.4",
+      "model": "gpt-6-sol",
       "model_provider": null,
       "model_fallback_from": null,
       "model_warning": null,
@@ -10064,7 +10064,7 @@
     {
       "agent_id": "hetzner-cost-optimization-analyst-agent",
       "harness": "codex",
-      "model": "gpt-5.4",
+      "model": "gpt-6-sol",
       "model_provider": null,
       "model_fallback_from": null,
       "model_warning": null,
@@ -10097,7 +10097,7 @@
     {
       "agent_id": "hetzner-infrastructure-reviewer-agent",
       "harness": "codex",
-      "model": "gpt-5.4",
+      "model": "gpt-6-sol",
       "model_provider": null,
       "model_fallback_from": null,
       "model_warning": null,
@@ -10130,7 +10130,7 @@
     {
       "agent_id": "hetzner-live-firewall-rule-guard-agent",
       "harness": "codex",
-      "model": "gpt-5.4",
+      "model": "gpt-6-sol",
       "model_provider": null,
       "model_fallback_from": null,
       "model_warning": null,
@@ -10163,7 +10163,7 @@
     {
       "agent_id": "hetzner-live-server-lifecycle-guard-agent",
       "harness": "codex",
-      "model": "gpt-5.4",
+      "model": "gpt-6-sol",
       "model_provider": null,
       "model_fallback_from": null,
       "model_warning": null,
@@ -10196,7 +10196,7 @@
     {
       "agent_id": "hetzner-maestro-agent",
       "harness": "codex",
-      "model": "gpt-5.4",
+      "model": "gpt-6-sol",
       "model_provider": null,
       "model_fallback_from": null,
       "model_warning": null,
@@ -10724,7 +10724,7 @@
     {
       "agent_id": "html-semantics-agent",
       "harness": "codex",
-      "model": "gpt-5.4",
+      "model": "gpt-6-sol",
       "model_provider": null,
       "model_fallback_from": null,
       "model_warning": null,
@@ -10757,7 +10757,7 @@
     {
       "agent_id": "huawei-cce-container-platform-operator-agent",
       "harness": "codex",
-      "model": "gpt-5.4",
+      "model": "gpt-6-sol",
       "model_provider": null,
       "model_fallback_from": null,
       "model_warning": null,
@@ -10790,7 +10790,7 @@
     {
       "agent_id": "huawei-certificate-manager-issuer-review-agent",
       "harness": "codex",
-      "model": "gpt-5.4",
+      "model": "gpt-6-sol",
       "model_provider": null,
       "model_fallback_from": null,
       "model_warning": null,
@@ -10823,7 +10823,7 @@
     {
       "agent_id": "huawei-change-impact-advisor-agent",
       "harness": "codex",
-      "model": "gpt-5.4",
+      "model": "gpt-6-sol",
       "model_provider": null,
       "model_fallback_from": null,
       "model_warning": null,
@@ -10856,7 +10856,7 @@
     {
       "agent_id": "huawei-codearts-devops-operator-agent",
       "harness": "codex",
-      "model": "gpt-5.4",
+      "model": "gpt-6-sol",
       "model_provider": null,
       "model_fallback_from": null,
       "model_warning": null,
@@ -10889,7 +10889,7 @@
     {
       "agent_id": "huawei-compliance-sovereignty-agent",
       "harness": "codex",
-      "model": "gpt-5.4",
+      "model": "gpt-6-sol",
       "model_provider": null,
       "model_fallback_from": null,
       "model_warning": null,
@@ -10922,7 +10922,7 @@
     {
       "agent_id": "huawei-cost-anomaly-watch-coordinator-agent",
       "harness": "codex",
-      "model": "gpt-5.4",
+      "model": "gpt-6-sol",
       "model_provider": null,
       "model_fallback_from": null,
       "model_warning": null,
@@ -10955,7 +10955,7 @@
     {
       "agent_id": "huawei-cost-finops-analyst-agent",
       "harness": "codex",
-      "model": "gpt-5.4",
+      "model": "gpt-6-sol",
       "model_provider": null,
       "model_fallback_from": null,
       "model_warning": null,
@@ -10988,7 +10988,7 @@
     {
       "agent_id": "huawei-daily-operations-briefing-coordinator-agent",
       "harness": "codex",
-      "model": "gpt-5.4",
+      "model": "gpt-6-sol",
       "model_provider": null,
       "model_fallback_from": null,
       "model_warning": null,
@@ -11021,7 +11021,7 @@
     {
       "agent_id": "huawei-dew-kms-lifecycle-steward-agent",
       "harness": "codex",
-      "model": "gpt-5.4",
+      "model": "gpt-6-sol",
       "model_provider": null,
       "model_fallback_from": null,
       "model_warning": null,
@@ -11054,7 +11054,7 @@
     {
       "agent_id": "huawei-drs-data-replication-operator-agent",
       "harness": "codex",
-      "model": "gpt-5.4",
+      "model": "gpt-6-sol",
       "model_provider": null,
       "model_fallback_from": null,
       "model_warning": null,
@@ -11087,7 +11087,7 @@
     {
       "agent_id": "huawei-dws-dli-data-analyst-agent",
       "harness": "codex",
-      "model": "gpt-5.4",
+      "model": "gpt-6-sol",
       "model_provider": null,
       "model_fallback_from": null,
       "model_warning": null,
@@ -11120,7 +11120,7 @@
     {
       "agent_id": "huawei-ecs-compute-operator-agent",
       "harness": "codex",
-      "model": "gpt-5.4",
+      "model": "gpt-6-sol",
       "model_provider": null,
       "model_fallback_from": null,
       "model_warning": null,
@@ -11153,7 +11153,7 @@
     {
       "agent_id": "huawei-event-driven-architecture-review-agent",
       "harness": "codex",
-      "model": "gpt-5.4",
+      "model": "gpt-6-sol",
       "model_provider": null,
       "model_fallback_from": null,
       "model_warning": null,
@@ -11186,7 +11186,7 @@
     {
       "agent_id": "huawei-functiongraph-serverless-operator-agent",
       "harness": "codex",
-      "model": "gpt-5.4",
+      "model": "gpt-6-sol",
       "model_provider": null,
       "model_fallback_from": null,
       "model_warning": null,
@@ -11219,7 +11219,7 @@
     {
       "agent_id": "huawei-gaussdb-rds-dba-agent",
       "harness": "codex",
-      "model": "gpt-5.4",
+      "model": "gpt-6-sol",
       "model_provider": null,
       "model_fallback_from": null,
       "model_warning": null,
@@ -11252,7 +11252,7 @@
     {
       "agent_id": "huawei-geminidb-architect-agent",
       "harness": "codex",
-      "model": "gpt-5.4",
+      "model": "gpt-6-sol",
       "model_provider": null,
       "model_fallback_from": null,
       "model_warning": null,
@@ -11285,7 +11285,7 @@
     {
       "agent_id": "huawei-iac-change-safety-review-agent",
       "harness": "codex",
-      "model": "gpt-5.4",
+      "model": "gpt-6-sol",
       "model_provider": null,
       "model_fallback_from": null,
       "model_warning": null,
@@ -11318,7 +11318,7 @@
     {
       "agent_id": "huawei-iam-least-privilege-review-agent",
       "harness": "codex",
-      "model": "gpt-5.4",
+      "model": "gpt-6-sol",
       "model_provider": null,
       "model_fallback_from": null,
       "model_warning": null,
@@ -11351,7 +11351,7 @@
     {
       "agent_id": "huawei-ief-edge-computing-operator-agent",
       "harness": "codex",
-      "model": "gpt-5.4",
+      "model": "gpt-6-sol",
       "model_provider": null,
       "model_fallback_from": null,
       "model_warning": null,
@@ -11384,7 +11384,7 @@
     {
       "agent_id": "huawei-landing-zone-architect-agent",
       "harness": "codex",
-      "model": "gpt-5.4",
+      "model": "gpt-6-sol",
       "model_provider": null,
       "model_fallback_from": null,
       "model_warning": null,
@@ -11417,7 +11417,7 @@
     {
       "agent_id": "huawei-live-cce-rollout-guard-agent",
       "harness": "codex",
-      "model": "gpt-5.4",
+      "model": "gpt-6-sol",
       "model_provider": null,
       "model_fallback_from": null,
       "model_warning": null,
@@ -11450,7 +11450,7 @@
     {
       "agent_id": "huawei-live-cost-budget-action-guard-agent",
       "harness": "codex",
-      "model": "gpt-5.4",
+      "model": "gpt-6-sol",
       "model_provider": null,
       "model_fallback_from": null,
       "model_warning": null,
@@ -11483,7 +11483,7 @@
     {
       "agent_id": "huawei-live-gaussdb-mutation-guard-agent",
       "harness": "codex",
-      "model": "gpt-5.4",
+      "model": "gpt-6-sol",
       "model_provider": null,
       "model_fallback_from": null,
       "model_warning": null,
@@ -11516,7 +11516,7 @@
     {
       "agent_id": "huawei-live-iam-policy-change-guard-agent",
       "harness": "codex",
-      "model": "gpt-5.4",
+      "model": "gpt-6-sol",
       "model_provider": null,
       "model_fallback_from": null,
       "model_warning": null,
@@ -11549,7 +11549,7 @@
     {
       "agent_id": "huawei-live-kms-key-destruction-guard-agent",
       "harness": "codex",
-      "model": "gpt-5.4",
+      "model": "gpt-6-sol",
       "model_provider": null,
       "model_fallback_from": null,
       "model_warning": null,
@@ -11582,7 +11582,7 @@
     {
       "agent_id": "huawei-live-obs-bucket-policy-guard-agent",
       "harness": "codex",
-      "model": "gpt-5.4",
+      "model": "gpt-6-sol",
       "model_provider": null,
       "model_fallback_from": null,
       "model_warning": null,
@@ -11615,7 +11615,7 @@
     {
       "agent_id": "huawei-load-balancer-traffic-engineer-agent",
       "harness": "codex",
-      "model": "gpt-5.4",
+      "model": "gpt-6-sol",
       "model_provider": null,
       "model_fallback_from": null,
       "model_warning": null,
@@ -11648,7 +11648,7 @@
     {
       "agent_id": "huawei-maestro-agent",
       "harness": "codex",
-      "model": "gpt-5.4",
+      "model": "gpt-6-sol",
       "model_provider": null,
       "model_fallback_from": null,
       "model_warning": null,
@@ -11681,7 +11681,7 @@
     {
       "agent_id": "huawei-migration-architect-agent",
       "harness": "codex",
-      "model": "gpt-5.4",
+      "model": "gpt-6-sol",
       "model_provider": null,
       "model_fallback_from": null,
       "model_warning": null,
@@ -11714,7 +11714,7 @@
     {
       "agent_id": "huawei-modelarts-mlops-engineer-agent",
       "harness": "codex",
-      "model": "gpt-5.4",
+      "model": "gpt-6-sol",
       "model_provider": null,
       "model_fallback_from": null,
       "model_warning": null,
@@ -11747,7 +11747,7 @@
     {
       "agent_id": "huawei-network-architect-agent",
       "harness": "codex",
-      "model": "gpt-5.4",
+      "model": "gpt-6-sol",
       "model_provider": null,
       "model_fallback_from": null,
       "model_warning": null,
@@ -11780,7 +11780,7 @@
     {
       "agent_id": "huawei-obs-data-perimeter-governor-agent",
       "harness": "codex",
-      "model": "gpt-5.4",
+      "model": "gpt-6-sol",
       "model_provider": null,
       "model_fallback_from": null,
       "model_warning": null,
@@ -11813,7 +11813,7 @@
     {
       "agent_id": "huawei-obs-storage-steward-agent",
       "harness": "codex",
-      "model": "gpt-5.4",
+      "model": "gpt-6-sol",
       "model_provider": null,
       "model_fallback_from": null,
       "model_warning": null,
@@ -11846,7 +11846,7 @@
     {
       "agent_id": "huawei-observability-incident-responder-agent",
       "harness": "codex",
-      "model": "gpt-5.4",
+      "model": "gpt-6-sol",
       "model_provider": null,
       "model_fallback_from": null,
       "model_warning": null,
@@ -11879,7 +11879,7 @@
     {
       "agent_id": "huawei-registry-artifact-governor-agent",
       "harness": "codex",
-      "model": "gpt-5.4",
+      "model": "gpt-6-sol",
       "model_provider": null,
       "model_fallback_from": null,
       "model_warning": null,
@@ -11912,7 +11912,7 @@
     {
       "agent_id": "huawei-resilience-bcdr-review-agent",
       "harness": "codex",
-      "model": "gpt-5.4",
+      "model": "gpt-6-sol",
       "model_provider": null,
       "model_fallback_from": null,
       "model_warning": null,
@@ -11945,7 +11945,7 @@
     {
       "agent_id": "huawei-secmaster-security-operations-agent",
       "harness": "codex",
-      "model": "gpt-5.4",
+      "model": "gpt-6-sol",
       "model_provider": null,
       "model_fallback_from": null,
       "model_warning": null,
@@ -11978,7 +11978,7 @@
     {
       "agent_id": "huawei-serverless-production-readiness-agent",
       "harness": "codex",
-      "model": "gpt-5.4",
+      "model": "gpt-6-sol",
       "model_provider": null,
       "model_fallback_from": null,
       "model_warning": null,
@@ -12011,7 +12011,7 @@
     {
       "agent_id": "huawei-solution-architect-agent",
       "harness": "codex",
-      "model": "gpt-5.4",
+      "model": "gpt-6-sol",
       "model_provider": null,
       "model_fallback_from": null,
       "model_warning": null,
@@ -12044,7 +12044,7 @@
     {
       "agent_id": "huawei-support-incident-coordinator-agent",
       "harness": "codex",
-      "model": "gpt-5.4",
+      "model": "gpt-6-sol",
       "model_provider": null,
       "model_fallback_from": null,
       "model_warning": null,
@@ -12077,7 +12077,7 @@
     {
       "agent_id": "huawei-ticket-triage-escalation-coordinator-agent",
       "harness": "codex",
-      "model": "gpt-5.4",
+      "model": "gpt-6-sol",
       "model_provider": null,
       "model_fallback_from": null,
       "model_warning": null,
@@ -12110,7 +12110,7 @@
     {
       "agent_id": "huawei-waf-cost-optimization-review-agent",
       "harness": "codex",
-      "model": "gpt-5.4",
+      "model": "gpt-6-sol",
       "model_provider": null,
       "model_fallback_from": null,
       "model_warning": null,
@@ -12143,7 +12143,7 @@
     {
       "agent_id": "huawei-waf-reliability-review-agent",
       "harness": "codex",
-      "model": "gpt-5.4",
+      "model": "gpt-6-sol",
       "model_provider": null,
       "model_fallback_from": null,
       "model_warning": null,
@@ -12176,7 +12176,7 @@
     {
       "agent_id": "huawei-waf-security-review-agent",
       "harness": "codex",
-      "model": "gpt-5.4",
+      "model": "gpt-6-sol",
       "model_provider": null,
       "model_fallback_from": null,
       "model_warning": null,
@@ -12209,7 +12209,7 @@
     {
       "agent_id": "influencer-disclosure-compliance-review-agent",
       "harness": "codex",
-      "model": "gpt-5.4",
+      "model": "gpt-6-sol",
       "model_provider": null,
       "model_fallback_from": null,
       "model_warning": null,
@@ -12242,7 +12242,7 @@
     {
       "agent_id": "internationalization-localization-agent",
       "harness": "codex",
-      "model": "gpt-5.4",
+      "model": "gpt-6-sol",
       "model_provider": null,
       "model_fallback_from": null,
       "model_warning": null,
@@ -12275,7 +12275,7 @@
     {
       "agent_id": "ionos-cost-optimization-analyst-agent",
       "harness": "codex",
-      "model": "gpt-5.4",
+      "model": "gpt-6-sol",
       "model_provider": null,
       "model_fallback_from": null,
       "model_warning": null,
@@ -12308,7 +12308,7 @@
     {
       "agent_id": "ionos-datacenter-designer-reviewer-agent",
       "harness": "codex",
-      "model": "gpt-5.4",
+      "model": "gpt-6-sol",
       "model_provider": null,
       "model_fallback_from": null,
       "model_warning": null,
@@ -12341,7 +12341,7 @@
     {
       "agent_id": "ionos-kubernetes-platform-operator-agent",
       "harness": "codex",
-      "model": "gpt-5.4",
+      "model": "gpt-6-sol",
       "model_provider": null,
       "model_fallback_from": null,
       "model_warning": null,
@@ -12374,7 +12374,7 @@
     {
       "agent_id": "ionos-live-database-lifecycle-guard-agent",
       "harness": "codex",
-      "model": "gpt-5.4",
+      "model": "gpt-6-sol",
       "model_provider": null,
       "model_fallback_from": null,
       "model_warning": null,
@@ -12407,7 +12407,7 @@
     {
       "agent_id": "ionos-maestro-agent",
       "harness": "codex",
-      "model": "gpt-5.4",
+      "model": "gpt-6-sol",
       "model_provider": null,
       "model_fallback_from": null,
       "model_warning": null,
@@ -12440,7 +12440,7 @@
     {
       "agent_id": "ionos-security-compliance-reviewer-agent",
       "harness": "codex",
-      "model": "gpt-5.4",
+      "model": "gpt-6-sol",
       "model_provider": null,
       "model_fallback_from": null,
       "model_warning": null,
@@ -12473,7 +12473,7 @@
     {
       "agent_id": "istio-ambient-mesh-review-agent",
       "harness": "codex",
-      "model": "gpt-5.4",
+      "model": "gpt-6-sol",
       "model_provider": null,
       "model_fallback_from": null,
       "model_warning": null,
@@ -12506,7 +12506,7 @@
     {
       "agent_id": "istio-authorization-policy-review-agent",
       "harness": "codex",
-      "model": "gpt-5.4",
+      "model": "gpt-6-sol",
       "model_provider": null,
       "model_fallback_from": null,
       "model_warning": null,
@@ -12539,7 +12539,7 @@
     {
       "agent_id": "istio-dataplane-diagnostics-agent",
       "harness": "codex",
-      "model": "gpt-5.4",
+      "model": "gpt-6-sol",
       "model_provider": null,
       "model_fallback_from": null,
       "model_warning": null,
@@ -12572,7 +12572,7 @@
     {
       "agent_id": "istio-gateway-api-review-agent",
       "harness": "codex",
-      "model": "gpt-5.4",
+      "model": "gpt-6-sol",
       "model_provider": null,
       "model_fallback_from": null,
       "model_warning": null,
@@ -12605,7 +12605,7 @@
     {
       "agent_id": "istio-maestro-agent",
       "harness": "codex",
-      "model": "gpt-5.4",
+      "model": "gpt-6-sol",
       "model_provider": null,
       "model_fallback_from": null,
       "model_warning": null,
@@ -12638,7 +12638,7 @@
     {
       "agent_id": "istio-traffic-resilience-review-agent",
       "harness": "codex",
-      "model": "gpt-5.4",
+      "model": "gpt-6-sol",
       "model_provider": null,
       "model_fallback_from": null,
       "model_warning": null,
@@ -12671,7 +12671,7 @@
     {
       "agent_id": "istio-upgrade-readiness-agent",
       "harness": "codex",
-      "model": "gpt-5.4",
+      "model": "gpt-6-sol",
       "model_provider": null,
       "model_fallback_from": null,
       "model_warning": null,
@@ -13199,7 +13199,7 @@
     {
       "agent_id": "javascript-runtime-agent",
       "harness": "codex",
-      "model": "gpt-5.4",
+      "model": "gpt-6-sol",
       "model_provider": null,
       "model_fallback_from": null,
       "model_warning": null,
@@ -13232,7 +13232,7 @@
     {
       "agent_id": "kotlin-android-architecture-agent",
       "harness": "codex",
-      "model": "gpt-5.4",
+      "model": "gpt-6-sol",
       "model_provider": null,
       "model_fallback_from": null,
       "model_warning": null,
@@ -13265,7 +13265,7 @@
     {
       "agent_id": "kotlin-android-performance-reliability-agent",
       "harness": "codex",
-      "model": "gpt-5.4",
+      "model": "gpt-6-sol",
       "model_provider": null,
       "model_fallback_from": null,
       "model_warning": null,
@@ -13298,7 +13298,7 @@
     {
       "agent_id": "kotlin-android-security-privacy-agent",
       "harness": "codex",
-      "model": "gpt-5.4",
+      "model": "gpt-6-sol",
       "model_provider": null,
       "model_fallback_from": null,
       "model_warning": null,
@@ -13331,7 +13331,7 @@
     {
       "agent_id": "kotlin-backend-production-readiness-agent",
       "harness": "codex",
-      "model": "gpt-5.4",
+      "model": "gpt-6-sol",
       "model_provider": null,
       "model_fallback_from": null,
       "model_warning": null,
@@ -13364,7 +13364,7 @@
     {
       "agent_id": "kotlin-compose-ui-quality-accessibility-agent",
       "harness": "codex",
-      "model": "gpt-5.4",
+      "model": "gpt-6-sol",
       "model_provider": null,
       "model_fallback_from": null,
       "model_warning": null,
@@ -13397,7 +13397,7 @@
     {
       "agent_id": "kotlin-coroutines-flow-reliability-agent",
       "harness": "codex",
-      "model": "gpt-5.4",
+      "model": "gpt-6-sol",
       "model_provider": null,
       "model_fallback_from": null,
       "model_warning": null,
@@ -13430,7 +13430,7 @@
     {
       "agent_id": "kotlin-estate-modernization-governor-agent",
       "harness": "codex",
-      "model": "gpt-5.4",
+      "model": "gpt-6-sol",
       "model_provider": null,
       "model_fallback_from": null,
       "model_warning": null,
@@ -13463,7 +13463,7 @@
     {
       "agent_id": "kotlin-gradle-build-engineering-agent",
       "harness": "codex",
-      "model": "gpt-5.4",
+      "model": "gpt-6-sol",
       "model_provider": null,
       "model_fallback_from": null,
       "model_warning": null,
@@ -13496,7 +13496,7 @@
     {
       "agent_id": "kotlin-kmp-boundary-interop-agent",
       "harness": "codex",
-      "model": "gpt-5.4",
+      "model": "gpt-6-sol",
       "model_provider": null,
       "model_fallback_from": null,
       "model_warning": null,
@@ -13529,7 +13529,7 @@
     {
       "agent_id": "kotlin-kmp-portfolio-decision-agent",
       "harness": "codex",
-      "model": "gpt-5.4",
+      "model": "gpt-6-sol",
       "model_provider": null,
       "model_fallback_from": null,
       "model_warning": null,
@@ -13562,7 +13562,7 @@
     {
       "agent_id": "kotlin-language-api-correctness-agent",
       "harness": "codex",
-      "model": "gpt-5.4",
+      "model": "gpt-6-sol",
       "model_provider": null,
       "model_fallback_from": null,
       "model_warning": null,
@@ -13595,7 +13595,7 @@
     {
       "agent_id": "kotlin-library-api-abi-governance-agent",
       "harness": "codex",
-      "model": "gpt-5.4",
+      "model": "gpt-6-sol",
       "model_provider": null,
       "model_fallback_from": null,
       "model_warning": null,
@@ -13628,7 +13628,7 @@
     {
       "agent_id": "kotlin-maestro-agent",
       "harness": "codex",
-      "model": "gpt-5.4",
+      "model": "gpt-6-sol",
       "model_provider": null,
       "model_fallback_from": null,
       "model_warning": null,
@@ -13661,7 +13661,7 @@
     {
       "agent_id": "kotlin-serialization-wire-contract-agent",
       "harness": "codex",
-      "model": "gpt-5.4",
+      "model": "gpt-6-sol",
       "model_provider": null,
       "model_fallback_from": null,
       "model_warning": null,
@@ -13694,7 +13694,7 @@
     {
       "agent_id": "kotlin-supply-chain-release-integrity-agent",
       "harness": "codex",
-      "model": "gpt-5.4",
+      "model": "gpt-6-sol",
       "model_provider": null,
       "model_fallback_from": null,
       "model_warning": null,
@@ -13727,7 +13727,7 @@
     {
       "agent_id": "kotlin-test-architecture-agent",
       "harness": "codex",
-      "model": "gpt-5.4",
+      "model": "gpt-6-sol",
       "model_provider": null,
       "model_fallback_from": null,
       "model_warning": null,
@@ -13760,7 +13760,7 @@
     {
       "agent_id": "kubecost-chargeback-allocation-review-agent",
       "harness": "codex",
-      "model": "gpt-5.4",
+      "model": "gpt-6-sol",
       "model_provider": null,
       "model_fallback_from": null,
       "model_warning": null,
@@ -13793,7 +13793,7 @@
     {
       "agent_id": "kubernetes-live-admission-policy-guard-agent",
       "harness": "codex",
-      "model": "gpt-5.4",
+      "model": "gpt-6-sol",
       "model_provider": null,
       "model_fallback_from": null,
       "model_warning": null,
@@ -13826,7 +13826,7 @@
     {
       "agent_id": "kubernetes-live-argocd-sync-guard-agent",
       "harness": "codex",
-      "model": "gpt-5.4",
+      "model": "gpt-6-sol",
       "model_provider": null,
       "model_fallback_from": null,
       "model_warning": null,
@@ -13859,7 +13859,7 @@
     {
       "agent_id": "kubernetes-live-mesh-policy-guard-agent",
       "harness": "codex",
-      "model": "gpt-5.4",
+      "model": "gpt-6-sol",
       "model_provider": null,
       "model_fallback_from": null,
       "model_warning": null,
@@ -13892,7 +13892,7 @@
     {
       "agent_id": "kubernetes-live-network-architecture-mutation-guard-agent",
       "harness": "codex",
-      "model": "gpt-5.4",
+      "model": "gpt-6-sol",
       "model_provider": null,
       "model_fallback_from": null,
       "model_warning": null,
@@ -13925,7 +13925,7 @@
     {
       "agent_id": "kubernetes-live-network-policy-guard-agent",
       "harness": "codex",
-      "model": "gpt-5.4",
+      "model": "gpt-6-sol",
       "model_provider": null,
       "model_fallback_from": null,
       "model_warning": null,
@@ -13958,7 +13958,7 @@
     {
       "agent_id": "kubernetes-live-rbac-mutation-guard-agent",
       "harness": "codex",
-      "model": "gpt-5.4",
+      "model": "gpt-6-sol",
       "model_provider": null,
       "model_fallback_from": null,
       "model_warning": null,
@@ -13991,7 +13991,7 @@
     {
       "agent_id": "kubernetes-live-velero-restore-guard-agent",
       "harness": "codex",
-      "model": "gpt-5.4",
+      "model": "gpt-6-sol",
       "model_provider": null,
       "model_fallback_from": null,
       "model_warning": null,
@@ -14024,7 +14024,7 @@
     {
       "agent_id": "kubernetes-maestro-agent",
       "harness": "codex",
-      "model": "gpt-5.4",
+      "model": "gpt-6-sol",
       "model_provider": null,
       "model_fallback_from": null,
       "model_warning": null,
@@ -14090,7 +14090,7 @@
     {
       "agent_id": "kubernetes-network-architecture-review-agent",
       "harness": "codex",
-      "model": "gpt-5.4",
+      "model": "gpt-6-sol",
       "model_provider": null,
       "model_fallback_from": null,
       "model_warning": null,
@@ -14123,7 +14123,7 @@
     {
       "agent_id": "kubernetes-pod-spec-review-agent",
       "harness": "codex",
-      "model": "gpt-5.4",
+      "model": "gpt-6-sol",
       "model_provider": null,
       "model_fallback_from": null,
       "model_warning": null,
@@ -14156,7 +14156,7 @@
     {
       "agent_id": "kubernetes-psa-review-agent",
       "harness": "codex",
-      "model": "gpt-5.4",
+      "model": "gpt-6-sol",
       "model_provider": null,
       "model_fallback_from": null,
       "model_warning": null,
@@ -14189,7 +14189,7 @@
     {
       "agent_id": "kubernetes-rbac-review-agent",
       "harness": "codex",
-      "model": "gpt-5.4",
+      "model": "gpt-6-sol",
       "model_provider": null,
       "model_fallback_from": null,
       "model_warning": null,
@@ -14222,7 +14222,7 @@
     {
       "agent_id": "kubernetes-workload-identity-review-agent",
       "harness": "codex",
-      "model": "gpt-5.4",
+      "model": "gpt-6-sol",
       "model_provider": null,
       "model_fallback_from": null,
       "model_warning": null,
@@ -14255,7 +14255,7 @@
     {
       "agent_id": "kyverno-admission-reliability-agent",
       "harness": "codex",
-      "model": "gpt-5.4",
+      "model": "gpt-6-sol",
       "model_provider": null,
       "model_fallback_from": null,
       "model_warning": null,
@@ -14288,7 +14288,7 @@
     {
       "agent_id": "kyverno-control-evidence-agent",
       "harness": "codex",
-      "model": "gpt-5.4",
+      "model": "gpt-6-sol",
       "model_provider": null,
       "model_fallback_from": null,
       "model_warning": null,
@@ -14321,7 +14321,7 @@
     {
       "agent_id": "kyverno-exception-governance-agent",
       "harness": "codex",
-      "model": "gpt-5.4",
+      "model": "gpt-6-sol",
       "model_provider": null,
       "model_fallback_from": null,
       "model_warning": null,
@@ -14354,7 +14354,7 @@
     {
       "agent_id": "kyverno-maestro-agent",
       "harness": "codex",
-      "model": "gpt-5.4",
+      "model": "gpt-6-sol",
       "model_provider": null,
       "model_fallback_from": null,
       "model_warning": null,
@@ -14387,7 +14387,7 @@
     {
       "agent_id": "kyverno-migration-readiness-agent",
       "harness": "codex",
-      "model": "gpt-5.4",
+      "model": "gpt-6-sol",
       "model_provider": null,
       "model_fallback_from": null,
       "model_warning": null,
@@ -14420,7 +14420,7 @@
     {
       "agent_id": "kyverno-policy-lifecycle-agent",
       "harness": "codex",
-      "model": "gpt-5.4",
+      "model": "gpt-6-sol",
       "model_provider": null,
       "model_fallback_from": null,
       "model_warning": null,
@@ -14453,7 +14453,7 @@
     {
       "agent_id": "kyverno-policy-review-agent",
       "harness": "codex",
-      "model": "gpt-5.4",
+      "model": "gpt-6-sol",
       "model_provider": null,
       "model_fallback_from": null,
       "model_warning": null,
@@ -14948,7 +14948,7 @@
     {
       "agent_id": "lookalike-audience-upload-compliance-review-agent",
       "harness": "codex",
-      "model": "gpt-5.4",
+      "model": "gpt-6-sol",
       "model_provider": null,
       "model_fallback_from": null,
       "model_warning": null,
@@ -14981,7 +14981,7 @@
     {
       "agent_id": "m365-backup-bcdr-data-resilience-agent",
       "harness": "codex",
-      "model": "gpt-5.4",
+      "model": "gpt-6-sol",
       "model_provider": null,
       "model_fallback_from": null,
       "model_warning": null,
@@ -15014,7 +15014,7 @@
     {
       "agent_id": "m365-copilot-readiness-governance-agent",
       "harness": "codex",
-      "model": "gpt-5.4",
+      "model": "gpt-6-sol",
       "model_provider": null,
       "model_fallback_from": null,
       "model_warning": null,
@@ -15047,7 +15047,7 @@
     {
       "agent_id": "m365-defender-xdr-security-operations-agent",
       "harness": "codex",
-      "model": "gpt-5.4",
+      "model": "gpt-6-sol",
       "model_provider": null,
       "model_fallback_from": null,
       "model_warning": null,
@@ -15080,7 +15080,7 @@
     {
       "agent_id": "m365-exchange-sharepoint-information-governance-agent",
       "harness": "codex",
-      "model": "gpt-5.4",
+      "model": "gpt-6-sol",
       "model_provider": null,
       "model_fallback_from": null,
       "model_warning": null,
@@ -15113,7 +15113,7 @@
     {
       "agent_id": "m365-identity-zero-trust-agent",
       "harness": "codex",
-      "model": "gpt-5.4",
+      "model": "gpt-6-sol",
       "model_provider": null,
       "model_fallback_from": null,
       "model_warning": null,
@@ -15146,7 +15146,7 @@
     {
       "agent_id": "m365-intune-endpoint-management-agent",
       "harness": "codex",
-      "model": "gpt-5.4",
+      "model": "gpt-6-sol",
       "model_provider": null,
       "model_fallback_from": null,
       "model_warning": null,
@@ -15179,7 +15179,7 @@
     {
       "agent_id": "m365-licensing-ea-optimization-agent",
       "harness": "codex",
-      "model": "gpt-5.4",
+      "model": "gpt-6-sol",
       "model_provider": null,
       "model_fallback_from": null,
       "model_warning": null,
@@ -15212,7 +15212,7 @@
     {
       "agent_id": "m365-live-identity-posture-guard-agent",
       "harness": "codex",
-      "model": "gpt-5.4",
+      "model": "gpt-6-sol",
       "model_provider": null,
       "model_fallback_from": null,
       "model_warning": null,
@@ -15245,7 +15245,7 @@
     {
       "agent_id": "m365-live-sensitivity-label-apply-guard-agent",
       "harness": "codex",
-      "model": "gpt-5.4",
+      "model": "gpt-6-sol",
       "model_provider": null,
       "model_fallback_from": null,
       "model_warning": null,
@@ -15278,7 +15278,7 @@
     {
       "agent_id": "m365-maestro-agent",
       "harness": "codex",
-      "model": "gpt-5.4",
+      "model": "gpt-6-sol",
       "model_provider": null,
       "model_fallback_from": null,
       "model_warning": null,
@@ -15311,7 +15311,7 @@
     {
       "agent_id": "m365-purview-data-security-compliance-agent",
       "harness": "codex",
-      "model": "gpt-5.4",
+      "model": "gpt-6-sol",
       "model_provider": null,
       "model_fallback_from": null,
       "model_warning": null,
@@ -15344,7 +15344,7 @@
     {
       "agent_id": "m365-teams-collaboration-governance-agent",
       "harness": "codex",
-      "model": "gpt-5.4",
+      "model": "gpt-6-sol",
       "model_provider": null,
       "model_fallback_from": null,
       "model_warning": null,
@@ -15377,7 +15377,7 @@
     {
       "agent_id": "m365-tenant-governance-agent",
       "harness": "codex",
-      "model": "gpt-5.4",
+      "model": "gpt-6-sol",
       "model_provider": null,
       "model_fallback_from": null,
       "model_warning": null,
@@ -15410,7 +15410,7 @@
     {
       "agent_id": "marketing-consent-data-collection-review-agent",
       "harness": "codex",
-      "model": "gpt-5.4",
+      "model": "gpt-6-sol",
       "model_provider": null,
       "model_fallback_from": null,
       "model_warning": null,
@@ -15443,7 +15443,7 @@
     {
       "agent_id": "marketing-conversion-flow-dark-pattern-review-agent",
       "harness": "codex",
-      "model": "gpt-5.4",
+      "model": "gpt-6-sol",
       "model_provider": null,
       "model_fallback_from": null,
       "model_warning": null,
@@ -15476,7 +15476,7 @@
     {
       "agent_id": "marketing-email-list-retention-review-agent",
       "harness": "codex",
-      "model": "gpt-5.4",
+      "model": "gpt-6-sol",
       "model_provider": null,
       "model_fallback_from": null,
       "model_warning": null,
@@ -15509,7 +15509,7 @@
     {
       "agent_id": "marketing-gpc-signal-honoring-review-agent",
       "harness": "codex",
-      "model": "gpt-5.4",
+      "model": "gpt-6-sol",
       "model_provider": null,
       "model_fallback_from": null,
       "model_warning": null,
@@ -15542,7 +15542,7 @@
     {
       "agent_id": "marketing-maestro-agent",
       "harness": "codex",
-      "model": "gpt-5.4",
+      "model": "gpt-6-sol",
       "model_provider": null,
       "model_fallback_from": null,
       "model_warning": null,
@@ -15575,7 +15575,7 @@
     {
       "agent_id": "marketing-pixel-data-leakage-review-agent",
       "harness": "codex",
-      "model": "gpt-5.4",
+      "model": "gpt-6-sol",
       "model_provider": null,
       "model_fallback_from": null,
       "model_warning": null,
@@ -15608,7 +15608,7 @@
     {
       "agent_id": "martech-access-governance-review-agent",
       "harness": "codex",
-      "model": "gpt-5.4",
+      "model": "gpt-6-sol",
       "model_provider": null,
       "model_fallback_from": null,
       "model_warning": null,
@@ -15641,7 +15641,7 @@
     {
       "agent_id": "microsoft-business-impact-value-realization-agent",
       "harness": "codex",
-      "model": "gpt-5.4",
+      "model": "gpt-6-sol",
       "model_provider": null,
       "model_fallback_from": null,
       "model_warning": null,
@@ -15674,7 +15674,7 @@
     {
       "agent_id": "microsoft-maestro-agent",
       "harness": "codex",
-      "model": "gpt-5.4",
+      "model": "gpt-6-sol",
       "model_provider": null,
       "model_fallback_from": null,
       "model_warning": null,
@@ -15707,7 +15707,7 @@
     {
       "agent_id": "monorepo-dx-agent",
       "harness": "codex",
-      "model": "gpt-5.4",
+      "model": "gpt-6-sol",
       "model_provider": null,
       "model_fallback_from": null,
       "model_warning": null,
@@ -16598,7 +16598,7 @@
     {
       "agent_id": "nvidia-agentic-ai-platform-review-agent",
       "harness": "codex",
-      "model": "gpt-5.4",
+      "model": "gpt-6-sol",
       "model_provider": null,
       "model_fallback_from": null,
       "model_warning": null,
@@ -16631,7 +16631,7 @@
     {
       "agent_id": "nvidia-ai-infrastructure-operations-agent",
       "harness": "codex",
-      "model": "gpt-5.4",
+      "model": "gpt-6-sol",
       "model_provider": null,
       "model_fallback_from": null,
       "model_warning": null,
@@ -16664,7 +16664,7 @@
     {
       "agent_id": "nvidia-ai-networking-fabric-review-agent",
       "harness": "codex",
-      "model": "gpt-5.4",
+      "model": "gpt-6-sol",
       "model_provider": null,
       "model_fallback_from": null,
       "model_warning": null,
@@ -16697,7 +16697,7 @@
     {
       "agent_id": "nvidia-ai-operations-day2-agent",
       "harness": "codex",
-      "model": "gpt-5.4",
+      "model": "gpt-6-sol",
       "model_provider": null,
       "model_fallback_from": null,
       "model_warning": null,
@@ -16730,7 +16730,7 @@
     {
       "agent_id": "nvidia-cuda-kernel-performance-review-agent",
       "harness": "codex",
-      "model": "gpt-5.4",
+      "model": "gpt-6-sol",
       "model_provider": null,
       "model_fallback_from": null,
       "model_warning": null,
@@ -16763,7 +16763,7 @@
     {
       "agent_id": "nvidia-generative-ai-platform-review-agent",
       "harness": "codex",
-      "model": "gpt-5.4",
+      "model": "gpt-6-sol",
       "model_provider": null,
       "model_fallback_from": null,
       "model_warning": null,
@@ -16796,7 +16796,7 @@
     {
       "agent_id": "nvidia-gpu-operator-kubernetes-hardening-agent",
       "harness": "codex",
-      "model": "gpt-5.4",
+      "model": "gpt-6-sol",
       "model_provider": null,
       "model_fallback_from": null,
       "model_warning": null,
@@ -16829,7 +16829,7 @@
     {
       "agent_id": "nvidia-maestro-agent",
       "harness": "codex",
-      "model": "gpt-5.4",
+      "model": "gpt-6-sol",
       "model_provider": null,
       "model_fallback_from": null,
       "model_warning": null,
@@ -16884,7 +16884,7 @@
     {
       "agent_id": "nvidia-ngc-nim-supply-chain-governor-agent",
       "harness": "codex",
-      "model": "gpt-5.4",
+      "model": "gpt-6-sol",
       "model_provider": null,
       "model_fallback_from": null,
       "model_warning": null,
@@ -16917,7 +16917,7 @@
     {
       "agent_id": "nvidia-tensorrt-llm-deployment-review-agent",
       "harness": "codex",
-      "model": "gpt-5.4",
+      "model": "gpt-6-sol",
       "model_provider": null,
       "model_fallback_from": null,
       "model_warning": null,
@@ -16950,7 +16950,7 @@
     {
       "agent_id": "nvidia-triton-inference-serving-review-agent",
       "harness": "codex",
-      "model": "gpt-5.4",
+      "model": "gpt-6-sol",
       "model_provider": null,
       "model_fallback_from": null,
       "model_warning": null,
@@ -16983,7 +16983,7 @@
     {
       "agent_id": "oci-autonomous-database-architect-agent",
       "harness": "codex",
-      "model": "gpt-5.4",
+      "model": "gpt-6-sol",
       "model_provider": null,
       "model_fallback_from": null,
       "model_warning": null,
@@ -17016,7 +17016,7 @@
     {
       "agent_id": "oci-certificates-issuer-review-agent",
       "harness": "codex",
-      "model": "gpt-5.4",
+      "model": "gpt-6-sol",
       "model_provider": null,
       "model_fallback_from": null,
       "model_warning": null,
@@ -17049,7 +17049,7 @@
     {
       "agent_id": "oci-cloud-guard-responder-agent",
       "harness": "codex",
-      "model": "gpt-5.4",
+      "model": "gpt-6-sol",
       "model_provider": null,
       "model_fallback_from": null,
       "model_warning": null,
@@ -17082,7 +17082,7 @@
     {
       "agent_id": "oci-compute-instance-agent-operator-agent",
       "harness": "codex",
-      "model": "gpt-5.4",
+      "model": "gpt-6-sol",
       "model_provider": null,
       "model_fallback_from": null,
       "model_warning": null,
@@ -17115,7 +17115,7 @@
     {
       "agent_id": "oci-compute-platform-operator-agent",
       "harness": "codex",
-      "model": "gpt-5.4",
+      "model": "gpt-6-sol",
       "model_provider": null,
       "model_fallback_from": null,
       "model_warning": null,
@@ -17148,7 +17148,7 @@
     {
       "agent_id": "oci-cost-finops-analyst-agent",
       "harness": "codex",
-      "model": "gpt-5.4",
+      "model": "gpt-6-sol",
       "model_provider": null,
       "model_fallback_from": null,
       "model_warning": null,
@@ -17181,7 +17181,7 @@
     {
       "agent_id": "oci-database-platform-dba-agent",
       "harness": "codex",
-      "model": "gpt-5.4",
+      "model": "gpt-6-sol",
       "model_provider": null,
       "model_fallback_from": null,
       "model_warning": null,
@@ -17214,7 +17214,7 @@
     {
       "agent_id": "oci-dbtools-sql-analyst-agent",
       "harness": "codex",
-      "model": "gpt-5.4",
+      "model": "gpt-6-sol",
       "model_provider": null,
       "model_fallback_from": null,
       "model_warning": null,
@@ -17247,7 +17247,7 @@
     {
       "agent_id": "oci-devops-container-platform-engineer-agent",
       "harness": "codex",
-      "model": "gpt-5.4",
+      "model": "gpt-6-sol",
       "model_provider": null,
       "model_fallback_from": null,
       "model_warning": null,
@@ -17280,7 +17280,7 @@
     {
       "agent_id": "oci-exadata-platform-architect-agent",
       "harness": "codex",
-      "model": "gpt-5.4",
+      "model": "gpt-6-sol",
       "model_provider": null,
       "model_fallback_from": null,
       "model_warning": null,
@@ -17313,7 +17313,7 @@
     {
       "agent_id": "oci-fusion-apps-environment-operator-agent",
       "harness": "codex",
-      "model": "gpt-5.4",
+      "model": "gpt-6-sol",
       "model_provider": null,
       "model_fallback_from": null,
       "model_warning": null,
@@ -17346,7 +17346,7 @@
     {
       "agent_id": "oci-goldengate-replication-operator-agent",
       "harness": "codex",
-      "model": "gpt-5.4",
+      "model": "gpt-6-sol",
       "model_provider": null,
       "model_fallback_from": null,
       "model_warning": null,
@@ -17379,7 +17379,7 @@
     {
       "agent_id": "oci-identity-access-governor-agent",
       "harness": "codex",
-      "model": "gpt-5.4",
+      "model": "gpt-6-sol",
       "model_provider": null,
       "model_fallback_from": null,
       "model_warning": null,
@@ -17412,7 +17412,7 @@
     {
       "agent_id": "oci-iot-digital-twin-engineer-agent",
       "harness": "codex",
-      "model": "gpt-5.4",
+      "model": "gpt-6-sol",
       "model_provider": null,
       "model_fallback_from": null,
       "model_warning": null,
@@ -17445,7 +17445,7 @@
     {
       "agent_id": "oci-limits-capacity-planner-agent",
       "harness": "codex",
-      "model": "gpt-5.4",
+      "model": "gpt-6-sol",
       "model_provider": null,
       "model_fallback_from": null,
       "model_warning": null,
@@ -17478,7 +17478,7 @@
     {
       "agent_id": "oci-live-autonomous-db-lifecycle-guard-agent",
       "harness": "codex",
-      "model": "gpt-5.4",
+      "model": "gpt-6-sol",
       "model_provider": null,
       "model_fallback_from": null,
       "model_warning": null,
@@ -17511,7 +17511,7 @@
     {
       "agent_id": "oci-live-cost-budget-runaway-guard-agent",
       "harness": "codex",
-      "model": "gpt-5.4",
+      "model": "gpt-6-sol",
       "model_provider": null,
       "model_fallback_from": null,
       "model_warning": null,
@@ -17544,7 +17544,7 @@
     {
       "agent_id": "oci-live-iam-policy-compartment-guard-agent",
       "harness": "codex",
-      "model": "gpt-5.4",
+      "model": "gpt-6-sol",
       "model_provider": null,
       "model_fallback_from": null,
       "model_warning": null,
@@ -17577,7 +17577,7 @@
     {
       "agent_id": "oci-live-network-security-rule-guard-agent",
       "harness": "codex",
-      "model": "gpt-5.4",
+      "model": "gpt-6-sol",
       "model_provider": null,
       "model_fallback_from": null,
       "model_warning": null,
@@ -17610,7 +17610,7 @@
     {
       "agent_id": "oci-live-oke-rollout-guard-agent",
       "harness": "codex",
-      "model": "gpt-5.4",
+      "model": "gpt-6-sol",
       "model_provider": null,
       "model_fallback_from": null,
       "model_warning": null,
@@ -17643,7 +17643,7 @@
     {
       "agent_id": "oci-live-resource-manager-stack-guard-agent",
       "harness": "codex",
-      "model": "gpt-5.4",
+      "model": "gpt-6-sol",
       "model_provider": null,
       "model_fallback_from": null,
       "model_warning": null,
@@ -17676,7 +17676,7 @@
     {
       "agent_id": "oci-live-vault-key-destruction-guard-agent",
       "harness": "codex",
-      "model": "gpt-5.4",
+      "model": "gpt-6-sol",
       "model_provider": null,
       "model_fallback_from": null,
       "model_warning": null,
@@ -17709,7 +17709,7 @@
     {
       "agent_id": "oci-load-balancer-traffic-engineer-agent",
       "harness": "codex",
-      "model": "gpt-5.4",
+      "model": "gpt-6-sol",
       "model_provider": null,
       "model_fallback_from": null,
       "model_warning": null,
@@ -17742,7 +17742,7 @@
     {
       "agent_id": "oci-maestro-agent",
       "harness": "codex",
-      "model": "gpt-5.4",
+      "model": "gpt-6-sol",
       "model_provider": null,
       "model_fallback_from": null,
       "model_warning": null,
@@ -17775,7 +17775,7 @@
     {
       "agent_id": "oci-migration-cutover-architect-agent",
       "harness": "codex",
-      "model": "gpt-5.4",
+      "model": "gpt-6-sol",
       "model_provider": null,
       "model_fallback_from": null,
       "model_warning": null,
@@ -17808,7 +17808,7 @@
     {
       "agent_id": "oci-multi-cloud-architect-agent",
       "harness": "codex",
-      "model": "gpt-5.4",
+      "model": "gpt-6-sol",
       "model_provider": null,
       "model_fallback_from": null,
       "model_warning": null,
@@ -17841,7 +17841,7 @@
     {
       "agent_id": "oci-mysql-heatwave-ai-specialist-agent",
       "harness": "codex",
-      "model": "gpt-5.4",
+      "model": "gpt-6-sol",
       "model_provider": null,
       "model_fallback_from": null,
       "model_warning": null,
@@ -17874,7 +17874,7 @@
     {
       "agent_id": "oci-network-architect-agent",
       "harness": "codex",
-      "model": "gpt-5.4",
+      "model": "gpt-6-sol",
       "model_provider": null,
       "model_fallback_from": null,
       "model_warning": null,
@@ -17907,7 +17907,7 @@
     {
       "agent_id": "oci-nosql-database-architect-agent",
       "harness": "codex",
-      "model": "gpt-5.4",
+      "model": "gpt-6-sol",
       "model_provider": null,
       "model_fallback_from": null,
       "model_warning": null,
@@ -17940,7 +17940,7 @@
     {
       "agent_id": "oci-nosql-pattern-agent",
       "harness": "codex",
-      "model": "gpt-5.4",
+      "model": "gpt-6-sol",
       "model_provider": null,
       "model_fallback_from": null,
       "model_warning": null,
@@ -17973,7 +17973,7 @@
     {
       "agent_id": "oci-observability-incident-responder-agent",
       "harness": "codex",
-      "model": "gpt-5.4",
+      "model": "gpt-6-sol",
       "model_provider": null,
       "model_fallback_from": null,
       "model_warning": null,
@@ -18006,7 +18006,7 @@
     {
       "agent_id": "oci-recovery-service-operator-agent",
       "harness": "codex",
-      "model": "gpt-5.4",
+      "model": "gpt-6-sol",
       "model_provider": null,
       "model_fallback_from": null,
       "model_warning": null,
@@ -18039,7 +18039,7 @@
     {
       "agent_id": "oci-registry-artifact-governor-agent",
       "harness": "codex",
-      "model": "gpt-5.4",
+      "model": "gpt-6-sol",
       "model_provider": null,
       "model_fallback_from": null,
       "model_warning": null,
@@ -18072,7 +18072,7 @@
     {
       "agent_id": "oci-resource-search-inventory-analyst-agent",
       "harness": "codex",
-      "model": "gpt-5.4",
+      "model": "gpt-6-sol",
       "model_provider": null,
       "model_fallback_from": null,
       "model_warning": null,
@@ -18105,7 +18105,7 @@
     {
       "agent_id": "oci-security-compliance-reviewer-agent",
       "harness": "codex",
-      "model": "gpt-5.4",
+      "model": "gpt-6-sol",
       "model_provider": null,
       "model_fallback_from": null,
       "model_warning": null,
@@ -18138,7 +18138,7 @@
     {
       "agent_id": "oci-solution-architect-agent",
       "harness": "codex",
-      "model": "gpt-5.4",
+      "model": "gpt-6-sol",
       "model_provider": null,
       "model_fallback_from": null,
       "model_warning": null,
@@ -18171,7 +18171,7 @@
     {
       "agent_id": "oci-storage-backup-steward-agent",
       "harness": "codex",
-      "model": "gpt-5.4",
+      "model": "gpt-6-sol",
       "model_provider": null,
       "model_fallback_from": null,
       "model_warning": null,
@@ -18204,7 +18204,7 @@
     {
       "agent_id": "oci-support-incident-coordinator-agent",
       "harness": "codex",
-      "model": "gpt-5.4",
+      "model": "gpt-6-sol",
       "model_provider": null,
       "model_fallback_from": null,
       "model_warning": null,
@@ -18237,7 +18237,7 @@
     {
       "agent_id": "oci-waf-cost-optimization-review-agent",
       "harness": "codex",
-      "model": "gpt-5.4",
+      "model": "gpt-6-sol",
       "model_provider": null,
       "model_fallback_from": null,
       "model_warning": null,
@@ -18270,7 +18270,7 @@
     {
       "agent_id": "oci-waf-reliability-review-agent",
       "harness": "codex",
-      "model": "gpt-5.4",
+      "model": "gpt-6-sol",
       "model_provider": null,
       "model_fallback_from": null,
       "model_warning": null,
@@ -18303,7 +18303,7 @@
     {
       "agent_id": "oci-waf-security-review-agent",
       "harness": "codex",
-      "model": "gpt-5.4",
+      "model": "gpt-6-sol",
       "model_provider": null,
       "model_fallback_from": null,
       "model_warning": null,
@@ -18336,7 +18336,7 @@
     {
       "agent_id": "opentelemetry-collector-config-review-agent",
       "harness": "codex",
-      "model": "gpt-5.4",
+      "model": "gpt-6-sol",
       "model_provider": null,
       "model_fallback_from": null,
       "model_warning": null,
@@ -18369,7 +18369,7 @@
     {
       "agent_id": "ovhcloud-cost-finops-analyst-agent",
       "harness": "codex",
-      "model": "gpt-5.4",
+      "model": "gpt-6-sol",
       "model_provider": null,
       "model_fallback_from": null,
       "model_warning": null,
@@ -18402,7 +18402,7 @@
     {
       "agent_id": "ovhcloud-iam-policy-review-agent",
       "harness": "codex",
-      "model": "gpt-5.4",
+      "model": "gpt-6-sol",
       "model_provider": null,
       "model_fallback_from": null,
       "model_warning": null,
@@ -18435,7 +18435,7 @@
     {
       "agent_id": "ovhcloud-kubernetes-platform-operator-agent",
       "harness": "codex",
-      "model": "gpt-5.4",
+      "model": "gpt-6-sol",
       "model_provider": null,
       "model_fallback_from": null,
       "model_warning": null,
@@ -18468,7 +18468,7 @@
     {
       "agent_id": "ovhcloud-live-kms-key-destruction-guard-agent",
       "harness": "codex",
-      "model": "gpt-5.4",
+      "model": "gpt-6-sol",
       "model_provider": null,
       "model_fallback_from": null,
       "model_warning": null,
@@ -18501,7 +18501,7 @@
     {
       "agent_id": "ovhcloud-maestro-agent",
       "harness": "codex",
-      "model": "gpt-5.4",
+      "model": "gpt-6-sol",
       "model_provider": null,
       "model_fallback_from": null,
       "model_warning": null,
@@ -18534,7 +18534,7 @@
     {
       "agent_id": "ovhcloud-network-architect-agent",
       "harness": "codex",
-      "model": "gpt-5.4",
+      "model": "gpt-6-sol",
       "model_provider": null,
       "model_fallback_from": null,
       "model_warning": null,
@@ -18567,7 +18567,7 @@
     {
       "agent_id": "package-governance-agent",
       "harness": "codex",
-      "model": "gpt-5.4",
+      "model": "gpt-6-sol",
       "model_provider": null,
       "model_fallback_from": null,
       "model_warning": null,
@@ -18600,7 +18600,7 @@
     {
       "agent_id": "php-application-security-agent",
       "harness": "codex",
-      "model": "gpt-5.4",
+      "model": "gpt-6-sol",
       "model_provider": null,
       "model_fallback_from": null,
       "model_warning": null,
@@ -18633,7 +18633,7 @@
     {
       "agent_id": "php-maestro-agent",
       "harness": "codex",
-      "model": "gpt-5.4",
+      "model": "gpt-6-sol",
       "model_provider": null,
       "model_fallback_from": null,
       "model_warning": null,
@@ -18666,7 +18666,7 @@
     {
       "agent_id": "php-runtime-upgrade-readiness-agent",
       "harness": "codex",
-      "model": "gpt-5.4",
+      "model": "gpt-6-sol",
       "model_provider": null,
       "model_fallback_from": null,
       "model_warning": null,
@@ -18787,7 +18787,7 @@
     {
       "agent_id": "power-automate-automation-risk-review-agent",
       "harness": "codex",
-      "model": "gpt-5.4",
+      "model": "gpt-6-sol",
       "model_provider": null,
       "model_fallback_from": null,
       "model_warning": null,
@@ -18820,7 +18820,7 @@
     {
       "agent_id": "power-platform-alm-pipelines-agent",
       "harness": "codex",
-      "model": "gpt-5.4",
+      "model": "gpt-6-sol",
       "model_provider": null,
       "model_fallback_from": null,
       "model_warning": null,
@@ -18853,7 +18853,7 @@
     {
       "agent_id": "power-platform-governance-dataverse-security-agent",
       "harness": "codex",
-      "model": "gpt-5.4",
+      "model": "gpt-6-sol",
       "model_provider": null,
       "model_fallback_from": null,
       "model_warning": null,
@@ -18886,7 +18886,7 @@
     {
       "agent_id": "power-platform-maestro-agent",
       "harness": "codex",
-      "model": "gpt-5.4",
+      "model": "gpt-6-sol",
       "model_provider": null,
       "model_fallback_from": null,
       "model_warning": null,
@@ -18919,7 +18919,7 @@
     {
       "agent_id": "product-analytics-experimentation-agent",
       "harness": "codex",
-      "model": "gpt-5.4",
+      "model": "gpt-6-sol",
       "model_provider": null,
       "model_fallback_from": null,
       "model_warning": null,
@@ -18952,7 +18952,7 @@
     {
       "agent_id": "programmatic-supply-chain-integrity-review-agent",
       "harness": "codex",
-      "model": "gpt-5.4",
+      "model": "gpt-6-sol",
       "model_provider": null,
       "model_fallback_from": null,
       "model_warning": null,
@@ -18985,7 +18985,7 @@
     {
       "agent_id": "prometheus-alerting-cardinality-review-agent",
       "harness": "codex",
-      "model": "gpt-5.4",
+      "model": "gpt-6-sol",
       "model_provider": null,
       "model_fallback_from": null,
       "model_warning": null,
@@ -19018,7 +19018,7 @@
     {
       "agent_id": "pwa-offline-capability-agent",
       "harness": "codex",
-      "model": "gpt-5.4",
+      "model": "gpt-6-sol",
       "model_provider": null,
       "model_fallback_from": null,
       "model_warning": null,
@@ -19051,7 +19051,7 @@
     {
       "agent_id": "python-application-security-agent",
       "harness": "codex",
-      "model": "gpt-5.4",
+      "model": "gpt-6-sol",
       "model_provider": null,
       "model_fallback_from": null,
       "model_warning": null,
@@ -19084,7 +19084,7 @@
     {
       "agent_id": "python-async-concurrency-reliability-agent",
       "harness": "codex",
-      "model": "gpt-5.4",
+      "model": "gpt-6-sol",
       "model_provider": null,
       "model_fallback_from": null,
       "model_warning": null,
@@ -19117,7 +19117,7 @@
     {
       "agent_id": "python-business-critical-automation-governance-agent",
       "harness": "codex",
-      "model": "gpt-5.4",
+      "model": "gpt-6-sol",
       "model_provider": null,
       "model_fallback_from": null,
       "model_warning": null,
@@ -19150,7 +19150,7 @@
     {
       "agent_id": "python-container-serverless-runtime-agent",
       "harness": "codex",
-      "model": "gpt-5.4",
+      "model": "gpt-6-sol",
       "model_provider": null,
       "model_fallback_from": null,
       "model_warning": null,
@@ -19183,7 +19183,7 @@
     {
       "agent_id": "python-data-access-transaction-agent",
       "harness": "codex",
-      "model": "gpt-5.4",
+      "model": "gpt-6-sol",
       "model_provider": null,
       "model_fallback_from": null,
       "model_warning": null,
@@ -19216,7 +19216,7 @@
     {
       "agent_id": "python-data-pipeline-reliability-agent",
       "harness": "codex",
-      "model": "gpt-5.4",
+      "model": "gpt-6-sol",
       "model_provider": null,
       "model_fallback_from": null,
       "model_warning": null,
@@ -19249,7 +19249,7 @@
     {
       "agent_id": "python-developer-tooling-build-agent",
       "harness": "codex",
-      "model": "gpt-5.4",
+      "model": "gpt-6-sol",
       "model_provider": null,
       "model_fallback_from": null,
       "model_warning": null,
@@ -19282,7 +19282,7 @@
     {
       "agent_id": "python-distributed-task-reliability-agent",
       "harness": "codex",
-      "model": "gpt-5.4",
+      "model": "gpt-6-sol",
       "model_provider": null,
       "model_fallback_from": null,
       "model_warning": null,
@@ -19315,7 +19315,7 @@
     {
       "agent_id": "python-estate-modernization-governor-agent",
       "harness": "codex",
-      "model": "gpt-5.4",
+      "model": "gpt-6-sol",
       "model_provider": null,
       "model_fallback_from": null,
       "model_warning": null,
@@ -19348,7 +19348,7 @@
     {
       "agent_id": "python-free-threading-parallelism-agent",
       "harness": "codex",
-      "model": "gpt-5.4",
+      "model": "gpt-6-sol",
       "model_provider": null,
       "model_fallback_from": null,
       "model_warning": null,
@@ -19381,7 +19381,7 @@
     {
       "agent_id": "python-language-contracts-typing-agent",
       "harness": "codex",
-      "model": "gpt-5.4",
+      "model": "gpt-6-sol",
       "model_provider": null,
       "model_fallback_from": null,
       "model_warning": null,
@@ -19414,7 +19414,7 @@
     {
       "agent_id": "python-live-change-plan-agent",
       "harness": "codex",
-      "model": "gpt-5.4",
+      "model": "gpt-6-sol",
       "model_provider": null,
       "model_fallback_from": null,
       "model_warning": null,
@@ -19447,7 +19447,7 @@
     {
       "agent_id": "python-live-code-remediation-agent",
       "harness": "codex",
-      "model": "gpt-5.4",
+      "model": "gpt-6-sol",
       "model_provider": null,
       "model_fallback_from": null,
       "model_warning": null,
@@ -19480,7 +19480,7 @@
     {
       "agent_id": "python-live-continuous-control-testing-agent",
       "harness": "codex",
-      "model": "gpt-5.4",
+      "model": "gpt-6-sol",
       "model_provider": null,
       "model_fallback_from": null,
       "model_warning": null,
@@ -19513,7 +19513,7 @@
     {
       "agent_id": "python-live-control-evidence-agent",
       "harness": "codex",
-      "model": "gpt-5.4",
+      "model": "gpt-6-sol",
       "model_provider": null,
       "model_fallback_from": null,
       "model_warning": null,
@@ -19546,7 +19546,7 @@
     {
       "agent_id": "python-live-data-change-control-agent",
       "harness": "codex",
-      "model": "gpt-5.4",
+      "model": "gpt-6-sol",
       "model_provider": null,
       "model_fallback_from": null,
       "model_warning": null,
@@ -19579,7 +19579,7 @@
     {
       "agent_id": "python-live-exception-governance-agent",
       "harness": "codex",
-      "model": "gpt-5.4",
+      "model": "gpt-6-sol",
       "model_provider": null,
       "model_fallback_from": null,
       "model_warning": null,
@@ -19612,7 +19612,7 @@
     {
       "agent_id": "python-live-governance-maestro-agent",
       "harness": "codex",
-      "model": "gpt-5.4",
+      "model": "gpt-6-sol",
       "model_provider": null,
       "model_fallback_from": null,
       "model_warning": null,
@@ -19645,7 +19645,7 @@
     {
       "agent_id": "python-live-identity-authority-agent",
       "harness": "codex",
-      "model": "gpt-5.4",
+      "model": "gpt-6-sol",
       "model_provider": null,
       "model_fallback_from": null,
       "model_warning": null,
@@ -19678,7 +19678,7 @@
     {
       "agent_id": "python-live-job-control-agent",
       "harness": "codex",
-      "model": "gpt-5.4",
+      "model": "gpt-6-sol",
       "model_provider": null,
       "model_fallback_from": null,
       "model_warning": null,
@@ -19711,7 +19711,7 @@
     {
       "agent_id": "python-live-model-promotion-control-agent",
       "harness": "codex",
-      "model": "gpt-5.4",
+      "model": "gpt-6-sol",
       "model_provider": null,
       "model_fallback_from": null,
       "model_warning": null,
@@ -19744,7 +19744,7 @@
     {
       "agent_id": "python-live-policy-gate-agent",
       "harness": "codex",
-      "model": "gpt-5.4",
+      "model": "gpt-6-sol",
       "model_provider": null,
       "model_fallback_from": null,
       "model_warning": null,
@@ -19777,7 +19777,7 @@
     {
       "agent_id": "python-live-release-control-agent",
       "harness": "codex",
-      "model": "gpt-5.4",
+      "model": "gpt-6-sol",
       "model_provider": null,
       "model_fallback_from": null,
       "model_warning": null,
@@ -19810,7 +19810,7 @@
     {
       "agent_id": "python-live-rollback-and-recovery-agent",
       "harness": "codex",
-      "model": "gpt-5.4",
+      "model": "gpt-6-sol",
       "model_provider": null,
       "model_fallback_from": null,
       "model_warning": null,
@@ -19843,7 +19843,7 @@
     {
       "agent_id": "python-live-runtime-control-agent",
       "harness": "codex",
-      "model": "gpt-5.4",
+      "model": "gpt-6-sol",
       "model_provider": null,
       "model_fallback_from": null,
       "model_warning": null,
@@ -19876,7 +19876,7 @@
     {
       "agent_id": "python-live-system-inventory-agent",
       "harness": "codex",
-      "model": "gpt-5.4",
+      "model": "gpt-6-sol",
       "model_provider": null,
       "model_fallback_from": null,
       "model_warning": null,
@@ -19909,7 +19909,7 @@
     {
       "agent_id": "python-maestro-agent",
       "harness": "codex",
-      "model": "gpt-5.4",
+      "model": "gpt-6-sol",
       "model_provider": null,
       "model_fallback_from": null,
       "model_warning": null,
@@ -19942,7 +19942,7 @@
     {
       "agent_id": "python-ml-ai-production-agent",
       "harness": "codex",
-      "model": "gpt-5.4",
+      "model": "gpt-6-sol",
       "model_provider": null,
       "model_fallback_from": null,
       "model_warning": null,
@@ -19975,7 +19975,7 @@
     {
       "agent_id": "python-native-extension-interop-agent",
       "harness": "codex",
-      "model": "gpt-5.4",
+      "model": "gpt-6-sol",
       "model_provider": null,
       "model_fallback_from": null,
       "model_warning": null,
@@ -20008,7 +20008,7 @@
     {
       "agent_id": "python-numerical-scientific-correctness-agent",
       "harness": "codex",
-      "model": "gpt-5.4",
+      "model": "gpt-6-sol",
       "model_provider": null,
       "model_fallback_from": null,
       "model_warning": null,
@@ -20041,7 +20041,7 @@
     {
       "agent_id": "python-observability-sre-agent",
       "harness": "codex",
-      "model": "gpt-5.4",
+      "model": "gpt-6-sol",
       "model_provider": null,
       "model_fallback_from": null,
       "model_warning": null,
@@ -20074,7 +20074,7 @@
     {
       "agent_id": "python-packaging-supply-chain-agent",
       "harness": "codex",
-      "model": "gpt-5.4",
+      "model": "gpt-6-sol",
       "model_provider": null,
       "model_fallback_from": null,
       "model_warning": null,
@@ -20107,7 +20107,7 @@
     {
       "agent_id": "python-performance-memory-agent",
       "harness": "codex",
-      "model": "gpt-5.4",
+      "model": "gpt-6-sol",
       "model_provider": null,
       "model_fallback_from": null,
       "model_warning": null,
@@ -20140,7 +20140,7 @@
     {
       "agent_id": "python-testing-quality-engineering-agent",
       "harness": "codex",
-      "model": "gpt-5.4",
+      "model": "gpt-6-sol",
       "model_provider": null,
       "model_fallback_from": null,
       "model_warning": null,
@@ -20173,7 +20173,7 @@
     {
       "agent_id": "python-web-service-production-readiness-agent",
       "harness": "codex",
-      "model": "gpt-5.4",
+      "model": "gpt-6-sol",
       "model_provider": null,
       "model_fallback_from": null,
       "model_warning": null,
@@ -20206,7 +20206,7 @@
     {
       "agent_id": "react-specialist-agent",
       "harness": "codex",
-      "model": "gpt-5.4",
+      "model": "gpt-6-sol",
       "model_provider": null,
       "model_fallback_from": null,
       "model_warning": null,
@@ -20272,7 +20272,7 @@
     {
       "agent_id": "routing-navigation-agent",
       "harness": "codex",
-      "model": "gpt-5.4",
+      "model": "gpt-6-sol",
       "model_provider": null,
       "model_fallback_from": null,
       "model_warning": null,
@@ -21328,7 +21328,7 @@
     {
       "agent_id": "sap-abap-cloud-rap-reviewer-agent",
       "harness": "codex",
-      "model": "gpt-5.4",
+      "model": "gpt-6-sol",
       "model_provider": null,
       "model_fallback_from": null,
       "model_warning": null,
@@ -21361,7 +21361,7 @@
     {
       "agent_id": "sap-ai-core-genai-hub-governance-reviewer-agent",
       "harness": "codex",
-      "model": "gpt-5.4",
+      "model": "gpt-6-sol",
       "model_provider": null,
       "model_fallback_from": null,
       "model_warning": null,
@@ -21394,7 +21394,7 @@
     {
       "agent_id": "sap-analytics-cloud-planning-governance-agent",
       "harness": "codex",
-      "model": "gpt-5.4",
+      "model": "gpt-6-sol",
       "model_provider": null,
       "model_fallback_from": null,
       "model_warning": null,
@@ -21427,7 +21427,7 @@
     {
       "agent_id": "sap-audit-evidence-packager-agent",
       "harness": "codex",
-      "model": "gpt-5.4",
+      "model": "gpt-6-sol",
       "model_provider": null,
       "model_fallback_from": null,
       "model_warning": null,
@@ -21460,7 +21460,7 @@
     {
       "agent_id": "sap-btp-account-entitlement-governance-reviewer-agent",
       "harness": "codex",
-      "model": "gpt-5.4",
+      "model": "gpt-6-sol",
       "model_provider": null,
       "model_fallback_from": null,
       "model_warning": null,
@@ -21493,7 +21493,7 @@
     {
       "agent_id": "sap-btp-entitlement-guarded-operator-agent",
       "harness": "codex",
-      "model": "gpt-5.4",
+      "model": "gpt-6-sol",
       "model_provider": null,
       "model_fallback_from": null,
       "model_warning": null,
@@ -21526,7 +21526,7 @@
     {
       "agent_id": "sap-cap-architecture-reviewer-agent",
       "harness": "codex",
-      "model": "gpt-5.4",
+      "model": "gpt-6-sol",
       "model_provider": null,
       "model_fallback_from": null,
       "model_warning": null,
@@ -21559,7 +21559,7 @@
     {
       "agent_id": "sap-clean-core-debt-reviewer-agent",
       "harness": "codex",
-      "model": "gpt-5.4",
+      "model": "gpt-6-sol",
       "model_provider": null,
       "model_fallback_from": null,
       "model_warning": null,
@@ -21592,7 +21592,7 @@
     {
       "agent_id": "sap-cloud-alm-sre-incident-agent",
       "harness": "codex",
-      "model": "gpt-5.4",
+      "model": "gpt-6-sol",
       "model_provider": null,
       "model_fallback_from": null,
       "model_warning": null,
@@ -21625,7 +21625,7 @@
     {
       "agent_id": "sap-custom-code-remediation-reviewer-agent",
       "harness": "codex",
-      "model": "gpt-5.4",
+      "model": "gpt-6-sol",
       "model_provider": null,
       "model_fallback_from": null,
       "model_warning": null,
@@ -21658,7 +21658,7 @@
     {
       "agent_id": "sap-data-migration-cutover-readiness-agent",
       "harness": "codex",
-      "model": "gpt-5.4",
+      "model": "gpt-6-sol",
       "model_provider": null,
       "model_fallback_from": null,
       "model_warning": null,
@@ -21691,7 +21691,7 @@
     {
       "agent_id": "sap-datasphere-data-product-architect-agent",
       "harness": "codex",
-      "model": "gpt-5.4",
+      "model": "gpt-6-sol",
       "model_provider": null,
       "model_fallback_from": null,
       "model_warning": null,
@@ -21724,7 +21724,7 @@
     {
       "agent_id": "sap-ewm-tm-logistics-execution-agent",
       "harness": "codex",
-      "model": "gpt-5.4",
+      "model": "gpt-6-sol",
       "model_provider": null,
       "model_fallback_from": null,
       "model_warning": null,
@@ -21757,7 +21757,7 @@
     {
       "agent_id": "sap-finance-fico-controls-agent",
       "harness": "codex",
-      "model": "gpt-5.4",
+      "model": "gpt-6-sol",
       "model_provider": null,
       "model_fallback_from": null,
       "model_warning": null,
@@ -21790,7 +21790,7 @@
     {
       "agent_id": "sap-fiori-ui5-ux-reviewer-agent",
       "harness": "codex",
-      "model": "gpt-5.4",
+      "model": "gpt-6-sol",
       "model_provider": null,
       "model_fallback_from": null,
       "model_warning": null,
@@ -21823,7 +21823,7 @@
     {
       "agent_id": "sap-guarded-transport-import-operator-agent",
       "harness": "codex",
-      "model": "gpt-5.4",
+      "model": "gpt-6-sol",
       "model_provider": null,
       "model_fallback_from": null,
       "model_warning": null,
@@ -21856,7 +21856,7 @@
     {
       "agent_id": "sap-hana-cloud-performance-cost-agent",
       "harness": "codex",
-      "model": "gpt-5.4",
+      "model": "gpt-6-sol",
       "model_provider": null,
       "model_fallback_from": null,
       "model_warning": null,
@@ -21889,7 +21889,7 @@
     {
       "agent_id": "sap-hypercare-incident-commander-agent",
       "harness": "codex",
-      "model": "gpt-5.4",
+      "model": "gpt-6-sol",
       "model_provider": null,
       "model_fallback_from": null,
       "model_warning": null,
@@ -21922,7 +21922,7 @@
     {
       "agent_id": "sap-integration-flow-guarded-operator-agent",
       "harness": "codex",
-      "model": "gpt-5.4",
+      "model": "gpt-6-sol",
       "model_provider": null,
       "model_fallback_from": null,
       "model_warning": null,
@@ -21955,7 +21955,7 @@
     {
       "agent_id": "sap-integration-suite-reviewer-agent",
       "harness": "codex",
-      "model": "gpt-5.4",
+      "model": "gpt-6-sol",
       "model_provider": null,
       "model_fallback_from": null,
       "model_warning": null,
@@ -21988,7 +21988,7 @@
     {
       "agent_id": "sap-joule-governance-adoption-agent",
       "harness": "codex",
-      "model": "gpt-5.4",
+      "model": "gpt-6-sol",
       "model_provider": null,
       "model_fallback_from": null,
       "model_warning": null,
@@ -22021,7 +22021,7 @@
     {
       "agent_id": "sap-license-btp-consumption-finops-agent",
       "harness": "codex",
-      "model": "gpt-5.4",
+      "model": "gpt-6-sol",
       "model_provider": null,
       "model_fallback_from": null,
       "model_warning": null,
@@ -22054,7 +22054,7 @@
     {
       "agent_id": "sap-live-readonly-identity-trust-discovery-agent",
       "harness": "codex",
-      "model": "gpt-5.4",
+      "model": "gpt-6-sol",
       "model_provider": null,
       "model_fallback_from": null,
       "model_warning": null,
@@ -22087,7 +22087,7 @@
     {
       "agent_id": "sap-live-readonly-landscape-discovery-agent",
       "harness": "codex",
-      "model": "gpt-5.4",
+      "model": "gpt-6-sol",
       "model_provider": null,
       "model_fallback_from": null,
       "model_warning": null,
@@ -22120,7 +22120,7 @@
     {
       "agent_id": "sap-maestro-agent",
       "harness": "codex",
-      "model": "gpt-5.4",
+      "model": "gpt-6-sol",
       "model_provider": null,
       "model_fallback_from": null,
       "model_warning": null,
@@ -22153,7 +22153,7 @@
     {
       "agent_id": "sap-manufacturing-execution-risk-agent",
       "harness": "codex",
-      "model": "gpt-5.4",
+      "model": "gpt-6-sol",
       "model_provider": null,
       "model_fallback_from": null,
       "model_warning": null,
@@ -22186,7 +22186,7 @@
     {
       "agent_id": "sap-mdg-master-data-quality-agent",
       "harness": "codex",
-      "model": "gpt-5.4",
+      "model": "gpt-6-sol",
       "model_provider": null,
       "model_fallback_from": null,
       "model_warning": null,
@@ -22219,7 +22219,7 @@
     {
       "agent_id": "sap-order-to-cash-agent",
       "harness": "codex",
-      "model": "gpt-5.4",
+      "model": "gpt-6-sol",
       "model_provider": null,
       "model_fallback_from": null,
       "model_warning": null,
@@ -22252,7 +22252,7 @@
     {
       "agent_id": "sap-procurement-ariba-value-leakage-agent",
       "harness": "codex",
-      "model": "gpt-5.4",
+      "model": "gpt-6-sol",
       "model_provider": null,
       "model_fallback_from": null,
       "model_warning": null,
@@ -22285,7 +22285,7 @@
     {
       "agent_id": "sap-release-change-collision-agent",
       "harness": "codex",
-      "model": "gpt-5.4",
+      "model": "gpt-6-sol",
       "model_provider": null,
       "model_fallback_from": null,
       "model_warning": null,
@@ -22318,7 +22318,7 @@
     {
       "agent_id": "sap-rise-sla-vendor-risk-agent",
       "harness": "codex",
-      "model": "gpt-5.4",
+      "model": "gpt-6-sol",
       "model_provider": null,
       "model_fallback_from": null,
       "model_warning": null,
@@ -22351,7 +22351,7 @@
     {
       "agent_id": "sap-role-assignment-guarded-operator-agent",
       "harness": "codex",
-      "model": "gpt-5.4",
+      "model": "gpt-6-sol",
       "model_provider": null,
       "model_fallback_from": null,
       "model_warning": null,
@@ -22384,7 +22384,7 @@
     {
       "agent_id": "sap-s4hana-transformation-architect-agent",
       "harness": "codex",
-      "model": "gpt-5.4",
+      "model": "gpt-6-sol",
       "model_provider": null,
       "model_fallback_from": null,
       "model_warning": null,
@@ -22417,7 +22417,7 @@
     {
       "agent_id": "sap-security-iam-grc-sod-reviewer-agent",
       "harness": "codex",
-      "model": "gpt-5.4",
+      "model": "gpt-6-sol",
       "model_provider": null,
       "model_fallback_from": null,
       "model_warning": null,
@@ -22450,7 +22450,7 @@
     {
       "agent_id": "sap-signavio-process-mining-value-agent",
       "harness": "codex",
-      "model": "gpt-5.4",
+      "model": "gpt-6-sol",
       "model_provider": null,
       "model_fallback_from": null,
       "model_warning": null,
@@ -22483,7 +22483,7 @@
     {
       "agent_id": "sap-successfactors-hr-process-risk-agent",
       "harness": "codex",
-      "model": "gpt-5.4",
+      "model": "gpt-6-sol",
       "model_provider": null,
       "model_fallback_from": null,
       "model_warning": null,
@@ -22516,7 +22516,7 @@
     {
       "agent_id": "sap-supply-chain-ibp-resilience-agent",
       "harness": "codex",
-      "model": "gpt-5.4",
+      "model": "gpt-6-sol",
       "model_provider": null,
       "model_fallback_from": null,
       "model_warning": null,
@@ -22549,7 +22549,7 @@
     {
       "agent_id": "sap-testing-quality-gate-agent",
       "harness": "codex",
-      "model": "gpt-5.4",
+      "model": "gpt-6-sol",
       "model_provider": null,
       "model_fallback_from": null,
       "model_warning": null,
@@ -22582,7 +22582,7 @@
     {
       "agent_id": "sap-transformation-portfolio-triage-agent",
       "harness": "codex",
-      "model": "gpt-5.4",
+      "model": "gpt-6-sol",
       "model_provider": null,
       "model_fallback_from": null,
       "model_warning": null,
@@ -22615,7 +22615,7 @@
     {
       "agent_id": "sap-treasury-cash-risk-agent",
       "harness": "codex",
-      "model": "gpt-5.4",
+      "model": "gpt-6-sol",
       "model_provider": null,
       "model_fallback_from": null,
       "model_warning": null,
@@ -22648,7 +22648,7 @@
     {
       "agent_id": "scaleway-cost-optimizer-agent",
       "harness": "codex",
-      "model": "gpt-5.4",
+      "model": "gpt-6-sol",
       "model_provider": null,
       "model_fallback_from": null,
       "model_warning": null,
@@ -22681,7 +22681,7 @@
     {
       "agent_id": "scaleway-iam-policy-review-agent",
       "harness": "codex",
-      "model": "gpt-5.4",
+      "model": "gpt-6-sol",
       "model_provider": null,
       "model_fallback_from": null,
       "model_warning": null,
@@ -22714,7 +22714,7 @@
     {
       "agent_id": "scaleway-kapsule-platform-operator-agent",
       "harness": "codex",
-      "model": "gpt-5.4",
+      "model": "gpt-6-sol",
       "model_provider": null,
       "model_fallback_from": null,
       "model_warning": null,
@@ -22747,7 +22747,7 @@
     {
       "agent_id": "scaleway-live-kapsule-rollout-guard-agent",
       "harness": "codex",
-      "model": "gpt-5.4",
+      "model": "gpt-6-sol",
       "model_provider": null,
       "model_fallback_from": null,
       "model_warning": null,
@@ -22780,7 +22780,7 @@
     {
       "agent_id": "scaleway-maestro-agent",
       "harness": "codex",
-      "model": "gpt-5.4",
+      "model": "gpt-6-sol",
       "model_provider": null,
       "model_fallback_from": null,
       "model_warning": null,
@@ -22813,7 +22813,7 @@
     {
       "agent_id": "scaleway-network-architect-agent",
       "harness": "codex",
-      "model": "gpt-5.4",
+      "model": "gpt-6-sol",
       "model_provider": null,
       "model_fallback_from": null,
       "model_warning": null,
@@ -22846,7 +22846,7 @@
     {
       "agent_id": "sigstore-cosign-supply-chain-review-agent",
       "harness": "codex",
-      "model": "gpt-5.4",
+      "model": "gpt-6-sol",
       "model_provider": null,
       "model_fallback_from": null,
       "model_warning": null,
@@ -22879,7 +22879,7 @@
     {
       "agent_id": "snowflake-analytics-semantic-data-product-agent",
       "harness": "codex",
-      "model": "gpt-5.4",
+      "model": "gpt-6-sol",
       "model_provider": null,
       "model_fallback_from": null,
       "model_warning": null,
@@ -22912,7 +22912,7 @@
     {
       "agent_id": "snowflake-bcdr-resilience-agent",
       "harness": "codex",
-      "model": "gpt-5.4",
+      "model": "gpt-6-sol",
       "model_provider": null,
       "model_fallback_from": null,
       "model_warning": null,
@@ -22945,7 +22945,7 @@
     {
       "agent_id": "snowflake-business-value-adoption-strategist-agent",
       "harness": "codex",
-      "model": "gpt-5.4",
+      "model": "gpt-6-sol",
       "model_provider": null,
       "model_fallback_from": null,
       "model_warning": null,
@@ -22978,7 +22978,7 @@
     {
       "agent_id": "snowflake-compliance-evidence-auditor-agent",
       "harness": "codex",
-      "model": "gpt-5.4",
+      "model": "gpt-6-sol",
       "model_provider": null,
       "model_fallback_from": null,
       "model_warning": null,
@@ -23011,7 +23011,7 @@
     {
       "agent_id": "snowflake-cortex-ai-agent-security-governor-agent",
       "harness": "codex",
-      "model": "gpt-5.4",
+      "model": "gpt-6-sol",
       "model_provider": null,
       "model_fallback_from": null,
       "model_warning": null,
@@ -23044,7 +23044,7 @@
     {
       "agent_id": "snowflake-data-engineering-pipelines-agent",
       "harness": "codex",
-      "model": "gpt-5.4",
+      "model": "gpt-6-sol",
       "model_provider": null,
       "model_fallback_from": null,
       "model_warning": null,
@@ -23077,7 +23077,7 @@
     {
       "agent_id": "snowflake-data-platform-engineering-at-azure-agent",
       "harness": "codex",
-      "model": "gpt-5.4",
+      "model": "gpt-6-sol",
       "model_provider": null,
       "model_fallback_from": null,
       "model_warning": null,
@@ -23110,7 +23110,7 @@
     {
       "agent_id": "snowflake-data-science-ml-agent",
       "harness": "codex",
-      "model": "gpt-5.4",
+      "model": "gpt-6-sol",
       "model_provider": null,
       "model_fallback_from": null,
       "model_warning": null,
@@ -23143,7 +23143,7 @@
     {
       "agent_id": "snowflake-devops-iac-release-agent",
       "harness": "codex",
-      "model": "gpt-5.4",
+      "model": "gpt-6-sol",
       "model_provider": null,
       "model_fallback_from": null,
       "model_warning": null,
@@ -23176,7 +23176,7 @@
     {
       "agent_id": "snowflake-finops-cost-governor-agent",
       "harness": "codex",
-      "model": "gpt-5.4",
+      "model": "gpt-6-sol",
       "model_provider": null,
       "model_fallback_from": null,
       "model_warning": null,
@@ -23209,7 +23209,7 @@
     {
       "agent_id": "snowflake-governance-privacy-agent",
       "harness": "codex",
-      "model": "gpt-5.4",
+      "model": "gpt-6-sol",
       "model_provider": null,
       "model_fallback_from": null,
       "model_warning": null,
@@ -23242,7 +23242,7 @@
     {
       "agent_id": "snowflake-identity-access-security-agent",
       "harness": "codex",
-      "model": "gpt-5.4",
+      "model": "gpt-6-sol",
       "model_provider": null,
       "model_fallback_from": null,
       "model_warning": null,
@@ -23275,7 +23275,7 @@
     {
       "agent_id": "snowflake-live-auth-network-policy-guard-agent",
       "harness": "codex",
-      "model": "gpt-5.4",
+      "model": "gpt-6-sol",
       "model_provider": null,
       "model_fallback_from": null,
       "model_warning": null,
@@ -23308,7 +23308,7 @@
     {
       "agent_id": "snowflake-live-data-protection-policy-guard-agent",
       "harness": "codex",
-      "model": "gpt-5.4",
+      "model": "gpt-6-sol",
       "model_provider": null,
       "model_fallback_from": null,
       "model_warning": null,
@@ -23341,7 +23341,7 @@
     {
       "agent_id": "snowflake-live-failover-promotion-guard-agent",
       "harness": "codex",
-      "model": "gpt-5.4",
+      "model": "gpt-6-sol",
       "model_provider": null,
       "model_fallback_from": null,
       "model_warning": null,
@@ -23374,7 +23374,7 @@
     {
       "agent_id": "snowflake-live-pipeline-streaming-change-guard-agent",
       "harness": "codex",
-      "model": "gpt-5.4",
+      "model": "gpt-6-sol",
       "model_provider": null,
       "model_fallback_from": null,
       "model_warning": null,
@@ -23407,7 +23407,7 @@
     {
       "agent_id": "snowflake-live-rbac-grant-guard-agent",
       "harness": "codex",
-      "model": "gpt-5.4",
+      "model": "gpt-6-sol",
       "model_provider": null,
       "model_fallback_from": null,
       "model_warning": null,
@@ -23440,7 +23440,7 @@
     {
       "agent_id": "snowflake-live-rbac-grant-guard-at-azure-agent",
       "harness": "codex",
-      "model": "gpt-5.4",
+      "model": "gpt-6-sol",
       "model_provider": null,
       "model_fallback_from": null,
       "model_warning": null,
@@ -23473,7 +23473,7 @@
     {
       "agent_id": "snowflake-live-warehouse-cost-change-guard-agent",
       "harness": "codex",
-      "model": "gpt-5.4",
+      "model": "gpt-6-sol",
       "model_provider": null,
       "model_fallback_from": null,
       "model_warning": null,
@@ -23506,7 +23506,7 @@
     {
       "agent_id": "snowflake-maestro-agent",
       "harness": "codex",
-      "model": "gpt-5.4",
+      "model": "gpt-6-sol",
       "model_provider": null,
       "model_fallback_from": null,
       "model_warning": null,
@@ -23539,7 +23539,7 @@
     {
       "agent_id": "snowflake-migration-modernization-agent",
       "harness": "codex",
-      "model": "gpt-5.4",
+      "model": "gpt-6-sol",
       "model_provider": null,
       "model_fallback_from": null,
       "model_warning": null,
@@ -23572,7 +23572,7 @@
     {
       "agent_id": "snowflake-native-app-marketplace-product-agent",
       "harness": "codex",
-      "model": "gpt-5.4",
+      "model": "gpt-6-sol",
       "model_provider": null,
       "model_fallback_from": null,
       "model_warning": null,
@@ -23605,7 +23605,7 @@
     {
       "agent_id": "snowflake-network-private-connectivity-agent",
       "harness": "codex",
-      "model": "gpt-5.4",
+      "model": "gpt-6-sol",
       "model_provider": null,
       "model_fallback_from": null,
       "model_warning": null,
@@ -23638,7 +23638,7 @@
     {
       "agent_id": "snowflake-platform-administrator-agent",
       "harness": "codex",
-      "model": "gpt-5.4",
+      "model": "gpt-6-sol",
       "model_provider": null,
       "model_fallback_from": null,
       "model_warning": null,
@@ -23671,7 +23671,7 @@
     {
       "agent_id": "snowflake-query-performance-engineer-agent",
       "harness": "codex",
-      "model": "gpt-5.4",
+      "model": "gpt-6-sol",
       "model_provider": null,
       "model_fallback_from": null,
       "model_warning": null,
@@ -23704,7 +23704,7 @@
     {
       "agent_id": "snowflake-rbac-access-governance-at-azure-agent",
       "harness": "codex",
-      "model": "gpt-5.4",
+      "model": "gpt-6-sol",
       "model_provider": null,
       "model_fallback_from": null,
       "model_warning": null,
@@ -23737,7 +23737,7 @@
     {
       "agent_id": "snowflake-solution-architect-agent",
       "harness": "codex",
-      "model": "gpt-5.4",
+      "model": "gpt-6-sol",
       "model_provider": null,
       "model_fallback_from": null,
       "model_warning": null,
@@ -23770,7 +23770,7 @@
     {
       "agent_id": "snowflake-streaming-ingestion-reliability-agent",
       "harness": "codex",
-      "model": "gpt-5.4",
+      "model": "gpt-6-sol",
       "model_provider": null,
       "model_fallback_from": null,
       "model_warning": null,
@@ -23803,7 +23803,7 @@
     {
       "agent_id": "ssr-hydration-streaming-agent",
       "harness": "codex",
-      "model": "gpt-5.4",
+      "model": "gpt-6-sol",
       "model_provider": null,
       "model_fallback_from": null,
       "model_warning": null,
@@ -23836,7 +23836,7 @@
     {
       "agent_id": "state-management-data-flow-agent",
       "harness": "codex",
-      "model": "gpt-5.4",
+      "model": "gpt-6-sol",
       "model_provider": null,
       "model_fallback_from": null,
       "model_warning": null,
@@ -23902,7 +23902,7 @@
     {
       "agent_id": "terraform-engine-compatibility-agent",
       "harness": "codex",
-      "model": "gpt-5.4",
+      "model": "gpt-6-sol",
       "model_provider": null,
       "model_fallback_from": null,
       "model_warning": null,
@@ -23935,7 +23935,7 @@
     {
       "agent_id": "terraform-estate-reconciliation-agent",
       "harness": "codex",
-      "model": "gpt-5.4",
+      "model": "gpt-6-sol",
       "model_provider": null,
       "model_fallback_from": null,
       "model_warning": null,
@@ -23968,7 +23968,7 @@
     {
       "agent_id": "terraform-execution-governance-agent",
       "harness": "codex",
-      "model": "gpt-5.4",
+      "model": "gpt-6-sol",
       "model_provider": null,
       "model_fallback_from": null,
       "model_warning": null,
@@ -24001,7 +24001,7 @@
     {
       "agent_id": "terraform-maestro-agent",
       "harness": "codex",
-      "model": "gpt-5.4",
+      "model": "gpt-6-sol",
       "model_provider": null,
       "model_fallback_from": null,
       "model_warning": null,
@@ -24034,7 +24034,7 @@
     {
       "agent_id": "terraform-plan-blast-radius-agent",
       "harness": "codex",
-      "model": "gpt-5.4",
+      "model": "gpt-6-sol",
       "model_provider": null,
       "model_fallback_from": null,
       "model_warning": null,
@@ -24067,7 +24067,7 @@
     {
       "agent_id": "terraform-policy-evidence-agent",
       "harness": "codex",
-      "model": "gpt-5.4",
+      "model": "gpt-6-sol",
       "model_provider": null,
       "model_fallback_from": null,
       "model_warning": null,
@@ -24100,7 +24100,7 @@
     {
       "agent_id": "terraform-reviewer",
       "harness": "codex",
-      "model": "gpt-5.4",
+      "model": "gpt-6-sol",
       "model_provider": null,
       "model_fallback_from": null,
       "model_warning": null,
@@ -24133,7 +24133,7 @@
     {
       "agent_id": "terraform-state-reliability-agent",
       "harness": "codex",
-      "model": "gpt-5.4",
+      "model": "gpt-6-sol",
       "model_provider": null,
       "model_fallback_from": null,
       "model_warning": null,
@@ -24166,7 +24166,7 @@
     {
       "agent_id": "terraform-supply-chain-integrity-agent",
       "harness": "codex",
-      "model": "gpt-5.4",
+      "model": "gpt-6-sol",
       "model_provider": null,
       "model_fallback_from": null,
       "model_warning": null,
@@ -24265,7 +24265,7 @@
     {
       "agent_id": "testing-quality-engineering-agent",
       "harness": "codex",
-      "model": "gpt-5.4",
+      "model": "gpt-6-sol",
       "model_provider": null,
       "model_fallback_from": null,
       "model_warning": null,
@@ -24298,7 +24298,7 @@
     {
       "agent_id": "typescript-async-contract-reliability-agent",
       "harness": "codex",
-      "model": "gpt-5.4",
+      "model": "gpt-6-sol",
       "model_provider": null,
       "model_fallback_from": null,
       "model_warning": null,
@@ -24331,7 +24331,7 @@
     {
       "agent_id": "typescript-build-graph-performance-agent",
       "harness": "codex",
-      "model": "gpt-5.4",
+      "model": "gpt-6-sol",
       "model_provider": null,
       "model_fallback_from": null,
       "model_warning": null,
@@ -24364,7 +24364,7 @@
     {
       "agent_id": "typescript-business-critical-automation-governance-agent",
       "harness": "codex",
-      "model": "gpt-5.4",
+      "model": "gpt-6-sol",
       "model_provider": null,
       "model_fallback_from": null,
       "model_warning": null,
@@ -24397,7 +24397,7 @@
     {
       "agent_id": "typescript-contracts-agent",
       "harness": "codex",
-      "model": "gpt-5.4",
+      "model": "gpt-6-sol",
       "model_provider": null,
       "model_fallback_from": null,
       "model_warning": null,
@@ -24430,7 +24430,7 @@
     {
       "agent_id": "typescript-engineering-economics-agent",
       "harness": "codex",
-      "model": "gpt-5.4",
+      "model": "gpt-6-sol",
       "model_provider": null,
       "model_fallback_from": null,
       "model_warning": null,
@@ -24463,7 +24463,7 @@
     {
       "agent_id": "typescript-estate-modernization-governor-agent",
       "harness": "codex",
-      "model": "gpt-5.4",
+      "model": "gpt-6-sol",
       "model_provider": null,
       "model_fallback_from": null,
       "model_warning": null,
@@ -24496,7 +24496,7 @@
     {
       "agent_id": "typescript-maestro-agent",
       "harness": "codex",
-      "model": "gpt-5.4",
+      "model": "gpt-6-sol",
       "model_provider": null,
       "model_fallback_from": null,
       "model_warning": null,
@@ -24529,7 +24529,7 @@
     {
       "agent_id": "typescript-mcp-tool-contract-agent",
       "harness": "codex",
-      "model": "gpt-5.4",
+      "model": "gpt-6-sol",
       "model_provider": null,
       "model_fallback_from": null,
       "model_warning": null,
@@ -24562,7 +24562,7 @@
     {
       "agent_id": "typescript-module-resolution-and-emit-agent",
       "harness": "codex",
-      "model": "gpt-5.4",
+      "model": "gpt-6-sol",
       "model_provider": null,
       "model_fallback_from": null,
       "model_warning": null,
@@ -24595,7 +24595,7 @@
     {
       "agent_id": "typescript-node-execution-compatibility-agent",
       "harness": "codex",
-      "model": "gpt-5.4",
+      "model": "gpt-6-sol",
       "model_provider": null,
       "model_fallback_from": null,
       "model_warning": null,
@@ -24628,7 +24628,7 @@
     {
       "agent_id": "typescript-package-publication-integrity-agent",
       "harness": "codex",
-      "model": "gpt-5.4",
+      "model": "gpt-6-sol",
       "model_provider": null,
       "model_fallback_from": null,
       "model_warning": null,
@@ -24661,7 +24661,7 @@
     {
       "agent_id": "typescript-public-api-and-declaration-governance-agent",
       "harness": "codex",
-      "model": "gpt-5.4",
+      "model": "gpt-6-sol",
       "model_provider": null,
       "model_fallback_from": null,
       "model_warning": null,
@@ -24694,7 +24694,7 @@
     {
       "agent_id": "typescript-runtime-boundary-contract-agent",
       "harness": "codex",
-      "model": "gpt-5.4",
+      "model": "gpt-6-sol",
       "model_provider": null,
       "model_fallback_from": null,
       "model_warning": null,
@@ -24727,7 +24727,7 @@
     {
       "agent_id": "typescript-static-enforcement-policy-agent",
       "harness": "codex",
-      "model": "gpt-5.4",
+      "model": "gpt-6-sol",
       "model_provider": null,
       "model_fallback_from": null,
       "model_warning": null,
@@ -24760,7 +24760,7 @@
     {
       "agent_id": "typescript-type-soundness-agent",
       "harness": "codex",
-      "model": "gpt-5.4",
+      "model": "gpt-6-sol",
       "model_provider": null,
       "model_fallback_from": null,
       "model_warning": null,
@@ -24793,7 +24793,7 @@
     {
       "agent_id": "visual-regression-agent",
       "harness": "codex",
-      "model": "gpt-5.4",
+      "model": "gpt-6-sol",
       "model_provider": null,
       "model_fallback_from": null,
       "model_warning": null,
@@ -24826,7 +24826,7 @@
     {
       "agent_id": "vue-specialist-agent",
       "harness": "codex",
-      "model": "gpt-5.4",
+      "model": "gpt-6-sol",
       "model_provider": null,
       "model_fallback_from": null,
       "model_warning": null,
@@ -24859,7 +24859,7 @@
     {
       "agent_id": "web-performance-core-vitals-agent",
       "harness": "codex",
-      "model": "gpt-5.4",
+      "model": "gpt-6-sol",
       "model_provider": null,
       "model_fallback_from": null,
       "model_warning": null,
@@ -24892,7 +24892,7 @@
     {
       "agent_id": "web-platform-foundation-agent",
       "harness": "codex",
-      "model": "gpt-5.4",
+      "model": "gpt-6-sol",
       "model_provider": null,
       "model_fallback_from": null,
       "model_warning": null,
@@ -24925,7 +24925,7 @@
     {
       "agent_id": "wordpress-security-agent",
       "harness": "codex",
-      "model": "gpt-5.4",
+      "model": "gpt-6-sol",
       "model_provider": null,
       "model_fallback_from": null,
       "model_warning": null,

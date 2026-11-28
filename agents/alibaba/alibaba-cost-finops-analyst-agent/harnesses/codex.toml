@@ -1,6 +1,6 @@
 name = "alibaba_cost_finops_analyst_agent"
 description = "Specialized subagent for alibaba-cost-finops-analyst. Analyze Alibaba Cloud spend, optimize Savings Plans and Reserved Instance coverage, design resource tagging strategy, investigate budget drift, and right-size over-provisioned resources."
-model = "gpt-5.4"
+model = "gpt-6-sol"
 model_reasoning_effort = "high"
 sandbox_mode = "read-only"
 

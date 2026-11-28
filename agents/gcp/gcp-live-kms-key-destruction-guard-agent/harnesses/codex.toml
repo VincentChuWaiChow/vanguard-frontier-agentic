@@ -1,6 +1,6 @@
 name = "gcp-live-kms-key-destruction-guard_agent"
 description = "Specialized subagent for gcp-live-kms-key-destruction-guard. Gate Cloud KMS key version destruction and key ring deletion — CMEK-encrypted data becomes permanently and irrecoverably inaccessible once a key version is destroyed."
-model = "gpt-5.4"
+model = "gpt-6-sol"
 model_reasoning_effort = "high"
 sandbox_mode = "workspace-write"
 

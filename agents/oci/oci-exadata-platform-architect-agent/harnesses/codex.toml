@@ -1,6 +1,6 @@
 name = "oci_exadata_platform_architect"
 description = "Specialized subagent for oci-exadata-platform-architect. OCI Design and operate Exadata Database Service across OCI Dedicated Infrastructure, Exadata Cloud@Customer, Oracle Database@Azure, Oracle Database@Google Cloud, and Oracle Database@AWS. Use for Exadata architecture, VM clusters, cloud Exadata infrastructure, Exascale, RAC, Data Guard, backup, migration, compatibility, capacity, network, and multicloud destination reviews."
-model = "gpt-5.4"
+model = "gpt-6-sol"
 model_reasoning_effort = "high"
 sandbox_mode = "read-only"
 

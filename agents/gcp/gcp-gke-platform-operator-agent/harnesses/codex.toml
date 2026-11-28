@@ -1,6 +1,6 @@
 name = "gcp_gke_platform_operator_agent"
 description = "Specialized subagent for gcp-gke-platform-operator. Operate GKE clusters (Standard and Autopilot), manage node pools, configure Workload Identity, enforce Binary Authorization, plan node pool upgrades, and review cluster security posture."
-model = "gpt-5.4"
+model = "gpt-6-sol"
 model_reasoning_effort = "high"
 sandbox_mode = "read-only"
 

@@ -1,6 +1,6 @@
 name = "oci_maestro"
 description = "Per-cloud router agent for OCI. Classify the user's OCI task, select the narrowest specialist agent or the right team of specialists from the catalog, and dispatch them — single specialist for focused tasks, parallel team for multi-domain tasks. Never auto-dispatch live-guard agents."
-model = "gpt-5.4"
+model = "gpt-6-sol"
 model_reasoning_effort = "high"
 sandbox_mode = "read-only"
 

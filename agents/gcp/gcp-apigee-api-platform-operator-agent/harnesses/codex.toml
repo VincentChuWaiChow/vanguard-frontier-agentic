@@ -1,6 +1,6 @@
 name = "gcp_apigee_api_platform_operator_agent"
 description = "Specialized subagent for gcp-apigee-api-platform-operator. Design and operate Apigee X API proxies — rate limiting, OAuth/JWT security policies, quota plans, developer portal setup, and API product management."
-model = "gpt-5.4"
+model = "gpt-6-sol"
 model_reasoning_effort = "high"
 sandbox_mode = "read-only"
 

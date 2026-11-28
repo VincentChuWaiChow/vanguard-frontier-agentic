@@ -1,6 +1,6 @@
 name = "kubernetes_workload_identity_review_agent"
 description = "Specialized subagent for kubernetes-workload-identity-review. Review IRSA, Azure Workload Identity, GKE Workload Identity, and generic OIDC projected token bindings for trust policy scope, static credential fallback risk, token audience validation, and cross-account reuse."
-model = "gpt-5.4"
+model = "gpt-6-sol"
 model_reasoning_effort = "high"
 sandbox_mode = "read-only"
 

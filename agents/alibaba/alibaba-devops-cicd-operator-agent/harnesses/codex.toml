@@ -1,6 +1,6 @@
 name = "alibaba_devops_cicd_operator_agent"
 description = "Specialized subagent for alibaba-devops-cicd-operator. Build and operate CI/CD pipelines using Alibaba Cloud RDC (Yunxiao DevOps), Flow pipelines, ACR image lifecycle, Cloud Build, and environment promotion workflows."
-model = "gpt-5.4"
+model = "gpt-6-sol"
 model_reasoning_effort = "high"
 sandbox_mode = "read-only"
 

@@ -1,6 +1,6 @@
 name = "gcp_iam_least_privilege_review_agent"
 description = "Specialized subagent for gcp-iam-least-privilege-review. Audit GCP IAM bindings across the resource hierarchy (org/folder/project), identify overprivileged Service Accounts, review Workload Identity Federation configurations, evaluate org policy conditions, and recommend least-privilege remediation."
-model = "gpt-5.4"
+model = "gpt-6-sol"
 model_reasoning_effort = "high"
 sandbox_mode = "read-only"
 

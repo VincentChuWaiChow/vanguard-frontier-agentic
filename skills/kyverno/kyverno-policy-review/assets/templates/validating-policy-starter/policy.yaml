@@ -37,11 +37,14 @@ spec:
   variables:
     - name: containers
       expression: "object.spec.containers + object.spec.?initContainers.orValue([])"
+    # A container without its own setting inherits the Pod-level securityContext.runAsNonRoot.
+    - name: podRunAsNonRoot
+      expression: "object.spec.?securityContext.?runAsNonRoot.orValue(false)"
   validations:
     - expression: >-
-        variables.containers.all(c, c.?securityContext.?runAsNonRoot.orValue(false) == true)
+        variables.containers.all(c, c.?securityContext.?runAsNonRoot.orValue(variables.podRunAsNonRoot) == true)
       # The message is the developer's only instruction: name the field to fix and who to ask.
       message: >-
-        example-require-run-as-non-root: set securityContext.runAsNonRoot=true on every container
-        and init container. If the image cannot run as non-root, ask the payments platform owner
+        example-require-run-as-non-root: set securityContext.runAsNonRoot=true on the Pod or on every
+        container and init container that does not inherit it. If the image cannot run as non-root, ask the payments platform owner
         for a time-bound PolicyException.

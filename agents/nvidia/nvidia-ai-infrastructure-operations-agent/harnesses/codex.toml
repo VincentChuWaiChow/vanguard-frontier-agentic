@@ -1,6 +1,6 @@
 name = "nvidia_ai_infrastructure_operations_agent"
 description = "Specialized subagent for nvidia-ai-infrastructure-operations. Review NVIDIA GPU infrastructure (DGX/HGX/MGX) per NCA-AIIO and NCP-AII — driver/firmware/CUDA alignment, BMC segmentation, ECC, persistence, and MIG host posture."
-model = "gpt-5.4"
+model = "gpt-6-sol"
 model_reasoning_effort = "high"
 sandbox_mode = "read-only"
 

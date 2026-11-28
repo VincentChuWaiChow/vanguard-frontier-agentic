@@ -1,6 +1,6 @@
 name = "aws_ci_cd_release_engineer_agent"
 description = "Specialized subagent for aws-ci-cd-release-engineer. Review AWS release pipelines, deployment gates, artifact provenance, CodePipeline/CodeBuild/CodeDeploy, GitHub/GitLab integrations, rollback, change correlation, and incident prevention."
-model = "gpt-5.4"
+model = "gpt-6-sol"
 model_reasoning_effort = "high"
 sandbox_mode = "read-only"
 

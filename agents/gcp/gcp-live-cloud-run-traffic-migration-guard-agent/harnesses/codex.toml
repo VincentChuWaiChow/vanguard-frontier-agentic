@@ -1,6 +1,6 @@
 name = "gcp-live-cloud-run-traffic-migration-guard_agent"
 description = "Specialized subagent for gcp-live-cloud-run-traffic-migration-guard. Gate Cloud Run traffic percentage migrations, min-instances changes, and revision deletions — production traffic blast radius with no automatic rollback."
-model = "gpt-5.4"
+model = "gpt-6-sol"
 model_reasoning_effort = "high"
 sandbox_mode = "workspace-write"
 

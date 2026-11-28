@@ -1,6 +1,6 @@
 name = "scaleway_cost_optimizer_agent"
 description = "Advisory agent for Scaleway cost analysis: instance rightsizing, reserved instance utilization, idle Object Storage and SBS volumes, Serverless function cost, and Cockpit observability spend."
-model = "gpt-5.4"
+model = "gpt-6-sol"
 model_reasoning_effort = "high"
 sandbox_mode = "read-only"
 

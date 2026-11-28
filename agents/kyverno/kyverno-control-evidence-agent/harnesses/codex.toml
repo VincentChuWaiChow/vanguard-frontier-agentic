@@ -1,6 +1,6 @@
 name = "kyverno_control_evidence_agent"
 description = "Quantify Kyverno control coverage from supplied inventories, PolicyReports, exception lists, admission metrics and event streams. Use for coverage percentages, compliance assertions, empty or stale reports, excluded workloads, blocked-request counts, evidence packs and pilot business measures. Not for designing the policy, diagnosing a webhook incident or approving exceptions."
-model = "gpt-5.4"
+model = "gpt-6-sol"
 model_reasoning_effort = "high"
 sandbox_mode = "read-only"
 

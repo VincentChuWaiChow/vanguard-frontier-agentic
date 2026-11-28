@@ -1,6 +1,6 @@
 name = "python_live_control_evidence_agent"
 description = "Collects, hashes, and stores control evidence in an approved destination and maps it to controls. Cannot approve or execute."
-model = "gpt-5.4"
+model = "gpt-6-sol"
 model_reasoning_effort = "high"
 sandbox_mode = "read-only"
 

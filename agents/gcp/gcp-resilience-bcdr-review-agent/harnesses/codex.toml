@@ -1,6 +1,6 @@
 name = "gcp_resilience_bcdr_review_agent"
 description = "Specialized subagent for gcp-resilience-bcdr-review. Review GCP workload HA and BCDR designs — multi-region architectures, Cloud SQL HA failover, Spanner global instances, GKE multi-cluster, RTO/RPO target analysis, and runbook completeness."
-model = "gpt-5.4"
+model = "gpt-6-sol"
 model_reasoning_effort = "high"
 sandbox_mode = "read-only"
 

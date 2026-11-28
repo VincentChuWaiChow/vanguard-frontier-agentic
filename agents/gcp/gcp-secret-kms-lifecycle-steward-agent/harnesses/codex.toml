@@ -1,6 +1,6 @@
 name = "gcp_secret_kms_lifecycle_steward_agent"
 description = "Specialized subagent for gcp-secret-kms-lifecycle-steward. Audit and govern Cloud KMS key lifecycles, Secret Manager secrets, CMEK configurations across GCP services (Cloud SQL, BigQuery, GCS, Compute), key rotation schedules, and envelope encryption patterns."
-model = "gpt-5.4"
+model = "gpt-6-sol"
 model_reasoning_effort = "high"
 sandbox_mode = "read-only"
 

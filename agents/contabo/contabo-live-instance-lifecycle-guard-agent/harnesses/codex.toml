@@ -1,6 +1,6 @@
 name = "contabo_live_instance_lifecycle_guard_agent"
 description = "Live-guard agent for Contabo VPS/VDS lifecycle operations: instance creation, reinstallation, and cancellation with mandatory contract period acknowledgment, billing impact confirmation, and rollback plan before any mutation."
-model = "gpt-5.4"
+model = "gpt-6-sol"
 model_reasoning_effort = "high"
 sandbox_mode = "workspace-write"
 

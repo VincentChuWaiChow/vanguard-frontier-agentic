@@ -1,6 +1,6 @@
 name = "alibaba_ticket_triage_escalation_coordinator_agent"
 description = "Specialized subagent for alibaba-ticket-triage-escalation-coordinator. Triage Alibaba Cloud operational alerts, incidents, and support tickets — P0/P1/P2/P3 classification, Alibaba Cloud Support SLA enforcement, account manager escalation, DingTalk war room coordination, evidence collection from CloudMonitor and SLS, and safe escalation paths."
-model = "gpt-5.4"
+model = "gpt-6-sol"
 model_reasoning_effort = "high"
 sandbox_mode = "read-only"
 

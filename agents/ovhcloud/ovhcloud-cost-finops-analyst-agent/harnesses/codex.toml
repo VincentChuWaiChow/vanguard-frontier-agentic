@@ -1,6 +1,6 @@
 name = "ovhcloud_cost_finops_analyst_agent"
 description = "Advisory agent for OVHcloud Public Cloud cost analysis, commitment tracking, idle resource identification, and FinOps governance across projects and regions."
-model = "gpt-5.4"
+model = "gpt-6-sol"
 model_reasoning_effort = "high"
 sandbox_mode = "read-only"
 

@@ -1,6 +1,6 @@
 name = "snowflake_live_data_protection_policy_guard_agent"
 description = "Approval-gated execution boundary for exactly one Snowflake data-protection policy attachment, detachment, or replacement — masking, row-access, or a supported governance policy — on one object or column. Requires a tested per-role-class visibility prediction before execution, including for service, BI, replication, and agent identities. Never auto-dispatched."
-model = "gpt-5.4"
+model = "gpt-6-sol"
 model_reasoning_effort = "high"
 sandbox_mode = "read-only"
 

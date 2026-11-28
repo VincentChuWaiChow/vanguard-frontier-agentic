@@ -56,7 +56,7 @@ The `ollama` and `openrouter` routes require a matching `[model_providers.<id>]`
 | `gpt-5.6-luna` | none, low, medium, high, xhigh, max | no minimal |
 | `gpt-5.5` | none, minimal, low, medium, high, xhigh | retiring 2026-10-14 → gpt-6-sol. Retires from ChatGPT, ChatGPT Work and Codex on all plans; OpenAI directs ChatGPT sign-in users to replace it in custom agents with `gpt-6-sol` (`gpt-6-luna` on Free/Go). The OpenAI API is unaffected, so API-key Codex users can still call it; the entry stays registered, including as the documented successor of `gpt-5-2025-08-07`. The repo policy no longer pins it |
 | `gpt-5.5-pro` | none, minimal, low, medium, high, xhigh | |
-| `gpt-5.4` | none, minimal, low, medium, high, xhigh | present but `visibility: hide` in the Codex model map — legacy, kept because the policy still pins it; not a lifecycle status, and no retirement date is documented |
+| `gpt-5.4` | none, minimal, low, medium, high, xhigh | present but `visibility: hide` in the Codex model map — legacy; the repo policy no longer pins it (the codex `all`-tier default moved to `gpt-6-sol` on 2026-11-28); not a lifecycle status, and no retirement date is documented |
 | `gpt-5.4-mini` | none, minimal, low, medium, high, xhigh | present but `visibility: hide` in the Codex model map — legacy |
 | `gpt-5.4-nano` | none, minimal, low, medium, high, xhigh | retiring 2027-04-01 → gpt-6-luna |
 | `gpt-5.3-codex` | none, minimal, low, medium, high, xhigh | retiring 2027-04-01 → gpt-6-sol |

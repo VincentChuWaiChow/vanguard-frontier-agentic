@@ -1,6 +1,6 @@
 name = "gcp_compliance_assured_workloads_agent"
 description = "Specialized subagent for gcp-compliance-assured-workloads. Configure Assured Workloads for regulated workloads (FedRAMP High/Moderate, HIPAA, PCI-DSS, ITAR, IL4/IL5), audit controls implementation, and gather compliance evidence using Security Command Center and Asset Inventory."
-model = "gpt-5.4"
+model = "gpt-6-sol"
 model_reasoning_effort = "high"
 sandbox_mode = "read-only"
 

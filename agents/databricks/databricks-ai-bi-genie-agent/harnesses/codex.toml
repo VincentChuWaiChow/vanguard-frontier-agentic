@@ -1,6 +1,6 @@
 name = "databricks_ai_bi_genie_agent"
 description = "Static review of AI/BI Genie agent design, semantic layer grounding, and dashboard permission consequences: Genie agent scoping and table budget (30-table limit), instructions and trusted-asset caching, metric-view semantics and correctness, dashboard limits and rendering consequences, benchmark design and honest accuracy reading, and the critical 'Individual data' versus 'Share data' permission decision—which determines whether row filters and column masks apply per viewer or are bypassed."
-model = "gpt-5.4"
+model = "gpt-6-sol"
 model_reasoning_effort = "high"
 sandbox_mode = "read-only"
 

@@ -1,6 +1,6 @@
 name = "huawei_daily_operations_briefing_coordinator_agent"
 description = "Specialized subagent for huawei-daily-operations-briefing-coordinator. Coordinate the daily Huawei Cloud operations standup — CBC cost delta by Enterprise Project, AOM anomaly alert review, CCE pod failure triage, CES quota utilization warnings, LTS log error spike detection, SecMaster security finding triage, and action item assignment."
-model = "gpt-5.4"
+model = "gpt-6-sol"
 model_reasoning_effort = "high"
 sandbox_mode = "read-only"
 

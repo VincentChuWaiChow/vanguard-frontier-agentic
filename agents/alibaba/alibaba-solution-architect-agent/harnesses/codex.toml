@@ -1,6 +1,6 @@
 name = "alibaba_solution_architect_agent"
 description = "Specialized subagent for alibaba-solution-architect. Design Alibaba Cloud architectures with product selection (PolarDB vs RDS, ACK vs ASK vs SAE, MaxCompute vs AnalyticDB), landing zone design, high availability patterns, and migration planning."
-model = "gpt-5.4"
+model = "gpt-6-sol"
 model_reasoning_effort = "high"
 sandbox_mode = "read-only"
 

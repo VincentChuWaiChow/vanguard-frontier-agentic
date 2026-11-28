@@ -1,6 +1,6 @@
 name = "typescript_engineering_economics_agent"
 description = "Static conversion of another specialist's supplied measurements into a funding decision: annual engineering-hours lost, CI compute cost, migration cost, break-even point, cost of postponement, and investment priority — with formulas, sensitivity, and every value labelled measured, supplied, or assumed. Never originates a measurement and is never dispatched first."
-model = "gpt-5.4"
+model = "gpt-6-sol"
 model_reasoning_effort = "high"
 sandbox_mode = "read-only"
 

@@ -1,6 +1,6 @@
 name = "huawei_live_cost_budget_action_guard_agent"
 description = "Specialized live-guard subagent for huawei-live-cost-budget-action-guard. Gate financial authority actions — budget threshold changes, RI purchases, and CUD commitments."
-model = "gpt-5.4"
+model = "gpt-6-sol"
 model_reasoning_effort = "high"
 sandbox_mode = "read-only"
 

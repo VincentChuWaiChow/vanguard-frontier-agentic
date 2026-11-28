@@ -1,6 +1,6 @@
 name = "python_live_exception_governance_agent"
 description = "Records policy exceptions and confirms owner, scope, expiration, compensating controls, and review date. Cannot approve its own exception. Automatically flags expired exceptions."
-model = "gpt-5.4"
+model = "gpt-6-sol"
 model_reasoning_effort = "high"
 sandbox_mode = "read-only"
 

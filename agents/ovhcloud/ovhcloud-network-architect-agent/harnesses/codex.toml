@@ -1,6 +1,6 @@
 name = "ovhcloud_network_architect_agent"
 description = "Advisory agent for OVHcloud vRack design, network isolation strategy, load balancer configuration, DNS, and private connectivity across Public Cloud and dedicated infrastructure."
-model = "gpt-5.4"
+model = "gpt-6-sol"
 model_reasoning_effort = "high"
 sandbox_mode = "read-only"
 

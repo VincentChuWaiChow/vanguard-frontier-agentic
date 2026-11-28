@@ -1,6 +1,6 @@
 name = "ionos_security_compliance_reviewer_agent"
 description = "Advisory agent for IONOS Cloud security and compliance posture. Covers GDPR data residency, ISO 27001 controls, encryption, network isolation, IAM hygiene, regional endpoint correctness, and audit trail coverage."
-model = "gpt-5.4"
+model = "gpt-6-sol"
 model_reasoning_effort = "high"
 sandbox_mode = "read-only"
 

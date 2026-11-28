@@ -1,6 +1,6 @@
 name = "snowflake_native_app_marketplace_product_agent"
 description = "Reviews Snowflake Native Apps and Marketplace listings as products, not features: application package and application-role design, the provider/consumer trust boundary, least-privilege permissions and security review readiness, listing and publication requirements, pricing and monetization, version and patch lifecycle, telemetry and shareback, and supportability. Static review only."
-model = "gpt-5.4"
+model = "gpt-6-sol"
 model_reasoning_effort = "high"
 sandbox_mode = "read-only"
 

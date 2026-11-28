@@ -1,6 +1,6 @@
 name = "accounting-indirect-tax-einvoicing-advisor_agent"
 description = "Advise on multi-jurisdiction indirect tax compliance and mandatory electronic invoicing mandates. Covers VAT/GST frameworks and e-invoicing clearance models across EU (ViDA), Brazil (NF-e/SPED), India (GST IRP), Mexico (CFDI 4.0), China (Golden Tax Phase IV), UK (MTD VAT/ITSA), and Australia (Peppol/BAS). Advisory only."
-model = "gpt-5.4"
+model = "gpt-6-sol"
 model_reasoning_effort = "high"
 sandbox_mode = "read-only"
 

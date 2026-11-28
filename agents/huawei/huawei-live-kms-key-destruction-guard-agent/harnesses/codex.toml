@@ -1,6 +1,6 @@
 name = "huawei_live_kms_key_destruction_guard_agent"
 description = "Specialized live-guard subagent for huawei-live-kms-key-destruction-guard. Gate DEW/KMS key deletion and disable operations — CSMS secrets and DBSS-encrypted database data become permanently unrecoverable once the key is deleted."
-model = "gpt-5.4"
+model = "gpt-6-sol"
 model_reasoning_effort = "high"
 sandbox_mode = "read-only"
 

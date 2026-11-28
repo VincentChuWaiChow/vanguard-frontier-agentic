@@ -1,6 +1,6 @@
 name = "contabo_maestro_agent"
 description = "Router agent that classifies Contabo tasks and delegates to the narrowest specialist for cost analysis, capacity planning, security hardening, or live-guard operations."
-model = "gpt-5.4"
+model = "gpt-6-sol"
 model_reasoning_effort = "high"
 sandbox_mode = "read-only"
 

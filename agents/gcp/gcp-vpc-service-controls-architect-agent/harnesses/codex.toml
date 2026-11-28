@@ -1,6 +1,6 @@
 name = "gcp_vpc_service_controls_architect_agent"
 description = "Specialized subagent for gcp-vpc-service-controls-architect. Design, review, and troubleshoot VPC Service Controls perimeters, access policies, dry-run mode configuration, bridge perimeters for cross-perimeter access, and Access Context Manager access levels."
-model = "gpt-5.4"
+model = "gpt-6-sol"
 model_reasoning_effort = "high"
 sandbox_mode = "read-only"
 

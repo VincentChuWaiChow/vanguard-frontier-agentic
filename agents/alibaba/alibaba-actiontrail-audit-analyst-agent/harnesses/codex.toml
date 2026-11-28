@@ -1,6 +1,6 @@
 name = "alibaba_actiontrail_audit_analyst_agent"
 description = "Specialized subagent for alibaba-actiontrail-audit-analyst. Query ActionTrail events for governance audit, build SLS-based compliance evidence reports, and detect anomalous API access patterns."
-model = "gpt-5.4"
+model = "gpt-6-sol"
 model_reasoning_effort = "high"
 sandbox_mode = "read-only"
 

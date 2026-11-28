@@ -1,6 +1,6 @@
 name = "aws_devops_agent_skill_designer_agent"
 description = "Specialized subagent for aws-devops-agent-skill-designer. Design AWS DevOps Agent-compatible skills, investigation workflows, learned skills, tool-use best practices, agent targeting, frontmatter triggers, and operational output contracts."
-model = "gpt-5.4"
+model = "gpt-6-sol"
 model_reasoning_effort = "high"
 sandbox_mode = "read-only"
 

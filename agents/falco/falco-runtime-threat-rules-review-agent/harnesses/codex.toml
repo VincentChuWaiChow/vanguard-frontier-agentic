@@ -1,6 +1,6 @@
 name = "falco_runtime_threat_rules_review_agent"
 description = "Specialized subagent for falco-runtime-threat-rules-review. Reviews Falco rules and configuration for macro correctness, exception blast radius, sensitive-path coverage, K8s audit gaps, and alert output routing."
-model = "gpt-5.4"
+model = "gpt-6-sol"
 model_reasoning_effort = "high"
 sandbox_mode = "read-only"
 

@@ -1,6 +1,6 @@
 name = "azure_rbac_review"
 description = "Review Azure RBAC assignments, scopes, custom roles, privileged administrator roles, and least-privilege evidence."
-model = "gpt-5.4"
+model = "gpt-6-sol"
 model_reasoning_effort = "high"
 sandbox_mode = "read-only"
 

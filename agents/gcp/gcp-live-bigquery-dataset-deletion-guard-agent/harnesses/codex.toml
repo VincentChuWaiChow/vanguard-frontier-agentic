@@ -1,6 +1,6 @@
 name = "gcp-live-bigquery-dataset-deletion-guard_agent"
 description = "Specialized subagent for gcp-live-bigquery-dataset-deletion-guard. Gate BigQuery dataset deletion, table truncation, and authorized view changes — irreversible data loss and downstream pipeline breakage."
-model = "gpt-5.4"
+model = "gpt-6-sol"
 model_reasoning_effort = "high"
 sandbox_mode = "workspace-write"
 

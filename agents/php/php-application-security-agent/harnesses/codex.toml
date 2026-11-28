@@ -1,6 +1,6 @@
 name = "php_application_security_agent"
 description = "Static-review agent for PHP application security: user-reachable unserialize() object injection, session fixation/hijacking (session_regenerate_id, use_strict_mode, cookie hardening), and unsafe file-upload handling, mapping each finding to an OWASP category and the exact php.net-documented mitigation."
-model = "gpt-5.4"
+model = "gpt-6-sol"
 model_reasoning_effort = "high"
 sandbox_mode = "read-only"
 

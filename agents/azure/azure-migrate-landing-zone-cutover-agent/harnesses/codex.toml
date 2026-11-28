@@ -1,6 +1,6 @@
 name = "azure_migrate_landing_zone_cutover"
 description = "Stress-test Azure migration cutovers against assessment quality, landing-zone readiness, dependency sequencing, rollback, and post-cutover ownership."
-model = "gpt-5.4"
+model = "gpt-6-sol"
 model_reasoning_effort = "high"
 sandbox_mode = "read-only"
 

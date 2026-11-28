@@ -1,6 +1,6 @@
 name = "huawei_modelarts_mlops_engineer_agent"
 description = "Specialized subagent for huawei-modelarts-mlops-engineer. Manage ModelArts training jobs (GPU and Ascend NPU cost governance), Pangu model deployment, AI Gallery model management, and MLOps pipeline automation."
-model = "gpt-5.4"
+model = "gpt-6-sol"
 model_reasoning_effort = "high"
 sandbox_mode = "read-only"
 

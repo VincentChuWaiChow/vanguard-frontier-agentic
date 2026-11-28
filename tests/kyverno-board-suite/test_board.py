@@ -169,10 +169,26 @@ class Layer1Structure(unittest.TestCase):
         self.assertNotIn("model", header(files["harnesses/codex.toml"]))
         # Only a brand-new adapter gets the initialization defaults.
         fresh = gen.render_agent(agent, board, sources, {})
-        self.assertIn('model = "gpt-5.4"', header(fresh["harnesses/codex.toml"]))
+        policy = json.loads((ROOT / "catalog/model-policy.json").read_text(encoding="utf-8"))
+        default = next(r for r in policy["rules"] if r["scope"] == "all" and r["harness"] == "codex")
+        self.assertIn(f'model = "{default["model"]}"\nmodel_reasoning_effort = "{default["reasoning_effort"]}"\n',
+                      header(fresh["harnesses/codex.toml"]))
+        self.assertNotIn("gpt-5.4", header(fresh["harnesses/codex.toml"]))
+
+    def test_check_reports_agent_dirs_missing_from_board(self):
+        gen = load(ROOT / "scripts/gen_kyverno_board.py", "gen_kyverno_board_orphans")
+        with tempfile.TemporaryDirectory() as tmp:
+            agents = Path(tmp)
+            for name in ("kyverno-kept-agent", "kyverno-dropped-agent"):
+                (agents / name).mkdir()
+            (agents / "README.md").write_text("not an agent", encoding="utf-8")
+            self.assertEqual(gen.orphan_agent_dirs(["kyverno-kept-agent"], agents), ["kyverno-dropped-agent"])
+            self.assertEqual(gen.orphan_agent_dirs(["kyverno-kept-agent", "kyverno-dropped-agent"], agents), [])
+        board = json.loads((ROOT / "scripts/kyverno_data/board.json").read_text(encoding="utf-8"))
+        self.assertEqual(gen.orphan_agent_dirs(a["id"] for a in board["agents"]), [])
 
     def test_ledgers_carry_only_cited_rows(self):
-        marker = re.compile(r"\[(KYV-E\d+)\]")
+        marker = re.compile(r"\[(KYV-E\d{2,})\]")  # same marker shape as scripts/gen_kyverno_board.py
         for skill in SKILLS:
             sdir = ROOT / "skills/kyverno" / skill
             cited = set()
@@ -344,7 +360,8 @@ class Layer2Deterministic(unittest.TestCase):
             self.assertTrue((d / "kyverno-test.yaml").is_file(), d.name)
 
     def test_policy_fixtures_pass_with_pinned_cli(self):
-        cli = os.environ.get("KYVERNO_CLI") or shutil.which("kyverno")
+        # Explicit opt-in only: a gate must not change result with whatever `kyverno` is on PATH.
+        cli = os.environ.get("KYVERNO_CLI")
         if not cli:
             self.skipTest("pinned kyverno CLI not available (set KYVERNO_CLI); layer 2 policy fixtures NOT verified in this run")
         version = subprocess.run([cli, "version"], capture_output=True, text=True).stdout

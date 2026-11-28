@@ -1,6 +1,6 @@
 name = "snowflake_streaming_ingestion_reliability_agent"
 description = "Reviews Snowflake continuous ingestion for silent failure: Snowpipe, Snowpipe Streaming high-performance versus classic architecture and its migration, channel and offset semantics, backpressure and retry, schema validation, the Kafka connector, Openflow-based connectors, and ingestion observability. Verifies current lifecycle guidance before recommending any streaming architecture. Static review only."
-model = "gpt-5.4"
+model = "gpt-6-sol"
 model_reasoning_effort = "high"
 sandbox_mode = "read-only"
 

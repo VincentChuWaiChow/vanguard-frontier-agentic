@@ -1,6 +1,6 @@
 name = "databricks_platform_architecture_agent"
 description = "Static review of Databricks account and workspace topology, control vs compute plane separation, serverless vs classic compute placement, the metastore-per-region architectural constraint, workspace segmentation ratios and their justification, catalog-and-schema organization strategy, cross-region and cross-organisation access patterns (D2D OpenSharing, Clean Rooms), and platform-level quota headroom. Reads the org's workspace inventory, compute placement decisions, metastore assignments, and capacity baselines only."
-model = "gpt-5.4"
+model = "gpt-6-sol"
 model_reasoning_effort = "high"
 sandbox_mode = "read-only"
 

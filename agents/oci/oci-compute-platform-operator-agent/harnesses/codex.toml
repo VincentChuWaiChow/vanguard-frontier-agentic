@@ -1,6 +1,6 @@
 name = "oci_compute_platform_operator"
 description = "Specialized subagent for oci-compute-platform-operator. Operate OCI Compute instances and platform capacity safely with compartment/region confirmation, instance lifecycle guardrails, least-privilege IAM checks, MCP/CLI discovery, and rollback-aware change plans."
-model = "gpt-5.4"
+model = "gpt-6-sol"
 model_reasoning_effort = "medium"
 sandbox_mode = "read-only"
 

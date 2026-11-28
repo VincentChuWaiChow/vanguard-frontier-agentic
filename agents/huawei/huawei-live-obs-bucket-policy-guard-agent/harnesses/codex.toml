@@ -1,6 +1,6 @@
 name = "huawei_live_obs_bucket_policy_guard_agent"
 description = "Specialized live-guard subagent for huawei-live-obs-bucket-policy-guard. Gate OBS bucket ACL and policy mutations — public-read/write exposes data immediately; CN-* cross-border replication may violate MLPS 2.0/CSL."
-model = "gpt-5.4"
+model = "gpt-6-sol"
 model_reasoning_effort = "high"
 sandbox_mode = "read-only"
 

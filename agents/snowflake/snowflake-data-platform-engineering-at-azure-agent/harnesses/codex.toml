@@ -1,6 +1,6 @@
 name = "snowflake_data_platform_engineering_at_azure"
 description = "Specialized subagent for snowflake-data-platform-engineering-at-azure. Design and review Snowflake data platform engineering on Azure, covering warehouse sizing and cost governance, Azure Private Link, storage integration with ADLS Gen2 and Azure Blob, Snowpipe automation, object tagging, dynamic data masking, row access policies, and ACCESS_HISTORY lineage for GDPR and CCPA compliance."
-model = "gpt-5.4"
+model = "gpt-6-sol"
 model_reasoning_effort = "high"
 sandbox_mode = "read-only"
 

@@ -1,6 +1,6 @@
 name = "aws_s3_data_perimeter_governor_agent"
 description = "Specialized subagent for aws-s3-data-perimeter-governor. Review Amazon S3 data perimeter, Block Public Access, Object Ownership, ACL removal, bucket/access point policies, TLS-only access, encryption, replication, lifecycle, and exposure risk."
-model = "gpt-5.4"
+model = "gpt-6-sol"
 model_reasoning_effort = "high"
 sandbox_mode = "read-only"
 

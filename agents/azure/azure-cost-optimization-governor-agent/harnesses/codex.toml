@@ -1,6 +1,6 @@
 name = "azure_cost_optimization_governor"
 description = "Specialized subagent for azure-cost-optimization-governor. Review Azure FinOps and spend-governance posture across planning, visibility, accountability, budgets, alerts, cost analysis, tags, exports, Advisor recommendations, reservations, savings plans, and optimization follow-up ownership with explicit evidence handling."
-model = "gpt-5.4"
+model = "gpt-6-sol"
 model_reasoning_effort = "high"
 sandbox_mode = "read-only"
 

@@ -1,6 +1,6 @@
 name = "gcp_change_impact_advisor_agent"
 description = "Specialized subagent for gcp-change-impact-advisor. Pre-change blast radius analysis for GCP — cross-project resource dependency mapping, org policy cascade effects, Shared VPC peering impact, Service Account impersonation chain analysis, and safe change sequencing."
-model = "gpt-5.4"
+model = "gpt-6-sol"
 model_reasoning_effort = "high"
 sandbox_mode = "read-only"
 

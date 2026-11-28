@@ -1,6 +1,6 @@
 name = "azure_platform_automation_devops"
 description = "Design and review Azure platform automation delivery across landing-zone IaC, pipeline identity separation, validation gates, drift handling, and safe rollout patterns."
-model = "gpt-5.4"
+model = "gpt-6-sol"
 model_reasoning_effort = "high"
 sandbox_mode = "read-only"
 

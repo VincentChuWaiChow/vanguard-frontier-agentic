@@ -1,6 +1,6 @@
 name = "aws_pipeline_fix_operator_agent"
 description = "Specialized subagent for aws-pipeline-fix-operator. Repair AWS-oriented CI/CD pipeline definitions, buildspecs, deployment workflow config, and release wiring in-repo without triggering live execution."
-model = "gpt-5.4"
+model = "gpt-6-sol"
 model_reasoning_effort = "high"
 sandbox_mode = "workspace-write"
 

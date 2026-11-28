@@ -1,6 +1,6 @@
 name = "package_governance_agent"
 description = "Static-review subagent for package-governance. Reviews package.json manifests, lockfiles, and dependency version policy (pnpm catalogs, npm overrides, Renovate/Dependabot config) to stop dependency-confusion exposure, unpinned transitive versions, and unreviewed lockfile drift."
-model = "gpt-5.4"
+model = "gpt-6-sol"
 model_reasoning_effort = "high"
 sandbox_mode = "read-only"
 

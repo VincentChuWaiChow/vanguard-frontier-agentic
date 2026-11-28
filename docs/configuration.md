@@ -54,10 +54,11 @@ These <!-- count:global:gates -->39<!-- /count --> `validate:*` gates run sequen
 | 32 | `validate:frontend-security-detection` | `python3 tests/validate-frontend-security-detection.py` | Frontend security skills still document their sink keywords and detect the fixture corpus |
 | 33 | `validate:agent-tool-tiers` | `python3 tests/validate-agent-tool-tiers.py` | Copilot tool grants match each agent's declared `execution_tier` |
 | 34 | `validate:istio-review-suite` | `python3 -m unittest discover -s tests/istio-review-suite -p "test_*.py" -v` | Istio review suite unit tests |
-| 35 | `validate:agentic-board` | `python3 -m unittest discover -s tests/agentic-board-suite -p "test_*.py"` | Agentic-board handoff contract fixtures, rule coverage, schema parity and board invariants |
-| 36 | `validate:workflow-catalog` | `node scripts/generate-workflow-catalog.mjs --check` | `catalog/workflows.json` matches the `meta` literal in each `.claude/workflows/*.js` |
-| 37 | `validate:release-notes` | `node tests/validate-release-notes.mjs` | semantic-release renders notes with the configured preset |
-| 38 | `validate:mods` | `python3 tests/validate-mods.py` | Cross-harness mods match their `mod.toml` contract (declared footprint, generated adapters, production-core tests) |
+| 35 | `validate:kyverno-board` | `python3 scripts/gen_kyverno_board.py --check && python3 -m unittest discover -s tests/kyverno-board-suite -p "test_*.py"` | Kyverno board generated-output drift, routing, decision-record validator fixtures and starter-kit contracts |
+| 36 | `validate:agentic-board` | `python3 -m unittest discover -s tests/agentic-board-suite -p "test_*.py"` | Agentic-board handoff contract fixtures, rule coverage, schema parity and board invariants |
+| 37 | `validate:workflow-catalog` | `node scripts/generate-workflow-catalog.mjs --check` | `catalog/workflows.json` matches the `meta` literal in each `.claude/workflows/*.js` |
+| 38 | `validate:release-notes` | `node tests/validate-release-notes.mjs` | semantic-release renders notes with the configured preset |
+| 39 | `validate:mods` | `python3 tests/validate-mods.py` | Cross-harness mods match their `mod.toml` contract (declared footprint, generated adapters, production-core tests) |
 
 ### Generation Scripts
 

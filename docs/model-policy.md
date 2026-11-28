@@ -30,7 +30,7 @@ Not every harness exposes a model-selection surface. Rules that target an unsupp
 | `gemini` | not supported | not supported | `harnesses/gemini.agent.md` |
 | `kiro` | not supported | not supported | `harnesses/kiro-ide.agent.md` |
 
-For example, the `dotnet`, `generic`, `hr`, `legal`, `netsuite`, and `salesforce` providers currently carry a provider-tier rule pinning `codex` to a newer `gpt-*` model than the `all`-tier default — a normal use of the provider scope tier, not an exception to it.
+For example, the `dotnet`, `generic`, `hr`, `legal`, `netsuite`, and `salesforce` providers carry a provider-tier rule pinning `codex` to `gpt-6-sol` — a normal use of the provider scope tier, not an exception to it. The `all`-tier default is now `gpt-6-sol` as well, so these rules currently resolve to the same model; they would keep those providers on `gpt-6-sol` if the default changed again.
 
 ## Verified model registry
 

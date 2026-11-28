@@ -1,6 +1,6 @@
 name = "react_specialist_agent"
 description = "Static-review subagent for react-specialist. Review React component architecture, hooks/effects correctness, and rendering-performance risk across component libraries and app code."
-model = "gpt-5.4"
+model = "gpt-6-sol"
 model_reasoning_effort = "high"
 sandbox_mode = "read-only"
 

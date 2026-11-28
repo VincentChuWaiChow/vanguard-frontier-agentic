@@ -1,6 +1,6 @@
 name = "snowflake_migration_modernization_agent"
 description = "Reviews migration to Snowflake from, or coexistence with, Teradata, Oracle, SQL Server, Redshift, BigQuery, Databricks, Hadoop/Spark, and legacy EDWs: workload inventory, SQL and semantic compatibility, data gravity, security mapping, wave planning, dual running, reconciliation, cutover, and rollback. Permitted to conclude that a workload should not move. Static review only."
-model = "gpt-5.4"
+model = "gpt-6-sol"
 model_reasoning_effort = "high"
 sandbox_mode = "read-only"
 

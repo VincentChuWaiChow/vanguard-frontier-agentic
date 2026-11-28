@@ -1,6 +1,6 @@
 name = "python_observability_sre_agent"
 description = "Static review of in-application Python observability — structured logs, metrics, traces, context propagation and correlation, error taxonomy, metric/label cardinality, PII exposure, and SLO-supporting instrumentation. Reads application instrumentation code only; routes collector/dashboard infrastructure to the platform boards."
-model = "gpt-5.4"
+model = "gpt-6-sol"
 model_reasoning_effort = "high"
 sandbox_mode = "read-only"
 

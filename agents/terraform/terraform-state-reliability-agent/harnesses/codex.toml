@@ -1,6 +1,6 @@
 name = "terraform_state_reliability_agent"
 description = "Own the state file as a production asset: backend and locking configuration, backup and recovery posture, whether a proposed state surgery is justified and reversible, engine-specific state encryption, and the secrets that state records in the clear. Reads backend blocks, state metadata, and sanitized artifacts only — never mutates state."
-model = "gpt-5.4"
+model = "gpt-6-sol"
 model_reasoning_effort = "high"
 sandbox_mode = "read-only"
 

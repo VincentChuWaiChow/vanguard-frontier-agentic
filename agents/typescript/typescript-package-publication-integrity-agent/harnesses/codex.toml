@@ -1,6 +1,6 @@
 name = "typescript_package_publication_integrity_agent"
 description = "Static review of npm package publication integrity: publish identity and authority (trusted publishing/OIDC versus long-lived tokens), provenance attestation, the release-automation trust path, tarball contents, and registry/scope configuration. Reads the publish workflow and sanitized package configuration only."
-model = "gpt-5.4"
+model = "gpt-6-sol"
 model_reasoning_effort = "high"
 sandbox_mode = "read-only"
 

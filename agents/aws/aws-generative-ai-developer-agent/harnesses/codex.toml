@@ -1,6 +1,6 @@
 name = "aws_generative_ai_developer_agent"
 description = "Specialized subagent for aws-generative-ai-developer. Build Amazon Bedrock applications with a serverless-first architecture using Lambda, API Gateway, Step Functions, EventBridge, S3, DynamoDB, SQS, Guardrails, and IAM."
-model = "gpt-5.4"
+model = "gpt-6-sol"
 model_reasoning_effort = "high"
 sandbox_mode = "read-only"
 

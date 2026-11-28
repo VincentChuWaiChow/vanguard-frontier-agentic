@@ -1,6 +1,6 @@
 name = "oci_observability_incident_responder"
 description = "Specialized subagent for oci-observability-incident-responder. Operate as a ruthless OCI observability and incident responder for Monitoring alarms, Logging, Events, Notifications, service health, metrics, runbooks, and IAM-scoped incident response. Use when work touches OCI alarms, telemetry, alert triage, incident evidence, or response permissions."
-model = "gpt-5.4"
+model = "gpt-6-sol"
 model_reasoning_effort = "medium"
 sandbox_mode = "read-only"
 

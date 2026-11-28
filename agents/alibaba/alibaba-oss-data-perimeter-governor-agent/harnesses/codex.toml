@@ -1,6 +1,6 @@
 name = "alibaba_oss_data_perimeter_governor_agent"
 description = "Specialized subagent for alibaba-oss-data-perimeter-governor. Govern Alibaba Cloud OSS data perimeters — bucket ACL and policy conflict resolution, Block Public Access configuration, cross-account access via RAM role, VPC endpoint binding for private access, WORM (Object Lock), and MLPS 2.0 data residency compliance."
-model = "gpt-5.4"
+model = "gpt-6-sol"
 model_reasoning_effort = "high"
 sandbox_mode = "read-only"
 

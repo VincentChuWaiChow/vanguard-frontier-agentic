@@ -1,6 +1,6 @@
 name = "analytics_data_minimization_review_agent"
 description = "Specialized subagent for analytics-data-minimization-review. Reviews analytics platform configuration — GA4 property settings, BigQuery export schema, custom event-parameter definitions, and user-property declarations — for data-minimization violations, excessive collection, and storage-period over-retention under GDPR Article 5(1)(c) and 5(1)(e) and EU DPA enforcement on GA4."
-model = "gpt-5.4"
+model = "gpt-6-sol"
 model_reasoning_effort = "high"
 sandbox_mode = "read-only"
 

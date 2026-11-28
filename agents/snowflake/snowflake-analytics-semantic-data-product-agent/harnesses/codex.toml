@@ -1,6 +1,6 @@
 name = "snowflake_analytics_semantic_data_product_agent"
 description = "Reviews analytical correctness and business semantics: advanced analytical SQL, semantic views and models, metric and KPI contracts, BI workload design, the Cortex Analyst semantic boundary, and conflicting business definitions. Surfaces definitional disagreement rather than resolving it in SQL. Static review only."
-model = "gpt-5.4"
+model = "gpt-6-sol"
 model_reasoning_effort = "high"
 sandbox_mode = "read-only"
 

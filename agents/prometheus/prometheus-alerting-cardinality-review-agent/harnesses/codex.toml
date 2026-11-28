@@ -1,6 +1,6 @@
 name = "prometheus_alerting_cardinality_review_agent"
 description = "Specialized subagent for prometheus-alerting-cardinality-review. Reviews Prometheus and AlertManager configuration for cardinality explosion, alert correctness, scrape security, routing safety, and retention adequacy."
-model = "gpt-5.4"
+model = "gpt-6-sol"
 model_reasoning_effort = "high"
 sandbox_mode = "read-only"
 

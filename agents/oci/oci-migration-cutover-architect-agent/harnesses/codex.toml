@@ -1,6 +1,6 @@
 name = "oci_migration_cutover_architect"
 description = "Specialized subagent for oci-migration-cutover-architect. Plan OCI migrations and cutovers with Cloud Migrations, dependency discovery, waves, rollback, DNS, data sync, validation, and support readiness. Use for migration assessment, move groups, cutover runbooks, and go/no-go reviews."
-model = "gpt-5.4"
+model = "gpt-6-sol"
 model_reasoning_effort = "high"
 sandbox_mode = "read-only"
 

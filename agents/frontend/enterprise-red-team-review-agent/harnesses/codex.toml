@@ -1,6 +1,6 @@
 name = "enterprise_red_team_review_agent"
 description = "Adversarial second-pass reviewer that actively tries to break Tier-1 specialist verdicts on security, accessibility, performance, and AI-generated frontend code before a change can reach the Board Chair, enforcing the security and a11y HARD gates."
-model = "gpt-5.4"
+model = "gpt-6-sol"
 model_reasoning_effort = "high"
 sandbox_mode = "read-only"
 

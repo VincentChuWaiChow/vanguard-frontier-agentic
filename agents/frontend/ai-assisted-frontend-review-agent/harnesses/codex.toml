@@ -1,6 +1,6 @@
 name = "ai_assisted_frontend_review_agent"
 description = "Static-review subagent for ai-assisted-frontend-review. Applies an elevated, adversarial review bar to AI/LLM-generated frontend code, catching hallucinated APIs, insecure-but-idiomatic-looking patterns, missing accessibility semantics, and unverified framework-version claims before merge."
-model = "gpt-5.4"
+model = "gpt-6-sol"
 model_reasoning_effort = "high"
 sandbox_mode = "read-only"
 

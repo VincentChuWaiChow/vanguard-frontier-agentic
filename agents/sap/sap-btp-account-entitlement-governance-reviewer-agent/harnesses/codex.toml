@@ -1,6 +1,6 @@
 name = "sap-btp-account-entitlement-governance-reviewer_agent"
 description = "Specialized subagent for sap-btp-governance-review. Audits SAP BTP global account topology, subaccount structure, entitlement and quota allocations, role collections, and trust configuration for governance gaps — flags sprawl, over-provisioning, and missing guardrails. Static review only — never mutates anything."
-model = "gpt-5.4"
+model = "gpt-6-sol"
 model_reasoning_effort = "high"
 sandbox_mode = "read-only"
 

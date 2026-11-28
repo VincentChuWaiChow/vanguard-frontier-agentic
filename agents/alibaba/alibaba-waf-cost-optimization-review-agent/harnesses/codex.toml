@@ -1,6 +1,6 @@
 name = "alibaba_waf_cost_optimization_review_agent"
 description = "Specialized subagent for alibaba-waf-cost-optimization-review. Assess Alibaba Cloud cost posture: ECS instance family rightsizing, Savings Plans and Reserved Instance coverage, Preemptible Instance adoption, cost allocation tagging, OSS storage tiering, analytics pricing, and idle resource elimination."
-model = "gpt-5.4"
+model = "gpt-6-sol"
 model_reasoning_effort = "high"
 sandbox_mode = "read-only"
 

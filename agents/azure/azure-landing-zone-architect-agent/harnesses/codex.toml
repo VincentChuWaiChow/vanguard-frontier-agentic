@@ -1,6 +1,6 @@
 name = "azure_landing_zone_architect"
 description = "Specialized subagent for azure-landing-zone-architect. Design or review Azure landing-zone architecture across management groups, subscriptions, governance, security, networking, and operations dependencies with explicit evidence handling."
-model = "gpt-5.4"
+model = "gpt-6-sol"
 model_reasoning_effort = "high"
 sandbox_mode = "read-only"
 

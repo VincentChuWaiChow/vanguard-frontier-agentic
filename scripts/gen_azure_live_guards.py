@@ -1249,7 +1249,26 @@ metadata:
 """
 
 
+def codex_policy_default_lines(policy_path) -> list:
+    """First-generation Codex model lines from the policy's `all`-scope codex rule.
+
+    catalog/model-policy.json is the source of truth (npm run model-policy:apply rewrites these
+    lines anyway); reading it keeps a freshly generated adapter from pinning a stale model.
+    `auto` or an absent field emits nothing, matching what model-policy:apply leaves for auto.
+    """
+    with open(policy_path, encoding="utf-8") as fh:
+        rules = json.load(fh)["rules"]
+    rule = next((r for r in rules if r.get("scope") == "all" and r.get("harness") == "codex"), {})
+    lines = []
+    for key, toml_key in (("model", "model"), ("reasoning_effort", "model_reasoning_effort")):
+        value = rule.get(key)
+        if value and value != "auto":
+            lines.append(f'{toml_key} = "{value}"')
+    return lines
+
+
 def codex_toml(agent):
+    codex_model_lines = "".join(f"{line}\n" for line in codex_policy_default_lines(os.path.join(ROOT, "catalog", "model-policy.json")))
     rules = "\n".join([
         "- Load and follow the bound Azure skill first; do not drift into generic cloud advice.",
         "- This role is for repos or sessions that may be connected to live Azure credentials, CLI profiles, or real environments.",
@@ -1261,9 +1280,7 @@ def codex_toml(agent):
     ])
     return f"""name = "{agent['id']}_agent"
 description = "Specialized subagent for {agent['id']}. {agent['summary']}"
-model = "gpt-5.4"
-model_reasoning_effort = "high"
-sandbox_mode = "workspace-write"
+{codex_model_lines}sandbox_mode = "workspace-write"
 
 developer_instructions = \"\"\"
 Load and follow the bound `{agent['id']}` skill first. This agent exists only for that guarded live-Azure role; do not drift into generic cloud advice.

@@ -1,6 +1,6 @@
 name = "gcp_alloydb_cloudsql_dba_agent"
 description = "Specialized subagent for gcp-alloydb-cloudsql-dba. Operate AlloyDB clusters and Cloud SQL instances — HA configuration, read replicas, connection pooling, maintenance windows, backup strategy, and performance diagnostics."
-model = "gpt-5.4"
+model = "gpt-6-sol"
 model_reasoning_effort = "high"
 sandbox_mode = "read-only"
 

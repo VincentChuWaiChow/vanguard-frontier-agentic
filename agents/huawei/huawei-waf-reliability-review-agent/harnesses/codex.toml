@@ -1,6 +1,6 @@
 name = "huawei_waf_reliability_review_agent"
 description = "Specialized subagent for huawei-waf-reliability-review. Assess Huawei Cloud workload reliability posture via AZ distribution, ELB load balancing, Auto Scaling, GaussDB and RDS multi-AZ HA, and CBR data protection."
-model = "gpt-5.4"
+model = "gpt-6-sol"
 model_reasoning_effort = "high"
 sandbox_mode = "read-only"
 

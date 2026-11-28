@@ -1,6 +1,6 @@
 name = "azure_entra_id_specialist"
 description = "Specialized subagent for azure-entra-id-specialist. Review and guide Microsoft Entra ID tenant posture across Conditional Access, authentication methods, MFA and SSPR registration, Identity Protection, workload identities, app registrations, external identities, governance boundaries, licensing, and least-privilege operations with explicit evidence-versus-inference handling."
-model = "gpt-5.4"
+model = "gpt-6-sol"
 model_reasoning_effort = "high"
 sandbox_mode = "read-only"
 

@@ -1,6 +1,6 @@
 name = "snowflake_cortex_ai_agent_security_governor_agent"
 description = "Reviews the security and governance boundary of Snowflake AI: Cortex Agents, Cortex Search, Cortex Analyst integrations, AI functions, agent tools and custom tools, MCP connectors, agent identity, prompt and indirect prompt injection, data exfiltration, guardrails, evaluation, observability, and AI cost per successful task. Never reviews an AI system by reading its system prompt alone. Static review only."
-model = "gpt-5.4"
+model = "gpt-6-sol"
 model_reasoning_effort = "high"
 sandbox_mode = "read-only"
 

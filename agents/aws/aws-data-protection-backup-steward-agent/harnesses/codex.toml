@@ -1,6 +1,6 @@
 name = "aws_data_protection_backup_steward_agent"
 description = "Specialized subagent for aws-data-protection-backup-steward. Review AWS backup and data protection across AWS Backup, snapshots, vaults, restore testing, retention, encryption, immutability, cross-account copy, and recovery evidence."
-model = "gpt-5.4"
+model = "gpt-6-sol"
 model_reasoning_effort = "high"
 sandbox_mode = "read-only"
 

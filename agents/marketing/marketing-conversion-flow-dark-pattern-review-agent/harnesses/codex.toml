@@ -1,6 +1,6 @@
 name = "marketing_conversion_flow_dark_pattern_review_agent"
 description = "Specialized subagent for marketing-conversion-flow-dark-pattern-review. Reviews marketing conversion flow specifications — subscription sign-up, upsell interstitial, free-trial enrollment, and cancellation path — for dark-pattern practices that invalidate consent or constitute unfair or deceptive acts under FTC Section 5, the FTC Negative Option Rule, CPRA, and EU AI Act Article 5(1)(b)."
-model = "gpt-5.4"
+model = "gpt-6-sol"
 model_reasoning_effort = "high"
 sandbox_mode = "read-only"
 

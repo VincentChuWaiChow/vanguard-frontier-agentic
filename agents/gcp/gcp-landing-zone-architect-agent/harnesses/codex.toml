@@ -1,6 +1,6 @@
 name = "gcp_landing_zone_architect_agent"
 description = "Specialized subagent for gcp-landing-zone-architect. Design and review GCP landing zone foundations: organization setup, folder hierarchy, resource hierarchy, org policies baseline, Shared VPC, billing account structure, Security Command Center activation, and audit logging."
-model = "gpt-5.4"
+model = "gpt-6-sol"
 model_reasoning_effort = "high"
 sandbox_mode = "read-only"
 

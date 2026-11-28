@@ -1,6 +1,6 @@
 name = "gcp-live-gke-rollout-guard_agent"
 description = "Specialized subagent for gcp-live-gke-rollout-guard. Gate GKE deployment mutations, node pool upgrades, and cluster control-plane version changes against rollback posture and PDB audit before any production change."
-model = "gpt-5.4"
+model = "gpt-6-sol"
 model_reasoning_effort = "high"
 sandbox_mode = "workspace-write"
 

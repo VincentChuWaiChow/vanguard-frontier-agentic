@@ -1,6 +1,6 @@
 name = "d365_live_record_field_update_guard"
 description = "Specialized subagent for d365-live-record-field-update-guard. Mutating-runtime live-guard for updating named fields on a single Dataverse row (table + record GUID) via the Dataverse Web API PATCH. One record, named fields only. Requires written human approval token referencing exact target + change + blast-radius. PREFLIGHT dry-run diff required before any write. Fully reversible — prior field values captured; inverse PATCH is rollback. Gate-only; never auto-dispatched. Phase B mutating-runtime."
-model = "gpt-5.4"
+model = "gpt-6-sol"
 model_reasoning_effort = "high"
 sandbox_mode = "read-only"
 

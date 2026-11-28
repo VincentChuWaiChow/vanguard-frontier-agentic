@@ -1,6 +1,6 @@
 name = "huawei_solution_architect_agent"
 description = "Specialized subagent for huawei-solution-architect. Design Huawei Cloud solutions — product selection, enterprise-project model design, region selection for MLPS/sovereignty requirements, architecture patterns, multi-zone and multi-region HA."
-model = "gpt-5.4"
+model = "gpt-6-sol"
 model_reasoning_effort = "high"
 sandbox_mode = "read-only"
 

@@ -1,6 +1,6 @@
 name = "atlassian-control-evidence-lineage_agent"
 description = "Read-only lineage checks from control objective through policy, owner, Jira execution, Confluence evidence, technical evidence and review decision, returning chain-complete, chain-broken, evidence-stale, intent-only, conflicting or insufficient-evidence per control. Never declares compliance, certification or audit outcome; drafts corrective work through jira-ticket-authoring."
-model = "gpt-5.4"
+model = "gpt-6-sol"
 model_reasoning_effort = "high"
 sandbox_mode = "read-only"
 

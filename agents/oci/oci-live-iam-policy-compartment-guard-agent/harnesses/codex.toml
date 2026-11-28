@@ -1,6 +1,6 @@
 name = "oci-live-iam-policy-compartment-guard_agent"
 description = "Specialized subagent for oci-live-iam-policy-compartment-guard. Guard OCI IAM policy changes and dynamic group mutations using verb-hierarchy audit and tag-condition review before write."
-model = "gpt-5.4"
+model = "gpt-6-sol"
 model_reasoning_effort = "high"
 sandbox_mode = "workspace-write"
 

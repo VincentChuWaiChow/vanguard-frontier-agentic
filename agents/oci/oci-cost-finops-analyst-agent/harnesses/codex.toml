@@ -1,6 +1,6 @@
 name = "oci_cost_finops_analyst"
 description = "Specialized subagent for oci-cost-finops-analyst. Analyze Oracle Cloud Infrastructure cost, usage, budgets, tagging, rightsizing, commitment coverage, and FinOps governance. Use when asked to explain OCI spend, investigate cost spikes, build savings plans, review underused resources, design chargeback/showback, or challenge cost-optimization assumptions without breaking reliability."
-model = "gpt-5.4"
+model = "gpt-6-sol"
 model_reasoning_effort = "medium"
 sandbox_mode = "read-only"
 

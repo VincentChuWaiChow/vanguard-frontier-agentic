@@ -1,6 +1,6 @@
 name = "sap-transformation-portfolio-triage_agent"
 description = "Specialized subagent for sap-transformation-portfolio-triage-review. Classifies and prioritises SAP transformation programmes — scope readiness, dependency mapping, wave-plan coherence, release sequencing risk, and cutover complexity. Static review only — never mutates any programme record, plan artefact, or roadmap configuration."
-model = "gpt-5.4"
+model = "gpt-6-sol"
 model_reasoning_effort = "high"
 sandbox_mode = "read-only"
 

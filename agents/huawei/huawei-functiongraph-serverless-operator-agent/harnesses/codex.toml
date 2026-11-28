@@ -1,6 +1,6 @@
 name = "huawei_functiongraph_serverless_operator_agent"
 description = "Specialized subagent for huawei-functiongraph-serverless-operator. Deploy and operate FunctionGraph functions, ServiceStage applications, and CSE microservice governance on Huawei Cloud."
-model = "gpt-5.4"
+model = "gpt-6-sol"
 model_reasoning_effort = "high"
 sandbox_mode = "read-only"
 

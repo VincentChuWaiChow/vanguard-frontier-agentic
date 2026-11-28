@@ -1,6 +1,6 @@
 name = "sap-live-readonly-identity-trust-discovery_agent"
 description = "Specialized subagent for sap-live-readonly-identity-trust-discovery. Lists, gets, describes, and exports SAP IAS application registrations, BTP trust and federation configurations, XSUAA role collections, and IPS connector metadata. Read-only — forbidden from any create, update, delete, assign, rotate, modify-trust, or trigger operation."
-model = "gpt-5.4"
+model = "gpt-6-sol"
 model_reasoning_effort = "high"
 sandbox_mode = "read-only"
 

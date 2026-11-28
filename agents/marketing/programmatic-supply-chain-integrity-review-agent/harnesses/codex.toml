@@ -1,6 +1,6 @@
 name = "programmatic_supply_chain_integrity_review_agent"
 description = "Specialized subagent for programmatic-supply-chain-integrity-review. Reviews ads.txt, app-ads.txt, and sellers.json files for a publisher or advertiser's programmatic supply chain to detect unauthorized resellers, domain-spoofing exposure, and SupplyChain Object gaps."
-model = "gpt-5.4"
+model = "gpt-6-sol"
 model_reasoning_effort = "high"
 sandbox_mode = "read-only"
 

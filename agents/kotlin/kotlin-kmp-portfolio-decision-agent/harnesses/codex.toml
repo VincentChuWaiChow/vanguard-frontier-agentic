@@ -1,6 +1,6 @@
 name = "kotlin_kmp_portfolio_decision_agent"
 description = "Decides whether a product and org should adopt Kotlin Multiplatform at all, and how much to share, weighing team topology, roadmap alignment, platform differentiation, hiring/skills, lifecycle cost, and reversibility. Must be able to recommend against KMP; never designs the implementation."
-model = "gpt-5.4"
+model = "gpt-6-sol"
 model_reasoning_effort = "high"
 sandbox_mode = "read-only"
 

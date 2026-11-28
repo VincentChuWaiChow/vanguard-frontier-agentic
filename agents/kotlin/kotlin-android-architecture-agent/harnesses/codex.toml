@@ -1,6 +1,6 @@
 name = "kotlin_android_architecture_agent"
 description = "Static review of Android app architecture correctness: ViewModel lifecycle and scoping across configuration changes, SavedStateHandle persistence across process death, lifecycle-aware Flow collection, and unidirectional data flow with a single source of truth. Reads source only."
-model = "gpt-5.4"
+model = "gpt-6-sol"
 model_reasoning_effort = "high"
 sandbox_mode = "read-only"
 

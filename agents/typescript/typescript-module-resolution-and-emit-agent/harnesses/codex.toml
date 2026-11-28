@@ -1,6 +1,6 @@
 name = "typescript_module_resolution_and_emit_agent"
 description = "Static review of whether a TypeScript package resolves, imports, and emits correctly for every consumer mode it claims to support: the `module`/`moduleResolution` matrix, `exports`/`imports` conditional-export ordering, the `types` condition, `.mts`/`.cts`, and the dual-package hazard. Reads `package.json`, every `tsconfig.json`, and emitted output only."
-model = "gpt-5.4"
+model = "gpt-6-sol"
 model_reasoning_effort = "high"
 sandbox_mode = "read-only"
 

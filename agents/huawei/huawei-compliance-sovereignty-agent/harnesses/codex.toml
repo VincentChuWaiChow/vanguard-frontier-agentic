@@ -1,6 +1,6 @@
 name = "huawei_compliance_sovereignty_agent"
 description = "Specialized subagent for huawei-compliance-sovereignty. Advise on MLPS 2.0 Level 3 technical controls, China data localization, Trusted Cloud certification, and government cloud configuration."
-model = "gpt-5.4"
+model = "gpt-6-sol"
 model_reasoning_effort = "high"
 sandbox_mode = "read-only"
 

@@ -1,6 +1,6 @@
 name = "d365_live_security_role_guard"
 description = "Specialized subagent for d365-live-security-role-guard. Live read-only Dataverse security posture discovery — security roles, team/BU assignments, application users, System Administrator spread, SoD privilege combinations — with least-privilege role design proposals and rollback plan. Phase A read-only-runtime; never mutates. Data-plane only via custom read-only security role."
-model = "gpt-5.4"
+model = "gpt-6-sol"
 model_reasoning_effort = "high"
 sandbox_mode = "read-only"
 

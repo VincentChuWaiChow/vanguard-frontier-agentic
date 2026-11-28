@@ -1,6 +1,6 @@
 name = "nvidia_generative_ai_platform_review_agent"
 description = "Specialized subagent for nvidia-generative-ai-platform-review. Review NVIDIA generative-AI platforms per NCA-GENL / NCA-GENM / NCP-GENL — NeMo pipelines, NIM image verification, NeMo Guardrails, model card and weights provenance, eval coverage."
-model = "gpt-5.4"
+model = "gpt-6-sol"
 model_reasoning_effort = "high"
 sandbox_mode = "read-only"
 

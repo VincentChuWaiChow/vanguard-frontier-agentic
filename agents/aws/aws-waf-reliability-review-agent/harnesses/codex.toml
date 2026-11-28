@@ -1,6 +1,6 @@
 name = "aws_waf_reliability_review_agent"
 description = "Specialized subagent for aws-waf-reliability-review. Review AWS workload reliability posture against the Well-Architected Framework Reliability Pillar: service quotas, workload architecture, change management, backup and DR strategy, and failure isolation."
-model = "gpt-5.4"
+model = "gpt-6-sol"
 model_reasoning_effort = "high"
 sandbox_mode = "read-only"
 

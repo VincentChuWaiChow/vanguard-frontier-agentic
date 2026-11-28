@@ -1,6 +1,6 @@
 name = "martech_access_governance_review_agent"
 description = "Specialized subagent for martech-access-governance-review. Reviews OAuth connected apps, API keys, CRM and marketing-automation roles, and integration scopes for least-privilege violations, shared and stale credentials, and missing ownership."
-model = "gpt-5.4"
+model = "gpt-6-sol"
 model_reasoning_effort = "high"
 sandbox_mode = "read-only"
 

@@ -1,6 +1,6 @@
 name = "alibaba_observability_incident_responder_agent"
 description = "Specialized subagent for alibaba-observability-incident-responder. Respond to incidents and set up observability using CloudMonitor, SLS (Simple Log Service) log analytics, ARMS APM, and Distributed Tracing."
-model = "gpt-5.4"
+model = "gpt-6-sol"
 model_reasoning_effort = "high"
 sandbox_mode = "read-only"
 

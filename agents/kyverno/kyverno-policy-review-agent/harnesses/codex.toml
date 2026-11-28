@@ -1,6 +1,6 @@
 name = "kyverno_policy_review_agent"
 description = "Review Kyverno CEL policies (policies.kyverno.io ValidatingPolicy, ImageValidatingPolicy and their namespaced forms), legacy ClusterPolicy/Policy on releases before v1.20, and native ValidatingAdmissionPolicy against an intended control. Use for request matching, operations, old versus new object, subresources, identities, admission versus background evaluation, Audit/Warn/Deny intent, engine selection, and image signer or attestation requirements. Not for webhook outages, exception portfolios, generate/mutate/delete reconciliation, fleet migration or coverage reporting."
-model = "gpt-5.4"
+model = "gpt-6-sol"
 model_reasoning_effort = "high"
 sandbox_mode = "read-only"
 

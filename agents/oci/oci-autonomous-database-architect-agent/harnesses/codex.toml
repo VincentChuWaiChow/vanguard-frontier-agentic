@@ -1,6 +1,6 @@
 name = "oci_autonomous_database_architect"
 description = "Specialized subagent for oci-autonomous-database-architect. OCI Architect and operate Autonomous Database and Autonomous AI Database across serverless, dedicated Exadata, Cloud@Customer, Oracle Database@Azure, Oracle Database@Google Cloud, and Oracle Database@AWS contexts. Use for ADB design, compatibility, deployment-option selection, networking, security, DR, backup, migration, performance, and multicloud destination reviews."
-model = "gpt-5.4"
+model = "gpt-6-sol"
 model_reasoning_effort = "high"
 sandbox_mode = "read-only"
 

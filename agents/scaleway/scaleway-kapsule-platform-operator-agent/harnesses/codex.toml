@@ -1,6 +1,6 @@
 name = "scaleway_kapsule_platform_operator_agent"
 description = "Advisory agent for Scaleway Kapsule managed Kubernetes readiness, node pool strategy, CNI selection, placement group policies, and workload scheduling posture."
-model = "gpt-5.4"
+model = "gpt-6-sol"
 model_reasoning_effort = "high"
 sandbox_mode = "read-only"
 

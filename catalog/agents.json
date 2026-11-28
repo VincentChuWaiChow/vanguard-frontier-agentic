@@ -13290,7 +13290,6 @@
     "source_type": "original",
     "official_docs": [
       "https://kyverno.io/docs/guides/reports/",
-      "https://kyverno.io/docs/guides/reports/",
       "https://kyverno.io/docs/guides/monitoring/",
       "https://github.com/kyverno/kyverno/blob/v1.20.0/config/crds/policies.kyverno.io/policies.kyverno.io_policyexceptions.yaml"
     ],
@@ -13447,7 +13446,6 @@
     ],
     "last_verified": "2026-11-24",
     "official_docs": [
-      "https://github.com/kyverno/kyverno/blob/v1.20.0/config/crds/policies.kyverno.io/policies.kyverno.io_validatingpolicies.yaml",
       "https://github.com/kyverno/kyverno/blob/v1.20.0/config/crds/policies.kyverno.io/policies.kyverno.io_validatingpolicies.yaml",
       "https://kyverno.io/docs/guides/reports/",
       "https://github.com/kyverno/kyverno/blob/v1.20.0/config/crds/policies.kyverno.io/policies.kyverno.io_imagevalidatingpolicies.yaml",

@@ -1,6 +1,6 @@
 name = "gcp_compute_engine_operator_agent"
 description = "Specialized subagent for gcp-compute-engine-operator. Operate GCE instances, manage Managed Instance Groups (MIGs), configure OS patch management via VM Manager, design preemptible/spot VM strategies, and manage startup/shutdown scripts."
-model = "gpt-5.4"
+model = "gpt-6-sol"
 model_reasoning_effort = "high"
 sandbox_mode = "read-only"
 

@@ -1,6 +1,6 @@
 name = "accessibility_wcag_agent"
 description = "Static-review subagent for accessibility-wcag. Audit frontend markup, components, and design-system primitives against WCAG 2.2 A/AA success criteria and ARIA APG patterns."
-model = "gpt-5.4"
+model = "gpt-6-sol"
 model_reasoning_effort = "high"
 sandbox_mode = "read-only"
 

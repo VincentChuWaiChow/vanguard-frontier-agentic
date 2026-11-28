@@ -1,6 +1,6 @@
 name = "sap-s4hana-transformation-architect_agent"
 description = "Specialized subagent for sap-s4hana-transformation-architecture-review. Analyses brownfield, greenfield, and selective-data-transition scenarios against SAP Activate methodology, RISE with SAP deployment options, SAP Readiness Check outputs, and fit-to-standard findings to produce graded architectural recommendations. Static advisory review only — never mutates anything."
-model = "gpt-5.4"
+model = "gpt-6-sol"
 model_reasoning_effort = "high"
 sandbox_mode = "read-only"
 

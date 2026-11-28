@@ -1,6 +1,6 @@
 name = "internationalization_localization_agent"
 description = "Static-review subagent for internationalization-localization. Verifies i18n architecture (ICU MessageFormat, CLDR plural/date/number rules, RTL layout) and l10n readiness so the frontend is structurally translatable and locale-correct before any translation vendor is engaged."
-model = "gpt-5.4"
+model = "gpt-6-sol"
 model_reasoning_effort = "high"
 sandbox_mode = "read-only"
 

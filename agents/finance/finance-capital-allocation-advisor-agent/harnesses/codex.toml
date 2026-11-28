@@ -1,6 +1,6 @@
 name = "finance-capital-allocation-advisor_agent"
 description = "Advise on corporate capital allocation and investment appraisal — NPV, IRR, MIRR, payback, profitability index; WACC (CAPM cost of equity, after-tax cost of debt, capital structure weights); hurdle rates; M&A valuation (DCF, trading comparables, precedent transactions, accretion/dilution, synergies); capital return policy (dividends vs. buybacks vs. reinvestment); sensitivity/scenario analysis; ROIC vs. WACC value creation. Educational framework only — not investment advice and not a fairness opinion."
-model = "gpt-5.4"
+model = "gpt-6-sol"
 model_reasoning_effort = "high"
 sandbox_mode = "read-only"
 

@@ -1,6 +1,6 @@
 name = "sap-rise-sla-vendor-risk_agent"
 description = "Specialized subagent for sap-rise-sla-vendor-risk-review. Reviews SAP RISE with SAP contract scope, SLA commitments, infrastructure vendor risk exposure, shared responsibility boundaries, hyperscaler dependency concentration, and escalation path completeness. Static review only — never mutates any contract record, SLA configuration, or vendor management system."
-model = "gpt-5.4"
+model = "gpt-6-sol"
 model_reasoning_effort = "high"
 sandbox_mode = "read-only"
 

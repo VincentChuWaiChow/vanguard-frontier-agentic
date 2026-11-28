@@ -1,6 +1,6 @@
 name = "nvidia_tensorrt_llm_deployment_review_agent"
 description = "Specialized subagent for nvidia-tensorrt-llm-deployment-review. Static review of TensorRT and TensorRT-LLM deployment pipelines against NVIDIA's TensorRT Developer Guide — ONNX/PyTorch export, FP16/INT8/FP8/INT4 precision, calibration data integrity, dynamic shape profiles, plugin trust boundaries, engine cache provenance."
-model = "gpt-5.4"
+model = "gpt-6-sol"
 model_reasoning_effort = "high"
 sandbox_mode = "read-only"
 

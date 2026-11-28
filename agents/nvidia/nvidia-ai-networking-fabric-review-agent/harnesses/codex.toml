@@ -1,6 +1,6 @@
 name = "nvidia_ai_networking_fabric_review_agent"
 description = "Specialized subagent for nvidia-ai-networking-fabric-review. Review NVIDIA AI fabrics per NCP-AIN — Spectrum-X / InfiniBand topology, NCCL tuning, RoCEv2 lossless config, congestion control, tenant isolation."
-model = "gpt-5.4"
+model = "gpt-6-sol"
 model_reasoning_effort = "high"
 sandbox_mode = "read-only"
 

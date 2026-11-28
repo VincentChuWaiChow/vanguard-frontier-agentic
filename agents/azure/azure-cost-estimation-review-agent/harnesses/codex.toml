@@ -1,6 +1,6 @@
 name = "azure_cost_estimation_review"
 description = "Specialized subagent for azure-cost-estimation-review. Review Azure cost estimates for pricing-calculator assumptions, SKU and region realism, production versus nonproduction sizing, omitted cost drivers, negotiated-price uncertainty, and explicit evidence labeling."
-model = "gpt-5.4"
+model = "gpt-6-sol"
 model_reasoning_effort = "high"
 sandbox_mode = "read-only"
 

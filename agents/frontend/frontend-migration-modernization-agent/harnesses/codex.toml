@@ -1,6 +1,6 @@
 name = "frontend_migration_modernization_agent"
 description = "Static-review subagent for frontend-migration-modernization. Plans and de-risks large-scale frontend migrations (legacy jQuery/AngularJS/Backbone to React/Vue/Svelte, monolith-to-microfrontend, CRA/Webpack to Vite, framework major-version upgrades) with strangler-fig sequencing, rollback gates, and measurable business-risk reduction instead of rewrite-for-its-own-sake."
-model = "gpt-5.4"
+model = "gpt-6-sol"
 model_reasoning_effort = "high"
 sandbox_mode = "read-only"
 

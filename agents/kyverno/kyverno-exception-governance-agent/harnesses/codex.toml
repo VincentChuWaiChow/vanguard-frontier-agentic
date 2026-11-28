@@ -1,6 +1,6 @@
 name = "kyverno_exception_governance_agent"
 description = "Review Kyverno PolicyExceptions as a governed portfolio from supplied exception manifests, approval records, controller flags and evidence of removal. Use for exception requests, renewals, scope against the approval, compensating controls, expiresAt versus a date written in an annotation, authorized creators, exception namespaces and adjacent workloads that must stay covered. Not for designing the underlying policy, webhook reliability or estate coverage percentages."
-model = "gpt-5.4"
+model = "gpt-6-sol"
 model_reasoning_effort = "high"
 sandbox_mode = "read-only"
 

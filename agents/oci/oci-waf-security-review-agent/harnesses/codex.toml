@@ -1,6 +1,6 @@
 name = "oci_waf_security_review"
 description = "Specialized subagent for oci-waf-security-review. Assess OCI workload security posture across IAM, compartments, network isolation, encryption, threat detection, Security Zones, and CIS OCI Benchmark compliance readiness."
-model = "gpt-5.4"
+model = "gpt-6-sol"
 model_reasoning_effort = "high"
 sandbox_mode = "read-only"
 

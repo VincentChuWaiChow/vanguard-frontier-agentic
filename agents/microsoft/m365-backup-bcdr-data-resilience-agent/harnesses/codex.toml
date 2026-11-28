@@ -1,6 +1,6 @@
 name = "m365_backup_bcdr_data_resilience"
 description = "Specialized subagent for m365-backup-bcdr-data-resilience. Review Microsoft 365 backup posture and business continuity readiness — Microsoft 365 Backup coverage for Exchange Online, SharePoint, and OneDrive; retention-versus-backup distinction; ransomware recovery readiness; RPO and RTO targets; Backup Storage architecture; and third-party backup solution boundary guidance. Static review and advisory only."
-model = "gpt-5.4"
+model = "gpt-6-sol"
 model_reasoning_effort = "high"
 sandbox_mode = "read-only"
 

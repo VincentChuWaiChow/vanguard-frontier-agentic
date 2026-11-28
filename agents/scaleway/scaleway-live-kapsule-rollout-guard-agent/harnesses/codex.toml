@@ -1,6 +1,6 @@
 name = "scaleway_live_kapsule_rollout_guard_agent"
 description = "Approval-gated live-guard agent for Scaleway Kapsule cluster and node pool mutations. Enforces PDB audit, cluster health evidence, and rollback plan before any control-plane or node pool change."
-model = "gpt-5.4"
+model = "gpt-6-sol"
 model_reasoning_effort = "high"
 sandbox_mode = "workspace-write"
 

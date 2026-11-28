@@ -1,6 +1,6 @@
 name = "alibaba_tablestore_architect"
 description = "Static reviewer for Alibaba Cloud Tablestore: partition-key hotspot and 10 GB per-key design, local transactions, conditional updates, global vs local secondary and search indexes, TTL/version rules, instance type, capacity units, access control and SDKs. Reviews and plans; never runs table, index, throughput, policy or data changes."
-model = "gpt-5.4"
+model = "gpt-6-sol"
 model_reasoning_effort = "high"
 sandbox_mode = "read-only"
 
